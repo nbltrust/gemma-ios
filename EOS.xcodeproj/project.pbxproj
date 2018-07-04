@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73153E8620EC9179005D36B4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73153E8520EC9179005D36B4 /* Constants.swift */; };
 		73E5A8D120EC6F4E00FFCCE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */; };
 		73E5A8D320EC6F4E00FFCCE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */; };
 		73E5A8D820EC6F5000FFCCE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E5A8D720EC6F5000FFCCE1 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		73153E8520EC9179005D36B4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		73E5A8CD20EC6F4E00FFCCE1 /* EOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		73153E8320EC910F005D36B4 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				73153E8520EC9179005D36B4 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		73E5A8C420EC6F4E00FFCCE1 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +164,7 @@
 		73E5A8CF20EC6F4E00FFCCE1 /* EOS */ = {
 			isa = PBXGroup;
 			children = (
+				73153E8320EC910F005D36B4 /* Constants */,
 				73E5A90020EC766000FFCCE1 /* Resources */,
 				73E5A8F220EC759300FFCCE1 /* Modules */,
 				73E5A8F120EC758200FFCCE1 /* ViewControllers */,
@@ -165,7 +176,6 @@
 				73E5A8EB20EC752100FFCCE1 /* Localization */,
 				73E5A8EA20EC751700FFCCE1 /* Extensions */,
 				73E5A8E920EC750F00FFCCE1 /* Tools */,
-				73E5A8E820EC74FC00FFCCE1 /* Constants */,
 				73E5A8E720EC74F000FFCCE1 /* Core */,
 				73E5A8E620EC74CB00FFCCE1 /* Vendor */,
 				73E5A8E520EC74C200FFCCE1 /* Base */,
@@ -205,13 +215,6 @@
 			children = (
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		73E5A8E820EC74FC00FFCCE1 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 		73E5A8E920EC750F00FFCCE1 /* Tools */ = {
@@ -666,6 +669,7 @@
 				73E5A94020EC828F00FFCCE1 /* NavCoordinator.swift in Sources */,
 				73E5A93320EC7F6900FFCCE1 /* BaseCollectionViewCell.swift in Sources */,
 				73E5A92320EC7D9200FFCCE1 /* AppCoordinator.swift in Sources */,
+				73153E8620EC9179005D36B4 /* Constants.swift in Sources */,
 				73E5A90420EC787100FFCCE1 /* UIFont+Additions.swift in Sources */,
 				73E5A92F20EC7F4200FFCCE1 /* UIImage+Extensions.swift in Sources */,
 				73E5A92B20EC7EB300FFCCE1 /* BaseTabbarViewController.swift in Sources */,
