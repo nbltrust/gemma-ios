@@ -6,3 +6,4 @@
 #import <KMNavigationBarTransition/KMNavigationBarTransition.h>
 
 #import <FCUUID/FCUUID.h>
+#import "EOSIO.h"

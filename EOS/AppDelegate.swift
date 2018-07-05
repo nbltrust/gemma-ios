@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         //    KingfisherManager.shared.defaultOptions = [.fromMemoryCacheOrRefresh]
-        
+                
         _ = RichStyle.init()
 
         let rootVC = BaseTabbarViewController()
