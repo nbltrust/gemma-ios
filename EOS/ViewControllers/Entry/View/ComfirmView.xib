@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComfirmView" customModule="RXSwiftDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="yVE-Ht-bst" id="UIa-td-Gia"/>
+                <outlet property="containerView" destination="iN0-l3-epB" id="5B7-3j-Y5B"/>
+                <outlet property="contentLabel" destination="bkD-8W-H3n" id="WLk-bS-7vH"/>
+                <outlet property="sureButton" destination="M1M-lV-Hwd" id="oO7-0l-BUD"/>
+                <outlet property="titleLabel" destination="cRT-Xp-2pM" id="GZB-py-Uzq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="339" height="194"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-fd-itm">
+                    <rect key="frame" x="0.0" y="76.5" width="339" height="64"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVE-Ht-bst">
+                            <rect key="frame" x="16" y="0.0" width="146" height="44"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="取消">
+                                <color key="titleColor" red="0.25490196078431371" green="0.41176470588235292" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" red="0.25490196079999999" green="0.41176470590000003" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M1M-lV-Hwd">
+                            <rect key="frame" x="177" y="0.0" width="146" height="44"/>
+                            <color key="backgroundColor" red="0.25490196078431371" green="0.41176470588235292" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="确定">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="yVE-Ht-bst" firstAttribute="top" secondItem="Grj-fd-itm" secondAttribute="top" id="CaA-Jn-Mf3"/>
+                        <constraint firstItem="M1M-lV-Hwd" firstAttribute="leading" secondItem="yVE-Ht-bst" secondAttribute="trailing" constant="15" id="Cn5-C7-MEF"/>
+                        <constraint firstAttribute="trailing" secondItem="M1M-lV-Hwd" secondAttribute="trailing" constant="16" id="D2W-bJ-8gZ"/>
+                        <constraint firstItem="yVE-Ht-bst" firstAttribute="leading" secondItem="Grj-fd-itm" secondAttribute="leading" constant="16" id="LNz-CA-NPK"/>
+                        <constraint firstAttribute="bottom" secondItem="M1M-lV-Hwd" secondAttribute="bottom" constant="20" id="O0p-3q-6C5"/>
+                        <constraint firstAttribute="height" constant="64" id="bBy-5H-LFg"/>
+                        <constraint firstItem="M1M-lV-Hwd" firstAttribute="top" secondItem="Grj-fd-itm" secondAttribute="top" id="jWm-MH-mrm"/>
+                        <constraint firstAttribute="bottom" secondItem="yVE-Ht-bst" secondAttribute="bottom" constant="20" id="sXg-n7-eTf"/>
+                        <constraint firstItem="M1M-lV-Hwd" firstAttribute="width" secondItem="yVE-Ht-bst" secondAttribute="width" id="vev-Nl-k8T"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="提示" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRT-Xp-2pM">
+                    <rect key="frame" x="16" y="10" width="307" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" layoutMarginsFollowReadableWidth="YES" text="文本" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkD-8W-H3n">
+                    <rect key="frame" x="16" y="39.5" width="307" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.61960784313725492" green="0.63921568627450975" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="bkD-8W-H3n" firstAttribute="top" secondItem="cRT-Xp-2pM" secondAttribute="bottom" constant="10" id="1pr-5p-WSR"/>
+                <constraint firstItem="cRT-Xp-2pM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="CgY-3g-iYN"/>
+                <constraint firstItem="cRT-Xp-2pM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="JGW-Ne-UBu"/>
+                <constraint firstAttribute="trailing" secondItem="cRT-Xp-2pM" secondAttribute="trailing" constant="16" id="Jhm-r4-Gfa"/>
+                <constraint firstItem="Grj-fd-itm" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Jr2-2T-gMQ"/>
+                <constraint firstItem="Grj-fd-itm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Vd4-wA-S9b"/>
+                <constraint firstItem="bkD-8W-H3n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="kcS-LC-xNr"/>
+                <constraint firstAttribute="trailing" secondItem="bkD-8W-H3n" secondAttribute="trailing" constant="16" id="mKQ-Tf-AAB"/>
+                <constraint firstItem="Grj-fd-itm" firstAttribute="top" secondItem="bkD-8W-H3n" secondAttribute="bottom" constant="20" id="mKt-fc-wdU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="4"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                    <color key="value" red="0.1529411765" green="0.20392156859999999" blue="0.49019607840000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="point" keyPath="layer.shadowOffset">
+                    <point key="value" x="0.0" y="0.0"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                    <integer key="value" value="3"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="-53.5" y="-237"/>
+        </view>
+    </objects>
+</document>

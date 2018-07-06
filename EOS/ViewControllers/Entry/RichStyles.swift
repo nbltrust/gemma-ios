@@ -11,6 +11,8 @@ import SwiftRichString
 
 enum StyleNames:String {
     case introduce
+    case agree
+    case agreement
 }
 
 class RichStyle {
@@ -21,5 +23,18 @@ class RichStyle {
             $0.lineSpacing = 4.0
         }
         Styles.register(StyleNames.introduce.rawValue, style: introduce_style)
+        
+        let agree_style = Style {
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
+            $0.color = UIColor.blueyGrey
+        }
+        Styles.register(StyleNames.agree.rawValue, style: agree_style)
+        
+        let agreement_style = Style {
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
+            $0.color = UIColor.darkSlateBlue
+            $0.underline = (.styleSingle,UIColor.darkSlateBlue)
+        }
+        Styles.register(StyleNames.agreement.rawValue, style: agreement_style)
       }
 }

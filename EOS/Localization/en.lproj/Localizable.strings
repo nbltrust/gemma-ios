@@ -7,3 +7,24 @@
 */
 
 "test" = "test";
+
+/*Account*/
+"account_wallet_name" = "钱包名称";
+"account_setting_password" = "设置密码";
+"account_comfirm_password" = "重复密码";
+"account_invitationcode" = "邀请码";
+
+"name_ph" = "请输入钱包名称";
+"password_ph" = "请输入12位字符的密码";
+"comfirm_password_ph" = "请再次输入您的密码";
+"invitationcode_ph" = "请输入邀请码";
+
+"name_warning" = "密码用于加密钱包等机密信息，请务必牢记或使用密码管理工具存储。Gemma不存储密码，无法提供密码找回服务";
+"password_warning" = "密码为12位字符";
+"comfirm_password_warning" = "密码不一致";
+"invitationcode_warning" = "邀请码为6位字符";
+
+"agree_title" = "我已阅读并同意";
+"service_protocol" = "服务协议";
+
+"create_wallet" = "创建钱包";

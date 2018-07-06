@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2243653A20ECA82B00D56426 /* TitleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243653920ECA82B00D56426 /* TitleTextView.swift */; };
+		2243653C20ECA87900D56426 /* TitleTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2243653B20ECA87900D56426 /* TitleTextView.xib */; };
+		2243653E20ECD62100D56426 /* RegisterContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243653D20ECD62100D56426 /* RegisterContentView.swift */; };
+		2243654020ECD63B00D56426 /* RegisterContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2243653F20ECD63B00D56426 /* RegisterContentView.xib */; };
+		2243654320ECE69300D56426 /* ComfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2243654120ECE69200D56426 /* ComfirmView.xib */; };
+		2243654420ECE69300D56426 /* ComfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243654220ECE69300D56426 /* ComfirmView.swift */; };
+		2243654620ECEE8C00D56426 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243654520ECEE8C00D56426 /* UIView+Extensions.swift */; };
 		73153E8620EC9179005D36B4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73153E8520EC9179005D36B4 /* Constants.swift */; };
 		73E5A8D120EC6F4E00FFCCE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */; };
 		73E5A8D320EC6F4E00FFCCE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */; };
@@ -58,6 +65,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2243653920ECA82B00D56426 /* TitleTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextView.swift; sourceTree = "<group>"; };
+		2243653B20ECA87900D56426 /* TitleTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTextView.xib; sourceTree = "<group>"; };
+		2243653D20ECD62100D56426 /* RegisterContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContentView.swift; sourceTree = "<group>"; };
+		2243653F20ECD63B00D56426 /* RegisterContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterContentView.xib; sourceTree = "<group>"; };
+		2243654120ECE69200D56426 /* ComfirmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComfirmView.xib; sourceTree = "<group>"; };
+		2243654220ECE69300D56426 /* ComfirmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComfirmView.swift; sourceTree = "<group>"; };
+		2243654520ECEE8C00D56426 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		73153E8520EC9179005D36B4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		73E5A8CD20EC6F4E00FFCCE1 /* EOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +147,19 @@
 				AF1D048793EEB88A8A428D89 /* Pods_EOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2243653820ECA4C500D56426 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2243654220ECE69300D56426 /* ComfirmView.swift */,
+				2243654120ECE69200D56426 /* ComfirmView.xib */,
+				2243653920ECA82B00D56426 /* TitleTextView.swift */,
+				2243653B20ECA87900D56426 /* TitleTextView.xib */,
+				2243653D20ECD62100D56426 /* RegisterContentView.swift */,
+				2243653F20ECD63B00D56426 /* RegisterContentView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		73153E8320EC910F005D36B4 /* Constants */ = {
@@ -229,6 +256,7 @@
 			children = (
 				73E5A92E20EC7F4200FFCCE1 /* UIImage+Extensions.swift */,
 				73E5A93820EC80B300FFCCE1 /* NSObject+Extensions.swift */,
+				2243654520ECEE8C00D56426 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -338,6 +366,7 @@
 		73E5A91B20EC7A9500FFCCE1 /* Entry */ = {
 			isa = PBXGroup;
 			children = (
+				2243653820ECA4C500D56426 /* View */,
 				73E5A93A20EC825E00FFCCE1 /* EntryRootCoordinator.swift */,
 				73E5A94120EC82B500FFCCE1 /* EntryActions.swift */,
 				73E5A94220EC82B500FFCCE1 /* EntryCoordinator.swift */,
@@ -448,8 +477,11 @@
 				73E5A8DB20EC6F5000FFCCE1 /* LaunchScreen.storyboard in Resources */,
 				73E5A8F620EC762500FFCCE1 /* InfoPlist.strings in Resources */,
 				73E5A91220EC788300FFCCE1 /* Rubik-BlackItalic.ttf in Resources */,
+				2243654020ECD63B00D56426 /* RegisterContentView.xib in Resources */,
 				73E5A91320EC788300FFCCE1 /* Rubik-Bold.ttf in Resources */,
+				2243654320ECE69300D56426 /* ComfirmView.xib in Resources */,
 				73E5A95420EC856600FFCCE1 /* Home.storyboard in Resources */,
+				2243653C20ECA87900D56426 /* TitleTextView.xib in Resources */,
 				73E5A91520EC788300FFCCE1 /* Rubik-Italic.ttf in Resources */,
 				73E5A8D820EC6F5000FFCCE1 /* Assets.xcassets in Resources */,
 				73E5A95620EC858100FFCCE1 /* Entry.storyboard in Resources */,
@@ -662,10 +694,12 @@
 			files = (
 				73E5A93520EC7F7C00FFCCE1 /* BaseWebViewController.swift in Sources */,
 				73E5A92520EC7DE200FFCCE1 /* AppAction.swift in Sources */,
+				2243654420ECE69300D56426 /* ComfirmView.swift in Sources */,
 				73E5A93E20EC827100FFCCE1 /* HomeRootCoordinator.swift in Sources */,
 				73E5A94620EC82B500FFCCE1 /* EntryCoordinator.swift in Sources */,
 				73E5A93720EC804D00FFCCE1 /* Localzation+Extensions.swift in Sources */,
 				73E5A94820EC82B500FFCCE1 /* EntryViewController.swift in Sources */,
+				2243654620ECEE8C00D56426 /* UIView+Extensions.swift in Sources */,
 				73E5A94020EC828F00FFCCE1 /* NavCoordinator.swift in Sources */,
 				73E5A93320EC7F6900FFCCE1 /* BaseCollectionViewCell.swift in Sources */,
 				73E5A92320EC7D9200FFCCE1 /* AppCoordinator.swift in Sources */,
@@ -676,6 +710,7 @@
 				73E5A8D320EC6F4E00FFCCE1 /* ViewController.swift in Sources */,
 				73E5A94720EC82B500FFCCE1 /* EntryReducers.swift in Sources */,
 				73E5A94D20EC833100FFCCE1 /* HomeActions.swift in Sources */,
+				2243653A20ECA82B00D56426 /* TitleTextView.swift in Sources */,
 				73E5A93B20EC825E00FFCCE1 /* EntryRootCoordinator.swift in Sources */,
 				73E5A92120EC7CAF00FFCCE1 /* R.generated.swift in Sources */,
 				73E5A94F20EC833100FFCCE1 /* HomeReducers.swift in Sources */,
@@ -690,6 +725,7 @@
 				73E5A92720EC7E3700FFCCE1 /* AppReducer.swift in Sources */,
 				73E5A93120EC7F5200FFCCE1 /* BaseTableViewCell.swift in Sources */,
 				73E5A94520EC82B500FFCCE1 /* EntryActions.swift in Sources */,
+				2243653E20ECD62100D56426 /* RegisterContentView.swift in Sources */,
 				73E5A90320EC787100FFCCE1 /* UIColor+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
