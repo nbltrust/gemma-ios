@@ -10,13 +10,22 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import SwiftRichString
 
 class EntryViewController: BaseViewController {
-
+    
+    @IBOutlet weak var registerView: RegisterContentView!
+    
+    @IBOutlet weak var agreeButton: UIButton!
+    
+    @IBOutlet weak var agreeLabel: UILabel!
+    
+    
 	var coordinator: (EntryCoordinatorProtocol & EntryStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
     }
     
     func commonObserveState() {
@@ -31,6 +40,18 @@ class EntryViewController: BaseViewController {
                 return false
             })
         }
+    }
+    
+    @IBAction func agreeAction(_ sender: Any) {
+        agreeButton.isSelected = !agreeButton.isSelected
+    }
+    
+    func setupUI() {
+        let agreeStyle: Style = Styles.styles[StyleNames.agree.rawValue] as! Style
+        let agreementStyle: Style = Styles.styles[StyleNames.agreement.rawValue] as! Style
+        let agreeGroup = StyleGroup(base: agreeStyle, [StyleNames.agreement.rawValue : agreementStyle])
+        let str = String(format: "%@  <%@>%@</%@>",R.string.localizable.agree_title(),StyleNames.agreement.rawValue, R.string.localizable.service_protocol(),StyleNames.agreement.rawValue)
+        agreeLabel.attributedText = str.set(style: agreeGroup)
     }
     
     override func configureObserveState() {

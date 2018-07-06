@@ -50,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configApplication()
         self.handlerNetworkChanged()
         
+        self.appcoordinator?.showEntry()
+        
         return true
     }
     

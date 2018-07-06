@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterContentView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="inviteCodeView" destination="9qd-Dt-GCr" id="ZJ2-5w-TFp"/>
+                <outlet property="nameView" destination="7eI-ET-PPs" id="zKV-wR-3t6"/>
+                <outlet property="passwordComfirmView" destination="s0M-Q5-YdH" id="dN7-Zq-Kpb"/>
+                <outlet property="passwordView" destination="hhP-ye-AF6" id="PJp-9f-y1x"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="dZe-KR-nHX">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="446"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="XOo-cI-nlu">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-ET-PPs" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="q8U-S0-0om"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-ye-AF6" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="80" width="375" height="80"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0M-Q5-YdH" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="160" width="375" height="80"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-Dt-GCr" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="240" width="375" height="80"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="XOo-cI-nlu" firstAttribute="top" secondItem="7gf-py-swm" secondAttribute="top" id="TRb-y7-umc"/>
+                <constraint firstItem="XOo-cI-nlu" firstAttribute="leading" secondItem="7gf-py-swm" secondAttribute="leading" id="Ug8-Ow-HND"/>
+                <constraint firstItem="7gf-py-swm" firstAttribute="trailing" secondItem="XOo-cI-nlu" secondAttribute="trailing" id="kqE-Kh-MrL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="7gf-py-swm"/>
+            <point key="canvasLocation" x="-285.5" y="-179"/>
+        </view>
+    </objects>
+</document>
