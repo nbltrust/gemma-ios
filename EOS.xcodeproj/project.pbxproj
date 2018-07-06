@@ -14,6 +14,10 @@
 		2243654320ECE69300D56426 /* ComfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2243654120ECE69200D56426 /* ComfirmView.xib */; };
 		2243654420ECE69300D56426 /* ComfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243654220ECE69300D56426 /* ComfirmView.swift */; };
 		2243654620ECEE8C00D56426 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243654520ECEE8C00D56426 /* UIView+Extensions.swift */; };
+		72E5F9F620EF932900391546 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E5F9F220EF932900391546 /* LineView.swift */; };
+		72E5F9F720EF932900391546 /* badgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E5F9F320EF932900391546 /* badgeView.swift */; };
+		72E5F9F820EF932900391546 /* badgeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E5F9F420EF932900391546 /* badgeView.xib */; };
+		72E5F9F920EF932900391546 /* LineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E5F9F520EF932900391546 /* LineView.xib */; };
 		73153E8620EC9179005D36B4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73153E8520EC9179005D36B4 /* Constants.swift */; };
 		7315403920EDE692005D36B4 /* authority.hpp.bk in Resources */ = {isa = PBXBuildFile; fileRef = 73153F7920EDE692005D36B4 /* authority.hpp.bk */; };
 		7315403A20EDE692005D36B4 /* block_header.hpp.bk in Resources */ = {isa = PBXBuildFile; fileRef = 73153F7F20EDE692005D36B4 /* block_header.hpp.bk */; };
@@ -206,6 +210,10 @@
 		2243654120ECE69200D56426 /* ComfirmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComfirmView.xib; sourceTree = "<group>"; };
 		2243654220ECE69300D56426 /* ComfirmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComfirmView.swift; sourceTree = "<group>"; };
 		2243654520ECEE8C00D56426 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		72E5F9F220EF932900391546 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		72E5F9F320EF932900391546 /* badgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = badgeView.swift; sourceTree = "<group>"; };
+		72E5F9F420EF932900391546 /* badgeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = badgeView.xib; sourceTree = "<group>"; };
+		72E5F9F520EF932900391546 /* LineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineView.xib; sourceTree = "<group>"; };
 		73153E8520EC9179005D36B4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		73153F6B20EDE692005D36B4 /* application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = application.hpp; sourceTree = "<group>"; };
 		73153F6C20EDE692005D36B4 /* channel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = channel.hpp; sourceTree = "<group>"; };
@@ -11629,6 +11637,17 @@
 				2243653F20ECD63B00D56426 /* RegisterContentView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		72E5F9F120EF932900391546 /* LineView */ = {
+			isa = PBXGroup;
+			children = (
+				72E5F9F220EF932900391546 /* LineView.swift */,
+				72E5F9F320EF932900391546 /* badgeView.swift */,
+				72E5F9F420EF932900391546 /* badgeView.xib */,
+				72E5F9F520EF932900391546 /* LineView.xib */,
+			);
+			path = LineView;
 			sourceTree = "<group>";
 		};
 		73153E8320EC910F005D36B4 /* Constants */ = {
@@ -30769,6 +30788,7 @@
 		73E5A8EE20EC754B00FFCCE1 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				72E5F9F120EF932900391546 /* LineView */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -30965,6 +30985,7 @@
 				73159E1C20EDE9BB005D36B4 /* ostream in Resources */,
 				73159E1620EDE9BB005D36B4 /* list in Resources */,
 				73159E1120EDE9BB005D36B4 /* ios in Resources */,
+				72E5F9F820EF932900391546 /* badgeView.xib in Resources */,
 				73159E3F20EDE9BB005D36B4 /* random.SUNWCCh in Resources */,
 				73159E0120EDE9B9005D36B4 /* cstdio in Resources */,
 				73159E1A20EDE9BB005D36B4 /* new in Resources */,
@@ -30992,6 +31013,7 @@
 				73159E0C20EDE9BB005D36B4 /* deque in Resources */,
 				73159E4A20EDE9BB005D36B4 /* type_traits.SUNWCCh in Resources */,
 				73159E2120EDE9BB005D36B4 /* sstream in Resources */,
+				72E5F9F920EF932900391546 /* LineView.xib in Resources */,
 				73159E4420EDE9BB005D36B4 /* stdexcept.SUNWCCh in Resources */,
 				73159E5020EDE9BB005D36B4 /* vector.SUNWCCh in Resources */,
 				73159E2F20EDE9BB005D36B4 /* fstream.SUNWCCh in Resources */,
@@ -31289,9 +31311,11 @@
 				73E5A94620EC82B500FFCCE1 /* EntryCoordinator.swift in Sources */,
 				73E5A93720EC804D00FFCCE1 /* Localzation+Extensions.swift in Sources */,
 				73E5A94820EC82B500FFCCE1 /* EntryViewController.swift in Sources */,
+				72E5F9F620EF932900391546 /* LineView.swift in Sources */,
 				2243654620ECEE8C00D56426 /* UIView+Extensions.swift in Sources */,
 				73E5A94020EC828F00FFCCE1 /* NavCoordinator.swift in Sources */,
 				73E5A93320EC7F6900FFCCE1 /* BaseCollectionViewCell.swift in Sources */,
+				72E5F9F720EF932900391546 /* badgeView.swift in Sources */,
 				73E5A92320EC7D9200FFCCE1 /* AppCoordinator.swift in Sources */,
 				73153E8620EC9179005D36B4 /* Constants.swift in Sources */,
 				73E5A90420EC787100FFCCE1 /* UIFont+Additions.swift in Sources */,
