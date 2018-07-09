@@ -17,6 +17,7 @@ class HomeViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     func commonObserveState() {

@@ -157,6 +157,10 @@
 		73159ED220EDEFC5005D36B4 /* libboost_signals.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EC320EDEFC5005D36B4 /* libboost_signals.a */; };
 		73159ED720EE2512005D36B4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159ED520EE2511005D36B4 /* libcrypto.a */; };
 		73159ED820EE2512005D36B4 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159ED620EE2512005D36B4 /* secp256k1.a */; };
+		7345311B20F301090061B005 /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345311A20F301090061B005 /* WalletManager.swift */; };
+		7345311D20F30A5D0061B005 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345311C20F30A5D0061B005 /* Colletion+Extensions.swift */; };
+		7345311F20F3106A0061B005 /* NBLNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345311E20F3106A0061B005 /* NBLNetworkService.swift */; };
+		7345312120F3108E0061B005 /* EOSIONetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312020F3108E0061B005 /* EOSIONetworkService.swift */; };
 		73E5A8D120EC6F4E00FFCCE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */; };
 		73E5A8D320EC6F4E00FFCCE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */; };
 		73E5A8D820EC6F5000FFCCE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E5A8D720EC6F5000FFCCE1 /* Assets.xcassets */; };
@@ -11508,6 +11512,10 @@
 		73159ED420EE23E1005D36B4 /* wallet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wallet.hpp; sourceTree = "<group>"; };
 		73159ED520EE2511005D36B4 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = library/libcrypto.a; sourceTree = "<group>"; };
 		73159ED620EE2512005D36B4 /* secp256k1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = secp256k1.a; path = library/secp256k1.a; sourceTree = "<group>"; };
+		7345311A20F301090061B005 /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
+		7345311C20F30A5D0061B005 /* Colletion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colletion+Extensions.swift"; sourceTree = "<group>"; };
+		7345311E20F3106A0061B005 /* NBLNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBLNetworkService.swift; sourceTree = "<group>"; };
+		7345312020F3108E0061B005 /* EOSIONetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSIONetworkService.swift; sourceTree = "<group>"; };
 		73E5A8CD20EC6F4E00FFCCE1 /* EOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30765,6 +30773,7 @@
 				73E5A92E20EC7F4200FFCCE1 /* UIImage+Extensions.swift */,
 				73E5A93820EC80B300FFCCE1 /* NSObject+Extensions.swift */,
 				2243654520ECEE8C00D56426 /* UIView+Extensions.swift */,
+				7345311C20F30A5D0061B005 /* Colletion+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -30789,6 +30798,7 @@
 		73E5A8ED20EC753900FFCCE1 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7345311A20F301090061B005 /* WalletManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -30820,6 +30830,8 @@
 			isa = PBXGroup;
 			children = (
 				73E5A95120EC850A00FFCCE1 /* UserDefaultsService.swift */,
+				7345311E20F3106A0061B005 /* NBLNetworkService.swift */,
+				7345312020F3108E0061B005 /* EOSIONetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -31203,7 +31215,10 @@
 				"${BUILT_PRODUCTS_DIR}/Guitar/Guitar.framework",
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/JHChainableAnimations/JHChainableAnimations.framework",
 				"${BUILT_PRODUCTS_DIR}/KMNavigationBarTransition/KMNavigationBarTransition.framework",
+				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Keyboard+LayoutGuide/KeyboardLayoutGuide.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -31262,7 +31277,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Guitar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JHChainableAnimations.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMNavigationBarTransition.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeyboardLayoutGuide.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -31320,6 +31338,7 @@
 				73E5A93520EC7F7C00FFCCE1 /* BaseWebViewController.swift in Sources */,
 				7315404420EDE6B0005D36B4 /* EOSIO.mm in Sources */,
 				73E5A92520EC7DE200FFCCE1 /* AppAction.swift in Sources */,
+				7345311B20F301090061B005 /* WalletManager.swift in Sources */,
 				2243654420ECE69300D56426 /* ComfirmView.swift in Sources */,
 				73E5A93E20EC827100FFCCE1 /* HomeRootCoordinator.swift in Sources */,
 				73E5A94620EC82B500FFCCE1 /* EntryCoordinator.swift in Sources */,
@@ -31333,8 +31352,10 @@
 				73E5A92320EC7D9200FFCCE1 /* AppCoordinator.swift in Sources */,
 				73153E8620EC9179005D36B4 /* Constants.swift in Sources */,
 				73E5A90420EC787100FFCCE1 /* UIFont+Additions.swift in Sources */,
+				7345311D20F30A5D0061B005 /* Colletion+Extensions.swift in Sources */,
 				73E5A92F20EC7F4200FFCCE1 /* UIImage+Extensions.swift in Sources */,
 				73E5A92B20EC7EB300FFCCE1 /* BaseTabbarViewController.swift in Sources */,
+				7345311F20F3106A0061B005 /* NBLNetworkService.swift in Sources */,
 				73E5A8D320EC6F4E00FFCCE1 /* ViewController.swift in Sources */,
 				73E5A94720EC82B500FFCCE1 /* EntryReducers.swift in Sources */,
 				73E5A94D20EC833100FFCCE1 /* HomeActions.swift in Sources */,
@@ -31356,6 +31377,7 @@
 				73E5A94520EC82B500FFCCE1 /* EntryActions.swift in Sources */,
 				2243653E20ECD62100D56426 /* RegisterContentView.swift in Sources */,
 				7203659420F2FE6000A4A8EF /* PaymentsRecordsCellView.swift in Sources */,
+				7345312120F3108E0061B005 /* EOSIONetworkService.swift in Sources */,
 				73E5A90320EC787100FFCCE1 /* UIColor+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
