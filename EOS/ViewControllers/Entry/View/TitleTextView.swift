@@ -9,12 +9,6 @@
 import UIKit
 import TinyConstraints
 
-/*Warning展示样式*/
-enum TextCheckWarningType : Int {
-    case alert = 1
-    case redSeal = 2
-}
-
 /*UI状态*/
 enum TextUIStyle : Int {
     case common = 1
@@ -44,28 +38,38 @@ class TextRightButton: UIButton {
 class TitleTextSetting {
     var title = ""
     var placeholder = ""
-    var showLine = true
     var warningText = ""
-    var warningType = TextCheckWarningType.alert
+    var introduce = ""
+    var showLine = true
+    var isShowPromptWhenEditing = true
     var isSecureTextEntry = false
     
-    init(title: String, placeholder: String, warningText: String, warningType: TextCheckWarningType, showLine: Bool, isSecureTextEntry: Bool) {
+    init(title: String, placeholder: String, warningText: String, introduce: String, isShowPromptWhenEditing: Bool, showLine: Bool, isSecureTextEntry: Bool) {
         self.title = title
         self.placeholder = placeholder
+        self.introduce = introduce
+        self.warningText = warningText
         self.showLine = showLine;
-        self.warningType = warningType
+        self.isShowPromptWhenEditing = isShowPromptWhenEditing
         self.isSecureTextEntry = isSecureTextEntry
     }
 }
 
-protocol TextFieldRightViewDelegate: NSObjectProtocol {
-    func textActionSettings(titleTextView: TitleTextView) -> [TextButtonSetting]
+protocol TitleTextViewDelegate: NSObjectProtocol {
+    func textIntroduction(titletextView : TitleTextView)
     func textActionTrigger(titleTextView: TitleTextView, selected: Bool, index: NSInteger)
+}
+
+protocol TitleTextViewDataSource: NSObjectProtocol {
+    func textUISetting(titleTextView: TitleTextView) -> TitleTextSetting
+    func textActionSettings(titleTextView: TitleTextView) -> [TextButtonSetting]
 }
 
 class TitleTextView: UIView {
 
     @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var introduceLabel: UILabel!
     
     @IBOutlet weak var textField: UITextField!
     
@@ -75,7 +79,16 @@ class TitleTextView: UIView {
     
     let TextActionTag = 999
     
-    weak var delegate: TextFieldRightViewDelegate? {
+    weak var delegate: TitleTextViewDelegate?
+    
+    weak var datasource: TitleTextViewDataSource? {
+        didSet {
+            setting = datasource?.textUISetting(titleTextView: self)
+            buttonSettings = datasource?.textActionSettings(titleTextView: self)
+        }
+    }
+    
+    var buttonSettings : [TextButtonSetting]? {
         didSet {
             setupRightView()
         }
@@ -84,7 +97,14 @@ class TitleTextView: UIView {
     var setting : TitleTextSetting! {
         didSet {
             titleLabel.text = setting.title
+            
+            introduceLabel.text = setting.introduce
+            introduceLabel.isUserInteractionEnabled = true
+            let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(introduce))
+            introduceLabel.addGestureRecognizer(tapGestureRecognizer)
+            
             textField.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.cloudyBlue])
+            textField.isSecureTextEntry = setting.isSecureTextEntry
             gapView.alpha = setting.showLine ? 1.0 : 0.0
         }
     }
@@ -95,7 +115,7 @@ class TitleTextView: UIView {
             case .highlight:
                 highlightUI()
             case .warning:
-                warningUI()
+                redSealUI()
             default:
                 recoverUI()
                 break
@@ -120,11 +140,11 @@ class TitleTextView: UIView {
     }
     
     func setupRightView() {
-        guard let buttonSettings = delegate?.textActionSettings(titleTextView: self) else {
+        guard (buttonSettings != nil) else {
             return
         }
 
-        for (index, value) in (buttonSettings.enumerated()) {
+        for (index, value) in (buttonSettings?.enumerated())! {
             let image = UIImage(named: value.imageName)
             let btn = TextRightButton()
             btn.tag = index + TextActionTag
@@ -155,6 +175,14 @@ class TitleTextView: UIView {
         textField.text = ""
     }
     
+    func showPromoptView() {
+        
+    }
+    
+    @objc func introduce() {
+        delegate?.textIntroduction(titletextView: self)
+    }
+    
     fileprivate func recoverUI() {
         titleLabel.text = setting.title
         titleLabel.textColor = UIColor.steel
@@ -171,18 +199,6 @@ class TitleTextView: UIView {
         titleLabel.text = setting.title
         titleLabel.textColor = UIColor.darkSlateBlue
         gapView.backgroundColor = UIColor.darkSlateBlue
-    }
-    
-    fileprivate func showCommonWarningView() {
-        
-    }
-    
-    fileprivate func warningUI() {
-        if setting.warningType == .alert {
-            showCommonWarningView()
-        } else {
-            redSealUI()
-        }
     }
     
     override var intrinsicContentSize: CGSize {

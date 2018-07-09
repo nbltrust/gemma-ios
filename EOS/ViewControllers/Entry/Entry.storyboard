@@ -24,29 +24,44 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JA1-hc-mUK">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybh-Xb-w9m" customClass="RegisterContentView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="16" width="343" height="320"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybh-Xb-w9m">
+                                                <rect key="frame" x="16" y="16" width="343" height="400"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVM-0s-KbK" customClass="RegisterContentView" customModule="EOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="400"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="320" id="gIX-AL-4fZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="mVM-0s-KbK" secondAttribute="trailing" id="JPW-ci-ehm"/>
+                                                    <constraint firstItem="mVM-0s-KbK" firstAttribute="leading" secondItem="Ybh-Xb-w9m" secondAttribute="leading" id="M9a-yK-gJ7"/>
+                                                    <constraint firstAttribute="height" constant="400" id="gIX-AL-4fZ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="mVM-0s-KbK" secondAttribute="bottom" id="gtc-XE-U74"/>
+                                                    <constraint firstItem="mVM-0s-KbK" firstAttribute="top" secondItem="Ybh-Xb-w9m" secondAttribute="top" id="p0t-hO-3dC"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                                                         <size key="value" width="0.0" height="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                        <real key="value" value="0.0"/>
+                                                        <real key="value" value="4"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                        <real key="value" value="0.0"/>
+                                                        <real key="value" value="0.050000000000000003"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" red="0.1529411765" green="0.20392156859999999" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWd-1I-l81">
-                                                <rect key="frame" x="35" y="363" width="25" height="25"/>
+                                                <rect key="frame" x="35" y="443" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="bMb-IQ-8bg"/>
                                                     <constraint firstAttribute="width" constant="25" id="yf6-Yp-ial"/>
@@ -60,7 +75,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPD-W3-DUB">
-                                                <rect key="frame" x="67" y="365.5" width="292" height="20"/>
+                                                <rect key="frame" x="67" y="445.5" width="292" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="dd9-1J-hWR"/>
                                                 </constraints>
@@ -73,7 +88,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCp-nn-6mz">
-                                                <rect key="frame" x="32" y="415.5" width="311" height="44"/>
+                                                <rect key="frame" x="32" y="495.5" width="311" height="44"/>
                                                 <color key="backgroundColor" red="0.255" green="0.41199999999999998" blue="0.81999999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="1JH-en-l7Q"/>
@@ -128,7 +143,7 @@
                     <connections>
                         <outlet property="agreeButton" destination="IWd-1I-l81" id="6RM-e4-eOe"/>
                         <outlet property="agreeLabel" destination="SPD-W3-DUB" id="V9M-B0-tTw"/>
-                        <outlet property="registerView" destination="Ybh-Xb-w9m" id="k44-IL-tmx"/>
+                        <outlet property="registerView" destination="mVM-0s-KbK" id="Ba7-Sw-Fzv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGc-hE-lxo" userLabel="First Responder" sceneMemberID="firstResponder"/>

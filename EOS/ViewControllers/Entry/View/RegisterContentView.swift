@@ -17,12 +17,15 @@ class RegisterContentView: UIView {
     
     @IBOutlet weak var passwordComfirmView: TitleTextView!
     
+    @IBOutlet weak var passwordPromptView: TitleTextView!
+    
     @IBOutlet weak var inviteCodeView: TitleTextView!
     
     enum InputType: Int {
         case name = 1
         case password
         case comfirmPassword
+        case passwordPrompt
         case invitationCode
     }
     
@@ -68,67 +71,52 @@ class RegisterContentView: UIView {
     }
     
     func setupUI() {
-        nameView.setting = settingWithType(type: .name)
         nameView.textField.tag = InputType.name.rawValue
         nameView.textField.delegate = self
         nameView.delegate = self
+        nameView.datasource = self
         
-        passwordView.setting = settingWithType(type: .password)
         passwordView.textField.tag = InputType.password.rawValue
         passwordView.textField.delegate = self
         passwordView.delegate = self
+        passwordView.datasource = self
         
-        passwordComfirmView.setting = settingWithType(type: .comfirmPassword)
         passwordComfirmView.textField.tag = InputType.comfirmPassword.rawValue
         passwordComfirmView.textField.delegate = self
         passwordComfirmView.delegate = self
+        passwordComfirmView.datasource = self
         
-        inviteCodeView.setting = settingWithType(type: .invitationCode)
+        passwordPromptView.textField.tag = InputType.passwordPrompt.rawValue
+        passwordPromptView.textField.delegate = self
+        passwordPromptView.delegate = self
+        passwordPromptView.datasource = self
+        
         inviteCodeView.textField.tag = InputType.invitationCode.rawValue
         inviteCodeView.textField.delegate = self
         inviteCodeView.delegate = self
-    }
-    
-    func settingWithType(type: InputType) -> TitleTextSetting {
-        switch type {
-        case .name:
-            return TitleTextSetting(title: R.string.localizable.account_wallet_name(),
-                                    placeholder: R.string.localizable.name_ph(),
-                                    warningText: R.string.localizable.name_warning(),
-                                    warningType: TextCheckWarningType.alert,
-                                    showLine: true,
-                                    isSecureTextEntry: false)
-        case .password:
-            return TitleTextSetting(title: R.string.localizable.account_setting_password(),
-                                    placeholder: R.string.localizable.password_ph(),
-                                    warningText: R.string.localizable.password_warning(),
-                                    warningType: TextCheckWarningType.redSeal,
-                                    showLine: true,
-                                    isSecureTextEntry: true)
-        case .comfirmPassword:
-            return TitleTextSetting(title: R.string.localizable.account_comfirm_password(),
-                                    placeholder: R.string.localizable.comfirm_password_ph(),
-                                    warningText: R.string.localizable.comfirm_password_warning(),
-                                    warningType: TextCheckWarningType.redSeal,
-                                    showLine: true,
-                                    isSecureTextEntry: true)
-        case .invitationCode:
-            return TitleTextSetting(title: R.string.localizable.account_invitationcode(),
-                                    placeholder: R.string.localizable.invitationcode_ph(),
-                                    warningText: R.string.localizable.invitationcode_warning(),
-                                    warningType: TextCheckWarningType.redSeal,
-                                    showLine: false,
-                                    isSecureTextEntry: false)
-        }
+        inviteCodeView.datasource = self
     }
     
     func passwordSwitch(isSelected: Bool) {
+        let tempPassword = passwordView.textField.text
+        passwordView.textField.text = ""
         passwordView.textField.isSecureTextEntry = !isSelected
+        passwordView.textField.text = tempPassword
+        
+        let tempComfirmPassword = passwordComfirmView.textField.text
+        passwordComfirmView.textField.text = ""
         passwordComfirmView.textField.isSecureTextEntry = !isSelected
+        passwordComfirmView.textField.text = tempComfirmPassword
     }
 }
 
-extension RegisterContentView: TextFieldRightViewDelegate {
+extension RegisterContentView: TitleTextViewDelegate,TitleTextViewDataSource {
+    func textIntroduction(titletextView: TitleTextView) {
+        if titletextView == inviteCodeView {
+            
+        }
+    }
+    
     func textActionTrigger(titleTextView: TitleTextView, selected: Bool, index: NSInteger) {
         if titleTextView == passwordView {
             if index == 0 {
@@ -136,10 +124,54 @@ extension RegisterContentView: TextFieldRightViewDelegate {
             } else if index == 1 {
                 passwordSwitch(isSelected: selected)
             }
-        } else if titleTextView == passwordComfirmView {
+        } else {
             if index == 0 {
                 titleTextView.clearText()
             }
+        }
+    }
+    
+    func textUISetting(titleTextView: TitleTextView) -> TitleTextSetting {
+        if titleTextView == nameView {
+            return TitleTextSetting(title: R.string.localizable.account_wallet_name(),
+                                    placeholder: R.string.localizable.name_ph(),
+                                    warningText: R.string.localizable.name_warning(),
+                                    introduce: "",
+                                    isShowPromptWhenEditing: true,
+                                    showLine: true,
+                                    isSecureTextEntry: false)
+        } else if titleTextView == passwordView {
+            return TitleTextSetting(title: R.string.localizable.account_setting_password(),
+                                    placeholder: R.string.localizable.password_ph(),
+                                    warningText: R.string.localizable.password_warning(),
+                                    introduce: "",
+                                    isShowPromptWhenEditing: false,
+                                    showLine: true,
+                                    isSecureTextEntry: true)
+        } else if titleTextView == passwordComfirmView {
+            return TitleTextSetting(title: R.string.localizable.account_comfirm_password(),
+                                    placeholder: R.string.localizable.comfirm_password_ph(),
+                                    warningText: R.string.localizable.comfirm_password_warning(),
+                                    introduce: "",
+                                    isShowPromptWhenEditing: false,
+                                    showLine: true,
+                                    isSecureTextEntry: true)
+        } else if titleTextView == passwordPromptView {
+            return TitleTextSetting(title: R.string.localizable.account_password_prompt(),
+                                    placeholder: R.string.localizable.password_prompt_ph(),
+                                    warningText: "",
+                                    introduce: "",
+                                    isShowPromptWhenEditing: false,
+                                    showLine: true,
+                                    isSecureTextEntry: false)
+        } else {
+            return TitleTextSetting(title: R.string.localizable.account_invitationcode(),
+                                    placeholder: R.string.localizable.invitationcode_ph(),
+                                    warningText: R.string.localizable.invitationcode_warning(),
+                                    introduce: R.string.localizable.invitationcode_introduce(),
+                                    isShowPromptWhenEditing: false,
+                                    showLine: false,
+                                    isSecureTextEntry: false)
         }
     }
     
@@ -151,12 +183,11 @@ extension RegisterContentView: TextFieldRightViewDelegate {
                     TextButtonSetting(imageName: R.image.ic_visible.name,
                                       selectedImageName: R.image.ic_invisible.name,
                                       isShowWhenEditing: false)]
-        } else if titleTextView == passwordComfirmView {
+        } else {
             return [TextButtonSetting(imageName: R.image.ic_close.name,
                                       selectedImageName: R.image.ic_close.name,
                                       isShowWhenEditing: true)]
         }
-        return []
     }
 }
 
@@ -172,6 +203,9 @@ extension RegisterContentView: UITextFieldDelegate {
         case InputType.comfirmPassword.rawValue:
             passwordComfirmView.reloadActionViews(isEditing: true)
             passwordComfirmView.checkStatus = TextUIStyle.highlight
+        case InputType.passwordPrompt.rawValue:
+            passwordPromptView.reloadActionViews(isEditing: true)
+            passwordPromptView.checkStatus = TextUIStyle.highlight
         case InputType.invitationCode.rawValue:
             inviteCodeView.reloadActionViews(isEditing: true)
             inviteCodeView.checkStatus = TextUIStyle.highlight
@@ -191,6 +225,9 @@ extension RegisterContentView: UITextFieldDelegate {
         case InputType.comfirmPassword.rawValue:
             passwordComfirmView.reloadActionViews(isEditing: false)
             passwordComfirmView.checkStatus = TextUIStyle.common
+        case InputType.passwordPrompt.rawValue:
+            passwordPromptView.reloadActionViews(isEditing: false)
+            passwordPromptView.checkStatus = TextUIStyle.common
         case InputType.invitationCode.rawValue:
             inviteCodeView.reloadActionViews(isEditing: false)
             inviteCodeView.checkStatus = TextUIStyle.common
