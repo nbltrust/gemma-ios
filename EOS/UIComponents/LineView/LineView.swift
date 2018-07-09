@@ -67,6 +67,18 @@ class LineView: UIView {
         }
     }
     
+    @IBInspectable
+    var content_line_number : Int = 1{
+        didSet{
+            content.numberOfLines = content_line_number
+            if content_line_number >= 1{
+                content.lineBreakMode = .byTruncatingTail
+            }else{
+                content.lineBreakMode = .byCharWrapping
+            }
+        }
+    }
+    
     
     var data : Any?{
         didSet{

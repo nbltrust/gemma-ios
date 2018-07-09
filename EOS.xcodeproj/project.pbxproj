@@ -14,6 +14,10 @@
 		2243654320ECE69300D56426 /* ComfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2243654120ECE69200D56426 /* ComfirmView.xib */; };
 		2243654420ECE69300D56426 /* ComfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243654220ECE69300D56426 /* ComfirmView.swift */; };
 		2243654620ECEE8C00D56426 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243654520ECEE8C00D56426 /* UIView+Extensions.swift */; };
+		7203659120F2FE2B00A4A8EF /* PaymentsRecordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203658F20F2FE2B00A4A8EF /* PaymentsRecordsCell.swift */; };
+		7203659220F2FE2B00A4A8EF /* PaymentsRecordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7203659020F2FE2B00A4A8EF /* PaymentsRecordsCell.xib */; };
+		7203659420F2FE6000A4A8EF /* PaymentsRecordsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203659320F2FE6000A4A8EF /* PaymentsRecordsCellView.swift */; };
+		7203659620F2FE6700A4A8EF /* PaymentsRecordsCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7203659520F2FE6700A4A8EF /* PaymentsRecordsCellView.xib */; };
 		72E5F9F620EF932900391546 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E5F9F220EF932900391546 /* LineView.swift */; };
 		72E5F9F720EF932900391546 /* badgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E5F9F320EF932900391546 /* badgeView.swift */; };
 		72E5F9F820EF932900391546 /* badgeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E5F9F420EF932900391546 /* badgeView.xib */; };
@@ -210,6 +214,10 @@
 		2243654120ECE69200D56426 /* ComfirmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComfirmView.xib; sourceTree = "<group>"; };
 		2243654220ECE69300D56426 /* ComfirmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComfirmView.swift; sourceTree = "<group>"; };
 		2243654520ECEE8C00D56426 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		7203658F20F2FE2B00A4A8EF /* PaymentsRecordsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRecordsCell.swift; sourceTree = "<group>"; };
+		7203659020F2FE2B00A4A8EF /* PaymentsRecordsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentsRecordsCell.xib; sourceTree = "<group>"; };
+		7203659320F2FE6000A4A8EF /* PaymentsRecordsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRecordsCellView.swift; sourceTree = "<group>"; };
+		7203659520F2FE6700A4A8EF /* PaymentsRecordsCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentsRecordsCellView.xib; sourceTree = "<group>"; };
 		72E5F9F220EF932900391546 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		72E5F9F320EF932900391546 /* badgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = badgeView.swift; sourceTree = "<group>"; };
 		72E5F9F420EF932900391546 /* badgeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = badgeView.xib; sourceTree = "<group>"; };
@@ -11643,9 +11651,9 @@
 			isa = PBXGroup;
 			children = (
 				72E5F9F220EF932900391546 /* LineView.swift */,
+				72E5F9F520EF932900391546 /* LineView.xib */,
 				72E5F9F320EF932900391546 /* badgeView.swift */,
 				72E5F9F420EF932900391546 /* badgeView.xib */,
-				72E5F9F520EF932900391546 /* LineView.xib */,
 			);
 			path = LineView;
 			sourceTree = "<group>";
@@ -30789,6 +30797,10 @@
 			isa = PBXGroup;
 			children = (
 				72E5F9F120EF932900391546 /* LineView */,
+				7203658F20F2FE2B00A4A8EF /* PaymentsRecordsCell.swift */,
+				7203659020F2FE2B00A4A8EF /* PaymentsRecordsCell.xib */,
+				7203659320F2FE6000A4A8EF /* PaymentsRecordsCellView.swift */,
+				7203659520F2FE6700A4A8EF /* PaymentsRecordsCellView.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -31000,6 +31012,7 @@
 				73159E4C20EDE9BB005D36B4 /* unordered_map.SUNWCCh in Resources */,
 				73159E2420EDE9BB005D36B4 /* streambuf in Resources */,
 				73159E1F20EDE9BB005D36B4 /* regex in Resources */,
+				7203659620F2FE6700A4A8EF /* PaymentsRecordsCellView.xib in Resources */,
 				7315403920EDE692005D36B4 /* authority.hpp.bk in Resources */,
 				73159E4720EDE9BB005D36B4 /* strstream.SUNWCCh in Resources */,
 				73159E1820EDE9BB005D36B4 /* map in Resources */,
@@ -31100,6 +31113,7 @@
 				73159E0520EDE9B9005D36B4 /* cwchar in Resources */,
 				73159E0F20EDE9BB005D36B4 /* functional in Resources */,
 				73159E1720EDE9BB005D36B4 /* locale in Resources */,
+				7203659220F2FE2B00A4A8EF /* PaymentsRecordsCell.xib in Resources */,
 				73E5A91A20EC788300FFCCE1 /* Rubik-Regular.ttf in Resources */,
 				73E5A91620EC788300FFCCE1 /* Rubik-Light.ttf in Resources */,
 			);
@@ -31332,6 +31346,7 @@
 				73E5A95020EC833100FFCCE1 /* HomeViewController.swift in Sources */,
 				73E5A92D20EC7EF200FFCCE1 /* BaseNavigationController.swift in Sources */,
 				73E5A95220EC850A00FFCCE1 /* UserDefaultsService.swift in Sources */,
+				7203659120F2FE2B00A4A8EF /* PaymentsRecordsCell.swift in Sources */,
 				73E5A8D120EC6F4E00FFCCE1 /* AppDelegate.swift in Sources */,
 				73E5A93920EC80B300FFCCE1 /* NSObject+Extensions.swift in Sources */,
 				73E5A94E20EC833100FFCCE1 /* HomeCoordinator.swift in Sources */,
@@ -31340,6 +31355,7 @@
 				73E5A93120EC7F5200FFCCE1 /* BaseTableViewCell.swift in Sources */,
 				73E5A94520EC82B500FFCCE1 /* EntryActions.swift in Sources */,
 				2243653E20ECD62100D56426 /* RegisterContentView.swift in Sources */,
+				7203659420F2FE6000A4A8EF /* PaymentsRecordsCellView.swift in Sources */,
 				73E5A90320EC787100FFCCE1 /* UIColor+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
