@@ -14,6 +14,39 @@
 		2243654320ECE69300D56426 /* ComfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2243654120ECE69200D56426 /* ComfirmView.xib */; };
 		2243654420ECE69300D56426 /* ComfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243654220ECE69300D56426 /* ComfirmView.swift */; };
 		2243654620ECEE8C00D56426 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243654520ECEE8C00D56426 /* UIView+Extensions.swift */; };
+		3B4C900420F353F6004F4C52 /* AccountInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C8FFD20F353F2004F4C52 /* AccountInfoView.swift */; };
+		3B4C900520F353F6004F4C52 /* SharpCornerTipsLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C8FFE20F353F3004F4C52 /* SharpCornerTipsLabelView.xib */; };
+		3B4C900620F353F6004F4C52 /* WalletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C8FFF20F353F3004F4C52 /* WalletView.xib */; };
+		3B4C900720F353F6004F4C52 /* SharpCornerTipsLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C900020F353F4004F4C52 /* SharpCornerTipsLabelView.swift */; };
+		3B4C900820F353F6004F4C52 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C900120F353F4004F4C52 /* WalletView.swift */; };
+		3B4C900920F353F6004F4C52 /* AccountInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C900220F353F5004F4C52 /* AccountInfoView.xib */; };
+		3B4C900A20F353F6004F4C52 /* DashLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C900320F353F5004F4C52 /* DashLineView.swift */; };
+		3B4C900E20F354AA004F4C52 /* UIImageView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C900D20F354A9004F4C52 /* UIImageView+Additions.swift */; };
+		3B4C902A20F35528004F4C52 /* libappbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901020F35527004F4C52 /* libappbase.a */; };
+		3B4C902B20F35528004F4C52 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901120F35527004F4C52 /* libcrypto.a */; };
+		3B4C902C20F35528004F4C52 /* libkeosdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901220F35527004F4C52 /* libkeosdlib.a */; };
+		3B4C902D20F35528004F4C52 /* libsoftfloat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901320F35527004F4C52 /* libsoftfloat.a */; };
+		3B4C902E20F35528004F4C52 /* libboost_signals.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901520F35527004F4C52 /* libboost_signals.a */; };
+		3B4C902F20F35528004F4C52 /* libboost_context.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901620F35527004F4C52 /* libboost_context.a */; };
+		3B4C903020F35528004F4C52 /* libboost_iostreams.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901720F35527004F4C52 /* libboost_iostreams.a */; };
+		3B4C903120F35528004F4C52 /* libboost_thread.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901820F35527004F4C52 /* libboost_thread.a */; };
+		3B4C903220F35528004F4C52 /* libboost_atomic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901920F35527004F4C52 /* libboost_atomic.a */; };
+		3B4C903320F35528004F4C52 /* libboost_random.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901A20F35527004F4C52 /* libboost_random.a */; };
+		3B4C903420F35528004F4C52 /* libboost_date_time.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901B20F35527004F4C52 /* libboost_date_time.a */; };
+		3B4C903520F35528004F4C52 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901C20F35527004F4C52 /* libboost_system.a */; };
+		3B4C903620F35528004F4C52 /* libboost_locale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901D20F35527004F4C52 /* libboost_locale.a */; };
+		3B4C903720F35528004F4C52 /* libboost_graph.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901E20F35527004F4C52 /* libboost_graph.a */; };
+		3B4C903820F35528004F4C52 /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901F20F35527004F4C52 /* libboost_regex.a */; };
+		3B4C903920F35528004F4C52 /* libboost_wserialization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902020F35527004F4C52 /* libboost_wserialization.a */; };
+		3B4C903A20F35528004F4C52 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902120F35527004F4C52 /* libboost_filesystem.a */; };
+		3B4C903B20F35528004F4C52 /* libboost_chrono.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902220F35527004F4C52 /* libboost_chrono.a */; };
+		3B4C903C20F35528004F4C52 /* libboost_serialization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902320F35527004F4C52 /* libboost_serialization.a */; };
+		3B4C903D20F35528004F4C52 /* libeos_utilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902420F35527004F4C52 /* libeos_utilities.a */; };
+		3B4C903E20F35528004F4C52 /* libeosio_chain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902520F35527004F4C52 /* libeosio_chain.a */; };
+		3B4C903F20F35528004F4C52 /* libfc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902620F35527004F4C52 /* libfc.a */; };
+		3B4C904020F35528004F4C52 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902720F35527004F4C52 /* libssl.a */; };
+		3B4C904120F35528004F4C52 /* libwallet_plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902820F35527004F4C52 /* libwallet_plugin.a */; };
+		3B4C904220F35528004F4C52 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902920F35527004F4C52 /* secp256k1.a */; };
 		7203659120F2FE2B00A4A8EF /* PaymentsRecordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203658F20F2FE2B00A4A8EF /* PaymentsRecordsCell.swift */; };
 		7203659220F2FE2B00A4A8EF /* PaymentsRecordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7203659020F2FE2B00A4A8EF /* PaymentsRecordsCell.xib */; };
 		7203659420F2FE6000A4A8EF /* PaymentsRecordsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203659320F2FE6000A4A8EF /* PaymentsRecordsCellView.swift */; };
@@ -218,6 +251,39 @@
 		2243654120ECE69200D56426 /* ComfirmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComfirmView.xib; sourceTree = "<group>"; };
 		2243654220ECE69300D56426 /* ComfirmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComfirmView.swift; sourceTree = "<group>"; };
 		2243654520ECEE8C00D56426 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		3B4C8FFD20F353F2004F4C52 /* AccountInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoView.swift; sourceTree = "<group>"; };
+		3B4C8FFE20F353F3004F4C52 /* SharpCornerTipsLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SharpCornerTipsLabelView.xib; sourceTree = "<group>"; };
+		3B4C8FFF20F353F3004F4C52 /* WalletView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletView.xib; sourceTree = "<group>"; };
+		3B4C900020F353F4004F4C52 /* SharpCornerTipsLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharpCornerTipsLabelView.swift; sourceTree = "<group>"; };
+		3B4C900120F353F4004F4C52 /* WalletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		3B4C900220F353F5004F4C52 /* AccountInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoView.xib; sourceTree = "<group>"; };
+		3B4C900320F353F5004F4C52 /* DashLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashLineView.swift; sourceTree = "<group>"; };
+		3B4C900D20F354A9004F4C52 /* UIImageView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Additions.swift"; sourceTree = "<group>"; };
+		3B4C901020F35527004F4C52 /* libappbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libappbase.a; sourceTree = "<group>"; };
+		3B4C901120F35527004F4C52 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		3B4C901220F35527004F4C52 /* libkeosdlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libkeosdlib.a; sourceTree = "<group>"; };
+		3B4C901320F35527004F4C52 /* libsoftfloat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsoftfloat.a; sourceTree = "<group>"; };
+		3B4C901520F35527004F4C52 /* libboost_signals.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_signals.a; sourceTree = "<group>"; };
+		3B4C901620F35527004F4C52 /* libboost_context.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_context.a; sourceTree = "<group>"; };
+		3B4C901720F35527004F4C52 /* libboost_iostreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_iostreams.a; sourceTree = "<group>"; };
+		3B4C901820F35527004F4C52 /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_thread.a; sourceTree = "<group>"; };
+		3B4C901920F35527004F4C52 /* libboost_atomic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_atomic.a; sourceTree = "<group>"; };
+		3B4C901A20F35527004F4C52 /* libboost_random.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_random.a; sourceTree = "<group>"; };
+		3B4C901B20F35527004F4C52 /* libboost_date_time.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_date_time.a; sourceTree = "<group>"; };
+		3B4C901C20F35527004F4C52 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_system.a; sourceTree = "<group>"; };
+		3B4C901D20F35527004F4C52 /* libboost_locale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_locale.a; sourceTree = "<group>"; };
+		3B4C901E20F35527004F4C52 /* libboost_graph.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_graph.a; sourceTree = "<group>"; };
+		3B4C901F20F35527004F4C52 /* libboost_regex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_regex.a; sourceTree = "<group>"; };
+		3B4C902020F35527004F4C52 /* libboost_wserialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_wserialization.a; sourceTree = "<group>"; };
+		3B4C902120F35527004F4C52 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_filesystem.a; sourceTree = "<group>"; };
+		3B4C902220F35527004F4C52 /* libboost_chrono.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_chrono.a; sourceTree = "<group>"; };
+		3B4C902320F35527004F4C52 /* libboost_serialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_serialization.a; sourceTree = "<group>"; };
+		3B4C902420F35527004F4C52 /* libeos_utilities.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libeos_utilities.a; sourceTree = "<group>"; };
+		3B4C902520F35527004F4C52 /* libeosio_chain.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libeosio_chain.a; sourceTree = "<group>"; };
+		3B4C902620F35527004F4C52 /* libfc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfc.a; sourceTree = "<group>"; };
+		3B4C902720F35527004F4C52 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		3B4C902820F35527004F4C52 /* libwallet_plugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libwallet_plugin.a; sourceTree = "<group>"; };
+		3B4C902920F35527004F4C52 /* secp256k1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = secp256k1.a; sourceTree = "<group>"; };
 		7203658F20F2FE2B00A4A8EF /* PaymentsRecordsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRecordsCell.swift; sourceTree = "<group>"; };
 		7203659020F2FE2B00A4A8EF /* PaymentsRecordsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentsRecordsCell.xib; sourceTree = "<group>"; };
 		7203659320F2FE6000A4A8EF /* PaymentsRecordsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRecordsCellView.swift; sourceTree = "<group>"; };
@@ -11577,32 +11643,57 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B4C903920F35528004F4C52 /* libboost_wserialization.a in Frameworks */,
 				73159ED720EE2512005D36B4 /* libcrypto.a in Frameworks */,
+				3B4C903D20F35528004F4C52 /* libeos_utilities.a in Frameworks */,
+				3B4C903120F35528004F4C52 /* libboost_thread.a in Frameworks */,
 				73159ED820EE2512005D36B4 /* secp256k1.a in Frameworks */,
 				73159EC420EDEFC5005D36B4 /* libboost_regex.a in Frameworks */,
+				3B4C903F20F35528004F4C52 /* libfc.a in Frameworks */,
+				3B4C902F20F35528004F4C52 /* libboost_context.a in Frameworks */,
+				3B4C903020F35528004F4C52 /* libboost_iostreams.a in Frameworks */,
+				3B4C904020F35528004F4C52 /* libssl.a in Frameworks */,
 				73159EC520EDEFC5005D36B4 /* libboost_serialization.a in Frameworks */,
+				3B4C903E20F35528004F4C52 /* libeosio_chain.a in Frameworks */,
 				73159EC620EDEFC5005D36B4 /* libboost_random.a in Frameworks */,
+				3B4C903220F35528004F4C52 /* libboost_atomic.a in Frameworks */,
 				73159EC720EDEFC5005D36B4 /* libboost_system.a in Frameworks */,
+				3B4C902B20F35528004F4C52 /* libcrypto.a in Frameworks */,
 				73159EC820EDEFC5005D36B4 /* libboost_thread.a in Frameworks */,
+				3B4C904120F35528004F4C52 /* libwallet_plugin.a in Frameworks */,
 				73159EC920EDEFC5005D36B4 /* libboost_wserialization.a in Frameworks */,
 				73159ECA20EDEFC5005D36B4 /* libboost_iostreams.a in Frameworks */,
+				3B4C904220F35528004F4C52 /* secp256k1.a in Frameworks */,
+				3B4C903520F35528004F4C52 /* libboost_system.a in Frameworks */,
 				73159ECB20EDEFC5005D36B4 /* libboost_filesystem.a in Frameworks */,
 				73159ECC20EDEFC5005D36B4 /* libboost_chrono.a in Frameworks */,
 				73159ECD20EDEFC5005D36B4 /* libboost_locale.a in Frameworks */,
+				3B4C902C20F35528004F4C52 /* libkeosdlib.a in Frameworks */,
+				3B4C902D20F35528004F4C52 /* libsoftfloat.a in Frameworks */,
 				73159ECE20EDEFC5005D36B4 /* libboost_context.a in Frameworks */,
+				3B4C903420F35528004F4C52 /* libboost_date_time.a in Frameworks */,
 				73159ECF20EDEFC5005D36B4 /* libboost_atomic.a in Frameworks */,
 				73159ED020EDEFC5005D36B4 /* libboost_date_time.a in Frameworks */,
 				73159ED120EDEFC5005D36B4 /* libboost_graph.a in Frameworks */,
+				3B4C903620F35528004F4C52 /* libboost_locale.a in Frameworks */,
 				73159ED220EDEFC5005D36B4 /* libboost_signals.a in Frameworks */,
+				3B4C903C20F35528004F4C52 /* libboost_serialization.a in Frameworks */,
 				73159EAD20EDEFB5005D36B4 /* libkeosdlib.a in Frameworks */,
 				73159EAE20EDEFB5005D36B4 /* libssl.a in Frameworks */,
 				73159EAF20EDEFB5005D36B4 /* libappbase.a in Frameworks */,
+				3B4C903720F35528004F4C52 /* libboost_graph.a in Frameworks */,
 				73159EB020EDEFB5005D36B4 /* libsoftfloat.a in Frameworks */,
 				73159EB120EDEFB5005D36B4 /* libwallet_plugin.a in Frameworks */,
 				73159EB220EDEFB5005D36B4 /* libeos_utilities.a in Frameworks */,
+				3B4C903320F35528004F4C52 /* libboost_random.a in Frameworks */,
 				73159EB320EDEFB5005D36B4 /* libeosio_chain.a in Frameworks */,
+				3B4C903820F35528004F4C52 /* libboost_regex.a in Frameworks */,
+				3B4C903B20F35528004F4C52 /* libboost_chrono.a in Frameworks */,
+				3B4C902A20F35528004F4C52 /* libappbase.a in Frameworks */,
+				3B4C903A20F35528004F4C52 /* libboost_filesystem.a in Frameworks */,
 				73159EB420EDEFB5005D36B4 /* libfc.a in Frameworks */,
 				B78BF3A991FEB5F07C3CC6FD /* Pods_EOS.framework in Frameworks */,
+				3B4C902E20F35528004F4C52 /* libboost_signals.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11653,6 +11744,60 @@
 				2243653F20ECD63B00D56426 /* RegisterContentView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3B4C8FFC20F353DE004F4C52 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B4C8FFD20F353F2004F4C52 /* AccountInfoView.swift */,
+				3B4C900220F353F5004F4C52 /* AccountInfoView.xib */,
+				3B4C900320F353F5004F4C52 /* DashLineView.swift */,
+				3B4C900020F353F4004F4C52 /* SharpCornerTipsLabelView.swift */,
+				3B4C8FFE20F353F3004F4C52 /* SharpCornerTipsLabelView.xib */,
+				3B4C900120F353F4004F4C52 /* WalletView.swift */,
+				3B4C8FFF20F353F3004F4C52 /* WalletView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B4C900F20F35527004F4C52 /* library */ = {
+			isa = PBXGroup;
+			children = (
+				3B4C901020F35527004F4C52 /* libappbase.a */,
+				3B4C901120F35527004F4C52 /* libcrypto.a */,
+				3B4C901220F35527004F4C52 /* libkeosdlib.a */,
+				3B4C901320F35527004F4C52 /* libsoftfloat.a */,
+				3B4C901420F35527004F4C52 /* libboost */,
+				3B4C902420F35527004F4C52 /* libeos_utilities.a */,
+				3B4C902520F35527004F4C52 /* libeosio_chain.a */,
+				3B4C902620F35527004F4C52 /* libfc.a */,
+				3B4C902720F35527004F4C52 /* libssl.a */,
+				3B4C902820F35527004F4C52 /* libwallet_plugin.a */,
+				3B4C902920F35527004F4C52 /* secp256k1.a */,
+			);
+			path = library;
+			sourceTree = "<group>";
+		};
+		3B4C901420F35527004F4C52 /* libboost */ = {
+			isa = PBXGroup;
+			children = (
+				3B4C901520F35527004F4C52 /* libboost_signals.a */,
+				3B4C901620F35527004F4C52 /* libboost_context.a */,
+				3B4C901720F35527004F4C52 /* libboost_iostreams.a */,
+				3B4C901820F35527004F4C52 /* libboost_thread.a */,
+				3B4C901920F35527004F4C52 /* libboost_atomic.a */,
+				3B4C901A20F35527004F4C52 /* libboost_random.a */,
+				3B4C901B20F35527004F4C52 /* libboost_date_time.a */,
+				3B4C901C20F35527004F4C52 /* libboost_system.a */,
+				3B4C901D20F35527004F4C52 /* libboost_locale.a */,
+				3B4C901E20F35527004F4C52 /* libboost_graph.a */,
+				3B4C901F20F35527004F4C52 /* libboost_regex.a */,
+				3B4C902020F35527004F4C52 /* libboost_wserialization.a */,
+				3B4C902120F35527004F4C52 /* libboost_filesystem.a */,
+				3B4C902220F35527004F4C52 /* libboost_chrono.a */,
+				3B4C902320F35527004F4C52 /* libboost_serialization.a */,
+			);
+			path = libboost;
 			sourceTree = "<group>";
 		};
 		72E5F9F120EF932900391546 /* LineView */ = {
@@ -30688,6 +30833,7 @@
 		73E5A8C420EC6F4E00FFCCE1 = {
 			isa = PBXGroup;
 			children = (
+				3B4C900F20F35527004F4C52 /* library */,
 				73E5A8CF20EC6F4E00FFCCE1 /* EOS */,
 				73E5A8CE20EC6F4E00FFCCE1 /* Products */,
 				F869049438CBEBCDBCD5E83B /* Pods */,
@@ -30771,6 +30917,7 @@
 			isa = PBXGroup;
 			children = (
 				73E5A92E20EC7F4200FFCCE1 /* UIImage+Extensions.swift */,
+				3B4C900D20F354A9004F4C52 /* UIImageView+Additions.swift */,
 				73E5A93820EC80B300FFCCE1 /* NSObject+Extensions.swift */,
 				2243654520ECEE8C00D56426 /* UIView+Extensions.swift */,
 				7345311C20F30A5D0061B005 /* Colletion+Extensions.swift */,
@@ -30905,6 +31052,7 @@
 		73E5A93C20EC826500FFCCE1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3B4C8FFC20F353DE004F4C52 /* View */,
 				73E5A93D20EC827100FFCCE1 /* HomeRootCoordinator.swift */,
 				73E5A94920EC833100FFCCE1 /* HomeActions.swift */,
 				73E5A94A20EC833100FFCCE1 /* HomeCoordinator.swift */,
@@ -31044,12 +31192,14 @@
 				73159E2F20EDE9BB005D36B4 /* fstream.SUNWCCh in Resources */,
 				73159E3820EDE9BB005D36B4 /* locale.SUNWCCh in Resources */,
 				73159E4120EDE9BB005D36B4 /* set.SUNWCCh in Resources */,
+				3B4C900520F353F6004F4C52 /* SharpCornerTipsLabelView.xib in Resources */,
 				73159DFB20EDE9B9005D36B4 /* clocale in Resources */,
 				73E5A8DB20EC6F5000FFCCE1 /* LaunchScreen.storyboard in Resources */,
 				73E5A8F620EC762500FFCCE1 /* InfoPlist.strings in Resources */,
 				73E5A91220EC788300FFCCE1 /* Rubik-BlackItalic.ttf in Resources */,
 				73159E2A20EDE9BB005D36B4 /* bitset.SUNWCCh in Resources */,
 				73159E3620EDE9BB005D36B4 /* limits.SUNWCCh in Resources */,
+				3B4C900920F353F6004F4C52 /* AccountInfoView.xib in Resources */,
 				2243654020ECD63B00D56426 /* RegisterContentView.xib in Resources */,
 				73E5A91320EC788300FFCCE1 /* Rubik-Bold.ttf in Resources */,
 				2243654320ECE69300D56426 /* ComfirmView.xib in Resources */,
@@ -31064,6 +31214,7 @@
 				73159E3120EDE9BB005D36B4 /* iomanip.SUNWCCh in Resources */,
 				73159E0D20EDE9BB005D36B4 /* exception in Resources */,
 				73159E2020EDE9BB005D36B4 /* set in Resources */,
+				3B4C900620F353F6004F4C52 /* WalletView.xib in Resources */,
 				73159E4B20EDE9BB005D36B4 /* typeinfo.SUNWCCh in Resources */,
 				73159E5620EDE9BB005D36B4 /* utility in Resources */,
 				7315403D20EDE692005D36B4 /* contract_types.hpp.bk in Resources */,
@@ -31358,6 +31509,8 @@
 				7345311F20F3106A0061B005 /* NBLNetworkService.swift in Sources */,
 				73E5A8D320EC6F4E00FFCCE1 /* ViewController.swift in Sources */,
 				73E5A94720EC82B500FFCCE1 /* EntryReducers.swift in Sources */,
+				3B4C900720F353F6004F4C52 /* SharpCornerTipsLabelView.swift in Sources */,
+				3B4C900420F353F6004F4C52 /* AccountInfoView.swift in Sources */,
 				73E5A94D20EC833100FFCCE1 /* HomeActions.swift in Sources */,
 				2243653A20ECA82B00D56426 /* TitleTextView.swift in Sources */,
 				73E5A93B20EC825E00FFCCE1 /* EntryRootCoordinator.swift in Sources */,
@@ -31365,8 +31518,10 @@
 				73E5A94F20EC833100FFCCE1 /* HomeReducers.swift in Sources */,
 				73E5A92920EC7E9400FFCCE1 /* BaseViewController.swift in Sources */,
 				73E5A95020EC833100FFCCE1 /* HomeViewController.swift in Sources */,
+				3B4C900A20F353F6004F4C52 /* DashLineView.swift in Sources */,
 				73E5A92D20EC7EF200FFCCE1 /* BaseNavigationController.swift in Sources */,
 				73E5A95220EC850A00FFCCE1 /* UserDefaultsService.swift in Sources */,
+				3B4C900820F353F6004F4C52 /* WalletView.swift in Sources */,
 				7203659120F2FE2B00A4A8EF /* PaymentsRecordsCell.swift in Sources */,
 				73E5A8D120EC6F4E00FFCCE1 /* AppDelegate.swift in Sources */,
 				73E5A93920EC80B300FFCCE1 /* NSObject+Extensions.swift in Sources */,
@@ -31375,6 +31530,7 @@
 				73E5A92720EC7E3700FFCCE1 /* AppReducer.swift in Sources */,
 				73E5A93120EC7F5200FFCCE1 /* BaseTableViewCell.swift in Sources */,
 				73E5A94520EC82B500FFCCE1 /* EntryActions.swift in Sources */,
+				3B4C900E20F354AA004F4C52 /* UIImageView+Additions.swift in Sources */,
 				2243653E20ECD62100D56426 /* RegisterContentView.swift in Sources */,
 				7203659420F2FE6000A4A8EF /* PaymentsRecordsCellView.swift in Sources */,
 				7345312120F3108E0061B005 /* EOSIONetworkService.swift in Sources */,
