@@ -173,7 +173,6 @@
 		7345312320F34F2A0061B005 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312220F34F2A0061B005 /* Account.swift */; };
 		7345312520F355540061B005 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312420F355540061B005 /* Utils.swift */; };
 		7345312720F36C730061B005 /* UIResponder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312620F36C730061B005 /* UIResponder+Extensions.swift */; };
-		7345312920F36D8A0061B005 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7345312820F36D8A0061B005 /* secp256k1.a */; };
 		73E5A8D120EC6F4E00FFCCE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */; };
 		73E5A8D320EC6F4E00FFCCE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */; };
 		73E5A8D820EC6F5000FFCCE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E5A8D720EC6F5000FFCCE1 /* Assets.xcassets */; };
@@ -11541,7 +11540,6 @@
 		7345312220F34F2A0061B005 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7345312420F355540061B005 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7345312620F36C730061B005 /* UIResponder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extensions.swift"; sourceTree = "<group>"; };
-		7345312820F36D8A0061B005 /* secp256k1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = secp256k1.a; path = library/secp256k1.a; sourceTree = "<group>"; };
 		73E5A8CD20EC6F4E00FFCCE1 /* EOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31596,7 +31594,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M5LYGNKFLB;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/EOS/Core/eos/include";
 				INFOPLIST_FILE = EOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -31625,7 +31623,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M5LYGNKFLB;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/EOS/Core/eos/include";
 				INFOPLIST_FILE = EOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
