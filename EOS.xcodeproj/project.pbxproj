@@ -38,7 +38,6 @@
 		2256E31E20F3653900EB997A /* libboost_date_time.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2256E30F20F3653700EB997A /* libboost_date_time.a */; };
 		2256E31F20F3653900EB997A /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2256E31020F3653800EB997A /* libboost_filesystem.a */; };
 		2256E32020F3653900EB997A /* libboost_serialization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2256E31120F3653800EB997A /* libboost_serialization.a */; };
-		2256E32220F3670A00EB997A /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2256E32120F3670A00EB997A /* secp256k1.a */; };
 		3B4C900420F353F6004F4C52 /* AccountInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C8FFD20F353F2004F4C52 /* AccountInfoView.swift */; };
 		3B4C900520F353F6004F4C52 /* SharpCornerTipsLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C8FFE20F353F3004F4C52 /* SharpCornerTipsLabelView.xib */; };
 		3B4C900620F353F6004F4C52 /* WalletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C8FFF20F353F3004F4C52 /* WalletView.xib */; };
@@ -171,6 +170,8 @@
 		7345312120F3108E0061B005 /* EOSIONetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312020F3108E0061B005 /* EOSIONetworkService.swift */; };
 		7345312320F34F2A0061B005 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312220F34F2A0061B005 /* Account.swift */; };
 		7345312520F355540061B005 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312420F355540061B005 /* Utils.swift */; };
+		7345312720F36C730061B005 /* UIResponder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312620F36C730061B005 /* UIResponder+Extensions.swift */; };
+		7345312920F36D8A0061B005 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7345312820F36D8A0061B005 /* secp256k1.a */; };
 		73E5A8D120EC6F4E00FFCCE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */; };
 		73E5A8D320EC6F4E00FFCCE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */; };
 		73E5A8D820EC6F5000FFCCE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E5A8D720EC6F5000FFCCE1 /* Assets.xcassets */; };
@@ -11536,6 +11537,8 @@
 		7345312020F3108E0061B005 /* EOSIONetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSIONetworkService.swift; sourceTree = "<group>"; };
 		7345312220F34F2A0061B005 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7345312420F355540061B005 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		7345312620F36C730061B005 /* UIResponder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extensions.swift"; sourceTree = "<group>"; };
+		7345312820F36D8A0061B005 /* secp256k1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = secp256k1.a; path = library/secp256k1.a; sourceTree = "<group>"; };
 		73E5A8CD20EC6F4E00FFCCE1 /* EOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -11597,6 +11600,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7345312920F36D8A0061B005 /* secp256k1.a in Frameworks */,
 				2256E31920F3653900EB997A /* libboost_wserialization.a in Frameworks */,
 				2256E2FD20F3652A00EB997A /* libssl.a in Frameworks */,
 				2256E31520F3653900EB997A /* libboost_regex.a in Frameworks */,
@@ -11621,7 +11625,6 @@
 				2256E2FE20F3652A00EB997A /* libeosio_chain.a in Frameworks */,
 				2256E30120F3652A00EB997A /* libwallet_plugin.a in Frameworks */,
 				2256E2FC20F3652A00EB997A /* libappbase.a in Frameworks */,
-				2256E32220F3670A00EB997A /* secp256k1.a in Frameworks */,
 				B78BF3A991FEB5F07C3CC6FD /* Pods_EOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11633,6 +11636,7 @@
 			isa = PBXGroup;
 			children = (
 				2256E32120F3670A00EB997A /* secp256k1.a */,
+				7345312820F36D8A0061B005 /* secp256k1.a */,
 				2256E30320F3653300EB997A /* libboost_atomic.a */,
 				2256E30E20F3653700EB997A /* libboost_chrono.a */,
 				2256E30B20F3653600EB997A /* libboost_context.a */,
@@ -30810,6 +30814,7 @@
 				73E5A93820EC80B300FFCCE1 /* NSObject+Extensions.swift */,
 				2243654520ECEE8C00D56426 /* UIView+Extensions.swift */,
 				7345311C20F30A5D0061B005 /* Colletion+Extensions.swift */,
+				7345312620F36C730061B005 /* UIResponder+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -31390,6 +31395,7 @@
 				2243654620ECEE8C00D56426 /* UIView+Extensions.swift in Sources */,
 				73E5A94020EC828F00FFCCE1 /* NavCoordinator.swift in Sources */,
 				73E5A93320EC7F6900FFCCE1 /* BaseCollectionViewCell.swift in Sources */,
+				7345312720F36C730061B005 /* UIResponder+Extensions.swift in Sources */,
 				72E5F9F720EF932900391546 /* badgeView.swift in Sources */,
 				73E5A92320EC7D9200FFCCE1 /* AppCoordinator.swift in Sources */,
 				73153E8620EC9179005D36B4 /* Constants.swift in Sources */,
@@ -31597,8 +31603,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/library",
 					"$(PROJECT_DIR)/library/libboost",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/libboost",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrust.EOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -31628,8 +31632,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/library",
 					"$(PROJECT_DIR)/library/libboost",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/libboost",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrust.EOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
