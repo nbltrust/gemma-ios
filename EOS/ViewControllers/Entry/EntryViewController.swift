@@ -54,6 +54,22 @@ class EntryViewController: BaseViewController {
         agreeLabel.attributedText = str.set(style: agreeGroup)
     }
     
+    func validWalletName(name: String) -> Bool {
+        let regex = "^[0-9a-z]{12}+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with:name)
+    }
+    
+    func validPassword(password: String) -> Bool {
+        let regex = "^[0-9a-zA-Z]{12}+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with:password)
+    }
+    
+    func validComfirmPassword(password: String) -> Bool {
+        return true
+    }
+    
     override func configureObserveState() {
         commonObserveState()
         

@@ -236,6 +236,22 @@ extension RegisterContentView: UITextFieldDelegate {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField.tag {
+        case InputType.name.rawValue:
+            passwordView.textField.becomeFirstResponder()
+        case InputType.password.rawValue:
+            passwordComfirmView.textField.becomeFirstResponder()
+        case InputType.comfirmPassword.rawValue:
+            passwordPromptView.textField.becomeFirstResponder()
+        case InputType.passwordPrompt.rawValue:
+            inviteCodeView.textField.becomeFirstResponder()
+        default:
+            break
+        }
+        return true
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
     }
