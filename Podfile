@@ -45,7 +45,8 @@ def permission
 end
 
 def animation
-
+    pod 'JHChainableAnimations'
+    pod 'KRProgressHUD'
 end
 
 def extension
