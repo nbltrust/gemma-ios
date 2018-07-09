@@ -10,12 +10,23 @@ import Foundation
 
 class WalletView: UIView {
     
+    @IBOutlet weak var mBgView: UIView!
     @IBOutlet weak var mShadowView: UIView!
     @IBOutlet weak var mBgImgView: UIImageView!
     
     @IBOutlet weak var mShadowBgImgView: UIImageView!
+    
+    @IBOutlet var mAccountInfoView: AccountInfoView!
+    var data : Any? {
+        didSet {
+            updateHeight()
+            upDateShadowBgImgView(rect: mShadowView.frame)
+        }
+    }
+    
+    
     func upDateShadowBgImgView(rect: CGRect) {
-        let image = mBgImgView.drawRectShadow(rect: rect)
+        let image = self.mBgView.drawRectShadow(rect: rect)
         mShadowBgImgView.image = image
     }
     
@@ -42,14 +53,14 @@ class WalletView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
-        upDateShadowBgImgView(rect: mShadowView.frame)
+//        upDateShadowBgImgView(rect: mShadowView.frame)
 
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
-        upDateShadowBgImgView(rect: mShadowView.frame)
+//        upDateShadowBgImgView(rect: mShadowView.frame)
     }
     
     fileprivate func loadViewFromNib() {

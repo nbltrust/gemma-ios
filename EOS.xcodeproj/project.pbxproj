@@ -22,31 +22,31 @@
 		3B4C900920F353F6004F4C52 /* AccountInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C900220F353F5004F4C52 /* AccountInfoView.xib */; };
 		3B4C900A20F353F6004F4C52 /* DashLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C900320F353F5004F4C52 /* DashLineView.swift */; };
 		3B4C900E20F354AA004F4C52 /* UIImageView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C900D20F354A9004F4C52 /* UIImageView+Additions.swift */; };
-		3B4C902A20F35528004F4C52 /* libappbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901020F35527004F4C52 /* libappbase.a */; };
-		3B4C902B20F35528004F4C52 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901120F35527004F4C52 /* libcrypto.a */; };
-		3B4C902C20F35528004F4C52 /* libkeosdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901220F35527004F4C52 /* libkeosdlib.a */; };
-		3B4C902D20F35528004F4C52 /* libsoftfloat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901320F35527004F4C52 /* libsoftfloat.a */; };
-		3B4C902E20F35528004F4C52 /* libboost_signals.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901520F35527004F4C52 /* libboost_signals.a */; };
-		3B4C902F20F35528004F4C52 /* libboost_context.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901620F35527004F4C52 /* libboost_context.a */; };
-		3B4C903020F35528004F4C52 /* libboost_iostreams.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901720F35527004F4C52 /* libboost_iostreams.a */; };
-		3B4C903120F35528004F4C52 /* libboost_thread.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901820F35527004F4C52 /* libboost_thread.a */; };
-		3B4C903220F35528004F4C52 /* libboost_atomic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901920F35527004F4C52 /* libboost_atomic.a */; };
-		3B4C903320F35528004F4C52 /* libboost_random.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901A20F35527004F4C52 /* libboost_random.a */; };
-		3B4C903420F35528004F4C52 /* libboost_date_time.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901B20F35527004F4C52 /* libboost_date_time.a */; };
-		3B4C903520F35528004F4C52 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901C20F35527004F4C52 /* libboost_system.a */; };
-		3B4C903620F35528004F4C52 /* libboost_locale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901D20F35527004F4C52 /* libboost_locale.a */; };
-		3B4C903720F35528004F4C52 /* libboost_graph.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901E20F35527004F4C52 /* libboost_graph.a */; };
-		3B4C903820F35528004F4C52 /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C901F20F35527004F4C52 /* libboost_regex.a */; };
-		3B4C903920F35528004F4C52 /* libboost_wserialization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902020F35527004F4C52 /* libboost_wserialization.a */; };
-		3B4C903A20F35528004F4C52 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902120F35527004F4C52 /* libboost_filesystem.a */; };
-		3B4C903B20F35528004F4C52 /* libboost_chrono.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902220F35527004F4C52 /* libboost_chrono.a */; };
-		3B4C903C20F35528004F4C52 /* libboost_serialization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902320F35527004F4C52 /* libboost_serialization.a */; };
-		3B4C903D20F35528004F4C52 /* libeos_utilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902420F35527004F4C52 /* libeos_utilities.a */; };
-		3B4C903E20F35528004F4C52 /* libeosio_chain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902520F35527004F4C52 /* libeosio_chain.a */; };
-		3B4C903F20F35528004F4C52 /* libfc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902620F35527004F4C52 /* libfc.a */; };
-		3B4C904020F35528004F4C52 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902720F35527004F4C52 /* libssl.a */; };
-		3B4C904120F35528004F4C52 /* libwallet_plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902820F35527004F4C52 /* libwallet_plugin.a */; };
-		3B4C904220F35528004F4C52 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C902920F35527004F4C52 /* secp256k1.a */; };
+		3B4C904D20F36EFD004F4C52 /* libkeosdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C904320F36EF9004F4C52 /* libkeosdlib.a */; };
+		3B4C904E20F36EFD004F4C52 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C904420F36EF9004F4C52 /* libssl.a */; };
+		3B4C904F20F36EFD004F4C52 /* libeosio_chain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C904520F36EF9004F4C52 /* libeosio_chain.a */; };
+		3B4C905020F36EFD004F4C52 /* libappbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C904620F36EFA004F4C52 /* libappbase.a */; };
+		3B4C905120F36EFD004F4C52 /* libfc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C904720F36EFA004F4C52 /* libfc.a */; };
+		3B4C905220F36EFD004F4C52 /* libeos_utilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C904820F36EFB004F4C52 /* libeos_utilities.a */; };
+		3B4C905320F36EFD004F4C52 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C904920F36EFB004F4C52 /* secp256k1.a */; };
+		3B4C905420F36EFD004F4C52 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C904A20F36EFC004F4C52 /* libcrypto.a */; };
+		3B4C905520F36EFD004F4C52 /* libsoftfloat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C904B20F36EFC004F4C52 /* libsoftfloat.a */; };
+		3B4C905620F36EFD004F4C52 /* libwallet_plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C904C20F36EFD004F4C52 /* libwallet_plugin.a */; };
+		3B4C906620F36F14004F4C52 /* libboost_random.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C905720F36F08004F4C52 /* libboost_random.a */; };
+		3B4C906720F36F14004F4C52 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C905820F36F09004F4C52 /* libboost_system.a */; };
+		3B4C906820F36F14004F4C52 /* libboost_thread.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C905920F36F09004F4C52 /* libboost_thread.a */; };
+		3B4C906920F36F14004F4C52 /* libboost_serialization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C905A20F36F0A004F4C52 /* libboost_serialization.a */; };
+		3B4C906A20F36F14004F4C52 /* libboost_context.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C905B20F36F0A004F4C52 /* libboost_context.a */; };
+		3B4C906B20F36F14004F4C52 /* libboost_iostreams.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C905C20F36F0D004F4C52 /* libboost_iostreams.a */; };
+		3B4C906C20F36F14004F4C52 /* libboost_chrono.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C905D20F36F0D004F4C52 /* libboost_chrono.a */; };
+		3B4C906D20F36F14004F4C52 /* libboost_date_time.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C905E20F36F0E004F4C52 /* libboost_date_time.a */; };
+		3B4C906E20F36F14004F4C52 /* libboost_atomic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C905F20F36F0E004F4C52 /* libboost_atomic.a */; };
+		3B4C906F20F36F14004F4C52 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C906020F36F0F004F4C52 /* libboost_filesystem.a */; };
+		3B4C907020F36F14004F4C52 /* libboost_locale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C906120F36F11004F4C52 /* libboost_locale.a */; };
+		3B4C907120F36F14004F4C52 /* libboost_graph.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C906220F36F12004F4C52 /* libboost_graph.a */; };
+		3B4C907220F36F14004F4C52 /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C906320F36F12004F4C52 /* libboost_regex.a */; };
+		3B4C907320F36F14004F4C52 /* libboost_signals.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C906420F36F13004F4C52 /* libboost_signals.a */; };
+		3B4C907420F36F14004F4C52 /* libboost_wserialization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4C906520F36F13004F4C52 /* libboost_wserialization.a */; };
 		7203659120F2FE2B00A4A8EF /* PaymentsRecordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203658F20F2FE2B00A4A8EF /* PaymentsRecordsCell.swift */; };
 		7203659220F2FE2B00A4A8EF /* PaymentsRecordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7203659020F2FE2B00A4A8EF /* PaymentsRecordsCell.xib */; };
 		7203659420F2FE6000A4A8EF /* PaymentsRecordsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203659320F2FE6000A4A8EF /* PaymentsRecordsCellView.swift */; };
@@ -165,31 +165,6 @@
 		73159E5620EDE9BB005D36B4 /* utility in Resources */ = {isa = PBXBuildFile; fileRef = 7315997C20EDE9B5005D36B4 /* utility */; };
 		73159E5720EDE9BB005D36B4 /* valarray in Resources */ = {isa = PBXBuildFile; fileRef = 7315997D20EDE9B5005D36B4 /* valarray */; };
 		73159E5820EDE9BB005D36B4 /* vector in Resources */ = {isa = PBXBuildFile; fileRef = 7315997E20EDE9B5005D36B4 /* vector */; };
-		73159EAD20EDEFB5005D36B4 /* libkeosdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EA520EDEFAF005D36B4 /* libkeosdlib.a */; };
-		73159EAE20EDEFB5005D36B4 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EA620EDEFB0005D36B4 /* libssl.a */; };
-		73159EAF20EDEFB5005D36B4 /* libappbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EA720EDEFB1005D36B4 /* libappbase.a */; };
-		73159EB020EDEFB5005D36B4 /* libsoftfloat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EA820EDEFB1005D36B4 /* libsoftfloat.a */; };
-		73159EB120EDEFB5005D36B4 /* libwallet_plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EA920EDEFB1005D36B4 /* libwallet_plugin.a */; };
-		73159EB220EDEFB5005D36B4 /* libeos_utilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EAA20EDEFB2005D36B4 /* libeos_utilities.a */; };
-		73159EB320EDEFB5005D36B4 /* libeosio_chain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EAB20EDEFB2005D36B4 /* libeosio_chain.a */; };
-		73159EB420EDEFB5005D36B4 /* libfc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EAC20EDEFB4005D36B4 /* libfc.a */; };
-		73159EC420EDEFC5005D36B4 /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EB520EDEFBF005D36B4 /* libboost_regex.a */; };
-		73159EC520EDEFC5005D36B4 /* libboost_serialization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EB620EDEFBF005D36B4 /* libboost_serialization.a */; };
-		73159EC620EDEFC5005D36B4 /* libboost_random.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EB720EDEFC0005D36B4 /* libboost_random.a */; };
-		73159EC720EDEFC5005D36B4 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EB820EDEFC0005D36B4 /* libboost_system.a */; };
-		73159EC820EDEFC5005D36B4 /* libboost_thread.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EB920EDEFC1005D36B4 /* libboost_thread.a */; };
-		73159EC920EDEFC5005D36B4 /* libboost_wserialization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EBA20EDEFC1005D36B4 /* libboost_wserialization.a */; };
-		73159ECA20EDEFC5005D36B4 /* libboost_iostreams.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EBB20EDEFC2005D36B4 /* libboost_iostreams.a */; };
-		73159ECB20EDEFC5005D36B4 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EBC20EDEFC2005D36B4 /* libboost_filesystem.a */; };
-		73159ECC20EDEFC5005D36B4 /* libboost_chrono.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EBD20EDEFC3005D36B4 /* libboost_chrono.a */; };
-		73159ECD20EDEFC5005D36B4 /* libboost_locale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EBE20EDEFC3005D36B4 /* libboost_locale.a */; };
-		73159ECE20EDEFC5005D36B4 /* libboost_context.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EBF20EDEFC3005D36B4 /* libboost_context.a */; };
-		73159ECF20EDEFC5005D36B4 /* libboost_atomic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EC020EDEFC4005D36B4 /* libboost_atomic.a */; };
-		73159ED020EDEFC5005D36B4 /* libboost_date_time.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EC120EDEFC4005D36B4 /* libboost_date_time.a */; };
-		73159ED120EDEFC5005D36B4 /* libboost_graph.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EC220EDEFC5005D36B4 /* libboost_graph.a */; };
-		73159ED220EDEFC5005D36B4 /* libboost_signals.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159EC320EDEFC5005D36B4 /* libboost_signals.a */; };
-		73159ED720EE2512005D36B4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159ED520EE2511005D36B4 /* libcrypto.a */; };
-		73159ED820EE2512005D36B4 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73159ED620EE2512005D36B4 /* secp256k1.a */; };
 		7345311B20F301090061B005 /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345311A20F301090061B005 /* WalletManager.swift */; };
 		7345311D20F30A5D0061B005 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345311C20F30A5D0061B005 /* Colletion+Extensions.swift */; };
 		7345311F20F3106A0061B005 /* NBLNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345311E20F3106A0061B005 /* NBLNetworkService.swift */; };
@@ -259,31 +234,31 @@
 		3B4C900220F353F5004F4C52 /* AccountInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoView.xib; sourceTree = "<group>"; };
 		3B4C900320F353F5004F4C52 /* DashLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashLineView.swift; sourceTree = "<group>"; };
 		3B4C900D20F354A9004F4C52 /* UIImageView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Additions.swift"; sourceTree = "<group>"; };
-		3B4C901020F35527004F4C52 /* libappbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libappbase.a; sourceTree = "<group>"; };
-		3B4C901120F35527004F4C52 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		3B4C901220F35527004F4C52 /* libkeosdlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libkeosdlib.a; sourceTree = "<group>"; };
-		3B4C901320F35527004F4C52 /* libsoftfloat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsoftfloat.a; sourceTree = "<group>"; };
-		3B4C901520F35527004F4C52 /* libboost_signals.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_signals.a; sourceTree = "<group>"; };
-		3B4C901620F35527004F4C52 /* libboost_context.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_context.a; sourceTree = "<group>"; };
-		3B4C901720F35527004F4C52 /* libboost_iostreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_iostreams.a; sourceTree = "<group>"; };
-		3B4C901820F35527004F4C52 /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_thread.a; sourceTree = "<group>"; };
-		3B4C901920F35527004F4C52 /* libboost_atomic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_atomic.a; sourceTree = "<group>"; };
-		3B4C901A20F35527004F4C52 /* libboost_random.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_random.a; sourceTree = "<group>"; };
-		3B4C901B20F35527004F4C52 /* libboost_date_time.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_date_time.a; sourceTree = "<group>"; };
-		3B4C901C20F35527004F4C52 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_system.a; sourceTree = "<group>"; };
-		3B4C901D20F35527004F4C52 /* libboost_locale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_locale.a; sourceTree = "<group>"; };
-		3B4C901E20F35527004F4C52 /* libboost_graph.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_graph.a; sourceTree = "<group>"; };
-		3B4C901F20F35527004F4C52 /* libboost_regex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_regex.a; sourceTree = "<group>"; };
-		3B4C902020F35527004F4C52 /* libboost_wserialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_wserialization.a; sourceTree = "<group>"; };
-		3B4C902120F35527004F4C52 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_filesystem.a; sourceTree = "<group>"; };
-		3B4C902220F35527004F4C52 /* libboost_chrono.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_chrono.a; sourceTree = "<group>"; };
-		3B4C902320F35527004F4C52 /* libboost_serialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_serialization.a; sourceTree = "<group>"; };
-		3B4C902420F35527004F4C52 /* libeos_utilities.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libeos_utilities.a; sourceTree = "<group>"; };
-		3B4C902520F35527004F4C52 /* libeosio_chain.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libeosio_chain.a; sourceTree = "<group>"; };
-		3B4C902620F35527004F4C52 /* libfc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfc.a; sourceTree = "<group>"; };
-		3B4C902720F35527004F4C52 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		3B4C902820F35527004F4C52 /* libwallet_plugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libwallet_plugin.a; sourceTree = "<group>"; };
-		3B4C902920F35527004F4C52 /* secp256k1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = secp256k1.a; sourceTree = "<group>"; };
+		3B4C904320F36EF9004F4C52 /* libkeosdlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkeosdlib.a; path = library/libkeosdlib.a; sourceTree = "<group>"; };
+		3B4C904420F36EF9004F4C52 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = library/libssl.a; sourceTree = "<group>"; };
+		3B4C904520F36EF9004F4C52 /* libeosio_chain.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libeosio_chain.a; path = library/libeosio_chain.a; sourceTree = "<group>"; };
+		3B4C904620F36EFA004F4C52 /* libappbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libappbase.a; path = library/libappbase.a; sourceTree = "<group>"; };
+		3B4C904720F36EFA004F4C52 /* libfc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfc.a; path = library/libfc.a; sourceTree = "<group>"; };
+		3B4C904820F36EFB004F4C52 /* libeos_utilities.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libeos_utilities.a; path = library/libeos_utilities.a; sourceTree = "<group>"; };
+		3B4C904920F36EFB004F4C52 /* secp256k1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = secp256k1.a; path = library/secp256k1.a; sourceTree = "<group>"; };
+		3B4C904A20F36EFC004F4C52 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = library/libcrypto.a; sourceTree = "<group>"; };
+		3B4C904B20F36EFC004F4C52 /* libsoftfloat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsoftfloat.a; path = library/libsoftfloat.a; sourceTree = "<group>"; };
+		3B4C904C20F36EFD004F4C52 /* libwallet_plugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwallet_plugin.a; path = library/libwallet_plugin.a; sourceTree = "<group>"; };
+		3B4C905720F36F08004F4C52 /* libboost_random.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_random.a; path = library/libboost/libboost_random.a; sourceTree = "<group>"; };
+		3B4C905820F36F09004F4C52 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = library/libboost/libboost_system.a; sourceTree = "<group>"; };
+		3B4C905920F36F09004F4C52 /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_thread.a; path = library/libboost/libboost_thread.a; sourceTree = "<group>"; };
+		3B4C905A20F36F0A004F4C52 /* libboost_serialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_serialization.a; path = library/libboost/libboost_serialization.a; sourceTree = "<group>"; };
+		3B4C905B20F36F0A004F4C52 /* libboost_context.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_context.a; path = library/libboost/libboost_context.a; sourceTree = "<group>"; };
+		3B4C905C20F36F0D004F4C52 /* libboost_iostreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_iostreams.a; path = library/libboost/libboost_iostreams.a; sourceTree = "<group>"; };
+		3B4C905D20F36F0D004F4C52 /* libboost_chrono.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_chrono.a; path = library/libboost/libboost_chrono.a; sourceTree = "<group>"; };
+		3B4C905E20F36F0E004F4C52 /* libboost_date_time.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_date_time.a; path = library/libboost/libboost_date_time.a; sourceTree = "<group>"; };
+		3B4C905F20F36F0E004F4C52 /* libboost_atomic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_atomic.a; path = library/libboost/libboost_atomic.a; sourceTree = "<group>"; };
+		3B4C906020F36F0F004F4C52 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = library/libboost/libboost_filesystem.a; sourceTree = "<group>"; };
+		3B4C906120F36F11004F4C52 /* libboost_locale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_locale.a; path = library/libboost/libboost_locale.a; sourceTree = "<group>"; };
+		3B4C906220F36F12004F4C52 /* libboost_graph.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_graph.a; path = library/libboost/libboost_graph.a; sourceTree = "<group>"; };
+		3B4C906320F36F12004F4C52 /* libboost_regex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_regex.a; path = library/libboost/libboost_regex.a; sourceTree = "<group>"; };
+		3B4C906420F36F13004F4C52 /* libboost_signals.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_signals.a; path = library/libboost/libboost_signals.a; sourceTree = "<group>"; };
+		3B4C906520F36F13004F4C52 /* libboost_wserialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_wserialization.a; path = library/libboost/libboost_wserialization.a; sourceTree = "<group>"; };
 		7203658F20F2FE2B00A4A8EF /* PaymentsRecordsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRecordsCell.swift; sourceTree = "<group>"; };
 		7203659020F2FE2B00A4A8EF /* PaymentsRecordsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentsRecordsCell.xib; sourceTree = "<group>"; };
 		7203659320F2FE6000A4A8EF /* PaymentsRecordsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRecordsCellView.swift; sourceTree = "<group>"; };
@@ -11551,33 +11526,8 @@
 		73159EA220EDEA51005D36B4 /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
 		73159EA320EDEA51005D36B4 /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
 		73159EA420EDEA51005D36B4 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
-		73159EA520EDEFAF005D36B4 /* libkeosdlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkeosdlib.a; path = library/libkeosdlib.a; sourceTree = "<group>"; };
-		73159EA620EDEFB0005D36B4 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = library/libssl.a; sourceTree = "<group>"; };
-		73159EA720EDEFB1005D36B4 /* libappbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libappbase.a; path = library/libappbase.a; sourceTree = "<group>"; };
-		73159EA820EDEFB1005D36B4 /* libsoftfloat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsoftfloat.a; path = library/libsoftfloat.a; sourceTree = "<group>"; };
-		73159EA920EDEFB1005D36B4 /* libwallet_plugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwallet_plugin.a; path = library/libwallet_plugin.a; sourceTree = "<group>"; };
-		73159EAA20EDEFB2005D36B4 /* libeos_utilities.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libeos_utilities.a; path = library/libeos_utilities.a; sourceTree = "<group>"; };
-		73159EAB20EDEFB2005D36B4 /* libeosio_chain.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libeosio_chain.a; path = library/libeosio_chain.a; sourceTree = "<group>"; };
-		73159EAC20EDEFB4005D36B4 /* libfc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfc.a; path = library/libfc.a; sourceTree = "<group>"; };
-		73159EB520EDEFBF005D36B4 /* libboost_regex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_regex.a; path = library/libboost/libboost_regex.a; sourceTree = "<group>"; };
-		73159EB620EDEFBF005D36B4 /* libboost_serialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_serialization.a; path = library/libboost/libboost_serialization.a; sourceTree = "<group>"; };
-		73159EB720EDEFC0005D36B4 /* libboost_random.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_random.a; path = library/libboost/libboost_random.a; sourceTree = "<group>"; };
-		73159EB820EDEFC0005D36B4 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = library/libboost/libboost_system.a; sourceTree = "<group>"; };
-		73159EB920EDEFC1005D36B4 /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_thread.a; path = library/libboost/libboost_thread.a; sourceTree = "<group>"; };
-		73159EBA20EDEFC1005D36B4 /* libboost_wserialization.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_wserialization.a; path = library/libboost/libboost_wserialization.a; sourceTree = "<group>"; };
-		73159EBB20EDEFC2005D36B4 /* libboost_iostreams.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_iostreams.a; path = library/libboost/libboost_iostreams.a; sourceTree = "<group>"; };
-		73159EBC20EDEFC2005D36B4 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = library/libboost/libboost_filesystem.a; sourceTree = "<group>"; };
-		73159EBD20EDEFC3005D36B4 /* libboost_chrono.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_chrono.a; path = library/libboost/libboost_chrono.a; sourceTree = "<group>"; };
-		73159EBE20EDEFC3005D36B4 /* libboost_locale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_locale.a; path = library/libboost/libboost_locale.a; sourceTree = "<group>"; };
-		73159EBF20EDEFC3005D36B4 /* libboost_context.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_context.a; path = library/libboost/libboost_context.a; sourceTree = "<group>"; };
-		73159EC020EDEFC4005D36B4 /* libboost_atomic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_atomic.a; path = library/libboost/libboost_atomic.a; sourceTree = "<group>"; };
-		73159EC120EDEFC4005D36B4 /* libboost_date_time.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_date_time.a; path = library/libboost/libboost_date_time.a; sourceTree = "<group>"; };
-		73159EC220EDEFC5005D36B4 /* libboost_graph.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_graph.a; path = library/libboost/libboost_graph.a; sourceTree = "<group>"; };
-		73159EC320EDEFC5005D36B4 /* libboost_signals.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_signals.a; path = library/libboost/libboost_signals.a; sourceTree = "<group>"; };
 		73159ED320EE23E1005D36B4 /* wallet_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wallet_manager.hpp; sourceTree = "<group>"; };
 		73159ED420EE23E1005D36B4 /* wallet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wallet.hpp; sourceTree = "<group>"; };
-		73159ED520EE2511005D36B4 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = library/libcrypto.a; sourceTree = "<group>"; };
-		73159ED620EE2512005D36B4 /* secp256k1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = secp256k1.a; path = library/secp256k1.a; sourceTree = "<group>"; };
 		7345311A20F301090061B005 /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
 		7345311C20F30A5D0061B005 /* Colletion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colletion+Extensions.swift"; sourceTree = "<group>"; };
 		7345311E20F3106A0061B005 /* NBLNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBLNetworkService.swift; sourceTree = "<group>"; };
@@ -11643,57 +11593,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B4C903920F35528004F4C52 /* libboost_wserialization.a in Frameworks */,
-				73159ED720EE2512005D36B4 /* libcrypto.a in Frameworks */,
-				3B4C903D20F35528004F4C52 /* libeos_utilities.a in Frameworks */,
-				3B4C903120F35528004F4C52 /* libboost_thread.a in Frameworks */,
-				73159ED820EE2512005D36B4 /* secp256k1.a in Frameworks */,
-				73159EC420EDEFC5005D36B4 /* libboost_regex.a in Frameworks */,
-				3B4C903F20F35528004F4C52 /* libfc.a in Frameworks */,
-				3B4C902F20F35528004F4C52 /* libboost_context.a in Frameworks */,
-				3B4C903020F35528004F4C52 /* libboost_iostreams.a in Frameworks */,
-				3B4C904020F35528004F4C52 /* libssl.a in Frameworks */,
-				73159EC520EDEFC5005D36B4 /* libboost_serialization.a in Frameworks */,
-				3B4C903E20F35528004F4C52 /* libeosio_chain.a in Frameworks */,
-				73159EC620EDEFC5005D36B4 /* libboost_random.a in Frameworks */,
-				3B4C903220F35528004F4C52 /* libboost_atomic.a in Frameworks */,
-				73159EC720EDEFC5005D36B4 /* libboost_system.a in Frameworks */,
-				3B4C902B20F35528004F4C52 /* libcrypto.a in Frameworks */,
-				73159EC820EDEFC5005D36B4 /* libboost_thread.a in Frameworks */,
-				3B4C904120F35528004F4C52 /* libwallet_plugin.a in Frameworks */,
-				73159EC920EDEFC5005D36B4 /* libboost_wserialization.a in Frameworks */,
-				73159ECA20EDEFC5005D36B4 /* libboost_iostreams.a in Frameworks */,
-				3B4C904220F35528004F4C52 /* secp256k1.a in Frameworks */,
-				3B4C903520F35528004F4C52 /* libboost_system.a in Frameworks */,
-				73159ECB20EDEFC5005D36B4 /* libboost_filesystem.a in Frameworks */,
-				73159ECC20EDEFC5005D36B4 /* libboost_chrono.a in Frameworks */,
-				73159ECD20EDEFC5005D36B4 /* libboost_locale.a in Frameworks */,
-				3B4C902C20F35528004F4C52 /* libkeosdlib.a in Frameworks */,
-				3B4C902D20F35528004F4C52 /* libsoftfloat.a in Frameworks */,
-				73159ECE20EDEFC5005D36B4 /* libboost_context.a in Frameworks */,
-				3B4C903420F35528004F4C52 /* libboost_date_time.a in Frameworks */,
-				73159ECF20EDEFC5005D36B4 /* libboost_atomic.a in Frameworks */,
-				73159ED020EDEFC5005D36B4 /* libboost_date_time.a in Frameworks */,
-				73159ED120EDEFC5005D36B4 /* libboost_graph.a in Frameworks */,
-				3B4C903620F35528004F4C52 /* libboost_locale.a in Frameworks */,
-				73159ED220EDEFC5005D36B4 /* libboost_signals.a in Frameworks */,
-				3B4C903C20F35528004F4C52 /* libboost_serialization.a in Frameworks */,
-				73159EAD20EDEFB5005D36B4 /* libkeosdlib.a in Frameworks */,
-				73159EAE20EDEFB5005D36B4 /* libssl.a in Frameworks */,
-				73159EAF20EDEFB5005D36B4 /* libappbase.a in Frameworks */,
-				3B4C903720F35528004F4C52 /* libboost_graph.a in Frameworks */,
-				73159EB020EDEFB5005D36B4 /* libsoftfloat.a in Frameworks */,
-				73159EB120EDEFB5005D36B4 /* libwallet_plugin.a in Frameworks */,
-				73159EB220EDEFB5005D36B4 /* libeos_utilities.a in Frameworks */,
-				3B4C903320F35528004F4C52 /* libboost_random.a in Frameworks */,
-				73159EB320EDEFB5005D36B4 /* libeosio_chain.a in Frameworks */,
-				3B4C903820F35528004F4C52 /* libboost_regex.a in Frameworks */,
-				3B4C903B20F35528004F4C52 /* libboost_chrono.a in Frameworks */,
-				3B4C902A20F35528004F4C52 /* libappbase.a in Frameworks */,
-				3B4C903A20F35528004F4C52 /* libboost_filesystem.a in Frameworks */,
-				73159EB420EDEFB5005D36B4 /* libfc.a in Frameworks */,
+				3B4C906620F36F14004F4C52 /* libboost_random.a in Frameworks */,
+				3B4C906720F36F14004F4C52 /* libboost_system.a in Frameworks */,
+				3B4C906820F36F14004F4C52 /* libboost_thread.a in Frameworks */,
+				3B4C906920F36F14004F4C52 /* libboost_serialization.a in Frameworks */,
+				3B4C906A20F36F14004F4C52 /* libboost_context.a in Frameworks */,
+				3B4C906B20F36F14004F4C52 /* libboost_iostreams.a in Frameworks */,
+				3B4C906C20F36F14004F4C52 /* libboost_chrono.a in Frameworks */,
+				3B4C906D20F36F14004F4C52 /* libboost_date_time.a in Frameworks */,
+				3B4C906E20F36F14004F4C52 /* libboost_atomic.a in Frameworks */,
+				3B4C906F20F36F14004F4C52 /* libboost_filesystem.a in Frameworks */,
+				3B4C907020F36F14004F4C52 /* libboost_locale.a in Frameworks */,
+				3B4C907120F36F14004F4C52 /* libboost_graph.a in Frameworks */,
+				3B4C907220F36F14004F4C52 /* libboost_regex.a in Frameworks */,
+				3B4C907320F36F14004F4C52 /* libboost_signals.a in Frameworks */,
+				3B4C907420F36F14004F4C52 /* libboost_wserialization.a in Frameworks */,
+				3B4C904D20F36EFD004F4C52 /* libkeosdlib.a in Frameworks */,
+				3B4C904E20F36EFD004F4C52 /* libssl.a in Frameworks */,
+				3B4C904F20F36EFD004F4C52 /* libeosio_chain.a in Frameworks */,
+				3B4C905020F36EFD004F4C52 /* libappbase.a in Frameworks */,
+				3B4C905120F36EFD004F4C52 /* libfc.a in Frameworks */,
+				3B4C905220F36EFD004F4C52 /* libeos_utilities.a in Frameworks */,
+				3B4C905320F36EFD004F4C52 /* secp256k1.a in Frameworks */,
+				3B4C905420F36EFD004F4C52 /* libcrypto.a in Frameworks */,
+				3B4C905520F36EFD004F4C52 /* libsoftfloat.a in Frameworks */,
+				3B4C905620F36EFD004F4C52 /* libwallet_plugin.a in Frameworks */,
 				B78BF3A991FEB5F07C3CC6FD /* Pods_EOS.framework in Frameworks */,
-				3B4C902E20F35528004F4C52 /* libboost_signals.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11703,31 +11628,31 @@
 		0A671499B809A9B83B6650F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				73159ED520EE2511005D36B4 /* libcrypto.a */,
-				73159ED620EE2512005D36B4 /* secp256k1.a */,
-				73159EC020EDEFC4005D36B4 /* libboost_atomic.a */,
-				73159EBD20EDEFC3005D36B4 /* libboost_chrono.a */,
-				73159EBF20EDEFC3005D36B4 /* libboost_context.a */,
-				73159EC120EDEFC4005D36B4 /* libboost_date_time.a */,
-				73159EBC20EDEFC2005D36B4 /* libboost_filesystem.a */,
-				73159EC220EDEFC5005D36B4 /* libboost_graph.a */,
-				73159EBB20EDEFC2005D36B4 /* libboost_iostreams.a */,
-				73159EBE20EDEFC3005D36B4 /* libboost_locale.a */,
-				73159EB720EDEFC0005D36B4 /* libboost_random.a */,
-				73159EB520EDEFBF005D36B4 /* libboost_regex.a */,
-				73159EB620EDEFBF005D36B4 /* libboost_serialization.a */,
-				73159EC320EDEFC5005D36B4 /* libboost_signals.a */,
-				73159EB820EDEFC0005D36B4 /* libboost_system.a */,
-				73159EB920EDEFC1005D36B4 /* libboost_thread.a */,
-				73159EBA20EDEFC1005D36B4 /* libboost_wserialization.a */,
-				73159EA720EDEFB1005D36B4 /* libappbase.a */,
-				73159EAA20EDEFB2005D36B4 /* libeos_utilities.a */,
-				73159EAB20EDEFB2005D36B4 /* libeosio_chain.a */,
-				73159EAC20EDEFB4005D36B4 /* libfc.a */,
-				73159EA520EDEFAF005D36B4 /* libkeosdlib.a */,
-				73159EA820EDEFB1005D36B4 /* libsoftfloat.a */,
-				73159EA620EDEFB0005D36B4 /* libssl.a */,
-				73159EA920EDEFB1005D36B4 /* libwallet_plugin.a */,
+				3B4C905F20F36F0E004F4C52 /* libboost_atomic.a */,
+				3B4C905D20F36F0D004F4C52 /* libboost_chrono.a */,
+				3B4C905B20F36F0A004F4C52 /* libboost_context.a */,
+				3B4C905E20F36F0E004F4C52 /* libboost_date_time.a */,
+				3B4C906020F36F0F004F4C52 /* libboost_filesystem.a */,
+				3B4C906220F36F12004F4C52 /* libboost_graph.a */,
+				3B4C905C20F36F0D004F4C52 /* libboost_iostreams.a */,
+				3B4C906120F36F11004F4C52 /* libboost_locale.a */,
+				3B4C905720F36F08004F4C52 /* libboost_random.a */,
+				3B4C906320F36F12004F4C52 /* libboost_regex.a */,
+				3B4C905A20F36F0A004F4C52 /* libboost_serialization.a */,
+				3B4C906420F36F13004F4C52 /* libboost_signals.a */,
+				3B4C905820F36F09004F4C52 /* libboost_system.a */,
+				3B4C905920F36F09004F4C52 /* libboost_thread.a */,
+				3B4C906520F36F13004F4C52 /* libboost_wserialization.a */,
+				3B4C904620F36EFA004F4C52 /* libappbase.a */,
+				3B4C904A20F36EFC004F4C52 /* libcrypto.a */,
+				3B4C904820F36EFB004F4C52 /* libeos_utilities.a */,
+				3B4C904520F36EF9004F4C52 /* libeosio_chain.a */,
+				3B4C904720F36EFA004F4C52 /* libfc.a */,
+				3B4C904320F36EF9004F4C52 /* libkeosdlib.a */,
+				3B4C904B20F36EFC004F4C52 /* libsoftfloat.a */,
+				3B4C904420F36EF9004F4C52 /* libssl.a */,
+				3B4C904C20F36EFD004F4C52 /* libwallet_plugin.a */,
+				3B4C904920F36EFB004F4C52 /* secp256k1.a */,
 				AF1D048793EEB88A8A428D89 /* Pods_EOS.framework */,
 			);
 			name = Frameworks;
@@ -11758,46 +11683,6 @@
 				3B4C8FFF20F353F3004F4C52 /* WalletView.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		3B4C900F20F35527004F4C52 /* library */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C901020F35527004F4C52 /* libappbase.a */,
-				3B4C901120F35527004F4C52 /* libcrypto.a */,
-				3B4C901220F35527004F4C52 /* libkeosdlib.a */,
-				3B4C901320F35527004F4C52 /* libsoftfloat.a */,
-				3B4C901420F35527004F4C52 /* libboost */,
-				3B4C902420F35527004F4C52 /* libeos_utilities.a */,
-				3B4C902520F35527004F4C52 /* libeosio_chain.a */,
-				3B4C902620F35527004F4C52 /* libfc.a */,
-				3B4C902720F35527004F4C52 /* libssl.a */,
-				3B4C902820F35527004F4C52 /* libwallet_plugin.a */,
-				3B4C902920F35527004F4C52 /* secp256k1.a */,
-			);
-			path = library;
-			sourceTree = "<group>";
-		};
-		3B4C901420F35527004F4C52 /* libboost */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C901520F35527004F4C52 /* libboost_signals.a */,
-				3B4C901620F35527004F4C52 /* libboost_context.a */,
-				3B4C901720F35527004F4C52 /* libboost_iostreams.a */,
-				3B4C901820F35527004F4C52 /* libboost_thread.a */,
-				3B4C901920F35527004F4C52 /* libboost_atomic.a */,
-				3B4C901A20F35527004F4C52 /* libboost_random.a */,
-				3B4C901B20F35527004F4C52 /* libboost_date_time.a */,
-				3B4C901C20F35527004F4C52 /* libboost_system.a */,
-				3B4C901D20F35527004F4C52 /* libboost_locale.a */,
-				3B4C901E20F35527004F4C52 /* libboost_graph.a */,
-				3B4C901F20F35527004F4C52 /* libboost_regex.a */,
-				3B4C902020F35527004F4C52 /* libboost_wserialization.a */,
-				3B4C902120F35527004F4C52 /* libboost_filesystem.a */,
-				3B4C902220F35527004F4C52 /* libboost_chrono.a */,
-				3B4C902320F35527004F4C52 /* libboost_serialization.a */,
-			);
-			path = libboost;
 			sourceTree = "<group>";
 		};
 		72E5F9F120EF932900391546 /* LineView */ = {
@@ -30833,7 +30718,6 @@
 		73E5A8C420EC6F4E00FFCCE1 = {
 			isa = PBXGroup;
 			children = (
-				3B4C900F20F35527004F4C52 /* library */,
 				73E5A8CF20EC6F4E00FFCCE1 /* EOS */,
 				73E5A8CE20EC6F4E00FFCCE1 /* Products */,
 				F869049438CBEBCDBCD5E83B /* Pods */,

@@ -13,11 +13,12 @@ import ReSwift
 
 class HomeViewController: BaseViewController {
 
-	var coordinator: (HomeCoordinatorProtocol & HomeStateManagerProtocol)?
+    @IBOutlet weak var mWalletView: WalletView!
+    var coordinator: (HomeCoordinatorProtocol & HomeStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mWalletView.data = "123"
     }
     
     func commonObserveState() {

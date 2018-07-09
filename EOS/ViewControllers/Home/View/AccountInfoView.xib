@@ -326,7 +326,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="whiteTwo89" red="1.000" green="1.000" blue="1.000" alpha="0.893" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="9WN-vZ-fb7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7Og-QD-ILG"/>
                 <constraint firstItem="9WN-vZ-fb7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Fyv-OD-ebq"/>
@@ -343,4 +343,6 @@
             <point key="canvasLocation" x="20" y="-7"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

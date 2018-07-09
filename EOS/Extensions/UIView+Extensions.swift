@@ -64,4 +64,31 @@ extension UIView {
         set { self.frame.size = newValue }
         get { return self.frame.size }
     }
+    
+    
+    func drawRectShadow(rect: CGRect) -> UIImage? {
+        
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0)
+        let context:CGContext = UIGraphicsGetCurrentContext()!;
+        context.saveGState()
+        UIRectClip(rect);
+        self.layer.render(in: context)
+
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!;
+        UIGraphicsEndImageContext();
+
+        return  newImage;
+        
+//        log.debug(self.frame.size)
+//        UIGraphicsBeginImageContextWithOptions(self.frame.size, false, 0)
+//        defer {
+//            UIGraphicsEndImageContext()
+//        }
+//        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+//        layer.render(in: context)
+//        UIRectClip(rect)
+//
+//        return UIGraphicsGetImageFromCurrentImageContext()
+        
+    }
 }
