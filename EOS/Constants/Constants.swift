@@ -7,7 +7,16 @@
 //
 
 import Foundation
+import SwifterSwift
 
 struct AppConfiguration {
     static let APPID = ""
+    
+    
+}
+
+struct NetworkConfiguration {
+    static let NBL_BASE_URL = URL(string: "https://api.myservice.com")!
+    
+    
 }
