@@ -48,6 +48,7 @@
 		3B4C900920F353F6004F4C52 /* AccountInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C900220F353F5004F4C52 /* AccountInfoView.xib */; };
 		3B4C900A20F353F6004F4C52 /* DashLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C900320F353F5004F4C52 /* DashLineView.swift */; };
 		3B4C900E20F354AA004F4C52 /* UIImageView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C900D20F354A9004F4C52 /* UIImageView+Additions.swift */; };
+
 		7203659120F2FE2B00A4A8EF /* PaymentsRecordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203658F20F2FE2B00A4A8EF /* PaymentsRecordsCell.swift */; };
 		7203659220F2FE2B00A4A8EF /* PaymentsRecordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7203659020F2FE2B00A4A8EF /* PaymentsRecordsCell.xib */; };
 		7203659420F2FE6000A4A8EF /* PaymentsRecordsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203659320F2FE6000A4A8EF /* PaymentsRecordsCellView.swift */; };
@@ -264,6 +265,7 @@
 		3B4C900220F353F5004F4C52 /* AccountInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoView.xib; sourceTree = "<group>"; };
 		3B4C900320F353F5004F4C52 /* DashLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashLineView.swift; sourceTree = "<group>"; };
 		3B4C900D20F354A9004F4C52 /* UIImageView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Additions.swift"; sourceTree = "<group>"; };
+
 		7203658F20F2FE2B00A4A8EF /* PaymentsRecordsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRecordsCell.swift; sourceTree = "<group>"; };
 		7203659020F2FE2B00A4A8EF /* PaymentsRecordsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentsRecordsCell.xib; sourceTree = "<group>"; };
 		7203659320F2FE6000A4A8EF /* PaymentsRecordsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRecordsCellView.swift; sourceTree = "<group>"; };

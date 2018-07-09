@@ -42,15 +42,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         appcoordinator!.start()
         
-        RealReachability.sharedInstance().startNotifier()
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.realReachabilityChanged, object: nil, queue: nil) { (notifi) in
-            self.handlerNetworkChanged()
-        }
-        
-        configApplication()
-        self.handlerNetworkChanged()
-        
-        self.appcoordinator?.showEntry()
+//        RealReachability.sharedInstance().startNotifier()
+//        NotificationCenter.default.addObserver(forName: NSNotification.Name.realReachabilityChanged, object: nil, queue: nil) { (notifi) in
+//            self.handlerNetworkChanged()
+//        }
+//        
+//        configApplication()
+//        self.handlerNetworkChanged()
+//        
+//        self.appcoordinator?.showEntry()
         
         return true
     }
