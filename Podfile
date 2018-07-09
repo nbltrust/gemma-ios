@@ -7,7 +7,7 @@ def network
 end
 
 def data
-    pod 'ObjectMapper'
+    pod 'HandyJSON'
     pod 'SwiftyJSON'
     pod 'GRDB.swift'
     pod 'CryptoSwift'

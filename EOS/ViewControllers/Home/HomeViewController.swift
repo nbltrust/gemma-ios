@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import HandyJSON
 
 class HomeViewController: BaseViewController {
 
@@ -18,7 +19,7 @@ class HomeViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        mWalletView.data = "123"
+
     }
     
     func commonObserveState() {

@@ -16,7 +16,12 @@ struct AppConfiguration {
 }
 
 struct NetworkConfiguration {
-    static let NBL_BASE_URL = URL(string: "https://api.myservice.com")!
-    
-    
+    static let NBL_BASE_URL = URL(string: "http://139.196.73.117:3001")!
+    static let EOSIO_BASE_URL = URL(string: "http://139.196.73.117:9000")!
+    static let EOSIO_DEFAULT_CODE = "eosio.token"
+    static let EOSIO_DEFAULT_SYMBOL = "EOS"
+}
+
+enum EOSAction:String {
+    case transfer
 }

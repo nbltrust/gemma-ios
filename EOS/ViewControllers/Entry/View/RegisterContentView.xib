@@ -15,6 +15,7 @@
                 <outlet property="inviteCodeView" destination="9qd-Dt-GCr" id="ZJ2-5w-TFp"/>
                 <outlet property="nameView" destination="7eI-ET-PPs" id="zKV-wR-3t6"/>
                 <outlet property="passwordComfirmView" destination="s0M-Q5-YdH" id="dN7-Zq-Kpb"/>
+                <outlet property="passwordPromptView" destination="g8m-6B-Aoo" id="ngi-gg-R4f"/>
                 <outlet property="passwordView" destination="hhP-ye-AF6" id="PJp-9f-y1x"/>
             </connections>
         </placeholder>
@@ -24,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="XOo-cI-nlu">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-ET-PPs" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -41,8 +42,12 @@
                             <rect key="frame" x="0.0" y="160" width="375" height="80"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-Dt-GCr" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8m-6B-Aoo" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="240" width="375" height="80"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-Dt-GCr" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="320" width="375" height="80"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
