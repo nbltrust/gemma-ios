@@ -157,6 +157,8 @@
 		7345311D20F30A5D0061B005 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345311C20F30A5D0061B005 /* Colletion+Extensions.swift */; };
 		7345311F20F3106A0061B005 /* NBLNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345311E20F3106A0061B005 /* NBLNetworkService.swift */; };
 		7345312120F3108E0061B005 /* EOSIONetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312020F3108E0061B005 /* EOSIONetworkService.swift */; };
+		7345312320F34F2A0061B005 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312220F34F2A0061B005 /* Account.swift */; };
+		7345312520F355540061B005 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345312420F355540061B005 /* Utils.swift */; };
 		73E5A8D120EC6F4E00FFCCE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */; };
 		73E5A8D320EC6F4E00FFCCE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */; };
 		73E5A8D820EC6F5000FFCCE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E5A8D720EC6F5000FFCCE1 /* Assets.xcassets */; };
@@ -11508,6 +11510,8 @@
 		7345311C20F30A5D0061B005 /* Colletion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colletion+Extensions.swift"; sourceTree = "<group>"; };
 		7345311E20F3106A0061B005 /* NBLNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBLNetworkService.swift; sourceTree = "<group>"; };
 		7345312020F3108E0061B005 /* EOSIONetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSIONetworkService.swift; sourceTree = "<group>"; };
+		7345312220F34F2A0061B005 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		7345312420F355540061B005 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		73E5A8CD20EC6F4E00FFCCE1 /* EOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E5A8D020EC6F4E00FFCCE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73E5A8D220EC6F4E00FFCCE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30755,6 +30759,7 @@
 		73E5A8E920EC750F00FFCCE1 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				7345312420F355540061B005 /* Utils.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -30783,6 +30788,7 @@
 		73E5A8EC20EC752C00FFCCE1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7345312220F34F2A0061B005 /* Account.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -31199,6 +31205,7 @@
 				"${BUILT_PRODUCTS_DIR}/FCUUID/FCUUID.framework",
 				"${BUILT_PRODUCTS_DIR}/GRDB.swift/GRDB.framework",
 				"${BUILT_PRODUCTS_DIR}/Guitar/Guitar.framework",
+				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JHChainableAnimations/JHChainableAnimations.framework",
@@ -31212,7 +31219,6 @@
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/MLeaksFinder/MLeaksFinder.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObservableArray-RxSwift/ObservableArray_RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
@@ -31261,6 +31267,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FCUUID.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Guitar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JHChainableAnimations.framework",
@@ -31274,7 +31281,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MLeaksFinder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObservableArray_RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
@@ -31328,6 +31334,7 @@
 				2243654420ECE69300D56426 /* ComfirmView.swift in Sources */,
 				73E5A93E20EC827100FFCCE1 /* HomeRootCoordinator.swift in Sources */,
 				73E5A94620EC82B500FFCCE1 /* EntryCoordinator.swift in Sources */,
+				7345312520F355540061B005 /* Utils.swift in Sources */,
 				73E5A93720EC804D00FFCCE1 /* Localzation+Extensions.swift in Sources */,
 				73E5A94820EC82B500FFCCE1 /* EntryViewController.swift in Sources */,
 				72E5F9F620EF932900391546 /* LineView.swift in Sources */,
@@ -31346,6 +31353,7 @@
 				73E5A94720EC82B500FFCCE1 /* EntryReducers.swift in Sources */,
 				73E5A94D20EC833100FFCCE1 /* HomeActions.swift in Sources */,
 				2243653A20ECA82B00D56426 /* TitleTextView.swift in Sources */,
+				7345312320F34F2A0061B005 /* Account.swift in Sources */,
 				73E5A93B20EC825E00FFCCE1 /* EntryRootCoordinator.swift in Sources */,
 				73E5A92120EC7CAF00FFCCE1 /* R.generated.swift in Sources */,
 				73E5A94F20EC833100FFCCE1 /* HomeReducers.swift in Sources */,

@@ -28,3 +28,7 @@
 "service_protocol" = "服务协议";
 
 "create_wallet" = "创建钱包";
+
+"day" = "天";
+"hour" = "小时";
+

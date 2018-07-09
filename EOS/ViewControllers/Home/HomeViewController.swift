@@ -10,14 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import HandyJSON
 
 class HomeViewController: BaseViewController {
 
 	var coordinator: (HomeCoordinatorProtocol & HomeStateManagerProtocol)?
 
 	override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        super.viewDidLoad()        
     }
     
     func commonObserveState() {

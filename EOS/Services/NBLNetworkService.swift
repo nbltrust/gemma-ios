@@ -61,16 +61,22 @@ extension NBLService : TargetType {
         return .post
     }
     
-    var sampleData: Data {
+    var parameters: [String: Any] {
         switch self {
         case let .createAccount(account, pubKey, invitationCode):
-            return "{\"account_name\": \(account), \"invitation_code\": \(invitationCode), \"public_key\": \(pubKey)}".utf8Encoded
+            let params = ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey]
+            return params
         }
     }
     
     var task: Task {
-        return .requestPlain
+        return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     }
+
+    var sampleData: Data {
+        return try! JSON(parameters).rawData()
+    }
+
     
     var headers: [String : String]? {
         return ["Content-type": "application/json"]
