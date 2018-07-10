@@ -12,6 +12,7 @@ import SwifterSwift
 import SwiftyJSON
 
 enum EOSIOService {
+    //chain
     case get_currency_balance(account: String)
     case get_account(account: String)
     case get_info
@@ -19,6 +20,9 @@ enum EOSIOService {
     case abi_json_to_bin(json: String)
     case abi_bin_to_json(bin: String, action:EOSAction)
     case push_transaction(json: String)
+    
+    //history
+    case get_key_accounts(pubKey:String)
 }
 
 struct EOSIONetwork {
@@ -72,6 +76,8 @@ extension EOSIOService : TargetType {
             return "/v1/chain/abi_bin_to_json"
         case .push_transaction:
             return "/v1/chain/push_transaction"
+        case .get_key_accounts:
+            return "/v1/history/get_key_accounts"
         }
     }
     
@@ -92,6 +98,8 @@ extension EOSIOService : TargetType {
             return JSON(parseJSON: json).dictionaryObject ?? [:]
         case let .abi_bin_to_json(bin, action):
             return ["code": NetworkConfiguration.EOSIO_DEFAULT_CODE, "action": action.rawValue, "binargs": bin]
+        case let .get_key_accounts(pubKey):
+            return ["public_key": pubKey]
         }
     }
     
