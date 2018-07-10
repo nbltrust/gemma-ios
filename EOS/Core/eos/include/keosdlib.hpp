@@ -104,9 +104,19 @@ public:
         return eosio::wallet::wallet_manager::get_cipher(password, priv_key);
     }
     // Sign transaction
-    std::string signTransaction(const std::string& data) {
-        const auto& vs = fc::json::json::from_string(data);
-        eosio::chain::signed_transaction res = walletManager.sign_transaction(vs[size_t(0)].as<eosio::chain::signed_transaction>(),vs[size_t(1)].as<flat_set<public_key_type>>(),vs[size_t(2)].as<eosio::chain::chain_id_type>());
-        return fc::json::json::to_string(variant(res));
+    std::string signTransaction(const string& priv_key_str, const string& contract, const string& senderstr, const string& recipientstr, const string& amountstr,
+                                const string& memo, const string& infostr, const string& abistr , uint32_t max_cpu_usage_ms, uint32_t max_net_usage_words , uint32_t tx_expiration = 30  ){
+        return eosio::wallet::wallet_manager::sign_transaction(priv_key_str, contract, senderstr, recipientstr, amountstr,
+                                                               memo, infostr, abistr ,  max_cpu_usage_ms,  max_net_usage_words ,  tx_expiration  );
     }
+    std::string create_abi_req(const string& code, const string& action, const string& from, const string& to, const string& quantity){
+        return eosio::wallet::wallet_manager::create_abi(code, action, from, to, quantity);
+    }
+    
+    
+    // std::string signTransaction(const std::string& data) {
+    //     const auto& vs = fc::json::json::from_string(data);
+    //     eosio::chain::signed_transaction res = walletManager.sign_transaction(vs[size_t(0)].as<eosio::chain::signed_transaction>(),vs[size_t(1)].as<flat_set<public_key_type>>(),vs[size_t(2)].as<eosio::chain::chain_id_type>());
+    //     return fc::json::json::to_string(variant(res));
+    // }
 };
