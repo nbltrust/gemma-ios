@@ -18,10 +18,6 @@ protocol TransferStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<TransferState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func check()
-    
-    
-    
 }
 
 class TransferCoordinator: TransferRootCoordinator {
@@ -49,10 +45,5 @@ extension TransferCoordinator: TransferStateManagerProtocol {
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
-    func check() {
-        <#code#>
-    }
-    
     
 }

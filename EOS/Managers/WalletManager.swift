@@ -9,67 +9,118 @@
 import Foundation
 import KeychainAccess
 import SwifterSwift
+import SwiftyUserDefaults
 
 class WallketManager {
     static let shared = WallketManager()
     
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
 
+    var pubKey:String = ""
+    private var priKey:String = ""
+
     private init() {
         
     }
     
-    func saveWallket(_ account:String, password:String, hint:String) {
+    func createPairKey() {
         if let keys = EOSIO.createKey(), let pub = keys[optional: 0], let pri = keys[optional: 1] {
-            removeWallket(account)
-
-            savePubKey(account, pubKey: pub)
-            savePriKey(account, priKey:pri, password: password)
-            savePasswordHint(account, hint: hint)
+            pubKey = pub
+            priKey = pri
         }
+    }
+    
+    func saveWallket(_ account:String, password:String, hint:String) {
+        savePriKey(password)
+        savePasswordHint(hint)
         
+        addToLocalWallet()
+        switchWallet(pubKey)
+        switchAccount(account)
+        
+        priKey = ""
     }
     
-    func removeWallket(_ account:String) {
-        try? keychain.remove("\(account)-passwordHint")
-        try? keychain.remove("\(account)-pubKey")
-        try? keychain.remove("\(account)-cypher")
+    func addToLocalWallet() {
+        var wallets = Defaults[.wallets]
+        if !wallets.contains(pubKey) {
+            wallets.append(pubKey)
+            Defaults[.wallets] = wallets
+        }
     }
     
-    private func savePasswordHint(_ account:String, hint:String) {
+    func removeFromLocalWallet() {
+        var wallets = Defaults[.wallets]
+        if wallets.contains(pubKey) {
+            wallets.removeAll(pubKey)
+            Defaults[.wallets] = wallets
+        }
+    }
+    
+    func importPrivateKey(_ pri:String, account:String, password:String, hint:String) {
+        priKey = pri
+        pubKey = ""//
+        
+        saveWallket(account, password: password, hint: hint)
+    }
+    
+    func switchWallet(_ publicKey:String) {
+        pubKey = publicKey
+        Defaults[.currentWallet] = publicKey
+    }
+    
+    func switchAccount(_ account:String) {
+        Defaults[.currentAccount] = account
+    }
+    
+    func getAccount() -> String {
+        return Defaults[.currentAccount]
+    }
+    
+    func logoutWallet() {
+        removeWallket()
+        
+        let wallets = Defaults[.wallets]
+        
+        if let pub = wallets.last {
+            switchWallet(pub)
+        }
+    }
+    
+    private func removeWallket() {
+        removeFromLocalWallet()
+        
+        try? keychain.remove("\(pubKey)-passwordHint")
+        try? keychain.remove("\(pubKey)-pubKey")
+        try? keychain.remove("\(pubKey)-cypher")
+    }
+    
+    func getPublicKey() -> String {
+        return Defaults[.currentWallet]
+    }
+
+    private func savePasswordHint(_ hint:String) {
         guard hint.count > 0 else { return }
         
-        keychain[string: "\(account)-passwordHint"] = hint
+        keychain[string: "\(pubKey)-passwordHint"] = hint
     }
     
-    func getPasswordHint(_ account:String) -> String? {
-        if let hint = keychain[string: "\(account)-passwordHint"] {
+    func getPasswordHint() -> String? {
+        if let hint = keychain[string: "\(pubKey)-passwordHint"] {
             return hint
         }
         
         return nil
     }
     
-    private func savePubKey(_ account:String, pubKey:String) {
-        keychain[string: "\(account)-pubKey"] = pubKey
-    }
-    
-    func getPubKey(_ account:String) -> String? {
-        if let pub = keychain[string: "\(account)-pubKey"] {
-            return pub
-        }
-        
-        return nil
-    }
-    
-    private func savePriKey(_  account:String, priKey:String, password:String) {
+    private func savePriKey(_ password:String) {
         if let cypher = EOSIO.getCypher(priKey, password: password) {
-            keychain[string: "\(account)-cypher"] = cypher
+            keychain[string: "\(pubKey)-cypher"] = cypher
         }
     }
     
-    func getPriKey(_ account:String, password:String) -> String? {
-        if let cypher = keychain[string: "\(account)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password) {
+    func getCachedPriKey(_ password:String) -> String? {
+        if let cypher = keychain[string: "\(pubKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password) {
             return pri
         }
         
