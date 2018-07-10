@@ -14,6 +14,7 @@
 		2243654320ECE69300D56426 /* ComfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2243654120ECE69200D56426 /* ComfirmView.xib */; };
 		2243654420ECE69300D56426 /* ComfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243654220ECE69300D56426 /* ComfirmView.swift */; };
 		2243654620ECEE8C00D56426 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2243654520ECEE8C00D56426 /* UIView+Extensions.swift */; };
+
 		3B4C900420F353F6004F4C52 /* AccountInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C8FFD20F353F2004F4C52 /* AccountInfoView.swift */; };
 		3B4C900520F353F6004F4C52 /* SharpCornerTipsLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C8FFE20F353F3004F4C52 /* SharpCornerTipsLabelView.xib */; };
 		3B4C900620F353F6004F4C52 /* WalletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C8FFF20F353F3004F4C52 /* WalletView.xib */; };
@@ -229,6 +230,7 @@
 		2243654120ECE69200D56426 /* ComfirmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComfirmView.xib; sourceTree = "<group>"; };
 		2243654220ECE69300D56426 /* ComfirmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComfirmView.swift; sourceTree = "<group>"; };
 		2243654520ECEE8C00D56426 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+
 		3B4C8FFD20F353F2004F4C52 /* AccountInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoView.swift; sourceTree = "<group>"; };
 		3B4C8FFE20F353F3004F4C52 /* SharpCornerTipsLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SharpCornerTipsLabelView.xib; sourceTree = "<group>"; };
 		3B4C8FFF20F353F3004F4C52 /* WalletView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletView.xib; sourceTree = "<group>"; };
@@ -11599,31 +11601,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B4C909820F38628004F4C52 /* libboost_random.a in Frameworks */,
-				3B4C909920F38628004F4C52 /* libboost_system.a in Frameworks */,
-				3B4C909A20F38628004F4C52 /* libboost_thread.a in Frameworks */,
-				3B4C909B20F38628004F4C52 /* libboost_serialization.a in Frameworks */,
-				3B4C909C20F38628004F4C52 /* libboost_context.a in Frameworks */,
-				3B4C909D20F38628004F4C52 /* libboost_iostreams.a in Frameworks */,
-				3B4C909E20F38628004F4C52 /* libboost_chrono.a in Frameworks */,
-				3B4C909F20F38628004F4C52 /* libboost_date_time.a in Frameworks */,
-				3B4C90A020F38628004F4C52 /* libboost_atomic.a in Frameworks */,
-				3B4C90A120F38628004F4C52 /* libboost_filesystem.a in Frameworks */,
-				3B4C90A220F38628004F4C52 /* libboost_locale.a in Frameworks */,
-				3B4C90A320F38628004F4C52 /* libboost_graph.a in Frameworks */,
-				3B4C90A420F38628004F4C52 /* libboost_regex.a in Frameworks */,
-				3B4C90A520F38628004F4C52 /* libboost_signals.a in Frameworks */,
-				3B4C90A620F38628004F4C52 /* libboost_wserialization.a in Frameworks */,
-				3B4C907F20F38613004F4C52 /* libkeosdlib.a in Frameworks */,
-				3B4C908020F38613004F4C52 /* libssl.a in Frameworks */,
-				3B4C908120F38613004F4C52 /* libeosio_chain.a in Frameworks */,
-				3B4C908220F38613004F4C52 /* libappbase.a in Frameworks */,
-				3B4C908320F38613004F4C52 /* libfc.a in Frameworks */,
-				3B4C908420F38613004F4C52 /* libeos_utilities.a in Frameworks */,
-				3B4C908520F38613004F4C52 /* secp256k1.a in Frameworks */,
-				3B4C908620F38613004F4C52 /* libcrypto.a in Frameworks */,
-				3B4C908720F38613004F4C52 /* libsoftfloat.a in Frameworks */,
-				3B4C908820F38613004F4C52 /* libwallet_plugin.a in Frameworks */,
+
 				B78BF3A991FEB5F07C3CC6FD /* Pods_EOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11634,31 +11612,7 @@
 		0A671499B809A9B83B6650F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C909120F38625004F4C52 /* libboost_atomic.a */,
-				3B4C908F20F38624004F4C52 /* libboost_chrono.a */,
-				3B4C908D20F38623004F4C52 /* libboost_context.a */,
-				3B4C909020F38624004F4C52 /* libboost_date_time.a */,
-				3B4C909220F38625004F4C52 /* libboost_filesystem.a */,
-				3B4C909420F38626004F4C52 /* libboost_graph.a */,
-				3B4C908E20F38623004F4C52 /* libboost_iostreams.a */,
-				3B4C909320F38626004F4C52 /* libboost_locale.a */,
-				3B4C908920F38621004F4C52 /* libboost_random.a */,
-				3B4C909520F38627004F4C52 /* libboost_regex.a */,
-				3B4C908C20F38622004F4C52 /* libboost_serialization.a */,
-				3B4C909620F38627004F4C52 /* libboost_signals.a */,
-				3B4C908A20F38621004F4C52 /* libboost_system.a */,
-				3B4C908B20F38622004F4C52 /* libboost_thread.a */,
-				3B4C909720F38628004F4C52 /* libboost_wserialization.a */,
-				3B4C907820F38610004F4C52 /* libappbase.a */,
-				3B4C907C20F38612004F4C52 /* libcrypto.a */,
-				3B4C907A20F38611004F4C52 /* libeos_utilities.a */,
-				3B4C907720F38610004F4C52 /* libeosio_chain.a */,
-				3B4C907920F38611004F4C52 /* libfc.a */,
-				3B4C907520F3860F004F4C52 /* libkeosdlib.a */,
-				3B4C907D20F38612004F4C52 /* libsoftfloat.a */,
-				3B4C907620F3860F004F4C52 /* libssl.a */,
-				3B4C907E20F38613004F4C52 /* libwallet_plugin.a */,
-				3B4C907B20F38611004F4C52 /* secp256k1.a */,
+
 				AF1D048793EEB88A8A428D89 /* Pods_EOS.framework */,
 			);
 			name = Frameworks;
@@ -11667,6 +11621,7 @@
 		2243653820ECA4C500D56426 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2256E32520F36D1800EB997A /* Button.swift */,
 				2243654220ECE69300D56426 /* ComfirmView.swift */,
 				2243654120ECE69200D56426 /* ComfirmView.xib */,
 				2243653920ECA82B00D56426 /* TitleTextView.swift */,
@@ -31396,6 +31351,7 @@
 				7345312720F36C730061B005 /* UIResponder+Extensions.swift in Sources */,
 				72E5F9F720EF932900391546 /* badgeView.swift in Sources */,
 				73E5A92320EC7D9200FFCCE1 /* AppCoordinator.swift in Sources */,
+				2256E32620F36D1900EB997A /* Button.swift in Sources */,
 				73153E8620EC9179005D36B4 /* Constants.swift in Sources */,
 				73E5A90420EC787100FFCCE1 /* UIFont+Additions.swift in Sources */,
 				7345311D20F30A5D0061B005 /* Colletion+Extensions.swift in Sources */,
