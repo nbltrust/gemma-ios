@@ -29,6 +29,13 @@ class RegisterContentView: UIView {
         case invitationCode
     }
     
+    enum TextChangeEvent: String {
+        case walletName
+        case walletPassword
+        case walletComfirmPassword
+        case walletInviteCode
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
@@ -253,6 +260,20 @@ extension RegisterContentView: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        switch textField.tag {
+        case InputType.name.rawValue:
+            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : newText])
+        case InputType.password.rawValue:
+            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : newText])
+        case InputType.comfirmPassword.rawValue:
+            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : newText])
+        case InputType.invitationCode.rawValue:
+            self.sendEventWith(TextChangeEvent.walletInviteCode.rawValue, userinfo: ["content" : newText])
+        default:
+            return true
+        }
         return true
     }
     

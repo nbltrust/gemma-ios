@@ -53,6 +53,7 @@ class ComfirmView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        loadViewFromNib()
     }
     
     override var intrinsicContentSize: CGSize {
