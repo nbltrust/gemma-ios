@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol EntryCoordinatorProtocol {
+    
 }
 
 protocol EntryStateManagerProtocol {
@@ -17,6 +18,12 @@ protocol EntryStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<EntryState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func validWalletName(_ name: String)
+    func validPassword(_ password: String)
+    func validComfirmPassword(_ password: String, comfirmPassword: String)
+    func validInviteCode(_ code: String)
+    func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion:@escaping (Bool)->())
 }
 
 class EntryCoordinator: EntryRootCoordinator {
@@ -45,4 +52,29 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func validWalletName(_ name: String) {
+        self.store.dispatch(nameAction(isValid: WallketManager.shared.isValidWalletName(name)))
+    }
+    
+    func validPassword(_ password: String) {
+        self.store.dispatch(passwordAction(isValid: WallketManager.shared.isValidPassword(password)))
+    }
+    
+    func validComfirmPassword(_ password: String, comfirmPassword: String) {
+        self.store.dispatch(comfirmPasswordAction(isValid: WallketManager.shared.isValidComfirmPassword(password, comfirmPassword: comfirmPassword)))
+    }
+    
+    func validInviteCode(_ code: String) {
+        self.store.dispatch(inviteCodeAction(isValid: !code.isEmpty))
+    }
+    
+    func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {
+//        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WallketManager.shared.getPubKey(walletName)!, invitationCode: inviteCode), success: { (data) in
+//
+//        }, error: { (code) in
+//
+//        }) { (error) in
+//
+//        }
+    }
 }

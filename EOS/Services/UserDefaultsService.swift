@@ -11,4 +11,7 @@ import SwiftyUserDefaults
 
 extension DefaultsKeys {
     static let language = DefaultsKey<String>("language")
+    static let wallets = DefaultsKey<[String]>("wallets")
+    static let currentWallet = DefaultsKey<String>("current-wallet")
+    static let currentAccount = DefaultsKey<String>("current-account")
 }

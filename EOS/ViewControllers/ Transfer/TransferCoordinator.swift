@@ -19,6 +19,7 @@ protocol TransferStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func check()
+
 }
 
 class TransferCoordinator: TransferRootCoordinator {
@@ -50,10 +51,4 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     func check() {
         
     }
-    
-    func fetchUserInfo(){
-        
-    }
-    
-    
 }
