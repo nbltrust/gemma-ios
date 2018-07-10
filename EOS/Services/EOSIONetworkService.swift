@@ -16,9 +16,9 @@ enum EOSIOService {
     case get_account(account: String)
     case get_info
     case get_block(num: String)
-    case abi_json_to_bin(json: [String:Any])
+    case abi_json_to_bin(json: String)
     case abi_bin_to_json(bin: String, action:EOSAction)
-    case push_transaction(json: [String:Any])
+    case push_transaction(json: String)
 }
 
 struct EOSIONetwork {
@@ -87,9 +87,9 @@ extension EOSIOService : TargetType {
         case let .get_block(num):
             return ["block_num_or_id": num]
         case let .abi_json_to_bin(json):
-            return json
+            return JSON(parseJSON: json).dictionaryObject ?? [:]
         case let .push_transaction(json):
-            return json
+            return JSON(parseJSON: json).dictionaryObject ?? [:]
         case let .abi_bin_to_json(bin, action):
             return ["code": NetworkConfiguration.EOSIO_DEFAULT_CODE, "action": action.rawValue, "binargs": bin]
         }
