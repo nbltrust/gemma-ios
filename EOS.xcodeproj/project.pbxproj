@@ -48,14 +48,16 @@
 		35659865121853108F1175F64F0C9028 /* bcc32.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = EC45843C825E7D4AF8E6DD14F08B757A /* bcc32.SUNWCCh */; };
 		357B2FFEE0242335494EAFE624066A39 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B76AA4B9209D95DD8A19D16B285CE327 /* secp256k1.a */; };
 		3890842A031D291CCD43AB9299B13243 /* complex in Resources */ = {isa = PBXBuildFile; fileRef = BA56900B90B048CC786C28695EB48251 /* complex */; };
-		3B4C90DE20F48CB9004F4C52 /* TransferCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90DA20F48CB9004F4C52 /* TransferCoordinator.swift */; };
-		3B4C90DF20F48CB9004F4C52 /* TransferActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90DB20F48CB9004F4C52 /* TransferActions.swift */; };
-		3B4C90E020F48CB9004F4C52 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90DC20F48CB9004F4C52 /* TransferViewController.swift */; };
-		3B4C90E120F48CB9004F4C52 /* TransferReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90DD20F48CB9004F4C52 /* TransferReducers.swift */; };
-		3B4C90E320F48D10004F4C52 /* TransferRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90E220F48D10004F4C52 /* TransferRootCoordinator.swift */; };
-		3B4C90E520F48DF7004F4C52 /* Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C90E420F48DF7004F4C52 /* Transfer.storyboard */; };
-		3B4C90E820F48FBD004F4C52 /* TransferListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90E720F48FBD004F4C52 /* TransferListView.swift */; };
-		3B4C90EA20F48FD2004F4C52 /* TransferListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C90E920F48FD2004F4C52 /* TransferListView.xib */; };
+		3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */; };
+		3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */; };
+		3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */; };
+		3B4C90F320F4CDDC004F4C52 /* PaymentsReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EF20F4CDDB004F4C52 /* PaymentsReducers.swift */; };
+		3B4C90F520F4CE07004F4C52 /* Payments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C90F420F4CE07004F4C52 /* Payments.storyboard */; };
+		3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90F720F4D686004F4C52 /* PaymentsDetailCoordinator.swift */; };
+		3B4C90FC20F4D686004F4C52 /* PaymentsDetailActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90F820F4D686004F4C52 /* PaymentsDetailActions.swift */; };
+		3B4C90FD20F4D686004F4C52 /* PaymentsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90F920F4D686004F4C52 /* PaymentsDetailViewController.swift */; };
+		3B4C90FE20F4D686004F4C52 /* PaymentsDetailReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90FA20F4D686004F4C52 /* PaymentsDetailReducers.swift */; };
+		3B4C910020F4D6A4004F4C52 /* PaymentsDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C90FF20F4D6A4004F4C52 /* PaymentsDetail.storyboard */; };
 		3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8935C54739AEE59DA2310B17591480 /* BaseWebViewController.swift */; };
 		3B8A0F0188C26CD5B89B88BB7CD2021A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BACC4715E3CF39C51CF4E44B54222588 /* Rubik-Light.ttf */; };
 		3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */ = {isa = PBXBuildFile; fileRef = F601AE09C748BD90FFF8C8744B7B621D /* fstream */; };
@@ -2946,14 +2948,16 @@
 		3B47CAE3420AA277462F4FE60488AD6A /* heterogeneous_conversion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = heterogeneous_conversion.hpp; sourceTree = "<group>"; };
 		3B4A04FBBD7409A50517FA29231C4A82 /* console_appender.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = console_appender.hpp; sourceTree = "<group>"; };
 		3B4B8E5C5F776F2C7477C800D6B067A3 /* logical_newline_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = logical_newline_matcher.hpp; sourceTree = "<group>"; };
-		3B4C90DA20F48CB9004F4C52 /* TransferCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCoordinator.swift; sourceTree = "<group>"; };
-		3B4C90DB20F48CB9004F4C52 /* TransferActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferActions.swift; sourceTree = "<group>"; };
-		3B4C90DC20F48CB9004F4C52 /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
-		3B4C90DD20F48CB9004F4C52 /* TransferReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferReducers.swift; sourceTree = "<group>"; };
-		3B4C90E220F48D10004F4C52 /* TransferRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferRootCoordinator.swift; sourceTree = "<group>"; };
-		3B4C90E420F48DF7004F4C52 /* Transfer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transfer.storyboard; sourceTree = "<group>"; };
-		3B4C90E720F48FBD004F4C52 /* TransferListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferListView.swift; sourceTree = "<group>"; };
-		3B4C90E920F48FD2004F4C52 /* TransferListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferListView.xib; sourceTree = "<group>"; };
+		3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsCoordinator.swift; sourceTree = "<group>"; };
+		3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsActions.swift; sourceTree = "<group>"; };
+		3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
+		3B4C90EF20F4CDDB004F4C52 /* PaymentsReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsReducers.swift; sourceTree = "<group>"; };
+		3B4C90F420F4CE07004F4C52 /* Payments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payments.storyboard; sourceTree = "<group>"; };
+		3B4C90F720F4D686004F4C52 /* PaymentsDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsDetailCoordinator.swift; sourceTree = "<group>"; };
+		3B4C90F820F4D686004F4C52 /* PaymentsDetailActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsDetailActions.swift; sourceTree = "<group>"; };
+		3B4C90F920F4D686004F4C52 /* PaymentsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsDetailViewController.swift; sourceTree = "<group>"; };
+		3B4C90FA20F4D686004F4C52 /* PaymentsDetailReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsDetailReducers.swift; sourceTree = "<group>"; };
+		3B4C90FF20F4D6A4004F4C52 /* PaymentsDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentsDetail.storyboard; sourceTree = "<group>"; };
 		3B54D84C23762E2ED0FDC2E8BBA89338 /* unpack_args.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = unpack_args.hpp; sourceTree = "<group>"; };
 		3B59CB270BF9A7A4EA2C78E5EAFEA204 /* subtree_destroyer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = subtree_destroyer.hpp; sourceTree = "<group>"; };
 		3B5A4C9CF253CC2C9A8B612FD7024508 /* fused.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fused.hpp; sourceTree = "<group>"; };
@@ -13870,10 +13874,6 @@
 			isa = PBXGroup;
 			children = (
 				ED5CF0797F269847E5CBEAEC6E2C89E5 /* LineView */,
-				4D11CFAD3A91B7F05EF8E3926496049E /* PaymentsRecordsCell.swift */,
-				2ADE7AD5B97AC4FBA97618775FFC168F /* PaymentsRecordsCell.xib */,
-				D8AE449353FF9911A1095EF4E6005FAE /* PaymentsRecordsCellView.swift */,
-				FC0712F6F5848F276EF6DCD83ECE80F4 /* PaymentsRecordsCellView.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -16168,32 +16168,46 @@
 		3B4C90D920F48C51004F4C52 /*  Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				3B4C90F620F4D66E004F4C52 /* PaymentsDetail */,
 				3B4C90EB20F49069004F4C52 /* Cells */,
-				3B4C90E620F48F75004F4C52 /* View */,
-				3B4C90E420F48DF7004F4C52 /* Transfer.storyboard */,
-				3B4C90DA20F48CB9004F4C52 /* TransferCoordinator.swift */,
-				3B4C90DB20F48CB9004F4C52 /* TransferActions.swift */,
-				3B4C90DC20F48CB9004F4C52 /* TransferViewController.swift */,
-				3B4C90E220F48D10004F4C52 /* TransferRootCoordinator.swift */,
-				3B4C90DD20F48CB9004F4C52 /* TransferReducers.swift */,
+				3B4C90E620F48F75004F4C52 /* Payments */,
 			);
 			path = " Transfer";
 			sourceTree = "<group>";
 		};
-		3B4C90E620F48F75004F4C52 /* View */ = {
+		3B4C90E620F48F75004F4C52 /* Payments */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C90E720F48FBD004F4C52 /* TransferListView.swift */,
-				3B4C90E920F48FD2004F4C52 /* TransferListView.xib */,
+				3B4C90F420F4CE07004F4C52 /* Payments.storyboard */,
+				3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */,
+				3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */,
+				3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */,
+				3B4C90EF20F4CDDB004F4C52 /* PaymentsReducers.swift */,
 			);
-			path = View;
+			path = Payments;
 			sourceTree = "<group>";
 		};
 		3B4C90EB20F49069004F4C52 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4D11CFAD3A91B7F05EF8E3926496049E /* PaymentsRecordsCell.swift */,
+				2ADE7AD5B97AC4FBA97618775FFC168F /* PaymentsRecordsCell.xib */,
+				D8AE449353FF9911A1095EF4E6005FAE /* PaymentsRecordsCellView.swift */,
+				FC0712F6F5848F276EF6DCD83ECE80F4 /* PaymentsRecordsCellView.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		3B4C90F620F4D66E004F4C52 /* PaymentsDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3B4C90FF20F4D6A4004F4C52 /* PaymentsDetail.storyboard */,
+				3B4C90F720F4D686004F4C52 /* PaymentsDetailCoordinator.swift */,
+				3B4C90F820F4D686004F4C52 /* PaymentsDetailActions.swift */,
+				3B4C90F920F4D686004F4C52 /* PaymentsDetailViewController.swift */,
+				3B4C90FA20F4D686004F4C52 /* PaymentsDetailReducers.swift */,
+			);
+			path = PaymentsDetail;
 			sourceTree = "<group>";
 		};
 		3B4D874FF807F93E3A066FD35AE2F774 /* impl */ = {
@@ -31108,6 +31122,7 @@
 				E88743C997E531D3F0551FFB451A6E33 /* Rubik-Italic.ttf in Resources */,
 				3B8A0F0188C26CD5B89B88BB7CD2021A /* Rubik-Light.ttf in Resources */,
 				E1C4FA3283A242CC2CC04EA9134C6231 /* Rubik-LightItalic.ttf in Resources */,
+				3B4C90F520F4CE07004F4C52 /* Payments.storyboard in Resources */,
 				EE38F45E0DF99CC93B99EA2437E547B5 /* Rubik-Medium.ttf in Resources */,
 				01BE9E6EAA0EF905279B30392E1DF224 /* Rubik-MediumItalic.ttf in Resources */,
 				5FD71CEC1E7854589FDBD33B0B42EDBD /* Rubik-Regular.ttf in Resources */,
@@ -31116,11 +31131,11 @@
 				9D9BA749355A04042D1E68409AAAC4B6 /* WalletView.xib in Resources */,
 				C53CFE1AA8DBFB2C3E6AD341D171268E /* algorithm in Resources */,
 				A4767A6C44780F87D5917F9FFAC0FB70 /* algorithm.SUNWCCh in Resources */,
+				3B4C910020F4D6A4004F4C52 /* PaymentsDetail.storyboard in Resources */,
 				DBD92836718CE10F249DB505B4B452DD /* array in Resources */,
 				74EAB156C6830FDEC85832623F3570BB /* array.SUNWCCh in Resources */,
 				2F283DFACEFADB84D2FD7C6C7CAF6589 /* authority.hpp.bk in Resources */,
 				BB9C16D9632B7BE38B8936851255FC38 /* badgeView.xib in Resources */,
-				3B4C90E520F48DF7004F4C52 /* Transfer.storyboard in Resources */,
 				35659865121853108F1175F64F0C9028 /* bcc32.SUNWCCh in Resources */,
 				FD1CABB572E0D7F1ED79EE81741CFCE4 /* bitset in Resources */,
 				C94B5818C99B648CF164FD0433A0EB01 /* bitset.SUNWCCh in Resources */,
@@ -31210,7 +31225,6 @@
 				8601A7A3CDCBA5FDDFFEB50F48C225F8 /* tuple.SUNWCCh in Resources */,
 				65296AC08841C5E299ADC77C5441031E /* type_traits in Resources */,
 				6B97C35FD52DBADB978F2FCD447AABB4 /* type_traits.SUNWCCh in Resources */,
-				3B4C90EA20F48FD2004F4C52 /* TransferListView.xib in Resources */,
 				1131F4CEFAD4037E8C4AB8AC12019994 /* typeinfo in Resources */,
 				9185574FA64B12DD68B665A8C0BFFCA9 /* typeinfo.SUNWCCh in Resources */,
 				967EB91C71B110DAEC37F5999C3356BC /* types.hpp.bk in Resources */,
@@ -31439,10 +31453,11 @@
 				089FC61F5C404D8812055FF8F62C5183 /* AppDelegate.swift in Sources */,
 				C10A4AC7FCB160CCFE2C82D6BBAC4A64 /* AppReducer.swift in Sources */,
 				A58426FF8A514CDE712EB97BAB795BB3 /* BaseCollectionViewCell.swift in Sources */,
-				3B4C90E320F48D10004F4C52 /* TransferRootCoordinator.swift in Sources */,
 				A6EFBB3B53A79BD8C9D018099642EB76 /* BaseNavigationController.swift in Sources */,
 				559E64A356046CB84C6A9B9B07E012E7 /* BaseTabbarViewController.swift in Sources */,
 				4E8664CF0182B65EC69790B3811E80C3 /* BaseTableViewCell.swift in Sources */,
+				3B4C90FC20F4D686004F4C52 /* PaymentsDetailActions.swift in Sources */,
+				3B4C90FE20F4D686004F4C52 /* PaymentsDetailReducers.swift in Sources */,
 				8ADE05B3B02C07CFCE0F069867999417 /* BaseViewController.swift in Sources */,
 				3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
@@ -31451,6 +31466,7 @@
 				150F934C0EC159C581ACAAC7FD6F6484 /* Constants.swift in Sources */,
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,
 				0795BFD28C42BE58BB94BAA17ADB6B91 /* EOSIO.mm in Sources */,
+				3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */,
 				9CD3F0FA07578C28658D2A1189A8E39D /* EOSIONetworkService.swift in Sources */,
 				C9BB02B547453DD0482F5745ADB47B83 /* EntryActions.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
@@ -31462,7 +31478,6 @@
 				917CFC3CF79C268A4F4C59FBC103A951 /* HomeReducers.swift in Sources */,
 				71A4FC1DE158B2FA9DA84CBB240F0AE6 /* HomeRootCoordinator.swift in Sources */,
 				A35151B3922F34802807B89AA82B9D4E /* HomeViewController.swift in Sources */,
-				3B4C90E120F48CB9004F4C52 /* TransferReducers.swift in Sources */,
 				72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */,
 				632FADFC1004A95370F910B28F2B1B3B /* Localzation+Extensions.swift in Sources */,
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
@@ -31475,13 +31490,13 @@
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
 				54173FE67B1EB4725F8FC3B9D46CEA17 /* TitleTextView.swift in Sources */,
-				3B4C90DF20F48CB9004F4C52 /* TransferActions.swift in Sources */,
-				3B4C90DE20F48CB9004F4C52 /* TransferCoordinator.swift in Sources */,
-				3B4C90E820F48FBD004F4C52 /* TransferListView.swift in Sources */,
-				3B4C90E020F48CB9004F4C52 /* TransferViewController.swift in Sources */,
+				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
 				B0CB0B845BDEE83BD98F4F59B48498CE /* UIFont+Additions.swift in Sources */,
 				727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */,
+				3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */,
+				3B4C90FD20F4D686004F4C52 /* PaymentsDetailViewController.swift in Sources */,
+				3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */,
 				AD352B30A178C8A63FF0D742FDFD3081 /* UIImageView+Additions.swift in Sources */,
 				6F3BB5C8972D01A3B05201EC928A1021 /* UIResponder+Extensions.swift in Sources */,
 				703AA2BBC02CA49A0C74B4880E75F696 /* UIView+Extensions.swift in Sources */,
@@ -31491,6 +31506,7 @@
 				1C5B18A93C3E4FE5D23D305731F6C2DF /* WalletManager.swift in Sources */,
 				C250859A222848F83BB0713253BF7A9D /* WalletView.swift in Sources */,
 				177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */,
+				3B4C90F320F4CDDC004F4C52 /* PaymentsReducers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  TransferViewController.swift
+//  PaymentsDetailViewController.swift
 //  EOS
 //
 //  Created 朱宋宇 on 2018/7/10.
@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class TransferViewController: BaseViewController {
+class PaymentsDetailViewController: BaseViewController {
 
-	var coordinator: (TransferCoordinatorProtocol & TransferStateManagerProtocol)?
+	var coordinator: (PaymentsDetailCoordinatorProtocol & PaymentsDetailStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()

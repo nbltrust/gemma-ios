@@ -41,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         appcoordinator!.start()
-        
 //        RealReachability.sharedInstance().startNotifier()
 //        NotificationCenter.default.addObserver(forName: NSNotification.Name.realReachabilityChanged, object: nil, queue: nil) { (notifi) in
 //            self.handlerNetworkChanged()
@@ -50,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        configApplication()
 //        self.handlerNetworkChanged()
 //        
-//        self.appcoordinator?.showEntry()
+        self.appcoordinator?.showTest()
         
         return true
     }

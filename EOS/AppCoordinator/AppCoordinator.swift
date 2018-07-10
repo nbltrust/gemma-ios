@@ -26,7 +26,7 @@ class AppCoordinator {
     
     var homeCoordinator: HomeRootCoordinator!
     var entryCoordinator: EntryRootCoordinator!
-    
+
     weak var currentPresentedRootCoordinator: NavCoordinator?
     
     weak var startLoadingVC:BaseViewController?
@@ -68,4 +68,17 @@ class AppCoordinator {
         
     }
 
+    func showTest() {
+        let nav = BaseNavigationController()
+        let vc = R.storyboard.payments.paymentsViewController()!
+        let coor = PaymentsCoordinator(rootVC: nav)
+        vc.coordinator = coor
+//        root.start()
+        
+        SwifterSwift.delay(milliseconds: 100) {
+            self.rootVC.present(vc, animated: true, completion: nil)
+        }
+
+    }
+    
 }
