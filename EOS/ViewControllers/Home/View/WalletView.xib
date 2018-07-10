@@ -12,8 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletView" customModule="EOS" customModuleProvider="target">
             <connections>
-                <outlet property="mBgImgView" destination="0yh-bP-Bhc" id="KF1-On-bzK"/>
-                <outlet property="mBgView" destination="ImS-TB-nKF" id="G7S-Z1-DY0"/>
                 <outlet property="mShadowBgImgView" destination="uao-JV-T2z" id="pYe-C0-5OG"/>
                 <outlet property="mShadowView" destination="Nuj-b3-UNG" id="TGd-8y-1Lt"/>
             </connections>
@@ -23,20 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImS-TB-nKF">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigationBg2" translatesAutoresizingMaskIntoConstraints="NO" id="0yh-bP-Bhc">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="0yh-bP-Bhc" secondAttribute="trailing" id="Neb-79-dph"/>
-                        <constraint firstItem="0yh-bP-Bhc" firstAttribute="leading" secondItem="ImS-TB-nKF" secondAttribute="leading" id="iYC-0Q-zr6"/>
-                        <constraint firstItem="0yh-bP-Bhc" firstAttribute="top" secondItem="ImS-TB-nKF" secondAttribute="top" id="vnD-Kv-vw8"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nuj-b3-UNG">
                     <rect key="frame" x="16" y="224" width="343" height="234"/>
                     <subviews>
@@ -103,18 +87,11 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Nuj-b3-UNG" secondAttribute="trailing" constant="16" id="2Nt-23-Fim"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ImS-TB-nKF" secondAttribute="trailing" id="5rY-xy-2Bt"/>
-                <constraint firstItem="ImS-TB-nKF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="NOz-dj-D6z"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ImS-TB-nKF" secondAttribute="bottom" id="W4h-88-X7W"/>
                 <constraint firstItem="Nuj-b3-UNG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="WET-bc-m6A"/>
-                <constraint firstItem="ImS-TB-nKF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="pJy-w1-1qx"/>
                 <constraint firstItem="Nuj-b3-UNG" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="204" id="rhI-fv-Yjb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="navigationBg2" width="375" height="281"/>
-    </resources>
 </document>

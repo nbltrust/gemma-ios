@@ -10,9 +10,7 @@ import Foundation
 
 class WalletView: UIView {
     
-    @IBOutlet weak var mBgView: UIView!
     @IBOutlet weak var mShadowView: UIView!
-    @IBOutlet weak var mBgImgView: UIImageView!
     
     @IBOutlet weak var mShadowBgImgView: UIImageView!
     
@@ -20,15 +18,20 @@ class WalletView: UIView {
     var data : Any? {
         didSet {
             updateHeight()
-            upDateShadowBgImgView(rect: mShadowView.frame)
+//            upDateShadowBgImgView(rect: mShadowView.frame)
         }
     }
     
-    
-    func upDateShadowBgImgView(rect: CGRect) {
-        let image = self.mBgView.drawRectShadow(rect: rect)
+    func upDateImgView(mView: UIView) {
+        let image = mView.drawRectShadow(rect: mShadowView.frame)
         mShadowBgImgView.image = image
+//        upDateShadowBgImgView(rect: mShadowView.frame)
     }
+    
+//    func upDateShadowBgImgView(rect: CGRect) {
+//        let image = mView.drawRectShadow(rect: mShadowView.frame)
+//        mShadowBgImgView.image = image
+//    }
     
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())

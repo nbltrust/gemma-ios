@@ -13,13 +13,14 @@ import ReSwift
 import HandyJSON
 
 class HomeViewController: BaseViewController {
+    @IBOutlet weak var mBgView: UIView!
 
     @IBOutlet weak var mWalletView: WalletView!
     var coordinator: (HomeCoordinatorProtocol & HomeStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
+        mWalletView.upDateImgView(mView: mBgView)
     }
     
     func commonObserveState() {
