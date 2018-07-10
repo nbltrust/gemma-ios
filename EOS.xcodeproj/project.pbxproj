@@ -35,6 +35,7 @@
 		1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF12070D1BC34F8C65F6079CC156E0B /* NSObject+Extensions.swift */; };
 		2154824915CF85B858D26F531215E1F8 /* climits in Resources */ = {isa = PBXBuildFile; fileRef = A56465013122603CC96F76E2942D687D /* climits */; };
 		21FFD61029C1653D163BDA1A64136F4B /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FFEDC6C6AFC706ED9DCB24098C23A1 /* libboost_regex.a */; };
+		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
 		24DB2001F45219964C7C00660C7FAD74 /* map.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = D37EB2084A5F0BCBD7AC0127F484EF67 /* map.SUNWCCh */; };
 		267D15355147463B9F3A4323FEFA93A6 /* utility.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 57B7E46E6DAB4556E33BC9EDAC656EC7 /* utility.SUNWCCh */; };
 		293724C94FEA66BB7CBDEC50A91A0C83 /* ostream.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 2517D8C8DC5C7533C63215A87510F188 /* ostream.SUNWCCh */; };
@@ -1816,6 +1817,7 @@
 		224D13398B2EFA80D84B72B8CE7F604F /* is_acceptable_turn.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_acceptable_turn.hpp; sourceTree = "<group>"; };
 		224D81C16A18496EF4B07ACD982CEA78 /* iter_fold_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = iter_fold_impl.hpp; sourceTree = "<group>"; };
 		22519DB378ADCAC3E155C59C47CB7385 /* erase_actor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = erase_actor.hpp; sourceTree = "<group>"; };
+		225825D920F4591F00AA2A4B /* Button.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Button.xib; sourceTree = "<group>"; };
 		225A0889C3C3054639EEABD86F27BD02 /* ios_base_state.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ios_base_state.hpp; sourceTree = "<group>"; };
 		22673B9CA1401589242EC668FDA327F1 /* vector_forward_ctor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_forward_ctor.hpp; sourceTree = "<group>"; };
 		2269B704171EEC0AD09B75F1BB1692BF /* operators.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = operators.hpp; sourceTree = "<group>"; };
@@ -13874,6 +13876,17 @@
 			isa = PBXGroup;
 			children = (
 				ED5CF0797F269847E5CBEAEC6E2C89E5 /* LineView */,
+
+				4D11CFAD3A91B7F05EF8E3926496049E /* PaymentsRecordsCell.swift */,
+				2ADE7AD5B97AC4FBA97618775FFC168F /* PaymentsRecordsCell.xib */,
+				D8AE449353FF9911A1095EF4E6005FAE /* PaymentsRecordsCellView.swift */,
+				FC0712F6F5848F276EF6DCD83ECE80F4 /* PaymentsRecordsCellView.xib */,
+				8B351582A8E6943BACF62B02A64F0841 /* Button.swift */,
+				225825D920F4591F00AA2A4B /* Button.xib */,
+				4A03620E0D075F6EAC0DDDEEA65296E0 /* ComfirmView.swift */,
+				3AA8EBBBC7AA834B69D653ECE6DCC4F5 /* ComfirmView.xib */,
+				A2409515634A6BE945D6745CCA39A3A2 /* TitleTextView.swift */,
+				939CACA255C268609D89CA355B7E9778 /* TitleTextView.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -28523,13 +28536,8 @@
 		DBA389562489DF247FDEDA4F55B43C83 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8B351582A8E6943BACF62B02A64F0841 /* Button.swift */,
-				4A03620E0D075F6EAC0DDDEEA65296E0 /* ComfirmView.swift */,
-				3AA8EBBBC7AA834B69D653ECE6DCC4F5 /* ComfirmView.xib */,
 				8B24543B5F1347F5B227345CCDA7764C /* RegisterContentView.swift */,
 				AD04D63782E619A2BAFE26F3FC3A621D /* RegisterContentView.xib */,
-				A2409515634A6BE945D6745CCA39A3A2 /* TitleTextView.swift */,
-				939CACA255C268609D89CA355B7E9778 /* TitleTextView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -31210,6 +31218,7 @@
 				C359E0D417EB456FCC0A787748326198 /* set.SUNWCCh in Resources */,
 				A31559F911A6AEB7C37F0DA1518DEFF1 /* sstream in Resources */,
 				54BC80EB1D23E5F5308AE65C7408C640 /* sstream.SUNWCCh in Resources */,
+				225825DA20F4591F00AA2A4B /* Button.xib in Resources */,
 				860FD723B36CDFD314E513832ABBD43A /* stack in Resources */,
 				F6E1F7D79D9DB296584612D81F800561 /* stack.SUNWCCh in Resources */,
 				1613197F507A12EA69063BC5874B6642 /* stdexcept in Resources */,
