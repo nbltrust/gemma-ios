@@ -127,4 +127,20 @@ class WallketManager {
         return nil
     }
     
+    func isValidPassword(_ password: String) -> Bool {
+        let regex = "^[0-9a-zA-Z]{12}+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with:password)
+    }
+    
+    func isValidComfirmPassword(_ password: String, comfirmPassword: String) -> Bool {
+        return password == comfirmPassword
+    }
+    
+    func isValidWalletName(_ name: String) -> Bool {
+        let regex = "^[0-9a-z]{12}+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with:name)
+    }
+    
 }
