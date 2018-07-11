@@ -42,7 +42,7 @@ extension PaymentsCoordinator: PaymentsCoordinatorProtocol {
         let coordinator = PaymentsDetailCoordinator(rootVC: self.rootVC)
         vc.coordinator = coordinator
         vc.data = data
-        self.rootVC.pushViewController(vc, animated: true)
+        self.rootVC.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
