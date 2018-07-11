@@ -75,32 +75,33 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     func getPushTransaction(_ password : String,account:String, amount:String, code:String) -> String {
         
         getInfo { (get_info) in
-            
+            let getinfo = get_info
         }
         
         let privakey = WallketManager.shared.getCachedPriKey(password)
         
-        /**
-         code -> NetworkConfiguration.EOSIO_DEFAULT_CODE
-         from ->
-         to ->
-         quantity XX NetworkConfiguration.EOSIO_DEFAULT_SYMBOL
-         memo -> 备注
-         getinfo :
-         abistr : 
-        **/
-        let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: <#T##String!#>, from: <#T##String!#>, to: <#T##String!#>, quantity: <#T##String!#>)
+        let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WallketManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)
         
-        EOSIONetwork.request(target: .abi_json_to_bin(json:""), success: { (data) in
-            
+        EOSIONetwork.request(target: .abi_json_to_bin(json:json!), success: { (data) in
+            let abiStr = data
         }, error: { (error_code) in
             
         }) { (error) in
             
         }
         
+        
+        /**
+         code -> NetworkConfiguration.EOSIO_DEFAULT_CODE
+         from -> WallketManager.shared.getAccount()
+         to ->   account
+         quantity XX NetworkConfiguration.EOSIO_DEFAULT_SYMBOL
+         memo -> 备注
+         getinfo :
+         abistr :
+         **/
 //        EOSIO.getTransaction(privakey,
-//                             code: <#T##String!#>,
+//                             code: NetworkConfiguration.EOSIO_DEFAULT_CODE,
 //                             from: ,
 //                             to: String!,
 //                             quantity: <#T##String!#>,
