@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransferContentView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="accountTitleTextView" destination="fpS-1M-ene" id="hJC-q2-28q"/>
+                <outlet property="moneyTitleTextView" destination="eLT-mr-G6c" id="6km-DN-P4b"/>
+                <outlet property="remarkTitleTextView" destination="ooB-mJ-nSx" id="nks-hl-qf0"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="373" height="297"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpS-1M-ene" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="373" height="84"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="84" id="7o9-yN-gZX"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLT-mr-G6c" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="84" width="373" height="76"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="76" id="Ivf-p6-oc8"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooB-mJ-nSx" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="160" width="373" height="76"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="76" id="2DK-gY-Jc1"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ooB-mJ-nSx" firstAttribute="top" secondItem="eLT-mr-G6c" secondAttribute="bottom" id="ILF-RQ-rCQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fpS-1M-ene" secondAttribute="trailing" id="LSX-NY-0SR"/>
+                <constraint firstItem="fpS-1M-ene" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Qce-hx-Fkz"/>
+                <constraint firstItem="fpS-1M-ene" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Rq6-Kb-mgS"/>
+                <constraint firstItem="eLT-mr-G6c" firstAttribute="top" secondItem="fpS-1M-ene" secondAttribute="bottom" id="ZiO-uG-Biu"/>
+                <constraint firstItem="ooB-mJ-nSx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="a0r-za-7xN"/>
+                <constraint firstItem="eLT-mr-G6c" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="b3G-zC-TeA"/>
+                <constraint firstAttribute="trailing" secondItem="ooB-mJ-nSx" secondAttribute="trailing" id="qW6-A0-3Iq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eLT-mr-G6c" secondAttribute="trailing" id="rYM-Lc-u83"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="8.5" y="-169.5"/>
+        </view>
+    </objects>
+</document>
