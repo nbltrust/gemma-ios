@@ -89,6 +89,15 @@ extension TransferCoordinator: TransferStateManagerProtocol {
          getinfo :
          abistr : 
         **/
+        let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: <#T##String!#>, from: <#T##String!#>, to: <#T##String!#>, quantity: <#T##String!#>)
+        
+        EOSIONetwork.request(target: .abi_json_to_bin(json:""), success: { (data) in
+            
+        }, error: { (error_code) in
+            
+        }) { (error) in
+            
+        }
         
 //        EOSIO.getTransaction(privakey,
 //                             code: <#T##String!#>,

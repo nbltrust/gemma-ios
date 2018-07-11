@@ -26,6 +26,7 @@ class PaymentsRecordsCellView: UIView {
             transferState.text = newData.transferState
             money.text = newData.money
             transferStateView.isHidden = newData.transferStateBool
+            updateHeight()
         }
     }
     
