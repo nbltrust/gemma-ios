@@ -14,7 +14,9 @@ import ReSwift
 class PaymentsDetailViewController: BaseViewController {
 
 	var coordinator: (PaymentsDetailCoordinatorProtocol & PaymentsDetailStateManagerProtocol)?
-
+    var data : PaymentsRecordsViewModel = PaymentsRecordsViewModel()
+    
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
     }

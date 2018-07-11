@@ -11,7 +11,7 @@ import ReSwift
 
 protocol PaymentsCoordinatorProtocol {
     
-    func pushPaymentsDetail()
+    func pushPaymentsDetail(data:PaymentsRecordsViewModel)
 
     
 }
@@ -37,13 +37,11 @@ class PaymentsCoordinator: HomeRootCoordinator {
 }
 
 extension PaymentsCoordinator: PaymentsCoordinatorProtocol {
-    func pushPaymentsDetail() {
-        guard let tradeVC = self.rootVC.topViewController as? PaymentsDetailViewController else { return }
-        
+    func pushPaymentsDetail(data:PaymentsRecordsViewModel) {
         let vc = R.storyboard.paymentsDetail.paymentsDetailViewController()!
-//        vc.pair = tradeVC.pair
         let coordinator = PaymentsDetailCoordinator(rootVC: self.rootVC)
         vc.coordinator = coordinator
+        vc.data = data
         self.rootVC.pushViewController(vc, animated: true)
     }
 }

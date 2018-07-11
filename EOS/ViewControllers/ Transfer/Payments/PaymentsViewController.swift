@@ -38,10 +38,6 @@ class PaymentsViewController: BaseViewController {
 
             self.tableView.reloadData()
         })
-//        if let data = self.data,data.count != 0 {
-//        }else{
-//            self.view.showNoData(R.string.localizable.myhistory_nodata.key.localized())
-//        }
     }
     
     func commonObserveState() {
@@ -72,9 +68,13 @@ extension PaymentsViewController : UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let name = String.init(describing:PaymentsRecordsCell.self)
         let cell = tableView.dequeueReusableCell(withIdentifier: name, for: indexPath) as! PaymentsRecordsCell
-        cell.setup(data)
+        cell.setup(data[indexPath.row])
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.coordinator?.pushPaymentsDetail(data: data[indexPath.row])
     }
     
 }
