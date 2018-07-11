@@ -12,6 +12,7 @@ import SwifterSwift
 struct AppConfiguration {
     static let APPID = ""
     
+    static let EOS_PRECISION = 4
 }
 
 struct NetworkConfiguration {
@@ -34,7 +35,6 @@ enum NetworkError: Error {
 //    case parameterError        = "10007"
 //    case invalidPubKey         = "10008"
 }
-
 
 enum EOSAction:String {
     case transfer

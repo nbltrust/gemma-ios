@@ -130,6 +130,7 @@
 		73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A69620F5DFF400756391 /* Shapes.swift */; };
 		73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A69720F5DFF400756391 /* UIColorExtension.swift */; };
 		73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A69D20F5E08900756391 /* SimpleHTTPService.swift */; };
+		73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A020F5F00A00756391 /* AttributeLabelView.swift */; };
 		740D4F6730F1D7E5D73CA773FF7D257A /* iterator.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 8457B72985E9558F5B20BF3231F461E0 /* iterator.SUNWCCh */; };
 		74EAB156C6830FDEC85832623F3570BB /* array.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 5C327027D645845A2F702B5DDDA19D49 /* array.SUNWCCh */; };
 		7610C85F17FAA9095B27B17656342765 /* SharpCornerTipsLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD48A5CB8C231CED8E16AD9422A86BE0 /* SharpCornerTipsLabelView.xib */; };
@@ -5429,6 +5430,7 @@
 		73B5A69620F5DFF400756391 /* Shapes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		73B5A69720F5DFF400756391 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		73B5A69D20F5E08900756391 /* SimpleHTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHTTPService.swift; sourceTree = "<group>"; };
+		73B5A6A020F5F00A00756391 /* AttributeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeLabelView.swift; sourceTree = "<group>"; };
 		73B7092474BF279955D825D4E7B6CB4F /* support.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = support.hpp; sourceTree = "<group>"; };
 		73BD769A0C773A8F78575956DB91C1DC /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		73CAF80D39A4581F26A830ABC0587047 /* fail_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fail_function.hpp; sourceTree = "<group>"; };
@@ -13902,6 +13904,7 @@
 		1D693EAC4EFE912D3F115C139DC846B0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				73B5A69F20F5EFF600756391 /* AttributeLabelView */,
 				ED5CF0797F269847E5CBEAEC6E2C89E5 /* LineView */,
 				8B351582A8E6943BACF62B02A64F0841 /* Button.swift */,
 				225825D920F4591F00AA2A4B /* Button.xib */,
@@ -20852,6 +20855,14 @@
 				73B5A69720F5DFF400756391 /* UIColorExtension.swift */,
 			);
 			path = Jdenticon;
+			sourceTree = "<group>";
+		};
+		73B5A69F20F5EFF600756391 /* AttributeLabelView */ = {
+			isa = PBXGroup;
+			children = (
+				73B5A6A020F5F00A00756391 /* AttributeLabelView.swift */,
+			);
+			path = AttributeLabelView;
 			sourceTree = "<group>";
 		};
 		73BD4FBA2F38D4F3BD54B74A7F535457 /* support */ = {
@@ -31323,8 +31334,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
-				"${BUILT_PRODUCTS_DIR}/ActiveLabel/ActiveLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Atributika/Atributika.framework",
 				"${BUILT_PRODUCTS_DIR}/AwaitKit/AwaitKit.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Device/Device.framework",
@@ -31392,8 +31403,8 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActiveLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Atributika.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AwaitKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Device.framework",
@@ -31553,6 +31564,7 @@
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
 				54173FE67B1EB4725F8FC3B9D46CEA17 /* TitleTextView.swift in Sources */,
+				73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */,
 				73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */,
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
