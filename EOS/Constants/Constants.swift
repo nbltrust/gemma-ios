@@ -19,6 +19,10 @@ struct NetworkConfiguration {
     static let EOSIO_BASE_URL = URL(string: "http://139.196.73.117:9000")!
     static let EOSIO_DEFAULT_CODE = "eosio.token"
     static let EOSIO_DEFAULT_SYMBOL = "EOS"
+    
+    
+    static let SERVER_BASE_URLString = "https://app.cybex.io/"
+    static let ETH_PRICE = SERVER_BASE_URLString + "price"
 }
 
 enum NetworkError: Error {
