@@ -112,6 +112,9 @@
 		71B491763DB2622DA9A6CD8DEE644F17 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103B51C353332B3FB23F5C2EF02C7FC0 /* EntryViewController.swift */; };
 		727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A0C092D0A5867AD008B19D6E9C415 /* UIImage+Extensions.swift */; };
 		72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD93970489E3F3320328E206C4A6970 /* LineView.swift */; };
+		73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68B20F5B42600756391 /* Double+Extensions.swift */; };
+		73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */; };
+		73B5A69020F5B54C00756391 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68F20F5B54C00756391 /* String+Extensions.swift */; };
 		740D4F6730F1D7E5D73CA773FF7D257A /* iterator.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 8457B72985E9558F5B20BF3231F461E0 /* iterator.SUNWCCh */; };
 		74EAB156C6830FDEC85832623F3570BB /* array.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 5C327027D645845A2F702B5DDDA19D49 /* array.SUNWCCh */; };
 		7610C85F17FAA9095B27B17656342765 /* SharpCornerTipsLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD48A5CB8C231CED8E16AD9422A86BE0 /* SharpCornerTipsLabelView.xib */; };
@@ -208,7 +211,6 @@
 		E6A86169B62F74A02FD2D90E79A34236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778E2FB094094F597056F12BA4850DAB /* Assets.xcassets */; };
 		E7664BD494EEC8B271D8706906F47B6F /* iomanip in Resources */ = {isa = PBXBuildFile; fileRef = D1EC684EA4E736633DA458B214857226 /* iomanip */; };
 		E88743C997E531D3F0551FFB451A6E33 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59485DFB41AB176BF5B7E820DB85AA8A /* Rubik-Italic.ttf */; };
-		E97CD4BD18F12D2E338D7404DD504DE5 /* libwallet_plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B26489F46CD306B047086E926F75E22 /* libwallet_plugin.a */; };
 		E9B4BDB932328AF7C9FBBAF11B2BA61B /* unordered_map in Resources */ = {isa = PBXBuildFile; fileRef = 39E95444110A7970C249FF62E4FF1D2E /* unordered_map */; };
 		ED71B5E1A34FBB3FC872E2E07640AC5F /* ctime in Resources */ = {isa = PBXBuildFile; fileRef = CE738C2D8C84E278056133C67805B8D3 /* ctime */; };
 		EE38F45E0DF99CC93B99EA2437E547B5 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6B803680E571BE896CFBABEA535F0E9 /* Rubik-Medium.ttf */; };
@@ -225,7 +227,6 @@
 		FBF8C6513820764A83201943FA59A787 /* list.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 2013996F2D64A821254F7CCC3FDB37F9 /* list.SUNWCCh */; };
 		FD1CABB572E0D7F1ED79EE81741CFCE4 /* bitset in Resources */ = {isa = PBXBuildFile; fileRef = 31D006F3E02F91C52534EB57C252633F /* bitset */; };
 		FD49CE2A33EF13AFD453078BCD6874DB /* regex in Resources */ = {isa = PBXBuildFile; fileRef = A1791F63870936446B3A00B610E94A8B /* regex */; };
-		FE19CB58BABA37FAC7A73114D63C0EEA /* libkeosdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DCC49049F5DEE23EA478046D9727BA /* libkeosdlib.a */; };
 		FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D9459367F25FE4B364A2DB3DE1C64F /* libssl.a */; };
 		FF428CE559D9BAC66E25585F0A149FB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DCAB8F96446139DBCE56777785B34 /* ViewController.swift */; };
 /* End PBXBuildFile section */
@@ -5394,6 +5395,9 @@
 		73A80E7F0D19BC17C299F55BC6D2090D /* make_vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = make_vector.hpp; sourceTree = "<group>"; };
 		73ABB9E52211D9D7635865D74BB4E1E6 /* asin.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = asin.hpp; sourceTree = "<group>"; };
 		73B32429E7D9E2D466E9C9F63B781C21 /* sha256.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sha256.hpp; sourceTree = "<group>"; };
+		73B5A68B20F5B42600756391 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extensions.swift"; sourceTree = "<group>"; };
+		73B5A68F20F5B54C00756391 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		73B7092474BF279955D825D4E7B6CB4F /* support.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = support.hpp; sourceTree = "<group>"; };
 		73BD769A0C773A8F78575956DB91C1DC /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		73CAF80D39A4581F26A830ABC0587047 /* fail_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fail_function.hpp; sourceTree = "<group>"; };
@@ -7675,7 +7679,6 @@
 		A746105AAC54DEFCC3ED2FFEF8D66E5D /* cstdfloat_complex_std.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cstdfloat_complex_std.hpp; sourceTree = "<group>"; };
 		A747440DB385EA06E33B1FBF98F31C0E /* thrust.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = thrust.hpp; sourceTree = "<group>"; };
 		A74D68AD604925CA4C51C4AC8ED231C7 /* memory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = memory.hpp; sourceTree = "<group>"; };
-		A75F22A791FA8E3BBBFE7C0EDFC99D17 /* wallet_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wallet_manager.hpp; sourceTree = "<group>"; };
 		A76255B54CB6C7F3EA534DCFFD1A161A /* monotonic_buffer_resource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = monotonic_buffer_resource.hpp; sourceTree = "<group>"; };
 		A762D2D168B8A7720C106CB0A1A4AD96 /* equal_6.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = equal_6.hpp; sourceTree = "<group>"; };
 		A762FB485A0FAC7E3A91DB0307BE68D1 /* qi_permutation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_permutation.hpp; sourceTree = "<group>"; };
@@ -9928,7 +9931,6 @@
 		DA7DCD2E5AD71E07FDD2CCA6899D398D /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
 		DA7E2A6D98DC18D5AF4CB2B84D8E4DBF /* sequence.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sequence.hpp; sourceTree = "<group>"; };
 		DA8FE9AB37B270DABBE26D6B9B59D505 /* to_python_converter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_python_converter.hpp; sourceTree = "<group>"; };
-		DA9787C7BA845E41E09F0E7796762ABB /* wallet_plugin.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wallet_plugin.hpp; sourceTree = "<group>"; };
 		DA9ECAF7827BA4EF1814192AD501DD83 /* vincenty_direct.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vincenty_direct.hpp; sourceTree = "<group>"; };
 		DA9F3CE281F843337FE68165D1313AEE /* bind_to_log.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bind_to_log.hpp; sourceTree = "<group>"; };
 		DAA3442F79D7E8A48790D914C42CA7EF /* make_ptr_instance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = make_ptr_instance.hpp; sourceTree = "<group>"; };
@@ -11407,7 +11409,6 @@
 		FB129C6B7AE9B3A67C39F9DE3570F32B /* non_unique_views_helper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = non_unique_views_helper.hpp; sourceTree = "<group>"; };
 		FB195206735958F7F831D7E829DD8074 /* point_type.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = point_type.hpp; sourceTree = "<group>"; };
 		FB19AB9C24148070ADC73144D10D703D /* ops_linux_arm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ops_linux_arm.hpp; sourceTree = "<group>"; };
-		FB1CB4A130093E003123A4D1401F7C79 /* wallet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wallet.hpp; sourceTree = "<group>"; };
 		FB27E450342E2770731DD770E4DF9DBD /* hole_iterator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hole_iterator.hpp; sourceTree = "<group>"; };
 		FB35F81954144A2AF43D3BF8C7356E7D /* std_regex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = std_regex.hpp; sourceTree = "<group>"; };
 		FB38BBDB51B1280B067ADDF272B4F244 /* slot5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = slot5.hpp; sourceTree = "<group>"; };
@@ -11638,10 +11639,8 @@
 				6729F23278361B30E5C02D41B5C38B4E /* libeos_utilities.a in Frameworks */,
 				FAE42FB8272608796B84D45337A61B85 /* libeosio_chain.a in Frameworks */,
 				B66249D25E5FAEA4E9976E8DB2466B14 /* libfc.a in Frameworks */,
-				FE19CB58BABA37FAC7A73114D63C0EEA /* libkeosdlib.a in Frameworks */,
 				B59F91139082B6BA1A41D0F42DFBC842 /* libsoftfloat.a in Frameworks */,
 				FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */,
-				E97CD4BD18F12D2E338D7404DD504DE5 /* libwallet_plugin.a in Frameworks */,
 				357B2FFEE0242335494EAFE624066A39 /* secp256k1.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12759,6 +12758,9 @@
 				AA6F4798AB9731DC952522F1C1A5FD3D /* UIImageView+Additions.swift */,
 				B33CA16F19712350F98BB0492EAFD63B /* UIResponder+Extensions.swift */,
 				21A0115143BCB08B5FDFC81395A1E708 /* UIView+Extensions.swift */,
+				73B5A68B20F5B42600756391 /* Double+Extensions.swift */,
+				73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */,
+				73B5A68F20F5B54C00756391 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -22586,16 +22588,6 @@
 			path = parser;
 			sourceTree = "<group>";
 		};
-		8834F8F1E6B7349D6B7CDE153EF7F413 /* wallet_plugin */ = {
-			isa = PBXGroup;
-			children = (
-				FB1CB4A130093E003123A4D1401F7C79 /* wallet.hpp */,
-				A75F22A791FA8E3BBBFE7C0EDFC99D17 /* wallet_manager.hpp */,
-				DA9787C7BA845E41E09F0E7796762ABB /* wallet_plugin.hpp */,
-			);
-			path = wallet_plugin;
-			sourceTree = "<group>";
-		};
 		886D9F5E2EB4335EB04B6D1257588303 /* flatten_view */ = {
 			isa = PBXGroup;
 			children = (
@@ -27053,7 +27045,6 @@
 			isa = PBXGroup;
 			children = (
 				DCA2CDDF6CB10B95F7AD9BF4BE7731A3 /* chain */,
-				8834F8F1E6B7349D6B7CDE153EF7F413 /* wallet_plugin */,
 			);
 			path = eosio;
 			sourceTree = "<group>";
@@ -31267,6 +31258,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
+				"${BUILT_PRODUCTS_DIR}/ActiveLabel/ActiveLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AwaitKit/AwaitKit.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
@@ -31279,6 +31271,7 @@
 				"${BUILT_PRODUCTS_DIR}/GRDB.swift/GRDB.framework",
 				"${BUILT_PRODUCTS_DIR}/Guitar/Guitar.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Hydra/Hydra.framework",
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JHChainableAnimations/JHChainableAnimations.framework",
@@ -31312,6 +31305,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxValidator/RxValidator.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/Siren/Siren.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftHash/SwiftHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRichString/SwiftRichString.framework",
@@ -31329,6 +31323,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActiveLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AwaitKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
@@ -31341,6 +31336,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Guitar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JHChainableAnimations.framework",
@@ -31374,6 +31370,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxValidator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siren.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRichString.framework",
@@ -31456,9 +31453,11 @@
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
 				57988B0F4659572FB0099493045E18EE /* EntryReducers.swift in Sources */,
 				E31116402719BEFB4AF172D69330D582 /* EntryRootCoordinator.swift in Sources */,
+				73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */,
 				71B491763DB2622DA9A6CD8DEE644F17 /* EntryViewController.swift in Sources */,
 				C2AE7CD84347385A7C552C6564375D8D /* HomeActions.swift in Sources */,
 				3130D0258A7A377AC1EBE65F9BD4ED69 /* HomeCoordinator.swift in Sources */,
+				73B5A69020F5B54C00756391 /* String+Extensions.swift in Sources */,
 				917CFC3CF79C268A4F4C59FBC103A951 /* HomeReducers.swift in Sources */,
 				71A4FC1DE158B2FA9DA84CBB240F0AE6 /* HomeRootCoordinator.swift in Sources */,
 				A35151B3922F34802807B89AA82B9D4E /* HomeViewController.swift in Sources */,
@@ -31490,6 +31489,7 @@
 				FF428CE559D9BAC66E25585F0A149FB9 /* ViewController.swift in Sources */,
 				1C5B18A93C3E4FE5D23D305731F6C2DF /* WalletManager.swift in Sources */,
 				C250859A222848F83BB0713253BF7A9D /* WalletView.swift in Sources */,
+				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
 				177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

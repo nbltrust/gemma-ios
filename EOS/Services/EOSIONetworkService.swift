@@ -95,7 +95,14 @@ extension EOSIOService : TargetType {
         case let .abi_json_to_bin(json):
             return JSON(parseJSON: json).dictionaryObject ?? [:]
         case let .push_transaction(json):
-            return JSON(parseJSON: json).dictionaryObject ?? [:]
+            var transaction:[String: Any] = ["compression":"none"]
+            var jsonOb = JSON(parseJSON: json).dictionaryObject ?? [:]
+            let signatures = jsonOb["signatures"]
+            jsonOb.removeValue(forKey: "signatures")
+            transaction["signatures"] = signatures
+            transaction["transaction"] = jsonOb
+            
+            return transaction
         case let .abi_bin_to_json(bin, action):
             return ["code": NetworkConfiguration.EOSIO_DEFAULT_CODE, "action": action.rawValue, "binargs": bin]
         case let .get_key_accounts(pubKey):

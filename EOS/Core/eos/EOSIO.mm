@@ -27,8 +27,8 @@
     return @(get_private_key(cypher.UTF8String, password.UTF8String).c_str());
 }
 
-+ (NSString *)getAbiJsonString:(NSString *)code action:(NSString *)action from:(NSString *)from to:(NSString *)to quantity:(NSString *)quantity {
-    return @(create_abi_req(code.UTF8String, action.UTF8String, from.UTF8String, to.UTF8String, quantity.UTF8String).c_str());
++ (NSString *)getAbiJsonString:(NSString *)code action:(NSString *)action from:(NSString *)from to:(NSString *)to quantity:(NSString *)quantity memo:(NSString *)memo {
+    return @(create_abi_req(code.UTF8String, action.UTF8String, from.UTF8String, to.UTF8String, quantity.UTF8String, memo.UTF8String).c_str());
 }
 
 + (NSString *)getTransaction:(NSString *)privateKey code:(NSString *)code from:(NSString *)from to:(NSString *)to quantity:(NSString *)quantity memo:(NSString *)memo getinfo:(NSString *)getinfo abistr:(NSString *)abistr {

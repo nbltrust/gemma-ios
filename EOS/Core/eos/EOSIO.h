@@ -14,6 +14,6 @@
 + (NSString *)getCypher:(NSString *)privateKey password:(NSString *)password;
 + (NSString *)getPirvateKey:(NSString *)cypher password:(NSString *)password;
 
-+ (NSString *)getAbiJsonString:(NSString *)code action:(NSString *)action from:(NSString *)from to:(NSString *)to quantity:(NSString *)quantity;
++ (NSString *)getAbiJsonString:(NSString *)code action:(NSString *)action from:(NSString *)from to:(NSString *)to quantity:(NSString *)quantity memo:(NSString *)memo;
 + (NSString *)getTransaction:(NSString *)privateKey code:(NSString *)code from:(NSString *)from to:(NSString *)to quantity:(NSString *)quantity memo:(NSString *)memo getinfo:(NSString *)getinfo abistr:(NSString *)abistr;
 @end

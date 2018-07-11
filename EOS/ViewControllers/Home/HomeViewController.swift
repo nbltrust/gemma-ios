@@ -22,35 +22,6 @@ class HomeViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         mWalletView.upDateImgView(mView: mBgView)
-        
-        if let abijson = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: "awesome14", to: "hotwallet", quantity: "1.0000 EOS") {
-            EOSIONetwork.request(target: .abi_json_to_bin(json: abijson), success: { (data) in
-                
-            }, error: { (code) in
-                
-            }) { (error) in
-                
-            }
-        }
-        
-        EOSIONetwork.request(target: .get_info, success: { (json) in
-            let transaction = EOSIO.getTransaction("5JbCmXuRst8WAmjjj1NGCHJtMTjNfiHjNPFrXhk9qKjUNDCHdCh", code: NetworkConfiguration.EOSIO_DEFAULT_CODE, from: "awesome14", to: "hotwallet", quantity: "1.0000 EOS", memo: "ssss", getinfo: json.rawString()!, abistr: "00002041498a15370000c82a46c3336d102700000000000004454f530000000003737373")
-            
-            EOSIONetwork.request(target: .push_transaction(json: transaction!), success: { (json) in
-                
-            }, error: { (code) in
-                
-            }, failure: { (error) in
-                
-            })
-        }, error: { (code) in
-            
-        }) { (error) in
-            
-        }
-        
-        
-       
     }
     
     func commonObserveState() {
