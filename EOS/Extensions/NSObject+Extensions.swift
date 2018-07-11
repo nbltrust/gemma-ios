@@ -89,20 +89,4 @@ extension NSObject {
     }
 }
 
-extension String {
-    public func toDouble() -> Double? {
-        if self == "" {
-            return 0
-        }
-        
-        var selfString = self
-        if selfString.contains(","){
-            selfString = selfString.replacingOccurrences( of:"[^0-9.]", with: "", options: .regularExpression)
-        }
-        
-        return Double(selfString)
-    }
-    
-    
-    
-}
+
