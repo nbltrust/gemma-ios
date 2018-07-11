@@ -19,17 +19,59 @@ struct NetworkConfiguration {
     static let EOSIO_BASE_URL = URL(string: "http://139.196.73.117:9000")!
     static let EOSIO_DEFAULT_CODE = "eosio.token"
     static let EOSIO_DEFAULT_SYMBOL = "EOS"
+    
+    
+    static let SERVER_BASE_URLString = "https://app.cybex.io/"
+    static let ETH_PRICE = SERVER_BASE_URLString + "price"
 }
 
-enum NetworkError: Error {
-//    case invitecodeRegitered   = "10002"
-//    case invitecodeInexistence = "10003"
-//    case accountRegistered     = "10004"
-//    case accountInValid        = "10005"
-//    case accountWrongLength    = "10006"
-//    case parameterError        = "10007"
-//    case invalidPubKey         = "10008"
+enum GemmaError: Error {
+    enum NBLNetworkErrorCode: Int {
+        case invitecodeRegiteredCode   = 10002
+        case invitecodeInexistenceCode = 10003
+        case accountRegisteredCode     = 10004
+        case accountInValidCode        = 10005
+        case accountWrongLengthCode    = 10006
+        case parameterWrongCode        = 10007
+        case invalidPubKeyCode         = 10008
+        case balanceNotEnoughCode      = 20002
+        case creatAccountFailedCode    = 20003
+        
+        func desc() -> String {
+            switch self {
+            case .invitecodeRegiteredCode:
+                return R.string.localizable.error_invitecode_regitered()
+            case .invitecodeInexistenceCode:
+                return R.string.localizable.error_invitecode_inexistence()
+            case .accountRegisteredCode:
+                return R.string.localizable.error_account_registered()
+            case .accountInValidCode:
+                return R.string.localizable.error_account_invalid()
+            case .accountWrongLengthCode:
+                return R.string.localizable.error_account_wronglength()
+            case .parameterWrongCode:
+                return R.string.localizable.error_parameter_wrong()
+            case .invalidPubKeyCode:
+                return R.string.localizable.error_invalid_pubkey()
+            case .balanceNotEnoughCode:
+                return R.string.localizable.error_balance_unenough()
+            case .creatAccountFailedCode:
+                return R.string.localizable.error_createAccount_failed()
+            }
+        }
+        
+    }
+    
+    case NBLCode(code: NBLNetworkErrorCode)
+    
+    var localizedDescription: String {
+        switch self {
+        case let .NBLCode(code):
+            return code.desc()
+        }
+    }
 }
+
 
 
 enum EOSAction:String {

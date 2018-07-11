@@ -73,7 +73,7 @@
                                                     <action selector="agreeAction:" destination="rEl-PR-Sb8" eventType="touchUpInside" id="Xc9-Ye-Exq"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPD-W3-DUB">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPD-W3-DUB" customClass="ActiveLabel" customModule="ActiveLabel">
                                                 <rect key="frame" x="67" y="435.5" width="292" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="dd9-1J-hWR"/>
@@ -137,7 +137,7 @@
                     </view>
                     <connections>
                         <outlet property="agreeButton" destination="IWd-1I-l81" id="6RM-e4-eOe"/>
-                        <outlet property="agreeLabel" destination="SPD-W3-DUB" id="V9M-B0-tTw"/>
+                        <outlet property="agreeLabel" destination="SPD-W3-DUB" id="kr5-GY-jyk"/>
                         <outlet property="creatButton" destination="3pw-ye-lut" id="W0r-mU-Ld1"/>
                         <outlet property="registerView" destination="mVM-0s-KbK" id="Ba7-Sw-Fzv"/>
                     </connections>

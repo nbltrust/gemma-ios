@@ -8,6 +8,19 @@
 
 "test" = "测试";
 
+/*ErrorMessage*/
+"error_invitecode_regitered" = "邀请码已经被使用";
+"error_invitecode_inexistence" = "邀请码不存在";
+"error_account_registered" = "账户名已经被注册";
+"error_account_invalid" = "账户名包含无效字符";
+"error_account_wronglength" = "账户名长度只能是12位";
+"error_parameter_wrong" = "请求参数错误";
+"error_invalid_pubkey" = "无效的公钥";
+"error_balance_unenough" = "账户余额不足";
+"error_createAccount_failed" = "账户创建失败";
+"error_unknow" = "未知错误";
+"request_failed" = "请求失败";
+
 /*Account*/
 "account_wallet_name" = "EOS账户名";
 "account_setting_password" = "设置密码";
