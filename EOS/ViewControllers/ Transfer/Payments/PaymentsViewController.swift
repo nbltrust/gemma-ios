@@ -20,21 +20,24 @@ class PaymentsViewController: BaseViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        let name = String.init(describing:PaymentsRecordsCell.self)
+        setupUI()
 
-        tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
 
-        self.coordinator?.getDataFromServer({ (success) in
-            self.tableView.reloadData()
-            log.debug(self.coordinator?.state.property.data)
-        })
         
     }
     
     func setupUI(){
         let name = String.init(describing:PaymentsRecordsCell.self)
         
-//        tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
+        tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.coordinator?.getDataFromServer({ (success) in
+            log.debug(self.coordinator?.state.property.data)
+            self.data = (self.coordinator?.state.property.data)!
+
+            self.tableView.reloadData()
+        })
 //        if let data = self.data,data.count != 0 {
 //        }else{
 //            self.view.showNoData(R.string.localizable.myhistory_nodata.key.localized())

@@ -69,12 +69,12 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     }
     
     func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {
-        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WallketManager.shared.getPubKey(walletName)!, invitationCode: inviteCode), success: { (data) in
-            
-        }, error: { (code) in
-            
-        }) { (error) in
-            
-        }
+//        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WallketManager.shared.getPubKey(walletName)!, invitationCode: inviteCode), success: { (data) in
+//            
+//        }, error: { (code) in
+//            
+//        }) { (error) in
+//            
+//        }
     }
 }

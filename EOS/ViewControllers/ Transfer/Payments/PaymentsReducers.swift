@@ -28,6 +28,6 @@ func PaymentsPropertyReducer(_ state: PaymentsPropertyState?, action: Action) ->
 }
 
 func convertTransferViewModel(data:[Any]) -> [PaymentsRecordsViewModel] {
-    return [PaymentsRecordsViewModel.init(name: "data[0]", date: "data[0]", confirme: "", money: "")]
+    return [PaymentsRecordsViewModel.init(stateBool: true, address: "@ninini", time: "2131", transferState: "cnsdkjncis", money: "cnsincsi", transferStateBool: true)]
 }
 
