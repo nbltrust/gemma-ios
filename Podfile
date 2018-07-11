@@ -16,6 +16,7 @@ def data
     pod 'IQKeyboardManagerSwift'
     pod 'Guitar'
     pod 'SwiftyUserDefaults'
+    pod 'SwiftDate'
 end
 
 def resource
@@ -38,6 +39,7 @@ def architecture
    pod 'UIFontComplete'
    pod 'RxCocoa'
    pod 'AwaitKit'
+   pod 'Hydra'
 end
 
 def permission
@@ -70,6 +72,7 @@ def ui
     pod 'Keyboard+LayoutGuide'
     pod 'XLPagerTabStrip'
     pod 'EFQRCode'
+    pod 'ActiveLabel'
 end
 
 def other
