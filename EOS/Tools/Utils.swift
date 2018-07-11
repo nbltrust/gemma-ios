@@ -19,6 +19,14 @@ extension String {
             return ""
         }
     }
+    
+    var hashNano: String {
+        if let front = self.substring(from: 0, length: 8), let behind = self.substring(from: self.count - 9, length: 8) {
+            return front + "..." + behind
+        }
+        
+        return self
+    }
 }
 
 extension Date {

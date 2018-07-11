@@ -13,6 +13,8 @@ import SwiftyJSON
 
 enum NBLService {
     case createAccount(account:String, pubKey:String, invitationCode:String)
+    case accountVerify(account:String)
+    case accountHistory(account:String, showNum:String, lastPosition:String)
 }
 
 struct NBLNetwork {
@@ -54,6 +56,10 @@ extension NBLService : TargetType {
         switch self {
         case .createAccount(_, _, _):
             return "/api/v1/faucet/new"
+        case .accountVerify(_):
+            return "/account/verify"
+        case .accountHistory:
+            return "/api/v1/account/history"
         }
     }
     
@@ -66,6 +72,10 @@ extension NBLService : TargetType {
         case let .createAccount(account, pubKey, invitationCode):
             let params = ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey]
             return params
+        case let .accountVerify(account):
+            return ["account_name": account]
+        case let .accountHistory(account, showNum, lastPosition):
+            return ["account_name": account, "show_num":showNum, "last_pos": lastPosition]
         }
     }
     

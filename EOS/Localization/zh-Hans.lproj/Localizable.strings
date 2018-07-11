@@ -47,6 +47,16 @@
 
 //zsy add
 "account_total_assets" = "账户总资产";
+"receiver" = "收款人";
+"account_name" = "账户名";
+"payment_account" = "付款账户";
+"money" = "金额";
+"input_transfer_money" = "输入转账金额";
+"remark" = "备注";
+"input_transfer_remark" = "输入转账备注";
+
+//zsy end
+
 "day" = "天";
 "hour" = "小时";
 
