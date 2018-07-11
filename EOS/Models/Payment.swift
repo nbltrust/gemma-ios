@@ -9,6 +9,12 @@
 import Foundation
 import HandyJSON
 
+enum PaymentStatus: Int {
+    case unconfirmed = 1
+    case confirming
+    case confirmed
+}
+
 struct Payment:HandyJSON {
     var from:String!
     var to:String!
@@ -17,10 +23,11 @@ struct Payment:HandyJSON {
     var time:Date!
     var block:String!
     var hash:String!
+    var status: PaymentStatus!
     
     mutating func mapping(mapper: HelpingMapper) {
         mapper <<<
-            time <-- DateTransform()
+            time <-- GemmaDateFormatTransform(formatString: "yyyy-MM-dd'T'HH:mm:ss")
     }
     
     init() {}
