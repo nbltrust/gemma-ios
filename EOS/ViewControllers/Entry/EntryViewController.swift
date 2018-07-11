@@ -65,7 +65,7 @@ class EntryViewController: BaseViewController {
     func setupEvent() {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
-            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: {[weak self] (success) in
+            self.coordinator?.createWallet(self.registerView.nameView.textView.text!, password: self.registerView.passwordView.textView.text!, prompt: self.registerView.passwordPromptView.textView.text!, inviteCode: self.registerView.inviteCodeView.textView.text!, completion: {[weak self] (success) in
                 
             })
         }).disposed(by: disposeBag)
@@ -95,7 +95,7 @@ extension EntryViewController {
     }
     
     @objc func walletComfirmPassword(_ data: [String : Any]) {
-        self.coordinator?.validComfirmPassword(data["content"] as! String, comfirmPassword: self.registerView.passwordView.textField.text!)
+        self.coordinator?.validComfirmPassword(data["content"] as! String, comfirmPassword: self.registerView.passwordView.textView.text!)
     }
     
     @objc func walletInviteCode(_ data: [String : Any]) {

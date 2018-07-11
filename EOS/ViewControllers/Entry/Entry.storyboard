@@ -24,38 +24,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JA1-hc-mUK">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybh-Xb-w9m">
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="400" translatesAutoresizingMaskIntoConstraints="NO" id="mVM-0s-KbK" customClass="RegisterContentView" customModule="EOS" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="16" width="343" height="400"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVM-0s-KbK" customClass="RegisterContentView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="400"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="4"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="mVM-0s-KbK" secondAttribute="trailing" id="JPW-ci-ehm"/>
-                                                    <constraint firstItem="mVM-0s-KbK" firstAttribute="leading" secondItem="Ybh-Xb-w9m" secondAttribute="leading" id="M9a-yK-gJ7"/>
-                                                    <constraint firstAttribute="height" constant="400" id="gIX-AL-4fZ"/>
-                                                    <constraint firstAttribute="bottom" secondItem="mVM-0s-KbK" secondAttribute="bottom" id="gtc-XE-U74"/>
-                                                    <constraint firstItem="mVM-0s-KbK" firstAttribute="top" secondItem="Ybh-Xb-w9m" secondAttribute="top" id="p0t-hO-3dC"/>
-                                                </constraints>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                        <size key="value" width="0.0" height="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                        <real key="value" value="0.050000000000000003"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                        <color key="value" red="0.1529411765" green="0.20392156859999999" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
@@ -86,26 +60,17 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locali" value="create_wallet"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzj-B9-Hk9">
-                                                <rect key="frame" x="73" y="435.5" width="286" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="x7y-id-joz"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="Ybh-Xb-w9m" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="16" id="50q-Pb-rjs"/>
+                                            <constraint firstItem="IWd-1I-l81" firstAttribute="top" secondItem="mVM-0s-KbK" secondAttribute="bottom" constant="17" id="2Kp-7b-J6h"/>
                                             <constraint firstItem="3pw-ye-lut" firstAttribute="top" secondItem="IWd-1I-l81" secondAttribute="bottom" constant="27" id="5lG-5V-fN1"/>
-                                            <constraint firstAttribute="trailing" secondItem="yzj-B9-Hk9" secondAttribute="trailing" constant="16" id="8MT-h2-MSk"/>
-                                            <constraint firstItem="yzj-B9-Hk9" firstAttribute="leading" secondItem="IWd-1I-l81" secondAttribute="trailing" constant="13" id="F7V-7T-Jby"/>
-                                            <constraint firstItem="yzj-B9-Hk9" firstAttribute="centerY" secondItem="IWd-1I-l81" secondAttribute="centerY" id="G4L-fy-hGS"/>
-                                            <constraint firstItem="IWd-1I-l81" firstAttribute="top" secondItem="Ybh-Xb-w9m" secondAttribute="bottom" constant="17" id="GPp-J6-K7K"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ybh-Xb-w9m" secondAttribute="trailing" constant="16" id="VJS-RY-md4"/>
+                                            <constraint firstAttribute="trailing" secondItem="mVM-0s-KbK" secondAttribute="trailing" constant="16" id="PPh-gF-Ma6"/>
                                             <constraint firstAttribute="trailing" secondItem="3pw-ye-lut" secondAttribute="trailing" constant="32" id="guJ-4J-0zW"/>
-                                            <constraint firstItem="Ybh-Xb-w9m" firstAttribute="top" secondItem="JA1-hc-mUK" secondAttribute="top" constant="16" id="hTz-4Q-Srr"/>
                                             <constraint firstItem="IWd-1I-l81" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="35" id="l7X-uP-f02"/>
+                                            <constraint firstItem="mVM-0s-KbK" firstAttribute="top" secondItem="JA1-hc-mUK" secondAttribute="top" constant="16" id="oXy-zL-CjE"/>
                                             <constraint firstAttribute="bottom" secondItem="3pw-ye-lut" secondAttribute="bottom" constant="30" id="qEP-Rd-eJ9"/>
+                                            <constraint firstItem="mVM-0s-KbK" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="16" id="zEf-tf-2Cp"/>
                                             <constraint firstItem="3pw-ye-lut" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="32" id="zUf-kZ-Zf6"/>
                                         </constraints>
                                     </view>
