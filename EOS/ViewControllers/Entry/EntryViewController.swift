@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import ReSwift
 import SwiftRichString
+import ActiveLabel
 
 class EntryViewController: BaseViewController {
     
@@ -18,7 +19,7 @@ class EntryViewController: BaseViewController {
     
     @IBOutlet weak var agreeButton: UIButton!
     
-    @IBOutlet weak var agreeLabel: UILabel!
+    @IBOutlet weak var agreeLabel: ActiveLabel!
     
     @IBOutlet weak var creatButton: Button!
     
