@@ -99,4 +99,8 @@ extension EntryViewController {
     @objc func walletInviteCode(_ data: [String : Any]) {
         self.coordinator?.validInviteCode(data["content"] as! String)
     }
+    
+    @objc func getInviteCode(_ data: [String : Any]) {
+        self.coordinator?.getInviteCodeIntroduction()
+    }
 }
