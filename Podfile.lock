@@ -3,7 +3,6 @@ PODS:
     - RxCocoa (~> 4.2.0)
     - RxSwift (~> 4.2.0)
   - Alamofire (4.7.2)
-  - Atributika (4.4.3)
   - AwaitKit (5.0.0):
     - PromiseKit (~> 6)
   - Crashlytics (3.10.2):
@@ -130,7 +129,6 @@ PODS:
 
 DEPENDENCIES:
   - Action
-  - Atributika
   - AwaitKit
   - Crashlytics
   - CryptoSwift
@@ -193,7 +191,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Action
     - Alamofire
-    - Atributika
     - AwaitKit
     - Crashlytics
     - CryptoSwift
@@ -273,7 +270,6 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Action: 3d9486d3da02b572b0a034b6c49ac4c3fbcc8b63
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  Atributika: c2ecee6c96af80c29d6ed1606e70fa137e51790f
   AwaitKit: d8a6e30eeb2da916630270b44636b31033388bd8
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
@@ -341,6 +337,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
   ZLaunchAd: 47e4fd3718c73d48d74ac37f7f637021e4fd0e4b
 
-PODFILE CHECKSUM: 3c9dd4faf9502149624147733eb4272c7f8061a2
+PODFILE CHECKSUM: 115b422f22877536f751b527584e7f762410416f
 
 COCOAPODS: 1.5.3
