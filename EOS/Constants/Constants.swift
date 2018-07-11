@@ -12,6 +12,7 @@ import SwifterSwift
 struct AppConfiguration {
     static let APPID = ""
     
+    static let EOS_PRECISION = 4
 }
 
 struct NetworkConfiguration {
@@ -23,6 +24,11 @@ struct NetworkConfiguration {
     
     static let SERVER_BASE_URLString = "https://app.cybex.io/"
     static let ETH_PRICE = SERVER_BASE_URLString + "price"
+}
+
+struct H5AddressConfiguration {
+    static let GET_INVITECODE_URL = URL(string: "https://nebuladownload.oss-cn-beijing.aliyuncs.com/gemma/gemma_policy_cn.html")
+    static let REGISTER_PROTOCOL_URL = URL(string: "https://nebuladownload.oss-cn-beijing.aliyuncs.com/gemma/gemma_policy_cn.html")
 }
 
 enum GemmaError: Error {
@@ -71,8 +77,6 @@ enum GemmaError: Error {
         }
     }
 }
-
-
 
 enum EOSAction:String {
     case transfer

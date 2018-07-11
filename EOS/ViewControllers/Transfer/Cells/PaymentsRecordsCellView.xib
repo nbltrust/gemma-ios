@@ -26,20 +26,20 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XgG-KA-UFn">
-                    <rect key="frame" x="7" y="12" width="361" height="281"/>
+                    <rect key="frame" x="0.0" y="6" width="375" height="288"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8gD-RH-gka">
-                            <rect key="frame" x="16" y="126.5" width="28" height="28"/>
+                            <rect key="frame" x="16" y="130" width="28" height="28"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="cHz-Qc-o98"/>
                                 <constraint firstAttribute="width" constant="28" id="w9t-kq-gi8"/>
                             </constraints>
                         </imageView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Sow-5y-iNW">
-                            <rect key="frame" x="64" y="16" width="166.5" height="249"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Sow-5y-iNW">
+                            <rect key="frame" x="64" y="16" width="166.5" height="256"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="@lhy546802341" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjs-Kn-Trp">
-                                    <rect key="frame" x="0.0" y="0.0" width="126.5" height="184.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="126.5" height="177.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                     <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N65-2h-WVD">
-                                    <rect key="frame" x="0.0" y="199" width="166.5" height="50"/>
+                                    <rect key="frame" x="0.0" y="206" width="166.5" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="转账中：0/30 待确认" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJk-bb-sse">
                                             <rect key="frame" x="0.0" y="4" width="166.5" height="46"/>
@@ -75,7 +75,7 @@
                             </constraints>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjV-cQ-djO">
-                            <rect key="frame" x="330" y="16" width="15" height="19.5"/>
+                            <rect key="frame" x="344" y="16" width="15" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -105,12 +105,11 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="XgG-KA-UFn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="7" id="2I9-CO-VGZ"/>
-                <constraint firstItem="XgG-KA-UFn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="GRB-e4-Teh"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XgG-KA-UFn" secondAttribute="trailing" constant="7" id="at0-UK-b8l"/>
-                <constraint firstAttribute="bottom" secondItem="XgG-KA-UFn" secondAttribute="bottom" constant="7" id="nDa-xZ-8My"/>
+                <constraint firstItem="XgG-KA-UFn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="FtR-Nw-xCT"/>
+                <constraint firstItem="XgG-KA-UFn" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="NUX-nN-PE4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="XgG-KA-UFn" secondAttribute="bottom" constant="6" id="qor-SZ-znV"/>
+                <constraint firstItem="XgG-KA-UFn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="u8l-jc-Sg3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

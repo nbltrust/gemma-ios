@@ -119,6 +119,8 @@
 		7224712C20F57BA800536BF4 /* TransferReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224712820F57BA800536BF4 /* TransferReducers.swift */; };
 		7224712E20F57BDF00536BF4 /* Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7224712D20F57BDF00536BF4 /* Transfer.storyboard */; };
 		7224713020F57C0C00536BF4 /* TransferRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224712F20F57C0C00536BF4 /* TransferRootCoordinator.swift */; };
+		7224713220F5F92B00536BF4 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224713120F5F92B00536BF4 /* HomeHeaderView.swift */; };
+		7224713420F5F93600536BF4 /* HomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7224713320F5F93600536BF4 /* HomeHeaderView.xib */; };
 		727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A0C092D0A5867AD008B19D6E9C415 /* UIImage+Extensions.swift */; };
 		72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD93970489E3F3320328E206C4A6970 /* LineView.swift */; };
 		73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68B20F5B42600756391 /* Double+Extensions.swift */; };
@@ -130,6 +132,7 @@
 		73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A69620F5DFF400756391 /* Shapes.swift */; };
 		73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A69720F5DFF400756391 /* UIColorExtension.swift */; };
 		73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A69D20F5E08900756391 /* SimpleHTTPService.swift */; };
+		73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A020F5F00A00756391 /* AttributeLabelView.swift */; };
 		740D4F6730F1D7E5D73CA773FF7D257A /* iterator.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 8457B72985E9558F5B20BF3231F461E0 /* iterator.SUNWCCh */; };
 		74EAB156C6830FDEC85832623F3570BB /* array.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 5C327027D645845A2F702B5DDDA19D49 /* array.SUNWCCh */; };
 		7610C85F17FAA9095B27B17656342765 /* SharpCornerTipsLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD48A5CB8C231CED8E16AD9422A86BE0 /* SharpCornerTipsLabelView.xib */; };
@@ -5342,6 +5345,8 @@
 		7224712820F57BA800536BF4 /* TransferReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferReducers.swift; sourceTree = "<group>"; };
 		7224712D20F57BDF00536BF4 /* Transfer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transfer.storyboard; sourceTree = "<group>"; };
 		7224712F20F57C0C00536BF4 /* TransferRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferRootCoordinator.swift; sourceTree = "<group>"; };
+		7224713120F5F92B00536BF4 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		7224713320F5F93600536BF4 /* HomeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeaderView.xib; sourceTree = "<group>"; };
 		722807EABE9F57636A483A1344C09EBE /* identity_type.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = identity_type.hpp; sourceTree = "<group>"; };
 		72296D19D2098F5FE79E547088996DCC /* intrusive_ptr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = intrusive_ptr.hpp; sourceTree = "<group>"; };
 		7229F9473B63FBE448440F2256183152 /* make_expr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = make_expr.hpp; sourceTree = "<group>"; };
@@ -5429,6 +5434,7 @@
 		73B5A69620F5DFF400756391 /* Shapes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		73B5A69720F5DFF400756391 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		73B5A69D20F5E08900756391 /* SimpleHTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHTTPService.swift; sourceTree = "<group>"; };
+		73B5A6A020F5F00A00756391 /* AttributeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeLabelView.swift; sourceTree = "<group>"; };
 		73B7092474BF279955D825D4E7B6CB4F /* support.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = support.hpp; sourceTree = "<group>"; };
 		73BD769A0C773A8F78575956DB91C1DC /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		73CAF80D39A4581F26A830ABC0587047 /* fail_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fail_function.hpp; sourceTree = "<group>"; };
@@ -13902,6 +13908,7 @@
 		1D693EAC4EFE912D3F115C139DC846B0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				73B5A69F20F5EFF600756391 /* AttributeLabelView */,
 				ED5CF0797F269847E5CBEAEC6E2C89E5 /* LineView */,
 				8B351582A8E6943BACF62B02A64F0841 /* Button.swift */,
 				225825D920F4591F00AA2A4B /* Button.xib */,
@@ -14454,7 +14461,7 @@
 		2518901AF31C163FA80727C0AD3B89F6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C90D920F48C51004F4C52 /*  Transfer */,
+				3B4C90D920F48C51004F4C52 /* Transfer */,
 				7D5F1CA04F5428CB9A826437282B6A3D /* Entry */,
 				5F4F2C2A9D93854A7DACC8FE947B5D8C /* Home */,
 			);
@@ -16200,7 +16207,7 @@
 			path = numeric;
 			sourceTree = "<group>";
 		};
-		3B4C90D920F48C51004F4C52 /*  Transfer */ = {
+		3B4C90D920F48C51004F4C52 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
 				3B4C90F620F4D66E004F4C52 /* PaymentsDetail */,
@@ -16213,7 +16220,7 @@
 				7224712F20F57C0C00536BF4 /* TransferRootCoordinator.swift */,
 				7224712D20F57BDF00536BF4 /* Transfer.storyboard */,
 			);
-			path = " Transfer";
+			path = Transfer;
 			sourceTree = "<group>";
 		};
 		3B4C90E620F48F75004F4C52 /* Payments */ = {
@@ -20852,6 +20859,14 @@
 				73B5A69720F5DFF400756391 /* UIColorExtension.swift */,
 			);
 			path = Jdenticon;
+			sourceTree = "<group>";
+		};
+		73B5A69F20F5EFF600756391 /* AttributeLabelView */ = {
+			isa = PBXGroup;
+			children = (
+				73B5A6A020F5F00A00756391 /* AttributeLabelView.swift */,
+			);
+			path = AttributeLabelView;
 			sourceTree = "<group>";
 		};
 		73BD4FBA2F38D4F3BD54B74A7F535457 /* support */ = {
@@ -30678,6 +30693,8 @@
 				CD48A5CB8C231CED8E16AD9422A86BE0 /* SharpCornerTipsLabelView.xib */,
 				8F24B9DE40C7C026EC14D89C3C23BD19 /* WalletView.swift */,
 				AE043A4A4DFC6B91B26B32AD5BBD5276 /* WalletView.xib */,
+				7224713120F5F92B00536BF4 /* HomeHeaderView.swift */,
+				7224713320F5F93600536BF4 /* HomeHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -31170,6 +31187,7 @@
 				951370F92E000E97C463C5919BAAB9E8 /* TitleTextView.xib in Resources */,
 				9D9BA749355A04042D1E68409AAAC4B6 /* WalletView.xib in Resources */,
 				C53CFE1AA8DBFB2C3E6AD341D171268E /* algorithm in Resources */,
+				7224713420F5F93600536BF4 /* HomeHeaderView.xib in Resources */,
 				A4767A6C44780F87D5917F9FFAC0FB70 /* algorithm.SUNWCCh in Resources */,
 				3B4C910020F4D6A4004F4C52 /* PaymentsDetail.storyboard in Resources */,
 				DBD92836718CE10F249DB505B4B452DD /* array in Resources */,
@@ -31323,8 +31341,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
-				"${BUILT_PRODUCTS_DIR}/ActiveLabel/ActiveLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Atributika/Atributika.framework",
 				"${BUILT_PRODUCTS_DIR}/AwaitKit/AwaitKit.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Device/Device.framework",
@@ -31392,8 +31410,8 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActiveLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Atributika.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AwaitKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Device.framework",
@@ -31553,6 +31571,7 @@
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
 				54173FE67B1EB4725F8FC3B9D46CEA17 /* TitleTextView.swift in Sources */,
+				73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */,
 				73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */,
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
@@ -31562,6 +31581,7 @@
 				7224712920F57BA800536BF4 /* TransferCoordinator.swift in Sources */,
 				3B4C90FD20F4D686004F4C52 /* PaymentsDetailViewController.swift in Sources */,
 				7224712A20F57BA800536BF4 /* TransferActions.swift in Sources */,
+				7224713220F5F92B00536BF4 /* HomeHeaderView.swift in Sources */,
 				3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */,
 				7224712C20F57BA800536BF4 /* TransferReducers.swift in Sources */,
 				AD352B30A178C8A63FF0D742FDFD3081 /* UIImageView+Additions.swift in Sources */,

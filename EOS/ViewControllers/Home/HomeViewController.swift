@@ -21,7 +21,7 @@ class HomeViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        mWalletView.upDateImgView(mView: mBgView)
+//        mWalletView.upDateImgView(mView: mBgView)
     }
     
     func commonObserveState() {

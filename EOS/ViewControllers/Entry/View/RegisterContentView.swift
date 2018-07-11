@@ -36,6 +36,10 @@ class RegisterContentView: UIView {
         case walletInviteCode
     }
     
+    enum IntroduceEvent: String {
+        case getInviteCode
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
@@ -120,7 +124,7 @@ class RegisterContentView: UIView {
 extension RegisterContentView: TitleTextViewDelegate,TitleTextViewDataSource {
     func textIntroduction(titletextView: TitleTextView) {
         if titletextView == inviteCodeView {
-            
+            self.sendEventWith(IntroduceEvent.getInviteCode.rawValue, userinfo: [:])
         }
     }
     
