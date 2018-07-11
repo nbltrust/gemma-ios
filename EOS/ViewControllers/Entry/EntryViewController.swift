@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 import ReSwift
 import SwiftRichString
-//import ActiveLabel
 
 class EntryViewController: BaseViewController {
     
@@ -19,7 +18,6 @@ class EntryViewController: BaseViewController {
     
     @IBOutlet weak var agreeButton: UIButton!
     
-//    @IBOutlet weak var agreeLabel: ActiveLabel!
     
     @IBOutlet weak var creatButton: Button!
     
@@ -57,6 +55,10 @@ class EntryViewController: BaseViewController {
         let agreementStyle: Style = Styles.styles[StyleNames.agreement.rawValue] as! Style
         let agreeGroup = StyleGroup(base: agreeStyle, [StyleNames.agreement.rawValue : agreementStyle])
         let str = String(format: "%@  <%@>%@</%@>",R.string.localizable.agree_title(),StyleNames.agreement.rawValue, R.string.localizable.service_protocol(),StyleNames.agreement.rawValue)
+//        let agreeStyle: Style = Styles.styles[StyleNames.agree.rawValue] as! Style
+//        let agreementStyle: Style = Styles.styles[StyleNames.agreement.rawValue] as! Style
+//        let agreeGroup = StyleGroup(base: agreeStyle, [StyleNames.agreement.rawValue : agreementStyle])
+//        let str = String(format: "%@  <%@>%@</%@>",R.string.localizable.agree_title(),StyleNames.agreement.rawValue, R.string.localizable.service_protocol(),StyleNames.agreement.rawValue)
 //        agreeLabel.attributedText = str.set(style: agreeGroup)
     }
     
@@ -98,5 +100,9 @@ extension EntryViewController {
     
     @objc func walletInviteCode(_ data: [String : Any]) {
         self.coordinator?.validInviteCode(data["content"] as! String)
+    }
+    
+    @objc func getInviteCode(_ data: [String : Any]) {
+        self.coordinator?.getInviteCodeIntroduction()
     }
 }

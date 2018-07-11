@@ -73,19 +73,6 @@
                                                     <action selector="agreeAction:" destination="rEl-PR-Sb8" eventType="touchUpInside" id="Xc9-Ye-Exq"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPD-W3-DUB" customClass="ActiveLabel" customModule="ActiveLabel">
-                                                <rect key="frame" x="67" y="435.5" width="292" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="dd9-1J-hWR"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="agree_title"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="styleName" value="agree"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3pw-ye-lut" customClass="Button" customModule="EOS" customModuleProvider="target">
                                                 <rect key="frame" x="32" y="485" width="311" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -99,20 +86,26 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locali" value="create_wallet"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzj-B9-Hk9">
+                                                <rect key="frame" x="73" y="435.5" width="286" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="x7y-id-joz"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Ybh-Xb-w9m" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="16" id="50q-Pb-rjs"/>
                                             <constraint firstItem="3pw-ye-lut" firstAttribute="top" secondItem="IWd-1I-l81" secondAttribute="bottom" constant="27" id="5lG-5V-fN1"/>
+                                            <constraint firstAttribute="trailing" secondItem="yzj-B9-Hk9" secondAttribute="trailing" constant="16" id="8MT-h2-MSk"/>
+                                            <constraint firstItem="yzj-B9-Hk9" firstAttribute="leading" secondItem="IWd-1I-l81" secondAttribute="trailing" constant="13" id="F7V-7T-Jby"/>
+                                            <constraint firstItem="yzj-B9-Hk9" firstAttribute="centerY" secondItem="IWd-1I-l81" secondAttribute="centerY" id="G4L-fy-hGS"/>
                                             <constraint firstItem="IWd-1I-l81" firstAttribute="top" secondItem="Ybh-Xb-w9m" secondAttribute="bottom" constant="17" id="GPp-J6-K7K"/>
                                             <constraint firstAttribute="trailing" secondItem="Ybh-Xb-w9m" secondAttribute="trailing" constant="16" id="VJS-RY-md4"/>
-                                            <constraint firstItem="SPD-W3-DUB" firstAttribute="leading" secondItem="IWd-1I-l81" secondAttribute="trailing" constant="7" id="YWQ-WJ-hjU"/>
-                                            <constraint firstAttribute="trailing" secondItem="SPD-W3-DUB" secondAttribute="trailing" constant="16" id="gJd-E8-NTJ"/>
                                             <constraint firstAttribute="trailing" secondItem="3pw-ye-lut" secondAttribute="trailing" constant="32" id="guJ-4J-0zW"/>
                                             <constraint firstItem="Ybh-Xb-w9m" firstAttribute="top" secondItem="JA1-hc-mUK" secondAttribute="top" constant="16" id="hTz-4Q-Srr"/>
                                             <constraint firstItem="IWd-1I-l81" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="35" id="l7X-uP-f02"/>
                                             <constraint firstAttribute="bottom" secondItem="3pw-ye-lut" secondAttribute="bottom" constant="30" id="qEP-Rd-eJ9"/>
-                                            <constraint firstItem="SPD-W3-DUB" firstAttribute="centerY" secondItem="IWd-1I-l81" secondAttribute="centerY" id="zLZ-gW-UVm"/>
                                             <constraint firstItem="3pw-ye-lut" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="32" id="zUf-kZ-Zf6"/>
                                         </constraints>
                                     </view>
@@ -137,7 +130,6 @@
                     </view>
                     <connections>
                         <outlet property="agreeButton" destination="IWd-1I-l81" id="6RM-e4-eOe"/>
-                        <outlet property="agreeLabel" destination="SPD-W3-DUB" id="kr5-GY-jyk"/>
                         <outlet property="creatButton" destination="3pw-ye-lut" id="W0r-mU-Ld1"/>
                         <outlet property="registerView" destination="mVM-0s-KbK" id="Ba7-Sw-Fzv"/>
                     </connections>
