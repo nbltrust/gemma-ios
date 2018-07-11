@@ -7,18 +7,21 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 enum ButtonStyle: Int {
     case full = 1
     case border = 2
-    case unEnable = 3
 }
 
 class Button: UIView {
     
     @IBOutlet weak var button: UIButton!
     
-    @IBInspectable var locali:String? {
+    var isEnabel: BehaviorRelay<Bool> = BehaviorRelay(value: true)
+    
+    @IBInspectable var locali: String? {
         didSet {
             self.button.locali = locali!
         }
@@ -42,10 +45,16 @@ class Button: UIView {
             borderButton()
         case ButtonStyle.full.rawValue:
             fullButton()
-        case ButtonStyle.unEnable.rawValue:
-            unEnablebutton()
         default:
             return
+        }
+    }
+    
+    func updateUI() {
+        if isEnabel.value {
+            setupUI()
+        } else {
+            unEnablebutton()
         }
     }
     
@@ -72,9 +81,44 @@ class Button: UIView {
     }
     
     
+    func setup(){
+        self.setupUI()
+        self.isEnabel.subscribe(onNext: {[weak self] (isEnable) in
+            guard let `self` = self else { return }
+            self.updateUI()
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+    }
+    
+    fileprivate func updateHeight() {
+        layoutIfNeeded()
+        self.height = dynamicHeight()
+        invalidateIntrinsicContentSize()
+    }
+    
+    fileprivate func dynamicHeight() -> CGFloat {
+        let lastView = self.subviews.last?.subviews.last
+        return lastView!.bottom
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutIfNeeded()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadViewFromNib()
+        setup()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
+        setup()
     }
     
     fileprivate func loadViewFromNib() {
@@ -86,9 +130,5 @@ class Button: UIView {
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: UIViewNoIntrinsicMetric)
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import KRProgressHUD
 
 protocol EntryCoordinatorProtocol {
     
@@ -23,6 +24,7 @@ protocol EntryStateManagerProtocol {
     func validPassword(_ password: String)
     func validComfirmPassword(_ password: String, comfirmPassword: String)
     func validInviteCode(_ code: String)
+    func checkAgree(_ agree: Bool)
     func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion:@escaping (Bool)->())
 }
 
@@ -69,10 +71,10 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     }
     
     func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {
-        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WallketManager.shared.getPubKey(walletName)!, invitationCode: inviteCode), success: { (data) in
+        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WallketManager.shared.pubKey, invitationCode: inviteCode), success: { (data) in
             
         }, error: { (code) in
-            
+//            KRProgressHUD.showMessage(<#T##message: String##String#>)
         }) { (error) in
             
         }
