@@ -12,7 +12,6 @@ import SwifterSwift
 struct AppConfiguration {
     static let APPID = ""
     
-    
 }
 
 struct NetworkConfiguration {
@@ -21,6 +20,17 @@ struct NetworkConfiguration {
     static let EOSIO_DEFAULT_CODE = "eosio.token"
     static let EOSIO_DEFAULT_SYMBOL = "EOS"
 }
+
+enum NetworkError: Error {
+//    case invitecodeRegitered   = "10002"
+//    case invitecodeInexistence = "10003"
+//    case accountRegistered     = "10004"
+//    case accountInValid        = "10005"
+//    case accountWrongLength    = "10006"
+//    case parameterError        = "10007"
+//    case invalidPubKey         = "10008"
+}
+
 
 enum EOSAction:String {
     case transfer

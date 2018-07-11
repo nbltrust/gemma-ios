@@ -1,5 +1,5 @@
 //
-//  TransferActions.swift
+//  PaymentsDetailActions.swift
 //  EOS
 //
 //  Created 朱宋宇 on 2018/7/10.
@@ -10,23 +10,23 @@ import Foundation
 import ReSwift
 
 //MARK: - State
-struct TransferState: StateType {
+struct PaymentsDetailState: StateType {
     var isLoading = false
     var page: Int = 1
     var errorMessage:String?
-    var property: TransferPropertyState
+    var property: PaymentsDetailPropertyState
 }
 
-struct TransferPropertyState {
+struct PaymentsDetailPropertyState {
 }
 
 //MARK: - Action Creator
-class TransferPropertyActionCreate {
-    public typealias ActionCreator = (_ state: TransferState, _ store: Store<TransferState>) -> Action?
+class PaymentsDetailPropertyActionCreate {
+    public typealias ActionCreator = (_ state: PaymentsDetailState, _ store: Store<PaymentsDetailState>) -> Action?
     
     public typealias AsyncActionCreator = (
-        _ state: TransferState,
-        _ store: Store <TransferState>,
+        _ state: PaymentsDetailState,
+        _ store: Store <PaymentsDetailState>,
         _ actionCreatorCallback: @escaping ((ActionCreator) -> Void)
         ) -> Void
 }

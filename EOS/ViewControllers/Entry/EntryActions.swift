@@ -8,6 +8,7 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
 struct EntryState: StateType {
@@ -18,6 +19,31 @@ struct EntryState: StateType {
 }
 
 struct EntryPropertyState {
+    var nameValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    var passwordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    var comfirmPasswordValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    var inviteCodeValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    var isAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+}
+
+struct nameAction: Action {
+    var isValid: Bool = false
+}
+
+struct passwordAction: Action {
+    var isValid: Bool = false
+}
+
+struct comfirmPasswordAction: Action {
+    var isValid: Bool = false
+}
+
+struct inviteCodeAction: Action {
+    var isValid: Bool = false
+}
+
+struct agreeAction: Action {
+    var isAgree: Bool = false
 }
 
 //MARK: - Action Creator
