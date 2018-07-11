@@ -136,6 +136,7 @@
 		73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A420F5F62B00756391 /* AttributedText.swift */; };
 		73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A520F5F62B00756391 /* String+Detection.swift */; };
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
+		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
 		740D4F6730F1D7E5D73CA773FF7D257A /* iterator.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 8457B72985E9558F5B20BF3231F461E0 /* iterator.SUNWCCh */; };
 		74EAB156C6830FDEC85832623F3570BB /* array.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 5C327027D645845A2F702B5DDDA19D49 /* array.SUNWCCh */; };
 		7610C85F17FAA9095B27B17656342765 /* SharpCornerTipsLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD48A5CB8C231CED8E16AD9422A86BE0 /* SharpCornerTipsLabelView.xib */; };
@@ -5441,6 +5442,7 @@
 		73B5A6A420F5F62B00756391 /* AttributedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
 		73B5A6A520F5F62B00756391 /* String+Detection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Detection.swift"; sourceTree = "<group>"; };
 		73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Utils.swift"; sourceTree = "<group>"; };
+		73B5A6AC20F601DE00756391 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		73B7092474BF279955D825D4E7B6CB4F /* support.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = support.hpp; sourceTree = "<group>"; };
 		73BD769A0C773A8F78575956DB91C1DC /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		73CAF80D39A4581F26A830ABC0587047 /* fail_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fail_function.hpp; sourceTree = "<group>"; };
@@ -22818,6 +22820,7 @@
 			isa = PBXGroup;
 			children = (
 				037EA7EF67D3633CBA8C8AB082548C91 /* Account.swift */,
+				73B5A6AC20F601DE00756391 /* Payment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -31556,6 +31559,7 @@
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
 				73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */,
 				57988B0F4659572FB0099493045E18EE /* EntryReducers.swift in Sources */,
+				73B5A6AD20F601DE00756391 /* Payment.swift in Sources */,
 				E31116402719BEFB4AF172D69330D582 /* EntryRootCoordinator.swift in Sources */,
 				73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */,
 				73B5A6A820F5F62D00756391 /* AttributeStyle.swift in Sources */,
