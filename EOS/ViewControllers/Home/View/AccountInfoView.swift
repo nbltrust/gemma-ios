@@ -30,57 +30,61 @@ class AccountInfoView: UIView {
     @IBOutlet weak var mHorLineView: DashLineView!
     @IBOutlet weak var mVerLineView: DashLineView!
     
-    var mTotalEOSText = "- EOS" {
+    var data: Any? {
         didSet {
-            mTotalEOSLabel.text = mTotalEOSText
-        }
-    }
-    var mTotalCNYText = "≈- CNY" {
-        didSet {
-            mTotalCNYLabel.text = mTotalCNYText
-        }
-    }
-    var mRemainEOSText = "- EOS" {
-        didSet {
-            mRemainEOSLabel.text = mRemainEOSText
-        }
-    }
-    var mRedeemEOSText = "- EOS" {
-        didSet {
-            mRedeemEOSLabel.text = mRedeemEOSText
-        }
-    }
-    var mRemainTimeText = "" {
-        didSet {
-            mRemainTimeLabel.text = mRemainTimeText
-            if mRemainTimeLabel.text == "" {
-                mRemainTimeLabel.isHidden = true
-            } else {
-                mRemainTimeLabel.isHidden = false
-                mRemainTimeLabel.text = mRemainTimeText
-            }
-        }
-    }
-    var mCPUConsumeEOSText = "CPU\n0.01 EOS" {
-        didSet {
-            mCPUConsumeEOSLabel.text = mCPUConsumeEOSText
-        }
-    }
-    var mNETConsumeEOSText = "NET\n0.01 EOS" {
-        didSet {
-            mNETConsumeEOSLabel.text = mNETConsumeEOSText
-        }
-    }
-    var mRAMConsumeKBText = "RAM\n4.00 KB" {
-        didSet {
-            mRAMConsumeKBLabel.text = mRAMConsumeKBText
+            
         }
     }
     
     func setUp() {
-//        drawDashLine(directionType:lineDirectionType.horType ,lineView: mHorLineView, lineLength: 7, lineSpacing: 5, lineColor: UIColor.cloudyBlue)
-//        drawDashLine(directionType:lineDirectionType.verType , lineView: mVerLineView, lineLength: 7, lineSpacing: 5, lineColor: UIColor.cloudyBlue)
+        
     }
+//    var mTotalEOSText = "- EOS" {
+//        didSet {
+//            mTotalEOSLabel.text = mTotalEOSText
+//        }
+//    }
+//    var mTotalCNYText = "≈- CNY" {
+//        didSet {
+//            mTotalCNYLabel.text = mTotalCNYText
+//        }
+//    }
+//    var mRemainEOSText = "- EOS" {
+//        didSet {
+//            mRemainEOSLabel.text = mRemainEOSText
+//        }
+//    }
+//    var mRedeemEOSText = "- EOS" {
+//        didSet {
+//            mRedeemEOSLabel.text = mRedeemEOSText
+//        }
+//    }
+//    var mRemainTimeText = "" {
+//        didSet {
+//            mRemainTimeLabel.text = mRemainTimeText
+//            if mRemainTimeLabel.text == "" {
+//                mRemainTimeLabel.isHidden = true
+//            } else {
+//                mRemainTimeLabel.isHidden = false
+//                mRemainTimeLabel.text = mRemainTimeText
+//            }
+//        }
+//    }
+//    var mCPUConsumeEOSText = "CPU\n0.01 EOS" {
+//        didSet {
+//            mCPUConsumeEOSLabel.text = mCPUConsumeEOSText
+//        }
+//    }
+//    var mNETConsumeEOSText = "NET\n0.01 EOS" {
+//        didSet {
+//            mNETConsumeEOSLabel.text = mNETConsumeEOSText
+//        }
+//    }
+//    var mRAMConsumeKBText = "RAM\n4.00 KB" {
+//        didSet {
+//            mRAMConsumeKBLabel.text = mRAMConsumeKBText
+//        }
+//    }
     
     
     override var intrinsicContentSize: CGSize {

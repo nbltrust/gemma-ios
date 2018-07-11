@@ -80,7 +80,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
         
         let privakey = WallketManager.shared.getCachedPriKey(password)
         
-        let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WallketManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)
+        let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WallketManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: "")
         
         EOSIONetwork.request(target: .abi_json_to_bin(json:json!), success: { (data) in
             let abiStr = data

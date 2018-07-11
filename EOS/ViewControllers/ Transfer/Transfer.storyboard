@@ -17,7 +17,19 @@
                     <view key="view" contentMode="scaleToFill" id="AZx-Ve-8ir">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cpj-Vn-4v3" customClass="TransferView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ksi-eY-e9P" firstAttribute="trailing" secondItem="Cpj-Vn-4v3" secondAttribute="trailing" id="4IJ-0J-nh8"/>
+                            <constraint firstItem="Ksi-eY-e9P" firstAttribute="bottom" secondItem="Cpj-Vn-4v3" secondAttribute="bottom" id="4cO-Ml-xKm"/>
+                            <constraint firstItem="Cpj-Vn-4v3" firstAttribute="leading" secondItem="Ksi-eY-e9P" secondAttribute="leading" id="cJ7-AU-aMv"/>
+                            <constraint firstItem="Cpj-Vn-4v3" firstAttribute="top" secondItem="Ksi-eY-e9P" secondAttribute="top" id="u5J-w9-aBO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Ksi-eY-e9P"/>
                     </view>
                 </viewController>
