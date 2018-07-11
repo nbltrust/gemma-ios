@@ -72,7 +72,6 @@ def ui
     pod 'Keyboard+LayoutGuide'
     pod 'XLPagerTabStrip'
     pod 'EFQRCode'
-    pod 'Atributika'
     pod 'FSPagerView' #轮播图
     pod 'ESPullToRefresh'
     pod 'KUIPopOver'

@@ -23,6 +23,8 @@ protocol TransferStateManagerProtocol {
     func fetchUserAccount()
     
     func transferAccounts(_ password:String, account:String, amount:String, code:String)
+    
+    func checkAccountName(_ name:String) ->(Bool,error_info:String)
 }
 
 class TransferCoordinator: TransferRootCoordinator {
@@ -59,6 +61,10 @@ extension TransferCoordinator: TransferStateManagerProtocol {
         }) { (error) in
             
         }
+    }
+    
+    func checkAccountName(_ name:String) ->(Bool,error_info:String){
+        return (WallketManager.shared.isValidWalletName(name),R.string.localizable.name_ph.key.localized())
     }
     
     func getInfo(callback:@escaping (String)->()){

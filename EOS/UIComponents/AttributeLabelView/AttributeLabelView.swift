@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Atributika
 
 @IBDesignable
 open class AttributedLabelView: UIView {

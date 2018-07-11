@@ -1,5 +1,5 @@
 //
-//  HomeHeaderView.swift
+//  HomeTopView.swift
 //  EOS
 //
 //  Created by DKM on 2018/7/11.
@@ -8,8 +8,10 @@
 
 import UIKit
 
-class HomeHeaderView: UIView {
+class HomeTopView: UIView {
 
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var name: UILabel!
     
     func setup(){
         
@@ -57,5 +59,5 @@ class HomeHeaderView: UIView {
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
-
+    
 }

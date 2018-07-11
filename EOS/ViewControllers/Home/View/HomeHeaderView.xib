@@ -13,11 +13,33 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeHeaderView" customModule="EOS" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="374"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5f-dq-ZWO" customClass="HomeTopView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="140" id="xb4-lV-rSH"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgm-pM-jIk" customClass="WalletView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="16" y="140" width="343" height="234"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="234" id="Gz7-Ck-xdc"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="W5f-dq-ZWO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4If-ME-biB"/>
+                <constraint firstItem="vgm-pM-jIk" firstAttribute="top" secondItem="W5f-dq-ZWO" secondAttribute="bottom" id="O1g-ZF-iEn"/>
+                <constraint firstItem="vgm-pM-jIk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="OXp-KS-wx8"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vgm-pM-jIk" secondAttribute="trailing" constant="16" id="qWb-j0-5dZ"/>
+                <constraint firstItem="W5f-dq-ZWO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="sGp-jA-z1U"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="W5f-dq-ZWO" secondAttribute="trailing" id="tP3-vu-Fw6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-81" y="29"/>
+            <point key="canvasLocation" x="-15" y="12"/>
         </view>
     </objects>
 </document>
