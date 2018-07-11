@@ -8,7 +8,9 @@
 
 import UIKit
 import SwifterSwift
+import GrowingTextView
 
+@IBDesignable
 class RegisterContentView: UIView {
 
     @IBOutlet weak var nameView: TitleTextView!
@@ -43,11 +45,18 @@ class RegisterContentView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
-        setupUI()
+        setup()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        loadViewFromNib()
+        setup()
+    }
+    
+    func setup() {
+        setupUI()
+        updateHeight()
     }
     
     override var intrinsicContentSize: CGSize {
@@ -82,42 +91,48 @@ class RegisterContentView: UIView {
     }
     
     func setupUI() {
-        nameView.textField.tag = InputType.name.rawValue
-        nameView.textField.delegate = self
+        nameView.textView.tag = InputType.name.rawValue
+        nameView.textView.delegate = self
         nameView.delegate = self
         nameView.datasource = self
+        nameView.updateHeight()
         
-        passwordView.textField.tag = InputType.password.rawValue
-        passwordView.textField.delegate = self
+        passwordView.textView.tag = InputType.password.rawValue
+        passwordView.textView.delegate = self
         passwordView.delegate = self
         passwordView.datasource = self
-        
-        passwordComfirmView.textField.tag = InputType.comfirmPassword.rawValue
-        passwordComfirmView.textField.delegate = self
+        passwordView.updateHeight()
+
+        passwordComfirmView.textView.tag = InputType.comfirmPassword.rawValue
+        passwordComfirmView.textView.delegate = self
         passwordComfirmView.delegate = self
         passwordComfirmView.datasource = self
-        
-        passwordPromptView.textField.tag = InputType.passwordPrompt.rawValue
-        passwordPromptView.textField.delegate = self
+        passwordComfirmView.updateHeight()
+
+        passwordPromptView.textView.tag = InputType.passwordPrompt.rawValue
+        passwordPromptView.textView.delegate = self
         passwordPromptView.delegate = self
         passwordPromptView.datasource = self
-        
-        inviteCodeView.textField.tag = InputType.invitationCode.rawValue
-        inviteCodeView.textField.delegate = self
+        passwordPromptView.updateHeight()
+
+        inviteCodeView.textView.tag = InputType.invitationCode.rawValue
+        inviteCodeView.textView.delegate = self
         inviteCodeView.delegate = self
         inviteCodeView.datasource = self
+        inviteCodeView.updateHeight()
+
     }
     
     func passwordSwitch(isSelected: Bool) {
-        let tempPassword = passwordView.textField.text
-        passwordView.textField.text = ""
-        passwordView.textField.isSecureTextEntry = !isSelected
-        passwordView.textField.text = tempPassword
+        let tempPassword = passwordView.textView.text
+        passwordView.textView.text = ""
+        passwordView.textView.isSecureTextEntry = !isSelected
+        passwordView.textView.text = tempPassword
         
-        let tempComfirmPassword = passwordComfirmView.textField.text
-        passwordComfirmView.textField.text = ""
-        passwordComfirmView.textField.isSecureTextEntry = !isSelected
-        passwordComfirmView.textField.text = tempComfirmPassword
+        let tempComfirmPassword = passwordComfirmView.textView.text
+        passwordComfirmView.textView.text = ""
+        passwordComfirmView.textView.isSecureTextEntry = !isSelected
+        passwordComfirmView.textView.text = tempComfirmPassword
     }
 }
 
@@ -200,11 +215,15 @@ extension RegisterContentView: TitleTextViewDelegate,TitleTextViewDataSource {
                                       isShowWhenEditing: true)]
         }
     }
+    
+    func textUnitStr(titletextView: TitleTextView) -> String {
+        return ""
+    }
 }
 
-extension RegisterContentView: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        switch textField.tag {
+extension RegisterContentView: GrowingTextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        switch textView.tag {
         case InputType.name.rawValue:
             nameView.reloadActionViews(isEditing: true)
             nameView.checkStatus = TextUIStyle.highlight
@@ -225,61 +244,50 @@ extension RegisterContentView: UITextFieldDelegate {
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        switch textField.tag {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        switch textView.tag {
         case InputType.name.rawValue:
             nameView.reloadActionViews(isEditing: false)
-            nameView.checkStatus = WallketManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            nameView.checkStatus = WallketManager.shared.isValidWalletName(textView.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.password.rawValue:
             passwordView.reloadActionViews(isEditing: false)
-            passwordView.checkStatus = WallketManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            passwordView.checkStatus = WallketManager.shared.isValidPassword(textView.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.comfirmPassword.rawValue:
             passwordComfirmView.reloadActionViews(isEditing: false)
-            passwordComfirmView.checkStatus = WallketManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: passwordView.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            passwordComfirmView.checkStatus = WallketManager.shared.isValidComfirmPassword(textView.text!, comfirmPassword: passwordView.textView.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.passwordPrompt.rawValue:
             passwordPromptView.reloadActionViews(isEditing: false)
             passwordPromptView.checkStatus = TextUIStyle.common
         case InputType.invitationCode.rawValue:
             inviteCodeView.reloadActionViews(isEditing: false)
-            inviteCodeView.checkStatus = (textField.text?.isEmpty)! ? TextUIStyle.warning : TextUIStyle.common
+            inviteCodeView.checkStatus = (textView.text?.isEmpty)! ? TextUIStyle.warning : TextUIStyle.common
         default:
             return
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField.tag {
+    func textViewDidChange(_ textView: UITextView) {
+        switch textView.tag {
         case InputType.name.rawValue:
-            passwordView.textField.becomeFirstResponder()
+            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : textView.text])
         case InputType.password.rawValue:
-            passwordComfirmView.textField.becomeFirstResponder()
+            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : textView.text])
         case InputType.comfirmPassword.rawValue:
-            passwordPromptView.textField.becomeFirstResponder()
-        case InputType.passwordPrompt.rawValue:
-            inviteCodeView.textField.becomeFirstResponder()
-        default:
-            break
-        }
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text ?? ""
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        switch textField.tag {
-        case InputType.name.rawValue:
-            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : newText])
-        case InputType.password.rawValue:
-            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : newText])
-        case InputType.comfirmPassword.rawValue:
-            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : textView.text])
         case InputType.invitationCode.rawValue:
-            self.sendEventWith(TextChangeEvent.walletInviteCode.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletInviteCode.rawValue, userinfo: ["content" : textView.text])
         default:
-            return true
+            return
         }
-        return true
     }
     
+    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
+        UIView.animate(withDuration: 0.2) {
+            if let titleTextView = textView.superview?.superview as? TitleTextView {
+                titleTextView.updateHeight()
+            }
+            self.updateHeight()
+        }
+    }
 }
 

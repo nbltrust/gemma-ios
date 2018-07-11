@@ -8,6 +8,7 @@
 
 import UIKit
 import TinyConstraints
+import GrowingTextView
 
 /*UI状态*/
 enum TextUIStyle : Int {
@@ -61,21 +62,25 @@ protocol TitleTextViewDelegate: NSObjectProtocol {
 }
 
 protocol TitleTextViewDataSource: NSObjectProtocol {
+    func textUnitStr(titletextView: TitleTextView) -> String
     func textUISetting(titleTextView: TitleTextView) -> TitleTextSetting
     func textActionSettings(titleTextView: TitleTextView) -> [TextButtonSetting]
 }
 
+@IBDesignable
 class TitleTextView: UIView {
 
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var introduceLabel: UILabel!
     
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textView: GrowingTextView!
     
     @IBOutlet weak var gapView: UIView!
     
     @IBOutlet weak var actionsView: UIStackView!
+    
+    @IBOutlet weak var unitLabel: UILabel!
     
     let TextActionTag = 999
     
@@ -85,12 +90,19 @@ class TitleTextView: UIView {
         didSet {
             setting = datasource?.textUISetting(titleTextView: self)
             buttonSettings = datasource?.textActionSettings(titleTextView: self)
+            unit = datasource?.textUnitStr(titletextView: self)
         }
     }
     
     var buttonSettings : [TextButtonSetting]? {
         didSet {
             setupRightView()
+        }
+    }
+    
+    var unit: String? {
+        didSet {
+            unitLabel.text = unit
         }
     }
     
@@ -103,8 +115,8 @@ class TitleTextView: UIView {
             let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(introduce))
             introduceLabel.addGestureRecognizer(tapGestureRecognizer)
             
-            textField.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.cloudyBlue])
-            textField.isSecureTextEntry = setting.isSecureTextEntry
+            textView.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.cloudyBlue])
+            textView.isSecureTextEntry = setting.isSecureTextEntry
             gapView.alpha = setting.showLine ? 1.0 : 0.0
         }
     }
@@ -123,27 +135,15 @@ class TitleTextView: UIView {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        loadViewFromNib()
-    }
-    
-    fileprivate func loadViewFromNib() {
-        let bundle = Bundle(for: type(of: self))
-        let nibName = String(describing: type(of: self))
-        let nib = UINib.init(nibName: nibName, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+    func setUnit(unit: String) {
         
-        addSubview(view)
-        view.frame = self.bounds
-        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
     func setupRightView() {
         guard (buttonSettings != nil) else {
             return
         }
-
+        
         for (index, value) in (buttonSettings?.enumerated())! {
             let image = UIImage(named: value.imageName)
             let btn = TextRightButton()
@@ -152,7 +152,7 @@ class TitleTextView: UIView {
             btn.setImage(UIImage(named: value.selectedImageName), for: .selected)
             btn.addTarget(self, action: #selector(handleAction(sender:)), for: .touchUpInside)
             btn.isShowWhenEditing = value.isShowWhenEditing
-            btn.width((image?.size.width)! + 10)
+            btn.width((image?.size.width)! + 5)
             actionsView.addArrangedSubview(btn)
             btn.isHidden = value.isShowWhenEditing
         }
@@ -172,11 +172,15 @@ class TitleTextView: UIView {
     }
     
     func clearText() {
-        textField.text = ""
+        textView.text = ""
     }
     
     func showPromoptView() {
         
+    }
+    
+    func setup() {
+        updateHeight()
     }
     
     @objc func introduce() {
@@ -202,6 +206,45 @@ class TitleTextView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: UIViewNoIntrinsicMetric)
+        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+    }
+    
+    func updateHeight() {
+        layoutIfNeeded()
+        self.height = dynamicHeight()
+        invalidateIntrinsicContentSize()
+    }
+    
+    fileprivate func dynamicHeight() -> CGFloat {
+        let lastView = self.subviews.last?.subviews.last
+        return lastView!.bottom
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutIfNeeded()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadViewFromNib()
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        loadViewFromNib()
+        setup()
+    }
+    
+    fileprivate func loadViewFromNib() {
+        let bundle = Bundle(for: type(of: self))
+        let nibName = String(describing: type(of: self))
+        let nib = UINib.init(nibName: nibName, bundle: bundle)
+        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        
+        addSubview(view)
+        view.frame = self.bounds
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 }
