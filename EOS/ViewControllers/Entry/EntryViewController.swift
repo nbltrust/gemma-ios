@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import ReSwift
 import SwiftRichString
-import ActiveLabel
+import Atributika
 
 class EntryViewController: BaseViewController {
     
@@ -19,7 +19,6 @@ class EntryViewController: BaseViewController {
     
     @IBOutlet weak var agreeButton: UIButton!
     
-    @IBOutlet weak var agreeLabel: ActiveLabel!
     
     @IBOutlet weak var creatButton: Button!
     
@@ -53,11 +52,11 @@ class EntryViewController: BaseViewController {
     }
     
     func setupUI() {
-        let agreeStyle: Style = Styles.styles[StyleNames.agree.rawValue] as! Style
-        let agreementStyle: Style = Styles.styles[StyleNames.agreement.rawValue] as! Style
-        let agreeGroup = StyleGroup(base: agreeStyle, [StyleNames.agreement.rawValue : agreementStyle])
-        let str = String(format: "%@  <%@>%@</%@>",R.string.localizable.agree_title(),StyleNames.agreement.rawValue, R.string.localizable.service_protocol(),StyleNames.agreement.rawValue)
-        agreeLabel.attributedText = str.set(style: agreeGroup)
+//        let agreeStyle: Style = Styles.styles[StyleNames.agree.rawValue] as! Style
+//        let agreementStyle: Style = Styles.styles[StyleNames.agreement.rawValue] as! Style
+//        let agreeGroup = StyleGroup(base: agreeStyle, [StyleNames.agreement.rawValue : agreementStyle])
+//        let str = String(format: "%@  <%@>%@</%@>",R.string.localizable.agree_title(),StyleNames.agreement.rawValue, R.string.localizable.service_protocol(),StyleNames.agreement.rawValue)
+//        agreeLabel.attributedText = str.set(style: agreeGroup)
     }
     
     func setupEvent() {
