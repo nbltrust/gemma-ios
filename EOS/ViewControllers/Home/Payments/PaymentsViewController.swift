@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+//import ESPullToRefresh
+
 
 class PaymentsViewController: BaseViewController {
 
@@ -17,6 +19,7 @@ class PaymentsViewController: BaseViewController {
     var coordinator: (PaymentsCoordinatorProtocol & PaymentsStateManagerProtocol)?
 
     var data = [PaymentsRecordsViewModel]()
+    var lastPosition = 0
     
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +35,13 @@ class PaymentsViewController: BaseViewController {
         tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
         tableView.delegate = self
         tableView.dataSource = self
-        self.coordinator?.getDataFromServer({ (success) in
-            log.debug(self.coordinator?.state.property.data)
+        self.coordinator?.getDataFromServer(WallketManager.shared.getAccount(), showNum: "10", lastPosition: lastPosition.string, completion: { (success) in
             self.data = (self.coordinator?.state.property.data)!
-
+            
             self.tableView.reloadData()
+
         })
+
     }
     
     func commonObserveState() {

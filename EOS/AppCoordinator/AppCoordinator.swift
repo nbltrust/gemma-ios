@@ -70,8 +70,8 @@ class AppCoordinator {
 
     func showTest() {
         let nav = BaseNavigationController()
-        let vc = R.storyboard.transfer.transferViewController()!
-        let coor = TransferCoordinator(rootVC: nav)
+        let vc = R.storyboard.payments.paymentsViewController()!
+        let coor = PaymentsCoordinator(rootVC: nav)
         vc.coordinator = coor
 //        root.start()
         
