@@ -76,6 +76,7 @@ def ui
     pod 'FSPagerView' #轮播图
     pod 'ESPullToRefresh'
     pod 'KUIPopOver'
+    pod 'GrowingTextView'
 end
 
 def other
