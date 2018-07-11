@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import KRProgressHUD
 
 protocol PaymentsCoordinatorProtocol {
     
@@ -22,7 +23,7 @@ protocol PaymentsStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<PaymentsState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func getDataFromServer(_ completion: @escaping (Bool)->Void )
+    func getDataFromServer(_ account: String, showNum: String, lastPosition: String, completion: @escaping (Bool)->Void )
 }
 
 class PaymentsCoordinator: HomeRootCoordinator {
@@ -57,14 +58,21 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
-    func getDataFromServer(_ completion: @escaping (Bool)->Void ) {
-        EOSIONetwork.request(target: .get_info, success: { (json) in
-            self.store.dispatch(FetchPaymentsRecordsListAction(data: [json]))
+    func getDataFromServer(_ account: String, showNum: String, lastPosition: String, completion: @escaping (Bool)->Void ) {
+        NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: showNum, lastPosition: lastPosition), success: { (data) in
+            self.store.dispatch(FetchPaymentsRecordsListAction(data: data))
             completion(true)
-        }, error: { (num) in
-            
-        }) { (error) in
-            
+        }, error: { (code) in
+            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                let error = GemmaError.NBLCode(code: gemmaerror)
+                KRProgressHUD.showError(withMessage: error.localizedDescription)
+            } else {
+                KRProgressHUD.showError(withMessage: R.string.localizable.error_unknow())
+            }
+        }) { (moyaError) in
+            KRProgressHUD.showError(withMessage: R.string.localizable.request_failed())
+
         }
+        
     }
 }
