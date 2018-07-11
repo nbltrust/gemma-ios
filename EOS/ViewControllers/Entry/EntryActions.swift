@@ -23,6 +23,7 @@ struct EntryPropertyState {
     var passwordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     var comfirmPasswordValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
     var inviteCodeValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    var isAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 }
 
 struct nameAction: Action {
@@ -39,6 +40,10 @@ struct comfirmPasswordAction: Action {
 
 struct inviteCodeAction: Action {
     var isValid: Bool = false
+}
+
+struct agreeAction: Action {
+    var isAgree: Bool = false
 }
 
 //MARK: - Action Creator

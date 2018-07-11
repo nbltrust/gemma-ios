@@ -20,25 +20,24 @@ class PaymentsViewController: BaseViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        let name = String.init(describing:PaymentsRecordsCell.self)
+        setupUI()
 
-        tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
 
-        self.coordinator?.getDataFromServer({ (success) in
-            self.tableView.reloadData()
-            log.debug(self.coordinator?.state.property.data)
-        })
         
     }
     
     func setupUI(){
         let name = String.init(describing:PaymentsRecordsCell.self)
         
-//        tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
-//        if let data = self.data,data.count != 0 {
-//        }else{
-//            self.view.showNoData(R.string.localizable.myhistory_nodata.key.localized())
-//        }
+        tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.coordinator?.getDataFromServer({ (success) in
+            log.debug(self.coordinator?.state.property.data)
+            self.data = (self.coordinator?.state.property.data)!
+
+            self.tableView.reloadData()
+        })
     }
     
     func commonObserveState() {
@@ -69,9 +68,13 @@ extension PaymentsViewController : UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let name = String.init(describing:PaymentsRecordsCell.self)
         let cell = tableView.dequeueReusableCell(withIdentifier: name, for: indexPath) as! PaymentsRecordsCell
-        cell.setup(data)
+        cell.setup(data[indexPath.row])
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.coordinator?.pushPaymentsDetail(data: data[indexPath.row])
     }
     
 }

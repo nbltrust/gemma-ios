@@ -26,6 +26,8 @@ class EntryViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        //获取公私钥
+        WallketManager.shared.createPairKey()
         setupUI()
         setupEvent()
     }
@@ -46,6 +48,7 @@ class EntryViewController: BaseViewController {
     
     @IBAction func agreeAction(_ sender: Any) {
         agreeButton.isSelected = !agreeButton.isSelected
+        self.coordinator?.checkAgree(agreeButton.isSelected)
     }
     
     func setupUI() {
@@ -60,6 +63,7 @@ class EntryViewController: BaseViewController {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
             self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: {[weak self] (success) in
+                
             })
         }).disposed(by: disposeBag)
     }
@@ -67,26 +71,13 @@ class EntryViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
-        
-        self.coordinator?.state.property.nameValid.subscribe(onNext: {[weak self] (valid) in
-            guard let `self` = self else { return }
-            
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
-        self.coordinator?.state.property.passwordValid.subscribe(onNext: {[weak self] (valid) in
-            
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
-        
-        
-        
         Observable.combineLatest(self.coordinator!.state.property.nameValid.asObservable(),
                                  self.coordinator!.state.property.passwordValid.asObservable(),
                                  self.coordinator!.state.property.comfirmPasswordValid.asObservable(),
-                                 self.coordinator!.state.property.inviteCodeValid.asObservable()).map { (arg0) -> Bool in
-                                    log.debug(arg0)
-            return arg0.0 && arg0.1 && arg0.2 && arg0.3
-        }.bind(to: creatButton.button.rx.isEnabled).disposed(by: disposeBag)
+                                 self.coordinator!.state.property.inviteCodeValid.asObservable(),
+                                 self.coordinator!.state.property.isAgree.asObservable()).map { (arg0) -> Bool in
+            return arg0.0 && arg0.1 && arg0.2 && arg0.3 && arg0.4
+        }.bind(to: creatButton.isEnabel).disposed(by: disposeBag)
         
     }
 }
@@ -105,6 +96,6 @@ extension EntryViewController {
     }
     
     @objc func walletInviteCode(_ data: [String : Any]) {
-        self.coordinator?.validWalletName(data["content"] as! String)
+        self.coordinator?.validInviteCode(data["content"] as! String)
     }
 }

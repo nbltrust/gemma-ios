@@ -27,10 +27,12 @@ struct FetchPaymentsRecordsListAction : Action {
 
 //MARK: - ViewModel
 struct PaymentsRecordsViewModel {
-    var name : String = ""
-    var date : String = ""
-    var confirme : String = ""
+    var stateBool : Bool = true
+    var address : String = ""
+    var time : String = ""
+    var transferState : String = ""
     var money : String = ""
+    var transferStateBool : Bool = true
 }
 
 //MARK: - Action Creator

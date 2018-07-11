@@ -20,7 +20,12 @@ class PaymentsRecordsCellView: UIView {
     
     var data : Any?{
         didSet{
-            
+            guard let newData = data as? PaymentsRecordsViewModel else { return }
+            address.text = newData.address
+            time.text = newData.time
+            transferState.text = newData.transferState
+            money.text = newData.money
+            transferStateView.isHidden = newData.transferStateBool
         }
     }
     
