@@ -11,7 +11,8 @@ import ReSwift
 import KRProgressHUD
 
 protocol EntryCoordinatorProtocol {
-    
+    func pushToServiceProtocolVC()
+    func pushToGetInviteCodeIntroductionVC()
 }
 
 protocol EntryStateManagerProtocol {
@@ -26,8 +27,6 @@ protocol EntryStateManagerProtocol {
     func validInviteCode(_ code: String)
     func checkAgree(_ agree: Bool)
     func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion:@escaping (Bool)->())
-    func serviceProtocol()
-    func getInviteCodeIntroduction()
 }
 
 class EntryCoordinator: EntryRootCoordinator {
@@ -42,7 +41,17 @@ class EntryCoordinator: EntryRootCoordinator {
 }
 
 extension EntryCoordinator: EntryCoordinatorProtocol {
+    func pushToServiceProtocolVC() {
+        let vc = BaseWebViewController()
+        vc.url = H5AddressConfiguration.REGISTER_PROTOCOL_URL
+        self.rootVC.pushViewController(vc, animated: true)
+    }
     
+    func pushToGetInviteCodeIntroductionVC() {
+        let vc = BaseWebViewController()
+        vc.url = H5AddressConfiguration.GET_INVITECODE_URL
+        self.rootVC.pushViewController(vc, animated: true)
+    }
 }
 
 extension EntryCoordinator: EntryStateManagerProtocol {
@@ -89,15 +98,5 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         }) { (error) in
             KRProgressHUD.showError(withMessage: R.string.localizable.request_failed())
         }
-    }
-    
-    func getInviteCodeIntroduction() {
-        let vc = BaseWebViewController()
-        vc.url = H5AddressConfiguration.GET_INVITECODE_URL
-        self.rootVC.pushViewController(vc, animated: true)
-    }
-    
-    func serviceProtocol() {
-        
     }
 }

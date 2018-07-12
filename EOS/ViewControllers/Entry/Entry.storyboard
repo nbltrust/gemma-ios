@@ -60,11 +60,17 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locali" value="create_wallet"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrh-ik-lr0" customClass="AttributedLabelView" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="73" y="433" width="286" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="AOy-Lv-UdL"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="IWd-1I-l81" firstAttribute="top" secondItem="mVM-0s-KbK" secondAttribute="bottom" constant="17" id="2Kp-7b-J6h"/>
                                             <constraint firstItem="3pw-ye-lut" firstAttribute="top" secondItem="IWd-1I-l81" secondAttribute="bottom" constant="27" id="5lG-5V-fN1"/>
+                                            <constraint firstItem="zrh-ik-lr0" firstAttribute="leading" secondItem="IWd-1I-l81" secondAttribute="trailing" constant="13" id="88A-ZI-p2N"/>
                                             <constraint firstAttribute="trailing" secondItem="mVM-0s-KbK" secondAttribute="trailing" constant="16" id="PPh-gF-Ma6"/>
                                             <constraint firstAttribute="trailing" secondItem="3pw-ye-lut" secondAttribute="trailing" constant="32" id="guJ-4J-0zW"/>
                                             <constraint firstItem="IWd-1I-l81" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="35" id="l7X-uP-f02"/>
@@ -72,6 +78,8 @@
                                             <constraint firstAttribute="bottom" secondItem="3pw-ye-lut" secondAttribute="bottom" constant="30" id="qEP-Rd-eJ9"/>
                                             <constraint firstItem="mVM-0s-KbK" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="16" id="zEf-tf-2Cp"/>
                                             <constraint firstItem="3pw-ye-lut" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="32" id="zUf-kZ-Zf6"/>
+                                            <constraint firstAttribute="trailing" secondItem="zrh-ik-lr0" secondAttribute="trailing" constant="16" id="zXe-fu-MEi"/>
+                                            <constraint firstItem="zrh-ik-lr0" firstAttribute="centerY" secondItem="IWd-1I-l81" secondAttribute="centerY" id="zsk-Wd-dJL"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -95,6 +103,7 @@
                     </view>
                     <connections>
                         <outlet property="agreeButton" destination="IWd-1I-l81" id="6RM-e4-eOe"/>
+                        <outlet property="agreeView" destination="zrh-ik-lr0" id="xMJ-fp-rqL"/>
                         <outlet property="creatButton" destination="3pw-ye-lut" id="W0r-mU-Ld1"/>
                         <outlet property="registerView" destination="mVM-0s-KbK" id="Ba7-Sw-Fzv"/>
                     </connections>
@@ -103,9 +112,116 @@
             </objects>
             <point key="canvasLocation" x="53.600000000000001" y="106.59670164917542"/>
         </scene>
+        <!--Entry Guide View Controller-->
+        <scene sceneID="JUA-r2-zyJ">
+            <objects>
+                <viewController storyboardIdentifier="EntryGuideViewController" id="xVd-zy-h4q" customClass="EntryGuideViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Trm-R7-NfC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JU8-LI-b4f" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="32" y="575" width="311" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="pkZ-6S-F8t"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="recover_from_cppy"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="nq9-nF-NcQ">
+                                <rect key="frame" x="0.0" y="160" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="vn9-uN-pHK"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4s5-HG-10P" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="32" y="515" width="311" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="hXw-aV-kTp"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="create_new_wallet"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="nq9-nF-NcQ" firstAttribute="top" secondItem="o3q-kS-dfz" secondAttribute="top" constant="140" id="CGf-E2-E0O"/>
+                            <constraint firstItem="nq9-nF-NcQ" firstAttribute="leading" secondItem="o3q-kS-dfz" secondAttribute="leading" id="D4D-e4-61x"/>
+                            <constraint firstItem="JU8-LI-b4f" firstAttribute="leading" secondItem="o3q-kS-dfz" secondAttribute="leading" constant="32" id="KHl-8T-SZL"/>
+                            <constraint firstItem="o3q-kS-dfz" firstAttribute="trailing" secondItem="nq9-nF-NcQ" secondAttribute="trailing" id="M3d-bC-pl5"/>
+                            <constraint firstItem="JU8-LI-b4f" firstAttribute="top" secondItem="4s5-HG-10P" secondAttribute="bottom" constant="16" id="Up2-Om-gof"/>
+                            <constraint firstItem="4s5-HG-10P" firstAttribute="leading" secondItem="o3q-kS-dfz" secondAttribute="leading" constant="32" id="Xd6-6v-BHW"/>
+                            <constraint firstItem="o3q-kS-dfz" firstAttribute="bottom" secondItem="JU8-LI-b4f" secondAttribute="bottom" constant="48" id="dM7-Qa-Hlw"/>
+                            <constraint firstItem="o3q-kS-dfz" firstAttribute="trailing" secondItem="JU8-LI-b4f" secondAttribute="trailing" constant="32" id="ncn-et-eNz"/>
+                            <constraint firstItem="o3q-kS-dfz" firstAttribute="trailing" secondItem="4s5-HG-10P" secondAttribute="trailing" constant="32" id="sNT-d2-6De"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="o3q-kS-dfz"/>
+                    </view>
+                    <connections>
+                        <outlet property="createView" destination="4s5-HG-10P" id="f05-kM-tIy"/>
+                        <outlet property="recoverView" destination="JU8-LI-b4f" id="Q2r-Yq-z9q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w3w-4w-yI6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="903.20000000000005" y="103.89805097451276"/>
+        </scene>
+        <!--Creatation Complete View Controller-->
+        <scene sceneID="6HT-qP-cZf">
+            <objects>
+                <viewController storyboardIdentifier="CreatationCompleteViewController" id="whx-JZ-Q9F" customClass="CreatationCompleteViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mKv-Mn-sAO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="mya-AR-JQr">
+                                <rect key="frame" x="164.5" y="96" width="46" height="46"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P2Z-H3-rNK" customClass="ComfirmView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="16" y="439" width="343" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9Q-n1-wo4">
+                                <rect key="frame" x="16" y="163" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="prompt_create_success"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="P2Z-H3-rNK" firstAttribute="leading" secondItem="34v-hb-sD9" secondAttribute="leading" constant="16" id="3xA-6M-oLD"/>
+                            <constraint firstItem="34v-hb-sD9" firstAttribute="trailing" secondItem="P2Z-H3-rNK" secondAttribute="trailing" constant="16" id="71o-0I-g5Y"/>
+                            <constraint firstItem="mya-AR-JQr" firstAttribute="centerX" secondItem="mKv-Mn-sAO" secondAttribute="centerX" id="JuN-kO-GsA"/>
+                            <constraint firstItem="mya-AR-JQr" firstAttribute="top" secondItem="34v-hb-sD9" secondAttribute="top" constant="76" id="Pz1-V9-r0H"/>
+                            <constraint firstItem="l9Q-n1-wo4" firstAttribute="leading" secondItem="34v-hb-sD9" secondAttribute="leading" constant="16" id="Xsf-ou-kzH"/>
+                            <constraint firstItem="l9Q-n1-wo4" firstAttribute="top" secondItem="mya-AR-JQr" secondAttribute="bottom" constant="21" id="bxh-9j-Dmx"/>
+                            <constraint firstItem="P2Z-H3-rNK" firstAttribute="top" secondItem="l9Q-n1-wo4" secondAttribute="bottom" constant="57" id="cm4-HN-e2p"/>
+                            <constraint firstItem="34v-hb-sD9" firstAttribute="trailing" secondItem="l9Q-n1-wo4" secondAttribute="trailing" constant="16" id="tsO-dl-7gx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="34v-hb-sD9"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BJT-vJ-8M2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1605.5999999999999" y="105.69715142428787"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="ic_check" width="46" height="46"/>
         <image name="ic_checkbox" width="24" height="24"/>
         <image name="ic_checkbox_active" width="24" height="24"/>
+        <image name="logo" width="129" height="177"/>
     </resources>
 </document>
