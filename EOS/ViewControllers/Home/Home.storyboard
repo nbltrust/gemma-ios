@@ -42,7 +42,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cdB-yQ-pdE" firstAttribute="top" secondItem="f5G-1Z-JFd" secondAttribute="top" id="3NU-IM-ra9"/>
                             <constraint firstItem="cdB-yQ-pdE" firstAttribute="leading" secondItem="f5G-1Z-JFd" secondAttribute="leading" id="5TC-os-rLe"/>

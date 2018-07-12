@@ -17,6 +17,7 @@ class WalletView: UIView {
     @IBOutlet var mAccountInfoView: AccountInfoView!
     var data : Any? {
         didSet {
+            mAccountInfoView.data = data
             updateHeight()
 //            upDateShadowBgImgView(rect: mShadowView.frame)
         }

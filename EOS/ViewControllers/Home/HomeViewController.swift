@@ -24,11 +24,8 @@ class HomeViewController: BaseViewController {
     var data : Any?
 	override func viewDidLoad() {
         showWholeNavBg = true
-        
         super.viewDidLoad()
-//        mWalletView.upDateImgView(mView: mBgView)
         setupUI()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +58,7 @@ class HomeViewController: BaseViewController {
         
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
-            
+            self.tableHeaderView.data = model
             
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
