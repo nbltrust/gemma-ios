@@ -22,11 +22,17 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
         var viewmodel = state.info.value
         if let balance = action.balance.arrayValue.first?.string {
             viewmodel.balance = balance
-            viewmodel.allAssets = calculateTotalAsset(viewmodel)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
-
-            state.info.accept(viewmodel)
+          
         }
+        else {
+            viewmodel.balance = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+        }
+        
+        viewmodel.allAssets = calculateTotalAsset(viewmodel)
+        viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
+        
+        state.info.accept(viewmodel)
+        
     case let action as AccountFetchedAction:
         var viewmodel = convertAccountViewModelWithAccount(action.info, viewmodel:state.info.value)
         viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)

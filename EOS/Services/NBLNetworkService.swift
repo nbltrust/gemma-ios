@@ -31,12 +31,18 @@ struct NBLNetwork {
             switch result {
             case let .success(response):
                 do {
-                    _ = try response.filterSuccessfulStatusCodes()
+                    let response = try response.filterSuccessfulStatusCodes()
                     let json = try JSON(response.mapJSON())
-                     successCallback(json)
+                    if json["code"].intValue == 0 {
+                        let result = json["result"]
+                        successCallback(result)
+                    }
+                    else {
+                        errorCallback(json["code"].intValue)
+                    }
                 }
                 catch _ {
-                    errorCallback(0)
+                    errorCallback(99999)
                 }
             case let .failure(error):
                 failureCallback(error)

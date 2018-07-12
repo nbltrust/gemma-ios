@@ -30,7 +30,6 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEs-i4-iW4" customClass="LineView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="346" height="48"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
@@ -41,7 +40,6 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0d-tG-DAo" customClass="LineView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="48" width="346" height="48"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
@@ -52,7 +50,6 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfb-US-ykB" customClass="LineView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="96" width="346" height="48"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
@@ -62,16 +59,21 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" name="whiteTwo" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="144" id="xhU-cz-yhN"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZMn-zB-gMH">
                     <rect key="frame" x="16" y="160" width="346" height="48"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ube-tF-Q9j" customClass="LineView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="346" height="48"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
@@ -81,6 +83,12 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" name="whiteTwo" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="06S-Dw-UEG" customClass="Button" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="32" y="232" width="314" height="44"/>
@@ -95,7 +103,6 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ws2-sj-2zn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="22v-Lt-xvW"/>
                 <constraint firstItem="ZMn-zB-gMH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="2EG-Qi-O2L"/>
@@ -113,4 +120,6 @@
             <point key="canvasLocation" x="13" y="-95.5"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

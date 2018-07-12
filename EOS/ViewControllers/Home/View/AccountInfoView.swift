@@ -38,9 +38,9 @@ class AccountInfoView: UIView {
                 mRemainEOSLabel.text = data.balance
                 mRedeemEOSLabel.text = data.recentRefundAsset
                 mRemainTimeLabel.text = data.refundTime
-                mCPUConsumeEOSLabel.text = data.cpuValue
-                mNETConsumeEOSLabel.text = data.netValue
-                mRAMConsumeKBLabel.text = data.ramValue
+                mCPUConsumeEOSLabel.text = "CPU\n" + data.cpuValue
+                mNETConsumeEOSLabel.text = "NET\n" + data.netValue
+                mRAMConsumeKBLabel.text = "RAM\n" + data.ramValue
             }
         }
     }
@@ -48,53 +48,6 @@ class AccountInfoView: UIView {
     func setUp() {
         
     }
-//    var mTotalEOSText = "- EOS" {
-//        didSet {
-//            mTotalEOSLabel.text = mTotalEOSText
-//        }
-//    }
-//    var mTotalCNYText = "≈- CNY" {
-//        didSet {
-//            mTotalCNYLabel.text = mTotalCNYText
-//        }
-//    }
-//    var mRemainEOSText = "- EOS" {
-//        didSet {
-//            mRemainEOSLabel.text = mRemainEOSText
-//        }
-//    }
-//    var mRedeemEOSText = "- EOS" {
-//        didSet {
-//            mRedeemEOSLabel.text = mRedeemEOSText
-//        }
-//    }
-//    var mRemainTimeText = "" {
-//        didSet {
-//            mRemainTimeLabel.text = mRemainTimeText
-//            if mRemainTimeLabel.text == "" {
-//                mRemainTimeLabel.isHidden = true
-//            } else {
-//                mRemainTimeLabel.isHidden = false
-//                mRemainTimeLabel.text = mRemainTimeText
-//            }
-//        }
-//    }
-//    var mCPUConsumeEOSText = "CPU\n0.01 EOS" {
-//        didSet {
-//            mCPUConsumeEOSLabel.text = mCPUConsumeEOSText
-//        }
-//    }
-//    var mNETConsumeEOSText = "NET\n0.01 EOS" {
-//        didSet {
-//            mNETConsumeEOSLabel.text = mNETConsumeEOSText
-//        }
-//    }
-//    var mRAMConsumeKBText = "RAM\n4.00 KB" {
-//        didSet {
-//            mRAMConsumeKBLabel.text = mRAMConsumeKBText
-//        }
-//    }
-    
     
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
