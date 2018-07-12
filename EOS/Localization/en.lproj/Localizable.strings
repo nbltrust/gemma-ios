@@ -13,6 +13,7 @@
 "tabbar-transfer" = "转账";
 "tabbar-mine" = "我的";
 
+"rest" = "剩余";
 /*ErrorMessage*/
 "error_invitecode_regitered" = "邀请码已经被使用";
 "error_invitecode_inexistence" = "邀请码不存在";
@@ -62,6 +63,6 @@
 "transfer_state_time" = "预估确认时间：";
 //zsy end
 
-"day" = "day";
-"hour" = "hour";
+"day" = "天";
+"hour" = "小时";
 "invitationcode_introduce" = "获取邀请码";
