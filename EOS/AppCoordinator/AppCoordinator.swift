@@ -29,7 +29,6 @@ class AppCoordinator {
     var userinfoCoordinator: UserInfoRootCoordinator!
 
     var entryCoordinator: EntryRootCoordinator!
-    var transferCoordinator: TransferRootCoordinator!
 
     weak var currentPresentedRootCoordinator: NavCoordinator?
     
@@ -86,13 +85,13 @@ class AppCoordinator {
 //            self.rootVC.present(vc, animated: true, completion: nil)
 //        }
 
-        let nav = BaseNavigationController()
-        transferCoordinator = TransferRootCoordinator(rootVC: nav)
-        transferCoordinator.start()
-        
-        SwifterSwift.delay(milliseconds: 100) {
-            self.rootVC.present(nav, animated: true, completion: nil)
-        }
+//        let nav = BaseNavigationController()
+//        transferCoordinator = TransferRootCoordinator(rootVC: nav)
+//        transferCoordinator.start()
+//        
+//        SwifterSwift.delay(milliseconds: 100) {
+//            self.rootVC.present(nav, animated: true, completion: nil)
+//        }
         
     }
     
