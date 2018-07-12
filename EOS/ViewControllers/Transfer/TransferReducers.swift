@@ -17,6 +17,10 @@ func TransferPropertyReducer(_ state: TransferPropertyState?, action: Action) ->
     var state = state ?? TransferPropertyState()
     
     switch action {
+    case let action as BalanceFetchedAction:
+        if let balance = action.balance.arrayValue.first?.string {
+            state.balance.accept(balance)
+        }
     default:
         break
     }

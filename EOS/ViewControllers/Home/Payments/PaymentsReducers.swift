@@ -42,11 +42,11 @@ func convertTransferViewModel(data:[Payment]) -> [PaymentsRecordsViewModel] {
         if paymentData.to == WallketManager.shared.getAccount() {
             paymentsRecordsViewModel.stateImageName = "icIncome"
             paymentsRecordsViewModel.address = paymentData.from
-            paymentsRecordsViewModel.money = "+ \(paymentData.value)"
+            paymentsRecordsViewModel.money = "+" + paymentData.value!
         } else {
             paymentsRecordsViewModel.stateImageName = "icSend"
             paymentsRecordsViewModel.address = paymentData.to
-            paymentsRecordsViewModel.money = "- \(paymentData.value)"
+            paymentsRecordsViewModel.money = "-" + paymentData.value!
 
         }
         paymentsRecordsViewModel.time = paymentData.time.dateString(ofStyle: DateFormatter.Style.full)
