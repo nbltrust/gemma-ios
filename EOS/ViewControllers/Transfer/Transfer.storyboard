@@ -186,24 +186,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F5P-Og-khS" customClass="Button" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="32" y="576" width="311" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Vbg-vQ-Xsb"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAp-pC-H0B">
-                                <rect key="frame" x="50" y="492" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAp-pC-H0B" customClass="TransferConfirmPasswordView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="492" width="375" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="q1G-fz-ZmF" firstAttribute="bottom" secondItem="F5P-Og-khS" secondAttribute="bottom" constant="47" id="A9i-S9-mgl"/>
-                            <constraint firstItem="q1G-fz-ZmF" firstAttribute="trailing" secondItem="F5P-Og-khS" secondAttribute="trailing" constant="32" id="XZQ-cm-RLy"/>
-                            <constraint firstItem="F5P-Og-khS" firstAttribute="leading" secondItem="q1G-fz-ZmF" secondAttribute="leading" constant="32" id="wTk-eC-DgP"/>
+                            <constraint firstItem="GAp-pC-H0B" firstAttribute="top" secondItem="q1G-fz-ZmF" secondAttribute="top" id="igz-2q-wDx"/>
+                            <constraint firstItem="q1G-fz-ZmF" firstAttribute="trailing" secondItem="GAp-pC-H0B" secondAttribute="trailing" id="wZD-34-z7Q"/>
+                            <constraint firstItem="GAp-pC-H0B" firstAttribute="leading" secondItem="q1G-fz-ZmF" secondAttribute="leading" id="zzt-fK-UDp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q1G-fz-ZmF"/>
                     </view>

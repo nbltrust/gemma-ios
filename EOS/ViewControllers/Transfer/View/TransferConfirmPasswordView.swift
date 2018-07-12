@@ -9,6 +9,9 @@
 import Foundation
 
 class TransferConfirmPasswordView: UIView {
+    enum TransferEvent: String {
+        case sureTransfer
+    }
     
     @IBOutlet weak var textField: UITextField!
     
@@ -28,6 +31,16 @@ class TransferConfirmPasswordView: UIView {
     
     
     func setUp() {
+        setupEvent()
+        updateHeight()
+
+    }
+    
+    func setupEvent() {
+        nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: [ : ])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     override var intrinsicContentSize: CGSize {

@@ -141,7 +141,7 @@ extension TransferContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
-                                    isSecureTextEntry: true)
+                                    isSecureTextEntry: false)
         } else {
             return TitleTextSetting(title: R.string.localizable.remark(),
                                     placeholder: R.string.localizable.input_transfer_remark(),

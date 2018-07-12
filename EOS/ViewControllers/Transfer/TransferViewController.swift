@@ -27,6 +27,7 @@ class TransferViewController: BaseViewController {
         self.title = R.string.localizable.tabbarTransfer()
         setUpUI()
         setupEvent()
+        getData()
 //        self.coordinator?.fetchUserAccount()
     }
     
@@ -40,6 +41,10 @@ class TransferViewController: BaseViewController {
         
 //        let info = WallketManager.shared.getAccount()
 //        transferContentView.setInfo(info: <#T##String#>)
+    }
+    
+    func getData() {
+        self.coordinator?.fetchUserAccount(WallketManager.shared.getAccount())
     }
     
     func commonObserveState() {
@@ -66,6 +71,13 @@ class TransferViewController: BaseViewController {
     
     override func configureObserveState() {
         commonObserveState()
+        
+        self.coordinator?.state.property.balance.asObservable().subscribe(onNext: { (blance) in
+            self.transferContentView.moneyTitleTextView.unitLabel.text = blance
+            
+        }, onError: nil, onCompleted: {
+            
+        }, onDisposed: nil).disposed(by: disposeBag)
         
     }
     

@@ -39,3 +39,10 @@ class TransferConfirmPasswordViewController: BaseViewController {
         
     }
 }
+
+extension TransferConfirmPasswordViewController {
+    @objc func sureTransfer(_ data: [String : Any]) {
+        self.coordinator?.pushToPaymentsVC()
+    }
+}
+

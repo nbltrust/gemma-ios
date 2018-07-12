@@ -25,6 +25,7 @@ class TransferConfirmView: UIView {
     }
     
     func setUp() {
+        setupEvent()
         updateHeight()
     }
     
