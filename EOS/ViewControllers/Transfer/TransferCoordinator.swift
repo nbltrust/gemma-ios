@@ -46,6 +46,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         let presenter = Presentr(presentationType: .bottomHalf)
         presenter.dismissOnTap = false
         let newVC = BaseNavigationController()
+        newVC.isPureWhiteNavBg = true
         let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
         
         self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)

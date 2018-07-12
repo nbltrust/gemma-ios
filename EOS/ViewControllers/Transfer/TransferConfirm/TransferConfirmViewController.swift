@@ -19,7 +19,7 @@ class TransferConfirmViewController: BaseViewController {
     @IBOutlet weak var nextButton: Button!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+ 
         configLeftNavButton(R.image.icTransferClose())
         setupEvent()
     }
