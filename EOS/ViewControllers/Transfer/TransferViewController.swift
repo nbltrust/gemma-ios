@@ -37,6 +37,7 @@ class TransferViewController: BaseViewController {
         self.reciverLabel.text = R.string.localizable.receiver()
         let name = WallketManager.shared.getAccount()
         transferContentView.setAccountName(name: name)
+        
 //        let info = WallketManager.shared.getAccount()
 //        transferContentView.setInfo(info: <#T##String#>)
     }

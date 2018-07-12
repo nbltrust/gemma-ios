@@ -43,7 +43,12 @@ class TransferCoordinator: TransferRootCoordinator {
 
 extension TransferCoordinator: TransferCoordinatorProtocol {
     func pushToTransferConfirmVC() {
-        let presenter = Presentr(presentationType: .bottomHalf)
+        let width = ModalSize.full
+        let height = ModalSize.custom(size: 369)
+        let center = ModalCenterPosition.bottomCenter
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        
+        let presenter = Presentr(presentationType: customType)
         presenter.dismissOnTap = false
         let newVC = BaseNavigationController()
         newVC.isPureWhiteNavBg = true
@@ -53,6 +58,8 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         
         transferConfirm.start()
     }
+    
+    
 }
 
 extension TransferCoordinator: TransferStateManagerProtocol {

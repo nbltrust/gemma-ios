@@ -16,26 +16,17 @@ class TransferConfirmViewController: BaseViewController {
 
 	var coordinator: (TransferConfirmCoordinatorProtocol & TransferConfirmStateManagerProtocol)?
 
-    @IBOutlet weak var nextButton: Button!
     override func viewDidLoad() {
         super.viewDidLoad()
  
         configLeftNavButton(R.image.icTransferClose())
-        setupEvent()
     }
 
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismissConfirmVC()
     }
     
-    
-    func setupEvent() {
-        nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
-            guard let `self` = self else { return }
-            self.coordinator?.pushToTransferConfirmPwdVC()
-            
-        }).disposed(by: disposeBag)
-    }
+
     
     func commonObserveState() {
         coordinator?.subscribe(errorSubscriber) { sub in
