@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-//import ESPullToRefresh
+import ESPullToRefresh
 
 
 class PaymentsViewController: BaseViewController {
@@ -35,7 +35,8 @@ class PaymentsViewController: BaseViewController {
         tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
         tableView.delegate = self
         tableView.dataSource = self
-        self.coordinator?.getDataFromServer(WallketManager.shared.getAccount(), showNum: "10", lastPosition: lastPosition.string, completion: { (success) in
+        self.coordinator?.getDataFromServer(WallketManager.shared.getAccount(), showNum: "10", lastPosition: lastPosition.string, completion: {[weak self] (success) in
+            guard let `self` = self else { return }
             self.data = (self.coordinator?.state.property.data)!
             
             self.tableView.reloadData()

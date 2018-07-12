@@ -27,9 +27,31 @@ func PaymentsPropertyReducer(_ state: PaymentsPropertyState?, action: Action) ->
     return state
 }
 
-func convertTransferViewModel(data:[Any]) -> [PaymentsRecordsViewModel] {
-    return [PaymentsRecordsViewModel.init(stateBool: true, address: "@ninini", time: "2018/07/03 16:14", transferState: "cnsdkjncis", money: "cnsincsi", transferStateBool: false),
-            PaymentsRecordsViewModel.init(stateBool: true, address: "@hahahah", time: "2018/07/04 16:14", transferState: "cnsdkjncis", money: "cnsincsi", transferStateBool: false),
-            PaymentsRecordsViewModel.init(stateBool: true, address: "@ninini", time: "2018/07/05 16:14", transferState: "cnsdkjncis", money: "cnsincsi", transferStateBool: false)]
+func convertTransferViewModel(data:[Payment]) -> [PaymentsRecordsViewModel] {
+    let dataArray: NSMutableArray = []
+    
+    for paymentData:Payment in data {
+        var paymentsRecordsViewModel = PaymentsRecordsViewModel()
+        if paymentData.to == WallketManager.shared.getAccount() {
+            paymentsRecordsViewModel.stateImageName = "icIncome"
+            paymentsRecordsViewModel.address = paymentData.from
+            paymentsRecordsViewModel.money = "+\(paymentData.value)"
+        } else {
+            paymentsRecordsViewModel.stateImageName = "icSend"
+            paymentsRecordsViewModel.address = paymentData.to
+            paymentsRecordsViewModel.money = "-\(paymentData.value)"
+
+        }
+        paymentsRecordsViewModel.time = paymentData.time.dateString(ofStyle: DateFormatter.Style.full)
+        if paymentData.status == PaymentStatus.unconfirmed {
+            paymentsRecordsViewModel.transferState = "\(R.string.localizable.transfer_state_time)"
+        }
+        
+        dataArray.add(paymentsRecordsViewModel)
+        
+        
+    }
+    return dataArray as! [PaymentsRecordsViewModel]
+
 }
 
