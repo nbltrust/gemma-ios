@@ -13,6 +13,7 @@ enum StyleNames:String {
     case introduce
     case agree
     case agreement
+    case comfirmContent
 }
 
 class RichStyle {
@@ -36,5 +37,12 @@ class RichStyle {
             $0.underline = (.styleSingle,UIColor.darkSlateBlue)
         }
         Styles.register(StyleNames.agreement.rawValue, style: agreement_style)
+        
+        let comfirmContent_style = Style {
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
+            $0.color = UIColor.blueyGrey
+            $0.lineSpacing = 8.0
+        }
+        Styles.register(StyleNames.comfirmContent.rawValue, style: comfirmContent_style)
       }
 }

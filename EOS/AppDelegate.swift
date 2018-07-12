@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        self.appcoordinator?.showTest()
         
-//        appcoordinator!.showEntry()
+        appcoordinator!.showEntry()
         return true
     }
     

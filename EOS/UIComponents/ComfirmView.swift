@@ -29,6 +29,7 @@ extension ComfirmViewProtocol where Self: UIViewController {
     }
 }
 
+@IBDesignable
 class ComfirmView: UIView {
 
     @IBOutlet var containerView: UIView!

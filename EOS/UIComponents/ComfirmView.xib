@@ -32,8 +32,11 @@
                 <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" layoutMarginsFollowReadableWidth="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkD-8W-H3n">
                     <rect key="frame" x="16" y="20" width="307" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.61960784313725492" green="0.63921568627450975" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" name="blueyGrey" red="0.620" green="0.639" blue="0.741" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="styleName" value="comfirmContent"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-fd-itm">
                     <rect key="frame" x="0.0" y="39.5" width="339" height="64"/>
@@ -115,4 +118,6 @@
             <point key="canvasLocation" x="-53.5" y="-237"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

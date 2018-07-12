@@ -20,11 +20,8 @@ class TransferConfirmViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        self.navBgImageView?.isHidden = true
         configLeftNavButton(R.image.icTransferClose())
         setupEvent()
-        
     }
 
     override func leftAction(_ sender: UIButton) {
