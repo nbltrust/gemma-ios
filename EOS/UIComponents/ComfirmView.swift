@@ -43,25 +43,29 @@ class ComfirmView: UIView {
     
     @IBInspectable var title: String? {
         didSet {
-            self.titleLabel.text = title
+            self.titleLabel.locali = title!
+            updateHeight()
         }
     }
     
     @IBInspectable var content: String? {
         didSet {
-            self.contentLabel.text = content
+            self.contentLabel.locali = content!
+            updateHeight()
         }
     }
     
     @IBInspectable var cancelTitle: String? {
         didSet {
-            self.cancelButton.setTitle(cancelTitle, for: .normal)
+            self.cancelButton.locali = cancelTitle!
+            updateHeight()
         }
     }
     
     @IBInspectable var sureTitle: String? {
         didSet {
-            self.sureButton.setTitle(sureTitle, for: .normal)
+            self.sureButton.locali = sureTitle!
+            updateHeight()
         }
     }
     

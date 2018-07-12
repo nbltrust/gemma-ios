@@ -21,7 +21,6 @@ class TransferConfirmViewController: BaseViewController {
         super.viewDidLoad()
         
         
-        self.navBgImageView?.isHidden = true
         configLeftNavButton(R.image.icTransferClose())
         setupEvent()
         

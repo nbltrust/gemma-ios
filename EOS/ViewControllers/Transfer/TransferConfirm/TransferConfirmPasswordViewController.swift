@@ -17,7 +17,6 @@ class TransferConfirmPasswordViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.navBgImageView?.isHidden = true
         configLeftNavButton(R.image.icBack())
     }
     

@@ -9,15 +9,17 @@
 import Foundation
 
 class BaseNavigationController: UINavigationController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.interactivePopGestureRecognizer?.delegate = self
-        let image = UIImage.init(color: .clear)
-        self.navigationBar.setBackgroundImage(image, for: .default)
+//        let image = UIImage.init(color: .clear)
+        self.navigationBar.setBackgroundImage(R.image.navigationBg2(), for: .default)
         self.navigationBar.shadowImage = UIImage()
         
-        self.navigationBar.isTranslucent = true
+        self.navigationBar.isTranslucent = false
+
         self.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17),NSAttributedStringKey.foregroundColor:UIColor.whiteTwo]
         if #available(iOS 11.0, *) {
             self.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.whiteTwo]
@@ -26,8 +28,6 @@ class BaseNavigationController: UINavigationController {
         
         //    self.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "ic_arrow_back_16px")
         //    self.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_arrow_back_16px")
-        
-       
         
     }
     
