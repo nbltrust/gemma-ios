@@ -23,7 +23,8 @@ class BaseViewController: UIViewController {
     
     var showWholeNavBg = false
     var navBgImageView:UIImageView?
-    
+    var contentView:UIView?
+
     var isNavBarShadowHidden: Bool = false {
         didSet {
             if isNavBarShadowHidden {
@@ -69,10 +70,16 @@ class BaseViewController: UIViewController {
             contentView.backgroundColor = UIColor.white
             self.view.insertSubview(contentView, at: 1)
             contentView.edgesToDevice(vc: self, insets: .zero, priority: .required, isActive: true, usingSafeArea: true)
+            
+            self.contentView = contentView
         }
         
         configureObserveState()
-        
+    }
+    
+    func changeBackgroundColor(_ color:UIColor) {
+        self.view.backgroundColor = color
+        self.contentView?.backgroundColor = color
     }
     
     func hiddenNavBar() {
