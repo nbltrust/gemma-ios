@@ -23,23 +23,23 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="790"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-ET-PPs" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-ET-PPs" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-ye-AF6" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-ye-AF6" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="72" width="375" height="90"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0M-Q5-YdH" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0M-Q5-YdH" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="162" width="375" height="90"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8m-6B-Aoo" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8m-6B-Aoo" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="252" width="375" height="90"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-Dt-GCr" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-Dt-GCr" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="342" width="375" height="60"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>

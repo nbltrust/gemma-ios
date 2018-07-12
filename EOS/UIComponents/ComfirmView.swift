@@ -41,6 +41,17 @@ class ComfirmView: UIView {
     
     @IBOutlet weak var sureButton: UIButton!
     
+    @IBInspectable var cancelTitle: String? {
+        didSet {
+            self.cancelButton.setTitle(cancelTitle, for: .normal)
+        }
+    }
+    
+    @IBInspectable var sureTitle: String? {
+        didSet {
+            self.sureButton.setTitle(sureTitle, for: .normal)
+        }
+    }
     
     var isShade: Bool = true
     

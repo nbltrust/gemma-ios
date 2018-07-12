@@ -50,6 +50,8 @@
 
 "create_wallet" = "创建钱包";
 "payments_history" = "收支记录";
+"create_new_wallet" = "创建新钱包";
+"recover_from_cppy" = "从备份恢复已有钱包";
 
 //zsy add
 "account_total_assets" = "账户总资产";

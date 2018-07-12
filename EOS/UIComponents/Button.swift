@@ -12,7 +12,8 @@ import RxCocoa
 
 enum ButtonStyle: Int {
     case full = 1
-    case border = 2
+    case border
+    case fullWhite
 }
 
 class Button: UIView {
@@ -45,6 +46,8 @@ class Button: UIView {
             borderButton()
         case ButtonStyle.full.rawValue:
             fullButton()
+        case ButtonStyle.fullWhite.rawValue:
+            fullWhiteButton()
         default:
             return
         }
@@ -69,6 +72,13 @@ class Button: UIView {
     fileprivate func fullButton() {
         button.backgroundColor = UIColor.cornflowerBlueTwo
         button.setTitleColor(UIColor.whiteTwo, for: .normal)
+        button.layer.borderColor = UIColor.clear.cgColor
+        button.isUserInteractionEnabled = true
+    }
+    
+    fileprivate func fullWhiteButton() {
+        button.backgroundColor = UIColor.white
+        button.setTitleColor(UIColor.cornflowerBlueTwo, for: .normal)
         button.layer.borderColor = UIColor.clear.cgColor
         button.isUserInteractionEnabled = true
     }
