@@ -60,9 +60,12 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
     
     func getDataFromServer(_ account: String, showNum: String, lastPosition: String, completion: @escaping (Bool)->Void ) {
         NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: showNum, lastPosition: lastPosition), success: { (data) in
-            let dictData = data.dictionaryValue
-            let arrayData = dictData["transactions"]
-            
+            let dataDic = data.dictionaryValue
+            let transactions = dataDic["transactions"]?.arrayValue
+            let payments = transactions?.map({ (json) in
+                Payment.deserialize(from: json["transaction"].dictionaryValue)
+            })
+            self.store.dispatch(FetchPaymentsRecordsListAction(data: payments! as! [Payment]))
             completion(true)
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {

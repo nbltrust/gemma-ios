@@ -79,13 +79,19 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q7p-FV-Fcx" customClass="TransferContentView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="182" width="343" height="128"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7p-FV-Fcx" customClass="TransferContentView" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="121" width="343" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="LJT-QY-v1E"/>
+                                                </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="os0-TA-jDt" customClass="Button" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="32" y="407" width="311" height="128"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="os0-TA-jDt" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="32" y="374" width="311" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="20F-7g-hl9"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -133,6 +139,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2r3-nM-UYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-351" y="-80"/>
+        </scene>
+        <!--Transfer Confirm View Controller-->
+        <scene sceneID="bRw-Bx-g7m">
+            <objects>
+                <viewController storyboardIdentifier="TransferConfirmViewController" id="P0R-7P-LDn" customClass="TransferConfirmViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bfv-Vg-Vtr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="AUj-Ns-WRG"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r1R-GD-Ame" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="-81"/>
         </scene>
     </scenes>
 </document>
