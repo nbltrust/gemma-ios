@@ -22,12 +22,12 @@ struct PaymentsPropertyState {
 }
 
 struct FetchPaymentsRecordsListAction : Action {
-    var data : [Any]
+    var data : [Payment]
 }
 
 //MARK: - ViewModel
 struct PaymentsRecordsViewModel {
-    var stateBool : Bool = true
+    var stateImageName : NSString = "icIncome"
     var address : String = ""
     var time : String = ""
     var transferState : String = ""
