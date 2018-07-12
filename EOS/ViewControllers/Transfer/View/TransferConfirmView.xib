@@ -17,6 +17,7 @@
                 <outlet property="payAccountView" destination="Ube-tF-Q9j" id="z5I-ac-VQ4"/>
                 <outlet property="receverView" destination="WEs-i4-iW4" id="XhG-4W-5mG"/>
                 <outlet property="remarkView" destination="Tfb-US-ykB" id="jr2-xA-zCx"/>
+                <outlet property="sureView" destination="06S-Dw-UEG" id="SBE-KQ-wYG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

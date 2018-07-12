@@ -7,24 +7,32 @@
 //
 
 import Foundation
-enum TransferContentType:Int {
-    case confirm = 1
-    case payment
-}
 
 @IBDesignable
 class TransferConfirmView: UIView {
     @IBOutlet weak var receverView: LineView!
+    
     @IBOutlet weak var amountView: LineView!
+    
     @IBOutlet weak var remarkView: LineView!
+    
     @IBOutlet weak var payAccountView: LineView!
     
-    func setUpType(type: TransferContentType) {
-        
+    @IBOutlet weak var sureView: Button!
+    
+    enum TransferEvent: String {
+        case sureTransfer
     }
     
     func setUp() {
         updateHeight()
+    }
+    
+    func setupEvent() {
+        sureView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: [ : ])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     var recever = "" {
