@@ -20,6 +20,8 @@ protocol HomeStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func getAccountInfo(_ account:String)
+    
+    func createDataInfo() -> [LineView.LineViewModel]
 }
 
 class HomeCoordinator: HomeRootCoordinator {
@@ -80,5 +82,25 @@ extension HomeCoordinator: HomeStateManagerProtocol {
             }
             
         }.cauterize()
+    }
+    
+    func createDataInfo() -> [LineView.LineViewModel] {
+        return [LineView.LineViewModel.init(name: "收支记录",
+                                            content: "",
+                                            image_name: R.image.icArrow.name,
+                                            name_style: LineViewStyleNames.normal_name,
+                                            content_style: LineViewStyleNames.normal_content,
+                                            isBadge: false,
+                                            content_line_number: 1,
+                                            isShowLineView: false),
+                LineView.LineViewModel.init(name: "资源质押",
+                                            content: "获取CPU、NET",
+                                            image_name: R.image.icArrow.name,
+                                            name_style: LineViewStyleNames.normal_name,
+                                            content_style: LineViewStyleNames.normal_content,
+                                            isBadge: false,
+                                            content_line_number: 1,
+                                            isShowLineView: false)
+        ]
     }
 }

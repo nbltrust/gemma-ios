@@ -11,23 +11,33 @@ import UIKit
 
 @IBDesignable
 class LineView: UIView {
+
+    struct LineViewModel {
+        var name : String = ""
+        var content : String = ""
+        var image_name : String = ""
+        var name_style : LineViewStyleNames = .normal_name
+        var content_style : LineViewStyleNames = .normal_content
+        var isBadge : Bool = false
+        var content_line_number : Int = 1
+        var isShowLineView : Bool = false
+    }
     
     @IBOutlet weak var sepatateView: UIView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var rightImg: UIImageView!
-    
     @IBOutlet weak var imgWidth: NSLayoutConstraint!
     
     @IBInspectable
-    var name_style : String = StyleNames.introduce.rawValue {
+    var name_style : String = LineViewStyleNames.normal_name.rawValue {
         didSet{
             self.name.attributedText = name_text.set(style: name_style)
         }
     }
     
     @IBInspectable
-    var content_style : String = StyleNames.introduce.rawValue {
+    var content_style : String = LineViewStyleNames.normal_content.rawValue {
         didSet{
             self.content.attributedText = content_text.set(style: content_style)
         }
@@ -51,7 +61,7 @@ class LineView: UIView {
     @IBInspectable
     var isShowLine : Bool = false{
         didSet{
-            self.sepatateView.isHidden = isShowLine
+            self.sepatateView.isHidden = !isShowLine
         }
     }
     
@@ -82,7 +92,19 @@ class LineView: UIView {
     
     var data : Any?{
         didSet{
-            
+            if let data = data as? LineViewModel {
+                name_text = data.name
+                content_text = data.content
+                name_style = data.name_style.rawValue
+                if data.isBadge{
+                    
+                }else{
+                    content_style = data.content_style.rawValue
+                }
+                content_line_number = data.content_line_number
+                isShowLine = data.isShowLineView
+                image_name = data.image_name
+            }
         }
     }
     
@@ -134,5 +156,5 @@ class LineView: UIView {
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight,.flexibleWidth]
     }
-
 }
+
