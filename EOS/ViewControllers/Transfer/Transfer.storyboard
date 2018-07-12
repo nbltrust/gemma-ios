@@ -134,5 +134,32 @@
             </objects>
             <point key="canvasLocation" x="-351" y="-80"/>
         </scene>
+        <!--Transfer Confirm View Controller-->
+        <scene sceneID="bRw-Bx-g7m">
+            <objects>
+                <viewController storyboardIdentifier="TransferConfirmViewController" id="P0R-7P-LDn" customClass="TransferConfirmViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bfv-Vg-Vtr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MdW-by-dMH">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MdW-by-dMH" firstAttribute="leading" secondItem="AUj-Ns-WRG" secondAttribute="leading" id="JOJ-H4-UVy"/>
+                            <constraint firstItem="MdW-by-dMH" firstAttribute="top" secondItem="AUj-Ns-WRG" secondAttribute="top" id="OpK-fu-Xqp"/>
+                            <constraint firstItem="AUj-Ns-WRG" firstAttribute="bottom" secondItem="MdW-by-dMH" secondAttribute="bottom" id="hxp-Z0-GzO"/>
+                            <constraint firstItem="AUj-Ns-WRG" firstAttribute="trailing" secondItem="MdW-by-dMH" secondAttribute="trailing" id="tBw-Fb-d73"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AUj-Ns-WRG"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r1R-GD-Ame" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="-81"/>
+        </scene>
     </scenes>
 </document>

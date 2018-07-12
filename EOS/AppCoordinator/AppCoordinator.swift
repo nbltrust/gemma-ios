@@ -29,6 +29,7 @@ class AppCoordinator {
     var userinfoCoordinator: UserInfoRootCoordinator!
 
     var entryCoordinator: EntryRootCoordinator!
+    var transferCoordinator: TransferRootCoordinator!
 
     weak var currentPresentedRootCoordinator: NavCoordinator?
     
@@ -76,16 +77,24 @@ class AppCoordinator {
     }
 
     func showTest() {
+//        let nav = BaseNavigationController()
+//        let vc = R.storyboard.payments.paymentsViewController()!
+//        let coor = PaymentsCoordinator(rootVC: nav)
+//        vc.coordinator = coor
+//        
+//        SwifterSwift.delay(milliseconds: 100) {
+//            self.rootVC.present(vc, animated: true, completion: nil)
+//        }
+
         let nav = BaseNavigationController()
-        let vc = R.storyboard.payments.paymentsViewController()!
-        let coor = PaymentsCoordinator(rootVC: nav)
-        vc.coordinator = coor
-//        root.start()
+        transferCoordinator = TransferRootCoordinator(rootVC: nav)
+        transferCoordinator.start()
         
         SwifterSwift.delay(milliseconds: 100) {
-            self.rootVC.present(vc, animated: true, completion: nil)
+            self.rootVC.present(nav, animated: true, completion: nil)
         }
-
+        
     }
+    
     
 }

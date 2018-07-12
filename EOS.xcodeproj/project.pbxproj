@@ -69,6 +69,8 @@
 		3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */; };
 		3BD3663D20F6F9E3004DE09D /* TransferConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663920F6F9E3004DE09D /* TransferConfirmViewController.swift */; };
 		3BD3663E20F6F9E3004DE09D /* TransferConfirmReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */; };
+		3BD3664020F7086A004DE09D /* TransferConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663F20F7086A004DE09D /* TransferConfirmView.swift */; };
+		3BD3664220F70877004DE09D /* TransferConfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3664120F70877004DE09D /* TransferConfirmView.xib */; };
 		3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */ = {isa = PBXBuildFile; fileRef = F601AE09C748BD90FFF8C8744B7B621D /* fstream */; };
 		3CE0B916A6316D966E0AD0C04B7A8AD4 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F6796D1FBCF6CB7AAEF5B3655062A1 /* Rubik-Black.ttf */; };
 		3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380B8A6234BE07DE4B3CDE521A28F60 /* Colletion+Extensions.swift */; };
@@ -3025,6 +3027,8 @@
 		3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmActions.swift; sourceTree = "<group>"; };
 		3BD3663920F6F9E3004DE09D /* TransferConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmViewController.swift; sourceTree = "<group>"; };
 		3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmReducers.swift; sourceTree = "<group>"; };
+		3BD3663F20F7086A004DE09D /* TransferConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmView.swift; sourceTree = "<group>"; };
+		3BD3664120F70877004DE09D /* TransferConfirmView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferConfirmView.xib; sourceTree = "<group>"; };
 		3BD4C916A39192D114FBEEE600033E2B /* buffered_stream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffered_stream.hpp; sourceTree = "<group>"; };
 		3BDA9B09D89E2B72CE5C65FA614ABC1B /* insert_range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = insert_range.hpp; sourceTree = "<group>"; };
 		3BE67FC625579D3EA5ED5446943EF95B /* blowfish.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blowfish.hpp; sourceTree = "<group>"; };
@@ -16395,6 +16399,8 @@
 		3BD3662E20F6F287004DE09D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3BD3663F20F7086A004DE09D /* TransferConfirmView.swift */,
+				3BD3664120F70877004DE09D /* TransferConfirmView.xib */,
 				3BD3663220F6F29D004DE09D /* TransferContentView.swift */,
 				3BD3663020F6F29C004DE09D /* TransferContentView.xib */,
 				3BD3662F20F6F29C004DE09D /* TransferView.swift */,
@@ -31330,6 +31336,7 @@
 				E09B4826558DABC06DAB7B44BBA9560A /* exception.SUNWCCh in Resources */,
 				73F30B4520F6E70A0016E950 /* UserInfo.storyboard in Resources */,
 				3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */,
+				3BD3664220F70877004DE09D /* TransferConfirmView.xib in Resources */,
 				32416C6AFEE5EC6FEF882D0E77E8A530 /* fstream.SUNWCCh in Resources */,
 				68DCB39E40E6BCF9EFDC595087C25582 /* functional in Resources */,
 				0E760AAC5122CDCFC97045176CF1D124 /* functional.SUNWCCh in Resources */,
@@ -31714,6 +31721,7 @@
 				FF428CE559D9BAC66E25585F0A149FB9 /* ViewController.swift in Sources */,
 				7224712B20F57BA800536BF4 /* TransferViewController.swift in Sources */,
 				1C5B18A93C3E4FE5D23D305731F6C2DF /* WalletManager.swift in Sources */,
+				3BD3664020F7086A004DE09D /* TransferConfirmView.swift in Sources */,
 				C250859A222848F83BB0713253BF7A9D /* WalletView.swift in Sources */,
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
 				177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */,

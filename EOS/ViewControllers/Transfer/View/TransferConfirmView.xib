@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransferConfirmView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="moneyLineView" destination="8aQ-rS-ieI" id="E0C-n2-Iuy"/>
+                <outlet property="otherLineView" destination="exR-1d-X3m" id="Osu-8v-CbN"/>
+                <outlet property="receverLineView" destination="El6-at-Dvd" id="hYr-qL-w1k"/>
+                <outlet property="remarkLineView" destination="QRW-8g-csP" id="VX1-FV-31d"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="271"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3Lg-e2-QRI">
+                    <rect key="frame" x="0.0" y="0.0" width="378" height="271"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="El6-at-Dvd" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="378" height="0.0"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8aQ-rS-ieI" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="378" height="0.0"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QRW-8g-csP" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="378" height="128"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="exR-1d-X3m" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="128" width="378" height="143"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="3Lg-e2-QRI" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="2Cb-Hp-GAo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3Lg-e2-QRI" secondAttribute="trailing" id="CIB-Lg-zGh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="3Lg-e2-QRI" secondAttribute="bottom" id="OXh-uz-N7Q"/>
+                <constraint firstItem="3Lg-e2-QRI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="udQ-Mx-ypy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="13" y="-95"/>
+        </view>
+    </objects>
+</document>
