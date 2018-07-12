@@ -70,8 +70,7 @@ extension NBLService : TargetType {
     var parameters: [String: Any] {
         switch self {
         case let .createAccount(account, pubKey, invitationCode):
-            let params = ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey]
-            return params
+            return ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": 1]
         case let .accountVerify(account):
             return ["account_name": account]
         case let .accountHistory(account, showNum, lastPosition):

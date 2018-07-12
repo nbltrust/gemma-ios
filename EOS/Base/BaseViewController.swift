@@ -20,10 +20,6 @@ class BaseViewController: UIViewController {
     lazy var loadingSubscriber: BlockSubscriber<Bool> = BlockSubscriber {[weak self] s in
         guard let `self` = self else { return }
     }
-    
-    var showWholeNavBg = false
-    var navBgImageView:UIImageView?
-    var contentView:UIView?
 
     var isNavBarShadowHidden: Bool = false {
         didSet {
@@ -58,45 +54,23 @@ class BaseViewController: UIViewController {
         
         
         self.view.backgroundColor = UIColor.white
-        
-        let imageView = UIImageView(image: R.image.navigationBg2())
-        self.view.insertSubview(imageView, at: 0)
-        imageView.top(to: self.view, offset:0)
-        imageView.leftToSuperview()
-        imageView.rightToSuperview()
-        navBgImageView = imageView
-        
-        if !showWholeNavBg {
-            let contentView = UIView()
-            contentView.backgroundColor = UIColor.white
-            self.view.insertSubview(contentView, at: 1)
-            contentView.edgesToDevice(vc: self, insets: .zero, priority: .required, isActive: true, usingSafeArea: true)
-            
-            self.contentView = contentView
-        }
-        
+
         configureObserveState()
     }
     
-    func changeBackgroundColor(_ color:UIColor) {
-        self.view.backgroundColor = color
-        self.contentView?.backgroundColor = color
-    }
     
     func hiddenNavBar() {
         self.navigationController?.navigationBar.isHidden = true
-        navBgImageView?.isHidden = true
     }
     
     func showNavBar() {
         self.navigationController?.navigationBar.isHidden = false
-        navBgImageView?.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.isNavigationBarHidden = false
+        showNavBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,6 +86,12 @@ class BaseViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         get {
             return false
+        }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return .lightContent
         }
     }
     

@@ -186,8 +186,13 @@
                                 <rect key="frame" x="164.5" y="96" width="46" height="46"/>
                             </imageView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P2Z-H3-rNK" customClass="ComfirmView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="439" width="343" height="128"/>
+                                <rect key="frame" x="16" y="220" width="343" height="71"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="content" value="created_comfirm_content"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="cancelTitle" value="created_comfirm_cancel"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="sureTitle" value="created_comfirm_sure"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9Q-n1-wo4">
                                 <rect key="frame" x="16" y="163" width="343" height="0.0"/>
