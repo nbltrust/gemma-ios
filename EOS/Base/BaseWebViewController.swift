@@ -43,12 +43,14 @@ class BaseWebViewController: BaseViewController {
         webView.uiDelegate = self
         webView.navigationDelegate = self
         view.addSubview(webView)
-        webView.edgesToSuperview(insets: .zero, priority: .required, isActive: true, usingSafeArea: true)
+        webView.edgesToDevice(vc: self)
         webView.load(URLRequest.init(url: url!))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        showNavBar()
     }
     
     func clearCahce() {

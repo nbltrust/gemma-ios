@@ -23,8 +23,6 @@ class HomeViewController: BaseViewController {
     
     var data : Any?
 	override func viewDidLoad() {
-        showWholeNavBg = true
-        
         super.viewDidLoad()
 //        mWalletView.upDateImgView(mView: mBgView)
         setupUI()
