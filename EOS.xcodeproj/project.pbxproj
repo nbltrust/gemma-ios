@@ -61,6 +61,14 @@
 		3B4C910020F4D6A4004F4C52 /* PaymentsDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C90FF20F4D6A4004F4C52 /* PaymentsDetail.storyboard */; };
 		3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8935C54739AEE59DA2310B17591480 /* BaseWebViewController.swift */; };
 		3B8A0F0188C26CD5B89B88BB7CD2021A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BACC4715E3CF39C51CF4E44B54222588 /* Rubik-Light.ttf */; };
+		3BD3663320F6F29D004DE09D /* TransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3662F20F6F29C004DE09D /* TransferView.swift */; };
+		3BD3663420F6F29E004DE09D /* TransferContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3663020F6F29C004DE09D /* TransferContentView.xib */; };
+		3BD3663520F6F29E004DE09D /* TransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3663120F6F29D004DE09D /* TransferView.xib */; };
+		3BD3663620F6F29E004DE09D /* TransferContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663220F6F29D004DE09D /* TransferContentView.swift */; };
+		3BD3663B20F6F9E3004DE09D /* TransferConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663720F6F9E3004DE09D /* TransferConfirmCoordinator.swift */; };
+		3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */; };
+		3BD3663D20F6F9E3004DE09D /* TransferConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663920F6F9E3004DE09D /* TransferConfirmViewController.swift */; };
+		3BD3663E20F6F9E3004DE09D /* TransferConfirmReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */; };
 		3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */ = {isa = PBXBuildFile; fileRef = F601AE09C748BD90FFF8C8744B7B621D /* fstream */; };
 		3CE0B916A6316D966E0AD0C04B7A8AD4 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F6796D1FBCF6CB7AAEF5B3655062A1 /* Rubik-Black.ttf */; };
 		3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380B8A6234BE07DE4B3CDE521A28F60 /* Colletion+Extensions.swift */; };
@@ -3009,6 +3017,14 @@
 		3BBE543A4F5599E8BF7677E7634501F4 /* equal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = equal.hpp; sourceTree = "<group>"; };
 		3BC1DFFB11FFF7A1E8D3089E0B678DA3 /* interval_bounds.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interval_bounds.hpp; sourceTree = "<group>"; };
 		3BD14C2363F05D44EF8B9CEAA1AB2B81 /* object_pool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = object_pool.hpp; sourceTree = "<group>"; };
+		3BD3662F20F6F29C004DE09D /* TransferView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferView.swift; path = "EOS/ViewControllers/ Transfer/View/TransferView.swift"; sourceTree = SOURCE_ROOT; };
+		3BD3663020F6F29C004DE09D /* TransferContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TransferContentView.xib; path = "EOS/ViewControllers/ Transfer/View/TransferContentView.xib"; sourceTree = SOURCE_ROOT; };
+		3BD3663120F6F29D004DE09D /* TransferView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TransferView.xib; path = "EOS/ViewControllers/ Transfer/View/TransferView.xib"; sourceTree = SOURCE_ROOT; };
+		3BD3663220F6F29D004DE09D /* TransferContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferContentView.swift; path = "EOS/ViewControllers/ Transfer/View/TransferContentView.swift"; sourceTree = SOURCE_ROOT; };
+		3BD3663720F6F9E3004DE09D /* TransferConfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmCoordinator.swift; sourceTree = "<group>"; };
+		3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmActions.swift; sourceTree = "<group>"; };
+		3BD3663920F6F9E3004DE09D /* TransferConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmViewController.swift; sourceTree = "<group>"; };
+		3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmReducers.swift; sourceTree = "<group>"; };
 		3BD4C916A39192D114FBEEE600033E2B /* buffered_stream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffered_stream.hpp; sourceTree = "<group>"; };
 		3BDA9B09D89E2B72CE5C65FA614ABC1B /* insert_range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = insert_range.hpp; sourceTree = "<group>"; };
 		3BE67FC625579D3EA5ED5446943EF95B /* blowfish.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blowfish.hpp; sourceTree = "<group>"; };
@@ -16246,12 +16262,17 @@
 		3B4C90D920F48C51004F4C52 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				3BD3662E20F6F287004DE09D /* View */,
 				7224712520F57BA800536BF4 /* TransferCoordinator.swift */,
 				7224712620F57BA800536BF4 /* TransferActions.swift */,
 				7224712720F57BA800536BF4 /* TransferViewController.swift */,
 				7224712820F57BA800536BF4 /* TransferReducers.swift */,
 				7224712F20F57C0C00536BF4 /* TransferRootCoordinator.swift */,
 				7224712D20F57BDF00536BF4 /* Transfer.storyboard */,
+				3BD3663720F6F9E3004DE09D /* TransferConfirmCoordinator.swift */,
+				3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */,
+				3BD3663920F6F9E3004DE09D /* TransferConfirmViewController.swift */,
+				3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -16369,6 +16390,17 @@
 				CA67A54C22B0CF3C36BFED268DF7E908 /* xtime.hpp */,
 			);
 			path = thread;
+			sourceTree = "<group>";
+		};
+		3BD3662E20F6F287004DE09D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3BD3663220F6F29D004DE09D /* TransferContentView.swift */,
+				3BD3663020F6F29C004DE09D /* TransferContentView.xib */,
+				3BD3662F20F6F29C004DE09D /* TransferView.swift */,
+				3BD3663120F6F29D004DE09D /* TransferView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3C3ED091D2DBB634DC44979297F46E7A /* cgs */ = {
@@ -31311,6 +31343,7 @@
 				5BA5BDF6B5E2C9F8466441F48E517278 /* istream in Resources */,
 				4456CACEF6AAF0C1FE6DCA145549F499 /* istream.SUNWCCh in Resources */,
 				969828B4F8D7D4D648E833D44A234D09 /* iterator in Resources */,
+				3BD3663520F6F29E004DE09D /* TransferView.xib in Resources */,
 				740D4F6730F1D7E5D73CA773FF7D257A /* iterator.SUNWCCh in Resources */,
 				9624A64F5E63336388B4D496454F0A4D /* limits in Resources */,
 				198ADC3234DA1F0FCE339EB63F88937A /* limits.SUNWCCh in Resources */,
@@ -31335,6 +31368,7 @@
 				9E27517CCC1C0B290F84E0F7298C4B37 /* random.SUNWCCh in Resources */,
 				FD49CE2A33EF13AFD453078BCD6874DB /* regex in Resources */,
 				0730C2D8E4D0DAE1E5125C9C38373F27 /* regex.SUNWCCh in Resources */,
+				3BD3663420F6F29E004DE09D /* TransferContentView.xib in Resources */,
 				E44A0F96B67D77B84F07DD4E16EB5C80 /* set in Resources */,
 				C359E0D417EB456FCC0A787748326198 /* set.SUNWCCh in Resources */,
 				A31559F911A6AEB7C37F0DA1518DEFF1 /* sstream in Resources */,
@@ -31588,6 +31622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BD3663D20F6F9E3004DE09D /* TransferConfirmViewController.swift in Sources */,
 				2F66B28CD7C7315E43063215716C3F06 /* Account.swift in Sources */,
 				C73324715ED7A5B530EC3656557D421F /* AccountInfoView.swift in Sources */,
 				417C7C9D234791A2280A26237B79A7D0 /* AppAction.swift in Sources */,
@@ -31600,11 +31635,13 @@
 				559E64A356046CB84C6A9B9B07E012E7 /* BaseTabbarViewController.swift in Sources */,
 				73B5A69920F5DFF400756391 /* ColorTheme.swift in Sources */,
 				4E8664CF0182B65EC69790B3811E80C3 /* BaseTableViewCell.swift in Sources */,
+				3BD3663B20F6F9E3004DE09D /* TransferConfirmCoordinator.swift in Sources */,
 				3B4C90FC20F4D686004F4C52 /* PaymentsDetailActions.swift in Sources */,
 				3B4C90FE20F4D686004F4C52 /* PaymentsDetailReducers.swift in Sources */,
 				8ADE05B3B02C07CFCE0F069867999417 /* BaseViewController.swift in Sources */,
 				3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
+				3BD3663320F6F29D004DE09D /* TransferView.swift in Sources */,
 				3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */,
 				BB08391AA7F1D732D97B698F412B3651 /* ComfirmView.swift in Sources */,
 				73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */,
@@ -31638,13 +31675,16 @@
 				1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */,
 				73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */,
 				73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */,
+				3BD3663E20F6F9E3004DE09D /* TransferConfirmReducers.swift in Sources */,
 				08979875F7919749EE9911341C1DA85E /* NavCoordinator.swift in Sources */,
 				2B1048E593DFE3B00BA04C75B88E9469 /* PaymentsRecordsCell.swift in Sources */,
 				73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */,
+				3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */,
 				2B427CD0E35711458F16196E6587BA7A /* PaymentsRecordsCellView.swift in Sources */,
 				173223C45F10FDDC1912D6D77E87B01D /* R.generated.swift in Sources */,
 				D3269330F6567878EEBA3EB42293912B /* RegisterContentView.swift in Sources */,
 				73F30B4120F6E6FF0016E950 /* UserInfoCoordinator.swift in Sources */,
+				3BD3663620F6F29E004DE09D /* TransferContentView.swift in Sources */,
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
