@@ -67,6 +67,8 @@
 "remark" = "备注";
 "input_transfer_remark" = "输入转账备注";
 "transfer_state_time" = "预估确认时间：";
+"check_transfer" = "确认转账";
+
 //zsy end
 
 "day" = "天";

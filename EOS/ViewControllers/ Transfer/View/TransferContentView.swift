@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GrowingTextView
 
 @IBDesignable
 
@@ -42,8 +43,22 @@ class TransferContentView: UIView {
     
     func setUp() {
         handleSetupSubView(accountTitleTextView, tag: InputType.account.rawValue)
+        accountTitleTextView.textField.isUserInteractionEnabled = false
         handleSetupSubView(moneyTitleTextView, tag: InputType.money.rawValue)
+        remarkTitleTextView.delegate = self
+        remarkTitleTextView.datasource = self
+        remarkTitleTextView.textView.delegate = self
         updateHeight()
+        remarkTitleTextView.updateHeight()
+
+    }
+    
+    func setAccountName(name:String) {
+        accountTitleTextView.textField.text = name
+    }
+    
+    func setInfo(info:String) {
+        accountTitleTextView.unitLabel.text = info
     }
     
     override var intrinsicContentSize: CGSize {
@@ -186,14 +201,63 @@ extension TransferContentView: UITextFieldDelegate {
         return true
     }
     
-    //    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
-    //        UIView.animate(withDuration: 0.2) {
-    //            if let titleTextView = textView.superview?.superview as? TitleTextView {
-    //                titleTextView.updateHeight()
-    //            }
-    //            self.updateHeight()
-    //        }
-    //    }
+
+}
+
+extension TransferContentView:GrowingTextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if let titleTextView = textView.superview?.superview as? TitleTextView {
+            titleTextView.reloadActionViews(isEditing: true)
+        }
+    }
+    
+    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
+        UIView.animate(withDuration: 0.2) {
+            if let titleTextView = textView.superview?.superview as? TitleTextView {
+                titleTextView.updateHeight()
+            }
+            self.updateHeight()
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if let titleTextView = textView.superview?.superview as? TitleTextView {
+            titleTextView.reloadActionViews(isEditing: false)
+        }
+    }
+}
+
+extension TransferContentView: TitleTextViewDelegate,TitleTextViewDataSource {
+    func textIntroduction(titleTextView: TitleTextView) {
+        
+    }
+    
+    func textActionSettings(titleTextView: TitleTextView) -> [TextButtonSetting] {
+        return [TextButtonSetting(imageName: R.image.ic_close.name,
+                                  selectedImageName: R.image.ic_close.name,
+                                  isShowWhenEditing: true)]
+    }
+    
+    
+    func textActionTrigger(titleTextView: TitleTextView, selected: Bool, index: NSInteger) {
+        titleTextView.clearText()
+        
+    }
+    
+    func textUISetting(titleTextView: TitleTextView) -> TitleTextSetting {
+        return TitleTextSetting(title: R.string.localizable.remark(),
+                                placeholder: R.string.localizable.input_transfer_remark(),
+                                warningText: R.string.localizable.name_warning(),
+                                introduce: "",
+                                isShowPromptWhenEditing: true,
+                                showLine: true,
+                                isSecureTextEntry: false)
+
+    }
+    
+    func textUnitStr(titleTextView: TitleTextView) -> String {
+        return ""
+    }
 }
 
 

@@ -13,7 +13,9 @@ import ReSwift
 
 class CreatationCompleteViewController: BaseViewController {
 
-	var coordinator: (CreatationCompleteCoordinatorProtocol & CreatationCompleteStateManagerProtocol)?
+    @IBOutlet weak var comfirmView: ComfirmView!
+    
+    var coordinator: (CreatationCompleteCoordinatorProtocol & CreatationCompleteStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,5 +38,9 @@ class CreatationCompleteViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+        comfirmView.cancelButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.coordinator?.dismissCurrentNav()
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
