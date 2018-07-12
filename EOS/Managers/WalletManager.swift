@@ -21,7 +21,7 @@ class WallketManager {
 
     private init() {
         //test
-        switchAccount("awesome14")
+//        switchAccount("awesome14")
     }
     
     func createPairKey() {
@@ -74,6 +74,10 @@ class WallketManager {
     
     func switchAccount(_ account:String) {
         Defaults[.currentAccount] = account
+    }
+    
+    func existAccount() -> Bool {
+        return getAccount() == ""
     }
     
     func getAccount() -> String {

@@ -96,7 +96,9 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     }
     
     func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {
+        KRProgressHUD.show()
         NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WallketManager.shared.pubKey, invitationCode: inviteCode), success: { (data) in
+            KRProgressHUD.showSuccess()
             WallketManager.shared.saveWallket(walletName, password: password, hint: prompt)
             self.pushToCreateSuccessVC()
         }, error: { (code) in

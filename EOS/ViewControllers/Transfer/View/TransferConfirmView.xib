@@ -30,7 +30,6 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEs-i4-iW4" customClass="LineView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="346" height="48"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
@@ -41,7 +40,6 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0d-tG-DAo" customClass="LineView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="48" width="346" height="48"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
@@ -52,7 +50,6 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfb-US-ykB" customClass="LineView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="96" width="346" height="48"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
@@ -76,7 +73,6 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ube-tF-Q9j" customClass="LineView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="346" height="48"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
