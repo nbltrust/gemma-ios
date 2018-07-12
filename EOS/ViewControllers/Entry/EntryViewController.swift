@@ -122,6 +122,6 @@ extension EntryViewController {
     }
     
     @objc func getInviteCode(_ data: [String : Any]) {
-        self.coordinator?.getInviteCodeIntroduction()
+        self.coordinator?.pushToGetInviteCodeIntroductionVC()
     }
 }

@@ -122,7 +122,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JU8-LI-b4f" customClass="Button" customModule="EOS" customModuleProvider="target">
                                 <rect key="frame" x="32" y="575" width="311" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="pkZ-6S-F8t"/>
                                 </constraints>
@@ -141,7 +140,6 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4s5-HG-10P" customClass="Button" customModule="EOS" customModuleProvider="target">
                                 <rect key="frame" x="32" y="515" width="311" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="hXw-aV-kTp"/>
                                 </constraints>

@@ -46,6 +46,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showNavBar()
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.extendedLayoutIncludesOpaqueBars = true
@@ -85,6 +86,11 @@ class BaseViewController: UIViewController {
     func hiddenNavBar() {
         self.navigationController?.navigationBar.isHidden = true
         navBgImageView?.isHidden = true
+    }
+    
+    func showNavBar() {
+        self.navigationController?.navigationBar.isHidden = false
+        navBgImageView?.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
