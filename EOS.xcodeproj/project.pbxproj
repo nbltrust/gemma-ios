@@ -71,9 +71,7 @@
 		3B4C910020F4D6A4004F4C52 /* PaymentsDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C90FF20F4D6A4004F4C52 /* PaymentsDetail.storyboard */; };
 		3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8935C54739AEE59DA2310B17591480 /* BaseWebViewController.swift */; };
 		3B8A0F0188C26CD5B89B88BB7CD2021A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BACC4715E3CF39C51CF4E44B54222588 /* Rubik-Light.ttf */; };
-		3BD3663320F6F29D004DE09D /* TransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3662F20F6F29C004DE09D /* TransferView.swift */; };
 		3BD3663420F6F29E004DE09D /* TransferContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3663020F6F29C004DE09D /* TransferContentView.xib */; };
-		3BD3663520F6F29E004DE09D /* TransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3663120F6F29D004DE09D /* TransferView.xib */; };
 		3BD3663620F6F29E004DE09D /* TransferContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663220F6F29D004DE09D /* TransferContentView.swift */; };
 		3BD3663B20F6F9E3004DE09D /* TransferConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663720F6F9E3004DE09D /* TransferConfirmCoordinator.swift */; };
 		3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */; };
@@ -3044,9 +3042,7 @@
 		3BBE543A4F5599E8BF7677E7634501F4 /* equal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = equal.hpp; sourceTree = "<group>"; };
 		3BC1DFFB11FFF7A1E8D3089E0B678DA3 /* interval_bounds.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interval_bounds.hpp; sourceTree = "<group>"; };
 		3BD14C2363F05D44EF8B9CEAA1AB2B81 /* object_pool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = object_pool.hpp; sourceTree = "<group>"; };
-		3BD3662F20F6F29C004DE09D /* TransferView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferView.swift; path = "EOS/ViewControllers/ Transfer/View/TransferView.swift"; sourceTree = SOURCE_ROOT; };
 		3BD3663020F6F29C004DE09D /* TransferContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TransferContentView.xib; path = "EOS/ViewControllers/ Transfer/View/TransferContentView.xib"; sourceTree = SOURCE_ROOT; };
-		3BD3663120F6F29D004DE09D /* TransferView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TransferView.xib; path = "EOS/ViewControllers/ Transfer/View/TransferView.xib"; sourceTree = SOURCE_ROOT; };
 		3BD3663220F6F29D004DE09D /* TransferContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferContentView.swift; path = "EOS/ViewControllers/ Transfer/View/TransferContentView.swift"; sourceTree = SOURCE_ROOT; };
 		3BD3663720F6F9E3004DE09D /* TransferConfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmCoordinator.swift; sourceTree = "<group>"; };
 		3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmActions.swift; sourceTree = "<group>"; };
@@ -16454,8 +16450,6 @@
 				3BD3664120F70877004DE09D /* TransferConfirmView.xib */,
 				3BD3663220F6F29D004DE09D /* TransferContentView.swift */,
 				3BD3663020F6F29C004DE09D /* TransferContentView.xib */,
-				3BD3662F20F6F29C004DE09D /* TransferView.swift */,
-				3BD3663120F6F29D004DE09D /* TransferView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -31420,7 +31414,6 @@
 				5BA5BDF6B5E2C9F8466441F48E517278 /* istream in Resources */,
 				4456CACEF6AAF0C1FE6DCA145549F499 /* istream.SUNWCCh in Resources */,
 				969828B4F8D7D4D648E833D44A234D09 /* iterator in Resources */,
-				3BD3663520F6F29E004DE09D /* TransferView.xib in Resources */,
 				740D4F6730F1D7E5D73CA773FF7D257A /* iterator.SUNWCCh in Resources */,
 				9624A64F5E63336388B4D496454F0A4D /* limits in Resources */,
 				198ADC3234DA1F0FCE339EB63F88937A /* limits.SUNWCCh in Resources */,
@@ -31723,7 +31716,6 @@
 				3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */,
 				22C023A120F6FDB900284A0A /* CreatationCompleteViewController.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
-				3BD3663320F6F29D004DE09D /* TransferView.swift in Sources */,
 				22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */,
 				3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */,
 				BB08391AA7F1D732D97B698F412B3651 /* ComfirmView.swift in Sources */,

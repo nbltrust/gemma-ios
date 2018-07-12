@@ -14,6 +14,7 @@ import Presentr
 
 class TransferViewController: BaseViewController {
 
+    @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var reciverLabel: UILabel!
     @IBOutlet weak var transferContentView: TransferContentView!
     @IBOutlet weak var accountTextField: UITextField!
@@ -30,11 +31,14 @@ class TransferViewController: BaseViewController {
     }
     
     func setUpUI() {
+        nextButton.title = R.string.localizable.check_transfer()
         self.accountTextField.delegate = self
         self.accountTextField.placeholder = R.string.localizable.account_name()
         self.reciverLabel.text = R.string.localizable.receiver()
-        
-        
+        let name = WallketManager.shared.getAccount()
+        transferContentView.setAccountName(name: name)
+//        let info = WallketManager.shared.getAccount()
+//        transferContentView.setInfo(info: <#T##String#>)
     }
     
     func commonObserveState() {
@@ -65,6 +69,10 @@ class TransferViewController: BaseViewController {
     }
     
     
+    @IBAction func clearBtnClick(_ sender: UIButton) {
+        accountTextField.text = ""
+        
+    }
     
 }
 
@@ -73,7 +81,7 @@ extension TransferViewController : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == accountTextField {
-            
+            self.clearButton.isHidden = true
             let isValid = WallketManager.shared.isValidWalletName(textField.text!)
             if isValid == false {
                 self.reciverLabel.text = R.string.localizable.name_warning()
@@ -87,4 +95,13 @@ extension TransferViewController : UITextFieldDelegate {
             }
         }
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == accountTextField {
+            self.clearButton.isHidden = false
+        }
+    }
+    
+    
+    
 }
