@@ -16,6 +16,11 @@ enum StyleNames:String {
     case comfirmContent
 }
 
+enum LineViewStyleNames:String {
+    case normal_name
+    case normal_content
+}
+
 class RichStyle {
     init() {
         let introduce_style = Style {
@@ -44,5 +49,20 @@ class RichStyle {
             $0.lineSpacing = 8.0
         }
         Styles.register(StyleNames.comfirmContent.rawValue, style: comfirmContent_style)
+        
+        initLineViewStyle()
       }
+    func initLineViewStyle(){
+        let name_style = Style{
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
+            $0.color = UIColor.darkSlateBlue
+        }
+        Styles.register(LineViewStyleNames.normal_name.rawValue, style: name_style)
+        
+        let content_style = Style{
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
+            $0.color = UIColor.cloudyBlue
+        }
+        Styles.register(LineViewStyleNames.normal_content.rawValue, style: content_style)
+    }
 }

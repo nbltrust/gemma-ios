@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletView" customModule="EOS" customModuleProvider="target">
             <connections>
+                <outlet property="mAccountInfoView" destination="lop-oa-lcL" id="tmX-LC-ajc"/>
                 <outlet property="mShadowView" destination="Nuj-b3-UNG" id="TGd-8y-1Lt"/>
             </connections>
         </placeholder>

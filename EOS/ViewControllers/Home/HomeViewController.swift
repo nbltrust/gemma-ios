@@ -24,9 +24,7 @@ class HomeViewController: BaseViewController {
     var data : Any?
 	override func viewDidLoad() {
         super.viewDidLoad()
-//        mWalletView.upDateImgView(mView: mBgView)
         setupUI()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,25 +57,30 @@ class HomeViewController: BaseViewController {
         
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
-            
+            self.tableHeaderView.data = model
             
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return (self.coordinator?.createDataInfo().count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = String.init(describing:type(of: HomeTableCell()))
-
         let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
+        
+        cell.setup(self.coordinator?.createDataInfo()[indexPath.row], indexPath: indexPath)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        coordinator?.pushPaymentDetail()
-        coordinator?.pushPayment()
+        switch indexPath.row {
+        case 0:self.coordinator?.pushPayment()
+        case 1:return
+        default:
+            break
+        }
     }
 }

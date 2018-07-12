@@ -19,10 +19,9 @@ class HomeTableCell: BaseTableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-    }
-    override func setup(_ data: Any?) {
-        
     }
     
+    override func setup(_ data: Any?, indexPath: IndexPath) {
+       homeCellView.data = data
+    }
 }
