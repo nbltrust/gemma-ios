@@ -87,6 +87,7 @@ class LineView: UIView {
     }
     
     func setup(){
+        updateHeight()
     }
     
     override init(frame: CGRect) {

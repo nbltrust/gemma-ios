@@ -23,6 +23,7 @@ class TransferViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        setupEvent()
         self.coordinator?.fetchUserAccount()
     }
     
@@ -52,7 +53,7 @@ class TransferViewController: BaseViewController {
         nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
             
-            let presenter = Presentr(presentationType: .alert)
+            let presenter = Presentr(presentationType: .bottomHalf)
             let controller = TransferConfirmViewController()
             
             self.customPresentViewController(presenter, viewController: controller, animated: true, completion: nil)
