@@ -160,30 +160,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUI-2c-Qim" customClass="Button" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="32" y="576" width="311" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="0dM-ZO-6A1"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCk-bw-8a0">
-                                <rect key="frame" x="67" y="324" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCk-bw-8a0" customClass="TransferConfirmView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="324" width="375" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="AUj-Ns-WRG" firstAttribute="trailing" secondItem="MUI-2c-Qim" secondAttribute="trailing" constant="32" id="0ga-mt-DXW"/>
-                            <constraint firstItem="AUj-Ns-WRG" firstAttribute="bottom" secondItem="MUI-2c-Qim" secondAttribute="bottom" constant="47" id="D3N-s2-fSg"/>
-                            <constraint firstItem="MUI-2c-Qim" firstAttribute="leading" secondItem="AUj-Ns-WRG" secondAttribute="leading" constant="32" id="v1p-OK-erm"/>
+                            <constraint firstItem="AUj-Ns-WRG" firstAttribute="trailing" secondItem="zCk-bw-8a0" secondAttribute="trailing" id="0Ht-9j-teo"/>
+                            <constraint firstItem="zCk-bw-8a0" firstAttribute="top" secondItem="AUj-Ns-WRG" secondAttribute="top" id="Abc-si-WAa"/>
+                            <constraint firstItem="zCk-bw-8a0" firstAttribute="leading" secondItem="AUj-Ns-WRG" secondAttribute="leading" id="hJl-xV-DU6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AUj-Ns-WRG"/>
                     </view>
-                    <connections>
-                        <outlet property="nextButton" destination="MUI-2c-Qim" id="S8z-cp-B1i"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r1R-GD-Ame" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
