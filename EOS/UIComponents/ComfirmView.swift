@@ -41,6 +41,18 @@ class ComfirmView: UIView {
     
     @IBOutlet weak var sureButton: UIButton!
     
+    @IBInspectable var title: String? {
+        didSet {
+            self.titleLabel.text = title
+        }
+    }
+    
+    @IBInspectable var content: String? {
+        didSet {
+            self.contentLabel.text = content
+        }
+    }
+    
     @IBInspectable var cancelTitle: String? {
         didSet {
             self.cancelButton.setTitle(cancelTitle, for: .normal)
@@ -57,14 +69,20 @@ class ComfirmView: UIView {
     
     var isTouchDismiss: Bool = true
     
+    func setup() {
+        updateHeight()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
+        setup()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
+        setup()
     }
     
     override var intrinsicContentSize: CGSize {
@@ -94,7 +112,8 @@ class ComfirmView: UIView {
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
         addSubview(view)
-        self.centerY = (self.superview?.centerY)!
+        view.frame = self.bounds
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
     func setupUI(withTitle title: String, content: String, cancelTitle: String, sureTitle: String, isShade: Bool, isTouchDismiss: Bool) {

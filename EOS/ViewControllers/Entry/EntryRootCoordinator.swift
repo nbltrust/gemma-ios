@@ -10,8 +10,8 @@ import Foundation
 
 class EntryRootCoordinator: NavCoordinator {
     override func start() {
-        if let vc = R.storyboard.entry.entryViewController() {
-            let coordinator = EntryCoordinator(rootVC: self.rootVC)
+        if let vc = R.storyboard.entry.entryGuideViewController() {
+            let coordinator = EntryGuideCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }
