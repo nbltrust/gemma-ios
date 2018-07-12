@@ -13,6 +13,7 @@
 "tabbar-transfer" = "转账";
 "tabbar-mine" = "我的";
 
+"rest" = "剩余";
 /*ErrorMessage*/
 "error_invitecode_regitered" = "邀请码已经被使用";
 "error_invitecode_inexistence" = "邀请码不存在";

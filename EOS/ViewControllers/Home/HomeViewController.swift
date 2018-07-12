@@ -31,6 +31,12 @@ class HomeViewController: BaseViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        coordinator?.getAccountInfo(WallketManager.shared.getAccount())
+    }
+    
     func setupUI(){
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
@@ -53,12 +59,15 @@ class HomeViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+        coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
+            guard let `self` = self else { return }
+            
+            
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
         return 2
     }
     

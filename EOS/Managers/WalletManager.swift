@@ -20,7 +20,8 @@ class WallketManager {
     private var priKey:String = ""
 
     private init() {
-        
+        //test
+        switchAccount("awesome14")
     }
     
     func createPairKey() {
@@ -49,12 +50,14 @@ class WallketManager {
         }
     }
     
-    func removeFromLocalWallet() {
+    private func removeFromLocalWallet() {
         var wallets = Defaults[.wallets]
         if wallets.contains(pubKey) {
             wallets.removeAll(pubKey)
             Defaults[.wallets] = wallets
         }
+        
+        Defaults.remove(.currentWallet)
     }
     
     func importPrivateKey(_ pri:String, account:String, password:String, hint:String) {
@@ -79,6 +82,7 @@ class WallketManager {
     
     func logoutWallet() {
         removeWallket()
+        Defaults.remove(.currentAccount)
         
         let wallets = Defaults[.wallets]
         
