@@ -44,12 +44,13 @@ class TransferCoordinator: TransferRootCoordinator {
 extension TransferCoordinator: TransferCoordinatorProtocol {
     func pushToTransferConfirmVC() {
         let presenter = Presentr(presentationType: .bottomHalf)
-        let controller = R.storyboard.transfer.transferConfirmViewController()
-        
-//        let coor = TransferRootCoordinator(rootVC: <#T##BaseNavigationController#>)
-        let newVC = BaseNavigationController.init(rootViewController: controller!)
+        presenter.dismissOnTap = false
+        let newVC = BaseNavigationController()
+        let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
         
         self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+        
+        transferConfirm.start()
     }
 }
 

@@ -10,6 +10,8 @@ import UIKit
 import ReSwift
 
 protocol TransferConfirmCoordinatorProtocol {
+    func pushToTransferConfirmPwdVC()
+    func dismissConfirmVC()
 }
 
 protocol TransferConfirmStateManagerProtocol {
@@ -31,7 +33,19 @@ class TransferConfirmCoordinator: TransferRootCoordinator {
 }
 
 extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
+    func pushToTransferConfirmPwdVC() {
+        guard let transferConfirmPwdVC = self.rootVC.topViewController as? TransferConfirmViewController else { return }
+        
+        let vc = R.storyboard.transfer.transferConfirmPasswordViewController()
+        let coordinator = TransferConfirmPasswordCoordinator(rootVC: self.rootVC)
+        vc?.coordinator = coordinator
+        self.rootVC.pushViewController(vc!, animated: true)
+    }
     
+    func dismissConfirmVC() {
+        self.rootVC.dismiss(animated: true, completion: nil)
+    }
+
 }
 
 extension TransferConfirmCoordinator: TransferConfirmStateManagerProtocol {

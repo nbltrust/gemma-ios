@@ -79,14 +79,11 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7p-FV-Fcx" customClass="TransferContentView" customModule="EOS" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q7p-FV-Fcx" customClass="TransferContentView" customModule="EOS" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="121" width="343" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="LJT-QY-v1E"/>
-                                                </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="os0-TA-jDt" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="os0-TA-jDt" customClass="Button" customModule="EOS" customModuleProvider="target">
                                                 <rect key="frame" x="32" y="374" width="311" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -147,13 +144,64 @@
                     <view key="view" contentMode="scaleToFill" id="Bfv-Vg-Vtr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUI-2c-Qim" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="32" y="576" width="311" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="0dM-ZO-6A1"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCk-bw-8a0">
+                                <rect key="frame" x="67" y="324" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AUj-Ns-WRG" firstAttribute="trailing" secondItem="MUI-2c-Qim" secondAttribute="trailing" constant="32" id="0ga-mt-DXW"/>
+                            <constraint firstItem="AUj-Ns-WRG" firstAttribute="bottom" secondItem="MUI-2c-Qim" secondAttribute="bottom" constant="47" id="D3N-s2-fSg"/>
+                            <constraint firstItem="MUI-2c-Qim" firstAttribute="leading" secondItem="AUj-Ns-WRG" secondAttribute="leading" constant="32" id="v1p-OK-erm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="AUj-Ns-WRG"/>
                     </view>
+                    <connections>
+                        <outlet property="nextButton" destination="MUI-2c-Qim" id="S8z-cp-B1i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r1R-GD-Ame" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="334" y="-81"/>
+        </scene>
+        <!--Transfer Confirm Password View Controller-->
+        <scene sceneID="p0B-Yh-CeU">
+            <objects>
+                <viewController storyboardIdentifier="TransferConfirmPasswordViewController" id="257-Gd-lZ0" customClass="TransferConfirmPasswordViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vFD-Ip-kaO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F5P-Og-khS" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="32" y="576" width="311" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Vbg-vQ-Xsb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="q1G-fz-ZmF" firstAttribute="bottom" secondItem="F5P-Og-khS" secondAttribute="bottom" constant="47" id="A9i-S9-mgl"/>
+                            <constraint firstItem="q1G-fz-ZmF" firstAttribute="trailing" secondItem="F5P-Og-khS" secondAttribute="trailing" constant="32" id="XZQ-cm-RLy"/>
+                            <constraint firstItem="F5P-Og-khS" firstAttribute="leading" secondItem="q1G-fz-ZmF" secondAttribute="leading" constant="32" id="wTk-eC-DgP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q1G-fz-ZmF"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yna-M7-UG6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1026" y="-81"/>
         </scene>
     </scenes>
 </document>

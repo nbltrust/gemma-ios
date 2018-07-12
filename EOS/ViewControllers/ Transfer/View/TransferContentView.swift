@@ -12,9 +12,9 @@ import Foundation
 
 class TransferContentView: UIView {
     
-    @IBOutlet weak var accountTitleTextView: TitleTextView!
+    @IBOutlet weak var accountTitleTextView: TitleTextfieldView!
     
-    @IBOutlet weak var moneyTitleTextView: TitleTextView!
+    @IBOutlet weak var moneyTitleTextView: TitleTextfieldView!
     
     @IBOutlet weak var remarkTitleTextView: TitleTextView!
     
@@ -24,33 +24,25 @@ class TransferContentView: UIView {
         case remark
     }
     
+    enum TextChangeEvent: String {
+        case transferAccount
+        case transferMoney
+        case walletRemark
+    }
+    
+    
+    func handleSetupSubView(_ titleTextfieldView : TitleTextfieldView, tag: Int) {
+        titleTextfieldView.textField.tag = tag
+        titleTextfieldView.textField.delegate = self
+        titleTextfieldView.delegate = self
+        titleTextfieldView.datasource = self
+        titleTextfieldView.updateContentSize()
+    }
+    
+    
     func setUp() {
-//        accountTitleTextView.textField.tag = InputType.account.rawValue
-//        accountTitleTextView.textField.delegate = self
-//        accountTitleTextView.delegate = self
-//        accountTitleTextView.datasource = self
-//
-//        moneyTitleTextView.textField.tag = InputType.money.rawValue
-//        moneyTitleTextView.textField.delegate = self
-//        moneyTitleTextView.delegate = self
-//        moneyTitleTextView.datasource = self
-//
-//        remarkTitleTextView.textField.tag = InputType.remark.rawValue
-//        remarkTitleTextView.textField.delegate = self
-//        remarkTitleTextView.delegate = self
-//        remarkTitleTextView.datasource = self
-        
-        
-//        accountTitleTextView.titleLabel.text = R.string.localizable.payment_account()
-//        accountTitleTextView.titleLabel.font = UIFont.systemFont(ofSize: 14)
-//
-//        moneyTitleTextView.titleLabel.text = R.string.localizable.money()
-//        moneyTitleTextView.titleLabel.font = UIFont.systemFont(ofSize: 14)
-//        moneyTitleTextView.textField.placeholder = R.string.localizable.input_transfer_money()
-//
-//        remarkTitleTextView.titleLabel.text = R.string.localizable.remark()
-//        remarkTitleTextView.titleLabel.font = UIFont.systemFont(ofSize: 14)
-//        remarkTitleTextView.textField.placeholder = R.string.localizable.input_transfer_remark()
+        handleSetupSubView(accountTitleTextView, tag: InputType.account.rawValue)
+        handleSetupSubView(moneyTitleTextView, tag: InputType.money.rawValue)
         updateHeight()
     }
     
@@ -101,85 +93,107 @@ class TransferContentView: UIView {
     
 }
 
-//extension TransferContentView: TitleTextViewDelegate,TitleTextViewDataSource {
-//    func textIntroduction(titletextView: TitleTextView) {
-//        if titletextView == inviteCodeView {
-//            
-//        }
-//    }
-//    
-//    func textActionTrigger(titleTextView: TitleTextView, selected: Bool, index: NSInteger) {
-//        if titleTextView == passwordView {
-//            if index == 0 {
-//                titleTextView.clearText()
-//            } else if index == 1 {
-//                passwordSwitch(isSelected: selected)
-//            }
-//        } else {
-//            if index == 0 {
-//                titleTextView.clearText()
-//            }
-//        }
-//    }
-//    
-//    func textUISetting(titleTextView: TitleTextView) -> TitleTextSetting {
-//        if titleTextView == nameView {
-//            return TitleTextSetting(title: R.string.localizable.account_wallet_name(),
-//                                    placeholder: R.string.localizable.name_ph(),
-//                                    warningText: R.string.localizable.name_warning(),
-//                                    introduce: "",
-//                                    isShowPromptWhenEditing: true,
-//                                    showLine: true,
-//                                    isSecureTextEntry: false)
-//        } else if titleTextView == passwordView {
-//            return TitleTextSetting(title: R.string.localizable.account_setting_password(),
-//                                    placeholder: R.string.localizable.password_ph(),
-//                                    warningText: R.string.localizable.password_warning(),
-//                                    introduce: "",
-//                                    isShowPromptWhenEditing: false,
-//                                    showLine: true,
-//                                    isSecureTextEntry: true)
-//        } else if titleTextView == passwordComfirmView {
-//            return TitleTextSetting(title: R.string.localizable.account_comfirm_password(),
-//                                    placeholder: R.string.localizable.comfirm_password_ph(),
-//                                    warningText: R.string.localizable.comfirm_password_warning(),
-//                                    introduce: "",
-//                                    isShowPromptWhenEditing: false,
-//                                    showLine: true,
-//                                    isSecureTextEntry: true)
-//        } else if titleTextView == passwordPromptView {
-//            return TitleTextSetting(title: R.string.localizable.account_password_prompt(),
-//                                    placeholder: R.string.localizable.password_prompt_ph(),
-//                                    warningText: "",
-//                                    introduce: "",
-//                                    isShowPromptWhenEditing: false,
-//                                    showLine: true,
-//                                    isSecureTextEntry: false)
-//        } else {
-//            return TitleTextSetting(title: R.string.localizable.account_invitationcode(),
-//                                    placeholder: R.string.localizable.invitationcode_ph(),
-//                                    warningText: R.string.localizable.invitationcode_warning(),
-//                                    introduce: R.string.localizable.invitationcode_introduce(),
-//                                    isShowPromptWhenEditing: false,
-//                                    showLine: false,
-//                                    isSecureTextEntry: false)
-//        }
-//    }
-//    
-//    func textActionSettings(titleTextView: TitleTextView) -> [TextButtonSetting] {
-//        if titleTextView == passwordView {
-//            return [TextButtonSetting(imageName: R.image.ic_close.name,
-//                                      selectedImageName: R.image.ic_close.name,
-//                                      isShowWhenEditing: true),
-//                    TextButtonSetting(imageName: R.image.ic_visible.name,
-//                                      selectedImageName: R.image.ic_invisible.name,
-//                                      isShowWhenEditing: false)]
-//        } else {
-//            return [TextButtonSetting(imageName: R.image.ic_close.name,
-//                                      selectedImageName: R.image.ic_close.name,
-//                                      isShowWhenEditing: true)]
-//        }
-//    }
-//}
+extension TransferContentView: TitleTextFieldViewDelegate,TitleTextFieldViewDataSource {
+    func textIntroduction(titleTextFieldView: TitleTextfieldView) {
+        
+    }
+    
+    func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting] {
+        return [TextButtonSetting(imageName: R.image.ic_close.name,
+                                  selectedImageName: R.image.ic_close.name,
+                                  isShowWhenEditing: true)]
+    }
+    
+    
+    func textActionTrigger(titleTextFieldView: TitleTextfieldView, selected: Bool, index: NSInteger) {
+        titleTextFieldView.clearText()
+
+    }
+    
+    func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting {
+        if titleTextFieldView == accountTitleTextView {
+            return TitleTextSetting(title: R.string.localizable.payment_account(),
+                                    placeholder: R.string.localizable.name_ph(),
+                                    warningText: R.string.localizable.name_warning(),
+                                    introduce: "",
+                                    isShowPromptWhenEditing: true,
+                                    showLine: true,
+                                    isSecureTextEntry: false)
+        } else if titleTextFieldView == moneyTitleTextView {
+            return TitleTextSetting(title: R.string.localizable.money(),
+                                    placeholder: R.string.localizable.input_transfer_money(),
+                                    warningText: "",//文案未提供
+                                    introduce: "",
+                                    isShowPromptWhenEditing: false,
+                                    showLine: true,
+                                    isSecureTextEntry: true)
+        } else {
+            return TitleTextSetting(title: R.string.localizable.remark(),
+                                    placeholder: R.string.localizable.input_transfer_remark(),
+                                    warningText: "",//文案未提供
+                                    introduce: "",
+                                    isShowPromptWhenEditing: false,
+                                    showLine: true,
+                                    isSecureTextEntry: true)
+        }
+    }
+    
+    func textUnitStr(titleTextFieldView: TitleTextfieldView) -> String {
+        return ""
+    }
+}
+
+extension TransferContentView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case InputType.account.rawValue:
+            accountTitleTextView.reloadActionViews(isEditing: true)
+            accountTitleTextView.checkStatus = TextUIStyle.highlight
+        case InputType.money.rawValue:
+            moneyTitleTextView.reloadActionViews(isEditing: true)
+            moneyTitleTextView.checkStatus = TextUIStyle.highlight
+        default:
+            return
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case InputType.account.rawValue:
+            accountTitleTextView.reloadActionViews(isEditing: false)
+            accountTitleTextView.checkStatus = WallketManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+        case InputType.money.rawValue:
+            moneyTitleTextView.reloadActionViews(isEditing: false)
+            moneyTitleTextView.checkStatus = WallketManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+       
+        default:
+            return
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        switch textField.tag {
+        case InputType.account.rawValue:
+            self.sendEventWith(TextChangeEvent.transferAccount.rawValue, userinfo: ["content" : newText])
+        case InputType.money.rawValue:
+            self.sendEventWith(TextChangeEvent.transferMoney.rawValue, userinfo: ["content" : newText])
+
+        default:
+            return true
+        }
+        return true
+    }
+    
+    //    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
+    //        UIView.animate(withDuration: 0.2) {
+    //            if let titleTextView = textView.superview?.superview as? TitleTextView {
+    //                titleTextView.updateHeight()
+    //            }
+    //            self.updateHeight()
+    //        }
+    //    }
+}
 
 

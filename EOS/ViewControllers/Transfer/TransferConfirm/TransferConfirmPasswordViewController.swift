@@ -1,5 +1,5 @@
 //
-//  TransferConfirmViewController.swift
+//  TransferConfirmPasswordViewController.swift
 //  EOS
 //
 //  Created 朱宋宇 on 2018/7/12.
@@ -10,20 +10,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import Presentr
 
-class TransferConfirmViewController: BaseViewController {
+class TransferConfirmPasswordViewController: BaseViewController {
 
-	var coordinator: (TransferConfirmCoordinatorProtocol & TransferConfirmStateManagerProtocol)?
+	var coordinator: (TransferConfirmPasswordCoordinatorProtocol & TransferConfirmPasswordStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setUpUI()
-    }
-    
-    func setUpUI() {
-        self.view.backgroundColor = UIColor.red
+        self.navBgImageView?.isHidden = true
+        configLeftNavButton(R.image.icBack())
     }
     
     func commonObserveState() {

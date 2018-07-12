@@ -21,6 +21,7 @@ class PaymentsRecordsCellView: UIView {
     var data : Any?{
         didSet{
             guard let newData = data as? PaymentsRecordsViewModel else { return }
+            state.image = UIImage.init(imageLiteralResourceName: newData.stateImageName as String)
             address.text = newData.address
             time.text = newData.time
             transferState.text = newData.transferState
