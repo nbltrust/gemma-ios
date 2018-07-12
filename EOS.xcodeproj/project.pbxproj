@@ -143,6 +143,13 @@
 		73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A520F5F62B00756391 /* String+Detection.swift */; };
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
+		73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */; };
+		73F30B4120F6E6FF0016E950 /* UserInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */; };
+		73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */; };
+		73F30B4320F6E6FF0016E950 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3F20F6E6FF0016E950 /* UserInfoViewController.swift */; };
+		73F30B4520F6E70A0016E950 /* UserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F30B4420F6E70A0016E950 /* UserInfo.storyboard */; };
+		73F30B4720F6E7410016E950 /* UserInfoRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B4620F6E7410016E950 /* UserInfoRootCoordinator.swift */; };
+		73F30B4920F6F17B0016E950 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B4820F6F17B0016E950 /* UIViewController+Extensions.swift */; };
 		740D4F6730F1D7E5D73CA773FF7D257A /* iterator.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 8457B72985E9558F5B20BF3231F461E0 /* iterator.SUNWCCh */; };
 		74EAB156C6830FDEC85832623F3570BB /* array.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 5C327027D645845A2F702B5DDDA19D49 /* array.SUNWCCh */; };
 		7610C85F17FAA9095B27B17656342765 /* SharpCornerTipsLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD48A5CB8C231CED8E16AD9422A86BE0 /* SharpCornerTipsLabelView.xib */; };
@@ -5463,6 +5470,13 @@
 		73E114F7294F87FE354FC9C7CDC3F9E6 /* queue_op_status.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = queue_op_status.hpp; sourceTree = "<group>"; };
 		73E1477C6557ADBD81FE6FB6B62C00D6 /* collections_save_imp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = collections_save_imp.hpp; sourceTree = "<group>"; };
 		73EBF19A18A27B45382557E3C56B9916 /* dimension_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dimension_impl.hpp; sourceTree = "<group>"; };
+		73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoActions.swift; sourceTree = "<group>"; };
+		73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCoordinator.swift; sourceTree = "<group>"; };
+		73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoReducers.swift; sourceTree = "<group>"; };
+		73F30B3F20F6E6FF0016E950 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		73F30B4420F6E70A0016E950 /* UserInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserInfo.storyboard; sourceTree = "<group>"; };
+		73F30B4620F6E7410016E950 /* UserInfoRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRootCoordinator.swift; sourceTree = "<group>"; };
+		73F30B4820F6F17B0016E950 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		73FE307F9B0409843F99B1B8E0F37791 /* classic_utility.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = classic_utility.hpp; sourceTree = "<group>"; };
 		73FEE011426FF9B7A534241BE8148227 /* timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = timer.hpp; sourceTree = "<group>"; };
 		74026AEC48BDCA3A717C9738560286DD /* ssize_t.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ssize_t.hpp; sourceTree = "<group>"; };
@@ -12818,6 +12832,7 @@
 				73B5A68B20F5B42600756391 /* Double+Extensions.swift */,
 				73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */,
 				73B5A68F20F5B54C00756391 /* String+Extensions.swift */,
+				73F30B4820F6F17B0016E950 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -14481,6 +14496,7 @@
 		2518901AF31C163FA80727C0AD3B89F6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				73F30B3B20F6E6E30016E950 /* UserInfo */,
 				3B4C90D920F48C51004F4C52 /* Transfer */,
 				7D5F1CA04F5428CB9A826437282B6A3D /* Entry */,
 				5F4F2C2A9D93854A7DACC8FE947B5D8C /* Home */,
@@ -19474,6 +19490,7 @@
 		5F4F2C2A9D93854A7DACC8FE947B5D8C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C1771DE44F28DCA95C4475063DB1DAFC /* HomeRootCoordinator.swift */,
 				7224713D20F62A2A00536BF4 /* cells */,
 				3B4C90F620F4D66E004F4C52 /* PaymentsDetail */,
 				3B4C90EB20F49069004F4C52 /* Cells */,
@@ -19483,7 +19500,6 @@
 				07301833E312556F1670E74BF67AF3E8 /* HomeActions.swift */,
 				8074121E2E3C21B589A2EB0788FDFE37 /* HomeCoordinator.swift */,
 				A47E898962BCB553BC1A277C14561975 /* HomeReducers.swift */,
-				C1771DE44F28DCA95C4475063DB1DAFC /* HomeRootCoordinator.swift */,
 				4F38F5BCFFAFECC47D37D37C1728CFC0 /* HomeViewController.swift */,
 			);
 			path = Home;
@@ -20961,6 +20977,19 @@
 				025A4E9E2D5E69205A111B4C5DABD93B /* integrate_times.hpp */,
 			);
 			path = detail;
+			sourceTree = "<group>";
+		};
+		73F30B3B20F6E6E30016E950 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */,
+				73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */,
+				73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */,
+				73F30B3F20F6E6FF0016E950 /* UserInfoViewController.swift */,
+				73F30B4420F6E70A0016E950 /* UserInfo.storyboard */,
+				73F30B4620F6E7410016E950 /* UserInfoRootCoordinator.swift */,
+			);
+			path = UserInfo;
 			sourceTree = "<group>";
 		};
 		73FC73FA466BAFA9CA4F49F718F6D14F /* lexical_cast */ = {
@@ -31267,6 +31296,7 @@
 				A7D7E408438EB9EC40128F2BBC7BB514 /* deque.SUNWCCh in Resources */,
 				81D2DE5DB28E668B85B44501EA7D0676 /* exception in Resources */,
 				E09B4826558DABC06DAB7B44BBA9560A /* exception.SUNWCCh in Resources */,
+				73F30B4520F6E70A0016E950 /* UserInfo.storyboard in Resources */,
 				3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */,
 				32416C6AFEE5EC6FEF882D0E77E8A530 /* fstream.SUNWCCh in Resources */,
 				68DCB39E40E6BCF9EFDC595087C25582 /* functional in Resources */,
@@ -31606,12 +31636,15 @@
 				632FADFC1004A95370F910B28F2B1B3B /* Localzation+Extensions.swift in Sources */,
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
 				1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */,
+				73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */,
+				73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */,
 				08979875F7919749EE9911341C1DA85E /* NavCoordinator.swift in Sources */,
 				2B1048E593DFE3B00BA04C75B88E9469 /* PaymentsRecordsCell.swift in Sources */,
 				73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */,
 				2B427CD0E35711458F16196E6587BA7A /* PaymentsRecordsCellView.swift in Sources */,
 				173223C45F10FDDC1912D6D77E87B01D /* R.generated.swift in Sources */,
 				D3269330F6567878EEBA3EB42293912B /* RegisterContentView.swift in Sources */,
+				73F30B4120F6E6FF0016E950 /* UserInfoCoordinator.swift in Sources */,
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
@@ -31621,6 +31654,7 @@
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
 				B0CB0B845BDEE83BD98F4F59B48498CE /* UIFont+Additions.swift in Sources */,
+				73F30B4320F6E6FF0016E950 /* UserInfoViewController.swift in Sources */,
 				727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */,
 				3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */,
 				7224712920F57BA800536BF4 /* TransferCoordinator.swift in Sources */,
@@ -31631,8 +31665,10 @@
 				3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */,
 				7224712C20F57BA800536BF4 /* TransferReducers.swift in Sources */,
 				AD352B30A178C8A63FF0D742FDFD3081 /* UIImageView+Additions.swift in Sources */,
+				73F30B4720F6E7410016E950 /* UserInfoRootCoordinator.swift in Sources */,
 				6F3BB5C8972D01A3B05201EC928A1021 /* UIResponder+Extensions.swift in Sources */,
 				703AA2BBC02CA49A0C74B4880E75F696 /* UIView+Extensions.swift in Sources */,
+				73F30B4920F6F17B0016E950 /* UIViewController+Extensions.swift in Sources */,
 				4B99E2557500F5FC08BF1D2C32999A25 /* UserDefaultsService.swift in Sources */,
 				DBE18F3AD409206828C675AB4A85C4FD /* Utils.swift in Sources */,
 				FF428CE559D9BAC66E25585F0A149FB9 /* ViewController.swift in Sources */,

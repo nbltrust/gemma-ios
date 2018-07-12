@@ -8,6 +8,11 @@
 
 "test" = "test";
 
+//tabbar
+"tabbar-wallet" = "钱包";
+"tabbar-transfer" = "转账";
+"tabbar-mine" = "我的";
+
 /*ErrorMessage*/
 "error_invitecode_regitered" = "邀请码已经被使用";
 "error_invitecode_inexistence" = "邀请码不存在";
@@ -43,6 +48,7 @@
 "service_protocol" = "服务协议";
 
 "create_wallet" = "创建钱包";
+"payments_history" = "收支记录";
 
 //zsy add
 "account_total_assets" = "账户总资产";

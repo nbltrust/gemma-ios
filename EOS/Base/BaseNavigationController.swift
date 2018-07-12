@@ -13,16 +13,16 @@ class BaseNavigationController: UINavigationController {
         super.viewDidLoad()
         
         self.interactivePopGestureRecognizer?.delegate = self
-//        let image = UIImage.init(color: .dark)
-//        self.navigationBar.setBackgroundImage(image, for: .default)
+        let image = UIImage.init(color: .clear)
+        self.navigationBar.setBackgroundImage(image, for: .default)
         self.navigationBar.shadowImage = UIImage()
         
-        self.navigationBar.isTranslucent = false
-        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17),NSAttributedStringKey.foregroundColor:UIColor.paleGrey]
+        self.navigationBar.isTranslucent = true
+        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17),NSAttributedStringKey.foregroundColor:UIColor.whiteTwo]
         if #available(iOS 11.0, *) {
-            self.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor:#colorLiteral(red: 1, green: 0.6386402845, blue: 0.3285836577, alpha: 1)]
+            self.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.whiteTwo]
         }
-        self.navigationBar.tintColor = #colorLiteral(red: 0.5436816812, green: 0.5804407597, blue: 0.6680644155, alpha: 1)
+        self.navigationBar.tintColor = UIColor.whiteTwo
         
         //    self.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "ic_arrow_back_16px")
         //    self.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_arrow_back_16px")

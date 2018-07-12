@@ -17,6 +17,8 @@ class TransferViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = R.string.localizable.tabbarTransfer()
         self.coordinator?.fetchUserAccount()
     }
     

@@ -25,6 +25,9 @@ class AppCoordinator {
     var rootVC: BaseTabbarViewController
     
     var homeCoordinator: HomeRootCoordinator!
+    var transferCoordinator: TransferRootCoordinator!
+    var userinfoCoordinator: UserInfoRootCoordinator!
+
     var entryCoordinator: EntryRootCoordinator!
 
     weak var currentPresentedRootCoordinator: NavCoordinator?
@@ -42,19 +45,23 @@ class AppCoordinator {
         }
         
         let home = BaseNavigationController()
-        
         homeCoordinator = HomeRootCoordinator(rootVC: home)
-//        home.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.navWatchlist.key.localized(), image: R.image.ic_watchlist_24px(), selectedImage: R.image.ic_watchlist_active_24px())
-        
-        
-        
-        
+        home.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
         //        home.tabBarItem.badgeValue = ""
-        //        message.tabBarItem.badgeValue = "99+"
+        
+        let transfer = BaseNavigationController()
+        transferCoordinator = TransferRootCoordinator(rootVC: transfer)
+        transfer.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarTransfer(), image: R.image.ic_send_normal(), selectedImage: R.image.ic_send_selected())
+        
+        let userinfo = BaseNavigationController()
+        userinfoCoordinator = UserInfoRootCoordinator(rootVC: userinfo)
+        userinfo.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_normal())
         
         homeCoordinator.start()
-     
-        rootVC.viewControllers = [home]
+        transferCoordinator.start()
+        userinfoCoordinator.start()
+
+        rootVC.viewControllers = [home, transfer, userinfo]
     }
     
     func showEntry() {

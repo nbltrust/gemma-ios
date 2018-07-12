@@ -1,8 +1,8 @@
 //
-//  PaymentsDetailViewController.swift
+//  UserInfoViewController.swift
 //  EOS
 //
-//  Created 朱宋宇 on 2018/7/10.
+//  Created koofrank on 2018/7/12.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
@@ -11,23 +11,12 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class PaymentsDetailViewController: BaseViewController {
+class UserInfoViewController: BaseViewController {
 
-	var coordinator: (PaymentsDetailCoordinatorProtocol & PaymentsDetailStateManagerProtocol)?
-    var data : PaymentsRecordsViewModel = PaymentsRecordsViewModel()
-    
-    
+	var coordinator: (UserInfoCoordinatorProtocol & UserInfoStateManagerProtocol)?
+
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = R.string.localizable.payments_history()
-        hiddenNavBar()
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
     }
     
     func commonObserveState() {

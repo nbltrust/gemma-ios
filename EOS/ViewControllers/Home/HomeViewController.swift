@@ -20,16 +20,19 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var tableHeaderView: HomeHeaderView!
     
     var coordinator: (HomeCoordinatorProtocol & HomeStateManagerProtocol)?
-
+    
     var data : Any?
 	override func viewDidLoad() {
+        showWholeNavBg = true
+        
         super.viewDidLoad()
 //        mWalletView.upDateImgView(mView: mBgView)
         setupUI()
+        
     }
     
     func setupUI(){
-        let nibString = String.init(describing:type(of: HomeTableCell()))
+        let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
     }
     
@@ -64,5 +67,9 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
 
         let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.pushPaymentDetail()
     }
 }

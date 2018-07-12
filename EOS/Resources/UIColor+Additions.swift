@@ -1,8 +1,8 @@
 //
 //  UIColor+Additions.swift
-//  Gemma
+//  Gemma IOS
 //
-//  Generated on Zeplin. (2018/7/4).
+//  Generated on Zeplin. (2018/7/12).
 //  Copyright (c) 2018 __MyCompanyName__. All rights reserved.
 //
 
@@ -50,16 +50,8 @@ extension UIColor {
     return UIColor(red: 33.0 / 255.0, green: 44.0 / 255.0, blue: 103.0 / 255.0, alpha: 1.0)
   }
 
-  @nonobjc class var cloudyBlue: UIColor {
-    return UIColor(red: 198.0 / 255.0, green: 202.0 / 255.0, blue: 222.0 / 255.0, alpha: 1.0)
-  }
-
   @nonobjc class var paleGrey: UIColor {
     return UIColor(red: 245.0 / 255.0, green: 246.0 / 255.0, blue: 248.0 / 255.0, alpha: 1.0)
-  }
-
-  @nonobjc class var white: UIColor {
-    return UIColor(white: 249.0 / 255.0, alpha: 1.0)
   }
 
   @nonobjc class var buff: UIColor {
@@ -84,6 +76,74 @@ extension UIColor {
 
   @nonobjc class var cornflowerBlueTwo: UIColor {
     return UIColor(red: 65.0 / 255.0, green: 105.0 / 255.0, blue: 209.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var duskBlue5: UIColor {
+    return UIColor(red: 39.0 / 255.0, green: 52.0 / 255.0, blue: 125.0 / 255.0, alpha: 0.05)
+  }
+
+  @nonobjc class var black25: UIColor {
+    return UIColor(white: 0.0, alpha: 0.25)
+  }
+
+  @nonobjc class var white90: UIColor {
+    return UIColor(white: 250.0 / 255.0, alpha: 0.9)
+  }
+
+  @nonobjc class var black40: UIColor {
+    return UIColor(white: 0.0, alpha: 0.4)
+  }
+
+  @nonobjc class var darkSkyBlueTwo: UIColor {
+    return UIColor(red: 51.0 / 255.0, green: 129.0 / 255.0, blue: 224.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var darkSlateBlueTwo: UIColor {
+    return UIColor(red: 33.0 / 255.0, green: 44.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var cloudyBlueThree: UIColor {
+    return UIColor(red: 198.0 / 255.0, green: 201.0 / 255.0, blue: 220.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var cornflowerBlueThree: UIColor {
+    return UIColor(red: 70.0 / 255.0, green: 109.0 / 255.0, blue: 211.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var whiteThree: UIColor {
+    return UIColor(white: 216.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var paleGrey41: UIColor {
+    return UIColor(red: 221.0 / 255.0, green: 226.0 / 255.0, blue: 240.0 / 255.0, alpha: 0.42)
+  }
+
+  @nonobjc class var silver90: UIColor {
+    return UIColor(red: 210.0 / 255.0, green: 213.0 / 255.0, blue: 219.0 / 255.0, alpha: 0.9)
+  }
+
+  @nonobjc class var coolGrey50: UIColor {
+    return UIColor(red: 171.0 / 255.0, green: 179.0 / 255.0, blue: 189.0 / 255.0, alpha: 0.5)
+  }
+
+  @nonobjc class var black: UIColor {
+    return UIColor(white: 3.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var black50: UIColor {
+    return UIColor(white: 0.0, alpha: 0.5)
+  }
+
+  @nonobjc class var cloudyBlue: UIColor {
+    return UIColor(red: 198.0 / 255.0, green: 202.0 / 255.0, blue: 222.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var duskBlue25: UIColor {
+    return UIColor(red: 39.0 / 255.0, green: 52.0 / 255.0, blue: 125.0 / 255.0, alpha: 0.25)
+  }
+
+  @nonobjc class var white: UIColor {
+    return UIColor(white: 249.0 / 255.0, alpha: 1.0)
   }
 
 }

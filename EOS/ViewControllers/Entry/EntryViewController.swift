@@ -26,6 +26,8 @@ class EntryViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = R.string.localizable.create_wallet()
         //获取公私钥
         WallketManager.shared.createPairKey()
         setupUI()
