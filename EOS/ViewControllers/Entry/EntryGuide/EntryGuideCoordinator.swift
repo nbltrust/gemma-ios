@@ -10,6 +10,8 @@ import UIKit
 import ReSwift
 
 protocol EntryGuideCoordinatorProtocol {
+    func pushToCreateWalletVC()
+    func pushToRecoverFromCopyVC()
 }
 
 protocol EntryGuideStateManagerProtocol {
@@ -17,9 +19,6 @@ protocol EntryGuideStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<EntryGuideState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
-    func createNewWallet()
-    func recoverFromCopy()
 }
 
 class EntryGuideCoordinator: EntryRootCoordinator {
@@ -34,7 +33,16 @@ class EntryGuideCoordinator: EntryRootCoordinator {
 }
 
 extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
+    func pushToCreateWalletVC() {
+        let createVC = R.storyboard.entry.entryViewController()!
+        let coordinator = EntryCoordinator(rootVC: self.rootVC)
+        createVC.coordinator = coordinator
+        self.rootVC.pushViewController(createVC, animated: true)
+    }
     
+    func pushToRecoverFromCopyVC() {
+        
+    }
 }
 
 extension EntryGuideCoordinator: EntryGuideStateManagerProtocol {
@@ -46,13 +54,5 @@ extension EntryGuideCoordinator: EntryGuideStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<EntryGuideState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
-    }
-    
-    func createNewWallet() {
-        
-    }
-    
-    func recoverFromCopy() {
-        
     }
 }

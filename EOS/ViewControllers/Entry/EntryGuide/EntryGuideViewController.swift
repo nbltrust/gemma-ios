@@ -19,8 +19,14 @@ class EntryGuideViewController: BaseViewController {
     
     var coordinator: (EntryGuideCoordinatorProtocol & EntryGuideStateManagerProtocol)?
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hiddenNavBar()
+    }
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupUI()
         self.setupEvent()
     }
     
@@ -38,15 +44,19 @@ class EntryGuideViewController: BaseViewController {
         }
     }
     
+    func setupUI() {
+        self.view.backgroundColor = UIColor.darkSlateBlue
+    }
+    
     func setupEvent() {
         createView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
-            self.coordinator?.createNewWallet()
+            self.coordinator?.pushToCreateWalletVC()
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         
         recoverView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: { [weak self] touch in
             guard let `self` = self else { return }
-            self.coordinator?.recoverFromCopy()
+            self.coordinator?.pushToRecoverFromCopyVC()
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
