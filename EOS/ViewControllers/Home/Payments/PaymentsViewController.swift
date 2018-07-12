@@ -30,6 +30,7 @@ class PaymentsViewController: BaseViewController {
     }
     
     func setupUI(){
+        
         let name = String.init(describing:PaymentsRecordsCell.self)
         
         tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
