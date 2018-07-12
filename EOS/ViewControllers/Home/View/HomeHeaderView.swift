@@ -10,6 +10,15 @@ import UIKit
 
 class HomeHeaderView: UIView {
 
+    @IBOutlet weak var nameAndImg: HomeTopView!
+    @IBOutlet weak var accountInfoView: WalletView!
+    
+    var data : Any? {
+        didSet{
+           accountInfoView.data = data
+            nameAndImg.data = data
+        }
+    }
     
     func setup(){
         

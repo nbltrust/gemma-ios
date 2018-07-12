@@ -19,10 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdB-yQ-pdE">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigationBg2" translatesAutoresizingMaskIntoConstraints="NO" id="fK7-Wz-j7B">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
+                                    </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ACt-uJ-OXw">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <view key="tableHeaderView" contentMode="scaleToFill" id="1MV-3W-hWv" customClass="HomeHeaderView" customModule="EOS" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="416"/>
@@ -37,14 +40,16 @@
                                 <constraints>
                                     <constraint firstItem="ACt-uJ-OXw" firstAttribute="leading" secondItem="cdB-yQ-pdE" secondAttribute="leading" id="2zf-CP-S1D"/>
                                     <constraint firstAttribute="trailing" secondItem="ACt-uJ-OXw" secondAttribute="trailing" id="3kU-qC-Fc1"/>
+                                    <constraint firstItem="fK7-Wz-j7B" firstAttribute="leading" secondItem="cdB-yQ-pdE" secondAttribute="leading" id="PMm-AE-ApB"/>
                                     <constraint firstItem="ACt-uJ-OXw" firstAttribute="top" secondItem="cdB-yQ-pdE" secondAttribute="top" id="S6M-3t-4gZ"/>
                                     <constraint firstAttribute="bottom" secondItem="ACt-uJ-OXw" secondAttribute="bottom" id="kYK-hp-Mno"/>
+                                    <constraint firstItem="fK7-Wz-j7B" firstAttribute="top" secondItem="cdB-yQ-pdE" secondAttribute="top" id="soJ-zX-4De"/>
+                                    <constraint firstAttribute="trailing" secondItem="fK7-Wz-j7B" secondAttribute="trailing" id="uqy-H9-Nei"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cdB-yQ-pdE" firstAttribute="top" secondItem="f5G-1Z-JFd" secondAttribute="top" id="3NU-IM-ra9"/>
+                            <constraint firstItem="cdB-yQ-pdE" firstAttribute="top" secondItem="2hX-6z-qSM" secondAttribute="top" id="3NU-IM-ra9"/>
                             <constraint firstItem="cdB-yQ-pdE" firstAttribute="leading" secondItem="f5G-1Z-JFd" secondAttribute="leading" id="5TC-os-rLe"/>
                             <constraint firstItem="cdB-yQ-pdE" firstAttribute="trailing" secondItem="f5G-1Z-JFd" secondAttribute="trailing" id="mD7-Zh-Vky"/>
                             <constraint firstItem="f5G-1Z-JFd" firstAttribute="bottom" secondItem="cdB-yQ-pdE" secondAttribute="bottom" id="yEK-Pn-Chq"/>
@@ -62,4 +67,7 @@
             <point key="canvasLocation" x="-703" y="117"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="navigationBg2" width="375" height="281"/>
+    </resources>
 </document>

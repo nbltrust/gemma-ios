@@ -13,6 +13,18 @@ class HomeTopView: UIView {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var name: UILabel!
     
+    var data : Any? {
+        didSet{
+            if let data = data as? AccountViewModel{
+                name.text = data.account
+                if data.portrait.count > 0 {
+                    let generator = IconGenerator(size: 168, hash: Data(hex: data.portrait))
+                    icon.image = UIImage(cgImage: generator.render()!)
+                }
+            }
+        }
+    }
+    
     func setup(){
         
     }

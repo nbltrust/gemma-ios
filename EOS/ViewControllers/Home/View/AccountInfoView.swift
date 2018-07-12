@@ -32,7 +32,16 @@ class AccountInfoView: UIView {
     
     var data: Any? {
         didSet {
-            
+            if let data = data as? AccountViewModel{
+                mTotalEOSLabel.text = data.allAssets
+                mTotalCNYLabel.text = data.CNY
+                mRemainEOSLabel.text = data.balance
+                mRedeemEOSLabel.text = data.recentRefundAsset
+                mRemainTimeLabel.text = data.refundTime
+                mCPUConsumeEOSLabel.text = data.cpuValue
+                mNETConsumeEOSLabel.text = data.netValue
+                mRAMConsumeKBLabel.text = data.ramValue
+            }
         }
     }
     

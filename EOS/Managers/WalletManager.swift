@@ -142,7 +142,7 @@ class WallketManager {
     }
     
     func isValidWalletName(_ name: String) -> Bool {
-        let regex = "^[0-9a-z]{12}+$"
+        let regex = "^[1-5a-z]{12}+$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with:name)
     }

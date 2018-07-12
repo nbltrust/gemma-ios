@@ -45,7 +45,7 @@ class EntryGuideViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.changeBackgroundColor(UIColor.darkSlateBlue)
+        self.view.backgroundColor = UIColor.darkSlateBlue
     }
     
     func setupEvent() {

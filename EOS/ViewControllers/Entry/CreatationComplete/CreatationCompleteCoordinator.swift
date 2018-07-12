@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol CreatationCompleteCoordinatorProtocol {
+    func dismissCurrentNav()
 }
 
 protocol CreatationCompleteStateManagerProtocol {
@@ -31,7 +32,9 @@ class CreatationCompleteCoordinator: EntryRootCoordinator {
 }
 
 extension CreatationCompleteCoordinator: CreatationCompleteCoordinatorProtocol {
-    
+    func dismissCurrentNav() {
+        self.rootVC.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension CreatationCompleteCoordinator: CreatationCompleteStateManagerProtocol {
