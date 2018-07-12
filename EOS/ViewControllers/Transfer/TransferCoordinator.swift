@@ -10,8 +10,11 @@ import UIKit
 import ReSwift
 import PromiseKit
 import AwaitKit
+import Presentr
 
 protocol TransferCoordinatorProtocol {
+    func pushToTransferConfirmVC()
+    
 }
 
 protocol TransferStateManagerProtocol {
@@ -39,7 +42,15 @@ class TransferCoordinator: TransferRootCoordinator {
 }
 
 extension TransferCoordinator: TransferCoordinatorProtocol {
-    
+    func pushToTransferConfirmVC() {
+        let presenter = Presentr(presentationType: .bottomHalf)
+        let controller = R.storyboard.transfer.transferConfirmViewController()
+        
+//        let coor = TransferRootCoordinator(rootVC: <#T##BaseNavigationController#>)
+        let newVC = BaseNavigationController.init(rootViewController: controller!)
+        
+        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+    }
 }
 
 extension TransferCoordinator: TransferStateManagerProtocol {
