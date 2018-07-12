@@ -115,7 +115,7 @@
         <!--Entry Guide View Controller-->
         <scene sceneID="JUA-r2-zyJ">
             <objects>
-                <viewController id="xVd-zy-h4q" customClass="EntryGuideViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EntryGuideViewController" id="xVd-zy-h4q" customClass="EntryGuideViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trm-R7-NfC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,31 +179,49 @@
         <!--Creatation Complete View Controller-->
         <scene sceneID="6HT-qP-cZf">
             <objects>
-                <viewController id="whx-JZ-Q9F" customClass="CreatationCompleteViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreatationCompleteViewController" id="whx-JZ-Q9F" customClass="CreatationCompleteViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mKv-Mn-sAO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mya-AR-JQr">
-                                <rect key="frame" x="80" y="136" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="mya-AR-JQr">
+                                <rect key="frame" x="164.5" y="96" width="46" height="46"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P2Z-H3-rNK" customClass="ComfirmView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="67" y="439" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P2Z-H3-rNK" customClass="ComfirmView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="16" y="439" width="343" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9Q-n1-wo4">
+                                <rect key="frame" x="16" y="163" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="prompt_create_success"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="P2Z-H3-rNK" firstAttribute="leading" secondItem="34v-hb-sD9" secondAttribute="leading" constant="16" id="3xA-6M-oLD"/>
+                            <constraint firstItem="34v-hb-sD9" firstAttribute="trailing" secondItem="P2Z-H3-rNK" secondAttribute="trailing" constant="16" id="71o-0I-g5Y"/>
+                            <constraint firstItem="mya-AR-JQr" firstAttribute="centerX" secondItem="mKv-Mn-sAO" secondAttribute="centerX" id="JuN-kO-GsA"/>
+                            <constraint firstItem="mya-AR-JQr" firstAttribute="top" secondItem="34v-hb-sD9" secondAttribute="top" constant="76" id="Pz1-V9-r0H"/>
+                            <constraint firstItem="l9Q-n1-wo4" firstAttribute="leading" secondItem="34v-hb-sD9" secondAttribute="leading" constant="16" id="Xsf-ou-kzH"/>
+                            <constraint firstItem="l9Q-n1-wo4" firstAttribute="top" secondItem="mya-AR-JQr" secondAttribute="bottom" constant="21" id="bxh-9j-Dmx"/>
+                            <constraint firstItem="P2Z-H3-rNK" firstAttribute="top" secondItem="l9Q-n1-wo4" secondAttribute="bottom" constant="57" id="cm4-HN-e2p"/>
+                            <constraint firstItem="34v-hb-sD9" firstAttribute="trailing" secondItem="l9Q-n1-wo4" secondAttribute="trailing" constant="16" id="tsO-dl-7gx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="34v-hb-sD9"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BJT-vJ-8M2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1606" y="106"/>
+            <point key="canvasLocation" x="1605.5999999999999" y="105.69715142428787"/>
         </scene>
     </scenes>
     <resources>
+        <image name="ic_check" width="46" height="46"/>
         <image name="ic_checkbox" width="24" height="24"/>
         <image name="ic_checkbox_active" width="24" height="24"/>
         <image name="logo" width="129" height="177"/>
