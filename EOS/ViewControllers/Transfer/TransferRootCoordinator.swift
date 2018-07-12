@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class TransferRootCoordinator: NavCoordinator {
     override func start() {
         if let vc = R.storyboard.transfer.transferViewController() {

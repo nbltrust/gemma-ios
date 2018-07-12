@@ -68,6 +68,7 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
             self.store.dispatch(FetchPaymentsRecordsListAction(data: payments! as! [Payment]))
             completion(true)
         }, error: { (code) in
+
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)
                 KRProgressHUD.showError(withMessage: error.localizedDescription)
@@ -75,6 +76,10 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
                 KRProgressHUD.showError(withMessage: R.string.localizable.error_unknow())
             }
         }) { (moyaError) in
+            let payment:[Payment] = []
+            self.store.dispatch(FetchPaymentsRecordsListAction(data: payment))
+            completion(true)
+
             KRProgressHUD.showError(withMessage: R.string.localizable.request_failed())
 
         }

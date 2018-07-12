@@ -81,6 +81,11 @@
 		3BD3663E20F6F9E3004DE09D /* TransferConfirmReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */; };
 		3BD3664020F7086A004DE09D /* TransferConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663F20F7086A004DE09D /* TransferConfirmView.swift */; };
 		3BD3664220F70877004DE09D /* TransferConfirmView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3664120F70877004DE09D /* TransferConfirmView.xib */; };
+		3BD3664520F72914004DE09D /* TransferConfirmRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3664420F72914004DE09D /* TransferConfirmRootCoordinator.swift */; };
+		3BD3664A20F72B5E004DE09D /* TransferConfirmPasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3664620F72B5E004DE09D /* TransferConfirmPasswordCoordinator.swift */; };
+		3BD3664B20F72B5E004DE09D /* TransferConfirmPasswordActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3664720F72B5E004DE09D /* TransferConfirmPasswordActions.swift */; };
+		3BD3664C20F72B5E004DE09D /* TransferConfirmPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3664820F72B5E004DE09D /* TransferConfirmPasswordViewController.swift */; };
+		3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3664920F72B5E004DE09D /* TransferConfirmPasswordReducers.swift */; };
 		3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */ = {isa = PBXBuildFile; fileRef = F601AE09C748BD90FFF8C8744B7B621D /* fstream */; };
 		3CE0B916A6316D966E0AD0C04B7A8AD4 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F6796D1FBCF6CB7AAEF5B3655062A1 /* Rubik-Black.ttf */; };
 		3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380B8A6234BE07DE4B3CDE521A28F60 /* Colletion+Extensions.swift */; };
@@ -3049,6 +3054,11 @@
 		3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmReducers.swift; sourceTree = "<group>"; };
 		3BD3663F20F7086A004DE09D /* TransferConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmView.swift; sourceTree = "<group>"; };
 		3BD3664120F70877004DE09D /* TransferConfirmView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferConfirmView.xib; sourceTree = "<group>"; };
+		3BD3664420F72914004DE09D /* TransferConfirmRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmRootCoordinator.swift; sourceTree = "<group>"; };
+		3BD3664620F72B5E004DE09D /* TransferConfirmPasswordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmPasswordCoordinator.swift; sourceTree = "<group>"; };
+		3BD3664720F72B5E004DE09D /* TransferConfirmPasswordActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmPasswordActions.swift; sourceTree = "<group>"; };
+		3BD3664820F72B5E004DE09D /* TransferConfirmPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmPasswordViewController.swift; sourceTree = "<group>"; };
+		3BD3664920F72B5E004DE09D /* TransferConfirmPasswordReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmPasswordReducers.swift; sourceTree = "<group>"; };
 		3BD4C916A39192D114FBEEE600033E2B /* buffered_stream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffered_stream.hpp; sourceTree = "<group>"; };
 		3BDA9B09D89E2B72CE5C65FA614ABC1B /* insert_range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = insert_range.hpp; sourceTree = "<group>"; };
 		3BE67FC625579D3EA5ED5446943EF95B /* blowfish.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blowfish.hpp; sourceTree = "<group>"; };
@@ -16317,10 +16327,7 @@
 				7224712820F57BA800536BF4 /* TransferReducers.swift */,
 				7224712F20F57C0C00536BF4 /* TransferRootCoordinator.swift */,
 				7224712D20F57BDF00536BF4 /* Transfer.storyboard */,
-				3BD3663720F6F9E3004DE09D /* TransferConfirmCoordinator.swift */,
-				3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */,
-				3BD3663920F6F9E3004DE09D /* TransferConfirmViewController.swift */,
-				3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */,
+				3BD3664320F728F6004DE09D /* TransferConfirm */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -16451,6 +16458,22 @@
 				3BD3663120F6F29D004DE09D /* TransferView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3BD3664320F728F6004DE09D /* TransferConfirm */ = {
+			isa = PBXGroup;
+			children = (
+				3BD3663720F6F9E3004DE09D /* TransferConfirmCoordinator.swift */,
+				3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */,
+				3BD3663920F6F9E3004DE09D /* TransferConfirmViewController.swift */,
+				3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */,
+				3BD3664420F72914004DE09D /* TransferConfirmRootCoordinator.swift */,
+				3BD3664620F72B5E004DE09D /* TransferConfirmPasswordCoordinator.swift */,
+				3BD3664720F72B5E004DE09D /* TransferConfirmPasswordActions.swift */,
+				3BD3664820F72B5E004DE09D /* TransferConfirmPasswordViewController.swift */,
+				3BD3664920F72B5E004DE09D /* TransferConfirmPasswordReducers.swift */,
+			);
+			path = TransferConfirm;
 			sourceTree = "<group>";
 		};
 		3C3ED091D2DBB634DC44979297F46E7A /* cgs */ = {
@@ -31690,11 +31713,13 @@
 				73B5A69920F5DFF400756391 /* ColorTheme.swift in Sources */,
 				4E8664CF0182B65EC69790B3811E80C3 /* BaseTableViewCell.swift in Sources */,
 				3BD3663B20F6F9E3004DE09D /* TransferConfirmCoordinator.swift in Sources */,
+				3BD3664520F72914004DE09D /* TransferConfirmRootCoordinator.swift in Sources */,
 				3B4C90FC20F4D686004F4C52 /* PaymentsDetailActions.swift in Sources */,
 				3B4C90FE20F4D686004F4C52 /* PaymentsDetailReducers.swift in Sources */,
 				22C023A020F6FDB900284A0A /* CreatationCompleteActions.swift in Sources */,
 				8ADE05B3B02C07CFCE0F069867999417 /* BaseViewController.swift in Sources */,
 				22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */,
+				3BD3664A20F72B5E004DE09D /* TransferConfirmPasswordCoordinator.swift in Sources */,
 				3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */,
 				22C023A120F6FDB900284A0A /* CreatationCompleteViewController.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
@@ -31731,6 +31756,7 @@
 				72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */,
 				632FADFC1004A95370F910B28F2B1B3B /* Localzation+Extensions.swift in Sources */,
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
+				3BD3664C20F72B5E004DE09D /* TransferConfirmPasswordViewController.swift in Sources */,
 				1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */,
 				73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */,
 				73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */,
@@ -31756,6 +31782,7 @@
 				B0CB0B845BDEE83BD98F4F59B48498CE /* UIFont+Additions.swift in Sources */,
 				73F30B4320F6E6FF0016E950 /* UserInfoViewController.swift in Sources */,
 				727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */,
+				3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */,
 				3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */,
 				7224712920F57BA800536BF4 /* TransferCoordinator.swift in Sources */,
 				3B4C90FD20F4D686004F4C52 /* PaymentsDetailViewController.swift in Sources */,
@@ -31770,6 +31797,7 @@
 				703AA2BBC02CA49A0C74B4880E75F696 /* UIView+Extensions.swift in Sources */,
 				73F30B4920F6F17B0016E950 /* UIViewController+Extensions.swift in Sources */,
 				4B99E2557500F5FC08BF1D2C32999A25 /* UserDefaultsService.swift in Sources */,
+				3BD3664B20F72B5E004DE09D /* TransferConfirmPasswordActions.swift in Sources */,
 				22C0239F20F6FDB900284A0A /* CreatationCompleteCoordinator.swift in Sources */,
 				DBE18F3AD409206828C675AB4A85C4FD /* Utils.swift in Sources */,
 				FF428CE559D9BAC66E25585F0A149FB9 /* ViewController.swift in Sources */,

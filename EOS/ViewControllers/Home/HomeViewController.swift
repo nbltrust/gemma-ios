@@ -79,6 +79,7 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.pushPaymentDetail()
+//        coordinator?.pushPaymentDetail()
+        coordinator?.pushPayment()
     }
 }
