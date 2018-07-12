@@ -8,6 +8,8 @@
 
 import Foundation
 import ReSwift
+import RxSwift
+import RxCocoa
 
 //MARK: - State
 struct TransferState: StateType {
@@ -18,7 +20,10 @@ struct TransferState: StateType {
 }
 
 struct TransferPropertyState {
+    var balance : BehaviorRelay<String?> = BehaviorRelay(value: nil)
 }
+
+
 
 //MARK: - Action Creator
 class TransferPropertyActionCreate {

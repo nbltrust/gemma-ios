@@ -12,32 +12,44 @@ enum TransferContentType:Int {
     case payment
 }
 
-
+@IBDesignable
 class TransferConfirmView: UIView {
-    @IBOutlet weak var receverLineView: LineView!
-    @IBOutlet weak var moneyLineView: LineView!
-    @IBOutlet weak var remarkLineView: LineView!
-    @IBOutlet weak var otherLineView: LineView!
+    @IBOutlet weak var receverView: LineView!
+    @IBOutlet weak var amountView: LineView!
+    @IBOutlet weak var remarkView: LineView!
+    @IBOutlet weak var payAccountView: LineView!
     
     func setUpType(type: TransferContentType) {
         
     }
     
     func setUp() {
-        
+        updateHeight()
     }
     
     var recever = "" {
         didSet {
-            receverLineView.name_text = recever
-        }
-    }
-    var receverContent = "" {
-        didSet {
-            receverLineView.content_text = receverContent
+            receverView.content_text = recever
         }
     }
     
+    var amount = "" {
+        didSet {
+            amountView.content_text = recever
+        }
+    }
+    
+    var remark = "" {
+        didSet {
+            remarkView.content_text = recever
+        }
+    }
+    
+    var payAccount = "" {
+        didSet {
+            payAccountView.content_text = recever
+        }
+    }
     
     
     override var intrinsicContentSize: CGSize {
@@ -65,7 +77,6 @@ class TransferConfirmView: UIView {
         super.init(frame: frame)
         loadViewFromNib()
         setUp()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
