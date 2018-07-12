@@ -10,8 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import SwiftRichString
-
 
 class EntryViewController: BaseViewController {
     
@@ -19,6 +17,7 @@ class EntryViewController: BaseViewController {
     
     @IBOutlet weak var agreeButton: UIButton!
     
+    @IBOutlet weak var agreeView: AttributedLabelView!
     
     @IBOutlet weak var creatButton: Button!
     
@@ -52,10 +51,26 @@ class EntryViewController: BaseViewController {
     }
     
     func setupUI() {
-        let agreeStyle: Style = Styles.styles[StyleNames.agree.rawValue] as! Style
-        let agreementStyle: Style = Styles.styles[StyleNames.agreement.rawValue] as! Style
-        let agreeGroup = StyleGroup(base: agreeStyle, [StyleNames.agreement.rawValue : agreementStyle])
-        let str = String(format: "%@  <%@>%@</%@>",R.string.localizable.agree_title(),StyleNames.agreement.rawValue, R.string.localizable.service_protocol(),StyleNames.agreement.rawValue)
+        let protocolStyle = AttributeStyle("protocol").underlineStyle(.styleSingle).foregroundColor(UIColor.darkSlateBlue)
+        let allStyle = AttributeStyle.font(.systemFont(ofSize: 12)).foregroundColor(UIColor.blueyGrey)
+        let agreeStr = String(format: "%@ %@", R.string.localizable.agree_title(),R.string.localizable.service_protocol())
+        let protocolStr = R.string.localizable.service_protocol()
+        let range = agreeStr.range(of: protocolStr)
+        let detection = Detection.init(type: .range, style: protocolStyle, range: range!)
+        agreeView.attributedText = AttributedText.init(string: agreeStr, detections: [detection], baseStyle: allStyle)
+        agreeView.onClick = { attributedView, detection in
+            switch detection.type {
+            case .link(let url):
+                UIApplication.shared.openURL(url)
+            default:
+                break
+            }
+        }
+        
+//        let agreeStyle: Style = Styles.styles[StyleNames.agree.rawValue] as! Style
+//        let agreementStyle: Style = Styles.styles[StyleNames.agreement.rawValue] as! Style
+//        let agreeGroup = StyleGroup(base: agreeStyle, [StyleNames.agreement.rawValue : agreementStyle])
+//        let str = String(format: "%@  <%@>%@</%@>",R.string.localizable.agree_title(),StyleNames.agreement.rawValue, R.string.localizable.service_protocol(),StyleNames.agreement.rawValue)
 
 //        let agreeStyle: Style = Styles.styles[StyleNames.agree.rawValue] as! Style
 //        let agreementStyle: Style = Styles.styles[StyleNames.agreement.rawValue] as! Style
@@ -67,7 +82,7 @@ class EntryViewController: BaseViewController {
     func setupEvent() {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
-            self.coordinator?.createWallet(self.registerView.nameView.textView.text!, password: self.registerView.passwordView.textView.text!, prompt: self.registerView.passwordPromptView.textView.text!, inviteCode: self.registerView.inviteCodeView.textView.text!, completion: {[weak self] (success) in
+            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: {[weak self] (success) in
                 
             })
         }).disposed(by: disposeBag)
@@ -97,7 +112,7 @@ extension EntryViewController {
     }
     
     @objc func walletComfirmPassword(_ data: [String : Any]) {
-        self.coordinator?.validComfirmPassword(data["content"] as! String, comfirmPassword: self.registerView.passwordView.textView.text!)
+        self.coordinator?.validComfirmPassword(data["content"] as! String, comfirmPassword: self.registerView.passwordView.textField.text!)
     }
     
     @objc func walletInviteCode(_ data: [String : Any]) {

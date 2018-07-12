@@ -1,80 +1,32 @@
 //
-//  TitleTextView.swift
+//  TitleTextfieldView.swift
 //  EOS
 //
-//  Created by peng zhu on 2018/7/4.
+//  Created by peng zhu on 2018/7/11.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
 import UIKit
-import TinyConstraints
-import GrowingTextView
 
-/*UI状态*/
-enum TextUIStyle : Int {
-    case common = 1
-    case highlight = 2
-    case warning = 3
+protocol TitleTextFieldViewDelegate: NSObjectProtocol {
+    func textIntroduction(titleTextFieldView : TitleTextfieldView)
+    func textActionTrigger(titleTextFieldView: TitleTextfieldView, selected: Bool, index: NSInteger)
 }
 
-/*Right Button Setting*/
-class TextButtonSetting {
-    var imageName = ""
-    var selectedImageName = ""
-    var isShowWhenEditing = false
-    
-    init(imageName: String, selectedImageName: String, isShowWhenEditing: Bool) {
-        self.imageName = imageName
-        self.selectedImageName = selectedImageName
-        self.isShowWhenEditing = isShowWhenEditing
-    }
-}
-
-/*Right Button*/
-class TextRightButton: UIButton {
-    var isShowWhenEditing = false
-}
-
-/*UI Setting*/
-class TitleTextSetting {
-    var title = ""
-    var placeholder = ""
-    var warningText = ""
-    var introduce = ""
-    var showLine = true
-    var isShowPromptWhenEditing = true
-    var isSecureTextEntry = false
-    
-    init(title: String, placeholder: String, warningText: String, introduce: String, isShowPromptWhenEditing: Bool, showLine: Bool, isSecureTextEntry: Bool) {
-        self.title = title
-        self.placeholder = placeholder
-        self.introduce = introduce
-        self.warningText = warningText
-        self.showLine = showLine;
-        self.isShowPromptWhenEditing = isShowPromptWhenEditing
-        self.isSecureTextEntry = isSecureTextEntry
-    }
-}
-
-protocol TitleTextViewDelegate: NSObjectProtocol {
-    func textIntroduction(titleTextView : TitleTextView)
-    func textActionTrigger(titleTextView: TitleTextView, selected: Bool, index: NSInteger)
-}
-
-protocol TitleTextViewDataSource: NSObjectProtocol {
-    func textUnitStr(titleTextView: TitleTextView) -> String
-    func textUISetting(titleTextView: TitleTextView) -> TitleTextSetting
-    func textActionSettings(titleTextView: TitleTextView) -> [TextButtonSetting]
+protocol TitleTextFieldViewDataSource: NSObjectProtocol {
+    func textUnitStr(titleTextFieldView: TitleTextfieldView) -> String
+    func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting
+    func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting]
 }
 
 @IBDesignable
-class TitleTextView: UIView {
+class TitleTextfieldView: UIView {
 
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var introduceLabel: UILabel!
     
-    @IBOutlet weak var textView: GrowingTextView!
+    @IBOutlet weak var textField: UITextField!
     
     @IBOutlet weak var gapView: UIView!
     
@@ -84,13 +36,13 @@ class TitleTextView: UIView {
     
     let TextActionTag = 999
     
-    weak var delegate: TitleTextViewDelegate?
+    weak var delegate: TitleTextFieldViewDelegate?
     
-    weak var datasource: TitleTextViewDataSource? {
+    weak var datasource: TitleTextFieldViewDataSource? {
         didSet {
-            setting = datasource?.textUISetting(titleTextView: self)
-            buttonSettings = datasource?.textActionSettings(titleTextView: self)
-            unit = datasource?.textUnitStr(titleTextView: self)
+            setting = datasource?.textUISetting(titleTextFieldView: self)
+            buttonSettings = datasource?.textActionSettings(titleTextFieldView: self)
+            unit = datasource?.textUnitStr(titleTextFieldView: self)
         }
     }
     
@@ -115,8 +67,8 @@ class TitleTextView: UIView {
             let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(introduce))
             introduceLabel.addGestureRecognizer(tapGestureRecognizer)
             
-            textView.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.cloudyBlue])
-            textView.isSecureTextEntry = setting.isSecureTextEntry
+            textField.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.cloudyBlue])
+            textField.isSecureTextEntry = setting.isSecureTextEntry
             gapView.alpha = setting.showLine ? 1.0 : 0.0
         }
     }
@@ -168,11 +120,11 @@ class TitleTextView: UIView {
     
     @objc func handleAction(sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        delegate?.textActionTrigger(titleTextView: self, selected: sender.isSelected, index: sender.tag - TextActionTag)
+        delegate?.textActionTrigger(titleTextFieldView: self, selected: sender.isSelected, index: sender.tag - TextActionTag)
     }
     
     func clearText() {
-        textView.text = ""
+        textField.text = ""
     }
     
     func showPromoptView() {
@@ -184,7 +136,7 @@ class TitleTextView: UIView {
     }
     
     @objc func introduce() {
-        delegate?.textIntroduction(titleTextView: self)
+        delegate?.textIntroduction(titleTextFieldView: self)
     }
     
     fileprivate func recoverUI() {
@@ -209,7 +161,12 @@ class TitleTextView: UIView {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
     }
     
-    func updateHeight() {
+    func updateContentSize() {
+        self.performSelector(onMainThread: #selector(self.updateHeight), with: nil, waitUntilDone: false)
+        self.performSelector(onMainThread: #selector(self.updateHeight), with: nil, waitUntilDone: false)
+    }
+    
+    @objc func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()
@@ -247,4 +204,5 @@ class TitleTextView: UIView {
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
+
 }
