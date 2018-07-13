@@ -20,10 +20,20 @@ struct TransferState: StateType {
 }
 
 struct TransferPropertyState {
-    var balance : BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    var balance : BehaviorRelay<String?> = BehaviorRelay(value: "")
+    var moneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
+    var toNameValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+
 }
 
+struct moneyAction: Action {
+    var money = ""
+    var balance = ""
+}
 
+struct toNameAction: Action {
+    var isValid: Bool = false
+}
 
 //MARK: - Action Creator
 class TransferPropertyActionCreate {

@@ -8,6 +8,7 @@
 
 import Foundation
 import ESPullToRefresh
+import KRProgressHUD
 
 extension UIViewController {
     func configLeftNavButton(_ image:UIImage?) {
@@ -51,11 +52,19 @@ extension UIViewController {
 
 extension UIViewController {
     func startLoading() {
-   
+        KRProgressHUD.show()
     }
     
     func endLoading() {
-        
+        KRProgressHUD.dismiss()
+    }
+    
+    func showError(message: String) {
+        KRProgressHUD.showError(withMessage: message)
+    }
+    
+    func showSuccess(message: String) {
+        KRProgressHUD.showSuccess(withMessage: message)
     }
 }
 
@@ -71,11 +80,6 @@ extension UIViewController {
     }
     
     
-    /*
-     open var loadingMoreDescription: String = NSLocalizedString("Loading more", comment: "")
-     open var noMoreDataDescription: String  = NSLocalizedString("No more data", comment: "")
-     open var loadingDescription: String     = NSLocalizedString("Loading...", comment: "")
-     */
     func addInfiniteScrolling(_ tableView : UITableView ,callback:@escaping(((Bool)->())?)->()){
         tableView.es.addInfiniteScrolling {
             

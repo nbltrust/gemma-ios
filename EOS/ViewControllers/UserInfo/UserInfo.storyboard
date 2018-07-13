@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,13 +18,49 @@
                     <view key="view" contentMode="scaleToFill" id="B8v-WD-vci">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qjt-i0-bGn">
+                                <rect key="frame" x="0.0" y="140" width="275" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bJi-k3-ySc">
+                                <rect key="frame" x="20" y="189.5" width="335" height="457"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ma4-h4-xlA">
+                                <rect key="frame" x="293" y="139.5" width="62" height="30"/>
+                                <state key="normal" title="获取私钥"/>
+                                <connections>
+                                    <action selector="showCypher:" destination="emb-Id-jJ4" eventType="touchUpInside" id="4A6-ye-Yfz"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kV1-Gu-sl5" firstAttribute="trailing" secondItem="qjt-i0-bGn" secondAttribute="trailing" constant="100" id="0y9-8o-ULc"/>
+                            <constraint firstItem="qjt-i0-bGn" firstAttribute="leading" secondItem="kV1-Gu-sl5" secondAttribute="leading" id="5TJ-PT-zet"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="bJi-k3-ySc" secondAttribute="bottom" constant="20" id="CZz-ER-nZ2"/>
+                            <constraint firstItem="kV1-Gu-sl5" firstAttribute="trailing" secondItem="bJi-k3-ySc" secondAttribute="trailing" constant="20" id="S7p-Ua-Pin"/>
+                            <constraint firstItem="bJi-k3-ySc" firstAttribute="leading" secondItem="kV1-Gu-sl5" secondAttribute="leading" constant="20" id="XvK-ro-y3U"/>
+                            <constraint firstItem="kV1-Gu-sl5" firstAttribute="trailing" secondItem="Ma4-h4-xlA" secondAttribute="trailing" constant="20" id="h8M-cy-066"/>
+                            <constraint firstItem="qjt-i0-bGn" firstAttribute="top" secondItem="kV1-Gu-sl5" secondAttribute="top" constant="120" id="iVi-Eq-yBE"/>
+                            <constraint firstItem="Ma4-h4-xlA" firstAttribute="centerY" secondItem="qjt-i0-bGn" secondAttribute="centerY" id="lTY-JG-Rvn"/>
+                            <constraint firstItem="bJi-k3-ySc" firstAttribute="top" secondItem="qjt-i0-bGn" secondAttribute="bottom" constant="20" id="rYs-P0-Kt5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kV1-Gu-sl5"/>
                     </view>
+                    <connections>
+                        <outlet property="content" destination="bJi-k3-ySc" id="sN4-oZ-yYo"/>
+                        <outlet property="password" destination="qjt-i0-bGn" id="8sS-dY-89Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yZ0-QR-Ib4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="110" y="306"/>
+            <point key="canvasLocation" x="100" y="305"/>
         </scene>
     </scenes>
 </document>

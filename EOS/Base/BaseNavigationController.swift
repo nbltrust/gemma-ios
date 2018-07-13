@@ -9,13 +9,22 @@
 import Foundation
 
 class BaseNavigationController: UINavigationController {
+    var isPureWhiteNavBg:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.white
         self.interactivePopGestureRecognizer?.delegate = self
+        if isPureWhiteNavBg {
+            let image = UIImage.init(color: UIColor.white)
+            self.navigationBar.setBackgroundImage(image, for: .default)
+        }
+        else {
 //        let image = UIImage.init(color: .clear)
-        self.navigationBar.setBackgroundImage(R.image.navigationBg2(), for: .default)
+            self.navigationBar.setBackgroundImage(R.image.navigationBg2(), for: .default)
+        }
+        
         self.navigationBar.shadowImage = UIImage()
         
         self.navigationBar.isTranslucent = false

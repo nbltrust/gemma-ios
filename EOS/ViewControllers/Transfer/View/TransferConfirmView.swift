@@ -7,37 +7,86 @@
 //
 
 import Foundation
-enum TransferContentType:Int {
-    case confirm = 1
-    case payment
-}
+import SwiftRichString
 
-
+@IBDesignable
 class TransferConfirmView: UIView {
-    @IBOutlet weak var receverLineView: LineView!
-    @IBOutlet weak var moneyLineView: LineView!
-    @IBOutlet weak var remarkLineView: LineView!
-    @IBOutlet weak var otherLineView: LineView!
+    @IBOutlet weak var receverView: LineView!
     
-    func setUpType(type: TransferContentType) {
-        
+    @IBOutlet weak var amountView: LineView!
+    
+    @IBOutlet weak var remarkView: LineView!
+    
+    @IBOutlet weak var payAccountView: LineView!
+    
+    @IBOutlet weak var sureView: Button!
+    
+    enum TransferEvent: String {
+        case sureTransfer
     }
     
     func setUp() {
+        setupEvent()
+        updateHeight()
+        receverView.content_style = LineViewStyleNames.transfer_confirm.rawValue
+        amountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
+
+        remarkView.content_style = LineViewStyleNames.normal_name.rawValue
+        payAccountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
         
+        setRichText()
+
+
+    }
+    
+    func setRichText() {
+        let money = Style{
+            $0.font = SystemFonts.PingFangSC_Semibold.font(size: 16.0)
+            $0.color = UIColor.darkSlateBlue
+        }
+        let eos = Style{
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
+            
+        }
+//        let myGroup = StyleGroup(["money": money,"eos" : eos])
+//        let text = <money>amountView.content_text</money>  + " EOS"
+//        amountView.content_text 
+    }
+    
+    func setupEvent() {
+        sureView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: [ : ])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     var recever = "" {
         didSet {
-            receverLineView.name_text = recever
-        }
-    }
-    var receverContent = "" {
-        didSet {
-            receverLineView.content_text = receverContent
+            receverView.content_text = recever
         }
     }
     
+    var amount = "" {
+        didSet {
+            amountView.content_text = amount
+        }
+    }
+    
+    var remark = "" {
+        didSet {
+            if remark == "" {
+                remarkView.content_text = R.string.localizable.default_remark()
+            } else {
+                remarkView.content_text = remark
+            }
+        }
+    }
+    
+    var payAccount = "" {
+        didSet {
+            payAccountView.content_text = payAccount
+        }
+    }
     
     
     override var intrinsicContentSize: CGSize {
@@ -65,7 +114,6 @@ class TransferConfirmView: UIView {
         super.init(frame: frame)
         loadViewFromNib()
         setUp()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

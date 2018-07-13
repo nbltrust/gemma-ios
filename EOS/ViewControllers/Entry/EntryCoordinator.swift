@@ -96,18 +96,20 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     }
     
     func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {
-        self.pushToCreateSuccessVC()
-//        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WallketManager.shared.pubKey, invitationCode: inviteCode), success: { (data) in
-//            WallketManager.shared.saveWallket(walletName, password: password, hint: prompt)
-//        }, error: { (code) in
-//            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
-//                let error = GemmaError.NBLCode(code: gemmaerror)
-//                KRProgressHUD.showError(withMessage: error.localizedDescription)
-//            } else {
-//                KRProgressHUD.showError(withMessage: R.string.localizable.error_unknow())
-//            }
-//        }) { (error) in
-//            KRProgressHUD.showError(withMessage: R.string.localizable.request_failed())
-//        }
+        KRProgressHUD.show()
+        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WallketManager.shared.pubKey, invitationCode: inviteCode), success: { (data) in
+            KRProgressHUD.showSuccess()
+            WallketManager.shared.saveWallket(walletName, password: password, hint: prompt)
+            self.pushToCreateSuccessVC()
+        }, error: { (code) in
+            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                let error = GemmaError.NBLCode(code: gemmaerror)
+                KRProgressHUD.showError(withMessage: error.localizedDescription)
+            } else {
+                KRProgressHUD.showError(withMessage: R.string.localizable.error_unknow())
+            }
+        }) { (error) in
+            KRProgressHUD.showError(withMessage: R.string.localizable.request_failed())
+        }
     }
 }

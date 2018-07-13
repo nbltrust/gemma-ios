@@ -48,7 +48,7 @@
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFJ-4a-8AI">
                             <rect key="frame" x="16" y="39" width="323" height="1"/>
-                            <color key="backgroundColor" red="0.66666668653488159" green="0.026087748661235772" blue="0.0092876797217690422" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" name="paleGreyTwo" red="0.906" green="0.914" blue="0.973" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="CuT-fq-hgu"/>
                             </constraints>
@@ -82,4 +82,6 @@
             <point key="canvasLocation" x="-526.5" y="-101"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

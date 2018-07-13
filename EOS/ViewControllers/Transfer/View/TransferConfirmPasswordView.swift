@@ -1,52 +1,46 @@
 //
-//  AccountInfo.swift
+//  TransferConfirmPasswordView.swift
 //  EOS
 //
-//  Created by 朱宋宇 on 2018/7/6.
+//  Created by 朱宋宇 on 2018/7/12.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
 import Foundation
 
-
-
-
-@IBDesignable
-
-class AccountInfoView: UIView {
-    enum lineDirectionType {
-        case horType
-        case verType
+class TransferConfirmPasswordView: UIView {
+    enum TransferEvent: String {
+        case sureTransfer
     }
     
-    @IBOutlet weak var mTotalEOSLabel: UILabel!
-    @IBOutlet weak var mTotalCNYLabel: UILabel!
-    @IBOutlet weak var mRemainEOSLabel: UILabel!
-    @IBOutlet weak var mRedeemEOSLabel: UILabel!
-    @IBOutlet weak var mRemainTimeLabel: UILabel!
-    @IBOutlet weak var mCPUConsumeEOSLabel: UILabel!
-    @IBOutlet weak var mNETConsumeEOSLabel: UILabel!
-    @IBOutlet weak var mRAMConsumeKBLabel: UILabel!
-    @IBOutlet weak var mHorLineView: DashLineView!
-    @IBOutlet weak var mVerLineView: DashLineView!
+    @IBOutlet weak var textField: UITextField!
     
-    var data: Any? {
+    @IBOutlet weak var nextButton: Button!
+    var pwd = "" {
         didSet {
-            if let data = data as? AccountViewModel{
-                mTotalEOSLabel.text = data.allAssets
-                mTotalCNYLabel.text = data.CNY
-                mRemainEOSLabel.text = data.balance
-                mRedeemEOSLabel.text = data.recentRefundAsset
-                mRemainTimeLabel.text = data.refundTime
-                mCPUConsumeEOSLabel.text = "CPU\n" + data.cpuValue
-                mNETConsumeEOSLabel.text = "NET\n" + data.netValue
-                mRAMConsumeKBLabel.text = "RAM\n" + data.ramValue
-            }
+            textField.text = pwd
         }
     }
     
+    var placeHolder = "" {
+        didSet {
+            textField.placeholder = R.string.localizable.input() + placeHolder + R.string.localizable.password()
+            
+        }
+    }
+    
+    
     func setUp() {
-        
+        setupEvent()
+        updateHeight()
+
+    }
+    
+    func setupEvent() {
+        nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: [ : ])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     override var intrinsicContentSize: CGSize {
@@ -74,6 +68,7 @@ class AccountInfoView: UIView {
         super.init(frame: frame)
         loadViewFromNib()
         setUp()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -81,7 +76,7 @@ class AccountInfoView: UIView {
         loadViewFromNib()
         setUp()
     }
-
+    
     fileprivate func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
@@ -92,5 +87,4 @@ class AccountInfoView: UIView {
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
-    
 }

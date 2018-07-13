@@ -68,7 +68,16 @@
 "input_transfer_remark" = "输入转账备注";
 "transfer_state_time" = "预估确认时间：";
 "check_transfer" = "确认转账";
+"confirm_pwd" = "确认已授权";
+"input" = "请输入";
+"password" = "的密码";
+"big_money" = "超出余额";
+"small_money" = "金额不能为0";
+"balance_pre" = "余额：";
+"default_remark" = "默认备注";
 
+"transfer_failed" = "转账失败";
+"transfer_successed" = "转账成功";
 //zsy end
 
 "day" = "天";
@@ -86,3 +95,10 @@
 "Pull to refresh" = "下拉刷新";
 "Release to refresh" = "松开刷新";
 
+"resources_pledge" = "资源质押";
+"resource_get" = "获取CPU、NET";
+
+"block_time" = "区块时间";
+"trade_state" = "交易状态";
+"trade_number" = "交易号";
+"block" = "区块";

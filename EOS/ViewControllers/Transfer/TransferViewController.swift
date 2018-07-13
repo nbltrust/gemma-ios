@@ -18,27 +18,43 @@ class TransferViewController: BaseViewController {
     @IBOutlet weak var reciverLabel: UILabel!
     @IBOutlet weak var transferContentView: TransferContentView!
     @IBOutlet weak var accountTextField: UITextField!
-    @IBOutlet weak var nextButton: Button!
     var coordinator: (TransferCoordinatorProtocol & TransferStateManagerProtocol)?
 
+    enum TextChangeEvent: String {
+        case walletName
+    }
+    
+    func resetData() {
+        self.accountTextField.text = ""
+        self.transferContentView.accountTitleTextView.clearText()
+        self.transferContentView.moneyTitleTextView.clearText()
+        self.transferContentView.remarkTitleTextView.clearText()
+        self.coordinator?.pushToPaymentVC()
+    }
+
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = R.string.localizable.tabbarTransfer()
         setUpUI()
-        setupEvent()
+        getData()
 //        self.coordinator?.fetchUserAccount()
     }
     
     func setUpUI() {
-        nextButton.title = R.string.localizable.check_transfer()
         self.accountTextField.delegate = self
         self.accountTextField.placeholder = R.string.localizable.account_name()
         self.reciverLabel.text = R.string.localizable.receiver()
         let name = WallketManager.shared.getAccount()
         transferContentView.setAccountName(name: name)
+        
 //        let info = WallketManager.shared.getAccount()
 //        transferContentView.setInfo(info: <#T##String#>)
+    }
+    
+    func getData() {
+        self.coordinator?.fetchUserAccount(WallketManager.shared.getAccount())
     }
     
     func commonObserveState() {
@@ -55,16 +71,31 @@ class TransferViewController: BaseViewController {
         }
     }
     
-    func setupEvent() {
-        nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
-            guard let `self` = self else { return }
-            self.coordinator?.pushToTransferConfirmVC()
-
-        }).disposed(by: disposeBag)
-    }
     
     override func configureObserveState() {
         commonObserveState()
+        
+        self.coordinator?.state.property.balance.asObservable().subscribe(onNext: { (blance) in
+            
+            self.transferContentView.balance = blance!
+        }, onError: nil, onCompleted: {
+            
+        }, onDisposed: nil).disposed(by: disposeBag)
+        
+        
+        Observable.combineLatest(self.coordinator!.state.property.toNameValid.asObservable(),
+                                 self.coordinator!.state.property.moneyValid.asObservable()
+                                 ).map { (arg0) -> Bool in
+                                    var warning = ""
+                                    warning = arg0.1.1
+                                    self.transferContentView.moneyTitleTextView.warningText = warning
+                                    if warning != "" {
+                                        self.transferContentView.moneyTitleTextView.checkStatus = .warning
+
+                                    }
+                                    return arg0.0 && arg0.1.0
+            }.bind(to: self.transferContentView.nextButton.isEnabel).disposed(by: disposeBag)
+        
         
     }
     
@@ -75,6 +106,7 @@ class TransferViewController: BaseViewController {
     }
     
 }
+
 
 
 extension TransferViewController : UITextFieldDelegate {
@@ -88,10 +120,14 @@ extension TransferViewController : UITextFieldDelegate {
                 self.reciverLabel.textColor = UIColor.scarlet
             } else {
                 self.reciverLabel.text = R.string.localizable.receiver()
+                self.reciverLabel.textColor = UIColor.steel
+
             }
             
             if textField.text == nil || textField.text == "" {
                 self.reciverLabel.text = R.string.localizable.receiver()
+                self.reciverLabel.textColor = UIColor.steel
+
             }
         }
     }
@@ -102,6 +138,31 @@ extension TransferViewController : UITextFieldDelegate {
         }
     }
     
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : newText])
+
+        return true
+
+    }
     
 }
+
+extension TransferViewController {
+    @objc func walletName(_ data: [String : Any]) {
+        self.coordinator?.validName(data["content"] as! String)
+    }
+    @objc func sureTransfer(_ data: [String : Any]) {
+        self.coordinator?.pushToTransferConfirmVC(toAccount: self.accountTextField.text!, money: self.transferContentView.moneyTitleTextView.textField.text!, remark: self.transferContentView.remarkTitleTextView.textView.text!)
+    }
+    @objc func transferMoney(_ data: [String : Any]) {
+        if let textfield = data["textfield"] as? UITextField,textfield.text != "" , let money = textfield.text?.toDouble() {
+            textfield.text = money.string(digits: AppConfiguration.EOS_PRECISION)
+            
+            let balance = self.transferContentView.balance
+            self.coordinator?.validMoney(money.string(digits: AppConfiguration.EOS_PRECISION), blance: balance)
+        }
+    }
+}
+

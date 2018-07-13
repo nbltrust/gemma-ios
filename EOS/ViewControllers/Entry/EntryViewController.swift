@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import RxGesture
 
 class EntryViewController: BaseViewController {
     
@@ -17,11 +18,10 @@ class EntryViewController: BaseViewController {
     
     @IBOutlet weak var agreeButton: UIButton!
     
-    @IBOutlet weak var agreeView: AttributedLabelView!
-    
     @IBOutlet weak var creatButton: Button!
     
-	var coordinator: (EntryCoordinatorProtocol & EntryStateManagerProtocol)?
+    @IBOutlet weak var protocolLabel: UILabel!
+    var coordinator: (EntryCoordinatorProtocol & EntryStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,40 +53,34 @@ class EntryViewController: BaseViewController {
     }
     
     func setupUI() {
-        let protocolStyle = AttributeStyle("protocol").underlineStyle(.styleSingle).foregroundColor(UIColor.darkSlateBlue)
-        let allStyle = AttributeStyle.font(.systemFont(ofSize: 12)).foregroundColor(UIColor.blueyGrey)
-        let agreeStr = String(format: "%@ %@", R.string.localizable.agree_title(),R.string.localizable.service_protocol())
-        let protocolStr = R.string.localizable.service_protocol()
-        let range = agreeStr.range(of: protocolStr)
-        let detection = Detection.init(type: .range, style: protocolStyle, range: range!)
-        agreeView.attributedText = AttributedText.init(string: agreeStr, detections: [detection], baseStyle: allStyle)
-        agreeView.onClick = { attributedView, detection in
-            switch detection.type {
-            case .link(let url):
-                UIApplication.shared.openURL(url)
-            default:
-                break
-            }
-        }
-        
-//        let agreeStyle: Style = Styles.styles[StyleNames.agree.rawValue] as! Style
-//        let agreementStyle: Style = Styles.styles[StyleNames.agreement.rawValue] as! Style
-//        let agreeGroup = StyleGroup(base: agreeStyle, [StyleNames.agreement.rawValue : agreementStyle])
-//        let str = String(format: "%@  <%@>%@</%@>",R.string.localizable.agree_title(),StyleNames.agreement.rawValue, R.string.localizable.service_protocol(),StyleNames.agreement.rawValue)
-
-//        let agreeStyle: Style = Styles.styles[StyleNames.agree.rawValue] as! Style
-//        let agreementStyle: Style = Styles.styles[StyleNames.agreement.rawValue] as! Style
-//        let agreeGroup = StyleGroup(base: agreeStyle, [StyleNames.agreement.rawValue : agreementStyle])
-//        let str = String(format: "%@  <%@>%@</%@>",R.string.localizable.agree_title(),StyleNames.agreement.rawValue, R.string.localizable.service_protocol(),StyleNames.agreement.rawValue)
-//        agreeLabel.attributedText = str.set(style: agreeGroup)
+//        let protocolStyle = AttributeStyle("protocol").underlineStyle(.styleSingle).foregroundColor(UIColor.darkSlateBlue)
+//        let allStyle = AttributeStyle.font(.systemFont(ofSize: 12)).foregroundColor(UIColor.blueyGrey)
+//        let agreeStr = String(format: "%@ %@", R.string.localizable.agree_title(),R.string.localizable.service_protocol())
+//        let protocolStr = R.string.localizable.service_protocol()
+//        let range = agreeStr.range(of: protocolStr)
+//        let detection = Detection.init(type: .range, style: protocolStyle, range: range!)
+//        agreeView.attributedText = AttributedText.init(string: agreeStr, detections: [detection], baseStyle: allStyle)
+//        agreeView.onClick = { attributedView, detection in
+//            switch detection.type {
+//            case .link(let url):
+//                UIApplication.shared.openURL(url)
+//            default:
+//                break
+//            }
+//        }
     }
     
     func setupEvent() {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
-            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: {[weak self] (success) in
+            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: { (success) in
                 
             })
+        }).disposed(by: disposeBag)
+        
+        protocolLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            self.coordinator?.pushToServiceProtocolVC()
         }).disposed(by: disposeBag)
     }
     

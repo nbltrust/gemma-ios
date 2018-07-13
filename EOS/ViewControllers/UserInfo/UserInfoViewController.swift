@@ -33,6 +33,19 @@ class UserInfoViewController: BaseViewController {
         }
     }
     
+    @IBOutlet weak var password: UITextField!
+    
+    @IBOutlet weak var content: UITextView!
+    
+    @IBAction func showCypher(_ sender: Any) {
+        if let pass = password.text, pass.count > 0, let cypher = WallketManager.shared.getCachedPriKey(pass) {
+            content.text = cypher
+        }
+        else {
+            content.text = "获取失败"
+        }
+    }
+    
     override func configureObserveState() {
         commonObserveState()
         

@@ -96,28 +96,18 @@
                                                 <rect key="frame" x="16" y="121" width="343" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="os0-TA-jDt" customClass="Button" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="32" y="374" width="311" height="44"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="20F-7g-hl9"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Q7p-FV-Fcx" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="16" id="1GJ-cy-TJa"/>
                                             <constraint firstItem="Q7p-FV-Fcx" firstAttribute="top" secondItem="eYQ-iX-fib" secondAttribute="bottom" constant="20" id="3Ot-bR-tpz"/>
-                                            <constraint firstAttribute="bottom" secondItem="os0-TA-jDt" secondAttribute="bottom" constant="24" id="9zZ-Kc-Ini"/>
-                                            <constraint firstItem="os0-TA-jDt" firstAttribute="top" secondItem="Q7p-FV-Fcx" secondAttribute="bottom" constant="125" id="Bdy-HF-ae3"/>
-                                            <constraint firstAttribute="trailing" secondItem="os0-TA-jDt" secondAttribute="trailing" constant="32" id="DC0-VA-O9z"/>
                                             <constraint firstItem="eYQ-iX-fib" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="16" id="KOL-G8-hee"/>
                                             <constraint firstAttribute="trailing" secondItem="eYQ-iX-fib" secondAttribute="trailing" constant="16" id="KWY-G2-Wwc"/>
                                             <constraint firstItem="eYQ-iX-fib" firstAttribute="top" secondItem="9ws-Xa-hyH" secondAttribute="bottom" constant="13" id="LbI-ur-ick"/>
                                             <constraint firstAttribute="trailing" secondItem="Q7p-FV-Fcx" secondAttribute="trailing" constant="16" id="QLJ-Ad-t2e"/>
                                             <constraint firstItem="9ws-Xa-hyH" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="31" id="TbT-OM-xL1"/>
+                                            <constraint firstAttribute="bottom" secondItem="Q7p-FV-Fcx" secondAttribute="bottom" id="hNV-3u-Gju"/>
                                             <constraint firstItem="9ws-Xa-hyH" firstAttribute="top" secondItem="bKv-4Q-CLk" secondAttribute="top" constant="20" id="hVI-eD-01A"/>
-                                            <constraint firstItem="os0-TA-jDt" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="32" id="sw2-IU-niD"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -143,7 +133,6 @@
                     <connections>
                         <outlet property="accountTextField" destination="ku1-KD-JLg" id="yzo-nF-eIO"/>
                         <outlet property="clearButton" destination="yT6-hI-hd6" id="nU5-Cs-dGq"/>
-                        <outlet property="nextButton" destination="os0-TA-jDt" id="Atp-GM-9a3"/>
                         <outlet property="reciverLabel" destination="9ws-Xa-hyH" id="IJD-an-s9G"/>
                         <outlet property="transferContentView" destination="Q7p-FV-Fcx" id="4ut-2f-mTp"/>
                     </connections>
@@ -160,29 +149,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUI-2c-Qim" customClass="Button" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="32" y="576" width="311" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="0dM-ZO-6A1"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCk-bw-8a0">
-                                <rect key="frame" x="67" y="324" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCk-bw-8a0" customClass="TransferConfirmView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="324" width="375" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="AUj-Ns-WRG" firstAttribute="trailing" secondItem="MUI-2c-Qim" secondAttribute="trailing" constant="32" id="0ga-mt-DXW"/>
-                            <constraint firstItem="AUj-Ns-WRG" firstAttribute="bottom" secondItem="MUI-2c-Qim" secondAttribute="bottom" constant="47" id="D3N-s2-fSg"/>
-                            <constraint firstItem="MUI-2c-Qim" firstAttribute="leading" secondItem="AUj-Ns-WRG" secondAttribute="leading" constant="32" id="v1p-OK-erm"/>
+                            <constraint firstItem="AUj-Ns-WRG" firstAttribute="trailing" secondItem="zCk-bw-8a0" secondAttribute="trailing" id="0Ht-9j-teo"/>
+                            <constraint firstItem="zCk-bw-8a0" firstAttribute="top" secondItem="AUj-Ns-WRG" secondAttribute="top" id="Abc-si-WAa"/>
+                            <constraint firstItem="zCk-bw-8a0" firstAttribute="leading" secondItem="AUj-Ns-WRG" secondAttribute="leading" id="hJl-xV-DU6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AUj-Ns-WRG"/>
                     </view>
                     <connections>
-                        <outlet property="nextButton" destination="MUI-2c-Qim" id="S8z-cp-B1i"/>
+                        <outlet property="transferConfirmView" destination="zCk-bw-8a0" id="o07-vP-RE2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r1R-GD-Ame" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -197,22 +178,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F5P-Og-khS" customClass="Button" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="32" y="576" width="311" height="44"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAp-pC-H0B" customClass="TransferConfirmPasswordView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="492" width="375" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Vbg-vQ-Xsb"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="q1G-fz-ZmF" firstAttribute="bottom" secondItem="F5P-Og-khS" secondAttribute="bottom" constant="47" id="A9i-S9-mgl"/>
-                            <constraint firstItem="q1G-fz-ZmF" firstAttribute="trailing" secondItem="F5P-Og-khS" secondAttribute="trailing" constant="32" id="XZQ-cm-RLy"/>
-                            <constraint firstItem="F5P-Og-khS" firstAttribute="leading" secondItem="q1G-fz-ZmF" secondAttribute="leading" constant="32" id="wTk-eC-DgP"/>
+                            <constraint firstItem="GAp-pC-H0B" firstAttribute="top" secondItem="q1G-fz-ZmF" secondAttribute="top" id="igz-2q-wDx"/>
+                            <constraint firstItem="q1G-fz-ZmF" firstAttribute="trailing" secondItem="GAp-pC-H0B" secondAttribute="trailing" id="wZD-34-z7Q"/>
+                            <constraint firstItem="GAp-pC-H0B" firstAttribute="leading" secondItem="q1G-fz-ZmF" secondAttribute="leading" id="zzt-fK-UDp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q1G-fz-ZmF"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordView" destination="GAp-pC-H0B" id="Ehx-o1-OJS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yna-M7-UG6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

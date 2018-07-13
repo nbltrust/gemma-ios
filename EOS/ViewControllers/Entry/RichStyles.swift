@@ -19,6 +19,7 @@ enum StyleNames:String {
 enum LineViewStyleNames:String {
     case normal_name
     case normal_content
+    case transfer_confirm
 }
 
 class RichStyle {
@@ -72,5 +73,12 @@ class RichStyle {
             $0.color = UIColor.cloudyBlue
         }
         Styles.register(LineViewStyleNames.normal_content.rawValue, style: content_style)
+        
+        let confirm_style = Style{
+            $0.font = SystemFonts.PingFangSC_Semibold.font(size: 16.0)
+            $0.color = UIColor.darkSlateBlue
+        }
+        Styles.register(LineViewStyleNames.transfer_confirm.rawValue, style: confirm_style)
+        
     }
 }

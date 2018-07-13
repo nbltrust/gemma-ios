@@ -16,7 +16,7 @@ class WallketManager {
     
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
 
-    var pubKey:String = ""
+    var pubKey:String = Defaults[.currentWallet]
     private var priKey:String = ""
 
     private init() {
@@ -76,6 +76,10 @@ class WallketManager {
         Defaults[.currentAccount] = account
     }
     
+    func existAccount() -> Bool {
+        return getAccount() != ""
+    }
+    
     func getAccount() -> String {
         return Defaults[.currentAccount]
     }
@@ -89,6 +93,10 @@ class WallketManager {
         if let pub = wallets.last {
             switchWallet(pub)
         }
+    }
+    
+    func removeAllWallets() {
+        Defaults.remove(.wallets)
     }
     
     private func removeWallket() {
@@ -127,7 +135,6 @@ class WallketManager {
         if let cypher = keychain[string: "\(pubKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password) {
             return pri
         }
-        
         return nil
     }
     
@@ -146,5 +153,6 @@ class WallketManager {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with:name)
     }
+
     
 }

@@ -14,28 +14,34 @@ import Presentr
 
 class TransferConfirmViewController: BaseViewController {
 
-	var coordinator: (TransferConfirmCoordinatorProtocol & TransferConfirmStateManagerProtocol)?
+    @IBOutlet var transferConfirmView: TransferConfirmView!
+    var coordinator: (TransferConfirmCoordinatorProtocol & TransferConfirmStateManagerProtocol)?
 
-    @IBOutlet weak var nextButton: Button!
+    var toAccount = ""
+    var money = ""
+    var remark = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+ 
         configLeftNavButton(R.image.icTransferClose())
-        setupEvent()
+        
+        setUpUI()
     }
 
+    func setUpUI() {
+        self.transferConfirmView.recever = "@" + toAccount
+        self.transferConfirmView.amount = money + " EOS"
+        self.transferConfirmView.remark = remark
+        self.transferConfirmView.payAccount = WallketManager.shared.getAccount()
+
+    }
+    
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismissConfirmVC()
     }
     
-    
-    func setupEvent() {
-        nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
-            guard let `self` = self else { return }
-            self.coordinator?.pushToTransferConfirmPwdVC()
-            
-        }).disposed(by: disposeBag)
-    }
+
     
     func commonObserveState() {
         coordinator?.subscribe(errorSubscriber) { sub in
@@ -54,5 +60,11 @@ class TransferConfirmViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+    }
+}
+
+extension TransferConfirmViewController {
+    @objc func sureTransfer(_ data: [String : Any]) {
+        self.coordinator?.pushToTransferConfirmPwdVC(toAccount: toAccount, money: money, remark: remark)
     }
 }

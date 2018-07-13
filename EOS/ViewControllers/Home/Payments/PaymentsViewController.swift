@@ -26,6 +26,7 @@ class PaymentsViewController: BaseViewController {
     }
     
     func setupUI(){
+        self.title = R.string.localizable.payments_history()
         let name = String.init(describing:PaymentsRecordsCell.self)
         tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
     }

@@ -18,6 +18,18 @@ class TransferContentView: UIView {
     @IBOutlet weak var moneyTitleTextView: TitleTextfieldView!
     
     @IBOutlet weak var remarkTitleTextView: TitleTextView!
+    @IBOutlet weak var nextButton: Button!
+    
+    enum TransferEvent: String {
+        case sureTransfer
+    }
+    
+    var balance = "0 EOS" {
+        didSet {
+            self.moneyTitleTextView.unitLabel.text = R.string.localizable.balance_pre() + balance
+
+        }
+    }
     
     enum InputType: Int {
         case account = 1
@@ -40,6 +52,12 @@ class TransferContentView: UIView {
         titleTextfieldView.updateContentSize()
     }
     
+    func setupEvent() {
+        nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: [ : ])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+    }
     
     func setUp() {
         handleSetupSubView(accountTitleTextView, tag: InputType.account.rawValue)
@@ -48,9 +66,14 @@ class TransferContentView: UIView {
         remarkTitleTextView.delegate = self
         remarkTitleTextView.datasource = self
         remarkTitleTextView.textView.delegate = self
-        updateHeight()
+        remarkTitleTextView.textView.maxHeight = 80
+        nextButton.title = R.string.localizable.check_transfer()
+        moneyTitleTextView.unitLabel.text = R.string.localizable.balance_pre() + "0.0000 EOS"
+        remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
+        updateHeight()
 
+        setupEvent()
     }
     
     func setAccountName(name:String) {
@@ -137,11 +160,11 @@ extension TransferContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
         } else if titleTextFieldView == moneyTitleTextView {
             return TitleTextSetting(title: R.string.localizable.money(),
                                     placeholder: R.string.localizable.input_transfer_money(),
-                                    warningText: "",//文案未提供
+                                    warningText: R.string.localizable.big_money(),//文案未提供
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
-                                    isSecureTextEntry: true)
+                                    isSecureTextEntry: false)
         } else {
             return TitleTextSetting(title: R.string.localizable.remark(),
                                     placeholder: R.string.localizable.input_transfer_remark(),
@@ -179,8 +202,12 @@ extension TransferContentView: UITextFieldDelegate {
             accountTitleTextView.checkStatus = WallketManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.money.rawValue:
             moneyTitleTextView.reloadActionViews(isEditing: false)
-            moneyTitleTextView.checkStatus = WallketManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
-       
+            
+            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = moneyTitleTextView.textField.text?.toDouble() {
+                moneyTitleTextView.checkStatus = balenceDouble > moneyDouble  ? TextUIStyle.common : TextUIStyle.warning
+                nextButton.button.isEnabled = balenceDouble > moneyDouble ? true : false
+            }
+            self.sendEventWith(TextChangeEvent.transferMoney.rawValue, userinfo: ["textfield" : textField])
         default:
             return
         }
@@ -192,8 +219,8 @@ extension TransferContentView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.account.rawValue:
             self.sendEventWith(TextChangeEvent.transferAccount.rawValue, userinfo: ["content" : newText])
-        case InputType.money.rawValue:
-            self.sendEventWith(TextChangeEvent.transferMoney.rawValue, userinfo: ["content" : newText])
+//        case InputType.money.rawValue:
+//            self.sendEventWith(TextChangeEvent.transferMoney.rawValue, userinfo: ["content" : newText])
 
         default:
             return true

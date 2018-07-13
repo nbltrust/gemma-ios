@@ -11,10 +11,11 @@ import ReSwift
 import PromiseKit
 import AwaitKit
 import Presentr
+import Typist
 
 protocol TransferCoordinatorProtocol {
-    func pushToTransferConfirmVC()
-    
+    func pushToTransferConfirmVC(toAccount:String,money:String,remark:String)
+    func pushToPaymentVC()
 }
 
 protocol TransferStateManagerProtocol {
@@ -23,6 +24,9 @@ protocol TransferStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<TransferState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
+    func validMoney(_ money: String, blance: String)
+    func validName(_ name: String)
+
     func fetchUserAccount(_ account:String)
     
     func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool)->())
@@ -42,21 +46,57 @@ class TransferCoordinator: TransferRootCoordinator {
 }
 
 extension TransferCoordinator: TransferCoordinatorProtocol {
-    func pushToTransferConfirmVC() {
-        let presenter = Presentr(presentationType: .bottomHalf)
+    func pushToPaymentVC() {
+        let vc = R.storyboard.payments.paymentsViewController()!
+        let coor = PaymentsCoordinator(rootVC: self.rootVC)
+        vc.coordinator = coor
+        self.rootVC.pushViewController(vc, animated: true)
+        
+    }
+    
+    func pushToTransferConfirmVC(toAccount:String,money:String,remark:String) {
+        let width = ModalSize.full
+        let height = ModalSize.custom(size: 369)
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 369))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        
+        let presenter = Presentr(presentationType: customType)
         presenter.dismissOnTap = false
+        presenter.keyboardTranslationType = .moveUp
+
         let newVC = BaseNavigationController()
+        newVC.isPureWhiteNavBg = true
         let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
         
         self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+//        transferConfirm .start()
+        if let vc = R.storyboard.transfer.transferConfirmViewController() {
+            let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
+            vc.coordinator = coordinator
+            vc.toAccount = toAccount
+            vc.money = money
+            vc.remark = remark
+            transferConfirm.rootVC.pushViewController(vc, animated: true)
+        }
+
         
-        transferConfirm.start()
     }
+    
+    
 }
 
 extension TransferCoordinator: TransferStateManagerProtocol {
     var state: TransferState {
         return store.state
+    }
+
+    
+    func validMoney(_ money: String, blance: String) {
+        self.store.dispatch(moneyAction(money: money, balance: blance))
+    }
+    
+    func validName(_ name: String) {
+        self.store.dispatch(toNameAction(isValid: WallketManager.shared.isValidWalletName(name)))
     }
     
     func subscribe<SelectedState, S: StoreSubscriber>(
