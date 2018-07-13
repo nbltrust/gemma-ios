@@ -49,6 +49,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
 
 extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
+        self.view.endEditing(true)
         self.startLoading()
         self.coordinator?.transferAccounts(passwordView.textField.text!, account: receiver, amount: amount, code: remark, callback: { [weak self] (isSuccess, message) in
             guard let `self` = self else { return }

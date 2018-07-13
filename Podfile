@@ -80,7 +80,7 @@ end
 
 def other
     pod 'Siren'
-    pod 'MLeaksFinder'
+    #pod 'MLeaksFinder'
     pod 'Device'
 end
 

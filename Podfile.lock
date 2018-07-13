@@ -14,7 +14,6 @@ PODS:
   - ESPullToRefresh (2.7)
   - ESTabBarController-swift (2.6.2)
   - Fabric (1.7.7)
-  - FBRetainCycleDetector (0.1.4)
   - FCUUID (1.3.1):
     - UICKeyChainStore (~> 2.1.0)
   - FSPagerView (0.7.1)
@@ -36,8 +35,6 @@ PODS:
   - KUIPopOver (1.0.4)
   - Lightning (2.0.0)
   - Localize-Swift (2.0.0)
-  - MLeaksFinder (1.0.0):
-    - FBRetainCycleDetector
   - Moya (11.0.2):
     - Moya/Core (= 11.0.2)
   - Moya/Core (11.0.2):
@@ -55,6 +52,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.3.3):
     - PromiseKit/CorePromise
+  - Proposer (1.2.0)
   - QuickLayout (2.0.2)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
@@ -155,10 +153,10 @@ DEPENDENCIES:
   - KUIPopOver
   - Lightning
   - Localize-Swift
-  - MLeaksFinder
   - Moya
   - ObservableArray-RxSwift
   - Presentr
+  - Proposer
   - R.swift
   - RealReachability
   - Repeat
@@ -200,7 +198,6 @@ SPEC REPOS:
     - ESPullToRefresh
     - ESTabBarController-swift
     - Fabric
-    - FBRetainCycleDetector
     - FCUUID
     - FSPagerView
     - GRDB.swift
@@ -220,11 +217,11 @@ SPEC REPOS:
     - KUIPopOver
     - Lightning
     - Localize-Swift
-    - MLeaksFinder
     - Moya
     - ObservableArray-RxSwift
     - Presentr
     - PromiseKit
+    - Proposer
     - QuickLayout
     - R.swift
     - R.swift.Library
@@ -279,7 +276,6 @@ SPEC CHECKSUMS:
   ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
   ESTabBarController-swift: f0a8679e43df1e60b7b36bbcaf1dc98ba6273c7d
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
-  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
   GRDB.swift: 6a0e323257fdfa75a0eed9c74d5f2f60428bef1a
@@ -299,11 +295,11 @@ SPEC CHECKSUMS:
   KUIPopOver: 1002fb1ab2460ac4db2bafe4f01f0c28fca806d2
   Lightning: c6a02102c761491a4957c6265d9161dc5452c3bf
   Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
-  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   ObservableArray-RxSwift: 905a088f51b1653f7eb55e6887f8a13916618f50
   Presentr: 797ae6ec8904eaba4ec58a4c2065bd66e31569ea
   PromiseKit: e168626994ae29c38b51252a8d1b0a561fd3f2c7
+  Proposer: 722fe61822b89f551ae10afe8314067f98c39c28
   QuickLayout: a730730b646b231fd4ef7cffaeb1e81fe0e1ca92
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
@@ -337,6 +333,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
   ZLaunchAd: 47e4fd3718c73d48d74ac37f7f637021e4fd0e4b
 
-PODFILE CHECKSUM: 115b422f22877536f751b527584e7f762410416f
+PODFILE CHECKSUM: 7c0cdc3722b62f08bd3a5e57075b4c69b5548ac1
 
 COCOAPODS: 1.5.3
