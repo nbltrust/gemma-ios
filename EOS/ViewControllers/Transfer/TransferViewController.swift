@@ -24,6 +24,15 @@ class TransferViewController: BaseViewController {
         case walletName
     }
     
+    func resetData() {
+        self.accountTextField.text = ""
+        self.transferContentView.accountTitleTextView.clearText()
+        self.transferContentView.moneyTitleTextView.clearText()
+        self.transferContentView.remarkTitleTextView.clearText()
+
+    }
+
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         

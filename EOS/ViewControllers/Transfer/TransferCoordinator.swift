@@ -78,6 +78,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     var state: TransferState {
         return store.state
     }
+
     
     func validMoney(_ money: String, blance: String) {
         self.store.dispatch(moneyAction(money: money, balance: blance))
