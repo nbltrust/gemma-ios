@@ -21,6 +21,7 @@ class WallketManager {
 
     private init() {
         //test
+        
     }
     
     func createPairKey() {
