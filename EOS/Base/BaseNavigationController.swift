@@ -21,8 +21,7 @@ class BaseNavigationController: UINavigationController {
             self.navigationBar.setBackgroundImage(image, for: .default)
         }
         else {
-//        let image = UIImage.init(color: .clear)
-            self.navigationBar.setBackgroundImage(R.image.navigationBg2(), for: .default)
+            self.navigationBar.setBackgroundImage(navBgImage(), for: .default)
         }
         
         self.navigationBar.shadowImage = UIImage()

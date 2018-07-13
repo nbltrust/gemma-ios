@@ -16,6 +16,7 @@ import SwiftyJSON
 class HomeViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableHeaderView: HomeHeaderView!
+    @IBOutlet weak var headImageView: UIImageView!
     
     var coordinator: (HomeCoordinatorProtocol & HomeStateManagerProtocol)?
     
@@ -34,6 +35,8 @@ class HomeViewController: BaseViewController {
     func setupUI(){
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
+        
+        headImageView.image = navBgImage()
     }
     
     func commonObserveState() {
