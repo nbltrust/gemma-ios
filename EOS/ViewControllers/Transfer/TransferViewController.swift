@@ -32,13 +32,19 @@ class TransferViewController: BaseViewController {
         self.coordinator?.pushToPaymentVC()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        let name = WallketManager.shared.getAccount()
+        transferContentView.setAccountName(name: name)
+        getData()
+
+    }
     
 	override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = R.string.localizable.tabbarTransfer()
         setUpUI()
-        getData()
 //        self.coordinator?.fetchUserAccount()
     }
     
@@ -46,8 +52,7 @@ class TransferViewController: BaseViewController {
         self.accountTextField.delegate = self
         self.accountTextField.placeholder = R.string.localizable.account_name()
         self.reciverLabel.text = R.string.localizable.receiver()
-        let name = WallketManager.shared.getAccount()
-        transferContentView.setAccountName(name: name)
+
         
 //        let info = WallketManager.shared.getAccount()
 //        transferContentView.setInfo(info: <#T##String#>)
