@@ -9,6 +9,20 @@
 import Foundation
 import SwifterSwift
 import Guitar
+import Device
+
+func navBgImage() -> UIImage? {
+    switch UIScreen.main.bounds.width {
+    case 320:
+        return R.image.navigation320()
+    case 375:
+        return R.image.navigation375()
+    case 414:
+        return R.image.navigation414()
+    default:
+        return nil
+    }
+}
 
 extension String {
     var eosAmount: String {
@@ -50,6 +64,9 @@ extension Int64 {
     }
 }
 
+extension UIImage {
+    
+}
 
 
 //func correctAmount(_ sender:String) -> String{
