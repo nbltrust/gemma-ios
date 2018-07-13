@@ -11,6 +11,7 @@ import ReSwift
 import PromiseKit
 import AwaitKit
 import Presentr
+import Typist
 
 protocol TransferCoordinatorProtocol {
     func pushToTransferConfirmVC()
@@ -45,11 +46,13 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
     func pushToTransferConfirmVC() {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 369)
-        let center = ModalCenterPosition.bottomCenter
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 369))
         let customType = PresentationType.custom(width: width, height: height, center: center)
         
         let presenter = Presentr(presentationType: customType)
         presenter.dismissOnTap = false
+        presenter.keyboardTranslationType = .moveUp
+
         let newVC = BaseNavigationController()
         newVC.isPureWhiteNavBg = true
         let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)

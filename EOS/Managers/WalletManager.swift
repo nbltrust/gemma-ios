@@ -16,7 +16,7 @@ class WallketManager {
     
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
 
-    var pubKey:String = ""
+    var pubKey:String = Defaults[.currentWallet]
     private var priKey:String = ""
 
     private init() {
