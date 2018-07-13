@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import KRProgressHUD
 
 extension UIViewController {
     func configLeftNavButton(_ image:UIImage?) {
@@ -50,10 +51,10 @@ extension UIViewController {
 
 extension UIViewController {
     func startLoading() {
-        
+        KRProgressHUD.show()
     }
     
     func endLoading() {
-        
+        KRProgressHUD.dismiss()
     }
 }

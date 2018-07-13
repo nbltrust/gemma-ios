@@ -52,11 +52,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        self.appcoordinator?.showTest()
         
         //test
+//        WallketManager.shared.removeAllWallets()
 //        WallketManager.shared.logoutWallet()
+//        log.debug(WallketManager.shared.getAccount())
         
-//        if !WallketManager.shared.existAccount() {
-//            appcoordinator!.showEntry()
-//        }
+        if !WallketManager.shared.existAccount() {
+            appcoordinator!.showEntry()
+        }
         return true
     }
     

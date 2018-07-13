@@ -77,7 +77,7 @@ class WallketManager {
     }
     
     func existAccount() -> Bool {
-        return getAccount() == ""
+        return getAccount() != ""
     }
     
     func getAccount() -> String {
@@ -93,6 +93,10 @@ class WallketManager {
         if let pub = wallets.last {
             switchWallet(pub)
         }
+    }
+    
+    func removeAllWallets() {
+        Defaults.remove(.wallets)
     }
     
     private func removeWallket() {

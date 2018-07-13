@@ -60,26 +60,42 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locali" value="create_wallet"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrh-ik-lr0" customClass="AttributedLabelView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="73" y="433" width="286" height="25"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="AOy-Lv-UdL"/>
-                                                </constraints>
-                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6t-1P-5wA">
+                                                <rect key="frame" x="124" y="435" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="agree_title"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="styleName" value="agree"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yh-XM-3Tz">
+                                                <rect key="frame" x="231" y="435" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="service_protocol"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="styleName" value="agreement"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="IWd-1I-l81" firstAttribute="top" secondItem="mVM-0s-KbK" secondAttribute="bottom" constant="17" id="2Kp-7b-J6h"/>
+                                            <constraint firstAttribute="trailing" secondItem="5yh-XM-3Tz" secondAttribute="trailing" constant="16" id="3ON-Iv-puf"/>
                                             <constraint firstItem="3pw-ye-lut" firstAttribute="top" secondItem="IWd-1I-l81" secondAttribute="bottom" constant="27" id="5lG-5V-fN1"/>
-                                            <constraint firstItem="zrh-ik-lr0" firstAttribute="leading" secondItem="IWd-1I-l81" secondAttribute="trailing" constant="13" id="88A-ZI-p2N"/>
+                                            <constraint firstItem="K6t-1P-5wA" firstAttribute="leading" secondItem="IWd-1I-l81" secondAttribute="trailing" constant="13" id="Gnr-Cc-c4J"/>
+                                            <constraint firstItem="K6t-1P-5wA" firstAttribute="centerY" secondItem="IWd-1I-l81" secondAttribute="centerY" id="O5X-QA-9oM"/>
                                             <constraint firstAttribute="trailing" secondItem="mVM-0s-KbK" secondAttribute="trailing" constant="16" id="PPh-gF-Ma6"/>
+                                            <constraint firstItem="5yh-XM-3Tz" firstAttribute="centerY" secondItem="IWd-1I-l81" secondAttribute="centerY" id="UED-qZ-MDK"/>
                                             <constraint firstAttribute="trailing" secondItem="3pw-ye-lut" secondAttribute="trailing" constant="32" id="guJ-4J-0zW"/>
                                             <constraint firstItem="IWd-1I-l81" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="35" id="l7X-uP-f02"/>
                                             <constraint firstItem="mVM-0s-KbK" firstAttribute="top" secondItem="JA1-hc-mUK" secondAttribute="top" constant="16" id="oXy-zL-CjE"/>
                                             <constraint firstAttribute="bottom" secondItem="3pw-ye-lut" secondAttribute="bottom" constant="30" id="qEP-Rd-eJ9"/>
+                                            <constraint firstItem="5yh-XM-3Tz" firstAttribute="leading" secondItem="K6t-1P-5wA" secondAttribute="trailing" constant="5" id="riF-fZ-Nd4"/>
                                             <constraint firstItem="mVM-0s-KbK" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="16" id="zEf-tf-2Cp"/>
                                             <constraint firstItem="3pw-ye-lut" firstAttribute="leading" secondItem="JA1-hc-mUK" secondAttribute="leading" constant="32" id="zUf-kZ-Zf6"/>
-                                            <constraint firstAttribute="trailing" secondItem="zrh-ik-lr0" secondAttribute="trailing" constant="16" id="zXe-fu-MEi"/>
-                                            <constraint firstItem="zrh-ik-lr0" firstAttribute="centerY" secondItem="IWd-1I-l81" secondAttribute="centerY" id="zsk-Wd-dJL"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -103,8 +119,8 @@
                     </view>
                     <connections>
                         <outlet property="agreeButton" destination="IWd-1I-l81" id="6RM-e4-eOe"/>
-                        <outlet property="agreeView" destination="zrh-ik-lr0" id="xMJ-fp-rqL"/>
                         <outlet property="creatButton" destination="3pw-ye-lut" id="W0r-mU-Ld1"/>
+                        <outlet property="protocolLabel" destination="5yh-XM-3Tz" id="xSw-Ew-7LM"/>
                         <outlet property="registerView" destination="mVM-0s-KbK" id="Ba7-Sw-Fzv"/>
                     </connections>
                 </viewController>
