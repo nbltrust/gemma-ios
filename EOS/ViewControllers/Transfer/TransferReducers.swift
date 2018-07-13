@@ -21,6 +21,28 @@ func TransferPropertyReducer(_ state: TransferPropertyState?, action: Action) ->
         if let balance = action.balance.arrayValue.first?.string {
             state.balance.accept(balance)
         }
+    case let action as moneyAction:
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = action.money.toDouble() {
+            var valid = false
+            var tips = R.string.localizable.big_money()
+            if balanceDouble >= moneyDouble {
+                valid = true
+                tips = ""
+            }
+            
+            if moneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue {
+                valid = false
+                tips = R.string.localizable.small_money()
+            }
+            
+            
+            
+            
+            state.moneyValid.accept((valid,tips))
+        }
+    case let action as toNameAction:
+        state.toNameValid.accept(action.isValid)
+        
     default:
         break
     }

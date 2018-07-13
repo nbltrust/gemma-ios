@@ -23,6 +23,9 @@ protocol TransferStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<TransferState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
+    func validMoney(_ money: String, blance: String)
+    func validName(_ name: String)
+
     func fetchUserAccount(_ account:String)
     
     func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool)->())
@@ -65,6 +68,14 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
 extension TransferCoordinator: TransferStateManagerProtocol {
     var state: TransferState {
         return store.state
+    }
+    
+    func validMoney(_ money: String, blance: String) {
+        self.store.dispatch(moneyAction(money: money, balance: blance))
+    }
+    
+    func validName(_ name: String) {
+        self.store.dispatch(toNameAction(isValid: WallketManager.shared.isValidWalletName(name)))
     }
     
     func subscribe<SelectedState, S: StoreSubscriber>(

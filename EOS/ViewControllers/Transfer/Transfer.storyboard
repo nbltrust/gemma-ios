@@ -96,28 +96,18 @@
                                                 <rect key="frame" x="16" y="121" width="343" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="os0-TA-jDt" customClass="Button" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="32" y="374" width="311" height="44"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="20F-7g-hl9"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Q7p-FV-Fcx" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="16" id="1GJ-cy-TJa"/>
                                             <constraint firstItem="Q7p-FV-Fcx" firstAttribute="top" secondItem="eYQ-iX-fib" secondAttribute="bottom" constant="20" id="3Ot-bR-tpz"/>
-                                            <constraint firstAttribute="bottom" secondItem="os0-TA-jDt" secondAttribute="bottom" constant="24" id="9zZ-Kc-Ini"/>
-                                            <constraint firstItem="os0-TA-jDt" firstAttribute="top" secondItem="Q7p-FV-Fcx" secondAttribute="bottom" constant="125" id="Bdy-HF-ae3"/>
-                                            <constraint firstAttribute="trailing" secondItem="os0-TA-jDt" secondAttribute="trailing" constant="32" id="DC0-VA-O9z"/>
                                             <constraint firstItem="eYQ-iX-fib" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="16" id="KOL-G8-hee"/>
                                             <constraint firstAttribute="trailing" secondItem="eYQ-iX-fib" secondAttribute="trailing" constant="16" id="KWY-G2-Wwc"/>
                                             <constraint firstItem="eYQ-iX-fib" firstAttribute="top" secondItem="9ws-Xa-hyH" secondAttribute="bottom" constant="13" id="LbI-ur-ick"/>
                                             <constraint firstAttribute="trailing" secondItem="Q7p-FV-Fcx" secondAttribute="trailing" constant="16" id="QLJ-Ad-t2e"/>
                                             <constraint firstItem="9ws-Xa-hyH" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="31" id="TbT-OM-xL1"/>
+                                            <constraint firstAttribute="bottom" secondItem="Q7p-FV-Fcx" secondAttribute="bottom" id="hNV-3u-Gju"/>
                                             <constraint firstItem="9ws-Xa-hyH" firstAttribute="top" secondItem="bKv-4Q-CLk" secondAttribute="top" constant="20" id="hVI-eD-01A"/>
-                                            <constraint firstItem="os0-TA-jDt" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="32" id="sw2-IU-niD"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -143,7 +133,6 @@
                     <connections>
                         <outlet property="accountTextField" destination="ku1-KD-JLg" id="yzo-nF-eIO"/>
                         <outlet property="clearButton" destination="yT6-hI-hd6" id="nU5-Cs-dGq"/>
-                        <outlet property="nextButton" destination="os0-TA-jDt" id="Atp-GM-9a3"/>
                         <outlet property="reciverLabel" destination="9ws-Xa-hyH" id="IJD-an-s9G"/>
                         <outlet property="transferContentView" destination="Q7p-FV-Fcx" id="4ut-2f-mTp"/>
                     </connections>

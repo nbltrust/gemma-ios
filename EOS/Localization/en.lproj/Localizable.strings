@@ -71,6 +71,8 @@
 "confirm_pwd" = "确认已授权";
 "input" = "请输入";
 "password" = "的密码";
+"big_money" = "超出余额";
+"small_money" = "余额不能为0";
 
 //zsy end
 

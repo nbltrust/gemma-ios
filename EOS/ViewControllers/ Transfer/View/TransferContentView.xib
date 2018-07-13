@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="accountTitleTextView" destination="fpS-1M-ene" id="hJC-q2-28q"/>
                 <outlet property="moneyTitleTextView" destination="eLT-mr-G6c" id="6km-DN-P4b"/>
+                <outlet property="nextButton" destination="s65-pV-Q9P" id="tiP-nM-wkV"/>
                 <outlet property="remarkTitleTextView" destination="ooB-mJ-nSx" id="nks-hl-qf0"/>
             </connections>
         </placeholder>
@@ -34,22 +35,35 @@
                     <rect key="frame" x="0.0" y="160" width="373" height="76"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s65-pV-Q9P" customClass="Button" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="16" y="229" width="341" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="bus-uL-yNQ"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="white" red="0.976" green="0.976" blue="0.976" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ooB-mJ-nSx" firstAttribute="top" secondItem="eLT-mr-G6c" secondAttribute="bottom" id="ILF-RQ-rCQ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fpS-1M-ene" secondAttribute="trailing" id="LSX-NY-0SR"/>
                 <constraint firstItem="fpS-1M-ene" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Qce-hx-Fkz"/>
                 <constraint firstItem="fpS-1M-ene" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Rq6-Kb-mgS"/>
+                <constraint firstItem="s65-pV-Q9P" firstAttribute="top" secondItem="ooB-mJ-nSx" secondAttribute="bottom" constant="125" id="U8V-SR-6Mz"/>
                 <constraint firstItem="eLT-mr-G6c" firstAttribute="top" secondItem="fpS-1M-ene" secondAttribute="bottom" id="ZiO-uG-Biu"/>
                 <constraint firstItem="ooB-mJ-nSx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="a0r-za-7xN"/>
                 <constraint firstItem="eLT-mr-G6c" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="b3G-zC-TeA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="s65-pV-Q9P" secondAttribute="trailing" constant="16" id="bN8-Qv-ngv"/>
                 <constraint firstAttribute="trailing" secondItem="ooB-mJ-nSx" secondAttribute="trailing" id="qW6-A0-3Iq"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eLT-mr-G6c" secondAttribute="trailing" id="rYM-Lc-u83"/>
+                <constraint firstItem="s65-pV-Q9P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="tyY-SN-8Yt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="s65-pV-Q9P" secondAttribute="bottom" constant="24" id="urK-xJ-C0n"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="8.5" y="-169.5"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>
