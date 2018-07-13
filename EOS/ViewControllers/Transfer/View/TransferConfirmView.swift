@@ -27,6 +27,11 @@ class TransferConfirmView: UIView {
     func setUp() {
         setupEvent()
         updateHeight()
+        receverView.content_style = LineViewStyleNames.transfer_confirm.rawValue
+        amountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
+        remarkView.content_style = LineViewStyleNames.normal_name.rawValue
+        payAccountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
+
     }
     
     func setupEvent() {
@@ -44,19 +49,23 @@ class TransferConfirmView: UIView {
     
     var amount = "" {
         didSet {
-            amountView.content_text = recever
+            amountView.content_text = amount
         }
     }
     
     var remark = "" {
         didSet {
-            remarkView.content_text = recever
+            if remark == "" {
+                remarkView.content_text = R.string.localizable.default_remark()
+            } else {
+                remarkView.content_text = remark
+            }
         }
     }
     
     var payAccount = "" {
         didSet {
-            payAccountView.content_text = recever
+            payAccountView.content_text = payAccount
         }
     }
     

@@ -69,7 +69,7 @@ class TransferContentView: UIView {
         remarkTitleTextView.textView.maxHeight = 80
         nextButton.title = R.string.localizable.check_transfer()
         moneyTitleTextView.unitLabel.text = R.string.localizable.balance_pre() + "0.0000 EOS"
-
+        remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
         updateHeight()
 
