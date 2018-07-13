@@ -14,8 +14,6 @@ import HandyJSON
 import SwiftyJSON
 
 class HomeViewController: BaseViewController {
-    @IBOutlet weak var mBgView: UIView!
-
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableHeaderView: HomeHeaderView!
     
