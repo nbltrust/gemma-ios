@@ -191,6 +191,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q1G-fz-ZmF"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordView" destination="GAp-pC-H0B" id="Ehx-o1-OJS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yna-M7-UG6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
