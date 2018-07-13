@@ -21,7 +21,7 @@ class WallketManager {
 
     private init() {
         //test
-        switchAccount("cooljadepool")
+        switchAccount("awesome14")
     }
     
     func createPairKey() {

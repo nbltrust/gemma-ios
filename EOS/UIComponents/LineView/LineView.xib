@@ -40,15 +40,18 @@
                                 <constraint firstAttribute="width" constant="16" id="qzo-Di-03a"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FK-72-h7h">
-                            <rect key="frame" x="297" y="15" width="42" height="10"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FK-72-h7h">
+                            <rect key="frame" x="159" y="15" width="180" height="10"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="180" id="zGh-xg-zbQ"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFJ-4a-8AI">
                             <rect key="frame" x="16" y="39" width="323" height="1"/>
-                            <color key="backgroundColor" name="paleGreyTwo" red="0.906" green="0.914" blue="0.973" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.90600000000000003" green="0.91400000000000003" blue="0.97299999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="CuT-fq-hgu"/>
                             </constraints>
@@ -62,7 +65,6 @@
                         <constraint firstItem="ZFJ-4a-8AI" firstAttribute="leading" secondItem="DTd-bw-zYa" secondAttribute="leading" id="46d-aC-umc"/>
                         <constraint firstAttribute="trailing" secondItem="7Rf-qu-Vrt" secondAttribute="trailing" constant="12" id="7U8-KY-Uff"/>
                         <constraint firstItem="7Rf-qu-Vrt" firstAttribute="centerY" secondItem="fNR-g1-mCl" secondAttribute="centerY" id="U8T-JA-BN3"/>
-                        <constraint firstItem="1FK-72-h7h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DTd-bw-zYa" secondAttribute="trailing" constant="43" id="f6n-3n-fOh"/>
                         <constraint firstItem="DTd-bw-zYa" firstAttribute="leading" secondItem="fNR-g1-mCl" secondAttribute="leading" constant="16" id="fLk-Je-E1c"/>
                         <constraint firstItem="7Rf-qu-Vrt" firstAttribute="leading" secondItem="1FK-72-h7h" secondAttribute="trailing" constant="8" id="hJA-Q3-yK4"/>
                         <constraint firstItem="ZFJ-4a-8AI" firstAttribute="top" secondItem="1FK-72-h7h" secondAttribute="bottom" constant="14" id="hgI-1k-yNp"/>
@@ -82,6 +84,4 @@
             <point key="canvasLocation" x="-526.5" y="-101"/>
         </view>
     </objects>
-    <resources>
-    </resources>
 </document>
