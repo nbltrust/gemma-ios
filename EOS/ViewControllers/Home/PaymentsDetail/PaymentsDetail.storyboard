@@ -18,24 +18,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bKK-33-MpW">
-                                <rect key="frame" x="16" y="149" width="343" height="200"/>
-                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hsy-cd-0Rg" customClass="DetailView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" name="white" red="0.976" green="0.976" blue="0.976" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wq0-oN-XLr" firstAttribute="trailing" secondItem="bKK-33-MpW" secondAttribute="trailing" constant="16" id="Be0-9K-S3u"/>
-                            <constraint firstItem="bKK-33-MpW" firstAttribute="top" secondItem="wq0-oN-XLr" secondAttribute="top" constant="23" id="Rjk-bc-7Jn"/>
-                            <constraint firstItem="bKK-33-MpW" firstAttribute="leading" secondItem="wq0-oN-XLr" secondAttribute="leading" constant="16" id="rMF-rB-dlU"/>
+                            <constraint firstItem="hsy-cd-0Rg" firstAttribute="leading" secondItem="wq0-oN-XLr" secondAttribute="leading" id="Hzo-13-8ID"/>
+                            <constraint firstItem="wq0-oN-XLr" firstAttribute="bottom" secondItem="hsy-cd-0Rg" secondAttribute="bottom" id="UZM-zh-h6r"/>
+                            <constraint firstItem="wq0-oN-XLr" firstAttribute="trailing" secondItem="hsy-cd-0Rg" secondAttribute="trailing" id="VSz-YF-TNC"/>
+                            <constraint firstItem="hsy-cd-0Rg" firstAttribute="top" secondItem="wq0-oN-XLr" secondAttribute="top" id="uKj-yC-ufq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wq0-oN-XLr"/>
                     </view>
+                    <connections>
+                        <outlet property="detailView" destination="hsy-cd-0Rg" id="xOk-sn-X0a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suZ-DN-nPO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="98" y="153"/>
+            <point key="canvasLocation" x="-407" y="141"/>
         </scene>
     </scenes>
-    <resources>
-    </resources>
 </document>

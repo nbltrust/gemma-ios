@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ESPullToRefresh
 import KRProgressHUD
 
 extension UIViewController {
@@ -66,3 +67,31 @@ extension UIViewController {
         KRProgressHUD.showSuccess(withMessage: message)
     }
 }
+
+extension UIViewController {
+    func addPullToRefresh(_ tableView : UITableView,callback:@escaping(((()->Void)?)->Void)){
+       
+        tableView.es.addPullToRefresh {
+            callback({
+                tableView.es.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+            })
+        }
+        
+    }
+    
+    
+    func addInfiniteScrolling(_ tableView : UITableView ,callback:@escaping(((Bool)->())?)->()){
+        tableView.es.addInfiniteScrolling {
+            
+            callback({ isNoMoreData in
+                if isNoMoreData {
+                    tableView.es.noticeNoMoreData()
+                }else{
+                    tableView.es.stopLoadingMore()
+                }
+            })
+        }
+    }
+}
+
+

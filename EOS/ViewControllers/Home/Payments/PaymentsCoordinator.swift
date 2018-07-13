@@ -23,7 +23,7 @@ protocol PaymentsStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<PaymentsState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func getDataFromServer(_ account: String, showNum: String, lastPosition: String, completion: @escaping (Bool)->Void )
+    func getDataFromServer(_ account: String, completion: @escaping (Bool)->Void,isRefresh:Bool)
 }
 
 class PaymentsCoordinator: HomeRootCoordinator {
@@ -43,7 +43,7 @@ extension PaymentsCoordinator: PaymentsCoordinatorProtocol {
         let coordinator = PaymentsDetailCoordinator(rootVC: self.rootVC)
         vc.coordinator = coordinator
         vc.data = data
-        self.rootVC.navigationController?.pushViewController(vc, animated: true)
+        self.rootVC.pushViewController(vc, animated: true)
     }
 }
 
@@ -58,31 +58,35 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
-    func getDataFromServer(_ account: String, showNum: String, lastPosition: String, completion: @escaping (Bool)->Void ) {
-        NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: showNum, lastPosition: lastPosition), success: { (data) in
-            let dataDic = data.dictionaryValue
+    func getDataFromServer(_ account: String, completion: @escaping (Bool)->Void, isRefresh:Bool) {
+        NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: 10, lastPosition: isRefresh ? -1 :state.property.last_pos), success: { (data) in
+            let dataDic = data["result"].dictionaryValue
             let transactions = dataDic["transactions"]?.arrayValue
+            
+            self.store.dispatch(GetLastPosAction(last_pos:(dataDic["last_pos"]?.intValue)!))
+        
             let payments = transactions?.map({ (json) in
-                Payment.deserialize(from: json["transaction"].dictionaryValue)
+                Payment.deserialize(from: json.dictionaryObject)
             })
+
             self.store.dispatch(FetchPaymentsRecordsListAction(data: payments! as! [Payment]))
             completion(true)
         }, error: { (code) in
-
+           
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)
                 KRProgressHUD.showError(withMessage: error.localizedDescription)
             } else {
                 KRProgressHUD.showError(withMessage: R.string.localizable.error_unknow())
             }
+            completion(false)
+
         }) { (moyaError) in
             let payment:[Payment] = []
             self.store.dispatch(FetchPaymentsRecordsListAction(data: payment))
-            completion(true)
+            completion(false)
 
             KRProgressHUD.showError(withMessage: R.string.localizable.request_failed())
-
         }
-        
     }
 }

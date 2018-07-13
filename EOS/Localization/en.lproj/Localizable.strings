@@ -84,3 +84,22 @@
 "day" = "天";
 "hour" = "小时";
 "invitationcode_introduce" = "获取邀请码";
+
+"trade_unensure" = "未确认";
+"trade_ensuring" = "正在确认";
+"trade_ensure" = "已确认";
+"trade_failed" = "交易失败";
+
+"Loading more" = "加载更多";
+"No more data" = "没有更多的数据";
+"Loading..." = "正在加载";
+"Pull to refresh" = "下拉刷新";
+"Release to refresh" = "松开刷新";
+
+"resources_pledge" = "资源质押";
+"resource_get" = "获取CPU、NET";
+
+"block_time" = "区块时间";
+"trade_state" = "交易状态";
+"trade_number" = "交易号";
+"block" = "区块";

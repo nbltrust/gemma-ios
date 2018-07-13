@@ -14,7 +14,7 @@ import SwiftyJSON
 enum NBLService {
     case createAccount(account:String, pubKey:String, invitationCode:String)
     case accountVerify(account:String)
-    case accountHistory(account:String, showNum:String, lastPosition:String)
+    case accountHistory(account:String, showNum:Int, lastPosition:Int)
 }
 
 struct NBLNetwork {

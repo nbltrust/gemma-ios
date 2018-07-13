@@ -95,7 +95,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     }
     
     func createDataInfo() -> [LineView.LineViewModel] {
-        return [LineView.LineViewModel.init(name: "收支记录",
+        return [LineView.LineViewModel.init(name: R.string.localizable.payments_history(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
@@ -103,8 +103,8 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
-                LineView.LineViewModel.init(name: "资源质押",
-                                            content: "获取CPU、NET",
+                LineView.LineViewModel.init(name: R.string.localizable.resources_pledge(),
+                                            content: R.string.localizable.resource_get(),
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
                                             content_style: LineViewStyleNames.normal_content,

@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol PaymentsDetailCoordinatorProtocol {
+    func openWebView()
 }
 
 protocol PaymentsDetailStateManagerProtocol {
@@ -31,7 +32,12 @@ class PaymentsDetailCoordinator: HomeRootCoordinator {
 }
 
 extension PaymentsDetailCoordinator: PaymentsDetailCoordinatorProtocol {
-    
+    func openWebView() {
+        let vc = BaseWebViewController()
+        vc.url = H5AddressConfiguration.GET_INVITECODE_URL
+        vc.title = R.string.localizable.invitationcode_introduce()
+        self.rootVC.pushViewController(vc, animated: true)
+    }
 }
 
 extension PaymentsDetailCoordinator: PaymentsDetailStateManagerProtocol {

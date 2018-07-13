@@ -51,8 +51,16 @@ class RichStyle {
         }
         Styles.register(StyleNames.comfirmContent.rawValue, style: comfirmContent_style)
         
+        let check_style = Style {
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
+            $0.color = UIColor.darkSlateBlue
+            $0.underline = (.styleSingle,UIColor.darkSlateBlue)
+        }
+        Styles.register(StyleNames.agreement.rawValue, style: agreement_style)
+        
         initLineViewStyle()
       }
+    
     func initLineViewStyle(){
         let name_style = Style{
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)

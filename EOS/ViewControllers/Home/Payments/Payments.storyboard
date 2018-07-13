@@ -21,9 +21,13 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WHw-gV-pem">
                                 <rect key="frame" x="0.0" y="37" width="375" height="630"/>
                                 <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="7W2-kw-4BT" id="RLd-Os-Lw4"/>
+                                    <outlet property="delegate" destination="7W2-kw-4BT" id="OzC-bL-5gt"/>
+                                </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="white" red="0.976" green="0.976" blue="0.976" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bDD-xC-oJe" firstAttribute="bottom" secondItem="WHw-gV-pem" secondAttribute="bottom" id="89m-3l-qaj"/>
                             <constraint firstItem="WHw-gV-pem" firstAttribute="top" secondItem="bDD-xC-oJe" secondAttribute="top" constant="17" id="AkB-Lc-6NR"/>
@@ -41,6 +45,4 @@
             <point key="canvasLocation" x="150" y="143"/>
         </scene>
     </scenes>
-    <resources>
-    </resources>
 </document>

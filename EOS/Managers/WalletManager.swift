@@ -21,7 +21,7 @@ class WallketManager {
 
     private init() {
         //test
-//        switchAccount("awesome14")
+        switchAccount("cooljadepool")
     }
     
     func createPairKey() {
@@ -135,7 +135,6 @@ class WallketManager {
         if let cypher = keychain[string: "\(pubKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password) {
             return pri
         }
-        
         return nil
     }
     

@@ -14,16 +14,17 @@ import ReSwift
 class PaymentsDetailViewController: BaseViewController {
 
 	var coordinator: (PaymentsDetailCoordinatorProtocol & PaymentsDetailStateManagerProtocol)?
-    var data : PaymentsRecordsViewModel = PaymentsRecordsViewModel()
+    var data : PaymentsRecordsViewModel?
     
-    
-	override func viewDidLoad() {
+    @IBOutlet weak var detailView: DetailView!
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = R.string.localizable.payments_history()
         hiddenNavBar()
-
+        self.detailView.data = data
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -47,5 +48,11 @@ class PaymentsDetailViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+    }
+}
+
+extension PaymentsDetailViewController {
+    @objc func open_safair(_ sender : Any){
+       self.coordinator?.openWebView()
     }
 }
