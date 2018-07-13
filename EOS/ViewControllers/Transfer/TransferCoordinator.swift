@@ -73,7 +73,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         if let vc = R.storyboard.transfer.transferConfirmViewController() {
             let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
             vc.coordinator = coordinator
-            vc.toAccount = "@" + toAccount
+            vc.toAccount = toAccount
             vc.money = money
             vc.remark = remark
             transferConfirm.rootVC.pushViewController(vc, animated: true)

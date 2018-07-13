@@ -30,8 +30,8 @@ class TransferConfirmViewController: BaseViewController {
     }
 
     func setUpUI() {
-        self.transferConfirmView.recever = toAccount
-        self.transferConfirmView.amount = money
+        self.transferConfirmView.recever = "@" + toAccount
+        self.transferConfirmView.amount = money + " EOS"
         self.transferConfirmView.remark = remark
         self.transferConfirmView.payAccount = WallketManager.shared.getAccount()
 
