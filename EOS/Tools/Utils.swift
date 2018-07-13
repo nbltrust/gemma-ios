@@ -52,17 +52,17 @@ extension Int64 {
 
 
 
-func correctAmount(_ sender:String) -> String{
-    if let _ = sender.toDouble(){
-        if sender.contains("."),let last = sender.components(separatedBy: ".").last{
-            if last.count > 4{
-                return sender.components(separatedBy: ".").first! + last.substring(from: 0, length: 4)!
-            }
-            return sender
-        }
-    }
-    return ""
-}
+//func correctAmount(_ sender:String) -> String{
+//    if let _ = sender.toDouble(){
+//        if sender.contains("."),let last = sender.components(separatedBy: ".").last{
+//            if last.count > 4{
+//                return sender.components(separatedBy: ".").first! + last.substring(from: 0, length: 4)!
+//            }
+//            return sender
+//        }
+//    }
+//    return ""
+//}
 
 
 

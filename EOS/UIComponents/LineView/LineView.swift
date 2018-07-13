@@ -123,10 +123,6 @@ class LineView: UIView {
         loadXIB()
         setup()
     }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setup()
-    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

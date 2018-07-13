@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ESPullToRefresh
 
 extension UIViewController {
     func configLeftNavButton(_ image:UIImage?) {
@@ -50,10 +51,43 @@ extension UIViewController {
 
 extension UIViewController {
     func startLoading() {
-        
+   
     }
     
     func endLoading() {
         
     }
 }
+
+extension UIViewController {
+    func addPullToRefresh(_ tableView : UITableView,callback:@escaping(((()->Void)?)->Void)){
+       
+        tableView.es.addPullToRefresh {
+            callback({
+                tableView.es.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+            })
+        }
+        
+    }
+    
+    
+    /*
+     open var loadingMoreDescription: String = NSLocalizedString("Loading more", comment: "")
+     open var noMoreDataDescription: String  = NSLocalizedString("No more data", comment: "")
+     open var loadingDescription: String     = NSLocalizedString("Loading...", comment: "")
+     */
+    func addInfiniteScrolling(_ tableView : UITableView ,callback:@escaping(((Bool)->())?)->()){
+        tableView.es.addInfiniteScrolling {
+            
+            callback({ isNoMoreData in
+                if isNoMoreData {
+                    tableView.es.noticeNoMoreData()
+                }else{
+                    tableView.es.stopLoadingMore()
+                }
+            })
+        }
+    }
+}
+
+

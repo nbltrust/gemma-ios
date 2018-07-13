@@ -148,6 +148,8 @@
 		7224713C20F624DC00536BF4 /* HomeTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7224713B20F624DC00536BF4 /* HomeTopView.xib */; };
 		7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224714020F62A5F00536BF4 /* HomeTableCell.swift */; };
 		7224714320F62A5F00536BF4 /* HomeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7224714120F62A5F00536BF4 /* HomeTableCell.xib */; };
+		7224714A20F76B4600536BF4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224714920F76B4600536BF4 /* DetailView.swift */; };
+		7224714C20F76B5000536BF4 /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7224714B20F76B5000536BF4 /* DetailView.xib */; };
 		727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A0C092D0A5867AD008B19D6E9C415 /* UIImage+Extensions.swift */; };
 		72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD93970489E3F3320328E206C4A6970 /* LineView.swift */; };
 		73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68B20F5B42600756391 /* Double+Extensions.swift */; };
@@ -5414,6 +5416,8 @@
 		7224713B20F624DC00536BF4 /* HomeTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTopView.xib; sourceTree = "<group>"; };
 		7224714020F62A5F00536BF4 /* HomeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableCell.swift; sourceTree = "<group>"; };
 		7224714120F62A5F00536BF4 /* HomeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableCell.xib; sourceTree = "<group>"; };
+		7224714920F76B4600536BF4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		7224714B20F76B5000536BF4 /* DetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
 		722807EABE9F57636A483A1344C09EBE /* identity_type.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = identity_type.hpp; sourceTree = "<group>"; };
 		72296D19D2098F5FE79E547088996DCC /* intrusive_ptr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = intrusive_ptr.hpp; sourceTree = "<group>"; };
 		7229F9473B63FBE448440F2256183152 /* make_expr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = make_expr.hpp; sourceTree = "<group>"; };
@@ -16354,6 +16358,7 @@
 		3B4C90F620F4D66E004F4C52 /* PaymentsDetail */ = {
 			isa = PBXGroup;
 			children = (
+				7224714420F76A7F00536BF4 /* Views */,
 				3B4C90FF20F4D6A4004F4C52 /* PaymentsDetail.storyboard */,
 				3B4C90F720F4D686004F4C52 /* PaymentsDetailCoordinator.swift */,
 				3B4C90F820F4D686004F4C52 /* PaymentsDetailActions.swift */,
@@ -20949,6 +20954,15 @@
 				7224714120F62A5F00536BF4 /* HomeTableCell.xib */,
 			);
 			path = cells;
+			sourceTree = "<group>";
+		};
+		7224714420F76A7F00536BF4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7224714920F76B4600536BF4 /* DetailView.swift */,
+				7224714B20F76B5000536BF4 /* DetailView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		727DFE9408BAF1DAFBEB606F01301C89 /* impl */ = {
@@ -31343,6 +31357,7 @@
 				3195BD9E030E3CAD06E18BEDA1C98306 /* RegisterContentView.xib in Resources */,
 				3CE0B916A6316D966E0AD0C04B7A8AD4 /* Rubik-Black.ttf in Resources */,
 				641549D1676970A8A8E214286F8DFEFE /* Rubik-BlackItalic.ttf in Resources */,
+				7224714C20F76B5000536BF4 /* DetailView.xib in Resources */,
 				CB49F9CB37E2DDAD42DBE8D6CD93C3BF /* Rubik-Bold.ttf in Resources */,
 				9EF49BFEE4870D136FDBAE4EC6F6F4CB /* Rubik-BoldItalic.ttf in Resources */,
 				E88743C997E531D3F0551FFB451A6E33 /* Rubik-Italic.ttf in Resources */,
@@ -31765,6 +31780,7 @@
 				3BD3663620F6F29E004DE09D /* TransferContentView.swift in Sources */,
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
+				7224714A20F76B4600536BF4 /* DetailView.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
 				54173FE67B1EB4725F8FC3B9D46CEA17 /* TitleTextView.swift in Sources */,
 				73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */,

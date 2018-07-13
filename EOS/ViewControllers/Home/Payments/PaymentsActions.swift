@@ -8,6 +8,8 @@
 
 import Foundation
 import ReSwift
+import RxSwift
+import RxCocoa
 
 //MARK: - State
 struct PaymentsState: StateType {
@@ -19,20 +21,29 @@ struct PaymentsState: StateType {
 
 struct PaymentsPropertyState {
     var data : [PaymentsRecordsViewModel] = []
+    var last_pos : Int = -1
+    var payments : [Payment] = []
 }
 
 struct FetchPaymentsRecordsListAction : Action {
     var data : [Payment]
 }
 
+struct GetLastPosAction : Action {
+    var last_pos : Int
+}
+
 //MARK: - ViewModel
 struct PaymentsRecordsViewModel {
-    var stateImageName : NSString = "icIncome"
+    var stateImageName : UIImage?
     var address : String = ""
     var time : String = ""
     var transferState : String = ""
     var money : String = ""
     var transferStateBool : Bool = true
+    var block : Int = 0
+    var memo : String = ""
+    var hashNumber : String = ""
 }
 
 //MARK: - Action Creator
