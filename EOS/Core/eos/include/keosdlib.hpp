@@ -134,7 +134,7 @@ namespace eosio {
                 if(pk.checksum == pw) return (std::string)pk.key.second;
                 return "?";
             }catch(...){
-                return "wrong password";
+                return "";
             }
         }
         

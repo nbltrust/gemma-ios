@@ -19,7 +19,7 @@ protocol TransferConfirmPasswordStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<TransferConfirmPasswordState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool)->())
+    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->())
 }
 
 class TransferConfirmPasswordCoordinator: TransferConfirmRootCoordinator {
@@ -37,7 +37,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
     func finishTransfer() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let transferCoor = appDelegate.appcoordinator?.transferCoordinator, let transferVC = transferCoor.rootVC.topViewController as? TransferViewController {
             self.rootVC.dismiss(animated: true) {
-                
+                transferVC.resetData()
             }
         }
     }
@@ -56,8 +56,9 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
     
     func getInfo(callback:@escaping (String)->()){
         EOSIONetwork.request(target: .get_info, success: { (data) in
-            print("get_info : \(data)")
-            callback(data.stringValue)
+            if let info = data.rawString() {
+                callback(info)
+            }
         }, error: { (error_code) in
             
         }) { (error) in
@@ -65,28 +66,32 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         }
     }
     
-    func getPushTransaction(_ password : String,account:String, amount:String, code:String ,callback:@escaping (String?)->()){
+    func getPushTransaction(_ password : String,account:String, amount:String, code:String ,callback:@escaping ((String?, String))->()){
         
         getInfo { (get_info) in
-            let privakey = WallketManager.shared.getCachedPriKey(password)
+            guard let privakey = WallketManager.shared.getCachedPriKey(password) else {
+                return callback((nil, R.string.localizable.password_not_match()))
+            }
+            
             let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WallketManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
             
             EOSIONetwork.request(target: .abi_json_to_bin(json:json!), success: { (data) in
-                let abiStr = data.stringValue
+                let abiStr = data["binargs"].stringValue
                 
                 let transation = EOSIO.getTransaction(privakey,
                                                       code: NetworkConfiguration.EOSIO_DEFAULT_CODE,
-                                                      from: account,
-                                                      to: WallketManager.shared.getAccount(),
-                                                      quantity: amount,
+                                                      from: WallketManager.shared.getAccount(),
+                                                      to: account,
+                                                      quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL,
                                                       memo: code,
                                                       getinfo: get_info,
                                                       abistr: abiStr)
-                callback(transation)
+                
+                callback((transation,""))
             }, error: { (error_code) in
-                
+                callback((nil, R.string.localizable.request_failed()))
             }) { (error) in
-                
+                callback((nil, R.string.localizable.request_failed()))
             }
         }
         
@@ -97,21 +102,24 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
     }
     
     
-    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool)->()) {
+    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->()) {
         
         getPushTransaction(password, account: account, amount: amount, code: code,callback: { transaction in
-            if let transaction = transaction {
+            if let transaction = transaction.0 {
                 EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
                     if let info = data.dictionaryObject,info["code"] == nil{
-                        callback(true)
+                        callback(true, R.string.localizable.transfer_successed())
                     }else{
-                        callback(false)
+                        callback(false, R.string.localizable.transfer_failed())
                     }
                 }, error: { (error_code) in
-                    callback(false)
+                    callback(false, R.string.localizable.transfer_failed())
                 }) { (error) in
-                    callback(false)
+                    callback(false,R.string.localizable.request_failed() )
                 }
+            }
+            else {
+                callback(false, transaction.1)
             }
         })
     }

@@ -27,6 +27,8 @@
 "error_unknow" = "未知错误";
 "request_failed" = "请求失败";
 
+"password_not_match" = "密码错误";
+
 /*Account*/
 "account_wallet_name" = "EOS账户名";
 "account_setting_password" = "设置密码";

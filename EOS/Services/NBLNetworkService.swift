@@ -10,6 +10,7 @@ import Foundation
 import Moya
 import SwifterSwift
 import SwiftyJSON
+import Alamofire
 
 enum NBLService {
     case createAccount(account:String, pubKey:String, invitationCode:String)
@@ -17,8 +18,18 @@ enum NBLService {
     case accountHistory(account:String, showNum:Int, lastPosition:Int)
 }
 
+func defaultManager() -> Alamofire.SessionManager {
+    let configuration = URLSessionConfiguration.default
+    configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+    configuration.timeoutIntervalForRequest = 5
+    
+    let manager = Alamofire.SessionManager(configuration: configuration)
+    manager.startRequestsImmediately = false
+    return manager
+}
+
 struct NBLNetwork {
-    static let provider = MoyaProvider<NBLService>(callbackQueue: nil, manager: MoyaProvider<NBLService>.defaultAlamofireManager(), plugins: [NetworkLoggerPlugin(verbose: true)], trackInflights: false)
+    static let provider = MoyaProvider<NBLService>(callbackQueue: nil, manager: defaultManager(), plugins: [NetworkLoggerPlugin(verbose: true)], trackInflights: false)
     
     static func request(
         target: NBLService,

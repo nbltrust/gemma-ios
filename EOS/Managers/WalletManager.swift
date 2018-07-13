@@ -21,7 +21,6 @@ class WallketManager {
 
     private init() {
         //test
-        switchAccount("cooljadepool")
     }
     
     func createPairKey() {
@@ -132,7 +131,7 @@ class WallketManager {
     }
     
     func getCachedPriKey(_ password:String) -> String? {
-        if let cypher = keychain[string: "\(pubKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password) {
+        if let cypher = keychain[string: "\(pubKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password), pri.count > 0 {
             return pri
         }
         return nil

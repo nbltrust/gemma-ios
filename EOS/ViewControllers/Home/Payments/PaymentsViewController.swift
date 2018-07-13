@@ -35,27 +35,40 @@ class PaymentsViewController: BaseViewController {
         self.startLoading()
         self.coordinator?.getDataFromServer(WallketManager.shared.getAccount(),completion: {[weak self] (success) in
             guard let `self` = self else { return }
-            self.endLoading()
-            self.data.removeAll()
-            if (self.coordinator?.state.property.data)!.count < 10 {
-                self.isNoMoreData = true
+            
+            if success {
+                self.endLoading()
+                self.data.removeAll()
+                if (self.coordinator?.state.property.data)!.count < 10 {
+                    self.isNoMoreData = true
+                }
+                self.data += (self.coordinator?.state.property.data)!
+                self.tableView.reloadData()
             }
-            self.data += (self.coordinator?.state.property.data)!
-            self.tableView.reloadData()
+            else {
+                self.showError(message: R.string.localizable.request_failed())
+            }
+            
             }, isRefresh:true)
         
         self.addPullToRefresh(self.tableView) { (completion) in
             self.coordinator?.getDataFromServer(WallketManager.shared.getAccount(),completion: {[weak self] (success) in
                 guard let `self` = self else {return}
-                self.data.removeAll()
-                if (self.coordinator?.state.property.data)!.count < 10 {
-                    self.isNoMoreData = true
-                }else{
-                    self.isNoMoreData = false
+                
+                if success {
+                    self.data.removeAll()
+                    if (self.coordinator?.state.property.data)!.count < 10 {
+                        self.isNoMoreData = true
+                    }else{
+                        self.isNoMoreData = false
+                    }
+                    completion?()
+                    self.data += (self.coordinator?.state.property.data)!
+                    self.tableView.reloadData()
                 }
-                completion?()
-                self.data += (self.coordinator?.state.property.data)!
-                self.tableView.reloadData()
+                else {
+                    self.showError(message: R.string.localizable.request_failed())
+                }
             },isRefresh: true)
         }
         
