@@ -43,8 +43,8 @@ enum GemmaError: Error {
         case accountWrongLengthCode    = 10006
         case parameterWrongCode        = 10007
         case invalidPubKeyCode         = 10008
-        case balanceNotEnoughCode      = 20002
-        case creatAccountFailedCode    = 20003
+        case balanceNotEnoughCode      = 20001
+        case creatAccountFailedCode    = 20002
         
         func desc() -> String {
             switch self {
