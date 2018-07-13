@@ -43,7 +43,7 @@ def architecture
 end
 
 def permission
-    
+    pod 'Proposer'
 end
 
 def animation
