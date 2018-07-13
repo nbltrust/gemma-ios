@@ -63,13 +63,16 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
             let dataDic = data["result"].dictionaryValue
             let transactions = dataDic["transactions"]?.arrayValue
             
-            self.store.dispatch(GetLastPosAction(last_pos:(dataDic["last_pos"]?.intValue)!))
-        
-            let payments = transactions?.map({ (json) in
-                Payment.deserialize(from: json.dictionaryObject)
-            })
-
-            self.store.dispatch(FetchPaymentsRecordsListAction(data: payments! as! [Payment]))
+            if let last_pos = dataDic["last_pos"]?.int {
+                self.store.dispatch(GetLastPosAction(last_pos:last_pos))
+                
+                let payments = transactions?.map({ (json) in
+                    Payment.deserialize(from: json.dictionaryObject)
+                })
+                
+                self.store.dispatch(FetchPaymentsRecordsListAction(data: payments! as! [Payment]))
+            }
+           
             completion(true)
         }, error: { (code) in
            
