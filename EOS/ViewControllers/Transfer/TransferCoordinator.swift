@@ -13,7 +13,7 @@ import AwaitKit
 import Presentr
 
 protocol TransferCoordinatorProtocol {
-    func pushToTransferConfirmVC()
+    func pushToTransferConfirmVC(toAccount:String,money:String,remark:String)
     
 }
 
@@ -45,7 +45,7 @@ class TransferCoordinator: TransferRootCoordinator {
 }
 
 extension TransferCoordinator: TransferCoordinatorProtocol {
-    func pushToTransferConfirmVC() {
+    func pushToTransferConfirmVC(toAccount:String,money:String,remark:String) {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 369)
         let center = ModalCenterPosition.bottomCenter
@@ -58,8 +58,17 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
         
         self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+//        transferConfirm .start()
+        if let vc = R.storyboard.transfer.transferConfirmViewController() {
+            let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
+            vc.coordinator = coordinator
+            vc.toAccount = toAccount
+            vc.money = money
+            vc.remark = remark
+            transferConfirm.rootVC.pushViewController(vc, animated: true)
+        }
+
         
-        transferConfirm.start()
     }
     
     

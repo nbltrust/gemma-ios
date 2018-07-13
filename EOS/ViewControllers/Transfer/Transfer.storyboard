@@ -162,6 +162,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AUj-Ns-WRG"/>
                     </view>
+                    <connections>
+                        <outlet property="transferConfirmView" destination="zCk-bw-8a0" id="o07-vP-RE2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r1R-GD-Ame" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

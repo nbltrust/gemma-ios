@@ -14,14 +14,29 @@ import Presentr
 
 class TransferConfirmViewController: BaseViewController {
 
-	var coordinator: (TransferConfirmCoordinatorProtocol & TransferConfirmStateManagerProtocol)?
+    @IBOutlet var transferConfirmView: TransferConfirmView!
+    var coordinator: (TransferConfirmCoordinatorProtocol & TransferConfirmStateManagerProtocol)?
 
+    var toAccount = ""
+    var money = ""
+    var remark = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
         configLeftNavButton(R.image.icTransferClose())
+        
+        setUpUI()
     }
 
+    func setUpUI() {
+        self.transferConfirmView.receverView.content.text = toAccount
+        self.transferConfirmView.amountView.content.text = money
+        self.transferConfirmView.remarkView.content.text = toAccount
+        self.transferConfirmView.payAccountView.content.text = WallketManager.shared.getAccount()
+
+    }
+    
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismissConfirmVC()
     }
