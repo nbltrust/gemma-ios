@@ -10,8 +10,6 @@ import UIKit
 import ReSwift
 
 protocol TransferConfirmPasswordCoordinatorProtocol {
-    func pushToPaymentsVC()
-    
 }
 
 protocol TransferConfirmPasswordStateManagerProtocol {
@@ -19,6 +17,8 @@ protocol TransferConfirmPasswordStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<TransferConfirmPasswordState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool)->())
 }
 
 class TransferConfirmPasswordCoordinator: TransferConfirmRootCoordinator {
@@ -33,16 +33,6 @@ class TransferConfirmPasswordCoordinator: TransferConfirmRootCoordinator {
 }
 
 extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinatorProtocol {
-    func pushToPaymentsVC() {
-        self.rootVC.dismiss(animated: true, completion: nil)
-        guard let paymentsVC = self.rootVC.topViewController as? TransferViewController else { return }
-        
-        let vc = R.storyboard.payments.paymentsViewController()
-        let coordinator = PaymentsCoordinator(rootVC: self.rootVC)
-        vc?.coordinator = coordinator
-        self.rootVC.pushViewController(vc!, animated: true)
-    }
-
 }
 
 extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManagerProtocol {
@@ -54,6 +44,68 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         _ subscriber: S, transform: ((Subscription<TransferConfirmPasswordState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
+    }
+    
+    func getInfo(callback:@escaping (String)->()){
+        EOSIONetwork.request(target: .get_info, success: { (data) in
+            print("get_info : \(data)")
+            callback(data.stringValue)
+        }, error: { (error_code) in
+            
+        }) { (error) in
+            
+        }
+    }
+    
+    func getPushTransaction(_ password : String,account:String, amount:String, code:String ,callback:@escaping (String?)->()){
+        
+        getInfo { (get_info) in
+            let privakey = WallketManager.shared.getCachedPriKey(password)
+            let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WallketManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
+            
+            EOSIONetwork.request(target: .abi_json_to_bin(json:json!), success: { (data) in
+                let abiStr = data.stringValue
+                
+                let transation = EOSIO.getTransaction(privakey,
+                                                      code: NetworkConfiguration.EOSIO_DEFAULT_CODE,
+                                                      from: account,
+                                                      to: WallketManager.shared.getAccount(),
+                                                      quantity: amount,
+                                                      memo: code,
+                                                      getinfo: get_info,
+                                                      abistr: abiStr)
+                callback(transation)
+            }, error: { (error_code) in
+                
+            }) { (error) in
+                
+            }
+        }
+        
+    }
+    
+    func ValidingPassword(_ password : String) -> Bool{
+        return WallketManager.shared.isValidPassword(password)
+    }
+    
+    
+    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool)->()) {
+        
+        getPushTransaction(password, account: account, amount: amount, code: code,callback: { transaction in
+            if let transaction = transaction {
+                EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
+                    if let info = data.dictionaryObject,info["code"] == nil{
+                        callback(true)
+                    }else{
+                        callback(false)
+                    }
+                }, error: { (error_code) in
+                    callback(false)
+                }) { (error) in
+                    callback(false)
+                }
+            }
+        })
     }
     
 }
