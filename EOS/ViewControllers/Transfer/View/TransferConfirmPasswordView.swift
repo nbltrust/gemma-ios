@@ -32,6 +32,7 @@ class TransferConfirmPasswordView: UIView {
     
     func setUp() {
         setupEvent()
+        textField.isSecureTextEntry = true
         updateHeight()
 
     }
