@@ -53,15 +53,20 @@ class AppCoordinator {
         transferCoordinator = TransferRootCoordinator(rootVC: transfer)
         transfer.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarTransfer(), image: R.image.ic_send_normal(), selectedImage: R.image.ic_send_selected())
         
-//        let userinfo = BaseNavigationController()
-//        userinfoCoordinator = UserInfoRootCoordinator(rootVC: userinfo)
-//        userinfo.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_normal())
+        let userinfo = BaseNavigationController()
+        userinfoCoordinator = UserInfoRootCoordinator(rootVC: userinfo)
+        userinfo.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
         
         homeCoordinator.start()
         transferCoordinator.start()
-//        userinfoCoordinator.start()
+        userinfoCoordinator.start()
 
-        rootVC.viewControllers = [home, transfer]
+        rootVC.viewControllers = [home, transfer, userinfo]
+    }
+    
+    func curDisplayingCoordinator() -> NavCoordinator {
+        let container = [homeCoordinator, transferCoordinator, userinfoCoordinator] as [NavCoordinator]
+        return container[self.rootVC.selectedIndex]
     }
     
     func showEntry() {
