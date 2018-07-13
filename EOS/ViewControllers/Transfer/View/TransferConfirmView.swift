@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftRichString
 
 @IBDesignable
 class TransferConfirmView: UIView {
@@ -28,10 +29,26 @@ class TransferConfirmView: UIView {
         setupEvent()
         updateHeight()
         receverView.content_style = LineViewStyleNames.transfer_confirm.rawValue
-        amountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
         remarkView.content_style = LineViewStyleNames.normal_name.rawValue
         payAccountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
+        
+        setRichText()
 
+
+    }
+    
+    func setRichText() {
+        let money = Style{
+            $0.font = SystemFonts.PingFangSC_Semibold.font(size: 16.0)
+            $0.color = UIColor.darkSlateBlue
+        }
+        let eos = Style{
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
+            
+        }
+        let myGroup = StyleGroup(["money": money,"eos" : eos])
+//        let text = <money>amountView.content_text</money>  + " EOS"
+//        amountView.content.attributedText = text.set(style: myGroup)
     }
     
     func setupEvent() {

@@ -14,7 +14,7 @@ import Presentr
 
 protocol TransferCoordinatorProtocol {
     func pushToTransferConfirmVC(toAccount:String,money:String,remark:String)
-    
+    func pushToPaymentVC()
 }
 
 protocol TransferStateManagerProtocol {
@@ -45,6 +45,14 @@ class TransferCoordinator: TransferRootCoordinator {
 }
 
 extension TransferCoordinator: TransferCoordinatorProtocol {
+    func pushToPaymentVC() {
+        let vc = R.storyboard.payments.paymentsViewController()!
+        let coor = PaymentsCoordinator(rootVC: self.rootVC)
+        vc.coordinator = coor
+        self.rootVC.pushViewController(vc, animated: true)
+        
+    }
+    
     func pushToTransferConfirmVC(toAccount:String,money:String,remark:String) {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 369)

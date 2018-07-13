@@ -20,7 +20,6 @@ enum LineViewStyleNames:String {
     case normal_name
     case normal_content
     case transfer_confirm
-    case confirm_money
 }
 
 class RichStyle {
@@ -68,26 +67,10 @@ class RichStyle {
         Styles.register(LineViewStyleNames.normal_content.rawValue, style: content_style)
         
         let confirm_style = Style{
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 16.0)
+            $0.font = SystemFonts.PingFangSC_Semibold.font(size: 16.0)
             $0.color = UIColor.darkSlateBlue
         }
         Styles.register(LineViewStyleNames.transfer_confirm.rawValue, style: confirm_style)
         
-        initConfirmMoneyLineViewStyle()
-
-    }
-    
-    func initConfirmMoneyLineViewStyle() {
-        let money = Style{
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 16.0)
-            $0.color = UIColor.darkSlateBlue
-        }
-        let eos = Style{
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-
-        }
-//        let myGroup = StyleGroup(["money": money,"" : ])
-
-//        Styles.register(LineViewStyleNames.transfer_confirm.rawValue, style: confirm_style)
     }
 }

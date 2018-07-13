@@ -29,7 +29,7 @@ class TransferViewController: BaseViewController {
         self.transferContentView.accountTitleTextView.clearText()
         self.transferContentView.moneyTitleTextView.clearText()
         self.transferContentView.remarkTitleTextView.clearText()
-
+        self.coordinator?.pushToPaymentVC()
     }
 
     
