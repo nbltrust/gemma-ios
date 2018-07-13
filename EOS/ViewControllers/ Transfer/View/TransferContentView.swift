@@ -71,6 +71,13 @@ class TransferContentView: UIView {
         moneyTitleTextView.unitLabel.text = R.string.localizable.balance_pre() + "0.0000 EOS"
         remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
+        
+        accountTitleTextView.titleLabel.font = UIFont.systemFont(ofSize: 14)
+        accountTitleTextView.textField.font = UIFont.systemFont(ofSize: 16)
+        moneyTitleTextView.titleLabel.font = UIFont.systemFont(ofSize: 14)
+        moneyTitleTextView.textField.font = UIFont.systemFont(ofSize: 16)
+        moneyTitleTextView.unitLabel.font = UIFont.systemFont(ofSize: 12)
+        moneyTitleTextView.unitLabel.textColor = UIColor(red: 83/255, green: 92/255, blue: 138/255, alpha: 1)
         updateHeight()
 
         setupEvent()
