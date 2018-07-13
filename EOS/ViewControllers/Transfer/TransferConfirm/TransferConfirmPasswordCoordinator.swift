@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol TransferConfirmPasswordCoordinatorProtocol {
+    func finishTransfer()
 }
 
 protocol TransferConfirmPasswordStateManagerProtocol {
@@ -33,6 +34,13 @@ class TransferConfirmPasswordCoordinator: TransferConfirmRootCoordinator {
 }
 
 extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinatorProtocol {
+    func finishTransfer() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let transferCoor = appDelegate.appcoordinator?.transferCoordinator, let transferVC = transferCoor.rootVC.topViewController as? TransferViewController {
+            self.rootVC.dismiss(animated: true) {
+                
+            }
+        }
+    }
 }
 
 extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManagerProtocol {

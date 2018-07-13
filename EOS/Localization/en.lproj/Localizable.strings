@@ -75,6 +75,9 @@
 "small_money" = "金额不能为0";
 "balance_pre" = "余额：";
 "default_remark" = "默认备注";
+
+"transfer_failed" = "转账失败";
+"transfer_successed" = "转账成功";
 //zsy end
 
 "day" = "天";

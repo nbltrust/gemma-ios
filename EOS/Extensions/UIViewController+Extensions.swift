@@ -57,4 +57,12 @@ extension UIViewController {
     func endLoading() {
         KRProgressHUD.dismiss()
     }
+    
+    func showError(message: String) {
+        KRProgressHUD.showError(withMessage: message)
+    }
+    
+    func showSuccess(message: String) {
+        KRProgressHUD.showSuccess(withMessage: message)
+    }
 }

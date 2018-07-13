@@ -54,6 +54,12 @@ extension TransferConfirmPasswordViewController {
         self.startLoading()
         self.coordinator?.transferAccounts(passwordView.textField.text!, account: receiver, amount: amount, code: remark, callback: { [weak self](isSuccess) in
             guard let `self` = self else { return }
+            if isSuccess {
+                self.showSuccess(message: R.string.localizable.transfer_successed())
+                self.coordinator?.finishTransfer()
+            } else {
+                self.showError(message: R.string.localizable.transfer_failed())
+            }
             self.endLoading()
         })
     }
