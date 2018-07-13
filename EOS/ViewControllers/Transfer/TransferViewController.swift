@@ -67,7 +67,6 @@ class TransferViewController: BaseViewController {
         commonObserveState()
         
         self.coordinator?.state.property.balance.asObservable().subscribe(onNext: { (blance) in
-            self.transferContentView.moneyTitleTextView.unitLabel.text = blance
             
             self.transferContentView.balance = blance!
         }, onError: nil, onCompleted: {
@@ -78,7 +77,13 @@ class TransferViewController: BaseViewController {
         Observable.combineLatest(self.coordinator!.state.property.toNameValid.asObservable(),
                                  self.coordinator!.state.property.moneyValid.asObservable()
                                  ).map { (arg0) -> Bool in
-                                    
+                                    var warning = ""
+                                    warning = arg0.1.1
+                                    self.transferContentView.moneyTitleTextView.warningText = warning
+                                    if warning != "" {
+                                        self.transferContentView.moneyTitleTextView.checkStatus = .warning
+
+                                    }
                                     return arg0.0 && arg0.1.0
             }.bind(to: self.transferContentView.nextButton.isEnabel).disposed(by: disposeBag)
         
@@ -143,7 +148,7 @@ extension TransferViewController {
         self.coordinator?.pushToTransferConfirmVC()
     }
     @objc func transferMoney(_ data: [String : Any]) {
-        if let textfield = data["textfield"] as? UITextField, let money = textfield.text?.toDouble() {
+        if let textfield = data["textfield"] as? UITextField,textfield.text != "" , let money = textfield.text?.toDouble() {
             textfield.text = money.string(digits: AppConfiguration.EOS_PRECISION)
             
             let balance = self.transferContentView.balance

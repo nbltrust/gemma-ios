@@ -73,7 +73,7 @@
 "password" = "的密码";
 "big_money" = "超出余额";
 "small_money" = "余额不能为0";
-
+"balance_pre" = "余额：";
 //zsy end
 
 "day" = "天";

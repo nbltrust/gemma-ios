@@ -26,6 +26,8 @@ class TransferContentView: UIView {
     
     var balance = "0 EOS" {
         didSet {
+            self.moneyTitleTextView.unitLabel.text = R.string.localizable.balance_pre() + balance
+
         }
     }
     
@@ -66,6 +68,7 @@ class TransferContentView: UIView {
         remarkTitleTextView.textView.delegate = self
         remarkTitleTextView.textView.maxHeight = 80
         nextButton.title = R.string.localizable.check_transfer()
+        moneyTitleTextView.unitLabel.text = R.string.localizable.balance_pre() + "0.0000 EOS"
 
         remarkTitleTextView.updateHeight()
         updateHeight()
