@@ -74,7 +74,9 @@
 "big_money" = "超出余额";
 "small_money" = "金额不能为0";
 "balance_pre" = "余额：";
-"default_remark" = "默认备注";
+
+"default_remark_after" = " via GEMMA wallet. We invite you to install the app and join us for EOS era: https://xxxx";
+"default_remark_pre" = "This transaction was sent by ";
 
 "transfer_failed" = "转账失败";
 "transfer_successed" = "转账成功";

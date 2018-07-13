@@ -65,6 +65,6 @@ class TransferConfirmViewController: BaseViewController {
 
 extension TransferConfirmViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
-        self.coordinator?.pushToTransferConfirmPwdVC(toAccount: toAccount, money: money, remark: remark)
+        self.coordinator?.pushToTransferConfirmPwdVC(toAccount: toAccount, money: money, remark: self.transferConfirmView.remark)
     }
 }

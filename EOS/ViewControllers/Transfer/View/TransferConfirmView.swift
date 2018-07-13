@@ -33,7 +33,6 @@ class TransferConfirmView: UIView {
 
         remarkView.content_style = LineViewStyleNames.normal_name.rawValue
         payAccountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
-        
         setRichText()
 
 
@@ -75,10 +74,9 @@ class TransferConfirmView: UIView {
     var remark = "" {
         didSet {
             if remark == "" {
-                remarkView.content_text = R.string.localizable.default_remark()
-            } else {
-                remarkView.content_text = remark
+                remark = R.string.localizable.default_remark_pre() + WallketManager.shared.getAccount() + R.string.localizable.default_remark_after()
             }
+            remarkView.content_text = remark
         }
     }
     
