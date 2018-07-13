@@ -25,6 +25,8 @@ class DetailView: UIView {
     @IBOutlet weak var blcok: UILabel!
     @IBOutlet weak var stateIcon: UIImageView!
     @IBOutlet weak var money: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var people: UILabel!
     
     @IBOutlet weak var webLabel: UILabel!
     var data : Any? {
@@ -39,6 +41,9 @@ class DetailView: UIView {
                 blcok.text = "\(data.block)"
                 stateIcon.image = data.stateImageName ==  R.image.icIncome() ? R.image.icIncomeWhite() : R.image.ic_income_white()
                 money.text = data.money
+                
+                titleLabel.text = data.stateImageName ==  R.image.icIncome() ? R.string.localizable.receive() : R.string.localizable.send()
+                people.text = data.stateImageName !=  R.image.icIncome() ? R.string.localizable.receiver() : R.string.localizable.sender()
             }
         }
     }

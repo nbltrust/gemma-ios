@@ -58,7 +58,7 @@ func convertTransferViewModel(data:[Payment]) -> [PaymentsRecordsViewModel] {
     for payment in data{
         let isSend : Bool = payment.from == WallketManager.shared.getAccount()
         let state : Bool = payment.status.rawValue == 3
-        let stateImage : UIImage? = isSend ? R.image.icIncome() : R.image.icSend()
+        let stateImage : UIImage? = isSend ? R.image.icSend() : R.image.icIncome()
         let address = isSend ? payment.to : payment.from
         let time = payment.time.string(withFormat: "yyyy/MM/dd HH:mm")
         let transferState = payment.status.description()

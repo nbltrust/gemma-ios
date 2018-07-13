@@ -16,9 +16,11 @@
                 <outlet property="blcok" destination="Uh4-Pf-50k" id="Equ-2T-Wur"/>
                 <outlet property="memo" destination="x7p-GB-wRO" id="rAd-9b-PHT"/>
                 <outlet property="money" destination="5pW-4q-HNq" id="PBE-aP-6CC"/>
+                <outlet property="people" destination="Ido-cu-6EG" id="XbX-L2-EAg"/>
                 <outlet property="state" destination="vWw-Cz-LIL" id="HEq-Es-UbN"/>
                 <outlet property="stateIcon" destination="uJw-P3-XiE" id="2DB-2F-vVh"/>
                 <outlet property="time" destination="wHB-Ix-bb4" id="Lje-G2-FF6"/>
+                <outlet property="titleLabel" destination="AFo-U6-IJW" id="s8z-43-DOf"/>
                 <outlet property="tradeNumber" destination="a8g-Ts-hHh" id="pW7-oO-Kd1"/>
                 <outlet property="webLabel" destination="zXf-Ni-cFU" id="aAd-Gb-5rr"/>
             </connections>
@@ -244,7 +246,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7F-pb-oJz">
                                                             <rect key="frame" x="0.0" y="152" width="343" height="50"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao0-GC-gNe">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="888" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao0-GC-gNe">
                                                                     <rect key="frame" x="15" y="15" width="0.0" height="22"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" red="0.55700000000000005" green="0.55700000000000005" blue="0.57599999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

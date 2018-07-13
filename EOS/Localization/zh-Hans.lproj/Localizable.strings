@@ -62,6 +62,9 @@
 //zsy add
 "account_total_assets" = "账户总资产";
 "receiver" = "收款人";
+"sender" = "发款人";
+"receive" = "收入";
+"send" = "支出";
 "account_name" = "账户名";
 "payment_account" = "付款账户";
 "money" = "金额";
