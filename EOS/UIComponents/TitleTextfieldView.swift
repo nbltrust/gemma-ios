@@ -58,6 +58,12 @@ class TitleTextfieldView: UIView {
         }
     }
     
+    var warningText: String? {
+        didSet {
+            setting.warningText = warningText ?? ""
+        }
+    }
+    
     var setting : TitleTextSetting! {
         didSet {
             titleLabel.text = setting.title
