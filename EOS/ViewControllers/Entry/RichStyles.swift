@@ -78,15 +78,15 @@ class RichStyle {
     }
     
     func initConfirmMoneyLineViewStyle() {
-        let confirm_money_style = Style{
+        let money = Style{
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 16.0)
             $0.color = UIColor.darkSlateBlue
         }
-        let confirm_eos_style = Style{
+        let eos = Style{
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
 
         }
-//        let myGroup = StyleGroup(base: confirm_money_style, ["password": password])
+//        let myGroup = StyleGroup(["money": money,"" : ])
 
 //        Styles.register(LineViewStyleNames.transfer_confirm.rawValue, style: confirm_style)
     }
