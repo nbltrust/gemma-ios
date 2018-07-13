@@ -26,7 +26,6 @@ class TransferViewController: BaseViewController {
     
     func resetData() {
         self.accountTextField.text = ""
-        self.transferContentView.accountTitleTextView.clearText()
         self.transferContentView.moneyTitleTextView.clearText()
         self.transferContentView.remarkTitleTextView.clearText()
         self.coordinator?.pushToPaymentVC()
