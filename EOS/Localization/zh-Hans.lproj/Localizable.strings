@@ -37,13 +37,13 @@
 "account_invitationcode" = "邀请码";
 
 "name_ph" = "由小写字母a-z与数字1-5组成，须为12个字符";
-"password_ph" = "请输入12位字符的密码";
+"password_ph" = "请输入8位或以上字符的密码";
 "comfirm_password_ph" = "请再次输入您的密码";
 "password_prompt_ph" = "密码提示";
 "invitationcode_ph" = "输入邀请码";
 
 "name_warning" = "由小写字母a-z与数字1-5组成，须为12个字符";
-"password_warning" = "密码为12位字符";
+"password_warning" = "最少8位长度，建议混合大小写字母、数字及符号";
 "comfirm_password_warning" = "密码不一致";
 "invitationcode_warning" = "邀请码为6位字符";
 
