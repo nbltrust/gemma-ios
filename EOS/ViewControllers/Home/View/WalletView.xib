@@ -51,17 +51,8 @@
                         <constraint firstItem="lop-oa-lcL" firstAttribute="top" secondItem="Nuj-b3-UNG" secondAttribute="top" id="nDW-qq-vyt"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                            <real key="value" value="17"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                            <real key="value" value="0.0"/>
-                        </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                             <color key="value" red="0.15294117647058825" green="0.20392156862745098" blue="0.49019607843137253" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                            <size key="value" width="0.0" height="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>

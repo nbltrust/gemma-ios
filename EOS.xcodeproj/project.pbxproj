@@ -86,6 +86,8 @@
 		3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3664920F72B5E004DE09D /* TransferConfirmPasswordReducers.swift */; };
 		3BD3664F20F76594004DE09D /* TransferConfirmPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3664E20F76594004DE09D /* TransferConfirmPasswordView.swift */; };
 		3BD3665120F765AB004DE09D /* TransferConfirmPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3665020F765AB004DE09D /* TransferConfirmPasswordView.xib */; };
+		3BD3665320FC9DE6004DE09D /* CornerAndShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3665220FC9DE6004DE09D /* CornerAndShadowView.swift */; };
+		3BD3665520FC9DF3004DE09D /* CornerAndShadowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3665420FC9DF3004DE09D /* CornerAndShadowView.xib */; };
 		3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */ = {isa = PBXBuildFile; fileRef = F601AE09C748BD90FFF8C8744B7B621D /* fstream */; };
 		3CE0B916A6316D966E0AD0C04B7A8AD4 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F6796D1FBCF6CB7AAEF5B3655062A1 /* Rubik-Black.ttf */; };
 		3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380B8A6234BE07DE4B3CDE521A28F60 /* Colletion+Extensions.swift */; };
@@ -3061,6 +3063,8 @@
 		3BD3664920F72B5E004DE09D /* TransferConfirmPasswordReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmPasswordReducers.swift; sourceTree = "<group>"; };
 		3BD3664E20F76594004DE09D /* TransferConfirmPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmPasswordView.swift; sourceTree = "<group>"; };
 		3BD3665020F765AB004DE09D /* TransferConfirmPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferConfirmPasswordView.xib; sourceTree = "<group>"; };
+		3BD3665220FC9DE6004DE09D /* CornerAndShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerAndShadowView.swift; sourceTree = "<group>"; };
+		3BD3665420FC9DF3004DE09D /* CornerAndShadowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CornerAndShadowView.xib; sourceTree = "<group>"; };
 		3BD4C916A39192D114FBEEE600033E2B /* buffered_stream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffered_stream.hpp; sourceTree = "<group>"; };
 		3BDA9B09D89E2B72CE5C65FA614ABC1B /* insert_range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = insert_range.hpp; sourceTree = "<group>"; };
 		3BE67FC625579D3EA5ED5446943EF95B /* blowfish.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blowfish.hpp; sourceTree = "<group>"; };
@@ -13999,6 +14003,8 @@
 			children = (
 				73B5A69F20F5EFF600756391 /* AttributeLabelView */,
 				ED5CF0797F269847E5CBEAEC6E2C89E5 /* LineView */,
+				3BD3665420FC9DF3004DE09D /* CornerAndShadowView.xib */,
+				3BD3665220FC9DE6004DE09D /* CornerAndShadowView.swift */,
 				8B351582A8E6943BACF62B02A64F0841 /* Button.swift */,
 				225825D920F4591F00AA2A4B /* Button.xib */,
 				4A03620E0D075F6EAC0DDDEEA65296E0 /* ComfirmView.swift */,
@@ -16457,10 +16463,10 @@
 			children = (
 				3BD3665020F765AB004DE09D /* TransferConfirmPasswordView.xib */,
 				3BD3664E20F76594004DE09D /* TransferConfirmPasswordView.swift */,
-				3BD3663F20F7086A004DE09D /* TransferConfirmView.swift */,
 				3BD3664120F70877004DE09D /* TransferConfirmView.xib */,
-				3BD3663220F6F29D004DE09D /* TransferContentView.swift */,
+				3BD3663F20F7086A004DE09D /* TransferConfirmView.swift */,
 				3BD3663020F6F29C004DE09D /* TransferContentView.xib */,
+				3BD3663220F6F29D004DE09D /* TransferContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -31433,6 +31439,7 @@
 				A7A6CEC5DA1E512787C61400F0E1FC99 /* iostream in Resources */,
 				F60569E26E39D85FBBCB98CDCDBDB3C7 /* iostream.SUNWCCh in Resources */,
 				5BA5BDF6B5E2C9F8466441F48E517278 /* istream in Resources */,
+				3BD3665520FC9DF3004DE09D /* CornerAndShadowView.xib in Resources */,
 				4456CACEF6AAF0C1FE6DCA145549F499 /* istream.SUNWCCh in Resources */,
 				969828B4F8D7D4D648E833D44A234D09 /* iterator in Resources */,
 				740D4F6730F1D7E5D73CA773FF7D257A /* iterator.SUNWCCh in Resources */,
@@ -31821,6 +31828,7 @@
 				C250859A222848F83BB0713253BF7A9D /* WalletView.swift in Sources */,
 				225825DD20F6378400AA2A4B /* TitleTextfieldView.swift in Sources */,
 				22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */,
+				3BD3665320FC9DE6004DE09D /* CornerAndShadowView.swift in Sources */,
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
 				177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */,
 				3B4C90F320F4CDDC004F4C52 /* PaymentsReducers.swift in Sources */,
