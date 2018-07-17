@@ -46,6 +46,14 @@
 		22C023A020F6FDB900284A0A /* CreatationCompleteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239C20F6FDB900284A0A /* CreatationCompleteActions.swift */; };
 		22C023A120F6FDB900284A0A /* CreatationCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239D20F6FDB900284A0A /* CreatationCompleteViewController.swift */; };
 		22C023A220F6FDB900284A0A /* CreatationCompleteReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239E20F6FDB900284A0A /* CreatationCompleteReducers.swift */; };
+		22C023A620FCACA400284A0A /* GestureLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023A520FCACA400284A0A /* GestureLockView.swift */; };
+		22C023A820FCACE900284A0A /* GestureLockInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023A720FCACE900284A0A /* GestureLockInfoView.swift */; };
+		22C023AF20FCB09300284A0A /* ScanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023AB20FCB09300284A0A /* ScanCoordinator.swift */; };
+		22C023B020FCB09300284A0A /* ScanActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023AC20FCB09300284A0A /* ScanActions.swift */; };
+		22C023B120FCB09300284A0A /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023AD20FCB09300284A0A /* ScanViewController.swift */; };
+		22C023B220FCB09300284A0A /* ScanReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023AE20FCB09300284A0A /* ScanReducers.swift */; };
+		22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B320FCB0EB00284A0A /* ScanShadeView.swift */; };
+		22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B520FD8A0600284A0A /* ScanPreviewView.swift */; };
 		24DB2001F45219964C7C00660C7FAD74 /* map.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = D37EB2084A5F0BCBD7AC0127F484EF67 /* map.SUNWCCh */; };
 		267D15355147463B9F3A4323FEFA93A6 /* utility.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 57B7E46E6DAB4556E33BC9EDAC656EC7 /* utility.SUNWCCh */; };
 		293724C94FEA66BB7CBDEC50A91A0C83 /* ostream.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 2517D8C8DC5C7533C63215A87510F188 /* ostream.SUNWCCh */; };
@@ -1907,6 +1915,14 @@
 		22C0239C20F6FDB900284A0A /* CreatationCompleteActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatationCompleteActions.swift; sourceTree = "<group>"; };
 		22C0239D20F6FDB900284A0A /* CreatationCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatationCompleteViewController.swift; sourceTree = "<group>"; };
 		22C0239E20F6FDB900284A0A /* CreatationCompleteReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatationCompleteReducers.swift; sourceTree = "<group>"; };
+		22C023A520FCACA400284A0A /* GestureLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockView.swift; sourceTree = "<group>"; };
+		22C023A720FCACE900284A0A /* GestureLockInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockInfoView.swift; sourceTree = "<group>"; };
+		22C023AB20FCB09300284A0A /* ScanCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCoordinator.swift; sourceTree = "<group>"; };
+		22C023AC20FCB09300284A0A /* ScanActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanActions.swift; sourceTree = "<group>"; };
+		22C023AD20FCB09300284A0A /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		22C023AE20FCB09300284A0A /* ScanReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanReducers.swift; sourceTree = "<group>"; };
+		22C023B320FCB0EB00284A0A /* ScanShadeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanShadeView.swift; sourceTree = "<group>"; };
+		22C023B520FD8A0600284A0A /* ScanPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPreviewView.swift; sourceTree = "<group>"; };
 		22C19F59D40AA230757B2ED8EB6B6587 /* qi_hold.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_hold.hpp; sourceTree = "<group>"; };
 		22C24EE97E8F9DD23894F3AFD8E38162 /* symbol_table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = symbol_table.hpp; sourceTree = "<group>"; };
 		22C99016B5255D2570B43808DBD10F55 /* throw_error.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = throw_error.hpp; sourceTree = "<group>"; };
@@ -13997,6 +14013,8 @@
 		1D693EAC4EFE912D3F115C139DC846B0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				22C023A920FCACFD00284A0A /* Scan */,
+				22C023A420FCABA600284A0A /* GestureLock */,
 				73B5A69F20F5EFF600756391 /* AttributeLabelView */,
 				ED5CF0797F269847E5CBEAEC6E2C89E5 /* LineView */,
 				8B351582A8E6943BACF62B02A64F0841 /* Button.swift */,
@@ -14414,6 +14432,36 @@
 				22C0239E20F6FDB900284A0A /* CreatationCompleteReducers.swift */,
 			);
 			path = CreatationComplete;
+			sourceTree = "<group>";
+		};
+		22C023A420FCABA600284A0A /* GestureLock */ = {
+			isa = PBXGroup;
+			children = (
+				22C023A720FCACE900284A0A /* GestureLockInfoView.swift */,
+				22C023A520FCACA400284A0A /* GestureLockView.swift */,
+			);
+			path = GestureLock;
+			sourceTree = "<group>";
+		};
+		22C023A920FCACFD00284A0A /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				22C023AA20FCB07B00284A0A /* View */,
+				22C023AB20FCB09300284A0A /* ScanCoordinator.swift */,
+				22C023AC20FCB09300284A0A /* ScanActions.swift */,
+				22C023AD20FCB09300284A0A /* ScanViewController.swift */,
+				22C023AE20FCB09300284A0A /* ScanReducers.swift */,
+			);
+			path = Scan;
+			sourceTree = "<group>";
+		};
+		22C023AA20FCB07B00284A0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				22C023B320FCB0EB00284A0A /* ScanShadeView.swift */,
+				22C023B520FD8A0600284A0A /* ScanPreviewView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		22EB5B525226205072CD7E669F0A3805 /* sort */ = {
@@ -31723,6 +31771,7 @@
 				A58426FF8A514CDE712EB97BAB795BB3 /* BaseCollectionViewCell.swift in Sources */,
 				A6EFBB3B53A79BD8C9D018099642EB76 /* BaseNavigationController.swift in Sources */,
 				559E64A356046CB84C6A9B9B07E012E7 /* BaseTabbarViewController.swift in Sources */,
+				22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */,
 				73B5A69920F5DFF400756391 /* ColorTheme.swift in Sources */,
 				4E8664CF0182B65EC69790B3811E80C3 /* BaseTableViewCell.swift in Sources */,
 				3BD3663B20F6F9E3004DE09D /* TransferConfirmCoordinator.swift in Sources */,
@@ -31737,6 +31786,7 @@
 				22C023A120F6FDB900284A0A /* CreatationCompleteViewController.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
 				22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */,
+				22C023AF20FCB09300284A0A /* ScanCoordinator.swift in Sources */,
 				3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */,
 				BB08391AA7F1D732D97B698F412B3651 /* ComfirmView.swift in Sources */,
 				73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */,
@@ -31773,6 +31823,8 @@
 				73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */,
 				73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */,
 				3BD3663E20F6F9E3004DE09D /* TransferConfirmReducers.swift in Sources */,
+				22C023A620FCACA400284A0A /* GestureLockView.swift in Sources */,
+				22C023B120FCB09300284A0A /* ScanViewController.swift in Sources */,
 				08979875F7919749EE9911341C1DA85E /* NavCoordinator.swift in Sources */,
 				2B1048E593DFE3B00BA04C75B88E9469 /* PaymentsRecordsCell.swift in Sources */,
 				73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */,
@@ -31794,6 +31846,8 @@
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
 				B0CB0B845BDEE83BD98F4F59B48498CE /* UIFont+Additions.swift in Sources */,
+				22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */,
+				22C023B020FCB09300284A0A /* ScanActions.swift in Sources */,
 				73F30B4320F6E6FF0016E950 /* UserInfoViewController.swift in Sources */,
 				727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */,
 				3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */,
@@ -31801,6 +31855,7 @@
 				7224712920F57BA800536BF4 /* TransferCoordinator.swift in Sources */,
 				3B4C90FD20F4D686004F4C52 /* PaymentsDetailViewController.swift in Sources */,
 				73B5A6A720F5F62D00756391 /* NSScanner+Swift.swift in Sources */,
+				22C023A820FCACE900284A0A /* GestureLockInfoView.swift in Sources */,
 				7224712A20F57BA800536BF4 /* TransferActions.swift in Sources */,
 				7224713220F5F92B00536BF4 /* HomeHeaderView.swift in Sources */,
 				3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */,
@@ -31814,6 +31869,7 @@
 				3BD3664B20F72B5E004DE09D /* TransferConfirmPasswordActions.swift in Sources */,
 				22C0239F20F6FDB900284A0A /* CreatationCompleteCoordinator.swift in Sources */,
 				DBE18F3AD409206828C675AB4A85C4FD /* Utils.swift in Sources */,
+				22C023B220FCB09300284A0A /* ScanReducers.swift in Sources */,
 				FF428CE559D9BAC66E25585F0A149FB9 /* ViewController.swift in Sources */,
 				7224712B20F57BA800536BF4 /* TransferViewController.swift in Sources */,
 				1C5B18A93C3E4FE5D23D305731F6C2DF /* WalletManager.swift in Sources */,
