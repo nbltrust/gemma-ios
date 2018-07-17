@@ -13,6 +13,7 @@ import GrowingTextView
 
 class TransferContentView: UIView {
     
+    @IBOutlet weak var cornerView: CornerAndShadowView!
     @IBOutlet weak var accountTitleTextView: TitleTextfieldView!
     
     @IBOutlet weak var moneyTitleTextView: TitleTextfieldView!
@@ -60,6 +61,9 @@ class TransferContentView: UIView {
     }
     
     func setUp() {
+//        cornerView.corRadius = 8
+//        cornerView.shadowOpacity = 1
+        
         handleSetupSubView(accountTitleTextView, tag: InputType.account.rawValue)
         accountTitleTextView.textField.isUserInteractionEnabled = false
         handleSetupSubView(moneyTitleTextView, tag: InputType.money.rawValue)
