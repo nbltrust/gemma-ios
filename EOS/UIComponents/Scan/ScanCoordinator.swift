@@ -19,7 +19,7 @@ protocol ScanStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class ScanCoordinator: <#RootCoordinator#> {
+class ScanCoordinator: HomeRootCoordinator {
     
     lazy var creator = ScanPropertyActionCreate()
     
