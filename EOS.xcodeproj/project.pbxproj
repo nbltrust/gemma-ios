@@ -54,6 +54,7 @@
 		22C023B220FCB09300284A0A /* ScanReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023AE20FCB09300284A0A /* ScanReducers.swift */; };
 		22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B320FCB0EB00284A0A /* ScanShadeView.swift */; };
 		22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B520FD8A0600284A0A /* ScanPreviewView.swift */; };
+		22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B820FDDF0400284A0A /* ScanCornerView.swift */; };
 		24DB2001F45219964C7C00660C7FAD74 /* map.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = D37EB2084A5F0BCBD7AC0127F484EF67 /* map.SUNWCCh */; };
 		267D15355147463B9F3A4323FEFA93A6 /* utility.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 57B7E46E6DAB4556E33BC9EDAC656EC7 /* utility.SUNWCCh */; };
 		293724C94FEA66BB7CBDEC50A91A0C83 /* ostream.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 2517D8C8DC5C7533C63215A87510F188 /* ostream.SUNWCCh */; };
@@ -1925,6 +1926,7 @@
 		22C023AE20FCB09300284A0A /* ScanReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanReducers.swift; sourceTree = "<group>"; };
 		22C023B320FCB0EB00284A0A /* ScanShadeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanShadeView.swift; sourceTree = "<group>"; };
 		22C023B520FD8A0600284A0A /* ScanPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPreviewView.swift; sourceTree = "<group>"; };
+		22C023B820FDDF0400284A0A /* ScanCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCornerView.swift; sourceTree = "<group>"; };
 		22C19F59D40AA230757B2ED8EB6B6587 /* qi_hold.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_hold.hpp; sourceTree = "<group>"; };
 		22C24EE97E8F9DD23894F3AFD8E38162 /* symbol_table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = symbol_table.hpp; sourceTree = "<group>"; };
 		22C99016B5255D2570B43808DBD10F55 /* throw_error.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = throw_error.hpp; sourceTree = "<group>"; };
@@ -14466,6 +14468,7 @@
 			children = (
 				22C023B320FCB0EB00284A0A /* ScanShadeView.swift */,
 				22C023B520FD8A0600284A0A /* ScanPreviewView.swift */,
+				22C023B820FDDF0400284A0A /* ScanCornerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -31846,6 +31849,7 @@
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				7224714A20F76B4600536BF4 /* DetailView.swift in Sources */,
+				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
 				54173FE67B1EB4725F8FC3B9D46CEA17 /* TitleTextView.swift in Sources */,
 				73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */,
