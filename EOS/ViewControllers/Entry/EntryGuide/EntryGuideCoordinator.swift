@@ -41,7 +41,10 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
     }
     
     func pushToRecoverFromCopyVC() {
-        
+        let scanVC = ScanViewController()
+        let coordinator = ScanCoordinator(rootVC: self.rootVC)
+        scanVC.coordinator = coordinator
+        self.rootVC.pushViewController(scanVC, animated: true)
     }
 }
 

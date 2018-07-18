@@ -10,24 +10,24 @@ import Foundation
 
 class CornerAndShadowView: UIView {
     
-    
     @IBOutlet weak var cornerView: UIView!
-    
     var corRadius = 0 {
         didSet {
-            cornerView.cornerRadius = corRadius.cgFloat
+//            cornerView.cornerRadius = corRadius.cgFloat
         }
     }
     
-//    var shadowOff = 0 {
-//        didSet {
-//            self.shadowOffset
-//        }
-//    }
+    var newShadowColor = UIColor.duskBlue5 {
+        didSet {
+            self.shadowColor = newShadowColor
+        }
+    }
     
     
     func setUp() {
-        cornerView.cornerRadius = 4.cgFloat
+//        self.cornerView.cornerRadius = 4.cgFloat
+//        self.shadowView.shadowColor = UIColor.red
+//        self.shadowView.shadowOffset = CGSize(width: 1, height: 2)
         updateHeight()
     }
     
@@ -43,7 +43,8 @@ class CornerAndShadowView: UIView {
     
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
-        return (lastView?.frame.origin.y)! + (lastView?.frame.size.height)!
+        return lastView?.bottom ?? 0
+
     }
     
     override func layoutSubviews() {
@@ -71,7 +72,7 @@ class CornerAndShadowView: UIView {
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
-        addSubview(view)
+        self.insertSubview(view, at: 0)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }

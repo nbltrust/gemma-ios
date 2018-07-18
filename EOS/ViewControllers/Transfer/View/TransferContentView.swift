@@ -61,8 +61,6 @@ class TransferContentView: UIView {
     }
     
     func setUp() {
-//        cornerView.corRadius = 8
-//        cornerView.shadowOpacity = 1
         
         handleSetupSubView(accountTitleTextView, tag: InputType.account.rawValue)
         accountTitleTextView.textField.isUserInteractionEnabled = false
@@ -83,7 +81,7 @@ class TransferContentView: UIView {
         moneyTitleTextView.unitLabel.font = UIFont.systemFont(ofSize: 12)
         moneyTitleTextView.unitLabel.textColor = UIColor(red: 83/255, green: 92/255, blue: 138/255, alpha: 1)
         updateHeight()
-
+        remarkTitleTextView.updateHeight()
         setupEvent()
     }
     
@@ -107,7 +105,7 @@ class TransferContentView: UIView {
     
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
-        return (lastView?.frame.origin.y)! + (lastView?.frame.size.height)!
+        return lastView?.bottom ?? 0
     }
     
     override func layoutSubviews() {
@@ -134,7 +132,8 @@ class TransferContentView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
+//        self.insertSubview(view, at: 0)
+
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
