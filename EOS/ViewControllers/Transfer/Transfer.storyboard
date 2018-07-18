@@ -36,17 +36,6 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="locali" value="receiver"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNY-pg-LJG">
-                                                <rect key="frame" x="16" y="53" width="343" height="48"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="Zam-rn-xT7"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYQ-iX-fib" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="53" width="343" height="48"/>
                                                 <subviews>
@@ -87,11 +76,11 @@
                                                     <constraint firstAttribute="trailing" secondItem="yT6-hI-hd6" secondAttribute="trailing" constant="20" id="EQ4-mV-f5Y"/>
                                                     <constraint firstAttribute="bottom" secondItem="ku1-KD-JLg" secondAttribute="bottom" id="I1D-LI-0kg"/>
                                                     <constraint firstItem="zft-ER-tYn" firstAttribute="top" secondItem="eYQ-iX-fib" secondAttribute="top" id="NRu-U4-JDn"/>
+                                                    <constraint firstAttribute="height" constant="48" id="OWI-bX-hkD"/>
                                                     <constraint firstItem="ku1-KD-JLg" firstAttribute="top" secondItem="eYQ-iX-fib" secondAttribute="top" id="Sye-hl-h8B"/>
                                                     <constraint firstItem="ku1-KD-JLg" firstAttribute="centerY" secondItem="eYQ-iX-fib" secondAttribute="centerY" id="eZ8-bT-LRK"/>
                                                     <constraint firstItem="ku1-KD-JLg" firstAttribute="leading" secondItem="zft-ER-tYn" secondAttribute="trailing" constant="18" id="gkX-nx-LFs"/>
                                                     <constraint firstAttribute="bottom" secondItem="zft-ER-tYn" secondAttribute="bottom" id="rmy-zo-ofB"/>
-                                                    <constraint firstAttribute="height" constant="48" id="uW2-d3-djK"/>
                                                     <constraint firstItem="cK8-DH-RuX" firstAttribute="leading" secondItem="eYQ-iX-fib" secondAttribute="leading" constant="18" id="wKt-Qk-Viu"/>
                                                     <constraint firstItem="yT6-hI-hd6" firstAttribute="centerY" secondItem="eYQ-iX-fib" secondAttribute="centerY" id="x93-r7-gMb"/>
                                                     <constraint firstItem="zft-ER-tYn" firstAttribute="leading" secondItem="eYQ-iX-fib" secondAttribute="leading" constant="48" id="yFt-jA-gLu"/>
@@ -105,17 +94,13 @@
                                         <constraints>
                                             <constraint firstItem="Q7p-FV-Fcx" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="16" id="1GJ-cy-TJa"/>
                                             <constraint firstItem="Q7p-FV-Fcx" firstAttribute="top" secondItem="eYQ-iX-fib" secondAttribute="bottom" constant="20" id="3Ot-bR-tpz"/>
-                                            <constraint firstAttribute="trailing" secondItem="gNY-pg-LJG" secondAttribute="trailing" constant="16" id="AjC-Y9-GfR"/>
                                             <constraint firstItem="eYQ-iX-fib" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="16" id="KOL-G8-hee"/>
                                             <constraint firstAttribute="trailing" secondItem="eYQ-iX-fib" secondAttribute="trailing" constant="16" id="KWY-G2-Wwc"/>
                                             <constraint firstItem="eYQ-iX-fib" firstAttribute="top" secondItem="9ws-Xa-hyH" secondAttribute="bottom" constant="13" id="LbI-ur-ick"/>
                                             <constraint firstAttribute="trailing" secondItem="Q7p-FV-Fcx" secondAttribute="trailing" constant="16" id="QLJ-Ad-t2e"/>
                                             <constraint firstItem="9ws-Xa-hyH" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="31" id="TbT-OM-xL1"/>
-                                            <constraint firstItem="gNY-pg-LJG" firstAttribute="top" secondItem="9ws-Xa-hyH" secondAttribute="bottom" constant="13" id="ThB-nC-0fV"/>
-                                            <constraint firstItem="Q7p-FV-Fcx" firstAttribute="top" secondItem="gNY-pg-LJG" secondAttribute="bottom" constant="20" id="cqc-RG-gd0"/>
                                             <constraint firstAttribute="bottom" secondItem="Q7p-FV-Fcx" secondAttribute="bottom" id="hNV-3u-Gju"/>
                                             <constraint firstItem="9ws-Xa-hyH" firstAttribute="top" secondItem="bKv-4Q-CLk" secondAttribute="top" constant="20" id="hVI-eD-01A"/>
-                                            <constraint firstItem="gNY-pg-LJG" firstAttribute="leading" secondItem="bKv-4Q-CLk" secondAttribute="leading" constant="16" id="iDI-IU-xSu"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -158,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCk-bw-8a0" customClass="TransferConfirmView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="324" width="375" height="128"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="276"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
