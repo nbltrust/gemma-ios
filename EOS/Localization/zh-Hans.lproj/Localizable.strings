@@ -85,6 +85,8 @@
 
 "transfer_failed" = "转账失败";
 "transfer_successed" = "转账成功";
+"dont_screen_shot" = "请勿截图";
+
 //zsy end
 
 "day" = "天";

@@ -100,6 +100,8 @@
 		3BD3666820FDEB94004DE09D /* TransferContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3666620FDEB93004DE09D /* TransferContentView.swift */; };
 		3BD3666920FDEB94004DE09D /* TransferContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3666720FDEB94004DE09D /* TransferContentView.xib */; };
 		3BD3666B20FDEBA7004DE09D /* Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3666A20FDEBA7004DE09D /* Transfer.storyboard */; };
+		3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */; };
+		3BD3666F20FF0AF9004DE09D /* ScreenShotAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */; };
 		3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */ = {isa = PBXBuildFile; fileRef = F601AE09C748BD90FFF8C8744B7B621D /* fstream */; };
 		3CE0B916A6316D966E0AD0C04B7A8AD4 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F6796D1FBCF6CB7AAEF5B3655062A1 /* Rubik-Black.ttf */; };
 		3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380B8A6234BE07DE4B3CDE521A28F60 /* Colletion+Extensions.swift */; };
@@ -3086,6 +3088,8 @@
 		3BD3666620FDEB93004DE09D /* TransferContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferContentView.swift; sourceTree = "<group>"; };
 		3BD3666720FDEB94004DE09D /* TransferContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransferContentView.xib; sourceTree = "<group>"; };
 		3BD3666A20FDEBA7004DE09D /* Transfer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Transfer.storyboard; sourceTree = "<group>"; };
+		3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertView.swift; sourceTree = "<group>"; };
+		3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenShotAlertView.xib; sourceTree = "<group>"; };
 		3BD4C916A39192D114FBEEE600033E2B /* buffered_stream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffered_stream.hpp; sourceTree = "<group>"; };
 		3BDA9B09D89E2B72CE5C65FA614ABC1B /* insert_range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = insert_range.hpp; sourceTree = "<group>"; };
 		3BE67FC625579D3EA5ED5446943EF95B /* blowfish.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blowfish.hpp; sourceTree = "<group>"; };
@@ -14031,6 +14035,8 @@
 				3BD3665E20FDEB72004DE09D /* TitleTextView.xib */,
 				3BD3666020FDEB74004DE09D /* TitleTextfieldView.swift */,
 				3BD3666120FDEB75004DE09D /* TitleTextfieldView.xib */,
+				3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */,
+				3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -31489,6 +31495,7 @@
 				F60569E26E39D85FBBCB98CDCDBDB3C7 /* iostream.SUNWCCh in Resources */,
 				5BA5BDF6B5E2C9F8466441F48E517278 /* istream in Resources */,
 				3BD3665D20FDEB3A004DE09D /* CornerAndShadowView.xib in Resources */,
+				3BD3666F20FF0AF9004DE09D /* ScreenShotAlertView.xib in Resources */,
 				4456CACEF6AAF0C1FE6DCA145549F499 /* istream.SUNWCCh in Resources */,
 				969828B4F8D7D4D648E833D44A234D09 /* iterator in Resources */,
 				740D4F6730F1D7E5D73CA773FF7D257A /* iterator.SUNWCCh in Resources */,
@@ -31803,6 +31810,7 @@
 				22C0239920F6FD5100284A0A /* EntryGuideReducers.swift in Sources */,
 				150F934C0EC159C581ACAAC7FD6F6484 /* Constants.swift in Sources */,
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,
+				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
 				0795BFD28C42BE58BB94BAA17ADB6B91 /* EOSIO.mm in Sources */,
 				7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */,
 				3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */,
