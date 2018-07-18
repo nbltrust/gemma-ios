@@ -8,6 +8,7 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
 struct ScanState: StateType {
@@ -18,6 +19,11 @@ struct ScanState: StateType {
 }
 
 struct ScanPropertyState {
+    var scanResult: BehaviorRelay<String> = BehaviorRelay(value: "")
+}
+
+struct ScanResultAction: Action {
+    var scanResult: String = ""
 }
 
 //MARK: - Action Creator

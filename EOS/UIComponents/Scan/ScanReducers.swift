@@ -14,9 +14,11 @@ func ScanReducer(action:Action, state:ScanState?) -> ScanState {
 }
 
 func ScanPropertyReducer(_ state: ScanPropertyState?, action: Action) -> ScanPropertyState {
-    var state = state ?? ScanPropertyState()
+    let state = state ?? ScanPropertyState()
     
     switch action {
+    case let action as ScanResultAction:
+        state.scanResult.accept(action.scanResult)
     default:
         break
     }

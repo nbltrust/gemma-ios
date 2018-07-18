@@ -53,6 +53,7 @@
 		22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B320FCB0EB00284A0A /* ScanShadeView.swift */; };
 		22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B520FD8A0600284A0A /* ScanPreviewView.swift */; };
 		22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B820FDDF0400284A0A /* ScanCornerView.swift */; };
+		22C023BD20FEF0A300284A0A /* ScanRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023BC20FEF0A300284A0A /* ScanRootCoordinator.swift */; };
 		24DB2001F45219964C7C00660C7FAD74 /* map.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = D37EB2084A5F0BCBD7AC0127F484EF67 /* map.SUNWCCh */; };
 		267D15355147463B9F3A4323FEFA93A6 /* utility.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 57B7E46E6DAB4556E33BC9EDAC656EC7 /* utility.SUNWCCh */; };
 		293724C94FEA66BB7CBDEC50A91A0C83 /* ostream.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 2517D8C8DC5C7533C63215A87510F188 /* ostream.SUNWCCh */; };
@@ -1925,6 +1926,7 @@
 		22C023B320FCB0EB00284A0A /* ScanShadeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanShadeView.swift; sourceTree = "<group>"; };
 		22C023B520FD8A0600284A0A /* ScanPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPreviewView.swift; sourceTree = "<group>"; };
 		22C023B820FDDF0400284A0A /* ScanCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCornerView.swift; sourceTree = "<group>"; };
+		22C023BC20FEF0A300284A0A /* ScanRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRootCoordinator.swift; sourceTree = "<group>"; };
 		22C19F59D40AA230757B2ED8EB6B6587 /* qi_hold.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_hold.hpp; sourceTree = "<group>"; };
 		22C24EE97E8F9DD23894F3AFD8E38162 /* symbol_table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = symbol_table.hpp; sourceTree = "<group>"; };
 		22C99016B5255D2570B43808DBD10F55 /* throw_error.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = throw_error.hpp; sourceTree = "<group>"; };
@@ -14457,6 +14459,7 @@
 				22C023AC20FCB09300284A0A /* ScanActions.swift */,
 				22C023AD20FCB09300284A0A /* ScanViewController.swift */,
 				22C023AE20FCB09300284A0A /* ScanReducers.swift */,
+				22C023BC20FEF0A300284A0A /* ScanRootCoordinator.swift */,
 			);
 			path = Scan;
 			sourceTree = "<group>";
@@ -31807,6 +31810,7 @@
 				7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */,
 				3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */,
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
+				22C023BD20FEF0A300284A0A /* ScanRootCoordinator.swift in Sources */,
 				73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */,
 				9CD3F0FA07578C28658D2A1189A8E39D /* EOSIONetworkService.swift in Sources */,
 				C9BB02B547453DD0482F5745ADB47B83 /* EntryActions.swift in Sources */,
