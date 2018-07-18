@@ -11,21 +11,29 @@ import Foundation
 class CornerAndShadowView: UIView {
     
     @IBOutlet weak var cornerView: UIView!
-    var corRadius = 0 {
+    
+    var corRadius = 4 {
         didSet {
-//            cornerView.cornerRadius = corRadius.cgFloat
+            cornerView.cornerRadius = corRadius.cgFloat
+        }
+    }
+    
+    var shadowR = 4 {
+        didSet {
+            self.shadowRadius = shadowR.cgFloat
         }
     }
     
     var newShadowColor = UIColor.duskBlue5 {
         didSet {
             self.shadowColor = newShadowColor
+            
         }
     }
     
     
+    
     func setUp() {
-//        self.cornerView.cornerRadius = 4.cgFloat
 //        self.shadowView.shadowColor = UIColor.red
 //        self.shadowView.shadowOffset = CGSize(width: 1, height: 2)
         updateHeight()

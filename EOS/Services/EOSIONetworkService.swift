@@ -57,7 +57,7 @@ struct EOSIONetwork {
 
 extension EOSIOService : TargetType {
     var baseURL: URL {
-        return NetworkConfiguration.EOSIO_BASE_URL
+        return NetworkConfiguration.EOSIO_BASE_TEST_URL
     }
     
     var path: String {

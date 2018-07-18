@@ -223,7 +223,6 @@
 		9C7927E514F043C0D6236235BC6357DF /* csetjmp in Resources */ = {isa = PBXBuildFile; fileRef = 4AEFC71BCDF230EAC17DF8F787ED8378 /* csetjmp */; };
 		9CD3F0FA07578C28658D2A1189A8E39D /* EOSIONetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7853DE47B42F70FBDE3E597D0A3C56A4 /* EOSIONetworkService.swift */; };
 		9CF8A1B36F741E822329BA9042E628CC /* libboost_context.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6482B406F16AA1E59252ACC30D4AB69 /* libboost_context.a */; };
-		9D9BA749355A04042D1E68409AAAC4B6 /* WalletView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE043A4A4DFC6B91B26B32AD5BBD5276 /* WalletView.xib */; };
 		9E27517CCC1C0B290F84E0F7298C4B37 /* random.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 0A32A6428667911EBC3BAD73D9981862 /* random.SUNWCCh */; };
 		9E97878370D74707276FBF9BBA8D743A /* cctype in Resources */ = {isa = PBXBuildFile; fileRef = 1E31179F2A040E0621C1B281AF40DB7B /* cctype */; };
 		9EF49BFEE4870D136FDBAE4EC6F6F4CB /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 895C3F94B11767C4449EB5CCE2BB335C /* Rubik-BoldItalic.ttf */; };
@@ -256,7 +255,6 @@
 		C0F32AE926B6B097CCDD2D89170347DB /* chain_id_type.hpp.bk in Resources */ = {isa = PBXBuildFile; fileRef = E9C785B7422906F53A1DFB1CCBBD1D91 /* chain_id_type.hpp.bk */; };
 		C10A4AC7FCB160CCFE2C82D6BBAC4A64 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0151392FC5A07D03344E42AF92229B6 /* AppReducer.swift */; };
 		C15624E04928CCC4C0CD3E4B9E9DBAE5 /* locale.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 9DB3ABAE89E05CC152420B6E262FD576 /* locale.SUNWCCh */; };
-		C250859A222848F83BB0713253BF7A9D /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F24B9DE40C7C026EC14D89C3C23BD19 /* WalletView.swift */; };
 		C2AE7CD84347385A7C552C6564375D8D /* HomeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07301833E312556F1670E74BF67AF3E8 /* HomeActions.swift */; };
 		C359E0D417EB456FCC0A787748326198 /* set.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D8B5D482A5FAF9B496F4BD4E3541E /* set.SUNWCCh */; };
 		C53CFE1AA8DBFB2C3E6AD341D171268E /* algorithm in Resources */ = {isa = PBXBuildFile; fileRef = 7E480649F53371A528217DFA393314E8 /* algorithm */; };
@@ -6737,7 +6735,6 @@
 		8F0394E9528C0A1B63AC15F680D1D35C /* edmonds_karp_max_flow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = edmonds_karp_max_flow.hpp; sourceTree = "<group>"; };
 		8F1A96D3ECAD31B2A18099176822CC6C /* redistribute_elements.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = redistribute_elements.hpp; sourceTree = "<group>"; };
 		8F205DFABD27866A4EE3EA46C32426F4 /* diab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diab.h; sourceTree = "<group>"; };
-		8F24B9DE40C7C026EC14D89C3C23BD19 /* WalletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		8F2575063A675EF560E3E871A5D7CDCA /* explicit_error_stepper_fsal_base.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = explicit_error_stepper_fsal_base.hpp; sourceTree = "<group>"; };
 		8F2777265C547462963096064D86CC41 /* flat_set.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = flat_set.hpp; sourceTree = "<group>"; };
 		8F2BE7309FA6EFC976B1D97F4633F78B /* try_catch_eval_40.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = try_catch_eval_40.hpp; sourceTree = "<group>"; };
@@ -8109,7 +8106,6 @@
 		ADE2E14ADE3DA31F0D54A178E5E2B21B /* begin_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = begin_impl.hpp; sourceTree = "<group>"; };
 		ADE3CD7D766A53F7C3990CEE94F2C7C7 /* qi_eps.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_eps.hpp; sourceTree = "<group>"; };
 		ADE98A63EA98ED2B4D65E087D138030F /* shift_left.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = shift_left.hpp; sourceTree = "<group>"; };
-		AE043A4A4DFC6B91B26B32AD5BBD5276 /* WalletView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletView.xib; sourceTree = "<group>"; };
 		AE0AE4B025E5DE52AE5B87A4CE187EFC /* map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = map.hpp; sourceTree = "<group>"; };
 		AE1381A9083B78BD3511919A4B49402A /* edge.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = edge.hpp; sourceTree = "<group>"; };
 		AE1620D0A1A6E577D103282FC268063F /* spinlock_pt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = spinlock_pt.hpp; sourceTree = "<group>"; };
@@ -30940,8 +30936,6 @@
 				860B8F4E86C4508283F49387961E34EE /* DashLineView.swift */,
 				D23081BA3A1E2A632AC9811B07424CD1 /* SharpCornerTipsLabelView.swift */,
 				CD48A5CB8C231CED8E16AD9422A86BE0 /* SharpCornerTipsLabelView.xib */,
-				8F24B9DE40C7C026EC14D89C3C23BD19 /* WalletView.swift */,
-				AE043A4A4DFC6B91B26B32AD5BBD5276 /* WalletView.xib */,
 				7224713920F624D200536BF4 /* HomeTopView.swift */,
 				7224713B20F624DC00536BF4 /* HomeTopView.xib */,
 				7224713120F5F92B00536BF4 /* HomeHeaderView.swift */,
@@ -31438,7 +31432,6 @@
 				01BE9E6EAA0EF905279B30392E1DF224 /* Rubik-MediumItalic.ttf in Resources */,
 				5FD71CEC1E7854589FDBD33B0B42EDBD /* Rubik-Regular.ttf in Resources */,
 				7610C85F17FAA9095B27B17656342765 /* SharpCornerTipsLabelView.xib in Resources */,
-				9D9BA749355A04042D1E68409AAAC4B6 /* WalletView.xib in Resources */,
 				C53CFE1AA8DBFB2C3E6AD341D171268E /* algorithm in Resources */,
 				7224713420F5F93600536BF4 /* HomeHeaderView.xib in Resources */,
 				A4767A6C44780F87D5917F9FFAC0FB70 /* algorithm.SUNWCCh in Resources */,
@@ -31894,7 +31887,6 @@
 				7224712B20F57BA800536BF4 /* TransferViewController.swift in Sources */,
 				1C5B18A93C3E4FE5D23D305731F6C2DF /* WalletManager.swift in Sources */,
 				3BD3664020F7086A004DE09D /* TransferConfirmView.swift in Sources */,
-				C250859A222848F83BB0713253BF7A9D /* WalletView.swift in Sources */,
 				22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */,
 				3BD3665C20FDEB3A004DE09D /* CornerAndShadowView.swift in Sources */,
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
