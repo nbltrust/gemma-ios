@@ -12,9 +12,9 @@ class CornerAndShadowView: UIView {
     
     @IBOutlet weak var cornerView: UIView!
     
-    var corRadius = 4 {
+    var cornerRadiusInt = 4 {
         didSet {
-            cornerView.cornerRadius = corRadius.cgFloat
+            cornerView.cornerRadius = cornerRadiusInt.cgFloat
         }
     }
     
