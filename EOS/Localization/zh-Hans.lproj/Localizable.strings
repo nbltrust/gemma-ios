@@ -87,6 +87,10 @@
 
 "transfer_failed" = "转账失败";
 "transfer_successed" = "转账成功";
+"dont_screen_shot" = "请勿截图";
+"back_up_wallet" = "备份钱包";
+"click_refund" = "点击Refund";
+
 //zsy end
 
 "day" = "天";

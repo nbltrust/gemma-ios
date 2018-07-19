@@ -1,38 +1,43 @@
 //
-//  WalletView.swift
+//  CornerAndShadowView.swift
 //  EOS
 //
-//  Created by 朱宋宇 on 2018/7/6.
+//  Created by zhusongyu on 2018/7/16.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
 import Foundation
 
-class WalletView: UIView {
+class CornerAndShadowView: UIView {
     
-    @IBOutlet weak var mShadowView: UIView!
+    @IBOutlet weak var cornerView: UIView!
     
-    @IBOutlet weak var mShadowBgImgView: UIImageView!
-    
-    @IBOutlet var mAccountInfoView: AccountInfoView!
-    var data : Any? {
+    var cornerRadiusInt = 4 {
         didSet {
-            mAccountInfoView.data = data
-            updateHeight()
-//            upDateShadowBgImgView(rect: mShadowView.frame)
+            cornerView.cornerRadius = cornerRadiusInt.cgFloat
         }
     }
     
-    func upDateImgView(mView: UIView) {
-        let image = mView.drawRectShadow(rect: mShadowView.frame)
-        mShadowBgImgView.image = image
-//        upDateShadowBgImgView(rect: mShadowView.frame)
+    var shadowR = 4 {
+        didSet {
+            self.shadowRadius = shadowR.cgFloat
+        }
     }
     
-//    func upDateShadowBgImgView(rect: CGRect) {
-//        let image = mView.drawRectShadow(rect: mShadowView.frame)
-//        mShadowBgImgView.image = image
-//    }
+    var newShadowColor = UIColor.duskBlue5 {
+        didSet {
+            self.shadowColor = newShadowColor
+            
+        }
+    }
+    
+    
+    
+    func setUp() {
+//        self.shadowView.shadowColor = UIColor.red
+//        self.shadowView.shadowOffset = CGSize(width: 1, height: 2)
+        updateHeight()
+    }
     
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
@@ -46,25 +51,27 @@ class WalletView: UIView {
     
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
-        return (lastView?.frame.origin.y)! + (lastView?.frame.size.height)!
+        return lastView?.bottom ?? 0
+
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
+        
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
-//        upDateShadowBgImgView(rect: mShadowView.frame)
-
+        setUp()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
-//        upDateShadowBgImgView(rect: mShadowView.frame)
+        setUp()
     }
     
     fileprivate func loadViewFromNib() {
@@ -73,8 +80,9 @@ class WalletView: UIView {
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
-        addSubview(view)
+        self.insertSubview(view, at: 0)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
+    
 }

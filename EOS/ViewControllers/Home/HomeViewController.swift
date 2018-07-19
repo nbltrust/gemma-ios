@@ -59,7 +59,9 @@ class HomeViewController: BaseViewController {
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             self.tableHeaderView.data = model
+            self.tableHeaderView.layoutIfNeeded()
             
+            self.tableView.tableHeaderView?.height = self.tableHeaderView.height
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }

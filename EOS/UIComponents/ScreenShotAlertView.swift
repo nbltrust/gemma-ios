@@ -1,34 +1,51 @@
 //
-//  CornerAndShadowView.swift
+//  ScreenShotAlertView.swift
 //  EOS
 //
-//  Created by zhusongyu on 2018/7/16.
+//  Created by zhusongyu on 2018/7/18.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
 import Foundation
 
-class CornerAndShadowView: UIView {
+@IBDesignable
+class ScreenShotAlertView: UIView {
     
-    @IBOutlet weak var cornerView: UIView!
-    var corRadius = 0 {
+    
+    @IBOutlet weak var sureView: Button!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var tipsLabel: UILabel!
+    
+    enum ScreenShotEvent: String {
+        case sureShot
+    }
+    
+    var tips = "" {
         didSet {
-//            cornerView.cornerRadius = corRadius.cgFloat
+            tipsLabel.text = tips
         }
     }
     
-    var newShadowColor = UIColor.duskBlue5 {
+    var buttonTitle = "" {
         didSet {
-            self.shadowColor = newShadowColor
+            sureView.title = buttonTitle
         }
     }
-    
     
     func setUp() {
-//        self.cornerView.cornerRadius = 4.cgFloat
-//        self.shadowView.shadowColor = UIColor.red
-//        self.shadowView.shadowOffset = CGSize(width: 1, height: 2)
+        setUpUI()
+        setupEvent()
         updateHeight()
+    }
+    
+    func setUpUI() {
+    }
+    
+    func setupEvent() {
+        sureView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(ScreenShotEvent.sureShot.rawValue, userinfo: [ : ])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     override var intrinsicContentSize: CGSize {
@@ -44,20 +61,17 @@ class CornerAndShadowView: UIView {
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
         return lastView?.bottom ?? 0
-
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
-        
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
         setUp()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,10 +85,10 @@ class CornerAndShadowView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        //        self.insertSubview(view, at: 0)
         
-        self.insertSubview(view, at: 0)
+        addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
-    
 }

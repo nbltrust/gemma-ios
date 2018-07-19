@@ -14,21 +14,29 @@ import Foundation
 @IBDesignable
 
 class AccountInfoView: UIView {
-    enum lineDirectionType {
-        case horType
-        case verType
-    }
     
+    @IBOutlet weak var cornerShadowView: CornerAndShadowView!
     @IBOutlet weak var mTotalEOSLabel: UILabel!
     @IBOutlet weak var mTotalCNYLabel: UILabel!
     @IBOutlet weak var mRemainEOSLabel: UILabel!
     @IBOutlet weak var mRedeemEOSLabel: UILabel!
-    @IBOutlet weak var mRemainTimeLabel: UILabel!
     @IBOutlet weak var mCPUConsumeEOSLabel: UILabel!
     @IBOutlet weak var mNETConsumeEOSLabel: UILabel!
     @IBOutlet weak var mRAMConsumeKBLabel: UILabel!
     @IBOutlet weak var mHorLineView: DashLineView!
-    @IBOutlet weak var mVerLineView: DashLineView!
+    @IBOutlet weak var mHorLineViewTwo: DashLineView!
+    @IBOutlet weak var refundLabel: UILabel!
+    @IBOutlet weak var backupLabel: UIView!
+    
+    
+    @IBOutlet weak var backupLabelView: UIView!
+    @IBOutlet weak var refundView: UIView!
+    
+    enum tapEvent: String {
+        case refundEvent
+        case backupEvent
+
+    }
     
     var data: Any? {
         didSet {
@@ -37,16 +45,62 @@ class AccountInfoView: UIView {
                 mTotalCNYLabel.text = data.CNY
                 mRemainEOSLabel.text = data.balance
                 mRedeemEOSLabel.text = data.recentRefundAsset
-                mRemainTimeLabel.text = data.refundTime
                 mCPUConsumeEOSLabel.text = "CPU\n" + data.cpuValue
                 mNETConsumeEOSLabel.text = "NET\n" + data.netValue
                 mRAMConsumeKBLabel.text = "RAM\n" + data.ramValue
+                
+                updateHeight()
             }
         }
     }
     
+    var backupLabelViewIsHidden = true {
+        didSet {
+            if backupLabelViewIsHidden == true {
+                backupLabelView.isHidden = true
+            } else {
+                backupLabelView.isHidden = false
+            }
+        }
+    }
+    
+    var refundViewIsHidden = true {
+        didSet {
+            if refundViewIsHidden == true {
+                refundView.isHidden = true
+            } else {
+                refundView.isHidden = false
+            }
+        }
+    }
+    
+    
     func setUp() {
+//        backupLabelView.isHidden = true
+//        refundView.isHidden = true
+        cornerShadowView.corRadius = 8
+        cornerShadowView.shadowR = 8
+        setUpEvent()
+    }
+    
+    func setUpEvent() {
+        refundLabel.isUserInteractionEnabled = true
+        let refundTapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(refund))
+        refundLabel.addGestureRecognizer(refundTapGestureRecognizer)
+
+        backupLabel.isUserInteractionEnabled = true
+        let backupTapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backupWallet))
+        backupLabel.addGestureRecognizer(backupTapGestureRecognizer)
         
+        
+    }
+    
+    @objc func refund() {
+        self.sendEventWith(tapEvent.refundEvent.rawValue, userinfo: [:])
+    }
+    
+    @objc func backupWallet() {
+        self.sendEventWith(tapEvent.backupEvent.rawValue, userinfo: [:])
     }
     
     override var intrinsicContentSize: CGSize {
@@ -61,7 +115,7 @@ class AccountInfoView: UIView {
     
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
-        return (lastView?.frame.origin.y)! + (lastView?.frame.size.height)!
+        return lastView?.bottom ?? 0
     }
     
     override func layoutSubviews() {
