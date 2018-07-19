@@ -74,11 +74,11 @@ class TransferContentView: UIView {
         remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
         
-        accountTitleTextView.titleLabel.font = UIFont.systemFont(ofSize: 14)
-        accountTitleTextView.textField.font = UIFont.systemFont(ofSize: 16)
-        moneyTitleTextView.titleLabel.font = UIFont.systemFont(ofSize: 14)
-        moneyTitleTextView.textField.font = UIFont.systemFont(ofSize: 16)
-        moneyTitleTextView.introduceLabel.font = UIFont.systemFont(ofSize: 12)
+        accountTitleTextView.titleLabel.font = UIFont.cnTipMedium
+        accountTitleTextView.textField.font = UIFont.enTextNormal
+        moneyTitleTextView.titleLabel.font = UIFont.cnTipMedium
+        moneyTitleTextView.textField.font = UIFont.pfScR16
+        moneyTitleTextView.introduceLabel.font = UIFont.pfScR12
         moneyTitleTextView.introduceLabel.textColor = UIColor(red: 83/255, green: 92/255, blue: 138/255, alpha: 1)
         updateHeight()
         remarkTitleTextView.updateHeight()

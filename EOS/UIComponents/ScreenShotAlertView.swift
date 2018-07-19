@@ -66,14 +66,12 @@ class ScreenShotAlertView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
-        
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
         setUp()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
