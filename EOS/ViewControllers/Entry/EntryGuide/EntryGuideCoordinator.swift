@@ -43,6 +43,7 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
     
     func pushToRecoverFromCopyVC() {
         let nav = BaseNavigationController()
+        nav.navStyle = .clear
         let scanCoordinator = ScanRootCoordinator(rootVC: nav)
         scanCoordinator.start()
         

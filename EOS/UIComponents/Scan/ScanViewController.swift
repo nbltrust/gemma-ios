@@ -18,13 +18,14 @@ class ScanViewController: BaseViewController {
     var preView: ScanPreviewView?
     var titleLabel: UILabel?
     var subTitle: String?
+    var captusession: AVCaptureSession?
+    
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.clear
-        self.title = R.string.localizable.scan_title()
-        setupUI()
+        initSession()
         setupPreviewLayer()
+        setupUI()
     }
     
     func commonObserveState() {
@@ -42,49 +43,67 @@ class ScanViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(color: UIColor.clear), for: .default)
-        self.navigationController?.navigationBar.isTranslucent = true
+        self.view.backgroundColor = UIColor.clear
+        self.title = R.string.localizable.scan_title()
+        self.configLeftNavButton(nil)
+        let rect = ScanSetting.scanRect
+        titleLabel = UILabel.init(frame: CGRect(x: 0, y: rect.maxY + 29, width: self.view.width, height: 20))
+        if let label = titleLabel  {
+            label.textColor = UIColor.whiteTwo
+            label.textAlignment = .center
+            label.font = UIFont.systemFont(ofSize: 14)
+            label.text = subTitle
+            self.view.addSubview(label)
+        }
     }
     
     func setupPreviewLayer() {
-        if let captureDevice = AVCaptureDevice.default(for: .video)  {
-            let session = AVCaptureSession()
+        preView = ScanPreviewView.init(frame: self.view.bounds)
+        if let previewView = preView {
+            previewView.session = captusession
+            self.view.layer.addSublayer((preView?.layer)!)
+        }
+    }
+    
+    func initSession() {
+        captusession = AVCaptureSession()
+        if let session = captusession {
             session.sessionPreset = .high
+            addInput(session)
+            addOutput(session)
+            session.startRunning()
+        }
+    }
+    
+    func addInput(_ session: AVCaptureSession) {
+        if let captureDevice = AVCaptureDevice.default(for: .video) {
             do{
                 try session.addInput(AVCaptureDeviceInput.init(device: captureDevice))
             }catch let error as NSError {
-                log.debug(error)
+                log.error(error)
             }
-            
-            let output = AVCaptureMetadataOutput()
-            if session.canAddOutput(output) {
-                session.addOutput(output)
-                
-                let rect = ScanSetting.scanRect
-                let size = self.view.bounds.size
-                output.rectOfInterest = CGRect(x: rect.origin.y / size.height, y: rect.origin.x / size.width, width: rect.size.height / size.height, height: rect.size.width / size.width)
-                output.metadataObjectTypes = output.availableMetadataObjectTypes
-                output.setMetadataObjectsDelegate(self as AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
-            }
-            
-            preView = ScanPreviewView.init(frame: self.view.bounds)
-            preView?.session = session
-            self.view.layer.addSublayer((preView?.layer)!)
-            session.startRunning()
         }
-        
-        let rect = ScanSetting.scanRect
-        titleLabel = UILabel.init(frame: CGRect(x: 0, y: rect.maxY + 29, width: self.view.width, height: 20))
-        titleLabel?.textColor = UIColor.whiteTwo
-        titleLabel?.textAlignment = .center
-        titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        titleLabel?.text = subTitle
-        self.view.addSubview(titleLabel!)
+    }
+    
+    func addOutput(_ session: AVCaptureSession) {
+        let output = AVCaptureMetadataOutput()
+        if session.canAddOutput(output) {
+            session.addOutput(output)
+            
+            let rect = ScanSetting.scanRect
+            let size = self.view.bounds.size
+            output.rectOfInterest = CGRect(x: rect.origin.y / size.height, y: rect.origin.x / size.width, width: rect.size.height / size.height, height: rect.size.width / size.width)
+            output.metadataObjectTypes = output.availableMetadataObjectTypes
+            output.setMetadataObjectsDelegate(self as AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
+        }
+    }
+    
+    override func leftAction(_ sender: UIButton) {
+        self.coordinator?.dismissVC()
     }
     
     override func configureObserveState() {
         commonObserveState()
-        
     }
 }
 
