@@ -11,17 +11,18 @@ import UIKit
 class HomeHeaderView: UIView {
 
     @IBOutlet weak var nameAndImg: HomeTopView!
-    @IBOutlet weak var accountInfoView: WalletView!
+    @IBOutlet weak var accountInfoView: AccountInfoView!
     
     var data : Any? {
         didSet{
            accountInfoView.data = data
             nameAndImg.data = data
+            updateHeight()
         }
     }
     
     func setup(){
-        
+        updateHeight()
     }
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
@@ -35,7 +36,7 @@ class HomeHeaderView: UIView {
     
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
-        return (lastView?.frame.origin.y)! + (lastView?.frame.size.height)!
+        return (lastView?.frame.origin.y)! + (lastView?.frame.size.height)! + 30
     }
     
     override func layoutSubviews() {

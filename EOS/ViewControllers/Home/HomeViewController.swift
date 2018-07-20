@@ -33,10 +33,15 @@ class HomeViewController: BaseViewController {
     }
     
     func setupUI(){
+        self.configRightNavButton(#imageLiteral(resourceName: "walletAdd"))
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         
         headImageView.image = navBgImage()
+    }
+    
+    override func rightAction(_ sender: UIButton) {
+        self.coordinator?.pushWallet()
     }
     
     func commonObserveState() {
@@ -59,7 +64,9 @@ class HomeViewController: BaseViewController {
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             self.tableHeaderView.data = model
+            self.tableHeaderView.layoutIfNeeded()
             
+            self.tableView.tableHeaderView?.height = self.tableHeaderView.height
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }

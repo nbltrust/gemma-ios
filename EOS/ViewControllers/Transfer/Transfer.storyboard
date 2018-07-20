@@ -52,8 +52,8 @@
                                                     </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="账户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ku1-KD-JLg">
                                                         <rect key="frame" x="67" y="0.0" width="222" height="48"/>
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" name="darkSlateBlue" red="0.129" green="0.173" blue="0.404" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zft-ER-tYn">

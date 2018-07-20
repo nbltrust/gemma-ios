@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScreenShotAlertView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="sureView" destination="Hdq-kc-z7t" id="8vl-U5-aZ1"/>
+                <outlet property="tipsLabel" destination="2zV-Jq-qXh" id="srp-gg-O1g"/>
+                <outlet property="titleLabel" destination="mhj-CC-y7g" id="mTP-Zs-AVg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="270" height="230"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doNotHaveAScreenshot" translatesAutoresizingMaskIntoConstraints="NO" id="dSi-ni-x6p">
+                    <rect key="frame" x="114" y="25" width="42" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="qSE-5r-gqa"/>
+                        <constraint firstAttribute="height" constant="42" id="tNx-iy-qO7"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhj-CC-y7g">
+                    <rect key="frame" x="115.5" y="83.5" width="39.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.012" green="0.012" blue="0.012" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="dont_screen_shot"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果有人获取你的助记词将直接获取你的资产！请抄写下助记词并存放在安全的地方！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zV-Jq-qXh">
+                    <rect key="frame" x="30" y="114" width="210" height="50.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="210" id="mRG-ji-Qa8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hdq-kc-z7t" customClass="Button" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="185" width="270" height="45"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Ajc-66-O1I"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="dSi-ni-x6p" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0So-Oe-DwK"/>
+                <constraint firstItem="2zV-Jq-qXh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Glk-8n-X0p"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hdq-kc-z7t" secondAttribute="trailing" id="HwO-Zo-Uqr"/>
+                <constraint firstItem="mhj-CC-y7g" firstAttribute="top" secondItem="dSi-ni-x6p" secondAttribute="bottom" constant="16.5" id="PWK-Se-0ZO"/>
+                <constraint firstItem="dSi-ni-x6p" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25" id="RAg-sU-X0O"/>
+                <constraint firstItem="Hdq-kc-z7t" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="UIf-ya-3Ff"/>
+                <constraint firstItem="2zV-Jq-qXh" firstAttribute="top" secondItem="mhj-CC-y7g" secondAttribute="bottom" constant="11" id="aN3-lM-xxm"/>
+                <constraint firstItem="mhj-CC-y7g" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cPi-Z6-J9r"/>
+                <constraint firstItem="Hdq-kc-z7t" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="j9V-49-weh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="12"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="13" y="-92"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="doNotHaveAScreenshot" width="24" height="24"/>
+    </resources>
+</document>

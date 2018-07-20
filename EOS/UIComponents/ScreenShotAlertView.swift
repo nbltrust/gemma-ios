@@ -1,38 +1,52 @@
 //
-//  WalletView.swift
+//  ScreenShotAlertView.swift
 //  EOS
 //
-//  Created by 朱宋宇 on 2018/7/6.
+//  Created by zhusongyu on 2018/7/18.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
 import Foundation
 
-class WalletView: UIView {
+@IBDesignable
+class ScreenShotAlertView: UIView {
     
-    @IBOutlet weak var mShadowView: UIView!
     
-    @IBOutlet weak var mShadowBgImgView: UIImageView!
+    @IBOutlet weak var sureView: Button!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var tipsLabel: UILabel!
     
-    @IBOutlet var mAccountInfoView: AccountInfoView!
-    var data : Any? {
+    enum ScreenShotEvent: String {
+        case sureShot
+    }
+    
+    var tips = "" {
         didSet {
-            mAccountInfoView.data = data
-            updateHeight()
-//            upDateShadowBgImgView(rect: mShadowView.frame)
+            tipsLabel.text = tips
         }
     }
     
-    func upDateImgView(mView: UIView) {
-        let image = mView.drawRectShadow(rect: mShadowView.frame)
-        mShadowBgImgView.image = image
-//        upDateShadowBgImgView(rect: mShadowView.frame)
+    var buttonTitle = "" {
+        didSet {
+            sureView.title = buttonTitle
+        }
     }
     
-//    func upDateShadowBgImgView(rect: CGRect) {
-//        let image = mView.drawRectShadow(rect: mShadowView.frame)
-//        mShadowBgImgView.image = image
-//    }
+    func setUp() {
+        setUpUI()
+        setupEvent()
+        updateHeight()
+    }
+    
+    func setUpUI() {
+    }
+    
+    func setupEvent() {
+        sureView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(ScreenShotEvent.sureShot.rawValue, userinfo: [ : ])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+    }
     
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
@@ -46,7 +60,7 @@ class WalletView: UIView {
     
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
-        return (lastView?.frame.origin.y)! + (lastView?.frame.size.height)!
+        return lastView?.bottom ?? 0
     }
     
     override func layoutSubviews() {
@@ -57,14 +71,13 @@ class WalletView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
-//        upDateShadowBgImgView(rect: mShadowView.frame)
-
+        setUp()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
-//        upDateShadowBgImgView(rect: mShadowView.frame)
+        setUp()
     }
     
     fileprivate func loadViewFromNib() {
@@ -72,6 +85,7 @@ class WalletView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        //        self.insertSubview(view, at: 0)
         
         addSubview(view)
         view.frame = self.bounds
