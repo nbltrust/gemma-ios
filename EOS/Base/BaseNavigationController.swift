@@ -8,25 +8,27 @@
 
 import Foundation
 
+enum NavStyle: Int {
+    case common = 1
+    case white
+    case clear
+}
+
 class BaseNavigationController: UINavigationController {
-    var isPureWhiteNavBg:Bool = false
+    var navStyle: NavStyle = .common {
+        didSet {
+            self.setupNav()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
         self.interactivePopGestureRecognizer?.delegate = self
-        if isPureWhiteNavBg {
-            let image = UIImage.init(color: UIColor.white)
-            self.navigationBar.setBackgroundImage(image, for: .default)
-        }
-        else {
-            self.navigationBar.setBackgroundImage(navBgImage(), for: .default)
-        }
         
         self.navigationBar.shadowImage = UIImage()
-        
-        self.navigationBar.isTranslucent = false
+        setupNav()
 
         self.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17),NSAttributedStringKey.foregroundColor:UIColor.whiteTwo]
         if #available(iOS 11.0, *) {
@@ -39,7 +41,20 @@ class BaseNavigationController: UINavigationController {
         
     }
     
-    
+    func setupNav() {
+        if navStyle == .clear {
+            let image = UIImage.init(color: UIColor.clear)
+            self.navigationBar.setBackgroundImage(image, for: .default)
+            self.navigationBar.isTranslucent = true
+        } else if navStyle == .white {
+            let image = UIImage.init(color: UIColor.white)
+            self.navigationBar.setBackgroundImage(image, for: .default)
+            self.navigationBar.isTranslucent = false
+        } else {
+            self.navigationBar.setBackgroundImage(navBgImage(), for: .default)
+            self.navigationBar.isTranslucent = false
+        }
+    }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if self.viewControllers.count != 0 {

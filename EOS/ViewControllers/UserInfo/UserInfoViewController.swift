@@ -17,6 +17,11 @@ class UserInfoViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    func setupUI() {
+        self.title = R.string.localizable.mine_title()
     }
     
     func commonObserveState() {
@@ -33,21 +38,22 @@ class UserInfoViewController: BaseViewController {
         }
     }
     
-    @IBOutlet weak var password: UITextField!
-    
-    @IBOutlet weak var content: UITextView!
-    
-    @IBAction func showCypher(_ sender: Any) {
-        if let pass = password.text, pass.count > 0, let cypher = WallketManager.shared.getCachedPriKey(pass) {
-            content.text = cypher
-        }
-        else {
-            content.text = "获取失败"
-        }
-    }
-    
     override func configureObserveState() {
         commonObserveState()
         
+    }
+}
+
+extension UserInfoViewController {
+    @objc func clickCellView(_ sender:[String:Any]) {
+        switch sender["index"] as! Int {
+        case 0:self.coordinator?.openNormalSetting()
+        case 1:self.coordinator?.openSafeSetting()
+        case 2:self.coordinator?.openHelpSetting()
+        case 3:self.coordinator?.openServersSetting()
+        case 4:self.coordinator?.openAboutSetting()
+        default:
+            break
+        }
     }
 }
