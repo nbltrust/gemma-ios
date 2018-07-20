@@ -11,6 +11,7 @@ import ReSwift
 
 protocol WalletCoordinatorProtocol {
     func pushToWalletManager()
+    func pushToLeadInWallet()
     
 }
 
@@ -40,6 +41,14 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
     func pushToWalletManager() {
         if let vc = R.storyboard.wallet.walletManagerViewController() {
             let coordinator = WalletManagerCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func pushToLeadInWallet() {
+        if let vc = R.storyboard.leadIn.leadInViewController() {
+            let coordinator = LeadInCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }

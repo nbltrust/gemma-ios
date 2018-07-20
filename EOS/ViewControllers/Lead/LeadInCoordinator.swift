@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol LeadInCoordinatorProtocol {
+    func openScan()
 }
 
 protocol LeadInStateManagerProtocol {
@@ -31,7 +32,12 @@ class LeadInCoordinator: HomeRootCoordinator {
 }
 
 extension LeadInCoordinator: LeadInCoordinatorProtocol {
-    
+    func openScan() {
+        let vc = BaseNavigationController()
+        let scanCoordinator = ScanRootCoordinator(rootVC: vc)
+        scanCoordinator.start()
+        self.rootVC.present(vc, animated: true, completion: nil)
+    }
 }
 
 extension LeadInCoordinator: LeadInStateManagerProtocol {

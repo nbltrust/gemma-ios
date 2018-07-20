@@ -1,8 +1,8 @@
 //
-//  LeadInViewController.swift
+//  SetWalletViewController.swift
 //  EOS
 //
-//  Created DKM on 2018/7/19.
+//  Created DKM on 2018/7/20.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
@@ -11,23 +11,12 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class LeadInViewController: BaseViewController {
+class SetWalletViewController: BaseViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
-    
-    var coordinator: (LeadInCoordinatorProtocol & LeadInStateManagerProtocol)?
+	var coordinator: (SetWalletCoordinatorProtocol & SetWalletStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-    }
-    
-    func setupUI() {
-        self.configRightNavButton(R.string.localizable.mine_normal())
-    }
-    
-    override func rightAction(_ sender: UIButton) {
-        
     }
     
     func commonObserveState() {
@@ -47,11 +36,5 @@ class LeadInViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
-    }
-}
-
-extension LeadInViewController {
-    @objc func switchToKeyView(_ sender : [String:Any]) {
-        self.scrollView.setContentOffset(CGPoint(x: self.view.width, y: 0), animated: true)
     }
 }
