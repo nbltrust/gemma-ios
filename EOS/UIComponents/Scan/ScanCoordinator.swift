@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol ScanCoordinatorProtocol {
+    func dismissVC()
 }
 
 protocol ScanStateManagerProtocol {
@@ -17,9 +18,11 @@ protocol ScanStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<ScanState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func updateScanResult(result: String)
 }
 
-class ScanCoordinator: HomeRootCoordinator {
+class ScanCoordinator: ScanRootCoordinator {
     
     lazy var creator = ScanPropertyActionCreate()
     
@@ -31,7 +34,9 @@ class ScanCoordinator: HomeRootCoordinator {
 }
 
 extension ScanCoordinator: ScanCoordinatorProtocol {
-    
+    func dismissVC() {
+        self.rootVC.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension ScanCoordinator: ScanStateManagerProtocol {
@@ -43,6 +48,10 @@ extension ScanCoordinator: ScanStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<ScanState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
+    }
+    
+    func updateScanResult(result: String) {
+        self.store.dispatch(ScanResultAction(scanResult: result))
     }
     
 }

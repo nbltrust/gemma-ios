@@ -58,6 +58,8 @@
 "created_comfirm_content" = "钱包私钥是资产的唯一认证方式，及时备份私钥，可防止手机丢失、忘记密码等意外无法使用钱包的情况。请将私钥助记词备份并妥善保存，以备将来不时之需。";
 "created_comfirm_cancel" = "稍后备份";
 "created_comfirm_sure" = "导出私钥助记词";
+"scan_title" = "扫描二维码";
+"scan_subTitle" = "请将二维码放入框内，即可自动扫描";
 
 //zsy add
 "account_total_assets" = "账户总资产";
@@ -125,4 +127,36 @@
 "trade_state" = "交易状态";
 "trade_number" = "交易号";
 "block" = "区块";
+
+// 我的
+"mine_title" = "我";
+"mine_normal" = "通用";
+"mine_safesetting" = "安全设置";
+"mine_help" = "帮助与反馈";
+"mine_server" = "服务协议";
+"mine_about" = "关于Gemma";
+
+"normal_language" = "语言";
+"normal_asset" = "货币单位";
+"normal_save" = "保存";
+
+"language_system" = "跟随系统";
+"language_cn" = "简体中文";
+"language_en" = "English";
+
+"setting_face" = "面容解锁";
+"setting_finger" = "指纹解锁";
+"setting_gesture" = "手势解锁";
+"setting_change_password" = "修改手势密码";
+
+"about_info" = "版本说明";
+"about_update" = "版本更新";
+
+// 导入
+"lead_in" = "导入钱包";
+"lead_in_introduce" = "请查看你的周围\n确保在无人及摄像头的环境下开始导入";
+"lead_in_understand" = "明白了，开始导入";
+"lead_in_guide" = "复制粘贴私钥至输入框，或通过扫描私钥生成的二维码输入";
+"lead_in_placeholder" = "请完整输入备份的私钥";
+"lead_in_begin" = "开始导入";
 

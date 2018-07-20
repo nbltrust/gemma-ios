@@ -38,6 +38,7 @@ class ScanPreviewView: UIView {
     }
     
     func setupUI() {
+        self.backgroundColor = UIColor.clear
         self.addSubview(shadeView)
     }
     
