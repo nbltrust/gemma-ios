@@ -47,7 +47,7 @@
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v7B-v9-Whp">
                             <rect key="frame" x="21" y="41" width="6" height="6"/>
-                            <color key="backgroundColor" name="scarlet" red="0.816" green="0.008" blue="0.106" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.81599999999999995" green="0.0080000000000000002" blue="0.106" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="6" id="5cb-UQ-X69"/>
                                 <constraint firstAttribute="height" constant="6" id="ozE-0A-auE"/>
@@ -100,6 +100,4 @@
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>
-    <resources>
-    </resources>
 </document>
