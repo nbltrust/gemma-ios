@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeWalletNameView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="clearButton" destination="gLn-Bb-xeA" id="mww-Jb-kha"/>
+                <outlet property="textField" destination="efA-dd-sDY" id="A3V-iP-vT5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="372" height="59"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sO-gg-Cc8">
+                    <rect key="frame" x="0.0" y="0.0" width="372" height="59"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUn-hv-TcN">
+                            <rect key="frame" x="15" y="21.5" width="35.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.55700000000000005" green="0.55700000000000005" blue="0.57599999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wallet_name"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="efA-dd-sDY">
+                            <rect key="frame" x="70.5" y="21" width="265.5" height="17"/>
+                            <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLn-Bb-xeA">
+                            <rect key="frame" x="346" y="21.5" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="62g-g7-FyV"/>
+                                <constraint firstAttribute="width" constant="16" id="muE-8e-Env"/>
+                            </constraints>
+                            <state key="normal" image="icTextFieldClose"/>
+                            <state key="selected" image="icTextFieldClose"/>
+                            <state key="highlighted" image="icTextFieldClose"/>
+                            <connections>
+                                <action selector="clearBtnClick:" destination="-1" eventType="touchUpInside" id="SLP-VH-Yr7"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="SUn-hv-TcN" firstAttribute="leading" secondItem="6sO-gg-Cc8" secondAttribute="leading" constant="15" id="07X-Yk-ogy"/>
+                        <constraint firstItem="SUn-hv-TcN" firstAttribute="centerY" secondItem="6sO-gg-Cc8" secondAttribute="centerY" id="4ry-G1-BXY"/>
+                        <constraint firstAttribute="trailing" secondItem="gLn-Bb-xeA" secondAttribute="trailing" constant="10" id="asb-PX-Mz3"/>
+                        <constraint firstItem="efA-dd-sDY" firstAttribute="leading" secondItem="SUn-hv-TcN" secondAttribute="trailing" constant="20" id="dB1-an-eYu"/>
+                        <constraint firstItem="gLn-Bb-xeA" firstAttribute="centerY" secondItem="6sO-gg-Cc8" secondAttribute="centerY" id="lV4-fE-CVD"/>
+                        <constraint firstItem="efA-dd-sDY" firstAttribute="centerY" secondItem="6sO-gg-Cc8" secondAttribute="centerY" id="yE6-yg-ofe"/>
+                        <constraint firstItem="gLn-Bb-xeA" firstAttribute="leading" secondItem="efA-dd-sDY" secondAttribute="trailing" constant="10" id="yjR-Y4-9oF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="6sO-gg-Cc8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="GTk-rM-kzg"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="6sO-gg-Cc8" secondAttribute="bottom" id="Qqd-rd-bg9"/>
+                <constraint firstItem="6sO-gg-Cc8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="c4W-g4-Tyz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6sO-gg-Cc8" secondAttribute="trailing" id="faP-fi-iF8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="5" y="-109.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icTextFieldClose" width="16" height="16"/>
+    </resources>
+</document>

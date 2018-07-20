@@ -12,6 +12,7 @@ import ReSwift
 protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
     func pushPayment()
+    func pushWallet()
 
 }
 
@@ -53,6 +54,13 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
         }
     }
 
+    func pushWallet() {
+        if let vc = R.storyboard.wallet.walletViewController() {
+            let coordinator = WalletCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension HomeCoordinator: HomeStateManagerProtocol {
