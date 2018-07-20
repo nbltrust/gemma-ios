@@ -50,7 +50,7 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
     func setData(_ sender : Int) {
         var data = [String]()
         switch sender {
-        case 0:data = ["跟随系统","简体中文","English"]
+        case 0:data = [R.string.localizable.language_system(),R.string.localizable.language_cn(),R.string.localizable.language_en()]
         case 1:data = ["CNY","USD"]
         default:data = []
             break
