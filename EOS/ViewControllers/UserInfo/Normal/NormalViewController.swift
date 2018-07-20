@@ -1,8 +1,8 @@
 //
-//  UserInfoViewController.swift
+//  NormalViewController.swift
 //  EOS
 //
-//  Created koofrank on 2018/7/12.
+//  Created DKM on 2018/7/19.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class UserInfoViewController: BaseViewController {
+class NormalViewController: BaseViewController {
 
-	var coordinator: (UserInfoCoordinatorProtocol & UserInfoStateManagerProtocol)?
+	var coordinator: (NormalCoordinatorProtocol & NormalStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class UserInfoViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.mine_title()
+        self.title = R.string.localizable.mine_normal()
     }
     
     func commonObserveState() {
@@ -44,16 +44,10 @@ class UserInfoViewController: BaseViewController {
     }
 }
 
-extension UserInfoViewController {
+extension NormalViewController {
     @objc func clickCellView(_ sender:[String:Any]) {
-        switch sender["index"] as! Int {
-        case 0:self.coordinator?.openNormalSetting()
-        case 1:self.coordinator?.openSafeSetting()
-        case 2:self.coordinator?.openHelpSetting()
-        case 3:self.coordinator?.openServersSetting()
-        case 4:self.coordinator?.openAboutSetting()
-        default:
-            break
-        }
+        let index = sender["index"] as! Int
+        self.coordinator?.openContent(index)
     }
 }
+

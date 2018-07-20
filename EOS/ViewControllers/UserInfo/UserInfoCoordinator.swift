@@ -10,6 +10,11 @@ import UIKit
 import ReSwift
 
 protocol UserInfoCoordinatorProtocol {
+    func openNormalSetting()
+    func openSafeSetting()
+    func openHelpSetting()
+    func openServersSetting()
+    func openAboutSetting()
 }
 
 protocol UserInfoStateManagerProtocol {
@@ -31,6 +36,37 @@ class UserInfoCoordinator: UserInfoRootCoordinator {
 }
 
 extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
+    
+    func openNormalSetting() {
+        if let vc = R.storyboard.userInfo.normalViewController() {
+            vc.coordinator = NormalCoordinator(rootVC: self.rootVC)
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    func openSafeSetting() {
+        if let vc = R.storyboard.userInfo.safeViewController() {
+            vc.coordinator = SafeCoordinator(rootVC: self.rootVC)
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    func openHelpSetting() {
+        if let vc = R.storyboard.userInfo.helpViewController() {
+            vc.coordinator = HelpCoordinator(rootVC: self.rootVC)
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    func openServersSetting() {
+        if let vc = R.storyboard.userInfo.serversViewController() {
+            vc.coordinator = ServersCoordinator(rootVC: self.rootVC)
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    func openAboutSetting() {
+        if let vc = R.storyboard.userInfo.aboutViewController() {
+            vc.coordinator = AboutCoordinator(rootVC: self.rootVC)
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
     
 }
 
