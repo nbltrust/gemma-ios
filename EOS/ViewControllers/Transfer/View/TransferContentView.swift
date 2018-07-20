@@ -75,7 +75,7 @@ class TransferContentView: UIView {
         remarkTitleTextView.updateHeight()
         
         accountTitleTextView.titleLabel.font = UIFont.cnTipMedium
-        accountTitleTextView.textField.font = UIFont.enTextNormal
+        accountTitleTextView.textField.font = UIFont.pfScR16
         moneyTitleTextView.titleLabel.font = UIFont.cnTipMedium
         moneyTitleTextView.textField.font = UIFont.pfScR16
         moneyTitleTextView.introduceLabel.font = UIFont.pfScR12

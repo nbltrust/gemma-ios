@@ -90,6 +90,14 @@
 "dont_screen_shot" = "请勿截图";
 "back_up_wallet" = "备份钱包";
 "click_refund" = "点击Refund";
+"import_wallet" = "导入钱包";
+"have_wallet" = "已有钱包";
+"wallet_manager" = "钱包管理";
+"export_private_key" = "导出私钥";
+"change_password" = "修改密码";
+"wallet_name" = "钱包名";
+"manager_wallet" = "管理钱包";
+"change_wallet_name" = "修改钱包名";
 
 //zsy end
 

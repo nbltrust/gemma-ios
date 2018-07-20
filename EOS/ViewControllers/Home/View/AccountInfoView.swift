@@ -78,7 +78,7 @@ class AccountInfoView: UIView {
     func setUp() {
 //        backupLabelView.isHidden = true
 //        refundView.isHidden = true
-        cornerShadowView.corRadius = 8
+        cornerShadowView.cornerRadiusInt = 8
         cornerShadowView.shadowR = 8
         setUpEvent()
     }
