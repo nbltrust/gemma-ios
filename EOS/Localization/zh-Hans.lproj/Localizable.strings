@@ -58,6 +58,8 @@
 "created_comfirm_content" = "钱包私钥是资产的唯一认证方式，及时备份私钥，可防止手机丢失、忘记密码等意外无法使用钱包的情况。请将私钥助记词备份并妥善保存，以备将来不时之需。";
 "created_comfirm_cancel" = "稍后备份";
 "created_comfirm_sure" = "导出私钥助记词";
+"scan_title" = "扫描二维码";
+"scan_subTitle" = "请将二维码放入框内，即可自动扫描";
 
 //zsy add
 "account_total_assets" = "账户总资产";
@@ -85,6 +87,10 @@
 
 "transfer_failed" = "转账失败";
 "transfer_successed" = "转账成功";
+"dont_screen_shot" = "请勿截图";
+"back_up_wallet" = "备份钱包";
+"click_refund" = "点击Refund";
+
 //zsy end
 
 "day" = "天";
