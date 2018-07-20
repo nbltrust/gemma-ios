@@ -22,7 +22,6 @@ class ChangeWalletNameViewController: BaseViewController {
     
     func setUpUI() {
         self.title = R.string.localizable.change_wallet_name()
-
     }
     
     func commonObserveState() {
