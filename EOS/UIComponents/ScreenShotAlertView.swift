@@ -11,8 +11,7 @@ import Foundation
 @IBDesignable
 class ScreenShotAlertView: UIView {
     
-    
-    @IBOutlet weak var sureView: Button!
+    @IBOutlet weak var knowButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tipsLabel: UILabel!
     
@@ -26,12 +25,6 @@ class ScreenShotAlertView: UIView {
         }
     }
     
-    var buttonTitle = "" {
-        didSet {
-            sureView.title = buttonTitle
-        }
-    }
-    
     func setUp() {
         setUpUI()
         setupEvent()
@@ -40,9 +33,9 @@ class ScreenShotAlertView: UIView {
     
     func setUpUI() {
     }
-    
+
     func setupEvent() {
-        sureView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+        knowButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
             self.sendEventWith(ScreenShotEvent.sureShot.rawValue, userinfo: [ : ])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)

@@ -104,6 +104,12 @@
 		3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */; };
 		3BD3666F20FF0AF9004DE09D /* ScreenShotAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */; };
 		3BD366B721009DE0004DE09D /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366B621009DE0004DE09D /* UIFont+Additions.swift */; };
+		3BD366BC2100B172004DE09D /* ScreenShotAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366B82100B172004DE09D /* ScreenShotAlertCoordinator.swift */; };
+		3BD366BD2100B172004DE09D /* ScreenShotAlertActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366B92100B172004DE09D /* ScreenShotAlertActions.swift */; };
+		3BD366BE2100B172004DE09D /* ScreenShotAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366BA2100B172004DE09D /* ScreenShotAlertViewController.swift */; };
+		3BD366BF2100B172004DE09D /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366BB2100B172004DE09D /* ScreenShotAlertReducers.swift */; };
+		3BD366C12100B1BF004DE09D /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD366C02100B1BE004DE09D /* ScreenShotAlert.storyboard */; };
+		3BD366C521017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366C421017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift */; };
 		3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */ = {isa = PBXBuildFile; fileRef = F601AE09C748BD90FFF8C8744B7B621D /* fstream */; };
 		3CE0B916A6316D966E0AD0C04B7A8AD4 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F6796D1FBCF6CB7AAEF5B3655062A1 /* Rubik-Black.ttf */; };
 		3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380B8A6234BE07DE4B3CDE521A28F60 /* Colletion+Extensions.swift */; };
@@ -3151,6 +3157,12 @@
 		3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertView.swift; sourceTree = "<group>"; };
 		3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenShotAlertView.xib; sourceTree = "<group>"; };
 		3BD366B621009DE0004DE09D /* UIFont+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Additions.swift"; sourceTree = "<group>"; };
+		3BD366B82100B172004DE09D /* ScreenShotAlertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertCoordinator.swift; sourceTree = "<group>"; };
+		3BD366B92100B172004DE09D /* ScreenShotAlertActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertActions.swift; sourceTree = "<group>"; };
+		3BD366BA2100B172004DE09D /* ScreenShotAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertViewController.swift; sourceTree = "<group>"; };
+		3BD366BB2100B172004DE09D /* ScreenShotAlertReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertReducers.swift; sourceTree = "<group>"; };
+		3BD366C02100B1BE004DE09D /* ScreenShotAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScreenShotAlert.storyboard; sourceTree = "<group>"; };
+		3BD366C421017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertRootCoordinator.swift; sourceTree = "<group>"; };
 		3BD4C916A39192D114FBEEE600033E2B /* buffered_stream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffered_stream.hpp; sourceTree = "<group>"; };
 		3BDA9B09D89E2B72CE5C65FA614ABC1B /* insert_range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = insert_range.hpp; sourceTree = "<group>"; };
 		3BE67FC625579D3EA5ED5446943EF95B /* blowfish.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blowfish.hpp; sourceTree = "<group>"; };
@@ -14758,6 +14770,12 @@
 		2518901AF31C163FA80727C0AD3B89F6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3BD366B82100B172004DE09D /* ScreenShotAlertCoordinator.swift */,
+				3BD366C421017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift */,
+				3BD366B92100B172004DE09D /* ScreenShotAlertActions.swift */,
+				3BD366BA2100B172004DE09D /* ScreenShotAlertViewController.swift */,
+				3BD366BB2100B172004DE09D /* ScreenShotAlertReducers.swift */,
+				3BD366C02100B1BE004DE09D /* ScreenShotAlert.storyboard */,
 				72FE5B8321009D0A00B29FEC /* Lead */,
 				73F30B3B20F6E6E30016E950 /* UserInfo */,
 				3B4C90D920F48C51004F4C52 /* Transfer */,
@@ -31734,6 +31752,7 @@
 				7B1CEF30AADC2C46D737ADF198E7B1DE /* LaunchScreen.storyboard in Resources */,
 				4F54A816B50553869ECBE25FEB1B2533 /* LineView.xib in Resources */,
 				A561C0B98764E60251FBFA42445906D8 /* Localizable.strings in Resources */,
+				3BD366C12100B1BF004DE09D /* ScreenShotAlert.storyboard in Resources */,
 				1CB8E8A9088DF72B62548F44722FCA54 /* PaymentsRecordsCell.xib in Resources */,
 				3D9B3F0AA71337690260155024A06E58 /* PaymentsRecordsCellView.xib in Resources */,
 				7224713C20F624DC00536BF4 /* HomeTopView.xib in Resources */,
@@ -32104,6 +32123,7 @@
 				2F66B28CD7C7315E43063215716C3F06 /* Account.swift in Sources */,
 				72FE5B652100491300B29FEC /* ServersViewController.swift in Sources */,
 				C73324715ED7A5B530EC3656557D421F /* AccountInfoView.swift in Sources */,
+				3BD366BE2100B172004DE09D /* ScreenShotAlertViewController.swift in Sources */,
 				417C7C9D234791A2280A26237B79A7D0 /* AppAction.swift in Sources */,
 				7224713A20F624D200536BF4 /* HomeTopView.swift in Sources */,
 				72FE5B562100490200B29FEC /* SafeReducers.swift in Sources */,
@@ -32136,6 +32156,7 @@
 				7210169A210197C10059B37E /* ChangeWalletNameView.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
 				22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */,
+				3BD366BC2100B172004DE09D /* ScreenShotAlertCoordinator.swift in Sources */,
 				72FE5B6D2100491A00B29FEC /* AboutViewController.swift in Sources */,
 				22C023AF20FCB09300284A0A /* ScanCoordinator.swift in Sources */,
 				72FE5B7621006B0700B29FEC /* NormalContentViewController.swift in Sources */,
@@ -32160,6 +32181,7 @@
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
 				22C023BD20FEF0A300284A0A /* ScanRootCoordinator.swift in Sources */,
 				73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */,
+				3BD366C521017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift in Sources */,
 				9CD3F0FA07578C28658D2A1189A8E39D /* EOSIONetworkService.swift in Sources */,
 				C9BB02B547453DD0482F5745ADB47B83 /* EntryActions.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
@@ -32222,11 +32244,14 @@
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				7224714A20F76B4600536BF4 /* DetailView.swift in Sources */,
+				3BD366BF2100B172004DE09D /* ScreenShotAlertReducers.swift in Sources */,
+				3BD366AF210080B4004DE09D /* ChangeWalletNameViewController.swift in Sources */,
 				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
 				73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */,
 				73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */,
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
+				3BD366BD2100B172004DE09D /* ScreenShotAlertActions.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
 				22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */,
 				22C023B020FCB09300284A0A /* ScanActions.swift in Sources */,

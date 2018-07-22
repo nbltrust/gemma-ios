@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScreenShotAlertView" customModule="EOS" customModuleProvider="target">
             <connections>
-                <outlet property="sureView" destination="Hdq-kc-z7t" id="8vl-U5-aZ1"/>
+                <outlet property="knowButton" destination="S28-JB-7Jy" id="SmY-9o-e0e"/>
                 <outlet property="tipsLabel" destination="2zV-Jq-qXh" id="srp-gg-O1g"/>
                 <outlet property="titleLabel" destination="mhj-CC-y7g" id="mTP-Zs-AVg"/>
             </connections>
@@ -47,25 +47,30 @@
                     <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hdq-kc-z7t" customClass="Button" customModule="EOS" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S28-JB-7Jy">
                     <rect key="frame" x="0.0" y="185" width="270" height="45"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="cornflowerBlue" red="0.259" green="0.420" blue="0.831" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="Ajc-66-O1I"/>
+                        <constraint firstAttribute="height" constant="45" id="gdB-9v-QNa"/>
                     </constraints>
-                </view>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Button"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="i_know"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="dSi-ni-x6p" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0So-Oe-DwK"/>
+                <constraint firstItem="S28-JB-7Jy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0oc-re-g7e"/>
                 <constraint firstItem="2zV-Jq-qXh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Glk-8n-X0p"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hdq-kc-z7t" secondAttribute="trailing" id="HwO-Zo-Uqr"/>
                 <constraint firstItem="mhj-CC-y7g" firstAttribute="top" secondItem="dSi-ni-x6p" secondAttribute="bottom" constant="16.5" id="PWK-Se-0ZO"/>
                 <constraint firstItem="dSi-ni-x6p" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25" id="RAg-sU-X0O"/>
-                <constraint firstItem="Hdq-kc-z7t" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="UIf-ya-3Ff"/>
+                <constraint firstItem="S28-JB-7Jy" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="SrA-pZ-wcg"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="S28-JB-7Jy" secondAttribute="trailing" id="XSd-WK-KMM"/>
                 <constraint firstItem="2zV-Jq-qXh" firstAttribute="top" secondItem="mhj-CC-y7g" secondAttribute="bottom" constant="11" id="aN3-lM-xxm"/>
                 <constraint firstItem="mhj-CC-y7g" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cPi-Z6-J9r"/>
-                <constraint firstItem="Hdq-kc-z7t" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="j9V-49-weh"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
