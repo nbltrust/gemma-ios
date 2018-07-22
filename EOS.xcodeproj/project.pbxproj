@@ -35,6 +35,9 @@
 		1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF12070D1BC34F8C65F6079CC156E0B /* NSObject+Extensions.swift */; };
 		2154824915CF85B858D26F531215E1F8 /* climits in Resources */ = {isa = PBXBuildFile; fileRef = A56465013122603CC96F76E2942D687D /* climits */; };
 		21FFD61029C1653D163BDA1A64136F4B /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FFEDC6C6AFC706ED9DCB24098C23A1 /* libboost_regex.a */; };
+		221EC2202102034B0059F856 /* GrowContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC21F2102034B0059F856 /* GrowContentView.swift */; };
+		221EC22A2104A1970059F856 /* GrowSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC2292104A1970059F856 /* GrowSectionView.swift */; };
+		221EC22D2104B8580059F856 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC22C2104B8580059F856 /* BaseView.swift */; };
 		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
 		22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */; };
 		22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239320F6FD5100284A0A /* EntryGuideActions.swift */; };
@@ -1870,6 +1873,9 @@
 		21F2DEF7A6E5BD249392B32F7483CCFF /* coordinate_cast.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = coordinate_cast.hpp; sourceTree = "<group>"; };
 		22021370A4E1DB9C69DFB89A17A42CEF /* lazy_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lazy_list.hpp; sourceTree = "<group>"; };
 		220D8011C26208853E13A42673CA56EF /* construct_funop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = construct_funop.hpp; sourceTree = "<group>"; };
+		221EC21F2102034B0059F856 /* GrowContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowContentView.swift; sourceTree = "<group>"; };
+		221EC2292104A1970059F856 /* GrowSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowSectionView.swift; sourceTree = "<group>"; };
+		221EC22C2104B8580059F856 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		2223DC38DA66B9A99D6C5A939365FA2B /* op_queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = op_queue.hpp; sourceTree = "<group>"; };
 		2225C9F8F39A96051FCA2832A6B7CD4F /* cmath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cmath.hpp; sourceTree = "<group>"; };
 		222B4D3E4B886BD819F31FC35FD5E96E /* win_mutex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = win_mutex.hpp; sourceTree = "<group>"; };
@@ -14021,6 +14027,7 @@
 		1D693EAC4EFE912D3F115C139DC846B0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				221EC21E210201CB0059F856 /* GrowContentView */,
 				22C023A920FCACFD00284A0A /* Scan */,
 				22C023A420FCABA600284A0A /* GestureLock */,
 				73B5A69F20F5EFF600756391 /* AttributeLabelView */,
@@ -14354,6 +14361,15 @@
 				C58C0383C153F65B1564D079E0C6509A /* endpoint.hpp */,
 			);
 			path = detail;
+			sourceTree = "<group>";
+		};
+		221EC21E210201CB0059F856 /* GrowContentView */ = {
+			isa = PBXGroup;
+			children = (
+				221EC2292104A1970059F856 /* GrowSectionView.swift */,
+				221EC21F2102034B0059F856 /* GrowContentView.swift */,
+			);
+			path = GrowContentView;
 			sourceTree = "<group>";
 		};
 		222180684335CBA4BF69CFAF78DF15B2 /* node */ = {
@@ -28331,6 +28347,7 @@
 				0B21F842EDAA2C738697E10E5E668845 /* BaseTableViewCell.swift */,
 				58C31E477791C74FBCB33C4FC946E170 /* BaseViewController.swift */,
 				4F8935C54739AEE59DA2310B17591480 /* BaseWebViewController.swift */,
+				221EC22C2104B8580059F856 /* BaseView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -31782,6 +31799,7 @@
 				089FC61F5C404D8812055FF8F62C5183 /* AppDelegate.swift in Sources */,
 				C10A4AC7FCB160CCFE2C82D6BBAC4A64 /* AppReducer.swift in Sources */,
 				A58426FF8A514CDE712EB97BAB795BB3 /* BaseCollectionViewCell.swift in Sources */,
+				221EC2202102034B0059F856 /* GrowContentView.swift in Sources */,
 				A6EFBB3B53A79BD8C9D018099642EB76 /* BaseNavigationController.swift in Sources */,
 				559E64A356046CB84C6A9B9B07E012E7 /* BaseTabbarViewController.swift in Sources */,
 				22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */,
@@ -31807,6 +31825,7 @@
 				150F934C0EC159C581ACAAC7FD6F6484 /* Constants.swift in Sources */,
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,
 				0795BFD28C42BE58BB94BAA17ADB6B91 /* EOSIO.mm in Sources */,
+				221EC22D2104B8580059F856 /* BaseView.swift in Sources */,
 				7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */,
 				3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */,
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
@@ -31845,6 +31864,7 @@
 				73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */,
 				3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */,
 				22C023A220F6FDB900284A0A /* CreatationCompleteReducers.swift in Sources */,
+				221EC22A2104A1970059F856 /* GrowSectionView.swift in Sources */,
 				2B427CD0E35711458F16196E6587BA7A /* PaymentsRecordsCellView.swift in Sources */,
 				173223C45F10FDDC1912D6D77E87B01D /* R.generated.swift in Sources */,
 				D3269330F6567878EEBA3EB42293912B /* RegisterContentView.swift in Sources */,
