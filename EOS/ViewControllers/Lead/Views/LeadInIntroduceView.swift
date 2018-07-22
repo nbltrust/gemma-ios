@@ -23,11 +23,13 @@ class LeadInIntroduceView: UIView {
     
     
     func setup() {
-        beginLeadIn.button.addTarget(self, action: #selector(clickButton), for: .touchUpInside)
-//        beginLeadIn.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self](tap) in
-//            guard let `self` = self else { return }
-//            self.beginLeadIn.next?.sendEventWith(event_name.switchToKeyView.rawValue, userinfo: ["data":""])
-//        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
+        beginLeadIn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            self.next?.sendEventWith(event_name.switchToKeyView.rawValue, userinfo: ["data":""])
+        }).disposed(by: disposeBag)
+        
+
     }
     
     func updateHeight() {
@@ -69,8 +71,4 @@ class LeadInIntroduceView: UIView {
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 }
-extension LeadInIntroduceView {
-    @objc func clickButton() {
-        self.next?.sendEventWith(event_name.switchToKeyView.rawValue, userinfo: ["data":""])
-    }
-}
+

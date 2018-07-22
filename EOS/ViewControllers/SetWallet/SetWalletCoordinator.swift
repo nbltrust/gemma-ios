@@ -10,6 +10,8 @@ import UIKit
 import ReSwift
 
 protocol SetWalletCoordinatorProtocol {
+    
+    func pushToServiceProtocolVC()
 }
 
 protocol SetWalletStateManagerProtocol {
@@ -17,6 +19,7 @@ protocol SetWalletStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<SetWalletState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
 }
 
 class SetWalletCoordinator: HomeRootCoordinator {
@@ -32,6 +35,13 @@ class SetWalletCoordinator: HomeRootCoordinator {
 
 extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
     
+    func pushToServiceProtocolVC() {
+        let vc = BaseWebViewController()
+        vc.url = H5AddressConfiguration.REGISTER_PROTOCOL_URL
+        vc.title = R.string.localizable.service_protocol()
+        self.rootVC.pushViewController(vc, animated: true)
+    }
+
 }
 
 extension SetWalletCoordinator: SetWalletStateManagerProtocol {

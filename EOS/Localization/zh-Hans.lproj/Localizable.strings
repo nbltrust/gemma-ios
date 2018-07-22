@@ -159,3 +159,6 @@
 "lead_in_placeholder" = "请完整输入备份的私钥";
 "lead_in_begin" = "开始导入";
 
+"lead_in_finished" = "完成导入";
+"set_wallet_password" = "最少8位长度，建议混合大小写字母、数字及符号";
+"set_wallet_title" = "配置钱包";

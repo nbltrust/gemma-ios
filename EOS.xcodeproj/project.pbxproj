@@ -176,6 +176,8 @@
 		721016A1210197C10059B37E /* WalletManagerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210168E210197C00059B37E /* WalletManagerCoordinator.swift */; };
 		721016A4210197F40059B37E /* WalletListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 721016A2210197F30059B37E /* WalletListHeaderView.xib */; };
 		721016A5210197F40059B37E /* WalletListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721016A3210197F30059B37E /* WalletListHeaderView.swift */; };
+		72199D5E21043CE700575226 /* SetWalletContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72199D5D21043CE700575226 /* SetWalletContentView.swift */; };
+		72199D6021043CF000575226 /* SetWalletContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72199D5F21043CF000575226 /* SetWalletContentView.xib */; };
 		7224712920F57BA800536BF4 /* TransferCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224712520F57BA800536BF4 /* TransferCoordinator.swift */; };
 		7224712A20F57BA800536BF4 /* TransferActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224712620F57BA800536BF4 /* TransferActions.swift */; };
 		7224712B20F57BA800536BF4 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224712720F57BA800536BF4 /* TransferViewController.swift */; };
@@ -5521,6 +5523,8 @@
 		7210168E210197C00059B37E /* WalletManagerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletManagerCoordinator.swift; sourceTree = "<group>"; };
 		721016A2210197F30059B37E /* WalletListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletListHeaderView.xib; sourceTree = "<group>"; };
 		721016A3210197F30059B37E /* WalletListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletListHeaderView.swift; sourceTree = "<group>"; };
+		72199D5D21043CE700575226 /* SetWalletContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetWalletContentView.swift; sourceTree = "<group>"; };
+		72199D5F21043CF000575226 /* SetWalletContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetWalletContentView.xib; sourceTree = "<group>"; };
 		721E9D98D10D0ADA91F7A3DEC9D5B587 /* unfused.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = unfused.hpp; sourceTree = "<group>"; };
 		7224712520F57BA800536BF4 /* TransferCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCoordinator.swift; sourceTree = "<group>"; };
 		7224712620F57BA800536BF4 /* TransferActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferActions.swift; sourceTree = "<group>"; };
@@ -21214,6 +21218,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		72199D5C21043CC900575226 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				72199D5D21043CE700575226 /* SetWalletContentView.swift */,
+				72199D5F21043CF000575226 /* SetWalletContentView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		7224713D20F62A2A00536BF4 /* cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -21235,6 +21248,7 @@
 		725F67FF2101B8B40006BBA1 /* SetWallet */ = {
 			isa = PBXGroup;
 			children = (
+				72199D5C21043CC900575226 /* Views */,
 				725F68002101B8E50006BBA1 /* SetWalletCoordinator.swift */,
 				725F68012101B8E50006BBA1 /* SetWalletActions.swift */,
 				725F68022101B8E50006BBA1 /* SetWalletViewController.swift */,
@@ -31796,6 +31810,7 @@
 				151F0D30E16DBC47AD591FB7E78754AB /* clocale in Resources */,
 				AA569F9C0AB8912ECA3953F600AE87EF /* cmath in Resources */,
 				DE711D13AB681C2C14CB1085231EF631 /* cmath in Resources */,
+				72199D6021043CF000575226 /* SetWalletContentView.xib in Resources */,
 				4D8868C7FCCE4437A953D625C31F9D60 /* cmath.SUNWCCh in Resources */,
 				72FE5B9221009EED00B29FEC /* LeadInIntroduceView.xib in Resources */,
 				3890842A031D291CCD43AB9299B13243 /* complex in Resources */,
@@ -32164,6 +32179,7 @@
 				BB08391AA7F1D732D97B698F412B3651 /* ComfirmView.swift in Sources */,
 				73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */,
 				22C0239920F6FD5100284A0A /* EntryGuideReducers.swift in Sources */,
+				72199D5E21043CE700575226 /* SetWalletContentView.swift in Sources */,
 				72FE5B7721006B0700B29FEC /* NormalContentReducers.swift in Sources */,
 				150F934C0EC159C581ACAAC7FD6F6484 /* Constants.swift in Sources */,
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,

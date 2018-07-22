@@ -11,6 +11,7 @@ import ReSwift
 
 protocol LeadInCoordinatorProtocol {
     func openScan()
+    func openSetWallet()
 }
 
 protocol LeadInStateManagerProtocol {
@@ -37,6 +38,13 @@ extension LeadInCoordinator: LeadInCoordinatorProtocol {
         let scanCoordinator = ScanRootCoordinator(rootVC: vc)
         scanCoordinator.start()
         self.rootVC.present(vc, animated: true, completion: nil)
+    }
+    
+    func openSetWallet() {
+        if let vc = R.storyboard.leadIn.setWalletViewController() {
+            vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
+            self.rootVC.pushViewController(vc, animated: true)
+        }
     }
 }
 
