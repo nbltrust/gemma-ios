@@ -23,7 +23,7 @@ class WalletManagerViewController: BaseViewController {
     
     func setUpUI() {
         self.title = R.string.localizable.manager_wallet()
-        walletManagerView.delegate = self
+//        walletManagerView.delegate = self
     }
     
     func commonObserveState() {
@@ -46,18 +46,16 @@ class WalletManagerViewController: BaseViewController {
     }
 }
 
-extension WalletManagerViewController:WalletManagerViewDelegate {
-    func walletNameLabelTap(walletName: UILabel) {
+extension WalletManagerViewController {
+    @objc func wallNameClick(_ data: [String: Any]) {
         self.coordinator?.pushToChangeWalletName(name: "")
     }
     
-    func exportPrivateKeyLineViewTap(exportPrivateKey: LineView) {
+    @objc func exportPrivateKeyClick(_ data: [String: Any]) {
         self.coordinator?.pushToExportPrivateKey()
     }
     
-    func changePasswordLineViewTap(changePassword: LineView) {
+    @objc func changePasswordClick(_ data: [String: Any]) {
         self.coordinator?.pushToChangePassword()
     }
-    
-    
 }

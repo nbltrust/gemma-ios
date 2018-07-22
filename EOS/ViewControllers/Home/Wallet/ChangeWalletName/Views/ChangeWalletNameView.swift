@@ -12,6 +12,7 @@ class ChangeWalletNameView: UIView {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var clearButton: UIButton!
+    
     func setUp() {
         setUpUI()
         updateHeight()
@@ -20,7 +21,6 @@ class ChangeWalletNameView: UIView {
     func setUpUI() {
         clearButton.isHidden = true
         textField.delegate = self
-        
     }
     
     @IBAction func clearBtnClick(_ sender: Any) {

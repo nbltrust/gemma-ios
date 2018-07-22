@@ -19,9 +19,7 @@ class WalletListHeaderView: UIView {
         }
     }
     
-    
     func setUp() {
-
         updateHeight()
     }
     
