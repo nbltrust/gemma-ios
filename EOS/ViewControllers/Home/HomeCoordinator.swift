@@ -8,12 +8,13 @@
 
 import UIKit
 import ReSwift
+import Presentr
 
 protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
     func pushPayment()
     func pushWallet()
-
+//    func pushScreenShotAlert()
 }
 
 protocol HomeStateManagerProtocol {
@@ -39,6 +40,23 @@ class HomeCoordinator: HomeRootCoordinator {
 }
 
 extension HomeCoordinator: HomeCoordinatorProtocol {
+    //截屏弹框测试代码
+//    func pushScreenShotAlert() {
+//        let width = ModalSize.custom(size: 270)
+//        let height = ModalSize.custom(size: 230)
+//        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: (UIScreen.main.bounds.width-270)/2, y: UIScreen.main.bounds.height/2-115))
+//        let customType = PresentationType.custom(width: width, height: height, center: center)
+//
+//        let presenter = Presentr(presentationType: customType)
+//        presenter.keyboardTranslationType = .moveUp
+//
+//        if let vc = R.storyboard.screenShotAlert.screenShotAlertViewController() {
+//            let coordinator = ScreenShotAlertCoordinator(rootVC: self.rootVC)
+//            vc.coordinator = coordinator
+//            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+//        }
+//    }
+    
     func pushPaymentDetail() {
         if let vc = R.storyboard.paymentsDetail.paymentsDetailViewController() {
             let coordinator = PaymentsDetailCoordinator(rootVC: self.rootVC)
@@ -46,6 +64,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
+    
     func pushPayment() {
         if let vc = R.storyboard.payments.paymentsViewController() {
             let coordinator = PaymentsCoordinator(rootVC: self.rootVC)
