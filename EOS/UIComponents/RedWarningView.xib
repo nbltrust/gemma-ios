@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RedWarningView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="dismissButton" destination="YoO-FV-IdA" id="9QW-mR-6cr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="381" height="64"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PX6-Ez-cao">
+                    <rect key="frame" x="15" y="25" width="320" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="red_warning"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoO-FV-IdA">
+                    <rect key="frame" x="350" y="24" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="dLW-ls-1Rw"/>
+                        <constraint firstAttribute="height" constant="16" id="dkn-3o-efK"/>
+                    </constraints>
+                    <state key="normal" image="icTextFieldClose"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.81599999999999995" green="0.0080000000000000002" blue="0.106" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="YoO-FV-IdA" firstAttribute="leading" secondItem="PX6-Ez-cao" secondAttribute="trailing" constant="15" id="0cc-9T-tf5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="YoO-FV-IdA" secondAttribute="trailing" constant="15" id="3Vy-KK-37C"/>
+                <constraint firstItem="PX6-Ez-cao" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="UiA-2v-iLd"/>
+                <constraint firstItem="YoO-FV-IdA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cZH-Fw-zfw"/>
+                <constraint firstItem="PX6-Ez-cao" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="r19-gx-hcz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="21" y="-107"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icTextFieldClose" width="16" height="16"/>
+    </resources>
+</document>
