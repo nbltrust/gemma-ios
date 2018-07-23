@@ -1,5 +1,5 @@
 //
-//  ChangeWalletNameViewController.swift
+//  ScreenShotAlertViewController.swift
 //  EOS
 //
 //  Created zhusongyu on 2018/7/19.
@@ -11,17 +11,13 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class ChangeWalletNameViewController: BaseViewController {
+class ScreenShotAlertViewController: BaseViewController {
 
-	var coordinator: (ChangeWalletNameCoordinatorProtocol & ChangeWalletNameStateManagerProtocol)?
+	var coordinator: (ScreenShotAlertCoordinatorProtocol & ScreenShotAlertStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        setUpUI()
-    }
-    
-    func setUpUI() {
-        self.title = R.string.localizable.change_wallet_name()
+        self.view.backgroundColor = UIColor.clear
     }
     
     func commonObserveState() {
@@ -41,5 +37,11 @@ class ChangeWalletNameViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+    }
+}
+
+extension ScreenShotAlertViewController {
+    @objc func sureShot(_ data: [String : Any]) {
+        self.coordinator?.dismissScreenShotAlert()
     }
 }
