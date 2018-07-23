@@ -13,6 +13,8 @@ protocol WalletCoordinatorProtocol {
     func pushToWalletManager(data: WalletManagerModel)
     func pushToEntryVC()
     func pushToSetWalletVC()
+
+    func pushToLeadInWallet()
 }
 
 protocol WalletStateManagerProtocol {
@@ -58,6 +60,14 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
     func pushToSetWalletVC() {
         if let vc = R.storyboard.entry.entryViewController() {
             let coordinator = EntryCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func pushToLeadInWallet() {
+        if let vc = R.storyboard.leadIn.leadInViewController() {
+            let coordinator = LeadInCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }

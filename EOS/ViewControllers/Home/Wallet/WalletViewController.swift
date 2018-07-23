@@ -117,12 +117,13 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
             self.coordinator?.pushToWalletManager(data: dataArray[indexPath.row])
         } else {
             switch indexPath.row {
-            case 0:return
+            case 0:self.coordinator?.pushToLeadInWallet()
             case 1:self.coordinator?.pushToEntryVC()
             default:
                 break
             }
         }
+
     }
 }
 

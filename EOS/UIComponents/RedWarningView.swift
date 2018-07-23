@@ -1,31 +1,38 @@
 //
-//  LeadInKeyView.swift
+//  RedWarningView.swift
 //  EOS
 //
-//  Created by DKM on 2018/7/19.
+//  Created by zhusongyu on 2018/7/23.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class LeadInKeyView: UIView {
-    enum event_name : String {
-        case beginLeadInAction
+class RedWarningView: UIView {
+    
+    @IBOutlet weak var dismissButton: UIButton!
+    
+    enum event: String {
+        case dismiss
     }
-
-    @IBOutlet weak var creatButton: Button!
+    
+    func setUp() {
+        setupEvent()
+        updateHeight()
+    }
+    
+    func setupEvent() {
+        dismissButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(event.dismiss.rawValue, userinfo: [ : ])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+    }
+    
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
     }
     
-    func setup() {
-        creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
-            guard let `self` = self else { return }
-            self.next?.sendEventWith(event_name.beginLeadInAction.rawValue, userinfo: ["data":""])
-        }).disposed(by: disposeBag)
-    }
-    
-    func updateHeight() {
+    fileprivate func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()
@@ -33,7 +40,7 @@ class LeadInKeyView: UIView {
     
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
-        return lastView!.bottom
+        return lastView?.bottom ?? 0
     }
     
     override func layoutSubviews() {
@@ -44,13 +51,13 @@ class LeadInKeyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
-        setup()
+        setUp()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
-        setup()
+        setUp()
     }
     
     fileprivate func loadViewFromNib() {
@@ -58,6 +65,7 @@ class LeadInKeyView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        //        self.insertSubview(view, at: 0)
         
         addSubview(view)
         view.frame = self.bounds
