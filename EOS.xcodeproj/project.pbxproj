@@ -94,6 +94,7 @@
 		3BC12A862105AC67006EEB80 /* AccountListReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A822105AC67006EEB80 /* AccountListReducers.swift */; };
 		3BC12A882105B48C006EEB80 /* AccountList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC12A872105B48C006EEB80 /* AccountList.storyboard */; };
 		3BC12A8A2105BC1B006EEB80 /* AccountListRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A892105BC1B006EEB80 /* AccountListRootCoordinator.swift */; };
+		3BC12A8C2105FF5F006EEB80 /* TransferConfirmPasswordRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A8B2105FF5F006EEB80 /* TransferConfirmPasswordRootCoordinator.swift */; };
 		3BD3663B20F6F9E3004DE09D /* TransferConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663720F6F9E3004DE09D /* TransferConfirmCoordinator.swift */; };
 		3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */; };
 		3BD3663D20F6F9E3004DE09D /* TransferConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3663920F6F9E3004DE09D /* TransferConfirmViewController.swift */; };
@@ -3160,6 +3161,7 @@
 		3BC12A822105AC67006EEB80 /* AccountListReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListReducers.swift; sourceTree = "<group>"; };
 		3BC12A872105B48C006EEB80 /* AccountList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountList.storyboard; sourceTree = "<group>"; };
 		3BC12A892105BC1B006EEB80 /* AccountListRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListRootCoordinator.swift; sourceTree = "<group>"; };
+		3BC12A8B2105FF5F006EEB80 /* TransferConfirmPasswordRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmPasswordRootCoordinator.swift; sourceTree = "<group>"; };
 		3BC1DFFB11FFF7A1E8D3089E0B678DA3 /* interval_bounds.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interval_bounds.hpp; sourceTree = "<group>"; };
 		3BD14C2363F05D44EF8B9CEAA1AB2B81 /* object_pool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = object_pool.hpp; sourceTree = "<group>"; };
 		3BD3663720F6F9E3004DE09D /* TransferConfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmCoordinator.swift; sourceTree = "<group>"; };
@@ -16744,6 +16746,7 @@
 				3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */,
 				3BD3664420F72914004DE09D /* TransferConfirmRootCoordinator.swift */,
 				3BD3664620F72B5E004DE09D /* TransferConfirmPasswordCoordinator.swift */,
+				3BC12A8B2105FF5F006EEB80 /* TransferConfirmPasswordRootCoordinator.swift */,
 				3BD3664720F72B5E004DE09D /* TransferConfirmPasswordActions.swift */,
 				3BD3664820F72B5E004DE09D /* TransferConfirmPasswordViewController.swift */,
 				3BD3664920F72B5E004DE09D /* TransferConfirmPasswordReducers.swift */,
@@ -32255,6 +32258,7 @@
 				72FE5B542100490200B29FEC /* SafeActions.swift in Sources */,
 				3BC12A8A2105BC1B006EEB80 /* AccountListRootCoordinator.swift in Sources */,
 				72FE5B642100491300B29FEC /* ServersActions.swift in Sources */,
+				3BC12A8C2105FF5F006EEB80 /* TransferConfirmPasswordRootCoordinator.swift in Sources */,
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
 				22C023BD20FEF0A300284A0A /* ScanRootCoordinator.swift in Sources */,
 				73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */,
