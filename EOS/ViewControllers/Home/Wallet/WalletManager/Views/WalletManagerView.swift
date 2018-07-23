@@ -30,9 +30,10 @@ class WalletManagerView: UIView {
         case changePasswordClick
     }
     
-    var data : Any? {
+    var data : WalletManagerModel! {
         didSet {
-            
+            walletNameLabel.text = data.name
+            addressLabel.text = data.address
         }
     }
     

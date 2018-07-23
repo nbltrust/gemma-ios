@@ -47,6 +47,7 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
         if let vc = R.storyboard.wallet.changeWalletNameViewController() {
             let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
+            vc.name = name
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
