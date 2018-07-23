@@ -9,13 +9,20 @@
 import UIKit
 
 class LeadInKeyView: UIView {
+    enum event_name : String {
+        case beginLeadInAction
+    }
 
+    @IBOutlet weak var creatButton: Button!
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
     }
     
     func setup() {
-
+        creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            self.next?.sendEventWith(event_name.beginLeadInAction.rawValue, userinfo: ["data":""])
+        }).disposed(by: disposeBag)
     }
     
     func updateHeight() {

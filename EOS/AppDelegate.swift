@@ -56,9 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        WallketManager.shared.logoutWallet()
 //        log.debug(WallketManager.shared.getAccount())
         
-        if !WallketManager.shared.existAccount() {
-            appcoordinator!.showEntry()
-        }
+//        if !WallketManager.shared.existAccount() {
+//            appcoordinator!.showEntry()
+//        }
         return true
     }
     
