@@ -35,9 +35,20 @@
 		1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF12070D1BC34F8C65F6079CC156E0B /* NSObject+Extensions.swift */; };
 		2154824915CF85B858D26F531215E1F8 /* climits in Resources */ = {isa = PBXBuildFile; fileRef = A56465013122603CC96F76E2942D687D /* climits */; };
 		21FFD61029C1653D163BDA1A64136F4B /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FFEDC6C6AFC706ED9DCB24098C23A1 /* libboost_regex.a */; };
-		221EC2202102034B0059F856 /* GrowContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC21F2102034B0059F856 /* GrowContentView.swift */; };
-		221EC22A2104A1970059F856 /* GrowSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC2292104A1970059F856 /* GrowSectionView.swift */; };
-		221EC22D2104B8580059F856 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC22C2104B8580059F856 /* BaseView.swift */; };
+		221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */; };
+		221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BD210076C30059F856 /* GestureItemLayer.swift */; };
+		221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BF21007B510059F856 /* GestureLockSetting.swift */; };
+		221EC1C621008EF50059F856 /* GestureLockSetCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1C221008EF50059F856 /* GestureLockSetCoordinator.swift */; };
+		221EC1C721008EF50059F856 /* GestureLockSetActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1C321008EF50059F856 /* GestureLockSetActions.swift */; };
+		221EC1C821008EF50059F856 /* GestureLockSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1C421008EF50059F856 /* GestureLockSetViewController.swift */; };
+		221EC1C921008EF50059F856 /* GestureLockSetReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1C521008EF50059F856 /* GestureLockSetReducers.swift */; };
+		221EC1CE21008F1B0059F856 /* GestureLockComfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1CA21008F1B0059F856 /* GestureLockComfirmCoordinator.swift */; };
+		221EC1CF21008F1B0059F856 /* GestureLockComfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1CB21008F1B0059F856 /* GestureLockComfirmActions.swift */; };
+		221EC1D021008F1B0059F856 /* GestureLockComfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1CC21008F1B0059F856 /* GestureLockComfirmViewController.swift */; };
+		221EC1D121008F1B0059F856 /* GestureLockComfirmReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1CD21008F1B0059F856 /* GestureLockComfirmReducers.swift */; };
+		221EC1D3210094C80059F856 /* GestureLockRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1D2210094C80059F856 /* GestureLockRootCoordinator.swift */; };
+		221EC1D5210096AC0059F856 /* GestureLock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 221EC1D4210096AC0059F856 /* GestureLock.storyboard */; };
+		221EC1D72100A8D50059F856 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1D62100A8D50059F856 /* CGFloat+Extensions.swift */; };
 		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
 		22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */; };
 		22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239320F6FD5100284A0A /* EntryGuideActions.swift */; };
@@ -107,12 +118,6 @@
 		3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */; };
 		3BD3666F20FF0AF9004DE09D /* ScreenShotAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */; };
 		3BD366B721009DE0004DE09D /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366B621009DE0004DE09D /* UIFont+Additions.swift */; };
-		3BD366BC2100B172004DE09D /* ScreenShotAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366B82100B172004DE09D /* ScreenShotAlertCoordinator.swift */; };
-		3BD366BD2100B172004DE09D /* ScreenShotAlertActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366B92100B172004DE09D /* ScreenShotAlertActions.swift */; };
-		3BD366BE2100B172004DE09D /* ScreenShotAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366BA2100B172004DE09D /* ScreenShotAlertViewController.swift */; };
-		3BD366BF2100B172004DE09D /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366BB2100B172004DE09D /* ScreenShotAlertReducers.swift */; };
-		3BD366C12100B1BF004DE09D /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD366C02100B1BE004DE09D /* ScreenShotAlert.storyboard */; };
-		3BD366C521017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366C421017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift */; };
 		3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */ = {isa = PBXBuildFile; fileRef = F601AE09C748BD90FFF8C8744B7B621D /* fstream */; };
 		3CE0B916A6316D966E0AD0C04B7A8AD4 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F6796D1FBCF6CB7AAEF5B3655062A1 /* Rubik-Black.ttf */; };
 		3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380B8A6234BE07DE4B3CDE521A28F60 /* Colletion+Extensions.swift */; };
@@ -1945,9 +1950,20 @@
 		21F2DEF7A6E5BD249392B32F7483CCFF /* coordinate_cast.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = coordinate_cast.hpp; sourceTree = "<group>"; };
 		22021370A4E1DB9C69DFB89A17A42CEF /* lazy_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lazy_list.hpp; sourceTree = "<group>"; };
 		220D8011C26208853E13A42673CA56EF /* construct_funop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = construct_funop.hpp; sourceTree = "<group>"; };
-		221EC21F2102034B0059F856 /* GrowContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowContentView.swift; sourceTree = "<group>"; };
-		221EC2292104A1970059F856 /* GrowSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowSectionView.swift; sourceTree = "<group>"; };
-		221EC22C2104B8580059F856 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureInfoItemLayer.swift; sourceTree = "<group>"; };
+		221EC1BD210076C30059F856 /* GestureItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureItemLayer.swift; sourceTree = "<group>"; };
+		221EC1BF21007B510059F856 /* GestureLockSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockSetting.swift; sourceTree = "<group>"; };
+		221EC1C221008EF50059F856 /* GestureLockSetCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockSetCoordinator.swift; sourceTree = "<group>"; };
+		221EC1C321008EF50059F856 /* GestureLockSetActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockSetActions.swift; sourceTree = "<group>"; };
+		221EC1C421008EF50059F856 /* GestureLockSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockSetViewController.swift; sourceTree = "<group>"; };
+		221EC1C521008EF50059F856 /* GestureLockSetReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockSetReducers.swift; sourceTree = "<group>"; };
+		221EC1CA21008F1B0059F856 /* GestureLockComfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockComfirmCoordinator.swift; sourceTree = "<group>"; };
+		221EC1CB21008F1B0059F856 /* GestureLockComfirmActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockComfirmActions.swift; sourceTree = "<group>"; };
+		221EC1CC21008F1B0059F856 /* GestureLockComfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockComfirmViewController.swift; sourceTree = "<group>"; };
+		221EC1CD21008F1B0059F856 /* GestureLockComfirmReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockComfirmReducers.swift; sourceTree = "<group>"; };
+		221EC1D2210094C80059F856 /* GestureLockRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockRootCoordinator.swift; sourceTree = "<group>"; };
+		221EC1D4210096AC0059F856 /* GestureLock.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GestureLock.storyboard; sourceTree = "<group>"; };
+		221EC1D62100A8D50059F856 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		2223DC38DA66B9A99D6C5A939365FA2B /* op_queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = op_queue.hpp; sourceTree = "<group>"; };
 		2225C9F8F39A96051FCA2832A6B7CD4F /* cmath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cmath.hpp; sourceTree = "<group>"; };
 		222B4D3E4B886BD819F31FC35FD5E96E /* win_mutex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = win_mutex.hpp; sourceTree = "<group>"; };
@@ -3169,12 +3185,6 @@
 		3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertView.swift; sourceTree = "<group>"; };
 		3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenShotAlertView.xib; sourceTree = "<group>"; };
 		3BD366B621009DE0004DE09D /* UIFont+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Additions.swift"; sourceTree = "<group>"; };
-		3BD366B82100B172004DE09D /* ScreenShotAlertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertCoordinator.swift; sourceTree = "<group>"; };
-		3BD366B92100B172004DE09D /* ScreenShotAlertActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertActions.swift; sourceTree = "<group>"; };
-		3BD366BA2100B172004DE09D /* ScreenShotAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertViewController.swift; sourceTree = "<group>"; };
-		3BD366BB2100B172004DE09D /* ScreenShotAlertReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertReducers.swift; sourceTree = "<group>"; };
-		3BD366C02100B1BE004DE09D /* ScreenShotAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScreenShotAlert.storyboard; sourceTree = "<group>"; };
-		3BD366C421017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertRootCoordinator.swift; sourceTree = "<group>"; };
 		3BD4C916A39192D114FBEEE600033E2B /* buffered_stream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffered_stream.hpp; sourceTree = "<group>"; };
 		3BDA9B09D89E2B72CE5C65FA614ABC1B /* insert_range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = insert_range.hpp; sourceTree = "<group>"; };
 		3BE67FC625579D3EA5ED5446943EF95B /* blowfish.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blowfish.hpp; sourceTree = "<group>"; };
@@ -13061,6 +13071,7 @@
 				73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */,
 				73B5A68F20F5B54C00756391 /* String+Extensions.swift */,
 				73F30B4820F6F17B0016E950 /* UIViewController+Extensions.swift */,
+				221EC1D62100A8D50059F856 /* CGFloat+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -14171,7 +14182,6 @@
 		1D693EAC4EFE912D3F115C139DC846B0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				221EC21E210201CB0059F856 /* GrowContentView */,
 				22C023A920FCACFD00284A0A /* Scan */,
 				22C023A420FCABA600284A0A /* GestureLock */,
 				73B5A69F20F5EFF600756391 /* AttributeLabelView */,
@@ -14513,13 +14523,16 @@
 			path = detail;
 			sourceTree = "<group>";
 		};
-		221EC21E210201CB0059F856 /* GrowContentView */ = {
+		221EC1C121008DBB0059F856 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				221EC2292104A1970059F856 /* GrowSectionView.swift */,
-				221EC21F2102034B0059F856 /* GrowContentView.swift */,
+				22C023A720FCACE900284A0A /* GestureLockInfoView.swift */,
+				221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */,
+				22C023A520FCACA400284A0A /* GestureLockView.swift */,
+				221EC1BD210076C30059F856 /* GestureItemLayer.swift */,
+				221EC1BF21007B510059F856 /* GestureLockSetting.swift */,
 			);
-			path = GrowContentView;
+			path = View;
 			sourceTree = "<group>";
 		};
 		222180684335CBA4BF69CFAF78DF15B2 /* node */ = {
@@ -14611,8 +14624,17 @@
 		22C023A420FCABA600284A0A /* GestureLock */ = {
 			isa = PBXGroup;
 			children = (
-				22C023A720FCACE900284A0A /* GestureLockInfoView.swift */,
-				22C023A520FCACA400284A0A /* GestureLockView.swift */,
+				221EC1C121008DBB0059F856 /* View */,
+				221EC1C221008EF50059F856 /* GestureLockSetCoordinator.swift */,
+				221EC1C321008EF50059F856 /* GestureLockSetActions.swift */,
+				221EC1C421008EF50059F856 /* GestureLockSetViewController.swift */,
+				221EC1C521008EF50059F856 /* GestureLockSetReducers.swift */,
+				221EC1CA21008F1B0059F856 /* GestureLockComfirmCoordinator.swift */,
+				221EC1CB21008F1B0059F856 /* GestureLockComfirmActions.swift */,
+				221EC1CC21008F1B0059F856 /* GestureLockComfirmViewController.swift */,
+				221EC1CD21008F1B0059F856 /* GestureLockComfirmReducers.swift */,
+				221EC1D2210094C80059F856 /* GestureLockRootCoordinator.swift */,
+				221EC1D4210096AC0059F856 /* GestureLock.storyboard */,
 			);
 			path = GestureLock;
 			sourceTree = "<group>";
@@ -28719,7 +28741,6 @@
 				0B21F842EDAA2C738697E10E5E668845 /* BaseTableViewCell.swift */,
 				58C31E477791C74FBCB33C4FC946E170 /* BaseViewController.swift */,
 				4F8935C54739AEE59DA2310B17591480 /* BaseWebViewController.swift */,
-				221EC22C2104B8580059F856 /* BaseView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -31803,7 +31824,6 @@
 				7B1CEF30AADC2C46D737ADF198E7B1DE /* LaunchScreen.storyboard in Resources */,
 				4F54A816B50553869ECBE25FEB1B2533 /* LineView.xib in Resources */,
 				A561C0B98764E60251FBFA42445906D8 /* Localizable.strings in Resources */,
-				3BD366C12100B1BF004DE09D /* ScreenShotAlert.storyboard in Resources */,
 				1CB8E8A9088DF72B62548F44722FCA54 /* PaymentsRecordsCell.xib in Resources */,
 				3D9B3F0AA71337690260155024A06E58 /* PaymentsRecordsCellView.xib in Resources */,
 				7224713C20F624DC00536BF4 /* HomeTopView.xib in Resources */,
@@ -31838,6 +31858,7 @@
 				C94B5818C99B648CF164FD0433A0EB01 /* bitset.SUNWCCh in Resources */,
 				3EB725F5715CD5F10C3BA10D8EF4447A /* block_header.hpp.bk in Resources */,
 				AACEB0A4AEC8DE4B8F9DBC239E3C0A91 /* cassert in Resources */,
+				221EC1D5210096AC0059F856 /* GestureLock.storyboard in Resources */,
 				9E97878370D74707276FBF9BBA8D743A /* cctype in Resources */,
 				ADE7267F0B6879C9942F493B846F45DC /* cerrno in Resources */,
 				54BBE320D1C2E40143921B8B554A3E6F /* cfloat in Resources */,
@@ -32175,7 +32196,6 @@
 				2F66B28CD7C7315E43063215716C3F06 /* Account.swift in Sources */,
 				72FE5B652100491300B29FEC /* ServersViewController.swift in Sources */,
 				C73324715ED7A5B530EC3656557D421F /* AccountInfoView.swift in Sources */,
-				3BD366BE2100B172004DE09D /* ScreenShotAlertViewController.swift in Sources */,
 				417C7C9D234791A2280A26237B79A7D0 /* AppAction.swift in Sources */,
 				7224713A20F624D200536BF4 /* HomeTopView.swift in Sources */,
 				72FE5B562100490200B29FEC /* SafeReducers.swift in Sources */,
@@ -32183,10 +32203,10 @@
 				089FC61F5C404D8812055FF8F62C5183 /* AppDelegate.swift in Sources */,
 				C10A4AC7FCB160CCFE2C82D6BBAC4A64 /* AppReducer.swift in Sources */,
 				A58426FF8A514CDE712EB97BAB795BB3 /* BaseCollectionViewCell.swift in Sources */,
-				221EC2202102034B0059F856 /* GrowContentView.swift in Sources */,
 				72FE5B5D2100490B00B29FEC /* HelpViewController.swift in Sources */,
 				A6EFBB3B53A79BD8C9D018099642EB76 /* BaseNavigationController.swift in Sources */,
 				559E64A356046CB84C6A9B9B07E012E7 /* BaseTabbarViewController.swift in Sources */,
+				221EC1CE21008F1B0059F856 /* GestureLockComfirmCoordinator.swift in Sources */,
 				22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */,
 				73B5A69920F5DFF400756391 /* ColorTheme.swift in Sources */,
 				4E8664CF0182B65EC69790B3811E80C3 /* BaseTableViewCell.swift in Sources */,
@@ -32196,6 +32216,7 @@
 				3BD3664520F72914004DE09D /* TransferConfirmRootCoordinator.swift in Sources */,
 				3B4C90FC20F4D686004F4C52 /* PaymentsDetailActions.swift in Sources */,
 				3B4C90FE20F4D686004F4C52 /* PaymentsDetailReducers.swift in Sources */,
+				221EC1C621008EF50059F856 /* GestureLockSetCoordinator.swift in Sources */,
 				22C023A020F6FDB900284A0A /* CreatationCompleteActions.swift in Sources */,
 				72101690210197C10059B37E /* WalletCoordinator.swift in Sources */,
 				721016A1210197C10059B37E /* WalletManagerCoordinator.swift in Sources */,
@@ -32209,7 +32230,6 @@
 				7210169A210197C10059B37E /* ChangeWalletNameView.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
 				22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */,
-				3BD366BC2100B172004DE09D /* ScreenShotAlertCoordinator.swift in Sources */,
 				72FE5B6D2100491A00B29FEC /* AboutViewController.swift in Sources */,
 				22C023AF20FCB09300284A0A /* ScanCoordinator.swift in Sources */,
 				72FE5B7621006B0700B29FEC /* NormalContentViewController.swift in Sources */,
@@ -32225,7 +32245,6 @@
 				7210169F210197C10059B37E /* WalletManagerView.swift in Sources */,
 				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
 				0795BFD28C42BE58BB94BAA17ADB6B91 /* EOSIO.mm in Sources */,
-				221EC22D2104B8580059F856 /* BaseView.swift in Sources */,
 				72101697210197C10059B37E /* ChangeWalletNameViewController.swift in Sources */,
 				7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */,
 				72FE5B6B2100491A00B29FEC /* AboutCoordinator.swift in Sources */,
@@ -32236,7 +32255,6 @@
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
 				22C023BD20FEF0A300284A0A /* ScanRootCoordinator.swift in Sources */,
 				73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */,
-				3BD366C521017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift in Sources */,
 				9CD3F0FA07578C28658D2A1189A8E39D /* EOSIONetworkService.swift in Sources */,
 				C9BB02B547453DD0482F5745ADB47B83 /* EntryActions.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
@@ -32244,6 +32262,7 @@
 				72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */,
 				57988B0F4659572FB0099493045E18EE /* EntryReducers.swift in Sources */,
 				73B5A6AD20F601DE00756391 /* Payment.swift in Sources */,
+				221EC1C921008EF50059F856 /* GestureLockSetReducers.swift in Sources */,
 				E31116402719BEFB4AF172D69330D582 /* EntryRootCoordinator.swift in Sources */,
 				73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */,
 				73B5A6A820F5F62D00756391 /* AttributeStyle.swift in Sources */,
@@ -32263,12 +32282,14 @@
 				72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */,
 				632FADFC1004A95370F910B28F2B1B3B /* Localzation+Extensions.swift in Sources */,
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
+				221EC1D3210094C80059F856 /* GestureLockRootCoordinator.swift in Sources */,
 				72FE5B8821009E4D00B29FEC /* LeadInCoordinator.swift in Sources */,
 				72FE5B8B21009E4D00B29FEC /* LeadInReducers.swift in Sources */,
 				72FE5B4C210048F500B29FEC /* NormalActions.swift in Sources */,
 				72FE5B5E2100490B00B29FEC /* HelpReducers.swift in Sources */,
 				3BD3664C20F72B5E004DE09D /* TransferConfirmPasswordViewController.swift in Sources */,
 				1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */,
+				221EC1D121008F1B0059F856 /* GestureLockComfirmReducers.swift in Sources */,
 				73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */,
 				72FE5B5C2100490B00B29FEC /* HelpActions.swift in Sources */,
 				73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */,
@@ -32278,6 +32299,7 @@
 				22C023A620FCACA400284A0A /* GestureLockView.swift in Sources */,
 				72FE5B9021009EE300B29FEC /* LeadInIntroduceView.swift in Sources */,
 				22C023B120FCB09300284A0A /* ScanViewController.swift in Sources */,
+				221EC1CF21008F1B0059F856 /* GestureLockComfirmActions.swift in Sources */,
 				08979875F7919749EE9911341C1DA85E /* NavCoordinator.swift in Sources */,
 				72101698210197C10059B37E /* ChangeWalletNameCoordinator.swift in Sources */,
 				725F68052101B8E50006BBA1 /* SetWalletActions.swift in Sources */,
@@ -32287,7 +32309,6 @@
 				73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */,
 				3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */,
 				22C023A220F6FDB900284A0A /* CreatationCompleteReducers.swift in Sources */,
-				221EC22A2104A1970059F856 /* GrowSectionView.swift in Sources */,
 				2B427CD0E35711458F16196E6587BA7A /* PaymentsRecordsCellView.swift in Sources */,
 				7210168F210197C10059B37E /* WalletReducers.swift in Sources */,
 				72FE5B7521006B0700B29FEC /* NormalContentActions.swift in Sources */,
@@ -32311,13 +32332,15 @@
 				725F68072101B8E50006BBA1 /* SetWalletReducers.swift in Sources */,
 				73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */,
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
-				3BD366BD2100B172004DE09D /* ScreenShotAlertActions.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
 				22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */,
+				221EC1D021008F1B0059F856 /* GestureLockComfirmViewController.swift in Sources */,
 				22C023B020FCB09300284A0A /* ScanActions.swift in Sources */,
 				73F30B4320F6E6FF0016E950 /* UserInfoViewController.swift in Sources */,
+				221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */,
 				727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */,
 				3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */,
+				221EC1D72100A8D50059F856 /* CGFloat+Extensions.swift in Sources */,
 				3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */,
 				7224712920F57BA800536BF4 /* TransferCoordinator.swift in Sources */,
 				3B4C90FD20F4D686004F4C52 /* PaymentsDetailViewController.swift in Sources */,
@@ -32326,6 +32349,8 @@
 				7224712A20F57BA800536BF4 /* TransferActions.swift in Sources */,
 				72FE5B4E210048F500B29FEC /* NormalReducers.swift in Sources */,
 				7224713220F5F92B00536BF4 /* HomeHeaderView.swift in Sources */,
+				221EC1C721008EF50059F856 /* GestureLockSetActions.swift in Sources */,
+				221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */,
 				3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */,
 				72FE5B8921009E4D00B29FEC /* LeadInActions.swift in Sources */,
 				3BD3666320FDEB76004DE09D /* TitleTextView.swift in Sources */,
@@ -32334,6 +32359,7 @@
 				AD352B30A178C8A63FF0D742FDFD3081 /* UIImageView+Additions.swift in Sources */,
 				73F30B4720F6E7410016E950 /* UserInfoRootCoordinator.swift in Sources */,
 				6F3BB5C8972D01A3B05201EC928A1021 /* UIResponder+Extensions.swift in Sources */,
+				221EC1C821008EF50059F856 /* GestureLockSetViewController.swift in Sources */,
 				72FE5B632100491300B29FEC /* ServersCoordinator.swift in Sources */,
 				703AA2BBC02CA49A0C74B4880E75F696 /* UIView+Extensions.swift in Sources */,
 				73F30B4920F6F17B0016E950 /* UIViewController+Extensions.swift in Sources */,
@@ -32354,6 +32380,7 @@
 				22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */,
 				3BD3665C20FDEB3A004DE09D /* CornerAndShadowView.swift in Sources */,
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
+				221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */,
 				177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */,
 				72FE5B532100490200B29FEC /* SafeCoordinator.swift in Sources */,
 				3B4C90F320F4CDDC004F4C52 /* PaymentsReducers.swift in Sources */,
