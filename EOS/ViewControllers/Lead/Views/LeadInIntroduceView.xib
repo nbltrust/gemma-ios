@@ -10,13 +10,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeadInIntroduceView" customModule="EOS" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeadInIntroduceView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="beginLeadIn" destination="ek8-qc-A9z" id="99O-hm-EiB"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="G3P-vB-bXe">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VqO-dG-iJd">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="import_the_wallet" translatesAutoresizingMaskIntoConstraints="NO" id="VqO-dG-iJd">
                     <rect key="frame" x="160" y="84" width="54" height="54"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="54" id="A6r-iy-e8c"/>
@@ -100,4 +104,7 @@
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="import_the_wallet" width="54" height="54"/>
+    </resources>
 </document>

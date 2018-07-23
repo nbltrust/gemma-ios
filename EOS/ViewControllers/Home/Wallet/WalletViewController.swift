@@ -101,6 +101,10 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 && indexPath.row == 0 {
+            self.coordinator?.pushToLeadInWallet()
+            return
+        }
         switch indexPath.row {
         case 0:self.coordinator?.pushToWalletManager()
         case 1:return
