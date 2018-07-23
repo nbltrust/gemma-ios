@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Gesture Lock Comfirm View Controller-->
+        <scene sceneID="oIa-rz-ZA9">
+            <objects>
+                <viewController storyboardIdentifier="GestureLockComfirmViewController" id="jlM-Pa-9da" customClass="GestureLockComfirmViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Z8-B4-eBN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jhR-7k-wWQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wm9-kd-li1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4" y="118"/>
+        </scene>
+        <!--Gesture Lock Set View Controller-->
+        <scene sceneID="czK-aT-RDg">
+            <objects>
+                <viewController storyboardIdentifier="GestureLockSetViewController" id="ctc-gH-D4L" customClass="GestureLockSetViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YBe-Xc-VRP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BD3-UH-pa1" customClass="GestureLockInfoView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="162.5" y="70" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="XML-Bz-cVo"/>
+                                    <constraint firstAttribute="height" constant="50" id="irZ-n7-KgU"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxN-hc-kV8">
+                                <rect key="frame" x="16" y="145" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="klH-eR-Ff3" customClass="GestureLockView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="185" width="375" height="275"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="275" id="oN5-47-CwA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="klH-eR-Ff3" firstAttribute="top" secondItem="JxN-hc-kV8" secondAttribute="bottom" constant="40" id="Bae-fH-67V"/>
+                            <constraint firstItem="BD3-UH-pa1" firstAttribute="centerX" secondItem="YBe-Xc-VRP" secondAttribute="centerX" id="Zfw-ri-p9G"/>
+                            <constraint firstItem="BD3-UH-pa1" firstAttribute="top" secondItem="YTC-Lw-fTq" secondAttribute="top" constant="50" id="bjl-br-GZt"/>
+                            <constraint firstItem="JxN-hc-kV8" firstAttribute="top" secondItem="BD3-UH-pa1" secondAttribute="bottom" constant="25" id="ji1-d5-ixL"/>
+                            <constraint firstItem="YTC-Lw-fTq" firstAttribute="trailing" secondItem="JxN-hc-kV8" secondAttribute="trailing" constant="16" id="po3-pL-Zgz"/>
+                            <constraint firstItem="klH-eR-Ff3" firstAttribute="leading" secondItem="YTC-Lw-fTq" secondAttribute="leading" id="rac-pc-6Wn"/>
+                            <constraint firstItem="JxN-hc-kV8" firstAttribute="leading" secondItem="YTC-Lw-fTq" secondAttribute="leading" constant="16" id="tJh-K3-89T"/>
+                            <constraint firstItem="YTC-Lw-fTq" firstAttribute="trailing" secondItem="klH-eR-Ff3" secondAttribute="trailing" id="vNp-gR-inQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YTC-Lw-fTq"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoView" destination="BD3-UH-pa1" id="4dD-ZC-IY0"/>
+                        <outlet property="lockView" destination="klH-eR-Ff3" id="jaJ-SY-6cI"/>
+                        <outlet property="messageLabel" destination="JxN-hc-kV8" id="tLk-4l-DY3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dIy-i1-NoH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="629" y="115"/>
+        </scene>
+    </scenes>
+</document>

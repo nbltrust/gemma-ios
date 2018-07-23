@@ -19,6 +19,18 @@ class LeadInViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    func setupUI() {
+       
+        self.title = R.string.localizable.lead_in()
+        self.configRightNavButton(R.image.scan_qr_code())
+        
+    }
+    
+    override func rightAction(_ sender: UIButton) {
+        
     }
     
     func commonObserveState() {
@@ -38,5 +50,14 @@ class LeadInViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+    }
+}
+
+extension LeadInViewController {
+    @objc func switchToKeyView(_ sender : [String:Any]) {
+        self.scrollView.setContentOffset(CGPoint(x: self.view.width, y: 0), animated: true)
+    }
+    @objc func beginLeadInAction(_ sender : [String:Any]) {
+        self.coordinator?.openSetWallet()
     }
 }

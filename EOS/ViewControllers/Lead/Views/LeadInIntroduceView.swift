@@ -10,12 +10,25 @@ import UIKit
 
 class LeadInIntroduceView: UIView {
 
-
+    enum event_name : String {
+        case switchToKeyView
+    }
+    @IBOutlet weak var beginLeadIn: Button!
+    
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
     }
     
+    
+    
+    
     func setup() {
+        
+        beginLeadIn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            self.next?.sendEventWith(event_name.switchToKeyView.rawValue, userinfo: ["data":""])
+        }).disposed(by: disposeBag)
+        
 
     }
     
@@ -58,3 +71,4 @@ class LeadInIntroduceView: UIView {
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 }
+
