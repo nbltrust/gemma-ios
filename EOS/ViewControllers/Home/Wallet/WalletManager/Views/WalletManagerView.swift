@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol WalletManagerViewDelegate: NSObjectProtocol {
-    func walletNameLabelTap(walletName: UILabel)
-    func exportPrivateKeyLineViewTap(exportPrivateKey: LineView)
-    func changePasswordLineViewTap(changePassword: LineView)
-
-}
+//protocol WalletManagerViewDelegate: NSObjectProtocol {
+//    func walletNameLabelTap(walletName: UILabel)
+//    func exportPrivateKeyLineViewTap(exportPrivateKey: LineView)
+//    func changePasswordLineViewTap(changePassword: LineView)
+//
+//}
 
 class WalletManagerView: UIView {
     
@@ -24,7 +24,11 @@ class WalletManagerView: UIView {
     
     @IBOutlet weak var walletNameView: CornerAndShadowView!
     
-    weak var delegate: WalletManagerViewDelegate?
+    enum event: String {
+        case wallNameClick
+        case exportPrivateKeyClick
+        case changePasswordClick
+    }
     
     var data : Any? {
         didSet {
@@ -55,31 +59,26 @@ class WalletManagerView: UIView {
     }
     
     func setUpEvent() {
-        walletNameView.isUserInteractionEnabled = true
-        let nameTap = UITapGestureRecognizer.init(target: self, action: #selector(nameTapClick))
-        walletNameView.addGestureRecognizer(nameTap)
+        walletNameView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            
+            self.walletNameView.next?.sendEventWith(event.wallNameClick.rawValue, userinfo: ["indicator": self.data ?? []])
+            
+        }).disposed(by: disposeBag)
         
-        exportPrivateKeyLineView.isUserInteractionEnabled = true
-        let exportPrivateKeyTap = UITapGestureRecognizer.init(target: self, action: #selector(exportPrivateKeyTapClick))
-        exportPrivateKeyLineView.addGestureRecognizer(exportPrivateKeyTap)
+        exportPrivateKeyLineView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            
+            self.exportPrivateKeyLineView.next?.sendEventWith(event.exportPrivateKeyClick.rawValue, userinfo: ["indicator": self.data ?? []])
+            
+        }).disposed(by: disposeBag)
         
-        changePasswordLineView.isUserInteractionEnabled = true
-        let changePasswordTap = UITapGestureRecognizer.init(target: self, action: #selector(changePasswordTapClick))
-        changePasswordLineView.addGestureRecognizer(changePasswordTap)
-        
-    }
-    
-    @objc func nameTapClick() {
-        delegate?.walletNameLabelTap(walletName: walletNameLabel)
-    }
-    
-    @objc func exportPrivateKeyTapClick() {
-        delegate?.exportPrivateKeyLineViewTap(exportPrivateKey: exportPrivateKeyLineView)
-    }
-    
-    @objc func changePasswordTapClick() {
-        delegate?.changePasswordLineViewTap(changePassword: changePasswordLineView)
-
+        changePasswordLineView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            
+            self.changePasswordLineView.next?.sendEventWith(event.changePasswordClick.rawValue, userinfo: ["indicator": self.data ?? []])
+            
+        }).disposed(by: disposeBag)
     }
     
     override var intrinsicContentSize: CGSize {

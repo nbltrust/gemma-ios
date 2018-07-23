@@ -38,7 +38,7 @@ class SetWalletViewController: BaseViewController {
             
         }).disposed(by: disposeBag)
         
-        protocolLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+        servers.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
             self.coordinator?.pushToServiceProtocolVC()
         }).disposed(by: disposeBag)

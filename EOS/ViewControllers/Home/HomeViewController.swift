@@ -33,7 +33,7 @@ class HomeViewController: BaseViewController {
     }
     
     func setupUI(){
-        self.configRightNavButton(#imageLiteral(resourceName: "walletAdd"))
+        self.configRightNavButton(R.image.walletAdd())
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         

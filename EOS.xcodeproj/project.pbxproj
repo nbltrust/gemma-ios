@@ -35,6 +35,9 @@
 		1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF12070D1BC34F8C65F6079CC156E0B /* NSObject+Extensions.swift */; };
 		2154824915CF85B858D26F531215E1F8 /* climits in Resources */ = {isa = PBXBuildFile; fileRef = A56465013122603CC96F76E2942D687D /* climits */; };
 		21FFD61029C1653D163BDA1A64136F4B /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FFEDC6C6AFC706ED9DCB24098C23A1 /* libboost_regex.a */; };
+		221EC2202102034B0059F856 /* GrowContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC21F2102034B0059F856 /* GrowContentView.swift */; };
+		221EC22A2104A1970059F856 /* GrowSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC2292104A1970059F856 /* GrowSectionView.swift */; };
+		221EC22D2104B8580059F856 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC22C2104B8580059F856 /* BaseView.swift */; };
 		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
 		22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */; };
 		22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239320F6FD5100284A0A /* EntryGuideActions.swift */; };
@@ -104,6 +107,12 @@
 		3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */; };
 		3BD3666F20FF0AF9004DE09D /* ScreenShotAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */; };
 		3BD366B721009DE0004DE09D /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366B621009DE0004DE09D /* UIFont+Additions.swift */; };
+		3BD366BC2100B172004DE09D /* ScreenShotAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366B82100B172004DE09D /* ScreenShotAlertCoordinator.swift */; };
+		3BD366BD2100B172004DE09D /* ScreenShotAlertActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366B92100B172004DE09D /* ScreenShotAlertActions.swift */; };
+		3BD366BE2100B172004DE09D /* ScreenShotAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366BA2100B172004DE09D /* ScreenShotAlertViewController.swift */; };
+		3BD366BF2100B172004DE09D /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366BB2100B172004DE09D /* ScreenShotAlertReducers.swift */; };
+		3BD366C12100B1BF004DE09D /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD366C02100B1BE004DE09D /* ScreenShotAlert.storyboard */; };
+		3BD366C521017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366C421017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift */; };
 		3C23AEDB3C6FCE57203D0D2AC47ED0C7 /* fstream in Resources */ = {isa = PBXBuildFile; fileRef = F601AE09C748BD90FFF8C8744B7B621D /* fstream */; };
 		3CE0B916A6316D966E0AD0C04B7A8AD4 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F6796D1FBCF6CB7AAEF5B3655062A1 /* Rubik-Black.ttf */; };
 		3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380B8A6234BE07DE4B3CDE521A28F60 /* Colletion+Extensions.swift */; };
@@ -1936,6 +1945,9 @@
 		21F2DEF7A6E5BD249392B32F7483CCFF /* coordinate_cast.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = coordinate_cast.hpp; sourceTree = "<group>"; };
 		22021370A4E1DB9C69DFB89A17A42CEF /* lazy_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lazy_list.hpp; sourceTree = "<group>"; };
 		220D8011C26208853E13A42673CA56EF /* construct_funop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = construct_funop.hpp; sourceTree = "<group>"; };
+		221EC21F2102034B0059F856 /* GrowContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowContentView.swift; sourceTree = "<group>"; };
+		221EC2292104A1970059F856 /* GrowSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowSectionView.swift; sourceTree = "<group>"; };
+		221EC22C2104B8580059F856 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		2223DC38DA66B9A99D6C5A939365FA2B /* op_queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = op_queue.hpp; sourceTree = "<group>"; };
 		2225C9F8F39A96051FCA2832A6B7CD4F /* cmath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cmath.hpp; sourceTree = "<group>"; };
 		222B4D3E4B886BD819F31FC35FD5E96E /* win_mutex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = win_mutex.hpp; sourceTree = "<group>"; };
@@ -3157,6 +3169,12 @@
 		3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertView.swift; sourceTree = "<group>"; };
 		3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenShotAlertView.xib; sourceTree = "<group>"; };
 		3BD366B621009DE0004DE09D /* UIFont+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Additions.swift"; sourceTree = "<group>"; };
+		3BD366B82100B172004DE09D /* ScreenShotAlertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertCoordinator.swift; sourceTree = "<group>"; };
+		3BD366B92100B172004DE09D /* ScreenShotAlertActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertActions.swift; sourceTree = "<group>"; };
+		3BD366BA2100B172004DE09D /* ScreenShotAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertViewController.swift; sourceTree = "<group>"; };
+		3BD366BB2100B172004DE09D /* ScreenShotAlertReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertReducers.swift; sourceTree = "<group>"; };
+		3BD366C02100B1BE004DE09D /* ScreenShotAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScreenShotAlert.storyboard; sourceTree = "<group>"; };
+		3BD366C421017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertRootCoordinator.swift; sourceTree = "<group>"; };
 		3BD4C916A39192D114FBEEE600033E2B /* buffered_stream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffered_stream.hpp; sourceTree = "<group>"; };
 		3BDA9B09D89E2B72CE5C65FA614ABC1B /* insert_range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = insert_range.hpp; sourceTree = "<group>"; };
 		3BE67FC625579D3EA5ED5446943EF95B /* blowfish.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blowfish.hpp; sourceTree = "<group>"; };
@@ -14153,6 +14171,7 @@
 		1D693EAC4EFE912D3F115C139DC846B0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				221EC21E210201CB0059F856 /* GrowContentView */,
 				22C023A920FCACFD00284A0A /* Scan */,
 				22C023A420FCABA600284A0A /* GestureLock */,
 				73B5A69F20F5EFF600756391 /* AttributeLabelView */,
@@ -14494,6 +14513,15 @@
 			path = detail;
 			sourceTree = "<group>";
 		};
+		221EC21E210201CB0059F856 /* GrowContentView */ = {
+			isa = PBXGroup;
+			children = (
+				221EC2292104A1970059F856 /* GrowSectionView.swift */,
+				221EC21F2102034B0059F856 /* GrowContentView.swift */,
+			);
+			path = GrowContentView;
+			sourceTree = "<group>";
+		};
 		222180684335CBA4BF69CFAF78DF15B2 /* node */ = {
 			isa = PBXGroup;
 			children = (
@@ -14771,6 +14799,12 @@
 			isa = PBXGroup;
 			children = (
 				725F67FF2101B8B40006BBA1 /* SetWallet */,
+				3BD366B82100B172004DE09D /* ScreenShotAlertCoordinator.swift */,
+				3BD366C421017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift */,
+				3BD366B92100B172004DE09D /* ScreenShotAlertActions.swift */,
+				3BD366BA2100B172004DE09D /* ScreenShotAlertViewController.swift */,
+				3BD366BB2100B172004DE09D /* ScreenShotAlertReducers.swift */,
+				3BD366C02100B1BE004DE09D /* ScreenShotAlert.storyboard */,
 				72FE5B8321009D0A00B29FEC /* Lead */,
 				73F30B3B20F6E6E30016E950 /* UserInfo */,
 				3B4C90D920F48C51004F4C52 /* Transfer */,
@@ -28685,6 +28719,7 @@
 				0B21F842EDAA2C738697E10E5E668845 /* BaseTableViewCell.swift */,
 				58C31E477791C74FBCB33C4FC946E170 /* BaseViewController.swift */,
 				4F8935C54739AEE59DA2310B17591480 /* BaseWebViewController.swift */,
+				221EC22C2104B8580059F856 /* BaseView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -31768,6 +31803,7 @@
 				7B1CEF30AADC2C46D737ADF198E7B1DE /* LaunchScreen.storyboard in Resources */,
 				4F54A816B50553869ECBE25FEB1B2533 /* LineView.xib in Resources */,
 				A561C0B98764E60251FBFA42445906D8 /* Localizable.strings in Resources */,
+				3BD366C12100B1BF004DE09D /* ScreenShotAlert.storyboard in Resources */,
 				1CB8E8A9088DF72B62548F44722FCA54 /* PaymentsRecordsCell.xib in Resources */,
 				3D9B3F0AA71337690260155024A06E58 /* PaymentsRecordsCellView.xib in Resources */,
 				7224713C20F624DC00536BF4 /* HomeTopView.xib in Resources */,
@@ -32139,6 +32175,7 @@
 				2F66B28CD7C7315E43063215716C3F06 /* Account.swift in Sources */,
 				72FE5B652100491300B29FEC /* ServersViewController.swift in Sources */,
 				C73324715ED7A5B530EC3656557D421F /* AccountInfoView.swift in Sources */,
+				3BD366BE2100B172004DE09D /* ScreenShotAlertViewController.swift in Sources */,
 				417C7C9D234791A2280A26237B79A7D0 /* AppAction.swift in Sources */,
 				7224713A20F624D200536BF4 /* HomeTopView.swift in Sources */,
 				72FE5B562100490200B29FEC /* SafeReducers.swift in Sources */,
@@ -32146,6 +32183,7 @@
 				089FC61F5C404D8812055FF8F62C5183 /* AppDelegate.swift in Sources */,
 				C10A4AC7FCB160CCFE2C82D6BBAC4A64 /* AppReducer.swift in Sources */,
 				A58426FF8A514CDE712EB97BAB795BB3 /* BaseCollectionViewCell.swift in Sources */,
+				221EC2202102034B0059F856 /* GrowContentView.swift in Sources */,
 				72FE5B5D2100490B00B29FEC /* HelpViewController.swift in Sources */,
 				A6EFBB3B53A79BD8C9D018099642EB76 /* BaseNavigationController.swift in Sources */,
 				559E64A356046CB84C6A9B9B07E012E7 /* BaseTabbarViewController.swift in Sources */,
@@ -32171,6 +32209,7 @@
 				7210169A210197C10059B37E /* ChangeWalletNameView.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
 				22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */,
+				3BD366BC2100B172004DE09D /* ScreenShotAlertCoordinator.swift in Sources */,
 				72FE5B6D2100491A00B29FEC /* AboutViewController.swift in Sources */,
 				22C023AF20FCB09300284A0A /* ScanCoordinator.swift in Sources */,
 				72FE5B7621006B0700B29FEC /* NormalContentViewController.swift in Sources */,
@@ -32186,6 +32225,7 @@
 				7210169F210197C10059B37E /* WalletManagerView.swift in Sources */,
 				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
 				0795BFD28C42BE58BB94BAA17ADB6B91 /* EOSIO.mm in Sources */,
+				221EC22D2104B8580059F856 /* BaseView.swift in Sources */,
 				72101697210197C10059B37E /* ChangeWalletNameViewController.swift in Sources */,
 				7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */,
 				72FE5B6B2100491A00B29FEC /* AboutCoordinator.swift in Sources */,
@@ -32196,6 +32236,7 @@
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
 				22C023BD20FEF0A300284A0A /* ScanRootCoordinator.swift in Sources */,
 				73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */,
+				3BD366C521017E7F004DE09D /* ScreenShotAlertRootCoordinator.swift in Sources */,
 				9CD3F0FA07578C28658D2A1189A8E39D /* EOSIONetworkService.swift in Sources */,
 				C9BB02B547453DD0482F5745ADB47B83 /* EntryActions.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
@@ -32246,6 +32287,7 @@
 				73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */,
 				3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */,
 				22C023A220F6FDB900284A0A /* CreatationCompleteReducers.swift in Sources */,
+				221EC22A2104A1970059F856 /* GrowSectionView.swift in Sources */,
 				2B427CD0E35711458F16196E6587BA7A /* PaymentsRecordsCellView.swift in Sources */,
 				7210168F210197C10059B37E /* WalletReducers.swift in Sources */,
 				72FE5B7521006B0700B29FEC /* NormalContentActions.swift in Sources */,
@@ -32261,12 +32303,15 @@
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				7224714A20F76B4600536BF4 /* DetailView.swift in Sources */,
 				725F68062101B8E50006BBA1 /* SetWalletViewController.swift in Sources */,
+				3BD366BF2100B172004DE09D /* ScreenShotAlertReducers.swift in Sources */,
+				3BD366AF210080B4004DE09D /* ChangeWalletNameViewController.swift in Sources */,
 				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
 				73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */,
 				725F68072101B8E50006BBA1 /* SetWalletReducers.swift in Sources */,
 				73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */,
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
+				3BD366BD2100B172004DE09D /* ScreenShotAlertActions.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
 				22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */,
 				22C023B020FCB09300284A0A /* ScanActions.swift in Sources */,
