@@ -15,7 +15,8 @@ class WalletManagerViewController: BaseViewController {
 
     @IBOutlet weak var walletManagerView: WalletManagerView!
     var coordinator: (WalletManagerCoordinatorProtocol & WalletManagerStateManagerProtocol)?
-
+    var data = WalletManagerModel()
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
@@ -23,7 +24,7 @@ class WalletManagerViewController: BaseViewController {
     
     func setUpUI() {
         self.title = R.string.localizable.manager_wallet()
-//        walletManagerView.delegate = self
+        walletManagerView.data = data
     }
     
     func commonObserveState() {
@@ -48,7 +49,8 @@ class WalletManagerViewController: BaseViewController {
 
 extension WalletManagerViewController {
     @objc func wallNameClick(_ data: [String: Any]) {
-        self.coordinator?.pushToChangeWalletName(name: "")
+        let model: WalletManagerModel = data["indicator"] as! WalletManagerModel
+        self.coordinator?.pushToChangeWalletName(name: model.name)
     }
     
     @objc func exportPrivateKeyClick(_ data: [String: Any]) {

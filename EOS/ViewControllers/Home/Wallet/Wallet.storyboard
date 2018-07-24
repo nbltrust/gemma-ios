@@ -106,6 +106,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zTI-J4-w8z"/>
                     </view>
+                    <connections>
+                        <outlet property="changeWalletNameView" destination="s9p-yQ-oeo" id="mKr-ci-2YQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sk5-Fy-XYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

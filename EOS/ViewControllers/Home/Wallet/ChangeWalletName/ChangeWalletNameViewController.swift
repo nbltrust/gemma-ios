@@ -14,14 +14,18 @@ import ReSwift
 class ChangeWalletNameViewController: BaseViewController {
 
 	var coordinator: (ChangeWalletNameCoordinatorProtocol & ChangeWalletNameStateManagerProtocol)?
-
-	override func viewDidLoad() {
+    var name: String = "-"
+    
+    @IBOutlet weak var changeWalletNameView: ChangeWalletNameView!
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
     }
     
     func setUpUI() {
         self.title = R.string.localizable.change_wallet_name()
+        changeWalletNameView.text = name
     }
     
     func commonObserveState() {
