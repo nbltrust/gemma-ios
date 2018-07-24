@@ -16,6 +16,7 @@ func TransferReducer(action:Action, state:TransferState?) -> TransferState {
 func TransferPropertyReducer(_ state: TransferPropertyState?, action: Action) -> TransferPropertyState {
     var state = state ?? TransferPropertyState()
     
+    
     switch action {
     case let action as BalanceFetchedAction:
         if let balance = action.balance.arrayValue.first?.string {

@@ -24,46 +24,46 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-ET-PPs" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-ye-AF6" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="72" width="375" height="90"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0M-Q5-YdH" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="162" width="375" height="90"/>
+                    <rect key="frame" x="0.0" y="200" width="375" height="65.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8m-6B-Aoo" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="252" width="375" height="90"/>
+                    <rect key="frame" x="0.0" y="281" width="375" height="65.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-Dt-GCr" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="342" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="400" width="375" height="65.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-ye-AF6" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="93" width="375" height="65.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="s0M-Q5-YdH" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="45a-Nw-YdL"/>
-                <constraint firstItem="9qd-Dt-GCr" firstAttribute="top" secondItem="g8m-6B-Aoo" secondAttribute="bottom" id="4CO-AK-bmf"/>
-                <constraint firstItem="g8m-6B-Aoo" firstAttribute="top" secondItem="s0M-Q5-YdH" secondAttribute="bottom" id="6j0-Ir-Cze"/>
-                <constraint firstItem="g8m-6B-Aoo" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="Fip-AX-F14"/>
-                <constraint firstAttribute="trailing" secondItem="9qd-Dt-GCr" secondAttribute="trailing" id="GNa-ji-K8M"/>
-                <constraint firstItem="7eI-ET-PPs" firstAttribute="top" secondItem="dZe-KR-nHX" secondAttribute="top" id="IAd-zt-v1A"/>
-                <constraint firstAttribute="trailing" secondItem="hhP-ye-AF6" secondAttribute="trailing" id="JKQ-6Q-yFd"/>
-                <constraint firstItem="s0M-Q5-YdH" firstAttribute="top" secondItem="hhP-ye-AF6" secondAttribute="bottom" id="Jva-gs-ptH"/>
-                <constraint firstAttribute="trailing" secondItem="s0M-Q5-YdH" secondAttribute="trailing" id="Pdg-7o-hE5"/>
-                <constraint firstItem="hhP-ye-AF6" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="UDE-w2-FXZ"/>
-                <constraint firstItem="7eI-ET-PPs" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="Z1n-ZR-5fV"/>
-                <constraint firstItem="9qd-Dt-GCr" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="dqC-vA-RXd"/>
-                <constraint firstItem="hhP-ye-AF6" firstAttribute="top" secondItem="7eI-ET-PPs" secondAttribute="bottom" id="fUA-Ul-S5g"/>
-                <constraint firstAttribute="trailing" secondItem="7eI-ET-PPs" secondAttribute="trailing" id="pSl-mR-NZ5"/>
-                <constraint firstAttribute="trailing" secondItem="g8m-6B-Aoo" secondAttribute="trailing" id="ree-jr-UkQ"/>
+                <constraint firstItem="g8m-6B-Aoo" firstAttribute="top" secondItem="s0M-Q5-YdH" secondAttribute="bottom" id="0O4-TJ-qoK"/>
+                <constraint firstAttribute="trailing" secondItem="hhP-ye-AF6" secondAttribute="trailing" id="6XO-0u-kYx"/>
+                <constraint firstItem="7eI-ET-PPs" firstAttribute="top" secondItem="dZe-KR-nHX" secondAttribute="top" id="7Oi-ii-tBx"/>
+                <constraint firstItem="s0M-Q5-YdH" firstAttribute="top" secondItem="hhP-ye-AF6" secondAttribute="bottom" id="CGw-bS-dyc"/>
+                <constraint firstItem="hhP-ye-AF6" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="EMJ-xR-fhL"/>
+                <constraint firstItem="g8m-6B-Aoo" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="Eh7-HF-e9S"/>
+                <constraint firstItem="hhP-ye-AF6" firstAttribute="top" secondItem="7eI-ET-PPs" secondAttribute="bottom" id="J2R-zt-wHt"/>
+                <constraint firstAttribute="trailing" secondItem="9qd-Dt-GCr" secondAttribute="trailing" id="XY0-6L-qsG"/>
+                <constraint firstItem="7eI-ET-PPs" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="aFc-Uk-7Ky"/>
+                <constraint firstAttribute="trailing" secondItem="7eI-ET-PPs" secondAttribute="trailing" id="g0i-qf-2Rn"/>
+                <constraint firstAttribute="trailing" secondItem="s0M-Q5-YdH" secondAttribute="trailing" id="kp1-Mk-UDI"/>
+                <constraint firstAttribute="trailing" secondItem="g8m-6B-Aoo" secondAttribute="trailing" id="lOy-ct-Bof"/>
+                <constraint firstItem="9qd-Dt-GCr" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="sic-mr-HT9"/>
+                <constraint firstItem="9qd-Dt-GCr" firstAttribute="top" secondItem="g8m-6B-Aoo" secondAttribute="bottom" id="vyG-3U-pPq"/>
+                <constraint firstItem="s0M-Q5-YdH" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="z38-9Y-iaV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-285.5" y="-7"/>
+            <point key="canvasLocation" x="-170" y="-29"/>
         </view>
     </objects>
 </document>

@@ -65,7 +65,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         presenter.keyboardTranslationType = .moveUp
 
         let newVC = BaseNavigationController()
-        newVC.isPureWhiteNavBg = true
+        newVC.navStyle = .white
         let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
         
         self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)

@@ -27,11 +27,8 @@
                         <constraint firstAttribute="height" constant="140" id="xb4-lV-rSH"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgm-pM-jIk" customClass="WalletView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="16" y="140" width="343" height="234"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="234" id="Gz7-Ck-xdc"/>
-                    </constraints>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vgm-pM-jIk" customClass="AccountInfoView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="16" y="140" width="343" height="204"/>
                 </view>
             </subviews>
             <constraints>
@@ -44,7 +41,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-15" y="12"/>
+            <point key="canvasLocation" x="-4" y="11"/>
         </view>
     </objects>
 </document>

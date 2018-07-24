@@ -27,7 +27,7 @@ class TransferContentView: UIView {
     
     var balance = "0 EOS" {
         didSet {
-            self.moneyTitleTextView.unitLabel.text = R.string.localizable.balance_pre() + balance
+            self.moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre() + balance
 
         }
     }
@@ -70,16 +70,16 @@ class TransferContentView: UIView {
         remarkTitleTextView.textView.delegate = self
         remarkTitleTextView.textView.maxHeight = 80
         nextButton.title = R.string.localizable.check_transfer()
-        moneyTitleTextView.unitLabel.text = R.string.localizable.balance_pre() + "0.0000 EOS"
+        moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre() + "0.0000 EOS"
         remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
         
-        accountTitleTextView.titleLabel.font = UIFont.systemFont(ofSize: 14)
-        accountTitleTextView.textField.font = UIFont.systemFont(ofSize: 16)
-        moneyTitleTextView.titleLabel.font = UIFont.systemFont(ofSize: 14)
-        moneyTitleTextView.textField.font = UIFont.systemFont(ofSize: 16)
-        moneyTitleTextView.unitLabel.font = UIFont.systemFont(ofSize: 12)
-        moneyTitleTextView.unitLabel.textColor = UIColor(red: 83/255, green: 92/255, blue: 138/255, alpha: 1)
+        accountTitleTextView.titleLabel.font = UIFont.cnTipMedium
+        accountTitleTextView.textField.font = UIFont.pfScR16
+        moneyTitleTextView.titleLabel.font = UIFont.cnTipMedium
+        moneyTitleTextView.textField.font = UIFont.pfScR16
+        moneyTitleTextView.introduceLabel.font = UIFont.pfScR12
+        moneyTitleTextView.introduceLabel.textColor = UIColor(red: 83/255, green: 92/255, blue: 138/255, alpha: 1)
         updateHeight()
         remarkTitleTextView.updateHeight()
         setupEvent()
@@ -90,7 +90,7 @@ class TransferContentView: UIView {
     }
     
     func setInfo(info:String) {
-        accountTitleTextView.unitLabel.text = info
+        accountTitleTextView.introduceLabel.text = info
     }
     
     override var intrinsicContentSize: CGSize {

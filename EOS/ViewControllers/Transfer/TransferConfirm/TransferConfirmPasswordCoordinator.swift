@@ -22,7 +22,7 @@ protocol TransferConfirmPasswordStateManagerProtocol {
     func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->())
 }
 
-class TransferConfirmPasswordCoordinator: TransferConfirmRootCoordinator {
+class TransferConfirmPasswordCoordinator: TransferConfirmPasswordRootCoordinator {
     
     lazy var creator = TransferConfirmPasswordPropertyActionCreate()
     

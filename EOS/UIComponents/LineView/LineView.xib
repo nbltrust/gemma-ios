@@ -53,7 +53,7 @@
                             <rect key="frame" x="16" y="39" width="323" height="1"/>
                             <color key="backgroundColor" red="0.90600000000000003" green="0.91400000000000003" blue="0.97299999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="1" id="CuT-fq-hgu"/>
+                                <constraint firstAttribute="height" constant="0.5" id="CuT-fq-hgu"/>
                             </constraints>
                         </view>
                     </subviews>
