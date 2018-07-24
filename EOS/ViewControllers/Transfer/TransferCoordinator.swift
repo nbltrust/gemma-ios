@@ -143,9 +143,6 @@ extension TransferCoordinator: TransferStateManagerProtocol {
                let transation = EOSIO.getTransaction(privakey,
                                      code: NetworkConfiguration.EOSIO_DEFAULT_CODE,
                                      from: account,
-                    to: WallketManager.shared.getAccount(),
-                    quantity: amount,
-                    memo: code,
                     getinfo: get_info,
                     abistr: abiStr)
                 callback(transation)
