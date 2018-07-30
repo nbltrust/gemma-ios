@@ -1,8 +1,8 @@
 //
-//  ChangeWalletNameViewController.swift
+//  GestureLockComfirmViewController.swift
 //  EOS
 //
-//  Created zhusongyu on 2018/7/19.
+//  Created peng zhu on 2018/7/19.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
@@ -11,21 +11,12 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class ChangeWalletNameViewController: BaseViewController {
+class GestureLockComfirmViewController: BaseViewController {
 
-	var coordinator: (ChangeWalletNameCoordinatorProtocol & ChangeWalletNameStateManagerProtocol)?
-    var name: String = "-"
-    
-    @IBOutlet weak var changeWalletNameView: ChangeWalletNameView!
-    
-    override func viewDidLoad() {
+	var coordinator: (GestureLockComfirmCoordinatorProtocol & GestureLockComfirmStateManagerProtocol)?
+
+	override func viewDidLoad() {
         super.viewDidLoad()
-        setUpUI()
-    }
-    
-    func setUpUI() {
-        self.title = R.string.localizable.change_wallet_name()
-        changeWalletNameView.text = name
     }
     
     func commonObserveState() {

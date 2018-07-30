@@ -16,10 +16,22 @@ class WalletViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var coordinator: (WalletCoordinatorProtocol & WalletStateManagerProtocol)?
+    var dataArray: [WalletManagerModel] = []
 
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupData()
+    }
+    
+    func setupData() {
+        for i in 0..<3 {
+            var model = WalletManagerModel()
+            model.name = "awesome" + "\(i)"
+            model.address = "qwertyuiopfghjkcvbnui"
+            dataArray.append(model)
+        }
+        tableView.reloadData()
     }
     
     func setupUI(){
@@ -75,7 +87,7 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return (self.coordinator?.createSectionOneDataInfo().count)!
+            return (self.coordinator?.createSectionOneDataInfo(data: dataArray).count)!
         } else {
             return (self.coordinator?.createSectionTwoDataInfo().count)!
         }
@@ -86,7 +98,7 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
             let nibString = String.init(describing:type(of: WalletTableViewCell()))
             let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! WalletTableViewCell
             
-            cell.setup(self.coordinator?.createSectionOneDataInfo()[indexPath.row], indexPath: indexPath)
+            cell.setup(self.coordinator?.createSectionOneDataInfo(data: dataArray)[indexPath.row], indexPath: indexPath)
             return cell
 
         } else {
@@ -101,16 +113,17 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 && indexPath.row == 0 {
-            self.coordinator?.pushToLeadInWallet()
-            return
+        if indexPath.section == 0 {
+            self.coordinator?.pushToWalletManager(data: dataArray[indexPath.row])
+        } else {
+            switch indexPath.row {
+            case 0:self.coordinator?.pushToLeadInWallet()
+            case 1:self.coordinator?.pushToEntryVC()
+            default:
+                break
+            }
         }
-        switch indexPath.row {
-        case 0:self.coordinator?.pushToWalletManager()
-        case 1:return
-        default:
-            break
-        }
+
     }
 }
 

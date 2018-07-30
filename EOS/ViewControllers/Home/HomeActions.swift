@@ -32,6 +32,10 @@ struct AccountViewModel {
     var ramValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
 }
 
+struct AccountListViewModel {
+    var account:String = "-"
+}
+
 struct HomePropertyState {
     var info:BehaviorRelay<AccountViewModel> = BehaviorRelay(value: AccountViewModel())
     var CNY_price:String = ""

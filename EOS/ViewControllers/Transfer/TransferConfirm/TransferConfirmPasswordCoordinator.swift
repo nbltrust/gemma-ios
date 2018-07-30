@@ -22,7 +22,7 @@ protocol TransferConfirmPasswordStateManagerProtocol {
     func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->())
 }
 
-class TransferConfirmPasswordCoordinator: TransferConfirmRootCoordinator {
+class TransferConfirmPasswordCoordinator: TransferConfirmPasswordRootCoordinator {
     
     lazy var creator = TransferConfirmPasswordPropertyActionCreate()
     
@@ -81,9 +81,6 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
                 let transation = EOSIO.getTransaction(privakey,
                                                       code: NetworkConfiguration.EOSIO_DEFAULT_CODE,
                                                       from: WallketManager.shared.getAccount(),
-                                                      to: account,
-                                                      quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL,
-                                                      memo: code,
                                                       getinfo: get_info,
                                                       abistr: abiStr)
                 

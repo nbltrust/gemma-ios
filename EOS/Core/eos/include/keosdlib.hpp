@@ -34,7 +34,7 @@ namespace eosio{
     namespace chain_apis {
         class read_only {
             // using chain = eosio::chain;
-        public:
+            public:
             struct get_info_results {
                 string                  server_version;
                 chain::chain_id_type    chain_id;
@@ -93,7 +93,7 @@ namespace eosio {
     
     class keosdlib {
         
-    public:
+        public:
         
         
         // needed by koofrank
@@ -101,13 +101,13 @@ namespace eosio {
             std::string upper_key_type = boost::to_upper_copy<std::string>(key_type);
             // return eosio::wallet::wallet_manager::create_key(key_type);
             if(upper_key_type!="R1")
-                upper_key_type = "K1";// as default
+            upper_key_type = "K1";// as default
             
             chain::private_key_type priv_key;
             if(upper_key_type == "K1")
-                priv_key = fc::crypto::private_key::generate<fc::ecc::private_key_shim>();
+            priv_key = fc::crypto::private_key::generate<fc::ecc::private_key_shim>();
             else if(upper_key_type == "R1")
-                priv_key = fc::crypto::private_key::generate<fc::crypto::r1::private_key_shim>();
+            priv_key = fc::crypto::private_key::generate<fc::crypto::r1::private_key_shim>();
             else{
                 return std::make_pair("?", "?");
             }
@@ -122,6 +122,15 @@ namespace eosio {
         // }
         
         // needed by koofrank
+        std::string get_public_key(const std::string& priv_str){
+            try{
+                chain::private_key_type priv_key(priv_str);
+                return (std::string)priv_key.get_public_key();
+            }catch(...){
+                return "invalid priv string";
+            }
+            
+        }
         std::string get_private_key(const std::string& cipher, const std::string& password){
             // return eosio::wallet::wallet_manager::get_private_key(password, cipher_keys);
             try{
@@ -134,7 +143,7 @@ namespace eosio {
                 if(pk.checksum == pw) return (std::string)pk.key.second;
                 return "?";
             }catch(...){
-                return "";
+                return "wrong password";
             }
         }
         
@@ -162,22 +171,112 @@ namespace eosio {
             std::string cipher(cipher_base.begin()+1, cipher_base.end() - 1);
             return cipher;
         }
-        // Sign transaction
-        std::string signTransaction(const std::string& trxstr, const std::string& priv_key_str, const std::string& chain_id_str){
-            auto trx = fc::json::from_string(trxstr).as<chain::signed_transaction>();
+        
+        
+        // action apis
+        
+        
+        std::string signTransaction_voteproducer(const std::string& priv_key_str, const std::string& contract, const std::string& voter_str, const std::string& infostr,
+                                                 const std::string& abistr , uint32_t max_cpu_usage_ms, uint32_t max_net_usage_words , uint32_t tx_expiration = 120  ){
+            
+            auto abi = fc::json::from_string("\"" + abistr + "\"").as<bytes>();
+            auto actions = {create_voteproducer(contract, voter_str,abi)};
+            chain::signed_transaction trx;
+            trx.actions = std::forward<decltype(actions)>(actions);
+            auto info = fc::json::from_string(infostr).as<eosio::chain_apis::read_only::get_info_results>();
+            auto ref_block_id =info.last_irreversible_block_id;
+            auto chain_id = info.chain_id;
+            trx.set_reference_block(ref_block_id);
+            trx.max_net_usage_words = max_net_usage_words;
+            trx.max_cpu_usage_ms = max_cpu_usage_ms;
+            trx.expiration = info.head_block_time + fc::seconds(tx_expiration);
             auto priv_key = chain::private_key_type(priv_key_str);
-            auto chain_id = fc::json::from_string(chain_id_str).as<chain::chain_id_type>();
             trx.sign(priv_key, chain_id);
             return fc::json::to_string(trx);
+            
         }
-        std::string signTransaction(const std::string& priv_key_str, const std::string& contract, const std::string& senderstr, const std::string& recipientstr, const std::string& amountstr,
-                                    const std::string& memo, const std::string& infostr, const std::string& abistr , uint32_t max_cpu_usage_ms, uint32_t max_net_usage_words , uint32_t tx_expiration = 30  ){
-            // return eosio::wallet::wallet_manager::sign_transaction(priv_key_str, contract, senderstr, recipientstr, amountstr,
-            // memo, infostr, abistr ,  max_cpu_usage_ms,  max_net_usage_words ,  tx_expiration  );
-            // chain::bytes abi;
-            // std::copy( abistr.begin(), abistr.end(), std::back_inserter(abi));
+        // std::string create_abi_req_voteproducer(const std::string& code, const std::string& action, const std::string& voter, std::vector<std::string> producers ){
+        //     auto args = fc::mutable_variant_object
+        //     ("voter", chain::name(voter))
+        //     ("proxy", chain::name(proxy))
+        //     ("producers", std::vector<chain::name> {{}};
+        //       );
+        
+        //     auto request_json_variant = fc::mutable_variant_object
+        //     ("code", code)
+        //     ("action", action)
+        //     ("args", args);
+        //     return fc::json::to_string(request_json_variant);
+        // }
+        std::string signTransaction_delegatebw(const std::string& priv_key_str, const std::string& contract, const std::string& from_str, const std::string& infostr,
+                                               const std::string& abistr , uint32_t max_cpu_usage_ms, uint32_t max_net_usage_words , uint32_t tx_expiration = 120  ){
+            
             auto abi = fc::json::from_string("\"" + abistr + "\"").as<bytes>();
-            auto actions = {create_transfer(contract, senderstr, recipientstr,chain::asset::from_string(amountstr), memo, abi)};
+            auto actions = {create_delegatebw(contract, from_str,abi)};
+            chain::signed_transaction trx;
+            trx.actions = std::forward<decltype(actions)>(actions);
+            auto info = fc::json::from_string(infostr).as<eosio::chain_apis::read_only::get_info_results>();
+            auto ref_block_id =info.last_irreversible_block_id;
+            auto chain_id = info.chain_id;
+            trx.set_reference_block(ref_block_id);
+            trx.max_net_usage_words = max_net_usage_words;
+            trx.max_cpu_usage_ms = max_cpu_usage_ms;
+            trx.expiration = info.head_block_time + fc::seconds(tx_expiration);
+            auto priv_key = chain::private_key_type(priv_key_str);
+            trx.sign(priv_key, chain_id);
+            return fc::json::to_string(trx);
+            
+        }
+        std::string create_abi_req_delegatebw(const std::string& code, const std::string& action, const std::string& from, const std::string& receiver, const std::string& stake_net_quantity, const std::string& stake_cpu_quantity ){
+            auto args = fc::mutable_variant_object
+            ("from", chain::name(from))
+            ("receiver", chain::name(receiver))
+            ("stake_net_quantity", chain::asset::from_string(stake_net_quantity))
+            ("stake_cpu_quantity", chain::asset::from_string(stake_cpu_quantity))
+            ("transfer", 0);
+            
+            auto request_json_variant = fc::mutable_variant_object
+            ("code", code)
+            ("action", action)
+            ("args", args);
+            return fc::json::to_string(request_json_variant);
+        }
+        std::string signTransaction_buyram(const std::string& priv_key_str, const std::string& contract, const std::string& payer_str,
+                                           const std::string& infostr, const std::string& abistr , uint32_t max_cpu_usage_ms, uint32_t max_net_usage_words , uint32_t tx_expiration = 120  ){
+            
+            auto abi = fc::json::from_string("\"" + abistr + "\"").as<bytes>();
+            auto actions = {create_buyram(contract, payer_str,abi)};
+            chain::signed_transaction trx;
+            trx.actions = std::forward<decltype(actions)>(actions);
+            auto info = fc::json::from_string(infostr).as<eosio::chain_apis::read_only::get_info_results>();
+            auto ref_block_id =info.last_irreversible_block_id;
+            auto chain_id = info.chain_id;
+            trx.set_reference_block(ref_block_id);
+            trx.max_net_usage_words = max_net_usage_words;
+            trx.max_cpu_usage_ms = max_cpu_usage_ms;
+            trx.expiration = info.head_block_time + fc::seconds(tx_expiration);
+            auto priv_key = chain::private_key_type(priv_key_str);
+            trx.sign(priv_key, chain_id);
+            return fc::json::to_string(trx);
+            
+        }
+        std::string create_abi_req_buyram(const std::string& code, const std::string& action, const std::string& payer, const std::string& receiver, const std::string& quant ){
+            auto args = fc::mutable_variant_object
+            ("payer", chain::name(payer))
+            ("receiver", chain::name(receiver))
+            ("quant", chain::asset::from_string(quant));
+            
+            auto request_json_variant = fc::mutable_variant_object
+            ("code", code)
+            ("action", action)
+            ("args", args);
+            return fc::json::to_string(request_json_variant);
+        }
+        std::string signTransaction_transfer(const std::string& priv_key_str, const std::string& contract, const std::string& senderstr,
+                                            const std::string& infostr, const std::string& abistr , uint32_t max_cpu_usage_ms, uint32_t max_net_usage_words , uint32_t tx_expiration = 30  ){
+            
+            auto abi = fc::json::from_string("\"" + abistr + "\"").as<bytes>();
+            auto actions = {create_transfer(contract, senderstr, abi)};
             chain::signed_transaction trx;
             trx.actions = std::forward<decltype(actions)>(actions);
             auto info = fc::json::from_string(infostr).as<eosio::chain_apis::read_only::get_info_results>();
@@ -198,7 +297,7 @@ namespace eosio {
             //        chain::packed_transaction ptrx(trx,chain::packed_transaction::none);
             //        return fc::json::to_string(ptrx);
         }
-        std::string create_abi_req(const std::string& code, const std::string& action, const std::string& from, const std::string& to, const std::string& quantity, const std::string& memo){
+        std::string create_abi_req_transfer(const std::string& code, const std::string& action, const std::string& from, const std::string& to, const std::string& quantity, const std::string& memo){
             // return eosio::wallet::wallet_manager::create_abi(code, action, from, to, quantity, memo);
             auto args = fc::mutable_variant_object
             ("from", chain::name(from))
@@ -214,19 +313,47 @@ namespace eosio {
         }
         
         
-    private:
-        chain::action create_transfer(const std::string& contract, const chain::name& sender, const chain::name& recipient,
-                                      chain::asset amount, const std::string& memo, chain::bytes abi) {
-            auto transfer = fc::mutable_variant_object
-            ("from", chain::name(sender))
-            ("to", chain::name(recipient))
-            ("quantity", amount)
-            ("memo", memo);
+        private:
+        chain::action create_voteproducer(const std::string& contract, const chain::name& voter, chain::bytes abi) {
+            return chain::action {
+                vector<chain::permission_level>{{voter,config::active_name}} ,
+                contract, "voteproducer", abi
+            };
+        }
+        chain::action create_delegatebw(const std::string& contract, const chain::name& from, chain::bytes abi) {
+            return chain::action {
+                vector<chain::permission_level>{{from,config::active_name}} ,
+                contract, "delgatebw", abi
+            };
+        }
+        chain::action create_buyram(const std::string& contract, const chain::name& payer, chain::bytes abi) {
+            // auto buyram = fc::mutable_variant_object
+            //    ("payer", chain::name(payer))
+            //    ("receiver", chain::name(receiver))
+            //    ("quant", quant);
             
-            auto args = fc::mutable_variant_object
-            ("code", contract)
-            ("action", "transfer")
-            ("args", transfer);
+            // auto args = fc::mutable_variant_object
+            //    ("code", contract)
+            //    ("action", "buyram")
+            //    ("args", buyram);
+            return chain::action {
+                vector<chain::permission_level>{{payer,config::active_name}} ,
+                contract, "buyram", abi
+            };
+            
+        }
+        // chain::action create_transfer(const std::string& contract, const chain::name& sender, const chain::name& recipient,
+        chain::action create_transfer(const std::string& contract, const chain::name& sender, chain::bytes abi) {
+            // auto transfer = fc::mutable_variant_object
+            //    ("from", chain::name(sender))
+            //    ("to", chain::name(recipient))
+            //    ("quantity", amount)
+            //    ("memo", memo);
+            
+            // auto args = fc::mutable_variant_object
+            //    ("code", contract)
+            //    ("action", "transfer")
+            //    ("args", transfer);
             
             // auto result = call(json_to_bin_func, args);
             
@@ -234,6 +361,14 @@ namespace eosio {
                 vector<chain::permission_level>{{sender,config::active_name}} ,
                 contract, "transfer", abi
             };
+        }
+        // Sign transaction
+        std::string signTransaction(const std::string& trxstr, const std::string& priv_key_str, const std::string& chain_id_str){
+            auto trx = fc::json::from_string(trxstr).as<chain::signed_transaction>();
+            auto priv_key = chain::private_key_type(priv_key_str);
+            auto chain_id = fc::json::from_string(chain_id_str).as<chain::chain_id_type>();
+            trx.sign(priv_key, chain_id);
+            return fc::json::to_string(trx);
         }
     };
     

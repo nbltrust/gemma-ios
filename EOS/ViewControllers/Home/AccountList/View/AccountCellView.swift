@@ -1,36 +1,32 @@
 //
-//  ChangeWalletNameView.swift
+//  AccountCellView.swift
 //  EOS
 //
-//  Created by zhusongyu on 2018/7/19.
+//  Created by zhusongyu on 2018/7/23.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
 import Foundation
 
-class ChangeWalletNameView: UIView {
+class AccountCellView: UIView {
     
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var textLabel: UILabel!
     
     var text = "" {
         didSet {
-            textField.text = text
+            textLabel.text = text
+            if text == WallketManager.shared.getAccount() {
+                textLabel.textColor = UIColor.whiteTwo
+                self.backgroundColor = UIColor.cornflowerBlue
+            } else {
+                textLabel.textColor = UIColor.darkSlateBlue
+                self.backgroundColor = UIColor.whiteTwo
+            }
         }
     }
     
     func setUp() {
-        setUpUI()
         updateHeight()
-    }
-    
-    func setUpUI() {
-        clearButton.isHidden = true
-        textField.delegate = self
-    }
-    
-    @IBAction func clearBtnClick(_ sender: Any) {
-        textField.text = ""
     }
     
     override var intrinsicContentSize: CGSize {
@@ -79,17 +75,3 @@ class ChangeWalletNameView: UIView {
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 }
-
-extension ChangeWalletNameView:UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.clearButton.isHidden = true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        clearButton.isHidden = false
-
-    }
-    
-    
-}
-

@@ -99,6 +99,7 @@
 "manager_wallet" = "管理钱包";
 "change_wallet_name" = "修改钱包名";
 "i_know" = "我知道了";
+"red_warning" = "账户创建中，请勿在EOS区块100%确认之前往账户转账！";
 
 //zsy end
 

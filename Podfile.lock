@@ -5,6 +5,9 @@ PODS:
   - Alamofire (4.7.2)
   - AwaitKit (5.0.0):
     - PromiseKit (~> 6)
+  - Bartinter (0.0.2)
+  - BiometricAuthentication (2.0.2)
+  - CocoaDebug (0.0.5)
   - Crashlytics (3.10.2):
     - Fabric (~> 1.7.7)
   - CryptoSwift (0.10.0)
@@ -117,6 +120,7 @@ PODS:
   - SwiftyBeaver (1.6.0)
   - SwiftyJSON (4.1.0)
   - SwiftyUserDefaults (3.0.1)
+  - Tags (0.1.6)
   - TinyConstraints (3.1.1)
   - Typist (1.2.1)
   - UICKeyChainStore (2.1.1)
@@ -128,6 +132,9 @@ PODS:
 DEPENDENCIES:
   - Action
   - AwaitKit
+  - Bartinter
+  - BiometricAuthentication
+  - CocoaDebug
   - Crashlytics
   - CryptoSwift
   - Device
@@ -179,6 +186,7 @@ DEPENDENCIES:
   - SwiftyBeaver
   - SwiftyJSON
   - SwiftyUserDefaults
+  - Tags
   - TinyConstraints
   - Typist
   - UIFontComplete
@@ -190,6 +198,9 @@ SPEC REPOS:
     - Action
     - Alamofire
     - AwaitKit
+    - Bartinter
+    - BiometricAuthentication
+    - CocoaDebug
     - Crashlytics
     - CryptoSwift
     - Device
@@ -247,6 +258,7 @@ SPEC REPOS:
     - SwiftyBeaver
     - SwiftyJSON
     - SwiftyUserDefaults
+    - Tags
     - TinyConstraints
     - Typist
     - UICKeyChainStore
@@ -268,6 +280,9 @@ SPEC CHECKSUMS:
   Action: 3d9486d3da02b572b0a034b6c49ac4c3fbcc8b63
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AwaitKit: d8a6e30eeb2da916630270b44636b31033388bd8
+  Bartinter: 350b1d89faf569cd4c1ee8dc32465acf57eb0373
+  BiometricAuthentication: ce2f923d4df7a4b340e154137e7b47e544abc1ae
+  CocoaDebug: d7a1cb491df27a2d28fde8d8983d3b9293f13163
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
   Device: 8a21a61f5f938a12dadd44d82287996081b6919b
@@ -326,6 +341,7 @@ SPEC CHECKSUMS:
   SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
+  Tags: a7a1ec432ea7d84b8a533abb93c38333fc0043cc
   TinyConstraints: c15ce864e9ef87dfd18ee3bd746d510a38d84198
   Typist: 88b462c1c5adc6d4e8601773fcb0b7d7113d18af
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
@@ -333,6 +349,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
   ZLaunchAd: 47e4fd3718c73d48d74ac37f7f637021e4fd0e4b
 
-PODFILE CHECKSUM: 7c0cdc3722b62f08bd3a5e57075b4c69b5548ac1
+PODFILE CHECKSUM: bff428ddfa8ca1c05f32e76425f8729a3d9262e1
 
 COCOAPODS: 1.5.3

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Account List View Controller-->
+        <scene sceneID="Mg7-nb-srC">
+            <objects>
+                <viewController storyboardIdentifier="AccountListViewController" id="1CI-09-YvC" customClass="AccountListViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lTg-3B-CTu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R95-oS-VR6" customClass="AccountListView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="25" width="375" height="272"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="272" id="dJe-gF-3fx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="R95-oS-VR6" firstAttribute="top" secondItem="lmj-S5-ks8" secondAttribute="top" constant="5" id="D8f-u3-UGK"/>
+                            <constraint firstItem="R95-oS-VR6" firstAttribute="leading" secondItem="lmj-S5-ks8" secondAttribute="leading" id="W1k-8S-uH6"/>
+                            <constraint firstItem="lmj-S5-ks8" firstAttribute="trailing" secondItem="R95-oS-VR6" secondAttribute="trailing" id="oxs-i7-YM3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lmj-S5-ks8"/>
+                    </view>
+                    <connections>
+                        <outlet property="accountListView" destination="R95-oS-VR6" id="8kG-PE-ull"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3g-MS-U8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="118" y="145"/>
+        </scene>
+    </scenes>
+</document>
