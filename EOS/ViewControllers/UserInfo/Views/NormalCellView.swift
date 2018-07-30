@@ -136,10 +136,13 @@ class NormalCellView: UIView {
         }
     }
     
+    
     func setup() {
         self.state = NormalCellViewState.normal.rawValue
         let tap = UITapGestureRecognizer(target: self, action: #selector(clickCellView))
         self.addGestureRecognizer(tap)
+        
+        
     }
     
     override var intrinsicContentSize: CGSize {
@@ -179,6 +182,7 @@ class NormalCellView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        
         
         addSubview(view)
         view.frame = self.bounds

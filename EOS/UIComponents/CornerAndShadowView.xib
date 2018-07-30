@@ -22,7 +22,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5B-3c-fla">
                     <rect key="frame" x="0.0" y="0.0" width="365" height="315"/>
-                    <color key="backgroundColor" name="whiteTwo" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="4"/>
@@ -52,9 +52,7 @@
                     <size key="value" width="0.0" height="2"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="-4" y="-203"/>
+            <point key="canvasLocation" x="-4.5" y="-203.5"/>
         </view>
     </objects>
-    <resources>
-    </resources>
 </document>

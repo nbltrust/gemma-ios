@@ -18,166 +18,173 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="g9G-7N-ikq">
-                                <rect key="frame" x="16" y="36" width="343" height="272"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hVq-Qm-6dh">
+                                <rect key="frame" x="0.0" y="16" width="375" height="312"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uaT-o3-WWf" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CV1-c4-Gbr">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="312"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSS-tg-0DC" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="aPU-th-c8X"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_normal"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineNormal"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="QSS-tg-0DC" secondAttribute="bottom" id="9Wd-dZ-JYO"/>
-                                            <constraint firstItem="QSS-tg-0DC" firstAttribute="top" secondItem="uaT-o3-WWf" secondAttribute="top" id="FSe-SF-g7K"/>
-                                            <constraint firstAttribute="trailing" secondItem="QSS-tg-0DC" secondAttribute="trailing" id="Sys-RE-UPN"/>
-                                            <constraint firstItem="QSS-tg-0DC" firstAttribute="leading" secondItem="uaT-o3-WWf" secondAttribute="leading" id="xza-dR-orF"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tm1-Be-6HR" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="343" height="48"/>
-                                        <subviews>
-                                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIo-Bx-WBC" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="Go5-jt-1Oo"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_safesetting"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineSetting"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="eIo-Bx-WBC" firstAttribute="leading" secondItem="Tm1-Be-6HR" secondAttribute="leading" id="0mN-g6-Bpn"/>
-                                            <constraint firstItem="eIo-Bx-WBC" firstAttribute="top" secondItem="Tm1-Be-6HR" secondAttribute="top" id="E95-9f-3cD"/>
-                                            <constraint firstAttribute="bottom" secondItem="eIo-Bx-WBC" secondAttribute="bottom" id="GQj-fc-QB5"/>
-                                            <constraint firstAttribute="trailing" secondItem="eIo-Bx-WBC" secondAttribute="trailing" id="kKv-ey-ecS"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1z4-2d-e1Y" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="128" width="343" height="144"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="R5s-Zn-dnx">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="144"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="g9G-7N-ikq">
+                                                <rect key="frame" x="16" y="16" width="343" height="272"/>
                                                 <subviews>
-                                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPc-4l-fLw" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uaT-o3-WWf" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSS-tg-0DC" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="48" id="aPU-th-c8X"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                                                        <integer key="value" value="0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_normal"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineNormal"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                        <integer key="value" value="0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="48" id="JTU-w7-ddj"/>
+                                                            <constraint firstAttribute="bottom" secondItem="QSS-tg-0DC" secondAttribute="bottom" id="9Wd-dZ-JYO"/>
+                                                            <constraint firstItem="QSS-tg-0DC" firstAttribute="top" secondItem="uaT-o3-WWf" secondAttribute="top" id="FSe-SF-g7K"/>
+                                                            <constraint firstAttribute="trailing" secondItem="QSS-tg-0DC" secondAttribute="trailing" id="Sys-RE-UPN"/>
+                                                            <constraint firstItem="QSS-tg-0DC" firstAttribute="leading" secondItem="uaT-o3-WWf" secondAttribute="leading" id="xza-dR-orF"/>
                                                         </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                                                <integer key="value" value="0"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_help"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineHelp"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                                <integer key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ma-SW-gKs" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="48" width="343" height="48"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tm1-Be-6HR" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="64" width="343" height="48"/>
+                                                        <subviews>
+                                                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIo-Bx-WBC" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="48" id="Go5-jt-1Oo"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                                                        <integer key="value" value="0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_safesetting"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineSetting"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                        <integer key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="48" id="uBR-z7-Ue3"/>
+                                                            <constraint firstItem="eIo-Bx-WBC" firstAttribute="leading" secondItem="Tm1-Be-6HR" secondAttribute="leading" id="0mN-g6-Bpn"/>
+                                                            <constraint firstItem="eIo-Bx-WBC" firstAttribute="top" secondItem="Tm1-Be-6HR" secondAttribute="top" id="E95-9f-3cD"/>
+                                                            <constraint firstAttribute="bottom" secondItem="eIo-Bx-WBC" secondAttribute="bottom" id="GQj-fc-QB5"/>
+                                                            <constraint firstAttribute="trailing" secondItem="eIo-Bx-WBC" secondAttribute="trailing" id="kKv-ey-ecS"/>
                                                         </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                                                <integer key="value" value="0"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_server"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineServers"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                                <integer key="value" value="3"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSn-DU-DlY" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="96" width="343" height="48"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1z4-2d-e1Y" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="128" width="343" height="144"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="R5s-Zn-dnx">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="144"/>
+                                                                <subviews>
+                                                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPc-4l-fLw" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="JTU-w7-ddj"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                                                                <integer key="value" value="0"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_help"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineHelp"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                                <integer key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ma-SW-gKs" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="48" width="343" height="48"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="uBR-z7-Ue3"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                                                                <integer key="value" value="0"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_server"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineServers"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                                <integer key="value" value="3"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSn-DU-DlY" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="96" width="343" height="48"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="dkf-LI-Xp6"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                                                                <integer key="value" value="0"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_about"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineAbout"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="YES"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                                <integer key="value" value="4"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="48" id="dkf-LI-Xp6"/>
+                                                            <constraint firstAttribute="bottom" secondItem="R5s-Zn-dnx" secondAttribute="bottom" id="5yr-w8-LYM"/>
+                                                            <constraint firstItem="R5s-Zn-dnx" firstAttribute="top" secondItem="1z4-2d-e1Y" secondAttribute="top" id="7s4-Iq-9kg"/>
+                                                            <constraint firstItem="R5s-Zn-dnx" firstAttribute="leading" secondItem="1z4-2d-e1Y" secondAttribute="leading" id="EEX-1h-r1n"/>
+                                                            <constraint firstAttribute="trailing" secondItem="R5s-Zn-dnx" secondAttribute="trailing" id="XEC-nG-Egq"/>
                                                         </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                                                <integer key="value" value="0"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_about"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineAbout"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="YES"/>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                                <integer key="value" value="4"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="R5s-Zn-dnx" secondAttribute="bottom" id="5yr-w8-LYM"/>
-                                            <constraint firstItem="R5s-Zn-dnx" firstAttribute="top" secondItem="1z4-2d-e1Y" secondAttribute="top" id="7s4-Iq-9kg"/>
-                                            <constraint firstItem="R5s-Zn-dnx" firstAttribute="leading" secondItem="1z4-2d-e1Y" secondAttribute="leading" id="EEX-1h-r1n"/>
-                                            <constraint firstAttribute="trailing" secondItem="R5s-Zn-dnx" secondAttribute="trailing" id="XEC-nG-Egq"/>
+                                            <constraint firstItem="g9G-7N-ikq" firstAttribute="top" secondItem="CV1-c4-Gbr" secondAttribute="top" constant="16" id="8R3-Um-16h"/>
+                                            <constraint firstAttribute="trailing" secondItem="g9G-7N-ikq" secondAttribute="trailing" constant="16" id="dY3-D9-9nP"/>
+                                            <constraint firstItem="g9G-7N-ikq" firstAttribute="leading" secondItem="CV1-c4-Gbr" secondAttribute="leading" constant="16" id="k7S-dB-pQM"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="CV1-c4-Gbr" secondAttribute="bottom" id="OdN-eH-JDR"/>
+                                    <constraint firstAttribute="trailing" secondItem="CV1-c4-Gbr" secondAttribute="trailing" id="gmR-Yd-9Kf"/>
+                                    <constraint firstItem="CV1-c4-Gbr" firstAttribute="leading" secondItem="hVq-Qm-6dh" secondAttribute="leading" id="pbo-1o-4e2"/>
+                                    <constraint firstItem="CV1-c4-Gbr" firstAttribute="top" secondItem="hVq-Qm-6dh" secondAttribute="top" id="sU9-9s-Fzn"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="g9G-7N-ikq" firstAttribute="leading" secondItem="kV1-Gu-sl5" secondAttribute="leading" constant="16" id="0c2-yo-iQk"/>
-                            <constraint firstItem="kV1-Gu-sl5" firstAttribute="trailing" secondItem="g9G-7N-ikq" secondAttribute="trailing" constant="16" id="n22-it-qDC"/>
-                            <constraint firstItem="g9G-7N-ikq" firstAttribute="top" secondItem="kV1-Gu-sl5" secondAttribute="top" constant="16" id="zBC-z1-osL"/>
+                            <constraint firstItem="CV1-c4-Gbr" firstAttribute="width" secondItem="B8v-WD-vci" secondAttribute="width" id="IEg-6y-IM4"/>
+                            <constraint firstItem="kV1-Gu-sl5" firstAttribute="bottom" secondItem="hVq-Qm-6dh" secondAttribute="bottom" id="JZI-2W-5Xe"/>
+                            <constraint firstItem="hVq-Qm-6dh" firstAttribute="leading" secondItem="B8v-WD-vci" secondAttribute="leading" id="eVr-Ke-bwF"/>
+                            <constraint firstAttribute="trailing" secondItem="hVq-Qm-6dh" secondAttribute="trailing" id="njC-WJ-QrE"/>
+                            <constraint firstItem="hVq-Qm-6dh" firstAttribute="top" secondItem="kV1-Gu-sl5" secondAttribute="top" id="oDV-KF-aNu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kV1-Gu-sl5"/>
                     </view>
@@ -194,89 +201,101 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Z78-QD-Bsh">
-                                <rect key="frame" x="16" y="37" width="343" height="108"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ob-Te-vf3">
+                                <rect key="frame" x="-4" y="17" width="383" height="148"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gg-5h-Vk3" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ot6-Wg-QMs">
+                                        <rect key="frame" x="0.0" y="0.0" width="383" height="148"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CjV-X7-BPe" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="PtS-g0-KwC"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="normal_language"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Z78-QD-Bsh">
+                                                <rect key="frame" x="20" y="16" width="343" height="108"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0gg-5h-Vk3" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjV-X7-BPe" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="48" id="PtS-g0-KwC"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                                                        <integer key="value" value="0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="normal_language"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                        <integer key="value" value="0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="CjV-X7-BPe" firstAttribute="leading" secondItem="0gg-5h-Vk3" secondAttribute="leading" id="6BL-W6-KKs"/>
+                                                            <constraint firstItem="CjV-X7-BPe" firstAttribute="top" secondItem="0gg-5h-Vk3" secondAttribute="top" id="cN8-Gj-uMl"/>
+                                                            <constraint firstAttribute="bottom" secondItem="CjV-X7-BPe" secondAttribute="bottom" id="kth-eD-uVa"/>
+                                                            <constraint firstAttribute="trailing" secondItem="CjV-X7-BPe" secondAttribute="trailing" id="opZ-KY-fWX"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T8x-Uv-YGy" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="60" width="343" height="48"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6NB-5i-bLb" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="48" id="1G6-Mq-8bp"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                                                        <integer key="value" value="0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="normal_asset"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                        <integer key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="6NB-5i-bLb" secondAttribute="trailing" id="7R5-ve-EuA"/>
+                                                            <constraint firstItem="6NB-5i-bLb" firstAttribute="top" secondItem="T8x-Uv-YGy" secondAttribute="top" id="QBr-j6-mAn"/>
+                                                            <constraint firstItem="6NB-5i-bLb" firstAttribute="leading" secondItem="T8x-Uv-YGy" secondAttribute="leading" id="gHz-ej-yu7"/>
+                                                            <constraint firstAttribute="bottom" secondItem="6NB-5i-bLb" secondAttribute="bottom" id="tkd-h3-0F4"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="CjV-X7-BPe" firstAttribute="leading" secondItem="0gg-5h-Vk3" secondAttribute="leading" id="6BL-W6-KKs"/>
-                                            <constraint firstItem="CjV-X7-BPe" firstAttribute="top" secondItem="0gg-5h-Vk3" secondAttribute="top" id="cN8-Gj-uMl"/>
-                                            <constraint firstAttribute="bottom" secondItem="CjV-X7-BPe" secondAttribute="bottom" id="kth-eD-uVa"/>
-                                            <constraint firstAttribute="trailing" secondItem="CjV-X7-BPe" secondAttribute="trailing" id="opZ-KY-fWX"/>
+                                            <constraint firstItem="Z78-QD-Bsh" firstAttribute="leading" secondItem="ot6-Wg-QMs" secondAttribute="leading" constant="16" id="9Uz-N1-PNL"/>
+                                            <constraint firstItem="Z78-QD-Bsh" firstAttribute="top" secondItem="ot6-Wg-QMs" secondAttribute="top" constant="16" id="Ekg-to-BKf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z78-QD-Bsh" secondAttribute="trailing" constant="16" id="rxd-0d-cSf"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8x-Uv-YGy" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="60" width="343" height="48"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6NB-5i-bLb" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="1G6-Mq-8bp"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="normal_asset"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="6NB-5i-bLb" secondAttribute="trailing" id="7R5-ve-EuA"/>
-                                            <constraint firstItem="6NB-5i-bLb" firstAttribute="top" secondItem="T8x-Uv-YGy" secondAttribute="top" id="QBr-j6-mAn"/>
-                                            <constraint firstItem="6NB-5i-bLb" firstAttribute="leading" secondItem="T8x-Uv-YGy" secondAttribute="leading" id="gHz-ej-yu7"/>
-                                            <constraint firstAttribute="bottom" secondItem="6NB-5i-bLb" secondAttribute="bottom" id="tkd-h3-0F4"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ot6-Wg-QMs" secondAttribute="bottom" id="Mg7-yv-X6K"/>
+                                    <constraint firstItem="ot6-Wg-QMs" firstAttribute="leading" secondItem="4ob-Te-vf3" secondAttribute="leading" id="NeR-RY-ft8"/>
+                                    <constraint firstItem="ot6-Wg-QMs" firstAttribute="top" secondItem="4ob-Te-vf3" secondAttribute="top" id="n9Q-7e-WNL"/>
+                                    <constraint firstAttribute="trailing" secondItem="ot6-Wg-QMs" secondAttribute="trailing" id="vRX-Qe-SY7"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="VIQ-qR-YHP" firstAttribute="trailing" secondItem="Z78-QD-Bsh" secondAttribute="trailing" constant="16" id="UfH-Vy-GEu"/>
-                            <constraint firstItem="Z78-QD-Bsh" firstAttribute="leading" secondItem="VIQ-qR-YHP" secondAttribute="leading" constant="16" id="dLI-mY-DzD"/>
-                            <constraint firstItem="Z78-QD-Bsh" firstAttribute="top" secondItem="VIQ-qR-YHP" secondAttribute="top" constant="17" id="uB3-e5-Bjv"/>
+                            <constraint firstAttribute="trailing" secondItem="4ob-Te-vf3" secondAttribute="trailing" id="Lsh-Z1-JiR"/>
+                            <constraint firstItem="VIQ-qR-YHP" firstAttribute="bottom" secondItem="4ob-Te-vf3" secondAttribute="bottom" id="O62-yr-GgP"/>
+                            <constraint firstItem="4ob-Te-vf3" firstAttribute="leading" secondItem="x0I-BU-t34" secondAttribute="leading" id="eR9-Cn-5Yq"/>
+                            <constraint firstItem="4ob-Te-vf3" firstAttribute="top" secondItem="VIQ-qR-YHP" secondAttribute="top" id="kj4-RX-4JN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VIQ-qR-YHP"/>
                     </view>
@@ -327,140 +346,147 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="KRg-Ha-S9k">
-                                <rect key="frame" x="16" y="36" width="343" height="216"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FG9-lh-fh6">
+                                <rect key="frame" x="-4" y="16" width="383" height="256"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAw-f3-RmZ" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Del-Et-wJf">
+                                        <rect key="frame" x="0.0" y="0.0" width="383" height="256"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Q1-eO-7IU" customClass="SafeLineView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_face"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                                        <integer key="value" value="2"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name" value="setting_face"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="6Q1-eO-7IU" secondAttribute="trailing" id="Gb9-Uk-t2D"/>
-                                            <constraint firstItem="6Q1-eO-7IU" firstAttribute="leading" secondItem="xAw-f3-RmZ" secondAttribute="leading" id="TRU-eM-Gq7"/>
-                                            <constraint firstAttribute="height" constant="48" id="TVV-io-fGq"/>
-                                            <constraint firstAttribute="bottom" secondItem="6Q1-eO-7IU" secondAttribute="bottom" id="Zhw-RI-F6k"/>
-                                            <constraint firstItem="6Q1-eO-7IU" firstAttribute="top" secondItem="xAw-f3-RmZ" secondAttribute="top" id="fc5-Db-n6j"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PPR-Jc-gwU" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="60" width="343" height="48"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7s-1M-tsN" customClass="SafeLineView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_finger"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                                        <integer key="value" value="2"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="name" value="setting_finger"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="X7s-1M-tsN" secondAttribute="trailing" id="MUQ-kx-S5t"/>
-                                            <constraint firstAttribute="height" constant="48" id="SnT-xg-GCE"/>
-                                            <constraint firstItem="X7s-1M-tsN" firstAttribute="leading" secondItem="PPR-Jc-gwU" secondAttribute="leading" id="U25-Ju-RCG"/>
-                                            <constraint firstAttribute="bottom" secondItem="X7s-1M-tsN" secondAttribute="bottom" id="htg-W2-f5E"/>
-                                            <constraint firstItem="X7s-1M-tsN" firstAttribute="top" secondItem="PPR-Jc-gwU" secondAttribute="top" id="siZ-oc-bY2"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1O-ME-9K2" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="120" width="343" height="96"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-Qc-IZl">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="96"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="KRg-Ha-S9k">
+                                                <rect key="frame" x="20" y="16" width="343" height="216"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y0l-J0-cgo" customClass="SafeLineView" customModule="EOS" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xAw-f3-RmZ" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Q1-eO-7IU" customClass="SafeLineView" customModule="EOS" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_face"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                                                        <integer key="value" value="2"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                        <integer key="value" value="0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name" value="setting_face"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="48" id="Eua-3o-Ddz"/>
+                                                            <constraint firstAttribute="trailing" secondItem="6Q1-eO-7IU" secondAttribute="trailing" id="Gb9-Uk-t2D"/>
+                                                            <constraint firstItem="6Q1-eO-7IU" firstAttribute="leading" secondItem="xAw-f3-RmZ" secondAttribute="leading" id="TRU-eM-Gq7"/>
+                                                            <constraint firstAttribute="height" constant="48" id="TVV-io-fGq"/>
+                                                            <constraint firstAttribute="bottom" secondItem="6Q1-eO-7IU" secondAttribute="bottom" id="Zhw-RI-F6k"/>
+                                                            <constraint firstItem="6Q1-eO-7IU" firstAttribute="top" secondItem="xAw-f3-RmZ" secondAttribute="top" id="fc5-Db-n6j"/>
                                                         </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_gesture"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                                                <integer key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                                <integer key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="setting_gesture"/>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Js-X9-oM4" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="48" width="343" height="48"/>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PPR-Jc-gwU" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="60" width="343" height="48"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X7s-1M-tsN" customClass="SafeLineView" customModule="EOS" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_finger"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                                                        <integer key="value" value="2"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                        <integer key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name" value="setting_finger"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="48" id="h3K-qA-hfm"/>
+                                                            <constraint firstAttribute="trailing" secondItem="X7s-1M-tsN" secondAttribute="trailing" id="MUQ-kx-S5t"/>
+                                                            <constraint firstAttribute="height" constant="48" id="SnT-xg-GCE"/>
+                                                            <constraint firstItem="X7s-1M-tsN" firstAttribute="leading" secondItem="PPR-Jc-gwU" secondAttribute="leading" id="U25-Ju-RCG"/>
+                                                            <constraint firstAttribute="bottom" secondItem="X7s-1M-tsN" secondAttribute="bottom" id="htg-W2-f5E"/>
+                                                            <constraint firstItem="X7s-1M-tsN" firstAttribute="top" secondItem="PPR-Jc-gwU" secondAttribute="top" id="siZ-oc-bY2"/>
                                                         </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_change_password"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                                <integer key="value" value="3"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
-                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y1O-ME-9K2" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="120" width="343" height="96"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-Qc-IZl">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="96"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y0l-J0-cgo" customClass="SafeLineView" customModule="EOS" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="Eua-3o-Ddz"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_gesture"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                                                                <integer key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                                <integer key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="setting_gesture"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Js-X9-oM4" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="48" width="343" height="48"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="h3K-qA-hfm"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_change_password"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                                <integer key="value" value="3"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="uFd-Qc-IZl" secondAttribute="trailing" id="2yq-DS-Kdm"/>
+                                                            <constraint firstAttribute="bottom" secondItem="uFd-Qc-IZl" secondAttribute="bottom" id="B0f-nN-7jL"/>
+                                                            <constraint firstItem="uFd-Qc-IZl" firstAttribute="top" secondItem="y1O-ME-9K2" secondAttribute="top" id="bZq-Hu-AGq"/>
+                                                            <constraint firstItem="uFd-Qc-IZl" firstAttribute="leading" secondItem="y1O-ME-9K2" secondAttribute="leading" id="dD3-jC-5ox"/>
+                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="uFd-Qc-IZl" secondAttribute="trailing" id="2yq-DS-Kdm"/>
-                                            <constraint firstAttribute="bottom" secondItem="uFd-Qc-IZl" secondAttribute="bottom" id="B0f-nN-7jL"/>
-                                            <constraint firstItem="uFd-Qc-IZl" firstAttribute="top" secondItem="y1O-ME-9K2" secondAttribute="top" id="bZq-Hu-AGq"/>
-                                            <constraint firstItem="uFd-Qc-IZl" firstAttribute="leading" secondItem="y1O-ME-9K2" secondAttribute="leading" id="dD3-jC-5ox"/>
+                                            <constraint firstItem="KRg-Ha-S9k" firstAttribute="leading" secondItem="Del-Et-wJf" secondAttribute="leading" constant="16" id="B98-c4-mp8"/>
+                                            <constraint firstItem="KRg-Ha-S9k" firstAttribute="top" secondItem="Del-Et-wJf" secondAttribute="top" constant="16" id="f8u-jh-tlc"/>
+                                            <constraint firstAttribute="trailing" secondItem="KRg-Ha-S9k" secondAttribute="trailing" constant="16" id="j2y-3T-gZR"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Del-Et-wJf" secondAttribute="bottom" id="11u-1L-EHU"/>
+                                    <constraint firstAttribute="trailing" secondItem="Del-Et-wJf" secondAttribute="trailing" id="F3V-lS-xW7"/>
+                                    <constraint firstItem="Del-Et-wJf" firstAttribute="leading" secondItem="FG9-lh-fh6" secondAttribute="leading" id="fdB-pA-Zvm"/>
+                                    <constraint firstItem="Del-Et-wJf" firstAttribute="top" secondItem="FG9-lh-fh6" secondAttribute="top" id="htt-Pm-dqh"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="bSE-d6-7nZ" firstAttribute="trailing" secondItem="KRg-Ha-S9k" secondAttribute="trailing" constant="16" id="TbK-jH-ZMM"/>
-                            <constraint firstItem="KRg-Ha-S9k" firstAttribute="top" secondItem="bSE-d6-7nZ" secondAttribute="top" constant="16" id="quH-nS-zwU"/>
-                            <constraint firstItem="KRg-Ha-S9k" firstAttribute="leading" secondItem="bSE-d6-7nZ" secondAttribute="leading" constant="16" id="qxg-nv-zVd"/>
+                            <constraint firstItem="FG9-lh-fh6" firstAttribute="leading" secondItem="LvB-Bh-cjR" secondAttribute="leading" id="7uk-xY-acT"/>
+                            <constraint firstItem="FG9-lh-fh6" firstAttribute="top" secondItem="bSE-d6-7nZ" secondAttribute="top" id="gtw-oo-ECV"/>
+                            <constraint firstAttribute="trailing" secondItem="FG9-lh-fh6" secondAttribute="trailing" id="hWf-CI-Dxf"/>
+                            <constraint firstItem="bSE-d6-7nZ" firstAttribute="bottom" secondItem="FG9-lh-fh6" secondAttribute="bottom" id="lpn-2d-Qcw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bSE-d6-7nZ"/>
                     </view>
@@ -512,76 +538,92 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo88" translatesAutoresizingMaskIntoConstraints="NO" id="cPz-Jn-bbZ">
-                                <rect key="frame" x="143.5" y="55" width="88" height="88"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="88" id="SsX-QQ-ThA"/>
-                                    <constraint firstAttribute="width" constant="88" id="tzS-kR-duS"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GEMMA 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tup-Fl-BRu">
-                                <rect key="frame" x="139" y="155" width="96.5" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8sP-9f-QvN" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="214.5" width="343" height="96"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p5b-mq-XnV">
+                                <rect key="frame" x="0.0" y="35" width="375" height="295.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFL-wY-JLU" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAd-Pm-75F">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="295.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo88" translatesAutoresizingMaskIntoConstraints="NO" id="cPz-Jn-bbZ">
+                                                <rect key="frame" x="143.5" y="35" width="88" height="88"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="88" id="SsX-QQ-ThA"/>
+                                                    <constraint firstAttribute="width" constant="88" id="tzS-kR-duS"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GEMMA 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tup-Fl-BRu">
+                                                <rect key="frame" x="139" y="135" width="96.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8sP-9f-QvN" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="194.5" width="343" height="96"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rFL-wY-JLU" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="48" id="VCr-Ls-v8K"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="about_info"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="phJ-5K-D4q" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="48" width="343" height="48"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="about_update"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="rFL-wY-JLU" firstAttribute="top" secondItem="8sP-9f-QvN" secondAttribute="top" id="50c-DT-RED"/>
+                                                    <constraint firstAttribute="trailing" secondItem="phJ-5K-D4q" secondAttribute="trailing" id="LWv-4n-uzi"/>
+                                                    <constraint firstItem="phJ-5K-D4q" firstAttribute="top" secondItem="rFL-wY-JLU" secondAttribute="bottom" id="NTW-nS-UHP"/>
+                                                    <constraint firstAttribute="height" constant="96" id="QEq-ic-EHj"/>
+                                                    <constraint firstItem="phJ-5K-D4q" firstAttribute="leading" secondItem="8sP-9f-QvN" secondAttribute="leading" id="V1S-eW-97P"/>
+                                                    <constraint firstAttribute="bottom" secondItem="phJ-5K-D4q" secondAttribute="bottom" id="aLA-Ta-IN3"/>
+                                                    <constraint firstItem="rFL-wY-JLU" firstAttribute="leading" secondItem="8sP-9f-QvN" secondAttribute="leading" id="pzk-Ex-NrU"/>
+                                                    <constraint firstAttribute="trailing" secondItem="rFL-wY-JLU" secondAttribute="trailing" id="xUX-9r-bsX"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="VCr-Ls-v8K"/>
+                                            <constraint firstItem="8sP-9f-QvN" firstAttribute="top" secondItem="Tup-Fl-BRu" secondAttribute="bottom" constant="40" id="cYt-kQ-xtf"/>
+                                            <constraint firstItem="cPz-Jn-bbZ" firstAttribute="top" secondItem="GAd-Pm-75F" secondAttribute="top" constant="35" id="fof-qj-p2w"/>
+                                            <constraint firstItem="Tup-Fl-BRu" firstAttribute="top" secondItem="cPz-Jn-bbZ" secondAttribute="bottom" constant="12" id="ill-FZ-X4F"/>
+                                            <constraint firstItem="cPz-Jn-bbZ" firstAttribute="centerX" secondItem="GAd-Pm-75F" secondAttribute="centerX" id="pQG-so-UeJ"/>
+                                            <constraint firstItem="Tup-Fl-BRu" firstAttribute="centerX" secondItem="GAd-Pm-75F" secondAttribute="centerX" id="vAe-hg-Kxv"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="about_info"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                <integer key="value" value="0"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phJ-5K-D4q" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="48" width="343" height="48"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="about_update"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="index">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="rFL-wY-JLU" firstAttribute="top" secondItem="8sP-9f-QvN" secondAttribute="top" id="50c-DT-RED"/>
-                                    <constraint firstAttribute="trailing" secondItem="phJ-5K-D4q" secondAttribute="trailing" id="LWv-4n-uzi"/>
-                                    <constraint firstItem="phJ-5K-D4q" firstAttribute="top" secondItem="rFL-wY-JLU" secondAttribute="bottom" id="NTW-nS-UHP"/>
-                                    <constraint firstAttribute="height" constant="96" id="QEq-ic-EHj"/>
-                                    <constraint firstItem="phJ-5K-D4q" firstAttribute="leading" secondItem="8sP-9f-QvN" secondAttribute="leading" id="V1S-eW-97P"/>
-                                    <constraint firstAttribute="bottom" secondItem="phJ-5K-D4q" secondAttribute="bottom" id="aLA-Ta-IN3"/>
-                                    <constraint firstItem="rFL-wY-JLU" firstAttribute="leading" secondItem="8sP-9f-QvN" secondAttribute="leading" id="pzk-Ex-NrU"/>
-                                    <constraint firstAttribute="trailing" secondItem="rFL-wY-JLU" secondAttribute="trailing" id="xUX-9r-bsX"/>
+                                    <constraint firstAttribute="trailing" secondItem="GAd-Pm-75F" secondAttribute="trailing" id="2CR-HX-Ue8"/>
+                                    <constraint firstAttribute="bottom" secondItem="GAd-Pm-75F" secondAttribute="bottom" id="6KK-sp-lss"/>
+                                    <constraint firstItem="GAd-Pm-75F" firstAttribute="leading" secondItem="p5b-mq-XnV" secondAttribute="leading" id="FqF-BT-2nS"/>
+                                    <constraint firstItem="GAd-Pm-75F" firstAttribute="top" secondItem="p5b-mq-XnV" secondAttribute="top" id="vv5-yY-d0i"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Tup-Fl-BRu" firstAttribute="centerX" secondItem="Ka7-Sc-dfI" secondAttribute="centerX" id="DxU-QB-1lC"/>
-                            <constraint firstItem="cPz-Jn-bbZ" firstAttribute="top" secondItem="TzO-o5-exA" secondAttribute="top" constant="35" id="EZ3-Oz-1uP"/>
-                            <constraint firstItem="8sP-9f-QvN" firstAttribute="leading" secondItem="TzO-o5-exA" secondAttribute="leading" constant="16" id="dWY-3g-BPD"/>
-                            <constraint firstItem="8sP-9f-QvN" firstAttribute="top" secondItem="Tup-Fl-BRu" secondAttribute="bottom" constant="40" id="gzW-tq-md2"/>
-                            <constraint firstItem="cPz-Jn-bbZ" firstAttribute="centerX" secondItem="Ka7-Sc-dfI" secondAttribute="centerX" id="pph-df-O7R"/>
-                            <constraint firstItem="TzO-o5-exA" firstAttribute="trailing" secondItem="8sP-9f-QvN" secondAttribute="trailing" constant="16" id="tT8-6W-KVN"/>
-                            <constraint firstItem="Tup-Fl-BRu" firstAttribute="top" secondItem="cPz-Jn-bbZ" secondAttribute="bottom" constant="12" id="usX-uX-j32"/>
+                            <constraint firstItem="p5b-mq-XnV" firstAttribute="top" secondItem="TzO-o5-exA" secondAttribute="top" id="MVo-sv-Tkp"/>
+                            <constraint firstItem="p5b-mq-XnV" firstAttribute="leading" secondItem="Ka7-Sc-dfI" secondAttribute="leading" id="Zwv-45-APP"/>
+                            <constraint firstItem="GAd-Pm-75F" firstAttribute="width" secondItem="Ka7-Sc-dfI" secondAttribute="width" id="fOb-lH-25F"/>
+                            <constraint firstAttribute="trailing" secondItem="p5b-mq-XnV" secondAttribute="trailing" id="jDT-3f-x8f"/>
+                            <constraint firstItem="TzO-o5-exA" firstAttribute="bottom" secondItem="p5b-mq-XnV" secondAttribute="bottom" id="pQ5-Ci-qEI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TzO-o5-exA"/>
                     </view>
