@@ -20,6 +20,7 @@ class ResourceMortgageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        coordinator?.getAccountInfo(WallketManager.shared.getAccount())
     }
     
     func setupUI() {
@@ -48,17 +49,29 @@ class ResourceMortgageViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+        coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
+            guard let `self` = self else { return }
+            
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 
 extension ResourceMortgageViewController {
     @objc func mortgage(_ data: [String:Any]) {
         let btnTitle: String = data["btntitle"] as! String
+        
+        var model = ConfirmViewModel()
+        model.recever = WallketManager.shared.getAccount()
+        model.amount = "123"
+        model.remark = "sxsxsdw\nxsxsoxmo"
+        
         if btnTitle == R.string.localizable.mortgage() {
-            self.coordinator?.presentMortgageConfirmVC(toAccount: WallketManager.shared.getAccount(), money: "123", remark: "xsnixsnxisxnasxiaxanx")
+            model.buttonTitle = R.string.localizable.confirm_mortgage()
         } else {
-            
+            model.buttonTitle = R.string.localizable.confirm_relieve_mortgage()
         }
+        self.coordinator?.presentMortgageConfirmVC(data: model)
+
     }
 }
 

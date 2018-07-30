@@ -12,6 +12,11 @@ class HomeTopView: UIView {
 
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var nameRightImgView: UIImageView!
+    
+    enum event: String {
+        case accountlist
+    }
     
     var data : Any? {
         didSet{
@@ -26,8 +31,17 @@ class HomeTopView: UIView {
     }
     
     func setup(){
-        
+        setupEvent()
     }
+    
+    func setupEvent() {
+        nameRightImgView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            self.nameRightImgView.next?.sendEventWith(event.accountlist.rawValue, userinfo: [:])
+        }).disposed(by: disposeBag)
+
+    }
+    
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
     }

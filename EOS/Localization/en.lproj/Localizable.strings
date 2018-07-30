@@ -115,6 +115,8 @@
 "mortgage_resource" = "抵押资源";
 "cancel_mortgage" = "解除抵押";
 "resource_manager" = "资源管理";
+"confirm_mortgage" = "确认抵押";
+"confirm_relieve_mortgage" = "确认解除抵押";
 
 //zsy end
 

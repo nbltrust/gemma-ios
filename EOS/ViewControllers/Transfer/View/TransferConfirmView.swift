@@ -9,6 +9,15 @@
 import Foundation
 import SwiftRichString
 
+
+struct ConfirmViewModel {
+    var recever = ""
+    var amount = ""
+    var remark = ""
+    var payAccount = ""
+    var buttonTitle = ""
+}
+
 @IBDesignable
 class TransferConfirmView: UIView {
     @IBOutlet weak var receverView: LineView!
@@ -25,6 +34,24 @@ class TransferConfirmView: UIView {
     
     enum TransferEvent: String {
         case sureTransfer
+    }
+    
+    var data: ConfirmViewModel! {
+        didSet {
+            receverView.content_text = "@" + data.recever
+            amountView.content_text = data.amount + " EOS"
+            if data.remark == "" {
+                data.remark = R.string.localizable.default_remark_pre() + WallketManager.shared.getAccount() + R.string.localizable.default_remark_after()
+            }
+            remarkView.content_text = data.remark
+            if data.payAccount == "" {
+                bottomView.isHidden = true
+            } else {
+                bottomView.isHidden = false
+                payAccountView.content_text = data.payAccount
+            }
+            sureView.title = data.buttonTitle
+        }
     }
     
     func setUp() {
@@ -57,41 +84,9 @@ class TransferConfirmView: UIView {
     func setupEvent() {
         sureView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
-            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: [ : ])
+            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: ["btntitle" : self.sureView.title])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
-    
-    var recever = "" {
-        didSet {
-            receverView.content_text = recever
-        }
-    }
-    
-    var amount = "" {
-        didSet {
-            amountView.content_text = amount
-        }
-    }
-    
-    var remark = "" {
-        didSet {
-            if remark == "" {
-                remark = R.string.localizable.default_remark_pre() + WallketManager.shared.getAccount() + R.string.localizable.default_remark_after()
-            }
-            remarkView.content_text = remark
-        }
-    }
-    
-    var payAccount = "" {
-        didSet {
-            if payAccount == "" {
-                bottomView.isHidden = true
-            } else {
-                payAccountView.content_text = payAccount
-            }
-        }
-    }
-    
     
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())

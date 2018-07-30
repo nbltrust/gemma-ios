@@ -11,7 +11,7 @@ import ReSwift
 import Presentr
 
 protocol ResourceMortgageCoordinatorProtocol {
-    func presentMortgageConfirmVC(toAccount:String,money:String,remark:String)
+    func presentMortgageConfirmVC(data: ConfirmViewModel)
 }
 
 protocol ResourceMortgageStateManagerProtocol {
@@ -19,6 +19,8 @@ protocol ResourceMortgageStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<ResourceMortgageState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func getAccountInfo(_ account:String)
 }
 
 class ResourceMortgageCoordinator: HomeRootCoordinator {
@@ -33,7 +35,7 @@ class ResourceMortgageCoordinator: HomeRootCoordinator {
 }
 
 extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
-    func presentMortgageConfirmVC(toAccount:String,money:String,remark:String) {
+    func presentMortgageConfirmVC(data: ConfirmViewModel) {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 323)
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 323))
@@ -52,10 +54,7 @@ extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
         if let vc = R.storyboard.transfer.transferConfirmViewController() {
             let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
             vc.coordinator = coordinator
-            vc.toAccount = toAccount
-            vc.money = money
-            vc.remark = remark
-            vc.payAccount = ""
+            vc.data = data
             transferConfirm.rootVC.pushViewController(vc, animated: true)
         }
         
@@ -74,4 +73,31 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func getAccountInfo(_ account:String) {
+        EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
+            self.store.dispatch(BalanceFetchedAction(balance: json))
+        }, error: { (code) in
+            
+        }) { (error) in
+            
+        }
+        
+        EOSIONetwork.request(target: .get_account(account: account), success: { (json) in
+            if let accountObj = Account.deserialize(from: json.dictionaryObject) {
+                self.store.dispatch(AccountFetchedAction(info: accountObj))
+            }
+            
+        }, error: { (code) in
+            
+        }) { (error) in
+            
+        }
+        
+        SimpleHTTPService.requestETHPrice().done { (json) in
+            if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIO_DEFAULT_SYMBOL }).first {
+                self.store.dispatch(RMBPriceFetchedAction(price: eos))
+            }
+            
+            }.cauterize()
+    }
 }

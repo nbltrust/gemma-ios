@@ -33,7 +33,7 @@ class AccountListViewController: BaseViewController {
     
     func setupData() {
         var array: [AccountListViewModel] = []
-        for i in 0..<2 {
+        for i in 0..<7 {
             var model = AccountListViewModel()
             model.account = "wallet" + "\(i)"
             if i == 1 {
@@ -61,6 +61,13 @@ class AccountListViewController: BaseViewController {
     
     override func configureObserveState() {
         commonObserveState()
+        
+    }
+}
+
+extension AccountListViewController {
+    @objc func didselectrow(_ data:[String:Any]) {
+        let accountName = data["accountname"]
         
     }
 }

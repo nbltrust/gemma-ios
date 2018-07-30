@@ -25,6 +25,7 @@ class GeneralCellView: UIView {
     @IBOutlet weak var rightSubLabel: UILabel!
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var pointView: UIView!
     
     var data: GeneralViewModel! {
         didSet {
@@ -36,8 +37,10 @@ class GeneralCellView: UIView {
             progressView.progress = data.progress
             if progressView.progress > 0.7 {
                 progressView.tintColor = UIColor.scarlet
+                pointView.backgroundColor = UIColor.scarlet
             } else {
                 progressView.tintColor = UIColor.darkSkyBlueTwo
+                pointView.backgroundColor = UIColor.darkSkyBlueTwo
             }
             updateHeight()
         }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OperationLeftView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="cpuMortgageView" destination="CAK-eW-c3w" id="ROh-bn-GEP"/>
+                <outlet property="netMortgageView" destination="pQ8-As-4Yt" id="bqw-NP-K1T"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="175"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nCa-z2-kSc">
+                    <rect key="frame" x="0.0" y="0.0" width="382" height="175"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZPq-Hn-n2n">
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="87.5"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CAK-eW-c3w" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="7" width="382" height="80.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="CAK-eW-c3w" secondAttribute="trailing" id="5gt-ln-vdt"/>
+                                <constraint firstItem="CAK-eW-c3w" firstAttribute="top" secondItem="ZPq-Hn-n2n" secondAttribute="top" constant="7" id="ce2-4p-ZaV"/>
+                                <constraint firstAttribute="bottom" secondItem="CAK-eW-c3w" secondAttribute="bottom" id="dig-3S-Re8"/>
+                                <constraint firstItem="CAK-eW-c3w" firstAttribute="leading" secondItem="ZPq-Hn-n2n" secondAttribute="leading" id="tWQ-Ea-0gW"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OTY-0g-cMf">
+                            <rect key="frame" x="0.0" y="87.5" width="382" height="87.5"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQ8-As-4Yt" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="7" width="382" height="80.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="pQ8-As-4Yt" firstAttribute="leading" secondItem="OTY-0g-cMf" secondAttribute="leading" id="Pdx-9q-J7p"/>
+                                <constraint firstAttribute="bottom" secondItem="pQ8-As-4Yt" secondAttribute="bottom" id="cUf-U2-FPf"/>
+                                <constraint firstAttribute="trailing" secondItem="pQ8-As-4Yt" secondAttribute="trailing" id="ccd-fc-wDI"/>
+                                <constraint firstItem="pQ8-As-4Yt" firstAttribute="top" secondItem="OTY-0g-cMf" secondAttribute="top" constant="7" id="kwa-dx-qGu"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="nCa-z2-kSc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="0pm-w4-cSC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nCa-z2-kSc" secondAttribute="bottom" id="MPH-zd-VVu"/>
+                <constraint firstItem="nCa-z2-kSc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="flT-Cw-yVl"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nCa-z2-kSc" secondAttribute="trailing" id="ye3-Ui-lmY"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="33" y="-120.5"/>
+        </view>
+    </objects>
+</document>

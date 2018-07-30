@@ -16,6 +16,7 @@
                 <outlet property="leftSubLabel" destination="ejg-WM-XMe" id="wtl-HQ-Esb"/>
                 <outlet property="lineView" destination="OjX-kI-cAc" id="seS-kT-cjy"/>
                 <outlet property="nameLabel" destination="Dwa-FI-boJ" id="MSi-oL-8Lj"/>
+                <outlet property="pointView" destination="ldu-JB-vgS" id="43V-ld-rRk"/>
                 <outlet property="progressView" destination="lNs-dO-BDr" id="X9R-gX-lEh"/>
                 <outlet property="rightSubLabel" destination="fr3-Qs-YXR" id="eBo-Kw-BF3"/>
             </connections>

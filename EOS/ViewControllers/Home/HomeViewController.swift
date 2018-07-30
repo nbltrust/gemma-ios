@@ -29,7 +29,18 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let nav = self.navigationController as? BaseNavigationController {
+            nav.navStyle = .clear
+        }
         coordinator?.getAccountInfo(WallketManager.shared.getAccount())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let nav = self.navigationController as? BaseNavigationController {
+            nav.navStyle = .common
+        }
+
     }
     
     func setupUI(){
@@ -90,5 +101,11 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
         default:
             break
         }
+    }
+}
+
+extension HomeViewController {
+    @objc func accountlist(_ data: [String:Any]) {
+        self.coordinator?.pushAccountList()
     }
 }

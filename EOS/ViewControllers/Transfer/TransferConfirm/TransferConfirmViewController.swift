@@ -17,11 +17,8 @@ class TransferConfirmViewController: BaseViewController {
     @IBOutlet var transferConfirmView: TransferConfirmView!
     var coordinator: (TransferConfirmCoordinatorProtocol & TransferConfirmStateManagerProtocol)?
 
-    var toAccount = ""
-    var money = ""
-    var remark = ""
-    var payAccount = ""
-
+    var data: ConfirmViewModel = ConfirmViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
@@ -31,11 +28,7 @@ class TransferConfirmViewController: BaseViewController {
     }
 
     func setUpUI() {
-        self.transferConfirmView.recever = "@" + toAccount
-        self.transferConfirmView.amount = money + " EOS"
-        self.transferConfirmView.remark = remark
-        self.transferConfirmView.payAccount = payAccount
-
+        self.transferConfirmView.data = data
     }
     
     override func leftAction(_ sender: UIButton) {
@@ -66,6 +59,13 @@ class TransferConfirmViewController: BaseViewController {
 
 extension TransferConfirmViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
-        self.coordinator?.pushToTransferConfirmPwdVC(toAccount: toAccount, money: money, remark: self.transferConfirmView.remark)
+        let type: String = data["btntitle"] as! String
+        if type == R.string.localizable.check_transfer() {
+            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.transfer.rawValue)
+        } else if type == R.string.localizable.confirm_mortgage() {
+            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.mortgage.rawValue)
+        } else if type == R.string.localizable.confirm_relieve_mortgage() {
+            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.relieveMortgage.rawValue)
+        }
     }
 }
