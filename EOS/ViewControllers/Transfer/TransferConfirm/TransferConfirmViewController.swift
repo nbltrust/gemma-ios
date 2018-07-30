@@ -20,7 +20,8 @@ class TransferConfirmViewController: BaseViewController {
     var toAccount = ""
     var money = ""
     var remark = ""
-    
+    var payAccount = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
  
@@ -33,7 +34,7 @@ class TransferConfirmViewController: BaseViewController {
         self.transferConfirmView.recever = "@" + toAccount
         self.transferConfirmView.amount = money + " EOS"
         self.transferConfirmView.remark = remark
-        self.transferConfirmView.payAccount = WallketManager.shared.getAccount()
+        self.transferConfirmView.payAccount = payAccount
 
     }
     

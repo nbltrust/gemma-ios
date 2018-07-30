@@ -21,6 +21,8 @@ class TransferConfirmView: UIView {
     
     @IBOutlet weak var sureView: Button!
     
+    @IBOutlet weak var bottomView: UIView!
+    
     enum TransferEvent: String {
         case sureTransfer
     }
@@ -82,7 +84,11 @@ class TransferConfirmView: UIView {
     
     var payAccount = "" {
         didSet {
-            payAccountView.content_text = payAccount
+            if payAccount == "" {
+                bottomView.isHidden = true
+            } else {
+                payAccountView.content_text = payAccount
+            }
         }
     }
     

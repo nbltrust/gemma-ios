@@ -100,6 +100,22 @@
 "change_wallet_name" = "修改钱包名";
 "i_know" = "我知道了";
 "red_warning" = "账户创建中，请勿在EOS区块100%确认之前往账户转账！";
+"mortgage_button" = "抵押CPU和NET";
+"general" = "概况";
+"mortgage" = "抵押";
+"mortgage_cpu" = "抵押CPU";
+"mortgage_net" = "抵押NET";
+"mortgage_placeholder" = "输入需要抵押的EOS数量";
+"operation" = "操作";
+"mortgage_cancel_placeholder" = "输入解除抵押的EOS数量";
+"cpu" = "CPU";
+"net" = "NET";
+"use" = "已用";
+"total" = "总量";
+"mortgage_resource" = "抵押资源";
+"cancel_mortgage" = "解除抵押";
+"resource_manager" = "资源管理";
+
 //zsy end
 
 "day" = "天";

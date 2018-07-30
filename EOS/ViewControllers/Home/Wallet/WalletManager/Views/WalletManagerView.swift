@@ -55,8 +55,6 @@ class WalletManagerView: UIView {
         changePasswordLineView.content_text = ""
         changePasswordLineView.image_name = R.image.icArrow.name
         changePasswordLineView.backgroundColor = UIColor.clear
-
-
     }
     
     func setUpEvent() {

@@ -46,6 +46,13 @@ class TitleTextfieldView: UIView {
         }
     }
     
+    func reloadData() {
+        setting = datasource?.textUISetting(titleTextFieldView: self)
+        buttonSettings = datasource?.textActionSettings(titleTextFieldView: self)
+        unit = datasource?.textUnitStr(titleTextFieldView: self)
+        updateHeight()
+    }
+    
     var buttonSettings : [TextButtonSetting]? {
         didSet {
             setupRightView()
@@ -101,7 +108,7 @@ class TitleTextfieldView: UIView {
         guard (buttonSettings != nil) else {
             return
         }
-        
+        actionsView.removeSubviews()
         for (index, value) in (buttonSettings?.enumerated())! {
             let image = UIImage(named: value.imageName)
             let btn = TextRightButton()

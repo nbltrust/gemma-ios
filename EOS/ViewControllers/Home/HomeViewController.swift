@@ -86,7 +86,7 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:self.coordinator?.pushPayment()
-        case 1:return
+        case 1:self.coordinator?.pushResourceMortgageVC()
         default:
             break
         }

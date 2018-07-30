@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/zsy/gemma-ios/EOS/ViewControllers/Home/ResourceMortgage/View/OperationLeftView.xib">
+   </FileRef>
+   <FileRef
       location = "group:EOS.xcodeproj">
    </FileRef>
    <FileRef

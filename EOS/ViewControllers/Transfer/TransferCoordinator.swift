@@ -76,6 +76,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
             vc.toAccount = toAccount
             vc.money = money
             vc.remark = remark
+            vc.payAccount = WallketManager.shared.getAccount()
             transferConfirm.rootVC.pushViewController(vc, animated: true)
         }
 
