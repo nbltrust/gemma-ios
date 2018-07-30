@@ -81,9 +81,6 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
                 let transation = EOSIO.getTransaction(privakey,
                                                       code: NetworkConfiguration.EOSIO_DEFAULT_CODE,
                                                       from: WallketManager.shared.getAccount(),
-                                                      to: account,
-                                                      quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL,
-                                                      memo: code,
                                                       getinfo: get_info,
                                                       abistr: abiStr)
                 

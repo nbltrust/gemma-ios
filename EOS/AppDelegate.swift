@@ -11,6 +11,8 @@ import SwiftyBeaver
 import IQKeyboardManagerSwift
 import SwiftyUserDefaults
 import Localize_Swift
+import Fabric
+import Crashlytics
 
 let log = SwiftyBeaver.self
 
@@ -21,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var appcoordinator:AppCoordinator?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        Fabric.with([Crashlytics.self, Answers.self])
+
         let console = ConsoleDestination()
         log.addDestination(console)
         

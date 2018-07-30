@@ -4366,7 +4366,6 @@
 		56253F524D0C60A0682F467288940CE0 /* linear.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linear.hpp; sourceTree = "<group>"; };
 		562A51A51D03E2CFFE85FCFB84DB537A /* preprocessed.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = preprocessed.hpp; sourceTree = "<group>"; };
 		562FD7C48C982E559DF8DDE75355F49A /* time_serialize.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = time_serialize.hpp; sourceTree = "<group>"; };
-		56308F906C6C41ADF0D598748BF874B1 /* eosio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = eosio.hpp; sourceTree = "<group>"; };
 		5630B946DF9208C5663A8741E9202D00 /* thisunderscore.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = thisunderscore.hpp; sourceTree = "<group>"; };
 		5645B0276574C02392C14B19FAFC8974 /* find.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = find.hpp; sourceTree = "<group>"; };
 		564B2A3836F906E8B2481D2B2F903C73 /* local_variable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = local_variable.hpp; sourceTree = "<group>"; };
@@ -26460,7 +26459,6 @@
 				C6EDC272AF676F8AF026CA4CBEFED656 /* eosio */,
 				91AD78F2941A08C60D6933239DA8ED34 /* fc */,
 				0DC30EBB0855773FA83EA6B7CCD42EF8 /* openssl */,
-				56308F906C6C41ADF0D598748BF874B1 /* eosio.hpp */,
 				492CEBC6A762297D437BDA95DF9341BD /* keosdlib.hpp */,
 			);
 			path = include;
@@ -31880,6 +31878,7 @@
 				C75A54D8CA3FD1F807CC9E9282BADD29 /* color set */,
 				526C699A0C9DCFFA46450A633E55C5DE /* R.swift */,
 				AFF7EE0B2B4179DEFEDE0DDE919988C0 /* [CP] Embed Pods Frameworks */,
+				734811752106F61B000BF1B8 /* fabric */,
 			);
 			buildRules = (
 			);
@@ -32136,6 +32135,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"\n";
 		};
+		734811752106F61B000BF1B8 /* fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" a0bbb6d623feca529afaf6ed110e62a77f47b16a 3b264ff6cab506aaf14bce576c156ea66229ad7b6dfb666b4fbb91089deb17e2 ";
+		};
 		AFF7EE0B2B4179DEFEDE0DDE919988C0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -32146,6 +32159,7 @@
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AwaitKit/AwaitKit.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaDebug/CocoaDebug.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Device/Device.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
@@ -32213,6 +32227,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AwaitKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaDebug.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Device.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",

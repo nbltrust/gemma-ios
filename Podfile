@@ -58,6 +58,7 @@ def extension
 end
 
 def ui
+    pod 'Tags' #助记词
     pod 'TinyConstraints'
     pod 'ESTabBarController-swift'
     pod 'KMNavigationBarTransition'
@@ -76,6 +77,8 @@ def ui
     pod 'ESPullToRefresh'
     pod 'KUIPopOver'
     pod 'GrowingTextView'
+    pod 'StyledTextKit'
+    pod 'Bartinter'
 end
 
 def other
@@ -92,6 +95,7 @@ end
 def debug
     pod 'SwiftyBeaver'
     pod 'Reveal-SDK', :configurations => ['Debug']
+    pod 'CocoaDebug', :configurations => ['Debug']
 end
 
 target 'EOS' do

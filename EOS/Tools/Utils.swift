@@ -24,6 +24,9 @@ func navBgImage() -> UIImage? {
     }
 }
 
+//func print<T>(file: String = #file, function: String = #function, line: Int = #line, _ message: T, color: UIColor = UIColor.white) {
+//}
+
 extension String {
     var eosAmount: String {
         if self.contains(" ") {

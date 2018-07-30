@@ -5,6 +5,7 @@ PODS:
   - Alamofire (4.7.2)
   - AwaitKit (5.0.0):
     - PromiseKit (~> 6)
+  - CocoaDebug (0.0.5)
   - Crashlytics (3.10.2):
     - Fabric (~> 1.7.7)
   - CryptoSwift (0.10.0)
@@ -128,6 +129,7 @@ PODS:
 DEPENDENCIES:
   - Action
   - AwaitKit
+  - CocoaDebug
   - Crashlytics
   - CryptoSwift
   - Device
@@ -190,6 +192,7 @@ SPEC REPOS:
     - Action
     - Alamofire
     - AwaitKit
+    - CocoaDebug
     - Crashlytics
     - CryptoSwift
     - Device
@@ -268,6 +271,7 @@ SPEC CHECKSUMS:
   Action: 3d9486d3da02b572b0a034b6c49ac4c3fbcc8b63
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AwaitKit: d8a6e30eeb2da916630270b44636b31033388bd8
+  CocoaDebug: d7a1cb491df27a2d28fde8d8983d3b9293f13163
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
   Device: 8a21a61f5f938a12dadd44d82287996081b6919b
@@ -333,6 +337,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
   ZLaunchAd: 47e4fd3718c73d48d74ac37f7f637021e4fd0e4b
 
-PODFILE CHECKSUM: 7c0cdc3722b62f08bd3a5e57075b4c69b5548ac1
+PODFILE CHECKSUM: 9366b404c026fc26ae8f2b31b1b253731f96b269
 
 COCOAPODS: 1.5.3
