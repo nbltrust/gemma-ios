@@ -44,6 +44,7 @@ end
 
 def permission
     pod 'Proposer'
+    pod 'BiometricAuthentication'
 end
 
 def animation
@@ -77,7 +78,6 @@ def ui
     pod 'ESPullToRefresh'
     pod 'KUIPopOver'
     pod 'GrowingTextView'
-    pod 'StyledTextKit'
     pod 'Bartinter'
 end
 
