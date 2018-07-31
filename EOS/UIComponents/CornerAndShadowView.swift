@@ -8,26 +8,39 @@
 
 import Foundation
 
+@IBDesignable
 class CornerAndShadowView: UIView {
     
     @IBOutlet weak var cornerView: UIView!
     
-    var cornerRadiusInt = 4 {
+    @IBInspectable
+    var cornerRadiusInt: Int = 4 {
         didSet {
             cornerView.cornerRadius = cornerRadiusInt.cgFloat
         }
     }
     
-    var shadowR = 4 {
+    @IBInspectable
+    var shadowR: Int = 4 {
         didSet {
-            self.shadowRadius = shadowR.cgFloat
+            self.subviews.forEach { [weak self](subView) in
+                guard let `self` = self else { return }
+                if subView.shadowOpacity == 1 {
+                    subView.shadowRadius = shadowR.cgFloat
+                }
+            }
         }
     }
     
-    var newShadowColor = UIColor.duskBlue5 {
+    @IBInspectable
+    var newShadowColor: UIColor = UIColor.duskBlue5 {
         didSet {
-            self.shadowColor = newShadowColor
-            
+            self.subviews.forEach { [weak self](subView) in
+                guard let `self` = self else { return }
+                if subView.shadowOpacity == 1 {
+                    subView.shadowColor = newShadowColor
+                }
+            }
         }
     }
     
@@ -58,7 +71,12 @@ class CornerAndShadowView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
-        
+        self.subviews.forEach { [weak self](subView) in
+            guard let `self` = self else { return }
+            if subView.shadowOpacity == 0 {
+                subView.cornerRadius = self.cornerView.cornerRadius
+            }
+        }
     }
     
     override init(frame: CGRect) {

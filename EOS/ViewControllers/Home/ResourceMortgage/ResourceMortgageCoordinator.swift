@@ -75,7 +75,7 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
     
     func getAccountInfo(_ account:String) {
         EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
-            self.store.dispatch(BalanceFetchedAction(balance: json))
+            self.store.dispatch(MBalanceFetchedAction(balance: json))
         }, error: { (code) in
             
         }) { (error) in
@@ -84,7 +84,7 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
         
         EOSIONetwork.request(target: .get_account(account: account), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
-                self.store.dispatch(AccountFetchedAction(info: accountObj))
+                self.store.dispatch(MAccountFetchedAction(info: accountObj))
             }
             
         }, error: { (code) in
@@ -95,7 +95,7 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
         
         SimpleHTTPService.requestETHPrice().done { (json) in
             if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIO_DEFAULT_SYMBOL }).first {
-                self.store.dispatch(RMBPriceFetchedAction(price: eos))
+                self.store.dispatch(MRMBPriceFetchedAction(price: eos))
             }
             
             }.cauterize()

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResourceMortgageView" customModule="EOS" customModuleProvider="target">
             <connections>
+                <outlet property="cornerShadowView" destination="jdD-hn-ukE" id="drs-x0-jDa"/>
                 <outlet property="cpuView" destination="HrI-xN-M9Z" id="zty-xw-SEc"/>
                 <outlet property="netButton" destination="FKV-5k-kxB" id="dsx-fP-wWu"/>
                 <outlet property="netView" destination="Y04-02-qme" id="a51-1V-LrG"/>
@@ -41,31 +42,51 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdD-hn-ukE" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="16" y="50" width="343" height="182"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pJu-uf-Ute">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="10J-dR-VrQ">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="182"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrI-xN-M9Z" customClass="GeneralCellView" customModule="EOS" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="90"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="90" id="zfW-4y-pm6"/>
-                                                    </constraints>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y04-02-qme" customClass="GeneralCellView" customModule="EOS" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="90" width="343" height="92"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pJu-uf-Ute">
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="182"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrI-xN-M9Z" customClass="GeneralCellView" customModule="EOS" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="90"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="90" id="zfW-4y-pm6"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y04-02-qme" customClass="GeneralCellView" customModule="EOS" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="90" width="343" height="92"/>
+                                                        </view>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
-                                        </stackView>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="pJu-uf-Ute" secondAttribute="bottom" id="Tes-b9-kit"/>
+                                                <constraint firstAttribute="trailing" secondItem="pJu-uf-Ute" secondAttribute="trailing" id="X93-iq-p9M"/>
+                                                <constraint firstItem="pJu-uf-Ute" firstAttribute="leading" secondItem="10J-dR-VrQ" secondAttribute="leading" id="XXg-9j-zzN"/>
+                                                <constraint firstItem="pJu-uf-Ute" firstAttribute="top" secondItem="10J-dR-VrQ" secondAttribute="top" id="rAO-V4-3dt"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="pJu-uf-Ute" firstAttribute="leading" secondItem="jdD-hn-ukE" secondAttribute="leading" id="1c1-NQ-atM"/>
-                                        <constraint firstItem="pJu-uf-Ute" firstAttribute="top" secondItem="jdD-hn-ukE" secondAttribute="top" id="3HH-vu-f8R"/>
+                                        <constraint firstAttribute="trailing" secondItem="10J-dR-VrQ" secondAttribute="trailing" id="2oX-jv-jM9"/>
                                         <constraint firstAttribute="height" constant="182" id="Gr1-mX-r8w"/>
-                                        <constraint firstAttribute="bottom" secondItem="pJu-uf-Ute" secondAttribute="bottom" id="RyH-6V-0gv"/>
-                                        <constraint firstAttribute="trailing" secondItem="pJu-uf-Ute" secondAttribute="trailing" id="m64-7T-GqH"/>
+                                        <constraint firstAttribute="bottom" secondItem="10J-dR-VrQ" secondAttribute="bottom" id="O8h-eF-hHK"/>
+                                        <constraint firstItem="10J-dR-VrQ" firstAttribute="leading" secondItem="jdD-hn-ukE" secondAttribute="leading" id="OwE-V6-t9S"/>
+                                        <constraint firstItem="10J-dR-VrQ" firstAttribute="top" secondItem="jdD-hn-ukE" secondAttribute="top" id="nEk-9H-aJs"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="newShadowColor">
+                                            <color key="value" name="duskBlue5" red="0.153" green="0.204" blue="0.490" alpha="0.048" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowR">
+                                            <integer key="value" value="7"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusInt">
+                                            <integer key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snN-cg-uxa" customClass="PageView" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="16" y="256" width="343" height="265"/>
@@ -120,4 +141,6 @@
             <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

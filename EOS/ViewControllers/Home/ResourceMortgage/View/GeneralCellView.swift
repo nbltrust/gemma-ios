@@ -10,15 +10,6 @@ import Foundation
 @IBDesignable
 class GeneralCellView: UIView {
     
-    struct GeneralViewModel {
-        var name = ""
-        var eos = "- EOS"
-        var leftSub = ""
-        var rightSub = ""
-        var lineHidden = false
-        var progress: Float = 0.5
-    }
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var eosLabel: UILabel!
     @IBOutlet weak var leftSubLabel: UILabel!
@@ -27,22 +18,24 @@ class GeneralCellView: UIView {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var pointView: UIView!
     
-    var data: GeneralViewModel! {
+    var data: Any? {
         didSet {
-            nameLabel.text = data.name
-            eosLabel.text = data.eos
-            leftSubLabel.text = data.leftSub
-            rightSubLabel.text = data.rightSub
-            lineView.isHidden = data.lineHidden
-            progressView.progress = data.progress
-            if progressView.progress > 0.7 {
-                progressView.tintColor = UIColor.scarlet
-                pointView.backgroundColor = UIColor.scarlet
-            } else {
-                progressView.tintColor = UIColor.darkSkyBlueTwo
-                pointView.backgroundColor = UIColor.darkSkyBlueTwo
+            if let data = data as? GeneralViewModel {
+                nameLabel.text = data.name
+                eosLabel.text = data.eos
+                leftSubLabel.text = data.leftSub
+                rightSubLabel.text = data.rightSub
+                lineView.isHidden = data.lineHidden
+                progressView.progress = data.progress
+                if progressView.progress >= 0.85 {
+                    progressView.tintColor = UIColor.scarlet
+                    pointView.backgroundColor = UIColor.scarlet
+                } else {
+                    progressView.tintColor = UIColor.darkSkyBlueTwo
+                    pointView.backgroundColor = UIColor.darkSkyBlueTwo
+                }
+                updateHeight()
             }
-            updateHeight()
         }
     }
     
