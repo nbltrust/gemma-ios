@@ -32,6 +32,7 @@ class HomeViewController: BaseViewController {
         if let nav = self.navigationController as? BaseNavigationController {
             nav.navStyle = .clear
         }
+        
         coordinator?.getAccountInfo(WallketManager.shared.getAccount())
     }
     

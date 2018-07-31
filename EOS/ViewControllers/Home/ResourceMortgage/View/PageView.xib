@@ -151,7 +151,6 @@
                             </connections>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="NK5-3T-CGo" firstAttribute="top" secondItem="KCR-8e-pfE" secondAttribute="top" id="42X-MM-elu"/>
                         <constraint firstAttribute="trailing" secondItem="NK5-3T-CGo" secondAttribute="trailing" id="4YW-5P-xR1"/>
@@ -161,6 +160,17 @@
                         <constraint firstItem="iZn-dT-Uu8" firstAttribute="leading" secondItem="KCR-8e-pfE" secondAttribute="leading" id="mFk-bu-dTV"/>
                         <constraint firstAttribute="bottom" secondItem="iZn-dT-Uu8" secondAttribute="bottom" id="miz-RN-fBW"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="newShadowColor">
+                            <color key="value" red="0.153" green="0.20399999999999999" blue="0.48999999999999999" alpha="0.048000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowR">
+                            <integer key="value" value="7"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusInt">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <constraints>

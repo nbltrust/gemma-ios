@@ -19,35 +19,68 @@ struct ResourceMortgageState: StateType {
     var property: ResourceMortgagePropertyState
 }
 
-//struct MortgageViewModel {
-//    var account:String = "-"
-//    var portrait:String = ""
-//    var allAssets:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"// 1.0000 EOS
-//    var balance:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-//    var CNY:String = "≈- CNY"
-//    var recentRefundAsset:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-//    var refundTime:String = ""
-//    var cpuValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-//    var netValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-//    var ramValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-//}
+struct MortgageViewModel {
+    var account:String = "-"
+    var portrait:String = ""
+    var allAssets:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"// 1.0000 EOS
+    var balance:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    var CNY:String = "≈- CNY"
+    var recentRefundAsset:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    var refundTime:String = ""
+    var cpuValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    var netValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    var ramValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    
+}
+
+struct GeneralViewModel {
+    var name = ""
+    var eos = "- EOS"
+    var leftSub = ""
+    var rightSub = ""
+    var lineHidden = false
+    var progress: Float = 0.5
+}
+
+struct ResourceViewModel {
+    var general: [GeneralViewModel]
+    var page: PageViewModel
+}
+
+struct PageViewModel {
+    var balance = ""
+    var leftText = ""
+    var rightText = ""
+    var operationLeft: [OperationViewModel]
+    var operationRight: [OperationViewModel]
+}
+
+struct OperationViewModel {
+    var title = ""
+    var placeholder = ""
+    var warning = ""
+    var introduce = ""
+    var isShowPromptWhenEditing = true
+    var showLine = true
+    var isSecureTextEntry = false
+}
 
 struct ResourceMortgagePropertyState {
-    var info:BehaviorRelay<AccountViewModel> = BehaviorRelay(value: AccountViewModel())
+    var info:BehaviorRelay<ResourceViewModel?> = BehaviorRelay(value: nil)
     var CNY_price:String = ""
 }
-//
-//struct MBalanceFetchedAction:Action {
-//    var balance:JSON
-//}
-//
-//struct MAccountFetchedAction:Action {
-//    var info:Account
-//}
-//
-//struct MRMBPriceFetchedAction:Action {
-//    var price:JSON
-//}
+
+struct MBalanceFetchedAction:Action {
+    var balance:JSON
+}
+
+struct MAccountFetchedAction:Action {
+    var info:Account
+}
+
+struct MRMBPriceFetchedAction:Action {
+    var price:JSON
+}
 
 //MARK: - Action Creator
 class ResourceMortgagePropertyActionCreate {

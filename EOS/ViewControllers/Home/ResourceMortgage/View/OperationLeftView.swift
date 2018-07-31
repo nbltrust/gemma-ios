@@ -8,15 +8,7 @@
 
 import Foundation
 
-struct OperationViewModel {
-    var title = ""
-    var placeholder = ""
-    var warning = ""
-    var introduce = ""
-    var isShowPromptWhenEditing = true
-    var showLine = true
-    var isSecureTextEntry = false
-}
+
 
 class OperationLeftView: UIView {
     

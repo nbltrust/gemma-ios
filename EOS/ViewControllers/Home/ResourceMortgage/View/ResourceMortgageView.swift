@@ -8,28 +8,26 @@
 
 import Foundation
 
-struct ResourceViewModel {
-    var general: [GeneralCellView.GeneralViewModel]
-    var page: PageViewModel
-}
-
 class ResourceMortgageView: UIView {
     
     @IBOutlet weak var cpuView: GeneralCellView!
     @IBOutlet weak var netView: GeneralCellView!
     @IBOutlet weak var netButton: Button!
     @IBOutlet weak var pageView: PageView!
+    @IBOutlet weak var cornerShadowView: CornerAndShadowView!
     
     enum event: String {
         case mortgage
     }
     
-    var data: ResourceViewModel! {
+    var data: Any? {
         didSet {
-            cpuView.data = data.general[0]
-            netView.data = data.general[1]
-            pageView.data = data.page
-            updateHeight()
+            if let data = data as? ResourceViewModel {
+                cpuView.data = data.general[0]
+                netView.data = data.general[1]
+                pageView.data = data.page
+                updateHeight()
+            }
         }
     }  
     
