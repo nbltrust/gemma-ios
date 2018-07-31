@@ -158,7 +158,11 @@ extension TransferViewController {
         self.coordinator?.validName(data["content"] as! String)
     }
     @objc func sureTransfer(_ data: [String : Any]) {
-        self.coordinator?.pushToTransferConfirmVC(toAccount: self.accountTextField.text!, money: self.transferContentView.moneyTitleTextView.textField.text!, remark: self.transferContentView.remarkTitleTextView.textView.text!)
+        var data = ConfirmViewModel()
+        data.recever = self.accountTextField.text!
+        data.amount = self.transferContentView.moneyTitleTextView.textField.text!
+        data.remark = self.transferContentView.remarkTitleTextView.textView.text!
+        self.coordinator?.pushToTransferConfirmVC(data: data)
     }
     @objc func transferMoney(_ data: [String : Any]) {
         if let textfield = data["textfield"] as? UITextField,textfield.text != "" , let money = textfield.text?.toDouble() {

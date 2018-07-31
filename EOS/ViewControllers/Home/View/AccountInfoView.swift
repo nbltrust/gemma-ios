@@ -48,7 +48,12 @@ class AccountInfoView: UIView {
                 mCPUConsumeEOSLabel.text = "CPU\n" + data.cpuValue
                 mNETConsumeEOSLabel.text = "NET\n" + data.netValue
                 mRAMConsumeKBLabel.text = "RAM\n" + data.ramValue
-                
+                if data.refundTime == "" {
+                    refundView.isHidden = true
+                } else {
+                    refundView.isHidden = false
+                    refundLabel.text = data.refundTime
+                }
                 updateHeight()
             }
         }
@@ -64,22 +69,9 @@ class AccountInfoView: UIView {
         }
     }
     
-    var refundViewIsHidden = true {
-        didSet {
-            if refundViewIsHidden == true {
-                refundView.isHidden = true
-            } else {
-                refundView.isHidden = false
-            }
-        }
-    }
-    
-    
     func setUp() {
 //        backupLabelView.isHidden = true
 //        refundView.isHidden = true
-        cornerShadowView.cornerRadiusInt = 8
-        cornerShadowView.shadowR = 8
         setUpEvent()
     }
     

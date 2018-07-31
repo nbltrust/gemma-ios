@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum confirmType: String {
+    case transfer
+    case mortgage
+    case relieveMortgage
+}
+
 class TransferConfirmPasswordView: UIView {
     enum TransferEvent: String {
         case sureTransfer
@@ -19,6 +25,11 @@ class TransferConfirmPasswordView: UIView {
     var pwd = "" {
         didSet {
             textField.text = pwd
+        }
+    }
+    
+    var confirmType = "" {
+        didSet {
         }
     }
     
@@ -40,7 +51,7 @@ class TransferConfirmPasswordView: UIView {
     func setupEvent() {
         nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
-            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: [ : ])
+            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: ["confirmtype" : self.confirmType])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     

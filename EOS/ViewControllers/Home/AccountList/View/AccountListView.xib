@@ -21,20 +21,20 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e0v-w9-wSV">
-                    <rect key="frame" x="0.0" y="0.0" width="387" height="363"/>
-                    <color key="backgroundColor" name="white" red="0.976" green="0.976" blue="0.976" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="0.0" y="0.0" width="387" height="332"/>
+                    <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="neT-We-MVN"/>
                         <outlet property="delegate" destination="-1" id="I4w-yE-l7t"/>
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="white" red="0.976" green="0.976" blue="0.976" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="e0v-w9-wSV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="6aj-YN-N92"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="e0v-w9-wSV" secondAttribute="trailing" id="OJ4-F7-Ad8"/>
                 <constraint firstItem="e0v-w9-wSV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Z3Z-Ms-NhZ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="e0v-w9-wSV" secondAttribute="bottom" id="pEx-N3-Xbs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="e0v-w9-wSV" secondAttribute="bottom" constant="31" id="pEx-N3-Xbs"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

@@ -8,31 +8,37 @@
 
 import Foundation
 
+@IBDesignable
 class CornerAndShadowView: UIView {
     
     @IBOutlet weak var cornerView: UIView!
     
-    var cornerRadiusInt = 4 {
+    @IBInspectable
+    var cornerRadiusInt: Int = 4 {
         didSet {
             cornerView.cornerRadius = cornerRadiusInt.cgFloat
         }
     }
     
-    var shadowR = 4 {
+    @IBInspectable
+    var shadowR: Int = 4 {
         didSet {
-            self.subviews.forEach { (subView) in
+            self.subviews.forEach { [weak self](subView) in
+                guard let `self` = self else { return }
                 if subView.shadowOpacity == 1 {
-                    subView.shadowRadius = shadowR.cgFloat
+                    subView.shadowRadius = self.shadowR.cgFloat
                 }
             }
         }
     }
     
-    var newShadowColor = UIColor.duskBlue5 {
+    @IBInspectable
+    var newShadowColor: UIColor = UIColor.duskBlue5 {
         didSet {
-            self.subviews.forEach { (subView) in
+            self.subviews.forEach { [weak self](subView) in
+                guard let `self` = self else { return }
                 if subView.shadowOpacity == 1 {
-                    subView.shadowColor = newShadowColor
+                    subView.shadowColor = self.newShadowColor
                 }
             }
         }

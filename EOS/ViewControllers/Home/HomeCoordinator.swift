@@ -16,6 +16,7 @@ protocol HomeCoordinatorProtocol {
     func pushWallet()
 //    func pushScreenShotAlert()
     func pushAccountList()
+    func pushResourceMortgageVC()
 }
 
 protocol HomeStateManagerProtocol {
@@ -93,6 +94,14 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
     func pushWallet() {
         if let vc = R.storyboard.wallet.walletViewController() {
             let coordinator = WalletCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func pushResourceMortgageVC() {
+        if let vc = R.storyboard.resourceMortgage.resourceMortgageViewController() {
+            let coordinator = ResourceMortgageCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }

@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 protocol TransferConfirmCoordinatorProtocol {
-    func pushToTransferConfirmPwdVC(toAccount:String,money:String,remark:String)
+    func pushToTransferConfirmPwdVC(toAccount:String,money:String,remark:String,type:String)
     func dismissConfirmVC()
 }
 
@@ -33,7 +33,7 @@ class TransferConfirmCoordinator: TransferRootCoordinator {
 }
 
 extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
-    func pushToTransferConfirmPwdVC(toAccount:String,money:String,remark:String) {
+    func pushToTransferConfirmPwdVC(toAccount:String,money:String,remark:String,type:String) {
 //        let width = ModalSize.full
 //        let height = ModalSize.custom(size: 369)
 //        let center = ModalCenterPosition.bottomCenter
@@ -49,6 +49,7 @@ extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
         vc?.receiver = toAccount
         vc?.amount = money
         vc?.remark = remark
+        vc?.type = type
         self.rootVC.pushViewController(vc!, animated: true)
     }
     
