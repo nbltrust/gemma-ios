@@ -14,7 +14,7 @@ import Presentr
 import Typist
 
 protocol TransferCoordinatorProtocol {
-    func pushToTransferConfirmVC(toAccount:String,money:String,remark:String)
+    func pushToTransferConfirmVC(data: ConfirmViewModel)
     func pushToPaymentVC()
 }
 
@@ -54,7 +54,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         
     }
     
-    func pushToTransferConfirmVC(toAccount:String,money:String,remark:String) {
+    func pushToTransferConfirmVC(data: ConfirmViewModel) {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 369)
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 369))
@@ -73,9 +73,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         if let vc = R.storyboard.transfer.transferConfirmViewController() {
             let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
             vc.coordinator = coordinator
-            vc.toAccount = toAccount
-            vc.money = money
-            vc.remark = remark
+            vc.data = data
             transferConfirm.rootVC.pushViewController(vc, animated: true)
         }
 
