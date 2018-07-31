@@ -56,6 +56,7 @@ class SafeLineView: UIView {
     
     func setup() {
         self.safeLineView.index = self.index
+        self.safeLineView.rightIcon.isHidden = true
     }
     
     func updateHeight() {

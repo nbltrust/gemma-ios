@@ -61,7 +61,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="oTH-Jq-iHL" firstAttribute="leading" secondItem="j7h-Bw-iLP" secondAttribute="trailing" constant="10" id="1Hn-XK-JvU"/>
                 <constraint firstItem="YsC-UH-O2A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="36C-Os-MBX"/>
@@ -79,7 +78,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-162" y="32"/>
+            <point key="canvasLocation" x="-527" y="-119"/>
         </view>
     </objects>
     <resources>
