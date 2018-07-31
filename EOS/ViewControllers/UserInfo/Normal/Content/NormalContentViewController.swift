@@ -90,7 +90,7 @@ extension NormalContentViewController : UITableViewDelegate,UITableViewDataSourc
         if let data = self.coordinator?.state.property.data {
             cell.setup(data[indexPath.row], indexPath: indexPath)
             if indexPath.row == data.count - 1{
-                cell.cellView.isShowLineView = false
+                cell.cellView.isShowLineView = true
             }
         }
         return cell

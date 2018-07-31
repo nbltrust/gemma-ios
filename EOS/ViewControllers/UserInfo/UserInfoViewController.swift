@@ -12,10 +12,13 @@ import RxCocoa
 import ReSwift
 
 class UserInfoViewController: BaseViewController {
-
-	var coordinator: (UserInfoCoordinatorProtocol & UserInfoStateManagerProtocol)?
-
-	override func viewDidLoad() {
+    
+    @IBOutlet weak var testView: NormalCellView!
+    
+    
+    var coordinator: (UserInfoCoordinatorProtocol & UserInfoStateManagerProtocol)?
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
@@ -23,7 +26,7 @@ class UserInfoViewController: BaseViewController {
     func setupUI() {
         self.title = R.string.localizable.mine_title()
     }
-    
+        
     func commonObserveState() {
         coordinator?.subscribe(errorSubscriber) { sub in
             return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in

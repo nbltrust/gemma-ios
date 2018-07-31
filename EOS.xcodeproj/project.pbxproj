@@ -226,6 +226,10 @@
 		725F68072101B8E50006BBA1 /* SetWalletReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725F68032101B8E50006BBA1 /* SetWalletReducers.swift */; };
 		727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A0C092D0A5867AD008B19D6E9C415 /* UIImage+Extensions.swift */; };
 		72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD93970489E3F3320328E206C4A6970 /* LineView.swift */; };
+		72D645B621106860003F660D /* LeadInKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D645B221106860003F660D /* LeadInKeyCoordinator.swift */; };
+		72D645B721106860003F660D /* LeadInKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D645B321106860003F660D /* LeadInKeyActions.swift */; };
+		72D645B821106860003F660D /* LeadInKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D645B421106860003F660D /* LeadInKeyViewController.swift */; };
+		72D645B921106860003F660D /* LeadInKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D645B521106860003F660D /* LeadInKeyReducers.swift */; };
 		72FE5B3D20FF401B00B29FEC /* NormalCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE5B3C20FF401B00B29FEC /* NormalCellView.swift */; };
 		72FE5B3F20FF402600B29FEC /* NormalCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B3E20FF402600B29FEC /* NormalCellView.xib */; };
 		72FE5B4B210048F500B29FEC /* NormalCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE5B47210048F500B29FEC /* NormalCoordinator.swift */; };
@@ -5636,6 +5640,10 @@
 		72CA35751267DEE8668A0E1081732B50 /* sequence_to_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sequence_to_list.hpp; sourceTree = "<group>"; };
 		72D3FF2243787C80C1D1ADA9BDF06902 /* expr_variadic.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = expr_variadic.hpp; sourceTree = "<group>"; };
 		72D614CBF01A4232D69ADFB896D8D6AF /* error.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = error.hpp; sourceTree = "<group>"; };
+		72D645B221106860003F660D /* LeadInKeyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInKeyCoordinator.swift; sourceTree = "<group>"; };
+		72D645B321106860003F660D /* LeadInKeyActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInKeyActions.swift; sourceTree = "<group>"; };
+		72D645B421106860003F660D /* LeadInKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInKeyViewController.swift; sourceTree = "<group>"; };
+		72D645B521106860003F660D /* LeadInKeyReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInKeyReducers.swift; sourceTree = "<group>"; };
 		72DD3AA45591FE800C38EB26CECA6667 /* minim.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = minim.hpp; sourceTree = "<group>"; };
 		72E4B4EFCB4EEDB17752414E1D8DA75B /* named_condition.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = named_condition.hpp; sourceTree = "<group>"; };
 		72E6CFA9DFB3C12187C70EF1CE2FAE31 /* gamma.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gamma.hpp; sourceTree = "<group>"; };
@@ -21483,6 +21491,10 @@
 				72FE5B8521009E4D00B29FEC /* LeadInActions.swift */,
 				72FE5B8621009E4D00B29FEC /* LeadInViewController.swift */,
 				72FE5B8721009E4D00B29FEC /* LeadInReducers.swift */,
+				72D645B221106860003F660D /* LeadInKeyCoordinator.swift */,
+				72D645B321106860003F660D /* LeadInKeyActions.swift */,
+				72D645B421106860003F660D /* LeadInKeyViewController.swift */,
+				72D645B521106860003F660D /* LeadInKeyReducers.swift */,
 				72FE5B8D21009E8200B29FEC /* LeadIn.storyboard */,
 			);
 			path = Lead;
@@ -32303,6 +32315,7 @@
 				72101690210197C10059B37E /* WalletCoordinator.swift in Sources */,
 				3BC12A9E21060927006EEB80 /* AccountListReducers.swift in Sources */,
 				721016A1210197C10059B37E /* WalletManagerCoordinator.swift in Sources */,
+				72D645B921106860003F660D /* LeadInKeyReducers.swift in Sources */,
 				72FE5B8A21009E4D00B29FEC /* LeadInViewController.swift in Sources */,
 				8ADE05B3B02C07CFCE0F069867999417 /* BaseViewController.swift in Sources */,
 				22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */,
@@ -32326,6 +32339,7 @@
 				150F934C0EC159C581ACAAC7FD6F6484 /* Constants.swift in Sources */,
 				3BC12A9D21060927006EEB80 /* AccountListActions.swift in Sources */,
 				3BC12AA121060927006EEB80 /* AccountCellView.swift in Sources */,
+				72D645B621106860003F660D /* LeadInKeyCoordinator.swift in Sources */,
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,
 				7210169F210197C10059B37E /* WalletManagerView.swift in Sources */,
 				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
@@ -32436,6 +32450,7 @@
 				7224712A20F57BA800536BF4 /* TransferActions.swift in Sources */,
 				72FE5B4E210048F500B29FEC /* NormalReducers.swift in Sources */,
 				7224713220F5F92B00536BF4 /* HomeHeaderView.swift in Sources */,
+				72D645B721106860003F660D /* LeadInKeyActions.swift in Sources */,
 				221EC1C721008EF50059F856 /* GestureLockSetActions.swift in Sources */,
 				221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */,
 				3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */,
@@ -32444,6 +32459,7 @@
 				7224712C20F57BA800536BF4 /* TransferReducers.swift in Sources */,
 				72101696210197C10059B37E /* ChangeWalletNameReducers.swift in Sources */,
 				AD352B30A178C8A63FF0D742FDFD3081 /* UIImageView+Additions.swift in Sources */,
+				72D645B821106860003F660D /* LeadInKeyViewController.swift in Sources */,
 				3BC12A9F21060927006EEB80 /* AccountListViewController.swift in Sources */,
 				73F30B4720F6E7410016E950 /* UserInfoRootCoordinator.swift in Sources */,
 				6F3BB5C8972D01A3B05201EC928A1021 /* UIResponder+Extensions.swift in Sources */,

@@ -21,15 +21,11 @@ class LeadInIntroduceView: UIView {
     
     
     
-    
     func setup() {
-        
         beginLeadIn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
             self.next?.sendEventWith(event_name.switchToKeyView.rawValue, userinfo: ["data":""])
         }).disposed(by: disposeBag)
-        
-
     }
     
     func updateHeight() {

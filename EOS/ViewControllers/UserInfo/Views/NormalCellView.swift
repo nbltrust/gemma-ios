@@ -20,19 +20,14 @@ class NormalCellView: UIView {
         case transform
     }
     
-    
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var leftIcon: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var rightIcon: UIImageView!
-    
     @IBOutlet weak var nameLeftConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var rightIconHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var rightIconWidthConstraint: NSLayoutConstraint!
-    
     
     @IBInspectable
     var state : Int = NormalCellViewState.normal.rawValue {
@@ -116,6 +111,13 @@ class NormalCellView: UIView {
     }
     
     @IBInspectable
+    var selectBackgroundColor : UIColor = UIColor.paleGrey41 {
+        didSet{
+            
+        }
+    }
+    
+    @IBInspectable
     var isShowLineView : Bool = false {
         didSet{
             self.lineView.isHidden = isShowLineView
@@ -136,13 +138,8 @@ class NormalCellView: UIView {
         }
     }
     
-    
     func setup() {
         self.state = NormalCellViewState.normal.rawValue
-        let tap = UITapGestureRecognizer(target: self, action: #selector(clickCellView))
-        self.addGestureRecognizer(tap)
-        
-        
     }
     
     override var intrinsicContentSize: CGSize {
@@ -182,18 +179,31 @@ class NormalCellView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
-        
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
-    
 }
 
 extension NormalCellView {
-    @objc func clickCellView(){
-        
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.subviews.last?.backgroundColor = self.selectBackgroundColor
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.subviews.last?.backgroundColor = UIColor.whiteTwo89
+        self.clickCellViewAction()
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.subviews.last?.backgroundColor = self.selectBackgroundColor
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.subviews.last?.backgroundColor = UIColor.whiteTwo89
+    }
+    
+    @objc func clickCellViewAction(){
         switch self.state {
         case NormalCellViewState.normal.rawValue:
             self.sendEventWith(event_name.clickCellView.rawValue, userinfo: ["index":index])
@@ -201,7 +211,6 @@ extension NormalCellView {
             self.sendEventWith(event_name.clickCellView.rawValue, userinfo: ["index":index])
         case NormalCellViewState.transform.rawValue:
             print("")
-            
         default:break
         }
     }
