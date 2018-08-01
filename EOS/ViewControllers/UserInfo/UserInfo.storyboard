@@ -586,6 +586,7 @@
                     <connections>
                         <outlet property="faceView" destination="6Q1-eO-7IU" id="peE-Mr-sTZ"/>
                         <outlet property="fingerView" destination="X7s-1M-tsN" id="PHg-sv-Ogq"/>
+                        <outlet property="gestureActionView" destination="8Js-X9-oM4" id="7da-hf-94T"/>
                         <outlet property="gestureView" destination="y0l-J0-cgo" id="y0y-1l-rJj"/>
                     </connections>
                 </viewController>
@@ -726,6 +727,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ajl-0T-QZi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2590" y="64"/>
+        </scene>
+        <!--Gesture Lock Comfirm View Controller-->
+        <scene sceneID="0g8-c3-6Fa">
+            <objects>
+                <viewController storyboardIdentifier="GestureLockComfirmViewController" id="OEm-FY-mc2" customClass="GestureLockComfirmViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TkK-Nm-yrr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="eIh-6r-hUx"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MfW-Xc-knH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-68" y="761"/>
+        </scene>
+        <!--Gesture Lock Set View Controller-->
+        <scene sceneID="5F5-tC-HWq">
+            <objects>
+                <viewController storyboardIdentifier="GestureLockSetViewController" id="JxJ-Iw-uau" customClass="GestureLockSetViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lQt-XT-6bB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AP9-iA-sn3" customClass="GestureLockInfoView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="162.5" y="70" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9u9-iR-agZ"/>
+                                    <constraint firstAttribute="width" constant="50" id="VkD-Ul-1dN"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvD-Ua-nPn">
+                                <rect key="frame" x="16" y="145" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ac-k1-NI6" customClass="GestureLockView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="185" width="375" height="275"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="275" id="AOW-A6-cKP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2Ac-k1-NI6" firstAttribute="leading" secondItem="97m-Pt-xEJ" secondAttribute="leading" id="1Ky-cU-M9c"/>
+                            <constraint firstItem="mvD-Ua-nPn" firstAttribute="leading" secondItem="97m-Pt-xEJ" secondAttribute="leading" constant="16" id="98i-Z9-O7Y"/>
+                            <constraint firstItem="97m-Pt-xEJ" firstAttribute="trailing" secondItem="2Ac-k1-NI6" secondAttribute="trailing" id="9kh-GL-yth"/>
+                            <constraint firstItem="AP9-iA-sn3" firstAttribute="top" secondItem="97m-Pt-xEJ" secondAttribute="top" constant="50" id="G4z-lF-12z"/>
+                            <constraint firstItem="mvD-Ua-nPn" firstAttribute="top" secondItem="AP9-iA-sn3" secondAttribute="bottom" constant="25" id="Ve5-FI-nuE"/>
+                            <constraint firstItem="AP9-iA-sn3" firstAttribute="centerX" secondItem="lQt-XT-6bB" secondAttribute="centerX" id="bez-DV-qW7"/>
+                            <constraint firstItem="2Ac-k1-NI6" firstAttribute="top" secondItem="mvD-Ua-nPn" secondAttribute="bottom" constant="40" id="bnF-c5-Bbz"/>
+                            <constraint firstItem="97m-Pt-xEJ" firstAttribute="trailing" secondItem="mvD-Ua-nPn" secondAttribute="trailing" constant="16" id="zC3-2Y-L29"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="97m-Pt-xEJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoView" destination="AP9-iA-sn3" id="rGz-hn-NQt"/>
+                        <outlet property="lockView" destination="2Ac-k1-NI6" id="Hsf-an-jbZ"/>
+                        <outlet property="messageLabel" destination="mvD-Ua-nPn" id="BsO-Wc-3iz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3D-Tg-KkO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="646" y="761"/>
         </scene>
     </scenes>
     <resources>

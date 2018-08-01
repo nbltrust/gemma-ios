@@ -19,7 +19,7 @@ protocol GestureLockComfirmStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class GestureLockComfirmCoordinator: GestureLockRootCoordinator {
+class GestureLockComfirmCoordinator: NavCoordinator {
     
     lazy var creator = GestureLockComfirmPropertyActionCreate()
     

@@ -12,7 +12,8 @@ class LeadInKeyView: UIView {
     enum event_name : String {
         case beginLeadInAction
     }
-
+    @IBOutlet weak var textView: UITextView!
+    
     @IBOutlet weak var creatButton: Button!
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())

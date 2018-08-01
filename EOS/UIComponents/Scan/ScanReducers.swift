@@ -10,18 +10,11 @@ import UIKit
 import ReSwift
 
 func ScanReducer(action:Action, state:ScanState?) -> ScanState {
-    return ScanState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: ScanPropertyReducer(state?.property, action: action))
+    return ScanState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: ScanPropertyReducer(state?.property, action: action), callback: state?.callback ?? ScanCallbackState())
 }
 
 func ScanPropertyReducer(_ state: ScanPropertyState?, action: Action) -> ScanPropertyState {
     let state = state ?? ScanPropertyState()
-    
-    switch action {
-    case let action as ScanResultAction:
-        state.scanResult.accept(action.scanResult)
-    default:
-        break
-    }
     
     return state
 }

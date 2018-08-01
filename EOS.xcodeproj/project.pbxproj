@@ -46,9 +46,20 @@
 		221EC1CF21008F1B0059F856 /* GestureLockComfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1CB21008F1B0059F856 /* GestureLockComfirmActions.swift */; };
 		221EC1D021008F1B0059F856 /* GestureLockComfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1CC21008F1B0059F856 /* GestureLockComfirmViewController.swift */; };
 		221EC1D121008F1B0059F856 /* GestureLockComfirmReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1CD21008F1B0059F856 /* GestureLockComfirmReducers.swift */; };
-		221EC1D3210094C80059F856 /* GestureLockRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1D2210094C80059F856 /* GestureLockRootCoordinator.swift */; };
-		221EC1D5210096AC0059F856 /* GestureLock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 221EC1D4210096AC0059F856 /* GestureLock.storyboard */; };
 		221EC1D72100A8D50059F856 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1D62100A8D50059F856 /* CGFloat+Extensions.swift */; };
+		2253C51C211052020043AAF7 /* SafeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C51B211052020043AAF7 /* SafeManager.swift */; };
+		2253C5272111A5F90043AAF7 /* CopyPriKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */; };
+		2253C5282111A5F90043AAF7 /* CopyPriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5242111A5F90043AAF7 /* CopyPriKeyActions.swift */; };
+		2253C5292111A5F90043AAF7 /* CopyPriKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5252111A5F90043AAF7 /* CopyPriKeyViewController.swift */; };
+		2253C52A2111A5F90043AAF7 /* CopyPriKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5262111A5F90043AAF7 /* CopyPriKeyReducers.swift */; };
+		2253C52F2111A6300043AAF7 /* QRCodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C52B2111A6300043AAF7 /* QRCodeCoordinator.swift */; };
+		2253C5302111A6300043AAF7 /* QRCodeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C52C2111A6300043AAF7 /* QRCodeActions.swift */; };
+		2253C5312111A6300043AAF7 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C52D2111A6300043AAF7 /* QRCodeViewController.swift */; };
+		2253C5322111A6300043AAF7 /* QRCodeReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C52E2111A6300043AAF7 /* QRCodeReducers.swift */; };
+		2253C5372111A6450043AAF7 /* PriKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5332111A6450043AAF7 /* PriKeyCoordinator.swift */; };
+		2253C5382111A6450043AAF7 /* PriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5342111A6450043AAF7 /* PriKeyActions.swift */; };
+		2253C5392111A6450043AAF7 /* PriKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5352111A6450043AAF7 /* PriKeyViewController.swift */; };
+		2253C53A2111A6450043AAF7 /* PriKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5362111A6450043AAF7 /* PriKeyReducers.swift */; };
 		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
 		22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */; };
 		22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239320F6FD5100284A0A /* EntryGuideActions.swift */; };
@@ -2003,8 +2014,6 @@
 		221EC1CB21008F1B0059F856 /* GestureLockComfirmActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockComfirmActions.swift; sourceTree = "<group>"; };
 		221EC1CC21008F1B0059F856 /* GestureLockComfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockComfirmViewController.swift; sourceTree = "<group>"; };
 		221EC1CD21008F1B0059F856 /* GestureLockComfirmReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockComfirmReducers.swift; sourceTree = "<group>"; };
-		221EC1D2210094C80059F856 /* GestureLockRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockRootCoordinator.swift; sourceTree = "<group>"; };
-		221EC1D4210096AC0059F856 /* GestureLock.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GestureLock.storyboard; sourceTree = "<group>"; };
 		221EC1D62100A8D50059F856 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		2223DC38DA66B9A99D6C5A939365FA2B /* op_queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = op_queue.hpp; sourceTree = "<group>"; };
 		2225C9F8F39A96051FCA2832A6B7CD4F /* cmath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cmath.hpp; sourceTree = "<group>"; };
@@ -2025,6 +2034,19 @@
 		224D13398B2EFA80D84B72B8CE7F604F /* is_acceptable_turn.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_acceptable_turn.hpp; sourceTree = "<group>"; };
 		224D81C16A18496EF4B07ACD982CEA78 /* iter_fold_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = iter_fold_impl.hpp; sourceTree = "<group>"; };
 		22519DB378ADCAC3E155C59C47CB7385 /* erase_actor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = erase_actor.hpp; sourceTree = "<group>"; };
+		2253C51B211052020043AAF7 /* SafeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeManager.swift; sourceTree = "<group>"; };
+		2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyPriKeyCoordinator.swift; sourceTree = "<group>"; };
+		2253C5242111A5F90043AAF7 /* CopyPriKeyActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyPriKeyActions.swift; sourceTree = "<group>"; };
+		2253C5252111A5F90043AAF7 /* CopyPriKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyPriKeyViewController.swift; sourceTree = "<group>"; };
+		2253C5262111A5F90043AAF7 /* CopyPriKeyReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyPriKeyReducers.swift; sourceTree = "<group>"; };
+		2253C52B2111A6300043AAF7 /* QRCodeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCoordinator.swift; sourceTree = "<group>"; };
+		2253C52C2111A6300043AAF7 /* QRCodeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeActions.swift; sourceTree = "<group>"; };
+		2253C52D2111A6300043AAF7 /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
+		2253C52E2111A6300043AAF7 /* QRCodeReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReducers.swift; sourceTree = "<group>"; };
+		2253C5332111A6450043AAF7 /* PriKeyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriKeyCoordinator.swift; sourceTree = "<group>"; };
+		2253C5342111A6450043AAF7 /* PriKeyActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriKeyActions.swift; sourceTree = "<group>"; };
+		2253C5352111A6450043AAF7 /* PriKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriKeyViewController.swift; sourceTree = "<group>"; };
+		2253C5362111A6450043AAF7 /* PriKeyReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriKeyReducers.swift; sourceTree = "<group>"; };
 		225825D920F4591F00AA2A4B /* Button.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Button.xib; sourceTree = "<group>"; };
 		225A0889C3C3054639EEABD86F27BD02 /* ios_base_state.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ios_base_state.hpp; sourceTree = "<group>"; };
 		22673B9CA1401589242EC668FDA327F1 /* vector_forward_ctor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_forward_ctor.hpp; sourceTree = "<group>"; };
@@ -14267,7 +14289,6 @@
 			children = (
 				722D24C32111554900A093CA /* NoDataView */,
 				22C023A920FCACFD00284A0A /* Scan */,
-				22C023A420FCABA600284A0A /* GestureLock */,
 				73B5A69F20F5EFF600756391 /* AttributeLabelView */,
 				ED5CF0797F269847E5CBEAEC6E2C89E5 /* LineView */,
 				8B351582A8E6943BACF62B02A64F0841 /* Button.swift */,
@@ -14657,6 +14678,55 @@
 			path = detail;
 			sourceTree = "<group>";
 		};
+		2253C51D21105C590043AAF7 /* FaceId */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FaceId;
+			sourceTree = "<group>";
+		};
+		2253C51E21105C680043AAF7 /* FingerPrinter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FingerPrinter;
+			sourceTree = "<group>";
+		};
+		2253C5202111A4E50043AAF7 /* CopyPriKey */ = {
+			isa = PBXGroup;
+			children = (
+				2253C5222111A5A60043AAF7 /* QRCode */,
+				2253C5212111A5970043AAF7 /* PriKey */,
+				2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */,
+				2253C5242111A5F90043AAF7 /* CopyPriKeyActions.swift */,
+				2253C5252111A5F90043AAF7 /* CopyPriKeyViewController.swift */,
+				2253C5262111A5F90043AAF7 /* CopyPriKeyReducers.swift */,
+			);
+			path = CopyPriKey;
+			sourceTree = "<group>";
+		};
+		2253C5212111A5970043AAF7 /* PriKey */ = {
+			isa = PBXGroup;
+			children = (
+				2253C5332111A6450043AAF7 /* PriKeyCoordinator.swift */,
+				2253C5342111A6450043AAF7 /* PriKeyActions.swift */,
+				2253C5352111A6450043AAF7 /* PriKeyViewController.swift */,
+				2253C5362111A6450043AAF7 /* PriKeyReducers.swift */,
+			);
+			path = PriKey;
+			sourceTree = "<group>";
+		};
+		2253C5222111A5A60043AAF7 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				2253C52B2111A6300043AAF7 /* QRCodeCoordinator.swift */,
+				2253C52C2111A6300043AAF7 /* QRCodeActions.swift */,
+				2253C52D2111A6300043AAF7 /* QRCodeViewController.swift */,
+				2253C52E2111A6300043AAF7 /* QRCodeReducers.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
 		226C9CD0E09FC4C67D2AACDCDC5E95F5 /* base_units */ = {
 			isa = PBXGroup;
 			children = (
@@ -14719,8 +14789,6 @@
 				221EC1CB21008F1B0059F856 /* GestureLockComfirmActions.swift */,
 				221EC1CC21008F1B0059F856 /* GestureLockComfirmViewController.swift */,
 				221EC1CD21008F1B0059F856 /* GestureLockComfirmReducers.swift */,
-				221EC1D2210094C80059F856 /* GestureLockRootCoordinator.swift */,
-				221EC1D4210096AC0059F856 /* GestureLock.storyboard */,
 			);
 			path = GestureLock;
 			sourceTree = "<group>";
@@ -20013,6 +20081,7 @@
 		5F4F2C2A9D93854A7DACC8FE947B5D8C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2253C5202111A4E50043AAF7 /* CopyPriKey */,
 				3B3146F22106D50F00E815BD /* ResourceMortgage */,
 				3BC12A8F21060926006EEB80 /* AccountList */,
 				72101676210197C00059B37E /* Wallet */,
@@ -21528,6 +21597,9 @@
 		72FE5B432100488900B29FEC /* Safe */ = {
 			isa = PBXGroup;
 			children = (
+				2253C51E21105C680043AAF7 /* FingerPrinter */,
+				22C023A420FCABA600284A0A /* GestureLock */,
+				2253C51D21105C590043AAF7 /* FaceId */,
 				72FE5B7E2100866400B29FEC /* Views */,
 				72FE5B4F2100490200B29FEC /* SafeCoordinator.swift */,
 				72FE5B502100490200B29FEC /* SafeActions.swift */,
@@ -27573,6 +27645,7 @@
 			isa = PBXGroup;
 			children = (
 				BA20796EDA35DD276BD78FBA7C8E796C /* WalletManager.swift */,
+				2253C51B211052020043AAF7 /* SafeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -32035,7 +32108,6 @@
 				C94B5818C99B648CF164FD0433A0EB01 /* bitset.SUNWCCh in Resources */,
 				3EB725F5715CD5F10C3BA10D8EF4447A /* block_header.hpp.bk in Resources */,
 				AACEB0A4AEC8DE4B8F9DBC239E3C0A91 /* cassert in Resources */,
-				221EC1D5210096AC0059F856 /* GestureLock.storyboard in Resources */,
 				9E97878370D74707276FBF9BBA8D743A /* cctype in Resources */,
 				ADE7267F0B6879C9942F493B846F45DC /* cerrno in Resources */,
 				54BBE320D1C2E40143921B8B554A3E6F /* cfloat in Resources */,
@@ -32437,6 +32509,8 @@
 				72D645B921106860003F660D /* LeadInKeyReducers.swift in Sources */,
 				72FE5B8A21009E4D00B29FEC /* LeadInViewController.swift in Sources */,
 				8ADE05B3B02C07CFCE0F069867999417 /* BaseViewController.swift in Sources */,
+				2253C5282111A5F90043AAF7 /* CopyPriKeyActions.swift in Sources */,
+				2253C5292111A5F90043AAF7 /* CopyPriKeyViewController.swift in Sources */,
 				22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */,
 				3BD3664A20F72B5E004DE09D /* TransferConfirmPasswordCoordinator.swift in Sources */,
 				3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */,
@@ -32463,6 +32537,7 @@
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,
 				7210169F210197C10059B37E /* WalletManagerView.swift in Sources */,
 				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
+				2253C52A2111A5F90043AAF7 /* CopyPriKeyReducers.swift in Sources */,
 				0795BFD28C42BE58BB94BAA17ADB6B91 /* EOSIO.mm in Sources */,
 				72101697210197C10059B37E /* ChangeWalletNameViewController.swift in Sources */,
 				3BFF4E0B2109F8BD0047F996 /* OperationRightView.swift in Sources */,
@@ -32470,6 +32545,7 @@
 				3BC12AA821060927006EEB80 /* AccountListCoordinator.swift in Sources */,
 				72FE5B6B2100491A00B29FEC /* AboutCoordinator.swift in Sources */,
 				72FE5B552100490200B29FEC /* SafeViewController.swift in Sources */,
+				2253C5302111A6300043AAF7 /* QRCodeActions.swift in Sources */,
 				3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */,
 				72FE5B542100490200B29FEC /* SafeActions.swift in Sources */,
 				72FE5B642100491300B29FEC /* ServersActions.swift in Sources */,
@@ -32492,6 +32568,7 @@
 				71B491763DB2622DA9A6CD8DEE644F17 /* EntryViewController.swift in Sources */,
 				72FE5B662100491300B29FEC /* ServersReducers.swift in Sources */,
 				C2AE7CD84347385A7C552C6564375D8D /* HomeActions.swift in Sources */,
+				2253C5392111A6450043AAF7 /* PriKeyViewController.swift in Sources */,
 				72FE5B6E2100491A00B29FEC /* AboutReducers.swift in Sources */,
 				3130D0258A7A377AC1EBE65F9BD4ED69 /* HomeCoordinator.swift in Sources */,
 				73B5A69020F5B54C00756391 /* String+Extensions.swift in Sources */,
@@ -32505,7 +32582,6 @@
 				72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */,
 				632FADFC1004A95370F910B28F2B1B3B /* Localzation+Extensions.swift in Sources */,
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
-				221EC1D3210094C80059F856 /* GestureLockRootCoordinator.swift in Sources */,
 				72FE5B8821009E4D00B29FEC /* LeadInCoordinator.swift in Sources */,
 				72FE5B8B21009E4D00B29FEC /* LeadInReducers.swift in Sources */,
 				72FE5B4C210048F500B29FEC /* NormalActions.swift in Sources */,
@@ -32518,6 +32594,7 @@
 				73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */,
 				3BD3663E20F6F9E3004DE09D /* TransferConfirmReducers.swift in Sources */,
 				725F68042101B8E50006BBA1 /* SetWalletCoordinator.swift in Sources */,
+				2253C5322111A6300043AAF7 /* QRCodeReducers.swift in Sources */,
 				3BD3666420FDEB76004DE09D /* TitleTextfieldView.swift in Sources */,
 				722D24C72111555B00A093CA /* WithNoDataView.swift in Sources */,
 				22C023A620FCACA400284A0A /* GestureLockView.swift in Sources */,
@@ -32529,11 +32606,14 @@
 				72101698210197C10059B37E /* ChangeWalletNameCoordinator.swift in Sources */,
 				725F68052101B8E50006BBA1 /* SetWalletActions.swift in Sources */,
 				72FE5B802100867B00B29FEC /* SafeLineView.swift in Sources */,
+				2253C53A2111A6450043AAF7 /* PriKeyReducers.swift in Sources */,
+				2253C5372111A6450043AAF7 /* PriKeyCoordinator.swift in Sources */,
 				72FE5B3D20FF401B00B29FEC /* NormalCellView.swift in Sources */,
 				2B1048E593DFE3B00BA04C75B88E9469 /* PaymentsRecordsCell.swift in Sources */,
 				73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */,
 				3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */,
 				22C023A220F6FDB900284A0A /* CreatationCompleteReducers.swift in Sources */,
+				2253C5272111A5F90043AAF7 /* CopyPriKeyCoordinator.swift in Sources */,
 				2B427CD0E35711458F16196E6587BA7A /* PaymentsRecordsCellView.swift in Sources */,
 				7210168F210197C10059B37E /* WalletReducers.swift in Sources */,
 				72FE5B7521006B0700B29FEC /* NormalContentActions.swift in Sources */,
@@ -32544,6 +32624,7 @@
 				3BEC3F562111B4FC003C38FB /* BackupPrivateKeyReducers.swift in Sources */,
 				3BC12AA421060927006EEB80 /* AccountTableViewCell.swift in Sources */,
 				3BD3666820FDEB94004DE09D /* TransferContentView.swift in Sources */,
+				2253C52F2111A6300043AAF7 /* QRCodeCoordinator.swift in Sources */,
 				3BD3664F20F76594004DE09D /* TransferConfirmPasswordView.swift in Sources */,
 				721016A5210197F40059B37E /* WalletListHeaderView.swift in Sources */,
 				3BEC3F532111B4FC003C38FB /* BackupPrivateKeyCoordinator.swift in Sources */,
@@ -32555,6 +32636,7 @@
 				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
 				73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */,
+				2253C5312111A6300043AAF7 /* QRCodeViewController.swift in Sources */,
 				725F68072101B8E50006BBA1 /* SetWalletReducers.swift in Sources */,
 				73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */,
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
@@ -32565,6 +32647,7 @@
 				22C023B020FCB09300284A0A /* ScanActions.swift in Sources */,
 				73F30B4320F6E6FF0016E950 /* UserInfoViewController.swift in Sources */,
 				221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */,
+				2253C51C211052020043AAF7 /* SafeManager.swift in Sources */,
 				727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */,
 				3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */,
 				221EC1D72100A8D50059F856 /* CGFloat+Extensions.swift in Sources */,
@@ -32598,6 +32681,7 @@
 				3B3146FF2106D62900E815BD /* GeneralCellView.swift in Sources */,
 				4B99E2557500F5FC08BF1D2C32999A25 /* UserDefaultsService.swift in Sources */,
 				3BFF4E062109F8390047F996 /* OperationLeftView.swift in Sources */,
+				2253C5382111A6450043AAF7 /* PriKeyActions.swift in Sources */,
 				3B3146FA2106D56500E815BD /* ResourceMortgageReducers.swift in Sources */,
 				7210169C210197C10059B37E /* WalletManagerViewController.swift in Sources */,
 				3BD3664B20F72B5E004DE09D /* TransferConfirmPasswordActions.swift in Sources */,

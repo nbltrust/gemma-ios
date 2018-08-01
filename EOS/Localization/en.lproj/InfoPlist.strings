@@ -8,3 +8,4 @@
 
 "NSCameraUsageDescription" = "允许使用相机";
 "NSMicrophoneUsageDescription" = "允许使用麦克风";
+"NSFaceIDUsageDescription" = "允许使用FaceId";

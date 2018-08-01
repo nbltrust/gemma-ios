@@ -36,8 +36,16 @@ class LeadInKeyCoordinator: HomeRootCoordinator {
 extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
     func openScan() {
         let vc = BaseNavigationController()
+        vc.navStyle = .clear
         let scanCoordinator = ScanRootCoordinator(rootVC: vc)
         scanCoordinator.start()
+        if let vc = scanCoordinator.rootVC.topViewController as? ScanViewController {
+            vc.coordinator?.state.callback.scanResult.accept({[weak self] (result) in
+                if let leadInVC = self?.rootVC.topViewController as? LeadInKeyViewController {
+                    leadInVC.leadInKeyView.textView.text = result
+                }
+            })
+        }
         self.rootVC.present(vc, animated: true, completion: nil)
     }
     

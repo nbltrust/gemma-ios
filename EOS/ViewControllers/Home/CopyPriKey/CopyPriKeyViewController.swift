@@ -1,8 +1,8 @@
 //
-//  LeadInViewController.swift
+//  CopyPriKeyViewController.swift
 //  EOS
 //
-//  Created DKM on 2018/7/19.
+//  Created peng zhu on 2018/8/1.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
@@ -11,22 +11,12 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class LeadInViewController: BaseViewController {
-    
-    var coordinator: (LeadInCoordinatorProtocol & LeadInStateManagerProtocol)?
-    
-    override func viewDidLoad() {
+class CopyPriKeyViewController: BaseViewController {
+
+	var coordinator: (CopyPriKeyCoordinatorProtocol & CopyPriKeyStateManagerProtocol)?
+
+	override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-    }
-    
-    func setupUI() {
-        self.title = R.string.localizable.lead_in()
-        self.configRightNavButton(R.image.scan_qr_code())
-    }
-    
-    override func rightAction(_ sender: UIButton) {
-        self.coordinator?.openScan()
     }
     
     func commonObserveState() {
@@ -47,11 +37,4 @@ class LeadInViewController: BaseViewController {
         commonObserveState()
         
     }
-}
-
-extension LeadInViewController {
-    @objc func switchToKeyView(_ sender : [String:Any]) {
-        self.coordinator?.openLeadInKey()
-    }
-    
 }
