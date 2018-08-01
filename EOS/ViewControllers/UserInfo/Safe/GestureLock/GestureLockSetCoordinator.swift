@@ -9,7 +9,14 @@
 import UIKit
 import ReSwift
 
+enum GestureLockMode: Int {
+    case set = 1
+    case comfirm
+    case update
+}
+
 protocol GestureLockSetCoordinatorProtocol {
+    
 }
 
 protocol GestureLockSetStateManagerProtocol {
@@ -19,7 +26,7 @@ protocol GestureLockSetStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class GestureLockSetCoordinator: GestureLockRootCoordinator {
+class GestureLockSetCoordinator: NavCoordinator {
     
     lazy var creator = GestureLockSetPropertyActionCreate()
     

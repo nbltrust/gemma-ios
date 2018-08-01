@@ -51,7 +51,8 @@ extension ScanCoordinator: ScanStateManagerProtocol {
     }
     
     func updateScanResult(result: String) {
-        self.store.dispatch(ScanResultAction(scanResult: result))
+        self.state.callback.scanResult.value?(result)
+        self.dismissVC()
     }
     
 }

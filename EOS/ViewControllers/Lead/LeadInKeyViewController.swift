@@ -13,7 +13,8 @@ import ReSwift
 
 class LeadInKeyViewController: BaseViewController {
 
-	var coordinator: (LeadInKeyCoordinatorProtocol & LeadInKeyStateManagerProtocol)?
+    @IBOutlet weak var leadInKeyView: LeadInKeyView!
+    var coordinator: (LeadInKeyCoordinatorProtocol & LeadInKeyStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class LeadInKeyViewController: BaseViewController {
     }
     
     override func rightAction(_ sender: UIButton) {
-        
+        self.coordinator?.openScan()
     }
     
     func commonObserveState() {

@@ -18,27 +18,63 @@ class SafeViewController: BaseViewController {
     @IBOutlet weak var faceView: SafeLineView!
     @IBOutlet weak var fingerView: SafeLineView!
     @IBOutlet weak var gestureView: SafeLineView!
+    @IBOutlet weak var gestureActionView: NormalCellView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+        setupEvent()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateSafeSetting()
     }
     
     func setupUI() {
         self.title = R.string.localizable.mine_safesetting()
     }
     
-    func reloadSubViews(_ sender : Int) {
-        let views = [self.faceView,self.fingerView,self.gestureView]
-        
-        for index in 0...views.count - 1 {
-            if sender == index {
-                views[sender]?.safeSwitch.isOn = true
-            }else{
-                views[sender]?.safeSwitch.isOn = false
+    func setupEvent() {
+        faceView.safeSwitch.rx.isOn.asObservable().subscribe(onNext: {[weak self] (isOn) in
+            if isOn {
+                self?.coordinator?.openFaceIdLock({ (result) in
+                    
+                })
+            } else {
+                self?.coordinator?.closeFaceIdLock({ (reuslt) in
+                    
+                })
             }
-        }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
+        fingerView.safeSwitch.rx.isOn.asObservable().subscribe(onNext: {[weak self] (isOn) in
+            if isOn {
+                self?.coordinator?.openFingerSingerLock({ (result) in
+                    
+                })
+            } else {
+                self?.coordinator?.closeFingerSingerLock({ (reuslt) in
+                    
+                })
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
+        gestureView.safeSwitch.rx.isOn.asObservable().subscribe(onNext: {[weak self] (isOn) in
+            if isOn {
+                self?.coordinator?.openGestureLock()
+            } else {
+                self?.coordinator?.closeGetureLock()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+    }
+    
+    func updateSafeSetting() {
+        faceView.safeSwitch.isOn = SafeManager.shared.isFaceIdOpened()
+        fingerView.safeSwitch.isOn = SafeManager.shared.isFingerPrinterLockOpened()
+        gestureView.safeSwitch.isOn = SafeManager.shared.isFaceIdOpened()
+        
+        gestureActionView.isHidden = !SafeManager.shared.isGestureLockOpened()
     }
     
     func commonObserveState() {
@@ -64,16 +100,12 @@ class SafeViewController: BaseViewController {
 extension SafeViewController {
     @objc func clickCellView(_ sender : [String:Any]) {
         if let index = sender["index"] as? Int {
-            // 存储解锁方式
 
             let views = [self.faceView,self.fingerView,self.gestureView]
             if index <= views.count-1 {
-                if views[index]?.safeSwitch.isOn == true {
-                    return
-                }
-                reloadSubViews(index)
+    
             }else {
-                // open 手势解锁密码
+                
             }
         }
     }

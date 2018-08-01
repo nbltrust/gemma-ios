@@ -23,9 +23,14 @@ class ScanViewController: BaseViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        initSession()
-        setupPreviewLayer()
+        self.view.backgroundColor = UIColor.black
         setupUI()
+        initSession()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     func commonObserveState() {
@@ -43,7 +48,6 @@ class ScanViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.view.backgroundColor = UIColor.clear
         self.title = R.string.localizable.scan_title()
         self.configLeftNavButton(nil)
         let rect = ScanSetting.scanRect
@@ -66,13 +70,20 @@ class ScanViewController: BaseViewController {
     }
     
     func initSession() {
-        captusession = AVCaptureSession()
-        if let session = captusession {
+        let size = self.view.bounds.size
+        DispatchQueue.global().async {
+            let session = AVCaptureSession()
             session.sessionPreset = .high
-            addInput(session)
-            addOutput(session)
+            self.addInput(session)
+            self.addOutput(session, size: size)
             session.startRunning()
+        
+            DispatchQueue.main.async {
+                self.captusession = session
+                self.setupPreviewLayer()
+            }
         }
+       
     }
     
     func addInput(_ session: AVCaptureSession) {
@@ -85,13 +96,12 @@ class ScanViewController: BaseViewController {
         }
     }
     
-    func addOutput(_ session: AVCaptureSession) {
+    func addOutput(_ session: AVCaptureSession, size:CGSize) {
         let output = AVCaptureMetadataOutput()
         if session.canAddOutput(output) {
             session.addOutput(output)
             
             let rect = ScanSetting.scanRect
-            let size = self.view.bounds.size
             output.rectOfInterest = CGRect(x: rect.origin.y / size.height, y: rect.origin.x / size.width, width: rect.size.height / size.height, height: rect.size.width / size.width)
             output.metadataObjectTypes = output.availableMetadataObjectTypes
             output.setMetadataObjectsDelegate(self as AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
