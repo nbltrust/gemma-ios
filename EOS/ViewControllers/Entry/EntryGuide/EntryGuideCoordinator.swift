@@ -42,29 +42,6 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
     }
     
     func pushToRecoverFromCopyVC() {
-        self.testGesture()
-    }
-    
-    func testGesture() {
-        let nav = BaseNavigationController()
-        let gestureCoordinator = GestureLockRootCoordinator(rootVC: nav)
-        gestureCoordinator.lockMode = .set
-        gestureCoordinator.start()
-        
-        SwifterSwift.delay(milliseconds: 100) {
-            self.rootVC.present(nav, animated: true, completion: nil)
-        }
-    }
-    
-    func testScan() {
-        let nav = BaseNavigationController()
-        nav.navStyle = .clear
-        let scanCoordinator = ScanRootCoordinator(rootVC: nav)
-        scanCoordinator.start()
-        
-        SwifterSwift.delay(milliseconds: 100) {
-            self.rootVC.present(nav, animated: true, completion: nil)
-        }
     }
 }
 

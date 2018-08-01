@@ -55,5 +55,34 @@
             </objects>
             <point key="canvasLocation" x="-703.20000000000005" y="116.49175412293854"/>
         </scene>
+        <!--Pri Key View Controller-->
+        <scene sceneID="9Q4-tV-Fkx">
+            <objects>
+                <viewController storyboardIdentifier="PriKeyViewController" id="PGL-qg-24s" customClass="PriKeyViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SpZ-b0-toB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hSS-tC-hk3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DKU-32-NBq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-14" y="116"/>
+        </scene>
+        <!--Code View Controller-->
+        <scene sceneID="Jb1-76-qYq">
+            <objects>
+                <viewController storyboardIdentifier="QRCodeViewController" id="pK5-1D-YyV" customClass="QRCodeViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xMM-L6-U1J">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="0Ku-WY-aRL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jj9-CB-b0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="674" y="119"/>
+        </scene>
     </scenes>
 </document>

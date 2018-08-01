@@ -8,8 +8,25 @@
 
 import UIKit
 import ReSwift
+import BiometricAuthentication
 
 protocol SafeCoordinatorProtocol {
+    //MARK: - FaceId
+    func openFaceIdLock(_ callback: @escaping (Bool) -> ())
+    
+    func closeFaceIdLock(_ callback: @escaping (Bool) -> ())
+    
+    //MARK: - FingerSinger
+    func openFingerSingerLock(_ callback: @escaping (Bool) -> ())
+    
+    func closeFingerSingerLock(_ callback: @escaping (Bool) -> ())
+    
+    //MARK: - Gesture
+    func openGestureLock()
+    
+    func closeGetureLock()
+    
+    func updateGesturePassword()
 }
 
 protocol SafeStateManagerProtocol {
@@ -31,6 +48,36 @@ class SafeCoordinator: UserInfoRootCoordinator {
 }
 
 extension SafeCoordinator: SafeCoordinatorProtocol {
+    //MARK: - FaceId
+    func openFaceIdLock(_ callback: @escaping (Bool) -> ()) {
+        
+    }
+    
+    func closeFaceIdLock(_ callback: @escaping (Bool) -> ()) {
+        
+    }
+    
+    //MARK: - FingerSinger
+    func openFingerSingerLock(_ callback: @escaping (Bool) -> ()) {
+        
+    }
+    
+    func closeFingerSingerLock(_ callback: @escaping (Bool) -> ()) {
+        
+    }
+    
+    //MARK: - Gesture
+    func openGestureLock() {
+        
+    }
+    
+    func closeGetureLock() {
+        
+    }
+    
+    func updateGesturePassword() {
+        
+    }
     
 }
 

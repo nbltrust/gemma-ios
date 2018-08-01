@@ -165,6 +165,7 @@
 "setting_finger" = "指纹解锁";
 "setting_gesture" = "手势解锁";
 "setting_change_password" = "修改手势密码";
+"setting_set_password" = "设置手势密码";
 
 "about_info" = "版本说明";
 "about_update" = "版本更新";

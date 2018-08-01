@@ -14,4 +14,8 @@ extension DefaultsKeys {
     static let wallets = DefaultsKey<[String]>("wallets")
     static let currentWallet = DefaultsKey<String>("current-wallet")
     static let currentAccount = DefaultsKey<String>("current-account")
+    static let isFaceIDOpened = DefaultsKey<Bool>("isFaceIDOpened")
+    static let isGestureLockOpened = DefaultsKey<Bool>("isGestureLockOpened")
+    static let gestureLockPassword = DefaultsKey<String>("gestureLockPassword")
+    static let isFingerPrinterLockOpened = DefaultsKey<Bool>("isFingerPrinterLockOpened")
 }
