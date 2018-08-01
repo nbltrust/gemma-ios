@@ -1,53 +1,39 @@
 //
-//  TransferConfirmPasswordView.swift
-//  EOS
+//  withNoDataView.swift
+//  cybexMobile
 //
-//  Created by 朱宋宇 on 2018/7/12.
-//  Copyright © 2018年 com.nbltrust. All rights reserved.
+//  Created by DKM on 2018/7/1.
+//  Copyright © 2018年 Cybex. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-enum confirmType: String {
-    case transfer
-    case mortgage
-    case relieveMortgage
-}
-
-class TransferConfirmPasswordView: UIView {
-    enum TransferEvent: String {
-        case sureTransfer
-    }
+class WithNoDataView: UIView {
     
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var notice: UILabel!
     
-    @IBOutlet weak var nextButton: Button!
-    var pwd = "" {
+    @IBOutlet weak var icon: UIImageView!
+    
+    @IBOutlet weak var noticeContairner: NSLayoutConstraint!
+    
+    var notice_word : String? {
         didSet {
-            textField.text = pwd
+            if let notice_word = notice_word{
+                notice.text = notice_word
+            }
         }
     }
     
-    var placeHolder = "" {
+    var icon_name : String? {
         didSet {
-            textField.placeholder = R.string.localizable.input() + placeHolder + R.string.localizable.password()
-            
+            if let icon_name = icon_name {
+                icon.image = UIImage.init(named: icon_name)
+            }
         }
     }
     
-    
-    func setUp() {
-        setupEvent()
-        textField.isSecureTextEntry = true
-        updateHeight()
-
-    }
-    
-    func setupEvent() {
-        nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
-            guard let `self` = self else { return }
-            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: [:])
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+    func setup(){
+        
     }
     
     override var intrinsicContentSize: CGSize {
@@ -62,26 +48,24 @@ class TransferConfirmPasswordView: UIView {
     
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
-        return (lastView?.frame.origin.y)! + (lastView?.frame.size.height)!
+        return lastView!.bottom
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
-        
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
-        setUp()
-        
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
-        setUp()
+        setup()
     }
     
     fileprivate func loadViewFromNib() {
@@ -94,4 +78,5 @@ class TransferConfirmPasswordView: UIView {
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
+    
 }

@@ -117,7 +117,11 @@
 "resource_manager" = "资源管理";
 "confirm_mortgage" = "确认抵押";
 "confirm_relieve_mortgage" = "确认解除抵押";
-
+"ms" = "ms";
+"kb" = "KB";
+"delegate" = "Delegate ";
+"eos_for_cpu" = " EOS for CPU,";
+"eos_for_net" = " EOS for NET";
 //zsy end
 
 "day" = "天";
@@ -154,6 +158,7 @@
 
 "normal_language" = "语言";
 "normal_asset" = "货币单位";
+"normal_node" = "节点设置";
 "normal_save" = "保存";
 
 "language_system" = "跟随系统";
@@ -179,3 +184,7 @@
 "lead_in_finished" = "完成导入";
 "set_wallet_password" = "最少8位长度，建议混合大小写字母、数字及符号";
 "set_wallet_title" = "配置钱包";
+
+
+
+

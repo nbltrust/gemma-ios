@@ -19,6 +19,20 @@ class HomeTableCell: BaseTableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        if selected == true {
+            homeCellView.bgView.backgroundColor = UIColor.paleGrey41
+        } else {
+            homeCellView.bgView.backgroundColor = UIColor.whiteTwo
+        }
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        if highlighted == true {
+            homeCellView.bgView.backgroundColor = UIColor.paleGrey41
+        } else {
+            homeCellView.bgView.backgroundColor = UIColor.whiteTwo
+        }
     }
     
     override func setup(_ data: Any?, indexPath: IndexPath) {

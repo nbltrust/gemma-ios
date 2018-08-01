@@ -11,6 +11,7 @@ import ReSwift
 
 protocol TransferConfirmPasswordCoordinatorProtocol {
     func finishTransfer()
+    func finishMortgage()
 }
 
 protocol TransferConfirmPasswordStateManagerProtocol {
@@ -20,6 +21,11 @@ protocol TransferConfirmPasswordStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->())
+    
+    func mortgage(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->())
+    
+    func relieveMortgage(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->())
+
 }
 
 class TransferConfirmPasswordCoordinator: TransferConfirmPasswordRootCoordinator {
@@ -38,6 +44,14 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let transferCoor = appDelegate.appcoordinator?.transferCoordinator, let transferVC = transferCoor.rootVC.topViewController as? TransferViewController {
             self.rootVC.dismiss(animated: true) {
                 transferVC.resetData()
+            }
+        }
+    }
+    
+    func finishMortgage() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let mortgageCoor = appDelegate.appcoordinator?.homeCoordinator, let mortgageVC = mortgageCoor.rootVC.topViewController as? ResourceMortgageViewController {
+            self.rootVC.dismiss(animated: true) {
+                mortgageVC.resetData()
             }
         }
     }
@@ -121,4 +135,11 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         })
     }
     
+    func mortgage(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->()) {
+        
+    }
+
+    func relieveMortgage(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->()) {
+        
+    }
 }

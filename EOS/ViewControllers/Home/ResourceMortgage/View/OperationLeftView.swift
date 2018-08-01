@@ -20,6 +20,11 @@ class OperationLeftView: UIView {
         case net
     }
     
+    enum event: String {
+        case cpu
+        case net
+    }
+    
     var data: [OperationViewModel]! {
         didSet {
             cpuMortgageView.reloadData()
@@ -161,15 +166,11 @@ extension OperationLeftView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.cpu.rawValue:
             cpuMortgageView.reloadActionViews(isEditing: false)
+            self.sendEventWith(event.cpu.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
 //            cpuMortgageView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.net.rawValue:
             netMortgageView.reloadActionViews(isEditing: false)
-//
-//            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = moneyTitleTextView.textField.text?.toDouble() {
-//                moneyTitleTextView.checkStatus = balenceDouble > moneyDouble  ? TextUIStyle.common : TextUIStyle.warning
-//                nextButton.button.isEnabled = balenceDouble > moneyDouble ? true : false
-//            }
-//            self.sendEventWith(TextChangeEvent.transferMoney.rawValue, userinfo: ["textfield" : textField])
+            self.sendEventWith(event.net.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
         default:
             return
         }

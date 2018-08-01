@@ -28,6 +28,7 @@ class LineView: UIView {
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var rightImg: UIImageView!
     @IBOutlet weak var imgWidth: NSLayoutConstraint!
+    @IBOutlet weak var bgView: UIView!
     
     @IBInspectable
     var name_style : String = LineViewStyleNames.normal_name.rawValue {
@@ -54,6 +55,7 @@ class LineView: UIView {
     var content_text : String = ""{
         didSet{
             self.content.attributedText = content_text.set(style: content_style)
+            updateHeight()
         }
     }
     

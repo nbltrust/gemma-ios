@@ -130,3 +130,49 @@ extension UIView {
         }
     }
 }
+
+extension UIView{
+    var noDataView : WithNoDataView?{
+        get{
+            if let nodata = self.subviews.last as? WithNoDataView{
+                return nodata
+            }
+            return nil
+        }
+        set{
+            if let newValue = newValue{
+                self.addSubview(newValue)
+            }
+        }
+    }
+    
+    func showNoData(_ noticeWord : String, icon : String) {
+        if let _ = self.noDataView {
+            self.noDataView?.notice_word = noticeWord
+            self.noDataView?.icon_name = icon
+        }else {
+            let nodata = WithNoDataView(frame:self.bounds)
+            self.noDataView = nodata
+            self.noDataView?.notice_word = noticeWord
+            self.noDataView?.icon_name = icon
+        }
+    }
+    
+    func showNoData(_ noticeWord : String) {
+        if let _ = self.noDataView {
+            self.noDataView?.notice_word = noticeWord
+        }else{
+            let nodata = WithNoDataView(frame:self.bounds)
+            self.noDataView = nodata
+            self.noDataView?.notice_word = noticeWord
+            self.noDataView?.noticeContairner.constant = -64
+        }
+    }
+    func hiddenNoData() {
+        if let _ = self.noDataView{
+            self.noDataView!.removeFromSuperview()
+            self.noDataView = nil
+        }
+    }
+}
+

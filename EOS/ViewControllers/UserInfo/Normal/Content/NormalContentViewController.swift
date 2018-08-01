@@ -16,9 +16,10 @@ class NormalContentViewController: BaseViewController {
     enum vc_type : Int {
         case language = 0
         case asset
+        case node
     }
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var containerView: ContainerNormalCellView!
     
 	var coordinator: (NormalContentCoordinatorProtocol & NormalContentStateManagerProtocol)?
 
@@ -26,7 +27,7 @@ class NormalContentViewController: BaseViewController {
     
     var selectedIndex : Int = 0 {
         didSet {
-            self.tableView.reloadData()
+
         }
     }
     
@@ -37,10 +38,10 @@ class NormalContentViewController: BaseViewController {
     
     func setupUI() {
         self.title = self.type == .language ? R.string.localizable.normal_language() : R.string.localizable.normal_asset()
-        self.coordinator?.setData(self.type.rawValue)
-        
-        let nibString = String.init(describing:NormalContentCell.self)
-        self.tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
+        self.coordinator?.setData(self.type.rawValue){ [weak self] (data) in
+            self?.containerView.selectedIndex = 0
+            self?.containerView.data = data
+        }
         configRightNavButton(R.string.localizable.normal_save())
     }
     
@@ -64,38 +65,18 @@ class NormalContentViewController: BaseViewController {
     
     override func configureObserveState() {
         commonObserveState()
-        
     }
 }
 
 extension NormalContentViewController {
-    @objc func clickCellView(_ sender : [String:Any]) {
+    
+    @objc func selectedSetting(_ sender : [String:Any]) {
         if let index = sender["index"] as? Int {
             self.selectedIndex = index
-            // 在这里处理全局设置语言/币种
         }
     }
 }
 
-extension NormalContentViewController : UITableViewDelegate,UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.coordinator?.state.property.data.count)!
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let nibString = String.init(describing:NormalContentCell.self)
-        let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! NormalContentCell
-        cell.selectedIndex = self.selectedIndex
-        if let data = self.coordinator?.state.property.data {
-            cell.setup(data[indexPath.row], indexPath: indexPath)
-            if indexPath.row == data.count - 1{
-                cell.cellView.isShowLineView = true
-            }
-        }
-        return cell
-    }
-}
 
 
 

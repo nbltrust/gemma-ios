@@ -12,6 +12,7 @@ import Presentr
 
 protocol ResourceMortgageCoordinatorProtocol {
     func presentMortgageConfirmVC(data: ConfirmViewModel)
+    func pushToPaymentVC()
 }
 
 protocol ResourceMortgageStateManagerProtocol {
@@ -21,6 +22,8 @@ protocol ResourceMortgageStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func getAccountInfo(_ account:String)
+    func cpuValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
+    func netValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
 }
 
 class ResourceMortgageCoordinator: HomeRootCoordinator {
@@ -59,6 +62,13 @@ extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
         }
         
         
+    }
+    
+    func pushToPaymentVC() {
+        let vc = R.storyboard.payments.paymentsViewController()!
+        let coor = PaymentsCoordinator(rootVC: self.rootVC)
+        vc.coordinator = coor
+        self.rootVC.pushViewController(vc, animated: true)
     }
 }
 
@@ -99,5 +109,13 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
             }
             
             }.cauterize()
+    }
+    
+    func cpuValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
+        self.store.dispatch(cpuMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+    }
+    
+    func netValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
+        self.store.dispatch(netMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
     }
 }
