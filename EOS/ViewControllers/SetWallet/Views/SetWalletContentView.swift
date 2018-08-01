@@ -189,10 +189,10 @@ extension SetWalletContentView : UITextFieldDelegate {
         
         case InputType.password.rawValue:
             password.reloadActionViews(isEditing: false)
-            password.checkStatus = WallketManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            password.checkStatus = WalletManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.comfirmPassword.rawValue:
             resetPassword.reloadActionViews(isEditing: false)
-            resetPassword.checkStatus = WallketManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: password.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            resetPassword.checkStatus = WalletManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: password.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.passwordPrompt.rawValue:
             tipPassword.reloadActionViews(isEditing: false)
             tipPassword.checkStatus = TextUIStyle.common

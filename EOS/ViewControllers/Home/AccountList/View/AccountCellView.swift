@@ -15,7 +15,7 @@ class AccountCellView: UIView {
     var text = "" {
         didSet {
             textLabel.text = text
-            if text == WallketManager.shared.getAccount() {
+            if text == WalletManager.shared.getAccount() {
                 textLabel.textColor = UIColor.whiteTwo
                 self.backgroundColor = UIColor.cornflowerBlue
             } else {

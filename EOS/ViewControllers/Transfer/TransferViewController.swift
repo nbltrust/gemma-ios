@@ -33,7 +33,7 @@ class TransferViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        let name = WallketManager.shared.getAccount()
+        let name = WalletManager.shared.getAccount()
         transferContentView.setAccountName(name: name)
         getData()
 
@@ -53,12 +53,12 @@ class TransferViewController: BaseViewController {
         self.reciverLabel.text = R.string.localizable.receiver()
 
         
-//        let info = WallketManager.shared.getAccount()
+//        let info = WalletManager.shared.getAccount()
 //        transferContentView.setInfo(info: <#T##String#>)
     }
     
     func getData() {
-        self.coordinator?.fetchUserAccount(WallketManager.shared.getAccount())
+        self.coordinator?.fetchUserAccount(WalletManager.shared.getAccount())
     }
     
     func commonObserveState() {
@@ -118,7 +118,7 @@ extension TransferViewController : UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == accountTextField {
             self.clearButton.isHidden = true
-            let isValid = WallketManager.shared.isValidWalletName(textField.text!)
+            let isValid = WalletManager.shared.isValidWalletName(textField.text!)
             if isValid == false {
                 self.reciverLabel.text = R.string.localizable.name_warning()
                 self.reciverLabel.textColor = UIColor.scarlet

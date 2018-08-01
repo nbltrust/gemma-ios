@@ -85,6 +85,10 @@ extension WalletCoordinator: WalletStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func fetchAllWallet() {
+        WalletManager.shared
+    }
+    
     func createSectionOneDataInfo(data: [WalletManagerModel]) -> [LineView.LineViewModel] {
         var array: [LineView.LineViewModel] = []
         for content: WalletManagerModel in data {

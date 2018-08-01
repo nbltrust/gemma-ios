@@ -20,7 +20,7 @@ class ResourceMortgageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        coordinator?.getAccountInfo(WallketManager.shared.getAccount())
+        coordinator?.getAccountInfo(WalletManager.shared.getAccount())
     }
     
     func setupUI() {
@@ -61,7 +61,7 @@ extension ResourceMortgageViewController {
         let btnTitle: String = data["btntitle"] as! String
         
         var model = ConfirmViewModel()
-        model.recever = WallketManager.shared.getAccount()
+        model.recever = WalletManager.shared.getAccount()
         model.amount = "123"
         model.remark = "sxsxsdw\nxsxsoxmo"
         

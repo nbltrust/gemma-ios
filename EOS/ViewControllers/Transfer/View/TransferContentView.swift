@@ -209,7 +209,7 @@ extension TransferContentView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.account.rawValue:
             accountTitleTextView.reloadActionViews(isEditing: false)
-            accountTitleTextView.checkStatus = WallketManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            accountTitleTextView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.money.rawValue:
             moneyTitleTextView.reloadActionViews(isEditing: false)
             

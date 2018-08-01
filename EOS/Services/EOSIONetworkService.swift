@@ -23,6 +23,7 @@ enum EOSIOService {
     
     //history
     case get_key_accounts(pubKey:String)
+    case get_transaction(id:String)
 }
 
 struct EOSIONetwork {
@@ -57,7 +58,10 @@ struct EOSIONetwork {
 
 extension EOSIOService : TargetType {
     var baseURL: URL {
-        return NetworkConfiguration.EOSIO_BASE_TEST_URL
+        switch self {
+        default:
+            return NetworkConfiguration.EOSIO_BASE_TEST_URL
+        }
     }
     
     var path: String {
@@ -78,6 +82,8 @@ extension EOSIOService : TargetType {
             return "/v1/chain/push_transaction"
         case .get_key_accounts:
             return "/v1/history/get_key_accounts"
+        case .get_transaction:
+            return "/v1/history/get_transaction"
         }
     }
     
@@ -107,6 +113,8 @@ extension EOSIOService : TargetType {
             return ["code": NetworkConfiguration.EOSIO_DEFAULT_CODE, "action": action.rawValue, "binargs": bin]
         case let .get_key_accounts(pubKey):
             return ["public_key": pubKey]
+        case let .get_transaction(id):
+            return ["id": id]
         }
     }
     

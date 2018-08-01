@@ -94,7 +94,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     }
     
     func validName(_ name: String) {
-        self.store.dispatch(toNameAction(isValid: WallketManager.shared.isValidWalletName(name)))
+        self.store.dispatch(toNameAction(isValid: WalletManager.shared.isValidWalletName(name)))
     }
     
     func subscribe<SelectedState, S: StoreSubscriber>(
@@ -115,7 +115,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     }
     
     func checkAccountName(_ name:String) ->(Bool,error_info:String){
-        return (WallketManager.shared.isValidWalletName(name),R.string.localizable.name_ph.key.localized())
+        return (WalletManager.shared.isValidWalletName(name),R.string.localizable.name_ph.key.localized())
     }
     
     func getInfo(callback:@escaping (String)->()){
@@ -132,13 +132,13 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     func getPushTransaction(_ password : String,account:String, amount:String, code:String ,callback:@escaping (String?)->()){
         
         getInfo { (get_info) in
-            let privakey = WallketManager.shared.getCachedPriKey(password)
-            let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WallketManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
+            let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: password)
+            let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WalletManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
 
             EOSIONetwork.request(target: .abi_json_to_bin(json:json!), success: { (data) in
                 let abiStr = data.stringValue
                 
-               let transation = EOSIO.getTransaction(privakey,
+               let transation = EOSIO.getTransferTransaction(privakey,
                                      code: NetworkConfiguration.EOSIO_DEFAULT_CODE,
                                      from: account,
                     getinfo: get_info,
@@ -154,7 +154,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     }
     
     func ValidingPassword(_ password : String) -> Bool{
-        return WallketManager.shared.isValidPassword(password)
+        return WalletManager.shared.isValidPassword(password)
     }
 
     

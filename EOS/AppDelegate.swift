@@ -44,24 +44,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         appcoordinator!.start()
-//        RealReachability.sharedInstance().startNotifier()
-//        NotificationCenter.default.addObserver(forName: NSNotification.Name.realReachabilityChanged, object: nil, queue: nil) { (notifi) in
-//            self.handlerNetworkChanged()
-//        }
-//        
-//        configApplication()
-//        self.handlerNetworkChanged()
-//        
+        RealReachability.sharedInstance().startNotifier()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.realReachabilityChanged, object: nil, queue: nil) { (notifi) in
+            self.handlerNetworkChanged()
+        }
+        configApplication()
+        self.handlerNetworkChanged()
+
 //        self.appcoordinator?.showTest()
         
         //test
-//        WallketManager.shared.removeAllWallets()
-//        WallketManager.shared.logoutWallet()
-//        log.debug(WallketManager.shared.getAccount())
+//        WalletManager.shared.removeAllWallets()
+//        WalletManager.shared.logoutWallet()
+//        log.debug(WalletManager.shared.getAccount())
         
-//        if !WallketManager.shared.existAccount() {
-//            appcoordinator!.showEntry()
-//        }
+        if !WalletManager.shared.existWallet() {
+            appcoordinator!.showEntry()
+        }
         return true
     }
     
