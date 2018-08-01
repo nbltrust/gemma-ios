@@ -13,6 +13,24 @@ struct Account:HandyJSON {
     var account_name:String!
     var total_resources:TotalResource?
     var refund_request:ReFundRequest?
+    var net_limit:NetLimit?
+    var cpu_limit:CpuLimit?
+
+    init() {}
+}
+
+struct NetLimit:HandyJSON {
+    var used:Int64!
+    var available:Int64!
+    var max:Int64!
+    
+    init() {}
+}
+
+struct CpuLimit:HandyJSON {
+    var used:Int64!
+    var available:Int64!
+    var max:Int64!
     
     init() {}
 }

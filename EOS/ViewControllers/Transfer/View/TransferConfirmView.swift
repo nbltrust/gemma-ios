@@ -43,6 +43,7 @@ class TransferConfirmView: UIView {
             if data.remark == "" {
                 data.remark = R.string.localizable.default_remark_pre() + WalletManager.shared.getAccount() + R.string.localizable.default_remark_after()
             }
+            remarkView.content.numberOfLines = 0
             remarkView.content_text = data.remark
             if data.payAccount == "" {
                 bottomView.isHidden = true
@@ -51,20 +52,27 @@ class TransferConfirmView: UIView {
                 payAccountView.content_text = data.payAccount
             }
             sureView.title = data.buttonTitle
+            updateHeight()
         }
     }
     
     func setUp() {
+        setupUI()
         setupEvent()
         updateHeight()
+        setRichText()
+    }
+    
+    func setupUI() {
+        receverView.name_style = LineViewStyleNames.confirm_name.rawValue
+        amountView.name_style = LineViewStyleNames.confirm_name.rawValue
+        remarkView.name_style = LineViewStyleNames.confirm_name.rawValue
+        payAccountView.name_style = LineViewStyleNames.confirm_name.rawValue
+
         receverView.content_style = LineViewStyleNames.transfer_confirm.rawValue
         amountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
-
         remarkView.content_style = LineViewStyleNames.normal_name.rawValue
         payAccountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
-        setRichText()
-
-
     }
     
     func setRichText() {

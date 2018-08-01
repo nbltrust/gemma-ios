@@ -12,12 +12,14 @@ class ResourceMortgageView: UIView {
     
     @IBOutlet weak var cpuView: GeneralCellView!
     @IBOutlet weak var netView: GeneralCellView!
-    @IBOutlet weak var netButton: Button!
     @IBOutlet weak var pageView: PageView!
     @IBOutlet weak var cornerShadowView: CornerAndShadowView!
+    @IBOutlet weak var leftNextButton: Button!
+    @IBOutlet weak var rightNextButton: Button!
     
     enum event: String {
-        case mortgage
+        case leftnext
+        case rightnext
     }
     
     var data: Any? {
@@ -38,15 +40,19 @@ class ResourceMortgageView: UIView {
     }
     
     func setupEvent() {
-        netButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+        leftNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
-            self.sendEventWith(event.mortgage.rawValue, userinfo: ["btntitle" : self.netButton.title])
+            self.sendEventWith(event.leftnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+        rightNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(event.rightnext.rawValue, userinfo: [:])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     func setupUI() {
-        netButton.title = R.string.localizable.mortgage()
+        leftNextButton.isHidden = false
+        rightNextButton.isHidden = true
     }
     
     override var intrinsicContentSize: CGSize {
@@ -96,9 +102,11 @@ class ResourceMortgageView: UIView {
 
 extension ResourceMortgageView {
     @objc func left(_ data: [String: Any]) {
-        netButton.title = R.string.localizable.mortgage()
+        leftNextButton.isHidden = false
+        rightNextButton.isHidden = true
     }
     @objc func right(_ data: [String: Any]) {
-        netButton.title = R.string.localizable.cancel_mortgage()
+        leftNextButton.isHidden = true
+        rightNextButton.isHidden = false
     }
 }

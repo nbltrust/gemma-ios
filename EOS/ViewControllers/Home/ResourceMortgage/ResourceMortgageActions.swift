@@ -67,7 +67,21 @@ struct OperationViewModel {
 
 struct ResourceMortgagePropertyState {
     var info:BehaviorRelay<ResourceViewModel?> = BehaviorRelay(value: nil)
+    var cpuMoneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
+    var netMoneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
     var CNY_price:String = ""
+}
+
+struct cpuMoneyAction: Action {
+    var cpuMoney = ""
+    var netMoney = ""
+    var balance = ""
+}
+
+struct netMoneyAction: Action {
+    var cpuMoney = ""
+    var netMoney = ""
+    var balance = ""
 }
 
 struct MBalanceFetchedAction:Action {

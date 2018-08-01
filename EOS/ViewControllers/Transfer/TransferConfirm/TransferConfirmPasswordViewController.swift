@@ -51,7 +51,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
 
 extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
-        let myType: String = data["confirmtype"] as! String
+        let myType = self.type
         if myType == confirmType.transfer.rawValue {
             self.view.endEditing(true)
             self.startLoading()
@@ -65,9 +65,30 @@ extension TransferConfirmPasswordViewController {
                 }
             })
         } else if myType == confirmType.mortgage.rawValue {
-            
+            self.view.endEditing(true)
+            self.startLoading()
+            self.coordinator?.mortgage(passwordView.textField.text!, account: receiver, amount: amount, code: remark, callback: { [weak self] (isSuccess, message) in
+                guard let `self` = self else { return }
+                if isSuccess {
+                    self.showSuccess(message: message)
+                    self.coordinator?.finishMortgage()
+                } else {
+                    self.showError(message: message)
+                }
+            })
+
         } else if myType == confirmType.relieveMortgage.rawValue {
-            
+            self.view.endEditing(true)
+            self.startLoading()
+            self.coordinator?.relieveMortgage(passwordView.textField.text!, account: receiver, amount: amount, code: remark, callback: { [weak self] (isSuccess, message) in
+                guard let `self` = self else { return }
+                if isSuccess {
+                    self.showSuccess(message: message)
+                    self.coordinator?.finishMortgage()
+                } else {
+                    self.showError(message: message)
+                }
+            })
         }
 
     }

@@ -21379,11 +21379,11 @@
 		72101687210197C00059B37E /* WalletManager */ = {
 			isa = PBXGroup;
 			children = (
+				7210168E210197C00059B37E /* WalletManagerCoordinator.swift */,
 				72101688210197C00059B37E /* WalletManagerViewController.swift */,
 				72101689210197C00059B37E /* WalletManagerReducers.swift */,
 				7210168A210197C00059B37E /* WalletManagerActions.swift */,
 				7210168B210197C00059B37E /* Views */,
-				7210168E210197C00059B37E /* WalletManagerCoordinator.swift */,
 			);
 			path = WalletManager;
 			sourceTree = "<group>";
