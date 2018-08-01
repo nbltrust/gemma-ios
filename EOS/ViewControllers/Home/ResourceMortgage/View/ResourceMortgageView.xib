@@ -14,9 +14,10 @@
             <connections>
                 <outlet property="cornerShadowView" destination="jdD-hn-ukE" id="drs-x0-jDa"/>
                 <outlet property="cpuView" destination="HrI-xN-M9Z" id="zty-xw-SEc"/>
-                <outlet property="netButton" destination="FKV-5k-kxB" id="dsx-fP-wWu"/>
+                <outlet property="leftNextButton" destination="FKV-5k-kxB" id="Vtr-7k-JKy"/>
                 <outlet property="netView" destination="Y04-02-qme" id="a51-1V-LrG"/>
                 <outlet property="pageView" destination="snN-cg-uxa" id="oJ4-Ib-mQ9"/>
+                <outlet property="rightNextButton" destination="dRt-V0-rmo" id="osB-mx-hUH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -78,7 +79,7 @@
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="newShadowColor">
-                                            <color key="value" name="duskBlue5" red="0.153" green="0.204" blue="0.490" alpha="0.048" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="value" red="0.153" green="0.20399999999999999" blue="0.48999999999999999" alpha="0.048000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowR">
                                             <integer key="value" value="7"/>
@@ -104,8 +105,21 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="locali" value="mortgage"/>
                                     </userDefinedRuntimeAttributes>
                                 </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRt-V0-rmo" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="32" y="551" width="311" height="44"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="W0X-ld-uiP"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="cancel_mortgage"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
                             </subviews>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="dRt-V0-rmo" secondAttribute="trailing" constant="32" id="1s5-9b-JE6"/>
+                                <constraint firstAttribute="bottom" secondItem="dRt-V0-rmo" secondAttribute="bottom" constant="20" id="3xm-Fm-vmg"/>
+                                <constraint firstItem="dRt-V0-rmo" firstAttribute="leading" secondItem="G5Q-vI-0a1" secondAttribute="leading" constant="32" id="A3A-cf-pvR"/>
                                 <constraint firstAttribute="bottom" secondItem="FKV-5k-kxB" secondAttribute="bottom" constant="20" id="GCs-gM-18f"/>
                                 <constraint firstAttribute="trailing" secondItem="jdD-hn-ukE" secondAttribute="trailing" constant="16" id="PVs-Xn-nB7"/>
                                 <constraint firstAttribute="trailing" secondItem="snN-cg-uxa" secondAttribute="trailing" constant="16" id="R0g-cY-Nee"/>
@@ -117,6 +131,7 @@
                                 <constraint firstItem="x8N-Bk-XpP" firstAttribute="leading" secondItem="G5Q-vI-0a1" secondAttribute="leading" constant="31" id="oqn-Wi-iqA"/>
                                 <constraint firstItem="FKV-5k-kxB" firstAttribute="leading" secondItem="G5Q-vI-0a1" secondAttribute="leading" constant="32" id="reM-lO-VQm"/>
                                 <constraint firstItem="FKV-5k-kxB" firstAttribute="top" secondItem="snN-cg-uxa" secondAttribute="bottom" constant="30" id="uBJ-k3-XKV"/>
+                                <constraint firstItem="dRt-V0-rmo" firstAttribute="top" secondItem="snN-cg-uxa" secondAttribute="bottom" constant="30" id="vwT-W2-ebd"/>
                                 <constraint firstItem="x8N-Bk-XpP" firstAttribute="top" secondItem="G5Q-vI-0a1" secondAttribute="top" constant="20" id="y5H-x2-qdX"/>
                             </constraints>
                         </view>
@@ -141,6 +156,4 @@
             <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
-    <resources>
-    </resources>
 </document>

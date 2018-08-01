@@ -28,11 +28,6 @@ class TransferConfirmPasswordView: UIView {
         }
     }
     
-    var confirmType = "" {
-        didSet {
-        }
-    }
-    
     var placeHolder = "" {
         didSet {
             textField.placeholder = R.string.localizable.input() + placeHolder + R.string.localizable.password()
@@ -51,7 +46,7 @@ class TransferConfirmPasswordView: UIView {
     func setupEvent() {
         nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
-            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: ["confirmtype" : self.confirmType])
+            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     

@@ -23,7 +23,7 @@ class PageView: UIView {
     var data: Any? {
         didSet {
             if let data = data as? PageViewModel {
-                balanceLabel.text = data.balance
+                balance = data.balance
                 leftLabel.text = data.leftText
                 rightLabel.text = data.rightText
                 leftView.data = data.operationLeft

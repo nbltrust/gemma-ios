@@ -90,12 +90,12 @@ extension WalletCoordinator: WalletStateManagerProtocol {
         for content: WalletManagerModel in data {
             let model = LineView.LineViewModel.init(name: content.name,
                                         content: "",
-                                        image_name: R.image.icArrow.name,
+                                        image_name: R.image.icTabMore.name,
                                         name_style: LineViewStyleNames.normal_name,
                                         content_style: LineViewStyleNames.normal_content,
                                         isBadge: false,
                                         content_line_number: 1,
-                                        isShowLineView: true)
+                                        isShowLineView: false)
             array.append(model)
         }
         return array

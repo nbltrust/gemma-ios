@@ -22,7 +22,7 @@ class GeneralCellView: UIView {
         didSet {
             if let data = data as? GeneralViewModel {
                 nameLabel.text = data.name
-                eosLabel.text = data.eos
+                eos = data.eos
                 leftSubLabel.text = data.leftSub
                 rightSubLabel.text = data.rightSub
                 lineView.isHidden = data.lineHidden
@@ -36,6 +36,12 @@ class GeneralCellView: UIView {
                 }
                 updateHeight()
             }
+        }
+    }
+    
+    var eos: String = "" {
+        didSet {
+            eosLabel.text = eos
         }
     }
     

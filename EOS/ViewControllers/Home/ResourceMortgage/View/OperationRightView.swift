@@ -18,6 +18,11 @@ class OperationRightView: UIView {
         case net
     }
     
+    enum event: String {
+        case cpucancel
+        case netcancel
+    }
+    
     var data: [OperationViewModel]! {
         didSet {
             cpuMortgageCancelView.reloadData()
@@ -159,9 +164,11 @@ extension OperationRightView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.cpu.rawValue:
             cpuMortgageCancelView.reloadActionViews(isEditing: false)
-        //            cpuMortgageView.checkStatus = WallketManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            self.sendEventWith(event.cpucancel.rawValue, userinfo: ["cputextfieldview":cpuMortgageCancelView, "nettextfieldview":netMortgageCancelView])
         case InputType.net.rawValue:
             netMortgageCancelView.reloadActionViews(isEditing: false)
+            self.sendEventWith(event.netcancel.rawValue, userinfo: ["cputextfieldview":cpuMortgageCancelView, "nettextfieldview":netMortgageCancelView])
+
             //
             //            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = moneyTitleTextView.textField.text?.toDouble() {
             //                moneyTitleTextView.checkStatus = balenceDouble > moneyDouble  ? TextUIStyle.common : TextUIStyle.warning

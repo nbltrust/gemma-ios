@@ -25,17 +25,17 @@
             <rect key="frame" x="0.0" y="0.0" width="378" height="391"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dj3-Vg-rO0">
-                    <rect key="frame" x="16" y="0.0" width="346" height="208"/>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dj3-Vg-rO0">
+                    <rect key="frame" x="16" y="0.0" width="346" height="214"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXV-yd-tPq">
-                            <rect key="frame" x="0.0" y="0.0" width="346" height="144"/>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXV-yd-tPq">
+                            <rect key="frame" x="0.0" y="0.0" width="346" height="150"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ws2-sj-2zn">
-                                    <rect key="frame" x="0.0" y="0.0" width="346" height="144"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ws2-sj-2zn">
+                                    <rect key="frame" x="0.0" y="0.0" width="346" height="150"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEs-i4-iW4" customClass="LineView" customModule="EOS" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="346" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="346" height="50"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
@@ -44,8 +44,8 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="image_name" value=" "/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0d-tG-DAo" customClass="LineView" customModule="EOS" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="48" width="346" height="48"/>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0d-tG-DAo" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="50" width="346" height="50"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
@@ -54,8 +54,8 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="image_name" value=" "/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfb-US-ykB" customClass="LineView" customModule="EOS" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="96" width="346" height="48"/>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tfb-US-ykB" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="100" width="346" height="50"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
@@ -76,7 +76,6 @@
                             <constraints>
                                 <constraint firstItem="ws2-sj-2zn" firstAttribute="leading" secondItem="HXV-yd-tPq" secondAttribute="leading" id="OQZ-YR-xWX"/>
                                 <constraint firstItem="ws2-sj-2zn" firstAttribute="top" secondItem="HXV-yd-tPq" secondAttribute="top" id="ZH9-jc-qZ1"/>
-                                <constraint firstAttribute="height" constant="144" id="cMy-Mu-VsQ"/>
                                 <constraint firstAttribute="trailing" secondItem="ws2-sj-2zn" secondAttribute="trailing" id="l8i-XL-lba"/>
                                 <constraint firstAttribute="bottom" secondItem="ws2-sj-2zn" secondAttribute="bottom" id="uCi-2v-e1W"/>
                             </constraints>
@@ -86,13 +85,13 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FmK-5o-cCa">
-                            <rect key="frame" x="0.0" y="144" width="346" height="64"/>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FmK-5o-cCa">
+                            <rect key="frame" x="0.0" y="150" width="346" height="64"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZMn-zB-gMH">
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZMn-zB-gMH">
                                     <rect key="frame" x="0.0" y="16" width="346" height="48"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ube-tF-Q9j" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ube-tF-Q9j" customClass="LineView" customModule="EOS" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="346" height="48"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
@@ -129,7 +128,7 @@
                         </view>
                     </subviews>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="06S-Dw-UEG" customClass="Button" customModule="EOS" customModuleProvider="target">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="06S-Dw-UEG" customClass="Button" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="32" y="232" width="314" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="mrB-dU-f0Z"/>
