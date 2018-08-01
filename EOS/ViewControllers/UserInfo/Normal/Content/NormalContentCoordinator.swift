@@ -18,7 +18,7 @@ protocol NormalContentStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<NormalContentState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func setData(_ sender : Int)
+    func setData(_ sender : Int ,callback:@escaping([String])->())
 }
 
 class NormalContentCoordinator: UserInfoRootCoordinator {
@@ -47,16 +47,17 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
-    func setData(_ sender : Int) {
+    func setData(_ sender : Int ,callback:@escaping([String])->()) {
         var data = [String]()
         switch sender {
         case 0:data = [R.string.localizable.language_system(),R.string.localizable.language_cn(),R.string.localizable.language_en()]
         case 1:data = ["CNY","USD"]
-        default:data = []
+        case 2:data = ["https://mainnet-eos.token.im","https://api1-imtoken.eosasia.one","http://api-direct.eosasia.one","https://api.helloeos.com.cn"]
+        default:
             break
         }
-        
-        self.store.dispatch(SetDataAction(data:data))
+        callback(data)
+//        self.store.dispatch(SetDataAction(data:data))
     }
     
 }

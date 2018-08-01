@@ -137,6 +137,11 @@ class NormalCellView: UIView {
             
         }
     }
+    fileprivate var normal_bgColor : UIColor? {
+        didSet {
+            
+        }
+    }
     
     func setup() {
         self.state = NormalCellViewState.normal.rawValue
@@ -187,11 +192,12 @@ class NormalCellView: UIView {
 
 extension NormalCellView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.normal_bgColor = self.subviews.last?.backgroundColor
         self.subviews.last?.backgroundColor = self.selectBackgroundColor
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.subviews.last?.backgroundColor = UIColor.whiteTwo89
+        self.subviews.last?.backgroundColor = self.normal_bgColor
         self.clickCellViewAction()
     }
     
@@ -200,7 +206,7 @@ extension NormalCellView {
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.subviews.last?.backgroundColor = UIColor.whiteTwo89
+        self.subviews.last?.backgroundColor = self.normal_bgColor
     }
     
     @objc func clickCellViewAction(){
