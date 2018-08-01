@@ -69,18 +69,18 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
     func getPushTransaction(_ password : String,account:String, amount:String, code:String ,callback:@escaping ((String?, String))->()){
         
         getInfo { (get_info) in
-            guard let privakey = WallketManager.shared.getCachedPriKey(password) else {
+            guard let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: password) else {
                 return callback((nil, R.string.localizable.password_not_match()))
             }
             
-            let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WallketManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
+            let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WalletManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
             
             EOSIONetwork.request(target: .abi_json_to_bin(json:json!), success: { (data) in
                 let abiStr = data["binargs"].stringValue
                 
-                let transation = EOSIO.getTransaction(privakey,
+                let transation = EOSIO.getTransferTransaction(privakey,
                                                       code: NetworkConfiguration.EOSIO_DEFAULT_CODE,
-                                                      from: WallketManager.shared.getAccount(),
+                                                      from: WalletManager.shared.getAccount(),
                                                       getinfo: get_info,
                                                       abistr: abiStr)
                 
@@ -95,7 +95,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
     }
     
     func ValidingPassword(_ password : String) -> Bool{
-        return WallketManager.shared.isValidPassword(password)
+        return WalletManager.shared.isValidPassword(password)
     }
     
     

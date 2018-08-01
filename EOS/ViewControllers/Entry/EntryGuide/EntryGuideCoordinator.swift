@@ -42,6 +42,10 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
     }
     
     func pushToRecoverFromCopyVC() {
+        let leadInVC = R.storyboard.leadIn.leadInViewController()!
+        let coordinator = LeadInCoordinator(rootVC: self.rootVC)
+        leadInVC.coordinator = coordinator
+        self.rootVC.pushViewController(leadInVC, animated: true)
     }
 }
 

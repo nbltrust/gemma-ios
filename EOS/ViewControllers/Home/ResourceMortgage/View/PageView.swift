@@ -8,13 +8,6 @@
 
 import Foundation
 
-struct PageViewModel {
-    var balance = ""
-    var leftText = ""
-    var rightText = ""
-    var operationLeft: [OperationViewModel]
-    var operationRight: [OperationViewModel]
-}
 
 @IBDesignable
 class PageView: UIView {
@@ -27,14 +20,16 @@ class PageView: UIView {
     @IBOutlet weak var leftView: OperationLeftView!
     @IBOutlet weak var rightView: OperationRightView!
     
-    var data: PageViewModel! {
+    var data: Any? {
         didSet {
-            balanceLabel.text = data.balance
-            leftLabel.text = data.leftText
-            rightLabel.text = data.rightText
-            leftView.data = data.operationLeft
-            rightView.data = data.operationRight
-            updateHeight()
+            if let data = data as? PageViewModel {
+                balanceLabel.text = data.balance
+                leftLabel.text = data.leftText
+                rightLabel.text = data.rightText
+                leftView.data = data.operationLeft
+                rightView.data = data.operationRight
+                updateHeight()
+            }
         }
     }
     

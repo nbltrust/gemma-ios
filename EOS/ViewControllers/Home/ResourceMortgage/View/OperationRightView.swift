@@ -159,7 +159,7 @@ extension OperationRightView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.cpu.rawValue:
             cpuMortgageCancelView.reloadActionViews(isEditing: false)
-        //            cpuMortgageView.checkStatus = WallketManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+        //            cpuMortgageView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.net.rawValue:
             netMortgageCancelView.reloadActionViews(isEditing: false)
             //

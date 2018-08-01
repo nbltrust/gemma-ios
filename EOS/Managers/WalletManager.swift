@@ -11,12 +11,14 @@ import KeychainAccess
 import SwifterSwift
 import SwiftyUserDefaults
 
-class WallketManager {
-    static let shared = WallketManager()
+class WalletManager {
+    static let shared = WalletManager()
     
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
 
-    var pubKey:String = Defaults[.currentWallet]
+    var currentPubKey:String = Defaults[.currentWallet]
+    private var account_names:[String] = []
+    
     private var priKey:String = ""
 
     private init() {
@@ -26,116 +28,223 @@ class WallketManager {
     
     func createPairKey() {
         if let keys = EOSIO.createKey(), let pub = keys[optional: 0], let pri = keys[optional: 1] {
-            pubKey = pub
+            currentPubKey = pub
             priKey = pri
         }
     }
     
-    func saveWallket(_ account:String, password:String, hint:String) {
-        savePriKey(password)
-        savePasswordHint(hint)
+    func saveWallket(_ account:String, password:String, hint:String, isImport:Bool = false, txID:String? = nil) {
+        savePriKey(priKey,publicKey: currentPubKey, password:password)
+        savePasswordHint(currentPubKey, hint:hint)
         
-        addToLocalWallet()
-        switchWallet(pubKey)
-        switchAccount(account)
+        addToLocalWallet(isImport, txID: txID)
+        switchWallet(currentPubKey)
+        switchAccount(0)
         
+        account_names = [account]
         priKey = ""
     }
     
-    func addToLocalWallet() {
-        var wallets = Defaults[.wallets]
-        if !wallets.contains(pubKey) {
-            wallets.append(pubKey)
-            Defaults[.wallets] = wallets
-        }
-    }
-    
-    private func removeFromLocalWallet() {
-        var wallets = Defaults[.wallets]
-        if wallets.contains(pubKey) {
-            wallets.removeAll(pubKey)
-            Defaults[.wallets] = wallets
-        }
+    func updateWalletPassword(_ publicKey:String, password:String, hint:String) {
         
-        Defaults.remove(.currentWallet)
     }
     
-    func importPrivateKey(_ pri:String, account:String, password:String, hint:String) {
-        priKey = pri
-        pubKey = ""//
+    func updateWalletName(_  publicKey:String, walletName:String) {
         
-        saveWallket(account, password: password, hint: hint)
     }
     
-    func switchWallet(_ publicKey:String) {
-        pubKey = publicKey
-        Defaults[.currentWallet] = publicKey
-    }
-    
-    func switchAccount(_ account:String) {
-        Defaults[.currentAccount] = account
-    }
-    
-    func existAccount() -> Bool {
-        return getAccount() != ""
+    func addToLocalWallet(_ isImport:Bool = false, txID:String?) {
+        var wallets = Defaults[.walletList]
+        
+        if !wallets.map({ $0.publicKey }).contains(currentPubKey) {
+            let currentIndex = currentWalletCount() + 1
+            let wallet = WalletList(name: "EOS-WALLET-\(currentIndex)", publicKey: currentPubKey, accountIndex: 0, isBackUp: isImport ? true : false, isConfirmLib: isImport ? true : false, txId: txID)
+            wallets.append(wallet)
+            Defaults[.walletList] = wallets
+        }
     }
     
     func getAccount() -> String {
-        return Defaults[.currentAccount]
+        if let wallet = currentWallet() {
+            return account_names[wallet.accountIndex]
+        }
+        
+        return "--"
     }
     
-    func logoutWallet() {
-        removeWallket()
-        Defaults.remove(.currentAccount)
-        
-        let wallets = Defaults[.wallets]
-        
-        if let pub = wallets.last {
-            switchWallet(pub)
+    func fetchAccountNames(_ publicKey:String, completion: @escaping (Bool)->Void) {
+        EOSIONetwork.request(target: .get_key_accounts(pubKey: publicKey), success: { (json) in
+            if let names = json["account_names"].arrayObject as? [String] {
+                self.account_names = names
+                completion(true)
+            }
+        }, error: { (code) in
+            completion(false)
+        }) { (error) in
+            completion(false)
         }
     }
     
-    func removeAllWallets() {
-        Defaults.remove(.wallets)
+    func importPrivateKey(_ pri:String, password:String, hint:String, completion: @escaping (Bool)->Void) {
+        guard let pubKey = EOSIO.getPublicKey(pri) else { completion(false); return }
+        fetchAccountNames(pubKey) { (success) in
+            if success {
+                self.priKey = pri
+                self.currentPubKey = pubKey
+                
+                self.saveWallket(self.account_names[0], password: password, hint: hint, isImport: true, txID: nil)
+            }
+            completion(success)
+        }
     }
     
-    private func removeWallket() {
-        removeFromLocalWallet()
+    func currentWallet() -> WalletList? {
+        let pubKey = Defaults[.currentWallet]
+        let wallets = wallketList()
         
-        try? keychain.remove("\(pubKey)-passwordHint")
-        try? keychain.remove("\(pubKey)-pubKey")
-        try? keychain.remove("\(pubKey)-cypher")
+        if let index = wallets.map({ $0.publicKey }).index(of: pubKey) {
+            return wallets[index]
+        }
+        
+        return nil
+    }
+    
+    func wallketList() -> [WalletList] {
+        return Defaults[.walletList]
+    }
+    
+    func switchWallet(_ publicKey:String) {
+        currentPubKey = publicKey
+        Defaults[.currentWallet] = publicKey
+    }
+    
+    func switchAccount(_ index:Int) {
+        var wallets = Defaults[.walletList]
+        if let index = wallets.map({ $0.publicKey }).index(of: currentPubKey) {
+            var wallet = wallets[index]
+            wallet.accountIndex = index
+            wallets[index] = wallet
+            Defaults[.walletList] = wallets
+        }
+    }
+    
+    func existWallet() -> Bool {
+        return currentWalletCount() != 0
+    }
+    
+    func registerSuccess() {
+        let pubKey = Defaults[.currentWallet]
+        var wallets = wallketList()
+        
+        if let index = wallets.map({ $0.publicKey }).index(of: pubKey) {
+            var wallet = wallets[index]
+            wallet.isConfirmLib = true
+            wallet.txId = nil
+            wallets[index] = wallet
+            
+            Defaults[.walletList] = wallets
+        }
+    }
+    
+    func backupSuccess() {
+        let pubKey = Defaults[.currentWallet]
+        var wallets = wallketList()
+        
+        if let index = wallets.map({ $0.publicKey }).index(of: pubKey) {
+            var wallet = wallets[index]
+            wallet.isBackUp = true
+            wallets[index] = wallet
+            
+            Defaults[.walletList] = wallets
+        }
+    }
+    
+    func currentWalletCount() -> Int {
+        let wallets = Defaults[.walletList]
+       
+        return wallets.count
+    }
+    
+    func removeAllWallets() {
+        Defaults.remove(.walletList)
+    }
+    
+    private func removeWallet(_ publicKey:String) {
+        var wallets = Defaults[.walletList]
+        if let index = wallets.map({ $0.publicKey }).index(of: publicKey) {
+            wallets.remove(at: index)
+            Defaults[.walletList] = wallets
+        }
+        
+        try? keychain.remove("\(publicKey)-passwordHint")
+        try? keychain.remove("\(publicKey)-pubKey")
+        try? keychain.remove("\(publicKey)-cypher")
+    }
+    
+    func switchToLastestWallet() {
+        let wallets = Defaults[.walletList]
+        
+        if let wallket = wallets.last {
+            switchWallet(wallket.publicKey)
+        }
     }
     
     func getCurrentSavedPublicKey() -> String {
         return Defaults[.currentWallet]
     }
 
-    private func savePasswordHint(_ hint:String) {
+    private func savePasswordHint(_ publicKey:String, hint:String) {
         guard hint.count > 0 else { return }
         
-        keychain[string: "\(pubKey)-passwordHint"] = hint
+        keychain[string: "\(publicKey)-passwordHint"] = hint
     }
     
-    func getPasswordHint() -> String? {
-        if let hint = keychain[string: "\(pubKey)-passwordHint"] {
+    func getPasswordHint(_ publicKey:String) -> String? {
+        if let hint = keychain[string: "\(publicKey)-passwordHint"] {
             return hint
         }
         
         return nil
     }
     
-    private func savePriKey(_ password:String) {
-        if let cypher = EOSIO.getCypher(priKey, password: password) {
-            keychain[string: "\(pubKey)-cypher"] = cypher
+    private func savePriKey(_ privateKey:String, publicKey:String, password:String) {
+        if let cypher = EOSIO.getCypher(privateKey, password: password) {
+            keychain[string: "\(publicKey)-cypher"] = cypher
         }
     }
     
-    func getCachedPriKey(_ password:String) -> String? {
-        if let cypher = keychain[string: "\(pubKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password), pri.count > 0 {
+    func getCachedPriKey(_ publicKey:String, password:String) -> String? {
+        if let cypher = keychain[string: "\(publicKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password), pri.count > 0 {
             return pri
         }
         return nil
+    }
+    
+    func validAccountRegisterSuccess(_ completion: @escaping (Bool)->Void) {
+        guard let wallet = WalletManager.shared.currentWallet(), let txId = wallet.txId else { completion(false); return }
+        EOSIONetwork.request(target: .get_transaction(id: txId), success: { (json) in
+            let block_num = json["ref_block_num"].intValue
+            
+            EOSIONetwork.request(target: .get_info, success: { (json) in
+                let lib = json["last_irreversible_block_num"].intValue
+                if block_num <= lib {
+                    completion(true)
+                }
+                else {
+                    completion(false)
+                }
+            }, error: { (code) in
+                completion(false)
+
+            }) { (error) in
+                completion(false)
+            }
+        }, error: { (code) in
+            completion(false)
+        }) { (error) in
+            completion(false)
+        }
+        
     }
     
     func isValidPassword(_ password: String) -> Bool {

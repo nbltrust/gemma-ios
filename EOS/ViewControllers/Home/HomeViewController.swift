@@ -32,7 +32,8 @@ class HomeViewController: BaseViewController {
         if let nav = self.navigationController as? BaseNavigationController {
             nav.navStyle = .clear
         }
-        coordinator?.getAccountInfo(WallketManager.shared.getAccount())
+        
+        coordinator?.getAccountInfo(WalletManager.shared.getAccount())
     }
     
     override func viewWillDisappear(_ animated: Bool) {

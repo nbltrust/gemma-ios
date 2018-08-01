@@ -10,20 +10,21 @@ import Foundation
 import ReSwift
 import RxCocoa
 
+typealias ScanResult = ((_ pickurler: String) -> Void)
 //MARK: - State
 struct ScanState: StateType {
     var isLoading = false
     var page: Int = 1
     var errorMessage:String?
     var property: ScanPropertyState
+    var callback: ScanCallbackState
 }
 
 struct ScanPropertyState {
-    var scanResult: BehaviorRelay<String> = BehaviorRelay(value: "")
 }
 
-struct ScanResultAction: Action {
-    var scanResult: String = ""
+struct ScanCallbackState {
+    var scanResult: BehaviorRelay<ScanResult?> = BehaviorRelay(value: nil)
 }
 
 //MARK: - Action Creator

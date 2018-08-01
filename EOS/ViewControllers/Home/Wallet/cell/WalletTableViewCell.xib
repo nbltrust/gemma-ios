@@ -30,13 +30,11 @@
                     <constraint firstAttribute="trailing" secondItem="bB7-OW-SVa" secondAttribute="trailing" constant="16" id="lgg-Ss-rgg"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" name="white" red="0.976" green="0.976" blue="0.976" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="walletCellView" destination="bB7-OW-SVa" id="owU-Pc-Nj4"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-    </resources>
 </document>

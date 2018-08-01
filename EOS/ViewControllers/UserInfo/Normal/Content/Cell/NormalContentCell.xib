@@ -19,29 +19,41 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMg-3B-N7P" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iO-q1-aCT" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
                         <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.89300000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                            <userDefinedRuntimeAttribute type="number" keyPath="state">
-                                <integer key="value" value="1"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="string" keyPath="rightIconName" value="select"/>
-                        </userDefinedRuntimeAttributes>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMg-3B-N7P" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="248" height="3.5"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.89300000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="state">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="rightIconName" value="select"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="iMg-3B-N7P" secondAttribute="bottom" id="83z-H7-Ldg"/>
+                            <constraint firstAttribute="trailing" secondItem="iMg-3B-N7P" secondAttribute="trailing" id="CUk-z7-sLx"/>
+                            <constraint firstItem="iMg-3B-N7P" firstAttribute="top" secondItem="4iO-q1-aCT" secondAttribute="top" id="JOh-xD-iA9"/>
+                            <constraint firstItem="iMg-3B-N7P" firstAttribute="leading" secondItem="4iO-q1-aCT" secondAttribute="leading" id="VCP-0O-Zb0"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="iMg-3B-N7P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Q3I-4a-FAa"/>
-                    <constraint firstAttribute="bottom" secondItem="iMg-3B-N7P" secondAttribute="bottom" id="dSs-zF-yqI"/>
-                    <constraint firstItem="iMg-3B-N7P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="gRU-25-kaB"/>
-                    <constraint firstAttribute="trailing" secondItem="iMg-3B-N7P" secondAttribute="trailing" constant="16" id="rxr-9S-1jM"/>
+                    <constraint firstAttribute="bottom" secondItem="4iO-q1-aCT" secondAttribute="bottom" id="LuJ-Lk-V19"/>
+                    <constraint firstItem="4iO-q1-aCT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="R72-8a-WIA"/>
+                    <constraint firstAttribute="trailing" secondItem="4iO-q1-aCT" secondAttribute="trailing" constant="16" id="SRC-Jb-RhX"/>
+                    <constraint firstItem="4iO-q1-aCT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="zlq-US-7wD"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cellView" destination="iMg-3B-N7P" id="yia-3V-oWX"/>
+                <outlet property="shadowView" destination="4iO-q1-aCT" id="S8e-i2-Um8"/>
             </connections>
             <point key="canvasLocation" x="-169" y="-170"/>
         </tableViewCell>

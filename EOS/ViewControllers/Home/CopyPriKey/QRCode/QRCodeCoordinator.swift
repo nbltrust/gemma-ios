@@ -19,7 +19,7 @@ protocol QRCodeStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class QRCodeCoordinator: <#RootCoordinator#> {
+class QRCodeCoordinator: HomeRootCoordinator {
     
     lazy var creator = QRCodePropertyActionCreate()
     

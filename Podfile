@@ -15,7 +15,7 @@ def data
     pod 'FCUUID'
     pod 'IQKeyboardManagerSwift'
     pod 'Guitar'
-    pod 'SwiftyUserDefaults'
+    pod 'SwiftyUserDefaults',:git => 'https://github.com/radex/SwiftyUserDefaults', :tag => '4.0.0-alpha.1'
     pod 'SwiftDate'
 end
 

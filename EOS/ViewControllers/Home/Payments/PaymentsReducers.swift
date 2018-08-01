@@ -56,7 +56,7 @@ func convertTransferViewModel(data:[Payment]) -> [PaymentsRecordsViewModel] {
     
     var dataArray: [PaymentsRecordsViewModel] = []
     for payment in data{
-        let isSend : Bool = payment.from == WallketManager.shared.getAccount()
+        let isSend : Bool = payment.from == WalletManager.shared.getAccount()
         let state : Bool = payment.status.rawValue == 3
         let stateImage : UIImage? = isSend ? R.image.icSend() : R.image.icIncome()
         let address = isSend ? payment.to : payment.from
@@ -81,7 +81,7 @@ func convertTransferViewModel(data:[Payment]) -> [PaymentsRecordsViewModel] {
 //
 //    for paymentData:Payment in mdata {
 //        var paymentsRecordsViewModel = PaymentsRecordsViewModel()
-//        if paymentData.to == WallketManager.shared.getAccount() {
+//        if paymentData.to == WalletManager.shared.getAccount() {
 //            paymentsRecordsViewModel.stateImageName = "icIncome"
 //            paymentsRecordsViewModel.address = paymentData.from
 //            paymentsRecordsViewModel.money = "+" + paymentData.value!

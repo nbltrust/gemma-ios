@@ -8,15 +8,7 @@
 
 import Foundation
 
-struct OperationViewModel {
-    var title = ""
-    var placeholder = ""
-    var warning = ""
-    var introduce = ""
-    var isShowPromptWhenEditing = true
-    var showLine = true
-    var isSecureTextEntry = false
-}
+
 
 class OperationLeftView: UIView {
     
@@ -169,7 +161,7 @@ extension OperationLeftView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.cpu.rawValue:
             cpuMortgageView.reloadActionViews(isEditing: false)
-//            cpuMortgageView.checkStatus = WallketManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+//            cpuMortgageView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.net.rawValue:
             netMortgageView.reloadActionViews(isEditing: false)
 //

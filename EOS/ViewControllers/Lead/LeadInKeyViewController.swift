@@ -1,8 +1,8 @@
 //
-//  LeadInViewController.swift
+//  LeadInKeyViewController.swift
 //  EOS
 //
-//  Created DKM on 2018/7/19.
+//  Created DKM on 2018/7/31.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
@@ -11,13 +11,14 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class LeadInViewController: BaseViewController {
-    
-    var coordinator: (LeadInCoordinatorProtocol & LeadInStateManagerProtocol)?
-    
-    override func viewDidLoad() {
+class LeadInKeyViewController: BaseViewController {
+
+    @IBOutlet weak var leadInKeyView: LeadInKeyView!
+    var coordinator: (LeadInKeyCoordinatorProtocol & LeadInKeyStateManagerProtocol)?
+
+	override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        self.setupUI()
     }
     
     func setupUI() {
@@ -49,9 +50,8 @@ class LeadInViewController: BaseViewController {
     }
 }
 
-extension LeadInViewController {
-    @objc func switchToKeyView(_ sender : [String:Any]) {
-        self.coordinator?.openLeadInKey()
+extension LeadInKeyViewController {
+    @objc func beginLeadInAction(_ sender : [String:Any]) {
+        self.coordinator?.openSetWallet()
     }
-    
 }

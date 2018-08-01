@@ -236,13 +236,13 @@ extension RegisterContentView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.name.rawValue:
             nameView.reloadActionViews(isEditing: false)
-            nameView.checkStatus = WallketManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            nameView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.password.rawValue:
             passwordView.reloadActionViews(isEditing: false)
-            passwordView.checkStatus = WallketManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            passwordView.checkStatus = WalletManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.comfirmPassword.rawValue:
             passwordComfirmView.reloadActionViews(isEditing: false)
-            passwordComfirmView.checkStatus = WallketManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: passwordView.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            passwordComfirmView.checkStatus = WalletManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: passwordView.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.passwordPrompt.rawValue:
             passwordPromptView.reloadActionViews(isEditing: false)
             passwordPromptView.checkStatus = TextUIStyle.common

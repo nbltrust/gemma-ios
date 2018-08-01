@@ -33,9 +33,9 @@ extension UIViewController {
     func configRightNavButton(_ locali:String) {
         let rightNavButton = UIButton.init(type: .custom)
         rightNavButton.frame = CGRect(x: 0, y: 0, width: 58, height: 24)
-        rightNavButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        rightNavButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         rightNavButton.locali = locali
-        rightNavButton.setTitleColor(.steel, for: .normal)
+        rightNavButton.setTitleColor(.white, for: .normal)
         rightNavButton.addTarget(self, action: #selector(rightAction(_:)), for: .touchUpInside)
         rightNavButton.isHidden = false
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightNavButton)

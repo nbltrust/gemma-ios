@@ -33,7 +33,7 @@ class PaymentsViewController: BaseViewController {
     
     func setupEvent() {
         self.startLoading()
-        self.coordinator?.getDataFromServer(WallketManager.shared.getAccount(),completion: {[weak self] (success) in
+        self.coordinator?.getDataFromServer(WalletManager.shared.getAccount(),completion: {[weak self] (success) in
             guard let `self` = self else { return }
             
             if success {
@@ -52,7 +52,7 @@ class PaymentsViewController: BaseViewController {
             }, isRefresh:true)
         
         self.addPullToRefresh(self.tableView) { (completion) in
-            self.coordinator?.getDataFromServer(WallketManager.shared.getAccount(),completion: {[weak self] (success) in
+            self.coordinator?.getDataFromServer(WalletManager.shared.getAccount(),completion: {[weak self] (success) in
                 guard let `self` = self else {return}
                 
                 if success {
@@ -77,7 +77,7 @@ class PaymentsViewController: BaseViewController {
                 completion?(true)
                 return
             }
-            self.coordinator?.getDataFromServer(WallketManager.shared.getAccount(), completion: { [weak self](success) in
+            self.coordinator?.getDataFromServer(WalletManager.shared.getAccount(), completion: { [weak self](success) in
                 guard let `self` = self else {return}
                 if (self.coordinator?.state.property.data.count)! < 10 {
                     self.isNoMoreData = true

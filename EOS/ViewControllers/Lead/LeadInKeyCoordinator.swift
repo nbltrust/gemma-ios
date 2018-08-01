@@ -1,39 +1,39 @@
 //
-//  LeadInCoordinator.swift
+//  LeadInKeyCoordinator.swift
 //  EOS
 //
-//  Created DKM on 2018/7/19.
+//  Created DKM on 2018/7/31.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
 import UIKit
 import ReSwift
-import RxCocoa
 
-protocol LeadInCoordinatorProtocol {
+protocol LeadInKeyCoordinatorProtocol {
     func openScan()
-    func openLeadInKey()
+
+    func openSetWallet()
 }
 
-protocol LeadInStateManagerProtocol {
-    var state: LeadInState { get }
+protocol LeadInKeyStateManagerProtocol {
+    var state: LeadInKeyState { get }
     func subscribe<SelectedState, S: StoreSubscriber>(
-        _ subscriber: S, transform: ((Subscription<LeadInState>) -> Subscription<SelectedState>)?
+        _ subscriber: S, transform: ((Subscription<LeadInKeyState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class LeadInCoordinator: HomeRootCoordinator {
+class LeadInKeyCoordinator: HomeRootCoordinator {
     
-    lazy var creator = LeadInPropertyActionCreate()
+    lazy var creator = LeadInKeyPropertyActionCreate()
     
-    var store = Store<LeadInState>(
-        reducer: LeadInReducer,
+    var store = Store<LeadInKeyState>(
+        reducer: LeadInKeyReducer,
         state: nil,
         middleware:[TrackingMiddleware]
     )
 }
 
-extension LeadInCoordinator: LeadInCoordinatorProtocol {
+extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
     func openScan() {
         let vc = BaseNavigationController()
         vc.navStyle = .clear
@@ -41,28 +41,29 @@ extension LeadInCoordinator: LeadInCoordinatorProtocol {
         scanCoordinator.start()
         if let vc = scanCoordinator.rootVC.topViewController as? ScanViewController {
             vc.coordinator?.state.callback.scanResult.accept({[weak self] (result) in
-                log.debug(result)
+                if let leadInVC = self?.rootVC.topViewController as? LeadInKeyViewController {
+                    leadInVC.leadInKeyView.textView.text = result
+                }
             })
         }
         self.rootVC.present(vc, animated: true, completion: nil)
     }
     
-    
-    func openLeadInKey() {
-        if let vc = R.storyboard.leadIn.leadInKeyViewController() {
-            vc.coordinator = LeadInKeyCoordinator(rootVC: self.rootVC)
+    func openSetWallet() {
+        if let vc = R.storyboard.leadIn.setWalletViewController() {
+            vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
 }
 
-extension LeadInCoordinator: LeadInStateManagerProtocol {
-    var state: LeadInState {
+extension LeadInKeyCoordinator: LeadInKeyStateManagerProtocol {
+    var state: LeadInKeyState {
         return store.state
     }
     
     func subscribe<SelectedState, S: StoreSubscriber>(
-        _ subscriber: S, transform: ((Subscription<LeadInState>) -> Subscription<SelectedState>)?
+        _ subscriber: S, transform: ((Subscription<LeadInKeyState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
