@@ -95,7 +95,7 @@ extension ResourceMortgageViewController {
     @objc func leftnext(_ data: [String:Any]) {
         
         var model = ConfirmViewModel()
-        model.recever = WallketManager.shared.getAccount()
+        model.recever = WalletManager.shared.getAccount()
         if let cpuAmount = self.contentView.pageView.leftView.cpuMortgageView.textField.text, let netAmount = self.contentView.pageView.leftView.cpuMortgageView.textField.text {
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
             model.remark = R.string.localizable.delegate() + cpuAmount + R.string.localizable.eos_for_cpu() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net()
