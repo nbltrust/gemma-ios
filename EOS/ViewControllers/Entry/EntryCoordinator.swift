@@ -76,15 +76,15 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     }
     
     func validWalletName(_ name: String) {
-        self.store.dispatch(nameAction(isValid: WallketManager.shared.isValidWalletName(name)))
+        self.store.dispatch(nameAction(isValid: WalletManager.shared.isValidWalletName(name)))
     }
     
     func validPassword(_ password: String) {
-        self.store.dispatch(passwordAction(isValid: WallketManager.shared.isValidPassword(password)))
+        self.store.dispatch(passwordAction(isValid: WalletManager.shared.isValidPassword(password)))
     }
     
     func validComfirmPassword(_ password: String, comfirmPassword: String) {
-        self.store.dispatch(comfirmPasswordAction(isValid: WallketManager.shared.isValidComfirmPassword(password, comfirmPassword: comfirmPassword)))
+        self.store.dispatch(comfirmPasswordAction(isValid: WalletManager.shared.isValidComfirmPassword(password, comfirmPassword: comfirmPassword)))
     }
     
     func validInviteCode(_ code: String) {
@@ -97,9 +97,9 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     
     func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {
         KRProgressHUD.show()
-        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WallketManager.shared.pubKey, invitationCode: inviteCode), success: { (data) in
+        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode), success: { (data) in
             KRProgressHUD.showSuccess()
-            WallketManager.shared.saveWallket(walletName, password: password, hint: prompt)
+            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue)
             self.pushToCreateSuccessVC()
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {

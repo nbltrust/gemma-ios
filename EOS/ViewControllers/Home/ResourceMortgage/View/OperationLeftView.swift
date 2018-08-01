@@ -167,6 +167,7 @@ extension OperationLeftView: UITextFieldDelegate {
         case InputType.cpu.rawValue:
             cpuMortgageView.reloadActionViews(isEditing: false)
             self.sendEventWith(event.cpu.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
+//            cpuMortgageView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.net.rawValue:
             netMortgageView.reloadActionViews(isEditing: false)
             self.sendEventWith(event.net.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])

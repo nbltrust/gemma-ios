@@ -165,6 +165,7 @@ extension OperationRightView: UITextFieldDelegate {
         case InputType.cpu.rawValue:
             cpuMortgageCancelView.reloadActionViews(isEditing: false)
             self.sendEventWith(event.cpucancel.rawValue, userinfo: ["cputextfieldview":cpuMortgageCancelView, "nettextfieldview":netMortgageCancelView])
+        //            cpuMortgageView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.net.rawValue:
             netMortgageCancelView.reloadActionViews(isEditing: false)
             self.sendEventWith(event.netcancel.rawValue, userinfo: ["cputextfieldview":cpuMortgageCancelView, "nettextfieldview":netMortgageCancelView])

@@ -41,7 +41,7 @@ class TransferConfirmView: UIView {
             receverView.content_text = "@" + data.recever
             amountView.content_text = data.amount + " EOS"
             if data.remark == "" {
-                data.remark = R.string.localizable.default_remark_pre() + WallketManager.shared.getAccount() + R.string.localizable.default_remark_after()
+                data.remark = R.string.localizable.default_remark_pre() + WalletManager.shared.getAccount() + R.string.localizable.default_remark_after()
             }
             remarkView.content.numberOfLines = 0
             remarkView.content_text = data.remark

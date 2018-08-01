@@ -28,7 +28,7 @@ class EntryViewController: BaseViewController {
         
         self.title = R.string.localizable.create_wallet()
         //获取公私钥
-        WallketManager.shared.createPairKey()
+        WalletManager.shared.createPairKey()
         setupUI()
         setupEvent()
     }

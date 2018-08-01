@@ -26,7 +26,7 @@ class CornerAndShadowView: UIView {
             self.subviews.forEach { [weak self](subView) in
                 guard let `self` = self else { return }
                 if subView.shadowOpacity == 1 {
-                    subView.shadowRadius = shadowR.cgFloat
+                    subView.shadowRadius = self.shadowR.cgFloat
                 }
             }
         }
@@ -38,7 +38,7 @@ class CornerAndShadowView: UIView {
             self.subviews.forEach { [weak self](subView) in
                 guard let `self` = self else { return }
                 if subView.shadowOpacity == 1 {
-                    subView.shadowColor = newShadowColor
+                    subView.shadowColor = self.newShadowColor
                 }
             }
         }
@@ -47,8 +47,8 @@ class CornerAndShadowView: UIView {
     
     
     func setUp() {
-//        self.shadowView.shadowColor = UIColor.red
-//        self.shadowView.shadowOffset = CGSize(width: 1, height: 2)
+        //        self.shadowView.shadowColor = UIColor.red
+        //        self.shadowView.shadowOffset = CGSize(width: 1, height: 2)
         updateHeight()
     }
     
@@ -65,7 +65,7 @@ class CornerAndShadowView: UIView {
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
         return lastView?.bottom ?? 0
-
+        
     }
     
     override func layoutSubviews() {
