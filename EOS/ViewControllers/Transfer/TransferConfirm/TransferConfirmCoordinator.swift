@@ -50,6 +50,7 @@ extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
         vc?.amount = money
         vc?.remark = remark
         vc?.type = type
+        vc?.iconType = leftIconType.pop.rawValue
         self.rootVC.pushViewController(vc!, animated: true)
     }
     

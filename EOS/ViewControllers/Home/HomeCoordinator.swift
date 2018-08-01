@@ -17,6 +17,7 @@ protocol HomeCoordinatorProtocol {
 //    func pushScreenShotAlert()
     func pushAccountList()
     func pushResourceMortgageVC()
+    func pushBackupVC()
 }
 
 protocol HomeStateManagerProtocol {
@@ -58,6 +59,14 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
 //            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
 //        }
 //    }
+    func pushBackupVC() {
+        if let vc = R.storyboard.entry.backupPrivateKeyViewController() {
+            let coordinator = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
     func pushAccountList() {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 272)

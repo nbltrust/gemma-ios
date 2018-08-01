@@ -198,40 +198,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="mya-AR-JQr">
-                                <rect key="frame" x="164.5" y="96" width="46" height="46"/>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icCommonWaiting" translatesAutoresizingMaskIntoConstraints="NO" id="mya-AR-JQr">
+                                <rect key="frame" x="160.5" y="96" width="54" height="54"/>
                             </imageView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P2Z-H3-rNK" customClass="ComfirmView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="220" width="343" height="71"/>
+                                <rect key="frame" x="16" y="298" width="343" height="71"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="content" value="created_comfirm_content"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="cancelTitle" value="created_comfirm_cancel"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="sureTitle" value="created_comfirm_sure"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="sureTitle" value="export_private_sure"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9Q-n1-wo4">
-                                <rect key="frame" x="16" y="163" width="343" height="0.0"/>
+                                <rect key="frame" x="16" y="171" width="343" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="prompt_create_success"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="account_creation"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwS-zc-6ix">
+                                <rect key="frame" x="16" y="208" width="343" height="52"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xE6-Xb-v4X">
+                                        <rect key="frame" x="21" y="23" width="6" height="6"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="6" id="Csf-RA-Dpb"/>
+                                            <constraint firstAttribute="height" constant="6" id="ioF-pI-M0o"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hED-w3-sRs">
+                                        <rect key="frame" x="42" y="17.5" width="35.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locali" value="account_creation_warning"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.82399999999999995" green="0.035000000000000003" blue="0.122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="hED-w3-sRs" firstAttribute="centerY" secondItem="xwS-zc-6ix" secondAttribute="centerY" id="F0k-dp-jIL"/>
+                                    <constraint firstItem="xE6-Xb-v4X" firstAttribute="centerY" secondItem="xwS-zc-6ix" secondAttribute="centerY" id="HHX-S2-ywg"/>
+                                    <constraint firstAttribute="height" constant="52" id="M3i-hD-OYx"/>
+                                    <constraint firstItem="hED-w3-sRs" firstAttribute="leading" secondItem="xE6-Xb-v4X" secondAttribute="trailing" constant="15" id="MRk-9O-Lql"/>
+                                    <constraint firstItem="xE6-Xb-v4X" firstAttribute="leading" secondItem="xwS-zc-6ix" secondAttribute="leading" constant="21" id="NhM-jD-dHZ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="P2Z-H3-rNK" firstAttribute="leading" secondItem="34v-hb-sD9" secondAttribute="leading" constant="16" id="3xA-6M-oLD"/>
                             <constraint firstItem="34v-hb-sD9" firstAttribute="trailing" secondItem="P2Z-H3-rNK" secondAttribute="trailing" constant="16" id="71o-0I-g5Y"/>
+                            <constraint firstItem="P2Z-H3-rNK" firstAttribute="top" secondItem="xwS-zc-6ix" secondAttribute="bottom" constant="30" id="HQx-Nk-q9f"/>
                             <constraint firstItem="mya-AR-JQr" firstAttribute="centerX" secondItem="mKv-Mn-sAO" secondAttribute="centerX" id="JuN-kO-GsA"/>
+                            <constraint firstItem="34v-hb-sD9" firstAttribute="trailing" secondItem="xwS-zc-6ix" secondAttribute="trailing" constant="16" id="Mrd-qr-xin"/>
+                            <constraint firstItem="xwS-zc-6ix" firstAttribute="leading" secondItem="34v-hb-sD9" secondAttribute="leading" constant="16" id="Nss-LR-TT1"/>
                             <constraint firstItem="mya-AR-JQr" firstAttribute="top" secondItem="34v-hb-sD9" secondAttribute="top" constant="76" id="Pz1-V9-r0H"/>
                             <constraint firstItem="l9Q-n1-wo4" firstAttribute="leading" secondItem="34v-hb-sD9" secondAttribute="leading" constant="16" id="Xsf-ou-kzH"/>
                             <constraint firstItem="l9Q-n1-wo4" firstAttribute="top" secondItem="mya-AR-JQr" secondAttribute="bottom" constant="21" id="bxh-9j-Dmx"/>
-                            <constraint firstItem="P2Z-H3-rNK" firstAttribute="top" secondItem="l9Q-n1-wo4" secondAttribute="bottom" constant="57" id="cm4-HN-e2p"/>
+                            <constraint firstItem="xwS-zc-6ix" firstAttribute="top" secondItem="l9Q-n1-wo4" secondAttribute="bottom" constant="37" id="c0g-NF-px0"/>
                             <constraint firstItem="34v-hb-sD9" firstAttribute="trailing" secondItem="l9Q-n1-wo4" secondAttribute="trailing" constant="16" id="tsO-dl-7gx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="34v-hb-sD9"/>
@@ -244,9 +287,36 @@
             </objects>
             <point key="canvasLocation" x="1605.5999999999999" y="105.69715142428787"/>
         </scene>
+        <!--Backup Private Key View Controller-->
+        <scene sceneID="3uu-Lm-vi9">
+            <objects>
+                <viewController storyboardIdentifier="BackupPrivateKeyViewController" id="DIb-ax-uVv" customClass="BackupPrivateKeyViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HNY-UL-htq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ad2-H7-gDS" customClass="BackupPrivateKeyView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ews-hL-H0j" firstAttribute="bottom" secondItem="Ad2-H7-gDS" secondAttribute="bottom" id="9Un-b9-hsW"/>
+                            <constraint firstItem="Ad2-H7-gDS" firstAttribute="trailing" secondItem="ews-hL-H0j" secondAttribute="trailing" id="MNX-vu-KV5"/>
+                            <constraint firstItem="Ad2-H7-gDS" firstAttribute="top" secondItem="ews-hL-H0j" secondAttribute="top" id="XF2-aC-aH1"/>
+                            <constraint firstItem="Ad2-H7-gDS" firstAttribute="leading" secondItem="ews-hL-H0j" secondAttribute="leading" id="br3-Dh-MrK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ews-hL-H0j"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PLp-Nf-DHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1313" y="87"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="ic_check" width="46" height="46"/>
+        <image name="icCommonWaiting" width="54" height="54"/>
         <image name="ic_checkbox" width="24" height="24"/>
         <image name="ic_checkbox_active" width="24" height="24"/>
         <image name="logo" width="129" height="177"/>

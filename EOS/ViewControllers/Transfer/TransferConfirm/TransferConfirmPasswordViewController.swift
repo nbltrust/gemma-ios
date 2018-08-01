@@ -11,6 +11,11 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
+enum leftIconType: String {
+    case dismiss
+    case pop
+}
+
 class TransferConfirmPasswordViewController: BaseViewController {
 
 	var coordinator: (TransferConfirmPasswordCoordinatorProtocol & TransferConfirmPasswordStateManagerProtocol)?
@@ -23,10 +28,26 @@ class TransferConfirmPasswordViewController: BaseViewController {
     
     var type = ""
     
+    var iconType = ""
+
+    var callback: (() -> Void)?
+    
     @IBOutlet weak var passwordView: TransferConfirmPasswordView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        configLeftNavButton(R.image.icBack())
+        if self.iconType == leftIconType.dismiss.rawValue {
+            configLeftNavButton(R.image.icTransferClose())
+        } else {
+            configLeftNavButton(R.image.icBack())
+        }
+    }
+    
+    override func leftAction(_ sender: UIButton) {
+        if self.iconType == leftIconType.dismiss.rawValue {
+            self.coordinator?.dismissConfirmPwdVC()
+        } else {
+            self.coordinator?.popConfirmPwdVC()
+        }
     }
     
     func commonObserveState() {
@@ -51,6 +72,16 @@ class TransferConfirmPasswordViewController: BaseViewController {
 
 extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
+        guard let _ = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: passwordView.textField.text!) else {
+            self.showError(message: R.string.localizable.password_not_match())
+            return
+        }
+        
+        if let callback = self.callback {
+            callback()
+            return
+        }
+        
         let myType = self.type
         if myType == confirmType.transfer.rawValue {
             self.view.endEditing(true)
