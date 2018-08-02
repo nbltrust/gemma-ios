@@ -11,7 +11,7 @@ import ReSwift
 import Presentr
 
 protocol WalletManagerCoordinatorProtocol {
-    func pushToChangeWalletName(name: String)
+    func pushToChangeWalletName(model: WalletManagerModel)
     func pushToExportPrivateKey()
     func pushToChangePassword()
 
@@ -46,16 +46,14 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
         
     }
     
-    func pushToChangeWalletName(name: String) {
+    func pushToChangeWalletName(model: WalletManagerModel) {
         if let vc = R.storyboard.wallet.changeWalletNameViewController() {
             let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
-            vc.name = name
+            vc.model = model
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
-    
 }
 
 extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {

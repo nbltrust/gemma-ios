@@ -15,6 +15,7 @@ protocol WalletCoordinatorProtocol {
     func pushToSetWalletVC()
 
     func pushToLeadInWallet()
+    func switchWallet(publicKey: String)
 }
 
 protocol WalletStateManagerProtocol {
@@ -75,6 +76,10 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }
+    }
+    
+    func switchWallet(publicKey: String) {
+        WalletManager.shared.switchWallet(publicKey)
     }
 }
 

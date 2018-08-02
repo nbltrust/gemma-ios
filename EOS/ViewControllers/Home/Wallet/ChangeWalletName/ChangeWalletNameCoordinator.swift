@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol ChangeWalletNameCoordinatorProtocol {
+    func updateWalletName(model: WalletManagerModel)
 }
 
 protocol ChangeWalletNameStateManagerProtocol {
@@ -31,7 +32,10 @@ class ChangeWalletNameCoordinator: HomeRootCoordinator {
 }
 
 extension ChangeWalletNameCoordinator: ChangeWalletNameCoordinatorProtocol {
-    
+    func updateWalletName(model: WalletManagerModel) {
+        WalletManager.shared.updateWalletName(model.address, walletName: model.name)
+        self.rootVC.popViewController(animated: true)
+    }
 }
 
 extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {

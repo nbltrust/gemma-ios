@@ -35,7 +35,7 @@
                         <constraint firstAttribute="width" constant="16" id="dLW-ls-1Rw"/>
                         <constraint firstAttribute="height" constant="16" id="dkn-3o-efK"/>
                     </constraints>
-                    <state key="normal" image="icTextFieldClose"/>
+                    <state key="normal" image="icNotifyCloseWhite"/>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.81599999999999995" green="0.0080000000000000002" blue="0.106" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,6 +52,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icTextFieldClose" width="16" height="16"/>
+        <image name="icNotifyCloseWhite" width="16" height="16"/>
     </resources>
 </document>

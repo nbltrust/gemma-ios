@@ -30,6 +30,16 @@ class LineView: UIView {
     @IBOutlet weak var imgWidth: NSLayoutConstraint!
     @IBOutlet weak var bgView: UIView!
     
+    enum event: String {
+        case right_event
+    }
+    
+    var index: String = "" {
+        didSet {
+            
+        }
+    }
+    
     @IBInspectable
     var name_style : String = LineViewStyleNames.normal_name.rawValue {
         didSet{
@@ -111,7 +121,16 @@ class LineView: UIView {
     }
     
     func setup(){
+        setupEvent()
         updateHeight()
+    }
+    
+    func setupEvent() {
+        rightImg.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            
+            self.rightImg.next?.sendEventWith(event.right_event.rawValue, userinfo: ["index":self.index])
+        }).disposed(by: disposeBag)
     }
     
     override init(frame: CGRect) {

@@ -52,12 +52,24 @@ class HomeViewController: BaseViewController {
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         
         headImageView.image = navBgImage()
-        
+        updateUI()
+    }
+    
+    func updateUI() {
         if WalletManager.shared.account_names.count <= 1 {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = true
         } else {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = false
         }
+        
+        if WalletManager.shared.currentWallet() == nil {
+            tableHeaderView.backupLabelViewIsHidden = false
+        } else {
+            tableHeaderView.backupLabelViewIsHidden = true
+        }
+//        tableHeaderView.accountInfoView.cornerShadowView.setUp()
+//        self.tableHeaderView.layoutIfNeeded()
+//        self.tableView.tableHeaderView?.height = self.tableHeaderView.height
     }
     
     override func rightAction(_ sender: UIButton) {
