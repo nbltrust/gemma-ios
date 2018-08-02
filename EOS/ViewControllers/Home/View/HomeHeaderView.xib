@@ -28,7 +28,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vgm-pM-jIk" customClass="AccountInfoView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="16" y="140" width="343" height="204"/>
+                    <rect key="frame" x="16" y="140" width="343" height="234"/>
                 </view>
             </subviews>
             <constraints>

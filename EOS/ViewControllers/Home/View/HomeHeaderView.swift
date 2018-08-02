@@ -21,6 +21,17 @@ class HomeHeaderView: UIView {
         }
     }
     
+    var backupLabelViewIsHidden = true {
+        didSet {
+            if backupLabelViewIsHidden == true {
+                accountInfoView.backupLabelViewIsHidden = true
+            } else {
+                accountInfoView.backupLabelViewIsHidden = false
+            }
+            updateHeight()
+        }
+    }
+    
     func setup(){
         updateHeight()
     }

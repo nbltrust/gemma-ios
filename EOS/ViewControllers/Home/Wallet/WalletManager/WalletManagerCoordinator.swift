@@ -11,7 +11,7 @@ import ReSwift
 import Presentr
 
 protocol WalletManagerCoordinatorProtocol {
-    func pushToChangeWalletName(name: String)
+    func pushToChangeWalletName(model: WalletManagerModel)
     func pushToExportPrivateKey()
     func pushToChangePassword()
 
@@ -37,36 +37,23 @@ class WalletManagerCoordinator: HomeRootCoordinator {
 
 extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
     func pushToChangePassword() {
-        let width = ModalSize.full
-        let height = ModalSize.custom(size: 271)
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 271))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
-        
-        let presenter = Presentr(presentationType: customType)
-        presenter.keyboardTranslationType = .moveUp
-        
-        let newVC = BaseNavigationController()
-        newVC.navStyle = .white
-        let transferConfirmpwd = TransferConfirmPasswordRootCoordinator(rootVC: newVC)
-
-        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-        transferConfirmpwd.start()
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss)
+        }
     }
     
     func pushToExportPrivateKey() {
         
     }
     
-    func pushToChangeWalletName(name: String) {
+    func pushToChangeWalletName(model: WalletManagerModel) {
         if let vc = R.storyboard.wallet.changeWalletNameViewController() {
             let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
-            vc.name = name
+            vc.model = model
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
-    
 }
 
 extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
