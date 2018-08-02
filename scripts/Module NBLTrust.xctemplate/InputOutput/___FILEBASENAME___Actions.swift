@@ -15,9 +15,14 @@ struct ___VARIABLE_productName:identifier___State: StateType {
     var page: Int = 1
     var errorMessage:String?
     var property: ___VARIABLE_productName:identifier___PropertyState
+    var callback: ___VARIABLE_productName:identifier___CallbackState
 }
 
 struct ___VARIABLE_productName:identifier___PropertyState {
+    
+}
+
+struct ___VARIABLE_productName:identifier___CallbackState {
     
 }
 

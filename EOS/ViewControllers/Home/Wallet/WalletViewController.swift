@@ -21,17 +21,23 @@ class WalletViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupData()
     }
     
     func setupData() {
-        for i in 0..<3 {
+        for wallet in WalletManager.shared.wallketList() {
             var model = WalletManagerModel()
-            model.name = "awesome" + "\(i)"
-            model.address = "qwertyuiopfghjkcvbnui"
+            model.name = wallet.name
+            model.address = wallet.publicKey
             dataArray.append(model)
         }
         tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        dataArray.removeAll()
+        setupData()
     }
     
     func setupUI(){
@@ -81,6 +87,10 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
         return 52
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -115,7 +125,7 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            self.coordinator?.pushToWalletManager(data: dataArray[indexPath.row])
+            self.coordinator?.switchWallet(publicKey: dataArray[indexPath.row].address)
         } else {
             switch indexPath.row {
             case 0:self.coordinator?.pushToLeadInWallet()
@@ -128,3 +138,10 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
     }
 }
 
+extension WalletViewController {
+    @objc func right_event(_ data : [String:Any]) {
+        if let index = data["index"] as? String {
+            self.coordinator?.pushToWalletManager(data: dataArray[index.int!])
+        }
+    }
+}

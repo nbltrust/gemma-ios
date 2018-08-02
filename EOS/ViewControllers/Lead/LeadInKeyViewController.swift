@@ -52,6 +52,13 @@ class LeadInKeyViewController: BaseViewController {
 
 extension LeadInKeyViewController {
     @objc func beginLeadInAction(_ sender : [String:Any]) {
-        self.coordinator?.openSetWallet()
+        guard let priKey = self.leadInKeyView.textView.text else {
+            return
+        }
+        
+        if let _ = self.coordinator?.validPrivateKey(priKey).0 {
+            self.coordinator?.importPrivKey(priKey)
+            self.coordinator?.openSetWallet()
+        }
     }
 }

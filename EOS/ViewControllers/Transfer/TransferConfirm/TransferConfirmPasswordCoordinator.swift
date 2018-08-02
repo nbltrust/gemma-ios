@@ -12,6 +12,8 @@ import ReSwift
 protocol TransferConfirmPasswordCoordinatorProtocol {
     func finishTransfer()
     func finishMortgage()
+    func dismissConfirmPwdVC()
+    func popConfirmPwdVC()
 }
 
 protocol TransferConfirmPasswordStateManagerProtocol {
@@ -54,6 +56,14 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
                 mortgageVC.resetData()
             }
         }
+    }
+    
+    func dismissConfirmPwdVC() {
+        self.rootVC.dismiss(animated: true, completion: nil)
+    }
+    
+    func popConfirmPwdVC() {
+        self.rootVC.popViewController()
     }
 }
 

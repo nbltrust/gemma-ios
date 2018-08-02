@@ -8,6 +8,7 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
 struct LeadInState: StateType {
@@ -15,9 +16,14 @@ struct LeadInState: StateType {
     var page: Int = 1
     var errorMessage:String?
     var property: LeadInPropertyState
+    var callback:LeadInCallbackState
 }
 
 struct LeadInPropertyState {
+}
+
+struct LeadInCallbackState {
+    var fadeCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
 }
 
 //MARK: - Action Creator

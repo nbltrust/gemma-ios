@@ -20,6 +20,9 @@ protocol LeadInKeyStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<LeadInKeyState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func validPrivateKey(_ privKey: String) -> (Bool, String)
+    func importPrivKey(_ privKey: String)
 }
 
 class LeadInKeyCoordinator: HomeRootCoordinator {
@@ -68,4 +71,11 @@ extension LeadInKeyCoordinator: LeadInKeyStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func validPrivateKey(_ privKey: String) -> (Bool, String) {
+        return (true, "")
+    }
+    
+    func importPrivKey(_ privKey: String) {
+        WalletManager.shared.addPrivatekey(privKey)
+    }
 }

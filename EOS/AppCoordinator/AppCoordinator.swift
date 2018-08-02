@@ -10,6 +10,7 @@ import Foundation
 import ReSwift
 import ESTabBarController_swift
 import SwifterSwift
+import Presentr
 
 class AppCoordinator {
     var store = Store<AppState> (
@@ -28,7 +29,7 @@ class AppCoordinator {
     var transferCoordinator: TransferRootCoordinator!
     var userinfoCoordinator: UserInfoRootCoordinator!
 
-    var entryCoordinator: EntryRootCoordinator!
+    var entryCoordinator: EntryRootCoordinator?
 
     weak var currentPresentedRootCoordinator: NavCoordinator?
     
@@ -72,33 +73,62 @@ class AppCoordinator {
     func showEntry() {
         let nav = BaseNavigationController()
         entryCoordinator = EntryRootCoordinator(rootVC: nav)
-        entryCoordinator.start()
+        entryCoordinator?.start()
         
         SwifterSwift.delay(milliseconds: 100) {
             self.rootVC.present(nav, animated: true, completion: nil)
         }
         
     }
+    
+    func endEntry() {
+        entryCoordinator?.rootVC.dismiss(animated: true) { [weak self] in
+            self?.entryCoordinator = nil
+        }
+    }
 
     func showTest() {
-//        let nav = BaseNavigationController()
-//        let vc = R.storyboard.payments.paymentsViewController()!
-//        let coor = PaymentsCoordinator(rootVC: nav)
-//        vc.coordinator = coor
-//        
-//        SwifterSwift.delay(milliseconds: 100) {
-//            self.rootVC.present(vc, animated: true, completion: nil)
-//        }
-
-//        let nav = BaseNavigationController()
-//        transferCoordinator = TransferRootCoordinator(rootVC: nav)
-//        transferCoordinator.start()
-//        
-//        SwifterSwift.delay(milliseconds: 100) {
-//            self.rootVC.present(nav, animated: true, completion: nil)
-//        }
+        let nav = BaseNavigationController()
+        let vc = R.storyboard.entry.creatationCompleteViewController()!
+        let coor = CreatationCompleteCoordinator(rootVC: nav)
+        vc.coordinator = coor
+        
+        SwifterSwift.delay(milliseconds: 100) {
+            self.rootVC.present(vc, animated: true, completion: nil)
+        }
         
     }
     
+    func showPresenterPwd(leftIconType: leftIconType) {
+        let width = ModalSize.full
+        let height = ModalSize.custom(size: 271)
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 271))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        
+        let presenter = Presentr(presentationType: customType)
+        presenter.keyboardTranslationType = .moveUp
+        
+        let newVC = BaseNavigationController()
+        newVC.navStyle = .white
+        let transferConfirmpwd = TransferConfirmPasswordRootCoordinator(rootVC: newVC)
+            
+        if let entryCoor = entryCoordinator {
+            entryCoor.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+        }
+        else {
+            curDisplayingCoordinator().rootVC.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+        }
+        if let vc = R.storyboard.transfer.transferConfirmPasswordViewController() {
+            let coordinator = TransferConfirmPasswordCoordinator(rootVC: transferConfirmpwd.rootVC)
+            vc.coordinator = coordinator
+            vc.iconType = leftIconType.rawValue
+            vc.callback = {[weak vc] in
+                vc?.dismiss(animated: true, completion: {
+                    
+                })
+            }
+            transferConfirmpwd.rootVC.pushViewController(vc, animated: true)
+        }
+    }
     
 }

@@ -50,7 +50,7 @@ class WalletManagerViewController: BaseViewController {
 extension WalletManagerViewController {
     @objc func wallNameClick(_ data: [String: Any]) {
         let model: WalletManagerModel = data["indicator"] as! WalletManagerModel
-        self.coordinator?.pushToChangeWalletName(name: model.name)
+        self.coordinator?.pushToChangeWalletName(model: model)
     }
     
     @objc func exportPrivateKeyClick(_ data: [String: Any]) {

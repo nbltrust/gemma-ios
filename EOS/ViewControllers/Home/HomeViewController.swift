@@ -33,7 +33,9 @@ class HomeViewController: BaseViewController {
             nav.navStyle = .clear
         }
         
-        coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+        WalletManager.shared.FetchAccount { (account) in
+            self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,6 +52,24 @@ class HomeViewController: BaseViewController {
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         
         headImageView.image = navBgImage()
+        updateUI()
+    }
+    
+    func updateUI() {
+        if WalletManager.shared.account_names.count <= 1 {
+            tableHeaderView.nameAndImg.nameRightImgView.isHidden = true
+        } else {
+            tableHeaderView.nameAndImg.nameRightImgView.isHidden = false
+        }
+        
+        if WalletManager.shared.currentWallet() == nil {
+            tableHeaderView.backupLabelViewIsHidden = false
+        } else {
+            tableHeaderView.backupLabelViewIsHidden = true
+        }
+//        tableHeaderView.accountInfoView.cornerShadowView.setUp()
+//        self.tableHeaderView.layoutIfNeeded()
+//        self.tableView.tableHeaderView?.height = self.tableHeaderView.height
     }
     
     override func rightAction(_ sender: UIButton) {
@@ -110,4 +130,8 @@ extension HomeViewController {
     @objc func accountlist(_ data: [String:Any]) {
         self.coordinator?.pushAccountList()
     }
+    @objc func backupEvent(_ data: [String:Any]) {
+        self.coordinator?.pushBackupVC()
+    }
+    
 }

@@ -17,7 +17,7 @@ class WalletManager {
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
 
     var currentPubKey:String = Defaults[.currentWallet]
-    private var account_names:[String] = []
+    var account_names:[String] = []
     
     private var priKey:String = ""
 
@@ -42,7 +42,7 @@ class WalletManager {
         switchAccount(0)
         
         account_names = [account]
-        priKey = ""
+        removePriKey()
     }
     
     func updateWalletPassword(_ publicKey:String, password:String, hint:String) {
@@ -65,11 +65,35 @@ class WalletManager {
     }
     
     func getAccount() -> String {
+        removePriKey()//清除私钥
+        
         if let wallet = currentWallet() {
+            if account_names.count == 0 {
+                return "--"
+            }
             return account_names[wallet.accountIndex]
         }
         
         return "--"
+    }
+    
+    func FetchAccount(_ callback: @escaping StringCallback) {
+        if let wallet = currentWallet() {
+            if account_names.count == 0 {
+                fetchAccountNames(wallet.publicKey) { (success) in
+                    if success {
+                        callback(self.account_names[wallet.accountIndex])
+                    }
+                    else {
+                        callback("--")
+                    }
+                }
+                return
+            }
+            return callback(self.account_names[wallet.accountIndex])
+        }
+        
+        return callback("--")
     }
     
     func fetchAccountNames(_ publicKey:String, completion: @escaping (Bool)->Void) {
@@ -85,11 +109,18 @@ class WalletManager {
         }
     }
     
-    func importPrivateKey(_ pri:String, password:String, hint:String, completion: @escaping (Bool)->Void) {
-        guard let pubKey = EOSIO.getPublicKey(pri) else { completion(false); return }
+    func addPrivatekey(_ pri:String) {
+        self.priKey = pri
+    }
+    
+    func removePriKey() {
+        self.priKey = ""
+    }
+    
+    func importPrivateKey(_ password:String, hint:String, completion: @escaping (Bool)->Void) {
+        guard let pubKey = EOSIO.getPublicKey(self.priKey) else { completion(false); return }
         fetchAccountNames(pubKey) { (success) in
             if success {
-                self.priKey = pri
                 self.currentPubKey = pubKey
                 
                 self.saveWallket(self.account_names[0], password: password, hint: hint, isImport: true, txID: nil)
@@ -120,10 +151,10 @@ class WalletManager {
     
     func switchAccount(_ index:Int) {
         var wallets = Defaults[.walletList]
-        if let index = wallets.map({ $0.publicKey }).index(of: currentPubKey) {
-            var wallet = wallets[index]
+        if let walletIndex = wallets.map({ $0.publicKey }).index(of: currentPubKey) {
+            var wallet = wallets[walletIndex]
             wallet.accountIndex = index
-            wallets[index] = wallet
+            wallets[walletIndex] = wallet
             Defaults[.walletList] = wallets
         }
     }
@@ -169,7 +200,7 @@ class WalletManager {
         Defaults.remove(.walletList)
     }
     
-    private func removeWallet(_ publicKey:String) {
+    func removeWallet(_ publicKey:String) {
         var wallets = Defaults[.walletList]
         if let index = wallets.map({ $0.publicKey }).index(of: publicKey) {
             wallets.remove(at: index)
@@ -181,12 +212,15 @@ class WalletManager {
         try? keychain.remove("\(publicKey)-cypher")
     }
     
-    func switchToLastestWallet() {
+    func switchToLastestWallet() -> Bool {
         let wallets = Defaults[.walletList]
         
         if let wallket = wallets.last {
             switchWallet(wallket.publicKey)
+            return true
         }
+        
+        return false
     }
     
     func getCurrentSavedPublicKey() -> String {

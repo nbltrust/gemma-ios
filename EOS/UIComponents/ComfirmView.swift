@@ -42,6 +42,10 @@ class ComfirmView: UIView {
     
     @IBOutlet weak var sureButton: UIButton!
     
+    enum event: String {
+        case sure_event
+    }
+    
     @IBInspectable var title: String? {
         didSet {
             self.titleLabel.locali = title!
@@ -75,7 +79,15 @@ class ComfirmView: UIView {
     var isTouchDismiss: Bool = true
     
     func setup() {
+        setupEvent()
         updateHeight()
+    }
+    
+    func setupEvent() {
+        sureButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(event.sure_event.rawValue, userinfo: [ : ])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {

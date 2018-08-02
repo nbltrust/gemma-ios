@@ -56,6 +56,7 @@ class EntryGuideViewController: BaseViewController {
         
         recoverView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: { [weak self] touch in
             guard let `self` = self else { return }
+//            self.coordinator?.pushToRecoverFromCopyVC()
             self.coordinator?.pushToRecoverFromCopyVC()
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
@@ -65,3 +66,4 @@ class EntryGuideViewController: BaseViewController {
         
     }
 }
+

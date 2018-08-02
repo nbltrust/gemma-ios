@@ -9,6 +9,15 @@
 import Foundation
 import SwifterSwift
 
+typealias CompletionCallback = () -> Void
+typealias StringCallback = (String) -> Void
+typealias StringOptionalCallback = (String) -> Void
+typealias ObjectCallback = (Any) -> Void
+typealias ObjectOptionalCallback = (Any?) -> Void
+
+typealias ResultCallback = (Bool) -> Void
+typealias HandlerResult = (Bool, String)
+
 struct AppConfiguration {
     static let APPID = ""
     
@@ -18,8 +27,9 @@ struct AppConfiguration {
 struct NetworkConfiguration {
     static let NBL_BASE_URL = URL(string: "http://139.196.73.117:3001")!
 
-    static let EOSIO_BASE_TEST_URL = URL(string: "http://139.196.73.117:9000")!//URL(string: "http://172.20.5.25:9999")!
+    static let EOSIO_BASE_TEST_URL = URL(string: "http://139.224.135.236:18888")!//URL(string: "http://172.20.5.25:9999")!
     static let EOSIO_BASE_URL = URL(string: "http://139.196.73.117:8888")!
+    static let EOS_BP_URL = URL(string: "https://eosweb.net")!
 
     static let EOSIO_DEFAULT_CODE = "eosio.token"
     static let EOSIO_DEFAULT_SYMBOL = "EOS"

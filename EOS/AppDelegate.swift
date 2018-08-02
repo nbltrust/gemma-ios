@@ -34,7 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         //    KingfisherManager.shared.defaultOptions = [.fromMemoryCacheOrRefresh]
-                
+//        WalletManager.shared.removeWallet(WalletManager.shared.currentPubKey)
+//        WalletManager.shared.switchToLastestWallet()
+        
         _ = RichStyle.init()
 
         let rootVC = BaseTabbarViewController()
@@ -57,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        WalletManager.shared.removeAllWallets()
 //        WalletManager.shared.logoutWallet()
 //        log.debug(WalletManager.shared.getAccount())
+
         
         if !WalletManager.shared.existWallet() {
             appcoordinator!.showEntry()

@@ -79,6 +79,7 @@ def ui
     pod 'KUIPopOver'
     pod 'GrowingTextView'
     pod 'Bartinter'
+    pod 'NotificationBannerSwift'
 end
 
 def other

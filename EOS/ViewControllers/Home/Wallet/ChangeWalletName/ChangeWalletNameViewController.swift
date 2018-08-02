@@ -14,7 +14,7 @@ import ReSwift
 class ChangeWalletNameViewController: BaseViewController {
 
 	var coordinator: (ChangeWalletNameCoordinatorProtocol & ChangeWalletNameStateManagerProtocol)?
-    var name: String = "-"
+    var model = WalletManagerModel()
     
     @IBOutlet weak var changeWalletNameView: ChangeWalletNameView!
     
@@ -25,7 +25,13 @@ class ChangeWalletNameViewController: BaseViewController {
     
     func setUpUI() {
         self.title = R.string.localizable.change_wallet_name()
-        changeWalletNameView.text = name
+        configRightNavButton(R.string.localizable.normal_save())
+        changeWalletNameView.text = model.name
+    }
+    
+    override func rightAction(_ sender: UIButton) {
+        //保存
+        self.coordinator?.updateWalletName(model: model)
     }
     
     func commonObserveState() {
