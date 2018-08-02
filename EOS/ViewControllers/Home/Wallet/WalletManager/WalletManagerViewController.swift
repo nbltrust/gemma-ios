@@ -22,9 +22,14 @@ class WalletManagerViewController: BaseViewController {
         setUpUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        walletManagerView.data = data
+    }
+    
     func setUpUI() {
         self.title = R.string.localizable.manager_wallet()
-        walletManagerView.data = data
     }
     
     func commonObserveState() {
@@ -58,6 +63,6 @@ extension WalletManagerViewController {
     }
     
     @objc func changePasswordClick(_ data: [String: Any]) {
-        self.coordinator?.pushToChangePassword()
+        self.coordinator?.pushToChangePassword(self.data.address)
     }
 }

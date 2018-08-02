@@ -45,12 +45,21 @@ class WalletManager {
         removePriKey()
     }
     
-    func updateWalletPassword(_ publicKey:String, password:String, hint:String) {
-        
+    func updateWalletPassword(_ password:String, hint:String) {
+        guard let pubKey = EOSIO.getPublicKey(self.priKey) else { return }
+        savePriKey(self.priKey, publicKey: pubKey, password:password)
+        savePasswordHint(pubKey, hint:hint)
     }
     
     func updateWalletName(_  publicKey:String, walletName:String) {
+        var wallets = Defaults[.walletList]
         
+        if let walletIndex = wallets.map({ $0.publicKey }).index(of: publicKey) {
+            var wallet = wallets[walletIndex]
+            wallet.name = walletName
+            wallets[walletIndex] = wallet
+            Defaults[.walletList] = wallets
+        }
     }
     
     func addToLocalWallet(_ isImport:Bool = false, txID:String?) {
@@ -147,6 +156,7 @@ class WalletManager {
     func switchWallet(_ publicKey:String) {
         currentPubKey = publicKey
         Defaults[.currentWallet] = publicKey
+        account_names.removeAll()
     }
     
     func switchAccount(_ index:Int) {
@@ -248,7 +258,8 @@ class WalletManager {
     }
     
     func getCachedPriKey(_ publicKey:String, password:String) -> String? {
-        if let cypher = keychain[string: "\(publicKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password), pri.count > 0 {
+        if let cypher = keychain[string: "\(publicKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password), pri.count > 0, pri != "wrong password" {
+            self.priKey = pri
             return pri
         }
         return nil
