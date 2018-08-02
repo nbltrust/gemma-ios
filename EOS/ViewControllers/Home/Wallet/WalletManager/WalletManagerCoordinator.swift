@@ -37,20 +37,9 @@ class WalletManagerCoordinator: HomeRootCoordinator {
 
 extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
     func pushToChangePassword() {
-        let width = ModalSize.full
-        let height = ModalSize.custom(size: 271)
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 271))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
-        
-        let presenter = Presentr(presentationType: customType)
-        presenter.keyboardTranslationType = .moveUp
-        
-        let newVC = BaseNavigationController()
-        newVC.navStyle = .white
-        let transferConfirmpwd = TransferConfirmPasswordRootCoordinator(rootVC: newVC)
-
-        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-        transferConfirmpwd.start()
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss)
+        }
     }
     
     func pushToExportPrivateKey() {

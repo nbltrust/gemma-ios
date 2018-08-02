@@ -50,6 +50,12 @@ class HomeViewController: BaseViewController {
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         
         headImageView.image = navBgImage()
+        
+        if WalletManager.shared.account_names.count <= 1 {
+            tableHeaderView.nameAndImg.nameRightImgView.isHidden = true
+        } else {
+            tableHeaderView.nameAndImg.nameRightImgView.isHidden = false
+        }
     }
     
     override func rightAction(_ sender: UIButton) {
