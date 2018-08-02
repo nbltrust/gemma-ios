@@ -30,7 +30,13 @@ func navBgImage() -> UIImage? {
 extension String {
     var eosAmount: String {
         if self.contains(" ") {
-            return self.components(separatedBy: " ").first ?? ""
+            if let first = self.components(separatedBy: " ").first {
+                if first == "-" {
+                    return ""
+                }
+                return first
+            }
+            return ""
         }
         else {
             return ""
