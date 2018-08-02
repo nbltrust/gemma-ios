@@ -22,19 +22,19 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="257"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Eg5-Hy-nTF">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="256.5"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Eg5-Hy-nTF">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="196.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COK-UE-S5q" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTI-pf-dVk" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="85.5" width="375" height="85.5"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTI-pf-dVk" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="65.5" width="375" height="65.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tce-pl-mAe" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="171" width="375" height="85.5"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tce-pl-mAe" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="131" width="375" height="65.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>

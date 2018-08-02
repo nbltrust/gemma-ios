@@ -11,6 +11,7 @@ import ReSwift
 
 protocol CreatationCompleteCoordinatorProtocol {
     func dismissCurrentNav()
+    func pushBackupPrivateKeyVC()
 }
 
 protocol CreatationCompleteStateManagerProtocol {
@@ -33,7 +34,16 @@ class CreatationCompleteCoordinator: EntryRootCoordinator {
 
 extension CreatationCompleteCoordinator: CreatationCompleteCoordinatorProtocol {
     func dismissCurrentNav() {
-        self.rootVC.dismiss(animated: true, completion: nil)
+        if let appdelegate = UIApplication.shared.delegate as? AppDelegate {
+            appdelegate.appcoordinator?.endEntry()
+        }
+    }
+    
+    func pushBackupPrivateKeyVC() {
+        let vc = R.storyboard.entry.backupPrivateKeyViewController()!
+        let coor = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
+        vc.coordinator = coor
+        self.rootVC.pushViewController(vc, animated: true)
     }
 }
 

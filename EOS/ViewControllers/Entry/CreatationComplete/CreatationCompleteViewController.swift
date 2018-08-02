@@ -19,6 +19,7 @@ class CreatationCompleteViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = R.string.localizable.back_up_wallet()
     }
     
     func commonObserveState() {
@@ -42,5 +43,11 @@ class CreatationCompleteViewController: BaseViewController {
             guard let `self` = self else { return }
             self.coordinator?.dismissCurrentNav()
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+    }
+}
+
+extension CreatationCompleteViewController {
+    @objc func sure_event(_ data:[String:Any]) {
+        self.coordinator?.pushBackupPrivateKeyVC()
     }
 }

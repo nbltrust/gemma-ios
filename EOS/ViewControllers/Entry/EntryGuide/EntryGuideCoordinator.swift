@@ -13,6 +13,8 @@ import SwifterSwift
 protocol EntryGuideCoordinatorProtocol {
     func pushToCreateWalletVC()
     func pushToRecoverFromCopyVC()
+    func pushToCreatationVC()
+
 }
 
 protocol EntryGuideStateManagerProtocol {
@@ -34,6 +36,13 @@ class EntryGuideCoordinator: EntryRootCoordinator {
 }
 
 extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
+    func pushToCreatationVC() {
+        let vc = R.storyboard.entry.creatationCompleteViewController()!
+        let coordinator = CreatationCompleteCoordinator(rootVC: self.rootVC)
+        vc.coordinator = coordinator
+        self.rootVC.pushViewController(vc, animated: true)
+    }
+    
     func pushToCreateWalletVC() {
         let createVC = R.storyboard.entry.entryViewController()!
         let coordinator = EntryCoordinator(rootVC: self.rootVC)

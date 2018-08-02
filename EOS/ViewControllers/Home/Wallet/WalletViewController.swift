@@ -81,6 +81,10 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
         return 52
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }

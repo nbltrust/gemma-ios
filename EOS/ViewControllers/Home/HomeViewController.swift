@@ -110,4 +110,8 @@ extension HomeViewController {
     @objc func accountlist(_ data: [String:Any]) {
         self.coordinator?.pushAccountList()
     }
+    @objc func backupEvent(_ data: [String:Any]) {
+        self.coordinator?.pushBackupVC()
+    }
+    
 }

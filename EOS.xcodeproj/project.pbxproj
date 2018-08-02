@@ -155,6 +155,12 @@
 		3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */; };
 		3BD3666F20FF0AF9004DE09D /* ScreenShotAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */; };
 		3BD366B721009DE0004DE09D /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD366B621009DE0004DE09D /* UIFont+Additions.swift */; };
+		3BEC3F532111B4FC003C38FB /* BackupPrivateKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC3F4F2111B4FC003C38FB /* BackupPrivateKeyCoordinator.swift */; };
+		3BEC3F542111B4FC003C38FB /* BackupPrivateKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC3F502111B4FC003C38FB /* BackupPrivateKeyActions.swift */; };
+		3BEC3F552111B4FC003C38FB /* BackupPrivateKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC3F512111B4FC003C38FB /* BackupPrivateKeyViewController.swift */; };
+		3BEC3F562111B4FC003C38FB /* BackupPrivateKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC3F522111B4FC003C38FB /* BackupPrivateKeyReducers.swift */; };
+		3BEC3F592111B689003C38FB /* BackupPrivateKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC3F582111B689003C38FB /* BackupPrivateKeyView.swift */; };
+		3BEC3F5B2111B697003C38FB /* BackupPrivateKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BEC3F5A2111B697003C38FB /* BackupPrivateKeyView.xib */; };
 		3BFF4E062109F8390047F996 /* OperationLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF4E052109F8390047F996 /* OperationLeftView.swift */; };
 		3BFF4E092109F89F0047F996 /* OperationLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BFF4E082109F89F0047F996 /* OperationLeftView.xib */; };
 		3BFF4E0B2109F8BD0047F996 /* OperationRightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF4E0A2109F8BD0047F996 /* OperationRightView.swift */; };
@@ -3273,6 +3279,12 @@
 		3BDA9B09D89E2B72CE5C65FA614ABC1B /* insert_range.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = insert_range.hpp; sourceTree = "<group>"; };
 		3BE67FC625579D3EA5ED5446943EF95B /* blowfish.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blowfish.hpp; sourceTree = "<group>"; };
 		3BE800D5FCBBAAD10DF9D210D9FAB18C /* ulp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ulp.hpp; sourceTree = "<group>"; };
+		3BEC3F4F2111B4FC003C38FB /* BackupPrivateKeyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyCoordinator.swift; sourceTree = "<group>"; };
+		3BEC3F502111B4FC003C38FB /* BackupPrivateKeyActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyActions.swift; sourceTree = "<group>"; };
+		3BEC3F512111B4FC003C38FB /* BackupPrivateKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyViewController.swift; sourceTree = "<group>"; };
+		3BEC3F522111B4FC003C38FB /* BackupPrivateKeyReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyReducers.swift; sourceTree = "<group>"; };
+		3BEC3F582111B689003C38FB /* BackupPrivateKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyView.swift; sourceTree = "<group>"; };
+		3BEC3F5A2111B697003C38FB /* BackupPrivateKeyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackupPrivateKeyView.xib; sourceTree = "<group>"; };
 		3BF40C0BF3FFA2DCB79675BC6F9D3C07 /* remove.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = remove.hpp; sourceTree = "<group>"; };
 		3BF5AC2EF94AD8CB8C98CEA6A42DCA59 /* time_based_rotation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = time_based_rotation.hpp; sourceTree = "<group>"; };
 		3BF928F31E78F72898331F1E4BB10BF1 /* zip_view.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = zip_view.hpp; sourceTree = "<group>"; };
@@ -16929,6 +16941,27 @@
 			path = TransferConfirm;
 			sourceTree = "<group>";
 		};
+		3BEC3F4E2111B4CB003C38FB /* BackupPrivateKey */ = {
+			isa = PBXGroup;
+			children = (
+				3BEC3F572111B668003C38FB /* Views */,
+				3BEC3F4F2111B4FC003C38FB /* BackupPrivateKeyCoordinator.swift */,
+				3BEC3F502111B4FC003C38FB /* BackupPrivateKeyActions.swift */,
+				3BEC3F512111B4FC003C38FB /* BackupPrivateKeyViewController.swift */,
+				3BEC3F522111B4FC003C38FB /* BackupPrivateKeyReducers.swift */,
+			);
+			path = BackupPrivateKey;
+			sourceTree = "<group>";
+		};
+		3BEC3F572111B668003C38FB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3BEC3F582111B689003C38FB /* BackupPrivateKeyView.swift */,
+				3BEC3F5A2111B697003C38FB /* BackupPrivateKeyView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3C3ED091D2DBB634DC44979297F46E7A /* cgs */ = {
 			isa = PBXGroup;
 			children = (
@@ -22705,6 +22738,7 @@
 		7D5F1CA04F5428CB9A826437282B6A3D /* Entry */ = {
 			isa = PBXGroup;
 			children = (
+				3BEC3F4E2111B4CB003C38FB /* BackupPrivateKey */,
 				22C0239A20F6FD6600284A0A /* CreatationComplete */,
 				22C0239120F6FCF300284A0A /* EntryGuide */,
 				DBA389562489DF247FDEDA4F55B43C83 /* View */,
@@ -32103,6 +32137,7 @@
 				3BC12AA621060927006EEB80 /* AccountCellView.xib in Resources */,
 				4675BAAB54FD05ECC0BA9DA3D1204007 /* cwctype in Resources */,
 				EF6489CA93976FA5A79FDBDA1F95360E /* deque in Resources */,
+				3BEC3F5B2111B697003C38FB /* BackupPrivateKeyView.xib in Resources */,
 				A7D7E408438EB9EC40128F2BBC7BB514 /* deque.SUNWCCh in Resources */,
 				81D2DE5DB28E668B85B44501EA7D0676 /* exception in Resources */,
 				3BC12AA521060927006EEB80 /* AccountTableViewCell.xib in Resources */,
@@ -32542,6 +32577,7 @@
 				71A4FC1DE158B2FA9DA84CBB240F0AE6 /* HomeRootCoordinator.swift in Sources */,
 				73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */,
 				7210169D210197C10059B37E /* WalletManagerReducers.swift in Sources */,
+				3BEC3F592111B689003C38FB /* BackupPrivateKeyView.swift in Sources */,
 				A35151B3922F34802807B89AA82B9D4E /* HomeViewController.swift in Sources */,
 				72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */,
 				632FADFC1004A95370F910B28F2B1B3B /* Localzation+Extensions.swift in Sources */,
@@ -32585,11 +32621,13 @@
 				D3269330F6567878EEBA3EB42293912B /* RegisterContentView.swift in Sources */,
 				72FE5B5B2100490B00B29FEC /* HelpCoordinator.swift in Sources */,
 				73F30B4120F6E6FF0016E950 /* UserInfoCoordinator.swift in Sources */,
+				3BEC3F562111B4FC003C38FB /* BackupPrivateKeyReducers.swift in Sources */,
 				3BC12AA421060927006EEB80 /* AccountTableViewCell.swift in Sources */,
 				3BD3666820FDEB94004DE09D /* TransferContentView.swift in Sources */,
 				2253C52F2111A6300043AAF7 /* QRCodeCoordinator.swift in Sources */,
 				3BD3664F20F76594004DE09D /* TransferConfirmPasswordView.swift in Sources */,
 				721016A5210197F40059B37E /* WalletListHeaderView.swift in Sources */,
+				3BEC3F532111B4FC003C38FB /* BackupPrivateKeyCoordinator.swift in Sources */,
 				3BD366B721009DE0004DE09D /* UIFont+Additions.swift in Sources */,
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
@@ -32625,11 +32663,13 @@
 				221EC1C721008EF50059F856 /* GestureLockSetActions.swift in Sources */,
 				221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */,
 				3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */,
+				3BEC3F552111B4FC003C38FB /* BackupPrivateKeyViewController.swift in Sources */,
 				72FE5B8921009E4D00B29FEC /* LeadInActions.swift in Sources */,
 				3BD3666320FDEB76004DE09D /* TitleTextView.swift in Sources */,
 				7224712C20F57BA800536BF4 /* TransferReducers.swift in Sources */,
 				72101696210197C10059B37E /* ChangeWalletNameReducers.swift in Sources */,
 				AD352B30A178C8A63FF0D742FDFD3081 /* UIImageView+Additions.swift in Sources */,
+				3BEC3F542111B4FC003C38FB /* BackupPrivateKeyActions.swift in Sources */,
 				72D645B821106860003F660D /* LeadInKeyViewController.swift in Sources */,
 				3BC12A9F21060927006EEB80 /* AccountListViewController.swift in Sources */,
 				73F30B4720F6E7410016E950 /* UserInfoRootCoordinator.swift in Sources */,
