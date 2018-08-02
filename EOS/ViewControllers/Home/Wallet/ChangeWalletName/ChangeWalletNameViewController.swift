@@ -31,7 +31,10 @@ class ChangeWalletNameViewController: BaseViewController {
     
     override func rightAction(_ sender: UIButton) {
         //保存
+        self.view.endEditing(true)
+        model.name = changeWalletNameView.textField.text ?? ""
         self.coordinator?.updateWalletName(model: model)
+        self.coordinator?.popToLastVC()
     }
     
     func commonObserveState() {

@@ -11,7 +11,7 @@ import SwifterSwift
 
 typealias CompletionCallback = () -> Void
 typealias StringCallback = (String) -> Void
-typealias StringOptionalCallback = (String) -> Void
+typealias StringOptionalCallback = (String?) -> Void
 typealias ObjectCallback = (Any) -> Void
 typealias ObjectOptionalCallback = (Any?) -> Void
 

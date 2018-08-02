@@ -18,6 +18,7 @@ class SetWalletViewController: BaseViewController {
     @IBOutlet weak var finished: Button!
     @IBOutlet weak var fieldVIew: SetWalletContentView!
     
+    var isUpdatePassword:Bool = false
     
 	var coordinator: (SetWalletCoordinatorProtocol & SetWalletStateManagerProtocol)?
 
@@ -35,6 +36,12 @@ class SetWalletViewController: BaseViewController {
     func setupEvent() {
         finished.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
+            
+            if self.isUpdatePassword, let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text{
+                self.coordinator?.updatePassword(password, hint: hint)
+                self.showSuccess(message: R.string.localizable.change_password_success())
+                return
+            }
             
             if let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text {
                 

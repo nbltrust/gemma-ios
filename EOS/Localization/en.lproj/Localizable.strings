@@ -95,6 +95,8 @@
 "wallet_manager" = "钱包管理";
 "export_private_key" = "导出私钥";
 "change_password" = "修改密码";
+"change_password_success" = "修改密码成功";
+
 "wallet_name" = "钱包名";
 "manager_wallet" = "管理钱包";
 "change_wallet_name" = "修改钱包名";

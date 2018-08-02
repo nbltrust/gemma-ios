@@ -23,6 +23,7 @@ protocol SetWalletStateManagerProtocol {
     
     func validForm(_ password:String, confirmPassword:String, hint:String) -> (Bool, String)
     func importLocalWallet(_ password:String, hint:String, completion: @escaping (Bool)->Void)
+    func updatePassword(_ password:String, hint:String)
 }
 
 class SetWalletCoordinator: HomeRootCoordinator {
@@ -70,5 +71,10 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
     
     func importLocalWallet(_ password:String, hint:String, completion: @escaping (Bool)->Void) {
         WalletManager.shared.importPrivateKey(password, hint: hint, completion: completion)
+    }
+    
+    func updatePassword(_ password:String, hint:String) {
+        WalletManager.shared.updateWalletPassword(password, hint: hint)
+        self.rootVC.popViewController()
     }
 }

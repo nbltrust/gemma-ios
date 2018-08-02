@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 protocol ChangeWalletNameCoordinatorProtocol {
-    func updateWalletName(model: WalletManagerModel)
+    func popToLastVC()
 }
 
 protocol ChangeWalletNameStateManagerProtocol {
@@ -18,6 +18,8 @@ protocol ChangeWalletNameStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<ChangeWalletNameState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func updateWalletName(model: WalletManagerModel)
 }
 
 class ChangeWalletNameCoordinator: HomeRootCoordinator {
@@ -32,8 +34,7 @@ class ChangeWalletNameCoordinator: HomeRootCoordinator {
 }
 
 extension ChangeWalletNameCoordinator: ChangeWalletNameCoordinatorProtocol {
-    func updateWalletName(model: WalletManagerModel) {
-        WalletManager.shared.updateWalletName(model.address, walletName: model.name)
+    func popToLastVC() {
         self.rootVC.popViewController(animated: true)
     }
 }
@@ -48,5 +49,12 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+  
+    func updateWalletName(model: WalletManagerModel) {
+        WalletManager.shared.updateWalletName(model.address, walletName: model.name)
+        
+        if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? WalletManagerViewController {
+            vc.data = model
+        }
+    }
 }
