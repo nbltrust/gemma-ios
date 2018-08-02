@@ -36,19 +36,19 @@ class CopyPriKeyCoordinator: HomeRootCoordinator {
 
 extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
     func showAlertMessage() {
-//        let width = ModalSize.custom(size: 270)
-//        let height = ModalSize.custom(size: 230)
-//        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: (UIScreen.main.bounds.width-270)/2, y: UIScreen.main.bounds.height/2-115))
-//        let customType = PresentationType.custom(width: width, height: height, center: center)
-//        
-//        let presenter = Presentr(presentationType: customType)
-//        presenter.keyboardTranslationType = .moveUp
+        let width = ModalSize.custom(size: 270)
+        let height = ModalSize.custom(size: 230)
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: (UIScreen.main.bounds.width-270)/2, y: UIScreen.main.bounds.height/2-115))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
         
-//        if let vc = R.storyboard.screenShotAlert.screenShotAlertViewController() {
-//            let coordinator = ScreenShotAlertCoordinator(rootVC: self.rootVC)
-//            vc.coordinator = coordinator
-//            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
-//        }
+        let presenter = Presentr(presentationType: customType)
+        presenter.keyboardTranslationType = .moveUp
+        
+        if let vc = R.storyboard.screenShotAlert.screenShotAlertViewController() {
+            let coordinator = ScreenShotAlertCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+        }
     }
     
     func finishCopy() {
