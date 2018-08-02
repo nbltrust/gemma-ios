@@ -94,7 +94,7 @@ class ComfirmView: UIView {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
     }
     
-    fileprivate func updateHeight() {
+    func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()

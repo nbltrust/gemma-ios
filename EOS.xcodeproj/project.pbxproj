@@ -60,6 +60,12 @@
 		2253C5382111A6450043AAF7 /* PriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5342111A6450043AAF7 /* PriKeyActions.swift */; };
 		2253C5392111A6450043AAF7 /* PriKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5352111A6450043AAF7 /* PriKeyViewController.swift */; };
 		2253C53A2111A6450043AAF7 /* PriKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5362111A6450043AAF7 /* PriKeyReducers.swift */; };
+		2253C53E2111C9390043AAF7 /* TitleSubTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C53D2111C9390043AAF7 /* TitleSubTitleView.swift */; };
+		2253C5402111C9500043AAF7 /* TitleSubTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2253C53F2111C9500043AAF7 /* TitleSubTitleView.xib */; };
+		2253C5462111CD5C0043AAF7 /* PriKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2253C5452111CD5C0043AAF7 /* PriKeyView.xib */; };
+		2253C5482111CD6C0043AAF7 /* PriKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5472111CD6C0043AAF7 /* PriKeyView.swift */; };
+		2253C54C2112D83D0043AAF7 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C54B2112D83D0043AAF7 /* QRCodeView.swift */; };
+		2253C54E2112D8530043AAF7 /* QRCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2253C54D2112D8530043AAF7 /* QRCodeView.xib */; };
 		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
 		22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */; };
 		22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239320F6FD5100284A0A /* EntryGuideActions.swift */; };
@@ -2041,6 +2047,12 @@
 		2253C5342111A6450043AAF7 /* PriKeyActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriKeyActions.swift; sourceTree = "<group>"; };
 		2253C5352111A6450043AAF7 /* PriKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriKeyViewController.swift; sourceTree = "<group>"; };
 		2253C5362111A6450043AAF7 /* PriKeyReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriKeyReducers.swift; sourceTree = "<group>"; };
+		2253C53D2111C9390043AAF7 /* TitleSubTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubTitleView.swift; sourceTree = "<group>"; };
+		2253C53F2111C9500043AAF7 /* TitleSubTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleSubTitleView.xib; sourceTree = "<group>"; };
+		2253C5452111CD5C0043AAF7 /* PriKeyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriKeyView.xib; sourceTree = "<group>"; };
+		2253C5472111CD6C0043AAF7 /* PriKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriKeyView.swift; sourceTree = "<group>"; };
+		2253C54B2112D83D0043AAF7 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		2253C54D2112D8530043AAF7 /* QRCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRCodeView.xib; sourceTree = "<group>"; };
 		225825D920F4591F00AA2A4B /* Button.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Button.xib; sourceTree = "<group>"; };
 		225A0889C3C3054639EEABD86F27BD02 /* ios_base_state.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ios_base_state.hpp; sourceTree = "<group>"; };
 		22673B9CA1401589242EC668FDA327F1 /* vector_forward_ctor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_forward_ctor.hpp; sourceTree = "<group>"; };
@@ -14295,6 +14307,8 @@
 				721016A2210197F30059B37E /* WalletListHeaderView.xib */,
 				3BC12A69210587B4006EEB80 /* RedWarningView.swift */,
 				3BC12A6B210587BD006EEB80 /* RedWarningView.xib */,
+				2253C53D2111C9390043AAF7 /* TitleSubTitleView.swift */,
+				2253C53F2111C9500043AAF7 /* TitleSubTitleView.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -14696,6 +14710,7 @@
 		2253C5212111A5970043AAF7 /* PriKey */ = {
 			isa = PBXGroup;
 			children = (
+				2253C53C2111C8D00043AAF7 /* View */,
 				2253C5332111A6450043AAF7 /* PriKeyCoordinator.swift */,
 				2253C5342111A6450043AAF7 /* PriKeyActions.swift */,
 				2253C5352111A6450043AAF7 /* PriKeyViewController.swift */,
@@ -14707,12 +14722,31 @@
 		2253C5222111A5A60043AAF7 /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
+				2253C53B2111C8C00043AAF7 /* View */,
 				2253C52B2111A6300043AAF7 /* QRCodeCoordinator.swift */,
 				2253C52C2111A6300043AAF7 /* QRCodeActions.swift */,
 				2253C52D2111A6300043AAF7 /* QRCodeViewController.swift */,
 				2253C52E2111A6300043AAF7 /* QRCodeReducers.swift */,
 			);
 			path = QRCode;
+			sourceTree = "<group>";
+		};
+		2253C53B2111C8C00043AAF7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2253C54B2112D83D0043AAF7 /* QRCodeView.swift */,
+				2253C54D2112D8530043AAF7 /* QRCodeView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2253C53C2111C8D00043AAF7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2253C5472111CD6C0043AAF7 /* PriKeyView.swift */,
+				2253C5452111CD5C0043AAF7 /* PriKeyView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		226C9CD0E09FC4C67D2AACDCDC5E95F5 /* base_units */ = {
@@ -32066,6 +32100,7 @@
 				3B4C910020F4D6A4004F4C52 /* PaymentsDetail.storyboard in Resources */,
 				DBD92836718CE10F249DB505B4B452DD /* array in Resources */,
 				74EAB156C6830FDEC85832623F3570BB /* array.SUNWCCh in Resources */,
+				2253C5462111CD5C0043AAF7 /* PriKeyView.xib in Resources */,
 				2F283DFACEFADB84D2FD7C6C7CAF6589 /* authority.hpp.bk in Resources */,
 				BB9C16D9632B7BE38B8936851255FC38 /* badgeView.xib in Resources */,
 				35659865121853108F1175F64F0C9028 /* bcc32.SUNWCCh in Resources */,
@@ -32174,6 +32209,7 @@
 				3BD3666920FDEB94004DE09D /* TransferContentView.xib in Resources */,
 				99B667314921AD763E5E9819AD411052 /* streambuf.SUNWCCh in Resources */,
 				FB6B3762C0FE00D751B31CE63B29EF9B /* string in Resources */,
+				2253C54E2112D8530043AAF7 /* QRCodeView.xib in Resources */,
 				9BE02F87EF0C6FA2FE00D73F20938355 /* string.SUNWCCh in Resources */,
 				532A37AA8B111DD1CE3EF64F657F78A0 /* strstream in Resources */,
 				AE6DABF125374DB13E70276388519645 /* strstream.SUNWCCh in Resources */,
@@ -32195,6 +32231,7 @@
 				267D15355147463B9F3A4323FEFA93A6 /* utility.SUNWCCh in Resources */,
 				FBF701B9942471FF3992A6FF20342299 /* valarray in Resources */,
 				0FC0ED763C7C2B273102F2D50920AC4B /* valarray.SUNWCCh in Resources */,
+				2253C5402111C9500043AAF7 /* TitleSubTitleView.xib in Resources */,
 				7927AB1019CF3FE10A5376C9D899A432 /* vector in Resources */,
 				52417D185297BDB895F73B5E78ED3574 /* vector.SUNWCCh in Resources */,
 				3B3147012106D63A00E815BD /* GeneralCellView.xib in Resources */,
@@ -32541,6 +32578,7 @@
 				72101691210197C10059B37E /* WalletActions.swift in Sources */,
 				71A4FC1DE158B2FA9DA84CBB240F0AE6 /* HomeRootCoordinator.swift in Sources */,
 				73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */,
+				2253C54C2112D83D0043AAF7 /* QRCodeView.swift in Sources */,
 				7210169D210197C10059B37E /* WalletManagerReducers.swift in Sources */,
 				A35151B3922F34802807B89AA82B9D4E /* HomeViewController.swift in Sources */,
 				72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */,
@@ -32602,7 +32640,9 @@
 				725F68072101B8E50006BBA1 /* SetWalletReducers.swift in Sources */,
 				73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */,
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
+				2253C53E2111C9390043AAF7 /* TitleSubTitleView.swift in Sources */,
 				3BC12AA721060927006EEB80 /* AccountListRootCoordinator.swift in Sources */,
+				2253C5482111CD6C0043AAF7 /* PriKeyView.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
 				22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */,
 				221EC1D021008F1B0059F856 /* GestureLockComfirmViewController.swift in Sources */,

@@ -185,6 +185,25 @@
 "set_wallet_password" = "最少8位长度，建议混合大小写字母、数字及符号";
 "set_wallet_title" = "配置钱包";
 
-
+//备份私钥
+"copy_priKey_title" = "备份私钥";
+"priKey_title" = "私钥";
+"qrcode_title" = "二维码";
+"prikey_title_1" = "安全第一";
+"prikey_title_2" = "离线存储";
+"prikey_title_3" = "加密存储";
+"prikey_subtitle_1" = "建议开启飞行模式，勿使用网络传输，以防黑客捕获到私钥。";
+"prikey_subtitle_2" = "可使用非联网的废旧手机作为冷存储，通过扫描二维码扫描获取私钥并存储。";
+"prikey_subtitle_3" = "若没有废旧的手机，也可复制私钥后使用加密软件或密码管理工具存储。请在存储后及时清空系统剪贴板。";
+"click_copy" = "点击复制";
+"save_key_safe" = "我已安全存储私钥";
+"qrcode_title_1" = "注意周围";
+"qrcode_title_2" = "请勿截图";
+"qrcode_subtitle_1" = "请在确保周围没有人及摄像头的环境下扫描二维码，以防二维码泄漏。";
+"qrcode_subtitle_2" = "建议使用带有摄像头的离线设备扫描识别二维码以获取私钥，并将其以合理的方式存储。";
+"show_qrcode" = "显示二维码";
+"qrcode_generate_failed" = "二维码生成失败";
+"have_copied" = "已复制到剪贴板";
+"un_get_prikey" = "未获取到私钥";
 
 

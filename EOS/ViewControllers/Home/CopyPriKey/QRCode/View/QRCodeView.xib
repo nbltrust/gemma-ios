@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QRCodeView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="actionView" destination="bE9-jP-KX9" id="0do-xc-4Ev"/>
+                <outlet property="firstView" destination="tZK-GF-KjU" id="FDz-dd-5vb"/>
+                <outlet property="imgView" destination="koi-Ge-2Vl" id="aZt-nK-tLy"/>
+                <outlet property="qrCodeWidthConstraint" destination="kT0-ZD-fD2" id="zql-d0-CLL"/>
+                <outlet property="secondView" destination="a32-cw-ZrT" id="Xnw-qP-jZK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="583"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="311" placeholderIntrinsicHeight="74" translatesAutoresizingMaskIntoConstraints="NO" id="tZK-GF-KjU" customClass="TitleSubTitleView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="32" y="46" width="311" height="74"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="titleLocali" value="qrcode_title_1"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="subTitleLocali" value="qrcode_subtitle_1"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="311" placeholderIntrinsicHeight="229" translatesAutoresizingMaskIntoConstraints="NO" id="a32-cw-ZrT" customClass="TitleSubTitleView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="32" y="140" width="311" height="229"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="titleLocali" value="qrcode_title_2"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="subTitleLocali" value="qrcode_subtitle_2"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_common_qr_code" translatesAutoresizingMaskIntoConstraints="NO" id="koi-Ge-2Vl">
+                    <rect key="frame" x="157.5" y="417" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="koi-Ge-2Vl" secondAttribute="height" multiplier="1:1" id="5es-SZ-KyR"/>
+                        <constraint firstAttribute="width" constant="60" id="kT0-ZD-fD2"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bE9-jP-KX9" customClass="Button" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="32" y="507" width="311" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="K5N-aG-n4W"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="style">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="tZK-GF-KjU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="26" id="0Ar-gP-BGJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tZK-GF-KjU" secondAttribute="trailing" constant="32" id="7mP-GW-9vA"/>
+                <constraint firstItem="bE9-jP-KX9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="Cdh-ny-ALk"/>
+                <constraint firstItem="bE9-jP-KX9" firstAttribute="top" secondItem="koi-Ge-2Vl" secondAttribute="bottom" constant="30" id="Nha-kA-7Q2"/>
+                <constraint firstItem="a32-cw-ZrT" firstAttribute="top" secondItem="tZK-GF-KjU" secondAttribute="bottom" constant="20" id="ka0-b2-hdo"/>
+                <constraint firstItem="a32-cw-ZrT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="nIY-mL-qui"/>
+                <constraint firstItem="tZK-GF-KjU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="nLz-cU-Apk"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bE9-jP-KX9" secondAttribute="bottom" constant="32" id="nPx-sG-PBc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="a32-cw-ZrT" secondAttribute="trailing" constant="32" id="nts-dY-4cL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bE9-jP-KX9" secondAttribute="trailing" constant="32" id="rsR-1I-Pzh"/>
+                <constraint firstItem="koi-Ge-2Vl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xz3-4Q-nFp"/>
+                <constraint firstItem="koi-Ge-2Vl" firstAttribute="top" secondItem="a32-cw-ZrT" secondAttribute="bottom" constant="50" id="zoR-x6-mAU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="33.5" y="50.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_common_qr_code" width="60" height="60"/>
+    </resources>
+</document>

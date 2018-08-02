@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TitleSubTitleView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="subTitleLabel" destination="Bfj-Ej-HFC" id="Bzl-qp-Uej"/>
+                <outlet property="titleLabel" destination="LD1-ez-XIg" id="eNo-qU-GZe"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="308"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD1-ez-XIg">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="--" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bfj-Ej-HFC">
+                    <rect key="frame" x="0.0" y="29" width="375" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Bfj-Ej-HFC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="3LL-87-k1w"/>
+                <constraint firstItem="LD1-ez-XIg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="9MJ-9t-YwT"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Bfj-Ej-HFC" secondAttribute="trailing" id="FVJ-vG-fbO"/>
+                <constraint firstItem="LD1-ez-XIg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="NaF-qq-dBm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LD1-ez-XIg" secondAttribute="trailing" id="X5c-ix-fmz"/>
+                <constraint firstItem="Bfj-Ej-HFC" firstAttribute="top" secondItem="LD1-ez-XIg" secondAttribute="bottom" constant="12" id="s67-Vm-rCG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Bfj-Ej-HFC" secondAttribute="bottom" id="s6H-8y-1wk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="5.5" y="-118"/>
+        </view>
+    </objects>
+</document>

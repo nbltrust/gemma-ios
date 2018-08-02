@@ -10,13 +10,23 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import XLPagerTabStrip
 
-class PriKeyViewController: BaseViewController {
+class PriKeyViewController: BaseViewController, IndicatorInfoProvider {
 
+    @IBOutlet weak var priKeyView: PriKeyView!
+    
+    var priKey: String?
+    
 	var coordinator: (PriKeyCoordinatorProtocol & PriKeyStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    func setupUI() {
+        priKeyView.priKey = priKey
     }
     
     func commonObserveState() {
@@ -36,5 +46,15 @@ class PriKeyViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+    }
+}
+
+extension PriKeyViewController {
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(stringLiteral: R.string.localizable.priKey_title())
+    }
+    
+    @objc func savedKeySafely(_ data: [String : Any]) {
+        self.parent?.navigationController?.popViewController(animated: true)
     }
 }
