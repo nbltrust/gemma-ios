@@ -12,6 +12,8 @@ import Presentr
 
 protocol CopyPriKeyCoordinatorProtocol {
     func showAlertMessage()
+    
+    func finishCopy()
 }
 
 protocol CopyPriKeyStateManagerProtocol {
@@ -47,6 +49,12 @@ extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
 //            vc.coordinator = coordinator
 //            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
 //        }
+    }
+    
+    func finishCopy() {
+        if let lastVC = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? BackupPrivateKeyViewController {
+            lastVC.coordinator?.state.callback.hadSaveCallback.value?()
+        }
     }
 }
 

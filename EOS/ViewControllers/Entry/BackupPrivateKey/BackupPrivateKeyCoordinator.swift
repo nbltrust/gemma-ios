@@ -37,10 +37,10 @@ extension BackupPrivateKeyCoordinator: BackupPrivateKeyCoordinatorProtocol {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, completion: {[weak self] (result) in
                 guard let `self` = self else { return }
-                let copyVC = R.storyboard.home.priKeyViewController()
-                let copyCoordinator = PriKeyCoordinator(rootVC: self.rootVC)
-                copyVC?.coordinator = copyCoordinator
-                self.rootVC.pushViewController(copyVC!, animated: true)
+                let copyVC = CopyPriKeyViewController()
+                let copyCoordinator = CopyPriKeyCoordinator(rootVC: self.rootVC)
+                copyVC.coordinator = copyCoordinator
+                self.rootVC.pushViewController(copyVC, animated: true)
             })
             
         }

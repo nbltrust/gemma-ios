@@ -47,10 +47,6 @@ extension PriKeyViewController {
         return IndicatorInfo(stringLiteral: R.string.localizable.priKey_title())
     }
     
-    @objc func savedKeySafely(_ data: [String : Any]) {
-        self.parent?.navigationController?.popViewController(animated: true)
-    }
-    
     @objc func copyPriKey(_ data: [String : Any]) {
         let key = WalletManager.shared.priKey
         let pasteboard = UIPasteboard.general

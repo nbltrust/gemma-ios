@@ -46,8 +46,4 @@ extension QRCodeViewController {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(stringLiteral: R.string.localizable.qrcode_title())
     }
-    
-    @objc func savedKeySafely(_ data: [String : Any]) {
-        self.parent?.navigationController?.popViewController(animated: true)
-    }
 }

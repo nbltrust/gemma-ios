@@ -48,3 +48,9 @@ class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
         return [priKeyVC, qrcodeVC]
     }
 }
+
+extension CopyPriKeyViewController {
+    @objc func savedKeySafely(_ data: [String : Any]) {
+        self.coordinator?.finishCopy()
+    }
+}

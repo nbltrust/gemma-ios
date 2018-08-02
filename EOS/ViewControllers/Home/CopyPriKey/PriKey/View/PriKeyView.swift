@@ -31,16 +31,13 @@ class PriKeyView: UIView {
         self.sendEventWith(PriKeyEvent.copyPriKey.rawValue, userinfo: [:])
     }
     
-    func setupEvent() {
-        actionButton.button.addTarget(self, action: #selector(action(_:)), for: .touchUpInside)
-    }
-    
     @objc func action(_ sender: UIButton) {
         self.sendEventWith(PriKeyEvent.savedKeySafely.rawValue, userinfo: [:])
     }
     
-    func setupUI() {
+    func setup() {
         keyLabel.text = WalletManager.shared.priKey
+        actionButton.button.addTarget(self, action: #selector(action(_:)), for: .touchUpInside)
     }
     
     override func layoutSubviews() {
@@ -51,13 +48,13 @@ class PriKeyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
-        setupUI()
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
-        setupUI()
+        setup()
     }
     
     fileprivate func loadViewFromNib() {
