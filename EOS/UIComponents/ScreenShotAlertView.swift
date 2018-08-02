@@ -78,9 +78,9 @@ class ScreenShotAlertView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        //        self.insertSubview(view, at: 0)
+                self.insertSubview(view, at: 0)
         
-        addSubview(view)
+//        addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
