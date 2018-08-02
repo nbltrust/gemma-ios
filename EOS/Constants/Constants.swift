@@ -9,8 +9,13 @@
 import Foundation
 import SwifterSwift
 
-typealias CompletionCallback = ()->Void
-typealias ResultCallback = (Bool)->Void
+typealias CompletionCallback = () -> Void
+typealias StringCallback = (String) -> Void
+typealias StringOptionalCallback = (String) -> Void
+typealias ObjectCallback = (Any) -> Void
+typealias ObjectOptionalCallback = (Any?) -> Void
+
+typealias ResultCallback = (Bool) -> Void
 typealias HandlerResult = (Bool, String)
 
 struct AppConfiguration {

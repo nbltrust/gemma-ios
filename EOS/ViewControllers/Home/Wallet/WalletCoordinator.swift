@@ -68,6 +68,10 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
     func pushToLeadInWallet() {
         if let vc = R.storyboard.leadIn.leadInViewController() {
             let coordinator = LeadInCoordinator(rootVC: self.rootVC)
+            let lastVC = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2]
+            coordinator.state.callback.fadeCallback.accept {
+                self.rootVC.popToViewController(lastVC, animated: true)
+            }
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }
