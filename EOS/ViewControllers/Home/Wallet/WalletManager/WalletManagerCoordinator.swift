@@ -12,7 +12,7 @@ import Presentr
 
 protocol WalletManagerCoordinatorProtocol {
     func pushToChangeWalletName(model: WalletManagerModel)
-    func pushToExportPrivateKey()
+    func pushToExportPrivateKey(_ pubKey: String)
     func pushToChangePassword(_ pubKey:String)
 
 }
@@ -48,8 +48,16 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
         }
     }
     
-    func pushToExportPrivateKey() {
-        
+    func pushToExportPrivateKey(_ pubKey: String) {
+        let vc = R.storyboard.entry.backupPrivateKeyViewController()!
+        vc.publicKey = pubKey
+        let coor = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
+        let currentVc = self.rootVC.topViewController!
+        coor.state.callback.hadSaveCallback.accept {
+            self.rootVC.popToViewController(currentVc, animated: true)
+        }
+        vc.coordinator = coor
+        self.rootVC.pushViewController(vc, animated: true)
     }
     
     func pushToChangeWalletName(model: WalletManagerModel) {

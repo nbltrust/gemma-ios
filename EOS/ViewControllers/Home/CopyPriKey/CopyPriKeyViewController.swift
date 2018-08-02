@@ -16,26 +16,12 @@ import KRProgressHUD
 class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
 
 	var coordinator: (CopyPriKeyCoordinatorProtocol & CopyPriKeyStateManagerProtocol)?
-
-    var priKey: String?
     
 	override func viewDidLoad() {
         setupSetting()
         super.viewDidLoad()
         self.title = R.string.localizable.copy_priKey_title()
-        self.checkPriKey()
-    }
-    
-    func checkPriKey() {
-        if priKey == nil {
-            KRProgressHUD.showError(withMessage: R.string.localizable.un_get_prikey())
-            return
-        }
-        
-        if (priKey?.trimmed.count)! == 0 {
-            KRProgressHUD.showError(withMessage: R.string.localizable.un_get_prikey())
-            return
-        }
+        self.coordinator?.showAlertMessage()
     }
     
     func setupSetting() {
@@ -59,9 +45,13 @@ class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let priKeyVC = R.storyboard.home.priKeyViewController()!
-        priKeyVC.priKey = priKey
         let qrcodeVC = R.storyboard.home.qrCodeViewController()!
-        qrcodeVC.priKey = priKey
         return [priKeyVC, qrcodeVC]
+    }
+}
+
+extension CopyPriKeyViewController {
+    @objc func savedKeySafely(_ data: [String : Any]) {
+        self.coordinator?.finishCopy()
     }
 }

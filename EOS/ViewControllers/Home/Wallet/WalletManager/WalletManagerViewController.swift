@@ -59,7 +59,7 @@ extension WalletManagerViewController {
     }
     
     @objc func exportPrivateKeyClick(_ data: [String: Any]) {
-        self.coordinator?.pushToExportPrivateKey()
+        self.coordinator?.pushToExportPrivateKey(self.data.address)
     }
     
     @objc func changePasswordClick(_ data: [String: Any]) {

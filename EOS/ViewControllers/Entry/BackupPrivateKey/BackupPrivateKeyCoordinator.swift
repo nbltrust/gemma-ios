@@ -11,7 +11,7 @@ import ReSwift
 import Presentr
 
 protocol BackupPrivateKeyCoordinatorProtocol {
-    func showPresenterVC()
+    func showPresenterVC(_ pubKey: String)
 }
 
 protocol BackupPrivateKeyStateManagerProtocol {
@@ -33,9 +33,16 @@ class BackupPrivateKeyCoordinator: EntryRootCoordinator {
 }
 
 extension BackupPrivateKeyCoordinator: BackupPrivateKeyCoordinatorProtocol {
-    func showPresenterVC() {
+    func showPresenterVC(_ pubKey: String) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss)
+            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, completion: {[weak self] (result) in
+                guard let `self` = self else { return }
+                let copyVC = CopyPriKeyViewController()
+                let copyCoordinator = CopyPriKeyCoordinator(rootVC: self.rootVC)
+                copyVC.coordinator = copyCoordinator
+                self.rootVC.pushViewController(copyVC, animated: true)
+            })
+            
         }
     }
 }

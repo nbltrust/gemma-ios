@@ -1,8 +1,8 @@
 //
-//  PriKeyViewController.swift
+//  ScreenShotAlertViewController.swift
 //  EOS
 //
-//  Created peng zhu on 2018/8/1.
+//  Created zhusongyu on 2018/8/2.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
@@ -10,16 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import XLPagerTabStrip
 
-class PriKeyViewController: BaseViewController, IndicatorInfoProvider {
+class ScreenShotAlertViewController: BaseViewController {
 
-    @IBOutlet weak var priKeyView: PriKeyView!
-    
-	var coordinator: (PriKeyCoordinatorProtocol & PriKeyStateManagerProtocol)?
+	var coordinator: (ScreenShotAlertCoordinatorProtocol & ScreenShotAlertStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.clear
     }
     
     func commonObserveState() {
@@ -39,18 +37,5 @@ class PriKeyViewController: BaseViewController, IndicatorInfoProvider {
     override func configureObserveState() {
         commonObserveState()
         
-    }
-}
-
-extension PriKeyViewController {
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(stringLiteral: R.string.localizable.priKey_title())
-    }
-    
-    @objc func copyPriKey(_ data: [String : Any]) {
-        let key = WalletManager.shared.priKey
-        let pasteboard = UIPasteboard.general
-        pasteboard.string = key
-        self.showSuccess(message: R.string.localizable.have_copied())
     }
 }

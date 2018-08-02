@@ -8,6 +8,7 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
 struct BackupPrivateKeyState: StateType {
@@ -15,9 +16,14 @@ struct BackupPrivateKeyState: StateType {
     var page: Int = 1
     var errorMessage:String?
     var property: BackupPrivateKeyPropertyState
+    var callback: BackupPrivateKeyCallbackState
 }
 
 struct BackupPrivateKeyPropertyState {
+}
+
+struct BackupPrivateKeyCallbackState {
+    var hadSaveCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
 }
 
 //MARK: - Action Creator
