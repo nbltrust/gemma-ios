@@ -35,6 +35,7 @@ class HomeViewController: BaseViewController {
         
         WalletManager.shared.FetchAccount { (account) in
             self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+            self.updateUI()
         }
     }
     
