@@ -16,6 +16,7 @@ class SetWalletViewController: BaseViewController {
     @IBOutlet weak var agree: UIButton!
     @IBOutlet weak var servers: UILabel!
     @IBOutlet weak var finished: Button!
+    @IBOutlet weak var fieldVIew: SetWalletContentView!
     
     
 	var coordinator: (SetWalletCoordinatorProtocol & SetWalletStateManagerProtocol)?
@@ -29,12 +30,24 @@ class SetWalletViewController: BaseViewController {
     func setupUI() {
         self.title = R.string.localizable.set_wallet_title()
         agree.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
-        
     }
     
     func setupEvent() {
         finished.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
+            
+            if let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text {
+                
+                self.coordinator?.importLocalWallet(password, hint: hint, completion: {[weak self] (success) in
+                    guard let `self` = self else { return }
+                    if success {
+                        self.coordinator?.importFinished()
+                    }
+                    else {
+                    }
+                })
+            }
+         
             
         }).disposed(by: disposeBag)
         

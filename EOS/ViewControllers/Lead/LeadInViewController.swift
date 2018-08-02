@@ -22,11 +22,6 @@ class LeadInViewController: BaseViewController {
     
     func setupUI() {
         self.title = R.string.localizable.lead_in()
-        self.configRightNavButton(R.image.scan_qr_code())
-    }
-    
-    override func rightAction(_ sender: UIButton) {
-        self.coordinator?.openScan()
     }
     
     func commonObserveState() {

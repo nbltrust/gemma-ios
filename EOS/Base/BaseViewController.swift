@@ -59,6 +59,7 @@ class BaseViewController: UIViewController {
     }
     
     
+    
     func hiddenNavBar() {
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -70,6 +71,7 @@ class BaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        endLoading()
         showNavBar()
     }
     

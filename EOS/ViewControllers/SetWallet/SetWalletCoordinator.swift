@@ -12,6 +12,7 @@ import ReSwift
 protocol SetWalletCoordinatorProtocol {
     
     func pushToServiceProtocolVC()
+    func importFinished()
 }
 
 protocol SetWalletStateManagerProtocol {
@@ -20,6 +21,8 @@ protocol SetWalletStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<SetWalletState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
+    func validForm(_ password:String, confirmPassword:String, hint:String) -> (Bool, String)
+    func importLocalWallet(_ password:String, hint:String, completion: @escaping (Bool)->Void)
 }
 
 class SetWalletCoordinator: HomeRootCoordinator {
@@ -42,6 +45,12 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
         self.rootVC.pushViewController(vc, animated: true)
     }
 
+    func importFinished() {
+        let count = self.rootVC.viewControllers.count
+        if count - 3 > 0, let vc = self.rootVC.viewControllers[count - 3] as? LeadInViewController {
+            vc.coordinator?.state.callback.fadeCallback.value?()
+        }
+    }
 }
 
 extension SetWalletCoordinator: SetWalletStateManagerProtocol {
@@ -55,4 +64,11 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func validForm(_ password:String, confirmPassword:String, hint:String) -> (Bool, String) {
+        return (true, "")
+    }
+    
+    func importLocalWallet(_ password:String, hint:String, completion: @escaping (Bool)->Void) {
+        WalletManager.shared.importPrivateKey(password, hint: hint, completion: completion)
+    }
 }
