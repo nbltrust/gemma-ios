@@ -19,7 +19,7 @@ class WalletManager {
     var currentPubKey:String = Defaults[.currentWallet]
     var account_names:[String] = []
     
-    private var priKey:String = ""
+    var priKey:String = ""
 
     private init() {
         //test

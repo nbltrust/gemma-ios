@@ -16,17 +16,10 @@ class PriKeyViewController: BaseViewController, IndicatorInfoProvider {
 
     @IBOutlet weak var priKeyView: PriKeyView!
     
-    var priKey: String?
-    
 	var coordinator: (PriKeyCoordinatorProtocol & PriKeyStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-    }
-    
-    func setupUI() {
-        priKeyView.priKey = priKey
     }
     
     func commonObserveState() {
@@ -54,7 +47,10 @@ extension PriKeyViewController {
         return IndicatorInfo(stringLiteral: R.string.localizable.priKey_title())
     }
     
-    @objc func savedKeySafely(_ data: [String : Any]) {
-        self.parent?.navigationController?.popViewController(animated: true)
+    @objc func copyPriKey(_ data: [String : Any]) {
+        let key = WalletManager.shared.priKey
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = key
+        self.showSuccess(message: R.string.localizable.have_copied())
     }
 }
