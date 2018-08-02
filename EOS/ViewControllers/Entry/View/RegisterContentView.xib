@@ -27,6 +27,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-ye-AF6" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="93" width="375" height="65.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0M-Q5-YdH" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="200" width="375" height="65.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -37,10 +41,6 @@
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-Dt-GCr" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="400" width="375" height="65.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-ye-AF6" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="93" width="375" height="65.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>

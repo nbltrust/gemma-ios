@@ -56,33 +56,106 @@
             <point key="canvasLocation" x="-703.20000000000005" y="116.49175412293854"/>
         </scene>
         <!--Pri Key View Controller-->
-        <scene sceneID="9Q4-tV-Fkx">
+        <scene sceneID="WBm-mK-mIf">
             <objects>
-                <viewController storyboardIdentifier="PriKeyViewController" id="PGL-qg-24s" customClass="PriKeyViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SpZ-b0-toB">
+                <viewController storyboardIdentifier="PriKeyViewController" id="HuS-Po-hNv" customClass="PriKeyViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gkL-L2-MHU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="hSS-tC-hk3"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="647" translatesAutoresizingMaskIntoConstraints="NO" id="lzy-aJ-fnk">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="61q-ee-tfb">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9P-qV-5iU" customClass="PriKeyView" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="N9P-qV-5iU" secondAttribute="bottom" id="Xhy-gi-KTr"/>
+                                            <constraint firstItem="N9P-qV-5iU" firstAttribute="leading" secondItem="61q-ee-tfb" secondAttribute="leading" id="Yco-u6-1t1"/>
+                                            <constraint firstItem="N9P-qV-5iU" firstAttribute="top" secondItem="61q-ee-tfb" secondAttribute="top" id="YiN-1M-b0E"/>
+                                            <constraint firstAttribute="trailing" secondItem="N9P-qV-5iU" secondAttribute="trailing" id="qG8-HE-m3w"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="61q-ee-tfb" firstAttribute="leading" secondItem="lzy-aJ-fnk" secondAttribute="leading" id="P2u-Wm-yMT"/>
+                                    <constraint firstAttribute="bottom" secondItem="61q-ee-tfb" secondAttribute="bottom" id="bTh-Ug-e8C"/>
+                                    <constraint firstItem="61q-ee-tfb" firstAttribute="top" secondItem="lzy-aJ-fnk" secondAttribute="top" id="kXp-hI-4YQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="61q-ee-tfb" secondAttribute="trailing" id="nwf-IZ-ehU"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="61q-ee-tfb" firstAttribute="width" secondItem="gkL-L2-MHU" secondAttribute="width" id="DaK-Lt-ACk"/>
+                            <constraint firstItem="LuZ-t8-cWy" firstAttribute="bottom" secondItem="lzy-aJ-fnk" secondAttribute="bottom" id="W4W-hH-YsY"/>
+                            <constraint firstItem="LuZ-t8-cWy" firstAttribute="trailing" secondItem="lzy-aJ-fnk" secondAttribute="trailing" id="qDO-uv-FTJ"/>
+                            <constraint firstItem="lzy-aJ-fnk" firstAttribute="leading" secondItem="LuZ-t8-cWy" secondAttribute="leading" id="waU-mr-Yw8"/>
+                            <constraint firstItem="lzy-aJ-fnk" firstAttribute="top" secondItem="LuZ-t8-cWy" secondAttribute="top" id="wja-ad-rQc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LuZ-t8-cWy"/>
                     </view>
+                    <connections>
+                        <outlet property="priKeyView" destination="N9P-qV-5iU" id="RQf-TS-9ow"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DKU-32-NBq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pqg-DT-WhR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-14" y="116"/>
+            <point key="canvasLocation" x="594.39999999999998" y="142.57871064467767"/>
         </scene>
         <!--Code View Controller-->
-        <scene sceneID="Jb1-76-qYq">
+        <scene sceneID="G9W-aP-bh5">
             <objects>
-                <viewController storyboardIdentifier="QRCodeViewController" id="pK5-1D-YyV" customClass="QRCodeViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xMM-L6-U1J">
+                <viewController storyboardIdentifier="QRCodeViewController" id="tFU-Tl-2ff" customClass="QRCodeViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LeG-A9-vJt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="0Ku-WY-aRL"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MwU-XB-sP6">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Scb-ud-B8E">
+                                        <rect key="frame" x="0.0" y="108" width="375" height="128"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4w-Ua-4wv" customClass="QRCodeView" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="8" width="375" height="128"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="s4w-Ua-4wv" firstAttribute="top" secondItem="Scb-ud-B8E" secondAttribute="top" id="AaQ-oa-8Vb"/>
+                                            <constraint firstAttribute="trailing" secondItem="s4w-Ua-4wv" secondAttribute="trailing" id="Taj-ZP-wxk"/>
+                                            <constraint firstAttribute="bottom" secondItem="s4w-Ua-4wv" secondAttribute="bottom" id="glX-5i-VIA"/>
+                                            <constraint firstItem="s4w-Ua-4wv" firstAttribute="leading" secondItem="Scb-ud-B8E" secondAttribute="leading" id="w5B-7i-I7n"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Scb-ud-B8E" firstAttribute="leading" secondItem="MwU-XB-sP6" secondAttribute="leading" id="PgO-lG-rov"/>
+                                    <constraint firstAttribute="bottom" secondItem="Scb-ud-B8E" secondAttribute="bottom" id="lrn-ji-0aH"/>
+                                    <constraint firstItem="Scb-ud-B8E" firstAttribute="top" secondItem="MwU-XB-sP6" secondAttribute="top" id="u3c-hC-rbM"/>
+                                    <constraint firstAttribute="trailing" secondItem="Scb-ud-B8E" secondAttribute="trailing" id="zkt-j0-GRU"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Scb-ud-B8E" firstAttribute="width" secondItem="LeG-A9-vJt" secondAttribute="width" id="23U-zJ-XDR"/>
+                            <constraint firstItem="x4p-KJ-r4H" firstAttribute="bottom" secondItem="MwU-XB-sP6" secondAttribute="bottom" id="TXb-ZL-Be7"/>
+                            <constraint firstItem="MwU-XB-sP6" firstAttribute="leading" secondItem="x4p-KJ-r4H" secondAttribute="leading" id="YJG-WW-yzG"/>
+                            <constraint firstItem="MwU-XB-sP6" firstAttribute="top" secondItem="x4p-KJ-r4H" secondAttribute="top" id="dbb-T8-Mv0"/>
+                            <constraint firstItem="x4p-KJ-r4H" firstAttribute="trailing" secondItem="MwU-XB-sP6" secondAttribute="trailing" id="v7K-Zb-G7I"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="x4p-KJ-r4H"/>
                     </view>
+                    <connections>
+                        <outlet property="qrCodeView" destination="s4w-Ua-4wv" id="k0v-2O-bfO"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jj9-CB-b0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VvB-hB-4XA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="674" y="119"/>
+            <point key="canvasLocation" x="1341.5999999999999" y="103.89805097451276"/>
         </scene>
     </scenes>
 </document>

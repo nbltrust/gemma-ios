@@ -10,13 +10,23 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import XLPagerTabStrip
 
-class QRCodeViewController: BaseViewController {
+class QRCodeViewController: BaseViewController, IndicatorInfoProvider {
 
-	var coordinator: (QRCodeCoordinatorProtocol & QRCodeStateManagerProtocol)?
+    var priKey: String?
+    
+    var coordinator: (QRCodeCoordinatorProtocol & QRCodeStateManagerProtocol)?
 
-	override func viewDidLoad() {
+    @IBOutlet weak var qrCodeView: QRCodeView!
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    func setupUI() {
+        qrCodeView.priKey = priKey
     }
     
     func commonObserveState() {
@@ -36,5 +46,15 @@ class QRCodeViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+    }
+}
+
+extension QRCodeViewController {
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(stringLiteral: R.string.localizable.qrcode_title())
+    }
+    
+    @objc func savedKeySafely(_ data: [String : Any]) {
+        self.parent?.navigationController?.popViewController(animated: true)
     }
 }

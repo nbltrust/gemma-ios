@@ -31,7 +31,6 @@ class QRCodeCoordinator: HomeRootCoordinator {
 }
 
 extension QRCodeCoordinator: QRCodeCoordinatorProtocol {
-    
 }
 
 extension QRCodeCoordinator: QRCodeStateManagerProtocol {
