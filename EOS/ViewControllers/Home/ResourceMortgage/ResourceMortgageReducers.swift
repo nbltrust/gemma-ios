@@ -68,11 +68,12 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
 
     case let action as MAccountFetchedAction:
 //        let viewmodel = convertResourceViewModel()
-        
-        var viewmodel = convertResourceViewModelWithAccount(action.info, viewmodel:state.info.value!)
+        if let info = state.info.value {
+            let viewmodel = convertResourceViewModelWithAccount(action.info, viewmodel:info)
+            state.info.accept(viewmodel)
+        }
 //        viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
 //
-        state.info.accept(viewmodel)
     case let action as MRMBPriceFetchedAction:
 //        let viewmodel = convertResourceViewModel()
         var viewmodel = state.info.value

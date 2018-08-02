@@ -13,7 +13,7 @@ import Presentr
 protocol WalletManagerCoordinatorProtocol {
     func pushToChangeWalletName(model: WalletManagerModel)
     func pushToExportPrivateKey()
-    func pushToChangePassword()
+    func pushToChangePassword(_ pubKey:String)
 
 }
 
@@ -36,9 +36,15 @@ class WalletManagerCoordinator: HomeRootCoordinator {
 }
 
 extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
-    func pushToChangePassword() {
+    func pushToChangePassword(_ pubKey: String) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss)
+            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey) { priKey in
+                if let vc = R.storyboard.leadIn.setWalletViewController() {
+                    vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
+                    vc.isUpdatePassword = true
+                    self.rootVC.pushViewController(vc, animated: true)
+                }
+            }
         }
     }
     

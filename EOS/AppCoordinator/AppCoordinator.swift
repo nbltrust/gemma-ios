@@ -99,7 +99,7 @@ class AppCoordinator {
         
     }
     
-    func showPresenterPwd(leftIconType: leftIconType) {
+    func showPresenterPwd(leftIconType: leftIconType, pubKey:String = WalletManager.shared.currentPubKey, completion: StringCallback? = nil) {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 271)
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 271))
@@ -121,10 +121,11 @@ class AppCoordinator {
         if let vc = R.storyboard.transfer.transferConfirmPasswordViewController() {
             let coordinator = TransferConfirmPasswordCoordinator(rootVC: transferConfirmpwd.rootVC)
             vc.coordinator = coordinator
+            vc.publicKey = pubKey
             vc.iconType = leftIconType.rawValue
-            vc.callback = {[weak vc] in
+            vc.callback = {[weak vc] priKey in
                 vc?.dismiss(animated: true, completion: {
-                    
+                    completion?(priKey)
                 })
             }
             transferConfirmpwd.rootVC.pushViewController(vc, animated: true)

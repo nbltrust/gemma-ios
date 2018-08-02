@@ -15,7 +15,7 @@ protocol WalletCoordinatorProtocol {
     func pushToSetWalletVC()
 
     func pushToLeadInWallet()
-    func switchWallet(publicKey: String)
+    func popToLastVC()
 }
 
 protocol WalletStateManagerProtocol {
@@ -27,6 +27,7 @@ protocol WalletStateManagerProtocol {
     func createSectionOneDataInfo(data: [WalletManagerModel]) -> [LineView.LineViewModel]
     func createSectionTwoDataInfo() -> [LineView.LineViewModel]
 
+    func switchWallet(_ pubKey:String)
 }
 
 class WalletCoordinator: HomeRootCoordinator {
@@ -41,6 +42,10 @@ class WalletCoordinator: HomeRootCoordinator {
 }
 
 extension WalletCoordinator: WalletCoordinatorProtocol {
+    func popToLastVC() {
+        self.rootVC.popViewController()
+    }
+    
     func pushToWalletManager(data: WalletManagerModel) {
         if let vc = R.storyboard.wallet.walletManagerViewController() {
             let coordinator = WalletManagerCoordinator(rootVC: self.rootVC)
@@ -77,10 +82,7 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
-    func switchWallet(publicKey: String) {
-        WalletManager.shared.switchWallet(publicKey)
-    }
+
 }
 
 extension WalletCoordinator: WalletStateManagerProtocol {
@@ -92,10 +94,6 @@ extension WalletCoordinator: WalletStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<WalletState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
-    }
-    
-    func fetchAllWallet() {
-        WalletManager.shared
     }
     
     func createSectionOneDataInfo(data: [WalletManagerModel]) -> [LineView.LineViewModel] {
@@ -132,5 +130,9 @@ extension WalletCoordinator: WalletStateManagerProtocol {
                                             content_line_number: 1,
                                             isShowLineView: false)
         ]
+    }
+    
+    func switchWallet(_ pubKey:String) {
+        WalletManager.shared.switchWallet(pubKey)
     }
 }

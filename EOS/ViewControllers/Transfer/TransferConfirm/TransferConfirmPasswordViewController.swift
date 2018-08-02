@@ -30,7 +30,9 @@ class TransferConfirmPasswordViewController: BaseViewController {
     
     var iconType = ""
 
-    var callback: (() -> Void)?
+    var callback: StringCallback?
+    
+    var publicKey = WalletManager.shared.currentPubKey
     
     @IBOutlet weak var passwordView: TransferConfirmPasswordView!
     override func viewDidLoad() {
@@ -72,13 +74,13 @@ class TransferConfirmPasswordViewController: BaseViewController {
 
 extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
-        guard let _ = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: passwordView.textField.text!) else {
+        guard let priKey = WalletManager.shared.getCachedPriKey(publicKey, password: passwordView.textField.text!) else {
             self.showError(message: R.string.localizable.password_not_match())
             return
         }
         
         if let callback = self.callback {
-            callback()
+            callback(priKey)
             return
         }
         
