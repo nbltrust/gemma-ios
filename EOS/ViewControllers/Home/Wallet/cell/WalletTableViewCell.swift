@@ -20,33 +20,41 @@ class WalletTableViewCell: BaseTableViewCell {
         super.setSelected(selected, animated: animated)
         if selected == true {
             walletCellView.bgView.backgroundColor = UIColor.cornflowerBlue
+            walletCellView.name_style = LineViewStyleNames.select_name.rawValue
         }
-//        else {
-//
-//            walletCellView.bgView.backgroundColor = UIColor.whiteTwo
-//        }
+        else {
+            walletCellView.name_style = LineViewStyleNames.normal_name.rawValue
+            walletCellView.bgView.backgroundColor = UIColor.whiteTwo
+        }
         // Configure the view for the selected state
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
+        if self.isSelected {
+            return
+        }
         if highlighted == true {
             walletCellView.bgView.backgroundColor = UIColor.cornflowerBlue
+            walletCellView.name_style = LineViewStyleNames.select_name.rawValue
         }
-//        else {
-//            walletCellView.bgView.backgroundColor = UIColor.whiteTwo
-//        }
+        else {
+            walletCellView.name_style = LineViewStyleNames.normal_name.rawValue
+            walletCellView.bgView.backgroundColor = UIColor.whiteTwo
+        }
     }
     
     override func setup(_ data: Any?, indexPath: IndexPath) {
         walletCellView.index = indexPath.row.string
         walletCellView.data = data
         if let newData = data as? LineView.LineViewModel, newData.name == WalletManager.shared.currentWallet()?.name {
-            walletCellView.bgView.backgroundColor = UIColor.cornflowerBlue
-            walletCellView.name_style = LineViewStyleNames.select_name.rawValue
+
+//            self.setSelected(true, animated: true)
+//            self.setHighlighted(true, animated: true)
         } else {
-            walletCellView.bgView.backgroundColor = UIColor.whiteTwo
-            walletCellView.name_style = LineViewStyleNames.normal_name.rawValue
+
+//            self.setSelected(false, animated: true)
+//            self.setHighlighted(false, animated: true)
         }
     }
 }

@@ -24,13 +24,20 @@ class WalletViewController: BaseViewController {
     }
     
     func setupData() {
-        for wallet in WalletManager.shared.wallketList() {
+        var indexPath = 0
+        
+        for (index, wallet) in WalletManager.shared.wallketList().enumerated() {
             var model = WalletManagerModel()
             model.name = wallet.name
             model.address = wallet.publicKey
+            if model.name == WalletManager.shared.currentWallet()?.name {
+                indexPath = index
+            }
+            
             dataArray.append(model)
         }
         tableView.reloadData()
+        tableView.selectRow(at: IndexPath(row: indexPath, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,7 +130,7 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+//        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
             self.coordinator?.switchWallet(publicKey: dataArray[indexPath.row].address)
         } else {
