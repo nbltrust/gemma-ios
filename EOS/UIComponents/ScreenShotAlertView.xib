@@ -49,7 +49,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S28-JB-7Jy">
                     <rect key="frame" x="0.0" y="185" width="270" height="45"/>
-                    <color key="backgroundColor" name="cornflowerBlue" red="0.259" green="0.420" blue="0.831" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.25900000000000001" green="0.41999999999999998" blue="0.83099999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="gdB-9v-QNa"/>
                     </constraints>

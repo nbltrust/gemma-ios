@@ -14,7 +14,9 @@ import ReSwift
 class BackupPrivateKeyViewController: BaseViewController {
 
 	var coordinator: (BackupPrivateKeyCoordinatorProtocol & BackupPrivateKeyStateManagerProtocol)?
-
+    
+    var publicKey: String = WalletManager.shared.currentPubKey
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -41,6 +43,6 @@ class BackupPrivateKeyViewController: BaseViewController {
 
 extension BackupPrivateKeyViewController {
     @objc func know(_ data:[String:Any]) {
-        self.coordinator?.showPresenterVC()
+        self.coordinator?.showPresenterVC(publicKey)
     }
 }

@@ -27,8 +27,6 @@ class QRCodeView: UIView {
     
     @IBOutlet weak var actionView: Button!
     
-    var priKey: String?
-    
     var isShowQRCode: Bool = false
     
     override func layoutSubviews() {
@@ -58,14 +56,13 @@ class QRCodeView: UIView {
     }
     
     private func showQRCode() {
-        if let key = priKey {
-            if let qrCodeImage = EFQRCode.generate(
-                content: key, size: EFIntSize(width: 360, height: 360)
-                ) {
-                updateQrCode(qrCodeImage)
-            } else {
-                KRProgressHUD.showError(withMessage: R.string.localizable.qrcode_generate_failed())
-            }
+        let key = WalletManager.shared.priKey
+        if let qrCodeImage = EFQRCode.generate(
+            content: key, size: EFIntSize(width: 360, height: 360)
+            ) {
+            updateQrCode(qrCodeImage)
+        } else {
+            KRProgressHUD.showError(withMessage: R.string.localizable.qrcode_generate_failed())
         }
     }
     

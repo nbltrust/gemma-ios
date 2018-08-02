@@ -14,6 +14,7 @@ class PriKeyView: UIView {
     
     enum PriKeyEvent: String {
         case savedKeySafely
+        case copyPriKey
     }
     
     @IBOutlet weak var firstTitleView: TitleSubTitleView!
@@ -26,18 +27,8 @@ class PriKeyView: UIView {
     
     @IBOutlet weak var keyLabel: UILabel!
     
-    var priKey: String? {
-        didSet {
-            keyLabel.text = priKey ?? ""
-        }
-    }
-    
     @IBAction func clickToCopyPriKey(_ sender: Any) {
-        if let key = priKey {
-            let pasteboard = UIPasteboard.general
-            pasteboard.string = key
-            KRProgressHUD.showSuccess(withMessage: R.string.localizable.have_copied())
-        }
+        self.sendEventWith(PriKeyEvent.copyPriKey.rawValue, userinfo: [:])
     }
     
     func setupEvent() {
@@ -48,6 +39,10 @@ class PriKeyView: UIView {
         self.sendEventWith(PriKeyEvent.savedKeySafely.rawValue, userinfo: [:])
     }
     
+    func setupUI() {
+        keyLabel.text = WalletManager.shared.priKey
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
@@ -56,11 +51,13 @@ class PriKeyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
+        setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
+        setupUI()
     }
     
     fileprivate func loadViewFromNib() {
