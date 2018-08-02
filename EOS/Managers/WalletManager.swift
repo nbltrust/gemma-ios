@@ -68,10 +68,32 @@ class WalletManager {
         removePriKey()//清除私钥
         
         if let wallet = currentWallet() {
+            if account_names.count == 0 {
+                return "--"
+            }
             return account_names[wallet.accountIndex]
         }
         
         return "--"
+    }
+    
+    func FetchAccount(_ callback: @escaping StringCallback) {
+        if let wallet = currentWallet() {
+            if account_names.count == 0 {
+                fetchAccountNames(wallet.publicKey) { (success) in
+                    if success {
+                        callback(self.account_names[wallet.accountIndex])
+                    }
+                    else {
+                        callback("--")
+                    }
+                }
+                return
+            }
+            return callback(self.account_names[wallet.accountIndex])
+        }
+        
+        return callback("--")
     }
     
     func fetchAccountNames(_ publicKey:String, completion: @escaping (Bool)->Void) {
@@ -129,10 +151,10 @@ class WalletManager {
     
     func switchAccount(_ index:Int) {
         var wallets = Defaults[.walletList]
-        if let index = wallets.map({ $0.publicKey }).index(of: currentPubKey) {
-            var wallet = wallets[index]
+        if let walletIndex = wallets.map({ $0.publicKey }).index(of: currentPubKey) {
+            var wallet = wallets[walletIndex]
             wallet.accountIndex = index
-            wallets[index] = wallet
+            wallets[walletIndex] = wallet
             Defaults[.walletList] = wallets
         }
     }
@@ -178,7 +200,7 @@ class WalletManager {
         Defaults.remove(.walletList)
     }
     
-    private func removeWallet(_ publicKey:String) {
+    func removeWallet(_ publicKey:String) {
         var wallets = Defaults[.walletList]
         if let index = wallets.map({ $0.publicKey }).index(of: publicKey) {
             wallets.remove(at: index)
@@ -190,12 +212,15 @@ class WalletManager {
         try? keychain.remove("\(publicKey)-cypher")
     }
     
-    func switchToLastestWallet() {
+    func switchToLastestWallet() -> Bool {
         let wallets = Defaults[.walletList]
         
         if let wallket = wallets.last {
             switchWallet(wallket.publicKey)
+            return true
         }
+        
+        return false
     }
     
     func getCurrentSavedPublicKey() -> String {

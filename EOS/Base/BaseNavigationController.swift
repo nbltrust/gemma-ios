@@ -66,6 +66,7 @@ class BaseNavigationController: UINavigationController {
         }
     }
     
+    @discardableResult
     override func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
         if self.childViewControllers.count == 2 {
             let vc = self.childViewControllers[1]

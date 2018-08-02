@@ -21,17 +21,23 @@ class WalletViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupData()
     }
     
     func setupData() {
-        for i in 0..<3 {
+        for wallet in WalletManager.shared.wallketList() {
             var model = WalletManagerModel()
-            model.name = "awesome" + "\(i)"
-            model.address = "qwertyuiopfghjkcvbnui"
+            model.name = wallet.name
+            model.address = wallet.publicKey
             dataArray.append(model)
         }
         tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        dataArray.removeAll()
+        setupData()
     }
     
     func setupUI(){

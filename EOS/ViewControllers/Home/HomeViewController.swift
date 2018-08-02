@@ -33,7 +33,9 @@ class HomeViewController: BaseViewController {
             nav.navStyle = .clear
         }
         
-        coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+        WalletManager.shared.FetchAccount { (account) in
+            self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
