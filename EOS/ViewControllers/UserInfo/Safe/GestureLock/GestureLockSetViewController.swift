@@ -23,6 +23,7 @@ class GestureLockSetViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
     }
     
     func commonObserveState() {
@@ -40,11 +41,41 @@ class GestureLockSetViewController: BaseViewController {
     }
     
     func setupUI() {
-        
+        self.title = R.string.localizable.setting_set_password()
+        lockView.delegate = self
     }
     
     override func configureObserveState() {
         commonObserveState()
         
+        self.coordinator?.state.property.validedPassword.asObservable().subscribe(onNext: {[weak self] (isValided) in
+            guard let `self` = self else { return }
+            if isValided {
+                self.coordinator?.popVC()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
+        self.coordinator?.state.property.password.asObservable().subscribe(onNext: {[weak self] (password) in
+            guard let `self` = self else { return }
+            self.infoView.showSelectedItems(password)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
+        self.coordinator?.state.property.promotData.asObservable().subscribe(onNext: {[weak self] (arg0) in
+            guard let `self` = self else { return }
+            self.messageLabel.text = arg0.message
+            self.messageLabel.textColor = arg0.isWarning ? UIColor.scarlet : UIColor.darkSlateBlue
+            if arg0.isWarning {
+                self.lockView.warn()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+    }
+}
+
+extension GestureLockSetViewController: GestureLockViewDelegate {
+    func gestureLockViewDidTouchesEnd(_ lockView: GestureLockView) {
+        let password = lockView.password
+        if password.trimmed.count > 0 {
+            self.coordinator?.setPassword(lockView.password)
+        }
     }
 }

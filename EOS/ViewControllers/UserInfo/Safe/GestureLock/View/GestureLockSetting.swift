@@ -11,6 +11,9 @@ import Foundation
 public struct GestureLockSetting {
     static let warningColor = UIColor.scarlet
     
+    /*最短密码长度*/
+    static let minPasswordLength = 4
+    
     /*手势预览*/
     static let infoNormalColor = UIColor.cloudyBlue
     

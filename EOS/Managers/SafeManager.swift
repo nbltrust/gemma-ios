@@ -49,7 +49,7 @@ class SafeManager {
         return Defaults[.isGestureLockOpened]
     }
     
-    func removeGestureLockPassword() {
+    func closeGestureLock() {
         try? keychain.remove("\(gestureLockPassword)-gestureLockPassword")
         Defaults[.isGestureLockOpened] = false
     }
@@ -69,6 +69,7 @@ class SafeManager {
     }
     
     func saveGestureLockPassword(_ password: String) {
+        Defaults[.isGestureLockOpened] = true
         keychain[string: "\(gestureLockPassword)-gestureLockPassword"] = password
         Defaults[.isGestureLockOpened] = true
     }
