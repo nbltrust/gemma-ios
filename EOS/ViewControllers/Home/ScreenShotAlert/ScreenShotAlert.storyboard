@@ -19,9 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1e-Bg-DgA" customClass="ScreenShotAlertView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="230"/>
+                                <rect key="frame" x="52.5" y="218.5" width="270" height="230"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="270" id="8uL-wm-Pkv"/>
                                     <constraint firstAttribute="height" constant="230" id="lke-zv-9l9"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -31,10 +32,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="A1e-Bg-DgA" firstAttribute="top" secondItem="fpK-sN-rzS" secondAttribute="top" id="4VA-sa-jev"/>
-                            <constraint firstItem="fpK-sN-rzS" firstAttribute="trailing" secondItem="A1e-Bg-DgA" secondAttribute="trailing" id="D9f-Bc-g0U"/>
-                            <constraint firstItem="A1e-Bg-DgA" firstAttribute="leading" secondItem="fpK-sN-rzS" secondAttribute="leading" id="v3M-w5-5Wn"/>
+                            <constraint firstItem="A1e-Bg-DgA" firstAttribute="centerY" secondItem="UFF-uh-fRx" secondAttribute="centerY" id="7Uo-4V-xdw"/>
+                            <constraint firstItem="A1e-Bg-DgA" firstAttribute="centerX" secondItem="UFF-uh-fRx" secondAttribute="centerX" id="bQp-jc-5bZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fpK-sN-rzS"/>
                     </view>

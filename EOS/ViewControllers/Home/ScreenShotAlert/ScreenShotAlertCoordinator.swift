@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol ScreenShotAlertCoordinatorProtocol {
+    func dismiss()
 }
 
 protocol ScreenShotAlertStateManagerProtocol {
@@ -19,7 +20,7 @@ protocol ScreenShotAlertStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class ScreenShotAlertCoordinator: ScreenShotAlertRootCoordinator {
+class ScreenShotAlertCoordinator: HomeRootCoordinator {
     
     lazy var creator = ScreenShotAlertPropertyActionCreate()
     
@@ -31,7 +32,11 @@ class ScreenShotAlertCoordinator: ScreenShotAlertRootCoordinator {
 }
 
 extension ScreenShotAlertCoordinator: ScreenShotAlertCoordinatorProtocol {
-    
+    func dismiss() {
+        self.rootVC.dismiss(animated: true) {
+            
+        }
+    }
 }
 
 extension ScreenShotAlertCoordinator: ScreenShotAlertStateManagerProtocol {

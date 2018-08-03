@@ -17,7 +17,7 @@ class ScreenShotAlertViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.clear
+        self.view.backgroundColor = UIColor.black40
     }
     
     func commonObserveState() {
@@ -37,5 +37,11 @@ class ScreenShotAlertViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+    }
+}
+
+extension ScreenShotAlertViewController {
+    @objc func sureShot(_ data:[String: Any]) {
+        self.coordinator?.dismiss()
     }
 }
