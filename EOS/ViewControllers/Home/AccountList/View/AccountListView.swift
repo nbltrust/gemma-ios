@@ -26,6 +26,7 @@ class AccountListView: UIView {
     func setUp() {
         let nibString = R.nib.accountTableViewCell.name
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
+        tableView.tableFooterView?.height = 31
         updateHeight()
     }
     
