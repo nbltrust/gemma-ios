@@ -14,9 +14,15 @@ func GestureLockSetReducer(action:Action, state:GestureLockSetState?) -> Gesture
 }
 
 func GestureLockSetPropertyReducer(_ state: GestureLockSetPropertyState?, action: Action) -> GestureLockSetPropertyState {
-    var state = state ?? GestureLockSetPropertyState()
+    let state = state ?? GestureLockSetPropertyState()
     
     switch action {
+    case let action as SetPasswordAction:
+        state.password.accept(action.password)
+    case let action as SetValidedPasswordAction:
+        state.validedPassword.accept(action.valided)
+    case let action as SetPromotDataAction:
+        state.promotData.accept(action.data)
     default:
         break
     }

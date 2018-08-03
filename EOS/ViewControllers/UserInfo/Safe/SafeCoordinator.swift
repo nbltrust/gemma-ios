@@ -113,7 +113,7 @@ extension SafeCoordinator: SafeCoordinatorProtocol {
     }
     
     func closeGetureLock() {
-        
+        SafeManager.shared.closeGestureLock()
     }
     
     func updateGesturePassword() {

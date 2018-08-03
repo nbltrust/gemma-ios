@@ -79,7 +79,7 @@ class GestureLockView: UIView {
             itemLayers[Int("\(char)")!].status = .highlighted
         }
     }
-    
+        
     override func layoutSubviews() {
         super.layoutSubviews()
         let marginX = (frame.width - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
@@ -129,7 +129,13 @@ class GestureLockView: UIView {
     
     private func touchesEnd() {
         delegate?.gestureLockViewDidTouchesEnd(self)
-        self.reset()
+        delay(1.0) {
+            self.reset()
+        }
+    }
+    
+    func delay(_ interval: TimeInterval, handle: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: handle)
     }
     
     private func itemLayer(with touchLocation: CGPoint) -> GestureItemLayer? {

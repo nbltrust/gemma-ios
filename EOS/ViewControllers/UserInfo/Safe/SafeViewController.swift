@@ -81,15 +81,17 @@ class SafeViewController: BaseViewController {
     @objc func gestureLock(_ sender: UISwitch) {
         if sender.isOn {
             self.coordinator?.openGestureLock()
+            updateSafeSetting()
         } else {
             self.coordinator?.closeGetureLock()
+            updateSafeSetting()
         }
     }
     
     func updateSafeSetting() {
         faceView.safeSwitch.isOn = SafeManager.shared.isFaceIdOpened()
         fingerView.safeSwitch.isOn = SafeManager.shared.isFingerPrinterLockOpened()
-        gestureView.safeSwitch.isOn = SafeManager.shared.isFaceIdOpened()
+        gestureView.safeSwitch.isOn = SafeManager.shared.isGestureLockOpened()
         
         gestureView.isShowLineView = SafeManager.shared.isGestureLockOpened()
         gestureActionView.isHidden = !SafeManager.shared.isGestureLockOpened()
