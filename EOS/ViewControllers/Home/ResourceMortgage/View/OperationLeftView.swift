@@ -165,11 +165,18 @@ extension OperationLeftView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
         case InputType.cpu.rawValue:
+            if textField.text == "" {
+                cpuMortgageView.checkStatus = TextUIStyle.common
+            }
             cpuMortgageView.reloadActionViews(isEditing: false)
             self.sendEventWith(event.cpu.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
-//            cpuMortgageView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            self.sendEventWith(event.net.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
         case InputType.net.rawValue:
+            if textField.text == "" {
+                netMortgageView.checkStatus = TextUIStyle.common
+            }
             netMortgageView.reloadActionViews(isEditing: false)
+            self.sendEventWith(event.cpu.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
             self.sendEventWith(event.net.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
         default:
             return

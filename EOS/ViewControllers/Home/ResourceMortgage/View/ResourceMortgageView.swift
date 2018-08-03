@@ -42,10 +42,13 @@ class ResourceMortgageView: UIView {
     func setupEvent() {
         leftNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
+            self.endEditing(true)
+//            self.pageView.leftView.cpuMortgageView.resignFirstResponder()
             self.sendEventWith(event.leftnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         rightNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
+            self.endEditing(true)
             self.sendEventWith(event.rightnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }

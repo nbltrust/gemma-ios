@@ -132,6 +132,9 @@
 "export_private_sure" = "导出私钥";
 "backup_introduce_three" = "系统截图在相册中可能被其他APP查看。\n备份前可开启飞行模式！";
 "switch_account" = "切换账户";
+"confirm_pwd_title" = "Gemma不曾知晓钱包密码，每次操作需要输入密码以授权";
+"update_pwd_title" = "请输入原密码";
+"update_pwd_btntitle" = "验证密码";
 
 //zsy end
 

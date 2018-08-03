@@ -24,6 +24,9 @@ protocol ResourceMortgageStateManagerProtocol {
     func getAccountInfo(_ account:String)
     func cpuValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
     func netValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
+    
+    func cpuReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
+    func netReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
 }
 
 class ResourceMortgageCoordinator: HomeRootCoordinator {
@@ -103,12 +106,12 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
             
         }
         
-        SimpleHTTPService.requestETHPrice().done { (json) in
-            if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIO_DEFAULT_SYMBOL }).first {
-                self.store.dispatch(MRMBPriceFetchedAction(price: eos))
-            }
-            
-            }.cauterize()
+//        SimpleHTTPService.requestETHPrice().done { (json) in
+//            if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIO_DEFAULT_SYMBOL }).first {
+//                self.store.dispatch(MRMBPriceFetchedAction(price: eos))
+//            }
+//            
+//            }.cauterize()
     }
     
     func cpuValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
@@ -117,5 +120,13 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
     
     func netValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
         self.store.dispatch(netMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+    }
+    
+    func cpuReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
+        self.store.dispatch(cpuReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+    }
+    
+    func netReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
+        self.store.dispatch(netReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
     }
 }

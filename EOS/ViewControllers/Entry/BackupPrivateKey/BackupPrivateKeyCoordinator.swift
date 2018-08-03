@@ -35,7 +35,7 @@ class BackupPrivateKeyCoordinator: EntryRootCoordinator {
 extension BackupPrivateKeyCoordinator: BackupPrivateKeyCoordinatorProtocol {
     func showPresenterVC(_ pubKey: String) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, completion: {[weak self] (result) in
+            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, type: confirmType.backupPrivateKey.rawValue, completion: {[weak self] (result) in
                 guard let `self` = self else { return }
                 let copyVC = CopyPriKeyViewController()
                 let copyCoordinator = CopyPriKeyCoordinator(rootVC: self.rootVC)
