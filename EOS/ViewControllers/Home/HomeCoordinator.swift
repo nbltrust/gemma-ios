@@ -29,6 +29,8 @@ protocol HomeStateManagerProtocol {
     func getAccountInfo(_ account:String)
     
     func createDataInfo() -> [LineView.LineViewModel]
+    
+    func checkAccount(_ completion:@escaping ResultCallback)
 }
 
 class HomeCoordinator: HomeRootCoordinator {
@@ -62,6 +64,10 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
     func pushBackupVC() {
         if let vc = R.storyboard.entry.backupPrivateKeyViewController() {
             let coordinator = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
+            coordinator.state.callback.hadSaveCallback.accept {[weak self] in
+                guard let `self` = self else { return }
+                self.rootVC.popToRootViewController(animated: true)
+            }
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }
@@ -174,5 +180,9 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             content_line_number: 1,
                                             isShowLineView: false)
         ]
+    }
+    
+    func checkAccount(_ completion:@escaping ResultCallback) {
+        WalletManager.shared.validAccountRegisterSuccess(WalletManager.shared.currentPubKey, completion: completion)
     }
 }

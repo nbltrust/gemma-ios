@@ -12,6 +12,7 @@ import RxCocoa
 import ReSwift
 import HandyJSON
 import SwiftyJSON
+import NotificationBannerSwift
 
 class HomeViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -35,6 +36,7 @@ class HomeViewController: BaseViewController {
         
         WalletManager.shared.FetchAccount { (account) in
             self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+            self.updateUI()
         }
     }
     
@@ -52,7 +54,7 @@ class HomeViewController: BaseViewController {
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         
         headImageView.image = navBgImage()
-        updateUI()
+//        updateUI()
     }
     
     func updateUI() {
@@ -62,11 +64,32 @@ class HomeViewController: BaseViewController {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = false
         }
         
-        if WalletManager.shared.currentWallet() == nil {
-            tableHeaderView.backupLabelViewIsHidden = false
-        } else {
+        if let wallket = WalletManager.shared.currentWallet() {
+            if wallket.isBackUp {
+                tableHeaderView.backupLabelViewIsHidden = true
+            }
+            else {
+                tableHeaderView.backupLabelViewIsHidden = false
+            }
+            
+            self.coordinator?.checkAccount({ (show) in
+                if show {
+                    showWarning(R.string.localizable.red_warning())
+                }
+                else {
+                    
+                }
+            })
+        }
+        else {
             tableHeaderView.backupLabelViewIsHidden = true
         }
+     
+        
+       
+
+        
+        
 //        tableHeaderView.accountInfoView.cornerShadowView.setUp()
 //        self.tableHeaderView.layoutIfNeeded()
 //        self.tableView.tableHeaderView?.height = self.tableHeaderView.height

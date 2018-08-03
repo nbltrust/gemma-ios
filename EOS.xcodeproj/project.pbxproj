@@ -132,7 +132,6 @@
 		3B726C1521133502001E4850 /* ScreenShotAlertActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1121133502001E4850 /* ScreenShotAlertActions.swift */; };
 		3B726C1621133502001E4850 /* ScreenShotAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1221133502001E4850 /* ScreenShotAlertViewController.swift */; };
 		3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */; };
-		3B726C192113354C001E4850 /* ScreenShotAlertRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C182113354C001E4850 /* ScreenShotAlertRootCoordinator.swift */; };
 		3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */; };
 		3B8A0F0188C26CD5B89B88BB7CD2021A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BACC4715E3CF39C51CF4E44B54222588 /* Rubik-Light.ttf */; };
 		3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A69210587B4006EEB80 /* RedWarningView.swift */; };
@@ -339,6 +338,7 @@
 		73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A520F5F62B00756391 /* String+Detection.swift */; };
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
+		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
 		73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */; };
 		73F30B4120F6E6FF0016E950 /* UserInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */; };
 		73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */; };
@@ -3261,7 +3261,6 @@
 		3B726C1121133502001E4850 /* ScreenShotAlertActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertActions.swift; sourceTree = "<group>"; };
 		3B726C1221133502001E4850 /* ScreenShotAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertViewController.swift; sourceTree = "<group>"; };
 		3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertReducers.swift; sourceTree = "<group>"; };
-		3B726C182113354C001E4850 /* ScreenShotAlertRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertRootCoordinator.swift; sourceTree = "<group>"; };
 		3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScreenShotAlert.storyboard; sourceTree = "<group>"; };
 		3B7311947531F77FD28B5CBD2AE901D1 /* handle_tangencies.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle_tangencies.hpp; sourceTree = "<group>"; };
 		3B78507A0E83F865A114EC9D04BBA86C /* is_view_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_view_impl.hpp; sourceTree = "<group>"; };
@@ -5854,6 +5853,7 @@
 		73CAF80D39A4581F26A830ABC0587047 /* fail_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fail_function.hpp; sourceTree = "<group>"; };
 		73D60EA94E41654A2AD320B7B324BDA9 /* assert_word_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = assert_word_matcher.hpp; sourceTree = "<group>"; };
 		73DD7EB84F77B2E916A74B72ED0C0250 /* sub.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sub.hpp; sourceTree = "<group>"; };
+		73DDD9A12113F6B900023973 /* BannerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerColor.swift; sourceTree = "<group>"; };
 		73E114F7294F87FE354FC9C7CDC3F9E6 /* queue_op_status.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = queue_op_status.hpp; sourceTree = "<group>"; };
 		73E1477C6557ADBD81FE6FB6B62C00D6 /* collections_save_imp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = collections_save_imp.hpp; sourceTree = "<group>"; };
 		73EBF19A18A27B45382557E3C56B9916 /* dimension_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dimension_impl.hpp; sourceTree = "<group>"; };
@@ -16892,7 +16892,6 @@
 				3B726C1121133502001E4850 /* ScreenShotAlertActions.swift */,
 				3B726C1221133502001E4850 /* ScreenShotAlertViewController.swift */,
 				3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */,
-				3B726C182113354C001E4850 /* ScreenShotAlertRootCoordinator.swift */,
 				3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */,
 			);
 			path = ScreenShotAlert;
@@ -21888,6 +21887,14 @@
 				025A4E9E2D5E69205A111B4C5DABD93B /* integrate_times.hpp */,
 			);
 			path = detail;
+			sourceTree = "<group>";
+		};
+		73DDD9A02113F69700023973 /* NotificationBanner */ = {
+			isa = PBXGroup;
+			children = (
+				73DDD9A12113F6B900023973 /* BannerColor.swift */,
+			);
+			path = NotificationBanner;
 			sourceTree = "<group>";
 		};
 		73F30B3B20F6E6E30016E950 /* UserInfo */ = {
@@ -27571,6 +27578,7 @@
 		BF1BFB744DA3AF6EB9117D3D2C5298BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				73DDD9A02113F69700023973 /* NotificationBanner */,
 				F19CAE4F6CABC8FC1DB96C999714A0D6 /* Fonts */,
 				BDB000A6B05F9656F86F937D29156A83 /* Styles */,
 				90E096B680AA016D7BF8C3BA973AE2EA /* UIColor+Additions.swift */,
@@ -32679,7 +32687,6 @@
 				3BEC3F592111B689003C38FB /* BackupPrivateKeyView.swift in Sources */,
 				A35151B3922F34802807B89AA82B9D4E /* HomeViewController.swift in Sources */,
 				72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */,
-				3B726C192113354C001E4850 /* ScreenShotAlertRootCoordinator.swift in Sources */,
 				632FADFC1004A95370F910B28F2B1B3B /* Localzation+Extensions.swift in Sources */,
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
 				72FE5B8821009E4D00B29FEC /* LeadInCoordinator.swift in Sources */,
@@ -32736,6 +32743,7 @@
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				7224714A20F76B4600536BF4 /* DetailView.swift in Sources */,
 				725F68062101B8E50006BBA1 /* SetWalletViewController.swift in Sources */,
+				73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */,
 				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
 				73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */,

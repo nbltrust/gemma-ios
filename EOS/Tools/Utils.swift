@@ -10,6 +10,8 @@ import Foundation
 import SwifterSwift
 import Guitar
 import Device
+import NotificationBannerSwift
+import RxGesture
 
 func navBgImage() -> UIImage? {
     switch UIScreen.main.bounds.width {
@@ -26,6 +28,23 @@ func navBgImage() -> UIImage? {
 
 //func print<T>(file: String = #file, function: String = #function, line: Int = #line, _ message: T, color: UIColor = UIColor.white) {
 //}
+
+func showWarning(_ str:String) {
+    
+    let rightView = UIImageView(image: R.image.icNotifyCloseWhite())
+    rightView.isUserInteractionEnabled = true
+    rightView.contentMode = .center
+    
+    let banner = NotificationBanner(title: "", subtitle: str, rightView: rightView, style: .danger, colors: BannerColor())
+    banner.subtitleLabel?.type = .continuous
+    banner.duration = 10
+    rightView.rx.tapGesture().when(.recognized).subscribe(onNext: { (tap) in
+        banner.dismiss()
+    }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: banner.disposeBag)
+    
+    banner.autoDismiss = false
+    banner.show()
+}
 
 extension String {
     var eosAmount: String {

@@ -13,7 +13,7 @@ import SwiftyJSON
 import Alamofire
 
 enum NBLService {
-    case createAccount(account:String, pubKey:String, invitationCode:String)
+    case createAccount(account:String, pubKey:String, invitationCode:String, hash:String)
     case accountVerify(account:String)
     case accountHistory(account:String, showNum:Int, lastPosition:Int)
 }
@@ -66,12 +66,12 @@ struct NBLNetwork {
 
 extension NBLService : TargetType {
     var baseURL: URL {
-        return NetworkConfiguration.NBL_BASE_URL
+        return NetworkConfiguration.NBL_BASE_TEST_URL
     }
     
     var path: String {
         switch self {
-        case .createAccount(_, _, _):
+        case .createAccount(_, _, _, _):
             return "/api/v1/faucet/new"
         case .accountVerify(_):
             return "/account/verify"
@@ -86,8 +86,8 @@ extension NBLService : TargetType {
     
     var parameters: [String: Any] {
         switch self {
-        case let .createAccount(account, pubKey, invitationCode):
-            return ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": 1]
+        case let .createAccount(account, pubKey, invitationCode, hash):
+            return ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": 1, "hash": hash]
         case let .accountVerify(account):
             return ["account_name": account]
         case let .accountHistory(account, showNum, lastPosition):

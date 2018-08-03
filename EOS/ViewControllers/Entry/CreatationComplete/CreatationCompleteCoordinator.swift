@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 protocol CreatationCompleteCoordinatorProtocol {
-    func dismissCurrentNav()
+    func dismissCurrentNav(_ entry:UIViewController?)
     func pushBackupPrivateKeyVC()
 }
 
@@ -33,15 +33,27 @@ class CreatationCompleteCoordinator: EntryRootCoordinator {
 }
 
 extension CreatationCompleteCoordinator: CreatationCompleteCoordinatorProtocol {
-    func dismissCurrentNav() {
-        if let appdelegate = UIApplication.shared.delegate as? AppDelegate {
-            appdelegate.appcoordinator?.endEntry()
+    func dismissCurrentNav(_ entry:UIViewController? = nil) {
+        if let entry = entry as? EntryViewController {
+            entry.coordinator?.state.callback.endCallback.value?()
+            return
+        }
+        if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
+            vc.coordinator?.state.callback.endCallback.value?()
         }
     }
     
     func pushBackupPrivateKeyVC() {
         let vc = R.storyboard.entry.backupPrivateKeyViewController()!
         let coor = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
+        
+        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
+            coor.state.callback.hadSaveCallback.accept {[weak self] in
+                guard let `self` = self else { return }
+                self.dismissCurrentNav(entry)
+            }
+        }
+      
         vc.coordinator = coor
         self.rootVC.pushViewController(vc, animated: true)
     }

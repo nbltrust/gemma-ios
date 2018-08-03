@@ -41,7 +41,7 @@ class OperationLeftView: UIView {
     
     func handleSetupSubView(_ titleTextfieldView : TitleTextfieldView, tag: Int) {
         titleTextfieldView.titleLabel.font = UIFont.cnTitleMedium
-        titleTextfieldView.textField.font = UIFont.enTextNormal
+        titleTextfieldView.textField.font = UIFont.pfScR16
         titleTextfieldView.textField.tag = tag
         titleTextfieldView.textField.delegate = self
         titleTextfieldView.delegate = self
