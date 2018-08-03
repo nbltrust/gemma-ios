@@ -16,6 +16,7 @@ struct EntryState: StateType {
     var page: Int = 1
     var errorMessage:String?
     var property: EntryPropertyState
+    var callback: EntryCallbackState
 }
 
 struct EntryPropertyState {
@@ -24,6 +25,10 @@ struct EntryPropertyState {
     var comfirmPasswordValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
     var inviteCodeValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
     var isAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+}
+
+struct EntryCallbackState {
+    var endCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
 }
 
 struct nameAction: Action {

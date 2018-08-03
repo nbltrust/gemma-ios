@@ -64,6 +64,10 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
     func pushBackupVC() {
         if let vc = R.storyboard.entry.backupPrivateKeyViewController() {
             let coordinator = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
+            coordinator.state.callback.hadSaveCallback.accept {[weak self] in
+                guard let `self` = self else { return }
+                self.rootVC.popToRootViewController(animated: true)
+            }
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }

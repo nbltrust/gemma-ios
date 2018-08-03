@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 func EntryReducer(action:Action, state:EntryState?) -> EntryState {
-    return EntryState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: EntryPropertyReducer(state?.property, action: action))
+    return EntryState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: EntryPropertyReducer(state?.property, action: action), callback: state?.callback ?? EntryCallbackState())
 }
 
 func EntryPropertyReducer(_ state: EntryPropertyState?, action: Action) -> EntryPropertyState {

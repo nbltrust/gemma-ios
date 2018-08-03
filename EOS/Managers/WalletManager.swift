@@ -277,7 +277,7 @@ class WalletManager {
         guard let txId = wallet.txId else { completion(false); return }
 
         EOSIONetwork.request(target: .get_transaction(id: txId), success: { (json) in
-            if let block_num = json["trx"]["trx"]["ref_block_num"].int, let lib = json["last_irreversible_block_num"].int {
+            if let block_num = json["trx"]["trx"]["ref_block_num"].int, let lib = json["last_irreversible_block"].int {
                 if block_num <= lib {
                     self.registerSuccess(pubKey)
                     completion(true)
@@ -287,7 +287,7 @@ class WalletManager {
                 }
             }
             else {
-                NBLNetwork.request(target: .createAccount(account: self.account_names[self.currentWalletCount()], pubKey: pubKey, invitationCode: wallet.invitationCode ?? ""), success: { (data) in
+                NBLNetwork.request(target: .createAccount(account: self.account_names[wallet.accountIndex], pubKey: pubKey, invitationCode: wallet.invitationCode ?? "", hash: txId), success: { (data) in
                     if let newTxid = data["txId"].string {
                         wallet.txId = newTxid
                         wallets[index] = wallet
