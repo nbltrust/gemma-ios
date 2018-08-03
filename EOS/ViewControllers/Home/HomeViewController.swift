@@ -12,6 +12,7 @@ import RxCocoa
 import ReSwift
 import HandyJSON
 import SwiftyJSON
+import NotificationBannerSwift
 
 class HomeViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -53,7 +54,7 @@ class HomeViewController: BaseViewController {
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         
         headImageView.image = navBgImage()
-        updateUI()
+//        updateUI()
     }
     
     func updateUI() {
@@ -68,6 +69,15 @@ class HomeViewController: BaseViewController {
         } else {
             tableHeaderView.backupLabelViewIsHidden = true
         }
+        
+        self.coordinator?.checkAccount({ (show) in
+            if show {
+                showWarning(R.string.localizable.red_warning())
+            }
+            else {
+                
+            }
+        })
 //        tableHeaderView.accountInfoView.cornerShadowView.setUp()
 //        self.tableHeaderView.layoutIfNeeded()
 //        self.tableView.tableHeaderView?.height = self.tableHeaderView.height

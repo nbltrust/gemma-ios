@@ -99,7 +99,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         KRProgressHUD.show()
         NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode), success: { (data) in
             KRProgressHUD.showSuccess()
-            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue)
+            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
             self.pushToCreateSuccessVC()
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {

@@ -33,11 +33,11 @@ class WalletManager {
         }
     }
     
-    func saveWallket(_ account:String, password:String, hint:String, isImport:Bool = false, txID:String? = nil) {
+    func saveWallket(_ account:String, password:String, hint:String, isImport:Bool = false, txID:String? = nil, invitationCode: String? = nil) {
         savePriKey(priKey,publicKey: currentPubKey, password:password)
         savePasswordHint(currentPubKey, hint:hint)
         
-        addToLocalWallet(isImport, txID: txID)
+        addToLocalWallet(isImport, txID: txID, invitationCode:invitationCode)
         switchWallet(currentPubKey)
         switchAccount(0)
         
@@ -62,12 +62,12 @@ class WalletManager {
         }
     }
     
-    func addToLocalWallet(_ isImport:Bool = false, txID:String?) {
+    func addToLocalWallet(_ isImport:Bool = false, txID:String?, invitationCode:String?) {
         var wallets = Defaults[.walletList]
         
         if !wallets.map({ $0.publicKey }).contains(currentPubKey) {
             let currentIndex = currentWalletCount() + 1
-            let wallet = WalletList(name: "EOS-WALLET-\(currentIndex)", publicKey: currentPubKey, accountIndex: 0, isBackUp: isImport ? true : false, isConfirmLib: isImport ? true : false, txId: txID)
+            let wallet = WalletList(name: "EOS-WALLET-\(currentIndex)", publicKey: currentPubKey, accountIndex: 0, isBackUp: isImport ? true : false, isConfirmLib: isImport ? true : false, txId: txID, invitationCode:invitationCode)
             wallets.append(wallet)
             Defaults[.walletList] = wallets
         }
@@ -173,22 +173,21 @@ class WalletManager {
         return currentWalletCount() != 0
     }
     
-    func registerSuccess() {
-        let pubKey = Defaults[.currentWallet]
+    func registerSuccess(_ pubKey:String) {
         var wallets = wallketList()
         
         if let index = wallets.map({ $0.publicKey }).index(of: pubKey) {
             var wallet = wallets[index]
             wallet.isConfirmLib = true
             wallet.txId = nil
+            wallet.invitationCode = nil
             wallets[index] = wallet
             
             Defaults[.walletList] = wallets
         }
     }
     
-    func backupSuccess() {
-        let pubKey = Defaults[.currentWallet]
+    func backupSuccess(_ pubKey:String) {
         var wallets = wallketList()
         
         if let index = wallets.map({ $0.publicKey }).index(of: pubKey) {
@@ -265,25 +264,51 @@ class WalletManager {
         return nil
     }
     
-    func validAccountRegisterSuccess(_ completion: @escaping (Bool)->Void) {
-        guard let wallet = WalletManager.shared.currentWallet(), let txId = wallet.txId else { completion(false); return }
+    func validAccountRegisterSuccess(_ pubKey:String, completion: @escaping (Bool)->Void) {
+        var wallets = wallketList()
+        
+        guard let index = wallets.map({ $0.publicKey }).index(of: pubKey) else {
+            completion(false)
+            return
+        }
+        
+        var wallet = wallets[index]
+    
+        guard let txId = wallet.txId else { completion(false); return }
+
         EOSIONetwork.request(target: .get_transaction(id: txId), success: { (json) in
-            let block_num = json["ref_block_num"].intValue
-            
-            EOSIONetwork.request(target: .get_info, success: { (json) in
-                let lib = json["last_irreversible_block_num"].intValue
+            if let block_num = json["trx"]["trx"]["ref_block_num"].int, let lib = json["last_irreversible_block_num"].int {
                 if block_num <= lib {
+                    self.registerSuccess(pubKey)
                     completion(true)
                 }
                 else {
                     completion(false)
                 }
-            }, error: { (code) in
-                completion(false)
-
-            }) { (error) in
-                completion(false)
             }
+            else {
+                NBLNetwork.request(target: .createAccount(account: self.account_names[self.currentWalletCount()], pubKey: pubKey, invitationCode: wallet.invitationCode ?? ""), success: { (data) in
+                    if let newTxid = data["txId"].string {
+                        wallet.txId = newTxid
+                        wallets[index] = wallet
+                        Defaults[.walletList] = wallets
+                    }
+                    completion(false)
+
+                }, error: { (code) in
+                    self.removeWallet(pubKey)
+                    self.switchToLastestWallet()
+                    completion(false)
+
+                    if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                        
+                    }
+                }) { (error) in
+                    completion(false)
+
+                }
+            }
+
         }, error: { (code) in
             completion(false)
         }) { (error) in

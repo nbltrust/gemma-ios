@@ -16,6 +16,7 @@ struct WalletList: Codable, DefaultsSerializable {
     var isBackUp: Bool
     var isConfirmLib: Bool
     var txId: String?
+    var invitationCode:String?
 }
 
 extension WalletList: DefaultsDefaultArrayValueType {

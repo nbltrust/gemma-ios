@@ -59,8 +59,7 @@ struct EOSIONetwork {
 extension EOSIOService : TargetType {
     var baseURL: URL {
         switch self {
-        case .get_transaction(_):
-            return NetworkConfiguration.EOS_BP_URL
+ 
         default:
             return NetworkConfiguration.EOSIO_BASE_TEST_URL
         }

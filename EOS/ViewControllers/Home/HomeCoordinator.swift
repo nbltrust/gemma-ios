@@ -29,6 +29,8 @@ protocol HomeStateManagerProtocol {
     func getAccountInfo(_ account:String)
     
     func createDataInfo() -> [LineView.LineViewModel]
+    
+    func checkAccount(_ completion:@escaping ResultCallback)
 }
 
 class HomeCoordinator: HomeRootCoordinator {
@@ -174,5 +176,9 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             content_line_number: 1,
                                             isShowLineView: false)
         ]
+    }
+    
+    func checkAccount(_ completion:@escaping ResultCallback) {
+        WalletManager.shared.validAccountRegisterSuccess(WalletManager.shared.currentPubKey, completion: completion)
     }
 }

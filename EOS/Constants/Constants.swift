@@ -26,6 +26,7 @@ struct AppConfiguration {
 
 struct NetworkConfiguration {
     static let NBL_BASE_URL = URL(string: "http://139.196.73.117:3001")!
+    static let NBL_BASE_TEST_URL = URL(string: "http://139.196.73.117:3002")!
 
     static let EOSIO_BASE_TEST_URL = URL(string: "http://139.224.135.236:18888")!//URL(string: "http://172.20.5.25:9999")!
     static let EOSIO_BASE_URL = URL(string: "http://139.196.73.117:8888")!
@@ -53,6 +54,7 @@ enum GemmaError: Error {
         case accountWrongLengthCode    = 10006
         case parameterWrongCode        = 10007
         case invalidPubKeyCode         = 10008
+        case retryFailCode             = 10013
         case balanceNotEnoughCode      = 20001
         case creatAccountFailedCode    = 20002
         
@@ -76,6 +78,8 @@ enum GemmaError: Error {
                 return R.string.localizable.error_balance_unenough()
             case .creatAccountFailedCode:
                 return R.string.localizable.error_createAccount_failed()
+            default:
+                return ""
             }
         }
         
