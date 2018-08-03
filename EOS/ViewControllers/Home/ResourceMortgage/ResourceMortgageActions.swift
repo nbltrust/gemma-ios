@@ -66,9 +66,11 @@ struct OperationViewModel {
 }
 
 struct ResourceMortgagePropertyState {
-    var info:BehaviorRelay<ResourceViewModel?> = BehaviorRelay(value: nil)
+    var info:BehaviorRelay<ResourceViewModel?> = BehaviorRelay(value: ResourceViewModel(general: [GeneralViewModel(name: R.string.localizable.cpu(), eos: "0.100 EOS", leftSub: R.string.localizable.use() + " - " + R.string.localizable.ms(), rightSub: R.string.localizable.total() + " - " + R.string.localizable.ms(), lineHidden: false, progress: 0.0),GeneralViewModel(name: R.string.localizable.net(), eos: "0.100 EOS", leftSub: R.string.localizable.use() + " - " + R.string.localizable.kb(), rightSub: R.string.localizable.total() + " - " + R.string.localizable.kb(), lineHidden: false, progress: 0.0)], page: PageViewModel(balance: "0.01 EOS", leftText: R.string.localizable.mortgage_resource(), rightText: R.string.localizable.cancel_mortgage(), operationLeft: [OperationViewModel(title: R.string.localizable.mortgage_cpu(), placeholder: R.string.localizable.mortgage_placeholder(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: true, isSecureTextEntry: false),OperationViewModel(title: R.string.localizable.mortgage_net(), placeholder: R.string.localizable.mortgage_placeholder(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: false, isSecureTextEntry: false)], operationRight: [OperationViewModel(title: R.string.localizable.cpu(), placeholder: R.string.localizable.mortgage_cancel_placeholder(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: true, isSecureTextEntry: false),OperationViewModel(title: R.string.localizable.net(), placeholder: R.string.localizable.mortgage_cancel_placeholder(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: false, isSecureTextEntry: false)])))
     var cpuMoneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
     var netMoneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
+    var cpuReliveMoneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
+    var netReliveMoneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
     var CNY_price:String = ""
 }
 
@@ -84,16 +86,24 @@ struct netMoneyAction: Action {
     var balance = ""
 }
 
+struct cpuReliveMoneyAction: Action {
+    var cpuMoney = ""
+    var netMoney = ""
+    var balance = ""
+}
+
+struct netReliveMoneyAction: Action {
+    var cpuMoney = ""
+    var netMoney = ""
+    var balance = ""
+}
+
 struct MBalanceFetchedAction:Action {
     var balance:JSON
 }
 
 struct MAccountFetchedAction:Action {
     var info:Account
-}
-
-struct MRMBPriceFetchedAction:Action {
-    var price:JSON
 }
 
 //MARK: - Action Creator

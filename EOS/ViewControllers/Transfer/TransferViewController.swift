@@ -162,6 +162,7 @@ extension TransferViewController {
         data.recever = self.accountTextField.text!
         data.amount = self.transferContentView.moneyTitleTextView.textField.text!
         data.remark = self.transferContentView.remarkTitleTextView.textView.text!
+        data.buttonTitle = R.string.localizable.check_transfer()
         self.coordinator?.pushToTransferConfirmVC(data: data)
     }
     @objc func transferMoney(_ data: [String : Any]) {
