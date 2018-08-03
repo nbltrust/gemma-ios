@@ -214,5 +214,10 @@
 "qrcode_generate_failed" = "二维码生成失败";
 "have_copied" = "已复制到剪贴板";
 "un_get_prikey" = "未获取到私钥";
+"fingerid_reason" = "使用您的Touch ID进行安全验证";
+"faceid_reason" = "使用您的FaceId进行安全验证";
+"unsupport_faceid" = "此设备不支持面容解锁";
+"guide_open_faceid" = "Face ID已锁定，请前往设置中解锁";
+"guide_open_finger" = "Touch ID已锁定，请前往设置中解锁";
 
 

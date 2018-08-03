@@ -1,8 +1,8 @@
 //
-//  GestureLockSetViewController.swift
+//  FingerPrinterConfirmViewController.swift
 //  EOS
 //
-//  Created peng zhu on 2018/7/19.
+//  Created peng zhu on 2018/8/3.
 //  Copyright © 2018年 com.nbltrust. All rights reserved.
 //
 
@@ -11,15 +11,9 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class GestureLockSetViewController: BaseViewController {
+class FingerPrinterConfirmViewController: BaseViewController {
 
-    @IBOutlet weak var infoView: GestureLockInfoView!
-    
-    @IBOutlet weak var messageLabel: UILabel!
-    
-    @IBOutlet weak var lockView: GestureLockView!
-    
-    var coordinator: (GestureLockSetCoordinatorProtocol & GestureLockSetStateManagerProtocol)?
+	var coordinator: (FingerPrinterConfirmCoordinatorProtocol & FingerPrinterConfirmStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,18 +33,8 @@ class GestureLockSetViewController: BaseViewController {
         }
     }
     
-    func setupUI() {
-        lockView.delegate = self
-    }
-    
     override func configureObserveState() {
         commonObserveState()
-        
-    }
-}
-
-extension GestureLockSetViewController: GestureLockViewDelegate {
-    func gestureLockViewDidTouchesEnd(_ lockView: GestureLockView) {
         
     }
 }

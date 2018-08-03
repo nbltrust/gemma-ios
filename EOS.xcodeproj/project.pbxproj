@@ -85,6 +85,14 @@
 		22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B520FD8A0600284A0A /* ScanPreviewView.swift */; };
 		22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B820FDDF0400284A0A /* ScanCornerView.swift */; };
 		22C023BD20FEF0A300284A0A /* ScanRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023BC20FEF0A300284A0A /* ScanRootCoordinator.swift */; };
+		22E40AAB211453D600F1648C /* FingerPrinterConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AA7211453D600F1648C /* FingerPrinterConfirmCoordinator.swift */; };
+		22E40AAC211453D600F1648C /* FingerPrinterConfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AA8211453D600F1648C /* FingerPrinterConfirmActions.swift */; };
+		22E40AAD211453D600F1648C /* FingerPrinterConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AA9211453D600F1648C /* FingerPrinterConfirmViewController.swift */; };
+		22E40AAE211453D600F1648C /* FingerPrinterConfirmReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AAA211453D600F1648C /* FingerPrinterConfirmReducers.swift */; };
+		22E40AB32114540600F1648C /* FaceIDComfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AAF2114540600F1648C /* FaceIDComfirmCoordinator.swift */; };
+		22E40AB42114540600F1648C /* FaceIDComfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AB02114540600F1648C /* FaceIDComfirmActions.swift */; };
+		22E40AB52114540600F1648C /* FaceIDComfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AB12114540600F1648C /* FaceIDComfirmViewController.swift */; };
+		22E40AB62114540600F1648C /* FaceIDComfirmReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AB22114540600F1648C /* FaceIDComfirmReducers.swift */; };
 		24DB2001F45219964C7C00660C7FAD74 /* map.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = D37EB2084A5F0BCBD7AC0127F484EF67 /* map.SUNWCCh */; };
 		267D15355147463B9F3A4323FEFA93A6 /* utility.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 57B7E46E6DAB4556E33BC9EDAC656EC7 /* utility.SUNWCCh */; };
 		293724C94FEA66BB7CBDEC50A91A0C83 /* ostream.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 2517D8C8DC5C7533C63215A87510F188 /* ostream.SUNWCCh */; };
@@ -2111,6 +2119,14 @@
 		22D6933D9F7CD5DCDF7B536336B420D9 /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		22DCD20D8FA4FFC155EF5959188449C8 /* random_access_index.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = random_access_index.hpp; sourceTree = "<group>"; };
 		22E024D118A9C05B839986337C342ADD /* deref_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = deref_impl.hpp; sourceTree = "<group>"; };
+		22E40AA7211453D600F1648C /* FingerPrinterConfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerPrinterConfirmCoordinator.swift; sourceTree = "<group>"; };
+		22E40AA8211453D600F1648C /* FingerPrinterConfirmActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerPrinterConfirmActions.swift; sourceTree = "<group>"; };
+		22E40AA9211453D600F1648C /* FingerPrinterConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerPrinterConfirmViewController.swift; sourceTree = "<group>"; };
+		22E40AAA211453D600F1648C /* FingerPrinterConfirmReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerPrinterConfirmReducers.swift; sourceTree = "<group>"; };
+		22E40AAF2114540600F1648C /* FaceIDComfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDComfirmCoordinator.swift; sourceTree = "<group>"; };
+		22E40AB02114540600F1648C /* FaceIDComfirmActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDComfirmActions.swift; sourceTree = "<group>"; };
+		22E40AB12114540600F1648C /* FaceIDComfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDComfirmViewController.swift; sourceTree = "<group>"; };
+		22E40AB22114540600F1648C /* FaceIDComfirmReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDComfirmReducers.swift; sourceTree = "<group>"; };
 		22E44848270B68F4E7AA0A78B12F5282 /* any_parser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = any_parser.hpp; sourceTree = "<group>"; };
 		22FC20FCE984FCEC4B496466BF0BCDC0 /* repetitive_view_fwd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = repetitive_view_fwd.hpp; sourceTree = "<group>"; };
 		2305011921C22598CB00B5811E765693 /* permittivity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = permittivity.hpp; sourceTree = "<group>"; };
@@ -14707,6 +14723,10 @@
 		2253C51D21105C590043AAF7 /* FaceId */ = {
 			isa = PBXGroup;
 			children = (
+				22E40AAF2114540600F1648C /* FaceIDComfirmCoordinator.swift */,
+				22E40AB02114540600F1648C /* FaceIDComfirmActions.swift */,
+				22E40AB12114540600F1648C /* FaceIDComfirmViewController.swift */,
+				22E40AB22114540600F1648C /* FaceIDComfirmReducers.swift */,
 			);
 			path = FaceId;
 			sourceTree = "<group>";
@@ -14714,6 +14734,10 @@
 		2253C51E21105C680043AAF7 /* FingerPrinter */ = {
 			isa = PBXGroup;
 			children = (
+				22E40AA7211453D600F1648C /* FingerPrinterConfirmCoordinator.swift */,
+				22E40AA8211453D600F1648C /* FingerPrinterConfirmActions.swift */,
+				22E40AA9211453D600F1648C /* FingerPrinterConfirmViewController.swift */,
+				22E40AAA211453D600F1648C /* FingerPrinterConfirmReducers.swift */,
 			);
 			path = FingerPrinter;
 			sourceTree = "<group>";
@@ -32563,6 +32587,7 @@
 				22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */,
 				3B3147072108134600E815BD /* PageView.swift in Sources */,
 				73B5A69920F5DFF400756391 /* ColorTheme.swift in Sources */,
+				22E40AB42114540600F1648C /* FaceIDComfirmActions.swift in Sources */,
 				4E8664CF0182B65EC69790B3811E80C3 /* BaseTableViewCell.swift in Sources */,
 				3BD3663B20F6F9E3004DE09D /* TransferConfirmCoordinator.swift in Sources */,
 				72FE5B7421006B0700B29FEC /* NormalContentCoordinator.swift in Sources */,
@@ -32627,6 +32652,7 @@
 				9CD3F0FA07578C28658D2A1189A8E39D /* EOSIONetworkService.swift in Sources */,
 				C9BB02B547453DD0482F5745ADB47B83 /* EntryActions.swift in Sources */,
 				3B3146F92106D56500E815BD /* ResourceMortgageViewController.swift in Sources */,
+				22E40AB52114540600F1648C /* FaceIDComfirmViewController.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
 				73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */,
 				72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */,
@@ -32678,16 +32704,19 @@
 				221EC1CF21008F1B0059F856 /* GestureLockComfirmActions.swift in Sources */,
 				08979875F7919749EE9911341C1DA85E /* NavCoordinator.swift in Sources */,
 				72101698210197C10059B37E /* ChangeWalletNameCoordinator.swift in Sources */,
+				22E40AAD211453D600F1648C /* FingerPrinterConfirmViewController.swift in Sources */,
 				725F68052101B8E50006BBA1 /* SetWalletActions.swift in Sources */,
 				72FE5B802100867B00B29FEC /* SafeLineView.swift in Sources */,
 				2253C53A2111A6450043AAF7 /* PriKeyReducers.swift in Sources */,
 				2253C5372111A6450043AAF7 /* PriKeyCoordinator.swift in Sources */,
 				72FE5B3D20FF401B00B29FEC /* NormalCellView.swift in Sources */,
 				2B1048E593DFE3B00BA04C75B88E9469 /* PaymentsRecordsCell.swift in Sources */,
+				22E40AB32114540600F1648C /* FaceIDComfirmCoordinator.swift in Sources */,
 				73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */,
 				3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */,
 				22C023A220F6FDB900284A0A /* CreatationCompleteReducers.swift in Sources */,
 				2253C5272111A5F90043AAF7 /* CopyPriKeyCoordinator.swift in Sources */,
+				22E40AB62114540600F1648C /* FaceIDComfirmReducers.swift in Sources */,
 				2B427CD0E35711458F16196E6587BA7A /* PaymentsRecordsCellView.swift in Sources */,
 				7210168F210197C10059B37E /* WalletReducers.swift in Sources */,
 				72FE5B7521006B0700B29FEC /* NormalContentActions.swift in Sources */,
@@ -32714,6 +32743,7 @@
 				725F68072101B8E50006BBA1 /* SetWalletReducers.swift in Sources */,
 				73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */,
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
+				22E40AAC211453D600F1648C /* FingerPrinterConfirmActions.swift in Sources */,
 				2253C53E2111C9390043AAF7 /* TitleSubTitleView.swift in Sources */,
 				3BC12AA721060927006EEB80 /* AccountListRootCoordinator.swift in Sources */,
 				2253C5482111CD6C0043AAF7 /* PriKeyView.swift in Sources */,
@@ -32737,6 +32767,7 @@
 				7224713220F5F92B00536BF4 /* HomeHeaderView.swift in Sources */,
 				72D645B721106860003F660D /* LeadInKeyActions.swift in Sources */,
 				221EC1C721008EF50059F856 /* GestureLockSetActions.swift in Sources */,
+				22E40AAE211453D600F1648C /* FingerPrinterConfirmReducers.swift in Sources */,
 				221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */,
 				3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */,
 				3BEC3F552111B4FC003C38FB /* BackupPrivateKeyViewController.swift in Sources */,
@@ -32752,6 +32783,7 @@
 				6F3BB5C8972D01A3B05201EC928A1021 /* UIResponder+Extensions.swift in Sources */,
 				221EC1C821008EF50059F856 /* GestureLockSetViewController.swift in Sources */,
 				72FE5B632100491300B29FEC /* ServersCoordinator.swift in Sources */,
+				22E40AAB211453D600F1648C /* FingerPrinterConfirmCoordinator.swift in Sources */,
 				703AA2BBC02CA49A0C74B4880E75F696 /* UIView+Extensions.swift in Sources */,
 				73F30B4920F6F17B0016E950 /* UIViewController+Extensions.swift in Sources */,
 				3B3146FF2106D62900E815BD /* GeneralCellView.swift in Sources */,

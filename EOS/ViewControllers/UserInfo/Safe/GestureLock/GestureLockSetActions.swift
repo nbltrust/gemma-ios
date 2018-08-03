@@ -8,6 +8,7 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
 struct GestureLockSetState: StateType {
@@ -18,7 +19,14 @@ struct GestureLockSetState: StateType {
 }
 
 struct GestureLockSetPropertyState {
+    var password: BehaviorRelay<String> = BehaviorRelay(value: "")
+    var validedPassword: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 }
+
+struct SetPasswordAction {
+    var password: String?
+}
+
 
 //MARK: - Action Creator
 class GestureLockSetPropertyActionCreate {

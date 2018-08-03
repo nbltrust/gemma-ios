@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol GestureLockViewDelegate: NSObjectProtocol {
+    func gestureLockViewDidTouchesEnd(_ lockView: GestureLockView)
+}
+
 class GestureLockView: UIView {
 
+    open weak var delegate: GestureLockViewDelegate?
+    
     private var itemLayers: [GestureItemLayer] = []
     
     private var selectedItemLayers: [GestureItemLayer] = []
@@ -122,6 +128,7 @@ class GestureLockView: UIView {
     }
     
     private func touchesEnd() {
+        delegate?.gestureLockViewDidTouchesEnd(self)
         self.reset()
     }
     

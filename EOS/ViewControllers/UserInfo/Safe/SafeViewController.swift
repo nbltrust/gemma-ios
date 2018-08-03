@@ -20,6 +20,7 @@ class SafeViewController: BaseViewController {
     @IBOutlet weak var gestureView: SafeLineView!
     @IBOutlet weak var gestureActionView: NormalCellView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -36,37 +37,53 @@ class SafeViewController: BaseViewController {
     }
     
     func setupEvent() {
-        faceView.safeSwitch.rx.isOn.asObservable().subscribe(onNext: {[weak self] (isOn) in
-            if isOn {
-                self?.coordinator?.openFaceIdLock({ (result) in
-                    
-                })
-            } else {
-                self?.coordinator?.closeFaceIdLock({ (reuslt) in
-                    
-                })
-            }
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
-        fingerView.safeSwitch.rx.isOn.asObservable().subscribe(onNext: {[weak self] (isOn) in
-            if isOn {
-                self?.coordinator?.openFingerSingerLock({ (result) in
-                    
-                })
-            } else {
-                self?.coordinator?.closeFingerSingerLock({ (reuslt) in
-                    
-                })
-            }
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
-        gestureView.safeSwitch.rx.isOn.asObservable().subscribe(onNext: {[weak self] (isOn) in
-            if isOn {
-                self?.coordinator?.openGestureLock()
-            } else {
-                self?.coordinator?.closeGetureLock()
-            }
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        faceView.safeSwitch.addTarget(self, action: #selector(faceLock(_:)), for: .valueChanged)
+        fingerView.safeSwitch.addTarget(self, action: #selector(fingerLock(_:)), for: .valueChanged)
+        gestureView.safeSwitch.addTarget(self, action: #selector(gestureLock(_:)), for: .valueChanged)
+    }
+    
+    @objc func faceLock(_ sender: UISwitch) {
+        if sender.isOn {
+            self.coordinator?.openFaceIdLock({[weak self] (result) in
+                guard let `self` = self else { return }
+                if !result {
+                    self.updateSafeSetting()
+                }
+            })
+        } else {
+            self.coordinator?.closeFaceIdLock({[weak self] (result) in
+                guard let `self` = self else { return }
+                if !result {
+                    self.updateSafeSetting()
+                }
+            })
+        }
+    }
+    
+    @objc func fingerLock(_ sender: UISwitch) {
+        if sender.isOn {
+            self.coordinator?.openFingerSingerLock({[weak self] (result) in
+                guard let `self` = self else { return }
+                if !result {
+                    self.updateSafeSetting()
+                }
+            })
+        } else {
+            self.coordinator?.closeFingerSingerLock({[weak self] (result) in
+                guard let `self` = self else { return }
+                if !result {
+                    self.updateSafeSetting()
+                }
+            })
+        }
+    }
+    
+    @objc func gestureLock(_ sender: UISwitch) {
+        if sender.isOn {
+            self.coordinator?.openGestureLock()
+        } else {
+            self.coordinator?.closeGetureLock()
+        }
     }
     
     func updateSafeSetting() {
@@ -74,6 +91,7 @@ class SafeViewController: BaseViewController {
         fingerView.safeSwitch.isOn = SafeManager.shared.isFingerPrinterLockOpened()
         gestureView.safeSwitch.isOn = SafeManager.shared.isFaceIdOpened()
         
+        gestureView.isShowLineView = SafeManager.shared.isGestureLockOpened()
         gestureActionView.isHidden = !SafeManager.shared.isGestureLockOpened()
     }
     
