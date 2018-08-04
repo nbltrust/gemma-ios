@@ -54,6 +54,18 @@ class ResourceMortgageView: UIView {
     }
     
     func setupUI() {
+        cpuView.name = R.string.localizable.cpu()
+        cpuView.leftSubText = R.string.localizable.use() + " - " + R.string.localizable.ms()
+        cpuView.rightSubText = R.string.localizable.total() + " - " + R.string.localizable.ms()
+        cpuView.eos = "- EOS"
+        cpuView.lineIsHidden = false
+        
+        netView.name = R.string.localizable.net()
+        netView.leftSubText = R.string.localizable.use() + " - " + R.string.localizable.kb()
+        netView.rightSubText = R.string.localizable.total() + " - " + R.string.localizable.kb()
+        netView.eos = "- EOS"
+        cpuView.lineIsHidden = true
+
         leftNextButton.isHidden = false
         rightNextButton.isHidden = true
     }
