@@ -52,6 +52,9 @@ extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
     }
     
     func finishCopy() {
+        if let pubKey = EOSIO.getPublicKey(WalletManager.shared.priKey) {
+            WalletManager.shared.backupSuccess(pubKey)
+        }
         if let lastVC = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? BackupPrivateKeyViewController {
             lastVC.coordinator?.state.callback.hadSaveCallback.value?()
         }

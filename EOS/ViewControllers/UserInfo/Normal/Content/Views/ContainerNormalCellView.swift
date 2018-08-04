@@ -32,7 +32,7 @@ class ContainerNormalCellView: UIView {
                     cellView.name_style = LineViewStyleNames.normal_name.rawValue
                     cellView.rightIconName = index == self.selectedIndex ? R.image.group.name : R.image.select.name
                     if index == data.count - 1{
-                        cellView.isShowLineView = true
+                        cellView.isShowLineView = false
                     }
                     self.stackView.addArrangedSubview(cellView)
                     cellView.height(48)

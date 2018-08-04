@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import BiometricAuthentication
+import KRProgressHUD
 
 protocol SafeCoordinatorProtocol {
     //MARK: - FaceId
@@ -50,29 +51,69 @@ class SafeCoordinator: UserInfoRootCoordinator {
 extension SafeCoordinator: SafeCoordinatorProtocol {
     //MARK: - FaceId
     func openFaceIdLock(_ callback: @escaping (Bool) -> ()) {
-        
+        if BioMetricAuthenticator.canAuthenticate() {
+            if BioMetricAuthenticator.shared.faceIDAvailable() {
+                BioMetricAuthenticator.authenticateWithBioMetrics(reason: R.string.localizable.faceid_reason(), success: {
+                    SafeManager.shared.openFaceId()
+                    callback(true)
+                }) { (error) in
+                    if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
+                        callback(false)
+                    } else {
+                        KRProgressHUD.showError(withMessage: error.message())
+                        callback(false)
+                    }
+                }
+            } else {
+                KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_faceid())
+                callback(false)
+            }
+        } else {
+            KRProgressHUD.showError(withMessage: R.string.localizable.guide_open_faceid())
+            callback(false)
+        }
     }
     
     func closeFaceIdLock(_ callback: @escaping (Bool) -> ()) {
-        
+        SafeManager.shared.closeFaceId()
+        callback(true)
     }
     
     //MARK: - FingerSinger
     func openFingerSingerLock(_ callback: @escaping (Bool) -> ()) {
-        
+        if BioMetricAuthenticator.canAuthenticate() {
+            BioMetricAuthenticator.authenticateWithPasscode(reason: R.string.localizable.fingerid_reason(), success: {
+                SafeManager.shared.openFingerPrinter()
+                callback(true)
+            }) { (error) in
+                if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
+                    callback(false)
+                } else {
+                    KRProgressHUD.showError(withMessage: error.message())
+                    callback(false)
+                }
+            }
+        } else {
+            KRProgressHUD.showError(withMessage: R.string.localizable.guide_open_finger())
+            callback(false)
+        }
     }
     
     func closeFingerSingerLock(_ callback: @escaping (Bool) -> ()) {
-        
+        SafeManager.shared.closeFingerPrinter()
+        callback(true)
     }
     
     //MARK: - Gesture
     func openGestureLock() {
-        
+        let gestureLockVC = R.storyboard.userInfo.gestureLockSetViewController()
+        let coordinator = GestureLockSetCoordinator(rootVC: self.rootVC)
+        gestureLockVC?.coordinator = coordinator
+        self.rootVC.pushViewController(gestureLockVC!, animated: true)
     }
     
     func closeGetureLock() {
-        
+        SafeManager.shared.closeGestureLock()
     }
     
     func updateGesturePassword() {

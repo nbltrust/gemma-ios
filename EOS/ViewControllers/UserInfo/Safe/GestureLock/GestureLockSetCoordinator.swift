@@ -16,7 +16,7 @@ enum GestureLockMode: Int {
 }
 
 protocol GestureLockSetCoordinatorProtocol {
-    
+    func popVC()
 }
 
 protocol GestureLockSetStateManagerProtocol {
@@ -24,6 +24,8 @@ protocol GestureLockSetStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<GestureLockSetState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func setPassword(_ password: String)
 }
 
 class GestureLockSetCoordinator: NavCoordinator {
@@ -38,7 +40,9 @@ class GestureLockSetCoordinator: NavCoordinator {
 }
 
 extension GestureLockSetCoordinator: GestureLockSetCoordinatorProtocol {
-    
+    func popVC() {
+        self.rootVC.popViewController(animated: true)
+    }
 }
 
 extension GestureLockSetCoordinator: GestureLockSetStateManagerProtocol {
@@ -50,6 +54,26 @@ extension GestureLockSetCoordinator: GestureLockSetStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<GestureLockSetState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
+    }
+    
+    func setPassword(_ password: String) {
+        if password.count < GestureLockSetting.minPasswordLength {
+            self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough(), true)))
+        } else {
+            if !self.state.property.validedPassword.value {
+                if self.state.property.password.value.count == 0 {
+                    self.store.dispatch(SetPasswordAction(password: password))
+                    self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_confirm_pla(), false)))
+                } else {
+                    if password == self.state.property.password.value {
+                        SafeManager.shared.saveGestureLockPassword(password)
+                        self.store.dispatch(SetValidedPasswordAction(valided: true))
+                    } else {
+                        self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_notequal(), false)))
+                    }
+                }
+            }
+        }
     }
     
 }

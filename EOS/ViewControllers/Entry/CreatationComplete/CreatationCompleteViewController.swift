@@ -41,7 +41,7 @@ class CreatationCompleteViewController: BaseViewController {
         
         comfirmView.cancelButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
-            self.coordinator?.dismissCurrentNav()
+            self.coordinator?.dismissCurrentNav(nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
