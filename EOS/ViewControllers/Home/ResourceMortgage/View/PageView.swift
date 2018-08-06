@@ -23,7 +23,7 @@ class PageView: UIView {
     var data: Any? {
         didSet {
             if let data = data as? PageViewModel {
-                balance = data.balance
+                balance = R.string.localizable.balance_pre() + data.balance
                 leftLabel.text = data.leftText
                 rightLabel.text = data.rightText
                 leftView.data = data.operationLeft
@@ -45,7 +45,22 @@ class PageView: UIView {
     
     var index = page.left
     
-    var balance = "" {
+    @IBInspectable
+    var leftText: String = "" {
+        didSet {
+            leftLabel.text = leftText
+        }
+    }
+    
+    @IBInspectable
+    var rightText: String = "" {
+        didSet {
+            rightLabel.text = rightText
+        }
+    }
+    
+    @IBInspectable
+    var balance: String = "" {
         didSet {
             balanceLabel.text = balance
         }

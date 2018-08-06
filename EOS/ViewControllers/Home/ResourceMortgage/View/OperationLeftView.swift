@@ -34,15 +34,21 @@ class OperationLeftView: UIView {
     }
     
     func setUp() {
+        setupUI()
         handleSetupSubView(cpuMortgageView, tag: InputType.cpu.rawValue)
         handleSetupSubView(netMortgageView, tag: InputType.net.rawValue)
         updateHeight()
+    }
+    
+    func setupUI() {
+        cpuMortgageView.setting = TitleTextSetting(title: "cdcs", placeholder: "cd", warningText: "", introduce: "", isShowPromptWhenEditing: true, showLine: true, isSecureTextEntry: false)
     }
     
     func handleSetupSubView(_ titleTextfieldView : TitleTextfieldView, tag: Int) {
         titleTextfieldView.titleLabel.font = UIFont.cnTitleMedium
         titleTextfieldView.textField.font = UIFont.pfScR16
         titleTextfieldView.textField.tag = tag
+        titleTextfieldView.textField.keyboardType = .numberPad
         titleTextfieldView.textField.delegate = self
         titleTextfieldView.delegate = self
         titleTextfieldView.datasource = self
@@ -123,13 +129,23 @@ extension OperationLeftView: TitleTextFieldViewDelegate,TitleTextFieldViewDataSo
                 }
             }
         } else {
-            return TitleTextSetting(title: "",
-                                    placeholder: "",
-                                    warningText: "",
-                                    introduce: "",
-                                    isShowPromptWhenEditing: true,
-                                    showLine: true,
-                                    isSecureTextEntry: false)
+            if titleTextFieldView == cpuMortgageView {
+                return TitleTextSetting(title: R.string.localizable.mortgage_cpu(),
+                                        placeholder: R.string.localizable.mortgage_placeholder(),
+                                        warningText: "",
+                                        introduce: "",
+                                        isShowPromptWhenEditing: true,
+                                        showLine: true,
+                                        isSecureTextEntry: false)
+            } else {
+                return TitleTextSetting(title: R.string.localizable.mortgage_net(),
+                                        placeholder: R.string.localizable.mortgage_placeholder(),
+                                        warningText: "",
+                                        introduce: "",
+                                        isShowPromptWhenEditing: true,
+                                        showLine: false,
+                                        isSecureTextEntry: false)
+            }
         }
     }
     
@@ -165,11 +181,18 @@ extension OperationLeftView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
         case InputType.cpu.rawValue:
+            if textField.text == "" {
+                cpuMortgageView.checkStatus = TextUIStyle.common
+            }
             cpuMortgageView.reloadActionViews(isEditing: false)
             self.sendEventWith(event.cpu.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
-//            cpuMortgageView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            self.sendEventWith(event.net.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
         case InputType.net.rawValue:
+            if textField.text == "" {
+                netMortgageView.checkStatus = TextUIStyle.common
+            }
             netMortgageView.reloadActionViews(isEditing: false)
+            self.sendEventWith(event.cpu.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
             self.sendEventWith(event.net.rawValue, userinfo: ["cputextfieldview":cpuMortgageView, "nettextfieldview":netMortgageView])
         default:
             return

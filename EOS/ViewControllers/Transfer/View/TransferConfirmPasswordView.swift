@@ -12,6 +12,8 @@ enum confirmType: String {
     case transfer
     case mortgage
     case relieveMortgage
+    case updatePwd
+    case backupPrivateKey
 }
 
 class TransferConfirmPasswordView: UIView {
@@ -20,11 +22,24 @@ class TransferConfirmPasswordView: UIView {
     }
     
     @IBOutlet weak var textField: UITextField!
-    
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nextButton: Button!
+    
+    var title = "" {
+        didSet {
+            titleLabel.text = title
+        }
+    }
+    
     var pwd = "" {
         didSet {
             textField.text = pwd
+        }
+    }
+    
+    var btnTitle = "" {
+        didSet {
+            nextButton.title = btnTitle
         }
     }
     

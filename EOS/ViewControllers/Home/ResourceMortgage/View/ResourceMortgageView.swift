@@ -42,15 +42,30 @@ class ResourceMortgageView: UIView {
     func setupEvent() {
         leftNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
+            self.endEditing(true)
+//            self.pageView.leftView.cpuMortgageView.resignFirstResponder()
             self.sendEventWith(event.leftnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         rightNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
+            self.endEditing(true)
             self.sendEventWith(event.rightnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     func setupUI() {
+        cpuView.name = R.string.localizable.cpu()
+        cpuView.leftSubText = R.string.localizable.use() + " - " + R.string.localizable.ms()
+        cpuView.rightSubText = R.string.localizable.total() + " - " + R.string.localizable.ms()
+        cpuView.eos = "- EOS"
+        cpuView.lineIsHidden = false
+        
+        netView.name = R.string.localizable.net()
+        netView.leftSubText = R.string.localizable.use() + " - " + R.string.localizable.kb()
+        netView.rightSubText = R.string.localizable.total() + " - " + R.string.localizable.kb()
+        netView.eos = "- EOS"
+        cpuView.lineIsHidden = true
+
         leftNextButton.isHidden = false
         rightNextButton.isHidden = true
     }

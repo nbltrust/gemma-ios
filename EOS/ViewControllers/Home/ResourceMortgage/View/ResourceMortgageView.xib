@@ -50,13 +50,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="182"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrI-xN-M9Z" customClass="GeneralCellView" customModule="EOS" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="90"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="91"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="90" id="zfW-4y-pm6"/>
+                                                                <constraint firstAttribute="height" constant="91" id="zfW-4y-pm6"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y04-02-qme" customClass="GeneralCellView" customModule="EOS" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="90" width="343" height="92"/>
+                                                            <rect key="frame" x="0.0" y="91" width="343" height="91"/>
                                                         </view>
                                                     </subviews>
                                                 </stackView>
@@ -94,6 +94,11 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="265" id="zs8-Hp-znC"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="leftText" value="抵押资源"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="rightText" value="解除抵押"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="balance" value="余额：- EOS"/>
+                                    </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKV-5k-kxB" customClass="Button" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="32" y="551" width="311" height="44"/>

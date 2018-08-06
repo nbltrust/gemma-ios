@@ -36,7 +36,6 @@ class HomeViewController: BaseViewController {
         
         WalletManager.shared.FetchAccount { (account) in
             self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
-            self.updateUI()
         }
     }
     
@@ -119,6 +118,8 @@ class HomeViewController: BaseViewController {
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             self.tableHeaderView.data = model
+            self.updateUI()
+
             self.tableHeaderView.layoutIfNeeded()
             
             self.tableView.tableHeaderView?.height = self.tableHeaderView.height

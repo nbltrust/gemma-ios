@@ -29,7 +29,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
     var type = ""
     
     var iconType = ""
-
+    
     var callback: StringCallback?
     
     var publicKey = WalletManager.shared.currentPubKey
@@ -37,10 +37,19 @@ class TransferConfirmPasswordViewController: BaseViewController {
     @IBOutlet weak var passwordView: TransferConfirmPasswordView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    func setupUI() {
         if self.iconType == leftIconType.dismiss.rawValue {
             configLeftNavButton(R.image.icTransferClose())
         } else {
             configLeftNavButton(R.image.icBack())
+        }
+        
+        if type == confirmType.updatePwd.rawValue {
+            passwordView.title = R.string.localizable.update_pwd_title()
+            passwordView.btnTitle = R.string.localizable.update_pwd_btntitle()
         }
     }
     

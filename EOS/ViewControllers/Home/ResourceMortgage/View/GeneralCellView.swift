@@ -39,9 +39,33 @@ class GeneralCellView: UIView {
         }
     }
     
+    var lineIsHidden = false {
+        didSet {
+            lineView.isHidden = lineIsHidden
+        }
+    }
+    
     var eos: String = "" {
         didSet {
             eosLabel.text = eos
+        }
+    }
+    
+    var name: String = "" {
+        didSet {
+            nameLabel.text = name
+        }
+    }
+    
+    var leftSubText: String = "" {
+        didSet {
+            leftSubLabel.text = leftSubText
+        }
+    }
+    
+    var rightSubText: String = "" {
+        didSet {
+            rightSubLabel.text = rightSubText
         }
     }
     

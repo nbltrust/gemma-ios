@@ -99,11 +99,17 @@ class AppCoordinator {
         
     }
     
-    func showPresenterPwd(leftIconType: leftIconType, pubKey:String = WalletManager.shared.currentPubKey, completion: StringCallback? = nil) {
+    func showPresenterPwd(leftIconType: leftIconType, pubKey:String = WalletManager.shared.currentPubKey, type: String,completion: StringCallback? = nil) {
         let width = ModalSize.full
-        let height = ModalSize.custom(size: 271)
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 271))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
+        
+        var height:Float = 271.0
+        if type == confirmType.updatePwd.rawValue {
+            height = 249.0
+        }
+        let heightSize = ModalSize.custom(size: height)
+
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - height.cgFloat))
+        let customType = PresentationType.custom(width: width, height: heightSize, center: center)
         
         let presenter = Presentr(presentationType: customType)
         presenter.keyboardTranslationType = .moveUp
@@ -123,6 +129,7 @@ class AppCoordinator {
             vc.coordinator = coordinator
             vc.publicKey = pubKey
             vc.iconType = leftIconType.rawValue
+            vc.type = type
             vc.callback = {[weak vc] priKey in
                 vc?.dismiss(animated: true, completion: {
                     completion?(priKey)

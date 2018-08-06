@@ -19,20 +19,6 @@ struct ResourceMortgageState: StateType {
     var property: ResourceMortgagePropertyState
 }
 
-struct MortgageViewModel {
-    var account:String = "-"
-    var portrait:String = ""
-    var allAssets:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"// 1.0000 EOS
-    var balance:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    var CNY:String = "≈- CNY"
-    var recentRefundAsset:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    var refundTime:String = ""
-    var cpuValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    var netValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    var ramValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    
-}
-
 struct GeneralViewModel {
     var name = ""
     var eos = "- EOS"
@@ -67,8 +53,10 @@ struct OperationViewModel {
 
 struct ResourceMortgagePropertyState {
     var info:BehaviorRelay<ResourceViewModel?> = BehaviorRelay(value: nil)
-    var cpuMoneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
-    var netMoneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
+    var cpuMoneyValid: BehaviorRelay<(Bool,String,String)> = BehaviorRelay(value: (false,"",""))
+    var netMoneyValid: BehaviorRelay<(Bool,String,String)> = BehaviorRelay(value: (false,"",""))
+    var cpuReliveMoneyValid: BehaviorRelay<(Bool,String,String)> = BehaviorRelay(value: (false,"",""))
+    var netReliveMoneyValid: BehaviorRelay<(Bool,String,String)> = BehaviorRelay(value: (false,"",""))
     var CNY_price:String = ""
 }
 
@@ -84,16 +72,24 @@ struct netMoneyAction: Action {
     var balance = ""
 }
 
+struct cpuReliveMoneyAction: Action {
+    var cpuMoney = ""
+    var netMoney = ""
+    var balance = ""
+}
+
+struct netReliveMoneyAction: Action {
+    var cpuMoney = ""
+    var netMoney = ""
+    var balance = ""
+}
+
 struct MBalanceFetchedAction:Action {
     var balance:JSON
 }
 
 struct MAccountFetchedAction:Action {
     var info:Account
-}
-
-struct MRMBPriceFetchedAction:Action {
-    var price:JSON
 }
 
 //MARK: - Action Creator

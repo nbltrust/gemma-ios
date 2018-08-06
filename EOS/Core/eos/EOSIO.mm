@@ -49,5 +49,12 @@ eosio::keosdlib k;
     return @(k.signTransaction_undelegatebw(privateKey.UTF8String, code.UTF8String, from.UTF8String, getinfo.UTF8String, abistr.UTF8String, 0, 0).c_str());
 }
 
++ (NSString *)getDelegateAbi:(NSString *)code action:(NSString *)action from:(NSString *)from receiver:(NSString *)receiver stake_net_quantity:(NSString *)stake_net_quantity stake_cpu_quantity:(NSString *)stake_cpu_quantity {
+        return @(k.create_abi_req_delegatebw(code.UTF8String, action.UTF8String, from.UTF8String, receiver.UTF8String, stake_net_quantity.UTF8String, stake_cpu_quantity.UTF8String).c_str());
+}
+
++ (NSString *)getUnDelegateAbi:(NSString *)code action:(NSString *)action from:(NSString *)from receiver:(NSString *)receiver unstake_net_quantity:(NSString *)unstake_net_quantity unstake_cpu_quantity:(NSString *)unstake_cpu_quantity {
+    return @(k.create_abi_req_undelegatebw(code.UTF8String, action.UTF8String, from.UTF8String, receiver.UTF8String, unstake_net_quantity.UTF8String, unstake_cpu_quantity.UTF8String).c_str());
+}
 
 @end
