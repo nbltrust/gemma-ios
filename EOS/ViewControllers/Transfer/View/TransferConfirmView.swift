@@ -43,7 +43,11 @@ class TransferConfirmView: UIView {
             if data.remark == "" {
                 data.remark = R.string.localizable.default_remark_pre() + WalletManager.shared.getAccount() + R.string.localizable.default_remark_after()
             }
-            remarkView.content.numberOfLines = 0
+            if data.buttonTitle == R.string.localizable.check_transfer() {
+                remarkView.content.numberOfLines = 1
+            } else {
+                remarkView.content.numberOfLines = 0
+            }
             remarkView.content_text = data.remark
             if data.payAccount == "" {
                 bottomView.isHidden = true

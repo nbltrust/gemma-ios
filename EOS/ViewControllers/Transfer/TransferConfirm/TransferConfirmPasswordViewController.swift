@@ -29,7 +29,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
     var type = ""
     
     var iconType = ""
-
+    
     var callback: StringCallback?
     
     var publicKey = WalletManager.shared.currentPubKey

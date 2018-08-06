@@ -27,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lNs-dO-BDr">
-                    <rect key="frame" x="16" y="48" width="344" height="4"/>
+                    <rect key="frame" x="16" y="130" width="344" height="4"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="4" id="7ZH-gu-7Jp"/>
                     </constraints>
@@ -38,7 +38,7 @@
                     </userDefinedRuntimeAttributes>
                 </progressView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwa-FI-boJ">
-                    <rect key="frame" x="16" y="18" width="35.5" height="17"/>
+                    <rect key="frame" x="16" y="18" width="35.5" height="99"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.55700000000000005" green="0.55700000000000005" blue="0.57599999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldu-JB-vgS">
-                    <rect key="frame" x="16" y="65" width="6" height="6"/>
+                    <rect key="frame" x="16" y="147" width="6" height="6"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.50600000000000001" blue="0.878" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="6" id="JL4-VR-hll"/>
@@ -63,19 +63,19 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejg-WM-XMe">
-                    <rect key="frame" x="31" y="61" width="31" height="14.5"/>
+                    <rect key="frame" x="31" y="143" width="31" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.77600000000000002" green="0.79200000000000004" blue="0.871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fr3-Qs-YXR">
-                    <rect key="frame" x="330" y="61" width="31" height="14.5"/>
+                    <rect key="frame" x="330" y="143" width="31" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.77600000000000002" green="0.79200000000000004" blue="0.871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OjX-kI-cAc">
-                    <rect key="frame" x="14" y="94.5" width="347" height="1"/>
+                    <rect key="frame" x="14" y="176.5" width="347" height="0.5"/>
                     <color key="backgroundColor" red="0.90600000000000003" green="0.91400000000000003" blue="0.97299999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="upS-8X-Qb8"/>
@@ -88,6 +88,7 @@
                 <constraint firstItem="ejg-WM-XMe" firstAttribute="leading" secondItem="ldu-JB-vgS" secondAttribute="trailing" constant="9" id="BLx-us-Gkg"/>
                 <constraint firstItem="ldu-JB-vgS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="DTT-gp-78y"/>
                 <constraint firstItem="lNs-dO-BDr" firstAttribute="top" secondItem="Dwa-FI-boJ" secondAttribute="bottom" constant="13" id="HTJ-Z8-37w"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="OjX-kI-cAc" secondAttribute="bottom" id="HqR-qz-x33"/>
                 <constraint firstItem="Dwa-FI-boJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="IUd-Ld-Xpa"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OjX-kI-cAc" secondAttribute="trailing" constant="15" id="Qd2-vq-KMt"/>
                 <constraint firstItem="Dwa-FI-boJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="Xb2-k9-yBr"/>

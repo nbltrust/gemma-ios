@@ -135,6 +135,10 @@
 "confirm_pwd_title" = "Gemma不曾知晓钱包密码，每次操作需要输入密码以授权";
 "update_pwd_title" = "请输入原密码";
 "update_pwd_btntitle" = "验证密码";
+"mortgage_success" = "抵押成功";
+"mortgage_failed" = "抵押失败";
+"cancel_mortgage_success" = "解除抵押成功";
+"cancel_mortgage_failed" = "解除抵押失败";
 
 //zsy end
 

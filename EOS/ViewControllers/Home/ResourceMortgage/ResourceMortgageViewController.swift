@@ -28,17 +28,13 @@ class ResourceMortgageViewController: BaseViewController {
         self.contentView.pageView.leftView.netMortgageView.clearText()
         self.contentView.pageView.rightView.cpuMortgageCancelView.clearText()
         self.contentView.pageView.rightView.netMortgageCancelView.clearText()
+        self.contentView.leftNextButton.isEnabel.accept(false)
+        self.contentView.rightNextButton.isEnabel.accept(false)
         self.coordinator?.pushToPaymentVC()
     }
     
     func setupUI() {
         self.title = R.string.localizable.resource_manager()
-
-        //初始化
-//        let general = [GeneralViewModel(name: R.string.localizable.cpu(), eos: "0.100 EOS", leftSub: R.string.localizable.use() + " - " + R.string.localizable.ms(), rightSub: R.string.localizable.total() + " - " + R.string.localizable.ms(), lineHidden: false, progress: 0.0),GeneralViewModel(name: R.string.localizable.net(), eos: "0.100 EOS", leftSub: R.string.localizable.use() + " - " + R.string.localizable.kb(), rightSub: R.string.localizable.total() + " - " + R.string.localizable.kb(), lineHidden: false, progress: 0.0)]
-//
-//        let page = PageViewModel(balance: "0.01 EOS", leftText: R.string.localizable.mortgage_resource(), rightText: R.string.localizable.cancel_mortgage(), operationLeft: [OperationViewModel(title: R.string.localizable.mortgage_cpu(), placeholder: R.string.localizable.mortgage_placeholder(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: true, isSecureTextEntry: false),OperationViewModel(title: R.string.localizable.mortgage_net(), placeholder: R.string.localizable.mortgage_placeholder(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: false, isSecureTextEntry: false)], operationRight: [OperationViewModel(title: R.string.localizable.cpu(), placeholder: R.string.localizable.mortgage_cancel_placeholder(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: true, isSecureTextEntry: false),OperationViewModel(title: R.string.localizable.net(), placeholder: R.string.localizable.mortgage_cancel_placeholder(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: false, isSecureTextEntry: false)])
-//        contentView.data = ResourceViewModel(general: general, page: page)
     }
     
     func commonObserveState() {
@@ -174,7 +170,7 @@ extension ResourceMortgageViewController {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            let balance = self.contentView.pageView.balance
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
             
             if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
@@ -187,8 +183,8 @@ extension ResourceMortgageViewController {
             if netTextFieldView.textField.text != "" {
                 netTextFieldView.textField.text = netMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            let balance = self.contentView.pageView.balance
-            
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+
             if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                 netTextFieldView.checkStatus = balenceDouble >= netMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
@@ -201,8 +197,8 @@ extension ResourceMortgageViewController {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            let balance = self.contentView.pageView.balance
-            
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+
             if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
@@ -214,8 +210,8 @@ extension ResourceMortgageViewController {
             if netTextFieldView.textField.text != "" {
                 netTextFieldView.textField.text = netMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            let balance = self.contentView.pageView.balance
-            
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+
             if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                 netTextFieldView.checkStatus = balenceDouble >= netMoney  ? TextUIStyle.common : TextUIStyle.warning
             }

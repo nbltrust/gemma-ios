@@ -121,13 +121,23 @@ extension OperationRightView: TitleTextFieldViewDelegate,TitleTextFieldViewDataS
                 }
             }
         } else {
-            return TitleTextSetting(title: "",
-                                    placeholder: "",
-                                    warningText: "",
-                                    introduce: "",
-                                    isShowPromptWhenEditing: false,
-                                    showLine: true,
-                                    isSecureTextEntry: false)
+            if titleTextFieldView == cpuMortgageCancelView {
+                return TitleTextSetting(title: R.string.localizable.cpu(),
+                                        placeholder: R.string.localizable.mortgage_cancel_placeholder(),
+                                        warningText: "",
+                                        introduce: "",
+                                        isShowPromptWhenEditing: true,
+                                        showLine: true,
+                                        isSecureTextEntry: false)
+            } else {
+                return TitleTextSetting(title: R.string.localizable.net(),
+                                        placeholder: R.string.localizable.mortgage_cancel_placeholder(),
+                                        warningText: "",
+                                        introduce: "",
+                                        isShowPromptWhenEditing: true,
+                                        showLine: false,
+                                        isSecureTextEntry: false)
+            }
         }
     }
     
