@@ -8,6 +8,7 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
 struct FaceIDComfirmState: StateType {
@@ -15,9 +16,14 @@ struct FaceIDComfirmState: StateType {
     var page: Int = 1
     var errorMessage:String?
     var property: FaceIDComfirmPropertyState
+    var callback: FaceIDConfirmCallbackState
 }
 
 struct FaceIDComfirmPropertyState {
+}
+
+struct FaceIDConfirmCallbackState {
+    var confirmResult: BehaviorRelay<ResultCallback?> = BehaviorRelay(value: nil)
 }
 
 //MARK: - Action Creator

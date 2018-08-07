@@ -136,7 +136,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="nq9-nF-NcQ">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_start_page_140_140" translatesAutoresizingMaskIntoConstraints="NO" id="nq9-nF-NcQ">
                                 <rect key="frame" x="0.0" y="20" width="375" height="470"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4s5-HG-10P" customClass="Button" customModule="EOS" customModuleProvider="target">
@@ -317,6 +317,6 @@
         <image name="icCommonWaiting" width="54" height="54"/>
         <image name="ic_checkbox" width="24" height="24"/>
         <image name="ic_checkbox_active" width="24" height="24"/>
-        <image name="logo" width="129" height="177"/>
+        <image name="logo_start_page_140_140" width="140" height="140"/>
     </resources>
 </document>

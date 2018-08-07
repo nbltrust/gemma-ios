@@ -15,19 +15,24 @@ protocol SafeCoordinatorProtocol {
     //MARK: - FaceId
     func openFaceIdLock(_ callback: @escaping (Bool) -> ())
     
-    func closeFaceIdLock(_ callback: @escaping (Bool) -> ())
+    func closeFaceIdLock()
     
     //MARK: - FingerSinger
     func openFingerSingerLock(_ callback: @escaping (Bool) -> ())
     
-    func closeFingerSingerLock(_ callback: @escaping (Bool) -> ())
+    func closeFingerSingerLock()
     
     //MARK: - Gesture
-    func openGestureLock()
+    func openGestureLock(_ callback: @escaping (Bool) -> ())
     
     func closeGetureLock()
+        
+    //MARK: - Confirm
+    func confirmFaceId(_ callback: @escaping (Bool) -> ())
     
-    func updateGesturePassword()
+    func confirmFingerSinger(_ callback: @escaping (Bool) -> ())
+    
+    func confirmGesture(_ callback: @escaping (Bool) -> ())
 }
 
 protocol SafeStateManagerProtocol {
@@ -51,73 +56,91 @@ class SafeCoordinator: UserInfoRootCoordinator {
 extension SafeCoordinator: SafeCoordinatorProtocol {
     //MARK: - FaceId
     func openFaceIdLock(_ callback: @escaping (Bool) -> ()) {
-        if BioMetricAuthenticator.canAuthenticate() {
-            if BioMetricAuthenticator.shared.faceIDAvailable() {
-                BioMetricAuthenticator.authenticateWithBioMetrics(reason: R.string.localizable.faceid_reason(), success: {
-                    SafeManager.shared.openFaceId()
-                    callback(true)
-                }) { (error) in
-                    if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
-                        callback(false)
-                    } else {
-                        KRProgressHUD.showError(withMessage: error.message())
-                        callback(false)
-                    }
-                }
-            } else {
-                KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_faceid())
-                callback(false)
-            }
-        } else {
-            KRProgressHUD.showError(withMessage: R.string.localizable.guide_open_faceid())
-            callback(false)
+        SafeManager.shared.confirmFaceIdLock(R.string.localizable.faceid_reason()) { (result) in
+            callback(result)
         }
     }
     
-    func closeFaceIdLock(_ callback: @escaping (Bool) -> ()) {
+    func closeFaceIdLock() {
         SafeManager.shared.closeFaceId()
-        callback(true)
     }
     
     //MARK: - FingerSinger
     func openFingerSingerLock(_ callback: @escaping (Bool) -> ()) {
-        if BioMetricAuthenticator.canAuthenticate() {
-            BioMetricAuthenticator.authenticateWithPasscode(reason: R.string.localizable.fingerid_reason(), success: {
-                SafeManager.shared.openFingerPrinter()
-                callback(true)
-            }) { (error) in
-                if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
-                    callback(false)
-                } else {
-                    KRProgressHUD.showError(withMessage: error.message())
-                    callback(false)
-                }
-            }
-        } else {
-            KRProgressHUD.showError(withMessage: R.string.localizable.guide_open_finger())
-            callback(false)
+        SafeManager.shared.confirmFingerSingerLock(R.string.localizable.fingerid_reason()) { (result) in
+            callback(result)
         }
     }
     
-    func closeFingerSingerLock(_ callback: @escaping (Bool) -> ()) {
+    func closeFingerSingerLock() {
         SafeManager.shared.closeFingerPrinter()
-        callback(true)
     }
     
     //MARK: - Gesture
-    func openGestureLock() {
+    func openGestureLock(_ callback: @escaping (Bool) -> ()) {
         let gestureLockVC = R.storyboard.userInfo.gestureLockSetViewController()
         let coordinator = GestureLockSetCoordinator(rootVC: self.rootVC)
         gestureLockVC?.coordinator = coordinator
         self.rootVC.pushViewController(gestureLockVC!, animated: true)
+        if let vc = coordinator.rootVC.topViewController as? GestureLockSetViewController {
+            vc.coordinator?.state.callback.setResult.accept({[weak self] (result) in
+                guard self != nil else { return }
+                callback(result)
+            })
+        }
     }
     
     func closeGetureLock() {
         SafeManager.shared.closeGestureLock()
     }
     
-    func updateGesturePassword() {
-        
+    //MARK: - Confirm
+    func confirmFaceId(_ callback: @escaping (Bool) -> ()) {
+        let nav = BaseNavigationController()
+        nav.navStyle = .clear
+        let vc = R.storyboard.userInfo.faceIDComfirmViewController()!
+        let faceIdCoordinator = FaceIDComfirmCoordinator(rootVC: nav)
+        vc.coordinator = faceIdCoordinator
+        nav.pushViewController(vc, animated: true)
+        if let vc = faceIdCoordinator.rootVC.topViewController as? FaceIDComfirmViewController {
+            vc.coordinator?.state.callback.confirmResult.accept({[weak self] (result) in
+                guard self != nil else { return }
+                callback(result)
+            })
+        }
+        self.rootVC.present(nav, animated: true, completion: nil)
+    }
+    
+    func confirmGesture(_ callback: @escaping (Bool) -> ()) {
+        let nav = BaseNavigationController()
+        nav.navStyle = .clear
+        let vc = R.storyboard.userInfo.gestureLockComfirmViewController()!
+        let gestureCoordinator = GestureLockComfirmCoordinator(rootVC: nav)
+        vc.coordinator = gestureCoordinator
+        nav.pushViewController(vc, animated: true)
+        if let vc = gestureCoordinator.rootVC.topViewController as? GestureLockComfirmViewController {
+            vc.coordinator?.state.callback.confirmResult.accept({[weak self] (result) in
+                guard self != nil else { return }
+                callback(result)
+            })
+        }
+        self.rootVC.present(nav, animated: true, completion: nil)
+    }
+    
+    func confirmFingerSinger(_ callback: @escaping (Bool) -> ()) {
+        let nav = BaseNavigationController()
+        nav.navStyle = .clear
+        let vc = R.storyboard.userInfo.fingerPrinterConfirmViewController()!
+        let fingerCoordinator = FingerPrinterConfirmCoordinator(rootVC: nav)
+        vc.coordinator = fingerCoordinator
+        nav.pushViewController(vc, animated: true)
+        if let vc = fingerCoordinator.rootVC.topViewController as? FingerPrinterConfirmViewController {
+            vc.coordinator?.state.callback.confirmResult.accept({[weak self] (result) in
+                guard self != nil else { return }
+                callback(result)
+            })
+        }
+        self.rootVC.present(nav, animated: true, completion: nil)
     }
     
 }
