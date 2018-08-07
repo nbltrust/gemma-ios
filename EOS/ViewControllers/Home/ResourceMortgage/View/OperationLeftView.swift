@@ -48,7 +48,7 @@ class OperationLeftView: UIView {
         titleTextfieldView.titleLabel.font = UIFont.cnTitleMedium
         titleTextfieldView.textField.font = UIFont.pfScR16
         titleTextfieldView.textField.tag = tag
-        titleTextfieldView.textField.keyboardType = .numberPad
+        titleTextfieldView.textField.keyboardType = .numbersAndPunctuation
         titleTextfieldView.textField.delegate = self
         titleTextfieldView.delegate = self
         titleTextfieldView.datasource = self

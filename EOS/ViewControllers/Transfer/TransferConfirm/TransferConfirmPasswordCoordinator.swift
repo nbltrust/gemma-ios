@@ -183,7 +183,6 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
                         
                     })
                     
-                    
                 }
             }
         }, error: { (code) in
@@ -194,37 +193,15 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
     }
 
     func relieveMortgage(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->()) {
-        EOSIONetwork.request(target: .get_info, success: { (json) in
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                if let vc = appDelegate.appcoordinator?.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
-                    var cpuValue = ""
-                    var netValue = ""
-                    if let cpu = vc.coordinator?.state.property.cpuReliveMoneyValid.value.2 {
-                        cpuValue = cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-                    }
-                    if let net = vc.coordinator?.state.property.netReliveMoneyValid.value.2 {
-                        netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-                    }
-                    let abi = EOSIO.getUnDelegateAbi(EOSIOContract.EOSIO_CODE, action: EOSAction.delegatebw.rawValue, from: account, receiver: account, unstake_net_quantity: netValue, unstake_cpu_quantity: cpuValue)
-                    if let delegate = EOSIO.getUnDelegateTransaction(WalletManager.shared.getCachedPriKey(WalletManager.shared.getCurrentSavedPublicKey(), password: password), code: EOSIOContract.EOSIO_CODE, from: account, getinfo: json.rawString(), abistr: abi) {
-                        EOSIONetwork.request(target: .push_transaction(json: delegate), success: { (data) in
-                            if let info = data.dictionaryObject,info["code"] == nil{
-                                callback(true, R.string.localizable.cancel_mortgage_success())
-                            }else{
-                                callback(false, R.string.localizable.cancel_mortgage_failed())
-                            }
-                        }, error: { (error_code) in
-                            callback(false, R.string.localizable.cancel_mortgage_failed())
-                        }) { (error) in
-                            callback(false,R.string.localizable.request_failed() )
-                        }
-                    }
-                }
-            }
-        }, error: { (code) in
-            
-        }) { (error) in
-            
+        let model = ActionModel()
+        model.password = password
+        model.toAccount = account
+        model.fromAccount = WalletManager.shared.getAccount()
+        model.success = R.string.localizable.cancel_mortgage_success()
+        model.faile = R.string.localizable.cancel_mortgage_failed()
+        transaction(EOSAction.undelegatebw.rawValue, actionModel: model) { (bool, showString) in
+            callback(bool,showString)
         }
+        
     }
 }

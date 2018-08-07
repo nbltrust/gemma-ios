@@ -33,8 +33,9 @@ class ChangeWalletNameViewController: BaseViewController {
         //保存
         self.view.endEditing(true)
         model.name = changeWalletNameView.textField.text ?? ""
-        self.coordinator?.updateWalletName(model: model)
-        self.coordinator?.popToLastVC()
+        if self.coordinator?.updateWalletName(model: model) == true {
+            self.coordinator?.popToLastVC()
+        }
     }
     
     func commonObserveState() {

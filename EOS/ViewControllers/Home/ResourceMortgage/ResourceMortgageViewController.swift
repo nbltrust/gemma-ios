@@ -159,7 +159,7 @@ extension ResourceMortgageViewController {
         model.recever = WalletManager.shared.getAccount()
         if let cpuAmount = self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text, let netAmount = self.contentView.pageView.rightView.netMortgageCancelView.textField.text {
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
-            model.remark = R.string.localizable.delegate() + cpuAmount + R.string.localizable.eos_for_cpu() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net()
+            model.remark = R.string.localizable.undelegate() + cpuAmount + R.string.localizable.eos_for_cpu() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net()
         }
         model.buttonTitle = R.string.localizable.confirm_relieve_mortgage()
         
@@ -197,7 +197,7 @@ extension ResourceMortgageViewController {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+            let balance = self.contentView.pageView.balance.components(separatedBy: " ")[1]
 
             if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning

@@ -28,6 +28,122 @@ func navBgImage() -> UIImage? {
 
 //func print<T>(file: String = #file, function: String = #function, line: Int = #line, _ message: T, color: UIColor = UIColor.white) {
 //}
+class ActionModel {
+    var password: String = ""
+    var fromAccount: String = ""
+    var toAccount: String = ""
+    var success: String = ""
+    var faile: String = ""
+}
+
+class TransferActionModel: ActionModel {
+    var amount: String = ""
+    var remark: String = ""
+}
+
+class DelegateActionModel: ActionModel {
+
+}
+
+class UnDelegateActionModel: ActionModel {
+
+}
+
+func getAbi(_ action:String, actionModel: ActionModel) -> String! {
+    var abi: String = ""
+    if action == EOSAction.transfer.rawValue {
+        if let actionModel = actionModel as? TransferActionModel {
+            if let abiStr = EOSIO.getAbiJsonString(EOSIOContract.TOKEN_CODE, action: action, from: actionModel.fromAccount, to: actionModel.toAccount, quantity: actionModel.amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: actionModel.remark) {
+                abi = abiStr
+            }
+        }
+    } else {
+        if action == EOSAction.delegatebw.rawValue || action == EOSAction.undelegatebw.rawValue {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                if let vc = appDelegate.appcoordinator?.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
+                    var cpuValue = ""
+                    var netValue = ""
+                    
+                    if action == EOSAction.delegatebw.rawValue {
+                        if let cpu = vc.coordinator?.state.property.cpuMoneyValid.value.2 {
+                            cpuValue = cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+                        }
+                        if let net = vc.coordinator?.state.property.netMoneyValid.value.2 {
+                            netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+                        }
+                        
+                        if let abiStr = EOSIO.getDelegateAbi(EOSIOContract.EOSIO_CODE, action: action, from: actionModel.fromAccount, receiver: actionModel.toAccount, stake_net_quantity: netValue, stake_cpu_quantity: cpuValue) {
+                            abi = abiStr
+                        }
+                    } else if action == EOSAction.undelegatebw.rawValue {
+                        if let cpu = vc.coordinator?.state.property.cpuReliveMoneyValid.value.2 {
+                            cpuValue = cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+                        }
+                        if let net = vc.coordinator?.state.property.netReliveMoneyValid.value.2 {
+                            netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+                        }
+                        
+                        if let abiStr = EOSIO.getUnDelegateAbi(EOSIOContract.EOSIO_CODE, action: action, from: actionModel.fromAccount, receiver: actionModel.toAccount, unstake_net_quantity: netValue, unstake_cpu_quantity: cpuValue) {
+                            abi = abiStr
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    
+    return abi
+}
+
+func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (Bool, String)->()) {
+    var abi = ""
+    if let getabi = getAbi(action, actionModel: actionModel) {
+        abi = getabi
+    } else {
+        callback(false,"")
+        return
+    }
+    
+    
+    EOSIONetwork.request(target: .get_info, success: { (json) in
+        
+        EOSIONetwork.request(target: .abi_json_to_bin(json: abi), success: { (bin_json) in
+            var transaction = ""
+            let abiStr = bin_json["binargs"].stringValue
+            let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: actionModel.password)
+            if action == EOSAction.transfer.rawValue {
+                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
+            } else if action == EOSAction.delegatebw.rawValue {
+                transaction = EOSIO.getDelegateTransaction(privakey, code: EOSIOContract.EOSIO_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
+            } else if action == EOSAction.undelegatebw.rawValue {
+                transaction = EOSIO.getUnDelegateTransaction(privakey, code: EOSIOContract.EOSIO_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
+            }
+            
+            EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
+                if let info = data.dictionaryObject,info["code"] == nil {
+                    callback(true, actionModel.success)
+                }else{
+                    callback(false, actionModel.faile)
+                }
+            }, error: { (error_code) in
+                callback(false, actionModel.faile)
+            }) { (error) in
+                callback(false,R.string.localizable.request_failed() )
+            }
+            
+        }, error: { (code) in
+            
+        }, failure: { (error) in
+            
+        })
+    }, error: { (code) in
+        
+    }) { (error) in
+        
+    }
+}
 
 func showWarning(_ str:String) {
     
