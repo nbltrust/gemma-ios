@@ -17,14 +17,34 @@ import NotificationBannerSwift
 class HomeViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableHeaderView: HomeHeaderView!
-    @IBOutlet weak var headImageView: UIImageView!
+    var headImageView: UIImageView?
     
     var coordinator: (HomeCoordinatorProtocol & HomeStateManagerProtocol)?
     
     var data : Any?
 	override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.automaticallyAdjustsScrollViewInsets = true
+
         setupUI()
+    }
+    
+    override func refreshViewController() {
+        WalletManager.shared.FetchAccount { (account) in
+            self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+        }
+    }
+    
+    func setupBgImage() {
+        if headImageView == nil {
+            headImageView = UIImageView()
+            headImageView!.image = navBgImage()
+            self.view.insertSubview(headImageView!, at: 0)
+            headImageView!.top(to: self.view)
+            headImageView!.left(to: self.view)
+            headImageView!.right(to: self.view)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +57,12 @@ class HomeViewController: BaseViewController {
         WalletManager.shared.FetchAccount { (account) in
             self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
         }
+
+        if let nav = self.navigationController as? BaseNavigationController {
+            nav.navStyle = .clear
+        }
+        setupBgImage()
+        refreshViewController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,6 +85,8 @@ class HomeViewController: BaseViewController {
 
 //        tableView?.edgesToDevice(vc:self, insets: UIEdgeInsets(top: -64, left: 0, bottom: 0, right: 0), priority: .required, isActive: true, usingSafeArea: false)
         headImageView.image = navBgImage()
+        
+//        headImageView.image = navBgImage()
 //        updateUI()
     }
     

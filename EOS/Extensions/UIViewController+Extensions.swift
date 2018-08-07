@@ -66,6 +66,10 @@ extension UIViewController {
     func showSuccess(message: String) {
         KRProgressHUD.showSuccess(withMessage: message)
     }
+    
+    @objc func refreshViewController() {
+        
+    }
 }
 
 extension UIViewController {

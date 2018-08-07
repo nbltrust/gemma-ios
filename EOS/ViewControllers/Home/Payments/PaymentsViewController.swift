@@ -19,8 +19,10 @@ class PaymentsViewController: BaseViewController {
     var coordinator: (PaymentsCoordinatorProtocol & PaymentsStateManagerProtocol)?
     var data = [PaymentsRecordsViewModel]()
     var isNoMoreData : Bool = false
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         setupEvent()
     }
@@ -30,9 +32,11 @@ class PaymentsViewController: BaseViewController {
         let name = String.init(describing:PaymentsRecordsCell.self)
         tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
     }
+
     
     func setupEvent() {
         self.startLoading()
+
         self.coordinator?.getDataFromServer(WalletManager.shared.getAccount(),completion: {[weak self] (success) in
             guard let `self` = self else { return }
             
@@ -51,7 +55,9 @@ class PaymentsViewController: BaseViewController {
             
             }, isRefresh:true)
         
-        self.addPullToRefresh(self.tableView) { (completion) in
+        self.addPullToRefresh(self.tableView) {[weak self] (completion) in
+            guard let `self` = self else {return}
+
             self.coordinator?.getDataFromServer(WalletManager.shared.getAccount(),completion: {[weak self] (success) in
                 guard let `self` = self else {return}
                 
@@ -72,7 +78,9 @@ class PaymentsViewController: BaseViewController {
             },isRefresh: true)
         }
         
-        self.addInfiniteScrolling(self.tableView) { (completion) in
+        self.addInfiniteScrolling(self.tableView) {[weak self] (completion) in
+            guard let `self` = self else {return}
+
             if self.isNoMoreData {
                 completion?(true)
                 return

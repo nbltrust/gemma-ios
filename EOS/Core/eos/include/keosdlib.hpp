@@ -392,7 +392,7 @@ namespace eosio {
         chain::action create_delegatebw(const std::string& contract, const chain::name& from, chain::bytes abi) {
             return chain::action {
                 vector<chain::permission_level>{{from,config::active_name}} ,
-                contract, "delgatebw", abi
+                contract, "delegatebw", abi
             };
         }
         chain::action create_buyram(const std::string& contract, const chain::name& payer, chain::bytes abi) {

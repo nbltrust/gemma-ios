@@ -17,6 +17,7 @@ def data
     pod 'Guitar'
     pod 'SwiftyUserDefaults',:git => 'https://github.com/radex/SwiftyUserDefaults', :tag => '4.0.0-alpha.1'
     pod 'SwiftDate'
+    pod 'DifferenceKit'
 end
 
 def resource
@@ -40,6 +41,7 @@ def architecture
    pod 'RxCocoa'
    pod 'AwaitKit'
    pod 'Hydra'
+   pod 'Aspects'
 end
 
 def permission
