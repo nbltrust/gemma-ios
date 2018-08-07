@@ -17,6 +17,8 @@ protocol FingerPrinterConfirmStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<FingerPrinterConfirmState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func confirm()
 }
 
 class FingerPrinterConfirmCoordinator: UserInfoRootCoordinator {
@@ -31,7 +33,6 @@ class FingerPrinterConfirmCoordinator: UserInfoRootCoordinator {
 }
 
 extension FingerPrinterConfirmCoordinator: FingerPrinterConfirmCoordinatorProtocol {
-    
 }
 
 extension FingerPrinterConfirmCoordinator: FingerPrinterConfirmStateManagerProtocol {
@@ -45,4 +46,14 @@ extension FingerPrinterConfirmCoordinator: FingerPrinterConfirmStateManagerProto
         store.subscribe(subscriber, transform: transform)
     }
     
+    func confirm() {
+        SafeManager.shared.confirmFingerSingerLock(R.string.localizable.fingerid_reason()) {[weak self] (result) in
+            guard let `self` = self else { return }
+            if result {
+                self.rootVC.dismiss(animated: true) {
+                    self.state.callback.confirmResult.value?(true)
+                }
+            }
+        }
+    }
 }

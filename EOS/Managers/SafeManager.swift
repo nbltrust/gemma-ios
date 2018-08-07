@@ -10,6 +10,8 @@ import Foundation
 import KeychainAccess
 import SwifterSwift
 import SwiftyUserDefaults
+import BiometricAuthentication
+import KRProgressHUD
 
 class SafeManager {
     static let shared = SafeManager()
@@ -17,6 +19,50 @@ class SafeManager {
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
     
     var gestureLockPassword = Defaults[.gestureLockPassword]
+    
+    //MARK: - Confirm
+    func confirmFaceIdLock(_ reason: String, callback: @escaping (Bool) -> ()) {
+        if BioMetricAuthenticator.canAuthenticate() {
+            if BioMetricAuthenticator.shared.faceIDAvailable() {
+                BioMetricAuthenticator.authenticateWithBioMetrics(reason: reason, success: {
+                    self.openFaceId()
+                    callback(true)
+                }) { (error) in
+                    if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
+                        callback(false)
+                    } else {
+                        KRProgressHUD.showError(withMessage: error.message())
+                        callback(false)
+                    }
+                }
+            } else {
+                KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_faceid())
+                callback(false)
+            }
+        } else {
+            KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_faceid())
+            callback(false)
+        }
+    }
+    
+    func confirmFingerSingerLock(_ reason: String, callback: @escaping (Bool) -> ()) {
+        if BioMetricAuthenticator.canAuthenticate() {
+            BioMetricAuthenticator.authenticateWithPasscode(reason: R.string.localizable.fingerid_reason(), success: {
+                self.openFingerPrinter()
+                callback(true)
+            }) { (error) in
+                if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
+                    callback(false)
+                } else {
+                    KRProgressHUD.showError(withMessage: error.message())
+                    callback(false)
+                }
+            }
+        } else {
+            KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_touchid())
+            callback(false)
+        }
+    }
     
     //MARK: - FaceID
     func isFaceIdOpened() -> Bool {

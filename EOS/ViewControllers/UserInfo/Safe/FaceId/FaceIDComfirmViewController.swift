@@ -12,11 +12,23 @@ import RxCocoa
 import ReSwift
 
 class FaceIDComfirmViewController: BaseViewController {
-
-	var coordinator: (FaceIDComfirmCoordinatorProtocol & FaceIDComfirmStateManagerProtocol)?
+    @IBOutlet weak var clickView: UIImageView!
+    
+    @IBOutlet weak var clickLabel: UILabel!
+    var coordinator: (FaceIDComfirmCoordinatorProtocol & FaceIDComfirmStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     func commonObserveState() {
@@ -31,6 +43,16 @@ class FaceIDComfirmViewController: BaseViewController {
                 return false
             })
         }
+        
+        clickView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            self.coordinator?.confirm()
+        }).disposed(by: disposeBag)
+        
+        clickLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            self.coordinator?.confirm()
+        }).disposed(by: disposeBag)
     }
     
     override func configureObserveState() {

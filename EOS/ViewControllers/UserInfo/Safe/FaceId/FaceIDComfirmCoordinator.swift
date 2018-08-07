@@ -17,6 +17,8 @@ protocol FaceIDComfirmStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<FaceIDComfirmState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func confirm()
 }
 
 class FaceIDComfirmCoordinator: UserInfoRootCoordinator {
@@ -43,6 +45,17 @@ extension FaceIDComfirmCoordinator: FaceIDComfirmStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<FaceIDComfirmState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
+    }
+    
+    func confirm() {
+        SafeManager.shared.confirmFaceIdLock(R.string.localizable.fingerid_reason()) {[weak self] (result) in
+            guard let `self` = self else { return }
+            if result {
+                self.rootVC.dismiss(animated: true) {
+                    self.state.callback.confirmResult.value?(true)
+                }
+            }
+        }
     }
     
 }

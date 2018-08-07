@@ -20,16 +20,15 @@ class SafeViewController: BaseViewController {
     @IBOutlet weak var gestureView: SafeLineView!
     @IBOutlet weak var gestureActionView: NormalCellView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateSafeSetting()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupEvent()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        updateSafeSetting()
     }
     
     func setupUI() {
@@ -51,9 +50,10 @@ class SafeViewController: BaseViewController {
                 }
             })
         } else {
-            self.coordinator?.closeFaceIdLock({[weak self] (result) in
+            self.coordinator?.confirmFaceId({[weak self] (result) in
                 guard let `self` = self else { return }
-                if !result {
+                if result {
+                    self.coordinator?.closeFaceIdLock()
                     self.updateSafeSetting()
                 }
             })
@@ -69,9 +69,10 @@ class SafeViewController: BaseViewController {
                 }
             })
         } else {
-            self.coordinator?.closeFingerSingerLock({[weak self] (result) in
+            self.coordinator?.confirmFingerSinger({[weak self] (result) in
                 guard let `self` = self else { return }
-                if !result {
+                if result {
+                    self.coordinator?.closeFingerSingerLock()
                     self.updateSafeSetting()
                 }
             })
@@ -80,11 +81,18 @@ class SafeViewController: BaseViewController {
     
     @objc func gestureLock(_ sender: UISwitch) {
         if sender.isOn {
-            self.coordinator?.openGestureLock()
-            updateSafeSetting()
+            self.coordinator?.openGestureLock({[weak self] (result) in
+                guard let `self` = self else { return }
+                self.updateSafeSetting()
+            })
         } else {
-            self.coordinator?.closeGetureLock()
-            updateSafeSetting()
+            self.coordinator?.confirmGesture({[weak self] (result) in
+                guard let `self` = self else { return }
+                if result {
+                    self.coordinator?.closeGetureLock()
+                    self.updateSafeSetting()
+                }
+            })
         }
     }
     
@@ -120,12 +128,15 @@ class SafeViewController: BaseViewController {
 extension SafeViewController {
     @objc func clickCellView(_ sender : [String:Any]) {
         if let index = sender["index"] as? Int {
-
-            let views = [self.faceView,self.fingerView,self.gestureView]
-            if index <= views.count-1 {
-    
-            }else {
-                
+            if index == 3 {
+                self.coordinator?.confirmGesture({[weak self] (result) in
+                    guard let `self` = self else { return }
+                    if result {
+                        self.coordinator?.openGestureLock({ (resetResult) in
+                            self.updateSafeSetting()
+                        })
+                    }
+                })
             }
         }
     }

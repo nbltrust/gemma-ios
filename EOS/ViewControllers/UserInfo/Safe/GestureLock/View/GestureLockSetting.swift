@@ -14,6 +14,9 @@ public struct GestureLockSetting {
     /*最短密码长度*/
     static let minPasswordLength = 4
     
+    /*重绘密码错误次数限制*/
+    static let reDrawNum = 5
+    
     /*手势预览*/
     static let infoNormalColor = UIColor.cloudyBlue
     

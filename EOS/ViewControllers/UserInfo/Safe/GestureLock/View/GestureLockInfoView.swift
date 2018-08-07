@@ -41,8 +41,18 @@ class GestureLockInfoView: UIView {
     }
     
     public func showSelectedItems(_ passwordStr: String) {
-        for char in passwordStr {
-            infoLayers[Int("\(char)")!].status = .highlighted
+        if passwordStr.count > 0 {
+            for char in passwordStr {
+                infoLayers[Int("\(char)")!].status = .highlighted
+            }
+        } else {
+            resetUI()
+        }
+    }
+    
+    fileprivate func resetUI() {
+        for layer in infoLayers {
+            layer.status = .normal
         }
     }
     

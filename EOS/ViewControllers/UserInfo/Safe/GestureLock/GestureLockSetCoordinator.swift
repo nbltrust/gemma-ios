@@ -26,6 +26,10 @@ protocol GestureLockSetStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func setPassword(_ password: String)
+    
+    func addValidCount()
+    
+    func clear()
 }
 
 class GestureLockSetCoordinator: NavCoordinator {
@@ -59,6 +63,7 @@ extension GestureLockSetCoordinator: GestureLockSetStateManagerProtocol {
     func setPassword(_ password: String) {
         if password.count < GestureLockSetting.minPasswordLength {
             self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough(), true)))
+            addValidCount()
         } else {
             if !self.state.property.validedPassword.value {
                 if self.state.property.password.value.count == 0 {
@@ -69,11 +74,28 @@ extension GestureLockSetCoordinator: GestureLockSetStateManagerProtocol {
                         SafeManager.shared.saveGestureLockPassword(password)
                         self.store.dispatch(SetValidedPasswordAction(valided: true))
                     } else {
-                        self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_notequal(), false)))
+                        self.state.callback.setResult.value!(true)
+                        self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_notequal(), true)))
+                        addValidCount()
                     }
                 }
             }
         }
     }
     
+    func addValidCount() {
+        var num = self.state.property.reDrawFailedNum.value
+        num = num + 1
+        if num == GestureLockSetting.reDrawNum {
+            self.clear()
+            num = 0
+        }
+        self.store.dispatch(SetReDrawFailedNumAction(num: num))
+    }
+    
+    func clear() {
+        self.store.dispatch(SetPasswordAction(password: ""))
+        self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_input_pla(), false)))
+        self.store.dispatch(SetValidedPasswordAction(valided: false))
+    }
 }

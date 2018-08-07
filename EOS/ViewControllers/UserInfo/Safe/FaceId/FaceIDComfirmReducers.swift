@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 func FaceIDComfirmReducer(action:Action, state:FaceIDComfirmState?) -> FaceIDComfirmState {
-    return FaceIDComfirmState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: FaceIDComfirmPropertyReducer(state?.property, action: action))
+    return FaceIDComfirmState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: FaceIDComfirmPropertyReducer(state?.property, action: action), callback: state?.callback ?? FaceIDConfirmCallbackState())
 }
 
 func FaceIDComfirmPropertyReducer(_ state: FaceIDComfirmPropertyState?, action: Action) -> FaceIDComfirmPropertyState {
