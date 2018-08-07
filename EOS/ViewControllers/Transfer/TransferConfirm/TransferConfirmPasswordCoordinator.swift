@@ -97,13 +97,13 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
                 return callback((nil, R.string.localizable.password_not_match()))
             }
             
-            let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WalletManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
+            let json = EOSIO.getAbiJsonString(EOSIOContract.TOKEN_CODE, action: EOSAction.transfer.rawValue, from: WalletManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
             
             EOSIONetwork.request(target: .abi_json_to_bin(json:json!), success: { (data) in
                 let abiStr = data["binargs"].stringValue
                 
                 let transation = EOSIO.getTransferTransaction(privakey,
-                                                      code: NetworkConfiguration.EOSIO_DEFAULT_CODE,
+                                                      code: EOSIOContract.TOKEN_CODE,
                                                       from: WalletManager.shared.getAccount(),
                                                       getinfo: get_info,
                                                       abistr: abiStr)
@@ -158,21 +158,32 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
                         netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                     }
                     
-                    let abi = EOSIO.getDelegateAbi(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.delegate.rawValue, from: account, receiver: account, stake_net_quantity: netValue, stake_cpu_quantity: cpuValue)
-                    
-                    if let delegate = EOSIO.getDelegateTransaction(WalletManager.shared.getCachedPriKey(WalletManager.shared.getCurrentSavedPublicKey(), password: password), code: NetworkConfiguration.EOSIO_DEFAULT_CODE, from: account, getinfo: json.rawString(), abistr: abi) {
-                        EOSIONetwork.request(target: .push_transaction(json: delegate), success: { (data) in
-                            if let info = data.dictionaryObject,info["code"] == nil{
-                                callback(true, R.string.localizable.mortgage_success())
-                            }else{
-                                callback(false, R.string.localizable.mortgage_failed())
-                            }
-                        }, error: { (error_code) in
-                            callback(false, R.string.localizable.mortgage_failed())
-                        }) { (error) in
-                            callback(false,R.string.localizable.request_failed() )
-                        }
+                    guard let abi = EOSIO.getDelegateAbi(EOSIOContract.EOSIO_CODE, action: EOSAction.delegatebw.rawValue, from: account, receiver: account, stake_net_quantity: netValue, stake_cpu_quantity: cpuValue) else {
+                        callback(false, "")
+                        return
                     }
+                    
+                    EOSIONetwork.request(target: .abi_json_to_bin(json: abi), success: { (bin_json) in
+                        if let delegate = EOSIO.getDelegateTransaction(WalletManager.shared.getCachedPriKey(WalletManager.shared.getCurrentSavedPublicKey(), password: password), code: EOSIOContract.EOSIO_CODE, from: account, getinfo: json.rawString(), abistr: bin_json["binargs"].stringValue) {
+                            EOSIONetwork.request(target: .push_transaction(json: delegate), success: { (data) in
+                                if let info = data.dictionaryObject,info["code"] == nil{
+                                    callback(true, R.string.localizable.mortgage_success())
+                                }else{
+                                    callback(false, R.string.localizable.mortgage_failed())
+                                }
+                            }, error: { (error_code) in
+                                callback(false, R.string.localizable.mortgage_failed())
+                            }) { (error) in
+                                callback(false,R.string.localizable.request_failed() )
+                            }
+                        }
+                    }, error: { (code) in
+                        
+                    }, failure: { (error) in
+                        
+                    })
+                    
+                    
                 }
             }
         }, error: { (code) in
@@ -194,8 +205,8 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
                     if let net = vc.coordinator?.state.property.netReliveMoneyValid.value.2 {
                         netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                     }
-                    let abi = EOSIO.getUnDelegateAbi(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.delegate.rawValue, from: account, receiver: account, unstake_net_quantity: netValue, unstake_cpu_quantity: cpuValue)
-                    if let delegate = EOSIO.getUnDelegateTransaction(WalletManager.shared.getCachedPriKey(WalletManager.shared.getCurrentSavedPublicKey(), password: password), code: NetworkConfiguration.EOSIO_DEFAULT_CODE, from: account, getinfo: json.rawString(), abistr: abi) {
+                    let abi = EOSIO.getUnDelegateAbi(EOSIOContract.EOSIO_CODE, action: EOSAction.delegatebw.rawValue, from: account, receiver: account, unstake_net_quantity: netValue, unstake_cpu_quantity: cpuValue)
+                    if let delegate = EOSIO.getUnDelegateTransaction(WalletManager.shared.getCachedPriKey(WalletManager.shared.getCurrentSavedPublicKey(), password: password), code: EOSIOContract.EOSIO_CODE, from: account, getinfo: json.rawString(), abistr: abi) {
                         EOSIONetwork.request(target: .push_transaction(json: delegate), success: { (data) in
                             if let info = data.dictionaryObject,info["code"] == nil{
                                 callback(true, R.string.localizable.cancel_mortgage_success())

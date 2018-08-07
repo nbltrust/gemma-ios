@@ -32,12 +32,17 @@ struct NetworkConfiguration {
     static let EOSIO_BASE_URL = URL(string: "http://139.196.73.117:8888")!
     static let EOS_BP_URL = URL(string: "https://eosweb.net")!
 
-    static let EOSIO_DEFAULT_CODE = "eosio.token"
     static let EOSIO_DEFAULT_SYMBOL = "EOS"
     
     
     static let SERVER_BASE_URLString = "https://app.cybex.io/"
     static let ETH_PRICE = SERVER_BASE_URLString + "price"
+}
+
+struct EOSIOContract {
+    static let TOKEN_CODE = "eosio.token"
+    static let EOSIO_CODE = "eosio"
+    static let EOSIO_SYSTEM_CODE = "eosio.system"
 }
 
 struct H5AddressConfiguration {
@@ -97,5 +102,5 @@ enum GemmaError: Error {
 
 enum EOSAction:String {
     case transfer
-    case delegate
+    case delegatebw
 }

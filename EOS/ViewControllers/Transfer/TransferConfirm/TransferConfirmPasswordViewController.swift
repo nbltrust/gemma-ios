@@ -38,6 +38,8 @@ class TransferConfirmPasswordViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+           
+//        log.debug(String(reflecting: type(of: a!)))
     }
     
     func setupUI() {
