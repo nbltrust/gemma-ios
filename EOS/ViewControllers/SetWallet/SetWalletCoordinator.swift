@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import SwiftNotificationCenter
 
 protocol SetWalletCoordinatorProtocol {
     
@@ -39,6 +40,11 @@ class SetWalletCoordinator: HomeRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override func register() {
+        Broadcaster.register(SetWalletCoordinatorProtocol.self, observer: self)
+        Broadcaster.register(SetWalletStateManagerProtocol.self, observer: self)
+    }
 }
 
 extension SetWalletCoordinator: SetWalletCoordinatorProtocol {

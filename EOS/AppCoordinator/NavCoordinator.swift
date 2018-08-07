@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftNotificationCenter
 
 protocol NavProtocol {
     func openWebVC(url:URL)
@@ -18,9 +19,14 @@ class NavCoordinator:NavProtocol {
     
     init(rootVC: BaseNavigationController) {
         self.rootVC = rootVC
+        register()
     }
     
     func start()  {
+        
+    }
+    
+    func register() {
         
     }
 }

@@ -130,6 +130,7 @@ PODS:
   - SwifterSwift/SwiftStdlib (4.4.0)
   - SwifterSwift/UIKit (4.4.0)
   - SwiftHash (2.0.1)
+  - SwiftNotificationCenter (1.0.3)
   - SwiftRichString (2.0.1)
   - SwiftyBeaver (1.6.0)
   - SwiftyJSON (4.1.0)
@@ -199,6 +200,7 @@ DEPENDENCIES:
   - SwiftDate
   - SwiftEntryKit
   - SwifterSwift
+  - SwiftNotificationCenter
   - SwiftRichString (from `https://github.com/malcommac/SwiftRichString`, tag `2.0.1`)
   - SwiftyBeaver
   - SwiftyJSON
@@ -277,6 +279,7 @@ SPEC REPOS:
     - SwiftEntryKit
     - SwifterSwift
     - SwiftHash
+    - SwiftNotificationCenter
     - SwiftyBeaver
     - SwiftyJSON
     - Tags
@@ -369,6 +372,7 @@ SPEC CHECKSUMS:
   SwiftEntryKit: 1df92ac86d36f3c8c88175687bdd61ccfecbe2ee
   SwifterSwift: 1ce0e31801ddd3a2bd3256626275425adb01067a
   SwiftHash: c805de5a434eacfa0dac7210745a50c55d7fe33d
+  SwiftNotificationCenter: 309e912a10d664ef68979deb1df7f17c2bdbe2ea
   SwiftRichString: 3b29b5f2eb0eb244497532f2fd2ec26318eae584
   SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
@@ -381,6 +385,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
   ZLaunchAd: 47e4fd3718c73d48d74ac37f7f637021e4fd0e4b
 
-PODFILE CHECKSUM: 8bb9029a07c48dc4a4342469c6957d8224c492c3
+PODFILE CHECKSUM: 995fb374e88d37862aa76e4387e2a5ea883392e6
 
 COCOAPODS: 1.5.3

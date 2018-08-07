@@ -54,7 +54,8 @@ extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
     
     func openSetWallet() {
         if let vc = R.storyboard.leadIn.setWalletViewController() {
-            vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
+            let coordinator = SetWalletCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }
     }

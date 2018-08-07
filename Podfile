@@ -88,6 +88,7 @@ def other
     pod 'Siren'
     #pod 'MLeaksFinder'
     pod 'Device'
+    pod 'SwiftNotificationCenter'
 end
 
 def fabric
