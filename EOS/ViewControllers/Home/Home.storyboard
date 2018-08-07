@@ -18,9 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="319" translatesAutoresizingMaskIntoConstraints="NO" id="fK7-Wz-j7B">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="319"/>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ACt-uJ-OXw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -36,17 +33,13 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="ACt-uJ-OXw" firstAttribute="leading" secondItem="2hX-6z-qSM" secondAttribute="leading" id="3E1-53-0s7"/>
-                            <constraint firstItem="fK7-Wz-j7B" firstAttribute="trailing" secondItem="f5G-1Z-JFd" secondAttribute="trailing" id="3lL-M2-KVX"/>
-                            <constraint firstItem="fK7-Wz-j7B" firstAttribute="leading" secondItem="f5G-1Z-JFd" secondAttribute="leading" id="ChT-8P-NMa"/>
                             <constraint firstItem="ACt-uJ-OXw" firstAttribute="top" secondItem="2hX-6z-qSM" secondAttribute="top" id="hah-eT-0dp"/>
                             <constraint firstAttribute="trailing" secondItem="ACt-uJ-OXw" secondAttribute="trailing" id="lLB-bg-n6d"/>
                             <constraint firstItem="f5G-1Z-JFd" firstAttribute="bottom" secondItem="ACt-uJ-OXw" secondAttribute="bottom" id="ryE-Ry-XVp"/>
-                            <constraint firstItem="fK7-Wz-j7B" firstAttribute="top" secondItem="2hX-6z-qSM" secondAttribute="top" id="sMW-Um-jnF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="f5G-1Z-JFd"/>
                     </view>
                     <connections>
-                        <outlet property="headImageView" destination="fK7-Wz-j7B" id="buj-F5-ke0"/>
                         <outlet property="tableHeaderView" destination="1MV-3W-hWv" id="yot-AX-FIE"/>
                         <outlet property="tableView" destination="ACt-uJ-OXw" id="qXo-zI-5Y2"/>
                     </connections>

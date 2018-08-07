@@ -11,6 +11,7 @@ import ReSwift
 import ESTabBarController_swift
 import SwifterSwift
 import Presentr
+import Aspects
 
 class AppCoordinator {
     var store = Store<AppState> (
@@ -37,6 +38,10 @@ class AppCoordinator {
     
     init(rootVC: BaseTabbarViewController) {
         self.rootVC = rootVC
+        
+        rootVC.didHijackHandler = { (tab, vc, index) in
+            vc.refreshViewController()
+        }
     }
     
     func start() {
@@ -63,6 +68,15 @@ class AppCoordinator {
         userinfoCoordinator.start()
 
         rootVC.viewControllers = [home, transfer, userinfo]
+        
+        aspect()
+    }
+    
+    func aspect() {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil) {[weak self] (notifi) in
+            guard let `self` = self else { return }
+            self.curDisplayingCoordinator().rootVC.topViewController?.refreshViewController()
+        }
     }
     
     func curDisplayingCoordinator() -> NavCoordinator {

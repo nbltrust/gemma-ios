@@ -92,7 +92,7 @@ extension EOSIOService : TargetType {
     var parameters: [String: Any] {
         switch self {
         case let .get_currency_balance(account):
-            return ["account": account, "code": NetworkConfiguration.EOSIO_DEFAULT_CODE, "symbol": NetworkConfiguration.EOSIO_DEFAULT_SYMBOL]
+            return ["account": account, "code": EOSIOContract.TOKEN_CODE, "symbol": NetworkConfiguration.EOSIO_DEFAULT_SYMBOL]
         case let .get_account(account):
             return ["account_name": account]
         case .get_info:
@@ -111,7 +111,7 @@ extension EOSIOService : TargetType {
             
             return transaction
         case let .abi_bin_to_json(bin, action):
-            return ["code": NetworkConfiguration.EOSIO_DEFAULT_CODE, "action": action.rawValue, "binargs": bin]
+            return ["code": EOSIOContract.TOKEN_CODE, "action": action.rawValue, "binargs": bin]
         case let .get_key_accounts(pubKey):
             return ["public_key": pubKey]
         case let .get_transaction(id):

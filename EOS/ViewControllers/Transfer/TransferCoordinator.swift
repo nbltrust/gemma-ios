@@ -133,13 +133,13 @@ extension TransferCoordinator: TransferStateManagerProtocol {
         
         getInfo { (get_info) in
             let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: password)
-            let json = EOSIO.getAbiJsonString(NetworkConfiguration.EOSIO_DEFAULT_CODE, action: EOSAction.transfer.rawValue, from: WalletManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
+            let json = EOSIO.getAbiJsonString(EOSIOContract.TOKEN_CODE, action: EOSAction.transfer.rawValue, from: WalletManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
 
             EOSIONetwork.request(target: .abi_json_to_bin(json:json!), success: { (data) in
                 let abiStr = data.stringValue
                 
                let transation = EOSIO.getTransferTransaction(privakey,
-                                     code: NetworkConfiguration.EOSIO_DEFAULT_CODE,
+                                     code: EOSIOContract.TOKEN_CODE,
                                      from: account,
                     getinfo: get_info,
                     abistr: abiStr)
