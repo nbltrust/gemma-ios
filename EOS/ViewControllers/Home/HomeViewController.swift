@@ -30,10 +30,10 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let nav = self.navigationController as? BaseNavigationController {
-            nav.navStyle = .clear
-        }
+        setupUI()
+
         
+
         WalletManager.shared.FetchAccount { (account) in
             self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
         }
@@ -48,10 +48,16 @@ class HomeViewController: BaseViewController {
     }
     
     func setupUI(){
+        if let nav = self.navigationController as? BaseNavigationController {
+            nav.navStyle = .clear
+        }
+        
         self.configRightNavButton(R.image.walletAdd())
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
-        
+        self.automaticallyAdjustsScrollViewInsets = true
+
+//        tableView?.edgesToDevice(vc:self, insets: UIEdgeInsets(top: -64, left: 0, bottom: 0, right: 0), priority: .required, isActive: true, usingSafeArea: false)
         headImageView.image = navBgImage()
 //        updateUI()
     }

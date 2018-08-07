@@ -17,6 +17,12 @@ func SetWalletPropertyReducer(_ state: SetWalletPropertyState?, action: Action) 
     var state = state ?? SetWalletPropertyState()
     
     switch action {
+    case let action as SetWalletPasswordAction:
+        state.setWalletPasswordValid.accept(action.isValid)
+    case let action as SetWalletComfirmPasswordAction:
+        state.setWalletComfirmPasswordValid.accept(action.isValid)
+    case let action as SetWalletAgreeAction:
+        state.setWalletIsAgree.accept(action.isAgree)
     default:
         break
     }

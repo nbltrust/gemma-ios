@@ -32,13 +32,11 @@ class AccountListViewController: BaseViewController {
     }
     
     func setupData() {
+        
         var array: [AccountListViewModel] = []
-        for i in 0..<7 {
+        for accountName in WalletManager.shared.account_names {
             var model = AccountListViewModel()
-            model.account = "wallet" + "\(i)"
-            if i == 1 {
-                model.account = "awesome14"
-            }
+            model.account = accountName
             array.append(model)
         }
         accountListView.data = array

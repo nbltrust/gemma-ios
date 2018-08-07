@@ -17,6 +17,7 @@ class SetWalletViewController: BaseViewController {
     @IBOutlet weak var servers: UILabel!
     @IBOutlet weak var finished: Button!
     @IBOutlet weak var fieldVIew: SetWalletContentView!
+    @IBOutlet weak var cornerShadowView: CornerAndShadowView!
     
     var isUpdatePassword:Bool = false
     
@@ -25,6 +26,7 @@ class SetWalletViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        cornerShadowView.updateContentSize()
         setupEvent()
     }
     
@@ -68,6 +70,7 @@ class SetWalletViewController: BaseViewController {
         sender.isSelected = !sender.isSelected
         sender.isSelected == true ?sender.setBackgroundImage(R.image.ic_checkbox_active(), for: .normal) :
         sender.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
+        self.coordinator?.checkAgree(sender.isSelected)
     }
     
     func commonObserveState() {
@@ -86,5 +89,21 @@ class SetWalletViewController: BaseViewController {
     
     override func configureObserveState() {
         commonObserveState()
+        
+        Observable.combineLatest(self.coordinator!.state.property.setWalletPasswordValid.asObservable(),
+                                 self.coordinator!.state.property.setWalletComfirmPasswordValid.asObservable(),
+                                 self.coordinator!.state.property.setWalletIsAgree.asObservable()).map { (arg0) -> Bool in
+                                    return arg0.0 && arg0.1 && arg0.2
+            }.bind(to: finished.isEnabel).disposed(by: disposeBag)
+    }
+}
+
+extension SetWalletViewController {
+    @objc func walletPassword(_ data: [String : Any]) {
+        self.coordinator?.validPassword(data["content"] as! String)
+    }
+    
+    @objc func walletComfirmPassword(_ data: [String : Any]) {
+        self.coordinator?.validComfirmPassword(data["content"] as! String, comfirmPassword: self.fieldVIew.password.textField.text!)
     }
 }

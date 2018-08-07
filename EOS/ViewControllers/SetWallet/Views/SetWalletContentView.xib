@@ -19,32 +19,40 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="257"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="266"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Eg5-Hy-nTF">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="196.5"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COK-UE-S5q" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTI-pf-dVk" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="65.5" width="375" height="65.5"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tce-pl-mAe" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="131" width="375" height="65.5"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
-                    </subviews>
-                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COK-UE-S5q" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="81" id="mJ2-1h-ejp"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTI-pf-dVk" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="81" width="375" height="81"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="81" id="eNK-X2-PXA"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tce-pl-mAe" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="162" width="375" height="104"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Eg5-Hy-nTF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="RQh-nc-SDn"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Eg5-Hy-nTF" secondAttribute="trailing" id="UL6-xZ-5LD"/>
-                <constraint firstItem="Eg5-Hy-nTF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dMU-va-ZWy"/>
+                <constraint firstItem="XTI-pf-dVk" firstAttribute="top" secondItem="COK-UE-S5q" secondAttribute="bottom" id="1lW-2l-ufY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Tce-pl-mAe" secondAttribute="bottom" id="3kw-Lh-OJg"/>
+                <constraint firstItem="COK-UE-S5q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4Y1-ee-T54"/>
+                <constraint firstItem="Tce-pl-mAe" firstAttribute="top" secondItem="XTI-pf-dVk" secondAttribute="bottom" id="A3t-5w-Iae"/>
+                <constraint firstItem="XTI-pf-dVk" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="P5k-h5-1Wl"/>
+                <constraint firstItem="COK-UE-S5q" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Sli-1l-IHB"/>
+                <constraint firstItem="Tce-pl-mAe" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Uo8-eE-afh"/>
+                <constraint firstItem="Tce-pl-mAe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aTL-d2-mDn"/>
+                <constraint firstItem="XTI-pf-dVk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rux-fV-BWX"/>
+                <constraint firstItem="COK-UE-S5q" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="uQy-rL-d5b"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

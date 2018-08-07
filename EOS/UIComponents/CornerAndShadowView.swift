@@ -52,6 +52,10 @@ class CornerAndShadowView: UIView {
         updateHeight()
     }
     
+    func updateContentSize() {
+        updateHeight()
+    }
+    
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
     }

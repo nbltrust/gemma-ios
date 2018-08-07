@@ -35,12 +35,12 @@
                             </tableView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="ACt-uJ-OXw" firstAttribute="leading" secondItem="2hX-6z-qSM" secondAttribute="leading" id="3E1-53-0s7"/>
+                            <constraint firstItem="ACt-uJ-OXw" firstAttribute="trailing" secondItem="f5G-1Z-JFd" secondAttribute="trailing" id="1Fv-KU-byB"/>
                             <constraint firstItem="fK7-Wz-j7B" firstAttribute="trailing" secondItem="f5G-1Z-JFd" secondAttribute="trailing" id="3lL-M2-KVX"/>
+                            <constraint firstItem="ACt-uJ-OXw" firstAttribute="top" secondItem="2hX-6z-qSM" secondAttribute="top" id="9hU-UI-R96"/>
                             <constraint firstItem="fK7-Wz-j7B" firstAttribute="leading" secondItem="f5G-1Z-JFd" secondAttribute="leading" id="ChT-8P-NMa"/>
-                            <constraint firstItem="ACt-uJ-OXw" firstAttribute="top" secondItem="2hX-6z-qSM" secondAttribute="top" id="hah-eT-0dp"/>
-                            <constraint firstAttribute="trailing" secondItem="ACt-uJ-OXw" secondAttribute="trailing" id="lLB-bg-n6d"/>
-                            <constraint firstItem="f5G-1Z-JFd" firstAttribute="bottom" secondItem="ACt-uJ-OXw" secondAttribute="bottom" id="ryE-Ry-XVp"/>
+                            <constraint firstItem="ACt-uJ-OXw" firstAttribute="leading" secondItem="f5G-1Z-JFd" secondAttribute="leading" id="ZkP-12-h7z"/>
+                            <constraint firstItem="ACt-uJ-OXw" firstAttribute="bottom" secondItem="f5G-1Z-JFd" secondAttribute="bottom" id="kMu-tH-4p6"/>
                             <constraint firstItem="fK7-Wz-j7B" firstAttribute="top" secondItem="2hX-6z-qSM" secondAttribute="top" id="sMW-Um-jnF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="f5G-1Z-JFd"/>

@@ -164,6 +164,7 @@
                     </view>
                     <connections>
                         <outlet property="agree" destination="WWx-ll-PoG" id="DhB-ix-Zqc"/>
+                        <outlet property="cornerShadowView" destination="FmD-Z5-Oeh" id="Sda-4P-1S2"/>
                         <outlet property="fieldVIew" destination="JnZ-Ka-0D8" id="JbN-o8-vQJ"/>
                         <outlet property="finished" destination="Guu-3m-Nqh" id="pQC-Hd-vna"/>
                         <outlet property="servers" destination="JPa-2M-PQb" id="XAk-rg-H4y"/>
