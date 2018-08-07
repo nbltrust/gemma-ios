@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 func GestureLockSetReducer(action:Action, state:GestureLockSetState?) -> GestureLockSetState {
-    return GestureLockSetState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: GestureLockSetPropertyReducer(state?.property, action: action))
+    return GestureLockSetState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: GestureLockSetPropertyReducer(state?.property, action: action), callback: state?.callback ?? GestureLockSetCallbackState())
 }
 
 func GestureLockSetPropertyReducer(_ state: GestureLockSetPropertyState?, action: Action) -> GestureLockSetPropertyState {
@@ -23,6 +23,8 @@ func GestureLockSetPropertyReducer(_ state: GestureLockSetPropertyState?, action
         state.validedPassword.accept(action.valided)
     case let action as SetPromotDataAction:
         state.promotData.accept(action.data)
+    case let action as SetReDrawFailedNumAction:
+        state.reDrawFailedNum.accept(action.num)
     default:
         break
     }

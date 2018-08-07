@@ -103,7 +103,6 @@ class SafeLineView: UIView {
 
 extension SafeLineView {
     @objc func clickCellView(_ sender : [String:Any]) {
-        self.safeSwitch.isOn = !self.safeSwitch.isOn
         self.next?.sendEventWith(event_name.clickCellView.rawValue, userinfo: sender)
     }
 }

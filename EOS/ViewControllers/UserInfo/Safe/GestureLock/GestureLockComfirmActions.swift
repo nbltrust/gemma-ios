@@ -8,6 +8,7 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
 struct GestureLockComfirmState: StateType {
@@ -15,9 +16,15 @@ struct GestureLockComfirmState: StateType {
     var page: Int = 1
     var errorMessage:String?
     var property: GestureLockComfirmPropertyState
+    var callback: GestureLockConfirmCallbackState
 }
 
 struct GestureLockComfirmPropertyState {
+    var promotData: BehaviorRelay<(message: String,isWarning: Bool)> = BehaviorRelay(value: (R.string.localizable.ges_pas_current_pla(),false))
+}
+
+struct GestureLockConfirmCallbackState {
+    var confirmResult: BehaviorRelay<ResultCallback?> = BehaviorRelay(value: nil)
 }
 
 //MARK: - Action Creator

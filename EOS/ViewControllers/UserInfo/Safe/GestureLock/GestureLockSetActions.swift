@@ -16,12 +16,18 @@ struct GestureLockSetState: StateType {
     var page: Int = 1
     var errorMessage:String?
     var property: GestureLockSetPropertyState
+    var callback: GestureLockSetCallbackState
 }
 
 struct GestureLockSetPropertyState {
+    var reDrawFailedNum: BehaviorRelay<Int> = BehaviorRelay(value: 0)
     var password: BehaviorRelay<String> = BehaviorRelay(value: "")
     var promotData: BehaviorRelay<(message: String,isWarning: Bool)> = BehaviorRelay(value: (R.string.localizable.ges_pas_input_pla(),false))
     var validedPassword: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+}
+
+struct GestureLockSetCallbackState {
+    var setResult: BehaviorRelay<ResultCallback?> = BehaviorRelay(value: nil)
 }
 
 struct SetPasswordAction: Action {
@@ -34,6 +40,10 @@ struct SetValidedPasswordAction: Action {
 
 struct SetPromotDataAction: Action {
     var data = ("", false)
+}
+
+struct SetReDrawFailedNumAction: Action {
+    var num = 0
 }
 
 //MARK: - Action Creator

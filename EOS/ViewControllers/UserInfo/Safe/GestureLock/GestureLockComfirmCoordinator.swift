@@ -17,6 +17,8 @@ protocol GestureLockComfirmStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<GestureLockComfirmState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func confirmLock(_ password: String)
 }
 
 class GestureLockComfirmCoordinator: NavCoordinator {
@@ -31,7 +33,6 @@ class GestureLockComfirmCoordinator: NavCoordinator {
 }
 
 extension GestureLockComfirmCoordinator: GestureLockComfirmCoordinatorProtocol {
-    
 }
 
 extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol {
@@ -43,6 +44,20 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
         _ subscriber: S, transform: ((Subscription<GestureLockComfirmState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
+    }
+    
+    func confirmLock(_ password: String) {
+        if SafeManager.shared.validGesturePassword(password) {
+            self.rootVC.dismiss(animated: true) {
+                self.state.callback.confirmResult.value?(true)
+            }
+        } else {
+            if password.trimmed.count < GestureLockSetting.minPasswordLength {
+                self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough(), true)))
+            } else {
+                self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_confirm_failed(), true)))
+            }
+        }
     }
     
 }

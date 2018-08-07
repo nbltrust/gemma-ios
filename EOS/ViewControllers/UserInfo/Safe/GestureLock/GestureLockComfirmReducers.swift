@@ -10,13 +10,15 @@ import UIKit
 import ReSwift
 
 func GestureLockComfirmReducer(action:Action, state:GestureLockComfirmState?) -> GestureLockComfirmState {
-    return GestureLockComfirmState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: GestureLockComfirmPropertyReducer(state?.property, action: action))
+    return GestureLockComfirmState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: GestureLockComfirmPropertyReducer(state?.property, action: action), callback: state?.callback ?? GestureLockConfirmCallbackState())
 }
 
 func GestureLockComfirmPropertyReducer(_ state: GestureLockComfirmPropertyState?, action: Action) -> GestureLockComfirmPropertyState {
-    var state = state ?? GestureLockComfirmPropertyState()
+    let state = state ?? GestureLockComfirmPropertyState()
     
     switch action {
+    case let action as SetPromotDataAction:
+        state.promotData.accept(action.data)
     default:
         break
     }

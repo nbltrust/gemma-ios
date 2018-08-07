@@ -8,6 +8,7 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
 struct FingerPrinterConfirmState: StateType {
@@ -15,9 +16,14 @@ struct FingerPrinterConfirmState: StateType {
     var page: Int = 1
     var errorMessage:String?
     var property: FingerPrinterConfirmPropertyState
+    var callback: FingerPrinterConfirmCallbackState
 }
 
 struct FingerPrinterConfirmPropertyState {
+}
+
+struct FingerPrinterConfirmCallbackState {
+    var confirmResult: BehaviorRelay<ResultCallback?> = BehaviorRelay(value: nil)
 }
 
 //MARK: - Action Creator

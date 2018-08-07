@@ -13,10 +13,23 @@ import ReSwift
 
 class GestureLockComfirmViewController: BaseViewController {
 
-	var coordinator: (GestureLockComfirmCoordinatorProtocol & GestureLockComfirmStateManagerProtocol)?
+    @IBOutlet weak var gestureLockView: GestureLockView!
+    
+    var coordinator: (GestureLockComfirmCoordinatorProtocol & GestureLockComfirmStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        gestureLockView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     func commonObserveState() {
@@ -36,5 +49,14 @@ class GestureLockComfirmViewController: BaseViewController {
     override func configureObserveState() {
         commonObserveState()
         
+    }
+}
+
+extension GestureLockComfirmViewController: GestureLockViewDelegate {
+    func gestureLockViewDidTouchesEnd(_ lockView: GestureLockView) {
+        let password = lockView.password
+        if password.trimmed.count > 0 {
+            self.coordinator?.confirmLock(gestureLockView.password)
+        }
     }
 }
