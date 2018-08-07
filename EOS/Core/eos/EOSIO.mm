@@ -22,7 +22,11 @@ eosio::keosdlib k;
 }
 
 + (NSString *)getPublicKey:(NSString *)privateKey {
-    return @(k.get_public_key(privateKey.UTF8String).c_str());
+    NSString *key = @(k.get_public_key(privateKey.UTF8String).c_str());
+    if ([key isEqualToString:@""]) {
+        return nil;
+    }
+    return key;
 }
 
 + (NSString *)getCypher:(NSString *)privateKey password:(NSString *)password {

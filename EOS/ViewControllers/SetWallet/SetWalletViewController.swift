@@ -26,7 +26,7 @@ class SetWalletViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        cornerShadowView.updateContentSize()
+//        cornerShadowView.updateContentSize()
         setupEvent()
     }
     

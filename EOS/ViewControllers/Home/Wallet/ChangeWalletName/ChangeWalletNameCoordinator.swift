@@ -51,10 +51,22 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
     }
   
     func updateWalletName(model: WalletManagerModel) {
-        WalletManager.shared.updateWalletName(model.address, walletName: model.name)
-        
-        if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? WalletManagerViewController {
-            vc.data = model
+        if isValidWalletName(name: model.name) {
+            WalletManager.shared.updateWalletName(model.address, walletName: model.name)
+            
+            if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? WalletManagerViewController {
+                vc.data = model
+            }
         }
+    }
+    
+    func isValidWalletName(name: String) -> Bool {
+        for walletList in WalletManager.shared.wallketList() {
+            if walletList.name == name {
+                self.rootVC.showError(message: R.string.localizable.walletname_invalid())
+                return false
+            }
+        }
+        return true
     }
 }

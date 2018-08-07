@@ -93,7 +93,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     
     func checkAgree(_ agree: Bool) {
         self.store.dispatch(agreeAction(isAgree: agree))
-        self.pushToCreateSuccessVC()
     }
     
     func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {

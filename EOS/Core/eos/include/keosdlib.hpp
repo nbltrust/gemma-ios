@@ -112,13 +112,18 @@ namespace eosio {
                 return std::make_pair("?", "?");
             }
             auto public_key = priv_key.get_public_key();
+            
             return std::make_pair((std::string)public_key, (std::string)priv_key);
         }
         
         std::string get_public_key(const std::string& priv_key) {
+            try{
             chain::private_key_type private_key(priv_key);
             auto public_key = private_key.get_public_key();
             return (std::string)public_key;
+            }catch(...){
+                return "";
+            }
         }
         
         // // Import key

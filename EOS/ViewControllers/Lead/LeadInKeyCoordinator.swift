@@ -72,7 +72,12 @@ extension LeadInKeyCoordinator: LeadInKeyStateManagerProtocol {
     }
     
     func validPrivateKey(_ privKey: String) -> (Bool, String) {
-        return (true, "")
+        if let _ = EOSIO.getPublicKey(privKey) {
+            return (true, "")
+        } else {
+            self.rootVC.showError(message: R.string.localizable.privatekey_faile())
+            return (false, "")
+        }
     }
     
     func importPrivKey(_ privKey: String) {

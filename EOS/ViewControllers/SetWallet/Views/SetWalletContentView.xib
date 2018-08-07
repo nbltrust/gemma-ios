@@ -22,37 +22,69 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="266"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COK-UE-S5q" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Dt2-1e-lPE">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="266"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QSV-gW-Wv3">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="COK-UE-S5q" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="20" width="375" height="81"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="COK-UE-S5q" secondAttribute="trailing" id="Jad-tl-kfh"/>
+                                <constraint firstItem="COK-UE-S5q" firstAttribute="top" secondItem="QSV-gW-Wv3" secondAttribute="top" id="NOa-he-6oN"/>
+                                <constraint firstItem="COK-UE-S5q" firstAttribute="leading" secondItem="QSV-gW-Wv3" secondAttribute="leading" id="aVw-tF-vR0"/>
+                                <constraint firstAttribute="bottom" secondItem="COK-UE-S5q" secondAttribute="bottom" id="z1h-0A-9yR"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfG-C4-ka8">
+                            <rect key="frame" x="0.0" y="50" width="375" height="72"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTI-pf-dVk" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="20" width="375" height="81"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="XTI-pf-dVk" firstAttribute="leading" secondItem="qfG-C4-ka8" secondAttribute="leading" id="6gr-Jd-Eed"/>
+                                <constraint firstAttribute="bottom" secondItem="XTI-pf-dVk" secondAttribute="bottom" id="E5h-wW-QXM"/>
+                                <constraint firstAttribute="trailing" secondItem="XTI-pf-dVk" secondAttribute="trailing" id="VDk-oH-D3F"/>
+                                <constraint firstItem="XTI-pf-dVk" firstAttribute="top" secondItem="qfG-C4-ka8" secondAttribute="top" id="ck5-Xe-418"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOi-rm-4Ha">
+                            <rect key="frame" x="0.0" y="122" width="375" height="144"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tce-pl-mAe" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="20" width="375" height="104"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Tce-pl-mAe" secondAttribute="bottom" id="BnN-sO-eke"/>
+                                <constraint firstItem="Tce-pl-mAe" firstAttribute="top" secondItem="pOi-rm-4Ha" secondAttribute="top" id="DyT-h9-HR3"/>
+                                <constraint firstAttribute="trailing" secondItem="Tce-pl-mAe" secondAttribute="trailing" id="QS0-yW-Wk4"/>
+                                <constraint firstItem="Tce-pl-mAe" firstAttribute="leading" secondItem="pOi-rm-4Ha" secondAttribute="leading" id="sSu-1L-wrx"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="81" id="mJ2-1h-ejp"/>
+                        <constraint firstItem="qfG-C4-ka8" firstAttribute="height" secondItem="QSV-gW-Wv3" secondAttribute="height" id="8Xk-9K-Z6V"/>
                     </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTI-pf-dVk" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="81" width="375" height="81"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="81" id="eNK-X2-PXA"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tce-pl-mAe" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="162" width="375" height="104"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="XTI-pf-dVk" firstAttribute="top" secondItem="COK-UE-S5q" secondAttribute="bottom" id="1lW-2l-ufY"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Tce-pl-mAe" secondAttribute="bottom" id="3kw-Lh-OJg"/>
-                <constraint firstItem="COK-UE-S5q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4Y1-ee-T54"/>
-                <constraint firstItem="Tce-pl-mAe" firstAttribute="top" secondItem="XTI-pf-dVk" secondAttribute="bottom" id="A3t-5w-Iae"/>
-                <constraint firstItem="XTI-pf-dVk" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="P5k-h5-1Wl"/>
-                <constraint firstItem="COK-UE-S5q" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Sli-1l-IHB"/>
-                <constraint firstItem="Tce-pl-mAe" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Uo8-eE-afh"/>
-                <constraint firstItem="Tce-pl-mAe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aTL-d2-mDn"/>
-                <constraint firstItem="XTI-pf-dVk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rux-fV-BWX"/>
-                <constraint firstItem="COK-UE-S5q" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="uQy-rL-d5b"/>
+                <constraint firstItem="Dt2-1e-lPE" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="4a8-yP-qF7"/>
+                <constraint firstItem="Dt2-1e-lPE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Y7t-TS-W2b"/>
+                <constraint firstItem="Dt2-1e-lPE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="moi-L0-tfS"/>
+                <constraint firstItem="Dt2-1e-lPE" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="oEy-eM-CbO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
