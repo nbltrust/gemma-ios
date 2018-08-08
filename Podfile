@@ -3,7 +3,6 @@ platform :ios, '9.0'
 def network
     pod 'Moya'
     pod 'Kingfisher'
-    pod 'RealReachability'
 end
 
 def data
@@ -12,7 +11,6 @@ def data
     pod 'GRDB.swift'
     pod 'CryptoSwift'
     pod 'RxGRDB'
-    pod 'FCUUID'
     pod 'IQKeyboardManagerSwift'
     pod 'Guitar'
     pod 'SwiftyUserDefaults',:git => 'https://github.com/radex/SwiftyUserDefaults', :tag => '4.0.0-alpha.1'
@@ -64,7 +62,6 @@ def ui
     pod 'Tags' #助记词
     pod 'TinyConstraints'
     pod 'ESTabBarController-swift'
-    pod 'KMNavigationBarTransition'
     pod 'IHKeyboardAvoiding'
     pod 'Typist'
     pod 'RxGesture'
@@ -82,6 +79,7 @@ def ui
     pod 'GrowingTextView'
     pod 'Bartinter'
     pod 'NotificationBannerSwift'
+    pod 'TKSwitcherCollection'
 end
 
 def other
@@ -102,6 +100,12 @@ def debug
     pod 'CocoaDebug', :configurations => ['Debug']
 end
 
+def objc
+    pod 'RealReachability'
+    pod 'KMNavigationBarTransition'
+    pod 'FCUUID'
+end
+
 target 'EOS' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
@@ -119,4 +123,11 @@ target 'EOS' do
   ui
   other
   debug
+  objc
+end
+
+target 'EOSTests' do
+    objc
+    pod 'Nimble'
+    pod 'Quick'
 end
