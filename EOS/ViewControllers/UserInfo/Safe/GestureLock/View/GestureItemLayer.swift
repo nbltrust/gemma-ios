@@ -38,7 +38,11 @@ class GestureItemLayer: CAShapeLayer {
         }
     }
     
-    var dirAngle: Double = 0
+    var dirAngle: CGFloat = 0 {
+        didSet {
+            drawDirection()
+        }
+    }
     
     private let mainPath = UIBezierPath()
     
@@ -73,19 +77,36 @@ class GestureItemLayer: CAShapeLayer {
         }
     }
     
-    fileprivate func triangleCenterGap() -> CGFloat {
-        return centerRadio + 5 + 3
-    }
-    
-    fileprivate func drawCenterCircle() {
+    fileprivate func drawArcCenterLayer() {
         let solidCirclePath = UIBezierPath()
         solidCirclePath.addArc(withCenter: CGPoint(x: width / 2, y: width / 2), radius: centerRadio, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: false)
         mainPath.append(solidCirclePath)
+        
         path = mainPath.cgPath
     }
     
     fileprivate func drawDirection() {
+        self.transformSelf()
         
+        let point1 = CGPoint(x:width / 2 + centerRadio + 8 + 6, y: width / 2)
+        let point2 = CGPoint(x:width / 2 + centerRadio + 8, y: width / 2 + 5)
+        let point3 = CGPoint(x:width / 2 + centerRadio + 8, y: width / 2 - 5)
+        let trianglePath = UIBezierPath()
+        trianglePath.move(to: point1)
+        trianglePath.addLine(to: point2)
+        trianglePath.addLine(to: point3)
+        trianglePath.close()
+        mainPath.append(trianglePath)
+        
+        path = mainPath.cgPath
+    }
+    
+    fileprivate func transformSelf() {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        self.transform = CATransform3DIdentity
+        self.transform = CATransform3DMakeRotation(dirAngle, 0, 0, 1)
+        CATransaction.commit()
     }
     
     fileprivate func removePaths() {
@@ -104,7 +125,7 @@ class GestureItemLayer: CAShapeLayer {
     fileprivate func turnHighlighted() {
         borderColor = GestureLockSetting.lockHighlightedColor.cgColor
         borderWidth = GestureLockSetting.lockHighlightedBorderWidth
-        drawCenterCircle()
+        drawArcCenterLayer()
     }
     
     fileprivate func trunWarning() {
