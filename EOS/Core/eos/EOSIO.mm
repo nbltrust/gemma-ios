@@ -61,4 +61,16 @@ eosio::keosdlib k;
     return @(k.create_abi_req_undelegatebw(code.UTF8String, action.UTF8String, from.UTF8String, receiver.UTF8String, unstake_net_quantity.UTF8String, unstake_cpu_quantity.UTF8String).c_str());
 }
 
++ (NSString *)getBuyRamAbi:(NSString *)code action:(NSString *)action payer:(NSString *)payer receiver:(NSString *)receiver quant:(NSString *)quant {
+    return @(k.create_abi_req_buyram(code.UTF8String, action.UTF8String, payer.UTF8String, receiver.UTF8String, quant.UTF8String).c_str());
+}
+
++ (NSString *)getSellRamAbi:(NSString *)code action:(NSString *)action account:(NSString *)account bytes:(uint32_t)bytes {
+    return @(k.create_abi_req_sellram(code.UTF8String, action.UTF8String, account.UTF8String, bytes).c_str());
+}
+
+//+ (NSString *)getBuyRamTransaction {
+//    return @(k.signTransaction_buyram(<#const std::string &priv_key_str#>, <#const std::string &contract#>, <#const std::string &payer_str#>, <#const std::string &infostr#>, <#const std::string &abistr#>, <#uint32_t max_cpu_usage_ms#>, <#uint32_t max_net_usage_words#>).c_str());
+//}
+
 @end

@@ -49,14 +49,6 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        
-//        setupUI()
-//
-//        
-//
-//        WalletManager.shared.FetchAccount { (account) in
-//            self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
-//        }
 
         if let nav = self.navigationController as? BaseNavigationController {
             nav.navStyle = .clear
@@ -82,12 +74,6 @@ class HomeViewController: BaseViewController {
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         self.automaticallyAdjustsScrollViewInsets = true
-
-//        tableView?.edgesToDevice(vc:self, insets: UIEdgeInsets(top: -64, left: 0, bottom: 0, right: 0), priority: .required, isActive: true, usingSafeArea: false)
-//        headImageView.image = navBgImage()
-        
-//        headImageView.image = navBgImage()
-//        updateUI()
     }
     
     func updateUI() {
@@ -117,15 +103,6 @@ class HomeViewController: BaseViewController {
         else {
             tableHeaderView.backupLabelViewIsHidden = true
         }
-     
-        
-       
-
-        
-        
-//        tableHeaderView.accountInfoView.cornerShadowView.setUp()
-//        self.tableHeaderView.layoutIfNeeded()
-//        self.tableView.tableHeaderView?.height = self.tableHeaderView.height
     }
     
     override func rightAction(_ sender: UIButton) {
@@ -157,6 +134,7 @@ class HomeViewController: BaseViewController {
             self.tableHeaderView.layoutIfNeeded()
             
             self.tableView.tableHeaderView?.height = self.tableHeaderView.height
+            self.tableView.reloadData()
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
