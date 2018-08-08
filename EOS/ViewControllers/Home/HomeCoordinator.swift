@@ -18,6 +18,8 @@ protocol HomeCoordinatorProtocol {
     func pushAccountList()
     func pushResourceMortgageVC()
     func pushBackupVC()
+    func pushVoteVC()
+    func pushDealRAMVC()
 }
 
 protocol HomeStateManagerProtocol {
@@ -121,6 +123,18 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
+    
+    func pushVoteVC() {
+        if let vc = R.storyboard.home.voteViewController() {
+            let coordinator = VoteCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func pushDealRAMVC() {
+        
+    }
 }
 
 extension HomeCoordinator: HomeStateManagerProtocol {
@@ -164,6 +178,22 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     
     func createDataInfo() -> [LineView.LineViewModel] {
         return [LineView.LineViewModel.init(name: R.string.localizable.payments_history(),
+                                            content: "",
+                                            image_name: R.image.icArrow.name,
+                                            name_style: LineViewStyleNames.normal_name,
+                                            content_style: LineViewStyleNames.normal_content,
+                                            isBadge: false,
+                                            content_line_number: 1,
+                                            isShowLineView: false),
+                LineView.LineViewModel.init(name: R.string.localizable.node_vote(),
+                                            content: "",
+                                            image_name: R.image.icArrow.name,
+                                            name_style: LineViewStyleNames.normal_name,
+                                            content_style: LineViewStyleNames.normal_content,
+                                            isBadge: false,
+                                            content_line_number: 1,
+                                            isShowLineView: false),
+                LineView.LineViewModel.init(name: R.string.localizable.deal_ram(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,

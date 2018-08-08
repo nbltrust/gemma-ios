@@ -244,3 +244,7 @@
 "ges_pas_confirm_pla" = "再次输入解锁密码，以确认";
 "tap_to_valid" = "请点击验证";
 "ges_confirm_failed" = "手势密码有误，请重新解锁";
+
+//Home
+"node_vote" = "节点投票";
+"deal_ram" = "买卖RAM";
