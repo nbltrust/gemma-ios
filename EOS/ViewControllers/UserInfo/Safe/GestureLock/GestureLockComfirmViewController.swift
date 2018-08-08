@@ -13,6 +13,7 @@ import ReSwift
 
 class GestureLockComfirmViewController: BaseViewController {
 
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var gestureLockView: GestureLockView!
     
     var coordinator: (GestureLockComfirmCoordinatorProtocol & GestureLockComfirmStateManagerProtocol)?
@@ -44,6 +45,15 @@ class GestureLockComfirmViewController: BaseViewController {
                 return false
             })
         }
+        
+        self.coordinator?.state.property.promotData.asObservable().subscribe(onNext: {[weak self] (arg0) in
+            guard let `self` = self else { return }
+            self.messageLabel.text = arg0.message
+            self.messageLabel.textColor = arg0.isWarning ? UIColor.scarlet : UIColor.darkSlateBlue
+            if arg0.isWarning {
+                self.gestureLockView.warn()
+            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     override func configureObserveState() {

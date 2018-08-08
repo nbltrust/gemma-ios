@@ -72,16 +72,6 @@ class GestureLockView: UIView {
             itemLayers.append(itemLayer)
             layer.addSublayer(itemLayer)
         }
-    }
-    
-    public func showSelectedItems(_ passwordStr: String) {
-        for char in passwordStr {
-            itemLayers[Int("\(char)")!].status = .highlighted
-        }
-    }
-        
-    override func layoutSubviews() {
-        super.layoutSubviews()
         let marginX = (frame.width - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
         let marginY = (frame.height - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
         
@@ -95,6 +85,16 @@ class GestureLockView: UIView {
             sublayer.width = itemSizes.width.adapt()
             sublayer.origin = CGPoint(x: originX, y: originY)
         }
+    }
+    
+    public func showSelectedItems(_ passwordStr: String) {
+        for char in passwordStr {
+            itemLayers[Int("\(char)")!].status = .highlighted
+        }
+    }
+        
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
     override open func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
@@ -158,7 +158,8 @@ class GestureLockView: UIView {
                 lastLocation = directPoint
                 mainPath.move(to: directPoint)
             } else {
-                itemlayer.dirAngle = angleBetweenLines(firstLineStart: lastLocation, firstLineEnd: directPoint, secondLineStart: lastLocation, secondLineEnd: CGPoint(x: lastLocation.x + 20, y: lastLocation.y))
+                let lastItemlayer = selectedItemLayers[idx - 1]
+                lastItemlayer.dirAngle = angleBetweenLines(lastLocation, endPoint: directPoint)
                 mainPath.addLine(to: directPoint)
                 lastLocation = directPoint
             }
@@ -166,17 +167,17 @@ class GestureLockView: UIView {
         shapeLayer?.path = mainPath.cgPath
     }
     
-    private func angleBetweenLines(firstLineStart: CGPoint,firstLineEnd: CGPoint,secondLineStart: CGPoint,secondLineEnd: CGPoint) -> Double {
-        let a = firstLineEnd.x - firstLineStart.x
-        let b = firstLineEnd.y - firstLineStart.y
-        let c = secondLineEnd.x - secondLineStart.x
-        let d = secondLineEnd.y - secondLineStart.y
-        let rads = acos(((a * c) + (b * d)) / ((sqrt(a * a + b * b)) * (sqrt(c * c + d * d))))
-        var growValue: Double = 0
-        if (firstLineEnd.x > firstLineStart.x && firstLineEnd.y > firstLineStart.y) || (secondLineEnd.x > secondLineStart.x && secondLineEnd.y > secondLineStart.y) {
-            growValue = 180
+    private func angleBetweenLines(_ startPoint: CGPoint,endPoint: CGPoint) -> CGFloat {
+        let xPoint = CGPoint(x: startPoint.x + 100, y: startPoint.y)
+        let a = endPoint.x - startPoint.x
+        let b = endPoint.y - startPoint.y
+        let c = xPoint.x - startPoint.x
+        let d = xPoint.y - startPoint.y
+        var rads = acos(((a * c) + (b * d)) / ((sqrt(a * a + b * b)) * (sqrt(c * c + d * d))))
+        if startPoint.y > endPoint.y {
+            rads = 2 * CGFloat.pi - rads
         }
-        return (rads.double * 180) / Double.pi + growValue
+        return rads
     }
     
     public func warn() {
