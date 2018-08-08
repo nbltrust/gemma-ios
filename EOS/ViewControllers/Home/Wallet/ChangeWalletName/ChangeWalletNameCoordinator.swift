@@ -19,7 +19,7 @@ protocol ChangeWalletNameStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<ChangeWalletNameState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func updateWalletName(model: WalletManagerModel)
+    func updateWalletName(model: WalletManagerModel) -> Bool
 }
 
 class ChangeWalletNameCoordinator: HomeRootCoordinator {
@@ -50,11 +50,26 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
   
-    func updateWalletName(model: WalletManagerModel) {
-        WalletManager.shared.updateWalletName(model.address, walletName: model.name)
-        
-        if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? WalletManagerViewController {
-            vc.data = model
+    func updateWalletName(model: WalletManagerModel) -> Bool {
+        if isValidWalletName(name: model.name) {
+            WalletManager.shared.updateWalletName(model.address, walletName: model.name)
+            
+            if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? WalletManagerViewController {
+                vc.data = model
+            }
+            return true
+        } else {
+            return false
         }
+    }
+    
+    func isValidWalletName(name: String) -> Bool {
+        for walletList in WalletManager.shared.wallketList() {
+            if walletList.name == name {
+                self.rootVC.showError(message: R.string.localizable.walletname_invalid())
+                return false
+            }
+        }
+        return true
     }
 }

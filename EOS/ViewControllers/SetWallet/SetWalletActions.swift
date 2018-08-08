@@ -8,6 +8,7 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
 struct SetWalletState: StateType {
@@ -18,6 +19,21 @@ struct SetWalletState: StateType {
 }
 
 struct SetWalletPropertyState {
+    var setWalletPasswordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    var setWalletComfirmPasswordValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    var setWalletIsAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+}
+
+struct SetWalletPasswordAction: Action {
+    var isValid: Bool = false
+}
+
+struct SetWalletComfirmPasswordAction: Action {
+    var isValid: Bool = false
+}
+
+struct SetWalletAgreeAction: Action {
+    var isAgree: Bool = false
 }
 
 //MARK: - Action Creator

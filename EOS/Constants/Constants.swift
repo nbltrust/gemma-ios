@@ -103,4 +103,6 @@ enum GemmaError: Error {
 enum EOSAction:String {
     case transfer
     case delegatebw
+    case undelegatebw
+
 }

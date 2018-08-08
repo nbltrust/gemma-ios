@@ -20,6 +20,8 @@ class LeadInKeyView: UIView {
     }
     
     func setup() {
+        self.creatButton.isEnabel.accept(false)
+
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
             self.next?.sendEventWith(event_name.beginLeadInAction.rawValue, userinfo: ["data":""])
@@ -63,5 +65,15 @@ class LeadInKeyView: UIView {
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
+}
+
+extension LeadInKeyView:UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            self.creatButton.isEnabel.accept(false)
+        } else {
+            self.creatButton.isEnabel.accept(true)
+        }
     }
 }

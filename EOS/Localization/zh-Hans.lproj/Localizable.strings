@@ -139,6 +139,10 @@
 "mortgage_failed" = "抵押失败";
 "cancel_mortgage_success" = "解除抵押成功";
 "cancel_mortgage_failed" = "解除抵押失败";
+"privatekey_faile" = "私钥格式不正确";
+"walletname_invalid" = "钱包名不能重复";
+"undelegate" = "Undelegate ";
+
 //zsy end
 
 "day" = "天";

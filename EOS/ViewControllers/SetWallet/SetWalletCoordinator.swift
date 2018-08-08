@@ -25,6 +25,10 @@ protocol SetWalletStateManagerProtocol {
     func validForm(_ password:String, confirmPassword:String, hint:String) -> (Bool, String)
     func importLocalWallet(_ password:String, hint:String, completion: @escaping (Bool)->Void)
     func updatePassword(_ password:String, hint:String)
+    
+    func validPassword(_ password: String)
+    func validComfirmPassword(_ password: String, comfirmPassword: String)
+    func checkAgree(_ agree: Bool)
 }
 
 class SetWalletCoordinator: HomeRootCoordinator {
@@ -82,5 +86,17 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
     func updatePassword(_ password:String, hint:String) {
         WalletManager.shared.updateWalletPassword(password, hint: hint)
         self.rootVC.popViewController()
+    }
+    
+    func validPassword(_ password: String) {
+        self.store.dispatch(SetWalletPasswordAction(isValid: WalletManager.shared.isValidPassword(password)))
+    }
+    
+    func validComfirmPassword(_ password: String, comfirmPassword: String) {
+        self.store.dispatch(SetWalletComfirmPasswordAction(isValid: WalletManager.shared.isValidComfirmPassword(password, comfirmPassword: comfirmPassword)))
+    }
+    
+    func checkAgree(_ agree: Bool) {
+        self.store.dispatch(SetWalletAgreeAction(isAgree: agree))
     }
 }

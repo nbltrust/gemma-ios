@@ -76,6 +76,12 @@ class SetWalletContentView: UIView {
         handleSetupSubView(password, tag: InputType.password.rawValue)
         handleSetupSubView(resetPassword, tag: InputType.comfirmPassword.rawValue)
         handleSetupSubView(tipPassword, tag: InputType.passwordPrompt.rawValue)
+        updateContentSize()
+    }
+    
+    func updateContentSize() {
+        self.performSelector(onMainThread: #selector(self.updateHeight), with: nil, waitUntilDone: false)
+        self.performSelector(onMainThread: #selector(self.updateHeight), with: nil, waitUntilDone: false)
     }
     
     func handleSetupSubView(_ titleTextfieldView : TitleTextfieldView, tag: Int) {
@@ -142,7 +148,7 @@ extension SetWalletContentView : TitleTextFieldViewDelegate,TitleTextFieldViewDa
                                     warningText: "",
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
-                                    showLine: true,
+                                    showLine: false,
                                     isSecureTextEntry: false)
         }
     }

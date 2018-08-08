@@ -14,11 +14,13 @@ import ReSwift
 class CreatationCompleteViewController: BaseViewController {
 
     @IBOutlet weak var comfirmView: ComfirmView!
+    @IBOutlet weak var contentView: UIView!
     
     var coordinator: (CreatationCompleteCoordinatorProtocol & CreatationCompleteStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.title = R.string.localizable.back_up_wallet()
     }
     
