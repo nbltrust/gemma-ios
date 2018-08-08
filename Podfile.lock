@@ -139,6 +139,7 @@ PODS:
   - SwiftyUserDefaults (4.0.0-alpha.1)
   - Tags (0.1.6)
   - TinyConstraints (3.1.1)
+  - TKSwitcherCollection (1.4.2)
   - Typist (1.2.2)
   - UICKeyChainStore (2.1.1)
   - UIFontComplete (3.0.0)
@@ -211,6 +212,7 @@ DEPENDENCIES:
   - SwiftyUserDefaults (from `https://github.com/radex/SwiftyUserDefaults`, tag `4.0.0-alpha.1`)
   - Tags
   - TinyConstraints
+  - TKSwitcherCollection
   - Typist
   - UIFontComplete
   - XLPagerTabStrip
@@ -290,6 +292,7 @@ SPEC REPOS:
     - SwiftyJSON
     - Tags
     - TinyConstraints
+    - TKSwitcherCollection
     - Typist
     - UICKeyChainStore
     - UIFontComplete
@@ -387,12 +390,13 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: cebe0ff9472f52699772a514b6f7155861d8069b
   Tags: a7a1ec432ea7d84b8a533abb93c38333fc0043cc
   TinyConstraints: c15ce864e9ef87dfd18ee3bd746d510a38d84198
+  TKSwitcherCollection: c0a51de35317a9de292e80b85fa275299607da6b
   Typist: 61acc798767f15bf24c61fb9a43d285974380f37
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   UIFontComplete: 5b0f59a83308816c610164b79a2540b3520f9b72
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
   ZLaunchAd: 47e4fd3718c73d48d74ac37f7f637021e4fd0e4b
 
-PODFILE CHECKSUM: d3ec07ba329093490b399f611f7c0d636ddc41ff
+PODFILE CHECKSUM: 5824247fc0a315ea853bf802b76b301c631ad5de
 
 COCOAPODS: 1.5.3
