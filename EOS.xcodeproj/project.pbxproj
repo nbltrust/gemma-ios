@@ -339,6 +339,7 @@
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
+		73EDFEF3211AC601000DF796 /* EOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EDFEF2211AC601000DF796 /* EOSTests.swift */; };
 		73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */; };
 		73F30B4120F6E6FF0016E950 /* UserInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */; };
 		73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */; };
@@ -446,6 +447,7 @@
 		F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9FE30551A8102E01F746AB69BF50A /* RichStyles.swift */; };
 		F38C7EB54718D5BE36E4462C3D9A7441 /* new in Resources */ = {isa = PBXBuildFile; fileRef = 3E2C66F08E0607D2FA0ECEEAE101D8DC /* new */; };
 		F60569E26E39D85FBBCB98CDCDBDB3C7 /* iostream.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 6574BB6370DAB42E02C1C49EA018D158 /* iostream.SUNWCCh */; };
+		F662B4725B3ACC88482E7275 /* libPods-EOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D693558A7E41AE1E2A548C /* libPods-EOSTests.a */; };
 		F6E1F7D79D9DB296584612D81F800561 /* stack.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = E363E5B11BB187753B0849FA79431060 /* stack.SUNWCCh */; };
 		FA1B324B0C87816F5024221B1F5D8996 /* libboost_graph.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1037D093931268990919885D1D72FE6F /* libboost_graph.a */; };
 		FAE42FB8272608796B84D45337A61B85 /* libeosio_chain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 048D22900E7EF50310DE7EAA9E082405 /* libeosio_chain.a */; };
@@ -457,6 +459,16 @@
 		FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D9459367F25FE4B364A2DB3DE1C64F /* libssl.a */; };
 		FF428CE559D9BAC66E25585F0A149FB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DCAB8F96446139DBCE56777785B34 /* ViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		73EDFEEC211AC44E000DF796 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AE6389277B2FA13D27D9CDFC76332268 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C60743183A5E3BAD235C9971F3122EF5;
+			remoteInfo = EOS;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		000C7B47B84900A8DB3D1EC8DA0E6305 /* deep_copy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = deep_copy.hpp; sourceTree = "<group>"; };
@@ -2892,6 +2904,7 @@
 		3329014101C97120D19580138E7B3150 /* geometry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = geometry.hpp; sourceTree = "<group>"; };
 		333F2BD3284F5267B174415582D6FB0F /* libcomo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libcomo.h; sourceTree = "<group>"; };
 		333FB0A786CA67A5A4503A742BA5B576 /* normal_distribution.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = normal_distribution.hpp; sourceTree = "<group>"; };
+		3344F78749BB2E43442BB800 /* Pods-EOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EOSTests/Pods-EOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		33475E6677B12E3674E7C4DD76C35C4C /* hashed_index_fwd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hashed_index_fwd.hpp; sourceTree = "<group>"; };
 		334BC63B4AF7FC0775CA275050FD3FF8 /* prefix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = prefix.hpp; sourceTree = "<group>"; };
 		334DB4E13D0B690BE82359074B2F5AE9 /* unchecked_bernoulli.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = unchecked_bernoulli.hpp; sourceTree = "<group>"; };
@@ -3171,6 +3184,7 @@
 		39B2A686CC91C6267D536EDE43CB93E2 /* rational_horner2_19.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rational_horner2_19.hpp; sourceTree = "<group>"; };
 		39BA34869EF4B2F44A16DC3F44334BD5 /* advance_forward.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = advance_forward.hpp; sourceTree = "<group>"; };
 		39C7353340E9DFA9619F72D25F39F3F9 /* iomanip.SUNWCCh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iomanip.SUNWCCh; sourceTree = "<group>"; };
+		39D693558A7E41AE1E2A548C /* libPods-EOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39DD98F61A0C295C47E9DBBB470BCD34 /* contains.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = contains.hpp; sourceTree = "<group>"; };
 		39E0B544F73E2B7FC6EF863AE5D73D60 /* typedefs.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = typedefs.hpp; sourceTree = "<group>"; };
 		39E30E7D093538CA4D17B84C5FEB52E4 /* gregorian.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gregorian.hpp; sourceTree = "<group>"; };
@@ -5857,6 +5871,10 @@
 		73E114F7294F87FE354FC9C7CDC3F9E6 /* queue_op_status.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = queue_op_status.hpp; sourceTree = "<group>"; };
 		73E1477C6557ADBD81FE6FB6B62C00D6 /* collections_save_imp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = collections_save_imp.hpp; sourceTree = "<group>"; };
 		73EBF19A18A27B45382557E3C56B9916 /* dimension_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dimension_impl.hpp; sourceTree = "<group>"; };
+		73EDFEE7211AC44E000DF796 /* EOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		73EDFEEB211AC44E000DF796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73EDFEF1211AC600000DF796 /* EOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		73EDFEF2211AC601000DF796 /* EOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSTests.swift; sourceTree = "<group>"; };
 		73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoActions.swift; sourceTree = "<group>"; };
 		73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCoordinator.swift; sourceTree = "<group>"; };
 		73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoReducers.swift; sourceTree = "<group>"; };
@@ -11977,6 +11995,7 @@
 		FDA2A3407B7DAF1792F92B4463F2504D /* fluid_dram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fluid_dram.hpp; sourceTree = "<group>"; };
 		FDAC346F7F579E00DF66B0D17A3A7E90 /* syslog_constants.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = syslog_constants.hpp; sourceTree = "<group>"; };
 		FDAD126E5ABFBFA11844DE58A8058A17 /* support_iso8859_1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = support_iso8859_1.hpp; sourceTree = "<group>"; };
+		FDADB04F93E810E042F35EBA /* Pods-EOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EOSTests/Pods-EOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		FDBAE31852B8CE8A11CCD0FF61EDCFFD /* adapt_base_attr_filler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = adapt_base_attr_filler.hpp; sourceTree = "<group>"; };
 		FDBCEC22F26CC647608F02E97CF1BFC0 /* indexed.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = indexed.hpp; sourceTree = "<group>"; };
 		FDC011F4422E4DFC9F764395CF0BCEF1 /* matrix_assign.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = matrix_assign.hpp; sourceTree = "<group>"; };
@@ -12096,6 +12115,14 @@
 				B59F91139082B6BA1A41D0F42DFBC842 /* libsoftfloat.a in Frameworks */,
 				FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */,
 				357B2FFEE0242335494EAFE624066A39 /* secp256k1.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73EDFEE4211AC44E000DF796 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F662B4725B3ACC88482E7275 /* libPods-EOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19138,6 +19165,7 @@
 			isa = PBXGroup;
 			children = (
 				F2077C02EA47E3382494DB64F5BADDE7 /* EOS.app */,
+				73EDFEE7211AC44E000DF796 /* EOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -21897,6 +21925,16 @@
 			path = NotificationBanner;
 			sourceTree = "<group>";
 		};
+		73EDFEE8211AC44E000DF796 /* EOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				73EDFEEB211AC44E000DF796 /* Info.plist */,
+				73EDFEF2211AC601000DF796 /* EOSTests.swift */,
+				73EDFEF1211AC600000DF796 /* EOSTests-Bridging-Header.h */,
+			);
+			path = EOSTests;
+			sourceTree = "<group>";
+		};
 		73F30B3B20F6E6E30016E950 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -22577,6 +22615,7 @@
 				16D9459367F25FE4B364A2DB3DE1C64F /* libssl.a */,
 				5B26489F46CD306B047086E926F75E22 /* libwallet_plugin.a */,
 				B76AA4B9209D95DD8A19D16B285CE327 /* secp256k1.a */,
+				39D693558A7E41AE1E2A548C /* libPods-EOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -24081,6 +24120,7 @@
 			isa = PBXGroup;
 			children = (
 				11EABB82155077EEA9FB2BF04848ADB8 /* EOS */,
+				73EDFEE8211AC44E000DF796 /* EOSTests */,
 				7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */,
 				AA814BD59CC345C8DA7F9678776E2138 /* Pods */,
 				542C34D1F6BC7F46BD05B31A4B94D96C /* Products */,
@@ -26003,6 +26043,8 @@
 			children = (
 				7BDFB5438559F4D9366AFF9A759912D2 /* Pods-EOS.debug.xcconfig */,
 				6A4140EE1953CB92C9353597EDFC56C3 /* Pods-EOS.release.xcconfig */,
+				3344F78749BB2E43442BB800 /* Pods-EOSTests.debug.xcconfig */,
+				FDADB04F93E810E042F35EBA /* Pods-EOSTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -32091,6 +32133,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		73EDFEE6211AC44E000DF796 /* EOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73EDFEEE211AC44E000DF796 /* Build configuration list for PBXNativeTarget "EOSTests" */;
+			buildPhases = (
+				9E5745DB930C4D0B9549467C /* [CP] Check Pods Manifest.lock */,
+				73EDFEE3211AC44E000DF796 /* Sources */,
+				73EDFEE4211AC44E000DF796 /* Frameworks */,
+				73EDFEE5211AC44E000DF796 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73EDFEED211AC44E000DF796 /* PBXTargetDependency */,
+			);
+			name = EOSTests;
+			productName = EOSTests;
+			productReference = 73EDFEE7211AC44E000DF796 /* EOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C60743183A5E3BAD235C9971F3122EF5 /* EOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 698161299C2752D489C2E2F8E009C33E /* Build configuration list for PBXNativeTarget "EOS" */;
@@ -32122,8 +32183,13 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = com.nbltrust;
+				ORGANIZATIONNAME = com.nbltrustdev;
 				TargetAttributes = {
+					73EDFEE6211AC44E000DF796 = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
+						TestTargetID = C60743183A5E3BAD235C9971F3122EF5;
+					};
 					C60743183A5E3BAD235C9971F3122EF5 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
@@ -32145,6 +32211,7 @@
 			projectRoot = "";
 			targets = (
 				C60743183A5E3BAD235C9971F3122EF5 /* EOS */,
+				73EDFEE6211AC44E000DF796 /* EOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -32334,6 +32401,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		73EDFEE5211AC44E000DF796 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -32379,6 +32453,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" a0bbb6d623feca529afaf6ed110e62a77f47b16a 3b264ff6cab506aaf14bce576c156ea66229ad7b6dfb666b4fbb91089deb17e2 ";
 		};
+		9E5745DB930C4D0B9549467C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AFF7EE0B2B4179DEFEDE0DDE919988C0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -32400,7 +32492,7 @@
 				"${BUILT_PRODUCTS_DIR}/EFQRCode/EFQRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/FCUUID/FCUUID.framework",
+				"${BUILT_PRODUCTS_DIR}/FCUUID-framework/FCUUID.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/GRDB.swift/GRDB.framework",
 				"${BUILT_PRODUCTS_DIR}/GrowingTextView/GrowingTextView.framework",
@@ -32410,7 +32502,7 @@
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JHChainableAnimations/JHChainableAnimations.framework",
-				"${BUILT_PRODUCTS_DIR}/KMNavigationBarTransition/KMNavigationBarTransition.framework",
+				"${BUILT_PRODUCTS_DIR}/KMNavigationBarTransition-framework/KMNavigationBarTransition.framework",
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/KUIPopOver/KUIPopOver.framework",
@@ -32429,7 +32521,7 @@
 				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RealReachability/RealReachability.framework",
+				"${BUILT_PRODUCTS_DIR}/RealReachability-framework/RealReachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Repeat/Repeat.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-16/iOS/RevealServer.framework",
@@ -32456,7 +32548,7 @@
 				"${BUILT_PRODUCTS_DIR}/Tags/Tags.framework",
 				"${BUILT_PRODUCTS_DIR}/TinyConstraints/TinyConstraints.framework",
 				"${BUILT_PRODUCTS_DIR}/Typist/Typist.framework",
-				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
+				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore-framework/UICKeyChainStore.framework",
 				"${BUILT_PRODUCTS_DIR}/UIFontComplete/UIFontComplete.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/ZLaunchAd/ZLaunchAd.framework",
@@ -32833,7 +32925,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		73EDFEE3211AC44E000DF796 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73EDFEF3211AC601000DF796 /* EOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		73EDFEED211AC44E000DF796 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C60743183A5E3BAD235C9971F3122EF5 /* EOS */;
+			targetProxy = 73EDFEEC211AC44E000DF796 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		133700A3CC78F9E6E9EE7D93BD01A646 /* LaunchScreen.storyboard */ = {
@@ -32872,9 +32980,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M5LYGNKFLB;
+				DEVELOPMENT_TEAM = Z4LN46787D;
 				ENABLE_BITCODE = NO;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/EOS/Core/eos/include";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/EOS/Core/eos/include",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = EOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -32885,7 +32996,7 @@
 					"$(PROJECT_DIR)/library",
 					"$(PROJECT_DIR)/library/libboost",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrust.EOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -32961,9 +33072,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M5LYGNKFLB;
+				DEVELOPMENT_TEAM = Z4LN46787D;
 				ENABLE_BITCODE = NO;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/EOS/Core/eos/include";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/EOS/Core/eos/include",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = EOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -32974,7 +33088,7 @@
 					"$(PROJECT_DIR)/library",
 					"$(PROJECT_DIR)/library/libboost",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrust.EOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -32982,6 +33096,55 @@
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
+		};
+		73EDFEEF211AC44E000DF796 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3344F78749BB2E43442BB800 /* Pods-EOSTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z4LN46787D;
+				INFOPLIST_FILE = EOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.EOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EOSTests/EOSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EOS.app/EOS";
+			};
+			name = Debug;
+		};
+		73EDFEF0211AC44E000DF796 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDADB04F93E810E042F35EBA /* Pods-EOSTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z4LN46787D;
+				INFOPLIST_FILE = EOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.EOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EOSTests/EOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EOS.app/EOS";
+			};
+			name = Release;
 		};
 		EB5ED6F998F0B2E082E8DC04C2A57C20 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -33055,6 +33218,15 @@
 			buildConfigurations = (
 				702B7DAA8F4E1F6E58885A5EFB7EF2D8 /* Debug */,
 				5C8C3419E165D050C20C6335B44E1B72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73EDFEEE211AC44E000DF796 /* Build configuration list for PBXNativeTarget "EOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73EDFEEF211AC44E000DF796 /* Debug */,
+				73EDFEF0211AC44E000DF796 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
