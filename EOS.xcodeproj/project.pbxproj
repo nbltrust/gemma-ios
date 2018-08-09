@@ -77,6 +77,8 @@
 		22A9323E211A9C7200ACC63C /* NodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A9323D211A9C7200ACC63C /* NodeView.xib */; };
 		22A93240211A9DBB00ACC63C /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9323F211A9DBB00ACC63C /* StatusView.swift */; };
 		22A93242211A9DE000ACC63C /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A93241211A9DE000ACC63C /* StatusView.xib */; };
+		22A93246211BE4DE00ACC63C /* TKSimpleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */; };
+		22A93247211BE4DE00ACC63C /* TKBaseSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */; };
 		22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */; };
 		22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239320F6FD5100284A0A /* EntryGuideActions.swift */; };
 		22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239420F6FD5100284A0A /* EntryGuideViewController.swift */; };
@@ -2122,6 +2124,8 @@
 		22A9323D211A9C7200ACC63C /* NodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NodeView.xib; sourceTree = "<group>"; };
 		22A9323F211A9DBB00ACC63C /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		22A93241211A9DE000ACC63C /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
+		22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSimpleSwitch.swift; sourceTree = "<group>"; };
+		22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKBaseSwitcher.swift; sourceTree = "<group>"; };
 		22A9BC1160D523D32DB217563544C1B0 /* reverse_dispatch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = reverse_dispatch.hpp; sourceTree = "<group>"; };
 		22AF5EC96D7029B90A8311B7F6C66AEB /* ident.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ident.hpp; sourceTree = "<group>"; };
 		22B1E2ABBF7C7A13B7BB83864D4443D5 /* cos_pi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cos_pi.hpp; sourceTree = "<group>"; };
@@ -14374,6 +14378,7 @@
 		1D693EAC4EFE912D3F115C139DC846B0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				22A93243211BE4CD00ACC63C /* Switch */,
 				722D24C32111554900A093CA /* NoDataView */,
 				22C023A920FCACFD00284A0A /* Scan */,
 				73B5A69F20F5EFF600756391 /* AttributeLabelView */,
@@ -14895,6 +14900,15 @@
 				22A93241211A9DE000ACC63C /* StatusView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		22A93243211BE4CD00ACC63C /* Switch */ = {
+			isa = PBXGroup;
+			children = (
+				22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */,
+				22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */,
+			);
+			path = Switch;
 			sourceTree = "<group>";
 		};
 		22C0239120F6FCF300284A0A /* EntryGuide */ = {
@@ -32594,7 +32608,6 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
-				"${BUILT_PRODUCTS_DIR}/TKSwitcherCollection/TKSwitcherCollection.framework",
 				"${BUILT_PRODUCTS_DIR}/Tags/Tags.framework",
 				"${BUILT_PRODUCTS_DIR}/TinyConstraints/TinyConstraints.framework",
 				"${BUILT_PRODUCTS_DIR}/Typist/Typist.framework",
@@ -32672,7 +32685,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TKSwitcherCollection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tags.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TinyConstraints.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typist.framework",
@@ -32923,6 +32935,7 @@
 				3B4C90FD20F4D686004F4C52 /* PaymentsDetailViewController.swift in Sources */,
 				73B5A6A720F5F62D00756391 /* NSScanner+Swift.swift in Sources */,
 				22C023A820FCACE900284A0A /* GestureLockInfoView.swift in Sources */,
+				22A93247211BE4DE00ACC63C /* TKBaseSwitcher.swift in Sources */,
 				7224712A20F57BA800536BF4 /* TransferActions.swift in Sources */,
 				72FE5B4E210048F500B29FEC /* NormalReducers.swift in Sources */,
 				7224713220F5F92B00536BF4 /* HomeHeaderView.swift in Sources */,
@@ -32959,6 +32972,7 @@
 				3BD3664B20F72B5E004DE09D /* TransferConfirmPasswordActions.swift in Sources */,
 				22C0239F20F6FDB900284A0A /* CreatationCompleteCoordinator.swift in Sources */,
 				DBE18F3AD409206828C675AB4A85C4FD /* Utils.swift in Sources */,
+				22A93246211BE4DE00ACC63C /* TKSimpleSwitch.swift in Sources */,
 				7210169E210197C10059B37E /* WalletManagerActions.swift in Sources */,
 				72FE5B6C2100491A00B29FEC /* AboutActions.swift in Sources */,
 				22C023B220FCB09300284A0A /* ScanReducers.swift in Sources */,

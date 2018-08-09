@@ -16,7 +16,8 @@ class SafeLineView: UIView {
     }
     
     @IBOutlet weak var safeLineView: NormalCellView!
-    @IBOutlet weak var safeSwitch: UISwitch!
+    
+    @IBOutlet weak var safeSwitch: TKSimpleSwitch!
     
     @IBInspectable
     var name : String? {
@@ -93,7 +94,7 @@ class SafeLineView: UIView {
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
-        addSubview(view)
+        insertSubview(view, at: 0)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }

@@ -79,7 +79,6 @@ def ui
     pod 'GrowingTextView'
     pod 'Bartinter'
     pod 'NotificationBannerSwift'
-    pod 'TKSwitcherCollection'
 end
 
 def other
