@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>6</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -41,6 +41,16 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>calendar</string>
+	<key>NSCameraUsageDescription</key>
+	<string>camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string>contact</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>faceid</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>microphone</string>
 	<key>NSVideoSubscriberAccountUsageDescription</key>
 	<string>test</string>
 	<key>UILaunchStoryboardName</key>

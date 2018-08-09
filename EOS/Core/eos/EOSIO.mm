@@ -69,8 +69,12 @@ eosio::keosdlib k;
     return @(k.create_abi_req_sellram(code.UTF8String, action.UTF8String, account.UTF8String, bytes).c_str());
 }
 
-//+ (NSString *)getBuyRamTransaction {
-//    return @(k.signTransaction_buyram(<#const std::string &priv_key_str#>, <#const std::string &contract#>, <#const std::string &payer_str#>, <#const std::string &infostr#>, <#const std::string &abistr#>, <#uint32_t max_cpu_usage_ms#>, <#uint32_t max_net_usage_words#>).c_str());
-//}
++ (NSString *)getBuyRamTransaction:(NSString *)priv_key_str contract:(NSString *)contract payer_str:(NSString *)payer_str infostr:(NSString *)infostr abistr:(NSString *)abistr max_cpu_usage_ms:(uint32_t)max_cpu_usage_ms max_net_usage_words:(uint32_t)max_net_usage_words {
+    return @(k.signTransaction_buyram(priv_key_str.UTF8String, contract.UTF8String, payer_str.UTF8String, infostr.UTF8String, abistr.UTF8String, max_cpu_usage_ms, max_net_usage_words).c_str());
+}
+
++ (NSString *)getSellRamTransaction:(NSString *)priv_key_str contract:(NSString *)contract account_str:(NSString *)account_str infostr:(NSString *)infostr abistr:(NSString *)abistr max_cpu_usage_ms:(uint32_t)max_cpu_usage_ms max_net_usage_words:(uint32_t)max_net_usage_words {
+    return @(k.signTransaction_sellram(priv_key_str.UTF8String, contract.UTF8String, account_str.UTF8String, infostr.UTF8String, abistr.UTF8String, max_cpu_usage_ms, max_net_usage_words).c_str());
+}
 
 @end
