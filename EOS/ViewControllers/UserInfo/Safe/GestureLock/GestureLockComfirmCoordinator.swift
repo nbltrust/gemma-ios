@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol GestureLockComfirmCoordinatorProtocol {
+    func dismiss()
 }
 
 protocol GestureLockComfirmStateManagerProtocol {
@@ -33,6 +34,11 @@ class GestureLockComfirmCoordinator: NavCoordinator {
 }
 
 extension GestureLockComfirmCoordinator: GestureLockComfirmCoordinatorProtocol {
+    func dismiss() {
+        self.rootVC.dismiss(animated: true) {
+            self.state.callback.confirmResult.value?(false)
+        }
+    }
 }
 
 extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol {

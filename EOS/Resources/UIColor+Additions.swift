@@ -2,7 +2,7 @@
 //  UIColor+Additions.swift
 //  Gemma IOS
 //
-//  Generated on Zeplin. (2018/7/12).
+//  Generated on Zeplin. (2018/8/8).
 //  Copyright (c) 2018 __MyCompanyName__. All rights reserved.
 //
 
@@ -144,6 +144,46 @@ extension UIColor {
 
   @nonobjc class var white: UIColor {
     return UIColor(white: 249.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var darkSkyBlueTwo70: UIColor {
+    return UIColor(red: 51.0 / 255.0, green: 129.0 / 255.0, blue: 224.0 / 255.0, alpha: 0.7)
+  }
+
+  @nonobjc class var cornflowerBlue20: UIColor {
+    return UIColor(red: 66.0 / 255.0, green: 107.0 / 255.0, blue: 212.0 / 255.0, alpha: 0.2)
+  }
+
+  @nonobjc class var cornflowerBlueFour: UIColor {
+    return UIColor(red: 70.0 / 255.0, green: 109.0 / 255.0, blue: 210.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var dusk: UIColor {
+    return UIColor(red: 83.0 / 255.0, green: 92.0 / 255.0, blue: 138.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var paleGrey42: UIColor {
+    return UIColor(red: 221.0 / 255.0, green: 226.0 / 255.0, blue: 240.0 / 255.0, alpha: 0.42)
+  }
+
+  @nonobjc class var whiteTwo20: UIColor {
+    return UIColor(white: 1.0, alpha: 0.2)
+  }
+
+  @nonobjc class var bgtabred: UIColor {
+    return UIColor(red: 210.0 / 255.0, green: 9.0 / 255.0, blue: 31.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var coral: UIColor {
+    return UIColor(red: 248.0 / 255.0, green: 74.0 / 255.0, blue: 74.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var coralTwo: UIColor {
+    return UIColor(red: 248.0 / 255.0, green: 69.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0)
+  }
+
+  @nonobjc class var paleGreyFour: UIColor {
+    return UIColor(red: 218.0 / 255.0, green: 220.0 / 255.0, blue: 232.0 / 255.0, alpha: 1.0)
   }
 
 }
