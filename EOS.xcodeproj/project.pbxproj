@@ -32997,6 +32997,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/library",
 					"$(PROJECT_DIR)/library/libboost",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -33089,6 +33090,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/library",
 					"$(PROJECT_DIR)/library/libboost",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
