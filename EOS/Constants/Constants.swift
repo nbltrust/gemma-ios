@@ -105,3 +105,7 @@ enum EOSAction:String {
     case delegatebw
     case undelegatebw
 }
+
+enum EOSIOTable:String {
+    case producers
+}

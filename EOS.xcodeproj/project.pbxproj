@@ -336,6 +336,7 @@
 		72FE5B9221009EED00B29FEC /* LeadInIntroduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9121009EED00B29FEC /* LeadInIntroduceView.xib */; };
 		72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */; };
 		72FE5B9621009F2200B29FEC /* LeadInKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */; };
+		73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73378F74211C233200ACAA90 /* EOSIOTableRow.swift */; };
 		73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68B20F5B42600756391 /* Double+Extensions.swift */; };
 		73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */; };
 		73B5A69020F5B54C00756391 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68F20F5B54C00756391 /* String+Extensions.swift */; };
@@ -5852,6 +5853,8 @@
 		732C10EEA42E17B8090E6B2CB32C73E1 /* arity40_0.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = arity40_0.hpp; sourceTree = "<group>"; };
 		7330AD1EBE4EC0876CEA7421F1A5E819 /* has_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = has_function.hpp; sourceTree = "<group>"; };
 		7333484E54C2926C918E6559674BF3B6 /* qi_match_attr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_match_attr.hpp; sourceTree = "<group>"; };
+		73378F74211C233200ACAA90 /* EOSIOTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSIOTableRow.swift; sourceTree = "<group>"; };
+		73378F76211C2D5300ACAA90 /* EOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EOS.entitlements; sourceTree = "<group>"; };
 		733874DA18B6FC7EA389E80149C09885 /* sliced.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sliced.hpp; sourceTree = "<group>"; };
 		7344C3DDB72697A50126EC3549E8DFB6 /* auto_link.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = auto_link.hpp; sourceTree = "<group>"; };
 		734F610FE87C479427D37CCF1E1CD8F8 /* lookbehind_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lookbehind_matcher.hpp; sourceTree = "<group>"; };
@@ -13850,6 +13853,7 @@
 		11EABB82155077EEA9FB2BF04848ADB8 /* EOS */ = {
 			isa = PBXGroup;
 			children = (
+				73378F76211C2D5300ACAA90 /* EOS.entitlements */,
 				2C24E928C7278E0DEFCB43F03687C787 /* AppCoordinator */,
 				D483B72D65CDBB3F22F1EF04C5437555 /* Base */,
 				E71F0A834572F43D82E4412643C50C95 /* Constants */,
@@ -23904,6 +23908,7 @@
 			children = (
 				037EA7EF67D3633CBA8C8AB082548C91 /* Account.swift */,
 				73B5A6AC20F601DE00756391 /* Payment.swift */,
+				73378F74211C233200ACAA90 /* EOSIOTableRow.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -32259,6 +32264,11 @@
 					C60743183A5E3BAD235C9971F3122EF5 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -32606,14 +32616,14 @@
 				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/Siren/Siren.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate-framework/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftHash/SwiftHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftNotificationCenter/SwiftNotificationCenter.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRichString/SwiftRichString.framework",
 				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-framework/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/Tags/Tags.framework",
 				"${BUILT_PRODUCTS_DIR}/TinyConstraints/TinyConstraints.framework",
@@ -32880,6 +32890,7 @@
 				72FE5B9021009EE300B29FEC /* LeadInIntroduceView.swift in Sources */,
 				22C023B120FCB09300284A0A /* ScanViewController.swift in Sources */,
 				3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */,
+				73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */,
 				221EC1CF21008F1B0059F856 /* GestureLockComfirmActions.swift in Sources */,
 				08979875F7919749EE9911341C1DA85E /* NavCoordinator.swift in Sources */,
 				72101698210197C10059B37E /* ChangeWalletNameCoordinator.swift in Sources */,
@@ -33059,6 +33070,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4LN46787D;
 				ENABLE_BITCODE = NO;
@@ -33152,6 +33164,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4LN46787D;
 				ENABLE_BITCODE = NO;
