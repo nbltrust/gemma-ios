@@ -1,17 +1,19 @@
 //
-//  StatusView.swift
+//  VoteFootView.swift
 //  EOS
 //
-//  Created by peng zhu on 2018/8/8.
-//  Copyright © 2018年 com.nbltrust. All rights reserved.
+//  Created by peng zhu on 2018/8/9.
+//  Copyright © 2018年 com.nbltrustdev. All rights reserved.
 //
 
 import UIKit
 
-class StatusView: UIView {
-    @IBOutlet weak var leftLabel: UILabel!
+class VoteFootView: UIView {
+    @IBOutlet weak var titleLabel: UILabel!
     
-    @IBOutlet weak var rightLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
+    
+    @IBOutlet weak var statusView: StatusView!
     
     func setup() {
         
@@ -44,6 +46,5 @@ class StatusView: UIView {
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
-
 
 }

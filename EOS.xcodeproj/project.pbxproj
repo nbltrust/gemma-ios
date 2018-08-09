@@ -79,6 +79,8 @@
 		22A93242211A9DE000ACC63C /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A93241211A9DE000ACC63C /* StatusView.xib */; };
 		22A93246211BE4DE00ACC63C /* TKSimpleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */; };
 		22A93247211BE4DE00ACC63C /* TKBaseSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */; };
+		22A93249211C211D00ACC63C /* VoteFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93248211C211D00ACC63C /* VoteFootView.swift */; };
+		22A9324B211C213000ACC63C /* VoteFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A9324A211C213000ACC63C /* VoteFootView.xib */; };
 		22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */; };
 		22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239320F6FD5100284A0A /* EntryGuideActions.swift */; };
 		22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239420F6FD5100284A0A /* EntryGuideViewController.swift */; };
@@ -2126,6 +2128,8 @@
 		22A93241211A9DE000ACC63C /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSimpleSwitch.swift; sourceTree = "<group>"; };
 		22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKBaseSwitcher.swift; sourceTree = "<group>"; };
+		22A93248211C211D00ACC63C /* VoteFootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteFootView.swift; sourceTree = "<group>"; };
+		22A9324A211C213000ACC63C /* VoteFootView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteFootView.xib; sourceTree = "<group>"; };
 		22A9BC1160D523D32DB217563544C1B0 /* reverse_dispatch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = reverse_dispatch.hpp; sourceTree = "<group>"; };
 		22AF5EC96D7029B90A8311B7F6C66AEB /* ident.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ident.hpp; sourceTree = "<group>"; };
 		22B1E2ABBF7C7A13B7BB83864D4443D5 /* cos_pi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cos_pi.hpp; sourceTree = "<group>"; };
@@ -14898,6 +14902,8 @@
 				22A9323A211A9C5E00ACC63C /* NodeCell.xib */,
 				22A9323F211A9DBB00ACC63C /* StatusView.swift */,
 				22A93241211A9DE000ACC63C /* StatusView.xib */,
+				22A93248211C211D00ACC63C /* VoteFootView.swift */,
+				22A9324A211C213000ACC63C /* VoteFootView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -32311,6 +32317,7 @@
 				3B4C90F520F4CE07004F4C52 /* Payments.storyboard in Resources */,
 				EE38F45E0DF99CC93B99EA2437E547B5 /* Rubik-Medium.ttf in Resources */,
 				01BE9E6EAA0EF905279B30392E1DF224 /* Rubik-MediumItalic.ttf in Resources */,
+				22A9324B211C213000ACC63C /* VoteFootView.xib in Resources */,
 				5FD71CEC1E7854589FDBD33B0B42EDBD /* Rubik-Regular.ttf in Resources */,
 				7610C85F17FAA9095B27B17656342765 /* SharpCornerTipsLabelView.xib in Resources */,
 				C53CFE1AA8DBFB2C3E6AD341D171268E /* algorithm in Resources */,
@@ -32821,6 +32828,7 @@
 				73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */,
 				3B726C1621133502001E4850 /* ScreenShotAlertViewController.swift in Sources */,
 				9CD3F0FA07578C28658D2A1189A8E39D /* EOSIONetworkService.swift in Sources */,
+				22A93249211C211D00ACC63C /* VoteFootView.swift in Sources */,
 				C9BB02B547453DD0482F5745ADB47B83 /* EntryActions.swift in Sources */,
 				3B3146F92106D56500E815BD /* ResourceMortgageViewController.swift in Sources */,
 				22E40AB52114540600F1648C /* FaceIDComfirmViewController.swift in Sources */,

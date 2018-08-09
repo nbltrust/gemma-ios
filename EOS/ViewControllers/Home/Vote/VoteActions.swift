@@ -24,6 +24,7 @@ struct VotePropertyState {
 struct VoteCallbackState {
 }
 
+
 //MARK: - Action Creator
 class VotePropertyActionCreate {
     public typealias ActionCreator = (_ state: VoteState, _ store: Store<VoteState>) -> Action?

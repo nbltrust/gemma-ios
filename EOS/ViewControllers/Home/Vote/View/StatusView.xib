@@ -10,7 +10,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatusView" customModule="EOS" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatusView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="leftLabel" destination="mMq-gp-xGJ" id="c86-pe-U7j"/>
+                <outlet property="rightLabel" destination="MdK-Qg-fix" id="sLz-c1-Z1K"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
@@ -21,16 +26,16 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMq-gp-xGJ">
                             <rect key="frame" x="0.0" y="0.0" width="187.5" height="112"/>
-                            <color key="backgroundColor" name="paleGreyFour" red="0.855" green="0.863" blue="0.910" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.85499999999999998" green="0.86299999999999999" blue="0.91000000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" name="whiteTwo" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdK-Qg-fix">
                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="112"/>
-                            <color key="backgroundColor" name="cloudyBlue" red="0.776" green="0.792" blue="0.871" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.77600000000000002" green="0.79200000000000004" blue="0.871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" name="whiteTwo" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -57,6 +62,4 @@
             <point key="canvasLocation" x="33.5" y="-169"/>
         </view>
     </objects>
-    <resources>
-    </resources>
 </document>
