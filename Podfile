@@ -129,4 +129,6 @@ target 'EOSTests' do
     objc
     pod 'Nimble'
     pod 'Quick'
+    pod 'SwiftyJSON'
+    pod 'SwiftDate'
 end
