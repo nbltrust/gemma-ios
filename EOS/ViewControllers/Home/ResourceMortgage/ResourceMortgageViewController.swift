@@ -20,6 +20,10 @@ class ResourceMortgageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         coordinator?.getAccountInfo(WalletManager.shared.getAccount())
     }
     
@@ -143,7 +147,14 @@ extension ResourceMortgageViewController {
         }
         var model = ConfirmViewModel()
         model.recever = WalletManager.shared.getAccount()
-        if let cpuAmount = self.contentView.pageView.leftView.cpuMortgageView.textField.text, let netAmount = self.contentView.pageView.leftView.netMortgageView.textField.text {
+        if var cpuAmount = self.contentView.pageView.leftView.cpuMortgageView.textField.text, var netAmount = self.contentView.pageView.leftView.netMortgageView.textField.text {
+            if cpuAmount == "" {
+                cpuAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
+            }
+            if netAmount == "" {
+                netAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
+            }
+            
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
             model.remark = R.string.localizable.delegate() + cpuAmount + R.string.localizable.eos_for_cpu() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net()
         }
@@ -157,7 +168,13 @@ extension ResourceMortgageViewController {
         }
         var model = ConfirmViewModel()
         model.recever = WalletManager.shared.getAccount()
-        if let cpuAmount = self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text, let netAmount = self.contentView.pageView.rightView.netMortgageCancelView.textField.text {
+        if var cpuAmount = self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text, var netAmount = self.contentView.pageView.rightView.netMortgageCancelView.textField.text {
+            if cpuAmount == "" {
+                cpuAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
+            }
+            if netAmount == "" {
+                netAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
+            }
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
             model.remark = R.string.localizable.undelegate() + cpuAmount + R.string.localizable.eos_for_cpu() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net()
         }
@@ -197,7 +214,7 @@ extension ResourceMortgageViewController {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            let balance = self.contentView.pageView.balance.components(separatedBy: " ")[1]
+            let balance = self.contentView.cpuView.eos
 
             if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
@@ -210,7 +227,7 @@ extension ResourceMortgageViewController {
             if netTextFieldView.textField.text != "" {
                 netTextFieldView.textField.text = netMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+            let balance = self.contentView.netView.eos
 
             if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                 netTextFieldView.checkStatus = balenceDouble >= netMoney  ? TextUIStyle.common : TextUIStyle.warning

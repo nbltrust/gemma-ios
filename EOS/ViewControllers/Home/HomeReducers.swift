@@ -60,6 +60,14 @@ func convertAccountViewModelWithAccount(_ account:Account, viewmodel:AccountView
     newViewModel.cpuValue = account.total_resources?.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
     newViewModel.netValue = account.total_resources?.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
     
+    if let used = account.cpu_limit?.used.string,let max = account.cpu_limit?.max.string {
+        newViewModel.cpuProgress = used.float()! / max.float()!
+    }
+    if let used = account.net_limit?.used.string,let max = account.cpu_limit?.max.string  {
+        newViewModel.netProgress = used.float()! / max.float()!
+    }
+    newViewModel.ramProgress = Float(account.ram_usage / account.ram_quota)
+    
     if let ram = account.total_resources?.ram_bytes {
         newViewModel.ramValue = ram.ramCount
     }

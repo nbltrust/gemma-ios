@@ -15,6 +15,8 @@ struct Account:HandyJSON {
     var refund_request:ReFundRequest?
     var net_limit:NetLimit?
     var cpu_limit:CpuLimit?
+    var ram_quota:Int64!
+    var ram_usage:Int64!
 
     init() {}
 }
