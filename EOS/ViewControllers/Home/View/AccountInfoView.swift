@@ -8,9 +8,6 @@
 
 import Foundation
 
-
-
-
 @IBDesignable
 
 class AccountInfoView: UIView {
@@ -28,7 +25,10 @@ class AccountInfoView: UIView {
     @IBOutlet weak var refundLabel: UILabel!
     @IBOutlet weak var backupLabel: UIView!
     
-    
+    @IBOutlet weak var cpuProgress: UIProgressView!
+    @IBOutlet weak var netProgress: UIProgressView!
+    @IBOutlet weak var ramProgress: UIProgressView!
+
     @IBOutlet weak var backupLabelView: UIView!
     @IBOutlet weak var refundView: UIView!
     
@@ -45,9 +45,17 @@ class AccountInfoView: UIView {
                 mTotalCNYLabel.text = data.CNY
                 mRemainEOSLabel.text = data.balance
                 mRedeemEOSLabel.text = data.recentRefundAsset
-                mCPUConsumeEOSLabel.text = "CPU\n" + data.cpuValue
-                mNETConsumeEOSLabel.text = "NET\n" + data.netValue
-                mRAMConsumeKBLabel.text = "RAM\n" + data.ramValue
+                mCPUConsumeEOSLabel.text = "CPU"
+                mNETConsumeEOSLabel.text = "NET"
+                mRAMConsumeKBLabel.text = "RAM"
+                cpuProgress.progress = data.cpuProgress
+                netProgress.progress = data.netProgress
+                ramProgress.progress = data.ramProgress
+
+                setProgressUI(progress: cpuProgress)
+                setProgressUI(progress: netProgress)
+                setProgressUI(progress: ramProgress)
+                
                 if data.refundTime == "" {
                     refundView.isHidden = true
                 } else {
@@ -73,6 +81,16 @@ class AccountInfoView: UIView {
 //        backupLabelView.isHidden = true
 //        refundView.isHidden = true
         setUpEvent()
+    }
+    
+    func setProgressUI(progress: UIProgressView) {
+        if progress.progress >= 0.85 {
+            progress.tintColor = UIColor.scarlet
+            progress.backgroundColor = UIColor.scarlet
+        } else {
+            progress.tintColor = UIColor.darkSkyBlueTwo
+            progress.backgroundColor = UIColor.darkSkyBlueTwo
+        }
     }
     
     func setUpEvent() {

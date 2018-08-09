@@ -65,10 +65,16 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                     var netValue = ""
                     
                     if action == EOSAction.delegatebw.rawValue {
-                        if let cpu = vc.coordinator?.state.property.cpuMoneyValid.value.2 {
+                        if var cpu = vc.coordinator?.state.property.cpuMoneyValid.value.2 {
+                            if cpu == "" {
+                                cpu = "0"
+                            }
                             cpuValue = cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
-                        if let net = vc.coordinator?.state.property.netMoneyValid.value.2 {
+                        if var net = vc.coordinator?.state.property.netMoneyValid.value.2 {
+                            if net == "" {
+                                net = "0"
+                            }
                             netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
                         
@@ -76,10 +82,16 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                             abi = abiStr
                         }
                     } else if action == EOSAction.undelegatebw.rawValue {
-                        if let cpu = vc.coordinator?.state.property.cpuReliveMoneyValid.value.2 {
+                        if var cpu = vc.coordinator?.state.property.cpuReliveMoneyValid.value.2 {
+                            if cpu == "" {
+                                cpu = "0"
+                            }
                             cpuValue = cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
-                        if let net = vc.coordinator?.state.property.netReliveMoneyValid.value.2 {
+                        if var net = vc.coordinator?.state.property.netReliveMoneyValid.value.2 {
+                            if net == "" {
+                                net = "0"
+                            }
                             netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
                         
@@ -105,7 +117,6 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
         callback(false,"")
         return
     }
-    
     
     EOSIONetwork.request(target: .get_info, success: { (json) in
         

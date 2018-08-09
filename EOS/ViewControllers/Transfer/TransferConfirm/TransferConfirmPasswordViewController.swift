@@ -99,7 +99,7 @@ extension TransferConfirmPasswordViewController {
         if myType == confirmType.transfer.rawValue {
             self.view.endEditing(true)
             self.startLoading()
-            self.coordinator?.transferAccounts(passwordView.textField.text!, account: receiver, amount: amount, code: remark, callback: { [weak self] (isSuccess, message) in
+            self.coordinator?.transferAccounts(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.showSuccess(message: message)
@@ -111,7 +111,7 @@ extension TransferConfirmPasswordViewController {
         } else if myType == confirmType.mortgage.rawValue {
             self.view.endEditing(true)
             self.startLoading()
-            self.coordinator?.mortgage(passwordView.textField.text!, account: receiver, amount: amount, code: remark, callback: { [weak self] (isSuccess, message) in
+            self.coordinator?.mortgage(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.showSuccess(message: message)
@@ -124,7 +124,7 @@ extension TransferConfirmPasswordViewController {
         } else if myType == confirmType.relieveMortgage.rawValue {
             self.view.endEditing(true)
             self.startLoading()
-            self.coordinator?.relieveMortgage(passwordView.textField.text!, account: receiver, amount: amount, code: remark, callback: { [weak self] (isSuccess, message) in
+            self.coordinator?.relieveMortgage(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.showSuccess(message: message)

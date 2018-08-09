@@ -22,11 +22,11 @@ protocol TransferConfirmPasswordStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<TransferConfirmPasswordState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->())
+    func transferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
     
-    func mortgage(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->())
+    func mortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
     
-    func relieveMortgage(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->())
+    func relieveMortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
 
 }
 
@@ -78,122 +78,39 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         store.subscribe(subscriber, transform: transform)
     }
     
-    func getInfo(callback:@escaping (String)->()){
-        EOSIONetwork.request(target: .get_info, success: { (data) in
-            if let info = data.rawString() {
-                callback(info)
-            }
-        }, error: { (error_code) in
-            
-        }) { (error) in
-            
-        }
-    }
-    
-    func getPushTransaction(_ password : String,account:String, amount:String, code:String ,callback:@escaping ((String?, String))->()){
-        
-        getInfo { (get_info) in
-            guard let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: password) else {
-                return callback((nil, R.string.localizable.password_not_match()))
-            }
-            
-            let json = EOSIO.getAbiJsonString(EOSIOContract.TOKEN_CODE, action: EOSAction.transfer.rawValue, from: WalletManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
-            
-            EOSIONetwork.request(target: .abi_json_to_bin(json:json!), success: { (data) in
-                let abiStr = data["binargs"].stringValue
-                
-                let transation = EOSIO.getTransferTransaction(privakey,
-                                                      code: EOSIOContract.TOKEN_CODE,
-                                                      from: WalletManager.shared.getAccount(),
-                                                      getinfo: get_info,
-                                                      abistr: abiStr)
-                
-                callback((transation,""))
-            }, error: { (error_code) in
-                callback((nil, R.string.localizable.request_failed()))
-            }) { (error) in
-                callback((nil, R.string.localizable.request_failed()))
-            }
-        }
-        
-    }
-    
     func ValidingPassword(_ password : String) -> Bool{
         return WalletManager.shared.isValidPassword(password)
     }
     
     
-    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->()) {
-        
-        getPushTransaction(password, account: account, amount: amount, code: code,callback: { transaction in
-            if let transaction = transaction.0 {
-                EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
-                    if let info = data.dictionaryObject,info["code"] == nil{
-                        callback(true, R.string.localizable.transfer_successed())
-                    }else{
-                        callback(false, R.string.localizable.transfer_failed())
-                    }
-                }, error: { (error_code) in
-                    callback(false, R.string.localizable.transfer_failed())
-                }) { (error) in
-                    callback(false,R.string.localizable.request_failed() )
-                }
-            }
-            else {
-                callback(false, transaction.1)
-            }
-        })
+    func transferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+        let model = TransferActionModel()
+        model.password = password
+        model.toAccount = account
+        model.fromAccount = WalletManager.shared.getAccount()
+        model.success = R.string.localizable.transfer_successed()
+        model.faile = R.string.localizable.transfer_failed()
+        model.amount = amount
+        model.remark = remark
+        transaction(EOSAction.transfer.rawValue, actionModel: model) { (bool, showString) in
+            callback(bool,showString)
+        }
     }
     
-    func mortgage(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->()) {
-        EOSIONetwork.request(target: .get_info, success: { (json) in
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                if let vc = appDelegate.appcoordinator?.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
-                    var cpuValue = ""
-                    var netValue = ""
-                    if let cpu = vc.coordinator?.state.property.cpuMoneyValid.value.2 {
-                        cpuValue = cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-                    }
-                    if let net = vc.coordinator?.state.property.netMoneyValid.value.2 {
-                        netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-                    }
-                    
-                    guard let abi = EOSIO.getDelegateAbi(EOSIOContract.EOSIO_CODE, action: EOSAction.delegatebw.rawValue, from: account, receiver: account, stake_net_quantity: netValue, stake_cpu_quantity: cpuValue) else {
-                        callback(false, "")
-                        return
-                    }
-                    
-                    EOSIONetwork.request(target: .abi_json_to_bin(json: abi), success: { (bin_json) in
-                        if let delegate = EOSIO.getDelegateTransaction(WalletManager.shared.getCachedPriKey(WalletManager.shared.getCurrentSavedPublicKey(), password: password), code: EOSIOContract.EOSIO_CODE, from: account, getinfo: json.rawString(), abistr: bin_json["binargs"].stringValue) {
-                            EOSIONetwork.request(target: .push_transaction(json: delegate), success: { (data) in
-                                if let info = data.dictionaryObject,info["code"] == nil{
-                                    callback(true, R.string.localizable.mortgage_success())
-                                }else{
-                                    callback(false, R.string.localizable.mortgage_failed())
-                                }
-                            }, error: { (error_code) in
-                                callback(false, R.string.localizable.mortgage_failed())
-                            }) { (error) in
-                                callback(false,R.string.localizable.request_failed() )
-                            }
-                        }
-                    }, error: { (code) in
-                        
-                    }, failure: { (error) in
-                        
-                    })
-                    
-                }
-            }
-        }, error: { (code) in
-            
-        }) { (error) in
-            
+    func mortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+        let model = DelegateActionModel()
+        model.password = password
+        model.toAccount = account
+        model.fromAccount = WalletManager.shared.getAccount()
+        model.success = R.string.localizable.mortgage_success()
+        model.faile = R.string.localizable.mortgage_failed()
+        transaction(EOSAction.delegatebw.rawValue, actionModel: model) { (bool, showString) in
+            callback(bool,showString)
         }
     }
 
-    func relieveMortgage(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool, String)->()) {
-        let model = ActionModel()
+    func relieveMortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+        let model = UnDelegateActionModel()
         model.password = password
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()
@@ -202,6 +119,5 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         transaction(EOSAction.undelegatebw.rawValue, actionModel: model) { (bool, showString) in
             callback(bool,showString)
         }
-        
     }
 }

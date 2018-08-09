@@ -15,6 +15,7 @@
                 <outlet property="backupLabel" destination="GYE-5e-gzw" id="cPr-hR-oRh"/>
                 <outlet property="backupLabelView" destination="S2D-yg-N0Y" id="oHP-zj-RaX"/>
                 <outlet property="cornerShadowView" destination="9T0-YH-I0m" id="VzV-Tu-kWy"/>
+                <outlet property="cpuProgress" destination="P3h-X7-Mrq" id="T3O-Pv-NBP"/>
                 <outlet property="mCPUConsumeEOSLabel" destination="ALa-hu-kmg" id="5aP-Ew-xod"/>
                 <outlet property="mHorLineView" destination="M1v-sd-KJj" id="u9p-RO-ysM"/>
                 <outlet property="mHorLineViewTwo" destination="GYV-MF-piT" id="O98-kJ-E7f"/>
@@ -24,6 +25,8 @@
                 <outlet property="mRemainEOSLabel" destination="w5H-9Z-2yq" id="iFn-A5-q90"/>
                 <outlet property="mTotalCNYLabel" destination="KgE-A9-NAV" id="EmJ-QN-LPr"/>
                 <outlet property="mTotalEOSLabel" destination="WA1-pa-47r" id="og3-WZ-HLT"/>
+                <outlet property="netProgress" destination="HQp-Tm-YJ3" id="YhN-E9-cVh"/>
+                <outlet property="ramProgress" destination="0Ok-3Y-48U" id="D4q-al-FbO"/>
                 <outlet property="refundLabel" destination="PpA-Bh-gi2" id="SEM-ZR-ppQ"/>
                 <outlet property="refundView" destination="q1h-9H-aLp" id="Svs-EB-wys"/>
             </connections>
@@ -34,16 +37,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9T0-YH-I0m" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="312"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="299"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2n-9G-fLN">
-                            <rect key="frame" x="0.0" y="0.0" width="400" height="312"/>
+                            <rect key="frame" x="0.0" y="0.0" width="400" height="299"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9WN-vZ-fb7">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="312"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="299"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEm-04-iz5">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="106"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="93"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9600 EOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA1-pa-47r">
                                                     <rect key="frame" x="142.5" y="50" width="115" height="20"/>
@@ -95,7 +98,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2D-yg-N0Y">
-                                            <rect key="frame" x="0.0" y="106" width="400" height="31"/>
+                                            <rect key="frame" x="0.0" y="93" width="400" height="31"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYE-5e-gzw">
                                                     <rect key="frame" x="160" y="0.0" width="80" height="20"/>
@@ -131,7 +134,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u0E-3e-FF8">
-                                            <rect key="frame" x="0.0" y="137" width="400" height="7"/>
+                                            <rect key="frame" x="0.0" y="124" width="400" height="7"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1v-sd-KJj" customClass="DashLineView" customModule="EOS" customModuleProvider="target">
                                                     <rect key="frame" x="24" y="6" width="352" height="1"/>
@@ -150,7 +153,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ak-Tm-jBS">
-                                            <rect key="frame" x="0.0" y="144" width="400" height="45"/>
+                                            <rect key="frame" x="0.0" y="131" width="400" height="45"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可用余额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-xQ-g7S">
                                                     <rect key="frame" x="24" y="15.5" width="49.5" height="14.5"/>
@@ -175,7 +178,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeP-Iy-YIM">
-                                            <rect key="frame" x="0.0" y="189" width="400" height="2"/>
+                                            <rect key="frame" x="0.0" y="176" width="400" height="2"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYV-MF-piT" customClass="DashLineView" customModule="EOS" customModuleProvider="target">
                                                     <rect key="frame" x="24" y="0.5" width="352" height="1"/>
@@ -194,7 +197,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZnK-VM-la0">
-                                            <rect key="frame" x="0.0" y="191" width="400" height="44"/>
+                                            <rect key="frame" x="0.0" y="178" width="400" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在赎回" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyo-PN-yYt">
                                                     <rect key="frame" x="24" y="15" width="49.5" height="14.5"/>
@@ -219,7 +222,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q1h-9H-aLp">
-                                            <rect key="frame" x="0.0" y="235" width="400" height="19"/>
+                                            <rect key="frame" x="0.0" y="222" width="400" height="19"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击Refund" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PpA-Bh-gi2">
                                                     <rect key="frame" x="322" y="-8" width="55" height="12"/>
@@ -239,7 +242,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Onj-XL-V1c">
-                                            <rect key="frame" x="0.0" y="254" width="400" height="58"/>
+                                            <rect key="frame" x="0.0" y="241" width="400" height="58"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="242-1q-jkL">
                                                     <rect key="frame" x="0.0" y="0.0" width="400" height="58"/>
@@ -247,19 +250,22 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BdM-Ww-bzm">
                                                             <rect key="frame" x="0.0" y="0.0" width="131.5" height="58"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALa-hu-kmg">
-                                                                    <rect key="frame" x="40" y="10" width="51" height="40"/>
-                                                                    <string key="text">CPU
-0.01 EOS</string>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CPU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALa-hu-kmg">
+                                                                    <rect key="frame" x="26" y="16.5" width="25.5" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="P3h-X7-Mrq">
+                                                                    <rect key="frame" x="26" y="41" width="79.5" height="2"/>
+                                                                </progressView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="ALa-hu-kmg" secondAttribute="bottom" constant="8" id="3q8-LQ-xdK"/>
-                                                                <constraint firstItem="ALa-hu-kmg" firstAttribute="top" secondItem="BdM-Ww-bzm" secondAttribute="top" constant="10" id="itG-QR-kUn"/>
-                                                                <constraint firstItem="ALa-hu-kmg" firstAttribute="centerX" secondItem="BdM-Ww-bzm" secondAttribute="centerX" id="n5D-lU-afm"/>
+                                                                <constraint firstItem="P3h-X7-Mrq" firstAttribute="top" secondItem="ALa-hu-kmg" secondAttribute="bottom" constant="10" id="2go-pC-ruy"/>
+                                                                <constraint firstItem="ALa-hu-kmg" firstAttribute="leading" secondItem="BdM-Ww-bzm" secondAttribute="leading" constant="26" id="IyF-dM-eIj"/>
+                                                                <constraint firstAttribute="bottom" secondItem="P3h-X7-Mrq" secondAttribute="bottom" constant="15" id="KNd-fI-JwJ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="P3h-X7-Mrq" secondAttribute="trailing" constant="26" id="cz4-pE-A1W"/>
+                                                                <constraint firstItem="P3h-X7-Mrq" firstAttribute="leading" secondItem="BdM-Ww-bzm" secondAttribute="leading" constant="26" id="q0F-b2-KlL"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwA-pj-jLx">
@@ -283,19 +289,22 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8N-GK-BFf">
                                                             <rect key="frame" x="134.5" y="0.0" width="131" height="58"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hd1-dE-UcT">
-                                                                    <rect key="frame" x="40" y="10" width="51" height="40"/>
-                                                                    <string key="text">NET
-0.01 EOS</string>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NET" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hd1-dE-UcT">
+                                                                    <rect key="frame" x="26" y="16.5" width="24" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HQp-Tm-YJ3">
+                                                                    <rect key="frame" x="26" y="41" width="79" height="2"/>
+                                                                </progressView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="Hd1-dE-UcT" firstAttribute="centerX" secondItem="b8N-GK-BFf" secondAttribute="centerX" id="LbI-Ia-FfE"/>
-                                                                <constraint firstItem="Hd1-dE-UcT" firstAttribute="top" secondItem="b8N-GK-BFf" secondAttribute="top" constant="10" id="V5X-BK-rWD"/>
-                                                                <constraint firstAttribute="bottom" secondItem="Hd1-dE-UcT" secondAttribute="bottom" constant="8" id="wUV-0o-R7w"/>
+                                                                <constraint firstAttribute="trailing" secondItem="HQp-Tm-YJ3" secondAttribute="trailing" constant="26" id="68f-0v-8ms"/>
+                                                                <constraint firstItem="HQp-Tm-YJ3" firstAttribute="leading" secondItem="b8N-GK-BFf" secondAttribute="leading" constant="26" id="Tpj-B1-7Oi"/>
+                                                                <constraint firstItem="Hd1-dE-UcT" firstAttribute="leading" secondItem="b8N-GK-BFf" secondAttribute="leading" constant="26" id="Xjv-pJ-y62"/>
+                                                                <constraint firstAttribute="bottom" secondItem="HQp-Tm-YJ3" secondAttribute="bottom" constant="15" id="dmX-1p-Bkh"/>
+                                                                <constraint firstItem="HQp-Tm-YJ3" firstAttribute="top" secondItem="Hd1-dE-UcT" secondAttribute="bottom" constant="10" id="hSv-h6-cjE"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rP-FU-5HM">
@@ -319,19 +328,22 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gnb-wx-y6N">
                                                             <rect key="frame" x="268.5" y="0.0" width="131.5" height="58"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpo-bK-wjt">
-                                                                    <rect key="frame" x="43" y="10" width="45" height="40"/>
-                                                                    <string key="text">RAM
-4.00 KB</string>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpo-bK-wjt">
+                                                                    <rect key="frame" x="26" y="16.5" width="26.5" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0Ok-3Y-48U">
+                                                                    <rect key="frame" x="26" y="41" width="79.5" height="2"/>
+                                                                </progressView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="Fpo-bK-wjt" firstAttribute="top" secondItem="Gnb-wx-y6N" secondAttribute="top" constant="10" id="Lm3-6G-WSB"/>
-                                                                <constraint firstAttribute="bottom" secondItem="Fpo-bK-wjt" secondAttribute="bottom" constant="8" id="Qcm-lh-X8z"/>
-                                                                <constraint firstItem="Fpo-bK-wjt" firstAttribute="centerX" secondItem="Gnb-wx-y6N" secondAttribute="centerX" id="zz2-Zu-Plj"/>
+                                                                <constraint firstAttribute="trailing" secondItem="0Ok-3Y-48U" secondAttribute="trailing" constant="26" id="I7f-Sq-oA6"/>
+                                                                <constraint firstAttribute="bottom" secondItem="0Ok-3Y-48U" secondAttribute="bottom" constant="15" id="PG7-N1-wcY"/>
+                                                                <constraint firstItem="Fpo-bK-wjt" firstAttribute="leading" secondItem="Gnb-wx-y6N" secondAttribute="leading" constant="26" id="joS-8N-LSF"/>
+                                                                <constraint firstItem="0Ok-3Y-48U" firstAttribute="leading" secondItem="Gnb-wx-y6N" secondAttribute="leading" constant="26" id="wg6-RQ-N8l"/>
+                                                                <constraint firstItem="0Ok-3Y-48U" firstAttribute="top" secondItem="Fpo-bK-wjt" secondAttribute="bottom" constant="10" id="zhj-cd-4e9"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
