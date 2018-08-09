@@ -24,4 +24,10 @@
 + (NSString *)getDelegateAbi:(NSString *)code action:(NSString *)action from:(NSString *)from receiver:(NSString *)receiver stake_net_quantity:(NSString *)stake_net_quantity stake_cpu_quantity:(NSString *)stake_cpu_quantity;
 + (NSString *)getUnDelegateAbi:(NSString *)code action:(NSString *)action from:(NSString *)from receiver:(NSString *)receiver unstake_net_quantity:(NSString *)unstake_net_quantity unstake_cpu_quantity:(NSString *)unstake_cpu_quantity;
 
++ (NSString *)getBuyRamAbi:(NSString *)code action:(NSString *)action payer:(NSString *)payer receiver:(NSString *)receiver quant:(NSString *)quant;
++ (NSString *)getSellRamAbi:(NSString *)code action:(NSString *)action account:(NSString *)account bytes:(uint32_t)bytes;
+
++ (NSString *)getBuyRamTransaction:(NSString *)priv_key_str contract:(NSString *)contract payer_str:(NSString *)payer_str infostr:(NSString *)infostr abistr:(NSString *)abistr max_cpu_usage_ms:(uint32_t)max_cpu_usage_ms max_net_usage_words:(uint32_t)max_net_usage_words;
++ (NSString *)getSellRamTransaction:(NSString *)priv_key_str contract:(NSString *)contract account_str:(NSString *)account_str infostr:(NSString *)infostr abistr:(NSString *)abistr max_cpu_usage_ms:(uint32_t)max_cpu_usage_ms max_net_usage_words:(uint32_t)max_net_usage_words;
+
 @end
