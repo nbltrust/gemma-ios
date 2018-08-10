@@ -13,6 +13,7 @@ import SwiftyUserDefaults
 import Localize_Swift
 import Fabric
 import Crashlytics
+import SwiftDate
 
 let log = SwiftyBeaver.self
 

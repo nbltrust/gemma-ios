@@ -58,7 +58,7 @@ class RichStyle {
             $0.color = UIColor.darkSlateBlue
             $0.underline = (.styleSingle,UIColor.darkSlateBlue)
         }
-        Styles.register(StyleNames.agreement.rawValue, style: agreement_style)
+        Styles.register(StyleNames.agreement.rawValue, style: check_style)
         
         initLineViewStyle()
       }

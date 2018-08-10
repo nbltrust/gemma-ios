@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SafeLineView" customModule="EOS" customModuleProvider="target">
             <connections>
                 <outlet property="safeLineView" destination="tTx-jK-7QO" id="YEU-L1-16M"/>
-                <outlet property="safeSwitch" destination="bmK-4N-u0J" id="ObD-5v-2af"/>
+                <outlet property="safeSwitch" destination="ESx-gS-Wcj" id="Q8h-Yd-i78"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -32,29 +32,41 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="rightIconName" value="1"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bmK-4N-u0J">
-                    <rect key="frame" x="311" y="34.5" width="51" height="31"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
-                    <color key="onTintColor" red="0.27500000000000002" green="0.42699999999999999" blue="0.82699999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <color key="thumbTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESx-gS-Wcj" customClass="TKSimpleSwitch" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="316" y="39" width="44" height="22"/>
+                    <color key="backgroundColor" red="0.85499999999999998" green="0.86299999999999999" blue="0.91000000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="BMO-3D-KZU"/>
+                        <constraint firstAttribute="height" constant="22" id="Wq8-tB-Zeg"/>
+                    </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="15.5"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="animateDuration">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="onColor">
+                            <color key="value" red="0.27500000000000002" green="0.42699999999999999" blue="0.82399999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="offColor">
+                            <color key="value" red="0.85499999999999998" green="0.86299999999999999" blue="0.91000000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="circleColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
-                </switch>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="tTx-jK-7QO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="C4B-a2-k2Q"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bmK-4N-u0J" secondAttribute="trailing" constant="15" id="D92-BJ-jUE"/>
+                <constraint firstItem="ESx-gS-Wcj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SuK-Yf-e0V"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tTx-jK-7QO" secondAttribute="trailing" id="gdB-Xo-neD"/>
                 <constraint firstItem="tTx-jK-7QO" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="kRX-F1-KUl"/>
                 <constraint firstItem="tTx-jK-7QO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pbx-JH-Icv"/>
-                <constraint firstItem="bmK-4N-u0J" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sa6-ip-uLR"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ESx-gS-Wcj" secondAttribute="trailing" constant="15" id="yb4-CG-Jy8"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="33.5" y="109"/>
         </view>
     </objects>
 </document>

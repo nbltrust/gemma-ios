@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol FaceIDComfirmCoordinatorProtocol {
+    func dismiss()
 }
 
 protocol FaceIDComfirmStateManagerProtocol {
@@ -33,7 +34,11 @@ class FaceIDComfirmCoordinator: UserInfoRootCoordinator {
 }
 
 extension FaceIDComfirmCoordinator: FaceIDComfirmCoordinatorProtocol {
-    
+    func dismiss() {
+        self.rootVC.dismiss(animated: true) {
+            self.state.callback.confirmResult.value?(false)
+        }
+    }
 }
 
 extension FaceIDComfirmCoordinator: FaceIDComfirmStateManagerProtocol {

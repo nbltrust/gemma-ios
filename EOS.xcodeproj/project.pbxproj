@@ -35,6 +35,9 @@
 		1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF12070D1BC34F8C65F6079CC156E0B /* NSObject+Extensions.swift */; };
 		2154824915CF85B858D26F531215E1F8 /* climits in Resources */ = {isa = PBXBuildFile; fileRef = A56465013122603CC96F76E2942D687D /* climits */; };
 		21FFD61029C1653D163BDA1A64136F4B /* libboost_regex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FFEDC6C6AFC706ED9DCB24098C23A1 /* libboost_regex.a */; };
+		2214A969211D73A2003256D2 /* VoteFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2214A967211D73A1003256D2 /* VoteFootView.xib */; };
+		2214A96A211D73A2003256D2 /* VoteFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A968211D73A1003256D2 /* VoteFootView.swift */; };
+		2214A96C211D73CF003256D2 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A96B211D73CE003256D2 /* Error.swift */; };
 		221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */; };
 		221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BD210076C30059F856 /* GestureItemLayer.swift */; };
 		221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BF21007B510059F856 /* GestureLockSetting.swift */; };
@@ -67,6 +70,18 @@
 		2253C54C2112D83D0043AAF7 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C54B2112D83D0043AAF7 /* QRCodeView.swift */; };
 		2253C54E2112D8530043AAF7 /* QRCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2253C54D2112D8530043AAF7 /* QRCodeView.xib */; };
 		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
+		22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322E211A991D00ACC63C /* VoteCoordinator.swift */; };
+		22A93233211A991D00ACC63C /* VoteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322F211A991D00ACC63C /* VoteActions.swift */; };
+		22A93234211A991D00ACC63C /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93230211A991D00ACC63C /* VoteViewController.swift */; };
+		22A93235211A991D00ACC63C /* VoteReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93231211A991D00ACC63C /* VoteReducers.swift */; };
+		22A93238211A9C2B00ACC63C /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93237211A9C2B00ACC63C /* NodeView.swift */; };
+		22A9323B211A9C5E00ACC63C /* NodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93239211A9C5E00ACC63C /* NodeCell.swift */; };
+		22A9323C211A9C5E00ACC63C /* NodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A9323A211A9C5E00ACC63C /* NodeCell.xib */; };
+		22A9323E211A9C7200ACC63C /* NodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A9323D211A9C7200ACC63C /* NodeView.xib */; };
+		22A93240211A9DBB00ACC63C /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9323F211A9DBB00ACC63C /* StatusView.swift */; };
+		22A93242211A9DE000ACC63C /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A93241211A9DE000ACC63C /* StatusView.xib */; };
+		22A93246211BE4DE00ACC63C /* TKSimpleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */; };
+		22A93247211BE4DE00ACC63C /* TKBaseSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */; };
 		22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */; };
 		22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239320F6FD5100284A0A /* EntryGuideActions.swift */; };
 		22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239420F6FD5100284A0A /* EntryGuideViewController.swift */; };
@@ -93,6 +108,7 @@
 		22E40AB42114540600F1648C /* FaceIDComfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AB02114540600F1648C /* FaceIDComfirmActions.swift */; };
 		22E40AB52114540600F1648C /* FaceIDComfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AB12114540600F1648C /* FaceIDComfirmViewController.swift */; };
 		22E40AB62114540600F1648C /* FaceIDComfirmReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AB22114540600F1648C /* FaceIDComfirmReducers.swift */; };
+		23499658A11E997BBC9A3CD6 /* Pods_EOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */; };
 		24DB2001F45219964C7C00660C7FAD74 /* map.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = D37EB2084A5F0BCBD7AC0127F484EF67 /* map.SUNWCCh */; };
 		267D15355147463B9F3A4323FEFA93A6 /* utility.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 57B7E46E6DAB4556E33BC9EDAC656EC7 /* utility.SUNWCCh */; };
 		293724C94FEA66BB7CBDEC50A91A0C83 /* ostream.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 2517D8C8DC5C7533C63215A87510F188 /* ostream.SUNWCCh */; };
@@ -331,6 +347,9 @@
 		72FE5B9221009EED00B29FEC /* LeadInIntroduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9121009EED00B29FEC /* LeadInIntroduceView.xib */; };
 		72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */; };
 		72FE5B9621009F2200B29FEC /* LeadInKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */; };
+		731C8502211D6B5B00C3FAA8 /* Pods_EOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */; };
+		73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73378F74211C233200ACAA90 /* EOSIOTableRow.swift */; };
+		737FCFBE211D70B200859F82 /* RPCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737FCFBD211D70B200859F82 /* RPCTest.swift */; };
 		73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68B20F5B42600756391 /* Double+Extensions.swift */; };
 		73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */; };
 		73B5A69020F5B54C00756391 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68F20F5B54C00756391 /* String+Extensions.swift */; };
@@ -348,7 +367,6 @@
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
-		73EDFEF3211AC601000DF796 /* EOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EDFEF2211AC601000DF796 /* EOSTests.swift */; };
 		73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */; };
 		73F30B4120F6E6FF0016E950 /* UserInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */; };
 		73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */; };
@@ -456,13 +474,13 @@
 		F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9FE30551A8102E01F746AB69BF50A /* RichStyles.swift */; };
 		F38C7EB54718D5BE36E4462C3D9A7441 /* new in Resources */ = {isa = PBXBuildFile; fileRef = 3E2C66F08E0607D2FA0ECEEAE101D8DC /* new */; };
 		F60569E26E39D85FBBCB98CDCDBDB3C7 /* iostream.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 6574BB6370DAB42E02C1C49EA018D158 /* iostream.SUNWCCh */; };
-		F662B4725B3ACC88482E7275 /* libPods-EOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D693558A7E41AE1E2A548C /* libPods-EOSTests.a */; };
 		F6E1F7D79D9DB296584612D81F800561 /* stack.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = E363E5B11BB187753B0849FA79431060 /* stack.SUNWCCh */; };
 		FA1B324B0C87816F5024221B1F5D8996 /* libboost_graph.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1037D093931268990919885D1D72FE6F /* libboost_graph.a */; };
 		FAE42FB8272608796B84D45337A61B85 /* libeosio_chain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 048D22900E7EF50310DE7EAA9E082405 /* libeosio_chain.a */; };
 		FB6B3762C0FE00D751B31CE63B29EF9B /* string in Resources */ = {isa = PBXBuildFile; fileRef = 32022E86006DE0BEDF76160E2D233E20 /* string */; };
 		FBF701B9942471FF3992A6FF20342299 /* valarray in Resources */ = {isa = PBXBuildFile; fileRef = C201BFA6B89F0FA32871467B27DC662A /* valarray */; };
 		FBF8C6513820764A83201943FA59A787 /* list.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 2013996F2D64A821254F7CCC3FDB37F9 /* list.SUNWCCh */; };
+		FC27BA5B3C2004F960D1E922 /* Pods_EOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E605BBCEAE4E9DEBF4E1D5C7 /* Pods_EOSTests.framework */; };
 		FD1CABB572E0D7F1ED79EE81741CFCE4 /* bitset in Resources */ = {isa = PBXBuildFile; fileRef = 31D006F3E02F91C52534EB57C252633F /* bitset */; };
 		FD49CE2A33EF13AFD453078BCD6874DB /* regex in Resources */ = {isa = PBXBuildFile; fileRef = A1791F63870936446B3A00B610E94A8B /* regex */; };
 		FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D9459367F25FE4B364A2DB3DE1C64F /* libssl.a */; };
@@ -2044,6 +2062,9 @@
 		21F2DEF7A6E5BD249392B32F7483CCFF /* coordinate_cast.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = coordinate_cast.hpp; sourceTree = "<group>"; };
 		22021370A4E1DB9C69DFB89A17A42CEF /* lazy_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lazy_list.hpp; sourceTree = "<group>"; };
 		220D8011C26208853E13A42673CA56EF /* construct_funop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = construct_funop.hpp; sourceTree = "<group>"; };
+		2214A967211D73A1003256D2 /* VoteFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoteFootView.xib; sourceTree = "<group>"; };
+		2214A968211D73A1003256D2 /* VoteFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteFootView.swift; sourceTree = "<group>"; };
+		2214A96B211D73CE003256D2 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureInfoItemLayer.swift; sourceTree = "<group>"; };
 		221EC1BD210076C30059F856 /* GestureItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureItemLayer.swift; sourceTree = "<group>"; };
 		221EC1BF21007B510059F856 /* GestureLockSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockSetting.swift; sourceTree = "<group>"; };
@@ -2111,6 +2132,18 @@
 		229A81A4D015A2C55D0AD22EF26389C7 /* attr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = attr.hpp; sourceTree = "<group>"; };
 		22A248E81933ABF6839AE3DE5D9B70DA /* text_multifile_backend.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = text_multifile_backend.hpp; sourceTree = "<group>"; };
 		22A2DF559D4AD941CEFBA043151D46E8 /* is_rvalue_reference.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_rvalue_reference.hpp; sourceTree = "<group>"; };
+		22A9322E211A991D00ACC63C /* VoteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCoordinator.swift; sourceTree = "<group>"; };
+		22A9322F211A991D00ACC63C /* VoteActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteActions.swift; sourceTree = "<group>"; };
+		22A93230211A991D00ACC63C /* VoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
+		22A93231211A991D00ACC63C /* VoteReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteReducers.swift; sourceTree = "<group>"; };
+		22A93237211A9C2B00ACC63C /* NodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
+		22A93239211A9C5E00ACC63C /* NodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeCell.swift; sourceTree = "<group>"; };
+		22A9323A211A9C5E00ACC63C /* NodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NodeCell.xib; sourceTree = "<group>"; };
+		22A9323D211A9C7200ACC63C /* NodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NodeView.xib; sourceTree = "<group>"; };
+		22A9323F211A9DBB00ACC63C /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		22A93241211A9DE000ACC63C /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
+		22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSimpleSwitch.swift; sourceTree = "<group>"; };
+		22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKBaseSwitcher.swift; sourceTree = "<group>"; };
 		22A9BC1160D523D32DB217563544C1B0 /* reverse_dispatch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = reverse_dispatch.hpp; sourceTree = "<group>"; };
 		22AF5EC96D7029B90A8311B7F6C66AEB /* ident.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ident.hpp; sourceTree = "<group>"; };
 		22B1E2ABBF7C7A13B7BB83864D4443D5 /* cos_pi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cos_pi.hpp; sourceTree = "<group>"; };
@@ -3193,7 +3226,6 @@
 		39B2A686CC91C6267D536EDE43CB93E2 /* rational_horner2_19.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rational_horner2_19.hpp; sourceTree = "<group>"; };
 		39BA34869EF4B2F44A16DC3F44334BD5 /* advance_forward.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = advance_forward.hpp; sourceTree = "<group>"; };
 		39C7353340E9DFA9619F72D25F39F3F9 /* iomanip.SUNWCCh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iomanip.SUNWCCh; sourceTree = "<group>"; };
-		39D693558A7E41AE1E2A548C /* libPods-EOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39DD98F61A0C295C47E9DBBB470BCD34 /* contains.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = contains.hpp; sourceTree = "<group>"; };
 		39E0B544F73E2B7FC6EF863AE5D73D60 /* typedefs.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = typedefs.hpp; sourceTree = "<group>"; };
 		39E30E7D093538CA4D17B84C5FEB52E4 /* gregorian.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gregorian.hpp; sourceTree = "<group>"; };
@@ -5836,12 +5868,15 @@
 		7303786B14932B58CF3428E1760B056F /* rational_horner1_18.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rational_horner1_18.hpp; sourceTree = "<group>"; };
 		7307B94E3DA4A89CA5C8FEE82010BDD8 /* basic_regex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = basic_regex.hpp; sourceTree = "<group>"; };
 		730C66307D456E13E4BD20F641135E28 /* authority.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = authority.hpp; sourceTree = "<group>"; };
+		731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_EOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7322156FDF1CA3AE1A2A2FC89962447D /* istream */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = istream; sourceTree = "<group>"; };
 		73276A3DD3BB4F648656B8276632EA9D /* comma_if.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = comma_if.hpp; sourceTree = "<group>"; };
 		732B81846930CD0618A51E280F4582DD /* deque10_fwd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = deque10_fwd.hpp; sourceTree = "<group>"; };
 		732C10EEA42E17B8090E6B2CB32C73E1 /* arity40_0.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = arity40_0.hpp; sourceTree = "<group>"; };
 		7330AD1EBE4EC0876CEA7421F1A5E819 /* has_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = has_function.hpp; sourceTree = "<group>"; };
 		7333484E54C2926C918E6559674BF3B6 /* qi_match_attr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_match_attr.hpp; sourceTree = "<group>"; };
+		73378F74211C233200ACAA90 /* EOSIOTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSIOTableRow.swift; sourceTree = "<group>"; };
+		73378F76211C2D5300ACAA90 /* EOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EOS.entitlements; sourceTree = "<group>"; };
 		733874DA18B6FC7EA389E80149C09885 /* sliced.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sliced.hpp; sourceTree = "<group>"; };
 		7344C3DDB72697A50126EC3549E8DFB6 /* auto_link.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = auto_link.hpp; sourceTree = "<group>"; };
 		734F610FE87C479427D37CCF1E1CD8F8 /* lookbehind_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lookbehind_matcher.hpp; sourceTree = "<group>"; };
@@ -5852,6 +5887,7 @@
 		736F6D890AC74EBDF1A7EF32F90C7883 /* in.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = in.hpp; sourceTree = "<group>"; };
 		737278E8820298ECA4D892EF71C0BC53 /* max_size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = max_size.hpp; sourceTree = "<group>"; };
 		7376998AAFCBB15DBFF4D32BA3B333CF /* to_sequence.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_sequence.hpp; sourceTree = "<group>"; };
+		737FCFBD211D70B200859F82 /* RPCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCTest.swift; sourceTree = "<group>"; };
 		7383C690BF72AFC18E63329E1D210E3F /* buffer_distance_symmetric.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffer_distance_symmetric.hpp; sourceTree = "<group>"; };
 		738435A523CCBE583F76AB8EE7A11C23 /* kqueue_reactor.ipp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kqueue_reactor.ipp; sourceTree = "<group>"; };
 		738DEAD268ECB6ACF77308B2FEC69FA1 /* regbase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = regbase.hpp; sourceTree = "<group>"; };
@@ -5892,7 +5928,6 @@
 		73EDFEE7211AC44E000DF796 /* EOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EDFEEB211AC44E000DF796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73EDFEF1211AC600000DF796 /* EOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		73EDFEF2211AC601000DF796 /* EOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSTests.swift; sourceTree = "<group>"; };
 		73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoActions.swift; sourceTree = "<group>"; };
 		73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCoordinator.swift; sourceTree = "<group>"; };
 		73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoReducers.swift; sourceTree = "<group>"; };
@@ -10973,6 +11008,7 @@
 		E5F337124ED8AC93D540E44430CF5BA1 /* signal_type.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = signal_type.hpp; sourceTree = "<group>"; };
 		E5F49E0AD16974DC16D497226EB984AF /* phoenix1_binders.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = phoenix1_binders.hpp; sourceTree = "<group>"; };
 		E5F979071DD1B1FFADBE424799EB6E58 /* c_array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = c_array.hpp; sourceTree = "<group>"; };
+		E605BBCEAE4E9DEBF4E1D5C7 /* Pods_EOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6075A5877CD29E29E92AD82D430E7F2 /* stl_iterator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stl_iterator.hpp; sourceTree = "<group>"; };
 		E60A6F44A4378CC89093592F4B5458D4 /* define_struct_inline.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = define_struct_inline.hpp; sourceTree = "<group>"; };
 		E60B3EC9BF02FDDE96414208FDDDB8C6 /* repeat.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = repeat.hpp; sourceTree = "<group>"; };
@@ -12133,6 +12169,7 @@
 				B59F91139082B6BA1A41D0F42DFBC842 /* libsoftfloat.a in Frameworks */,
 				FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */,
 				357B2FFEE0242335494EAFE624066A39 /* secp256k1.a in Frameworks */,
+				23499658A11E997BBC9A3CD6 /* Pods_EOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12140,7 +12177,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F662B4725B3ACC88482E7275 /* libPods-EOSTests.a in Frameworks */,
+				731C8502211D6B5B00C3FAA8 /* Pods_EOS.framework in Frameworks */,
+				FC27BA5B3C2004F960D1E922 /* Pods_EOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13840,6 +13878,7 @@
 		11EABB82155077EEA9FB2BF04848ADB8 /* EOS */ = {
 			isa = PBXGroup;
 			children = (
+				73378F76211C2D5300ACAA90 /* EOS.entitlements */,
 				2C24E928C7278E0DEFCB43F03687C787 /* AppCoordinator */,
 				D483B72D65CDBB3F22F1EF04C5437555 /* Base */,
 				E71F0A834572F43D82E4412643C50C95 /* Constants */,
@@ -14372,6 +14411,7 @@
 		1D693EAC4EFE912D3F115C139DC846B0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				22A93243211BE4CD00ACC63C /* Switch */,
 				722D24C32111554900A093CA /* NoDataView */,
 				22C023A920FCACFD00284A0A /* Scan */,
 				73B5A69F20F5EFF600756391 /* AttributeLabelView */,
@@ -14868,6 +14908,42 @@
 				2AD6695DA821DE6D8749B1855CF0A193 /* vector_indexing_suite.hpp */,
 			);
 			path = indexing;
+			sourceTree = "<group>";
+		};
+		22A9322D211A97EA00ACC63C /* Vote */ = {
+			isa = PBXGroup;
+			children = (
+				22A93236211A9BF000ACC63C /* View */,
+				22A9322E211A991D00ACC63C /* VoteCoordinator.swift */,
+				22A9322F211A991D00ACC63C /* VoteActions.swift */,
+				22A93230211A991D00ACC63C /* VoteViewController.swift */,
+				22A93231211A991D00ACC63C /* VoteReducers.swift */,
+			);
+			path = Vote;
+			sourceTree = "<group>";
+		};
+		22A93236211A9BF000ACC63C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2214A968211D73A1003256D2 /* VoteFootView.swift */,
+				2214A967211D73A1003256D2 /* VoteFootView.xib */,
+				22A93237211A9C2B00ACC63C /* NodeView.swift */,
+				22A9323D211A9C7200ACC63C /* NodeView.xib */,
+				22A93239211A9C5E00ACC63C /* NodeCell.swift */,
+				22A9323A211A9C5E00ACC63C /* NodeCell.xib */,
+				22A9323F211A9DBB00ACC63C /* StatusView.swift */,
+				22A93241211A9DE000ACC63C /* StatusView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		22A93243211BE4CD00ACC63C /* Switch */ = {
+			isa = PBXGroup;
+			children = (
+				22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */,
+				22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */,
+			);
+			path = Switch;
 			sourceTree = "<group>";
 		};
 		22C0239120F6FCF300284A0A /* EntryGuide */ = {
@@ -20234,6 +20310,7 @@
 			isa = PBXGroup;
 			children = (
 				3BF842DF211BE59400AF9963 /* BuyRam */,
+				22A9322D211A97EA00ACC63C /* Vote */,
 				3B726C0F211334EA001E4850 /* ScreenShotAlert */,
 				2253C5202111A4E50043AAF7 /* CopyPriKey */,
 				3B3146F22106D50F00E815BD /* ResourceMortgage */,
@@ -21972,7 +22049,7 @@
 			isa = PBXGroup;
 			children = (
 				73EDFEEB211AC44E000DF796 /* Info.plist */,
-				73EDFEF2211AC601000DF796 /* EOSTests.swift */,
+				737FCFBD211D70B200859F82 /* RPCTest.swift */,
 				73EDFEF1211AC600000DF796 /* EOSTests-Bridging-Header.h */,
 			);
 			path = EOSTests;
@@ -22632,6 +22709,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */,
 				265B178A60DBF67AF041067718C08728 /* Pods_EOS.framework */,
 				61E820DFBEDE8948881A4760C672F918 /* libappbase.a */,
 				CA3066B0CEE09F5FD6CD43970E4A7F0A /* libboost_atomic.a */,
@@ -22658,7 +22736,7 @@
 				16D9459367F25FE4B364A2DB3DE1C64F /* libssl.a */,
 				5B26489F46CD306B047086E926F75E22 /* libwallet_plugin.a */,
 				B76AA4B9209D95DD8A19D16B285CE327 /* secp256k1.a */,
-				39D693558A7E41AE1E2A548C /* libPods-EOSTests.a */,
+				E605BBCEAE4E9DEBF4E1D5C7 /* Pods_EOSTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -23881,6 +23959,7 @@
 			children = (
 				037EA7EF67D3633CBA8C8AB082548C91 /* Account.swift */,
 				73B5A6AC20F601DE00756391 /* Payment.swift */,
+				73378F74211C233200ACAA90 /* EOSIOTableRow.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -30491,6 +30570,7 @@
 		E71F0A834572F43D82E4412643C50C95 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				2214A96B211D73CE003256D2 /* Error.swift */,
 				053D5531EB3242194554382B4ACAD10A /* Constants.swift */,
 			);
 			path = Constants;
@@ -32184,6 +32264,7 @@
 				73EDFEE3211AC44E000DF796 /* Sources */,
 				73EDFEE4211AC44E000DF796 /* Frameworks */,
 				73EDFEE5211AC44E000DF796 /* Resources */,
+				1FA77CF473E6588631F582DB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -32236,6 +32317,11 @@
 					C60743183A5E3BAD235C9971F3122EF5 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -32294,6 +32380,7 @@
 				3B4C90F520F4CE07004F4C52 /* Payments.storyboard in Resources */,
 				EE38F45E0DF99CC93B99EA2437E547B5 /* Rubik-Medium.ttf in Resources */,
 				01BE9E6EAA0EF905279B30392E1DF224 /* Rubik-MediumItalic.ttf in Resources */,
+				2214A969211D73A2003256D2 /* VoteFootView.xib in Resources */,
 				5FD71CEC1E7854589FDBD33B0B42EDBD /* Rubik-Regular.ttf in Resources */,
 				7610C85F17FAA9095B27B17656342765 /* SharpCornerTipsLabelView.xib in Resources */,
 				C53CFE1AA8DBFB2C3E6AD341D171268E /* algorithm in Resources */,
@@ -32318,6 +32405,7 @@
 				C0F32AE926B6B097CCDD2D89170347DB /* chain_id_type.hpp.bk in Resources */,
 				2154824915CF85B858D26F531215E1F8 /* climits in Resources */,
 				151F0D30E16DBC47AD591FB7E78754AB /* clocale in Resources */,
+				22A9323E211A9C7200ACC63C /* NodeView.xib in Resources */,
 				AA569F9C0AB8912ECA3953F600AE87EF /* cmath in Resources */,
 				DE711D13AB681C2C14CB1085231EF631 /* cmath in Resources */,
 				72199D6021043CF000575226 /* SetWalletContentView.xib in Resources */,
@@ -32332,6 +32420,7 @@
 				0480EB7834025FD7D20C7D23BA46913D /* csignal in Resources */,
 				14128C2F61F7DF68260B8E934FBC7BBF /* cstdarg in Resources */,
 				A0627772B8D78F02B056FD231361D2A4 /* cstddef in Resources */,
+				22A9323C211A9C5E00ACC63C /* NodeCell.xib in Resources */,
 				3BC12AA021060927006EEB80 /* AccountList.storyboard in Resources */,
 				69D2E5363ACCE838BFFF8F693BDE1F75 /* cstdio in Resources */,
 				3DE8C09644807195A3767B414F58184D /* cstdlib in Resources */,
@@ -32366,6 +32455,7 @@
 				A7A6CEC5DA1E512787C61400F0E1FC99 /* iostream in Resources */,
 				F60569E26E39D85FBBCB98CDCDBDB3C7 /* iostream.SUNWCCh in Resources */,
 				5BA5BDF6B5E2C9F8466441F48E517278 /* istream in Resources */,
+				22A93242211A9DE000ACC63C /* StatusView.xib in Resources */,
 				3BD3665D20FDEB3A004DE09D /* CornerAndShadowView.xib in Resources */,
 				3BD3666F20FF0AF9004DE09D /* ScreenShotAlertView.xib in Resources */,
 				4456CACEF6AAF0C1FE6DCA145549F499 /* istream.SUNWCCh in Resources */,
@@ -32457,6 +32547,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1FA77CF473E6588631F582DB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EOSTests/Pods-EOSTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EOSTests/Pods-EOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2755E3B19D75CA943738072DCEBADFFD /* build auto increment */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -32538,7 +32648,7 @@
 				"${BUILT_PRODUCTS_DIR}/EFQRCode/EFQRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/FCUUID-framework/FCUUID.framework",
+				"${BUILT_PRODUCTS_DIR}/FCUUID/FCUUID.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/GRDB.swift/GRDB.framework",
 				"${BUILT_PRODUCTS_DIR}/GrowingTextView/GrowingTextView.framework",
@@ -32548,7 +32658,7 @@
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JHChainableAnimations/JHChainableAnimations.framework",
-				"${BUILT_PRODUCTS_DIR}/KMNavigationBarTransition-framework/KMNavigationBarTransition.framework",
+				"${BUILT_PRODUCTS_DIR}/KMNavigationBarTransition/KMNavigationBarTransition.framework",
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/KUIPopOver/KUIPopOver.framework",
@@ -32567,7 +32677,7 @@
 				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RealReachability-framework/RealReachability.framework",
+				"${BUILT_PRODUCTS_DIR}/RealReachability/RealReachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Repeat/Repeat.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-16/iOS/RevealServer.framework",
@@ -32591,11 +32701,10 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
-				"${BUILT_PRODUCTS_DIR}/TKSwitcherCollection/TKSwitcherCollection.framework",
 				"${BUILT_PRODUCTS_DIR}/Tags/Tags.framework",
 				"${BUILT_PRODUCTS_DIR}/TinyConstraints/TinyConstraints.framework",
 				"${BUILT_PRODUCTS_DIR}/Typist/Typist.framework",
-				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore-framework/UICKeyChainStore.framework",
+				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
 				"${BUILT_PRODUCTS_DIR}/UIFontComplete/UIFontComplete.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/ZLaunchAd/ZLaunchAd.framework",
@@ -32669,7 +32778,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TKSwitcherCollection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tags.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TinyConstraints.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Typist.framework",
@@ -32752,6 +32860,7 @@
 				3B4C90FC20F4D686004F4C52 /* PaymentsDetailActions.swift in Sources */,
 				3B4C90FE20F4D686004F4C52 /* PaymentsDetailReducers.swift in Sources */,
 				221EC1C621008EF50059F856 /* GestureLockSetCoordinator.swift in Sources */,
+				22A93240211A9DBB00ACC63C /* StatusView.swift in Sources */,
 				22C023A020F6FDB900284A0A /* CreatationCompleteActions.swift in Sources */,
 				72101690210197C10059B37E /* WalletCoordinator.swift in Sources */,
 				3BF842E4211BE60100AF9963 /* BuyRamCoordinator.swift in Sources */,
@@ -32771,6 +32880,7 @@
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
 				22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */,
 				72FE5B6D2100491A00B29FEC /* AboutViewController.swift in Sources */,
+				22A93234211A991D00ACC63C /* VoteViewController.swift in Sources */,
 				22C023AF20FCB09300284A0A /* ScanCoordinator.swift in Sources */,
 				72FE5B7621006B0700B29FEC /* NormalContentViewController.swift in Sources */,
 				3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */,
@@ -32791,6 +32901,7 @@
 				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
 				2253C52A2111A5F90043AAF7 /* CopyPriKeyReducers.swift in Sources */,
 				0795BFD28C42BE58BB94BAA17ADB6B91 /* EOSIO.mm in Sources */,
+				2214A96C211D73CF003256D2 /* Error.swift in Sources */,
 				72101697210197C10059B37E /* ChangeWalletNameViewController.swift in Sources */,
 				3BFF4E0B2109F8BD0047F996 /* OperationRightView.swift in Sources */,
 				7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */,
@@ -32827,6 +32938,7 @@
 				C2AE7CD84347385A7C552C6564375D8D /* HomeActions.swift in Sources */,
 				2253C5392111A6450043AAF7 /* PriKeyViewController.swift in Sources */,
 				72FE5B6E2100491A00B29FEC /* AboutReducers.swift in Sources */,
+				22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */,
 				3130D0258A7A377AC1EBE65F9BD4ED69 /* HomeCoordinator.swift in Sources */,
 				73B5A69020F5B54C00756391 /* String+Extensions.swift in Sources */,
 				917CFC3CF79C268A4F4C59FBC103A951 /* HomeReducers.swift in Sources */,
@@ -32860,6 +32972,7 @@
 				72FE5B9021009EE300B29FEC /* LeadInIntroduceView.swift in Sources */,
 				22C023B120FCB09300284A0A /* ScanViewController.swift in Sources */,
 				3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */,
+				73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */,
 				221EC1CF21008F1B0059F856 /* GestureLockComfirmActions.swift in Sources */,
 				08979875F7919749EE9911341C1DA85E /* NavCoordinator.swift in Sources */,
 				72101698210197C10059B37E /* ChangeWalletNameCoordinator.swift in Sources */,
@@ -32879,6 +32992,7 @@
 				2B427CD0E35711458F16196E6587BA7A /* PaymentsRecordsCellView.swift in Sources */,
 				7210168F210197C10059B37E /* WalletReducers.swift in Sources */,
 				72FE5B7521006B0700B29FEC /* NormalContentActions.swift in Sources */,
+				2214A96A211D73A2003256D2 /* VoteFootView.swift in Sources */,
 				173223C45F10FDDC1912D6D77E87B01D /* R.generated.swift in Sources */,
 				D3269330F6567878EEBA3EB42293912B /* RegisterContentView.swift in Sources */,
 				72FE5B5B2100490B00B29FEC /* HelpCoordinator.swift in Sources */,
@@ -32897,6 +33011,7 @@
 				725F68062101B8E50006BBA1 /* SetWalletViewController.swift in Sources */,
 				73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */,
 				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,
+				22A9323B211A9C5E00ACC63C /* NodeCell.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
 				73B5A6A120F5F00A00756391 /* AttributeLabelView.swift in Sources */,
 				2253C5312111A6300043AAF7 /* QRCodeViewController.swift in Sources */,
@@ -32922,6 +33037,7 @@
 				3B4C90FD20F4D686004F4C52 /* PaymentsDetailViewController.swift in Sources */,
 				73B5A6A720F5F62D00756391 /* NSScanner+Swift.swift in Sources */,
 				22C023A820FCACE900284A0A /* GestureLockInfoView.swift in Sources */,
+				22A93247211BE4DE00ACC63C /* TKBaseSwitcher.swift in Sources */,
 				7224712A20F57BA800536BF4 /* TransferActions.swift in Sources */,
 				72FE5B4E210048F500B29FEC /* NormalReducers.swift in Sources */,
 				7224713220F5F92B00536BF4 /* HomeHeaderView.swift in Sources */,
@@ -32940,6 +33056,7 @@
 				72D645B821106860003F660D /* LeadInKeyViewController.swift in Sources */,
 				3BC12A9F21060927006EEB80 /* AccountListViewController.swift in Sources */,
 				73F30B4720F6E7410016E950 /* UserInfoRootCoordinator.swift in Sources */,
+				22A93233211A991D00ACC63C /* VoteActions.swift in Sources */,
 				6F3BB5C8972D01A3B05201EC928A1021 /* UIResponder+Extensions.swift in Sources */,
 				221EC1C821008EF50059F856 /* GestureLockSetViewController.swift in Sources */,
 				72FE5B632100491300B29FEC /* ServersCoordinator.swift in Sources */,
@@ -32953,9 +33070,11 @@
 				2253C5382111A6450043AAF7 /* PriKeyActions.swift in Sources */,
 				3B3146FA2106D56500E815BD /* ResourceMortgageReducers.swift in Sources */,
 				7210169C210197C10059B37E /* WalletManagerViewController.swift in Sources */,
+				22A93238211A9C2B00ACC63C /* NodeView.swift in Sources */,
 				3BD3664B20F72B5E004DE09D /* TransferConfirmPasswordActions.swift in Sources */,
 				22C0239F20F6FDB900284A0A /* CreatationCompleteCoordinator.swift in Sources */,
 				DBE18F3AD409206828C675AB4A85C4FD /* Utils.swift in Sources */,
+				22A93246211BE4DE00ACC63C /* TKSimpleSwitch.swift in Sources */,
 				7210169E210197C10059B37E /* WalletManagerActions.swift in Sources */,
 				72FE5B6C2100491A00B29FEC /* AboutActions.swift in Sources */,
 				22C023B220FCB09300284A0A /* ScanReducers.swift in Sources */,
@@ -32969,6 +33088,7 @@
 				3BD3664020F7086A004DE09D /* TransferConfirmView.swift in Sources */,
 				22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */,
 				3BD3665C20FDEB3A004DE09D /* CornerAndShadowView.swift in Sources */,
+				22A93235211A991D00ACC63C /* VoteReducers.swift in Sources */,
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
 				221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */,
 				177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */,
@@ -32983,7 +33103,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73EDFEF3211AC601000DF796 /* EOSTests.swift in Sources */,
+				737FCFBE211D70B200859F82 /* RPCTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33033,6 +33153,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4LN46787D;
 				ENABLE_BITCODE = NO;
@@ -33049,6 +33170,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/library",
 					"$(PROJECT_DIR)/library/libboost",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -33125,6 +33247,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4LN46787D;
 				ENABLE_BITCODE = NO;
@@ -33141,6 +33264,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/library",
 					"$(PROJECT_DIR)/library/libboost",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -81,7 +81,7 @@ class HomeTopView: UIView {
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
-        addSubview(view)
+        insertSubview(view, at: 0)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }

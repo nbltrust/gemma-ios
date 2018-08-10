@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 
 protocol FingerPrinterConfirmCoordinatorProtocol {
+    func dismiss()
 }
 
 protocol FingerPrinterConfirmStateManagerProtocol {
@@ -33,6 +34,11 @@ class FingerPrinterConfirmCoordinator: UserInfoRootCoordinator {
 }
 
 extension FingerPrinterConfirmCoordinator: FingerPrinterConfirmCoordinatorProtocol {
+    func dismiss() {
+        self.rootVC.dismiss(animated: true) {
+            self.state.callback.confirmResult.value?(false)
+        }
+    }
 }
 
 extension FingerPrinterConfirmCoordinator: FingerPrinterConfirmStateManagerProtocol {
