@@ -16,12 +16,13 @@ class VoteFootView: UIView {
     @IBOutlet weak var statusView: StatusView!
     
     func setup() {
-        
+        statusView.bgView.cornerRadiusInt = Int(height / 2) - 10
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
+        setup()
     }
     
     override init(frame: CGRect) {

@@ -19,11 +19,18 @@ struct VoteState: StateType {
 }
 
 struct VotePropertyState {
+    var datas: [NodeVoteViewModel] = []
 }
 
 struct VoteCallbackState {
 }
 
+struct NodeVoteViewModel {
+    var name: String = ""
+    var url: String = ""
+    var rank: Int = 0
+    var percent: Float = 0
+}
 
 //MARK: - Action Creator
 class VotePropertyActionCreate {

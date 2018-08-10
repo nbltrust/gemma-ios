@@ -9,17 +9,20 @@
 import UIKit
 
 class StatusView: UIView {
+    
+    @IBOutlet weak var bgView: CornerAndShadowView!
+    
     @IBOutlet weak var leftLabel: UILabel!
     
     @IBOutlet weak var rightLabel: UILabel!
     
     func setup() {
-        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
+        setup()
     }
     
     override init(frame: CGRect) {
