@@ -123,12 +123,12 @@ target 'EOS' do
   other
   debug
   objc
-end
+  
+  target 'EOSTests' do
+      inherit! :search_paths
+      # Pods for testing
+      pod 'Nimble'
+      pod 'Quick'
+  end
 
-target 'EOSTests' do
-    objc
-    pod 'Nimble'
-    pod 'Quick'
-    pod 'SwiftyJSON'
-    pod 'SwiftDate'
 end
