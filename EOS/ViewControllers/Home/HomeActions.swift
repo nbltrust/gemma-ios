@@ -30,9 +30,9 @@ struct AccountViewModel {
     var cpuValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
     var netValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
     var ramValue:String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    var cpuProgress: Float = 0.5
-    var netProgress: Float = 0.5
-    var ramProgress: Float = 0.5
+    var cpuProgress: Float = 0.0
+    var netProgress: Float = 0.0
+    var ramProgress: Float = 0.0
 }
 
 struct AccountListViewModel {
