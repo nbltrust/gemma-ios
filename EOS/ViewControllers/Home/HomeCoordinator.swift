@@ -18,6 +18,7 @@ protocol HomeCoordinatorProtocol {
     func pushAccountList()
     func pushResourceMortgageVC()
     func pushBackupVC()
+    func pushBuyRamVC()
     func pushVoteVC()
     func pushDealRAMVC()
 }
@@ -119,6 +120,14 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
     func pushResourceMortgageVC() {
         if let vc = R.storyboard.resourceMortgage.resourceMortgageViewController() {
             let coordinator = ResourceMortgageCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func pushBuyRamVC() {
+        if let vc = R.storyboard.buyRam.buyRamViewController() {
+            let coordinator = BuyRamCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }

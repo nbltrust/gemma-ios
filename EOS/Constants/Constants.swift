@@ -55,6 +55,8 @@ enum EOSAction:String {
     case transfer
     case delegatebw
     case undelegatebw
+    case buyram
+    case sellram
 }
 
 enum EOSIOTable:String {
