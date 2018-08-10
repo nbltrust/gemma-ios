@@ -105,6 +105,7 @@
 		22E40AB42114540600F1648C /* FaceIDComfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AB02114540600F1648C /* FaceIDComfirmActions.swift */; };
 		22E40AB52114540600F1648C /* FaceIDComfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AB12114540600F1648C /* FaceIDComfirmViewController.swift */; };
 		22E40AB62114540600F1648C /* FaceIDComfirmReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AB22114540600F1648C /* FaceIDComfirmReducers.swift */; };
+		23499658A11E997BBC9A3CD6 /* Pods_EOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */; };
 		24DB2001F45219964C7C00660C7FAD74 /* map.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = D37EB2084A5F0BCBD7AC0127F484EF67 /* map.SUNWCCh */; };
 		267D15355147463B9F3A4323FEFA93A6 /* utility.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 57B7E46E6DAB4556E33BC9EDAC656EC7 /* utility.SUNWCCh */; };
 		293724C94FEA66BB7CBDEC50A91A0C83 /* ostream.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 2517D8C8DC5C7533C63215A87510F188 /* ostream.SUNWCCh */; };
@@ -334,7 +335,9 @@
 		72FE5B9221009EED00B29FEC /* LeadInIntroduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9121009EED00B29FEC /* LeadInIntroduceView.xib */; };
 		72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */; };
 		72FE5B9621009F2200B29FEC /* LeadInKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */; };
+		731C8502211D6B5B00C3FAA8 /* Pods_EOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */; };
 		73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73378F74211C233200ACAA90 /* EOSIOTableRow.swift */; };
+		737FCFBE211D70B200859F82 /* RPCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737FCFBD211D70B200859F82 /* RPCTest.swift */; };
 		73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68B20F5B42600756391 /* Double+Extensions.swift */; };
 		73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */; };
 		73B5A69020F5B54C00756391 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68F20F5B54C00756391 /* String+Extensions.swift */; };
@@ -352,7 +355,6 @@
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
-		73EDFEF3211AC601000DF796 /* EOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EDFEF2211AC601000DF796 /* EOSTests.swift */; };
 		73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */; };
 		73F30B4120F6E6FF0016E950 /* UserInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */; };
 		73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */; };
@@ -460,13 +462,13 @@
 		F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9FE30551A8102E01F746AB69BF50A /* RichStyles.swift */; };
 		F38C7EB54718D5BE36E4462C3D9A7441 /* new in Resources */ = {isa = PBXBuildFile; fileRef = 3E2C66F08E0607D2FA0ECEEAE101D8DC /* new */; };
 		F60569E26E39D85FBBCB98CDCDBDB3C7 /* iostream.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 6574BB6370DAB42E02C1C49EA018D158 /* iostream.SUNWCCh */; };
-		F662B4725B3ACC88482E7275 /* libPods-EOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D693558A7E41AE1E2A548C /* libPods-EOSTests.a */; };
 		F6E1F7D79D9DB296584612D81F800561 /* stack.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = E363E5B11BB187753B0849FA79431060 /* stack.SUNWCCh */; };
 		FA1B324B0C87816F5024221B1F5D8996 /* libboost_graph.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1037D093931268990919885D1D72FE6F /* libboost_graph.a */; };
 		FAE42FB8272608796B84D45337A61B85 /* libeosio_chain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 048D22900E7EF50310DE7EAA9E082405 /* libeosio_chain.a */; };
 		FB6B3762C0FE00D751B31CE63B29EF9B /* string in Resources */ = {isa = PBXBuildFile; fileRef = 32022E86006DE0BEDF76160E2D233E20 /* string */; };
 		FBF701B9942471FF3992A6FF20342299 /* valarray in Resources */ = {isa = PBXBuildFile; fileRef = C201BFA6B89F0FA32871467B27DC662A /* valarray */; };
 		FBF8C6513820764A83201943FA59A787 /* list.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = 2013996F2D64A821254F7CCC3FDB37F9 /* list.SUNWCCh */; };
+		FC27BA5B3C2004F960D1E922 /* Pods_EOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E605BBCEAE4E9DEBF4E1D5C7 /* Pods_EOSTests.framework */; };
 		FD1CABB572E0D7F1ED79EE81741CFCE4 /* bitset in Resources */ = {isa = PBXBuildFile; fileRef = 31D006F3E02F91C52534EB57C252633F /* bitset */; };
 		FD49CE2A33EF13AFD453078BCD6874DB /* regex in Resources */ = {isa = PBXBuildFile; fileRef = A1791F63870936446B3A00B610E94A8B /* regex */; };
 		FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D9459367F25FE4B364A2DB3DE1C64F /* libssl.a */; };
@@ -3209,7 +3211,6 @@
 		39B2A686CC91C6267D536EDE43CB93E2 /* rational_horner2_19.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rational_horner2_19.hpp; sourceTree = "<group>"; };
 		39BA34869EF4B2F44A16DC3F44334BD5 /* advance_forward.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = advance_forward.hpp; sourceTree = "<group>"; };
 		39C7353340E9DFA9619F72D25F39F3F9 /* iomanip.SUNWCCh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iomanip.SUNWCCh; sourceTree = "<group>"; };
-		39D693558A7E41AE1E2A548C /* libPods-EOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39DD98F61A0C295C47E9DBBB470BCD34 /* contains.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = contains.hpp; sourceTree = "<group>"; };
 		39E0B544F73E2B7FC6EF863AE5D73D60 /* typedefs.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = typedefs.hpp; sourceTree = "<group>"; };
 		39E30E7D093538CA4D17B84C5FEB52E4 /* gregorian.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gregorian.hpp; sourceTree = "<group>"; };
@@ -5843,6 +5844,7 @@
 		7303786B14932B58CF3428E1760B056F /* rational_horner1_18.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rational_horner1_18.hpp; sourceTree = "<group>"; };
 		7307B94E3DA4A89CA5C8FEE82010BDD8 /* basic_regex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = basic_regex.hpp; sourceTree = "<group>"; };
 		730C66307D456E13E4BD20F641135E28 /* authority.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = authority.hpp; sourceTree = "<group>"; };
+		731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_EOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7322156FDF1CA3AE1A2A2FC89962447D /* istream */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = istream; sourceTree = "<group>"; };
 		73276A3DD3BB4F648656B8276632EA9D /* comma_if.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = comma_if.hpp; sourceTree = "<group>"; };
 		732B81846930CD0618A51E280F4582DD /* deque10_fwd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = deque10_fwd.hpp; sourceTree = "<group>"; };
@@ -5861,6 +5863,7 @@
 		736F6D890AC74EBDF1A7EF32F90C7883 /* in.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = in.hpp; sourceTree = "<group>"; };
 		737278E8820298ECA4D892EF71C0BC53 /* max_size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = max_size.hpp; sourceTree = "<group>"; };
 		7376998AAFCBB15DBFF4D32BA3B333CF /* to_sequence.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_sequence.hpp; sourceTree = "<group>"; };
+		737FCFBD211D70B200859F82 /* RPCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCTest.swift; sourceTree = "<group>"; };
 		7383C690BF72AFC18E63329E1D210E3F /* buffer_distance_symmetric.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffer_distance_symmetric.hpp; sourceTree = "<group>"; };
 		738435A523CCBE583F76AB8EE7A11C23 /* kqueue_reactor.ipp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kqueue_reactor.ipp; sourceTree = "<group>"; };
 		738DEAD268ECB6ACF77308B2FEC69FA1 /* regbase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = regbase.hpp; sourceTree = "<group>"; };
@@ -5901,7 +5904,6 @@
 		73EDFEE7211AC44E000DF796 /* EOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73EDFEEB211AC44E000DF796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73EDFEF1211AC600000DF796 /* EOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		73EDFEF2211AC601000DF796 /* EOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSTests.swift; sourceTree = "<group>"; };
 		73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoActions.swift; sourceTree = "<group>"; };
 		73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCoordinator.swift; sourceTree = "<group>"; };
 		73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoReducers.swift; sourceTree = "<group>"; };
@@ -10982,6 +10984,7 @@
 		E5F337124ED8AC93D540E44430CF5BA1 /* signal_type.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = signal_type.hpp; sourceTree = "<group>"; };
 		E5F49E0AD16974DC16D497226EB984AF /* phoenix1_binders.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = phoenix1_binders.hpp; sourceTree = "<group>"; };
 		E5F979071DD1B1FFADBE424799EB6E58 /* c_array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = c_array.hpp; sourceTree = "<group>"; };
+		E605BBCEAE4E9DEBF4E1D5C7 /* Pods_EOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6075A5877CD29E29E92AD82D430E7F2 /* stl_iterator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stl_iterator.hpp; sourceTree = "<group>"; };
 		E60A6F44A4378CC89093592F4B5458D4 /* define_struct_inline.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = define_struct_inline.hpp; sourceTree = "<group>"; };
 		E60B3EC9BF02FDDE96414208FDDDB8C6 /* repeat.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = repeat.hpp; sourceTree = "<group>"; };
@@ -12142,6 +12145,7 @@
 				B59F91139082B6BA1A41D0F42DFBC842 /* libsoftfloat.a in Frameworks */,
 				FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */,
 				357B2FFEE0242335494EAFE624066A39 /* secp256k1.a in Frameworks */,
+				23499658A11E997BBC9A3CD6 /* Pods_EOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12149,7 +12153,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F662B4725B3ACC88482E7275 /* libPods-EOSTests.a in Frameworks */,
+				731C8502211D6B5B00C3FAA8 /* Pods_EOS.framework in Frameworks */,
+				FC27BA5B3C2004F960D1E922 /* Pods_EOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21993,7 +21998,7 @@
 			isa = PBXGroup;
 			children = (
 				73EDFEEB211AC44E000DF796 /* Info.plist */,
-				73EDFEF2211AC601000DF796 /* EOSTests.swift */,
+				737FCFBD211D70B200859F82 /* RPCTest.swift */,
 				73EDFEF1211AC600000DF796 /* EOSTests-Bridging-Header.h */,
 			);
 			path = EOSTests;
@@ -22653,6 +22658,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */,
 				265B178A60DBF67AF041067718C08728 /* Pods_EOS.framework */,
 				61E820DFBEDE8948881A4760C672F918 /* libappbase.a */,
 				CA3066B0CEE09F5FD6CD43970E4A7F0A /* libboost_atomic.a */,
@@ -22679,7 +22685,7 @@
 				16D9459367F25FE4B364A2DB3DE1C64F /* libssl.a */,
 				5B26489F46CD306B047086E926F75E22 /* libwallet_plugin.a */,
 				B76AA4B9209D95DD8A19D16B285CE327 /* secp256k1.a */,
-				39D693558A7E41AE1E2A548C /* libPods-EOSTests.a */,
+				E605BBCEAE4E9DEBF4E1D5C7 /* Pods_EOSTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -32206,6 +32212,7 @@
 				73EDFEE3211AC44E000DF796 /* Sources */,
 				73EDFEE4211AC44E000DF796 /* Frameworks */,
 				73EDFEE5211AC44E000DF796 /* Resources */,
+				1FA77CF473E6588631F582DB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -32484,6 +32491,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1FA77CF473E6588631F582DB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EOSTests/Pods-EOSTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EOSTests/Pods-EOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2755E3B19D75CA943738072DCEBADFFD /* build auto increment */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -32565,7 +32592,7 @@
 				"${BUILT_PRODUCTS_DIR}/EFQRCode/EFQRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/FCUUID-framework/FCUUID.framework",
+				"${BUILT_PRODUCTS_DIR}/FCUUID/FCUUID.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/GRDB.swift/GRDB.framework",
 				"${BUILT_PRODUCTS_DIR}/GrowingTextView/GrowingTextView.framework",
@@ -32575,7 +32602,7 @@
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JHChainableAnimations/JHChainableAnimations.framework",
-				"${BUILT_PRODUCTS_DIR}/KMNavigationBarTransition-framework/KMNavigationBarTransition.framework",
+				"${BUILT_PRODUCTS_DIR}/KMNavigationBarTransition/KMNavigationBarTransition.framework",
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/KUIPopOver/KUIPopOver.framework",
@@ -32594,7 +32621,7 @@
 				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RealReachability-framework/RealReachability.framework",
+				"${BUILT_PRODUCTS_DIR}/RealReachability/RealReachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Repeat/Repeat.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-16/iOS/RevealServer.framework",
@@ -32609,19 +32636,19 @@
 				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/Siren/Siren.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftDate-framework/SwiftDate.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftHash/SwiftHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftNotificationCenter/SwiftNotificationCenter.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRichString/SwiftRichString.framework",
 				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-framework/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/Tags/Tags.framework",
 				"${BUILT_PRODUCTS_DIR}/TinyConstraints/TinyConstraints.framework",
 				"${BUILT_PRODUCTS_DIR}/Typist/Typist.framework",
-				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore-framework/UICKeyChainStore.framework",
+				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
 				"${BUILT_PRODUCTS_DIR}/UIFontComplete/UIFontComplete.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/ZLaunchAd/ZLaunchAd.framework",
@@ -33012,7 +33039,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73EDFEF3211AC601000DF796 /* EOSTests.swift in Sources */,
+				737FCFBE211D70B200859F82 /* RPCTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
