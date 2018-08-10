@@ -38,6 +38,7 @@
 		2214A969211D73A2003256D2 /* VoteFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2214A967211D73A1003256D2 /* VoteFootView.xib */; };
 		2214A96A211D73A2003256D2 /* VoteFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A968211D73A1003256D2 /* VoteFootView.swift */; };
 		2214A96C211D73CF003256D2 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A96B211D73CE003256D2 /* Error.swift */; };
+		2214A96E211D7B78003256D2 /* NodeVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A96D211D7B78003256D2 /* NodeVote.swift */; };
 		221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */; };
 		221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BD210076C30059F856 /* GestureItemLayer.swift */; };
 		221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BF21007B510059F856 /* GestureLockSetting.swift */; };
@@ -2056,6 +2057,7 @@
 		2214A967211D73A1003256D2 /* VoteFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoteFootView.xib; sourceTree = "<group>"; };
 		2214A968211D73A1003256D2 /* VoteFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteFootView.swift; sourceTree = "<group>"; };
 		2214A96B211D73CE003256D2 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		2214A96D211D7B78003256D2 /* NodeVote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeVote.swift; sourceTree = "<group>"; };
 		221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureInfoItemLayer.swift; sourceTree = "<group>"; };
 		221EC1BD210076C30059F856 /* GestureItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureItemLayer.swift; sourceTree = "<group>"; };
 		221EC1BF21007B510059F856 /* GestureLockSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockSetting.swift; sourceTree = "<group>"; };
@@ -23914,6 +23916,7 @@
 		89DAD1F7FEB61D3D4AFAF36421675A42 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2214A96D211D7B78003256D2 /* NodeVote.swift */,
 				037EA7EF67D3633CBA8C8AB082548C91 /* Account.swift */,
 				73B5A6AC20F601DE00756391 /* Payment.swift */,
 				73378F74211C233200ACAA90 /* EOSIOTableRow.swift */,
@@ -32978,6 +32981,7 @@
 				221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */,
 				2253C51C211052020043AAF7 /* SafeManager.swift in Sources */,
 				727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */,
+				2214A96E211D7B78003256D2 /* NodeVote.swift in Sources */,
 				3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */,
 				221EC1D72100A8D50059F856 /* CGFloat+Extensions.swift in Sources */,
 				3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */,

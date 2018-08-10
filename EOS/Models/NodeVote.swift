@@ -8,12 +8,12 @@
 
 import HandyJSON
 
-struct NodeVoteData {
+struct NodeVoteData: HandyJSON {
     var rows: [NodeVote]!
     var total_producer_vote_weight: String!
 }
 
-struct NodeVote {
+struct NodeVote: HandyJSON {
     var unpaid_blocks: Int!
     var producer_key: String!
     var location: Int!
