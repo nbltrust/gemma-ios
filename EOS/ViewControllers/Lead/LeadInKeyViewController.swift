@@ -21,6 +21,15 @@ class LeadInKeyViewController: BaseViewController {
         self.setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if leadInKeyView.textView.text == "" {
+            leadInKeyView.creatButton.isEnabel.accept(false)
+        } else {
+            leadInKeyView.creatButton.isEnabel.accept(true)
+        }
+    }
+    
     func setupUI() {
         self.title = R.string.localizable.lead_in()
         self.configRightNavButton(R.image.scan_qr_code())

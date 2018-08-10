@@ -83,6 +83,10 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
             } else {
                 viewmodel.exchange = R.string.localizable.exchange_pre() + action.amount + " EOS"
             }
+            if action.amount == "" {
+                viewmodel.exchange = ""
+            }
+            
             state.info.accept(viewmodel)
         } else {
             var viewmodel = BuyRamViewModel()
@@ -91,6 +95,10 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
             } else {
                 viewmodel.exchange = R.string.localizable.exchange_pre() + action.amount + " EOS"
             }
+            if action.amount == "" {
+                viewmodel.exchange = ""
+            }
+            
             state.info.accept(viewmodel)
         }
     case let action as BAccountFetchedAction:

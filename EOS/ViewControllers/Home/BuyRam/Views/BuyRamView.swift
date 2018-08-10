@@ -21,6 +21,8 @@ class BuyRamView: UIView {
     enum event: String {
         case leftnext
         case rightnext
+        case left
+        case right
     }
     
     var data: Any? {
@@ -124,9 +126,11 @@ extension BuyRamView {
     @objc func left(_ data: [String: Any]) {
         leftNextButton.isHidden = false
         rightNextButton.isHidden = true
+        self.next?.sendEventWith(event.left.rawValue, userinfo: [:])
     }
     @objc func right(_ data: [String: Any]) {
         leftNextButton.isHidden = true
         rightNextButton.isHidden = false
+        self.next?.sendEventWith(event.right.rawValue, userinfo: [:])
     }
 }

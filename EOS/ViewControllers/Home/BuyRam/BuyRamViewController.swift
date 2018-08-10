@@ -119,6 +119,7 @@ extension BuyRamViewController {
         if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView , let cpuMoney = cpuTextFieldView.textField.text?.toDouble() {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
+                self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .left)
             }
             if var balance = self.contentView.pageView.leftView.cpuMortgageView.introduceLabel.text,balance != "" {
                 balance = balance.components(separatedBy: "：")[1]
@@ -127,7 +128,6 @@ extension BuyRamViewController {
                     cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
                 }
                 self.coordinator?.buyRamValid(cpuTextFieldView.textField.text!,blance: balance)
-                self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .left)
             }
         }
     }
@@ -136,6 +136,7 @@ extension BuyRamViewController {
         if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView , let cpuMoney = cpuTextFieldView.textField.text?.toDouble() {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
+                self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .right)
             }
             if var balance = self.contentView.pageView.rightView.cpuMortgageCancelView.introduceLabel.text,balance != "" {
                 balance = balance.components(separatedBy: "：")[1]
@@ -143,8 +144,14 @@ extension BuyRamViewController {
                     cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
                 }
                 self.coordinator?.sellRamValid(cpuTextFieldView.textField.text!, blance: balance)
-                self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .right)
             }
         }
+    }
+    
+    @objc func left(_ data: [String: Any]) {
+        self.coordinator?.exchangeCalculate(contentView.pageView.leftView.cpuMortgageView.textField.text!, type: .left)
+    }
+    @objc func right(_ data: [String: Any]) {
+        self.coordinator?.exchangeCalculate(contentView.pageView.rightView.cpuMortgageCancelView.textField.text!, type: .right)
     }
 }

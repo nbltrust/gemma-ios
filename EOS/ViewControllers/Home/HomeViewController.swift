@@ -156,7 +156,7 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
         switch indexPath.row {
         case 0:self.coordinator?.pushPayment()
         case 1:self.coordinator?.pushVoteVC()
-        case 2:self.coordinator?.pushDealRAMVC()
+        case 2:self.coordinator?.pushBuyRamVC()
         case 3:self.coordinator?.pushResourceMortgageVC()
         default:
             break

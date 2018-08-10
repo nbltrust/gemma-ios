@@ -74,9 +74,9 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
         }
     } else if action == EOSAction.sellram.rawValue {
         if let actionModel = actionModel as? SellRamActionModel {
-            if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIO_CODE, action: action, account: WalletManager.shared.getAccount(), bytes:UInt32(exactly: actionModel.amount.toDouble()!*1024)!) {
-                abi = abiStr
-            }
+                if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIO_CODE, action: action, account: WalletManager.shared.getAccount(), bytes:actionModel.amount.toBytes) {
+                    abi = abiStr
+                }
         }
     }
     else {
@@ -253,6 +253,12 @@ extension Int64 {
 extension Int64 {
     var toMS:String {
         return (Double(self) / 1_024).string(digits: 2)
+    }
+}
+
+extension String {
+    var toBytes:UInt32 {
+        return UInt32((Double(self)! * 1_024))
     }
 }
 
