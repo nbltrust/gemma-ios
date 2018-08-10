@@ -34,8 +34,21 @@ class GeneralCellView: UIView {
                     progressView.tintColor = UIColor.darkSkyBlueTwo
                     pointView.backgroundColor = UIColor.darkSkyBlueTwo
                 }
-                updateHeight()
             }
+            if let data = data as? BuyRamViewModel {
+                leftSubLabel.text = data.leftSub
+                rightSubLabel.text = data.rightSub
+                progressView.progress = data.progress
+                if progressView.progress >= 0.85 {
+                    progressView.tintColor = UIColor.scarlet
+                    pointView.backgroundColor = UIColor.scarlet
+                } else {
+                    progressView.tintColor = UIColor.darkSkyBlueTwo
+                    pointView.backgroundColor = UIColor.darkSkyBlueTwo
+                }
+            }
+            
+            updateHeight()
         }
     }
     

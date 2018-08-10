@@ -142,6 +142,28 @@
 "privatekey_faile" = "私钥格式不正确";
 "walletname_invalid" = "钱包名不能重复";
 "undelegate" = "Undelegate ";
+"price" = "价格";
+"buy" = "买入";
+"sell" = "卖出";
+"buy_ram" = "交易数量（EOS）";
+"sell_ram" = "交易数量（KB）";
+"buy_ram_placeholder" = "输入EOS数量";
+"sell_ram_placeholder" = "输入RAM数量";
+"ram" = "RAM";
+"trade" = "交易";
+"buy_ram_title" = "买卖RAM";
+"buy_ram_remark" = "buy ram";
+"sell_ram_remark" = "sell ram";
+"can_use" = "可用：";
+"confirm_buy" = "确认买入";
+"confirm_sell" = "确认卖出";
+"buy_ram_success" = "买入RAM成功";
+"buy_ram_faile" = "买入RAM失败";
+"sell_ram_success" = "卖出RAM成功";
+"sell_ram_faile" = "卖出RAM失败";
+"amount" = "数量";
+"explain" = "说明";
+"exchange_pre" = "预估可兑换 ";
 
 //zsy end
 

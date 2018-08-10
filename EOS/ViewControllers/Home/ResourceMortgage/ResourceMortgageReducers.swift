@@ -122,15 +122,16 @@ func convertResourceViewModelWithAccount(_ account:Account, viewmodel:ResourceVi
     if var newViewModel = viewmodel {
         newViewModel.general[0].eos = account.total_resources?.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
         newViewModel.general[1].eos = account.total_resources?.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        if let used = account.cpu_limit?.used.string,let max = account.cpu_limit?.max.string {
-            newViewModel.general[0].leftSub = R.string.localizable.use() + " \(used) " + R.string.localizable.ms()
-            newViewModel.general[0].rightSub = R.string.localizable.total() + " \(max) " + R.string.localizable.ms()
-            newViewModel.general[0].progress = used.float()! / max.float()!
+        if let used = account.cpu_limit?.used,let max = account.cpu_limit?.max {
+            
+            newViewModel.general[0].leftSub = R.string.localizable.use() + " \(used.toMS) " + R.string.localizable.ms()
+            newViewModel.general[0].rightSub = R.string.localizable.total() + " \(max.toMS) " + R.string.localizable.ms()
+            newViewModel.general[0].progress = used.toMS.float()! / max.toMS.float()!
         }
-        if let used = account.net_limit?.used.string,let max = account.cpu_limit?.max.string  {
-            newViewModel.general[1].leftSub = R.string.localizable.use() + " \(used) " + R.string.localizable.kb()
-            newViewModel.general[1].rightSub = R.string.localizable.total() + " \(max) " + R.string.localizable.kb()
-            newViewModel.general[1].progress = used.float()! / max.float()!
+        if let used = account.net_limit?.used,let max = account.net_limit?.max  {
+            newViewModel.general[1].leftSub = R.string.localizable.use() + " \(used.toKB) " + R.string.localizable.kb()
+            newViewModel.general[1].rightSub = R.string.localizable.total() + " \(max.toKB) " + R.string.localizable.kb()
+            newViewModel.general[1].progress = used.toKB.float()! / max.toKB.float()!
         }
         return newViewModel
     } else {

@@ -20,6 +20,7 @@
                 <outlet property="rightLabel" destination="hN9-cZ-Lwc" id="jMq-AC-dnk"/>
                 <outlet property="rightView" destination="Vkx-qi-t28" id="ewI-6D-TMf"/>
                 <outlet property="scrollView" destination="iZn-dT-Uu8" id="uX0-mB-6C7"/>
+                <outlet property="titleLabel" destination="sqg-D9-QsM" id="Bsk-MP-uby"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

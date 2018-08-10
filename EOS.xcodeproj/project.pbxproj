@@ -106,6 +106,11 @@
 		35659865121853108F1175F64F0C9028 /* bcc32.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = EC45843C825E7D4AF8E6DD14F08B757A /* bcc32.SUNWCCh */; };
 		357B2FFEE0242335494EAFE624066A39 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B76AA4B9209D95DD8A19D16B285CE327 /* secp256k1.a */; };
 		3890842A031D291CCD43AB9299B13243 /* complex in Resources */ = {isa = PBXBuildFile; fileRef = BA56900B90B048CC786C28695EB48251 /* complex */; };
+		3B195062211BE732002C7991 /* BuyRamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B195060211BE732002C7991 /* BuyRamView.swift */; };
+		3B195063211BE732002C7991 /* BuyRamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B195061211BE732002C7991 /* BuyRamView.xib */; };
+		3B195066211BE7CF002C7991 /* GeneralRamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B195064211BE7CF002C7991 /* GeneralRamCellView.swift */; };
+		3B195067211BE7CF002C7991 /* GeneralRamCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B195065211BE7CF002C7991 /* GeneralRamCellView.xib */; };
+		3B19506D211BF531002C7991 /* BuyRam.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B19506C211BF531002C7991 /* BuyRam.storyboard */; };
 		3B3146F72106D56500E815BD /* ResourceMortgageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3146F32106D56500E815BD /* ResourceMortgageCoordinator.swift */; };
 		3B3146F82106D56500E815BD /* ResourceMortgageActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3146F42106D56500E815BD /* ResourceMortgageActions.swift */; };
 		3B3146F92106D56500E815BD /* ResourceMortgageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3146F52106D56500E815BD /* ResourceMortgageViewController.swift */; };
@@ -180,6 +185,10 @@
 		3BEC3F562111B4FC003C38FB /* BackupPrivateKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC3F522111B4FC003C38FB /* BackupPrivateKeyReducers.swift */; };
 		3BEC3F592111B689003C38FB /* BackupPrivateKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC3F582111B689003C38FB /* BackupPrivateKeyView.swift */; };
 		3BEC3F5B2111B697003C38FB /* BackupPrivateKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BEC3F5A2111B697003C38FB /* BackupPrivateKeyView.xib */; };
+		3BF842E4211BE60100AF9963 /* BuyRamCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E0211BE60100AF9963 /* BuyRamCoordinator.swift */; };
+		3BF842E5211BE60100AF9963 /* BuyRamActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E1211BE60100AF9963 /* BuyRamActions.swift */; };
+		3BF842E6211BE60100AF9963 /* BuyRamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E2211BE60100AF9963 /* BuyRamViewController.swift */; };
+		3BF842E7211BE60100AF9963 /* BuyRamReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E3211BE60100AF9963 /* BuyRamReducers.swift */; };
 		3BFF4E062109F8390047F996 /* OperationLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF4E052109F8390047F996 /* OperationLeftView.swift */; };
 		3BFF4E092109F89F0047F996 /* OperationLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BFF4E082109F89F0047F996 /* OperationLeftView.xib */; };
 		3BFF4E0B2109F8BD0047F996 /* OperationRightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF4E0A2109F8BD0047F996 /* OperationRightView.swift */; };
@@ -3239,6 +3248,11 @@
 		3B0B9A60CDAC6E5AA4DFB4232BE6C7A8 /* variadic.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = variadic.hpp; sourceTree = "<group>"; };
 		3B0FD5213D6EB9044764932EF7E8CF68 /* map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = map.hpp; sourceTree = "<group>"; };
 		3B173972A65939B7B8C8BAA7941B4231 /* exception.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = exception.hpp; sourceTree = "<group>"; };
+		3B195060211BE732002C7991 /* BuyRamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamView.swift; sourceTree = "<group>"; };
+		3B195061211BE732002C7991 /* BuyRamView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyRamView.xib; sourceTree = "<group>"; };
+		3B195064211BE7CF002C7991 /* GeneralRamCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralRamCellView.swift; sourceTree = "<group>"; };
+		3B195065211BE7CF002C7991 /* GeneralRamCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralRamCellView.xib; sourceTree = "<group>"; };
+		3B19506C211BF531002C7991 /* BuyRam.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BuyRam.storyboard; sourceTree = "<group>"; };
 		3B1BBE63B51D62853F0F83E3C9F9F305 /* match.ipp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = match.ipp; sourceTree = "<group>"; };
 		3B1CA26FBAE2CBF0831714408F3B56D9 /* typeof.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = typeof.hpp; sourceTree = "<group>"; };
 		3B2D945C0DDB5DCC5C5890578D1F51D4 /* has_member.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = has_member.hpp; sourceTree = "<group>"; };
@@ -3340,6 +3354,10 @@
 		3BEC3F5A2111B697003C38FB /* BackupPrivateKeyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackupPrivateKeyView.xib; sourceTree = "<group>"; };
 		3BF40C0BF3FFA2DCB79675BC6F9D3C07 /* remove.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = remove.hpp; sourceTree = "<group>"; };
 		3BF5AC2EF94AD8CB8C98CEA6A42DCA59 /* time_based_rotation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = time_based_rotation.hpp; sourceTree = "<group>"; };
+		3BF842E0211BE60100AF9963 /* BuyRamCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamCoordinator.swift; sourceTree = "<group>"; };
+		3BF842E1211BE60100AF9963 /* BuyRamActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamActions.swift; sourceTree = "<group>"; };
+		3BF842E2211BE60100AF9963 /* BuyRamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamViewController.swift; sourceTree = "<group>"; };
+		3BF842E3211BE60100AF9963 /* BuyRamReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamReducers.swift; sourceTree = "<group>"; };
 		3BF928F31E78F72898331F1E4BB10BF1 /* zip_view.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = zip_view.hpp; sourceTree = "<group>"; };
 		3BFF4E052109F8390047F996 /* OperationLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationLeftView.swift; sourceTree = "<group>"; };
 		3BFF4E082109F89F0047F996 /* OperationLeftView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OperationLeftView.xib; sourceTree = "<group>"; };
@@ -17071,6 +17089,30 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3BF842DF211BE59400AF9963 /* BuyRam */ = {
+			isa = PBXGroup;
+			children = (
+				3BF842E8211BE61700AF9963 /* Views */,
+				3BF842E0211BE60100AF9963 /* BuyRamCoordinator.swift */,
+				3BF842E1211BE60100AF9963 /* BuyRamActions.swift */,
+				3BF842E2211BE60100AF9963 /* BuyRamViewController.swift */,
+				3BF842E3211BE60100AF9963 /* BuyRamReducers.swift */,
+				3B19506C211BF531002C7991 /* BuyRam.storyboard */,
+			);
+			path = BuyRam;
+			sourceTree = "<group>";
+		};
+		3BF842E8211BE61700AF9963 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B195064211BE7CF002C7991 /* GeneralRamCellView.swift */,
+				3B195065211BE7CF002C7991 /* GeneralRamCellView.xib */,
+				3B195060211BE732002C7991 /* BuyRamView.swift */,
+				3B195061211BE732002C7991 /* BuyRamView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3C3ED091D2DBB634DC44979297F46E7A /* cgs */ = {
 			isa = PBXGroup;
 			children = (
@@ -20191,6 +20233,7 @@
 		5F4F2C2A9D93854A7DACC8FE947B5D8C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3BF842DF211BE59400AF9963 /* BuyRam */,
 				3B726C0F211334EA001E4850 /* ScreenShotAlert */,
 				2253C5202111A4E50043AAF7 /* CopyPriKey */,
 				3B3146F22106D50F00E815BD /* ResourceMortgage */,
@@ -32256,6 +32299,7 @@
 				C53CFE1AA8DBFB2C3E6AD341D171268E /* algorithm in Resources */,
 				7224713420F5F93600536BF4 /* HomeHeaderView.xib in Resources */,
 				A4767A6C44780F87D5917F9FFAC0FB70 /* algorithm.SUNWCCh in Resources */,
+				3B19506D211BF531002C7991 /* BuyRam.storyboard in Resources */,
 				3B4C910020F4D6A4004F4C52 /* PaymentsDetail.storyboard in Resources */,
 				DBD92836718CE10F249DB505B4B452DD /* array in Resources */,
 				74EAB156C6830FDEC85832623F3570BB /* array.SUNWCCh in Resources */,
@@ -32309,6 +32353,7 @@
 				32416C6AFEE5EC6FEF882D0E77E8A530 /* fstream.SUNWCCh in Resources */,
 				68DCB39E40E6BCF9EFDC595087C25582 /* functional in Resources */,
 				3BFF4E092109F89F0047F996 /* OperationLeftView.xib in Resources */,
+				3B195063211BE732002C7991 /* BuyRamView.xib in Resources */,
 				0E760AAC5122CDCFC97045176CF1D124 /* functional.SUNWCCh in Resources */,
 				72FE5B3F20FF402600B29FEC /* NormalCellView.xib in Resources */,
 				722D24CC21115B6100A093CA /* ContainerNormalCellView.xib in Resources */,
@@ -32334,6 +32379,7 @@
 				FBF8C6513820764A83201943FA59A787 /* list.SUNWCCh in Resources */,
 				9B504112E30FD5A6E27B38365983F226 /* locale in Resources */,
 				C15624E04928CCC4C0CD3E4B9E9DBAE5 /* locale.SUNWCCh in Resources */,
+				3B195067211BE7CF002C7991 /* GeneralRamCellView.xib in Resources */,
 				4DE991E5F9D34CCB2216D2367D2932FB /* map in Resources */,
 				721016A4210197F40059B37E /* WalletListHeaderView.xib in Resources */,
 				24DB2001F45219964C7C00660C7FAD74 /* map.SUNWCCh in Resources */,
@@ -32691,6 +32737,7 @@
 				72FE5B5D2100490B00B29FEC /* HelpViewController.swift in Sources */,
 				A6EFBB3B53A79BD8C9D018099642EB76 /* BaseNavigationController.swift in Sources */,
 				559E64A356046CB84C6A9B9B07E012E7 /* BaseTabbarViewController.swift in Sources */,
+				3BF842E5211BE60100AF9963 /* BuyRamActions.swift in Sources */,
 				221EC1CE21008F1B0059F856 /* GestureLockComfirmCoordinator.swift in Sources */,
 				22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */,
 				3B3147072108134600E815BD /* PageView.swift in Sources */,
@@ -32707,6 +32754,7 @@
 				221EC1C621008EF50059F856 /* GestureLockSetCoordinator.swift in Sources */,
 				22C023A020F6FDB900284A0A /* CreatationCompleteActions.swift in Sources */,
 				72101690210197C10059B37E /* WalletCoordinator.swift in Sources */,
+				3BF842E4211BE60100AF9963 /* BuyRamCoordinator.swift in Sources */,
 				3BC12A9E21060927006EEB80 /* AccountListReducers.swift in Sources */,
 				721016A1210197C10059B37E /* WalletManagerCoordinator.swift in Sources */,
 				72D645B921106860003F660D /* LeadInKeyReducers.swift in Sources */,
@@ -32728,6 +32776,7 @@
 				3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */,
 				72FE5B4D210048F500B29FEC /* NormalViewController.swift in Sources */,
 				BB08391AA7F1D732D97B698F412B3651 /* ComfirmView.swift in Sources */,
+				3BF842E6211BE60100AF9963 /* BuyRamViewController.swift in Sources */,
 				3B3146F72106D56500E815BD /* ResourceMortgageCoordinator.swift in Sources */,
 				73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */,
 				22C0239920F6FD5100284A0A /* EntryGuideReducers.swift in Sources */,
@@ -32761,10 +32810,12 @@
 				C9BB02B547453DD0482F5745ADB47B83 /* EntryActions.swift in Sources */,
 				3B3146F92106D56500E815BD /* ResourceMortgageViewController.swift in Sources */,
 				22E40AB52114540600F1648C /* FaceIDComfirmViewController.swift in Sources */,
+				3BF842E7211BE60100AF9963 /* BuyRamReducers.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
 				73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */,
 				72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */,
 				57988B0F4659572FB0099493045E18EE /* EntryReducers.swift in Sources */,
+				3B195062211BE732002C7991 /* BuyRamView.swift in Sources */,
 				73B5A6AD20F601DE00756391 /* Payment.swift in Sources */,
 				221EC1C921008EF50059F856 /* GestureLockSetReducers.swift in Sources */,
 				3B726C1521133502001E4850 /* ScreenShotAlertActions.swift in Sources */,
@@ -32805,6 +32856,7 @@
 				3BD3666420FDEB76004DE09D /* TitleTextfieldView.swift in Sources */,
 				722D24C72111555B00A093CA /* WithNoDataView.swift in Sources */,
 				22C023A620FCACA400284A0A /* GestureLockView.swift in Sources */,
+				3B195066211BE7CF002C7991 /* GeneralRamCellView.swift in Sources */,
 				72FE5B9021009EE300B29FEC /* LeadInIntroduceView.swift in Sources */,
 				22C023B120FCB09300284A0A /* ScanViewController.swift in Sources */,
 				3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */,

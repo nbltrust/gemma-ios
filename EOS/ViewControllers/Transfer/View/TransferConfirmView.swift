@@ -38,7 +38,11 @@ class TransferConfirmView: UIView {
     
     var data: ConfirmViewModel! {
         didSet {
-            receverView.content_text = "@" + data.recever
+            if data.recever == "" {
+                receverView.isHidden = true
+            } else {
+                receverView.content_text = "@" + data.recever
+            }
             amountView.content_text = data.amount + " EOS"
             if data.remark == "" {
                 data.remark = R.string.localizable.default_remark_pre() + WalletManager.shared.getAccount() + R.string.localizable.default_remark_after()
@@ -48,6 +52,15 @@ class TransferConfirmView: UIView {
             } else {
                 remarkView.content.numberOfLines = 0
             }
+            if data.buttonTitle == R.string.localizable.confirm_sell() {
+                amountView.content_text = data.amount + " KB"
+                amountView.name_text = R.string.localizable.amount()
+            }
+            if data.buttonTitle == R.string.localizable.confirm_sell() || data.buttonTitle == R.string.localizable.confirm_buy() {
+                remarkView.name_text = R.string.localizable.explain()
+            }
+            
+            
             remarkView.content_text = data.remark
             if data.payAccount == "" {
                 bottomView.isHidden = true

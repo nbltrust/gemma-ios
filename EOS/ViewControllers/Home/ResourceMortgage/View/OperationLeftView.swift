@@ -25,23 +25,27 @@ class OperationLeftView: UIView {
         case net
     }
     
-    var data: [OperationViewModel]! {
+    var data: Any? {
         didSet {
             cpuMortgageView.reloadData()
             netMortgageView.reloadData()
+            if let data = data as? BuyRamViewModel {
+                cpuMortgageView.introduceLabel.text = R.string.localizable.balance_pre() + data.leftTrade
+            }
             updateHeight()
         }
     }
     
+    var isHiddenBottomView = false {
+        didSet {
+            netMortgageView.isHidden = isHiddenBottomView
+        }
+    }
+    
     func setUp() {
-        setupUI()
         handleSetupSubView(cpuMortgageView, tag: InputType.cpu.rawValue)
         handleSetupSubView(netMortgageView, tag: InputType.net.rawValue)
         updateHeight()
-    }
-    
-    func setupUI() {
-        cpuMortgageView.setting = TitleTextSetting(title: "cdcs", placeholder: "cd", warningText: "", introduce: "", isShowPromptWhenEditing: true, showLine: true, isSecureTextEntry: false)
     }
     
     func handleSetupSubView(_ titleTextfieldView : TitleTextfieldView, tag: Int) {
@@ -50,6 +54,8 @@ class OperationLeftView: UIView {
         titleTextfieldView.textField.tag = tag
         titleTextfieldView.textField.keyboardType = .numbersAndPunctuation
         titleTextfieldView.textField.delegate = self
+        titleTextfieldView.introduceLabel.font = UIFont.pfScR12
+        titleTextfieldView.introduceLabel.textColor = UIColor.darkSlateBlueTwo
         titleTextfieldView.delegate = self
         titleTextfieldView.datasource = self
         titleTextfieldView.updateContentSize()
@@ -108,35 +114,59 @@ extension OperationLeftView: TitleTextFieldViewDelegate,TitleTextFieldViewDataSo
     func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting {
         if data != nil {
             if titleTextFieldView == cpuMortgageView {
-                if let data = data[0] as? OperationViewModel {
-                    return TitleTextSetting(title: data.title,
-                                            placeholder: data.placeholder,
-                                            warningText: data.warning,
-                                            introduce: data.introduce,
-                                            isShowPromptWhenEditing: data.isShowPromptWhenEditing,
-                                            showLine: data.showLine,
-                                            isSecureTextEntry: data.isSecureTextEntry)
+                if let data = data as? [OperationViewModel] {
+                    return TitleTextSetting(title: data[0].title,
+                                            placeholder: data[0].placeholder,
+                                            warningText: data[0].warning,
+                                            introduce: data[0].introduce,
+                                            isShowPromptWhenEditing: data[0].isShowPromptWhenEditing,
+                                            showLine: data[0].showLine,
+                                            isSecureTextEntry: data[0].isSecureTextEntry)
                 }
-            } else {
-                if let data = data[1] as? OperationViewModel {
-                    return TitleTextSetting(title: data.title,
-                                            placeholder: data.placeholder,
-                                            warningText: data.warning,
-                                            introduce: data.introduce,
-                                            isShowPromptWhenEditing: data.isShowPromptWhenEditing,
-                                            showLine: data.showLine,
-                                            isSecureTextEntry: data.isSecureTextEntry)
-                }
-            }
-        } else {
-            if titleTextFieldView == cpuMortgageView {
-                return TitleTextSetting(title: R.string.localizable.mortgage_cpu(),
-                                        placeholder: R.string.localizable.mortgage_placeholder(),
+                return TitleTextSetting(title: R.string.localizable.buy_ram(),
+                                        placeholder: R.string.localizable.buy_ram_placeholder(),
                                         warningText: "",
                                         introduce: "",
                                         isShowPromptWhenEditing: true,
-                                        showLine: true,
+                                        showLine: false,
                                         isSecureTextEntry: false)
+            } else {
+                if let data = data as? [OperationViewModel] {
+                    return TitleTextSetting(title: data[1].title,
+                                            placeholder: data[1].placeholder,
+                                            warningText: data[1].warning,
+                                            introduce: data[1].introduce,
+                                            isShowPromptWhenEditing: data[1].isShowPromptWhenEditing,
+                                            showLine: data[1].showLine,
+                                            isSecureTextEntry: data[1].isSecureTextEntry)
+                }
+                return TitleTextSetting(title: R.string.localizable.buy_ram(),
+                                        placeholder: R.string.localizable.buy_ram_placeholder(),
+                                        warningText: "",
+                                        introduce: "",
+                                        isShowPromptWhenEditing: true,
+                                        showLine: false,
+                                        isSecureTextEntry: false)
+            }
+        } else {
+            if titleTextFieldView == cpuMortgageView {
+                if isHiddenBottomView == true {
+                    return TitleTextSetting(title: R.string.localizable.buy_ram(),
+                                            placeholder: R.string.localizable.buy_ram_placeholder(),
+                                            warningText: "",
+                                            introduce: "",
+                                            isShowPromptWhenEditing: true,
+                                            showLine: false,
+                                            isSecureTextEntry: false)
+                } else {
+                    return TitleTextSetting(title: R.string.localizable.mortgage_cpu(),
+                                            placeholder: R.string.localizable.mortgage_placeholder(),
+                                            warningText: "",
+                                            introduce: "",
+                                            isShowPromptWhenEditing: true,
+                                            showLine: true,
+                                            isSecureTextEntry: false)
+                }
             } else {
                 return TitleTextSetting(title: R.string.localizable.mortgage_net(),
                                         placeholder: R.string.localizable.mortgage_placeholder(),

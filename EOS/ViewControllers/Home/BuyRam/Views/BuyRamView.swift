@@ -1,21 +1,22 @@
 //
-//  ResourceMortgageView.swift
+//  BuyRamView.swift
 //  EOS
 //
-//  Created by zhusongyu on 2018/7/24.
-//  Copyright © 2018年 com.nbltrust. All rights reserved.
+//  Created zhusongyu on 2018/8/9.
+//  Copyright © 2018年 com.nbltrustdev. All rights reserved.
 //
 
 import Foundation
 
-class ResourceMortgageView: UIView {
+@IBDesignable
+class BuyRamView: UIView {
     
-    @IBOutlet weak var cpuView: GeneralCellView!
-    @IBOutlet weak var netView: GeneralCellView!
+    @IBOutlet weak var generalRamView: GeneralRamCellView!
     @IBOutlet weak var pageView: PageView!
-    @IBOutlet weak var cornerShadowView: CornerAndShadowView!
     @IBOutlet weak var leftNextButton: Button!
     @IBOutlet weak var rightNextButton: Button!
+    @IBOutlet weak var exchangeLabelView: UIView!
+    @IBOutlet weak var exchangeLabel: UILabel!
     
     enum event: String {
         case leftnext
@@ -24,26 +25,41 @@ class ResourceMortgageView: UIView {
     
     var data: Any? {
         didSet {
-            if let data = data as? ResourceViewModel {
-                cpuView.data = data.general[0]
-                netView.data = data.general[1]
-                pageView.data = data.page
-                updateHeight()
+            if let data = data as? BuyRamViewModel {
+                generalRamView.data = data
+                pageView.data = data
+                if data.exchange == "" {
+                    exchangeLabelView.isHidden = true
+                } else {
+                    exchangeLabel.text = data.exchange
+                    exchangeLabelView.isHidden = false
+                }
             }
         }
-    }  
+    }
     
-    func setUp() {
-        setupUI()
-        setupEvent()
-        updateHeight()
+    func setupUI() {
+        generalRamView.generalView.name = R.string.localizable.ram()
+        generalRamView.generalView.leftSubText = R.string.localizable.use() + " - " + R.string.localizable.ms()
+        generalRamView.generalView.rightSubText = R.string.localizable.total() + " - " + R.string.localizable.ms()
+        generalRamView.generalView.eos = ""
+        generalRamView.generalView.lineIsHidden = false
+        generalRamView.priceLabel.text = "≈- EOS/KB"
+        
+        pageView.titleLabel.text = R.string.localizable.trade()
+        pageView.leftText = R.string.localizable.buy()
+        pageView.rightText = R.string.localizable.sell()
+        pageView.balance = ""
+        exchangeLabelView.isHidden = true
+        
+        leftNextButton.isHidden = false
+        rightNextButton.isHidden = true
     }
     
     func setupEvent() {
         leftNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
             self.endEditing(true)
-//            self.pageView.leftView.cpuMortgageView.resignFirstResponder()
             self.sendEventWith(event.leftnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         rightNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
@@ -53,21 +69,11 @@ class ResourceMortgageView: UIView {
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
-    func setupUI() {
-        cpuView.name = R.string.localizable.cpu()
-        cpuView.leftSubText = R.string.localizable.use() + " - " + R.string.localizable.ms()
-        cpuView.rightSubText = R.string.localizable.total() + " - " + R.string.localizable.ms()
-        cpuView.eos = "- EOS"
-        cpuView.lineIsHidden = false
-        
-        netView.name = R.string.localizable.net()
-        netView.leftSubText = R.string.localizable.use() + " - " + R.string.localizable.kb()
-        netView.rightSubText = R.string.localizable.total() + " - " + R.string.localizable.kb()
-        netView.eos = "- EOS"
-        netView.lineIsHidden = true
-
-        leftNextButton.isHidden = false
-        rightNextButton.isHidden = true
+    fileprivate func setup() {
+        pageView.operationNumber = 1
+        setupUI()
+        setupEvent()
+        updateHeight()
     }
     
     override var intrinsicContentSize: CGSize {
@@ -93,13 +99,13 @@ class ResourceMortgageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
-        setUp()
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
-        setUp()
+        setup()
     }
     
     fileprivate func loadViewFromNib() {
@@ -107,7 +113,6 @@ class ResourceMortgageView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        //        self.insertSubview(view, at: 0)
         
         addSubview(view)
         view.frame = self.bounds
@@ -115,7 +120,7 @@ class ResourceMortgageView: UIView {
     }
 }
 
-extension ResourceMortgageView {
+extension BuyRamView {
     @objc func left(_ data: [String: Any]) {
         leftNextButton.isHidden = false
         rightNextButton.isHidden = true
