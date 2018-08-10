@@ -66,14 +66,10 @@ class HomeViewController: BaseViewController {
     }
     
     func setupUI(){
-        if let nav = self.navigationController as? BaseNavigationController {
-            nav.navStyle = .clear
-        }
-        
         self.configRightNavButton(R.image.walletAdd())
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
-        self.automaticallyAdjustsScrollViewInsets = true
+//        self.automaticallyAdjustsScrollViewInsets = true
     }
     
     func updateUI() {
