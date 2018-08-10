@@ -10,7 +10,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatusView" customModule="EOS" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatusView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="bgView" destination="MxP-Go-iIz" id="eo2-3J-tXg"/>
+                <outlet property="leftLabel" destination="mMq-gp-xGJ" id="c86-pe-U7j"/>
+                <outlet property="rightLabel" destination="MdK-Qg-fix" id="sLz-c1-Z1K"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
@@ -19,30 +25,42 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MxP-Go-iIz" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMq-gp-xGJ">
-                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="112"/>
-                            <color key="backgroundColor" name="paleGreyFour" red="0.855" green="0.863" blue="0.910" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" name="whiteTwo" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdK-Qg-fix">
-                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="112"/>
-                            <color key="backgroundColor" name="cloudyBlue" red="0.776" green="0.792" blue="0.871" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" name="whiteTwo" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1gq-1o-D1A">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMq-gp-xGJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="112"/>
+                                    <color key="backgroundColor" red="0.85499999999999998" green="0.86299999999999999" blue="0.91000000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdK-Qg-fix">
+                                    <rect key="frame" x="187.5" y="0.0" width="187.5" height="112"/>
+                                    <color key="backgroundColor" red="0.77600000000000002" green="0.79200000000000004" blue="0.871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="MdK-Qg-fix" firstAttribute="leading" secondItem="mMq-gp-xGJ" secondAttribute="trailing" id="8AE-aH-zHy"/>
+                                <constraint firstItem="MdK-Qg-fix" firstAttribute="top" secondItem="1gq-1o-D1A" secondAttribute="top" id="N4i-hi-WkC"/>
+                                <constraint firstAttribute="trailing" secondItem="MdK-Qg-fix" secondAttribute="trailing" id="WO1-PC-u5y"/>
+                                <constraint firstItem="mMq-gp-xGJ" firstAttribute="leading" secondItem="1gq-1o-D1A" secondAttribute="leading" id="X67-oM-a1J"/>
+                                <constraint firstAttribute="bottom" secondItem="mMq-gp-xGJ" secondAttribute="bottom" id="frh-pr-YLa"/>
+                                <constraint firstAttribute="bottom" secondItem="MdK-Qg-fix" secondAttribute="bottom" id="mkh-Q1-bJE"/>
+                                <constraint firstItem="mMq-gp-xGJ" firstAttribute="top" secondItem="1gq-1o-D1A" secondAttribute="top" id="rbn-jP-Fgi"/>
+                                <constraint firstItem="MdK-Qg-fix" firstAttribute="width" secondItem="mMq-gp-xGJ" secondAttribute="width" id="rmH-I9-cT0"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="MdK-Qg-fix" firstAttribute="top" secondItem="MxP-Go-iIz" secondAttribute="top" id="7SF-dY-koJ"/>
-                        <constraint firstItem="MdK-Qg-fix" firstAttribute="leading" secondItem="mMq-gp-xGJ" secondAttribute="trailing" id="Aqt-jf-29H"/>
-                        <constraint firstAttribute="bottom" secondItem="mMq-gp-xGJ" secondAttribute="bottom" id="XpK-zj-yJe"/>
-                        <constraint firstItem="mMq-gp-xGJ" firstAttribute="top" secondItem="MxP-Go-iIz" secondAttribute="top" id="aMw-YG-tjX"/>
-                        <constraint firstAttribute="bottom" secondItem="MdK-Qg-fix" secondAttribute="bottom" id="aq5-Eu-WY4"/>
-                        <constraint firstItem="MdK-Qg-fix" firstAttribute="width" secondItem="mMq-gp-xGJ" secondAttribute="width" id="beF-Me-oyL"/>
-                        <constraint firstItem="mMq-gp-xGJ" firstAttribute="leading" secondItem="MxP-Go-iIz" secondAttribute="leading" id="pMm-uw-uoq"/>
-                        <constraint firstAttribute="trailing" secondItem="MdK-Qg-fix" secondAttribute="trailing" id="xfB-pQ-X86"/>
+                        <constraint firstItem="1gq-1o-D1A" firstAttribute="top" secondItem="MxP-Go-iIz" secondAttribute="top" id="5VG-jF-6cZ"/>
+                        <constraint firstAttribute="bottom" secondItem="1gq-1o-D1A" secondAttribute="bottom" id="QwX-AD-NwV"/>
+                        <constraint firstItem="1gq-1o-D1A" firstAttribute="leading" secondItem="MxP-Go-iIz" secondAttribute="leading" id="gdw-2w-X9A"/>
+                        <constraint firstAttribute="trailing" secondItem="1gq-1o-D1A" secondAttribute="trailing" id="zKi-n2-Af4"/>
                     </constraints>
                 </view>
             </subviews>
@@ -57,6 +75,4 @@
             <point key="canvasLocation" x="33.5" y="-169"/>
         </view>
     </objects>
-    <resources>
-    </resources>
 </document>

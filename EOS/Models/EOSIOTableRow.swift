@@ -9,10 +9,10 @@
 import Foundation
 import HandyJSON
 
-struct TableProducers:HandyJSON {
-    var scope = EOSIOContract.EOSIO_CODE
-    var code = EOSIOContract.EOSIO_CODE
-    var table = EOSIOTable.producers
-    var json = true
-    var limit = 20
+struct TableProducers: HandyJSON {
+    var scope: String = EOSIOContract.EOSIO_CODE
+    var code: String = EOSIOContract.EOSIO_CODE
+    var table: String = EOSIOTable.producers.rawValue
+    var json: Bool = true
+    var limit: Int = 20
 }

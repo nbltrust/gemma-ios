@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VoteFootView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="statusView" destination="fgT-09-ggO" id="tVa-Ud-iOT"/>
+                <outlet property="subTitleLabel" destination="Ip9-zy-Ozh" id="XZX-QI-a1O"/>
+                <outlet property="titleLabel" destination="A05-bz-1RX" id="Kua-uV-l89"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="127"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A05-bz-1RX">
+                    <rect key="frame" x="15" y="10" width="140" height="53.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" name="darkSlateBlue" red="0.129" green="0.173" blue="0.404" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip9-zy-Ozh">
+                    <rect key="frame" x="15" y="63.5" width="135" height="53.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgT-09-ggO" customClass="StatusView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="160" y="10" width="200" height="107"/>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="fgT-09-ggO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="200:375" id="6vN-dw-F2v"/>
+                <constraint firstItem="fgT-09-ggO" firstAttribute="leading" secondItem="Ip9-zy-Ozh" secondAttribute="trailing" constant="10" id="6yf-1k-SIH"/>
+                <constraint firstItem="Ip9-zy-Ozh" firstAttribute="height" secondItem="A05-bz-1RX" secondAttribute="height" id="8g3-Zp-CQn"/>
+                <constraint firstAttribute="trailing" secondItem="fgT-09-ggO" secondAttribute="trailing" constant="15" id="LNd-bA-wro"/>
+                <constraint firstItem="fgT-09-ggO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Mh8-8v-QYS"/>
+                <constraint firstItem="A05-bz-1RX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="PMg-KC-gcZ"/>
+                <constraint firstItem="fgT-09-ggO" firstAttribute="leading" secondItem="A05-bz-1RX" secondAttribute="trailing" constant="5" id="ZDq-Ss-wMP"/>
+                <constraint firstAttribute="bottom" secondItem="fgT-09-ggO" secondAttribute="bottom" constant="10" id="gWW-BV-W3j"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Ip9-zy-Ozh" secondAttribute="bottom" constant="10" id="k9d-NI-KHX"/>
+                <constraint firstItem="Ip9-zy-Ozh" firstAttribute="top" secondItem="A05-bz-1RX" secondAttribute="bottom" id="q5x-hj-ybK"/>
+                <constraint firstItem="Ip9-zy-Ozh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="to2-sk-4oX"/>
+                <constraint firstItem="A05-bz-1RX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="wuU-iX-KFj"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="65.5" y="-161.5"/>
+        </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y75-j9-Bzk">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="173" y="57"/>
+        </label>
+    </objects>
+    <resources>
+    </resources>
+</document>

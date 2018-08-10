@@ -18,11 +18,13 @@ protocol VoteStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<VoteState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func loadVoteList(_ completed: @escaping (Bool) -> ())
 }
 
 class VoteCoordinator: HomeRootCoordinator {
     lazy var creator = VotePropertyActionCreate()
-
+    
     var store = Store<VoteState>(
         reducer: VoteReducer,
         state: nil,
@@ -40,6 +42,19 @@ extension VoteCoordinator: VoteCoordinatorProtocol {
 }
 
 extension VoteCoordinator: VoteStateManagerProtocol {
+    func loadVoteList(_ completed: @escaping (Bool) -> ()) {
+        let producer = TableProducers()
+        if let str = producer.toJSONString() {
+            EOSIONetwork.request(target: .get_producers(json: str), success: {[weak self] (json) in
+                
+            }, error: { (code) in
+                completed(false)
+            }, failure: { (error) in
+                completed(false)
+            })
+        }
+    }
+    
     var state: VoteState {
         return store.state
     }

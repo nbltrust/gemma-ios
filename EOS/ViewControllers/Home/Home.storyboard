@@ -161,20 +161,54 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W15-rR-B8R">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hNo-lz-7Xh" id="NTf-zL-LMP"/>
+                                    <outlet property="delegate" destination="hNo-lz-7Xh" id="nE3-GE-j3t"/>
+                                </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOv-zL-nNI" customClass="VoteFootView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <color key="backgroundColor" name="whiteFour" red="0.973" green="0.973" blue="0.973" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="3RH-5w-6zD"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" name="duskBlue5" red="0.153" green="0.204" blue="0.490" alpha="0.048" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="qOv-zL-nNI" firstAttribute="trailing" secondItem="6lT-fx-QHd" secondAttribute="trailing" id="Fvq-LB-BCA"/>
                             <constraint firstItem="6lT-fx-QHd" firstAttribute="bottom" secondItem="W15-rR-B8R" secondAttribute="bottom" id="GQh-Fw-fnb"/>
                             <constraint firstItem="W15-rR-B8R" firstAttribute="leading" secondItem="6lT-fx-QHd" secondAttribute="leading" id="H1l-gE-CmE"/>
+                            <constraint firstItem="6lT-fx-QHd" firstAttribute="bottom" secondItem="qOv-zL-nNI" secondAttribute="bottom" id="OYe-Ti-5fe"/>
                             <constraint firstItem="W15-rR-B8R" firstAttribute="top" secondItem="6lT-fx-QHd" secondAttribute="top" id="gBv-JG-6xH"/>
+                            <constraint firstItem="qOv-zL-nNI" firstAttribute="leading" secondItem="6lT-fx-QHd" secondAttribute="leading" id="sCU-Ax-dvr"/>
                             <constraint firstItem="W15-rR-B8R" firstAttribute="trailing" secondItem="6lT-fx-QHd" secondAttribute="trailing" id="yIM-ZE-KsI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6lT-fx-QHd"/>
                     </view>
+                    <connections>
+                        <outlet property="footView" destination="qOv-zL-nNI" id="H01-uc-RFK"/>
+                        <outlet property="voteTable" destination="W15-rR-B8R" id="DKH-wr-gqB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FF7-gf-dzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2364" y="109"/>
         </scene>
     </scenes>
+    <resources>
+    </resources>
 </document>

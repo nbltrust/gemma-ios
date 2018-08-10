@@ -248,3 +248,7 @@
 //Home
 "node_vote" = "节点投票";
 "deal_ram" = "买卖RAM";
+"vote_title" = "投票";
+"vote_unenough" = "票数不足";
+"vote_ticket" = "票";
+"eos" = "EOS";
