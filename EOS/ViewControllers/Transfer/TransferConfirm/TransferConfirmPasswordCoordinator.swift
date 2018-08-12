@@ -12,6 +12,7 @@ import ReSwift
 protocol TransferConfirmPasswordCoordinatorProtocol {
     func finishTransfer()
     func finishMortgage()
+    func finishBuyRam()
     func dismissConfirmPwdVC()
     func popConfirmPwdVC()
 }
@@ -58,6 +59,14 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let mortgageCoor = appDelegate.appcoordinator?.homeCoordinator, let mortgageVC = mortgageCoor.rootVC.topViewController as? ResourceMortgageViewController {
             self.rootVC.dismiss(animated: true) {
                 mortgageVC.resetData()
+            }
+        }
+    }
+    
+    func finishBuyRam() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let coor = appDelegate.appcoordinator?.homeCoordinator, let vc = coor.rootVC.topViewController as? BuyRamViewController {
+            self.rootVC.dismiss(animated: true) {
+                vc.resetData()
             }
         }
     }

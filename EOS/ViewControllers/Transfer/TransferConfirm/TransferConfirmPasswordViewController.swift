@@ -140,7 +140,7 @@ extension TransferConfirmPasswordViewController {
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.showSuccess(message: message)
-                    self.coordinator?.finishMortgage()
+                    self.coordinator?.finishBuyRam()
                 } else {
                     self.showError(message: message)
                 }
@@ -152,7 +152,7 @@ extension TransferConfirmPasswordViewController {
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.showSuccess(message: message)
-                    self.coordinator?.finishMortgage()
+                    self.coordinator?.finishBuyRam()
                 } else {
                     self.showError(message: message)
                 }
