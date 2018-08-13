@@ -18,6 +18,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHF-Xp-Y7o">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgCommonEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="4r7-yz-kZr">
+                                        <rect key="frame" x="97.5" y="64" width="180" height="110"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbz-hX-qm5">
+                                        <rect key="frame" x="169.5" y="188" width="36" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.85499999999999998" green="0.86299999999999999" blue="0.91000000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locali" value="no_data"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="lbz-hX-qm5" firstAttribute="centerX" secondItem="tHF-Xp-Y7o" secondAttribute="centerX" id="AmK-q0-5YL"/>
+                                    <constraint firstItem="lbz-hX-qm5" firstAttribute="top" secondItem="4r7-yz-kZr" secondAttribute="bottom" constant="14" id="Zw4-9k-bNK"/>
+                                    <constraint firstItem="4r7-yz-kZr" firstAttribute="top" secondItem="tHF-Xp-Y7o" secondAttribute="top" constant="64" id="hmn-dY-cTc"/>
+                                    <constraint firstItem="4r7-yz-kZr" firstAttribute="centerX" secondItem="tHF-Xp-Y7o" secondAttribute="centerX" id="rbD-qW-TIw"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WHw-gV-pem">
                                 <rect key="frame" x="0.0" y="37" width="375" height="630"/>
                                 <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -29,9 +53,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="tHF-Xp-Y7o" firstAttribute="leading" secondItem="bDD-xC-oJe" secondAttribute="leading" id="6Oy-qe-B7N"/>
                             <constraint firstItem="bDD-xC-oJe" firstAttribute="bottom" secondItem="WHw-gV-pem" secondAttribute="bottom" id="89m-3l-qaj"/>
                             <constraint firstItem="WHw-gV-pem" firstAttribute="top" secondItem="bDD-xC-oJe" secondAttribute="top" constant="17" id="AkB-Lc-6NR"/>
+                            <constraint firstItem="tHF-Xp-Y7o" firstAttribute="top" secondItem="bDD-xC-oJe" secondAttribute="top" id="QOn-Ze-ogN"/>
+                            <constraint firstItem="bDD-xC-oJe" firstAttribute="bottom" secondItem="tHF-Xp-Y7o" secondAttribute="bottom" id="Yqz-G1-hRB"/>
                             <constraint firstItem="bDD-xC-oJe" firstAttribute="trailing" secondItem="WHw-gV-pem" secondAttribute="trailing" id="Zg6-8G-yjg"/>
+                            <constraint firstItem="bDD-xC-oJe" firstAttribute="trailing" secondItem="tHF-Xp-Y7o" secondAttribute="trailing" id="rNq-T2-8gh"/>
                             <constraint firstItem="WHw-gV-pem" firstAttribute="leading" secondItem="bDD-xC-oJe" secondAttribute="leading" id="tyX-kG-niR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bDD-xC-oJe"/>
@@ -45,4 +73,7 @@
             <point key="canvasLocation" x="150" y="143"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="imgCommonEmpty" width="180" height="110"/>
+    </resources>
 </document>
