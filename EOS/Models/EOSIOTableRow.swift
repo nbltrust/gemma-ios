@@ -14,5 +14,5 @@ struct TableProducers: HandyJSON {
     var code: String = EOSIOContract.EOSIO_CODE
     var table: String = EOSIOTable.producers.rawValue
     var json: Bool = true
-    var limit: Int = 20
+    var limit: Int = 9999
 }

@@ -11,6 +11,7 @@ import Nimble
 import HandyJSON
 import SwiftDate
 import SwiftyJSON
+import SwiftyBeaver
 
 @testable import EOS
 
@@ -70,4 +71,24 @@ class RPCTest: XCTestCase {
         }
     }
     
+    
+    func testVote() {
+        var result = false
+        let producer = TableProducers()
+        if let str = producer.toJSONString() {
+            EOSIONetwork.request(target: .get_producers(json: str), success: {[weak self] (json) in
+//                log.debug(json)
+                let voteData = NodeVoteData.deserialize(from: json.dictionaryObject)
+                log.debug(voteData)
+                result = true
+                }
+                , error: { (code) in
+                    
+            }, failure: { (error) in
+                
+            })
+        }
+        
+        expect(result).toEventually(beTrue(), timeout: 3)
+    }
 }

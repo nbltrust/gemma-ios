@@ -24,10 +24,33 @@ class ScanViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black
-        setupUI()
-        initSession()
+        checkCameraAuth()
     }
     
+    func checkCameraAuth() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let status = AVCaptureDevice.authorizationStatus(for: .video)
+            if status == .notDetermined {
+                AVCaptureDevice.requestAccess(for: .video) {[weak self] (authorized) in
+                    guard let `self` = self else { return }
+                    self.loadScanView()
+                }
+            } else if status == .authorized {
+                self.loadScanView()
+            } else {
+                self.loadScanView()
+                self.showAlert(title: R.string.localizable.prompt(), message: R.string.localizable.guide_open_camera(), buttonTitles: [R.string.localizable.got_it()])
+            }
+        } else {
+            self.loadScanView()
+            self.showAlert(title: R.string.localizable.prompt(), message: R.string.localizable.unsupport_camera(), buttonTitles: [R.string.localizable.got_it()])
+        }
+    }
+    
+    func loadScanView() {
+        loadLabel()
+        initSession()
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -47,7 +70,7 @@ class ScanViewController: BaseViewController {
         }
     }
     
-    func setupUI() {
+    func loadLabel() {
         self.title = R.string.localizable.scan_title()
         self.configLeftNavButton(nil)
         let rect = ScanSetting.scanRect
@@ -65,7 +88,7 @@ class ScanViewController: BaseViewController {
         preView = ScanPreviewView.init(frame: self.view.bounds)
         if let previewView = preView {
             previewView.session = captusession
-            self.view.layer.addSublayer((preView?.layer)!)
+            self.view.layer.insertSublayer(previewView.layer, at: 0)
         }
     }
     

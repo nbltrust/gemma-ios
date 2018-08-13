@@ -109,7 +109,7 @@ class WalletManager {
         EOSIONetwork.request(target: .get_key_accounts(pubKey: publicKey), success: { (json) in
             if let names = json["account_names"].arrayObject as? [String] {
                 self.account_names = names
-                completion(true)
+                completion(names.count > 0)
             }
         }, error: { (code) in
             completion(false)
