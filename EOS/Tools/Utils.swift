@@ -13,6 +13,7 @@ import Device
 import NotificationBannerSwift
 import RxGesture
 import SwiftNotificationCenter
+import KRProgressHUD
 
 func navBgImage() -> UIImage? {
     switch UIScreen.main.bounds.width {
@@ -195,6 +196,27 @@ func showWarning(_ str:String) {
     }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: banner.disposeBag)
     
     banner.autoDismiss = false
+    banner.show()
+}
+
+func showSuccessTop(_ str:String) {
+    KRProgressHUD.dismiss()
+
+    let banner = NotificationBanner(title: "", subtitle: str, style: .success, colors: BannerColor())
+    banner.duration = 2
+    banner.subtitleLabel?.textAlignment = NSTextAlignment.center
+    banner.autoDismiss = true
+    banner.show()
+}
+
+func showFailTop(_ str:String) {
+    KRProgressHUD.dismiss()
+
+    let banner = NotificationBanner(title: "", subtitle: str, style: .warning, colors: BannerColor())
+    banner.subtitleLabel?.textAlignment = NSTextAlignment.center
+    banner.duration = 2
+    
+    banner.autoDismiss = true
     banner.show()
 }
 
