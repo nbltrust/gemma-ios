@@ -118,5 +118,11 @@ extension BuyRamCoordinator: BuyRamStateManagerProtocol {
         }) { (error) in
             
         }
+        
+        getRamPrice { (price) in
+            if let price = price as? Decimal {
+                self.store.dispatch(RamPriceAction(price: price))
+            }
+        }
     }
 }
