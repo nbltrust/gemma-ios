@@ -46,6 +46,12 @@ class PaymentsViewController: BaseViewController {
                 if (self.coordinator?.state.property.data)!.count < 10 {
                     self.isNoMoreData = true
                 }
+                if (self.coordinator?.state.property.data)!.count == 0 {
+                    self.tableView.isHidden = true
+                } else {
+                    self.tableView.isHidden = false
+                }
+                
                 self.data += (self.coordinator?.state.property.data)!
                 self.tableView.reloadData()
             }

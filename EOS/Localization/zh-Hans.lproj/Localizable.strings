@@ -164,6 +164,7 @@
 "amount" = "数量";
 "explain" = "说明";
 "exchange_pre" = "预估可兑换 ";
+"no_data" = "暂无数据";
 
 //zsy end
 
