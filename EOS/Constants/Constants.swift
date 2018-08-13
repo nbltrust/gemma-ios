@@ -61,4 +61,5 @@ enum EOSAction:String {
 
 enum EOSIOTable:String {
     case producers
+    case rammarket
 }

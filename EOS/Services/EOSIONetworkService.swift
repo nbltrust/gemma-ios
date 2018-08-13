@@ -21,6 +21,7 @@ enum EOSIOService {
     case abi_bin_to_json(bin: String, action:EOSAction)
     case push_transaction(json: String)
     case get_producers(json: String)
+    case get_table_rows(json:String)
     
     //history
     case get_key_accounts(pubKey:String)
@@ -89,6 +90,8 @@ extension EOSIOService : TargetType {
             return "/v1/history/get_transaction"
         case .get_producers:
             return "/v1/chain/get_producers"
+        case .get_table_rows:
+            return "/v1/chain/get_table_rows"
         }
     }
     
@@ -121,6 +124,8 @@ extension EOSIOService : TargetType {
         case let .get_transaction(id):
             return ["id": id]
         case let .get_producers(json):
+            return JSON(parseJSON: json).dictionaryObject ?? [:]
+        case let .get_table_rows(json):
             return JSON(parseJSON: json).dictionaryObject ?? [:]
         }
     }

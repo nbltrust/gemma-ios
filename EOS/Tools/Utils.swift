@@ -198,6 +198,29 @@ func showWarning(_ str:String) {
     banner.show()
 }
 
+func getRamPrice(_ completion:@escaping ObjectOptionalCallback) {
+    EOSIONetwork.request(target: .get_table_rows(json: RamMarket().toJSONString()!), success: { (json) in
+        let row = json["rows"][0]
+        let base = row["base"]
+        let quote = row["quote"]
+        
+        if let base_quantity = base["balance"].stringValue.components(separatedBy: " ").first,
+            let quote_quantity = quote["balance"].stringValue.components(separatedBy: " ").first,
+            let quote_weight = quote["weight"].string {
+            let unit = Decimal(string: quote_quantity)! / Decimal(string: base_quantity)!
+            let price = unit * Decimal(string: quote_weight)!
+            
+            completion(price)
+        }
+        
+    }, error: { (code) in
+        completion(nil)
+
+    }) { (error) in
+        completion(nil)
+    }
+}
+
 extension String {
     var eosAmount: String {
         if self.contains(" ") {
