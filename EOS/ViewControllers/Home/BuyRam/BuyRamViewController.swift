@@ -126,8 +126,8 @@ extension BuyRamViewController {
                 if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                     cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
                 }
-                self.coordinator?.buyRamValid(cpuTextFieldView.textField.text!,blance: balance)
                 self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .left)
+                self.coordinator?.buyRamValid(cpuTextFieldView.textField.text!,blance: balance)
             }
         }
     }
@@ -142,8 +142,8 @@ extension BuyRamViewController {
                 if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                     cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
                 }
-                self.coordinator?.sellRamValid(cpuTextFieldView.textField.text!, blance: balance)
                 self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .right)
+                self.coordinator?.sellRamValid(cpuTextFieldView.textField.text!, blance: balance)
             }
         }
     }
