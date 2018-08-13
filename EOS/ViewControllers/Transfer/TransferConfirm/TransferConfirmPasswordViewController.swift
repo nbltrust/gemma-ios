@@ -133,6 +133,30 @@ extension TransferConfirmPasswordViewController {
                     self.showError(message: message)
                 }
             })
+        } else if myType == confirmType.buyRam.rawValue {
+            self.view.endEditing(true)
+            self.startLoading()
+            self.coordinator?.buyRam(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
+                guard let `self` = self else { return }
+                if isSuccess {
+                    self.showSuccess(message: message)
+                    self.coordinator?.finishBuyRam()
+                } else {
+                    self.showError(message: message)
+                }
+            })
+        } else if myType == confirmType.sellRam.rawValue {
+            self.view.endEditing(true)
+            self.startLoading()
+            self.coordinator?.sellRam(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
+                guard let `self` = self else { return }
+                if isSuccess {
+                    self.showSuccess(message: message)
+                    self.coordinator?.finishBuyRam()
+                } else {
+                    self.showError(message: message)
+                }
+            })
         }
 
     }

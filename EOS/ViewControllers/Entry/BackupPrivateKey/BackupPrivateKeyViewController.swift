@@ -19,6 +19,7 @@ class BackupPrivateKeyViewController: BaseViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = R.string.localizable.copy_priKey_title()
     }
     
     func commonObserveState() {

@@ -66,14 +66,10 @@ class HomeViewController: BaseViewController {
     }
     
     func setupUI(){
-        if let nav = self.navigationController as? BaseNavigationController {
-            nav.navStyle = .clear
-        }
-        
         self.configRightNavButton(R.image.walletAdd())
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
-        self.automaticallyAdjustsScrollViewInsets = true
+//        self.automaticallyAdjustsScrollViewInsets = true
     }
     
     func updateUI() {
@@ -156,7 +152,7 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
         switch indexPath.row {
         case 0:self.coordinator?.pushPayment()
         case 1:self.coordinator?.pushVoteVC()
-        case 2:self.coordinator?.pushDealRAMVC()
+        case 2:self.coordinator?.pushBuyRamVC()
         case 3:self.coordinator?.pushResourceMortgageVC()
         default:
             break

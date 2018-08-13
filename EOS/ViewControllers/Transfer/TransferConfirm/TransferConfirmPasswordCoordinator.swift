@@ -12,6 +12,7 @@ import ReSwift
 protocol TransferConfirmPasswordCoordinatorProtocol {
     func finishTransfer()
     func finishMortgage()
+    func finishBuyRam()
     func dismissConfirmPwdVC()
     func popConfirmPwdVC()
 }
@@ -27,6 +28,10 @@ protocol TransferConfirmPasswordStateManagerProtocol {
     func mortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
     
     func relieveMortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
+    
+    func buyRam(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
+    func sellRam(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
+
 
 }
 
@@ -54,6 +59,14 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let mortgageCoor = appDelegate.appcoordinator?.homeCoordinator, let mortgageVC = mortgageCoor.rootVC.topViewController as? ResourceMortgageViewController {
             self.rootVC.dismiss(animated: true) {
                 mortgageVC.resetData()
+            }
+        }
+    }
+    
+    func finishBuyRam() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let coor = appDelegate.appcoordinator?.homeCoordinator, let vc = coor.rootVC.topViewController as? BuyRamViewController {
+            self.rootVC.dismiss(animated: true) {
+                vc.resetData()
             }
         }
     }
@@ -117,6 +130,32 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.success = R.string.localizable.cancel_mortgage_success()
         model.faile = R.string.localizable.cancel_mortgage_failed()
         transaction(EOSAction.undelegatebw.rawValue, actionModel: model) { (bool, showString) in
+            callback(bool,showString)
+        }
+    }
+    
+    func buyRam(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+        let model = BuyRamActionModel()
+        model.password = password
+        model.toAccount = account
+        model.fromAccount = WalletManager.shared.getAccount()
+        model.success = R.string.localizable.buy_ram_success()
+        model.faile = R.string.localizable.buy_ram_faile()
+        model.amount = amount
+        transaction(EOSAction.buyram.rawValue, actionModel: model) { (bool, showString) in
+            callback(bool,showString)
+        }
+    }
+    
+    func sellRam(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+        let model = SellRamActionModel()
+        model.password = password
+        model.toAccount = account
+        model.fromAccount = WalletManager.shared.getAccount()
+        model.success = R.string.localizable.sell_ram_success()
+        model.faile = R.string.localizable.sell_ram_faile()
+        model.amount = amount
+        transaction(EOSAction.sellram.rawValue, actionModel: model) { (bool, showString) in
             callback(bool,showString)
         }
     }

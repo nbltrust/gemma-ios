@@ -12,6 +12,7 @@ import Guitar
 import Device
 import NotificationBannerSwift
 import RxGesture
+import SwiftNotificationCenter
 
 func navBgImage() -> UIImage? {
     switch UIScreen.main.bounds.width {
@@ -49,6 +50,14 @@ class UnDelegateActionModel: ActionModel {
 
 }
 
+class BuyRamActionModel: ActionModel {
+    var amount: String = ""
+}
+
+class SellRamActionModel: ActionModel {
+    var amount: String = ""
+}
+
 func getAbi(_ action:String, actionModel: ActionModel) -> String! {
     var abi: String = ""
     if action == EOSAction.transfer.rawValue {
@@ -57,7 +66,20 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                 abi = abiStr
             }
         }
-    } else {
+    } else if action == EOSAction.buyram.rawValue {
+        if let actionModel = actionModel as? BuyRamActionModel {
+            if let abiStr = EOSIO.getBuyRamAbi(EOSIOContract.EOSIO_CODE, action: action, payer: WalletManager.shared.getAccount(), receiver: WalletManager.shared.getAccount(), quant: actionModel.amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL) {
+                abi = abiStr
+            }
+        }
+    } else if action == EOSAction.sellram.rawValue {
+        if let actionModel = actionModel as? SellRamActionModel {
+                if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIO_CODE, action: action, account: WalletManager.shared.getAccount(), bytes:actionModel.amount.toBytes) {
+                    abi = abiStr
+                }
+        }
+    }
+    else {
         if action == EOSAction.delegatebw.rawValue || action == EOSAction.undelegatebw.rawValue {
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 if let vc = appDelegate.appcoordinator?.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
@@ -104,7 +126,6 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
             }
         }
     }
-
     
     return abi
 }
@@ -130,6 +151,10 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                 transaction = EOSIO.getDelegateTransaction(privakey, code: EOSIOContract.EOSIO_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
             } else if action == EOSAction.undelegatebw.rawValue {
                 transaction = EOSIO.getUnDelegateTransaction(privakey, code: EOSIOContract.EOSIO_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
+            } else if action == EOSAction.buyram.rawValue {
+                transaction = EOSIO.getBuyRamTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, payer_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
+            } else if action == EOSAction.sellram.rawValue {
+                transaction = EOSIO.getSellRamTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, account_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
             }
             
             EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
@@ -216,6 +241,24 @@ extension Date {
 extension Int64 {
     var ramCount:String {
         return ByteCountFormatter.string(fromByteCount: self, countStyle: .file)
+    }
+}
+
+extension Int64 {
+    var toKB:String {
+        return (Double(self) / 1_024).string(digits: 2)
+    }
+}
+
+extension Int64 {
+    var toMS:String {
+        return (Double(self) / 1_024).string(digits: 2)
+    }
+}
+
+extension String {
+    var toBytes:UInt32 {
+        return UInt32((Double(self)! * 1_024))
     }
 }
 

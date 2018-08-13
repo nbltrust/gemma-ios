@@ -14,6 +14,8 @@ enum confirmType: String {
     case relieveMortgage
     case updatePwd
     case backupPrivateKey
+    case buyRam
+    case sellRam
 }
 
 class TransferConfirmPasswordView: UIView {

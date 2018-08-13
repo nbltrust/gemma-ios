@@ -12,6 +12,7 @@ import Foundation
 @IBDesignable
 class PageView: UIView {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var rightLabel: UILabel!
@@ -28,8 +29,13 @@ class PageView: UIView {
                 rightLabel.text = data.rightText
                 leftView.data = data.operationLeft
                 rightView.data = data.operationRight
-                updateHeight()
             }
+            if let data = data as? BuyRamViewModel {
+                leftView.data = data
+                rightView.data = data
+            }
+            
+            updateHeight()
         }
     }
     
@@ -66,7 +72,19 @@ class PageView: UIView {
         }
     }
     
+    var operationNumber = 2 {
+        didSet {
+            setUp()
+            leftView.cpuMortgageView.reloadData()
+            rightView.cpuMortgageCancelView.reloadData()
+        }
+    }
+    
     func setUp() {
+        if operationNumber == 1 {
+            leftView.isHiddenBottomView = true
+            rightView.isHiddenBottomView = true
+        }
         updateLabelStatus()
         setupEvent()
         updateHeight()
