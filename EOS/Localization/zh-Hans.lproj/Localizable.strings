@@ -7,6 +7,11 @@
 */
 
 "test" = "测试";
+//System
+"prompt" = "提示";
+"cancel" = "取消";
+"sure" = "确认";
+"got_it" = "我知道了";
 
 //tabbar
 "tabbar-wallet" = "钱包";
@@ -233,8 +238,17 @@
 "faceid_reason" = "使用您的Face ID进行安全验证";
 "unsupport_faceid" = "此设备不支持面容解锁";
 "unsupport_touchid" = "此设备不支持指纹解锁";
-"guide_open_faceid" = "Face ID已锁定，请前往设置中解锁";
-"guide_open_finger" = "Touch ID已锁定，请前往设置中解锁";
+
+"faceid_auth_failed" = "Face ID校验失败";
+"faceid_start_failed" = "Face ID启动失败，请检查系统设置";
+"faceid_auth_lock" = "Face ID已锁定，请前往设置中解锁";
+
+"touchid_auth_failed" = "Touch ID校验失败";
+"touchid_start_failed" = "Touch ID启动失败，请检查系统设置";
+"touchid_auth_lock" = "Touch ID已锁定，请前往设置中解锁";
+
+"unsupport_camera" = "该设备不支持相机";
+"guide_open_camera" = "请前往设置中开启相机权限";
 
 //Gesture
 "ges_pas_length_unenough" = "手势密码长度最短为四位";

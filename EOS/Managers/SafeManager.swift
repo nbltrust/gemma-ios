@@ -25,21 +25,22 @@ class SafeManager {
     //MARK: - Confirm
     func confirmFaceIdLock(_ reason: String, callback: @escaping (Bool) -> ()) {
         if self.biometricType() == .face {
-            if BioMetricAuthenticator.shared.faceIDAvailable() {
-                BioMetricAuthenticator.authenticateWithBioMetrics(reason: reason, success: {
-                    self.openFaceId()
-                    callback(true)
-                }) { (error) in
-                    if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
-                        callback(false)
-                    } else {
-                        KRProgressHUD.showError(withMessage: error.message())
-                        callback(false)
-                    }
+            BioMetricAuthenticator.authenticateWithBioMetrics(reason: reason, success: {
+                self.openFaceId()
+                callback(true)
+            }) { (error) in
+                if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
+                    callback(false)
+                } else if error == .passcodeNotSet || error == .biometryNotAvailable || error == .biometryNotEnrolled {
+                    KRProgressHUD.showError(withMessage: R.string.localizable.faceid_start_failed())
+                    callback(false)
+                } else if error == .biometryLockedout {
+                    KRProgressHUD.showError(withMessage: R.string.localizable.faceid_auth_lock())
+                    callback(false)
+                } else {
+                    KRProgressHUD.showError(withMessage: R.string.localizable.faceid_auth_failed())
+                    callback(false)
                 }
-            } else {
-                KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_faceid())
-                callback(false)
             }
         } else {
             KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_faceid())
@@ -55,8 +56,14 @@ class SafeManager {
             }) { (error) in
                 if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
                     callback(false)
+                } else if error == .passcodeNotSet || error == .biometryNotAvailable || error == .biometryNotEnrolled {
+                    KRProgressHUD.showError(withMessage: R.string.localizable.touchid_start_failed())
+                    callback(false)
+                } else if error == .biometryLockedout {
+                    KRProgressHUD.showError(withMessage: R.string.localizable.touchid_auth_lock())
+                    callback(false)
                 } else {
-                    KRProgressHUD.showError(withMessage: error.message())
+                    KRProgressHUD.showError(withMessage: R.string.localizable.touchid_auth_failed())
                     callback(false)
                 }
             }
