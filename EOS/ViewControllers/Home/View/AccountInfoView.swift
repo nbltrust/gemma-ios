@@ -32,10 +32,16 @@ class AccountInfoView: UIView {
     @IBOutlet weak var backupLabelView: UIView!
     @IBOutlet weak var refundView: UIView!
     
+    @IBOutlet weak var cpuView: UIView!
+    @IBOutlet weak var netView: UIView!
+    @IBOutlet weak var ramView: UIView!
+    
     enum tapEvent: String {
         case refundEvent
         case backupEvent
-
+        case cpuevent
+        case netevent
+        case ramevent
     }
     
     var data: Any? {
@@ -94,23 +100,25 @@ class AccountInfoView: UIView {
     }
     
     func setUpEvent() {
-        refundLabel.isUserInteractionEnabled = true
-        let refundTapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(refund))
-        refundLabel.addGestureRecognizer(refundTapGestureRecognizer)
-
-        backupLabel.isUserInteractionEnabled = true
-        let backupTapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backupWallet))
-        backupLabel.addGestureRecognizer(backupTapGestureRecognizer)
+        backupLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (tap) in
+            guard let `self` = self else { return }
+            self.backupLabel.next?.sendEventWith(tapEvent.backupEvent.rawValue, userinfo: [:])
+        }).disposed(by: disposeBag)
         
+        cpuView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (tap) in
+            guard let `self` = self else { return }
+            self.cpuView.next?.sendEventWith(tapEvent.cpuevent.rawValue, userinfo: [:])
+        }).disposed(by: disposeBag)
         
-    }
-    
-    @objc func refund() {
-        self.sendEventWith(tapEvent.refundEvent.rawValue, userinfo: [:])
-    }
-    
-    @objc func backupWallet() {
-        self.sendEventWith(tapEvent.backupEvent.rawValue, userinfo: [:])
+        netView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (tap) in
+            guard let `self` = self else { return }
+            self.cpuView.next?.sendEventWith(tapEvent.netevent.rawValue, userinfo: [:])
+        }).disposed(by: disposeBag)
+        
+        ramView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (tap) in
+            guard let `self` = self else { return }
+            self.cpuView.next?.sendEventWith(tapEvent.ramevent.rawValue, userinfo: [:])
+        }).disposed(by: disposeBag)
     }
     
     override var intrinsicContentSize: CGSize {
