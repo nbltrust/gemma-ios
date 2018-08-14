@@ -30,7 +30,8 @@ struct BuyRamViewModel {
     var leftSub = ""
     var rightSub = ""
     var progress: Float = 0.5
-    var price = ""
+    var price: Decimal = 0
+    var priceLabel = ""
     var exchange = ""
     var leftTrade = ""
     var rightTrade = ""
@@ -54,6 +55,10 @@ struct BuyRamAction:Action {
 struct SellRamAction:Action {
     var ram = ""
     var balance = ""
+}
+
+struct RamPriceAction:Action {
+    var price: Decimal
 }
 
 struct ExchangeAction:Action {

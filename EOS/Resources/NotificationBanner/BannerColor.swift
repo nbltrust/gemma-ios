@@ -19,9 +19,9 @@ class BannerColor: BannerColorsProtocol {
         case .none:     // Your custom .none color
             return UIColor.scarlet
         case .success:  // Your custom .success color
-            return UIColor.scarlet
+            return UIColor.cornflowerBlue
         case .warning:  // Your custom .warning color
-            return UIColor.scarlet
+            return UIColor.bgtabred
         }
     }
 }
