@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 protocol AboutCoordinatorProtocol {
-    
+    func openReleaseNotes()
 }
 
 protocol AboutStateManagerProtocol {
@@ -32,7 +32,12 @@ class AboutCoordinator: UserInfoRootCoordinator {
 }
 
 extension AboutCoordinator: AboutCoordinatorProtocol {
-    
+    func openReleaseNotes() {
+        let vc = BaseWebViewController()
+        vc.url = H5AddressConfiguration.RELEASE_NOTES_CN_URL
+        vc.title = R.string.localizable.about_info()
+        self.rootVC.pushViewController(vc, animated: true)
+    }
 }
 
 extension AboutCoordinator: AboutStateManagerProtocol {
