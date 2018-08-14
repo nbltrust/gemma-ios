@@ -168,4 +168,13 @@ extension HomeViewController {
         self.coordinator?.pushBackupVC()
     }
     
+    @objc func cpuevent(_ data: [String:Any]) {
+        self.coordinator?.pushResourceMortgageVC()
+    }
+    @objc func netevent(_ data: [String:Any]) {
+        self.coordinator?.pushResourceMortgageVC()
+    }
+    @objc func ramevent(_ data: [String:Any]) {
+        self.coordinator?.pushBuyRamVC()
+    }
 }
