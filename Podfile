@@ -80,6 +80,7 @@ def ui
     pod 'GrowingTextView'
     pod 'Bartinter'
     pod 'NotificationBannerSwift'
+    pod 'ActiveLabel'
 end
 
 def other
