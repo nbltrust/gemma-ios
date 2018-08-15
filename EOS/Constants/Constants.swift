@@ -49,6 +49,11 @@ struct EOSIOContract {
 struct H5AddressConfiguration {
     static let GET_INVITECODE_URL = URL(string: "https://nebuladownload.oss-cn-beijing.aliyuncs.com/gemma/gemma_policy_cn.html")
     static let REGISTER_PROTOCOL_URL = URL(string: "https://nebuladownload.oss-cn-beijing.aliyuncs.com/gemma/gemma_policy_cn.html")
+    static let HELP_CN_URL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_policy_cn.html")
+    static let HELP_EN_URL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_policy_en.html")
+    static let RELEASE_NOTES_CN_URL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_release_desc_cn.html")
+    static let RELEASE_NOTES_EN_URL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_release_desc_en.html")
+
 }
 
 enum EOSAction:String {
