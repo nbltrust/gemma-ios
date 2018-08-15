@@ -17,11 +17,15 @@ class FingerPrinterConfirmViewController: BaseViewController {
     
     @IBOutlet weak var clickLabel: UILabel!
     
+    var canDismiss: Bool = true
+    
     var coordinator: (FingerPrinterConfirmCoordinatorProtocol & FingerPrinterConfirmStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.configLeftNavButton(R.image.icTransferClose())
+        if canDismiss {
+            self.configLeftNavButton(R.image.icTransferClose())
+        }
     }
     
     override func leftAction(_ sender: UIButton) {

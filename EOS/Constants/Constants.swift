@@ -57,6 +57,7 @@ enum EOSAction:String {
     case undelegatebw
     case buyram
     case sellram
+    case voteproducer
 }
 
 enum EOSIOTable:String {

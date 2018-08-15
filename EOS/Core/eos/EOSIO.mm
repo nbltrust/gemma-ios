@@ -77,4 +77,7 @@ eosio::keosdlib k;
     return @(k.signTransaction_sellram(priv_key_str.UTF8String, contract.UTF8String, account_str.UTF8String, infostr.UTF8String, abistr.UTF8String, max_cpu_usage_ms, max_net_usage_words).c_str());
 }
 
++ (NSString *)getVoteTransaction:(NSString *)priv_key_str contract:(NSString *)contract vote_str:(NSString *)vote_str infostr:(NSString *)infostr abistr:(NSString *)abistr max_cpu_usage_ms:(uint32_t)max_cpu_usage_ms max_net_usage_words:(uint32_t)max_net_usage_words {
+    return @(k.signTransaction_voteproducer(priv_key_str.UTF8String, contract.UTF8String, vote_str.UTF8String, infostr.UTF8String, abistr.UTF8String, max_cpu_usage_ms, max_net_usage_words).c_str());
+}
 @end

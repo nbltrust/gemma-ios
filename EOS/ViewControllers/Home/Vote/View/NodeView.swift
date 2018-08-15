@@ -9,9 +9,19 @@
 import UIKit
 
 class NodeView: UIView {
-
-    func setup() {
+    @IBOutlet weak var checkButton: UIButton!
+    
+    @IBOutlet weak var nameLabel: UILabel!
         
+    @IBOutlet weak var perLabel: UILabel!
+    
+    @IBOutlet weak var rankLabel: UILabel!
+    
+    @IBOutlet weak var ownerLabel: UILabel!
+    
+    @IBOutlet weak var urlLabel: UILabel!
+    
+    func setup() {
     }
     
     override func layoutSubviews() {
@@ -42,4 +52,26 @@ class NodeView: UIView {
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 
+}
+
+extension NodeView {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.backgroundColor = UIColor.paleGrey41
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        self.backgroundColor = UIColor.whiteTwo
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        self.backgroundColor = UIColor.paleGrey41
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        self.backgroundColor = UIColor.whiteTwo
+    }
 }

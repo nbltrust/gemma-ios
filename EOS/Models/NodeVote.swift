@@ -8,19 +8,17 @@
 
 import HandyJSON
 
-struct NodeVoteData: HandyJSON {
-    var rows: [NodeVote]!
-    var total_producer_vote_weight: String!
-}
-
 struct NodeVote: HandyJSON {
-    var unpaid_blocks: Int!
-    var producer_key: String!
-    var location: Int!
-    var last_claim_time: CLongLong!
-    var is_active: Int!
-    var owner: String!
+    var account: String!
+    var alias: String!
+    var votes: String!
     var url: String!
-    var total_votes: String!
+    var location: Int!
+    var percentage: Float!
+    var key: String!
+    var priority: Int!
+    var rate_at: CLongLong!
+    var createdAt: CLongLong!
+    var updatedAt: CLongLong!
 }
 
