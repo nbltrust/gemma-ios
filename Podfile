@@ -56,6 +56,7 @@ def extension
     pod 'KeychainAccess'
     pod 'SwifterSwift'
     pod 'Repeat'
+    pod 'AsyncSwift'
 end
 
 def ui

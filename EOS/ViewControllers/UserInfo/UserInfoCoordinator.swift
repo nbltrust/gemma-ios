@@ -56,10 +56,10 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
         }
     }
     func openServersSetting() {
-        if let vc = R.storyboard.userInfo.serversViewController() {
-            vc.coordinator = ServersCoordinator(rootVC: self.rootVC)
-            self.rootVC.pushViewController(vc, animated: true)
-        }
+        let vc = BaseWebViewController()
+        vc.url = H5AddressConfiguration.HELP_CN_URL
+        vc.title = R.string.localizable.mine_server()
+        self.rootVC.pushViewController(vc, animated: true)
     }
     func openAboutSetting() {
         if let vc = R.storyboard.userInfo.aboutViewController() {

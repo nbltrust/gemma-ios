@@ -78,10 +78,14 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
         }
     case let action as ExchangeAction:
         if var viewmodel = state.info.value {
-            if action.type == .left {
-                viewmodel.exchange = R.string.localizable.exchange_pre() + action.amount + " KB"
-            } else {
-                viewmodel.exchange = R.string.localizable.exchange_pre() + action.amount + " EOS"
+            if let amountDecimal = Decimal(string: action.amount) {
+                if action.type == .left {
+                    let exchangeStr = (amountDecimal / viewmodel.price).doubleValue.string(digits: 3)
+                    viewmodel.exchange = R.string.localizable.exchange_pre() + exchangeStr + " KB"
+                } else {
+                    let exchangeStr = (amountDecimal * viewmodel.price).doubleValue.string(digits: 3)
+                    viewmodel.exchange = R.string.localizable.exchange_pre() + exchangeStr + " EOS"
+                }
             }
             if action.amount == "" {
                 viewmodel.exchange = ""
@@ -90,10 +94,14 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
             state.info.accept(viewmodel)
         } else {
             var viewmodel = BuyRamViewModel()
-            if action.type == .left {
-                viewmodel.exchange = R.string.localizable.exchange_pre() + action.amount + " KB"
-            } else {
-                viewmodel.exchange = R.string.localizable.exchange_pre() + action.amount + " EOS"
+            if let amountDecimal = Decimal(string: action.amount) {
+                if action.type == .left {
+                    let exchangeStr = (amountDecimal / viewmodel.price).doubleValue.string(digits: 3)
+                    viewmodel.exchange = R.string.localizable.exchange_pre() + exchangeStr + " KB"
+                } else {
+                    let exchangeStr = (amountDecimal * viewmodel.price).doubleValue.string(digits: 3)
+                    viewmodel.exchange = R.string.localizable.exchange_pre() + exchangeStr + " EOS"
+                }
             }
             if action.amount == "" {
                 viewmodel.exchange = ""
@@ -105,6 +113,19 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
         var viewmodel = state.info.value
         viewmodel = convertBuyRamViewModelWithAccount(action.info, viewmodel:viewmodel)
         state.info.accept(viewmodel)
+    case let action as RamPriceAction:
+        if var viewmodel = state.info.value {
+            let price = action.price * 1024
+            viewmodel.price = price
+            viewmodel.priceLabel = "≈" + price.doubleValue.string(digits: 8) + " EOS/KB"
+            state.info.accept(viewmodel)
+        } else {
+            var viewmodel = BuyRamViewModel()
+            let price = action.price * 1024
+            viewmodel.price = price
+            viewmodel.priceLabel = "≈" + price.doubleValue.string(digits: 8) + " EOS/KB"
+            state.info.accept(viewmodel)
+        }
     default:
         break
     }

@@ -31,37 +31,26 @@ class RPCTest: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         var result = false
-        let json = TableProducers().toJSONString()
-        print(json)
         
-        EOSIONetwork.request(target: .get_account(account: "test1"), success: { (account) in
-            let created = account["created"].stringValue.toISODate()!
-            
-            EOSIONetwork.request(target: .get_info, success: { (info) in
-                let lib = info["last_irreversible_block_num"].stringValue
-                EOSIONetwork.request(target: .get_block(num: lib), success: { (block) in
-                    let time = block["timestamp"].stringValue.toISODate()!
-                    if  time >= created {
-                        result = true
-                    }
-                    
-                }, error: { (code2) in
-                    
-                }, failure: { (error2) in
-                    
-                })
-            }, error: { (code3) in
-                
-            }, failure: { (error3) in
-                
-            })
-        }, error: { (code) in
-            
-        }, failure: { (error) in
-            
-        })
+        WalletManager.shared.validChainAccountCreated("test1") { (success) in
+            if success {
+                result = true
+            }
+        }
         
         expect(result).toEventually(beTrue(), timeout: 3)
+    }
+    
+    func testGetRamPrice() {
+        var result = Decimal(floatLiteral: 0)
+
+        getRamPrice { (price) in
+            if let price = price as? Decimal {
+                result = price
+            }
+        }
+       
+        expect(result.doubleValue).toEventually(beGreaterThan(0), timeout: 3)
     }
     
     func testPerformanceExample() {

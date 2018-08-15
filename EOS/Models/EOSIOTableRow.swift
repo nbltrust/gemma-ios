@@ -16,3 +16,10 @@ struct TableProducers: HandyJSON {
     var json: Bool = true
     var limit: Int = 9999
 }
+
+struct RamMarket: HandyJSON {
+    var scope: String = EOSIOContract.EOSIO_CODE
+    var code: String = EOSIOContract.EOSIO_CODE
+    var table: String = EOSIOTable.rammarket.rawValue
+    var json: Bool = true
+}

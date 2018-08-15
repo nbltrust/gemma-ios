@@ -16,6 +16,7 @@
                 <outlet property="backupLabelView" destination="S2D-yg-N0Y" id="oHP-zj-RaX"/>
                 <outlet property="cornerShadowView" destination="9T0-YH-I0m" id="VzV-Tu-kWy"/>
                 <outlet property="cpuProgress" destination="P3h-X7-Mrq" id="T3O-Pv-NBP"/>
+                <outlet property="cpuView" destination="BdM-Ww-bzm" id="pCl-AS-9f6"/>
                 <outlet property="mCPUConsumeEOSLabel" destination="ALa-hu-kmg" id="5aP-Ew-xod"/>
                 <outlet property="mHorLineView" destination="M1v-sd-KJj" id="u9p-RO-ysM"/>
                 <outlet property="mHorLineViewTwo" destination="GYV-MF-piT" id="O98-kJ-E7f"/>
@@ -26,7 +27,9 @@
                 <outlet property="mTotalCNYLabel" destination="KgE-A9-NAV" id="EmJ-QN-LPr"/>
                 <outlet property="mTotalEOSLabel" destination="WA1-pa-47r" id="og3-WZ-HLT"/>
                 <outlet property="netProgress" destination="HQp-Tm-YJ3" id="YhN-E9-cVh"/>
+                <outlet property="netView" destination="b8N-GK-BFf" id="AbC-l6-oHO"/>
                 <outlet property="ramProgress" destination="0Ok-3Y-48U" id="D4q-al-FbO"/>
+                <outlet property="ramView" destination="Gnb-wx-y6N" id="2of-ff-Rgf"/>
                 <outlet property="refundLabel" destination="PpA-Bh-gi2" id="SEM-ZR-ppQ"/>
                 <outlet property="refundView" destination="q1h-9H-aLp" id="Svs-EB-wys"/>
             </connections>

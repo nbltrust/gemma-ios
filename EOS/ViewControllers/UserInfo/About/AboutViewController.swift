@@ -44,6 +44,11 @@ class AboutViewController: BaseViewController {
 
 extension AboutViewController {
     @objc func clickCellView(_ sender:[String:Any]) {
-        
+        switch sender["index"] as! Int {
+        case 0:self.coordinator?.openReleaseNotes()
+//        case 1:
+        default:
+            break
+        }
     }
 }

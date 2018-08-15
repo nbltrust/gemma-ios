@@ -140,10 +140,10 @@
 "confirm_pwd_title" = "Gemma不曾知晓钱包密码，每次操作需要输入密码以授权";
 "update_pwd_title" = "请输入原密码";
 "update_pwd_btntitle" = "验证密码";
-"mortgage_success" = "抵押成功";
-"mortgage_failed" = "抵押失败";
-"cancel_mortgage_success" = "解除抵押成功";
-"cancel_mortgage_failed" = "解除抵押失败";
+"mortgage_success" = "抵押成功!";
+"mortgage_failed" = "抵押失败!";
+"cancel_mortgage_success" = "解除抵押成功!";
+"cancel_mortgage_failed" = "解除抵押失败!";
 "privatekey_faile" = "私钥格式不正确";
 "walletname_invalid" = "钱包名不能重复";
 "undelegate" = "Undelegate ";
@@ -162,13 +162,14 @@
 "can_use" = "可用：";
 "confirm_buy" = "确认买入";
 "confirm_sell" = "确认卖出";
-"buy_ram_success" = "买入RAM成功";
-"buy_ram_faile" = "买入RAM失败";
-"sell_ram_success" = "卖出RAM成功";
-"sell_ram_faile" = "卖出RAM失败";
+"buy_ram_success" = "买入RAM成功!";
+"buy_ram_faile" = "买入RAM失败!";
+"sell_ram_success" = "卖出RAM成功!";
+"sell_ram_faile" = "卖出RAM失败!";
 "amount" = "数量";
 "explain" = "说明";
 "exchange_pre" = "预估可兑换 ";
+"no_data" = "暂无数据";
 
 //zsy end
 

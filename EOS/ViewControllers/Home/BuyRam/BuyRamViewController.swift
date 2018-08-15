@@ -119,7 +119,6 @@ extension BuyRamViewController {
         if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView , let cpuMoney = cpuTextFieldView.textField.text?.toDouble() {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
-                self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .left)
             }
             if var balance = self.contentView.pageView.leftView.cpuMortgageView.introduceLabel.text,balance != "" {
                 balance = balance.components(separatedBy: "：")[1]
@@ -127,6 +126,7 @@ extension BuyRamViewController {
                 if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                     cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
                 }
+                self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .left)
                 self.coordinator?.buyRamValid(cpuTextFieldView.textField.text!,blance: balance)
             }
         }
@@ -136,13 +136,13 @@ extension BuyRamViewController {
         if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView , let cpuMoney = cpuTextFieldView.textField.text?.toDouble() {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
-                self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .right)
             }
             if var balance = self.contentView.pageView.rightView.cpuMortgageCancelView.introduceLabel.text,balance != "" {
                 balance = balance.components(separatedBy: "：")[1]
                 if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
                     cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
                 }
+                self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .right)
                 self.coordinator?.sellRamValid(cpuTextFieldView.textField.text!, blance: balance)
             }
         }

@@ -330,6 +330,36 @@ class WalletManager {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with:name)
     }
-
     
+    func validChainAccountCreated(_ account:String, completion:@escaping ResultCallback) {
+        EOSIONetwork.request(target: .get_account(account: account), success: { (account) in
+            let created = account["created"].stringValue.toISODate()!
+            
+            EOSIONetwork.request(target: .get_info, success: { (info) in
+                let lib = info["last_irreversible_block_num"].stringValue
+                EOSIONetwork.request(target: .get_block(num: lib), success: { (block) in
+                    let time = block["timestamp"].stringValue.toISODate()!
+                    if  time >= created {
+                        completion(true)
+                    }
+                    else {
+                        completion(false)
+                    }
+                    
+                }, error: { (code2) in
+                    completion(false)
+                }, failure: { (error2) in
+                    completion(false)
+                })
+            }, error: { (code3) in
+                completion(false)
+            }, failure: { (error3) in
+                completion(false)
+            })
+        }, error: { (code) in
+            completion(false)
+        }, failure: { (error) in
+            completion(false)
+        })
+    }
 }
