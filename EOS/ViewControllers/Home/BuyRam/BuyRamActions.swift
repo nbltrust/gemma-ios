@@ -29,7 +29,7 @@ struct BuyRamPropertyState {
 struct BuyRamViewModel {
     var leftSub = ""
     var rightSub = ""
-    var progress: Float = 0.5
+    var progress: Float = 0.0
     var price: Decimal = 0
     var priceLabel = ""
     var exchange = ""
