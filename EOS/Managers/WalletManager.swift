@@ -67,7 +67,7 @@ class WalletManager {
         
         if !wallets.map({ $0.publicKey }).contains(currentPubKey) {
             let currentIndex = currentWalletCount() + 1
-            let wallet = WalletList(name: "EOS-WALLET-\(currentIndex)", publicKey: currentPubKey, accountIndex: 0, isBackUp: isImport ? true : false, isConfirmLib: isImport ? true : false, txId: txID, invitationCode:invitationCode)
+            let wallet = WalletList(name: "EOS-WALLET-\(currentIndex)", publicKey: currentPubKey, accountIndex: 0, isBackUp: isImport ? true : false, isConfirmLib: isImport ? true : false, txId: txID, invitationCode:invitationCode ,isImport: isImport)
             wallets.append(wallet)
             Defaults[.walletList] = wallets
         }

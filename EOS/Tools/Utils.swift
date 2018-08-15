@@ -75,9 +75,9 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
         }
     } else if action == EOSAction.sellram.rawValue {
         if let actionModel = actionModel as? SellRamActionModel {
-                if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIO_CODE, action: action, account: WalletManager.shared.getAccount(), bytes:actionModel.amount.toBytes) {
-                    abi = abiStr
-                }
+            if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIO_CODE, action: action, account: WalletManager.shared.getAccount(), bytes:actionModel.amount.toBytes) {
+                abi = abiStr
+            }
         }
     }
     else {
@@ -90,13 +90,13 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                     if action == EOSAction.delegatebw.rawValue {
                         if var cpu = vc.coordinator?.state.property.cpuMoneyValid.value.2 {
                             if cpu == "" {
-                                cpu = "0"
+                                cpu = "0.0000"
                             }
                             cpuValue = cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
                         if var net = vc.coordinator?.state.property.netMoneyValid.value.2 {
                             if net == "" {
-                                net = "0"
+                                net = "0.0000"
                             }
                             netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
@@ -107,13 +107,13 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                     } else if action == EOSAction.undelegatebw.rawValue {
                         if var cpu = vc.coordinator?.state.property.cpuReliveMoneyValid.value.2 {
                             if cpu == "" {
-                                cpu = "0"
+                                cpu = "0.0000"
                             }
                             cpuValue = cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
                         if var net = vc.coordinator?.state.property.netReliveMoneyValid.value.2 {
                             if net == "" {
-                                net = "0"
+                                net = "0.0000"
                             }
                             netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
