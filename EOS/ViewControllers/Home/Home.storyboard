@@ -160,7 +160,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W15-rR-B8R">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="hNo-lz-7Xh" id="NTf-zL-LMP"/>
                                     <outlet property="delegate" destination="hNo-lz-7Xh" id="nE3-GE-j3t"/>
@@ -188,6 +188,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qOv-zL-nNI" firstAttribute="trailing" secondItem="6lT-fx-QHd" secondAttribute="trailing" id="Fvq-LB-BCA"/>
                             <constraint firstItem="6lT-fx-QHd" firstAttribute="bottom" secondItem="W15-rR-B8R" secondAttribute="bottom" id="GQh-Fw-fnb"/>
@@ -207,6 +208,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FF7-gf-dzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2364" y="109"/>
+        </scene>
+        <!--Selected Vote View Controller-->
+        <scene sceneID="knF-Cq-y6f">
+            <objects>
+                <viewController storyboardIdentifier="SelectedVoteViewController" id="nyg-Hb-Qa2" customClass="SelectedVoteViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lOa-5r-pIi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1oe-yu-DJh">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="nyg-Hb-Qa2" id="KMU-Yi-6Be"/>
+                                    <outlet property="delegate" destination="nyg-Hb-Qa2" id="bDu-Qh-SPu"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="1oe-yu-DJh" firstAttribute="leading" secondItem="yRv-hb-zPj" secondAttribute="leading" id="83o-Ih-jRp"/>
+                            <constraint firstItem="yRv-hb-zPj" firstAttribute="trailing" secondItem="1oe-yu-DJh" secondAttribute="trailing" id="GAP-he-q2D"/>
+                            <constraint firstItem="1oe-yu-DJh" firstAttribute="top" secondItem="yRv-hb-zPj" secondAttribute="top" id="Lzn-fX-eMh"/>
+                            <constraint firstItem="yRv-hb-zPj" firstAttribute="bottom" secondItem="1oe-yu-DJh" secondAttribute="bottom" id="hv9-RR-cBS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yRv-hb-zPj"/>
+                    </view>
+                    <connections>
+                        <outlet property="voteTable" destination="1oe-yu-DJh" id="Vvo-bX-n9w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="huY-Rh-Py6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3473" y="228"/>
         </scene>
     </scenes>
 </document>

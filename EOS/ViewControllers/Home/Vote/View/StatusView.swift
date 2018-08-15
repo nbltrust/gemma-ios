@@ -16,6 +16,21 @@ class StatusView: UIView {
     
     @IBOutlet weak var rightLabel: UILabel!
     
+    var highlighted: Bool = false {
+        didSet {
+            leftLabel.backgroundColor = highlighted ? UIColor.darkSkyBlueTwo : UIColor.paleGreyFour
+            leftLabel.text = "0/30"
+            rightLabel.backgroundColor = highlighted ? UIColor.cornflowerBlueTwo : UIColor.cloudyBlue
+            rightLabel.text = highlighted ? R.string.localizable.vote_title() : R.string.localizable.vote_unenough()
+        }
+    }
+    
+    var selCount: Int = 0 {
+        didSet {
+            leftLabel.text = String(format: "%d/30", selCount)
+        }
+    }
+    
     func setup() {
     }
     

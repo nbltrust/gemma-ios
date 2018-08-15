@@ -30,4 +30,5 @@
 + (NSString *)getBuyRamTransaction:(NSString *)priv_key_str contract:(NSString *)contract payer_str:(NSString *)payer_str infostr:(NSString *)infostr abistr:(NSString *)abistr max_cpu_usage_ms:(uint32_t)max_cpu_usage_ms max_net_usage_words:(uint32_t)max_net_usage_words;
 + (NSString *)getSellRamTransaction:(NSString *)priv_key_str contract:(NSString *)contract account_str:(NSString *)account_str infostr:(NSString *)infostr abistr:(NSString *)abistr max_cpu_usage_ms:(uint32_t)max_cpu_usage_ms max_net_usage_words:(uint32_t)max_net_usage_words;
 
++ (NSString *)getVoteTransaction:(NSString *)priv_key_str contract:(NSString *)contract vote_str:(NSString *)vote_str infostr:(NSString *)infostr abistr:(NSString *)abistr max_cpu_usage_ms:(uint32_t)max_cpu_usage_ms max_net_usage_words:(uint32_t)max_net_usage_words;
 @end

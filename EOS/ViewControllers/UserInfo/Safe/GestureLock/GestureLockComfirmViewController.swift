@@ -14,14 +14,19 @@ import ReSwift
 class GestureLockComfirmViewController: BaseViewController {
 
     @IBOutlet weak var messageLabel: UILabel!
+    
     @IBOutlet weak var gestureLockView: GestureLockView!
+    
+    var canDismiss: Bool = true
     
     var coordinator: (GestureLockComfirmCoordinatorProtocol & GestureLockComfirmStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
         gestureLockView.delegate = self
-        self.configLeftNavButton(R.image.icTransferClose())
+        if canDismiss {
+            self.configLeftNavButton(R.image.icTransferClose())
+        }
     }
     
     override func leftAction(_ sender: UIButton) {

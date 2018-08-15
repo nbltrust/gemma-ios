@@ -11,6 +11,7 @@ import ReSwift
 import SwiftNotificationCenter
 
 protocol VoteCoordinatorProtocol {
+    func pushSelectedVote()
 }
 
 protocol VoteStateManagerProtocol {
@@ -20,6 +21,10 @@ protocol VoteStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func loadVoteList(_ completed: @escaping (Bool) -> ())
+    
+    func getAccountInfo()
+    
+    func getAccountInfo(_ account:String)
 }
 
 class VoteCoordinator: HomeRootCoordinator {
@@ -38,20 +43,59 @@ class VoteCoordinator: HomeRootCoordinator {
 }
 
 extension VoteCoordinator: VoteCoordinatorProtocol {
-    
+    func pushSelectedVote() {
+        let selVoteVC = R.storyboard.home.selectedVoteViewController()
+        let coordinator = SelectedVoteCoordinator(rootVC: self.rootVC)
+        selVoteVC?.coordinator = coordinator
+        self.rootVC.pushViewController(selVoteVC!, animated: true)
+    }
 }
 
 extension VoteCoordinator: VoteStateManagerProtocol {
     func loadVoteList(_ completed: @escaping (Bool) -> ()) {
-        let producer = TableProducers()
-        if let str = producer.toJSONString() {
-            EOSIONetwork.request(target: .get_producers(json: str), success: {[weak self] (json) in
-                
+        NBLNetwork.request(target: .producer(showNum: 999), success: {[weak self] (json) in
+            let result = json["result"].dictionaryValue
+            let producers = result["producers"]?.arrayValue
+            var nodes: [NodeVoteViewModel] = [NodeVoteViewModel]()
+            producers?.forEachInParallel({ (producer) in
+                let node = NodeVote.deserialize(from: producer.dictionaryObject)
+                var nodeModel = NodeVoteViewModel()
+                nodeModel.name = node?.alias
+                nodeModel.owner = node?.account
+                nodeModel.percent = String(format: "%f%", (node?.percentage)! * 100)
+                nodeModel.url = node?.url
+                nodeModel.rank = "1"
+                nodes.append(nodeModel)
+            })
+            self?.store.dispatch(SetVoteNodeListAction(datas: nodes))
             }, error: { (code) in
                 completed(false)
-            }, failure: { (error) in
-                completed(false)
-            })
+        }) { (error) in
+            completed(false)
+        }
+    }
+    
+    func getAccountInfo() {
+        WalletManager.shared.FetchAccount { (account) in
+            self.getAccountInfo(WalletManager.shared.getAccount())
+        }
+    }
+    
+    func getAccountInfo(_ account:String) {
+        EOSIONetwork.request(target: .get_account(account: account), success: { (json) in
+            if let accountObj = Account.deserialize(from: json.dictionaryObject) {
+                var delegateInfo = DelegatedInfoModel()
+                
+                if let delegatedObj = accountObj.self_delegated_bandwidth {
+                    delegateInfo.delagetedAmount = delegatedObj.cpu_weight.eosAmount.float()! + delegatedObj.net_weight.eosAmount.float()!
+                }
+                self.store.dispatch(SetDelegatedInfoAction(info: delegateInfo))
+            }
+            
+        }, error: { (code) in
+            
+        }) { (error) in
+            
         }
     }
     

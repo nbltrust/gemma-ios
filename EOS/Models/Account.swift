@@ -12,6 +12,7 @@ import HandyJSON
 struct Account:HandyJSON {
     var account_name:String!
     var total_resources:TotalResource?
+    var self_delegated_bandwidth:DelegatedBandWidth?
     var refund_request:ReFundRequest?
     var net_limit:NetLimit?
     var cpu_limit:CpuLimit?
@@ -55,6 +56,15 @@ struct ReFundRequest:HandyJSON {
         mapper <<<
             request_time <-- GemmaDateFormatTransform(formatString: "yyyy-MM-dd'T'HH:mm:ss")
     }
+    
+    init() {}
+}
+
+struct DelegatedBandWidth:HandyJSON {
+    var from:String!
+    var to:String!
+    var net_weight:String!
+    var cpu_weight:String!
     
     init() {}
 }

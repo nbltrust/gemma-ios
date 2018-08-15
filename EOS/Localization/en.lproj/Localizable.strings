@@ -286,3 +286,4 @@
 "vote_unenough" = "票数不足";
 "vote_ticket" = "票";
 "eos" = "EOS";
+"selected_node" = "已选节点";
