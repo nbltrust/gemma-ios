@@ -25,7 +25,7 @@ class ___VARIABLE_productName:identifier___View: BaseView {
 }
 
 extension ___VARIABLE_productName:identifier___View {
-    func adapterModelTo___VARIABLE_productName:identifier___View(_ model:Type) {
+    func adapterModelTo___VARIABLE_productName:identifier___View(_ model:<#Type#>) {
         
     }
 }
