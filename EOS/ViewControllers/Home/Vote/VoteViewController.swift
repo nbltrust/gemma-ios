@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import SwiftNotificationCenter
 
 class VoteViewController: BaseViewController {
     @IBOutlet weak var voteTable: UITableView!
@@ -56,11 +57,20 @@ class VoteViewController: BaseViewController {
             })
         }
         
-        footView.statusView.leftLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+        footView.statusView.leftLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (tap) in
             guard let `self` = self else { return }
             if let count = self.voteTable.indexPathsForSelectedRows?.count {
                 if count > 0 {
                     self.coordinator?.pushSelectedVote()
+                }
+            }
+        }).disposed(by: disposeBag)
+        
+        footView.statusView.rightLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (tap) in
+            guard let `self` = self else { return }
+            if let count = self.voteTable.indexPathsForSelectedRows?.count {
+                if count > 0 {
+                    self.coordinator?.voteSelNodes()
                 }
             }
         }).disposed(by: disposeBag)
@@ -72,8 +82,10 @@ class VoteViewController: BaseViewController {
             guard let `self` = self else { return }
             if success {
                 self.voteTable.reloadData()
+                self.endLoading()
+            } else {
+                self.endLoading()
             }
-            self.endLoading()
         })
     }
     
@@ -83,6 +95,7 @@ class VoteViewController: BaseViewController {
         } else {
             footView.statusView.selCount = 0
         }
+        self.coordinator?.updateIndexPaths(voteTable.indexPathsForSelectedRows)
     }
     
     func commonObserveState() {
@@ -105,6 +118,7 @@ class VoteViewController: BaseViewController {
                 self.footView.statusView.highlighted = info.delagetedAmount > 0
             }
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
     }
     
     override func configureObserveState() {

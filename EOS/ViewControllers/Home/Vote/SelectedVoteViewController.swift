@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import SwiftNotificationCenter
 
 class SelectedVoteViewController: BaseViewController {
     @IBOutlet weak var voteTable: UITableView!
@@ -19,8 +20,7 @@ class SelectedVoteViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        self.coordinator?.loadDatas()
-        voteTable.reloadData()
+        setupData()
     }
     
     func setupUI() {
@@ -39,9 +39,28 @@ class SelectedVoteViewController: BaseViewController {
         voteTable.tableFooterView = tableFootView
     }
     
-    func updateTitle() {
+    func setupData() {
+        self.coordinator?.loadDatas()
+        voteTable.reloadData()
+        selectAll()
+        updateTitle()
+    }
+    
+    func selectAll() {
         var count = 0
         if let dataCount = self.coordinator?.state.property.datas.count {
+            count = dataCount
+        }
+        
+        for  index in 0..<count {
+            voteTable.selectRow(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .none)
+        }
+    }
+    
+    func updateTitle() {
+        var count = 0
+        
+        if let dataCount = voteTable.indexPathsForSelectedRows?.count {
             count = dataCount
         }
         self.title = R.string.localizable.selected_node() + "(" + count.string + "/30)"
@@ -74,7 +93,6 @@ extension SelectedVoteViewController: UITableViewDelegate,UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return (self.coordinator?.state.property.datas.count)!
     }
     
@@ -97,7 +115,13 @@ extension SelectedVoteViewController: UITableViewDelegate,UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-
+        self.coordinator?.updateAtIndexPath(indexPath, isSel: false)
+        self.updateTitle()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.coordinator?.updateAtIndexPath(indexPath, isSel: true)
+        self.updateTitle()
     }
 }
 

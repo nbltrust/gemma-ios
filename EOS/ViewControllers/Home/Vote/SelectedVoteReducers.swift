@@ -17,6 +17,10 @@ func SelectedVotePropertyReducer(_ state: SelectedVotePropertyState?, action: Ac
     var state = state ?? SelectedVotePropertyState()
     
     switch action {
+    case let action as SetVoteNodeListAction:
+        state.datas = action.datas
+    case let action as SetSelIndexPathsAction:
+        state.indexPaths = action.indexPaths
     default:
         break
     }

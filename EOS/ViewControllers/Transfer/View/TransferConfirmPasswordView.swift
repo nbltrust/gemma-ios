@@ -16,6 +16,7 @@ enum confirmType: String {
     case backupPrivateKey
     case buyRam
     case sellRam
+    case voteNode
 }
 
 class TransferConfirmPasswordView: UIView {

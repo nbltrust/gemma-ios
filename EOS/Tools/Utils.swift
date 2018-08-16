@@ -60,7 +60,6 @@ class SellRamActionModel: ActionModel {
 }
 
 class VoteProducerActionModel: ActionModel {
-    var amount: String = ""
     var producers: [String] = [String]()
 }
 

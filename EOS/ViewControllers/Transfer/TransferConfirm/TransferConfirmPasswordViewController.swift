@@ -157,6 +157,8 @@ extension TransferConfirmPasswordViewController {
                     self.showError(message: message)
                 }
             })
+        } else if myType == confirmType.voteNode.rawValue {
+            
         }
 
     }

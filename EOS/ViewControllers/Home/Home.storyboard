@@ -60,10 +60,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="61q-ee-tfb">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9P-qV-5iU" customClass="PriKeyView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -107,13 +107,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MwU-XB-sP6">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MwU-XB-sP6">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Scb-ud-B8E">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Scb-ud-B8E">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="354"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4w-Ua-4wv" customClass="QRCodeView" customModule="EOS" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4w-Ua-4wv" customClass="QRCodeView" customModule="EOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="354"/>
                                             </view>
                                         </subviews>
@@ -219,13 +219,14 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1oe-yu-DJh">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="white" red="0.976" green="0.976" blue="0.976" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="nyg-Hb-Qa2" id="KMU-Yi-6Be"/>
                                     <outlet property="delegate" destination="nyg-Hb-Qa2" id="bDu-Qh-SPu"/>
                                 </connections>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" name="white" red="0.976" green="0.976" blue="0.976" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1oe-yu-DJh" firstAttribute="leading" secondItem="yRv-hb-zPj" secondAttribute="leading" id="83o-Ih-jRp"/>
                             <constraint firstItem="yRv-hb-zPj" firstAttribute="trailing" secondItem="1oe-yu-DJh" secondAttribute="trailing" id="GAP-he-q2D"/>
@@ -243,4 +244,6 @@
             <point key="canvasLocation" x="3473" y="228"/>
         </scene>
     </scenes>
+    <resources>
+    </resources>
 </document>

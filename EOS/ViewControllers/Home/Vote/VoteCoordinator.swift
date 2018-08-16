@@ -20,11 +20,15 @@ protocol VoteStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<VoteState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
+    func updateIndexPaths(_ indexPaths: [IndexPath]?)
+    
     func loadVoteList(_ completed: @escaping (Bool) -> ())
     
     func getAccountInfo()
     
     func getAccountInfo(_ account:String)
+    
+    func voteSelNodes()
 }
 
 class VoteCoordinator: HomeRootCoordinator {
@@ -52,7 +56,29 @@ extension VoteCoordinator: VoteCoordinatorProtocol {
 }
 
 extension VoteCoordinator: VoteStateManagerProtocol {
+    func updateIndexPaths(_ indexPaths: [IndexPath]?) {
+        if indexPaths != nil {
+            self.store.dispatch(SetSelIndexPathsAction(indexPaths: indexPaths!))
+        }
+    }
+    
     func loadVoteList(_ completed: @escaping (Bool) -> ()) {
+        //Debug
+//        var testData: [NodeVoteViewModel] = []
+//        for index in 0...20 {
+//            var nodeModel = NodeVoteViewModel()
+//            nodeModel.name = "test"
+//            nodeModel.owner = "canadaeos"
+//            nodeModel.percent = "2.1%"
+//            nodeModel.url = "http://www.baidu.com"
+//            nodeModel.rank = "1"
+//            testData.append(nodeModel)
+//        }
+//        self.store.dispatch(SetVoteNodeListAction(datas: testData))
+//        completed(true)
+        //Debug
+        
+
         NBLNetwork.request(target: .producer(showNum: 999), success: {[weak self] (json) in
             let result = json["result"].dictionaryValue
             let producers = result["producers"]?.arrayValue
@@ -68,6 +94,7 @@ extension VoteCoordinator: VoteStateManagerProtocol {
                 nodes.append(nodeModel)
             })
             self?.store.dispatch(SetVoteNodeListAction(datas: nodes))
+            completed(true)
             }, error: { (code) in
                 completed(false)
         }) { (error) in
@@ -96,6 +123,15 @@ extension VoteCoordinator: VoteStateManagerProtocol {
             
         }) { (error) in
             
+        }
+    }
+    
+    func voteSelNodes() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, completion: {[weak self] (result) in
+                guard let `self` = self else { return }
+                self.rootVC.popViewController(animated: true)
+            })
         }
     }
     
