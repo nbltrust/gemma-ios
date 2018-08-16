@@ -64,41 +64,42 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     
     func loadVoteList(_ completed: @escaping (Bool) -> ()) {
         //Debug
-        var testData: [NodeVoteViewModel] = []
-        for index in 0...20 {
-            var nodeModel = NodeVoteViewModel()
-            nodeModel.name = "test"
-            nodeModel.owner = "canadaeos"
-            nodeModel.percent = "2.1%"
-            nodeModel.url = "http://www.baidu.com"
-            nodeModel.rank = "1"
-            testData.append(nodeModel)
-        }
-        self.store.dispatch(SetVoteNodeListAction(datas: testData))
+//        var testData: [NodeVoteViewModel] = []
+//        for index in 0...20 {
+//            var nodeModel = NodeVoteViewModel()
+//            nodeModel.name = "test"
+//            nodeModel.owner = "canadaeos"
+//            nodeModel.percent = "2.1%"
+//            nodeModel.url = "http://www.baidu.com"
+//            nodeModel.rank = "1"
+//            testData.append(nodeModel)
+//        }
+//        self.store.dispatch(SetVoteNodeListAction(datas: testData))
+//        completed(true)
         //Debug
         
-//        completed(true)
-//        NBLNetwork.request(target: .producer(showNum: 999), success: {[weak self] (json) in
-//            let result = json["result"].dictionaryValue
-//            let producers = result["producers"]?.arrayValue
-//            var nodes: [NodeVoteViewModel] = [NodeVoteViewModel]()
-//            producers?.forEachInParallel({ (producer) in
-//                let node = NodeVote.deserialize(from: producer.dictionaryObject)
-//                var nodeModel = NodeVoteViewModel()
-//                nodeModel.name = node?.alias
-//                nodeModel.owner = node?.account
-//                nodeModel.percent = String(format: "%f%", (node?.percentage)! * 100)
-//                nodeModel.url = node?.url
-//                nodeModel.rank = "1"
-//                nodes.append(nodeModel)
-//            })
-//            self?.store.dispatch(SetVoteNodeListAction(datas: nodes))
-//            completed(true)
-//            }, error: { (code) in
-//                completed(false)
-//        }) { (error) in
-//            completed(false)
-//        }
+
+        NBLNetwork.request(target: .producer(showNum: 999), success: {[weak self] (json) in
+            let result = json["result"].dictionaryValue
+            let producers = result["producers"]?.arrayValue
+            var nodes: [NodeVoteViewModel] = [NodeVoteViewModel]()
+            producers?.forEachInParallel({ (producer) in
+                let node = NodeVote.deserialize(from: producer.dictionaryObject)
+                var nodeModel = NodeVoteViewModel()
+                nodeModel.name = node?.alias
+                nodeModel.owner = node?.account
+                nodeModel.percent = String(format: "%f%", (node?.percentage)! * 100)
+                nodeModel.url = node?.url
+                nodeModel.rank = "1"
+                nodes.append(nodeModel)
+            })
+            self?.store.dispatch(SetVoteNodeListAction(datas: nodes))
+            completed(true)
+            }, error: { (code) in
+                completed(false)
+        }) { (error) in
+            completed(false)
+        }
     }
     
     func getAccountInfo() {
@@ -126,7 +127,12 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
     
     func voteSelNodes() {
-        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, completion: {[weak self] (result) in
+                guard let `self` = self else { return }
+                self.rootVC.popViewController(animated: true)
+            })
+        }
     }
     
     var state: VoteState {

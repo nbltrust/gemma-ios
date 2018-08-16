@@ -30,8 +30,10 @@ protocol TransferConfirmPasswordStateManagerProtocol {
     func relieveMortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
     
     func buyRam(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
+    
     func sellRam(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
 
+    func voteNode(_ password:String, account:String, amount:String, remark:String, producers: [String] ,callback:@escaping (Bool, String)->())
 
 }
 
@@ -156,6 +158,19 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.faile = R.string.localizable.sell_ram_faile()
         model.amount = amount
         transaction(EOSAction.sellram.rawValue, actionModel: model) { (bool, showString) in
+            callback(bool,showString)
+        }
+    }
+    
+    func voteNode(_ password: String, account: String, amount: String, remark: String, producers: [String], callback: @escaping (Bool, String) -> ()) {
+        let model = VoteProducerActionModel()
+        model.password = password
+        model.toAccount = account
+        model.fromAccount = WalletManager.shared.getAccount()
+        model.success = R.string.localizable.sell_ram_success()
+        model.faile = R.string.localizable.sell_ram_faile()
+        model.producers = producers
+        transaction(EOSAction.voteproducer.rawValue, actionModel: model) { (bool, showString) in
             callback(bool,showString)
         }
     }
