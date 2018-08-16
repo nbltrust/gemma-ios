@@ -20,6 +20,7 @@ struct VoteState: StateType {
 }
 
 struct VotePropertyState {
+    var selIndexPaths: [IndexPath] = []
     var datas: [NodeVoteViewModel] = []
     var delagatedInfo: BehaviorRelay<DelegatedInfoModel?> = BehaviorRelay(value: nil)
 }
@@ -45,6 +46,10 @@ struct SetVoteNodeListAction : Action {
 
 struct SetDelegatedInfoAction : Action {
     var info : DelegatedInfoModel
+}
+
+struct SetSelIndexPathsAction : Action {
+    var indexPaths : [IndexPath]
 }
 
 //MARK: - Action Creator

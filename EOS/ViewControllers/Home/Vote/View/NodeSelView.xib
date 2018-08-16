@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NodeSelView" customModule="EOS" customModuleProvider="target">
             <connections>
+                <outlet property="checkButton" destination="eP8-N2-vrX" id="0ew-C7-KDv"/>
                 <outlet property="nameLabel" destination="UTO-d3-4dZ" id="xHK-6B-yUS"/>
                 <outlet property="ownerLabel" destination="VVb-fy-4x2" id="TIz-oL-fDe"/>
             </connections>
@@ -21,13 +22,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tab_circular_selected" translatesAutoresizingMaskIntoConstraints="NO" id="4Gx-Xi-UGN">
-                    <rect key="frame" x="16" y="47" width="20" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="b2G-MT-nxA"/>
-                        <constraint firstAttribute="width" constant="20" id="taB-EC-VsQ"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTO-d3-4dZ">
                     <rect key="frame" x="60" y="16" width="305" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -40,17 +34,28 @@
                     <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eP8-N2-vrX">
+                    <rect key="frame" x="16" y="47" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="HZb-NE-CZL"/>
+                        <constraint firstAttribute="width" constant="20" id="OK6-RW-bkS"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="imageForNormal" value="ic_tab_circular_enabled"/>
+                        <userDefinedRuntimeAttribute type="image" keyPath="imageForSelected" value="ic_tab_circular_selected"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="UTO-d3-4dZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="60" id="2vf-7X-VWC"/>
-                <constraint firstItem="4Gx-Xi-UGN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="8YZ-CS-5dk"/>
                 <constraint firstItem="VVb-fy-4x2" firstAttribute="top" secondItem="UTO-d3-4dZ" secondAttribute="bottom" constant="10" id="DLW-6J-bfN"/>
                 <constraint firstAttribute="trailing" secondItem="UTO-d3-4dZ" secondAttribute="trailing" constant="10" id="Fna-ya-7i8"/>
+                <constraint firstItem="eP8-N2-vrX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="QSC-BI-n1s"/>
                 <constraint firstItem="VVb-fy-4x2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="60" id="baA-KR-cSA"/>
+                <constraint firstItem="eP8-N2-vrX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hd3-5R-tWf"/>
                 <constraint firstItem="UTO-d3-4dZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="hjh-VY-15e"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="VVb-fy-4x2" secondAttribute="bottom" constant="16" id="qTD-gO-iCo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VVb-fy-4x2" secondAttribute="trailing" constant="10" id="sAS-Q2-Bxe"/>
-                <constraint firstItem="4Gx-Xi-UGN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wAR-AB-lzH"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -58,6 +63,7 @@
         </view>
     </objects>
     <resources>
+        <image name="ic_tab_circular_enabled" width="20" height="20"/>
         <image name="ic_tab_circular_selected" width="20" height="20"/>
     </resources>
 </document>

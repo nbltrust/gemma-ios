@@ -20,6 +20,7 @@ struct SelectedVoteState: StateType {
 
 struct SelectedVotePropertyState {
     var datas: [NodeVoteViewModel] = []
+    var indexPaths: [IndexPath] = []
 }
 
 struct SelectedVoteCallbackState {

@@ -20,6 +20,8 @@ protocol SelectedVoteStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func loadDatas()
+    
+    func updateAtIndexPath(_ indexPath: IndexPath, isSel: Bool)
 }
 
 class SelectedVoteCoordinator: HomeRootCoordinator {
@@ -54,7 +56,23 @@ extension SelectedVoteCoordinator: SelectedVoteStateManagerProtocol {
     
     func loadDatas() {
         Broadcaster.notify(VoteStateManagerProtocol.self) { (pro) in
-            self.store.dispatch(SetVoteNodeListAction(datas: pro.state.property.datas))
+            var lastSelData : [NodeVoteViewModel] = []
+            for index in 0..<pro.state.property.selIndexPaths.count {
+                lastSelData.append(pro.state.property.datas[index])
+            }
+            self.store.dispatch(SetSelIndexPathsAction(indexPaths: pro.state.property.selIndexPaths))
+            self.store.dispatch(SetVoteNodeListAction(datas: lastSelData))
+        }
+    }
+    
+    func updateAtIndexPath(_ indexPath: IndexPath, isSel: Bool) {
+        if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? VoteViewController {
+            if isSel {
+                vc.voteTable.selectRow(at: self.state.property.indexPaths[indexPath.row], animated: false, scrollPosition: .none)
+            } else {
+                vc.voteTable.deselectRow(at: self.state.property.indexPaths[indexPath.row], animated: false)
+            }
+            vc.updateCount()
         }
     }
 }
