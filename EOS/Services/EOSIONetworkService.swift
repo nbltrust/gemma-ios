@@ -20,7 +20,6 @@ enum EOSIOService {
     case abi_json_to_bin(json: String)
     case abi_bin_to_json(bin: String, action:EOSAction)
     case push_transaction(json: String)
-    case get_producers(json: String)
     case get_table_rows(json:String)
     
     //history
@@ -61,8 +60,6 @@ struct EOSIONetwork {
 extension EOSIOService : TargetType {
     var baseURL: URL {
         switch self {
-        case .get_producers(_):
-            return NetworkConfiguration.EOSIO_CANADA_TEST_URL
         default:
             return NetworkConfiguration.EOSIO_BASE_TEST_URL
         }
@@ -88,8 +85,6 @@ extension EOSIOService : TargetType {
             return "/v1/history/get_key_accounts"
         case .get_transaction:
             return "/v1/history/get_transaction"
-        case .get_producers:
-            return "/v1/chain/get_producers"
         case .get_table_rows:
             return "/v1/chain/get_table_rows"
         }
@@ -123,8 +118,6 @@ extension EOSIOService : TargetType {
             return ["public_key": pubKey]
         case let .get_transaction(id):
             return ["id": id]
-        case let .get_producers(json):
-            return JSON(parseJSON: json).dictionaryObject ?? [:]
         case let .get_table_rows(json):
             return JSON(parseJSON: json).dictionaryObject ?? [:]
         }

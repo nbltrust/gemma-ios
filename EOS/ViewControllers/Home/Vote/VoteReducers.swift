@@ -17,6 +17,10 @@ func VotePropertyReducer(_ state: VotePropertyState?, action: Action) -> VotePro
     var state = state ?? VotePropertyState()
     
     switch action {
+    case let action as SetVoteNodeListAction:
+        state.datas = action.datas
+    case let action as SetDelegatedInfoAction:
+        state.delagatedInfo.accept(action.info)
     default:
         break
     }

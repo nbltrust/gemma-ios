@@ -59,6 +59,12 @@ class SellRamActionModel: ActionModel {
     var amount: String = ""
 }
 
+class VoteProducerActionModel: ActionModel {
+    var amount: String = ""
+    var producers: [String] = [String]()
+}
+
+
 func getAbi(_ action:String, actionModel: ActionModel) -> String! {
     var abi: String = ""
     if action == EOSAction.transfer.rawValue {
@@ -79,6 +85,11 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                 abi = abiStr
             }
         }
+    } else if action == EOSAction.voteproducer.rawValue {
+        let voteModel = actionModel as! VoteProducerActionModel
+        let voter: [String : Any] = ["voter":WalletManager.shared.getAccount(),"proxy":"","producers":voteModel.producers]
+        let dic: [String : Any] = ["code":EOSIOContract.EOSIO_CODE,"action":action,"args":voter]
+        abi = dic.jsonString()!
     }
     else {
         if action == EOSAction.delegatebw.rawValue || action == EOSAction.undelegatebw.rawValue {
@@ -122,12 +133,11 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                             abi = abiStr
                         }
                     }
-
+                    
                 }
             }
         }
     }
-    
     return abi
 }
 
@@ -156,6 +166,8 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                 transaction = EOSIO.getBuyRamTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, payer_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
             } else if action == EOSAction.sellram.rawValue {
                 transaction = EOSIO.getSellRamTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, account_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
+            } else if action == EOSAction.voteproducer.rawValue {
+                transaction = EOSIO.getVoteTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, vote_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
             }
             
             EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in

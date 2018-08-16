@@ -8,6 +8,7 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
 struct VoteState: StateType {
@@ -20,16 +21,30 @@ struct VoteState: StateType {
 
 struct VotePropertyState {
     var datas: [NodeVoteViewModel] = []
+    var delagatedInfo: BehaviorRelay<DelegatedInfoModel?> = BehaviorRelay(value: nil)
 }
 
 struct VoteCallbackState {
 }
 
 struct NodeVoteViewModel {
-    var name: String = ""
-    var url: String = ""
-    var rank: Int = 0
-    var percent: Float = 0
+    var name: String!
+    var owner: String!
+    var url: String!
+    var rank: String!
+    var percent: String!
+}
+
+struct DelegatedInfoModel {
+    var delagetedAmount: Float = 0
+}
+
+struct SetVoteNodeListAction : Action {
+    var datas : [NodeVoteViewModel]
+}
+
+struct SetDelegatedInfoAction : Action {
+    var info : DelegatedInfoModel
 }
 
 //MARK: - Action Creator
