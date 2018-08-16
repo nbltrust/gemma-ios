@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftNotificationCenter
 
 @IBDesignable
 class BaseView: UIControl {
@@ -35,7 +36,7 @@ class BaseView: UIControl {
 
     @IBInspectable public var showTouchFeedback: Bool = true
 
-    var data: Any!
+    var data: Any?
     
     func updateUI<T>(_ model:T, handler:((T)->Void)?) {
         self.data = model
@@ -44,6 +45,9 @@ class BaseView: UIControl {
     }
     
     func setup() {
+        Broadcaster.unregister(type(of: self), observer: self)
+        Broadcaster.register(type(of: self), observer: self)
+        
         updateHeight()
         
         setupEvent()
