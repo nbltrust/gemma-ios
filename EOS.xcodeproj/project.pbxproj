@@ -356,6 +356,7 @@
 		72FE5B9221009EED00B29FEC /* LeadInIntroduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9121009EED00B29FEC /* LeadInIntroduceView.xib */; };
 		72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */; };
 		72FE5B9621009F2200B29FEC /* LeadInKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */; };
+		7307A939212527D400BD6444 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7307A938212527D300BD6444 /* BaseView.swift */; };
 		731C8502211D6B5B00C3FAA8 /* Pods_EOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */; };
 		733714DE212431E200B2ED90 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 733714C0212431E100B2ED90 /* .gitignore */; };
 		733714DF212431E200B2ED90 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 733714C1212431E100B2ED90 /* .travis.yml */; };
@@ -5909,6 +5910,7 @@
 		72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInKeyView.swift; sourceTree = "<group>"; };
 		72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadInKeyView.xib; sourceTree = "<group>"; };
 		7303786B14932B58CF3428E1760B056F /* rational_horner1_18.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rational_horner1_18.hpp; sourceTree = "<group>"; };
+		7307A938212527D300BD6444 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7307B94E3DA4A89CA5C8FEE82010BDD8 /* basic_regex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = basic_regex.hpp; sourceTree = "<group>"; };
 		730C66307D456E13E4BD20F641135E28 /* authority.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = authority.hpp; sourceTree = "<group>"; };
 		731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_EOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29382,6 +29384,7 @@
 		D483B72D65CDBB3F22F1EF04C5437555 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				7307A938212527D300BD6444 /* BaseView.swift */,
 				251827CD4D9BA425A6143E130269952A /* BaseCollectionViewCell.swift */,
 				52A2FF57FFD8938F15BC936FEAD77763 /* BaseNavigationController.swift */,
 				444BD09BA2422B50FD3691AB5204C86A /* BaseTabbarViewController.swift */,
@@ -33045,6 +33048,7 @@
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
 				22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */,
 				22578772212197F3004C4579 /* SelectedVoteReducers.swift in Sources */,
+				7307A939212527D400BD6444 /* BaseView.swift in Sources */,
 				72FE5B6D2100491A00B29FEC /* AboutViewController.swift in Sources */,
 				22A93234211A991D00ACC63C /* VoteViewController.swift in Sources */,
 				22C023AF20FCB09300284A0A /* ScanCoordinator.swift in Sources */,
