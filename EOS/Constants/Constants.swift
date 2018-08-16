@@ -28,7 +28,7 @@ struct NetworkConfiguration {
     static let NBL_BASE_URL = URL(string: "http://139.196.73.117:3001")!
     static let NBL_BASE_TEST_URL = URL(string: "http://139.196.73.117:3002")!
 
-    static let EOSIO_BASE_TEST_URL = URL(string: "http://47.75.154.248:50003")!//URL(string: "http://172.20.5.25:9999")!
+    static let EOSIO_BASE_TEST_URL = URL(string: "http://139.224.135.236:18888")!//URL(string: "http://172.20.5.25:9999")!
     static let EOSIO_CANADA_TEST_URL = URL(string: "http://mainnet.eoscanada.com")!
     static let EOSIO_BASE_URL = URL(string: "http://139.196.73.117:8888")!
     static let EOS_BP_URL = URL(string: "https://eosweb.net")!
