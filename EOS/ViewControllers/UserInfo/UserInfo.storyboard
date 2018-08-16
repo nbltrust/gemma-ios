@@ -568,7 +568,19 @@
                     <view key="view" contentMode="scaleToFill" id="msg-Gs-CgW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hxr-xf-BRb">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Vy3-sp-hJj" firstAttribute="trailing" secondItem="Hxr-xf-BRb" secondAttribute="trailing" id="9EX-i3-bcB"/>
+                            <constraint firstItem="Hxr-xf-BRb" firstAttribute="top" secondItem="Vy3-sp-hJj" secondAttribute="top" id="Q8f-gB-6ge"/>
+                            <constraint firstItem="Vy3-sp-hJj" firstAttribute="bottom" secondItem="Hxr-xf-BRb" secondAttribute="bottom" id="lrh-ou-w7D"/>
+                            <constraint firstItem="Hxr-xf-BRb" firstAttribute="leading" secondItem="Vy3-sp-hJj" secondAttribute="leading" id="rli-be-nBi"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Vy3-sp-hJj"/>
                     </view>
                 </viewController>

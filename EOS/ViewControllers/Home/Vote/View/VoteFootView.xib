@@ -26,8 +26,11 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A05-bz-1RX">
                     <rect key="frame" x="15" y="10" width="140" height="53.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" name="darkSlateBlue" red="0.129" green="0.173" blue="0.404" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="mortgage_resource"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip9-zy-Ozh">
                     <rect key="frame" x="15" y="63.5" width="135" height="53.5"/>
@@ -66,6 +69,4 @@
             <point key="canvasLocation" x="173" y="57"/>
         </label>
     </objects>
-    <resources>
-    </resources>
 </document>

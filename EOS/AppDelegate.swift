@@ -64,6 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if !WalletManager.shared.existWallet() {
             appcoordinator!.showEntry()
+        } else {
+            SafeManager.shared.checkForOpenAPP()
         }
         return true
     }
@@ -119,4 +121,5 @@ extension AppDelegate {
         }
     }
 }
+
 

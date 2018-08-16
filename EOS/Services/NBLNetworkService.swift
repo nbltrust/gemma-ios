@@ -16,6 +16,7 @@ enum NBLService {
     case createAccount(account:String, pubKey:String, invitationCode:String, hash:String)
     case accountVerify(account:String)
     case accountHistory(account:String, showNum:Int, lastPosition:Int)
+    case producer(showNum:Int)
 }
 
 func defaultManager() -> Alamofire.SessionManager {
@@ -77,6 +78,8 @@ extension NBLService : TargetType {
             return "/account/verify"
         case .accountHistory:
             return "/api/v1/account/history"
+        case .producer(_):
+            return "/api/v1/producer/fetch"
         }
     }
     
@@ -92,6 +95,8 @@ extension NBLService : TargetType {
             return ["account_name": account]
         case let .accountHistory(account, showNum, lastPosition):
             return ["account_name": account, "show_num":showNum, "last_pos": lastPosition]
+        case let .producer(showNum):
+            return ["show_num": showNum]
         }
     }
     

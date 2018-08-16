@@ -18,7 +18,7 @@ class GeneralRamCellView: UIView {
         didSet {
             if let data = data as? BuyRamViewModel {
                 generalView.data = data
-                priceLabel.text = data.price
+                priceLabel.text = data.priceLabel
             }
         }
     }

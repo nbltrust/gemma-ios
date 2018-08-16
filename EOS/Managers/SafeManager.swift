@@ -22,6 +22,67 @@ class SafeManager {
     
     var gestureLockPassword = Defaults[.gestureLockPassword]
     
+    //MARK: - APPOpenComfirm
+    func checkForOpenAPP() {
+        if self.isGestureLockOpened() {
+            showGestureComfirmVC()
+        } else if self.isFaceIdOpened() {
+            showFaceIDComfirmVC()
+        } else if self.isFingerPrinterLockOpened() {
+            showFingerSingerComfirmVC()
+        }
+    }
+    
+    func showFaceIDComfirmVC() {
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let nav = BaseNavigationController()
+        nav.navStyle = .clear
+        let vc = R.storyboard.userInfo.faceIDComfirmViewController()!
+        vc.canDismiss = false
+        let faceIdCoordinator = FaceIDComfirmCoordinator(rootVC: nav)
+        vc.coordinator = faceIdCoordinator
+        nav.pushViewController(vc, animated: true)
+        appdelegate.appcoordinator?.rootVC.present(nav, animated: true, completion: nil)
+    }
+    
+    func showFingerSingerComfirmVC() {
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let nav = BaseNavigationController()
+        nav.navStyle = .clear
+        let vc = R.storyboard.userInfo.fingerPrinterConfirmViewController()!
+        vc.canDismiss = false
+        let fingerCoordinator = FingerPrinterConfirmCoordinator(rootVC: nav)
+        vc.coordinator = fingerCoordinator
+        nav.pushViewController(vc, animated: true)
+        appdelegate.appcoordinator?.rootVC.present(nav, animated: true, completion: nil)
+    }
+    
+    func showGestureComfirmVC() {
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let nav = BaseNavigationController()
+        nav.navStyle = .clear
+        let vc = R.storyboard.userInfo.gestureLockComfirmViewController()!
+        vc.canDismiss = false
+        let gestureCoordinator = GestureLockComfirmCoordinator(rootVC: nav)
+        vc.coordinator = gestureCoordinator
+        nav.pushViewController(vc, animated: true)
+        appdelegate.appcoordinator?.rootVC.present(nav, animated: true, completion: nil)
+        
+        if self.isFaceIdOpened() {
+            confirmFaceIdLock(R.string.localizable.faceid_reason()) { (result) in
+                if result {
+                    nav.dismiss(animated: true)
+                }
+            }
+        } else if self.isFingerPrinterLockOpened() {
+            confirmFingerSingerLock(R.string.localizable.fingerid_reason()) { (result) in
+                if result {
+                    nav.dismiss(animated: true)
+                }
+            }
+        }
+    }
+    
     //MARK: - Confirm
     func confirmFaceIdLock(_ reason: String, callback: @escaping (Bool) -> ()) {
         if self.biometricType() == .face {

@@ -13,6 +13,7 @@ import Device
 import NotificationBannerSwift
 import RxGesture
 import SwiftNotificationCenter
+import KRProgressHUD
 
 func navBgImage() -> UIImage? {
     switch UIScreen.main.bounds.width {
@@ -58,6 +59,12 @@ class SellRamActionModel: ActionModel {
     var amount: String = ""
 }
 
+class VoteProducerActionModel: ActionModel {
+    var amount: String = ""
+    var producers: [String] = [String]()
+}
+
+
 func getAbi(_ action:String, actionModel: ActionModel) -> String! {
     var abi: String = ""
     if action == EOSAction.transfer.rawValue {
@@ -74,10 +81,15 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
         }
     } else if action == EOSAction.sellram.rawValue {
         if let actionModel = actionModel as? SellRamActionModel {
-                if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIO_CODE, action: action, account: WalletManager.shared.getAccount(), bytes:actionModel.amount.toBytes) {
-                    abi = abiStr
-                }
+            if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIO_CODE, action: action, account: WalletManager.shared.getAccount(), bytes:actionModel.amount.toBytes) {
+                abi = abiStr
+            }
         }
+    } else if action == EOSAction.voteproducer.rawValue {
+        let voteModel = actionModel as! VoteProducerActionModel
+        let voter: [String : Any] = ["voter":WalletManager.shared.getAccount(),"proxy":"","producers":voteModel.producers]
+        let dic: [String : Any] = ["code":EOSIOContract.EOSIO_CODE,"action":action,"args":voter]
+        abi = dic.jsonString()!
     }
     else {
         if action == EOSAction.delegatebw.rawValue || action == EOSAction.undelegatebw.rawValue {
@@ -89,13 +101,13 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                     if action == EOSAction.delegatebw.rawValue {
                         if var cpu = vc.coordinator?.state.property.cpuMoneyValid.value.2 {
                             if cpu == "" {
-                                cpu = "0"
+                                cpu = "0.0000"
                             }
                             cpuValue = cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
                         if var net = vc.coordinator?.state.property.netMoneyValid.value.2 {
                             if net == "" {
-                                net = "0"
+                                net = "0.0000"
                             }
                             netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
@@ -106,13 +118,13 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                     } else if action == EOSAction.undelegatebw.rawValue {
                         if var cpu = vc.coordinator?.state.property.cpuReliveMoneyValid.value.2 {
                             if cpu == "" {
-                                cpu = "0"
+                                cpu = "0.0000"
                             }
                             cpuValue = cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
                         if var net = vc.coordinator?.state.property.netReliveMoneyValid.value.2 {
                             if net == "" {
-                                net = "0"
+                                net = "0.0000"
                             }
                             netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
@@ -121,12 +133,11 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                             abi = abiStr
                         }
                     }
-
+                    
                 }
             }
         }
     }
-    
     return abi
 }
 
@@ -155,6 +166,8 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                 transaction = EOSIO.getBuyRamTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, payer_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
             } else if action == EOSAction.sellram.rawValue {
                 transaction = EOSIO.getSellRamTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, account_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
+            } else if action == EOSAction.voteproducer.rawValue {
+                transaction = EOSIO.getVoteTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, vote_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
             }
             
             EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
@@ -195,6 +208,27 @@ func showWarning(_ str:String) {
     }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: banner.disposeBag)
     
     banner.autoDismiss = false
+    banner.show()
+}
+
+func showSuccessTop(_ str:String) {
+    KRProgressHUD.dismiss()
+
+    let banner = NotificationBanner(title: "", subtitle: str, style: .success, colors: BannerColor())
+    banner.duration = 2
+    banner.subtitleLabel?.textAlignment = NSTextAlignment.center
+    banner.autoDismiss = true
+    banner.show()
+}
+
+func showFailTop(_ str:String) {
+    KRProgressHUD.dismiss()
+
+    let banner = NotificationBanner(title: "", subtitle: str, style: .warning, colors: BannerColor())
+    banner.subtitleLabel?.textAlignment = NSTextAlignment.center
+    banner.duration = 2
+    
+    banner.autoDismiss = true
     banner.show()
 }
 

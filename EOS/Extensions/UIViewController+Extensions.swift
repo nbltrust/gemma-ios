@@ -60,11 +60,11 @@ extension UIViewController {
     }
     
     func showError(message: String) {
-        KRProgressHUD.showError(withMessage: message)
+        showFailTop(message)
     }
     
     func showSuccess(message: String) {
-        KRProgressHUD.showSuccess(withMessage: message)
+        showSuccessTop(message)
     }
     
     @objc func refreshViewController() {

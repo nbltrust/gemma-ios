@@ -222,6 +222,13 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     }
     
     func checkAccount(_ completion:@escaping ResultCallback) {
-        WalletManager.shared.validAccountRegisterSuccess(WalletManager.shared.currentPubKey, completion: completion)
+        if let walletlist = WalletManager.shared.currentWallet() {
+            if walletlist.isImport == true  {
+                WalletManager.shared.validChainAccountCreated(walletlist.name, completion: completion)
+            } else {
+                WalletManager.shared.validAccountRegisterSuccess(WalletManager.shared.currentPubKey, completion: completion)
+                
+            }
+        }
     }
 }
