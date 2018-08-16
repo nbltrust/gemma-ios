@@ -92,7 +92,7 @@ extension BuyRamViewController {
                 cpuAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
             }
             
-            model.amount = cpuAmount.toDouble()!.string
+            model.amount = cpuAmount
             model.remark = R.string.localizable.buy_ram_remark()
         }
         model.buttonTitle = R.string.localizable.confirm_buy()
