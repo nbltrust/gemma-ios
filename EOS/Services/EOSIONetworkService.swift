@@ -61,7 +61,7 @@ extension EOSIOService : TargetType {
     var baseURL: URL {
         switch self {
         default:
-            return NetworkConfiguration.EOSIO_BASE_TEST_URL
+            return NetworkConfiguration.EOSIO_BASE_URL
         }
     }
     

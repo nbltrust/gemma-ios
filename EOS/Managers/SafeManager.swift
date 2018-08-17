@@ -190,6 +190,26 @@ class SafeManager {
         Defaults[.isGestureLockOpened] = true
     }
     
+    func isGestureLockLocked() -> Bool {
+        let lockedTime = Defaults[.gestureLockLockedTime]
+        if lockedTime > 0 {
+            let now = NSDate()
+            let timeGap = now.timeIntervalSince1970.int - lockedTime
+            if timeGap > 0 && timeGap < GestureLockSetting.gestureLockTimeDuration {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func lockGestureLock() {
+        Defaults[.gestureLockLockedTime] = NSDate().timeIntervalSince1970.int
+    }
+    
+    func unlockGestureLock() {
+        Defaults[.gestureLockLockedTime] = 0
+    }
+    
     func biometricType() -> BiometricType {
         let authContext = LAContext()
         if #available(iOS 11, *) {

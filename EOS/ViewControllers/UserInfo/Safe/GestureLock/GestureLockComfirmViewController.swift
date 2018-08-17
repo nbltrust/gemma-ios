@@ -74,9 +74,11 @@ class GestureLockComfirmViewController: BaseViewController {
 
 extension GestureLockComfirmViewController: GestureLockViewDelegate {
     func gestureLockViewDidTouchesEnd(_ lockView: GestureLockView) {
-        let password = lockView.password
-        if password.trimmed.count > 0 {
-            self.coordinator?.confirmLock(gestureLockView.password)
+        if !SafeManager.shared.isGestureLockLocked() {
+            let password = lockView.password
+            if password.trimmed.count > 0 {
+                self.coordinator?.confirmLock(gestureLockView.password)
+            }
         }
     }
 }

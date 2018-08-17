@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import Repeat
 
 protocol GestureLockComfirmCoordinatorProtocol {
     func dismiss()
@@ -20,11 +21,17 @@ protocol GestureLockComfirmStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func confirmLock(_ password: String)
+    
+    func lockConfirm()
+    
+    func unLockConfirm()
 }
 
 class GestureLockComfirmCoordinator: NavCoordinator {
     
     lazy var creator = GestureLockComfirmPropertyActionCreate()
+    
+    var timer:Repeater?
     
     var store = Store<GestureLockComfirmState>(
         reducer: GestureLockComfirmReducer,
@@ -66,4 +73,11 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
         }
     }
     
+    func lockConfirm() {
+        
+    }
+    
+    func unLockConfirm() {
+        
+    }
 }
