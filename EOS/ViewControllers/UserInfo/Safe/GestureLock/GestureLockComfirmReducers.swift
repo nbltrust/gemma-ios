@@ -17,8 +17,12 @@ func GestureLockComfirmPropertyReducer(_ state: GestureLockComfirmPropertyState?
     let state = state ?? GestureLockComfirmPropertyState()
     
     switch action {
-    case let action as SetPromotDataAction:
+    case let action as SetConfirmPromotDataAction:
         state.promotData.accept(action.data)
+    case let action as SetReDrawFailedNumAction:
+        state.reDrawFailedNum.accept(action.num)
+    case let action as SetGestureLockLockedAction:
+        state.locked.accept(action.value)
     default:
         break
     }

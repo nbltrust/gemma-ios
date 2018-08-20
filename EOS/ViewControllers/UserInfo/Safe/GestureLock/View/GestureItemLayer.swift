@@ -12,6 +12,7 @@ enum GestureLockItemStatus: Int {
     case normal = 1
     case highlighted
     case warning
+    case locked
 }
 
 class GestureItemLayer: CAShapeLayer {
@@ -72,8 +73,10 @@ class GestureItemLayer: CAShapeLayer {
             self.turnNormal()
         } else if status == .highlighted {
             self.turnHighlighted()
+        } else if status == .warning {
+            self.turnWarning()
         } else {
-            self.trunWarning()
+            self.turnLocked()
         }
     }
     
@@ -128,9 +131,16 @@ class GestureItemLayer: CAShapeLayer {
         drawArcCenterLayer()
     }
     
-    fileprivate func trunWarning() {
+    fileprivate func turnWarning() {
         borderColor = GestureLockSetting.warningColor.cgColor
         borderWidth = GestureLockSetting.lockHighlightedBorderWidth
         fillColor = GestureLockSetting.warningColor.cgColor
+    }
+    
+    fileprivate func turnLocked() {
+        borderColor = GestureLockSetting.warningColor.cgColor
+        borderWidth = GestureLockSetting.lockHighlightedBorderWidth
+        fillColor = GestureLockSetting.warningColor.cgColor
+        drawArcCenterLayer()
     }
 }
