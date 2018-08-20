@@ -30,7 +30,7 @@ struct NetworkConfiguration {
 
     static let EOSIO_BASE_TEST_URL = URL(string: "http://139.224.135.236:18888")!//URL(string: "http://172.20.5.25:9999")!
     static let EOSIO_CANADA_TEST_URL = URL(string: "http://mainnet.eoscanada.com")!
-    static let EOSIO_BASE_URL = URL(string: "http://139.196.73.117:8888")!
+    static let EOSIO_BASE_URL = URL(string: "http://52.77.177.200:8888")!//URL(string: "http://139.196.73.117:8888")!
     static let EOS_BP_URL = URL(string: "https://eosweb.net")!
 
     static let EOSIO_DEFAULT_SYMBOL = "EOS"
