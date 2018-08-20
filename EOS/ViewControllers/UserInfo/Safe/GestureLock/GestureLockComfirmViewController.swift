@@ -24,6 +24,7 @@ class GestureLockComfirmViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         gestureLockView.delegate = self
+        self.coordinator?.checkGestureLock()
         if canDismiss {
             self.configLeftNavButton(R.image.icTransferClose())
         }

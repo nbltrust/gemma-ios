@@ -191,15 +191,19 @@ class SafeManager {
     }
     
     func isGestureLockLocked() -> Bool {
+        return leftUnLockGestureLockTime() > 0
+    }
+    
+    func leftUnLockGestureLockTime() -> Int {
         let lockedTime = Defaults[.gestureLockLockedTime]
         if lockedTime > 0 {
             let now = NSDate()
             let timeGap = now.timeIntervalSince1970.int - lockedTime
             if timeGap > 0 && timeGap < GestureLockSetting.gestureLockTimeDuration {
-                return true
+                return timeGap
             }
         }
-        return false
+        return 0
     }
     
     func lockGestureLock() {

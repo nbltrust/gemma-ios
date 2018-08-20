@@ -278,6 +278,7 @@
 "ges_pas_confirm_pla" = "再次输入解锁密码，以确认";
 "tap_to_valid" = "请点击验证";
 "ges_confirm_failed" = "手势密码有误，请重新解锁";
+"ges_locked" = "手势密码已锁定，请%dS后再试";
 
 //Home
 "node_vote" = "节点投票";
