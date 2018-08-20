@@ -14,7 +14,9 @@ import NotificationBannerSwift
 import RxGesture
 import SwiftNotificationCenter
 import KRProgressHUD
+import SwiftyUserDefaults
 
+//Nav BackgroundImage
 func navBgImage() -> UIImage? {
     switch UIScreen.main.bounds.width {
     case 320:
@@ -26,6 +28,21 @@ func navBgImage() -> UIImage? {
     default:
         return nil
     }
+}
+
+//Coin Datas
+func coinUnit() -> String {
+    let data = CoinUnitConfiguration.values
+    let coinIndex = Defaults[.coinUnit]
+    return data[coinIndex]
+}
+
+func coinType() -> CoinType {
+    let coinIndex = Defaults[.coinUnit]
+    if let type = CoinType(rawValue: coinIndex) {
+        return type
+    }
+    return .CNY
 }
 
 //func print<T>(file: String = #file, function: String = #function, line: Int = #line, _ message: T, color: UIColor = UIColor.white) {

@@ -25,6 +25,12 @@ struct SetDataAction : Action {
     var data : [String]
 }
 
+enum CustomSettingType : Int {
+    case language = 0
+    case asset
+    case node
+}
+
 //MARK: - Action Creator
 class NormalContentPropertyActionCreate {
     public typealias ActionCreator = (_ state: NormalContentState, _ store: Store<NormalContentState>) -> Action?
