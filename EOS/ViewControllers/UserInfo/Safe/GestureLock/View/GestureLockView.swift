@@ -16,6 +16,8 @@ class GestureLockView: UIView {
 
     open weak var delegate: GestureLockViewDelegate?
     
+    open var locked = false
+    
     private var itemLayers: [GestureItemLayer] = []
     
     private var selectedItemLayers: [GestureItemLayer] = []
@@ -123,7 +125,7 @@ class GestureLockView: UIView {
         }
         selectedItemLayers.append(itemLayer)
         password += itemLayer.index.description
-        itemLayer.status = .highlighted
+        itemLayer.status = locked ? .locked : .highlighted
         drawLine()
     }
     
@@ -188,7 +190,7 @@ class GestureLockView: UIView {
     
     public func reset() {
         interval = 0
-        shapeLayer?.strokeColor = GestureLockSetting.lockHighlightedColor.cgColor
+        shapeLayer?.strokeColor = locked ? GestureLockSetting.warningColor.cgColor : GestureLockSetting.lockHighlightedColor.cgColor
         selectedItemLayers.forEach { $0.status = .normal }
         selectedItemLayers.removeAll()
         mainPath.removeAllPoints()

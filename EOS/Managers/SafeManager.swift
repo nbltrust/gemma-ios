@@ -200,7 +200,7 @@ class SafeManager {
             let now = NSDate()
             let timeGap = now.timeIntervalSince1970.int - lockedTime
             if timeGap > 0 && timeGap < GestureLockSetting.gestureLockTimeDuration {
-                return timeGap
+                return GestureLockSetting.gestureLockTimeDuration - timeGap
             }
         }
         return 0

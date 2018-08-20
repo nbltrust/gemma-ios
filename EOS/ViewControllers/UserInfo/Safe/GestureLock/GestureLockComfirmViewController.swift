@@ -61,10 +61,20 @@ class GestureLockComfirmViewController: BaseViewController {
             guard let `self` = self else { return }
             self.messageLabel.text = arg0.message
             self.messageLabel.textColor = arg0.isWarning ? UIColor.scarlet : UIColor.darkSlateBlue
-            if arg0.isWarning {
+            if arg0.isWarning && !arg0.isLocked {
                 self.gestureLockView.warn()
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
+        self.coordinator?.state.property.locked.asObservable().subscribe(onNext: {[weak self] (locked) in
+            guard let `self` = self else { return }
+            self.gestureLockView.locked = locked
+            if locked {
+                self.gestureLockView.warn()
+            } else {
+                self.gestureLockView.reset()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     override func configureObserveState() {

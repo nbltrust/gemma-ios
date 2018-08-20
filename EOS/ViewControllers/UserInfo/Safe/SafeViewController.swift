@@ -20,15 +20,14 @@ class SafeViewController: BaseViewController {
     @IBOutlet weak var gestureView: SafeLineView!
     @IBOutlet weak var gestureActionView: NormalCellView!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        updateSafeSetting()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupEvent()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         updateSafeSetting()
     }
     

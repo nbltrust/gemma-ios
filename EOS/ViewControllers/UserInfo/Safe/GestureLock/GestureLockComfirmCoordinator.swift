@@ -69,9 +69,9 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
         } else {
             addValidCount()
             if password.trimmed.count < GestureLockSetting.minPasswordLength {
-                self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough(), true)))
+                self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough(), true, false)))
             } else {
-                self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_confirm_failed(), true)))
+                self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_confirm_failed(), true, false)))
             }
         }
     }
@@ -98,13 +98,16 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
         if SafeManager.shared.leftUnLockGestureLockTime() == 0 {
             SafeManager.shared.lockGestureLock()
         }
+        self.store.dispatch(SetGestureLockLockedAction(value: true))
         self.timer = Repeater.every(.seconds(1)) {[weak self] timer in
             guard let `self` = self else { return }
-            let leftTime = SafeManager.shared.leftUnLockGestureLockTime()
-            if leftTime > 0 {
-                self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_locked(leftTime), true)))
-            } else {
-                self.unLockGestureLock()
+            DispatchQueue.main.async {
+                let leftTime = SafeManager.shared.leftUnLockGestureLockTime()
+                if leftTime > 0 {
+                    self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_locked(leftTime), true, true)))
+                } else {
+                    self.unLockGestureLock()
+                }
             }
         }
         
@@ -116,7 +119,8 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
             self.timer?.pause()
             self.timer = nil
         }
+        self.store.dispatch(SetGestureLockLockedAction(value: false))
         SafeManager.shared.unlockGestureLock()
-        self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_current_pla(), true)))
+        self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_pas_current_pla(), false, false)))
     }
 }
