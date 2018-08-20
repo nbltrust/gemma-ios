@@ -12,24 +12,14 @@ import RxCocoa
 import ReSwift
 
 class NormalContentViewController: BaseViewController {
-
-    enum vc_type : Int {
-        case language = 0
-        case asset
-        case node
-    }
     
     @IBOutlet weak var containerView: ContainerNormalCellView!
     
 	var coordinator: (NormalContentCoordinatorProtocol & NormalContentStateManagerProtocol)?
 
-    var type : vc_type = .language
+    var type : CustomSettingType = .language
     
-    var selectedIndex : Int = 0 {
-        didSet {
-
-        }
-    }
+    var selectedIndex : Int = 0
     
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,15 +28,17 @@ class NormalContentViewController: BaseViewController {
     
     func setupUI() {
         self.title = self.type == .language ? R.string.localizable.normal_language() : R.string.localizable.normal_asset()
-        self.coordinator?.setData(self.type.rawValue){ [weak self] (data) in
-            self?.containerView.selectedIndex = 0
-            self?.containerView.data = data
+        self.containerView.data = self.coordinator?.settingDatas(type)
+        if let coordinator = self.coordinator {
+            self.selectedIndex = coordinator.selectedIndex(type)
         }
+        self.containerView.selectedIndex = selectedIndex
         configRightNavButton(R.string.localizable.normal_save())
     }
     
     override func rightAction(_ sender: UIButton) {
-        // 保存操作
+        self.coordinator?.setSelectIndex(type, index: selectedIndex)
+        self.coordinator?.popVC()
     }
     
     func commonObserveState() {
@@ -71,6 +63,7 @@ class NormalContentViewController: BaseViewController {
 extension NormalContentViewController {
     
     @objc func selectedSetting(_ sender : [String:Any]) {
+        log.debug(sender)
         if let index = sender["index"] as? Int {
             self.selectedIndex = index
         }
