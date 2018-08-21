@@ -19,7 +19,7 @@ class BuyRamViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = R.string.localizable.buy_ram_title()
+        self.title = R.string.localizable.buy_ram_title.key.localized()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,9 +93,9 @@ extension BuyRamViewController {
             }
             
             model.amount = cpuAmount
-            model.remark = R.string.localizable.buy_ram_remark()
+            model.remark = R.string.localizable.buy_ram_remark.key.localized()
         }
-        model.buttonTitle = R.string.localizable.confirm_buy()
+        model.buttonTitle = R.string.localizable.confirm_buy.key.localized()
         
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }
@@ -109,9 +109,9 @@ extension BuyRamViewController {
                 cpuAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
             }
             model.amount = cpuAmount.toDouble()!.string
-            model.remark = R.string.localizable.sell_ram_remark()
+            model.remark = R.string.localizable.sell_ram_remark.key.localized()
         }
-        model.buttonTitle = R.string.localizable.confirm_sell()
+        model.buttonTitle = R.string.localizable.confirm_sell.key.localized()
         
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }

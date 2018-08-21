@@ -35,7 +35,7 @@ extension PaymentsDetailCoordinator: PaymentsDetailCoordinatorProtocol {
     func openWebView() {
         let vc = BaseWebViewController()
         vc.url = H5AddressConfiguration.GET_INVITECODE_URL
-        vc.title = R.string.localizable.invitationcode_introduce()
+        vc.title = R.string.localizable.invitationcode_introduce.key.localized()
         self.rootVC.pushViewController(vc, animated: true)
     }
 }

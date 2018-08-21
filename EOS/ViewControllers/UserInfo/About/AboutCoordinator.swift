@@ -42,7 +42,7 @@ extension AboutCoordinator: AboutCoordinatorProtocol {
         } else {
             vc.url = H5AddressConfiguration.RELEASE_NOTES_EN_URL
         }
-        vc.title = R.string.localizable.about_info()
+        vc.title = R.string.localizable.about_info.key.localized()
         self.rootVC.pushViewController(vc, animated: true)
     }
 }

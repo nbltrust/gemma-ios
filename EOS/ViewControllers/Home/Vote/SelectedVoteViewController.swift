@@ -63,7 +63,7 @@ class SelectedVoteViewController: BaseViewController {
         if let dataCount = voteTable.indexPathsForSelectedRows?.count {
             count = dataCount
         }
-        self.title = R.string.localizable.selected_node() + "(" + count.string + "/30)"
+        self.title = R.string.localizable.selected_node.key.localized() + "(" + count.string + "/30)"
         
     }
     

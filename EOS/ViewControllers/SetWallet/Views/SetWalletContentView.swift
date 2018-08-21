@@ -127,24 +127,24 @@ extension SetWalletContentView : TitleTextFieldViewDelegate,TitleTextFieldViewDa
     
     func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting {
         if titleTextFieldView == password {
-            return TitleTextSetting(title: R.string.localizable.account_setting_password(),
-                                    placeholder: R.string.localizable.password_ph(),
-                                    warningText: R.string.localizable.password_warning(),
+            return TitleTextSetting(title: R.string.localizable.account_setting_password.key.localized(),
+                                    placeholder: R.string.localizable.password_ph.key.localized(),
+                                    warningText: R.string.localizable.password_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
                                     isSecureTextEntry: true)
         } else if titleTextFieldView == resetPassword {
-            return TitleTextSetting(title: R.string.localizable.account_comfirm_password(),
-                                    placeholder: R.string.localizable.comfirm_password_ph(),
-                                    warningText: R.string.localizable.comfirm_password_warning(),
+            return TitleTextSetting(title: R.string.localizable.account_comfirm_password.key.localized(),
+                                    placeholder: R.string.localizable.comfirm_password_ph.key.localized(),
+                                    warningText: R.string.localizable.comfirm_password_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
                                     isSecureTextEntry: true)
         } else {
-            return TitleTextSetting(title: R.string.localizable.account_password_prompt(),
-                                    placeholder: R.string.localizable.password_prompt_ph(),
+            return TitleTextSetting(title: R.string.localizable.account_password_prompt.key.localized(),
+                                    placeholder: R.string.localizable.password_prompt_ph.key.localized(),
                                     warningText: "",
                                     introduce: "",
                                     isShowPromptWhenEditing: false,

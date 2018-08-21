@@ -29,7 +29,7 @@ class WalletManagerViewController: BaseViewController {
     }
     
     func setUpUI() {
-        self.title = R.string.localizable.manager_wallet()
+        self.title = R.string.localizable.manager_wallet.key.localized()
     }
     
     func commonObserveState() {

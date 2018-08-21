@@ -20,7 +20,7 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
     case let action as BuyRamAction:
         if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.ram.toDouble() {
             var valid = false
-            var tips = R.string.localizable.big_money()
+            var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= cpuMoneyDouble {
                 valid = true
                 tips = ""
@@ -28,7 +28,7 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
             
             if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.ram != "" {
                 valid = false
-                tips = R.string.localizable.small_money()
+                tips = R.string.localizable.small_money.key.localized()
             }
             
             if action.ram == "" {
@@ -40,7 +40,7 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
     case let action as SellRamAction:
         if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.ram.toDouble() {
             var valid = false
-            var tips = R.string.localizable.big_money()
+            var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= cpuMoneyDouble {
                 valid = true
                 tips = ""
@@ -48,7 +48,7 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
             
             if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.ram != "" {
                 valid = false
-                tips = R.string.localizable.small_money()
+                tips = R.string.localizable.small_money.key.localized()
             }
             
             if action.ram == "" {
@@ -81,10 +81,10 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
             if let amountDecimal = Decimal(string: action.amount) {
                 if action.type == .left {
                     let exchangeStr = (amountDecimal / viewmodel.price).doubleValue.string(digits: 3)
-                    viewmodel.exchange = R.string.localizable.exchange_pre() + exchangeStr + " KB"
+                    viewmodel.exchange = R.string.localizable.exchange_pre.key.localized() + exchangeStr + " KB"
                 } else {
                     let exchangeStr = (amountDecimal * viewmodel.price).doubleValue.string(digits: 3)
-                    viewmodel.exchange = R.string.localizable.exchange_pre() + exchangeStr + " EOS"
+                    viewmodel.exchange = R.string.localizable.exchange_pre.key.localized() + exchangeStr + " EOS"
                 }
             }
             if action.amount == "" {
@@ -97,10 +97,10 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
             if let amountDecimal = Decimal(string: action.amount) {
                 if action.type == .left {
                     let exchangeStr = (amountDecimal / viewmodel.price).doubleValue.string(digits: 3)
-                    viewmodel.exchange = R.string.localizable.exchange_pre() + exchangeStr + " KB"
+                    viewmodel.exchange = R.string.localizable.exchange_pre.key.localized() + exchangeStr + " KB"
                 } else {
                     let exchangeStr = (amountDecimal * viewmodel.price).doubleValue.string(digits: 3)
-                    viewmodel.exchange = R.string.localizable.exchange_pre() + exchangeStr + " EOS"
+                    viewmodel.exchange = R.string.localizable.exchange_pre.key.localized() + exchangeStr + " EOS"
                 }
             }
             if action.amount == "" {
@@ -137,11 +137,11 @@ func convertBuyRamViewModelWithAccount(_ account:Account, viewmodel:BuyRamViewMo
     if var newViewModel = viewmodel {
         let used = account.ram_usage.toKB
         let max = account.ram_quota.toKB
-        newViewModel.leftSub = R.string.localizable.use() + " \(used) " + R.string.localizable.kb()
-        newViewModel.rightSub = R.string.localizable.total() + " \(max) " + R.string.localizable.kb()
+        newViewModel.leftSub = R.string.localizable.use.key.localized() + " \(used) " + R.string.localizable.kb.key.localized()
+        newViewModel.rightSub = R.string.localizable.total.key.localized() + " \(max) " + R.string.localizable.kb.key.localized()
         newViewModel.progress = used.float()! / max.float()!
        
-        newViewModel.rightTrade = (max.float()! - used.float()!).string + " " + R.string.localizable.kb()
+        newViewModel.rightTrade = (max.float()! - used.float()!).string + " " + R.string.localizable.kb.key.localized()
         
         if let cpu_max = account.cpu_limit?.max {
             newViewModel.cpu_max = cpu_max

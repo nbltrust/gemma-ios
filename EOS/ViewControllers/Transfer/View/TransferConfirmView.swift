@@ -45,19 +45,19 @@ class TransferConfirmView: UIView {
             }
             amountView.content_text = data.amount + " EOS"
             if data.remark == "" {
-                data.remark = R.string.localizable.default_remark_pre() + WalletManager.shared.getAccount() + R.string.localizable.default_remark_after()
+                data.remark = R.string.localizable.default_remark_pre.key.localized() + WalletManager.shared.getAccount() + R.string.localizable.default_remark_after.key.localized()
             }
-            if data.buttonTitle == R.string.localizable.check_transfer() {
+            if data.buttonTitle == R.string.localizable.check_transfer.key.localized() {
                 remarkView.content.numberOfLines = 1
             } else {
                 remarkView.content.numberOfLines = 0
             }
-            if data.buttonTitle == R.string.localizable.confirm_sell() {
+            if data.buttonTitle == R.string.localizable.confirm_sell.key.localized() {
                 amountView.content_text = data.amount + " KB"
-                amountView.name_text = R.string.localizable.amount()
+                amountView.name_text = R.string.localizable.amount.key.localized()
             }
-            if data.buttonTitle == R.string.localizable.confirm_sell() || data.buttonTitle == R.string.localizable.confirm_buy() {
-                remarkView.name_text = R.string.localizable.explain()
+            if data.buttonTitle == R.string.localizable.confirm_sell.key.localized() || data.buttonTitle == R.string.localizable.confirm_buy.key.localized() {
+                remarkView.name_text = R.string.localizable.explain.key.localized()
             }
             
             
@@ -74,7 +74,6 @@ class TransferConfirmView: UIView {
     }
     
     func setUp() {
-        R.string.localizable.rest()
         setupUI()
         setupEvent()
         updateHeight()

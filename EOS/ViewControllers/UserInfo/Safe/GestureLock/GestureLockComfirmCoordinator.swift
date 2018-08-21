@@ -69,9 +69,9 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
         } else {
             addValidCount()
             if password.trimmed.count < GestureLockSetting.minPasswordLength {
-                self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough(), true, false)))
+                self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough.key.localized(), true, false)))
             } else {
-                self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_confirm_failed(), true, false)))
+                self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_confirm_failed.key.localized(), true, false)))
             }
         }
     }
@@ -104,7 +104,7 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
             DispatchQueue.main.async {
                 let leftTime = SafeManager.shared.leftUnLockGestureLockTime()
                 if leftTime > 0 {
-                    self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_locked(leftTime), true, true)))
+                    self.store.dispatch(SetConfirmPromotDataAction(data: (String(format: R.string.localizable.ges_locked.key.localized(), leftTime), true, true)))
                 } else {
                     self.unLockGestureLock()
                 }
@@ -121,6 +121,6 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
         }
         self.store.dispatch(SetGestureLockLockedAction(value: false))
         SafeManager.shared.unlockGestureLock()
-        self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_pas_current_pla(), false, false)))
+        self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_pas_current_pla.key.localized(), false, false)))
     }
 }

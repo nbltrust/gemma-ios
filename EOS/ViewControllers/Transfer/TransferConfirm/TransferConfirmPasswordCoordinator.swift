@@ -103,8 +103,8 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.password = password
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()
-        model.success = R.string.localizable.transfer_successed()
-        model.faile = R.string.localizable.transfer_failed()
+        model.success = R.string.localizable.transfer_successed.key.localized()
+        model.faile = R.string.localizable.transfer_failed.key.localized()
         model.amount = amount
         model.remark = remark
         transaction(EOSAction.transfer.rawValue, actionModel: model) { (bool, showString) in
@@ -117,8 +117,8 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.password = password
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()
-        model.success = R.string.localizable.mortgage_success()
-        model.faile = R.string.localizable.mortgage_failed()
+        model.success = R.string.localizable.mortgage_success.key.localized()
+        model.faile = R.string.localizable.mortgage_failed.key.localized()
         transaction(EOSAction.delegatebw.rawValue, actionModel: model) { (bool, showString) in
             callback(bool,showString)
         }
@@ -129,8 +129,8 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.password = password
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()
-        model.success = R.string.localizable.cancel_mortgage_success()
-        model.faile = R.string.localizable.cancel_mortgage_failed()
+        model.success = R.string.localizable.cancel_mortgage_success.key.localized()
+        model.faile = R.string.localizable.cancel_mortgage_failed.key.localized()
         transaction(EOSAction.undelegatebw.rawValue, actionModel: model) { (bool, showString) in
             callback(bool,showString)
         }
@@ -141,8 +141,8 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.password = password
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()
-        model.success = R.string.localizable.buy_ram_success()
-        model.faile = R.string.localizable.buy_ram_faile()
+        model.success = R.string.localizable.buy_ram_success.key.localized()
+        model.faile = R.string.localizable.buy_ram_faile.key.localized()
         model.amount = amount
         transaction(EOSAction.buyram.rawValue, actionModel: model) { (bool, showString) in
             callback(bool,showString)
@@ -154,8 +154,8 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.password = password
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()
-        model.success = R.string.localizable.sell_ram_success()
-        model.faile = R.string.localizable.sell_ram_faile()
+        model.success = R.string.localizable.sell_ram_success.key.localized()
+        model.faile = R.string.localizable.sell_ram_faile.key.localized()
         model.amount = amount
         transaction(EOSAction.sellram.rawValue, actionModel: model) { (bool, showString) in
             callback(bool,showString)
@@ -167,8 +167,8 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.password = password
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()
-        model.success = R.string.localizable.sell_ram_success()
-        model.faile = R.string.localizable.sell_ram_faile()
+        model.success = R.string.localizable.sell_ram_success.key.localized()
+        model.faile = R.string.localizable.sell_ram_faile.key.localized()
         model.producers = producers
         transaction(EOSAction.voteproducer.rawValue, actionModel: model) { (bool, showString) in
             callback(bool,showString)

@@ -79,7 +79,7 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
                 let error = GemmaError.NBLCode(code: gemmaerror)
                 showFailTop(error.localizedDescription)
             } else {
-                showFailTop(R.string.localizable.error_unknow())
+                showFailTop(R.string.localizable.error_unknow.key.localized())
             }
             completion(false)
 
@@ -88,7 +88,7 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
             self.store.dispatch(FetchPaymentsRecordsListAction(data: payment))
             completion(false)
 
-            showFailTop(R.string.localizable.request_failed())
+            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
 }

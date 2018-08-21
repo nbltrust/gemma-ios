@@ -34,11 +34,11 @@ class SetWalletViewController: BaseViewController {
     
     func setupUI() {
         if isUpdatePassword == true {
-            self.title = R.string.localizable.change_password()
-            fieldVIew.password.titleLabel.text = R.string.localizable.new_password()
+            self.title = R.string.localizable.change_password.key.localized()
+            fieldVIew.password.titleLabel.text = R.string.localizable.new_password.key.localized()
             agreeView.isHidden = true
         } else {
-            self.title = R.string.localizable.set_wallet_title()
+            self.title = R.string.localizable.set_wallet_title.key.localized()
             agreeView.isHidden = false
         }
         agree.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
@@ -50,7 +50,7 @@ class SetWalletViewController: BaseViewController {
             
             if self.isUpdatePassword, let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text{
                 self.coordinator?.updatePassword(password, hint: hint)
-                self.showSuccess(message: R.string.localizable.change_password_success())
+                self.showSuccess(message: R.string.localizable.change_password_success.key.localized())
                 return
             }
             

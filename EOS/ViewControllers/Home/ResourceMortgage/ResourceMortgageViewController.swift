@@ -38,7 +38,7 @@ class ResourceMortgageViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.resource_manager()
+        self.title = R.string.localizable.resource_manager.key.localized()
     }
     
     func commonObserveState() {
@@ -156,9 +156,9 @@ extension ResourceMortgageViewController {
             }
             
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
-            model.remark = R.string.localizable.delegate() + cpuAmount + R.string.localizable.eos_for_cpu() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net()
+            model.remark = R.string.localizable.delegate.key.localized() + cpuAmount + R.string.localizable.eos_for_cpu.key.localized() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net.key.localized()
         }
-        model.buttonTitle = R.string.localizable.confirm_mortgage()
+        model.buttonTitle = R.string.localizable.confirm_mortgage.key.localized()
         
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }
@@ -176,9 +176,9 @@ extension ResourceMortgageViewController {
                 netAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
             }
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
-            model.remark = R.string.localizable.undelegate() + cpuAmount + R.string.localizable.eos_for_cpu() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net()
+            model.remark = R.string.localizable.undelegate.key.localized() + cpuAmount + R.string.localizable.eos_for_cpu.key.localized() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net.key.localized()
         }
-        model.buttonTitle = R.string.localizable.confirm_relieve_mortgage()
+        model.buttonTitle = R.string.localizable.confirm_relieve_mortgage.key.localized()
         
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }

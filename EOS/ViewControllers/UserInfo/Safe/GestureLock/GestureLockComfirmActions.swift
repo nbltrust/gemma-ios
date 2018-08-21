@@ -21,7 +21,7 @@ struct GestureLockComfirmState: StateType {
 
 struct GestureLockComfirmPropertyState {
     var reDrawFailedNum: BehaviorRelay<Int> = BehaviorRelay(value: 0)
-    var promotData: BehaviorRelay<(message: String,isWarning: Bool,isLocked: Bool)> = BehaviorRelay(value: (R.string.localizable.ges_pas_current_pla(),false,false))
+    var promotData: BehaviorRelay<(message: String,isWarning: Bool,isLocked: Bool)> = BehaviorRelay(value: (R.string.localizable.ges_pas_current_pla.key.localized(),false,false))
     var locked: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 }
 
