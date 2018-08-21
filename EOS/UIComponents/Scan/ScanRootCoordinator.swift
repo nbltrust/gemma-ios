@@ -11,7 +11,7 @@ import UIKit
 class ScanRootCoordinator: NavCoordinator {
     override func start() {
         let vc = ScanViewController()
-        vc.subTitle = R.string.localizable.scan_subTitle()
+        vc.subTitle = R.string.localizable.scan_subTitle.key.localized()
         let coordinator = ScanCoordinator(rootVC: self.rootVC)
         vc.coordinator = coordinator
         self.rootVC.pushViewController(vc, animated: true)

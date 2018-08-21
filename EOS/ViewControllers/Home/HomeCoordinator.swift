@@ -186,7 +186,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     }
     
     func createDataInfo() -> [LineView.LineViewModel] {
-        return [LineView.LineViewModel.init(name: R.string.localizable.payments_history(),
+        return [LineView.LineViewModel.init(name: R.string.localizable.payments_history.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
@@ -194,7 +194,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
-                LineView.LineViewModel.init(name: R.string.localizable.node_vote(),
+                LineView.LineViewModel.init(name: R.string.localizable.node_vote.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
@@ -202,7 +202,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
-                LineView.LineViewModel.init(name: R.string.localizable.deal_ram(),
+                LineView.LineViewModel.init(name: R.string.localizable.deal_ram.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
@@ -210,8 +210,8 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
-                LineView.LineViewModel.init(name: R.string.localizable.resource_manager(),
-                                            content: R.string.localizable.resource_get(),
+                LineView.LineViewModel.init(name: R.string.localizable.resource_manager.key.localized(),
+                                            content: R.string.localizable.resource_get.key.localized(),
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
                                             content_style: LineViewStyleNames.normal_content,

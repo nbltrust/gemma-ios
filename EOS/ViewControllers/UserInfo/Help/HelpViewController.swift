@@ -20,7 +20,7 @@ class HelpViewController: BaseViewController {
         setupUI()
     }
     func setupUI() {
-        self.title = R.string.localizable.mine_help()
+        self.title = R.string.localizable.mine_help.key.localized()
     }
     
     func commonObserveState() {

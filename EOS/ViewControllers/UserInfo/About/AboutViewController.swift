@@ -20,7 +20,7 @@ class AboutViewController: BaseViewController {
         setupUI()
     }
     func setupUI() {
-        self.title = R.string.localizable.mine_about()
+        self.title = R.string.localizable.mine_about.key.localized()
     }
     func commonObserveState() {
         coordinator?.subscribe(errorSubscriber) { sub in

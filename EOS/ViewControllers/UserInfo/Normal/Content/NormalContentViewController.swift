@@ -27,13 +27,13 @@ class NormalContentViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = self.type == .language ? R.string.localizable.normal_language() : R.string.localizable.normal_asset()
+        self.title = self.type == .language ? R.string.localizable.normal_language.key.localized() : R.string.localizable.normal_asset.key.localized()
         self.containerView.data = self.coordinator?.settingDatas(type)
         if let coordinator = self.coordinator {
             self.selectedIndex = coordinator.selectedIndex(type)
         }
         self.containerView.selectedIndex = selectedIndex
-        configRightNavButton(R.string.localizable.normal_save())
+        configRightNavButton(R.string.localizable.normal_save.key.localized())
     }
     
     override func rightAction(_ sender: UIButton) {

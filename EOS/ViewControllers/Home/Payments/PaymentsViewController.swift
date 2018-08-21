@@ -28,7 +28,7 @@ class PaymentsViewController: BaseViewController {
     }
     
     func setupUI(){
-        self.title = R.string.localizable.payments_history()
+        self.title = R.string.localizable.payments_history.key.localized()
         let name = String.init(describing:PaymentsRecordsCell.self)
         tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
     }
@@ -56,7 +56,7 @@ class PaymentsViewController: BaseViewController {
                 self.tableView.reloadData()
             }
             else {
-                self.showError(message: R.string.localizable.request_failed())
+                self.showError(message: R.string.localizable.request_failed.key.localized())
             }
             
             }, isRefresh:true)
@@ -79,7 +79,7 @@ class PaymentsViewController: BaseViewController {
                     self.tableView.reloadData()
                 }
                 else {
-                    self.showError(message: R.string.localizable.request_failed())
+                    self.showError(message: R.string.localizable.request_failed.key.localized())
                 }
             },isRefresh: true)
         }

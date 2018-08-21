@@ -42,8 +42,8 @@ class DetailView: UIView {
                 stateIcon.image = data.stateImageName ==  R.image.icIncome() ? R.image.icIncomeWhite() : R.image.ic_income_white()
                 money.text = data.money
                 
-                titleLabel.text = data.stateImageName ==  R.image.icIncome() ? R.string.localizable.receive() : R.string.localizable.send()
-                people.text = data.stateImageName !=  R.image.icIncome() ? R.string.localizable.receiver() : R.string.localizable.sender()
+                titleLabel.text = data.stateImageName ==  R.image.icIncome() ? R.string.localizable.receive.key.localized() : R.string.localizable.send.key.localized()
+                people.text = data.stateImageName !=  R.image.icIncome() ? R.string.localizable.receiver.key.localized() : R.string.localizable.sender.key.localized()
             }
         }
     }

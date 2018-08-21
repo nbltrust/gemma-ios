@@ -24,23 +24,23 @@ enum GemmaError: Error {
         func desc() -> String {
             switch self {
             case .invitecodeRegiteredCode:
-                return R.string.localizable.error_invitecode_regitered()
+                return R.string.localizable.error_invitecode_regitered.key.localized()
             case .invitecodeInexistenceCode:
-                return R.string.localizable.error_invitecode_inexistence()
+                return R.string.localizable.error_invitecode_inexistence.key.localized()
             case .accountRegisteredCode:
-                return R.string.localizable.error_account_registered()
+                return R.string.localizable.error_account_registered.key.localized()
             case .accountInValidCode:
-                return R.string.localizable.error_account_invalid()
+                return R.string.localizable.error_account_invalid.key.localized()
             case .accountWrongLengthCode:
-                return R.string.localizable.error_account_wronglength()
+                return R.string.localizable.error_account_wronglength.key.localized()
             case .parameterWrongCode:
-                return R.string.localizable.error_parameter_wrong()
+                return R.string.localizable.error_parameter_wrong.key.localized()
             case .invalidPubKeyCode:
-                return R.string.localizable.error_invalid_pubkey()
+                return R.string.localizable.error_invalid_pubkey.key.localized()
             case .balanceNotEnoughCode:
-                return R.string.localizable.error_balance_unenough()
+                return R.string.localizable.error_balance_unenough.key.localized()
             case .creatAccountFailedCode:
-                return R.string.localizable.error_createAccount_failed()
+                return R.string.localizable.error_createAccount_failed.key.localized()
             default:
                 return ""
             }
@@ -70,33 +70,33 @@ enum GemmaError: Error {
         func desc() -> String {
             switch self {
             case .faceIdUnSupport:
-                return R.string.localizable.unsupport_faceid()
+                return R.string.localizable.unsupport_faceid.key.localized()
             case .faceIdAuthFailed:
-                return R.string.localizable.faceid_auth_failed()
+                return R.string.localizable.faceid_auth_failed.key.localized()
             case .faceIdAuthNotSet:
-                return R.string.localizable.faceid_start_failed()
+                return R.string.localizable.faceid_start_failed.key.localized()
             case .faceIdAuthNotAvailible:
-                return R.string.localizable.faceid_start_failed()
+                return R.string.localizable.faceid_start_failed.key.localized()
             case .faceIdAuthLock:
-                return R.string.localizable.faceid_auth_lock()
+                return R.string.localizable.faceid_auth_lock.key.localized()
             case .faceIdAuthNotEnrolled:
-                return R.string.localizable.faceid_start_failed()
+                return R.string.localizable.faceid_start_failed.key.localized()
             case .touchIdUnSupport:
-                return R.string.localizable.unsupport_touchid()
+                return R.string.localizable.unsupport_touchid.key.localized()
             case .touchIdAuthFailed:
-                return R.string.localizable.touchid_auth_failed()
+                return R.string.localizable.touchid_auth_failed.key.localized()
             case .touchIdAuthNotSet:
-                return R.string.localizable.touchid_start_failed()
+                return R.string.localizable.touchid_start_failed.key.localized()
             case .touchIdAuthNotAvailible:
-                return R.string.localizable.touchid_start_failed()
+                return R.string.localizable.touchid_start_failed.key.localized()
             case .touchIdAuthLock:
-                return R.string.localizable.touchid_auth_lock()
+                return R.string.localizable.touchid_auth_lock.key.localized()
             case .touchIdAuthNotEnrolled:
-                return R.string.localizable.touchid_start_failed()
+                return R.string.localizable.touchid_start_failed.key.localized()
             case .cameraUnSupport:
-                return R.string.localizable.unsupport_camera()
+                return R.string.localizable.unsupport_camera.key.localized()
             case .cameraNotOpen:
-                return R.string.localizable.guide_open_camera()
+                return R.string.localizable.guide_open_camera.key.localized()
             default:
                 return ""
             }

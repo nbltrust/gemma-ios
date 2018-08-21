@@ -77,7 +77,7 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
             //打开界面
             self.rootVC.present(controller, animated: true, completion: nil)
         }else{
-            self.rootVC.showError(message: R.string.localizable.no_support_mail())
+            self.rootVC.showError(message: R.string.localizable.no_support_mail.key.localized())
         }
 
     }
@@ -91,7 +91,7 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
         } else {
             vc.url = H5AddressConfiguration.HELP_EN_URL
         }
-        vc.title = R.string.localizable.mine_server()
+        vc.title = R.string.localizable.mine_server.key.localized()
         self.rootVC.pushViewController(vc, animated: true)
     }
     func openAboutSetting() {

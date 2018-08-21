@@ -27,7 +27,7 @@ class TransferContentView: UIView {
     
     var balance = "0 EOS" {
         didSet {
-            self.moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre() + balance
+            self.moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre.key.localized() + balance
 
         }
     }
@@ -69,8 +69,8 @@ class TransferContentView: UIView {
         remarkTitleTextView.datasource = self
         remarkTitleTextView.textView.delegate = self
         remarkTitleTextView.textView.maxHeight = 80
-        nextButton.title = R.string.localizable.check_transfer()
-        moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre() + "0.0000 EOS"
+        nextButton.title = R.string.localizable.check_transfer.key.localized()
+        moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre.key.localized() + "0.0000 EOS"
         remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
         
@@ -160,24 +160,24 @@ extension TransferContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
     
     func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting {
         if titleTextFieldView == accountTitleTextView {
-            return TitleTextSetting(title: R.string.localizable.payment_account(),
-                                    placeholder: R.string.localizable.name_ph(),
-                                    warningText: R.string.localizable.name_warning(),
+            return TitleTextSetting(title: R.string.localizable.payment_account.key.localized(),
+                                    placeholder: R.string.localizable.name_ph.key.localized(),
+                                    warningText: R.string.localizable.name_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: true,
                                     showLine: true,
                                     isSecureTextEntry: false)
         } else if titleTextFieldView == moneyTitleTextView {
-            return TitleTextSetting(title: R.string.localizable.money(),
-                                    placeholder: R.string.localizable.input_transfer_money(),
-                                    warningText: R.string.localizable.big_money(),//文案未提供
+            return TitleTextSetting(title: R.string.localizable.money.key.localized(),
+                                    placeholder: R.string.localizable.input_transfer_money.key.localized(),
+                                    warningText: R.string.localizable.big_money.key.localized(),//文案未提供
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
                                     isSecureTextEntry: false)
         } else {
-            return TitleTextSetting(title: R.string.localizable.remark(),
-                                    placeholder: R.string.localizable.input_transfer_remark(),
+            return TitleTextSetting(title: R.string.localizable.remark.key.localized(),
+                                    placeholder: R.string.localizable.input_transfer_remark.key.localized(),
                                     warningText: "",//文案未提供
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
@@ -282,9 +282,9 @@ extension TransferContentView: TitleTextViewDelegate,TitleTextViewDataSource {
     }
     
     func textUISetting(titleTextView: TitleTextView) -> TitleTextSetting {
-        return TitleTextSetting(title: R.string.localizable.remark(),
-                                placeholder: R.string.localizable.input_transfer_remark(),
-                                warningText: R.string.localizable.name_warning(),
+        return TitleTextSetting(title: R.string.localizable.remark.key.localized(),
+                                placeholder: R.string.localizable.input_transfer_remark.key.localized(),
+                                warningText: R.string.localizable.name_warning.key.localized(),
                                 introduce: "",
                                 isShowPromptWhenEditing: true,
                                 showLine: true,

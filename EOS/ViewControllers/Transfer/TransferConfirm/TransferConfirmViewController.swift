@@ -60,15 +60,15 @@ class TransferConfirmViewController: BaseViewController {
 extension TransferConfirmViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
         let type: String = data["btntitle"] as! String
-        if type == R.string.localizable.check_transfer() {
+        if type == R.string.localizable.check_transfer.key.localized() {
             self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.transfer.rawValue)
-        } else if type == R.string.localizable.confirm_mortgage() {
+        } else if type == R.string.localizable.confirm_mortgage.key.localized() {
             self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.mortgage.rawValue)
-        } else if type == R.string.localizable.confirm_relieve_mortgage() {
+        } else if type == R.string.localizable.confirm_relieve_mortgage.key.localized() {
             self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.relieveMortgage.rawValue)
-        } else if type == R.string.localizable.confirm_buy() {
+        } else if type == R.string.localizable.confirm_buy.key.localized() {
             self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.buyRam.rawValue)
-        } else if type == R.string.localizable.confirm_sell() {
+        } else if type == R.string.localizable.confirm_sell.key.localized() {
             self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.sellRam.rawValue)
         }
     }

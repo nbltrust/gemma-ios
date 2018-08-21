@@ -44,6 +44,6 @@ class QRCodeViewController: BaseViewController, IndicatorInfoProvider {
 
 extension QRCodeViewController {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(stringLiteral: R.string.localizable.qrcode_title())
+        return IndicatorInfo(stringLiteral: R.string.localizable.qrcode_title.key.localized())
     }
 }

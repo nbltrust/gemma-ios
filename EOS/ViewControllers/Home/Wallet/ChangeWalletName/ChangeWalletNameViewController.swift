@@ -24,8 +24,8 @@ class ChangeWalletNameViewController: BaseViewController {
     }
     
     func setUpUI() {
-        self.title = R.string.localizable.change_wallet_name()
-        configRightNavButton(R.string.localizable.normal_save())
+        self.title = R.string.localizable.change_wallet_name.key.localized()
+        configRightNavButton(R.string.localizable.normal_save.key.localized())
         changeWalletNameView.text = model.name
     }
     

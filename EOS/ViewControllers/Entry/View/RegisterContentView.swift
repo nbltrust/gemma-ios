@@ -147,42 +147,42 @@ extension RegisterContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
     
     func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting {
         if titleTextFieldView == nameView {
-            return TitleTextSetting(title: R.string.localizable.account_wallet_name(),
-                                    placeholder: R.string.localizable.name_ph(),
-                                    warningText: R.string.localizable.name_warning(),
+            return TitleTextSetting(title: R.string.localizable.account_wallet_name.key.localized(),
+                                    placeholder: R.string.localizable.name_ph.key.localized(),
+                                    warningText: R.string.localizable.name_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: true,
                                     showLine: true,
                                     isSecureTextEntry: false)
         } else if titleTextFieldView == passwordView {
-            return TitleTextSetting(title: R.string.localizable.account_setting_password(),
-                                    placeholder: R.string.localizable.password_ph(),
-                                    warningText: R.string.localizable.password_warning(),
+            return TitleTextSetting(title: R.string.localizable.account_setting_password.key.localized(),
+                                    placeholder: R.string.localizable.password_ph.key.localized(),
+                                    warningText: R.string.localizable.password_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
                                     isSecureTextEntry: true)
         } else if titleTextFieldView == passwordComfirmView {
-            return TitleTextSetting(title: R.string.localizable.account_comfirm_password(),
-                                    placeholder: R.string.localizable.comfirm_password_ph(),
-                                    warningText: R.string.localizable.comfirm_password_warning(),
+            return TitleTextSetting(title: R.string.localizable.account_comfirm_password.key.localized(),
+                                    placeholder: R.string.localizable.comfirm_password_ph.key.localized(),
+                                    warningText: R.string.localizable.comfirm_password_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
                                     isSecureTextEntry: true)
         } else if titleTextFieldView == passwordPromptView {
-            return TitleTextSetting(title: R.string.localizable.account_password_prompt(),
-                                    placeholder: R.string.localizable.password_prompt_ph(),
+            return TitleTextSetting(title: R.string.localizable.account_password_prompt.key.localized(),
+                                    placeholder: R.string.localizable.password_prompt_ph.key.localized(),
                                     warningText: "",
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
                                     isSecureTextEntry: false)
         } else {
-            return TitleTextSetting(title: R.string.localizable.account_invitationcode(),
-                                    placeholder: R.string.localizable.invitationcode_ph(),
-                                    warningText: R.string.localizable.invitationcode_warning(),
-                                    introduce: R.string.localizable.invitationcode_introduce(),
+            return TitleTextSetting(title: R.string.localizable.account_invitationcode.key.localized(),
+                                    placeholder: R.string.localizable.invitationcode_ph.key.localized(),
+                                    warningText: R.string.localizable.invitationcode_warning.key.localized(),
+                                    introduce: R.string.localizable.invitationcode_introduce.key.localized(),
                                     isShowPromptWhenEditing: false,
                                     showLine: false,
                                     isSecureTextEntry: false)

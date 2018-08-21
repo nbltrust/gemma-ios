@@ -31,7 +31,7 @@ class LeadInKeyViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.lead_in()
+        self.title = R.string.localizable.lead_in.key.localized()
         self.configRightNavButton(R.image.scan_qr_code())
     }
     

@@ -21,7 +21,7 @@ class LeadInViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.lead_in()
+        self.title = R.string.localizable.lead_in.key.localized()
     }
     
     func commonObserveState() {
