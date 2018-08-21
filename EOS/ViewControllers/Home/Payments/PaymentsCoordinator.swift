@@ -77,9 +77,9 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
            
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)
-                KRProgressHUD.showError(withMessage: error.localizedDescription)
+                showFailTop(error.localizedDescription)
             } else {
-                KRProgressHUD.showError(withMessage: R.string.localizable.error_unknow())
+                showFailTop(R.string.localizable.error_unknow())
             }
             completion(false)
 
@@ -88,7 +88,7 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
             self.store.dispatch(FetchPaymentsRecordsListAction(data: payment))
             completion(false)
 
-            KRProgressHUD.showError(withMessage: R.string.localizable.request_failed())
+            showFailTop(R.string.localizable.request_failed())
         }
     }
 }

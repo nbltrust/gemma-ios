@@ -74,6 +74,7 @@ class TransferConfirmView: UIView {
     }
     
     func setUp() {
+        R.string.localizable.rest()
         setupUI()
         setupEvent()
         updateHeight()

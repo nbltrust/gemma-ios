@@ -34,7 +34,14 @@ class AboutCoordinator: UserInfoRootCoordinator {
 extension AboutCoordinator: AboutCoordinatorProtocol {
     func openReleaseNotes() {
         let vc = BaseWebViewController()
-        vc.url = H5AddressConfiguration.RELEASE_NOTES_CN_URL
+        let language = getCurrentLanguage()
+        if language == "en" {
+            vc.url = H5AddressConfiguration.RELEASE_NOTES_EN_URL
+        } else if language == "cn" {
+            vc.url = H5AddressConfiguration.RELEASE_NOTES_CN_URL
+        } else {
+            vc.url = H5AddressConfiguration.RELEASE_NOTES_EN_URL
+        }
         vc.title = R.string.localizable.about_info()
         self.rootVC.pushViewController(vc, animated: true)
     }

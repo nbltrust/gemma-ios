@@ -45,15 +45,15 @@ struct HomePropertyState {
 }
 
 struct BalanceFetchedAction:Action {
-    var balance:JSON
+    var balance:JSON?
 }
 
 struct AccountFetchedAction:Action {
-    var info:Account
+    var info:Account?
 }
 
 struct RMBPriceFetchedAction:Action {
-    var price:JSON
+    var price:JSON?
 }
 
 //MARK: - Action Creator

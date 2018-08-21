@@ -33,7 +33,7 @@
                             <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esg-xk-1eC">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esg-xk-1eC">
                             <rect key="frame" x="22" y="66" width="279" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,11 +47,11 @@
                         <constraint firstAttribute="trailing" secondItem="7an-sF-36S" secondAttribute="trailing" constant="10" id="5r5-Bq-muy"/>
                         <constraint firstItem="i8g-yK-Qnh" firstAttribute="leading" secondItem="SDP-jt-uB9" secondAttribute="leading" constant="23" id="Hiq-RA-m6J"/>
                         <constraint firstAttribute="height" constant="106" id="ImK-aO-wCF"/>
-                        <constraint firstAttribute="trailing" secondItem="esg-xk-1eC" secondAttribute="trailing" constant="42" id="Nlo-zF-EhA"/>
                         <constraint firstItem="esg-xk-1eC" firstAttribute="leading" secondItem="SDP-jt-uB9" secondAttribute="leading" constant="22" id="Oxn-Ab-Kvl"/>
                         <constraint firstItem="i8g-yK-Qnh" firstAttribute="top" secondItem="SDP-jt-uB9" secondAttribute="top" constant="19" id="WDm-Ek-qdN"/>
                         <constraint firstItem="esg-xk-1eC" firstAttribute="top" secondItem="i8g-yK-Qnh" secondAttribute="bottom" constant="18" id="fC3-DG-s95"/>
                         <constraint firstItem="7an-sF-36S" firstAttribute="centerY" secondItem="SDP-jt-uB9" secondAttribute="centerY" id="p4Z-Vu-tm7"/>
+                        <constraint firstAttribute="trailing" secondItem="esg-xk-1eC" secondAttribute="trailing" constant="42" id="qWB-vb-hqm"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQQ-Oq-bTH" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">

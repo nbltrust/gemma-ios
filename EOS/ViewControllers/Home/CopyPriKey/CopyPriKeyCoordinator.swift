@@ -47,7 +47,7 @@ extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
         if let vc = R.storyboard.screenShotAlert.screenShotAlertViewController() {
             let coordinator = ScreenShotAlertCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
-            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: false, completion: nil)
         }
     }
     
