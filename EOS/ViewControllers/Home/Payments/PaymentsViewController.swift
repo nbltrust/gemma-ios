@@ -55,9 +55,7 @@ class PaymentsViewController: BaseViewController {
                 self.data += (self.coordinator?.state.property.data)!
                 self.tableView.reloadData()
             }
-            else {
-                self.showError(message: R.string.localizable.request_failed())
-            }
+
             
             }, isRefresh:true)
         
