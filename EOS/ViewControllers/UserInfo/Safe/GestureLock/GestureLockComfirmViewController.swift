@@ -24,6 +24,7 @@ class GestureLockComfirmViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         gestureLockView.delegate = self
+        self.coordinator?.checkGestureLock()
         if canDismiss {
             self.configLeftNavButton(R.image.icTransferClose())
         }
@@ -60,10 +61,20 @@ class GestureLockComfirmViewController: BaseViewController {
             guard let `self` = self else { return }
             self.messageLabel.text = arg0.message
             self.messageLabel.textColor = arg0.isWarning ? UIColor.scarlet : UIColor.darkSlateBlue
-            if arg0.isWarning {
+            if arg0.isWarning && !arg0.isLocked {
                 self.gestureLockView.warn()
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
+        self.coordinator?.state.property.locked.asObservable().subscribe(onNext: {[weak self] (locked) in
+            guard let `self` = self else { return }
+            self.gestureLockView.locked = locked
+            if locked {
+                self.gestureLockView.warn()
+            } else {
+                self.gestureLockView.reset()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     override func configureObserveState() {
@@ -74,9 +85,11 @@ class GestureLockComfirmViewController: BaseViewController {
 
 extension GestureLockComfirmViewController: GestureLockViewDelegate {
     func gestureLockViewDidTouchesEnd(_ lockView: GestureLockView) {
-        let password = lockView.password
-        if password.trimmed.count > 0 {
-            self.coordinator?.confirmLock(gestureLockView.password)
+        if !SafeManager.shared.isGestureLockLocked() {
+            let password = lockView.password
+            if password.trimmed.count > 0 {
+                self.coordinator?.confirmLock(gestureLockView.password)
+            }
         }
     }
 }

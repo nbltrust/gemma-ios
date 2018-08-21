@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import Repeat
 
 protocol GestureLockComfirmCoordinatorProtocol {
     func dismiss()
@@ -20,11 +21,19 @@ protocol GestureLockComfirmStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func confirmLock(_ password: String)
+    
+    func checkGestureLock()
+    
+    func lockGestureLock()
+    
+    func unLockGestureLock()
 }
 
 class GestureLockComfirmCoordinator: NavCoordinator {
     
     lazy var creator = GestureLockComfirmPropertyActionCreate()
+    
+    var timer:Repeater?
     
     var store = Store<GestureLockComfirmState>(
         reducer: GestureLockComfirmReducer,
@@ -58,12 +67,60 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
                 self.state.callback.confirmResult.value?(true)
             }
         } else {
+            addValidCount()
             if password.trimmed.count < GestureLockSetting.minPasswordLength {
-                self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough(), true)))
+                self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough(), true, false)))
             } else {
-                self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_confirm_failed(), true)))
+                self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_confirm_failed(), true, false)))
             }
         }
     }
     
+    func addValidCount() {
+        var num = self.state.property.reDrawFailedNum.value
+        num = num + 1
+        if num == GestureLockSetting.reDrawNum {
+            lockGestureLock()
+            num = 0
+        }
+        self.store.dispatch(SetReDrawFailedNumAction(num: num))
+    }
+    
+    func checkGestureLock() {
+        if SafeManager.shared.isGestureLockLocked() {
+            lockGestureLock()
+        } else {
+            unLockGestureLock()
+        }
+    }
+    
+    func lockGestureLock() {
+        if SafeManager.shared.leftUnLockGestureLockTime() == 0 {
+            SafeManager.shared.lockGestureLock()
+        }
+        self.store.dispatch(SetGestureLockLockedAction(value: true))
+        self.timer = Repeater.every(.seconds(1)) {[weak self] timer in
+            guard let `self` = self else { return }
+            DispatchQueue.main.async {
+                let leftTime = SafeManager.shared.leftUnLockGestureLockTime()
+                if leftTime > 0 {
+                    self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_locked(leftTime), true, true)))
+                } else {
+                    self.unLockGestureLock()
+                }
+            }
+        }
+        
+        timer?.start()
+    }
+    
+    func unLockGestureLock() {
+        if self.timer != nil {
+            self.timer?.pause()
+            self.timer = nil
+        }
+        self.store.dispatch(SetGestureLockLockedAction(value: false))
+        SafeManager.shared.unlockGestureLock()
+        self.store.dispatch(SetConfirmPromotDataAction(data: (R.string.localizable.ges_pas_current_pla(), false, false)))
+    }
 }

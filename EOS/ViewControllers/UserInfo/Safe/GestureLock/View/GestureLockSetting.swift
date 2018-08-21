@@ -17,7 +17,11 @@ public struct GestureLockSetting {
     /*重绘密码错误次数限制*/
     static let reDrawNum = 5
     
+    /*密码输入错误锁定时长*/
+    static let gestureLockTimeDuration = 30
+    
     /*手势预览*/
+    
     static let infoNormalColor = UIColor.cloudyBlue
     
     static let infoNormalBorderWidth: CGFloat = 1.0

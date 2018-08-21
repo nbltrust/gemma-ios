@@ -25,11 +25,16 @@ extension WalletList: DefaultsDefaultArrayValueType {
 }
 
 extension DefaultsKeys {
-    static let language = DefaultsKey<String>("language")
     static let walletList = DefaultsKey<[WalletList]>("walletLists")
     static let currentWallet = DefaultsKey<String>("current-wallet")//公钥
     
+    //通用Setting
+    static let language = DefaultsKey<String>("language")            //当前语言
+    static let currentURLNode = DefaultsKey<Int>("currentURLNode")//当前EOS主网节点
+    static let coinUnit = DefaultsKey<Int>("coinUnit")           //货币单位
+    
     //安全设置
+    static let gestureLockLockedTime = DefaultsKey<Int>("gestureLockLockedTime")
     static let isFaceIDOpened = DefaultsKey<Bool>("isFaceIDOpened")
     static let isGestureLockOpened = DefaultsKey<Bool>("isGestureLockOpened")
     static let gestureLockPassword = DefaultsKey<String>("gestureLockPassword")
