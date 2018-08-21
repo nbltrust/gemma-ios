@@ -19,6 +19,7 @@ class SetWalletViewController: BaseViewController {
     @IBOutlet weak var finished: Button!
     @IBOutlet weak var fieldVIew: SetWalletContentView!
     @IBOutlet weak var cornerShadowView: CornerAndShadowView!
+    @IBOutlet weak var agreeView: UIView!
     
     var isUpdatePassword:Bool = false
     
@@ -32,6 +33,14 @@ class SetWalletViewController: BaseViewController {
     }
     
     func setupUI() {
+        if isUpdatePassword == true {
+            self.title = R.string.localizable.change_password()
+            fieldVIew.password.titleLabel.text = R.string.localizable.new_password()
+            agreeView.isHidden = true
+        } else {
+            self.title = R.string.localizable.set_wallet_title()
+            agreeView.isHidden = false
+        }
         agree.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
     }
     

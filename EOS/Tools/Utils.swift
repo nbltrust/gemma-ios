@@ -339,6 +339,23 @@ extension UIImage {
     
 }
 
+func getCurrentLanguage() -> String {
+    //        let defs = UserDefaults.standard
+    //        let languages = defs.object(forKey: "AppleLanguages")
+    //        let preferredLang = (languages! as AnyObject).object(0)
+    let preferredLang = Bundle.main.preferredLocalizations.first! as NSString
+    //        let preferredLang = (languages! as AnyObject).object(0)
+    log.debug("当前系统语言:\(preferredLang)")
+    
+    switch String(describing: preferredLang) {
+    case "en-US", "en-CN":
+        return "en"//英文
+    case "zh-Hans-US","zh-Hans-CN","zh-Hant-CN","zh-TW","zh-HK","zh-Hans":
+        return "cn"//中文
+    default:
+        return "en"
+    }
+}
 
 //func correctAmount(_ sender:String) -> String{
 //    if let _ = sender.toDouble(){

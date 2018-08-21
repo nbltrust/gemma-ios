@@ -42,7 +42,6 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
                 if let vc = R.storyboard.leadIn.setWalletViewController() {
                     vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
                     vc.isUpdatePassword = true
-                    vc.title = R.string.localizable.change_password()
                     self.rootVC.pushViewController(vc, animated: true)
                 }
             }

@@ -161,9 +161,9 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
             self.store.dispatch(BalanceFetchedAction(balance: json))
         }, error: { (code) in
-            
+            self.store.dispatch(BalanceFetchedAction(balance: nil))
         }) { (error) in
-            
+            self.store.dispatch(BalanceFetchedAction(balance: nil))
         }
         
         EOSIONetwork.request(target: .get_account(account: account), success: { (json) in
@@ -172,9 +172,9 @@ extension HomeCoordinator: HomeStateManagerProtocol {
             }
 
         }, error: { (code) in
-            
+            self.store.dispatch(AccountFetchedAction(info: nil))
         }) { (error) in
-            
+            self.store.dispatch(AccountFetchedAction(info: nil))
         }
         
         SimpleHTTPService.requestETHPrice().done { (json) in
@@ -210,7 +210,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
-                LineView.LineViewModel.init(name: R.string.localizable.resources_pledge(),
+                LineView.LineViewModel.init(name: R.string.localizable.resource_manager(),
                                             content: R.string.localizable.resource_get(),
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
