@@ -62,7 +62,7 @@ class QRCodeView: UIView {
             ) {
             updateQrCode(qrCodeImage)
         } else {
-            KRProgressHUD.showError(withMessage: R.string.localizable.qrcode_generate_failed())
+            showFailTop(R.string.localizable.qrcode_generate_failed())
         }
     }
     

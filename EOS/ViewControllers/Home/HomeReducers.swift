@@ -19,38 +19,73 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
     
     switch action {
     case let action as BalanceFetchedAction:
-        var viewmodel = state.info.value
-        if let balance = action.balance.arrayValue.first?.string {
-            viewmodel.balance = balance
-          
+
+        if action.balance != nil {
+            var viewmodel = state.info.value
+
+            if let balance = action.balance?.arrayValue.first?.string {
+                viewmodel.balance = balance
+                
+            }
+            else {
+                viewmodel.balance = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+            }
+            
+            viewmodel.allAssets = calculateTotalAsset(viewmodel)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
+            state.info.accept(viewmodel)
+        } else {
+            let viewmodel = initAccountViewModel()
+            state.info.accept(viewmodel)
         }
-        else {
-            viewmodel.balance = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        }
-        
-        viewmodel.allAssets = calculateTotalAsset(viewmodel)
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
-        
-        state.info.accept(viewmodel)
-        
     case let action as AccountFetchedAction:
-        var viewmodel = convertAccountViewModelWithAccount(action.info, viewmodel:state.info.value)
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
-
-        state.info.accept(viewmodel)
-        
+        if action.info != nil {
+            var viewmodel = convertAccountViewModelWithAccount(action.info!, viewmodel:state.info.value)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
+            
+            state.info.accept(viewmodel)
+        } else {
+            let viewmodel = initAccountViewModel()
+            state.info.accept(viewmodel)
+        }
     case let action as RMBPriceFetchedAction:
-        var viewmodel = state.info.value
-        state.CNY_price = action.price["value"].stringValue
-        
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
-        state.info.accept(viewmodel)
-
+        if action.price != nil {
+            var viewmodel = state.info.value
+            state.CNY_price = action.price!["value"].stringValue
+            
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
+            state.info.accept(viewmodel)
+        } else {
+            let viewmodel = initAccountViewModel()
+            state.info.accept(viewmodel)
+        }
     default:
         break
     }
     
     return state
+}
+
+func initAccountViewModel() -> AccountViewModel {
+    var newViewModel = AccountViewModel()
+    newViewModel.account = "--"
+    newViewModel.portrait = ""
+    newViewModel.cpuValue = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    newViewModel.netValue = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    
+    newViewModel.cpuProgress = 0
+    newViewModel.netProgress = 0
+    newViewModel.ramProgress = 0
+    
+    newViewModel.ramValue = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    
+    newViewModel.recentRefundAsset = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+
+    newViewModel.refundTime = ""
+    
+    newViewModel.allAssets = calculateTotalAsset(newViewModel)
+    
+    return newViewModel
 }
 
 func convertAccountViewModelWithAccount(_ account:Account, viewmodel:AccountViewModel) -> AccountViewModel {

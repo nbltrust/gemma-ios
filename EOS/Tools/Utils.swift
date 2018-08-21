@@ -14,7 +14,9 @@ import NotificationBannerSwift
 import RxGesture
 import SwiftNotificationCenter
 import KRProgressHUD
+import SwiftyUserDefaults
 
+//Nav BackgroundImage
 func navBgImage() -> UIImage? {
     switch UIScreen.main.bounds.width {
     case 320:
@@ -26,6 +28,21 @@ func navBgImage() -> UIImage? {
     default:
         return nil
     }
+}
+
+//Coin Datas
+func coinUnit() -> String {
+    let data = CoinUnitConfiguration.values
+    let coinIndex = Defaults[.coinUnit]
+    return data[coinIndex]
+}
+
+func coinType() -> CoinType {
+    let coinIndex = Defaults[.coinUnit]
+    if let type = CoinType(rawValue: coinIndex) {
+        return type
+    }
+    return .CNY
 }
 
 //func print<T>(file: String = #file, function: String = #function, line: Int = #line, _ message: T, color: UIColor = UIColor.white) {
@@ -322,6 +339,23 @@ extension UIImage {
     
 }
 
+func getCurrentLanguage() -> String {
+    //        let defs = UserDefaults.standard
+    //        let languages = defs.object(forKey: "AppleLanguages")
+    //        let preferredLang = (languages! as AnyObject).object(0)
+    let preferredLang = Bundle.main.preferredLocalizations.first! as NSString
+    //        let preferredLang = (languages! as AnyObject).object(0)
+    log.debug("当前系统语言:\(preferredLang)")
+    
+    switch String(describing: preferredLang) {
+    case "en-US", "en-CN":
+        return "en"//英文
+    case "zh-Hans-US","zh-Hans-CN","zh-Hant-CN","zh-TW","zh-HK","zh-Hans":
+        return "cn"//中文
+    default:
+        return "en"
+    }
+}
 
 //func correctAmount(_ sender:String) -> String{
 //    if let _ = sender.toDouble(){

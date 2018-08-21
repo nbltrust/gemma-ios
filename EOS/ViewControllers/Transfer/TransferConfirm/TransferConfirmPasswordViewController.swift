@@ -37,9 +37,14 @@ class TransferConfirmPasswordViewController: BaseViewController {
     @IBOutlet weak var passwordView: TransferConfirmPasswordView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-           
+//        setupUI()
+        
 //        log.debug(String(reflecting: type(of: a!)))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
     }
     
     func setupUI() {
