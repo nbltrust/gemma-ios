@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import MessageUI
+import SwiftyUserDefaults
 
 protocol UserInfoCoordinatorProtocol {
     func openNormalSetting()
@@ -82,10 +83,14 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
     }
     func openServersSetting() {
         let vc = BaseWebViewController()
-        if <#condition#> {
-            <#code#>
+        let language = getCurrentLanguage()
+        if language == "en" {
+            vc.url = H5AddressConfiguration.HELP_EN_URL
+        } else if language == "cn" {
+            vc.url = H5AddressConfiguration.HELP_CN_URL
+        } else {
+            vc.url = H5AddressConfiguration.HELP_EN_URL
         }
-        vc.url = H5AddressConfiguration.HELP_CN_URL
         vc.title = R.string.localizable.mine_server()
         self.rootVC.pushViewController(vc, animated: true)
     }
