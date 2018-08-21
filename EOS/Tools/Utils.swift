@@ -195,7 +195,7 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
             }, error: { (error_code) in
                 callback(false, actionModel.faile)
             }) { (error) in
-                callback(false,R.string.localizable.request_failed() )
+                callback(false,R.string.localizable.request_failed.key.localized() )
             }
             
         }, error: { (code) in
@@ -303,7 +303,7 @@ extension Date {
         let hour = ceil((interval - day * 86400) / 3600)
         
         if day >= 0 && hour >= 0 {
-            return String.init(format: "%@%02.0f%@%02.0f%@", R.string.localizable.rest(), day, R.string.localizable.day(), hour, R.string.localizable.hour())
+            return String.init(format: "%@%02.0f%@%02.0f%@", R.string.localizable.rest.key.localized(), day, R.string.localizable.day.key.localized(), hour, R.string.localizable.hour.key.localized())
         }
         else {
             return ""

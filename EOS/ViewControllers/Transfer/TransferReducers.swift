@@ -30,7 +30,7 @@ func TransferPropertyReducer(_ state: TransferPropertyState?, action: Action) ->
     case let action as moneyAction:
         if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = action.money.toDouble() {
             var valid = false
-            var tips = R.string.localizable.big_money()
+            var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= moneyDouble {
                 valid = true
                 tips = ""
@@ -38,7 +38,7 @@ func TransferPropertyReducer(_ state: TransferPropertyState?, action: Action) ->
             
             if moneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue {
                 valid = false
-                tips = R.string.localizable.small_money()
+                tips = R.string.localizable.small_money.key.localized()
             }
             
             

@@ -52,6 +52,16 @@ extension UIViewController {
 
 extension UIViewController {
     func startLoading() {
+        startLoadingOnSelf(true)
+    }
+    
+    func startLoadingOnSelf(_ isOn: Bool) {
+        if isOn {
+            _ = KRProgressHUD.showOn(self)
+        }
+        KRProgressHUD.set(maskType: .clear)
+        KRProgressHUD.set(style: .black)
+        KRProgressHUD.set(activityIndicatorViewStyle: .gradationColor(head: UIColor.whiteTwo, tail: UIColor.whiteThree))
         KRProgressHUD.show()
     }
     

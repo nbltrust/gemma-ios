@@ -23,7 +23,8 @@ class ScanViewController: BaseViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.black
+        setupUI()
+        self.startLoadingOnSelf(false)
         checkCameraAuth()
     }
     
@@ -39,16 +40,15 @@ class ScanViewController: BaseViewController {
                 self.loadScanView()
             } else {
                 self.loadScanView()
-                self.showAlert(title: R.string.localizable.prompt(), message: R.string.localizable.guide_open_camera(), buttonTitles: [R.string.localizable.got_it()])
+                self.showAlert(title: R.string.localizable.prompt.key.localized(), message: R.string.localizable.guide_open_camera.key.localized(), buttonTitles: [R.string.localizable.got_it.key.localized()])
             }
         } else {
             self.loadScanView()
-            self.showAlert(title: R.string.localizable.prompt(), message: R.string.localizable.unsupport_camera(), buttonTitles: [R.string.localizable.got_it()])
+            self.showAlert(title: R.string.localizable.prompt.key.localized(), message: R.string.localizable.unsupport_camera.key.localized(), buttonTitles: [R.string.localizable.got_it.key.localized()])
         }
     }
     
     func loadScanView() {
-        loadLabel()
         initSession()
     }
     
@@ -70,8 +70,9 @@ class ScanViewController: BaseViewController {
         }
     }
     
-    func loadLabel() {
-        self.title = R.string.localizable.scan_title()
+    func setupUI() {
+        self.view.backgroundColor = UIColor.black
+        self.title = R.string.localizable.scan_title.key.localized()
         self.configLeftNavButton(nil)
         let rect = ScanSetting.scanRect
         titleLabel = UILabel.init(frame: CGRect(x: 0, y: rect.maxY + 29, width: self.view.width, height: 20))
@@ -104,6 +105,7 @@ class ScanViewController: BaseViewController {
             DispatchQueue.main.async {
                 self.captusession = session
                 self.setupPreviewLayer()
+                self.endLoading()
             }
         }
        

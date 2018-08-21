@@ -52,16 +52,16 @@ class AppCoordinator {
         
         let home = BaseNavigationController()
         homeCoordinator = HomeRootCoordinator(rootVC: home)
-        home.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
+        home.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet.key.localized(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
         //        home.tabBarItem.badgeValue = ""
         
         let transfer = BaseNavigationController()
         transferCoordinator = TransferRootCoordinator(rootVC: transfer)
-        transfer.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarTransfer(), image: R.image.ic_send_normal(), selectedImage: R.image.ic_send_selected())
+        transfer.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarTransfer.key.localized(), image: R.image.ic_send_normal(), selectedImage: R.image.ic_send_selected())
         
         let userinfo = BaseNavigationController()
         userinfoCoordinator = UserInfoRootCoordinator(rootVC: userinfo)
-        userinfo.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
+        userinfo.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine.key.localized(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
         
         homeCoordinator.start()
         transferCoordinator.start()

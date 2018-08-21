@@ -32,7 +32,7 @@ class SafeViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.mine_safesetting()
+        self.title = R.string.localizable.mine_safesetting.key.localized()
     }
     
     func setupEvent() {

@@ -11,6 +11,10 @@ import SwiftNotificationCenter
 
 @IBDesignable
 class BaseView: UIControl {
+    
+    var xibView:UIView!
+    var foreView:UIView!
+    
     enum TouchAlphaValues : CGFloat {
         case touched = 0.3
         case untouched = 1.0
@@ -29,6 +33,17 @@ class BaseView: UIControl {
             }
             
             touchAlpha = (pressed) ? .touched : .untouched
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                self.foreView.alpha = TouchAlphaValues.touched.rawValue
+            }
+            else {
+                self.foreView.alpha = self.touchAlpha.rawValue
+            }
         }
     }
 
@@ -94,9 +109,9 @@ class BaseView: UIControl {
     }
     
     func updateTouchAlpha() {
-        if self.alpha != self.touchAlpha.rawValue {
+        if self.foreView.alpha != self.touchAlpha.rawValue {
             UIView.animate(withDuration: 0.3) {
-                self.alpha = self.touchAlpha.rawValue
+                self.foreView.alpha = self.touchAlpha.rawValue
             }
         }
     }
@@ -138,9 +153,17 @@ class BaseView: UIControl {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
-        insertSubview(view, at: 0)
+        insertSubview(view, at: 1)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        let foreView = UIView()
+        foreView.frame = self.bounds
+        foreView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        foreView.backgroundColor = UIColor.white
+        insertSubview(foreView, at: 0)
+        
+        self.xibView = view
+        self.foreView = foreView
     }
 }

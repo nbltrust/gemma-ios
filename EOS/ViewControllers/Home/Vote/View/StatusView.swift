@@ -21,7 +21,7 @@ class StatusView: UIView {
             leftLabel.backgroundColor = highlighted ? UIColor.darkSkyBlueTwo : UIColor.paleGreyFour
             leftLabel.text = "0/30"
             rightLabel.backgroundColor = highlighted ? UIColor.cornflowerBlueTwo : UIColor.cloudyBlue
-            rightLabel.text = highlighted ? R.string.localizable.vote_title() : R.string.localizable.vote_unenough()
+            rightLabel.text = highlighted ? R.string.localizable.vote_title.key.localized() : R.string.localizable.vote_unenough.key.localized()
         }
     }
     

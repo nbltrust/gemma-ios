@@ -90,7 +90,7 @@ class HomeViewController: BaseViewController {
             
             self.coordinator?.checkAccount({ (show) in
                 if show {
-                    showWarning(R.string.localizable.red_warning())
+                    showWarning(R.string.localizable.red_warning.key.localized())
                 }
                 else {
                     

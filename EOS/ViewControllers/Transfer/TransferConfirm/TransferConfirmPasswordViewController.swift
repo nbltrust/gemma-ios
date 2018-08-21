@@ -55,8 +55,8 @@ class TransferConfirmPasswordViewController: BaseViewController {
         }
         
         if type == confirmType.updatePwd.rawValue {
-            passwordView.title = R.string.localizable.update_pwd_title()
-            passwordView.btnTitle = R.string.localizable.update_pwd_btntitle()
+            passwordView.title = R.string.localizable.update_pwd_title.key.localized()
+            passwordView.btnTitle = R.string.localizable.update_pwd_btntitle.key.localized()
         }
     }
     
@@ -91,7 +91,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
 extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
         guard let priKey = WalletManager.shared.getCachedPriKey(publicKey, password: passwordView.textField.text!) else {
-            self.showError(message: R.string.localizable.password_not_match())
+            self.showError(message: R.string.localizable.password_not_match.key.localized())
             return
         }
         

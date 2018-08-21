@@ -56,7 +56,7 @@ class SafeCoordinator: UserInfoRootCoordinator {
 extension SafeCoordinator: SafeCoordinatorProtocol {
     //MARK: - FaceId
     func openFaceIdLock(_ callback: @escaping (Bool) -> ()) {
-        SafeManager.shared.confirmFaceIdLock(R.string.localizable.faceid_reason()) { (result) in
+        SafeManager.shared.confirmFaceIdLock(R.string.localizable.faceid_reason.key.localized()) { (result) in
             callback(result)
         }
     }
@@ -67,7 +67,7 @@ extension SafeCoordinator: SafeCoordinatorProtocol {
     
     //MARK: - FingerSinger
     func openFingerSingerLock(_ callback: @escaping (Bool) -> ()) {
-        SafeManager.shared.confirmFingerSingerLock(R.string.localizable.fingerid_reason()) { (result) in
+        SafeManager.shared.confirmFingerSingerLock(R.string.localizable.fingerid_reason.key.localized()) { (result) in
             callback(result)
         }
     }

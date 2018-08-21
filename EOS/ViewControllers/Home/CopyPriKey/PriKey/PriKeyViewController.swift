@@ -44,13 +44,13 @@ class PriKeyViewController: BaseViewController, IndicatorInfoProvider {
 
 extension PriKeyViewController {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(stringLiteral: R.string.localizable.priKey_title())
+        return IndicatorInfo(stringLiteral: R.string.localizable.priKey_title.key.localized())
     }
     
     @objc func copyPriKey(_ data: [String : Any]) {
         let key = WalletManager.shared.priKey
         let pasteboard = UIPasteboard.general
         pasteboard.string = key
-        self.showSuccess(message: R.string.localizable.have_copied())
+        self.showSuccess(message: R.string.localizable.have_copied.key.localized())
     }
 }

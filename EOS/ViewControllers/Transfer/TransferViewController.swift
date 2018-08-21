@@ -42,15 +42,15 @@ class TransferViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = R.string.localizable.tabbarTransfer()
+        self.title = R.string.localizable.tabbarTransfer.key.localized()
         setUpUI()
 //        self.coordinator?.fetchUserAccount()
     }
     
     func setUpUI() {
         self.accountTextField.delegate = self
-        self.accountTextField.placeholder = R.string.localizable.account_name()
-        self.reciverLabel.text = R.string.localizable.receiver()
+        self.accountTextField.placeholder = R.string.localizable.account_name.key.localized()
+        self.reciverLabel.text = R.string.localizable.receiver.key.localized()
 
         
 //        let info = WalletManager.shared.getAccount()
@@ -120,16 +120,16 @@ extension TransferViewController : UITextFieldDelegate {
             self.clearButton.isHidden = true
             let isValid = WalletManager.shared.isValidWalletName(textField.text!)
             if isValid == false {
-                self.reciverLabel.text = R.string.localizable.name_warning()
+                self.reciverLabel.text = R.string.localizable.name_warning.key.localized()
                 self.reciverLabel.textColor = UIColor.scarlet
             } else {
-                self.reciverLabel.text = R.string.localizable.receiver()
+                self.reciverLabel.text = R.string.localizable.receiver.key.localized()
                 self.reciverLabel.textColor = UIColor.steel
 
             }
             
             if textField.text == nil || textField.text == "" {
-                self.reciverLabel.text = R.string.localizable.receiver()
+                self.reciverLabel.text = R.string.localizable.receiver.key.localized()
                 self.reciverLabel.textColor = UIColor.steel
 
             }
@@ -162,7 +162,7 @@ extension TransferViewController {
         data.recever = self.accountTextField.text!
         data.amount = self.transferContentView.moneyTitleTextView.textField.text!
         data.remark = self.transferContentView.remarkTitleTextView.textView.text!
-        data.buttonTitle = R.string.localizable.check_transfer()
+        data.buttonTitle = R.string.localizable.check_transfer.key.localized()
         self.coordinator?.pushToTransferConfirmVC(data: data)
     }
     @objc func transferMoney(_ data: [String : Any]) {

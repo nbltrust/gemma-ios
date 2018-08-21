@@ -22,7 +22,7 @@ struct GestureLockSetState: StateType {
 struct GestureLockSetPropertyState {
     var reDrawFailedNum: BehaviorRelay<Int> = BehaviorRelay(value: 0)
     var password: BehaviorRelay<String> = BehaviorRelay(value: "")
-    var promotData: BehaviorRelay<(message: String,isWarning: Bool)> = BehaviorRelay(value: (R.string.localizable.ges_pas_input_pla(),false))
+    var promotData: BehaviorRelay<(message: String,isWarning: Bool)> = BehaviorRelay(value: (R.string.localizable.ges_pas_input_pla.key.localized(),false))
     var validedPassword: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 }
 

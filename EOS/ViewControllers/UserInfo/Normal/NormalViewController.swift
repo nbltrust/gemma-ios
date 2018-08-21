@@ -21,7 +21,7 @@ class NormalViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.mine_normal()
+        self.title = R.string.localizable.mine_normal.key.localized()
     }
     
     func commonObserveState() {

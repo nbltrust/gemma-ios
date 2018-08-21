@@ -41,7 +41,7 @@ class GestureLockSetViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.setting_set_password()
+        self.title = R.string.localizable.setting_set_password.key.localized()
         lockView.delegate = self
     }
     

@@ -20,7 +20,7 @@ class ServersViewController: BaseViewController {
         setupUI()
     }
     func setupUI() {
-        self.title = R.string.localizable.mine_server()
+        self.title = R.string.localizable.mine_server.key.localized()
     }
     func commonObserveState() {
         coordinator?.subscribe(errorSubscriber) { sub in

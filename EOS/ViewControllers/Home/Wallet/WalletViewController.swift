@@ -48,7 +48,7 @@ class WalletViewController: BaseViewController {
     }
     
     func setupUI(){
-        self.title = R.string.localizable.tabbarWallet()
+        self.title = R.string.localizable.tabbarWallet.key.localized()
         
         let homeNibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: homeNibString, bundle: nil), forCellReuseIdentifier: homeNibString)
@@ -82,9 +82,9 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
         let headView = WalletListHeaderView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 52))
 
         if section == 0 {
-            headView.titleText = R.string.localizable.have_wallet()
+            headView.titleText = R.string.localizable.have_wallet.key.localized()
         } else {
-            headView.titleText = R.string.localizable.wallet_manager()
+            headView.titleText = R.string.localizable.wallet_manager.key.localized()
         }
         return headView
 

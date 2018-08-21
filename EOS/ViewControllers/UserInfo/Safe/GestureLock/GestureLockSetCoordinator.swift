@@ -62,20 +62,20 @@ extension GestureLockSetCoordinator: GestureLockSetStateManagerProtocol {
     
     func setPassword(_ password: String) {
         if password.count < GestureLockSetting.minPasswordLength {
-            self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough(), true)))
+            self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough.key.localized(), true)))
             addValidCount()
         } else {
             if !self.state.property.validedPassword.value {
                 if self.state.property.password.value.count == 0 {
                     self.store.dispatch(SetPasswordAction(password: password))
-                    self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_confirm_pla(), false)))
+                    self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_confirm_pla.key.localized(), false)))
                 } else {
                     if password == self.state.property.password.value {
                         SafeManager.shared.saveGestureLockPassword(password)
                         self.store.dispatch(SetValidedPasswordAction(valided: true))
                     } else {
                         self.state.callback.setResult.value!(true)
-                        self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_notequal(), true)))
+                        self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_notequal.key.localized(), true)))
                         addValidCount()
                     }
                 }
@@ -95,7 +95,7 @@ extension GestureLockSetCoordinator: GestureLockSetStateManagerProtocol {
     
     func clear() {
         self.store.dispatch(SetPasswordAction(password: ""))
-        self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_input_pla(), false)))
+        self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_input_pla.key.localized(), false)))
         self.store.dispatch(SetValidedPasswordAction(valided: false))
     }
 }

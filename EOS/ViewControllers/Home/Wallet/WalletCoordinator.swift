@@ -109,7 +109,7 @@ extension WalletCoordinator: WalletStateManagerProtocol {
     }
     
     func createSectionTwoDataInfo() -> [LineView.LineViewModel] {
-        return [LineView.LineViewModel.init(name: R.string.localizable.import_wallet(),
+        return [LineView.LineViewModel.init(name: R.string.localizable.import_wallet.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
@@ -117,7 +117,7 @@ extension WalletCoordinator: WalletStateManagerProtocol {
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
-                LineView.LineViewModel.init(name: R.string.localizable.create_wallet(),
+                LineView.LineViewModel.init(name: R.string.localizable.create_wallet.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,

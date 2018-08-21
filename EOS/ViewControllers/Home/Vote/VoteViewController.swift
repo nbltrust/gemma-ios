@@ -19,16 +19,20 @@ class VoteViewController: BaseViewController {
     
     var coordinator: (VoteCoordinatorProtocol & VoteStateManagerProtocol)?
 
-	override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        setupEvent()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadVoteNodeList()
         self.coordinator?.getAccountInfo()
     }
     
+	override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+        setupEvent()
+    }
+    
     func setupUI() {
-        self.title = R.string.localizable.vote_title()
+        self.title = R.string.localizable.vote_title.key.localized()
         
         let nibString = R.nib.nodeCell.identifier
         voteTable.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
@@ -114,8 +118,9 @@ class VoteViewController: BaseViewController {
         coordinator?.state.property.delagatedInfo.asObservable().subscribe(onNext: {[weak self] (info) in
             guard let `self` = self else { return }
             if let info = info {
-                self.footView.subTitleLabel.text = info.delagetedAmount.string + " " + R.string.localizable.eos()
+                self.footView.subTitleLabel.text = info.delagetedAmount.string + " " + R.string.localizable.eos.key.localized()
                 self.footView.statusView.highlighted = info.delagetedAmount > 0
+                self.voteTable.allowsSelection = info.delagetedAmount > 0
             }
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         

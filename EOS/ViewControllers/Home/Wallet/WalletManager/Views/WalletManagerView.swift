@@ -45,13 +45,13 @@ class WalletManagerView: UIView {
     }
     
     func setUpUI() {
-        exportPrivateKeyLineView.name_text = R.string.localizable.export_private_key()
+        exportPrivateKeyLineView.name_text = R.string.localizable.export_private_key.key.localized()
         exportPrivateKeyLineView.isShowLine = true
         exportPrivateKeyLineView.content_text = ""
         exportPrivateKeyLineView.image_name = R.image.icArrow.name
         exportPrivateKeyLineView.backgroundColor = UIColor.clear
         
-        changePasswordLineView.name_text = R.string.localizable.change_password()
+        changePasswordLineView.name_text = R.string.localizable.change_password.key.localized()
         changePasswordLineView.content_text = ""
         changePasswordLineView.image_name = R.image.icArrow.name
         changePasswordLineView.backgroundColor = UIColor.clear

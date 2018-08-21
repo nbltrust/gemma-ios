@@ -21,7 +21,7 @@ class CreatationCompleteViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = R.string.localizable.back_up_wallet()
+        self.title = R.string.localizable.back_up_wallet.key.localized()
     }
     
     func commonObserveState() {
