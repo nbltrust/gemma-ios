@@ -104,12 +104,12 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)
-                KRProgressHUD.showError(withMessage: error.localizedDescription)
+                showFailTop(error.localizedDescription)
             } else {
-                KRProgressHUD.showError(withMessage: R.string.localizable.error_unknow())
+                showFailTop(R.string.localizable.error_unknow())
             }
         }) { (error) in
-            KRProgressHUD.showError(withMessage: R.string.localizable.request_failed())
+            showFailTop(R.string.localizable.request_failed())
         }
     }
 }

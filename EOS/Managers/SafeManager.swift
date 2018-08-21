@@ -93,18 +93,18 @@ class SafeManager {
                 if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
                     callback(false)
                 } else if error == .passcodeNotSet || error == .biometryNotAvailable || error == .biometryNotEnrolled {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.faceid_start_failed())
+                    showFailTop(R.string.localizable.faceid_start_failed())
                     callback(false)
                 } else if error == .biometryLockedout {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.faceid_auth_lock())
+                    showFailTop(R.string.localizable.faceid_auth_lock())
                     callback(false)
                 } else {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.faceid_auth_failed())
+                    showFailTop(R.string.localizable.faceid_auth_failed())
                     callback(false)
                 }
             }
         } else {
-            KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_faceid())
+            showFailTop(R.string.localizable.unsupport_faceid())
             callback(false)
         }
     }
@@ -118,18 +118,18 @@ class SafeManager {
                 if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
                     callback(false)
                 } else if error == .passcodeNotSet || error == .biometryNotAvailable || error == .biometryNotEnrolled {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.touchid_start_failed())
+                    showFailTop(R.string.localizable.touchid_start_failed())
                     callback(false)
                 } else if error == .biometryLockedout {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.touchid_auth_lock())
+                    showFailTop(R.string.localizable.touchid_auth_lock())
                     callback(false)
                 } else {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.touchid_auth_failed())
+                    showFailTop(R.string.localizable.touchid_auth_failed())
                     callback(false)
                 }
             }
         } else {
-            KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_touchid())
+            showFailTop(R.string.localizable.unsupport_touchid())
             callback(false)
         }
     }

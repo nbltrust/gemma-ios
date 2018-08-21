@@ -90,7 +90,7 @@ class AppCoordinator {
         entryCoordinator?.start()
         
         SwifterSwift.delay(milliseconds: 100) {
-            self.rootVC.present(nav, animated: true, completion: nil)
+            self.rootVC.present(nav, animated: false, completion: nil)
         }
         
     }
@@ -132,12 +132,7 @@ class AppCoordinator {
         newVC.navStyle = .white
         let transferConfirmpwd = TransferConfirmPasswordRootCoordinator(rootVC: newVC)
             
-        if let entryCoor = entryCoordinator {
-            entryCoor.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-        }
-        else {
-            curDisplayingCoordinator().rootVC.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-        }
+
         if let vc = R.storyboard.transfer.transferConfirmPasswordViewController() {
             let coordinator = TransferConfirmPasswordCoordinator(rootVC: transferConfirmpwd.rootVC)
             vc.coordinator = coordinator
@@ -150,7 +145,15 @@ class AppCoordinator {
                 })
             }
             transferConfirmpwd.rootVC.pushViewController(vc, animated: true)
+            
+            if let entryCoor = entryCoordinator {
+                entryCoor.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+            }
+            else {
+                curDisplayingCoordinator().rootVC.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+            }
         }
+
     }
     
 }

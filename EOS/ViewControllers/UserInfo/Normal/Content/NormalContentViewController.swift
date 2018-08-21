@@ -37,7 +37,13 @@ class NormalContentViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = self.type == .language ? R.string.localizable.normal_language() : R.string.localizable.normal_asset()
+        if self.type == .language {
+            self.title = R.string.localizable.normal_language()
+        } else if (self.type == .asset) {
+            self.title = R.string.localizable.normal_asset()
+        } else if (self.type == .node) {
+            self.title = R.string.localizable.normal_node()
+        }
         self.coordinator?.setData(self.type.rawValue){ [weak self] (data) in
             self?.containerView.selectedIndex = 0
             self?.containerView.data = data

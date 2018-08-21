@@ -50,7 +50,7 @@
 "name_warning" = "由小写字母a-z与数字1-5组成，须为12个字符";
 "password_warning" = "最少8位长度，建议混合大小写字母、数字及符号";
 "comfirm_password_warning" = "密码不一致";
-"invitationcode_warning" = "邀请码为6位字符";
+"invitationcode_warning" = "邀请码不能为空";
 
 "agree_title" = "我已阅读并同意";
 "service_protocol" = "服务协议";
@@ -170,6 +170,12 @@
 "explain" = "说明";
 "exchange_pre" = "预估可兑换 ";
 "no_data" = "暂无数据";
+"new_password" = "新密码";
+"no_support_mail" = "本设备不能发送邮件";
+"useage_balance" = "可用余额";
+"refund" = "正在赎回";
+
+
 
 //zsy end
 
