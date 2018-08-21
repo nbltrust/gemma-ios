@@ -63,24 +63,8 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
     
     func loadVoteList(_ completed: @escaping (Bool) -> ()) {
-        //Debug
-//        var testData: [NodeVoteViewModel] = []
-//        for index in 0...20 {
-//            var nodeModel = NodeVoteViewModel()
-//            nodeModel.name = "test"
-//            nodeModel.owner = "canadaeos"
-//            nodeModel.percent = "2.1%"
-//            nodeModel.url = "http://www.baidu.com"
-//            nodeModel.rank = "1"
-//            testData.append(nodeModel)
-//        }
-//        self.store.dispatch(SetVoteNodeListAction(datas: testData))
-//        completed(true)
-        //Debug
-        
-
         NBLNetwork.request(target: .producer(showNum: 999), success: {[weak self] (json) in
-            let result = json["result"].dictionaryValue
+            let result = json.dictionaryValue
             let producers = result["producers"]?.arrayValue
             var nodes: [NodeVoteViewModel] = [NodeVoteViewModel]()
             producers?.forEachInParallel({ (producer) in
@@ -88,9 +72,9 @@ extension VoteCoordinator: VoteStateManagerProtocol {
                 var nodeModel = NodeVoteViewModel()
                 nodeModel.name = node?.alias
                 nodeModel.owner = node?.account
-                nodeModel.percent = String(format: "%f%", (node?.percentage)! * 100)
+                nodeModel.percent = String(format: "%g", (node?.percentage)! * 100) + "%"
                 nodeModel.url = node?.url
-                nodeModel.rank = "1"
+                nodeModel.rank = " "
                 nodes.append(nodeModel)
             })
             self?.store.dispatch(SetVoteNodeListAction(datas: nodes))

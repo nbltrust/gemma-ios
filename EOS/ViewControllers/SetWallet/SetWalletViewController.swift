@@ -32,7 +32,6 @@ class SetWalletViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.set_wallet_title()
         agree.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
     }
     

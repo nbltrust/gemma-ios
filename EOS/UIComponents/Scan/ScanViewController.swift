@@ -23,7 +23,8 @@ class ScanViewController: BaseViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.black
+        setupUI()
+        self.startLoadingOnSelf(false)
         checkCameraAuth()
     }
     
@@ -48,7 +49,6 @@ class ScanViewController: BaseViewController {
     }
     
     func loadScanView() {
-        loadLabel()
         initSession()
     }
     
@@ -70,7 +70,8 @@ class ScanViewController: BaseViewController {
         }
     }
     
-    func loadLabel() {
+    func setupUI() {
+        self.view.backgroundColor = UIColor.black
         self.title = R.string.localizable.scan_title()
         self.configLeftNavButton(nil)
         let rect = ScanSetting.scanRect
@@ -104,6 +105,7 @@ class ScanViewController: BaseViewController {
             DispatchQueue.main.async {
                 self.captusession = session
                 self.setupPreviewLayer()
+                self.endLoading()
             }
         }
        

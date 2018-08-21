@@ -19,12 +19,16 @@ class VoteViewController: BaseViewController {
     
     var coordinator: (VoteCoordinatorProtocol & VoteStateManagerProtocol)?
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadVoteNodeList()
+        self.coordinator?.getAccountInfo()
+    }
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupEvent()
-        loadVoteNodeList()
-        self.coordinator?.getAccountInfo()
     }
     
     func setupUI() {
@@ -116,6 +120,7 @@ class VoteViewController: BaseViewController {
             if let info = info {
                 self.footView.subTitleLabel.text = info.delagetedAmount.string + " " + R.string.localizable.eos()
                 self.footView.statusView.highlighted = info.delagetedAmount > 0
+                self.voteTable.allowsSelection = info.delagetedAmount > 0
             }
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         
