@@ -12,15 +12,6 @@ import RxSwift
 import RxCocoa
 
 class BaseViewController: UIViewController {
-    lazy var errorSubscriber: BlockSubscriber<String?> = BlockSubscriber {[weak self] s in
-        guard let `self` = self else { return }
-        
-    }
-    
-    lazy var loadingSubscriber: BlockSubscriber<Bool> = BlockSubscriber {[weak self] s in
-        guard let `self` = self else { return }
-    }
-
     var isNavBarShadowHidden: Bool = false {
         didSet {
             if isNavBarShadowHidden {

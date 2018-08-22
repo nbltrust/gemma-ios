@@ -81,24 +81,8 @@ class SetWalletViewController: BaseViewController {
         sender.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
         self.coordinator?.checkAgree(sender.isSelected)
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
+
     override func configureObserveState() {
-        commonObserveState()
-        
         Observable.combineLatest(self.coordinator!.state.property.setWalletPasswordValid.asObservable(),
                                  self.coordinator!.state.property.setWalletComfirmPasswordValid.asObservable(),
                                  self.coordinator!.state.property.setWalletIsAgree.asObservable()).map { (arg0) -> Bool in

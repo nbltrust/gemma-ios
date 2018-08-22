@@ -25,29 +25,13 @@ class GestureLockSetViewController: BaseViewController {
         super.viewDidLoad()
         setupUI()
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
+
     func setupUI() {
         self.title = R.string.localizable.setting_set_password.key.localized()
         lockView.delegate = self
     }
     
     override func configureObserveState() {
-        commonObserveState()
-        
         self.coordinator?.state.property.validedPassword.asObservable().subscribe(onNext: {[weak self] (isValided) in
             guard let `self` = self else { return }
             if isValided {

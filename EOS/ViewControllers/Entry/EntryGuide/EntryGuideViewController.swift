@@ -29,20 +29,7 @@ class EntryGuideViewController: BaseViewController {
         self.setupUI()
         self.setupEvent()
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
+
     
     func setupUI() {
         self.view.backgroundColor = UIColor.darkSlateBlue
@@ -62,7 +49,6 @@ class EntryGuideViewController: BaseViewController {
     }
     
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }
