@@ -33,6 +33,10 @@ struct AppPropertyState {
     
 }
 
+struct PageStateAction: Action {
+    var state: PageState
+}
+
 struct StartLoading: Action {
     var vc: BaseViewController?
 }
