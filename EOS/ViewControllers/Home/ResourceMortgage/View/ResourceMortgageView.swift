@@ -66,6 +66,10 @@ class ResourceMortgageView: UIView {
         netView.eos = "- EOS"
         netView.lineIsHidden = true
 
+        pageView.leftText = R.string.localizable.mortgage_resource.key.localized()
+        pageView.rightText = R.string.localizable.cancel_mortgage.key.localized()
+        pageView.balance = R.string.localizable.balance_pre.key.localized() + "- EOS"
+        
         leftNextButton.isHidden = false
         rightNextButton.isHidden = true
     }
