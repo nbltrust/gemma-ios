@@ -27,7 +27,7 @@ class NormalContentViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = self.type == .language ? R.string.localizable.normal_language.key.localized() : R.string.localizable.normal_asset.key.localized()
+        self.title = self.coordinator?.titleWithIndex(type)
         self.containerView.data = self.coordinator?.settingDatas(type)
         if let coordinator = self.coordinator {
             self.selectedIndex = coordinator.selectedIndex(type)

@@ -59,5 +59,8 @@ class CBTabBarView: ESTabBarItemContentView {
 }
 
 class BaseTabbarViewController: ESTabBarController {
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        log.debug("viewDidAppear")
+    }
 }

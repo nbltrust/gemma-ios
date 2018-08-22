@@ -147,6 +147,16 @@ class NormalCellView: UIView {
         self.state = NormalCellViewState.normal.rawValue
     }
     
+    func reload() {
+        if let text = name_text {
+            name.attributedText = text.localized().set(style: name_style ?? "")
+        }
+        
+        if let text = content_text {
+            content.attributedText = text.localized().set(style: content_style ?? "")
+        }
+    }
+    
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
     }

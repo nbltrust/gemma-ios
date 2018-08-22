@@ -52,7 +52,7 @@ struct NetworkConfiguration {
 
 //Laguage Setting
 struct LanguageConfiguration {
-    static let keys = [R.string.localizable.language_system.key.localized(),
+    var keys = [R.string.localizable.language_system.key.localized(),
                        R.string.localizable.language_cn.key.localized(),
                        R.string.localizable.language_en.key.localized()]
     

@@ -59,6 +59,7 @@ class BaseNavigationController: UINavigationController {
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if self.viewControllers.count != 0 {
             viewController.hidesBottomBarWhenPushed = true
+            viewController.configLeftNavButton(nil)
             super.pushViewController(viewController, animated: true)
         }
         else {

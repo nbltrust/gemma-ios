@@ -14,14 +14,35 @@ import MessageUI
 
 class UserInfoViewController: BaseViewController {
     
-    @IBOutlet weak var testView: NormalCellView!
+    @IBOutlet weak var customView: NormalCellView!
     
+    @IBOutlet weak var safeView: NormalCellView!
+    
+    @IBOutlet weak var feedbackView: NormalCellView!
+    
+    @IBOutlet weak var protocolView: NormalCellView!
+    
+    @IBOutlet weak var aboutView: NormalCellView!
     
     var coordinator: (UserInfoCoordinatorProtocol & UserInfoStateManagerProtocol)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setupUI()
+    }
+    
+    override func languageChanged() {
+        super.languageChanged()
+        reload()
+    }
+    
+    func reload() {
+        setupUI()
+        customView.reload()
+        safeView.reload()
+        feedbackView.reload()
+        protocolView.reload()
+        aboutView.reload()
     }
     
     func setupUI() {
