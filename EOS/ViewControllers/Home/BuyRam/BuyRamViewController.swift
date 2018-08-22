@@ -35,23 +35,7 @@ class BuyRamViewController: BaseViewController {
         self.coordinator?.pushToPaymentVC()
     }
     
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
     override func configureObserveState() {
-        commonObserveState()
-        
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             self.contentView.data = model

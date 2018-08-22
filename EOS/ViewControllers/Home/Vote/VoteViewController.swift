@@ -101,20 +101,8 @@ class VoteViewController: BaseViewController {
         }
         self.coordinator?.updateIndexPaths(voteTable.indexPathsForSelectedRows)
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
+
+    override func configureObserveState() {
         coordinator?.state.property.delagatedInfo.asObservable().subscribe(onNext: {[weak self] (info) in
             guard let `self` = self else { return }
             if let info = info {
@@ -122,13 +110,7 @@ class VoteViewController: BaseViewController {
                 self.footView.statusView.highlighted = info.delagetedAmount > 0
                 self.voteTable.allowsSelection = info.delagetedAmount > 0
             }
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
-    }
-    
-    override func configureObserveState() {
-        commonObserveState()
-        
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 

@@ -33,20 +33,6 @@ class EntryViewController: BaseViewController {
         setupEvent()
     }
     
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
     @IBAction func agreeAction(_ sender: Any) {
         agreeButton.isSelected = !agreeButton.isSelected
         self.coordinator?.checkAgree(agreeButton.isSelected)
@@ -85,8 +71,6 @@ class EntryViewController: BaseViewController {
     }
     
     override func configureObserveState() {
-        commonObserveState()
-        
         Observable.combineLatest(self.coordinator!.state.property.nameValid.asObservable(),
                                  self.coordinator!.state.property.passwordValid.asObservable(),
                                  self.coordinator!.state.property.comfirmPasswordValid.asObservable(),

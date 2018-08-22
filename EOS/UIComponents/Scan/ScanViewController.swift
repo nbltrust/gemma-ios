@@ -56,20 +56,6 @@ class ScanViewController: BaseViewController {
         super.viewDidAppear(animated)
     }
     
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
     func setupUI() {
         self.view.backgroundColor = UIColor.black
         self.title = R.string.localizable.scan_title.key.localized()
@@ -138,7 +124,6 @@ class ScanViewController: BaseViewController {
     }
     
     override func configureObserveState() {
-        commonObserveState()
     }
 }
 

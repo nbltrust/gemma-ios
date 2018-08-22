@@ -43,20 +43,8 @@ class GestureLockComfirmViewController: BaseViewController {
         super.viewWillDisappear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
+
+    override func configureObserveState() {
         self.coordinator?.state.property.promotData.asObservable().subscribe(onNext: {[weak self] (arg0) in
             guard let `self` = self else { return }
             self.messageLabel.text = arg0.message
@@ -74,12 +62,7 @@ class GestureLockComfirmViewController: BaseViewController {
             } else {
                 self.gestureLockView.reset()
             }
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-    }
-    
-    override func configureObserveState() {
-        commonObserveState()
-        
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 

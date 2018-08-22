@@ -27,7 +27,7 @@ class NormalContentViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = self.type == .language ? R.string.localizable.normal_language.key.localized() : R.string.localizable.normal_asset.key.localized()
+        self.title = self.coordinator?.titleWithIndex(type)
         self.containerView.data = self.coordinator?.settingDatas(type)
         if let coordinator = self.coordinator {
             self.selectedIndex = coordinator.selectedIndex(type)
@@ -40,23 +40,8 @@ class NormalContentViewController: BaseViewController {
         self.coordinator?.setSelectIndex(type, index: selectedIndex)
         self.coordinator?.popVC()
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
+
     override func configureObserveState() {
-        commonObserveState()
     }
 }
 

@@ -12,6 +12,7 @@ import ESTabBarController_swift
 import SwifterSwift
 import Presentr
 import Aspects
+import Localize_Swift
 
 class AppCoordinator {
     var store = Store<AppState> (
@@ -29,6 +30,9 @@ class AppCoordinator {
     var homeCoordinator: HomeRootCoordinator!
     var transferCoordinator: TransferRootCoordinator!
     var userinfoCoordinator: UserInfoRootCoordinator!
+    var homeItem: ESTabBarItem!
+    var transferItem: ESTabBarItem!
+    var userInfoItem: ESTabBarItem!
 
     var entryCoordinator: EntryRootCoordinator?
 
@@ -52,30 +56,42 @@ class AppCoordinator {
         
         let home = BaseNavigationController()
         homeCoordinator = HomeRootCoordinator(rootVC: home)
-        home.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet.key.localized(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
-        //        home.tabBarItem.badgeValue = ""
+        homeItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet.key.localized(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
+        home.tabBarItem = homeItem
         
         let transfer = BaseNavigationController()
         transferCoordinator = TransferRootCoordinator(rootVC: transfer)
-        transfer.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarTransfer.key.localized(), image: R.image.ic_send_normal(), selectedImage: R.image.ic_send_selected())
+        transferItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarTransfer.key.localized(), image: R.image.ic_send_normal(), selectedImage: R.image.ic_send_selected())
+        transfer.tabBarItem = transferItem
         
         let userinfo = BaseNavigationController()
         userinfoCoordinator = UserInfoRootCoordinator(rootVC: userinfo)
-        userinfo.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine.key.localized(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
+        userInfoItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine.key.localized(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
+        userinfo.tabBarItem = userInfoItem
         
         homeCoordinator.start()
         transferCoordinator.start()
         userinfoCoordinator.start()
 
         rootVC.viewControllers = [home, transfer, userinfo]
-        
         aspect()
+    }
+    
+    func updateTabbar() {
+        homeItem.title = R.string.localizable.tabbarWallet.key.localized()
+        transferItem.title = R.string.localizable.tabbarTransfer.key.localized()
+        userInfoItem.title = R.string.localizable.tabbarMine.key.localized()
     }
     
     func aspect() {
         NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil) {[weak self] (notifi) in
             guard let `self` = self else { return }
             self.curDisplayingCoordinator().rootVC.topViewController?.refreshViewController()
+        }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil, queue: nil) {[weak self] (notifi) in
+            guard let `self` = self else { return }
+            self.updateTabbar()
         }
     }
     

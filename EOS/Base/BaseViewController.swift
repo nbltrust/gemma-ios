@@ -10,17 +10,9 @@ import Foundation
 import ReSwift
 import RxSwift
 import RxCocoa
+import Localize_Swift
 
 class BaseViewController: UIViewController {
-    lazy var errorSubscriber: BlockSubscriber<String?> = BlockSubscriber {[weak self] s in
-        guard let `self` = self else { return }
-        
-    }
-    
-    lazy var loadingSubscriber: BlockSubscriber<Bool> = BlockSubscriber {[weak self] s in
-        guard let `self` = self else { return }
-    }
-
     var isNavBarShadowHidden: Bool = false {
         didSet {
             if isNavBarShadowHidden {
@@ -56,9 +48,16 @@ class BaseViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
 
         configureObserveState()
+        
+        observeLanguage()
     }
     
-    
+    func observeLanguage() {
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil, queue: nil) {[weak self] (notifi) in
+            guard let `self` = self else { return }
+            self.languageChanged()
+        }
+    }
     
     func hiddenNavBar() {
         self.navigationController?.navigationBar.isHidden = true
@@ -77,6 +76,10 @@ class BaseViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         endLoading()
+    }
+    
+    func languageChanged() {
+        
     }
     
     func configureObserveState() {

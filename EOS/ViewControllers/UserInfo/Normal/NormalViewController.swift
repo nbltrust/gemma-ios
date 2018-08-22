@@ -12,34 +12,31 @@ import RxCocoa
 import ReSwift
 
 class NormalViewController: BaseViewController {
-
-	var coordinator: (NormalCoordinatorProtocol & NormalStateManagerProtocol)?
+    @IBOutlet weak var languageCell: NormalCellView!
+    
+    @IBOutlet weak var coinUnitCell: NormalCellView!
+    
+    @IBOutlet weak var nodeCell: NormalCellView!
+    
+    var coordinator: (NormalCoordinatorProtocol & NormalStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-    }
-    
-    func setupUI() {
         self.title = R.string.localizable.mine_normal.key.localized()
     }
     
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
+    override func languageChanged() {
+        self.relload()
+    }
+    
+    func relload() {
+        self.title = R.string.localizable.mine_normal.key.localized()
+        languageCell.reload()
+        coinUnitCell.reload()
+        nodeCell.reload()
     }
     
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }
