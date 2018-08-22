@@ -36,14 +36,13 @@ class TransferViewController: BaseViewController {
         let name = WalletManager.shared.getAccount()
         transferContentView.setAccountName(name: name)
         getData()
-
+        setUpUI()
     }
     
 	override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = R.string.localizable.tabbarTransfer.key.localized()
-        setUpUI()
 //        self.coordinator?.fetchUserAccount()
     }
     
@@ -51,7 +50,7 @@ class TransferViewController: BaseViewController {
         self.accountTextField.delegate = self
         self.accountTextField.placeholder = R.string.localizable.account_name.key.localized()
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
-
+        transferContentView.reload()
         
 //        let info = WalletManager.shared.getAccount()
 //        transferContentView.setInfo(info: <#T##String#>)

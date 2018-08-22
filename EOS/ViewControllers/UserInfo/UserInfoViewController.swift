@@ -21,13 +21,18 @@ class UserInfoViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+//        setupUI()
     }
     
     func setupUI() {
         self.title = R.string.localizable.mine_title.key.localized()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
+    }
+  
     override func configureObserveState() {
         
     }
