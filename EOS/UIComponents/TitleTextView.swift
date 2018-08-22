@@ -141,6 +141,13 @@ class TitleTextView: UIView {
         }
     }
     
+    func reloadData() {
+        setting = datasource?.textUISetting(titleTextView: self)
+        buttonSettings = datasource?.textActionSettings(titleTextView: self)
+        unit = datasource?.textUnitStr(titleTextView: self)
+        updateHeight()
+    }
+    
     func setUnit(unit: String) {
         
     }
