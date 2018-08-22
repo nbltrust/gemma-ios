@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 
 def network
-    pod 'Moya'
+    pod 'Moya', :git => 'https://github.com/Moya/Moya', :tag => '12.0.0-beta.1'
     pod 'Kingfisher'
 end
 
@@ -16,6 +16,8 @@ def data
     pod 'SwiftyUserDefaults',:git => 'https://github.com/radex/SwiftyUserDefaults', :tag => '4.0.0-alpha.1'
     pod 'SwiftDate'
     pod 'DifferenceKit'
+    pod 'Dollar'
+    pod 'Validator'
 end
 
 def resource
