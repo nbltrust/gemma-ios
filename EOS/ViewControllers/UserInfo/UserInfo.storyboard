@@ -200,7 +200,11 @@
                         <viewLayoutGuide key="safeArea" id="kV1-Gu-sl5"/>
                     </view>
                     <connections>
-                        <outlet property="testView" destination="QSS-tg-0DC" id="tLr-6H-iG7"/>
+                        <outlet property="aboutView" destination="nSn-DU-DlY" id="iSM-Tp-MXp"/>
+                        <outlet property="customView" destination="QSS-tg-0DC" id="KOY-Vn-7FK"/>
+                        <outlet property="feedbackView" destination="JPc-4l-fLw" id="nCm-Si-Tmh"/>
+                        <outlet property="protocolView" destination="8ma-SW-gKs" id="hvM-Zs-0gU"/>
+                        <outlet property="safeView" destination="eIo-Bx-WBC" id="fRE-rn-KTV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yZ0-QR-Ib4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -343,6 +347,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VIQ-qR-YHP"/>
                     </view>
+                    <connections>
+                        <outlet property="coinUnitCell" destination="6NB-5i-bLb" id="3Nx-K2-gW0"/>
+                        <outlet property="languageCell" destination="CjV-X7-BPe" id="4fy-wS-1e5"/>
+                        <outlet property="nodeCell" destination="kS8-4M-JNO" id="DYi-js-ckQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zd6-yy-uCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -356,10 +365,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbL-et-Bef" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbL-et-Bef" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
                                 <rect key="frame" x="16" y="36" width="343" height="0.0"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fz-ba-GYe" customClass="ContainerNormalCellView" customModule="EOS" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Fz-ba-GYe" customClass="ContainerNormalCellView" customModule="EOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -396,7 +405,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FG9-lh-fh6">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FG9-lh-fh6">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Del-Et-wJf">

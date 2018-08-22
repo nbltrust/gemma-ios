@@ -81,6 +81,7 @@ def ui
     pod 'Bartinter'
     pod 'NotificationBannerSwift'
     pod 'ActiveLabel'
+    pod 'UINavigationItem+Margin'
 end
 
 def other

@@ -2,6 +2,7 @@ PODS:
   - Action (3.6.0):
     - RxCocoa (~> 4.2.0)
     - RxSwift (~> 4.2.0)
+  - ActiveLabel (0.9.0)
   - Alamofire (4.7.3)
   - Aspects (1.4.1)
   - AsyncSwift (2.0.4)
@@ -143,12 +144,14 @@ PODS:
   - Typist (1.2.2)
   - UICKeyChainStore (2.1.1)
   - UIFontComplete (3.0.0)
+  - "UINavigationItem+Margin (2.1.1)"
   - XLPagerTabStrip (8.0.1)
   - ZLaunchAd (2.0.3):
     - SwiftHash (>= 2.0.1)
 
 DEPENDENCIES:
   - Action
+  - ActiveLabel
   - Aspects
   - AsyncSwift
   - AwaitKit
@@ -215,12 +218,14 @@ DEPENDENCIES:
   - TinyConstraints
   - Typist
   - UIFontComplete
+  - "UINavigationItem+Margin"
   - XLPagerTabStrip
   - ZLaunchAd
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Action
+    - ActiveLabel
     - Alamofire
     - Aspects
     - AsyncSwift
@@ -296,6 +301,7 @@ SPEC REPOS:
     - Typist
     - UICKeyChainStore
     - UIFontComplete
+    - "UINavigationItem+Margin"
     - XLPagerTabStrip
     - ZLaunchAd
 
@@ -317,6 +323,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Action: 3d9486d3da02b572b0a034b6c49ac4c3fbcc8b63
+  ActiveLabel: c4fdd14a288483e98b5a3dff0ab214699aeee74a
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
@@ -394,9 +401,10 @@ SPEC CHECKSUMS:
   Typist: 61acc798767f15bf24c61fb9a43d285974380f37
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   UIFontComplete: 5b0f59a83308816c610164b79a2540b3520f9b72
+  "UINavigationItem+Margin": 7368d506fb2f7daa0c0489846cc8c2384ab1ab6d
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
   ZLaunchAd: 47e4fd3718c73d48d74ac37f7f637021e4fd0e4b
 
-PODFILE CHECKSUM: 7e595659a3d2af223cf1d66a65433722e45ba83f
+PODFILE CHECKSUM: 2679233631d8794eb0b53f0f3af57a80fd070b87
 
 COCOAPODS: 1.5.3

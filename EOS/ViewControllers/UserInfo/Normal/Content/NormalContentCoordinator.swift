@@ -26,6 +26,8 @@ protocol NormalContentStateManagerProtocol {
     func selectedIndex(_ sender : CustomSettingType) -> Int
     
     func setSelectIndex(_ sender : CustomSettingType, index: Int)
+    
+    func titleWithIndex(_ sender : CustomSettingType) -> String
 }
 
 class NormalContentCoordinator: UserInfoRootCoordinator {
@@ -60,7 +62,8 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
         var data = [String]()
         switch sender {
         case .language:
-            data = LanguageConfiguration.keys
+            let configuration = LanguageConfiguration()
+            data = configuration.keys
         case .asset:
             data = CoinUnitConfiguration.values
         case .node:
@@ -89,11 +92,25 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
                 let language = configuration.valueWithIndex(index)
                 Defaults[.language] = language
                 Localize.setCurrentLanguage(language)
+            } else {
+                Defaults.remove(.language)
+                Localize.setCurrentLanguage(Localize.defaultLanguage())
             }
         case .asset:
             Defaults[.coinUnit] = index
         case .node:
             Defaults[.currentURLNode] = index
+        }
+    }
+    
+    func titleWithIndex(_ sender: CustomSettingType) -> String {
+        switch sender {
+        case .language:
+            return R.string.localizable.normal_language.key.localized()
+        case .asset:
+            return R.string.localizable.normal_asset.key.localized()
+        case .node:
+            return R.string.localizable.normal_node.key.localized()
         }
     }
     
