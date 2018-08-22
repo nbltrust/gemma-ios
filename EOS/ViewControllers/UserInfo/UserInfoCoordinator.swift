@@ -77,7 +77,8 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
             //打开界面
             self.rootVC.present(controller, animated: true, completion: nil)
         }else{
-            self.rootVC.showError(message: R.string.localizable.no_support_mail.key.localized())
+            UIApplication.shared.openURL(NSURL(string: "support@nbltrust.com")! as URL)
+//            self.rootVC.showError(message: R.string.localizable.no_support_mail.key.localized())
         }
 
     }

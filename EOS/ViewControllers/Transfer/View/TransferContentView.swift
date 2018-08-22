@@ -60,6 +60,12 @@ class TransferContentView: UIView {
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
+    func reload() {
+        accountTitleTextView.reloadData()
+        moneyTitleTextView.reloadData()
+        remarkTitleTextView.reloadData()
+    }
+    
     func setUp() {
         
         handleSetupSubView(accountTitleTextView, tag: InputType.account.rawValue)

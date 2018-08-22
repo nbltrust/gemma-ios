@@ -170,10 +170,10 @@
 "explain" = "Description";
 "exchange_pre" = "Estimated ";
 "no_data" = "No transactions found";
-"new_password" = "新密码";
-"no_support_mail" = "本设备不能发送邮件";
-"useage_balance" = "可用余额";
-"refund" = "正在赎回";
+"new_password" = "Enter new password";
+"no_support_mail" = "Email not supported by this device";
+"useage_balance" = "Balance";
+"refund" = "Refunding";
 //zsy end
 
 "day" = "day(s)";
@@ -281,14 +281,7 @@
 "ges_pas_confirm_pla" = "Draw again to confirm";
 "tap_to_valid" = "Tap to verify";
 "ges_confirm_failed" = "Invalid pattern. Try again.";
-"ges_pas_length_unenough" = "手势密码长度最短为四位";
-"ges_pas_current_pla" = "请输入手势密码";
-"ges_pas_notequal" = "与上一次绘制不一致，请重新绘制";
-"ges_pas_input_pla" = "绘制解锁图案";
-"ges_pas_confirm_pla" = "再次输入解锁密码，以确认";
-"tap_to_valid" = "请点击验证";
-"ges_confirm_failed" = "手势密码有误，请重新解锁";
-"ges_locked" = "手势密码已锁定，请%dS后再试";
+"ges_locked" = "Too many attempts, try again %d seconds later";
 
 //Home
 "node_vote" = "Vote";
