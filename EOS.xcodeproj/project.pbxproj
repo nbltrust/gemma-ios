@@ -356,6 +356,11 @@
 		72FE5B9221009EED00B29FEC /* LeadInIntroduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9121009EED00B29FEC /* LeadInIntroduceView.xib */; };
 		72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */; };
 		72FE5B9621009F2200B29FEC /* LeadInKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */; };
+		7302299B212E50460073D5CE /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022996212E50450073D5CE /* Sprite.swift */; };
+		7302299C212E50460073D5CE /* SpriteRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022997212E50450073D5CE /* SpriteRender.swift */; };
+		7302299D212E50460073D5CE /* StarWarsGLAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022998212E50450073D5CE /* StarWarsGLAnimator.swift */; };
+		7302299E212E50460073D5CE /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022999212E50450073D5CE /* Vector2.swift */; };
+		7302299F212E50460073D5CE /* ViewTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302299A212E50450073D5CE /* ViewTexture.swift */; };
 		7307A939212527D400BD6444 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7307A938212527D300BD6444 /* BaseView.swift */; };
 		731C8502211D6B5B00C3FAA8 /* Pods_EOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */; };
 		733714DE212431E200B2ED90 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 733714C0212431E100B2ED90 /* .gitignore */; };
@@ -5909,6 +5914,11 @@
 		72FE5B9121009EED00B29FEC /* LeadInIntroduceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadInIntroduceView.xib; sourceTree = "<group>"; };
 		72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInKeyView.swift; sourceTree = "<group>"; };
 		72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadInKeyView.xib; sourceTree = "<group>"; };
+		73022996212E50450073D5CE /* Sprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
+		73022997212E50450073D5CE /* SpriteRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteRender.swift; sourceTree = "<group>"; };
+		73022998212E50450073D5CE /* StarWarsGLAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarWarsGLAnimator.swift; sourceTree = "<group>"; };
+		73022999212E50450073D5CE /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
+		7302299A212E50450073D5CE /* ViewTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTexture.swift; sourceTree = "<group>"; };
 		7303786B14932B58CF3428E1760B056F /* rational_horner1_18.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rational_horner1_18.hpp; sourceTree = "<group>"; };
 		7307A938212527D300BD6444 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7307B94E3DA4A89CA5C8FEE82010BDD8 /* basic_regex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = basic_regex.hpp; sourceTree = "<group>"; };
@@ -22002,6 +22012,26 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		73022994212E50450073D5CE /* StarWars */ = {
+			isa = PBXGroup;
+			children = (
+				73022995212E50450073D5CE /* StarWarsGLAnimator */,
+			);
+			path = StarWars;
+			sourceTree = "<group>";
+		};
+		73022995212E50450073D5CE /* StarWarsGLAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				73022996212E50450073D5CE /* Sprite.swift */,
+				73022997212E50450073D5CE /* SpriteRender.swift */,
+				73022998212E50450073D5CE /* StarWarsGLAnimator.swift */,
+				73022999212E50450073D5CE /* Vector2.swift */,
+				7302299A212E50450073D5CE /* ViewTexture.swift */,
+			);
+			path = StarWarsGLAnimator;
+			sourceTree = "<group>";
+		};
 		733537543121D3FFA61523BBC7AA8399 /* traits */ = {
 			isa = PBXGroup;
 			children = (
@@ -31492,6 +31522,7 @@
 		F27B729DE29CAB9AC865E67DD8F6A980 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				73022994212E50450073D5CE /* StarWars */,
 				73B5A69120F5DFF400756391 /* Jdenticon */,
 			);
 			path = Vendor;
@@ -33091,6 +33122,7 @@
 				2253C5302111A6300043AAF7 /* QRCodeActions.swift in Sources */,
 				3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */,
 				72FE5B542100490200B29FEC /* SafeActions.swift in Sources */,
+				7302299D212E50460073D5CE /* StarWarsGLAnimator.swift in Sources */,
 				72FE5B642100491300B29FEC /* ServersActions.swift in Sources */,
 				722D24CA21115B5000A093CA /* ContainerNormalCellView.swift in Sources */,
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
@@ -33105,6 +33137,7 @@
 				3BF842E7211BE60100AF9963 /* BuyRamReducers.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
 				73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */,
+				7302299E212E50460073D5CE /* Vector2.swift in Sources */,
 				72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */,
 				57988B0F4659572FB0099493045E18EE /* EntryReducers.swift in Sources */,
 				3B195062211BE732002C7991 /* BuyRamView.swift in Sources */,
@@ -33125,6 +33158,7 @@
 				917CFC3CF79C268A4F4C59FBC103A951 /* HomeReducers.swift in Sources */,
 				733714EB212431E200B2ED90 /* SwiftIconFont.swift in Sources */,
 				72101691210197C10059B37E /* WalletActions.swift in Sources */,
+				7302299C212E50460073D5CE /* SpriteRender.swift in Sources */,
 				71A4FC1DE158B2FA9DA84CBB240F0AE6 /* HomeRootCoordinator.swift in Sources */,
 				733714E3212431E200B2ED90 /* FontAwesome.swift in Sources */,
 				73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */,
@@ -33137,6 +33171,7 @@
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
 				72FE5B8821009E4D00B29FEC /* LeadInCoordinator.swift in Sources */,
 				72FE5B8B21009E4D00B29FEC /* LeadInReducers.swift in Sources */,
+				7302299B212E50460073D5CE /* Sprite.swift in Sources */,
 				72FE5B4C210048F500B29FEC /* NormalActions.swift in Sources */,
 				72FE5B5E2100490B00B29FEC /* HelpReducers.swift in Sources */,
 				3BD3664C20F72B5E004DE09D /* TransferConfirmPasswordViewController.swift in Sources */,
@@ -33197,6 +33232,7 @@
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				7224714A20F76B4600536BF4 /* DetailView.swift in Sources */,
+				7302299F212E50460073D5CE /* ViewTexture.swift in Sources */,
 				725F68062101B8E50006BBA1 /* SetWalletViewController.swift in Sources */,
 				73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */,
 				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,
