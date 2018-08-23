@@ -46,7 +46,24 @@ struct EOSIONetwork {
                     successCallback(json)
                 }
                 catch _ {
+                    #if DEBUG
+                    let str = String(data: response.data, encoding: String.Encoding.utf8)
+                    let alert = UIAlertController(title:"警告", message:str, preferredStyle: .alert);
+                    let action = UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: nil)
+                    alert.addAction(action)
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        
+                        if var vc = appDelegate.appcoordinator?.rootVC.presentedViewController {
+                            while vc.presentedViewController != nil {
+                                vc = vc.presentedViewController!
+                            }
+                            vc.present(alert, animated:true,completion: nil)
+                        } else {
+                            appDelegate.appcoordinator?.rootVC.present(alert, animated:true,completion: nil)
+                        }
+                    }
                     errorCallback(0)
+                    #endif
                 }
             case let .failure(error):
                 failureCallback(error)
