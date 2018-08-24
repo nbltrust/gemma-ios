@@ -24,15 +24,19 @@ class HomeViewController: BaseViewController {
     var data : Any?
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.automaticallyAdjustsScrollViewInsets = true
 
         setupUI()
     }
     
     override func refreshViewController() {
-        WalletManager.shared.FetchAccount { (account) in
-            self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+        if let wallet = WalletManager.shared.currentWallet() {
+            if wallet.creatStatus != WalletCreatStatus.creatSuccessed.rawValue {
+                self.coordinator?.checkAccount()
+            }
+            WalletManager.shared.FetchAccount { (account) in
+                self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+            }
         }
     }
     
@@ -80,22 +84,12 @@ class HomeViewController: BaseViewController {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = false
         }
         
-        if let wallket = WalletManager.shared.currentWallet() {
-            if wallket.isBackUp {
+        if let wallet = WalletManager.shared.currentWallet() {
+            if let walletBackuped = wallet.isBackUp, walletBackuped {
                 tableHeaderView.backupLabelViewIsHidden = true
-            }
-            else {
+            } else {
                 tableHeaderView.backupLabelViewIsHidden = false
             }
-            
-            self.coordinator?.checkAccount({ (show) in
-                if show {
-                    showWarning(R.string.localizable.red_warning.key.localized())
-                }
-                else {
-                    
-                }
-            })
         }
         else {
             tableHeaderView.backupLabelViewIsHidden = true

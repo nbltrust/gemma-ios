@@ -33,7 +33,7 @@ protocol HomeStateManagerProtocol {
     
     func createDataInfo() -> [LineView.LineViewModel]
     
-    func checkAccount(_ completion:@escaping ResultCallback)
+    func checkAccount()
 }
 
 class HomeCoordinator: HomeRootCoordinator {
@@ -221,14 +221,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         ]
     }
     
-    func checkAccount(_ completion:@escaping ResultCallback) {
-        if let walletlist = WalletManager.shared.currentWallet() {
-            if walletlist.isImport == true  {
-                WalletManager.shared.validChainAccountCreated(walletlist.name, completion: completion)
-            } else {
-                WalletManager.shared.validAccountRegisterSuccess(WalletManager.shared.currentPubKey, completion: completion)
-                
-            }
-        }
+    func checkAccount() {
+        WalletManager.shared.checkCurrentWallet()
     }
 }
