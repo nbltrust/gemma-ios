@@ -19,10 +19,11 @@ class ScanViewController: BaseViewController {
     var titleLabel: UILabel?
     var subTitle: String?
     var captusession: AVCaptureSession?
-    
+    var viewSize: CGSize!
     
 	override func viewDidLoad() {
         super.viewDidLoad()
+        viewSize = self.view.bounds.size
         setupUI()
         self.startLoadingOnSelf(false)
         checkCameraAuth()
@@ -80,12 +81,11 @@ class ScanViewController: BaseViewController {
     }
     
     func initSession() {
-        let size = self.view.bounds.size
         DispatchQueue.global().async {
             let session = AVCaptureSession()
             session.sessionPreset = .high
             self.addInput(session)
-            self.addOutput(session, size: size)
+            self.addOutput(session, size: self.viewSize)
             session.startRunning()
         
             DispatchQueue.main.async {

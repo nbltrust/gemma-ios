@@ -9,14 +9,22 @@
 import Foundation
 import SwiftyUserDefaults
 
+enum WalletCreatStatus: Int {
+    case willGetAccountInfo = 1
+    case failedGetAccountInfo
+    case failedWithReName
+    case willGetLibInfo
+    case creatSuccessed
+}
+
 struct WalletList: Codable, DefaultsSerializable {
-    var name: String
-    var publicKey: String
-    var accountIndex: Int
-    var isBackUp: Bool
-    var isConfirmLib: Bool
-    var txId: String?
-    var invitationCode:String?
+    var name: String?
+    var accountName: String?
+    var created: String?
+    var publicKey: String?
+    var isBackUp: Bool?
+    var creatStatus: Int?
+    var getAccountInfoDate: Date?
     var isImport: Bool?
 }
 
