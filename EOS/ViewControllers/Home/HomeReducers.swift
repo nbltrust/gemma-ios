@@ -101,7 +101,7 @@ func convertAccountViewModelWithAccount(_ account:Account, viewmodel:AccountView
     if let used = account.cpu_limit?.used.string,let max = account.cpu_limit?.max.string {
         newViewModel.cpuProgress = used.float()! / max.float()!
     }
-    if let used = account.net_limit?.used.string,let max = account.cpu_limit?.max.string  {
+    if let used = account.net_limit?.used.string,let max = account.net_limit?.max.string  {
         newViewModel.netProgress = used.float()! / max.float()!
     }
     newViewModel.ramProgress = Float(account.ram_usage) / Float(account.ram_quota)

@@ -71,6 +71,7 @@ class HomeViewController: BaseViewController {
     }
     
     func setupUI(){
+        self.title = "GEMMA"
         self.configRightNavButton(R.image.walletAdd())
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
