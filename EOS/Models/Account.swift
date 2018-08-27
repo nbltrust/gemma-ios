@@ -18,6 +18,8 @@ struct Account:HandyJSON {
     var cpu_limit:CpuLimit?
     var ram_quota:Int64!
     var ram_usage:Int64!
+    var created:String!
+    var permissions:[Permission]!
 
     init() {}
 }
@@ -35,6 +37,35 @@ struct CpuLimit:HandyJSON {
     var available:Int64!
     var max:Int64!
     
+    init() {}
+}
+
+struct Permission:HandyJSON {
+    var required_auth:RequiredAuth!
+    var parent: String!
+    var perm_name: String!
+    init() {}
+}
+
+struct RequiredAuth:HandyJSON {
+    var threshold: Int64!
+    var waits: [ReAuthWait]!
+    var accounts: [ReAuthAccounts]!
+    var keys: [ReAuthKey]!
+    init() {}
+}
+
+struct ReAuthWait: HandyJSON {
+    
+}
+
+struct ReAuthAccounts: HandyJSON {
+    
+}
+
+struct ReAuthKey: HandyJSON {
+    var key:String!
+    var weight:Int64!
     init() {}
 }
 
