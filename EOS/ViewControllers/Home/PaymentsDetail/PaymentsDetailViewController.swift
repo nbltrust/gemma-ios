@@ -20,7 +20,7 @@ class PaymentsDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = R.string.localizable.payments_history.key.localized()
+        self.title = R.string.localizable.payments_detail.key.localized()
         hiddenNavBar()
         self.detailView.data = data
     }

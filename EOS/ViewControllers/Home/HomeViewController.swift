@@ -54,6 +54,7 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.tableView.reloadData()
         if let nav = self.navigationController as? BaseNavigationController {
             nav.navStyle = .clear
         }
@@ -70,6 +71,7 @@ class HomeViewController: BaseViewController {
     }
     
     func setupUI(){
+        self.navigationItem.title = "GEMMA"
         self.configRightNavButton(R.image.walletAdd())
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)

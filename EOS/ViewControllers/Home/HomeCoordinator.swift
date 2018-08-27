@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import Presentr
+import SwiftyJSON
 
 protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
@@ -178,8 +179,13 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         }
         
         SimpleHTTPService.requestETHPrice().done { (json) in
+            
             if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIO_DEFAULT_SYMBOL }).first {
-                self.store.dispatch(RMBPriceFetchedAction(price: eos))
+                if coinType() == .CNY {
+                    self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: nil))
+                } else if coinType() == .USD, let usd = json.filter({ $0["name"].stringValue == NetworkConfiguration.USDT_DEFAULT_SYMBOL }).first {
+                    self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: usd))
+                }
             }
             
         }.cauterize()

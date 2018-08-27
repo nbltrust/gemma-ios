@@ -52,7 +52,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="93"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9600 EOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA1-pa-47r">
-                                                    <rect key="frame" x="142.5" y="50" width="115" height="20"/>
+                                                    <rect key="frame" x="142.5" y="37" width="115" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="Tit-Ek-zAa"/>
                                                     </constraints>
@@ -61,7 +61,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="≈9,600.00 CNY" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgE-A9-NAV">
-                                                    <rect key="frame" x="150" y="82" width="100" height="14"/>
+                                                    <rect key="frame" x="150" y="69" width="100" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="iop-EX-b3n"/>
                                                     </constraints>
@@ -70,13 +70,17 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="e7s-lM-pfE">
-                                                    <rect key="frame" x="148.5" y="19" width="103.5" height="22"/>
+                                                    <rect key="frame" x="149.5" y="19" width="101.5" height="9"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group10" translatesAutoresizingMaskIntoConstraints="NO" id="sKx-FB-Fj0">
-                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="22"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="22" height="9"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="22" id="eEW-Af-4zQ"/>
+                                                                <constraint firstAttribute="width" constant="22" id="qTZ-PD-LYV"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账户总资产" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghL-Vx-XNc">
-                                                            <rect key="frame" x="32" y="0.0" width="71.5" height="22"/>
+                                                            <rect key="frame" x="30" y="0.0" width="71.5" height="9"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -85,9 +89,6 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="aKM-HK-Kgw"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
