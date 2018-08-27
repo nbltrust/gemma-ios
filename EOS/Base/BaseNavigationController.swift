@@ -60,10 +60,10 @@ class BaseNavigationController: UINavigationController {
         if self.viewControllers.count != 0 {
             viewController.hidesBottomBarWhenPushed = true
             viewController.configLeftNavButton(nil)
-            super.pushViewController(viewController, animated: true)
+            super.pushViewController(viewController, animated: animated)
         }
         else {
-            super.pushViewController(viewController, animated: true)
+            super.pushViewController(viewController, animated: animated)
         }
     }
     
