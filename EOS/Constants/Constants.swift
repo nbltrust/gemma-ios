@@ -44,7 +44,8 @@ struct NetworkConfiguration {
     static let EOS_BP_URL = URL(string: "https://eosweb.net")!
 
     static let EOSIO_DEFAULT_SYMBOL = "EOS"
-    
+    static let USDT_DEFAULT_SYMBOL = "USDT"
+
     
     static let SERVER_BASE_URLString = "https://app.cybex.io/"
     static let ETH_PRICE = SERVER_BASE_URLString + "price"

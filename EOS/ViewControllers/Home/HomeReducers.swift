@@ -32,7 +32,7 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
             }
             
             viewmodel.allAssets = calculateTotalAsset(viewmodel)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
             state.info.accept(viewmodel)
         } else {
             let viewmodel = initAccountViewModel()
@@ -41,7 +41,7 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
     case let action as AccountFetchedAction:
         if action.info != nil {
             var viewmodel = convertAccountViewModelWithAccount(action.info!, viewmodel:state.info.value)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
             
             state.info.accept(viewmodel)
         } else {
@@ -52,8 +52,11 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
         if action.price != nil {
             var viewmodel = state.info.value
             state.CNY_price = action.price!["value"].stringValue
+            if action.otherPrice != nil {
+                state.Other_price = action.otherPrice!["value"].stringValue
+            }
             
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
             state.info.accept(viewmodel)
         } else {
             let viewmodel = initAccountViewModel()
@@ -142,13 +145,21 @@ func calculateTotalAsset(_ viewmodel:AccountViewModel) -> String {
     }
 }
 
-func calculateRMBPrice(_ viewmodel:AccountViewModel, price:String) -> String {
+func calculateRMBPrice(_ viewmodel:AccountViewModel, price:String, otherPrice:String) -> String {
     if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDouble(), all != 0 {
         let cny = unit * all
-        return "≈" + cny.string(digits: 2) + " CNY"
+        if coinType() == .CNY {
+            return "≈" + cny.string(digits: 2) + " \(coinUnit())"
+        } else {
+            if let otherPriceDouble = otherPrice.toDouble() {
+                return "≈" + (cny / otherPriceDouble).string(digits: 2) + " \(coinUnit())"
+            } else {
+                return "≈- \(coinUnit())"
+            }
+        }
     }
     else {
-        return "≈- CNY"
+        return "≈- \(coinUnit())"
     }
 }
 

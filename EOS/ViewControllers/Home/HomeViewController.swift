@@ -54,6 +54,7 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.tableView.reloadData()
         if let nav = self.navigationController as? BaseNavigationController {
             nav.navStyle = .clear
         }
