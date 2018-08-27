@@ -408,11 +408,11 @@ class WalletManager {
     }
     
     func failedGetAccountInfo() {
-        
+        showWarning(R.string.localizable.error_createAccount_failed.key.localized())
     }
     
     func failedWithReName() {
-        
+        showWarning(R.string.localizable.error_account_registered.key.localized())
     }
     
     func checkPubKey(_ account: Account, completion:@escaping ResultCallback) {
