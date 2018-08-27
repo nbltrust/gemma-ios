@@ -30,15 +30,15 @@ class RPCTest: XCTestCase {
     func testAccountValid() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        var result = false
-        
-        WalletManager.shared.validChainAccountCreated("test1") { (success) in
-            if success {
-                result = true
-            }
-        }
-        
-        expect(result).toEventually(beTrue(), timeout: 3)
+//        var result = false
+//
+//        WalletManager.shared.validChainAccountCreated("test1") { (success) in
+//            if success {
+//                result = true
+//            }
+//        }
+//
+//        expect(result).toEventually(beTrue(), timeout: 3)
     }
     
     func testGetRamPrice() {
