@@ -108,7 +108,7 @@ extension BuyRamCoordinator: BuyRamStateManagerProtocol {
             
         }
         
-        EOSIONetwork.request(target: .get_account(account: account), success: { (json) in
+        EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 self.store.dispatch(BAccountFetchedAction(info: accountObj))
             }
