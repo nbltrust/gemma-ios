@@ -297,7 +297,7 @@ class WalletManager {
     }
     
     func getAccoutInfo(_ accountName: String, completion: @escaping (_ success: Bool, _ created: String) -> Void) {
-        EOSIONetwork.request(target: .get_account(account: accountName), success: {[weak self] (account) in
+        EOSIONetwork.request(target: .get_account(account: accountName, otherNode: true), success: {[weak self] (account) in
             guard let `self` = self else { return }
             if let account = Account.deserialize(from: account.dictionaryObject) {
                 self.checkPubKey(account, completion: { (success) in
@@ -433,38 +433,6 @@ class WalletManager {
             wallets[index] = wallet
             Defaults[.walletList] = wallets
         }
-    }
-    
-    func validChainAccountCreated(_ account:String, completion:@escaping ResultCallback) {
-        EOSIONetwork.request(target: .get_account(account: account), success: { (account) in
-            let created = account["created"].stringValue.toISODate()!
-            
-            EOSIONetwork.request(target: .get_info, success: { (info) in
-                let lib = info["last_irreversible_block_num"].stringValue
-                EOSIONetwork.request(target: .get_block(num: lib), success: { (block) in
-                    let time = block["timestamp"].stringValue.toISODate()!
-                    if  time >= created {
-                        completion(true)
-                    }
-                    else {
-                        completion(false)
-                    }
-                    
-                }, error: { (code2) in
-                    completion(false)
-                }, failure: { (error2) in
-                    completion(false)
-                })
-            }, error: { (code3) in
-                completion(false)
-            }, failure: { (error3) in
-                completion(false)
-            })
-        }, error: { (code) in
-            completion(false)
-        }, failure: { (error) in
-            completion(false)
-        })
     }
     
     func closeTimer() {

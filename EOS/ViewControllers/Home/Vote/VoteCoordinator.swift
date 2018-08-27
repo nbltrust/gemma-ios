@@ -93,7 +93,7 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
     
     func getAccountInfo(_ account:String) {
-        EOSIONetwork.request(target: .get_account(account: account), success: { (json) in
+        EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 var delegateInfo = DelegatedInfoModel()
                 
