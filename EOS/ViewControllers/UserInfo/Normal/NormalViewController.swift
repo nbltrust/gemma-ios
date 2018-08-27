@@ -22,7 +22,8 @@ class NormalViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = R.string.localizable.mine_normal.key.localized()
+        setupViewSize()
+        setupUI()
     }
     
     override func languageChanged() {
@@ -30,10 +31,26 @@ class NormalViewController: BaseViewController {
     }
     
     func relload() {
-        self.title = R.string.localizable.mine_normal.key.localized()
+        setupUI()
         languageCell.reload()
         coinUnitCell.reload()
         nodeCell.reload()
+    }
+    
+    func setupUI() {
+        self.title = R.string.localizable.mine_normal.key.localized()
+        languageCell.content.text = self.coordinator?.contentWithSender(CustomSettingType.language)
+        coinUnitCell.content.text = self.coordinator?.contentWithSender(CustomSettingType.asset)
+        nodeCell.content.text = self.coordinator?.contentWithSender(CustomSettingType.node)
+    }
+    
+    func setupViewSize () {
+        languageCell.content.font = UIFont.systemFont(ofSize: 14)
+        languageCell.content.textColor = Color.blueyGrey
+        coinUnitCell.content.font = UIFont.systemFont(ofSize: 14)
+        coinUnitCell.content.textColor = Color.blueyGrey
+        nodeCell.content.font = UIFont.systemFont(ofSize: 14)
+        nodeCell.content.textColor = Color.blueyGrey
     }
     
     override func configureObserveState() {

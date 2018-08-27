@@ -141,6 +141,7 @@ extension RegisterContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
         } else {
             if index == 0 {
                 titleTextFieldView.clearText()
+                handleTextField(titleTextFieldView.textField, text: "")
             }
         }
     }
@@ -257,19 +258,24 @@ extension RegisterContentView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        handleTextField(textField, text: newText)
+        return true
+    }
+    
+    
+    func handleTextField(_ textField: UITextField, text: String) {
         switch textField.tag {
         case InputType.name.rawValue:
-            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : text])
         case InputType.password.rawValue:
-            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : text])
         case InputType.comfirmPassword.rawValue:
-            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : text])
         case InputType.invitationCode.rawValue:
-            self.sendEventWith(TextChangeEvent.walletInviteCode.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletInviteCode.rawValue, userinfo: ["content" : text])
         default:
-            return true
+            return
         }
-        return true
     }
     
 //    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
