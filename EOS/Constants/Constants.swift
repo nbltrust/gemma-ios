@@ -35,12 +35,24 @@ struct NetworkConfiguration {
         get {
             var index = Defaults[.currentURLNode]
             let urls = EOSBaseURLNodesConfiguration.values
-            if index < 0 && index >= urls.count {
+            if index < 0 || index >= urls.count {
                 index = 0
             }
             return URL(string: urls[index])!
         }
-    }//URL(string: "http://139.196.73.117:8888")!
+    }
+    var EOSIO_OTHER_BASE_URL : URL {
+        get {
+            let index = Defaults[.currentURLNode]
+            var urls = EOSBaseURLNodesConfiguration.values
+            if index >= 0 && index < urls.count {
+                urls.remove(at: index)
+            }
+            let temp = Int(arc4random() % uint(urls.count))
+            return URL(string: urls[temp])!
+        }
+    }
+    //URL(string: "http://139.196.73.117:8888")!
     static let EOS_BP_URL = URL(string: "https://eosweb.net")!
 
     static let EOSIO_DEFAULT_SYMBOL = "EOS"

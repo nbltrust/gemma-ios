@@ -167,7 +167,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
             self.store.dispatch(BalanceFetchedAction(balance: nil))
         }
         
-        EOSIONetwork.request(target: .get_account(account: account), success: { (json) in
+        EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 self.store.dispatch(AccountFetchedAction(info: accountObj))
             }
