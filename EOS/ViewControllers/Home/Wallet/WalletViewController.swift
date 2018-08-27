@@ -28,8 +28,8 @@ class WalletViewController: BaseViewController {
         
         for (index, wallet) in WalletManager.shared.wallketList().enumerated() {
             var model = WalletManagerModel()
-            model.name = wallet.name
-            model.address = wallet.publicKey
+            model.name = wallet.name ?? "--"
+            model.address = wallet.publicKey ?? "--"
             if model.name == WalletManager.shared.currentWallet()?.name {
                 indexPath = index
             }
