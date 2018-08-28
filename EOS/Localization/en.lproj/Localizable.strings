@@ -294,3 +294,5 @@
 "vote_ticket" = "票";
 "eos" = "EOS";
 "selected_node" = "Selected";
+"vote_failed" = "Vote Failed";
+"vote_successed" = "Vote Successfully";

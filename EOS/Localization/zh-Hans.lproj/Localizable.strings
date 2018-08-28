@@ -299,3 +299,5 @@
 "vote_ticket" = "票";
 "eos" = "EOS";
 "selected_node" = "已选节点";
+"vote_failed" = "投票失败";
+"vote_successed" = "投票成功";
