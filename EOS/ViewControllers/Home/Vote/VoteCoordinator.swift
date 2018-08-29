@@ -12,6 +12,8 @@ import SwiftNotificationCenter
 
 protocol VoteCoordinatorProtocol {
     func pushSelectedVote()
+    
+    func popVC()
 }
 
 protocol VoteStateManagerProtocol {
@@ -52,6 +54,10 @@ extension VoteCoordinator: VoteCoordinatorProtocol {
         let coordinator = SelectedVoteCoordinator(rootVC: self.rootVC)
         selVoteVC?.coordinator = coordinator
         self.rootVC.pushViewController(selVoteVC!, animated: true)
+    }
+    
+    func popVC() {
+        self.rootVC.popViewController(animated: true)
     }
 }
 
@@ -112,11 +118,17 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     
     func voteSelNodes() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, completion: {[weak self] (result) in
-                guard let `self` = self else { return }
-                self.rootVC.popViewController(animated: true)
-            })
+            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, producers: selectedProducers(), completion: nil)
         }
+    }
+    
+    func selectedProducers() -> [String] {
+        var producers: [String] = []
+        for indexPath in self.state.property.selIndexPaths {
+            let producer = self.state.property.datas[indexPath.row]
+            producers.append(producer.owner)
+        }
+        return producers
     }
     
     var state: VoteState {

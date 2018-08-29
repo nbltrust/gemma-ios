@@ -15,6 +15,7 @@ protocol TransferConfirmPasswordCoordinatorProtocol {
     func finishBuyRam()
     func dismissConfirmPwdVC()
     func popConfirmPwdVC()
+    func finishVoteNode()
 }
 
 protocol TransferConfirmPasswordStateManagerProtocol {
@@ -69,6 +70,14 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let coor = appDelegate.appcoordinator?.homeCoordinator, let vc = coor.rootVC.topViewController as? BuyRamViewController {
             self.rootVC.dismiss(animated: true) {
                 vc.resetData()
+            }
+        }
+    }
+    
+    func finishVoteNode() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let coor = appDelegate.appcoordinator?.homeCoordinator, let vc = coor.rootVC.topViewController as? VoteViewController {
+            self.rootVC.dismiss(animated: true) {
+                vc.coordinator?.popVC()
             }
         }
     }
@@ -167,8 +176,8 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.password = password
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()
-        model.success = R.string.localizable.sell_ram_success.key.localized()
-        model.faile = R.string.localizable.sell_ram_faile.key.localized()
+        model.success = R.string.localizable.vote_successed.key.localized()
+        model.faile = R.string.localizable.vote_failed.key.localized()
         model.producers = producers
         transaction(EOSAction.voteproducer.rawValue, actionModel: model) { (bool, showString) in
             callback(bool,showString)
