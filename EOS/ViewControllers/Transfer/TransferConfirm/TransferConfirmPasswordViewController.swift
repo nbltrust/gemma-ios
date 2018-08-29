@@ -92,7 +92,7 @@ extension TransferConfirmPasswordViewController {
             self.coordinator?.transferAccounts(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.showSuccess(message: message)
+//                    self.showSuccess(message: message)
                     self.coordinator?.finishTransfer()
                 } else {
                     self.showError(message: message)
@@ -104,7 +104,7 @@ extension TransferConfirmPasswordViewController {
             self.coordinator?.mortgage(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.showSuccess(message: message)
+//                    self.showSuccess(message: message)
                     self.coordinator?.finishMortgage()
                 } else {
                     self.showError(message: message)
@@ -117,7 +117,7 @@ extension TransferConfirmPasswordViewController {
             self.coordinator?.relieveMortgage(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.showSuccess(message: message)
+//                    self.showSuccess(message: message)
                     self.coordinator?.finishMortgage()
                 } else {
                     self.showError(message: message)
@@ -129,7 +129,7 @@ extension TransferConfirmPasswordViewController {
             self.coordinator?.buyRam(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.showSuccess(message: message)
+//                    self.showSuccess(message: message)
                     self.coordinator?.finishBuyRam()
                 } else {
                     self.showError(message: message)
@@ -141,7 +141,7 @@ extension TransferConfirmPasswordViewController {
             self.coordinator?.sellRam(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.showSuccess(message: message)
+//                    self.showSuccess(message: message)
                     self.coordinator?.finishBuyRam()
                 } else {
                     self.showError(message: message)

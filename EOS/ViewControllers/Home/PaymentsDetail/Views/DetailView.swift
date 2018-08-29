@@ -29,6 +29,11 @@ class DetailView: UIView {
     @IBOutlet weak var people: UILabel!
     
     @IBOutlet weak var webLabel: UILabel!
+    
+    enum event {
+        case copy
+    }
+    
     var data : Any? {
         didSet{
             if let data = data as? PaymentsRecordsViewModel {
@@ -50,11 +55,24 @@ class DetailView: UIView {
     
     
     func setup(){
+        setupEvent()
         updateHeight()
         self.webLabel.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(openSafair))
         
         self.webLabel.addGestureRecognizer(tap)
+    }
+    
+    func setupEvent() {
+        
+    }
+    
+    @IBAction func copyButtonClick(_ sender: Any) {
+        let pasteboard = UIPasteboard.general
+        if let data = data as? PaymentsRecordsViewModel {
+            pasteboard.string = data.hash
+            showSuccessTop(R.string.localizable.have_copied.key.localized())
+        }
     }
     
     override var intrinsicContentSize: CGSize {
