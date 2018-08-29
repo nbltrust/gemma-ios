@@ -36,6 +36,9 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eP8-N2-vrX">
                     <rect key="frame" x="16" y="47" width="20" height="20"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
+                    </accessibility>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="HZb-NE-CZL"/>
                         <constraint firstAttribute="width" constant="20" id="OK6-RW-bkS"/>

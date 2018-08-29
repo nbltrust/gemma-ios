@@ -181,7 +181,7 @@ namespace eosio {
                                                  const std::string& abistr , uint32_t max_cpu_usage_ms, uint32_t max_net_usage_words , uint32_t tx_expiration = 120  ){
             
             auto abi = fc::json::from_string("\"" + abistr + "\"").as<bytes>();
-            auto actions = {create_delegatebw(contract, voter_str,abi)};
+            auto actions = {create_voteproducer(contract, voter_str,abi)};
             chain::signed_transaction trx;
             trx.actions = std::forward<decltype(actions)>(actions);
             auto info = fc::json::from_string(infostr).as<eosio::chain_apis::read_only::get_info_results>();

@@ -27,6 +27,9 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auE-gD-RCf">
                     <rect key="frame" x="20" y="72.5" width="20" height="20"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
+                    </accessibility>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="nTm-JC-L7k"/>
                         <constraint firstAttribute="height" constant="20" id="y66-om-QDG"/>

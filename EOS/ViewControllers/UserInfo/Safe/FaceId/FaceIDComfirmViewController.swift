@@ -22,6 +22,7 @@ class FaceIDComfirmViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        self.coordinator?.confirm()
         if canDismiss {
             self.configLeftNavButton(R.image.icTransferClose())
         }

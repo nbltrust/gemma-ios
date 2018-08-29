@@ -30,6 +30,8 @@ class TransferConfirmPasswordViewController: BaseViewController {
     
     var iconType = ""
     
+    var producers: [String] = []
+    
     var callback: StringCallback?
     
     var publicKey = WalletManager.shared.currentPubKey
@@ -81,8 +83,10 @@ extension TransferConfirmPasswordViewController {
         }
         
         if let callback = self.callback {
-            callback(priKey)
-            return
+            if self.type != confirmType.voteNode.rawValue {
+                callback(priKey)
+                return
+            }
         }
         
         let myType = self.type
@@ -148,7 +152,17 @@ extension TransferConfirmPasswordViewController {
                 }
             })
         } else if myType == confirmType.voteNode.rawValue {
-            
+            self.view.endEditing(true)
+            self.startLoading()
+            self.coordinator?.voteNode(passwordView.textField.text!, account: WalletManager.shared.getAccount(), amount: amount, remark: remark, producers: producers, callback: { [weak self] (isSuccess, message) in
+                guard let `self` = self else { return }
+                if isSuccess {
+                    self.showSuccess(message: message)
+                    self.coordinator?.finishVoteNode()
+                } else {
+                    self.showError(message: message)
+                }
+            })
         }
 
     }

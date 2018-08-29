@@ -129,7 +129,7 @@ class AppCoordinator {
         
     }
     
-    func showPresenterPwd(leftIconType: leftIconType, pubKey:String = WalletManager.shared.currentPubKey, type: String,completion: StringCallback? = nil) {
+    func showPresenterPwd(leftIconType: leftIconType, pubKey:String = WalletManager.shared.currentPubKey, type: String, producers: [String], completion: StringCallback? = nil) {
         let width = ModalSize.full
         
         var height:Float = 271.0
@@ -155,6 +155,7 @@ class AppCoordinator {
             vc.publicKey = pubKey
             vc.iconType = leftIconType.rawValue
             vc.type = type
+            vc.producers = producers
             vc.callback = {[weak vc] priKey in
                 vc?.dismiss(animated: true, completion: {
                     completion?(priKey)
