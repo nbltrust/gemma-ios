@@ -77,6 +77,7 @@ class TransferContentView: UIView {
         remarkTitleTextView.textView.maxHeight = 80
         nextButton.title = R.string.localizable.check_transfer.key.localized()
         moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre.key.localized() + "0.0000 EOS"
+        moneyTitleTextView.textField.keyboardType = UIKeyboardType.decimalPad
         remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
         
