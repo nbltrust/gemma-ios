@@ -42,9 +42,9 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FK-72-h7h">
-                            <rect key="frame" x="109" y="15" width="230" height="10"/>
+                            <rect key="frame" x="129" y="15" width="210" height="10"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="230" id="zGh-xg-zbQ"/>
+                                <constraint firstAttribute="width" constant="210" id="zGh-xg-zbQ"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>

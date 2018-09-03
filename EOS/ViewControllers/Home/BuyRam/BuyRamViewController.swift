@@ -113,6 +113,10 @@ extension BuyRamViewController {
                 self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .left)
                 self.coordinator?.buyRamValid(cpuTextFieldView.textField.text!,blance: balance)
             }
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
+            cpuTextFieldView.textField.text = ""
+            self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .left)
+            self.contentView.leftNextButton.isEnabel.accept(false)
         }
     }
     
@@ -129,6 +133,9 @@ extension BuyRamViewController {
                 self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .right)
                 self.coordinator?.sellRamValid(cpuTextFieldView.textField.text!, blance: balance)
             }
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
+            cpuTextFieldView.textField.text = ""
+            self.contentView.rightNextButton.isEnabel.accept(false)
         }
     }
     

@@ -25,12 +25,16 @@ class TransferViewController: BaseViewController {
     }
     
     func resetData() {
-        self.accountTextField.text = ""
-        self.transferContentView.moneyTitleTextView.clearText()
-        self.transferContentView.remarkTitleTextView.clearText()
+        clearData()
         self.coordinator?.pushToPaymentVC()
     }
 
+    func clearData() {
+        self.accountTextField.text = ""
+        self.transferContentView.moneyTitleTextView.clearText()
+        self.transferContentView.remarkTitleTextView.clearText()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         let name = WalletManager.shared.getAccount()
@@ -42,16 +46,16 @@ class TransferViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = R.string.localizable.tabbarTransfer.key.localized()
 //        self.coordinator?.fetchUserAccount()
     }
     
     func setUpUI() {
+        self.title = R.string.localizable.tabbarTransfer.key.localized()
+
         self.accountTextField.delegate = self
         self.accountTextField.placeholder = R.string.localizable.account_name.key.localized()
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
         transferContentView.reload()
-        
 //        let info = WalletManager.shared.getAccount()
 //        transferContentView.setInfo(info: <#T##String#>)
     }
@@ -145,6 +149,7 @@ extension TransferViewController {
         data.recever = self.accountTextField.text!
         data.amount = self.transferContentView.moneyTitleTextView.textField.text!
         data.remark = self.transferContentView.remarkTitleTextView.textView.text!
+        data.payAccount = self.transferContentView.accountTitleTextView.textField.text!
         data.buttonTitle = R.string.localizable.check_transfer.key.localized()
         self.coordinator?.pushToTransferConfirmVC(data: data)
     }
@@ -154,6 +159,9 @@ extension TransferViewController {
             
             let balance = self.transferContentView.balance
             self.coordinator?.validMoney(money.string(digits: AppConfiguration.EOS_PRECISION), blance: balance)
+        } else if let textfield = data["textfield"] as? UITextField {
+            textfield.text = ""
+            self.transferContentView.nextButton.isEnabel.accept(false)
         }
     }
 }

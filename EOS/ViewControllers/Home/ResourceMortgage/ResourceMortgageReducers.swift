@@ -26,7 +26,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
             
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.cpuMoney != "" {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.cpuMoney != "",netMoneyDouble == 0 {
                 valid = false
                 tips = R.string.localizable.small_money.key.localized()
             }
@@ -42,7 +42,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
             
-            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.netMoney != "" {
+            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.netMoney != "",cpuMoneyDouble == 0 {
                 valid = false
                 tips = R.string.localizable.small_money.key.localized()
             }
@@ -58,7 +58,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
             
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.cpuMoney != "" {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.cpuMoney != "",netMoneyDouble == 0 {
                 valid = false
                 tips = R.string.localizable.small_money.key.localized()
             }
@@ -74,7 +74,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
             
-            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.netMoney != "" {
+            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.netMoney != "",cpuMoneyDouble == 0 {
                 valid = false
                 tips = R.string.localizable.small_money.key.localized()
             }

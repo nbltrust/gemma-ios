@@ -178,6 +178,10 @@ extension ResourceMortgageViewController {
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+            cpuTextFieldView.textField.text = ""
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
     @objc func net(_ data: [String:Any]) {
@@ -191,6 +195,10 @@ extension ResourceMortgageViewController {
                 netTextFieldView.checkStatus = balenceDouble >= netMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.netValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+            netTextFieldView.textField.text = ""
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
     
@@ -205,6 +213,10 @@ extension ResourceMortgageViewController {
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.cpuReliveValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+            cpuTextFieldView.textField.text = ""
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
     @objc func netcancel(_ data: [String:Any]) {
@@ -218,6 +230,10 @@ extension ResourceMortgageViewController {
                 netTextFieldView.checkStatus = balenceDouble >= netMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.netReliveValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+            netTextFieldView.textField.text = ""
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
 }

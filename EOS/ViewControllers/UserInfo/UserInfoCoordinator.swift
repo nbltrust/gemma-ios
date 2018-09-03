@@ -14,9 +14,10 @@ import SwiftyUserDefaults
 protocol UserInfoCoordinatorProtocol {
     func openNormalSetting()
     func openSafeSetting()
-    func openHelpSetting(delegate:Any)
+//    func openHelpSetting(delegate:Any)
     func openServersSetting()
     func openAboutSetting()
+    func openHelpSetting()
 }
 
 protocol UserInfoStateManagerProtocol {
@@ -51,36 +52,50 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    func openHelpSetting(delegate:Any) {
-        //首先要判断设备具不具备发送邮件功能
-        if MFMailComposeViewController.canSendMail(){
-            let controller = MFMailComposeViewController()
-            //设置代理
-            controller.mailComposeDelegate = delegate as? MFMailComposeViewControllerDelegate
-            //设置主题
-            controller.setSubject("Gemma feedback")
-            //设置收件人
-            controller.setToRecipients(["support@nbltrust.com"])
-            //设置抄送人
-//            controller.setCcRecipients(["b1@hangge.com","b2@hangge.com"])
-//            //设置密送人
-//            controller.setBccRecipients(["c1@hangge.com","c2@hangge.com"])
+//    func openHelpSetting(delegate:Any) {
+//        //首先要判断设备具不具备发送邮件功能
+//        if MFMailComposeViewController.canSendMail(){
+//            let controller = MFMailComposeViewController()
+//            //设置代理
+//            controller.mailComposeDelegate = delegate as? MFMailComposeViewControllerDelegate
+//            //设置主题
+//            controller.setSubject("Gemma feedback")
+//            //设置收件人
+//            controller.setToRecipients(["support@nbltrust.com"])
+//            //设置抄送人
+////            controller.setCcRecipients(["b1@hangge.com","b2@hangge.com"])
+////            //设置密送人
+////            controller.setBccRecipients(["c1@hangge.com","c2@hangge.com"])
+//
+//            //添加图片附件
+//            //            var path = NSBundle.mainBundle().pathForResource("hangge.png", ofType: "")
+//            //            var myData = NSData(contentsOfFile: path!)
+//            //            controller.addAttachmentData(myData, mimeType: "image/png", fileName: "swift.png")
+//
+//            //设置邮件正文内容（支持html）
+////            controller.setMessageBody("我是邮件正文", isHTML: false)
+//
+//            //打开界面
+//            self.rootVC.present(controller, animated: true, completion: nil)
+//        }else{
+//            UIApplication.shared.openURL(NSURL(string: "support@nbltrust.com")! as URL)
+////            self.rootVC.showError(message: R.string.localizable.no_support_mail.key.localized())
+//        }
+//
+//    }
+    func openHelpSetting() {
+        let vc = BaseWebViewController()
+        let language = Defaults[.language]
+        if language == "en" {
+            vc.url = H5AddressConfiguration.FEEDBACK_EN_URL
+        } else if language == "zh-Hans" {
+            vc.url = H5AddressConfiguration.FEEDBACK_CN_URL
+        } else {
             
-            //添加图片附件
-            //            var path = NSBundle.mainBundle().pathForResource("hangge.png", ofType: "")
-            //            var myData = NSData(contentsOfFile: path!)
-            //            controller.addAttachmentData(myData, mimeType: "image/png", fileName: "swift.png")
-            
-            //设置邮件正文内容（支持html）
-//            controller.setMessageBody("我是邮件正文", isHTML: false)
-            
-            //打开界面
-            self.rootVC.present(controller, animated: true, completion: nil)
-        }else{
-            UIApplication.shared.openURL(NSURL(string: "support@nbltrust.com")! as URL)
-//            self.rootVC.showError(message: R.string.localizable.no_support_mail.key.localized())
+            vc.url = H5AddressConfiguration.FEEDBACK_EN_URL
         }
-
+        vc.title = R.string.localizable.mine_help.key.localized()
+        self.rootVC.pushViewController(vc, animated: true)
     }
     func openServersSetting() {
         let vc = BaseWebViewController()
