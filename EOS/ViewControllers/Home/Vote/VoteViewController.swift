@@ -18,17 +18,13 @@ class VoteViewController: BaseViewController {
     @IBOutlet weak var footView: VoteFootView!
     
     var coordinator: (VoteCoordinatorProtocol & VoteStateManagerProtocol)?
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadVoteNodeList()
-        self.coordinator?.getAccountInfo()
-    }
     
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupEvent()
+        loadVoteNodeList()
+        self.coordinator?.getAccountInfo()
     }
     
     func setupUI() {
