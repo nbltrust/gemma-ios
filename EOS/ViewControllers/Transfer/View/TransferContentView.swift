@@ -221,8 +221,8 @@ extension TransferContentView: UITextFieldDelegate {
             moneyTitleTextView.reloadActionViews(isEditing: false)
             
             if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = moneyTitleTextView.textField.text?.toDouble() {
-                moneyTitleTextView.checkStatus = balenceDouble > moneyDouble  ? TextUIStyle.common : TextUIStyle.warning
-                nextButton.button.isEnabled = balenceDouble > moneyDouble ? true : false
+                moneyTitleTextView.checkStatus = balenceDouble >= moneyDouble  ? TextUIStyle.common : TextUIStyle.warning
+                nextButton.isEnabel.accept(balenceDouble >= moneyDouble ? true : false)
             }
             self.sendEventWith(TextChangeEvent.transferMoney.rawValue, userinfo: ["textfield" : textField])
         default:
