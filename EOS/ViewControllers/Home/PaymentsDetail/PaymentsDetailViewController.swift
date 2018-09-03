@@ -39,6 +39,6 @@ class PaymentsDetailViewController: BaseViewController {
 
 extension PaymentsDetailViewController {
     @objc func open_safair(_ sender : Any){
-       self.coordinator?.openWebView()
+        self.coordinator?.openWebView(txid: (data?.hash)!)
     }
 }
