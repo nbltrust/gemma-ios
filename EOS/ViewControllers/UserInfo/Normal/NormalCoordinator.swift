@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import SwiftyUserDefaults
 
 protocol NormalCoordinatorProtocol {
     func openContent(_ sender : Int)
@@ -18,6 +19,8 @@ protocol NormalStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<NormalState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func contentWithSender(_ sender: CustomSettingType) -> String
 }
 
 class NormalCoordinator: UserInfoRootCoordinator {
@@ -52,4 +55,18 @@ extension NormalCoordinator: NormalStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func contentWithSender(_ sender: CustomSettingType) -> String {
+        var data = [String]()
+        switch sender {
+        case .language:
+            let configuration = LanguageConfiguration()
+            data = configuration.keys
+            let index = configuration.indexWithValue(Defaults[.language])
+            return data[index]
+        case .asset:
+            return CoinUnitConfiguration.values[Defaults[.coinUnit]]
+        case .node:
+            return EOSBaseURLNodesConfiguration.values[Defaults[.currentURLNode]]
+        }
+    }
 }

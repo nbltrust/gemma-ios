@@ -157,7 +157,7 @@
                                                                     <color key="textColor" red="0.55700000000000005" green="0.55700000000000005" blue="0.57599999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="block_time"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="transaction_time"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHB-Ix-bb4">
@@ -255,7 +255,7 @@
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="locali" value="remark"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7p-GB-wRO">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7p-GB-wRO">
                                                                     <rect key="frame" x="315" y="15" width="13" height="22"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

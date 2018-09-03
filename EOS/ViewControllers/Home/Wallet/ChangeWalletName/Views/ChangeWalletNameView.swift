@@ -20,6 +20,7 @@ class ChangeWalletNameView: UIView {
     }
     
     func setUp() {
+        textField.becomeFirstResponder()
         setUpUI()
         updateHeight()
     }
@@ -87,9 +88,6 @@ extension ChangeWalletNameView:UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         clearButton.isHidden = false
-
     }
-    
-    
 }
 
