@@ -71,20 +71,23 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     func loadVoteList(_ completed: @escaping (Bool) -> ()) {
         NBLNetwork.request(target: .producer(showNum: 999), success: {[weak self] (json) in
             let result = json.dictionaryValue
-            let producers = result["producers"]?.arrayValue
-            var nodes: [NodeVoteViewModel] = [NodeVoteViewModel]()
-            producers?.forEachInParallel({ (producer) in
-                let node = NodeVote.deserialize(from: producer.dictionaryObject)
-                var nodeModel = NodeVoteViewModel()
-                nodeModel.name = node?.alias
-                nodeModel.owner = node?.account
-                nodeModel.percent = String(format: "%g", (node?.percentage)! * 100) + "%"
-                nodeModel.url = node?.url
-                nodeModel.rank = " "
-                nodes.append(nodeModel)
-            })
-            self?.store.dispatch(SetVoteNodeListAction(datas: nodes))
-            completed(true)
+            if let producers = result["producers"]?.arrayValue {
+                var nodes: [NodeVoteViewModel] = [NodeVoteViewModel]()
+                for producer in producers {
+                    let node = NodeVote.deserialize(from: producer.dictionaryObject)
+                    var nodeModel = NodeVoteViewModel()
+                    nodeModel.name = node?.alias
+                    nodeModel.owner = node?.account
+                    nodeModel.percent = String(format: "%g", (node?.percentage)! * 100) + "%"
+                    nodeModel.url = node?.url
+                    nodeModel.rank = " "
+                    nodes.append(nodeModel)
+                }
+                self?.store.dispatch(SetVoteNodeListAction(datas: nodes))
+                completed(true)
+            } else {
+                completed(true)
+            }
             }, error: { (code) in
                 completed(false)
         }) { (error) in
