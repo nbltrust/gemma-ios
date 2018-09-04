@@ -79,6 +79,8 @@
 		225787792122861D004C4579 /* NodeSelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225787772122861D004C4579 /* NodeSelCell.swift */; };
 		2257877A2122861D004C4579 /* NodeSelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225787782122861D004C4579 /* NodeSelCell.xib */; };
 		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
+		227597D4213D03890032DC60 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227597D3213D03890032DC60 /* DataProvider.swift */; };
+		227597D8213D2C620032DC60 /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227597D7213D2C620032DC60 /* DataFetchConditon.swift */; };
 		22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322E211A991D00ACC63C /* VoteCoordinator.swift */; };
 		22A93233211A991D00ACC63C /* VoteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322F211A991D00ACC63C /* VoteActions.swift */; };
 		22A93234211A991D00ACC63C /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93230211A991D00ACC63C /* VoteViewController.swift */; };
@@ -2173,6 +2175,8 @@
 		226E2E59189F5CFFD0423333638F7176 /* symbols.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = symbols.hpp; sourceTree = "<group>"; };
 		226FF31E514C3CCAE5B692F4E7EDAF60 /* fcontext_ppc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fcontext_ppc.hpp; sourceTree = "<group>"; };
 		2274FEA09AFF140C23971C744BC9C814 /* polymorphic_oarchive.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = polymorphic_oarchive.hpp; sourceTree = "<group>"; };
+		227597D3213D03890032DC60 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		227597D7213D2C620032DC60 /* DataFetchConditon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchConditon.swift; sourceTree = "<group>"; };
 		2278257638035A4787F554DD07DD2D4E /* subtract_with_carry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = subtract_with_carry.hpp; sourceTree = "<group>"; };
 		2283DD3511C991C7F0C53E45582BA546 /* illuminance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = illuminance.hpp; sourceTree = "<group>"; };
 		22886BA46EDC7973C8F7A8AFB4AF260B /* minimal_pair_header.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = minimal_pair_header.hpp; sourceTree = "<group>"; };
@@ -14980,6 +14984,15 @@
 			path = base_units;
 			sourceTree = "<group>";
 		};
+		227597D2213CED770032DC60 /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				227597D3213D03890032DC60 /* DataProvider.swift */,
+				227597D7213D2C620032DC60 /* DataFetchConditon.swift */,
+			);
+			path = DataProvider;
+			sourceTree = "<group>";
+		};
 		229A0B5E5D022BF373DB99A641330DCE /* indexing */ = {
 			isa = PBXGroup;
 			children = (
@@ -23003,6 +23016,7 @@
 		7BE71CD78E3A1262CBA7B64DBD8D3BDC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				227597D2213CED770032DC60 /* DataProvider */,
 				3DEC2AE18E1002CD3BF355874DD0C743 /* Utils.swift */,
 			);
 			path = Tools;
@@ -33202,6 +33216,7 @@
 				733714E2212431E200B2ED90 /* LGButton.swift in Sources */,
 				72FE5B802100867B00B29FEC /* SafeLineView.swift in Sources */,
 				2253C53A2111A6450043AAF7 /* PriKeyReducers.swift in Sources */,
+				227597D8213D2C620032DC60 /* DataFetchConditon.swift in Sources */,
 				2253C5372111A6450043AAF7 /* PriKeyCoordinator.swift in Sources */,
 				72FE5B3D20FF401B00B29FEC /* NormalCellView.swift in Sources */,
 				2B1048E593DFE3B00BA04C75B88E9469 /* PaymentsRecordsCell.swift in Sources */,
@@ -33235,6 +33250,7 @@
 				7302299F212E50460073D5CE /* ViewTexture.swift in Sources */,
 				725F68062101B8E50006BBA1 /* SetWalletViewController.swift in Sources */,
 				73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */,
+				227597D4213D03890032DC60 /* DataProvider.swift in Sources */,
 				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,
 				22A9323B211A9C5E00ACC63C /* NodeCell.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
