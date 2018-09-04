@@ -33,6 +33,7 @@ class TransferViewController: BaseViewController {
         self.accountTextField.text = ""
         self.transferContentView.moneyTitleTextView.clearText()
         self.transferContentView.remarkTitleTextView.clearText()
+        self.transferContentView.nextButton.isEnabel.accept(false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +57,7 @@ class TransferViewController: BaseViewController {
         self.accountTextField.placeholder = R.string.localizable.account_name.key.localized()
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
         transferContentView.reload()
+        clearData()
 //        let info = WalletManager.shared.getAccount()
 //        transferContentView.setInfo(info: <#T##String#>)
     }

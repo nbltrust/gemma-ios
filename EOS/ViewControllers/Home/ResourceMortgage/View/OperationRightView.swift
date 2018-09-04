@@ -51,7 +51,7 @@ class OperationRightView: UIView {
         titleTextfieldView.textField.font = UIFont.pfScR16
         titleTextfieldView.textField.tag = tag
         titleTextfieldView.textField.delegate = self
-        titleTextfieldView.textField.keyboardType = .numbersAndPunctuation
+        titleTextfieldView.textField.keyboardType = .decimalPad
         titleTextfieldView.introduceLabel.font = UIFont.pfScR12
         titleTextfieldView.introduceLabel.textColor = UIColor.darkSlateBlueTwo
         titleTextfieldView.delegate = self

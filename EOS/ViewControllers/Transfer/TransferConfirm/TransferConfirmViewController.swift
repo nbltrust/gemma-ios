@@ -22,13 +22,16 @@ class TransferConfirmViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        configLeftNavButton(R.image.icTransferClose())
-        
-        setUpUI()
     }
 
-    func setUpUI() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
+    }
+    
+    func setupUI() {
         self.transferConfirmView.data = data
+        configLeftNavButton(R.image.icTransferClose())
     }
     
     override func leftAction(_ sender: UIButton) {

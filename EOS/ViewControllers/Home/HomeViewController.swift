@@ -77,7 +77,7 @@ class HomeViewController: BaseViewController {
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
-//        self.automaticallyAdjustsScrollViewInsets = true
+//        self.automaticallyAdjustsScrollViewInsets = true 
     }
     
     func updateUI() {

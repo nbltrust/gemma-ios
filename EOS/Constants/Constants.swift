@@ -19,10 +19,14 @@ typealias ObjectOptionalCallback = (Any?) -> Void
 typealias ResultCallback = (Bool) -> Void
 typealias HandlerResult = (Bool, String)
 
+
+
 struct AppConfiguration {
     static let APPID = ""
     
     static let EOS_PRECISION = 4
+    
+    static let EOS_ERROR_CODE_BASE = "eos_errorcode_"
 }
 
 struct NetworkConfiguration {
@@ -58,7 +62,8 @@ struct NetworkConfiguration {
     static let EOSIO_DEFAULT_SYMBOL = "EOS"
     static let USDT_DEFAULT_SYMBOL = "USDT"
 
-    
+    static let EOSFLARE_BASE_URLString = "https://eosflare.io/tx/"
+
     static let SERVER_BASE_URLString = "https://app.cybex.io/"
     static let ETH_PRICE = SERVER_BASE_URLString + "price"
 }
