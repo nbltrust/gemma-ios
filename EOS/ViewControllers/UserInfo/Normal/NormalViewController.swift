@@ -26,6 +26,11 @@ class NormalViewController: BaseViewController {
         setupUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.relload()
+    }
+    
     override func languageChanged() {
         self.relload()
     }
