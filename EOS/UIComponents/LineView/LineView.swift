@@ -127,8 +127,9 @@ class LineView: UIView {
     func setupEvent() {
         rightImg.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
-            
-            self.rightImg.next?.sendEventWith(event.right_event.rawValue, userinfo: ["index":self.index])
+            if self.index != "" {
+                self.rightImg.next?.sendEventWith(event.right_event.rawValue, userinfo: ["index":self.index])
+            }
         }).disposed(by: disposeBag)
     }
     
