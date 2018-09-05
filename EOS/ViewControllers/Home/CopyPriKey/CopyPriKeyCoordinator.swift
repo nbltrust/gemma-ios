@@ -42,7 +42,7 @@ extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
         let customType = PresentationType.custom(width: width, height: height, center: center)
         
         let presenter = Presentr(presentationType: customType)
-        presenter.keyboardTranslationType = .moveUp
+        presenter.keyboardTranslationType = .stickToTop
         
         if let vc = R.storyboard.screenShotAlert.screenShotAlertViewController() {
             let coordinator = ScreenShotAlertCoordinator(rootVC: self.rootVC)

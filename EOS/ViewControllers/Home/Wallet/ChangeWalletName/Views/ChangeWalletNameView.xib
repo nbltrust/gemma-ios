@@ -24,17 +24,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sO-gg-Cc8">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="59"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUn-hv-TcN">
-                            <rect key="frame" x="15" y="21.5" width="35.5" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" red="0.55700000000000005" green="0.55700000000000005" blue="0.57599999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wallet_name"/>
-                            </userDefinedRuntimeAttributes>
-                        </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="efA-dd-sDY">
-                            <rect key="frame" x="70.5" y="21" width="265.5" height="17"/>
+                            <rect key="frame" x="17" y="21" width="319" height="17"/>
                             <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -54,10 +45,8 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="SUn-hv-TcN" firstAttribute="leading" secondItem="6sO-gg-Cc8" secondAttribute="leading" constant="15" id="07X-Yk-ogy"/>
-                        <constraint firstItem="SUn-hv-TcN" firstAttribute="centerY" secondItem="6sO-gg-Cc8" secondAttribute="centerY" id="4ry-G1-BXY"/>
+                        <constraint firstItem="efA-dd-sDY" firstAttribute="leading" secondItem="6sO-gg-Cc8" secondAttribute="leading" constant="17" id="25e-xX-T12"/>
                         <constraint firstAttribute="trailing" secondItem="gLn-Bb-xeA" secondAttribute="trailing" constant="10" id="asb-PX-Mz3"/>
-                        <constraint firstItem="efA-dd-sDY" firstAttribute="leading" secondItem="SUn-hv-TcN" secondAttribute="trailing" constant="20" id="dB1-an-eYu"/>
                         <constraint firstItem="gLn-Bb-xeA" firstAttribute="centerY" secondItem="6sO-gg-Cc8" secondAttribute="centerY" id="lV4-fE-CVD"/>
                         <constraint firstItem="efA-dd-sDY" firstAttribute="centerY" secondItem="6sO-gg-Cc8" secondAttribute="centerY" id="yE6-yg-ofe"/>
                         <constraint firstItem="gLn-Bb-xeA" firstAttribute="leading" secondItem="efA-dd-sDY" secondAttribute="trailing" constant="10" id="yjR-Y4-9oF"/>

@@ -57,7 +57,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
 //        let customType = PresentationType.custom(width: width, height: height, center: center)
 //
 //        let presenter = Presentr(presentationType: customType)
-//        presenter.keyboardTranslationType = .moveUp
+//        presenter.keyboardTranslationType = .stickToTop
 //
 //        if let vc = R.storyboard.screenShotAlert.screenShotAlertViewController() {
 //            let coordinator = ScreenShotAlertCoordinator(rootVC: self.rootVC)
@@ -84,7 +84,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
         let customType = PresentationType.custom(width: width, height: height, center: center)
         
         let presenter = Presentr(presentationType: customType)
-        presenter.keyboardTranslationType = .moveUp
+        presenter.keyboardTranslationType = .stickToTop
 
         let newVC = BaseNavigationController()
         newVC.navStyle = .white
