@@ -81,6 +81,9 @@
 		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
 		227597D4213D03890032DC60 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227597D3213D03890032DC60 /* DataProvider.swift */; };
 		227597D8213D2C620032DC60 /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227597D7213D2C620032DC60 /* DataFetchConditon.swift */; };
+		227597DE213FAF300032DC60 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227597DD213FAF300032DC60 /* DBManager.swift */; };
+		227597E1213FDC750032DC60 /* DBProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227597E0213FDC750032DC60 /* DBProtocol.swift */; };
+		227597E5214101180032DC60 /* Mirror+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227597E4214101180032DC60 /* Mirror+Extension.swift */; };
 		22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322E211A991D00ACC63C /* VoteCoordinator.swift */; };
 		22A93233211A991D00ACC63C /* VoteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322F211A991D00ACC63C /* VoteActions.swift */; };
 		22A93234211A991D00ACC63C /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93230211A991D00ACC63C /* VoteViewController.swift */; };
@@ -2177,6 +2180,9 @@
 		2274FEA09AFF140C23971C744BC9C814 /* polymorphic_oarchive.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = polymorphic_oarchive.hpp; sourceTree = "<group>"; };
 		227597D3213D03890032DC60 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		227597D7213D2C620032DC60 /* DataFetchConditon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchConditon.swift; sourceTree = "<group>"; };
+		227597DD213FAF300032DC60 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		227597E0213FDC750032DC60 /* DBProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBProtocol.swift; sourceTree = "<group>"; };
+		227597E4214101180032DC60 /* Mirror+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mirror+Extension.swift"; sourceTree = "<group>"; };
 		2278257638035A4787F554DD07DD2D4E /* subtract_with_carry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = subtract_with_carry.hpp; sourceTree = "<group>"; };
 		2283DD3511C991C7F0C53E45582BA546 /* illuminance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = illuminance.hpp; sourceTree = "<group>"; };
 		22886BA46EDC7973C8F7A8AFB4AF260B /* minimal_pair_header.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = minimal_pair_header.hpp; sourceTree = "<group>"; };
@@ -13385,6 +13391,7 @@
 				73B5A68F20F5B54C00756391 /* String+Extensions.swift */,
 				73F30B4820F6F17B0016E950 /* UIViewController+Extensions.swift */,
 				221EC1D62100A8D50059F856 /* CGFloat+Extensions.swift */,
+				227597E4214101180032DC60 /* Mirror+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -14987,6 +14994,8 @@
 		227597D2213CED770032DC60 /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
+				227597DD213FAF300032DC60 /* DBManager.swift */,
+				227597E0213FDC750032DC60 /* DBProtocol.swift */,
 				227597D3213D03890032DC60 /* DataProvider.swift */,
 				227597D7213D2C620032DC60 /* DataFetchConditon.swift */,
 			);
@@ -33103,6 +33112,7 @@
 				22578772212197F3004C4579 /* SelectedVoteReducers.swift in Sources */,
 				7307A939212527D400BD6444 /* BaseView.swift in Sources */,
 				72FE5B6D2100491A00B29FEC /* AboutViewController.swift in Sources */,
+				227597DE213FAF300032DC60 /* DBManager.swift in Sources */,
 				22A93234211A991D00ACC63C /* VoteViewController.swift in Sources */,
 				22C023AF20FCB09300284A0A /* ScanCoordinator.swift in Sources */,
 				733714E5212431E200B2ED90 /* Iconic.swift in Sources */,
@@ -33131,6 +33141,7 @@
 				3BFF4E0B2109F8BD0047F996 /* OperationRightView.swift in Sources */,
 				7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */,
 				3BC12AA821060927006EEB80 /* AccountListCoordinator.swift in Sources */,
+				227597E5214101180032DC60 /* Mirror+Extension.swift in Sources */,
 				72FE5B6B2100491A00B29FEC /* AboutCoordinator.swift in Sources */,
 				72FE5B552100490200B29FEC /* SafeViewController.swift in Sources */,
 				2253C5302111A6300043AAF7 /* QRCodeActions.swift in Sources */,
@@ -33244,6 +33255,7 @@
 				721016A5210197F40059B37E /* WalletListHeaderView.swift in Sources */,
 				3BEC3F532111B4FC003C38FB /* BackupPrivateKeyCoordinator.swift in Sources */,
 				3BD366B721009DE0004DE09D /* UIFont+Additions.swift in Sources */,
+				227597E1213FDC750032DC60 /* DBProtocol.swift in Sources */,
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				7224714A20F76B4600536BF4 /* DetailView.swift in Sources */,

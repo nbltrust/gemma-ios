@@ -13,35 +13,37 @@ import GRDB
 class DataProvider {
     static let shared = DataProvider()
     
-    fileprivate var dbQueue: DatabaseQueue!
+    fileprivate var dbQueue: DatabaseQueue = DBManager.shared.dbQueue
     
-    func open() throws {
-        let urlPath = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("EOS.sqlite")
-        dbQueue = try DatabaseQueue(path: urlPath.path)
-    }
-    
-    /*创建数据库*/
-    fileprivate func createDB() {
-    
-    }
+    fileprivate var migrator = DatabaseMigrator()
     
     /*创建表
      tableName: 表名
      */
-    fileprivate func createTable(_ tableName: String) {
+    fileprivate func createTable(_ tableName: String, data: Any, version: String? = nil) {
+    
+    }
+    
+    fileprivate func existTable(_ tableName: String, version: String? = nil) {
         
     }
     
-    func saveData(_ data: AnyObject, primaryKey: String) {
+    func saveData(_ data: Any, primaryKey: String?, newVersion: String? = nil) {
         if extsiData(data) {
-            updateData(data, primaryKey: primaryKey)
+            updateData(data, primaryKey: primaryKey!)
         }
     }
     
+    func updateData(_ data: Any, primaryKey: String) {
+        
+    }
+    
     fileprivate func handleData(_ data: Any) -> (tableName: String,datas: [String: Any]) {
+//        if dataType is
+//        type(of: <#T##T#>)
         if data is MTLStructType {
-            
-        } 
+//            let dataModdel = data as! str
+        }
 //        switch data.dataType {
 //        case MTLDataType.struct:
 //
@@ -51,46 +53,49 @@ class DataProvider {
         return ("", [:])
     }
     
-    func updateData(_ data: AnyObject, primaryKey: String) {
-        
-    }
-    
-    func extsiData(_ data: AnyObject) -> Bool {
+    func extsiData(_ data: Any) -> Bool {
         return true
     }
     
-    func deleteData(_ tableName: String, withKey: String, value: Any) {
+    func deleteData(_ tableName: String, valueConditon: DataFetchCondition) {
         
     }
+
+    func fetchCount(_ tableName: String, valueConditon: DataFetchCondition) -> Int {
+        return fetchCount(tableName, valueConditon: [valueConditon])
+    }
     
-    /*
-     并列KeyValue条件查询
-     */
+    func fetchCount(_ tableName: String, valueConditon: [[DataFetchCondition]]) -> Int {
+        return 0
+    }
+    
+    func fetchCount(_ tableName: String, valueConditon: [DataFetchCondition]) -> Int {
+        return 0
+    }
+    
+    //Condition Search
     func selectData(_ tableName: String, valueConditon: DataFetchCondition) -> [[String : Any]] {
         return selectData(tableName, valueConditions: [valueConditon])
     }
     
-    /*
-     并列KeyValue条件查询
-     valueConditions: [key: value] 查询条件
-     */
     func selectData(_ tableName: String, valueConditions: [DataFetchCondition]) -> [[String : Any]] {
+        return selectData(tableName, valueConditons: [valueConditions])
+    }
+    
+    func selectData(_ tableName: String, valueConditons: [[DataFetchCondition]]) -> [[String : Any]] {
         return []
     }
     
-    /*
-     自定义查询
-     condition: 自定义查询条件
-     */
+    //Custom search
     func selectData(_ tableName: String, condition: String) -> [[String : Any]] {
         return selectData(tableName, conditions: [condition])
     }
     
-    /*
-     并列自定义条件查询
-     conditions: 自定义查询条件
-     */
     func selectData(_ tableName: String, conditions: [String]) -> [[String : Any]] {
+        return selectData(tableName, conditions: [conditions])
+    }
+    
+    func selectData(_ tableName: String, conditions: [[String]]) -> [[String : Any]] {
         return []
     }
 }
