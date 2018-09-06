@@ -53,7 +53,7 @@ extension BuyRamCoordinator: BuyRamCoordinatorProtocol {
         
         let presenter = Presentr(presentationType: customType)
         presenter.dismissOnTap = false
-        presenter.keyboardTranslationType = .moveUp
+        presenter.keyboardTranslationType = .stickToTop
         
         let newVC = BaseNavigationController()
         newVC.navStyle = .white

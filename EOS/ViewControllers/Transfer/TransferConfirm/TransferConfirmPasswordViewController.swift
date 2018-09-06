@@ -66,6 +66,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
         if self.iconType == leftIconType.dismiss.rawValue {
             self.coordinator?.dismissConfirmPwdVC()
         } else {
+            self.passwordView.textField.resignFirstResponder()
             self.coordinator?.popConfirmPwdVC()
         }
     }
