@@ -169,6 +169,38 @@
 		3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */; };
 		3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */; };
 		3B8A0F0188C26CD5B89B88BB7CD2021A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BACC4715E3CF39C51CF4E44B54222588 /* Rubik-Light.ttf */; };
+		3BBE6987213FC09E0047BDDE /* MonkeyKingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6986213FC09E0047BDDE /* MonkeyKingManager.swift */; };
+		3BBE69CF2140C8DA0047BDDE /* ActivateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69CB2140C8DA0047BDDE /* ActivateCoordinator.swift */; };
+		3BBE69D02140C8DA0047BDDE /* ActivateActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69CC2140C8DA0047BDDE /* ActivateActions.swift */; };
+		3BBE69D12140C8DA0047BDDE /* ActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69CD2140C8DA0047BDDE /* ActivateViewController.swift */; };
+		3BBE69D22140C8DA0047BDDE /* ActivateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69CE2140C8DA0047BDDE /* ActivateReducers.swift */; };
+		3BBE69DC2140CD0F0047BDDE /* PayToActivateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69D82140CD0F0047BDDE /* PayToActivateCoordinator.swift */; };
+		3BBE69DD2140CD0F0047BDDE /* PayToActivateActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69D92140CD0F0047BDDE /* PayToActivateActions.swift */; };
+		3BBE69DE2140CD0F0047BDDE /* PayToActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69DA2140CD0F0047BDDE /* PayToActivateViewController.swift */; };
+		3BBE69DF2140CD0F0047BDDE /* PayToActivateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69DB2140CD0F0047BDDE /* PayToActivateReducers.swift */; };
+		3BBE69E42140CD410047BDDE /* FriendToActivateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69E02140CD410047BDDE /* FriendToActivateCoordinator.swift */; };
+		3BBE69E52140CD410047BDDE /* FriendToActivateActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69E12140CD410047BDDE /* FriendToActivateActions.swift */; };
+		3BBE69E62140CD410047BDDE /* FriendToActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69E22140CD410047BDDE /* FriendToActivateViewController.swift */; };
+		3BBE69E72140CD410047BDDE /* FriendToActivateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69E32140CD410047BDDE /* FriendToActivateReducers.swift */; };
+		3BBE69EC2140CD580047BDDE /* ExchangeToActivateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69E82140CD580047BDDE /* ExchangeToActivateCoordinator.swift */; };
+		3BBE69ED2140CD580047BDDE /* ExchangeToActivateActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69E92140CD580047BDDE /* ExchangeToActivateActions.swift */; };
+		3BBE69EE2140CD580047BDDE /* ExchangeToActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69EA2140CD580047BDDE /* ExchangeToActivateViewController.swift */; };
+		3BBE69EF2140CD580047BDDE /* ExchangeToActivateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69EB2140CD580047BDDE /* ExchangeToActivateReducers.swift */; };
+		3BBE69F42140CD720047BDDE /* InvitationCodeToActivateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69F02140CD720047BDDE /* InvitationCodeToActivateCoordinator.swift */; };
+		3BBE69F52140CD720047BDDE /* InvitationCodeToActivateActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69F12140CD720047BDDE /* InvitationCodeToActivateActions.swift */; };
+		3BBE69F62140CD720047BDDE /* InvitationCodeToActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69F22140CD720047BDDE /* InvitationCodeToActivateViewController.swift */; };
+		3BBE69F72140CD720047BDDE /* InvitationCodeToActivateReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE69F32140CD720047BDDE /* InvitationCodeToActivateReducers.swift */; };
+		3BBE69F92140CF100047BDDE /* Activate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE69F82140CF100047BDDE /* Activate.storyboard */; };
+		3BBE6A042140D38B0047BDDE /* PayViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6A012140D38B0047BDDE /* PayViewAdapter.swift */; };
+		3BBE6A052140D38B0047BDDE /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6A022140D38B0047BDDE /* PayView.swift */; };
+		3BBE6A062140D38B0047BDDE /* PayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE6A032140D38B0047BDDE /* PayView.xib */; };
+		3BBE6A082140D50B0047BDDE /* BaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6A072140D50A0047BDDE /* BaseLabel.swift */; };
+		3BBE6A0D2140E0340047BDDE /* FriendViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6A0A2140E0340047BDDE /* FriendViewAdapter.swift */; };
+		3BBE6A0E2140E0340047BDDE /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6A0B2140E0340047BDDE /* FriendView.swift */; };
+		3BBE6A0F2140E0340047BDDE /* FriendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE6A0C2140E0340047BDDE /* FriendView.xib */; };
+		3BBE6A212140E4B60047BDDE /* InvitationViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6A1E2140E4B60047BDDE /* InvitationViewAdapter.swift */; };
+		3BBE6A222140E4B60047BDDE /* InvitationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6A1F2140E4B60047BDDE /* InvitationView.swift */; };
+		3BBE6A232140E4B60047BDDE /* InvitationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE6A202140E4B60047BDDE /* InvitationView.xib */; };
 		3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A69210587B4006EEB80 /* RedWarningView.swift */; };
 		3BC12A6C210587BD006EEB80 /* RedWarningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC12A6B210587BD006EEB80 /* RedWarningView.xib */; };
 		3BC12A8E210608AB006EEB80 /* TransferConfirmPasswordRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A8D210608AA006EEB80 /* TransferConfirmPasswordRootCoordinator.swift */; };
@@ -3391,6 +3423,38 @@
 		3BAF61F74B116400102C32E12CA8E5AE /* is_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_function.hpp; sourceTree = "<group>"; };
 		3BBA94C90C3037001ED15816A1F6D96B /* lex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lex.hpp; sourceTree = "<group>"; };
 		3BBE543A4F5599E8BF7677E7634501F4 /* equal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = equal.hpp; sourceTree = "<group>"; };
+		3BBE6986213FC09E0047BDDE /* MonkeyKingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonkeyKingManager.swift; sourceTree = "<group>"; };
+		3BBE69CB2140C8DA0047BDDE /* ActivateCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateCoordinator.swift; sourceTree = "<group>"; };
+		3BBE69CC2140C8DA0047BDDE /* ActivateActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateActions.swift; sourceTree = "<group>"; };
+		3BBE69CD2140C8DA0047BDDE /* ActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateViewController.swift; sourceTree = "<group>"; };
+		3BBE69CE2140C8DA0047BDDE /* ActivateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateReducers.swift; sourceTree = "<group>"; };
+		3BBE69D82140CD0F0047BDDE /* PayToActivateCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayToActivateCoordinator.swift; sourceTree = "<group>"; };
+		3BBE69D92140CD0F0047BDDE /* PayToActivateActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayToActivateActions.swift; sourceTree = "<group>"; };
+		3BBE69DA2140CD0F0047BDDE /* PayToActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayToActivateViewController.swift; sourceTree = "<group>"; };
+		3BBE69DB2140CD0F0047BDDE /* PayToActivateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayToActivateReducers.swift; sourceTree = "<group>"; };
+		3BBE69E02140CD410047BDDE /* FriendToActivateCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendToActivateCoordinator.swift; sourceTree = "<group>"; };
+		3BBE69E12140CD410047BDDE /* FriendToActivateActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendToActivateActions.swift; sourceTree = "<group>"; };
+		3BBE69E22140CD410047BDDE /* FriendToActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendToActivateViewController.swift; sourceTree = "<group>"; };
+		3BBE69E32140CD410047BDDE /* FriendToActivateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendToActivateReducers.swift; sourceTree = "<group>"; };
+		3BBE69E82140CD580047BDDE /* ExchangeToActivateCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeToActivateCoordinator.swift; sourceTree = "<group>"; };
+		3BBE69E92140CD580047BDDE /* ExchangeToActivateActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeToActivateActions.swift; sourceTree = "<group>"; };
+		3BBE69EA2140CD580047BDDE /* ExchangeToActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeToActivateViewController.swift; sourceTree = "<group>"; };
+		3BBE69EB2140CD580047BDDE /* ExchangeToActivateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeToActivateReducers.swift; sourceTree = "<group>"; };
+		3BBE69F02140CD720047BDDE /* InvitationCodeToActivateCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeToActivateCoordinator.swift; sourceTree = "<group>"; };
+		3BBE69F12140CD720047BDDE /* InvitationCodeToActivateActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeToActivateActions.swift; sourceTree = "<group>"; };
+		3BBE69F22140CD720047BDDE /* InvitationCodeToActivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeToActivateViewController.swift; sourceTree = "<group>"; };
+		3BBE69F32140CD720047BDDE /* InvitationCodeToActivateReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCodeToActivateReducers.swift; sourceTree = "<group>"; };
+		3BBE69F82140CF100047BDDE /* Activate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activate.storyboard; sourceTree = "<group>"; };
+		3BBE6A012140D38B0047BDDE /* PayViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewAdapter.swift; sourceTree = "<group>"; };
+		3BBE6A022140D38B0047BDDE /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
+		3BBE6A032140D38B0047BDDE /* PayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PayView.xib; sourceTree = "<group>"; };
+		3BBE6A072140D50A0047BDDE /* BaseLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLabel.swift; sourceTree = "<group>"; };
+		3BBE6A0A2140E0340047BDDE /* FriendViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewAdapter.swift; sourceTree = "<group>"; };
+		3BBE6A0B2140E0340047BDDE /* FriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
+		3BBE6A0C2140E0340047BDDE /* FriendView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendView.xib; sourceTree = "<group>"; };
+		3BBE6A1E2140E4B60047BDDE /* InvitationViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationViewAdapter.swift; sourceTree = "<group>"; };
+		3BBE6A1F2140E4B60047BDDE /* InvitationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationView.swift; sourceTree = "<group>"; };
+		3BBE6A202140E4B60047BDDE /* InvitationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitationView.xib; sourceTree = "<group>"; };
 		3BC12A69210587B4006EEB80 /* RedWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedWarningView.swift; sourceTree = "<group>"; };
 		3BC12A6B210587BD006EEB80 /* RedWarningView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RedWarningView.xib; sourceTree = "<group>"; };
 		3BC12A8D210608AA006EEB80 /* TransferConfirmPasswordRootCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferConfirmPasswordRootCoordinator.swift; sourceTree = "<group>"; };
@@ -17199,6 +17263,99 @@
 			path = thread;
 			sourceTree = "<group>";
 		};
+		3BBE69C22140C7750047BDDE /* Activate */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE69D72140CCBB0047BDDE /* InvitationCode */,
+				3BBE69D62140CC920047BDDE /* Exchange */,
+				3BBE69D52140CC790047BDDE /* Friend */,
+				3BBE69D42140CC640047BDDE /* Pay */,
+				3BBE69CB2140C8DA0047BDDE /* ActivateCoordinator.swift */,
+				3BBE69CC2140C8DA0047BDDE /* ActivateActions.swift */,
+				3BBE69CD2140C8DA0047BDDE /* ActivateViewController.swift */,
+				3BBE69CE2140C8DA0047BDDE /* ActivateReducers.swift */,
+				3BBE69F82140CF100047BDDE /* Activate.storyboard */,
+			);
+			path = Activate;
+			sourceTree = "<group>";
+		};
+		3BBE69D42140CC640047BDDE /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE69FA2140D34B0047BDDE /* View */,
+				3BBE69D82140CD0F0047BDDE /* PayToActivateCoordinator.swift */,
+				3BBE69D92140CD0F0047BDDE /* PayToActivateActions.swift */,
+				3BBE69DA2140CD0F0047BDDE /* PayToActivateViewController.swift */,
+				3BBE69DB2140CD0F0047BDDE /* PayToActivateReducers.swift */,
+			);
+			path = Pay;
+			sourceTree = "<group>";
+		};
+		3BBE69D52140CC790047BDDE /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE6A092140E01E0047BDDE /* View */,
+				3BBE69E02140CD410047BDDE /* FriendToActivateCoordinator.swift */,
+				3BBE69E12140CD410047BDDE /* FriendToActivateActions.swift */,
+				3BBE69E22140CD410047BDDE /* FriendToActivateViewController.swift */,
+				3BBE69E32140CD410047BDDE /* FriendToActivateReducers.swift */,
+			);
+			path = Friend;
+			sourceTree = "<group>";
+		};
+		3BBE69D62140CC920047BDDE /* Exchange */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE69E82140CD580047BDDE /* ExchangeToActivateCoordinator.swift */,
+				3BBE69E92140CD580047BDDE /* ExchangeToActivateActions.swift */,
+				3BBE69EA2140CD580047BDDE /* ExchangeToActivateViewController.swift */,
+				3BBE69EB2140CD580047BDDE /* ExchangeToActivateReducers.swift */,
+			);
+			path = Exchange;
+			sourceTree = "<group>";
+		};
+		3BBE69D72140CCBB0047BDDE /* InvitationCode */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE6A172140E46C0047BDDE /* View */,
+				3BBE69F02140CD720047BDDE /* InvitationCodeToActivateCoordinator.swift */,
+				3BBE69F12140CD720047BDDE /* InvitationCodeToActivateActions.swift */,
+				3BBE69F22140CD720047BDDE /* InvitationCodeToActivateViewController.swift */,
+				3BBE69F32140CD720047BDDE /* InvitationCodeToActivateReducers.swift */,
+			);
+			path = InvitationCode;
+			sourceTree = "<group>";
+		};
+		3BBE69FA2140D34B0047BDDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE6A012140D38B0047BDDE /* PayViewAdapter.swift */,
+				3BBE6A022140D38B0047BDDE /* PayView.swift */,
+				3BBE6A032140D38B0047BDDE /* PayView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3BBE6A092140E01E0047BDDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE6A0A2140E0340047BDDE /* FriendViewAdapter.swift */,
+				3BBE6A0B2140E0340047BDDE /* FriendView.swift */,
+				3BBE6A0C2140E0340047BDDE /* FriendView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3BBE6A172140E46C0047BDDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE6A1E2140E4B60047BDDE /* InvitationViewAdapter.swift */,
+				3BBE6A1F2140E4B60047BDDE /* InvitationView.swift */,
+				3BBE6A202140E4B60047BDDE /* InvitationView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3BC12A8F21060926006EEB80 /* AccountList */ = {
 			isa = PBXGroup;
 			children = (
@@ -23187,6 +23344,7 @@
 		7D5F1CA04F5428CB9A826437282B6A3D /* Entry */ = {
 			isa = PBXGroup;
 			children = (
+				3BBE69C22140C7750047BDDE /* Activate */,
 				3BEC3F4E2111B4CB003C38FB /* BackupPrivateKey */,
 				22C0239A20F6FD6600284A0A /* CreatationComplete */,
 				22C0239120F6FCF300284A0A /* EntryGuide */,
@@ -28101,6 +28259,7 @@
 			children = (
 				BA20796EDA35DD276BD78FBA7C8E796C /* WalletManager.swift */,
 				2253C51B211052020043AAF7 /* SafeManager.swift */,
+				3BBE6986213FC09E0047BDDE /* MonkeyKingManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -29444,6 +29603,7 @@
 				0B21F842EDAA2C738697E10E5E668845 /* BaseTableViewCell.swift */,
 				58C31E477791C74FBCB33C4FC946E170 /* BaseViewController.swift */,
 				4F8935C54739AEE59DA2310B17591480 /* BaseWebViewController.swift */,
+				3BBE6A072140D50A0047BDDE /* BaseLabel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -32639,6 +32799,7 @@
 				733714E0212431E200B2ED90 /* .gitkeep in Resources */,
 				4675BAAB54FD05ECC0BA9DA3D1204007 /* cwctype in Resources */,
 				EF6489CA93976FA5A79FDBDA1F95360E /* deque in Resources */,
+				3BBE6A232140E4B60047BDDE /* InvitationView.xib in Resources */,
 				3BEC3F5B2111B697003C38FB /* BackupPrivateKeyView.xib in Resources */,
 				A7D7E408438EB9EC40128F2BBC7BB514 /* deque.SUNWCCh in Resources */,
 				81D2DE5DB28E668B85B44501EA7D0676 /* exception in Resources */,
@@ -32677,6 +32838,7 @@
 				97CE8B704C3B17E62FBA191844D82474 /* list in Resources */,
 				72FE5B8E21009E8200B29FEC /* LeadIn.storyboard in Resources */,
 				FBF8C6513820764A83201943FA59A787 /* list.SUNWCCh in Resources */,
+				3BBE6A0F2140E0340047BDDE /* FriendView.xib in Resources */,
 				9B504112E30FD5A6E27B38365983F226 /* locale in Resources */,
 				C15624E04928CCC4C0CD3E4B9E9DBAE5 /* locale.SUNWCCh in Resources */,
 				3B195067211BE7CF002C7991 /* GeneralRamCellView.xib in Resources */,
@@ -32720,6 +32882,7 @@
 				FB6B3762C0FE00D751B31CE63B29EF9B /* string in Resources */,
 				2253C54E2112D8530043AAF7 /* QRCodeView.xib in Resources */,
 				9BE02F87EF0C6FA2FE00D73F20938355 /* string.SUNWCCh in Resources */,
+				3BBE6A062140D38B0047BDDE /* PayView.xib in Resources */,
 				532A37AA8B111DD1CE3EF64F657F78A0 /* strstream in Resources */,
 				AE6DABF125374DB13E70276388519645 /* strstream.SUNWCCh in Resources */,
 				C710FC829770D5A10FD8C2C4BF50E9F1 /* sun.SUNWCCh in Resources */,
@@ -32727,6 +32890,7 @@
 				72101695210197C10059B37E /* Wallet.storyboard in Resources */,
 				733714F4212431E200B2ED90 /* octicons.ttf in Resources */,
 				3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */,
+				3BBE69F92140CF100047BDDE /* Activate.storyboard in Resources */,
 				8601A7A3CDCBA5FDDFFEB50F48C225F8 /* tuple.SUNWCCh in Resources */,
 				65296AC08841C5E299ADC77C5441031E /* type_traits in Resources */,
 				733714DE212431E200B2ED90 /* .gitignore in Resources */,
@@ -32888,6 +33052,7 @@
 				"${BUILT_PRODUCTS_DIR}/Lightning/Lightning.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/MonkeyKing/MonkeyKing.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ObservableArray-RxSwift/ObservableArray_RxSwift.framework",
@@ -32970,6 +33135,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightning.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MonkeyKing.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObservableArray_RxSwift.framework",
@@ -33067,6 +33233,9 @@
 				7224713A20F624D200536BF4 /* HomeTopView.swift in Sources */,
 				72FE5B562100490200B29FEC /* SafeReducers.swift in Sources */,
 				BCC6A4AF1D9A982ED1EE00ADF919DED7 /* AppCoordinator.swift in Sources */,
+				3BBE6A0E2140E0340047BDDE /* FriendView.swift in Sources */,
+				3BBE69F62140CD720047BDDE /* InvitationCodeToActivateViewController.swift in Sources */,
+				3BBE69E42140CD410047BDDE /* FriendToActivateCoordinator.swift in Sources */,
 				089FC61F5C404D8812055FF8F62C5183 /* AppDelegate.swift in Sources */,
 				C10A4AC7FCB160CCFE2C82D6BBAC4A64 /* AppReducer.swift in Sources */,
 				A58426FF8A514CDE712EB97BAB795BB3 /* BaseCollectionViewCell.swift in Sources */,
@@ -33094,6 +33263,7 @@
 				22C023A020F6FDB900284A0A /* CreatationCompleteActions.swift in Sources */,
 				72101690210197C10059B37E /* WalletCoordinator.swift in Sources */,
 				3BF842E4211BE60100AF9963 /* BuyRamCoordinator.swift in Sources */,
+				3BBE69D02140C8DA0047BDDE /* ActivateActions.swift in Sources */,
 				3BC12A9E21060927006EEB80 /* AccountListReducers.swift in Sources */,
 				721016A1210197C10059B37E /* WalletManagerCoordinator.swift in Sources */,
 				72D645B921106860003F660D /* LeadInKeyReducers.swift in Sources */,
@@ -33105,13 +33275,16 @@
 				3BD3664A20F72B5E004DE09D /* TransferConfirmPasswordCoordinator.swift in Sources */,
 				3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */,
 				22C023A120F6FDB900284A0A /* CreatationCompleteViewController.swift in Sources */,
+				3BBE69F42140CD720047BDDE /* InvitationCodeToActivateCoordinator.swift in Sources */,
 				72101692210197C10059B37E /* WalletViewController.swift in Sources */,
 				7210169A210197C10059B37E /* ChangeWalletNameView.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
 				22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */,
 				22578772212197F3004C4579 /* SelectedVoteReducers.swift in Sources */,
 				7307A939212527D400BD6444 /* BaseView.swift in Sources */,
+				3BBE69D12140C8DA0047BDDE /* ActivateViewController.swift in Sources */,
 				72FE5B6D2100491A00B29FEC /* AboutViewController.swift in Sources */,
+				3BBE69E62140CD410047BDDE /* FriendToActivateViewController.swift in Sources */,
 				227597DE213FAF300032DC60 /* DBManager.swift in Sources */,
 				22A93234211A991D00ACC63C /* VoteViewController.swift in Sources */,
 				22C023AF20FCB09300284A0A /* ScanCoordinator.swift in Sources */,
@@ -33119,6 +33292,7 @@
 				72FE5B7621006B0700B29FEC /* NormalContentViewController.swift in Sources */,
 				3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */,
 				72FE5B4D210048F500B29FEC /* NormalViewController.swift in Sources */,
+				3BBE6A222140E4B60047BDDE /* InvitationView.swift in Sources */,
 				BB08391AA7F1D732D97B698F412B3651 /* ComfirmView.swift in Sources */,
 				3BF842E6211BE60100AF9963 /* BuyRamViewController.swift in Sources */,
 				3B3146F72106D56500E815BD /* ResourceMortgageCoordinator.swift in Sources */,
@@ -33133,12 +33307,15 @@
 				72D645B621106860003F660D /* LeadInKeyCoordinator.swift in Sources */,
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,
 				7210169F210197C10059B37E /* WalletManagerView.swift in Sources */,
+				3BBE6A082140D50B0047BDDE /* BaseLabel.swift in Sources */,
 				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
 				2253C52A2111A5F90043AAF7 /* CopyPriKeyReducers.swift in Sources */,
 				0795BFD28C42BE58BB94BAA17ADB6B91 /* EOSIO.mm in Sources */,
 				2214A96C211D73CF003256D2 /* Error.swift in Sources */,
 				72101697210197C10059B37E /* ChangeWalletNameViewController.swift in Sources */,
 				3BFF4E0B2109F8BD0047F996 /* OperationRightView.swift in Sources */,
+				3BBE69DD2140CD0F0047BDDE /* PayToActivateActions.swift in Sources */,
+				3BBE69D22140C8DA0047BDDE /* ActivateReducers.swift in Sources */,
 				7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */,
 				3BC12AA821060927006EEB80 /* AccountListCoordinator.swift in Sources */,
 				227597E5214101180032DC60 /* Mirror+Extension.swift in Sources */,
@@ -33148,6 +33325,7 @@
 				3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */,
 				72FE5B542100490200B29FEC /* SafeActions.swift in Sources */,
 				7302299D212E50460073D5CE /* StarWarsGLAnimator.swift in Sources */,
+				3BBE69EF2140CD580047BDDE /* ExchangeToActivateReducers.swift in Sources */,
 				72FE5B642100491300B29FEC /* ServersActions.swift in Sources */,
 				722D24CA21115B5000A093CA /* ContainerNormalCellView.swift in Sources */,
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
@@ -33166,6 +33344,7 @@
 				72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */,
 				57988B0F4659572FB0099493045E18EE /* EntryReducers.swift in Sources */,
 				3B195062211BE732002C7991 /* BuyRamView.swift in Sources */,
+				3BBE6987213FC09E0047BDDE /* MonkeyKingManager.swift in Sources */,
 				73B5A6AD20F601DE00756391 /* Payment.swift in Sources */,
 				221EC1C921008EF50059F856 /* GestureLockSetReducers.swift in Sources */,
 				3B726C1521133502001E4850 /* ScreenShotAlertActions.swift in Sources */,
@@ -33187,8 +33366,10 @@
 				71A4FC1DE158B2FA9DA84CBB240F0AE6 /* HomeRootCoordinator.swift in Sources */,
 				733714E3212431E200B2ED90 /* FontAwesome.swift in Sources */,
 				73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */,
+				3BBE69EE2140CD580047BDDE /* ExchangeToActivateViewController.swift in Sources */,
 				2253C54C2112D83D0043AAF7 /* QRCodeView.swift in Sources */,
 				7210169D210197C10059B37E /* WalletManagerReducers.swift in Sources */,
+				3BBE69F72140CD720047BDDE /* InvitationCodeToActivateReducers.swift in Sources */,
 				3BEC3F592111B689003C38FB /* BackupPrivateKeyView.swift in Sources */,
 				A35151B3922F34802807B89AA82B9D4E /* HomeViewController.swift in Sources */,
 				72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */,
@@ -33201,6 +33382,7 @@
 				72FE5B5E2100490B00B29FEC /* HelpReducers.swift in Sources */,
 				3BD3664C20F72B5E004DE09D /* TransferConfirmPasswordViewController.swift in Sources */,
 				1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */,
+				3BBE69CF2140C8DA0047BDDE /* ActivateCoordinator.swift in Sources */,
 				221EC1D121008F1B0059F856 /* GestureLockComfirmReducers.swift in Sources */,
 				73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */,
 				72FE5B5C2100490B00B29FEC /* HelpActions.swift in Sources */,
@@ -33214,24 +33396,29 @@
 				722D24C72111555B00A093CA /* WithNoDataView.swift in Sources */,
 				22578771212197F3004C4579 /* SelectedVoteViewController.swift in Sources */,
 				22C023A620FCACA400284A0A /* GestureLockView.swift in Sources */,
+				3BBE6A052140D38B0047BDDE /* PayView.swift in Sources */,
 				3B195066211BE7CF002C7991 /* GeneralRamCellView.swift in Sources */,
 				72FE5B9021009EE300B29FEC /* LeadInIntroduceView.swift in Sources */,
 				22C023B120FCB09300284A0A /* ScanViewController.swift in Sources */,
+				3BBE69DC2140CD0F0047BDDE /* PayToActivateCoordinator.swift in Sources */,
 				3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */,
 				73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */,
 				221EC1CF21008F1B0059F856 /* GestureLockComfirmActions.swift in Sources */,
 				08979875F7919749EE9911341C1DA85E /* NavCoordinator.swift in Sources */,
 				72101698210197C10059B37E /* ChangeWalletNameCoordinator.swift in Sources */,
 				22E40AAD211453D600F1648C /* FingerPrinterConfirmViewController.swift in Sources */,
+				3BBE69ED2140CD580047BDDE /* ExchangeToActivateActions.swift in Sources */,
 				725F68052101B8E50006BBA1 /* SetWalletActions.swift in Sources */,
 				733714E2212431E200B2ED90 /* LGButton.swift in Sources */,
 				72FE5B802100867B00B29FEC /* SafeLineView.swift in Sources */,
 				2253C53A2111A6450043AAF7 /* PriKeyReducers.swift in Sources */,
+				3BBE6A0D2140E0340047BDDE /* FriendViewAdapter.swift in Sources */,
 				227597D8213D2C620032DC60 /* DataFetchConditon.swift in Sources */,
 				2253C5372111A6450043AAF7 /* PriKeyCoordinator.swift in Sources */,
 				72FE5B3D20FF401B00B29FEC /* NormalCellView.swift in Sources */,
 				2B1048E593DFE3B00BA04C75B88E9469 /* PaymentsRecordsCell.swift in Sources */,
 				22E40AB32114540600F1648C /* FaceIDComfirmCoordinator.swift in Sources */,
+				3BBE6A212140E4B60047BDDE /* InvitationViewAdapter.swift in Sources */,
 				73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */,
 				733714EC212431E200B2ED90 /* SwiftIconLabel.swift in Sources */,
 				3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */,
@@ -33278,6 +33465,7 @@
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
 				22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */,
 				221EC1D021008F1B0059F856 /* GestureLockComfirmViewController.swift in Sources */,
+				3BBE6A042140D38B0047BDDE /* PayViewAdapter.swift in Sources */,
 				22C023B020FCB09300284A0A /* ScanActions.swift in Sources */,
 				73F30B4320F6E6FF0016E950 /* UserInfoViewController.swift in Sources */,
 				221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */,
@@ -33316,7 +33504,9 @@
 				6F3BB5C8972D01A3B05201EC928A1021 /* UIResponder+Extensions.swift in Sources */,
 				221EC1C821008EF50059F856 /* GestureLockSetViewController.swift in Sources */,
 				72FE5B632100491300B29FEC /* ServersCoordinator.swift in Sources */,
+				3BBE69EC2140CD580047BDDE /* ExchangeToActivateCoordinator.swift in Sources */,
 				22E40AAB211453D600F1648C /* FingerPrinterConfirmCoordinator.swift in Sources */,
+				3BBE69DF2140CD0F0047BDDE /* PayToActivateReducers.swift in Sources */,
 				703AA2BBC02CA49A0C74B4880E75F696 /* UIView+Extensions.swift in Sources */,
 				73F30B4920F6F17B0016E950 /* UIViewController+Extensions.swift in Sources */,
 				3B3146FF2106D62900E815BD /* GeneralCellView.swift in Sources */,
@@ -33325,9 +33515,11 @@
 				3B726C1421133502001E4850 /* ScreenShotAlertCoordinator.swift in Sources */,
 				2253C5382111A6450043AAF7 /* PriKeyActions.swift in Sources */,
 				3B3146FA2106D56500E815BD /* ResourceMortgageReducers.swift in Sources */,
+				3BBE69E52140CD410047BDDE /* FriendToActivateActions.swift in Sources */,
 				7210169C210197C10059B37E /* WalletManagerViewController.swift in Sources */,
 				22A93238211A9C2B00ACC63C /* NodeView.swift in Sources */,
 				3BD3664B20F72B5E004DE09D /* TransferConfirmPasswordActions.swift in Sources */,
+				3BBE69DE2140CD0F0047BDDE /* PayToActivateViewController.swift in Sources */,
 				22C0239F20F6FDB900284A0A /* CreatationCompleteCoordinator.swift in Sources */,
 				DBE18F3AD409206828C675AB4A85C4FD /* Utils.swift in Sources */,
 				22A93246211BE4DE00ACC63C /* TKSimpleSwitch.swift in Sources */,
@@ -33347,7 +33539,9 @@
 				22A93235211A991D00ACC63C /* VoteReducers.swift in Sources */,
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
 				221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */,
+				3BBE69E72140CD410047BDDE /* FriendToActivateReducers.swift in Sources */,
 				177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */,
+				3BBE69F52140CD720047BDDE /* InvitationCodeToActivateActions.swift in Sources */,
 				72FE5B532100490200B29FEC /* SafeCoordinator.swift in Sources */,
 				3B3147032106D95100E815BD /* ResourceMortgageView.swift in Sources */,
 				3B4C90F320F4CDDC004F4C52 /* PaymentsReducers.swift in Sources */,
