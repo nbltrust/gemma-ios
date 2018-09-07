@@ -43,22 +43,53 @@ class DBManager {
         try handleTableCreation(testModel)
     }
     
-    fileprivate func handleTableCreation(_ data: Any) throws {
+    fileprivate func handleTableCreation(_ data: Any, primaryKey: String? = nil, whiteList: [String]? = nil, blackList: [String]? = nil, relyColumData: (String, Any)? = nil) throws {
         let anyMirror = Mirror(reflecting: data)
         let tableName = anyMirror.className()
         let dataStructure = anyMirror.dataStructure()
         let action = try tableAction(tableName, structure: dataStructure)
         switch action {
         case .create:
-            try createTable(tableName: tableName, structure: dataStructure)
+            try createTable(tableName, structure: dataStructure)
         case .migrate:
-            try migrateTable(tableName: tableName, structure: dataStructure)
+            try migrateTable(tableName, structure: dataStructure)
         default:
             break
         }
     }
     
-    fileprivate func createTable(tableName: String, structure: [String : ParameterType]) throws {
+    fileprivate func handleColums(_ structure: [String : ParameterType], whiteList: [String]? = nil, blackList: [String]? = nil, relyColumData: (String, Any)? = nil) throws -> [String : ParameterType] {
+        var tempData: [String : ParameterType] = [:]
+        if let relyData = relyColumData {
+            let anyMirror = Mirror(reflecting: relyData.0)
+            let type = anyMirror.parameterType(relyData.1)
+            tempData[relyData.0] = type
+        }
+        
+        if let white = whiteList {
+            white.forEach { (key) in
+                if structure.keys.contains(key) {
+                    tempData[key] = structure[key]
+                }
+            }
+            return tempData
+        }
+        
+        structure.forEach { (key, type) in
+            tempData[key] = type
+        }
+        
+        if let black = blackList {
+            black.forEach { (key) in
+                if structure.keys.contains(key) {
+                    tempData.removeValue(forKey: key)
+                }
+            }
+        }
+        return tempData
+    }
+    
+    fileprivate func createTable(_ tableName: String, structure: [String : ParameterType]) throws {
         try dbQueue.write{ db in
             try db.create(table: tableName) { t in
                 for key in structure.keys {
@@ -70,17 +101,21 @@ class DBManager {
         }
     }
     
-    fileprivate func migrateTable(tableName: String, structure: [String : ParameterType]) throws {
+    fileprivate func handleTableCreation(_ db: Database, tableName: String, structure: [String : ParameterType]) throws {
+        try db.create(table: tableName) { t in
+            for key in structure.keys {
+                if let value = structure[key] {
+                    t.column(key, self.columnType(value))
+                }
+            }
+        }
+    }
+    
+    fileprivate func migrateTable(_ tableName: String, structure: [String : ParameterType]) throws {
         let tempTableName = tableName + "temp"
         var migrator = DatabaseMigrator()
         migrator.registerMigrationWithDeferredForeignKeyCheck("remove data to newTabel from oldtable") { db in
-            try db.create(table: tempTableName) { t in
-                for key in structure.keys {
-                    if let value = structure[key] {
-                        t.column(key, self.columnType(value))
-                    }
-                }
-            }
+            try self.handleTableCreation(db, tableName: tempTableName, structure: structure)
             try db.execute(self.migrateSQLStatement(tempTableName, db: db, toTable: tableName))
             try db.drop(table: tableName)
             try db.rename(table: tempTableName, to: tableName)
@@ -140,6 +175,8 @@ class DBManager {
         case .data:
             return .blob
         case .string:
+            return .text
+        case .unSupport:
             return .text
         }
     }

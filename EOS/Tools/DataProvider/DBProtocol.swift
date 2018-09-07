@@ -25,34 +25,56 @@ struct TestModel: DBProtocol {
 
 public protocol DBProtocol : HandyJSON, MutablePersistableRecord, FetchableRecord, Codable {
     init()
-    mutating func primaryKey() -> String
+    //Table Setting
+    mutating func primaryKey() -> String?
     
-    mutating func whiteList() -> [String]
+    mutating func whiteList() -> [String]?
     
-    mutating func blackList() -> [String]
+    mutating func blackList() -> [String]?
     
-    mutating func relyColumnName() -> String
+    mutating func relyColumnData() -> (String, Any)?
+    
+    //Table Edit
+    mutating func save() throws
+    
+    mutating func delete() throws
 }
 
 public protocol MirrortionProtocol {
     
 }
 
+extension DBProtocol {
+    mutating func save() throws {
+        let dbQueue = DBManager.shared.dbQueue
+        try dbQueue?.write{ db in
+            try self.save(db)
+        }
+    }
+    
+    mutating func delete() throws {
+        let dbQueue = DBManager.shared.dbQueue
+        try dbQueue?.write{ db in
+            try self.delete(db)
+        }
+    }
+}
+
 extension DBProtocol where Self == TestModel {
-    mutating func primaryKey() -> String {
+    mutating func primaryKey() -> String? {
         return ""
     }
     
-    mutating func whiteList() -> [String] {
+    mutating func whiteList() -> [String]? {
         return []
     }
     
-    mutating func blackList() -> [String] {
+    mutating func blackList() -> [String]? {
         return []
     }
     
-    mutating func relyColumnName() -> String {
-        return "id"
+    mutating func relyColumnData() -> (String, Any)? {
+        return nil
     }
 }
 

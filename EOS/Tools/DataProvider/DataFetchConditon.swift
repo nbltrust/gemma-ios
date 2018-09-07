@@ -14,11 +14,24 @@ enum ValueCheckType: String {
     case greaterAndEqual = ">="
     case less = "<"
     case lessAndEqual = "<="
-    case like = "like"
+    case like = "LIKE"
+    case not = "NOT"
+    
+    func desc() -> String {
+        return " " + self.rawValue + " "
+    }
+}
+
+enum SQLConditionReLation: String {
+    case and = " AND "
+    case or = " OR "
+    func desc() -> String {
+        return " " + self.rawValue + " "
+    }
 }
 
 struct DataFetchCondition {
     var key: String!
-    var value: Any!
+    var value: String!
     var check: ValueCheckType!
 }

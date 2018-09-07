@@ -15,87 +15,115 @@ class DataProvider {
     
     fileprivate var dbQueue: DatabaseQueue = DBManager.shared.dbQueue
     
-    fileprivate var migrator = DatabaseMigrator()
-    
-    /*创建表
-     tableName: 表名
-     */
-    fileprivate func createTable(_ tableName: String, data: Any, version: String? = nil) {
-    
-    }
-    
-    fileprivate func existTable(_ tableName: String, version: String? = nil) {
-        
-    }
-    
-    func saveData(_ data: Any, primaryKey: String?, newVersion: String? = nil) {
-        if extsiData(data) {
-            updateData(data, primaryKey: primaryKey!)
+    //Fectch Count
+    func fetchCount(_ tableName: String, valueConditon: DataFetchCondition? = nil) throws -> Int {
+        if let valueCondition = valueConditon {
+            return try fetchCount(tableName, valueConditions: [valueCondition])
         }
+        return try fetchCount(tableName, valueConditions: [])
     }
     
-    func updateData(_ data: Any, primaryKey: String) {
-        
+    func fetchCount(_ tableName: String, valueConditions: [DataFetchCondition]) throws -> Int {
+        return try fetchCount(tableName, mulValueConditons: [valueConditions])
     }
     
-    fileprivate func handleData(_ data: Any) -> (tableName: String,datas: [String: Any]) {
-//        if dataType is
-//        type(of: <#T##T#>)
-        if data is MTLStructType {
-//            let dataModdel = data as! str
+    func fetchCount(_ tableName: String, mulValueConditons: [[DataFetchCondition]]) throws -> Int {
+        let count = try dbQueue.read { db -> Int in
+            let sqlStr = self.sqlStringWith(mulValueConditons)
+            if let fetchCount = try Int.fetchOne(db, String(format: "SELECT * FROM %@ %@", tableName, sqlStr)) {
+                return fetchCount
+            }
+            return 0
         }
-//        switch data.dataType {
-//        case MTLDataType.struct:
-//
-//        default:
-//            <#code#>
-//        }
-        return ("", [:])
-    }
-    
-    func extsiData(_ data: Any) -> Bool {
-        return true
-    }
-    
-    func deleteData(_ tableName: String, valueConditon: DataFetchCondition) {
-        
-    }
-
-    func fetchCount(_ tableName: String, valueConditon: DataFetchCondition) -> Int {
-        return fetchCount(tableName, valueConditon: [valueConditon])
-    }
-    
-    func fetchCount(_ tableName: String, valueConditon: [[DataFetchCondition]]) -> Int {
-        return 0
-    }
-    
-    func fetchCount(_ tableName: String, valueConditon: [DataFetchCondition]) -> Int {
-        return 0
+        return count
     }
     
     //Condition Search
-    func selectData(_ tableName: String, valueConditon: DataFetchCondition) -> [[String : Any]] {
-        return selectData(tableName, valueConditions: [valueConditon])
+    func selectData(_ tableName: String, valueConditon: DataFetchCondition? = nil) throws -> [[String : Any]] {
+        if let valueCondition = valueConditon {
+            return try selectData(tableName, valueConditions: [valueCondition])
+        }
+        return try selectData(tableName, valueConditions: [])
     }
     
-    func selectData(_ tableName: String, valueConditions: [DataFetchCondition]) -> [[String : Any]] {
-        return selectData(tableName, valueConditons: [valueConditions])
+    func selectData(_ tableName: String, valueConditions: [DataFetchCondition]) throws -> [[String : Any]] {
+        return try selectData(tableName, mulValueConditons: [valueConditions])
     }
     
-    func selectData(_ tableName: String, valueConditons: [[DataFetchCondition]]) -> [[String : Any]] {
-        return []
+    func selectData(_ tableName: String, mulValueConditons: [[DataFetchCondition]]) throws -> [[String : Any]] {
+        let datas = try dbQueue.read { db -> [[String : Any]] in
+            let sqlStr = self.sqlStringWith(mulValueConditons)
+            let rows = try Row.fetchAll(db, String(format: "SELECT * FROM %@ %@", tableName, sqlStr))
+            let rowDatas = disposeRows(rows)
+            return rowDatas
+        }
+        return datas
+    }
+    
+    func sqlStringWith(_ valueConditons: [[DataFetchCondition]]) -> String {
+        var sqlStr = ""
+        for index in 0..<valueConditons.count {
+            var itemSql = ""
+            let itemConditions = valueConditons[index]
+            for itemIndex in 0..<itemConditions.count {
+                let condition = itemConditions[itemIndex]
+                itemSql.append((itemIndex > 0 ? SQLConditionReLation.and.rawValue : "") + conditionSql(condition))
+            }
+            sqlStr.append((index > 0 ? SQLConditionReLation.or.rawValue : "") + itemSql)
+        }
+        if !sqlStr.isEmpty {
+            sqlStr = "WHERE " + sqlStr
+        }
+        return sqlStr
+    }
+    
+    func conditionSql(_ conditionData: DataFetchCondition) -> String {
+        return conditionData.key + conditionData.check.desc() + conditionData.value
     }
     
     //Custom search
-    func selectData(_ tableName: String, condition: String) -> [[String : Any]] {
-        return selectData(tableName, conditions: [condition])
+    func selectData(_ tableName: String, condition: String) throws -> [[String : Any]] {
+        return try selectData(tableName, conditions: [condition])
     }
     
-    func selectData(_ tableName: String, conditions: [String]) -> [[String : Any]] {
-        return selectData(tableName, conditions: [conditions])
+    func selectData(_ tableName: String, conditions: [String]) throws -> [[String : Any]] {
+        return try selectData(tableName, conditions: [conditions])
     }
     
-    func selectData(_ tableName: String, conditions: [[String]]) -> [[String : Any]] {
-        return []
+    func selectData(_ tableName: String, conditions: [[String]]) throws -> [[String : Any]] {
+        let datas = try dbQueue.read { db -> [[String : Any]] in
+            var sqlStr = ""
+            for index in 0..<conditions.count {
+                var itemSql = ""
+                let itemConditions = conditions[index]
+                for itemIndex in 0..<itemConditions.count {
+                    let condition = itemConditions[itemIndex]
+                    itemSql.append((itemIndex > 0 ? SQLConditionReLation.and.desc() : "") + condition)
+                }
+                sqlStr.append((index > 0 ? SQLConditionReLation.or.desc() : "") + itemSql)
+            }
+            if !sqlStr.isEmpty {
+                sqlStr = "WHERE " + sqlStr
+            }
+            let rows = try Row.fetchAll(db, String(format: "SELECT * FROM %@ %@", tableName, sqlStr))
+            let rowDatas = disposeRows(rows)
+            return rowDatas
+        }
+        return datas
     }
+    
+    func disposeRows(_ rows: [Row]) -> [[String : Any]] {
+        let datas: [[String : Any]] = rows.map { row in
+            var data: [String : Any] = [:]
+            row.columnNames.forEach({ (key) in
+                data[key] = row[key]
+            })
+            return data
+        }
+        return datas
+    }
+    
+    //Public
+    
+    
 }
