@@ -20,6 +20,7 @@ enum ParameterType: Int {
     case data
     case date
     case bool
+    case unSupport
 }
 
 extension Mirror {
@@ -31,13 +32,18 @@ extension Mirror {
         var desc: [String : ParameterType] = [:]
         for child in self.children {
             if let label = child.label {
-                desc[label] = parameterType(child.value)
+                let type = parameterType(child.value)
+                if type != .unSupport {
+                    desc[label] = parameterType(child.value)
+                } else {
+                    print("UnSuopprt Value Type for sqlite")
+                }
             }
         }
         return desc
     }
     
-    fileprivate func parameterType(_ value: Any) -> ParameterType {
+    func parameterType(_ value: Any) -> ParameterType {
         switch value {
         case _ as Int:
             return .int
@@ -62,7 +68,7 @@ extension Mirror {
         case _ as Bool:
             return .bool
         default:
-            return .string
+            return .unSupport
         }
     }
 }
