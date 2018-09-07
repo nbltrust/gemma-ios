@@ -67,6 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             SafeManager.shared.checkForOpenAPP()
         }
+        
+        
+        try? DBManager.shared.setupDB()
+        
         return true
     }
     
