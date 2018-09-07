@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitationView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="introLabel" destination="bmh-Qa-jAP" id="Uff-ce-V9h"/>
+                <outlet property="nextButton" destination="IBS-VE-gTi" id="tOG-O5-MAd"/>
+                <outlet property="textfield" destination="Gl9-3I-ZPU" id="l1M-1P-qOi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iWr-TQ-fUp">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQT-yc-Z7V">
+                    <rect key="frame" x="16" y="45" width="343" height="48"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gl9-3I-ZPU">
+                            <rect key="frame" x="16" y="0.0" width="327" height="48"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Gl9-3I-ZPU" firstAttribute="top" secondItem="QQT-yc-Z7V" secondAttribute="top" id="GFF-4k-yeu"/>
+                        <constraint firstAttribute="trailing" secondItem="Gl9-3I-ZPU" secondAttribute="trailing" id="QBr-y8-Wv4"/>
+                        <constraint firstAttribute="height" constant="48" id="WhY-gx-oKp"/>
+                        <constraint firstAttribute="bottom" secondItem="Gl9-3I-ZPU" secondAttribute="bottom" id="XEp-nx-nOy"/>
+                        <constraint firstItem="Gl9-3I-ZPU" firstAttribute="leading" secondItem="QQT-yc-Z7V" secondAttribute="leading" constant="16" id="cQt-3I-i5n"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmh-Qa-jAP" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="32" y="109" width="31" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.25900000000000001" green="0.41999999999999998" blue="0.83099999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="invitation_code_subtitle"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBS-VE-gTi" customClass="Button" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="32" y="163.5" width="311" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="GCc-7c-BBD"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="activate"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="IBS-VE-gTi" firstAttribute="leading" secondItem="cCP-vY-yFe" secondAttribute="leading" constant="32" id="DWC-CA-8Cw"/>
+                <constraint firstItem="cCP-vY-yFe" firstAttribute="trailing" secondItem="IBS-VE-gTi" secondAttribute="trailing" constant="32" id="U4T-0P-adB"/>
+                <constraint firstItem="cCP-vY-yFe" firstAttribute="trailing" secondItem="QQT-yc-Z7V" secondAttribute="trailing" constant="16" id="VeS-Nn-HOL"/>
+                <constraint firstItem="bmh-Qa-jAP" firstAttribute="leading" secondItem="cCP-vY-yFe" secondAttribute="leading" constant="32" id="WwR-aM-YHD"/>
+                <constraint firstItem="QQT-yc-Z7V" firstAttribute="leading" secondItem="cCP-vY-yFe" secondAttribute="leading" constant="16" id="bXn-v5-bCp"/>
+                <constraint firstItem="bmh-Qa-jAP" firstAttribute="top" secondItem="QQT-yc-Z7V" secondAttribute="bottom" constant="16" id="hgf-rn-bfP"/>
+                <constraint firstItem="IBS-VE-gTi" firstAttribute="top" secondItem="bmh-Qa-jAP" secondAttribute="bottom" constant="40" id="iLh-1K-Iny"/>
+                <constraint firstItem="QQT-yc-Z7V" firstAttribute="top" secondItem="cCP-vY-yFe" secondAttribute="top" constant="25" id="lNC-dk-ITU"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="cCP-vY-yFe"/>
+            <point key="canvasLocation" x="-69" y="-223"/>
+        </view>
+    </objects>
+</document>

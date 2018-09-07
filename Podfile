@@ -91,6 +91,7 @@ def other
     #pod 'MLeaksFinder'
     pod 'Device'
     pod 'SwiftNotificationCenter'
+    pod 'MonkeyKing'
 end
 
 def fabric
