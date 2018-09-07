@@ -45,24 +45,28 @@ public protocol MirrortionProtocol {
 }
 
 extension DBProtocol {
-    mutating func save() throws {
+    mutating func save() {
         let dbQueue = DBManager.shared.dbQueue
-        try dbQueue?.write{ db in
-            try self.save(db)
-        }
+        do {
+            try dbQueue?.write{ db in
+                try self.save(db)
+            }
+        } catch {}
     }
     
-    mutating func delete() throws {
+    mutating func delete() {
         let dbQueue = DBManager.shared.dbQueue
-        try dbQueue?.write{ db in
-            try self.delete(db)
-        }
+        do {
+            try dbQueue?.write{ db in
+                try self.delete(db)
+            }
+        } catch {}
     }
 }
 
 extension DBProtocol where Self == TestModel {
     mutating func primaryKey() -> String? {
-        return ""
+        return "int"
     }
     
     mutating func whiteList() -> [String]? {

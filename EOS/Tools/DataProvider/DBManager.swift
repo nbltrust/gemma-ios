@@ -21,9 +21,11 @@ class DBManager {
     
     var dbQueue: DatabaseQueue!
     
-    func setupDB() throws {
-        try createDB()
-        try checkDB()
+    func setupDB() {
+        do {
+            try createDB()
+            try checkDB()
+        } catch {}
     }
     
     fileprivate func createDB() throws {
@@ -50,9 +52,9 @@ class DBManager {
         let action = try tableAction(tableName, structure: dataStructure)
         switch action {
         case .create:
-            try createTable(tableName, structure: dataStructure)
+            try createTable(tableName, primaryKey: primaryKey, structure: dataStructure)
         case .migrate:
-            try migrateTable(tableName, structure: dataStructure)
+            try migrateTable(tableName, primaryKey: primaryKey, structure: dataStructure)
         default:
             break
         }
@@ -89,33 +91,31 @@ class DBManager {
         return tempData
     }
     
-    fileprivate func createTable(_ tableName: String, structure: [String : ParameterType]) throws {
+    fileprivate func createTable(_ tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
         try dbQueue.write{ db in
-            try db.create(table: tableName) { t in
-                for key in structure.keys {
-                    if let value = structure[key] {
-                        t.column(key, columnType(value))
+            try self.handleTableCreation(db, tableName: tableName, primaryKey: primaryKey, structure: structure)
+        }
+    }
+    
+    fileprivate func handleTableCreation(_ db: Database, tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
+        try db.create(table: tableName) { t in
+            for key in structure.keys {
+                if let value = structure[key] {
+                    if let priKey = primaryKey, key == priKey {
+                        t.column(key, self.columnType(value)).primaryKey()
+                    } else {
+                        t.column(key, self.columnType(value))
                     }
                 }
             }
         }
     }
     
-    fileprivate func handleTableCreation(_ db: Database, tableName: String, structure: [String : ParameterType]) throws {
-        try db.create(table: tableName) { t in
-            for key in structure.keys {
-                if let value = structure[key] {
-                    t.column(key, self.columnType(value))
-                }
-            }
-        }
-    }
-    
-    fileprivate func migrateTable(_ tableName: String, structure: [String : ParameterType]) throws {
+    fileprivate func migrateTable(_ tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
         let tempTableName = tableName + "temp"
         var migrator = DatabaseMigrator()
         migrator.registerMigrationWithDeferredForeignKeyCheck("remove data to newTabel from oldtable") { db in
-            try self.handleTableCreation(db, tableName: tempTableName, structure: structure)
+            try self.handleTableCreation(db, tableName: tempTableName, primaryKey: primaryKey, structure: structure)
             try db.execute(self.migrateSQLStatement(tempTableName, db: db, toTable: tableName))
             try db.drop(table: tableName)
             try db.rename(table: tempTableName, to: tableName)
