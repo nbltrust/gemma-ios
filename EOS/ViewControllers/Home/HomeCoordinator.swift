@@ -116,6 +116,10 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }
+//        let copyVC = ActivateViewController()
+//        let copyCoordinator = ActivateCoordinator(rootVC: self.rootVC)
+//        copyVC.coordinator = copyCoordinator
+//        self.rootVC.pushViewController(copyVC, animated: true)
     }
     
     func pushResourceMortgageVC() {
