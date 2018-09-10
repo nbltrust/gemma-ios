@@ -47,7 +47,7 @@ class GestureItemLayer: CAShapeLayer {
     
     private let mainPath = UIBezierPath()
     
-    private let dirLayer = CAShapeLayer()
+    private let cirLayer = CAShapeLayer()
     
     override init() {
         super.init()
@@ -81,10 +81,12 @@ class GestureItemLayer: CAShapeLayer {
     }
     
     fileprivate func drawArcCenterLayer() {
-        let solidCirclePath = UIBezierPath()
-        solidCirclePath.addArc(withCenter: CGPoint(x: width / 2, y: width / 2), radius: centerRadio, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: false)
-        mainPath.append(solidCirclePath)
         
+        let solidCirclePath = UIBezierPath()
+        solidCirclePath.addArc(withCenter: CGPoint(x: width / 2, y: width / 2), radius: centerRadio, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
+        solidCirclePath.close()
+        mainPath.append(solidCirclePath)
+
         path = mainPath.cgPath
     }
     
@@ -98,18 +100,33 @@ class GestureItemLayer: CAShapeLayer {
         trianglePath.move(to: point1)
         trianglePath.addLine(to: point2)
         trianglePath.addLine(to: point3)
+        trianglePath.stroke()
         trianglePath.close()
         mainPath.append(trianglePath)
-        
+
         path = mainPath.cgPath
     }
     
     fileprivate func transformSelf() {
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        self.transform = CATransform3DIdentity
-        self.transform = CATransform3DMakeRotation(dirAngle, 0, 0, 1)
-        CATransaction.commit()
+//        kCAValueFunctionRotateZ
+//        CATransaction.begin()
+//        CATransaction.setDisableActions(true)
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.fromValue = dirAngle
+        animation.toValue = dirAngle
+        animation.duration = 0
+        animation.autoreverses = false
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = kCAFillModeForwards
+        self.add(animation, forKey: "rotation")
+//        CATransaction.commit()
+        
+//        CATransaction.begin()
+//        CATransaction.setDisableActions(true)
+//        var rotationTransform = CATransform3DIdentity
+//        rotationTransform = cgaffiner CATransform3DRotate(transform, dirAngle, 0.0, 0.0, 1.0)
+//        self.transform = rotationTransform
+//        CATransaction.commit()
     }
     
     fileprivate func removePaths() {
