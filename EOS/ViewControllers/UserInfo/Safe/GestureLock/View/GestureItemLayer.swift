@@ -108,9 +108,6 @@ class GestureItemLayer: CAShapeLayer {
     }
     
     fileprivate func transformSelf() {
-//        kCAValueFunctionRotateZ
-//        CATransaction.begin()
-//        CATransaction.setDisableActions(true)
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.fromValue = dirAngle
         animation.toValue = dirAngle
@@ -119,14 +116,6 @@ class GestureItemLayer: CAShapeLayer {
         animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         self.add(animation, forKey: "rotation")
-//        CATransaction.commit()
-        
-//        CATransaction.begin()
-//        CATransaction.setDisableActions(true)
-//        var rotationTransform = CATransform3DIdentity
-//        rotationTransform = cgaffiner CATransform3DRotate(transform, dirAngle, 0.0, 0.0, 1.0)
-//        self.transform = rotationTransform
-//        CATransaction.commit()
     }
     
     fileprivate func removePaths() {
