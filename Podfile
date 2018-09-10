@@ -62,7 +62,7 @@ def extension
 end
 
 def ui
-    pod 'Tags' #助记词
+    pod 'TagListView' #助记词
     pod 'TinyConstraints'
     pod 'ESTabBarController-swift'
     pod 'IHKeyboardAvoiding'

@@ -389,6 +389,8 @@
 		733714F5212431E200B2ED90 /* open-iconic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733714DC212431E100B2ED90 /* open-iconic.ttf */; };
 		733714F6212431E200B2ED90 /* themify.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733714DD212431E100B2ED90 /* themify.ttf */; };
 		73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73378F74211C233200ACAA90 /* EOSIOTableRow.swift */; };
+		737F8CA321465B8D00DD522A /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737F8CA021465B8900DD522A /* NBLCommonModule.framework */; };
+		737F8CA421465B8D00DD522A /* NBLCommonModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 737F8CA021465B8900DD522A /* NBLCommonModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		737FCFBE211D70B200859F82 /* RPCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737FCFBD211D70B200859F82 /* RPCTest.swift */; };
 		73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68B20F5B42600756391 /* Double+Extensions.swift */; };
 		73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */; };
@@ -528,6 +530,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		737F8C9F21465B8900DD522A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 737F8C9A21465B8800DD522A /* NBLCommonModule.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 737F8C432146539100DD522A;
+			remoteInfo = NBLCommonModule;
+		};
+		737F8CA121465B8900DD522A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 737F8C9A21465B8800DD522A /* NBLCommonModule.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 737F8C4C2146539100DD522A;
+			remoteInfo = NBLCommonModuleTests;
+		};
+		737F8CA521465B8D00DD522A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 737F8C9A21465B8800DD522A /* NBLCommonModule.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 737F8C422146539100DD522A;
+			remoteInfo = NBLCommonModule;
+		};
 		73EDFEEC211AC44E000DF796 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AE6389277B2FA13D27D9CDFC76332268 /* Project object */;
@@ -536,6 +559,20 @@
 			remoteInfo = EOS;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		737F8C83214655B700DD522A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				737F8CA421465B8D00DD522A /* NBLCommonModule.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		000C7B47B84900A8DB3D1EC8DA0E6305 /* deep_copy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = deep_copy.hpp; sourceTree = "<group>"; };
@@ -5968,6 +6005,7 @@
 		736F6D890AC74EBDF1A7EF32F90C7883 /* in.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = in.hpp; sourceTree = "<group>"; };
 		737278E8820298ECA4D892EF71C0BC53 /* max_size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = max_size.hpp; sourceTree = "<group>"; };
 		7376998AAFCBB15DBFF4D32BA3B333CF /* to_sequence.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_sequence.hpp; sourceTree = "<group>"; };
+		737F8C9A21465B8800DD522A /* NBLCommonModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NBLCommonModule.xcodeproj; path = NBLCommonModule/NBLCommonModule.xcodeproj; sourceTree = "<group>"; };
 		737FCFBD211D70B200859F82 /* RPCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCTest.swift; sourceTree = "<group>"; };
 		7383C690BF72AFC18E63329E1D210E3F /* buffer_distance_symmetric.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = buffer_distance_symmetric.hpp; sourceTree = "<group>"; };
 		738435A523CCBE583F76AB8EE7A11C23 /* kqueue_reactor.ipp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kqueue_reactor.ipp; sourceTree = "<group>"; };
@@ -12232,6 +12270,7 @@
 				3E49C3B86F3BE922F2644DAD486997CF /* libboost_chrono.a in Frameworks */,
 				9CF8A1B36F741E822329BA9042E628CC /* libboost_context.a in Frameworks */,
 				94141BDA2CC7BF9CFCAEEEDBC978B0DE /* libboost_date_time.a in Frameworks */,
+				737F8CA321465B8D00DD522A /* NBLCommonModule.framework in Frameworks */,
 				86EDCD944530822F4057D7D0D4E75450 /* libboost_filesystem.a in Frameworks */,
 				FA1B324B0C87816F5024221B1F5D8996 /* libboost_graph.a in Frameworks */,
 				B07D792547E891483663C5FCAFD8E84A /* libboost_iostreams.a in Frameworks */,
@@ -22119,6 +22158,15 @@
 			path = detail;
 			sourceTree = "<group>";
 		};
+		737F8C9B21465B8800DD522A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				737F8CA021465B8900DD522A /* NBLCommonModule.framework */,
+				737F8CA221465B8900DD522A /* NBLCommonModuleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		73B4C3E360CD0824C1B527EB20CA394D /* detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -24417,6 +24465,7 @@
 		8F92DF495C0D008C5C5B16173233FE53 = {
 			isa = PBXGroup;
 			children = (
+				737F8C9A21465B8800DD522A /* NBLCommonModule.xcodeproj */,
 				11EABB82155077EEA9FB2BF04848ADB8 /* EOS */,
 				73EDFEE8211AC44E000DF796 /* EOSTests */,
 				7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */,
@@ -32467,10 +32516,12 @@
 				526C699A0C9DCFFA46450A633E55C5DE /* R.swift */,
 				AFF7EE0B2B4179DEFEDE0DDE919988C0 /* [CP] Embed Pods Frameworks */,
 				734811752106F61B000BF1B8 /* fabric */,
+				737F8C83214655B700DD522A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				737F8CA621465B8D00DD522A /* PBXTargetDependency */,
 			);
 			name = EOS;
 			productName = EOS;
@@ -32515,6 +32566,12 @@
 			mainGroup = 8F92DF495C0D008C5C5B16173233FE53;
 			productRefGroup = 542C34D1F6BC7F46BD05B31A4B94D96C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 737F8C9B21465B8800DD522A /* Products */;
+					ProjectRef = 737F8C9A21465B8800DD522A /* NBLCommonModule.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C60743183A5E3BAD235C9971F3122EF5 /* EOS */,
@@ -32522,6 +32579,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		737F8CA021465B8900DD522A /* NBLCommonModule.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = NBLCommonModule.framework;
+			remoteRef = 737F8C9F21465B8900DD522A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		737F8CA221465B8900DD522A /* NBLCommonModuleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NBLCommonModuleTests.xctest;
+			remoteRef = 737F8CA121465B8900DD522A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4929B8EE7C2F136E4A24158BBB556CB5 /* Resources */ = {
@@ -33338,6 +33412,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		737F8CA621465B8D00DD522A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NBLCommonModule;
+			targetProxy = 737F8CA521465B8D00DD522A /* PBXContainerItemProxy */;
+		};
 		73EDFEED211AC44E000DF796 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C60743183A5E3BAD235C9971F3122EF5 /* EOS */;
@@ -33379,6 +33458,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6A4140EE1953CB92C9353597EDFC56C3 /* Pods-EOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
@@ -33473,6 +33553,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7BDFB5438559F4D9366AFF9A759912D2 /* Pods-EOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
