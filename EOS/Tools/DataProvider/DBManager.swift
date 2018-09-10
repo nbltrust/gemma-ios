@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import GRDB
+import RxGRDB
 
 enum TableHandleAction: Int {
     case none = 0
