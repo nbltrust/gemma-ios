@@ -62,13 +62,12 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         
         let presenter = Presentr(presentationType: customType)
         presenter.dismissOnTap = false
-        presenter.keyboardTranslationType = .moveUp
+        presenter.keyboardTranslationType = .stickToTop
 
         let newVC = BaseNavigationController()
         newVC.navStyle = .white
         let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
         
-        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
 //        transferConfirm .start()
         if let vc = R.storyboard.transfer.transferConfirmViewController() {
             let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
@@ -76,6 +75,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
             vc.data = data
             transferConfirm.rootVC.pushViewController(vc, animated: true)
         }
+        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
 
         
     }

@@ -156,7 +156,8 @@ class TitleTextView: UIView {
         guard (buttonSettings != nil) else {
             return
         }
-        
+        actionsView.removeSubviews()
+
         for (index, value) in (buttonSettings?.enumerated())! {
             let image = UIImage(named: value.imageName)
             let btn = TextRightButton()

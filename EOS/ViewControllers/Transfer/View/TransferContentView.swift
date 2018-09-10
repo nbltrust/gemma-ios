@@ -77,6 +77,7 @@ class TransferContentView: UIView {
         remarkTitleTextView.textView.maxHeight = 80
         nextButton.title = R.string.localizable.check_transfer.key.localized()
         moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre.key.localized() + "0.0000 EOS"
+        moneyTitleTextView.textField.keyboardType = UIKeyboardType.decimalPad
         remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
         
@@ -220,8 +221,8 @@ extension TransferContentView: UITextFieldDelegate {
             moneyTitleTextView.reloadActionViews(isEditing: false)
             
             if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = moneyTitleTextView.textField.text?.toDouble() {
-                moneyTitleTextView.checkStatus = balenceDouble > moneyDouble  ? TextUIStyle.common : TextUIStyle.warning
-                nextButton.button.isEnabled = balenceDouble > moneyDouble ? true : false
+                moneyTitleTextView.checkStatus = balenceDouble >= moneyDouble  ? TextUIStyle.common : TextUIStyle.warning
+                nextButton.isEnabel.accept(balenceDouble >= moneyDouble ? true : false)
             }
             self.sendEventWith(TextChangeEvent.transferMoney.rawValue, userinfo: ["textfield" : textField])
         default:

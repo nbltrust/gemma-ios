@@ -148,7 +148,7 @@ class AppCoordinator {
         let customType = PresentationType.custom(width: width, height: heightSize, center: center)
         
         let presenter = Presentr(presentationType: customType)
-        presenter.keyboardTranslationType = .moveUp
+        presenter.keyboardTranslationType = .stickToTop
         
         let newVC = BaseNavigationController()
         newVC.navStyle = .white

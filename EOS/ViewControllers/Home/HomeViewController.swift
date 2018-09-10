@@ -13,6 +13,7 @@ import ReSwift
 import HandyJSON
 import SwiftyJSON
 import NotificationBannerSwift
+import Device
 
 class HomeViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -76,7 +77,7 @@ class HomeViewController: BaseViewController {
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
-//        self.automaticallyAdjustsScrollViewInsets = true
+//        self.automaticallyAdjustsScrollViewInsets = true 
     }
     
     func updateUI() {
@@ -138,6 +139,41 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
         case 3:self.coordinator?.pushResourceMortgageVC()
         default:
             break
+        }
+    }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        log.debug(scrollView.contentOffset.y)
+        var offsetY = 0
+        
+        if Device.version() == Version.iPhoneX {
+            offsetY = -40
+        } else {
+            offsetY = -20
+        }
+        
+        if scrollView.contentOffset.y > offsetY.cgFloat {
+            if let nav = self.navigationController as? BaseNavigationController {
+                nav.navStyle = .common
+                self.navigationController?.navigationBar.alpha = (scrollView.contentOffset.y - offsetY.cgFloat) / 44
+                if let portrait = self.coordinator?.state.property.info.value.portrait,portrait.count > 0 {
+                    let generator = IconGenerator(size: 24, hash: Data(hex: portrait))
+                    self.configLeftNavButton(UIImage(cgImage: generator.render()!))
+                    self.navigationItem.title = self.coordinator?.state.property.info.value.account
+                } else {
+                    self.navigationItem.leftBarButtonItem = nil
+                    self.navigationItem.title = self.coordinator?.state.property.info.value.account
+                }
+            }
+        } else {
+            if let nav = self.navigationController as? BaseNavigationController {
+                nav.navStyle = .clear
+            }
+            self.navigationController?.navigationBar.alpha = 1
+            self.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.title = "GEMMA"
         }
     }
 }

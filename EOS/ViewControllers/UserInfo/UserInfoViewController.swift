@@ -64,7 +64,7 @@ extension UserInfoViewController {
         switch sender["index"] as! Int {
         case 0:self.coordinator?.openNormalSetting()
         case 1:self.coordinator?.openSafeSetting()
-        case 2:self.coordinator?.openHelpSetting(delegate: self)
+        case 2:self.coordinator?.openHelpSetting()
         case 3:self.coordinator?.openServersSetting()
         case 4:self.coordinator?.openAboutSetting()
         default:

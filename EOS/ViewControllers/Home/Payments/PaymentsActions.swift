@@ -44,6 +44,7 @@ struct PaymentsRecordsViewModel {
     var block : Int = 0
     var memo : String = ""
     var hashNumber : String = ""
+    var hash : String = ""
 }
 
 //MARK: - Action Creator
