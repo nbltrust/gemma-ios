@@ -113,3 +113,16 @@ enum GemmaError: Error {
         }
     }
 }
+
+extension GemmaError: Equatable {
+    static func == (lhs: GemmaError, rhs: GemmaError) -> Bool {
+        switch (lhs, rhs) {
+        case (.NBLCode(let lhsCode), .NBLCode(let rhsCode)):
+            return lhsCode.rawValue == rhsCode.rawValue
+        default:
+            return false
+        }
+    }
+
+}
+
