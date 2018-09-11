@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import ReSwift
 import RxGesture
+import SwiftNotificationCenter
 
 class EntryViewController: BaseViewController {
     
@@ -31,6 +32,7 @@ class EntryViewController: BaseViewController {
         WalletManager.shared.createPairKey()
         setupUI()
         setupEvent()
+        Broadcaster.register(EntryViewController.self, observer: self)
     }
     
     @IBAction func agreeAction(_ sender: Any) {
@@ -59,9 +61,10 @@ class EntryViewController: BaseViewController {
     func setupEvent() {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
-            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: { (success) in
-                
-            })
+            self.coordinator?.pushToActivateVC()
+//            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: { (success) in
+//                
+//            })
         }).disposed(by: disposeBag)
         
         protocolLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
@@ -74,9 +77,8 @@ class EntryViewController: BaseViewController {
         Observable.combineLatest(self.coordinator!.state.property.nameValid.asObservable(),
                                  self.coordinator!.state.property.passwordValid.asObservable(),
                                  self.coordinator!.state.property.comfirmPasswordValid.asObservable(),
-                                 self.coordinator!.state.property.inviteCodeValid.asObservable(),
                                  self.coordinator!.state.property.isAgree.asObservable()).map { (arg0) -> Bool in
-            return arg0.0 && arg0.1 && arg0.2 && arg0.3 && arg0.4
+            return arg0.0 && arg0.1 && arg0.2 && arg0.3
         }.bind(to: creatButton.isEnabel).disposed(by: disposeBag)
         
     }
@@ -93,13 +95,5 @@ extension EntryViewController {
     
     @objc func walletComfirmPassword(_ data: [String : Any]) {
         self.coordinator?.validComfirmPassword(data["content"] as! String, comfirmPassword: self.registerView.passwordView.textField.text!)
-    }
-    
-    @objc func walletInviteCode(_ data: [String : Any]) {
-        self.coordinator?.validInviteCode(data["content"] as! String)
-    }
-    
-    @objc func getInviteCode(_ data: [String : Any]) {
-        self.coordinator?.pushToGetInviteCodeIntroductionVC()
     }
 }

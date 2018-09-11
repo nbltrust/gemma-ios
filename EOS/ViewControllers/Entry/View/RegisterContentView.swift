@@ -21,25 +21,17 @@ class RegisterContentView: UIView {
     
     @IBOutlet weak var passwordPromptView: TitleTextfieldView!
     
-    @IBOutlet weak var inviteCodeView: TitleTextfieldView!
-    
     enum InputType: Int {
         case name = 1
         case password
         case comfirmPassword
         case passwordPrompt
-        case invitationCode
     }
     
     enum TextChangeEvent: String {
         case walletName
         case walletPassword
         case walletComfirmPassword
-        case walletInviteCode
-    }
-    
-    enum IntroduceEvent: String {
-        case getInviteCode
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -100,7 +92,6 @@ class RegisterContentView: UIView {
         handleSetupSubView(passwordView, tag: InputType.password.rawValue)
         handleSetupSubView(passwordComfirmView, tag: InputType.comfirmPassword.rawValue)
         handleSetupSubView(passwordPromptView, tag: InputType.passwordPrompt.rawValue)
-        handleSetupSubView(inviteCodeView, tag: InputType.invitationCode.rawValue)
     }
     
     func handleSetupSubView(_ titleTextfieldView : TitleTextfieldView, tag: Int) {
@@ -126,9 +117,9 @@ class RegisterContentView: UIView {
 
 extension RegisterContentView: TitleTextFieldViewDelegate,TitleTextFieldViewDataSource {
     func textIntroduction(titleTextFieldView: TitleTextfieldView) {
-        if titleTextFieldView == inviteCodeView {
-            self.sendEventWith(IntroduceEvent.getInviteCode.rawValue, userinfo: [:])
-        }
+//        if titleTextFieldView == inviteCodeView {
+//            self.sendEventWith(IntroduceEvent.getInviteCode.rawValue, userinfo: [:])
+//        }
     }
     
     func textActionTrigger(titleTextFieldView: TitleTextfieldView, selected: Bool, index: NSInteger) {
@@ -177,7 +168,7 @@ extension RegisterContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
                                     warningText: "",
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
-                                    showLine: true,
+                                    showLine: false,
                                     isSecureTextEntry: false)
         } else {
             return TitleTextSetting(title: R.string.localizable.account_invitationcode.key.localized(),
@@ -225,9 +216,6 @@ extension RegisterContentView: UITextFieldDelegate {
         case InputType.passwordPrompt.rawValue:
             passwordPromptView.reloadActionViews(isEditing: true)
             passwordPromptView.checkStatus = TextUIStyle.highlight
-        case InputType.invitationCode.rawValue:
-            inviteCodeView.reloadActionViews(isEditing: true)
-            inviteCodeView.checkStatus = TextUIStyle.highlight
         default:
             return
         }
@@ -247,9 +235,6 @@ extension RegisterContentView: UITextFieldDelegate {
         case InputType.passwordPrompt.rawValue:
             passwordPromptView.reloadActionViews(isEditing: false)
             passwordPromptView.checkStatus = TextUIStyle.common
-        case InputType.invitationCode.rawValue:
-            inviteCodeView.reloadActionViews(isEditing: false)
-            inviteCodeView.checkStatus = (textField.text?.isEmpty)! ? TextUIStyle.warning : TextUIStyle.common
         default:
             return
         }
@@ -271,8 +256,6 @@ extension RegisterContentView: UITextFieldDelegate {
             self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : text])
         case InputType.comfirmPassword.rawValue:
             self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : text])
-        case InputType.invitationCode.rawValue:
-            self.sendEventWith(TextChangeEvent.walletInviteCode.rawValue, userinfo: ["content" : text])
         default:
             return
         }

@@ -8,6 +8,7 @@
 
 import Foundation
 import ActiveLabel
+import SwiftNotificationCenter
 
 @IBDesignable
 class FriendView: BaseView {
@@ -33,9 +34,17 @@ class FriendView: BaseView {
     }
     
     func setupUI() {
+        keyLabel.text = WalletManager.shared.priKey
+        Broadcaster.notify(EntryViewController.self) { (vc) in
+            let walletName = vc.registerView.nameView.textField.text!
+            memoLabel.text = walletName + "-" + WalletManager.shared.currentPubKey
+        }
         setContentAttribute(contentLabel:memoTitleLabel, contentLabelStr: R.string.localizable.friend_activate_title.key)
         setContentAttribute(contentLabel:warningTitleLabel,contentLabelStr: R.string.localizable.activate_title_blue.key)
-
+    }
+    
+    func updateMemoTitle(text: String) {
+        setContentAttribute(contentLabel:memoTitleLabel, contentLabelStr: text)
     }
     
     func setContentAttribute(contentLabel:BaseLabel, contentLabelStr:String) {
@@ -51,15 +60,22 @@ class FriendView: BaseView {
     func setupSubViewEvent() {
         keyButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
-            self.sendEventWith(Event.CopyKey.rawValue, userinfo: [:])
+            self.copyText(self.keyLabel.text!)
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         memoButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
-            self.sendEventWith(Event.CopyMemo.rawValue, userinfo: [:])
+            self.copyText(self.memoLabel.text!)
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     @objc override func didClicked() {
         self.next?.sendEventWith(Event.FriendViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+    }
+    
+    func copyText(_ text:String) {
+        let key = text
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = key
+        showSuccessTop(R.string.localizable.have_copied.key.localized())
     }
 }

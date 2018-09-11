@@ -16,7 +16,9 @@ class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoPr
 
 	var coordinator: (InvitationCodeToActivateCoordinatorProtocol & InvitationCodeToActivateStateManagerProtocol)?
 
-	override func viewDidLoad() {
+    @IBOutlet weak var contentView: InvitationView!
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         setupData()
@@ -44,7 +46,7 @@ class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoPr
         
     }
     
-//    override func configureObserveState() {
+    override func configureObserveState() {
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
 //            
@@ -95,7 +97,7 @@ class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoPr
 ////                }
 //            }
 //        }).disposed(by: disposeBag)
-//    }
+    }
 }
 
 //MARK: - TableViewDelegate
@@ -125,5 +127,15 @@ class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoPr
 extension InvitationCodeToActivateViewController {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(stringLiteral: R.string.localizable.invitationcode_to_activate.key.localized())
+    }
+    
+    @objc func IntroClick(_ data: [String : Any]) {
+        self.coordinator?.pushToGetInviteCodeIntroductionVC()
+    }
+    
+    @objc func NextClick(_ data: [String : Any]) {
+        self.coordinator?.createWallet(self.contentView.textfield.text!, completion: { (success) in
+            
+        })
     }
 }
