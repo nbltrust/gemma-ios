@@ -50,11 +50,7 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let payVC = R.storyboard.activate.payToActivateViewController()!
-        let friendVC = R.storyboard.activate.friendToActivateViewController()!
-        let exchangeVC = R.storyboard.activate.exchangeToActivateViewController()!
-        let invitationCodeVC = R.storyboard.activate.invitationCodeToActivateViewController()!
-        return [payVC, friendVC, exchangeVC, invitationCodeVC]
+        return (self.coordinator?.pageVCs())!
     }
     
     override func refreshViewController() {
@@ -144,11 +140,12 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 
 //MARK: - View Event
 
-//extension ActivateViewController {
+extension ActivateViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
 //        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
 //
 //        }
 //    }
-//}
+
+}
 

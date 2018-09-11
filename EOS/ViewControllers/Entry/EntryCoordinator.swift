@@ -9,11 +9,12 @@
 import UIKit
 import ReSwift
 import KRProgressHUD
+import SwiftNotificationCenter
 
 protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()
-    func pushToGetInviteCodeIntroductionVC()
     func pushToCreateSuccessVC()
+    func pushToActivateVC()
 }
 
 protocol EntryStateManagerProtocol {
@@ -25,7 +26,6 @@ protocol EntryStateManagerProtocol {
     func validWalletName(_ name: String)
     func validPassword(_ password: String)
     func validComfirmPassword(_ password: String, comfirmPassword: String)
-    func validInviteCode(_ code: String)
     func checkAgree(_ agree: Bool)
     func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion:@escaping (Bool)->())
 }
@@ -39,6 +39,11 @@ class EntryCoordinator: EntryRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override func register() {
+        Broadcaster.register(EntryCoordinatorProtocol.self, observer: self)
+        Broadcaster.register(EntryStateManagerProtocol.self, observer: self)
+    }
 }
 
 extension EntryCoordinator: EntryCoordinatorProtocol {
@@ -49,18 +54,18 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         self.rootVC.pushViewController(vc, animated: true)
     }
     
-    func pushToGetInviteCodeIntroductionVC() {
-        let vc = BaseWebViewController()
-        vc.url = H5AddressConfiguration.GET_INVITECODE_URL
-        vc.title = R.string.localizable.invitationcode_introduce.key.localized()
-        self.rootVC.pushViewController(vc, animated: true)
-    }
-    
     func pushToCreateSuccessVC() {
         let createCompleteVC = R.storyboard.entry.creatationCompleteViewController()
         let coordinator = CreatationCompleteCoordinator(rootVC: self.rootVC)
         createCompleteVC?.coordinator = coordinator
         self.rootVC.pushViewController(createCompleteVC!, animated: true)
+    }
+    
+    func pushToActivateVC() {
+        let copyVC = ActivateViewController()
+        let copyCoordinator = ActivateCoordinator(rootVC: self.rootVC)
+        copyVC.coordinator = copyCoordinator
+        self.rootVC.pushViewController(copyVC, animated: true)
     }
 }
 
@@ -85,10 +90,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     
     func validComfirmPassword(_ password: String, comfirmPassword: String) {
         self.store.dispatch(comfirmPasswordAction(isValid: WalletManager.shared.isValidComfirmPassword(password, comfirmPassword: comfirmPassword)))
-    }
-    
-    func validInviteCode(_ code: String) {
-        self.store.dispatch(inviteCodeAction(isValid: !code.isEmpty))
     }
     
     func checkAgree(_ agree: Bool) {

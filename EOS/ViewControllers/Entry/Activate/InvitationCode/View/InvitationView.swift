@@ -14,6 +14,7 @@ class InvitationView: BaseView {
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var introLabel: BaseLabel!
     @IBOutlet weak var nextButton: Button!
+    @IBOutlet weak var clearButton: UIButton!
     
     enum Event:String {
         case InvitationViewDidClicked
@@ -30,6 +31,12 @@ class InvitationView: BaseView {
     
     func setupUI() {
         textfield.placeholder = R.string.localizable.invitation_code_placeholder.key.localized()
+        nextButton.isEnabel.accept(false)
+        clearButton.isHidden = true
+    }
+    
+    @IBAction func clearBtnClick(_ sender: Any) {
+        textfield.text = ""
     }
     
     func setupSubViewEvent() {
@@ -39,11 +46,35 @@ class InvitationView: BaseView {
         }).disposed(by: disposeBag)
         nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
-            self.nextButton.next?.sendEventWith(Event.NextClick.rawValue, userinfo: [:])
+            if self.textfield.text == "" {
+                self.nextButton.isEnabel.accept(false)
+            } else {
+                self.nextButton.next?.sendEventWith(Event.NextClick.rawValue, userinfo: [:])
+            }
         }).disposed(by: disposeBag)
     }
     
     @objc override func didClicked() {
         self.next?.sendEventWith(Event.InvitationViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+    }
+}
+
+extension InvitationView:UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.clearButton.isHidden = true
+        if textField.text != "" {
+            nextButton.isEnabel.accept(true)
+        } else {
+            nextButton.isEnabel.accept(false)
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.clearButton.isHidden = false
+        if textField.text != "" {
+            nextButton.isEnabel.accept(true)
+        } else {
+            nextButton.isEnabel.accept(false)
+        }
     }
 }

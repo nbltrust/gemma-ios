@@ -12,15 +12,18 @@ import SwiftNotificationCenter
 import Async
 
 protocol ActivateCoordinatorProtocol {
+    func pushToGetInviteCodeIntroductionVC()
 }
 
 protocol ActivateStateManagerProtocol {
     var state: ActivateState { get }
     
     func switchPageState(_ state:PageState)
+    
+    func pageVCs() -> [BaseViewController]
 }
 
-class ActivateCoordinator: HomeRootCoordinator {
+class ActivateCoordinator: EntryRootCoordinator {
     var store = Store(
         reducer: ActivateReducer,
         state: nil,
@@ -38,7 +41,12 @@ class ActivateCoordinator: HomeRootCoordinator {
 }
 
 extension ActivateCoordinator: ActivateCoordinatorProtocol {
-    
+    func pushToGetInviteCodeIntroductionVC() {
+        let vc = BaseWebViewController()
+        vc.url = H5AddressConfiguration.GET_INVITECODE_URL
+        vc.title = R.string.localizable.invitationcode_introduce.key.localized()
+        self.rootVC.pushViewController(vc, animated: true)
+    }
 }
 
 extension ActivateCoordinator: ActivateStateManagerProtocol {
@@ -46,5 +54,25 @@ extension ActivateCoordinator: ActivateStateManagerProtocol {
         Async.main {
             self.store.dispatch(PageStateAction(state: state))
         }
+    }
+    
+    func pageVCs() -> [BaseViewController] {
+        let payVC = R.storyboard.activate.payToActivateViewController()!
+        let payCoor = PayToActivateCoordinator(rootVC: self.rootVC)
+        payVC.coordinator = payCoor
+
+        let friendVC = R.storyboard.activate.friendToActivateViewController()!
+        let friendCoor = FriendToActivateCoordinator(rootVC: self.rootVC)
+        friendVC.coordinator = friendCoor
+        
+        let exchangeVC = R.storyboard.activate.exchangeToActivateViewController()!
+        let exchangeCoor = ExchangeToActivateCoordinator(rootVC: self.rootVC)
+        exchangeVC.coordinator = exchangeCoor
+        
+        let invitationCodeVC = R.storyboard.activate.invitationCodeToActivateViewController()!
+        let invitationCodeCoor = InvitationCodeToActivateCoordinator(rootVC: self.rootVC)
+        invitationCodeVC.coordinator = invitationCodeCoor
+        
+        return [payVC,friendVC,exchangeVC,invitationCodeVC]
     }
 }

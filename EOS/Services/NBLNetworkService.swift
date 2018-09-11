@@ -73,35 +73,53 @@ extension NBLService : TargetType {
     var path: String {
         switch self {
         case .createAccount(_, _, _, _):
-            return "/api/v1/faucet/new"
-        case .accountVerify(_):
-            return "/account/verify"
-        case .accountHistory:
-            return "/api/v1/account/history"
-        case .producer(_):
-            return "/api/v1/producer/fetch"
+            return "/api/v1/account/new"
+        case let .accountVerify(account):
+            return "/api/v1/account/\(account)/verify"
+        case let .accountHistory(account, showNum, lastPosition):
+            return "/api/v1/account/history/\(account)/\(lastPosition)/\(showNum)"
+        case let .producer(showNum):
+            return "/api/v1/producer/\(showNum)"
         }
     }
     
     var method: Moya.Method {
-        return .post
+        switch self {
+        case .createAccount(_, _, _, _):
+            return .post
+        case .accountVerify(_):
+            return .get
+        case .accountHistory:
+            return .get
+        case .producer(_):
+            return .get
+        }
     }
     
     var parameters: [String: Any] {
         switch self {
         case let .createAccount(account, pubKey, invitationCode, hash):
             return ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": 1, "hash": hash]
-        case let .accountVerify(account):
-            return ["account_name": account]
-        case let .accountHistory(account, showNum, lastPosition):
-            return ["account_name": account, "show_num":showNum, "last_pos": lastPosition]
-        case let .producer(showNum):
-            return ["show_num": showNum]
+        case .accountVerify:
+            return [:]
+        case .accountHistory:
+            return [:]
+        case .producer:
+            return [:]
         }
     }
     
     var task: Task {
-        return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        switch self {
+        case .createAccount:
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .accountVerify:
+            return .requestPlain
+        case .accountHistory:
+            return .requestPlain
+        case .producer:
+            return .requestPlain
+        }
     }
 
     var sampleData: Data {

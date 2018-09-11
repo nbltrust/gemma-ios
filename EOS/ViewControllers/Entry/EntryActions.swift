@@ -43,10 +43,6 @@ struct comfirmPasswordAction: Action {
     var isValid: Bool = false
 }
 
-struct inviteCodeAction: Action {
-    var isValid: Bool = false
-}
-
 struct agreeAction: Action {
     var isAgree: Bool = false
 }

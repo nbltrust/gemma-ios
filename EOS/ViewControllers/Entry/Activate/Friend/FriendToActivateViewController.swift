@@ -16,7 +16,9 @@ class FriendToActivateViewController: BaseViewController,IndicatorInfoProvider {
 
 	var coordinator: (FriendToActivateCoordinatorProtocol & FriendToActivateStateManagerProtocol)?
 
-	override func viewDidLoad() {
+    @IBOutlet weak var contentView: FriendView!
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         setupData()
@@ -26,6 +28,7 @@ class FriendToActivateViewController: BaseViewController,IndicatorInfoProvider {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.contentView.updateMemoTitle(text: R.string.localizable.friend_activate_title.key)
     }
     
     override func refreshViewController() {
@@ -44,7 +47,7 @@ class FriendToActivateViewController: BaseViewController,IndicatorInfoProvider {
         
     }
     
-//    override func configureObserveState() {
+    override func configureObserveState() {
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
 //            
@@ -95,7 +98,7 @@ class FriendToActivateViewController: BaseViewController,IndicatorInfoProvider {
 ////                }
 //            }
 //        }).disposed(by: disposeBag)
-//    }
+    }
 }
 
 //MARK: - TableViewDelegate

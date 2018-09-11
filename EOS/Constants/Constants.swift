@@ -30,7 +30,7 @@ struct AppConfiguration {
 }
 
 struct NetworkConfiguration {
-    static let NBL_BASE_URL = URL(string: "http://139.196.73.117:3003")!
+    static let NBL_BASE_URL = URL(string: "http://139.196.73.117:3001")!
     static let NBL_BASE_TEST_URL = URL(string: "http://139.196.73.117:3002")!
 
     static let EOSIO_BASE_TEST_URL = URL(string: "http://139.224.135.236:18888")!//URL(string: "http://172.20.5.25:9999")!

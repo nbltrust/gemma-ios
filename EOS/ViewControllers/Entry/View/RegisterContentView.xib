@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterContentView" customModule="EOS" customModuleProvider="target">
             <connections>
-                <outlet property="inviteCodeView" destination="9qd-Dt-GCr" id="ZJ2-5w-TFp"/>
                 <outlet property="nameView" destination="7eI-ET-PPs" id="zKV-wR-3t6"/>
                 <outlet property="passwordComfirmView" destination="s0M-Q5-YdH" id="dN7-Zq-Kpb"/>
                 <outlet property="passwordPromptView" destination="g8m-6B-Aoo" id="ngi-gg-R4f"/>
@@ -39,10 +38,6 @@
                     <rect key="frame" x="0.0" y="281" width="375" height="65.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-Dt-GCr" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="400" width="375" height="65.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -53,13 +48,10 @@
                 <constraint firstItem="hhP-ye-AF6" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="EMJ-xR-fhL"/>
                 <constraint firstItem="g8m-6B-Aoo" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="Eh7-HF-e9S"/>
                 <constraint firstItem="hhP-ye-AF6" firstAttribute="top" secondItem="7eI-ET-PPs" secondAttribute="bottom" id="J2R-zt-wHt"/>
-                <constraint firstAttribute="trailing" secondItem="9qd-Dt-GCr" secondAttribute="trailing" id="XY0-6L-qsG"/>
                 <constraint firstItem="7eI-ET-PPs" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="aFc-Uk-7Ky"/>
                 <constraint firstAttribute="trailing" secondItem="7eI-ET-PPs" secondAttribute="trailing" id="g0i-qf-2Rn"/>
                 <constraint firstAttribute="trailing" secondItem="s0M-Q5-YdH" secondAttribute="trailing" id="kp1-Mk-UDI"/>
                 <constraint firstAttribute="trailing" secondItem="g8m-6B-Aoo" secondAttribute="trailing" id="lOy-ct-Bof"/>
-                <constraint firstItem="9qd-Dt-GCr" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="sic-mr-HT9"/>
-                <constraint firstItem="9qd-Dt-GCr" firstAttribute="top" secondItem="g8m-6B-Aoo" secondAttribute="bottom" id="vyG-3U-pPq"/>
                 <constraint firstItem="s0M-Q5-YdH" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="z38-9Y-iaV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

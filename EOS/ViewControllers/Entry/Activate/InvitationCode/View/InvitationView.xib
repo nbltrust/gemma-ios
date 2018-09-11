@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvitationView" customModule="EOS" customModuleProvider="target">
             <connections>
+                <outlet property="clearButton" destination="XkQ-jP-b3F" id="hHm-qt-YiD"/>
                 <outlet property="introLabel" destination="bmh-Qa-jAP" id="Uff-ce-V9h"/>
                 <outlet property="nextButton" destination="IBS-VE-gTi" id="tOG-O5-MAd"/>
                 <outlet property="textfield" destination="Gl9-3I-ZPU" id="l1M-1P-qOi"/>
@@ -26,18 +27,36 @@
                     <rect key="frame" x="16" y="45" width="343" height="48"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gl9-3I-ZPU">
-                            <rect key="frame" x="16" y="0.0" width="327" height="48"/>
+                            <rect key="frame" x="16" y="0.0" width="291" height="48"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="Hru-NH-R5E"/>
+                            </connections>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XkQ-jP-b3F">
+                            <rect key="frame" x="317" y="16" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="Xwe-to-beY"/>
+                                <constraint firstAttribute="width" constant="16" id="rRi-cw-xTS"/>
+                            </constraints>
+                            <state key="normal" image="icTextFieldClose"/>
+                            <state key="selected" image="icTextFieldClose"/>
+                            <state key="highlighted" image="icTextFieldClose"/>
+                            <connections>
+                                <action selector="clearBtnClick:" destination="-1" eventType="touchUpInside" id="GgD-3E-9tX"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="XkQ-jP-b3F" firstAttribute="centerY" secondItem="QQT-yc-Z7V" secondAttribute="centerY" id="CWY-XK-t4Z"/>
                         <constraint firstItem="Gl9-3I-ZPU" firstAttribute="top" secondItem="QQT-yc-Z7V" secondAttribute="top" id="GFF-4k-yeu"/>
-                        <constraint firstAttribute="trailing" secondItem="Gl9-3I-ZPU" secondAttribute="trailing" id="QBr-y8-Wv4"/>
+                        <constraint firstAttribute="trailing" secondItem="XkQ-jP-b3F" secondAttribute="trailing" constant="10" id="Pfx-8x-ZCZ"/>
                         <constraint firstAttribute="height" constant="48" id="WhY-gx-oKp"/>
                         <constraint firstAttribute="bottom" secondItem="Gl9-3I-ZPU" secondAttribute="bottom" id="XEp-nx-nOy"/>
+                        <constraint firstItem="XkQ-jP-b3F" firstAttribute="leading" secondItem="Gl9-3I-ZPU" secondAttribute="trailing" constant="10" id="XhT-cG-5tc"/>
                         <constraint firstItem="Gl9-3I-ZPU" firstAttribute="leading" secondItem="QQT-yc-Z7V" secondAttribute="leading" constant="16" id="cQt-3I-i5n"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -83,4 +102,7 @@
             <point key="canvasLocation" x="-69" y="-223"/>
         </view>
     </objects>
+    <resources>
+        <image name="icTextFieldClose" width="16" height="16"/>
+    </resources>
 </document>
