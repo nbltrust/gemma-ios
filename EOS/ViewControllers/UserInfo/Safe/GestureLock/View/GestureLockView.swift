@@ -74,18 +74,25 @@ class GestureLockView: UIView {
             itemLayers.append(itemLayer)
             layer.addSublayer(itemLayer)
         }
-        let marginX = (frame.width - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
-        let marginY = (frame.height - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
         
-        for (idx, sublayer) in itemLayers.enumerated() {
-            let row = CGFloat(idx % 3)
-            let col = CGFloat(idx / 3)
-            let originX = (itemSizes.width.adapt() + itemSizes.gap.adapt()) * row + marginX
-            let originY = (itemSizes.width.adapt() + itemSizes.gap.adapt()) * col + marginY
-            sublayer.index = idx
-            sublayer.centerRadio = itemSizes.centerRadius
-            sublayer.width = itemSizes.width.adapt()
-            sublayer.origin = CGPoint(x: originX, y: originY)
+        reSizeLayer()
+    }
+    
+    func reSizeLayer() {
+        if itemLayers.count > 0 {
+            let marginX = (frame.width - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
+            let marginY = (frame.height - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
+            
+            for (idx, sublayer) in itemLayers.enumerated() {
+                let row = CGFloat(idx % 3)
+                let col = CGFloat(idx / 3)
+                let originX = (itemSizes.width.adapt() + itemSizes.gap.adapt()) * row + marginX
+                let originY = (itemSizes.width.adapt() + itemSizes.gap.adapt()) * col + marginY
+                sublayer.index = idx
+                sublayer.centerRadio = itemSizes.centerRadius
+                sublayer.width = itemSizes.width.adapt()
+                sublayer.origin = CGPoint(x: originX, y: originY)
+            }
         }
     }
     
@@ -97,6 +104,7 @@ class GestureLockView: UIView {
         
     override func layoutSubviews() {
         super.layoutSubviews()
+        reSizeLayer()
     }
     
     override open func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
@@ -130,6 +138,7 @@ class GestureLockView: UIView {
     }
     
     private func touchesEnd() {
+        self.isUserInteractionEnabled = false
         delegate?.gestureLockViewDidTouchesEnd(self)
         delay(1.0) {
             self.reset()
@@ -189,6 +198,7 @@ class GestureLockView: UIView {
     }
     
     public func reset() {
+        self.isUserInteractionEnabled = true
         interval = 0
         shapeLayer?.strokeColor = locked ? GestureLockSetting.warningColor.cgColor : GestureLockSetting.lockHighlightedColor.cgColor
         selectedItemLayers.forEach { $0.status = .normal }

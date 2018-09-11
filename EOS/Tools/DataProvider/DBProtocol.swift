@@ -58,7 +58,7 @@ extension DBProtocol {
         let dbQueue = DBManager.shared.dbQueue
         do {
             try dbQueue?.write{ db in
-                try self.delete(db)
+                try _ = self.delete(db)
             }
         } catch {}
     }

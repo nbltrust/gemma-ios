@@ -48,11 +48,10 @@ struct EOSIONetwork {
                 catch _ {
                     do {
                         let json = try JSON(response.mapJSON())
-                        if let error = json["error"]["code"].debugDescription as? String {
-                            let codeKey = AppConfiguration.EOS_ERROR_CODE_BASE + error
-                            let codeValue = codeKey.localized()
-                            showFailTop(codeValue)
-                        }
+                        let error = json["error"]["code"].debugDescription
+                        let codeKey = AppConfiguration.EOS_ERROR_CODE_BASE + error
+                        let codeValue = codeKey.localized()
+                        showFailTop(codeValue)
                     }
                     catch _ {
                         
