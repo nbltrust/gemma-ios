@@ -13,6 +13,7 @@ import SwiftNotificationCenter
 @IBDesignable
 class FriendView: BaseView {
     
+    @IBOutlet weak var priKeyLabel: BaseLabel!
     @IBOutlet weak var memoTitleLabel: BaseLabel!
     @IBOutlet weak var warningTitleLabel: BaseLabel!
     @IBOutlet weak var keyLabel: UILabel!
@@ -43,18 +44,22 @@ class FriendView: BaseView {
         setContentAttribute(contentLabel:warningTitleLabel,contentLabelStr: R.string.localizable.activate_title_blue.key)
     }
     
-    func updateMemoTitle(text: String) {
-        setContentAttribute(contentLabel:memoTitleLabel, contentLabelStr: text)
+    func updateTitle(memoText: String, priKeyText: String) {
+        setContentAttribute(contentLabel:memoTitleLabel, contentLabelStr: memoText)
+        setContentAttribute(contentLabel:priKeyLabel, contentLabelStr: priKeyText)
     }
     
     func setContentAttribute(contentLabel:BaseLabel, contentLabelStr:String) {
         var text = ""
         if contentLabel == warningTitleLabel {
             text = contentLabelStr.localizedFormat("<corn_flower_blue>","</corn_flower_blue>","<corn_flower_blue>","</corn_flower_blue>","<corn_flower_blue>","</corn_flower_blue>","<corn_flower_blue>","</corn_flower_blue>")
-        } else {
+            contentLabel.attributedText = text.set(style: StyleNames.activate.rawValue)
+        } else if contentLabel == memoTitleLabel {
             text = contentLabelStr.localizedFormat("<corn_flower_blue_underline>","</corn_flower_blue_underline>","<corn_flower_blue>","</corn_flower_blue>")
+            contentLabel.attributedText = text.set(style: StyleNames.activate.rawValue)
+        } else {
+            contentLabel.text = contentLabelStr
         }
-        contentLabel.attributedText = text.set(style: StyleNames.activate.rawValue)
     }
     
     func setupSubViewEvent() {
