@@ -59,6 +59,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mr6-Hh-Jbz"/>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="k2T-kp-xxE" id="IlP-VS-e8S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="an3-6e-BcT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -86,6 +89,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c7T-ZX-z74"/>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="oop-8y-ona" id="7yJ-FP-NwT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3c-6F-U5C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,6 +119,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jTp-wW-lEc"/>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="Dyf-id-yfS" id="Cu4-w0-ovQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a7w-nB-q32" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

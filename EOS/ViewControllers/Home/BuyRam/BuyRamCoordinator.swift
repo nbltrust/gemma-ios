@@ -59,20 +59,21 @@ extension BuyRamCoordinator: BuyRamCoordinatorProtocol {
         newVC.navStyle = .white
         let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
         
-        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
         if let vc = R.storyboard.transfer.transferConfirmViewController() {
             let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
             vc.coordinator = coordinator
             vc.data = data
             transferConfirm.rootVC.pushViewController(vc, animated: true)
         }
+        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
     }
     
     func pushToPaymentVC() {
-        let vc = R.storyboard.payments.paymentsViewController()!
-        let coor = PaymentsCoordinator(rootVC: self.rootVC)
-        vc.coordinator = coor
-        self.rootVC.pushViewController(vc, animated: true)
+        if let vc = R.storyboard.payments.paymentsViewController() {
+            let coordinator = PaymentsCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
     }
 }
 

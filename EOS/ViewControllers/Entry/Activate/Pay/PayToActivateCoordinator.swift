@@ -20,7 +20,7 @@ protocol PayToActivateStateManagerProtocol {
     func switchPageState(_ state:PageState)
 }
 
-class PayToActivateCoordinator: HomeRootCoordinator {
+class PayToActivateCoordinator: EntryRootCoordinator {
     var store = Store(
         reducer: PayToActivateReducer,
         state: nil,

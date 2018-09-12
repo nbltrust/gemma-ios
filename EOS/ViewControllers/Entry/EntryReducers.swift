@@ -23,8 +23,6 @@ func EntryPropertyReducer(_ state: EntryPropertyState?, action: Action) -> Entry
         state.passwordValid.accept(action.isValid)
     case let action as comfirmPasswordAction:
         state.comfirmPasswordValid.accept(action.isValid)
-    case let action as inviteCodeAction:
-        state.inviteCodeValid.accept(action.isValid)
     case let action as agreeAction:
         state.isAgree.accept(action.isAgree)
     default:

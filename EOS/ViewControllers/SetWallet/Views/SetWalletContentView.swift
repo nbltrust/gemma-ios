@@ -90,6 +90,7 @@ class SetWalletContentView: UIView {
         titleTextfieldView.delegate = self
         titleTextfieldView.datasource = self
         titleTextfieldView.updateContentSize()
+        titleTextfieldView.textField.addTarget(self, action: #selector(handleTextFiledDidChanged(_:)), for: .editingChanged)
     }
     
     func passwordSwitch(isSelected: Bool) {
@@ -104,6 +105,10 @@ class SetWalletContentView: UIView {
         resetPassword.textField.text = tempComfirmPassword
     }
     
+    @objc func handleTextFiledDidChanged(_ textField: UITextField) {
+        handleTextField(textField)
+    }
+    
 }
 
 extension SetWalletContentView : TitleTextFieldViewDelegate,TitleTextFieldViewDataSource {
@@ -115,12 +120,14 @@ extension SetWalletContentView : TitleTextFieldViewDelegate,TitleTextFieldViewDa
         if titleTextFieldView == password {
             if index == 0 {
                 titleTextFieldView.clearText()
+                handleTextField(titleTextFieldView.textField)
             } else if index == 1 {
                 passwordSwitch(isSelected: selected)
             }
         } else {
             if index == 0 {
                 titleTextFieldView.clearText()
+                handleTextField(titleTextFieldView.textField)
             }
         }
     }
@@ -196,6 +203,7 @@ extension SetWalletContentView : UITextFieldDelegate {
         case InputType.password.rawValue:
             password.reloadActionViews(isEditing: false)
             password.checkStatus = WalletManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            resetPassword.checkStatus = WalletManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: resetPassword.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.comfirmPassword.rawValue:
             resetPassword.reloadActionViews(isEditing: false)
             resetPassword.checkStatus = WalletManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: password.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
@@ -207,19 +215,17 @@ extension SetWalletContentView : UITextFieldDelegate {
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text ?? ""
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+    func handleTextField(_ textField: UITextField) {
+        let text = textField.text ?? ""
         switch textField.tag {
+        case InputType.name.rawValue:
+            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : text])
         case InputType.password.rawValue:
-            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : text])
         case InputType.comfirmPassword.rawValue:
-            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : newText])
-        case InputType.invitationCode.rawValue:
-            self.sendEventWith(TextChangeEvent.walletInviteCode.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : text])
         default:
-            return true
+            return
         }
-        return true
     }
 }

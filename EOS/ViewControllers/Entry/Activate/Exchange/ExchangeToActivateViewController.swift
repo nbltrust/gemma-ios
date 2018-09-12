@@ -16,7 +16,9 @@ class ExchangeToActivateViewController: BaseViewController,IndicatorInfoProvider
 
 	var coordinator: (ExchangeToActivateCoordinatorProtocol & ExchangeToActivateStateManagerProtocol)?
 
-	override func viewDidLoad() {
+    @IBOutlet weak var contentView: FriendView!
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         setupData()
@@ -26,6 +28,7 @@ class ExchangeToActivateViewController: BaseViewController,IndicatorInfoProvider
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.contentView.updateTitle(memoText: R.string.localizable.exchange_activate_title.key, priKeyText: R.string.localizable.exchange_prikey_title_red.key.localized())
     }
     
     override func refreshViewController() {

@@ -64,6 +64,15 @@ class TransferContentView: UIView {
         accountTitleTextView.reloadData()
         moneyTitleTextView.reloadData()
         remarkTitleTextView.reloadData()
+        
+        accountTitleTextView.reloadActionViews(isEditing: false)
+        moneyTitleTextView.reloadActionViews(isEditing: false)
+        remarkTitleTextView.reloadActionViews(isEditing: false)
+
+        accountTitleTextView.checkStatus = TextUIStyle.common
+        moneyTitleTextView.checkStatus = TextUIStyle.common
+        remarkTitleTextView.checkStatus = TextUIStyle.common
+
     }
     
     func setUp() {

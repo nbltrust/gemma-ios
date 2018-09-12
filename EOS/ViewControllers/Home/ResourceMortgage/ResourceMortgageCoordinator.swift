@@ -55,7 +55,6 @@ extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
         newVC.navStyle = .white
         let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
         
-        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
         //        transferConfirm .start()
         if let vc = R.storyboard.transfer.transferConfirmViewController() {
             let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
@@ -63,7 +62,8 @@ extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
             vc.data = data
             transferConfirm.rootVC.pushViewController(vc, animated: true)
         }
-        
+        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+
         
     }
     
