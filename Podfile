@@ -92,6 +92,7 @@ def other
     pod 'Device'
     pod 'SwiftNotificationCenter'
     pod 'MonkeyKing'
+    pod 'FGRoute'
 end
 
 def fabric

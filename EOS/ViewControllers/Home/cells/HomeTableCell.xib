@@ -52,6 +52,9 @@
                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                 <color key="value" red="0.153" green="0.20399999999999999" blue="0.48999999999999999" alpha="0.048000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
