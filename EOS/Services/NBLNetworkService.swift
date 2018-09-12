@@ -30,7 +30,7 @@ func defaultManager() -> Alamofire.SessionManager {
 }
 
 struct NBLNetwork {
-    static let provider = MoyaProvider<NBLService>(callbackQueue: nil, manager: defaultManager(), plugins: [NetworkLoggerPlugin(verbose: true)], trackInflights: false)
+    static let provider = MoyaProvider<NBLService>(callbackQueue: nil, manager: defaultManager(), plugins: [NetworkLoggerPlugin(verbose: true),DataCachePlugin()], trackInflights: false)
     
     static func request(
         target: NBLService,
@@ -68,6 +68,15 @@ struct NBLNetwork {
 extension NBLService : TargetType {
     var baseURL: URL {
         return NetworkConfiguration.NBL_BASE_URL
+    }
+    
+    var isNeedCache: Bool {
+        switch self {
+        case .producer(_):
+            return true
+        default:
+            return false
+        }
     }
     
     var path: String {

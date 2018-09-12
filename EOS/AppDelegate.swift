@@ -70,6 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         DBManager.shared.setupDB()
         
+        NetworkSettingManager.shared.setup()
+        
         return true
     }
     

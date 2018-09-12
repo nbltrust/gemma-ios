@@ -32,7 +32,7 @@ public protocol DBProtocol : HandyJSON, MutablePersistableRecord, FetchableRecor
     
     mutating func blackList() -> [String]?
     
-    mutating func relyColumnData() -> (String, Any)?
+    mutating func extensionColumns() -> [String : ParameterType]?
     
     //Table Edit
     mutating func save() throws
@@ -77,7 +77,7 @@ extension DBProtocol where Self == TestModel {
         return []
     }
     
-    mutating func relyColumnData() -> (String, Any)? {
+    mutating func extensionColumns() -> [String : ParameterType]? {
         return nil
     }
 }
