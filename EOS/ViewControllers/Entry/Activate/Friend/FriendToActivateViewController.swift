@@ -28,7 +28,7 @@ class FriendToActivateViewController: BaseViewController,IndicatorInfoProvider {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.contentView.updateMemoTitle(text: R.string.localizable.friend_activate_title.key)
+        self.contentView.updateTitle(memoText: R.string.localizable.friend_activate_title.key, priKeyText: R.string.localizable.friend_prikey_title_red.key.localized())
     }
     
     override func refreshViewController() {

@@ -17,6 +17,7 @@
                 <outlet property="memoButton" destination="vZq-kb-gu9" id="Gfu-xu-eGk"/>
                 <outlet property="memoLabel" destination="Ljc-DA-1aO" id="z00-od-RYG"/>
                 <outlet property="memoTitleLabel" destination="M2K-jb-3bA" id="JSG-SO-caS"/>
+                <outlet property="priKeyLabel" destination="W13-Qf-CKx" id="xSI-im-T61"/>
                 <outlet property="warningTitleLabel" destination="80N-TJ-2Nk" id="5fv-yD-SLt"/>
             </connections>
         </placeholder>
@@ -108,7 +109,6 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
                             <real key="value" value="20"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="activate_title_red"/>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2K-jb-3bA" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
