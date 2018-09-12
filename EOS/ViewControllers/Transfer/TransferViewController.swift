@@ -34,6 +34,8 @@ class TransferViewController: BaseViewController {
         self.transferContentView.moneyTitleTextView.clearText()
         self.transferContentView.remarkTitleTextView.clearText()
         self.transferContentView.nextButton.isEnabel.accept(false)
+        self.reciverLabel.text = R.string.localizable.receiver.key.localized()
+        self.reciverLabel.textColor = UIColor.steel
     }
     
     override func viewWillAppear(_ animated: Bool) {

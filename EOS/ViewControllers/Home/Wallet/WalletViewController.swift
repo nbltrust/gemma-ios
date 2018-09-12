@@ -121,8 +121,9 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
             if let wallet = WalletManager.shared.currentWallet(), wallet.publicKey != dataArray[indexPath.row].address {
                 self.coordinator?.switchWallet(dataArray[indexPath.row].address)
                 self.coordinator?.popToLastVC()
+            } else {
+                self.coordinator?.popToLastVC()
             }
-          
         } else {
             switch indexPath.row {
             case 0:self.coordinator?.pushToLeadInWallet()

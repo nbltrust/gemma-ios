@@ -193,6 +193,9 @@
 "pay_activate_title" = "创建EOS账户需要消耗资源，包括CPU，NET，RAM。为了激活账户，你需要购买这些EOS资源。";
 "activate_title" = "选择EOS账户激活方式";
 "friend_prikey_title_red" = "请务必备份私钥，待好友帮助激活后，须将私钥再次导入钱包以使用EOS账户。私钥若丢失，账户将不可恢复。";
+"walletname_not_empty" = "钱包名不能为空";
+"delegate_not_all0" = "总抵押数不能为0";
+"update_pwd_btn_title" = "确认修改";
 
 //zsy end
 

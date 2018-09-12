@@ -100,6 +100,7 @@ class RegisterContentView: UIView {
         titleTextfieldView.delegate = self
         titleTextfieldView.datasource = self
         titleTextfieldView.updateContentSize()
+        titleTextfieldView.textField.addTarget(self, action: #selector(handleTextFiledDidChanged(_:)), for: .editingChanged)
     }
     
     func passwordSwitch(isSelected: Bool) {
@@ -112,6 +113,10 @@ class RegisterContentView: UIView {
         passwordComfirmView.textField.text = ""
         passwordComfirmView.textField.isSecureTextEntry = !isSelected
         passwordComfirmView.textField.text = tempComfirmPassword
+    }
+    
+    @objc func handleTextFiledDidChanged(_ textField: UITextField) {
+        handleTextField(textField)
     }
 }
 
@@ -126,13 +131,14 @@ extension RegisterContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
         if titleTextFieldView == passwordView {
             if index == 0 {
                 titleTextFieldView.clearText()
+                handleTextField(titleTextFieldView.textField)
             } else if index == 1 {
                 passwordSwitch(isSelected: selected)
             }
         } else {
             if index == 0 {
                 titleTextFieldView.clearText()
-                handleTextField(titleTextFieldView.textField, text: "")
+                handleTextField(titleTextFieldView.textField)
             }
         }
     }
@@ -240,15 +246,9 @@ extension RegisterContentView: UITextFieldDelegate {
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text ?? ""
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        handleTextField(textField, text: newText)
-        return true
-    }
     
-    
-    func handleTextField(_ textField: UITextField, text: String) {
+    func handleTextField(_ textField: UITextField) {
+        let text = textField.text ?? ""
         switch textField.tag {
         case InputType.name.rawValue:
             self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : text])

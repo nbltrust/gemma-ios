@@ -28,7 +28,11 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
             
             if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.cpuMoney != "",netMoneyDouble == 0 {
                 valid = false
-                tips = R.string.localizable.small_money.key.localized()
+                if action.netMoney != "" {
+                    tips = R.string.localizable.delegate_not_all0.key.localized()
+                } else {
+                    tips = R.string.localizable.small_money.key.localized()
+                }
             }
             
             state.cpuMoneyValid.accept((valid,tips,action.cpuMoney))
@@ -44,7 +48,11 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
             
             if netMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.netMoney != "",cpuMoneyDouble == 0 {
                 valid = false
-                tips = R.string.localizable.small_money.key.localized()
+                if action.cpuMoney != "" {
+                    tips = R.string.localizable.delegate_not_all0.key.localized()
+                } else {
+                    tips = R.string.localizable.small_money.key.localized()
+                }
             }
             
             state.netMoneyValid.accept((valid,tips,action.netMoney))
@@ -60,7 +68,11 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
             
             if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.cpuMoney != "",netMoneyDouble == 0 {
                 valid = false
-                tips = R.string.localizable.small_money.key.localized()
+                if action.netMoney != "" {
+                    tips = R.string.localizable.delegate_not_all0.key.localized()
+                } else {
+                    tips = R.string.localizable.small_money.key.localized()
+                }
             }
             
             state.cpuReliveMoneyValid.accept((valid,tips,action.cpuMoney))
@@ -76,7 +88,11 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
             
             if netMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue,action.netMoney != "",cpuMoneyDouble == 0 {
                 valid = false
-                tips = R.string.localizable.small_money.key.localized()
+                if action.cpuMoney != "" {
+                    tips = R.string.localizable.delegate_not_all0.key.localized()
+                } else {
+                    tips = R.string.localizable.small_money.key.localized()
+                }
             }
             
             state.netReliveMoneyValid.accept((valid,tips,action.netMoney))
