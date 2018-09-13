@@ -46,10 +46,11 @@ class DBManager {
         try handleTableCreation(testModel)
     }
     
-    fileprivate func handleTableCreation(_ data: Any, primaryKey: String? = nil, whiteList: [String]? = nil, blackList: [String]? = nil, relyColumData: (String, Any)? = nil) throws {
+    fileprivate func handleTableCreation(_ data: Any, primaryKey: String? = nil, whiteList: [String]? = nil, blackList: [String]? = nil, exxtensionColumns: [String : ParameterType]? = nil) throws {
         let anyMirror = Mirror(reflecting: data)
         let tableName = anyMirror.className()
-        let dataStructure = anyMirror.dataStructure()
+        var dataStructure = anyMirror.dataStructure()
+        dataStructure = try handleColums(dataStructure, whiteList: whiteList, blackList: blackList, relyColumData: exxtensionColumns)
         let action = try tableAction(tableName, structure: dataStructure)
         switch action {
         case .create:
@@ -61,12 +62,12 @@ class DBManager {
         }
     }
     
-    fileprivate func handleColums(_ structure: [String : ParameterType], whiteList: [String]? = nil, blackList: [String]? = nil, relyColumData: (String, Any)? = nil) throws -> [String : ParameterType] {
+    fileprivate func handleColums(_ structure: [String : ParameterType], whiteList: [String]? = nil, blackList: [String]? = nil, relyColumData: [String : ParameterType]? = nil) throws -> [String : ParameterType] {
         var tempData: [String : ParameterType] = [:]
         if let relyData = relyColumData {
-            let anyMirror = Mirror(reflecting: relyData.0)
-            let type = anyMirror.parameterType(relyData.1)
-            tempData[relyData.0] = type
+            relyData.forEach { (data) in
+                tempData[data.key] = data.value
+            }
         }
         
         if let white = whiteList {
