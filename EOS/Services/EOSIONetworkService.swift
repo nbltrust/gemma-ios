@@ -28,7 +28,7 @@ enum EOSIOService {
 }
 
 struct EOSIONetwork {
-    static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil, manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(), plugins: [NetworkLoggerPlugin(verbose: true)], trackInflights: false)
+    static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil, manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(), plugins: [NetworkLoggerPlugin(verbose: true),DataCachePlugin()], trackInflights: false)
     
     static func request(
         target: EOSIOService,
@@ -36,7 +36,6 @@ struct EOSIONetwork {
         error errorCallback: @escaping (_ statusCode: Int) -> Void,
         failure failureCallback: @escaping (MoyaError) -> Void
         ) {
-        
         provider.request(target) { (result) in
             switch result {
             case let .success(response):
@@ -59,6 +58,7 @@ struct EOSIONetwork {
                     errorCallback(0)
                 }
             case let .failure(error):
+                showFailTop(R.string.localizable.request_failed.key.localized())
                 failureCallback(error)
             }
         }
@@ -78,6 +78,15 @@ extension EOSIOService : TargetType {
             return configuration.EOSIO_BASE_URL
         default:
             return configuration.EOSIO_BASE_URL
+        }
+    }
+    
+    var isNeedCache: Bool {
+        switch self {
+        case .get_account(_,_):
+            return true
+        default:
+            return false
         }
     }
     

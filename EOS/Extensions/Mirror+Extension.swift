@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ParameterType: Int {
+public enum ParameterType: Int {
     case int = 0
     case int8
     case int16

@@ -15,6 +15,22 @@ class DataProvider {
     
     fileprivate var dbQueue: DatabaseQueue = DBManager.shared.dbQueue
     
+    //Delete
+    func deleteData(_ tableName: String, valueConditon: DataFetchCondition? = nil) throws {
+        try deleteData(tableName, valueConditions: valueConditon == nil ? [] : [valueConditon!])
+    }
+    
+    func deleteData(_ tableName: String, valueConditions: [DataFetchCondition]) throws {
+        try deleteData(tableName, mulValueConditons: [valueConditions])
+    }
+    
+    func deleteData(_ tableName: String, mulValueConditons: [[DataFetchCondition]]) throws {
+        try dbQueue.write { db in
+            let sqlStr = self.sqlStringWith(mulValueConditons)
+            try db.execute(String(format: "DELETE FROM %@ %@", tableName, sqlStr))
+        }
+    }
+    
     //Fectch Count
     func fetchCount(_ tableName: String, valueConditon: DataFetchCondition? = nil) throws -> Int {
         if let valueCondition = valueConditon {
@@ -122,8 +138,5 @@ class DataProvider {
         }
         return datas
     }
-    
-    //Public
-    
     
 }

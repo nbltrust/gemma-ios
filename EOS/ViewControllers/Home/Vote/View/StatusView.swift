@@ -18,17 +18,21 @@ class StatusView: UIView {
     
     var highlighted: Bool = false {
         didSet {
-            leftLabel.backgroundColor = highlighted ? UIColor.darkSkyBlueTwo : UIColor.paleGreyFour
-            leftLabel.text = "0/30"
-            rightLabel.backgroundColor = highlighted ? UIColor.cornflowerBlueTwo : UIColor.cloudyBlue
-            rightLabel.text = highlighted ? R.string.localizable.vote_title.key.localized() : R.string.localizable.vote_unenough.key.localized()
+            updateContent()
         }
     }
     
     var selCount: Int = 0 {
         didSet {
-            leftLabel.text = String(format: "%d/30", selCount)
+            updateContent()
         }
+    }
+    
+    func updateContent() {
+        leftLabel.text = String(format: "%d/30", selCount)
+        leftLabel.backgroundColor = highlighted && selCount > 0 ? UIColor.darkSkyBlueTwo : UIColor.paleGreyFour
+        rightLabel.backgroundColor = highlighted && selCount > 0 ? UIColor.cornflowerBlueTwo : UIColor.cloudyBlue
+        rightLabel.text = highlighted ? R.string.localizable.vote_title.key.localized() : R.string.localizable.vote_unenough.key.localized()
     }
     
     func setup() {

@@ -12,44 +12,79 @@ import Alamofire
 import enum Result.Result
 import SwiftyJSON
 
+protocol CachePolicyGettable {
+    var cachePolicy: URLRequest.CachePolicy { get }
+}
+
 class DataCachePlugin: PluginType {
-    private let needCache: Bool = false
-    
-    init(needCache: Bool) {
-        self.needCache = needCache
-    }
-    
-    func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
-        guard case Result.success(_) = result else { return }
+    public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        if let cachePolicyGettable = target as? CachePolicyGettable {
+            var mutableRequest = request
+            mutableRequest.cachePolicy = cachePolicyGettable.cachePolicy
+            return mutableRequest
+        }
+        return request
     }
 }
 
 final class EOSDataCachePlugin: DataCachePlugin {
-    override func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
-        do {
-            if let response = result.value {
-                _ = try response.filterSuccessfulStatusCodes()
-                let json = try JSON(response.mapJSON())
-                
+    func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
+        guard case Result.success(_) = result else { return }
+        
+        if let service = target as? EOSIOService {
+            if service.isNeedCache {
+                do {
+                    if let response = result.value {
+                        _ = try response.filterSuccessfulStatusCodes()
+                        let json = try JSON(response.mapJSON())
+                    }
+                }
+                catch _ {}
             }
         }
-        catch _ {}
     }
 }
 
 final class NBLDataCachePlugin: DataCachePlugin {
-    override func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
-        do {
-            if let response = result.value {
-                let response = try response.filterSuccessfulStatusCodes()
-                let json = try JSON(response.mapJSON())
-                if json["code"].intValue == 0 {
-                    let result = json["result"]
-                    
+    func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
+        guard case Result.success(_) = result else { return }
+        if let service = target as? NBLService {
+            if service.isNeedCache {
+                do {
+                    if let response = result.value {
+                        let response = try response.filterSuccessfulStatusCodes()
+                        let json = try JSON(response.mapJSON())
+                        if json["code"].intValue == 0 {
+                            let result = json["result"]
+                            
+                        }
+                        
+                    }
                 }
-                
+                catch _ {}
             }
         }
-        catch _ {}
+    }
+}
+
+extension NBLService: CachePolicyGettable {
+    var cachePolicy: URLRequest.CachePolicy {
+        switch self {
+        case .producer(_):
+            return .useProtocolCachePolicy
+        default:
+            return .reloadIgnoringLocalCacheData
+        }
+    }
+}
+
+extension EOSIOService: CachePolicyGettable {
+    var cachePolicy: URLRequest.CachePolicy {
+        switch self {
+        case .get_account(_,_):
+            return .useProtocolCachePolicy
+        default:
+            return .reloadIgnoringLocalCacheData
+        }
     }
 }

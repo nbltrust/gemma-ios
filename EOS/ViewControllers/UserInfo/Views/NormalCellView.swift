@@ -207,7 +207,7 @@ extension NormalCellView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.subviews.last?.backgroundColor = self.normal_bgColor
+        self.perform(#selector(becomeNormal), with: nil, afterDelay: 0.3)
         self.clickCellViewAction()
     }
     
@@ -216,6 +216,10 @@ extension NormalCellView {
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.subviews.last?.backgroundColor = self.normal_bgColor
+    }
+    
+    @objc func becomeNormal() {
         self.subviews.last?.backgroundColor = self.normal_bgColor
     }
     
