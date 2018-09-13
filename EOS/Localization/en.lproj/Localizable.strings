@@ -75,7 +75,7 @@
 "payment_account" = "From";
 "money" = "Amount";
 "input_transfer_money" = "Enter amount";
-"remark" = "Memo";
+"remark" = "Memo（optional）";
 "input_transfer_remark" = "Enter memo (optional)";
 "transfer_state_time" = "Estimated confirm time:";
 "check_transfer" = "Confirm send";
