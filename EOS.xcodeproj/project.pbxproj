@@ -151,8 +151,6 @@
 		3B3147072108134600E815BD /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3147062108134600E815BD /* PageView.swift */; };
 		3B3147092108134E00E815BD /* PageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3147082108134E00E815BD /* PageView.xib */; };
 		3B3935712147B30100AB0A30 /* MonkeyKingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B39356B2147B30100AB0A30 /* MonkeyKingManager.swift */; };
-		3B39357F214A158900AB0A30 /* SharpCornerTipsLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B393578214A158800AB0A30 /* SharpCornerTipsLabelView.swift */; };
-		3B393580214A158900AB0A30 /* SharpCornerTipsLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B39357E214A158800AB0A30 /* SharpCornerTipsLabelView.xib */; };
 		3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */; };
 		3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */; };
 		3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */; };
@@ -3429,8 +3427,6 @@
 		3B3147062108134600E815BD /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		3B3147082108134E00E815BD /* PageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageView.xib; sourceTree = "<group>"; };
 		3B39356B2147B30100AB0A30 /* MonkeyKingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonkeyKingManager.swift; sourceTree = "<group>"; };
-		3B393578214A158800AB0A30 /* SharpCornerTipsLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharpCornerTipsLabelView.swift; sourceTree = "<group>"; };
-		3B39357E214A158800AB0A30 /* SharpCornerTipsLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SharpCornerTipsLabelView.xib; sourceTree = "<group>"; };
 		3B39903D3D0FDB9211C184998407AE9E /* tuple_helpers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tuple_helpers.hpp; sourceTree = "<group>"; };
 		3B47CAE3420AA277462F4FE60488AD6A /* heterogeneous_conversion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = heterogeneous_conversion.hpp; sourceTree = "<group>"; };
 		3B4A04FBBD7409A50517FA29231C4A82 /* console_appender.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = console_appender.hpp; sourceTree = "<group>"; };
@@ -14678,8 +14674,6 @@
 				3BC12A6B210587BD006EEB80 /* RedWarningView.xib */,
 				2253C53D2111C9390043AAF7 /* TitleSubTitleView.swift */,
 				2253C53F2111C9500043AAF7 /* TitleSubTitleView.xib */,
-				3B393578214A158800AB0A30 /* SharpCornerTipsLabelView.swift */,
-				3B39357E214A158800AB0A30 /* SharpCornerTipsLabelView.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -33201,7 +33195,6 @@
 				733714DE212431E200B2ED90 /* .gitignore in Resources */,
 				6B97C35FD52DBADB978F2FCD447AABB4 /* type_traits.SUNWCCh in Resources */,
 				1131F4CEFAD4037E8C4AB8AC12019994 /* typeinfo in Resources */,
-				3B393580214A158900AB0A30 /* SharpCornerTipsLabelView.xib in Resources */,
 				9185574FA64B12DD68B665A8C0BFFCA9 /* typeinfo.SUNWCCh in Resources */,
 				967EB91C71B110DAEC37F5999C3356BC /* types.hpp.bk in Resources */,
 				E9B4BDB932328AF7C9FBBAF11B2BA61B /* unordered_map in Resources */,
@@ -33779,7 +33772,6 @@
 				3B6D7473214761690076F444 /* PayViewAdapter.swift in Sources */,
 				3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */,
 				3B6D747C214761690076F444 /* InvitationViewAdapter.swift in Sources */,
-				3B39357F214A158900AB0A30 /* SharpCornerTipsLabelView.swift in Sources */,
 				221EC1D72100A8D50059F856 /* CGFloat+Extensions.swift in Sources */,
 				3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */,
 				7224712920F57BA800536BF4 /* TransferCoordinator.swift in Sources */,

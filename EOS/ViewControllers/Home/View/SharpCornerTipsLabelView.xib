@@ -56,6 +56,6 @@
         </view>
     </objects>
     <resources>
-        <image name="imgPasswordBg" width="50" height="82"/>
+        <image name="imgPasswordBg" width="343" height="82"/>
     </resources>
 </document>
