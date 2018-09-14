@@ -68,7 +68,7 @@ class HomeViewController: BaseViewController {
         if let nav = self.navigationController as? BaseNavigationController {
             nav.navStyle = .common
         }
-
+        self.navigationController?.navigationBar.alpha = 1
     }
     
     func setupUI(){
@@ -157,22 +157,14 @@ extension HomeViewController: UIScrollViewDelegate {
         if scrollView.contentOffset.y > offsetY.cgFloat {
             if let nav = self.navigationController as? BaseNavigationController {
                 nav.navStyle = .common
+                self.navigationItem.title = self.coordinator?.state.property.info.value.account
                 self.navigationController?.navigationBar.alpha = (scrollView.contentOffset.y - offsetY.cgFloat) / 44
-                if let portrait = self.coordinator?.state.property.info.value.portrait,portrait.count > 0 {
-                    let generator = IconGenerator(size: 24, hash: Data(hex: portrait))
-                    self.configLeftNavButton(UIImage(cgImage: generator.render()!))
-                    self.navigationItem.title = self.coordinator?.state.property.info.value.account
-                } else {
-                    self.navigationItem.leftBarButtonItem = nil
-                    self.navigationItem.title = self.coordinator?.state.property.info.value.account
-                }
             }
         } else {
             if let nav = self.navigationController as? BaseNavigationController {
                 nav.navStyle = .clear
             }
             self.navigationController?.navigationBar.alpha = 1
-            self.navigationItem.leftBarButtonItem = nil
             self.navigationItem.title = "GEMMA"
         }
     }

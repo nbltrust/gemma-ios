@@ -38,29 +38,29 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I5G-jn-3ug">
-                    <rect key="frame" x="16" y="20" width="338" height="35"/>
+                    <rect key="frame" x="16" y="20" width="338" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="87J-T7-8dJ"/>
+                        <constraint firstAttribute="height" constant="30" id="87J-T7-8dJ"/>
                     </constraints>
                     <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQc-rW-EZe">
-                    <rect key="frame" x="359" y="19.5" width="0.0" height="35"/>
+                    <rect key="frame" x="359" y="17" width="0.0" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" priority="999" id="dSn-ur-L2F"/>
                         <constraint firstAttribute="height" constant="35" id="uNj-xJ-fIM"/>
                     </constraints>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoN-Zj-l1P">
-                    <rect key="frame" x="359" y="37" width="0.0" height="0.0"/>
+                    <rect key="frame" x="359" y="34.5" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1a-AL-q3Z">
-                    <rect key="frame" x="16" y="65" width="343" height="1"/>
+                    <rect key="frame" x="16" y="60" width="343" height="1"/>
                     <color key="backgroundColor" red="0.90600000000000003" green="0.91400000000000003" blue="0.97299999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="ymv-Ww-Em4"/>

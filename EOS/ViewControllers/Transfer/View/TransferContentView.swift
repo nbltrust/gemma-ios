@@ -84,16 +84,17 @@ class TransferContentView: UIView {
         remarkTitleTextView.datasource = self
         remarkTitleTextView.textView.delegate = self
         remarkTitleTextView.textView.maxHeight = 80
-        nextButton.title = R.string.localizable.check_transfer.key.localized()
+        remarkTitleTextView.textView.font = UIFont.pfScS16
+        nextButton.title = R.string.localizable.tabbarTransfer.key.localized()
         moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre.key.localized() + "0.0000 EOS"
         moneyTitleTextView.textField.keyboardType = UIKeyboardType.decimalPad
         remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
         
         accountTitleTextView.titleLabel.font = UIFont.cnTipMedium
-        accountTitleTextView.textField.font = UIFont.pfScR16
+        accountTitleTextView.textField.font = UIFont.pfScS16
         moneyTitleTextView.titleLabel.font = UIFont.cnTipMedium
-        moneyTitleTextView.textField.font = UIFont.pfScR16
+        moneyTitleTextView.textField.font = UIFont.pfScS16
         moneyTitleTextView.introduceLabel.font = UIFont.pfScR12
         moneyTitleTextView.introduceLabel.textColor = UIColor(red: 83/255, green: 92/255, blue: 138/255, alpha: 1)
         updateHeight()

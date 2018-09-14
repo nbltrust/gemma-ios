@@ -95,8 +95,8 @@ func convertAccountViewModelWithAccount(_ account:Account, viewmodel:AccountView
     var newViewModel = viewmodel
     newViewModel.account = account.account_name
     newViewModel.portrait = account.account_name.sha256()
-    newViewModel.cpuValue = account.total_resources?.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    newViewModel.netValue = account.total_resources?.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    newViewModel.cpuValue = account.self_delegated_bandwidth?.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    newViewModel.netValue = account.self_delegated_bandwidth?.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
     
     if let used = account.cpu_limit?.used.string,let max = account.cpu_limit?.max.string {
         newViewModel.cpuProgress = used.float()! / max.float()!
