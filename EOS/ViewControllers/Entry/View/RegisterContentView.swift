@@ -14,12 +14,10 @@ import GrowingTextView
 class RegisterContentView: UIView {
 
     @IBOutlet weak var nameView: TitleTextfieldView!
-    
     @IBOutlet weak var passwordView: TitleTextfieldView!
-    
     @IBOutlet weak var passwordComfirmView: TitleTextfieldView!
-    
     @IBOutlet weak var passwordPromptView: TitleTextfieldView!
+    @IBOutlet weak var tipsView: SharpCornerTipsLabelView!
     
     enum InputType: Int {
         case name = 1
@@ -88,6 +86,7 @@ class RegisterContentView: UIView {
     }
     
     func setupUI() {
+        tipsView.isHidden = true
         handleSetupSubView(nameView, tag: InputType.name.rawValue)
         handleSetupSubView(passwordView, tag: InputType.password.rawValue)
         handleSetupSubView(passwordComfirmView, tag: InputType.comfirmPassword.rawValue)
@@ -99,6 +98,7 @@ class RegisterContentView: UIView {
         titleTextfieldView.textField.delegate = self
         titleTextfieldView.delegate = self
         titleTextfieldView.datasource = self
+//        titleTextfieldView.textField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.font: UIFont.pfScR14])
         titleTextfieldView.updateContentSize()
         titleTextfieldView.textField.addTarget(self, action: #selector(handleTextFiledDidChanged(_:)), for: .editingChanged)
     }
@@ -212,15 +212,28 @@ extension RegisterContentView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.name.rawValue:
             nameView.reloadActionViews(isEditing: true)
-            nameView.checkStatus = TextUIStyle.highlight
+            if nameView.checkStatus != TextUIStyle.warning {
+                nameView.checkStatus = TextUIStyle.highlight
+            }
         case InputType.password.rawValue:
             passwordView.reloadActionViews(isEditing: true)
-            passwordView.checkStatus = TextUIStyle.highlight
+            if passwordView.checkStatus != TextUIStyle.warning {
+                passwordView.checkStatus = TextUIStyle.highlight
+            }
+            tipsView.isHidden = false
+            SwifterSwift.delay(milliseconds: 3000) {
+                self.tipsView.isHidden = true
+            }
         case InputType.comfirmPassword.rawValue:
             passwordComfirmView.reloadActionViews(isEditing: true)
-            passwordComfirmView.checkStatus = TextUIStyle.highlight
+            if passwordComfirmView.checkStatus != TextUIStyle.warning {
+                passwordComfirmView.checkStatus = TextUIStyle.highlight
+            }
         case InputType.passwordPrompt.rawValue:
             passwordPromptView.reloadActionViews(isEditing: true)
+            if passwordPromptView.checkStatus != TextUIStyle.warning {
+                passwordPromptView.checkStatus = TextUIStyle.highlight
+            }
             passwordPromptView.checkStatus = TextUIStyle.highlight
         default:
             return
@@ -231,13 +244,25 @@ extension RegisterContentView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.name.rawValue:
             nameView.reloadActionViews(isEditing: false)
-            nameView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            if textField.text == "" {
+                nameView.checkStatus = TextUIStyle.common
+            } else {
+                nameView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            }
         case InputType.password.rawValue:
             passwordView.reloadActionViews(isEditing: false)
-            passwordView.checkStatus = WalletManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            if textField.text == "" {
+                passwordView.checkStatus = TextUIStyle.common
+            } else {
+                passwordView.checkStatus = WalletManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            }
         case InputType.comfirmPassword.rawValue:
+            if textField.text == "" {
+                passwordComfirmView.checkStatus = TextUIStyle.common
+            } else {
+                passwordComfirmView.checkStatus = WalletManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: passwordView.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            }
             passwordComfirmView.reloadActionViews(isEditing: false)
-            passwordComfirmView.checkStatus = WalletManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: passwordView.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.passwordPrompt.rawValue:
             passwordPromptView.reloadActionViews(isEditing: false)
             passwordPromptView.checkStatus = TextUIStyle.common

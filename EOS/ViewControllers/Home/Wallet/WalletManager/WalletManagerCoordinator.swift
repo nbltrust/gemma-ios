@@ -14,7 +14,7 @@ protocol WalletManagerCoordinatorProtocol {
     func pushToChangeWalletName(model: WalletManagerModel)
     func pushToExportPrivateKey(_ pubKey: String)
     func pushToChangePassword(_ pubKey:String)
-
+    func pushToBackupMnemonicVC()
 }
 
 protocol WalletManagerStateManagerProtocol {
@@ -36,6 +36,15 @@ class WalletManagerCoordinator: HomeRootCoordinator {
 }
 
 extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
+    //助记词调试代码
+    func pushToBackupMnemonicVC() {
+        if let vc = R.storyboard.mnemonic.backupMnemonicWordViewController() {
+            let coordinator = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
     func pushToChangePassword(_ pubKey: String) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, type: confirmType.updatePwd.rawValue, producers: []) { priKey in
