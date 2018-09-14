@@ -11,6 +11,9 @@ import Foundation
 class BackupPrivateKeyView: UIView {
     
     @IBOutlet weak var knowButton: Button!
+    @IBOutlet weak var redTipsLabel: BaseLabel!
+    @IBOutlet weak var whiteTipOneLabel: BaseLabel!
+    @IBOutlet weak var whiteTipTwoLabel: BaseLabel!
     
     enum event: String {
         case know
@@ -20,7 +23,25 @@ class BackupPrivateKeyView: UIView {
         return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
     }
     
+    func setupUI() {
+        whiteTipOneLabel.text = R.string.localizable.backup_introduce_one.key.localized()
+        whiteTipTwoLabel.text = R.string.localizable.backup_introduce_two.key.localized()
+    }
+    
+    var redTips = "" {
+        didSet {
+            redTipsLabel.text = redTips
+        }
+    }
+    
+    var buttonTitle = "" {
+        didSet {
+            knowButton.title = buttonTitle
+        }
+    }
+    
     func setup() {
+        setupUI()
         knowButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
             self.next?.sendEventWith(event.know.rawValue, userinfo: ["data":""])

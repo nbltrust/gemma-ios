@@ -196,6 +196,15 @@
 "walletname_not_empty" = "钱包名不能为空";
 "delegate_not_all0" = "总抵押数不能为0";
 "update_pwd_btn_title" = "确认修改";
+"verify_mnemonic_title" = "验证助记词";
+"backup_mnemonic_title" = "备份助记词";
+"verify_mnemonic_tips" = "请按顺序点击已抄下的助记词以验证抄写是否正确";
+"backup_mnemonic_tips_title" = "请记下你的钱包私钥助记词并保存在安全的地方";
+"backup_mnemonic_tips_content" = "助记词用于恢复钱包私钥，当遇到需要恢复钱包的情况，比如WOOKONG Bio丢失、忘记密码等，请使用助记词以恢复私钥";
+"backup_mnemonic_btn_title" = "已抄写";
+"backup_mnemonic_knowbtn_title" = "明白了，显示助记词";
+"backup_mnemonic_red_text" = "请务必备份助记词，助记词能够恢复私钥，而私钥掌管着数字资产的控制权及所有权。当意外发生时，这是唯一找回资产的途径。";
+"backup_prikey_red_text" = "请务必备份私钥，私钥掌管着数字资产的控制权及所有权。当意外发生时，这是唯一找回资产的途径。";
 
 //zsy end
 

@@ -22,6 +22,7 @@ protocol HomeCoordinatorProtocol {
     func pushBuyRamVC()
     func pushVoteVC()
     func pushDealRAMVC()
+    func pushToMnemonicVC()
 }
 
 protocol HomeStateManagerProtocol {
@@ -65,6 +66,15 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
 //            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
 //        }
 //    }
+    //助记词调试代码
+    func pushToMnemonicVC() {
+        if let vc = R.storyboard.mnemonic.verifyMnemonicWordViewController() {
+            let coordinator = VerifyMnemonicWordCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
     func pushBackupVC() {
         if let vc = R.storyboard.entry.backupPrivateKeyViewController() {
             let coordinator = BackupPrivateKeyCoordinator(rootVC: self.rootVC)

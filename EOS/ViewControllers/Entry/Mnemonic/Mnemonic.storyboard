@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Verify Mnemonic Word View Controller-->
+        <scene sceneID="TOE-eY-cm4">
+            <objects>
+                <viewController storyboardIdentifier="VerifyMnemonicWordViewController" id="8nP-V3-9eE" customClass="VerifyMnemonicWordViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O6v-th-ROQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOD-6a-NOc" customClass="VerifyMnemonicWordView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Y76-AN-WCo" firstAttribute="trailing" secondItem="tOD-6a-NOc" secondAttribute="trailing" constant="16" id="0gJ-ix-NV4"/>
+                            <constraint firstItem="Y76-AN-WCo" firstAttribute="bottom" secondItem="tOD-6a-NOc" secondAttribute="bottom" id="8kD-g7-ix9"/>
+                            <constraint firstItem="tOD-6a-NOc" firstAttribute="leading" secondItem="Y76-AN-WCo" secondAttribute="leading" constant="16" id="BZb-bR-5AL"/>
+                            <constraint firstItem="tOD-6a-NOc" firstAttribute="top" secondItem="Y76-AN-WCo" secondAttribute="top" id="tdS-hM-Axy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Y76-AN-WCo"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="tOD-6a-NOc" id="zZd-h2-Wn6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iCN-tK-6M8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-113" y="148"/>
+        </scene>
+        <!--Backup Mnemonic Word View Controller-->
+        <scene sceneID="VhG-3v-ZXt">
+            <objects>
+                <viewController storyboardIdentifier="BackupMnemonicWordViewController" id="ewT-pt-bWW" customClass="BackupMnemonicWordViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MaG-dE-xtn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qzi-uX-KxE" customClass="BackupPrivateKeyView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OPq-IX-YLK" firstAttribute="bottom" secondItem="qzi-uX-KxE" secondAttribute="bottom" id="2c1-Nl-Cyh"/>
+                            <constraint firstItem="qzi-uX-KxE" firstAttribute="top" secondItem="OPq-IX-YLK" secondAttribute="top" id="93R-hl-bk0"/>
+                            <constraint firstItem="qzi-uX-KxE" firstAttribute="leading" secondItem="OPq-IX-YLK" secondAttribute="leading" id="WaZ-bc-JUp"/>
+                            <constraint firstItem="OPq-IX-YLK" firstAttribute="trailing" secondItem="qzi-uX-KxE" secondAttribute="trailing" id="hpX-ed-wwX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OPq-IX-YLK"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="qzi-uX-KxE" id="UdS-rk-klp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FRw-tY-g51" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="567" y="148"/>
+        </scene>
+        <!--Mnemonic Content View Controller-->
+        <scene sceneID="3In-JX-fvu">
+            <objects>
+                <viewController storyboardIdentifier="MnemonicContentViewController" id="3Wk-kp-vw9" customClass="MnemonicContentViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u4A-Om-dac">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3FE-MY-brN" customClass="MnemonicContentView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DK4-o1-gwQ" firstAttribute="trailing" secondItem="3FE-MY-brN" secondAttribute="trailing" id="BtQ-a5-PQG"/>
+                            <constraint firstItem="3FE-MY-brN" firstAttribute="leading" secondItem="DK4-o1-gwQ" secondAttribute="leading" id="JXL-H5-knf"/>
+                            <constraint firstItem="3FE-MY-brN" firstAttribute="top" secondItem="DK4-o1-gwQ" secondAttribute="top" id="gwB-3F-mb0"/>
+                            <constraint firstItem="DK4-o1-gwQ" firstAttribute="bottom" secondItem="3FE-MY-brN" secondAttribute="bottom" id="oMS-pU-auZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DK4-o1-gwQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="3FE-MY-brN" id="ZYI-wc-BXi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hyL-U6-Awo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1254" y="148"/>
+        </scene>
+    </scenes>
+</document>
