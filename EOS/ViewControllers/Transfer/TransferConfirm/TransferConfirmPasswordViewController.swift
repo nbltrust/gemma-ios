@@ -36,6 +36,8 @@ class TransferConfirmPasswordViewController: BaseViewController {
     
     var publicKey = WalletManager.shared.currentPubKey
     
+    var errCount = 0
+    
     @IBOutlet weak var passwordView: TransferConfirmPasswordView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +81,14 @@ class TransferConfirmPasswordViewController: BaseViewController {
 extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
         guard let priKey = WalletManager.shared.getCachedPriKey(publicKey, password: passwordView.textField.text!) else {
-            self.showError(message: R.string.localizable.password_not_match.key.localized())
+            self.errCount  = self.errCount + 1
+            if self.errCount == 3 {
+                if let message = WalletManager.shared.getPasswordHint(publicKey) {
+                    self.showError(message: message)
+                }
+            } else {
+                self.showError(message: R.string.localizable.password_not_match.key.localized())
+            }
             return
         }
         
