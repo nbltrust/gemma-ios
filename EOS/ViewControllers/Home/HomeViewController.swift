@@ -101,7 +101,6 @@ class HomeViewController: BaseViewController {
     
     override func rightAction(_ sender: UIButton) {
         self.coordinator?.pushWallet()
-//        self.coordinator?.pushToMnemonicVC()
     }
     
     override func configureObserveState() {

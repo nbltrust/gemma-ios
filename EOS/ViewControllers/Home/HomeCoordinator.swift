@@ -15,14 +15,12 @@ protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
     func pushPayment()
     func pushWallet()
-//    func pushScreenShotAlert()
     func pushAccountList()
     func pushResourceMortgageVC()
     func pushBackupVC()
     func pushBuyRamVC()
     func pushVoteVC()
     func pushDealRAMVC()
-    func pushToMnemonicVC()
 }
 
 protocol HomeStateManagerProtocol {
@@ -50,31 +48,6 @@ class HomeCoordinator: HomeRootCoordinator {
 }
 
 extension HomeCoordinator: HomeCoordinatorProtocol {
-    //截屏弹框测试代码
-//    func pushScreenShotAlert() {
-//        let width = ModalSize.custom(size: 270)
-//        let height = ModalSize.custom(size: 230)
-//        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: (UIScreen.main.bounds.width-270)/2, y: UIScreen.main.bounds.height/2-115))
-//        let customType = PresentationType.custom(width: width, height: height, center: center)
-//
-//        let presenter = Presentr(presentationType: customType)
-//        presenter.keyboardTranslationType = .stickToTop
-//
-//        if let vc = R.storyboard.screenShotAlert.screenShotAlertViewController() {
-//            let coordinator = ScreenShotAlertCoordinator(rootVC: self.rootVC)
-//            vc.coordinator = coordinator
-//            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
-//        }
-//    }
-    //助记词调试代码
-    func pushToMnemonicVC() {
-        if let vc = R.storyboard.mnemonic.verifyMnemonicWordViewController() {
-            let coordinator = VerifyMnemonicWordCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
-        }
-    }
-    
     func pushBackupVC() {
         if let vc = R.storyboard.entry.backupPrivateKeyViewController() {
             let coordinator = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
