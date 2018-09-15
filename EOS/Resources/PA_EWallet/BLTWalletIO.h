@@ -12,9 +12,12 @@
 
 @interface BLTWalletIO : NSObject
 
+//Complication
 typedef void(^ DidSearchDevice)(BLTWallet *wallet);
 
 typedef void(^ connectComplication)(BOOL isConnected,NSInteger savedDevice);
+
+@property (nonatomic,weak) DidSearchDevice didSearchDevice;
 
 + (void)searchBLTCard;
 

@@ -82,7 +82,6 @@
 		223C5917214A532800C69F3F /* BLTCardEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C5914214A532800C69F3F /* BLTCardEntryView.swift */; };
 		223C5918214A532800C69F3F /* BLTCardEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223C5915214A532800C69F3F /* BLTCardEntryView.xib */; };
 		223C5921214B89F900C69F3F /* BLTWalletIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = 223C5920214B89F900C69F3F /* BLTWalletIO.mm */; };
-		223C5923214B91DD00C69F3F /* BLTWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C5922214B91DD00C69F3F /* BLTWallet.swift */; };
 		2253C51C211052020043AAF7 /* SafeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C51B211052020043AAF7 /* SafeManager.swift */; };
 		2253C5272111A5F90043AAF7 /* CopyPriKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */; };
 		2253C5282111A5F90043AAF7 /* CopyPriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5242111A5F90043AAF7 /* CopyPriKeyActions.swift */; };
@@ -490,7 +489,8 @@
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
 		73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */; };
-		73D47EC7214D583200A8BF29 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 223C591A214B66A100C69F3F /* libiOS_EWallet.a */; };
+		73D47EC7214D583200A8BF29 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		73D47ED1214D66E700A8BF29 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
 		73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F1DE44214675250065BD72 /* Mirror+Extension.swift */; };
 		73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */; };
@@ -2270,11 +2270,9 @@
 		223C5913214A532800C69F3F /* BLTCardEntryViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardEntryViewAdapter.swift; sourceTree = "<group>"; };
 		223C5914214A532800C69F3F /* BLTCardEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardEntryView.swift; sourceTree = "<group>"; };
 		223C5915214A532800C69F3F /* BLTCardEntryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLTCardEntryView.xib; sourceTree = "<group>"; };
-		223C591A214B66A100C69F3F /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiOS_EWallet.a; sourceTree = "<group>"; };
 		223C591B214B66A100C69F3F /* PA_EWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PA_EWallet.h; sourceTree = "<group>"; };
 		223C591F214B89F900C69F3F /* BLTWalletIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTWalletIO.h; sourceTree = "<group>"; };
 		223C5920214B89F900C69F3F /* BLTWalletIO.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BLTWalletIO.mm; sourceTree = "<group>"; };
-		223C5922214B91DD00C69F3F /* BLTWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTWallet.swift; sourceTree = "<group>"; };
 		223C5924214B9DE100C69F3F /* BLTWalletHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTWalletHeader.h; sourceTree = "<group>"; };
 		223DDA4AF8715440D7C22A944229DCF4 /* instantiate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = instantiate.hpp; sourceTree = "<group>"; };
 		22403BDCE77301650B8AFFE1E8981DE5 /* resolver_service.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = resolver_service.hpp; sourceTree = "<group>"; };
@@ -6237,6 +6235,7 @@
 		73D47EB0214D535000A8BF29 /* Repeat-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Repeat-umbrella.h"; sourceTree = "<group>"; };
 		73D47EB1214D535000A8BF29 /* Repeat.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Repeat.modulemap; sourceTree = "<group>"; };
 		73D47EB2214D535000A8BF29 /* Repeat.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Repeat.xcconfig; sourceTree = "<group>"; };
+		73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiOS_EWallet.a; sourceTree = "<group>"; };
 		73D60EA94E41654A2AD320B7B324BDA9 /* assert_word_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = assert_word_matcher.hpp; sourceTree = "<group>"; };
 		73DD7EB84F77B2E916A74B72ED0C0250 /* sub.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sub.hpp; sourceTree = "<group>"; };
 		73DDD9A12113F6B900023973 /* BannerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerColor.swift; sourceTree = "<group>"; };
@@ -12463,7 +12462,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73D47EC7214D583200A8BF29 /* libiOS_EWallet.a in Frameworks */,
+				73D47EC7214D583200A8BF29 /* (null) in Frameworks */,
 				73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */,
 				E202643E00EC75259A3A2DCFB44749FD /* Pods_EOS.framework in Frameworks */,
 				ABD754F61B6B4596661C239D7EE0621B /* libappbase.a in Frameworks */,
@@ -12485,6 +12484,7 @@
 				95B8DDDF4AFED777D4E18239D5089FFD /* libcrypto.a in Frameworks */,
 				6729F23278361B30E5C02D41B5C38B4E /* libeos_utilities.a in Frameworks */,
 				FAE42FB8272608796B84D45337A61B85 /* libeosio_chain.a in Frameworks */,
+				73D47ED1214D66E700A8BF29 /* libiOS_EWallet.a in Frameworks */,
 				B66249D25E5FAEA4E9976E8DB2466B14 /* libfc.a in Frameworks */,
 				B59F91139082B6BA1A41D0F42DFBC842 /* libsoftfloat.a in Frameworks */,
 				FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */,
@@ -15197,11 +15197,10 @@
 		223C5919214B66A100C69F3F /* PA_EWallet */ = {
 			isa = PBXGroup;
 			children = (
-				223C591A214B66A100C69F3F /* libiOS_EWallet.a */,
+				73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */,
 				223C591B214B66A100C69F3F /* PA_EWallet.h */,
 				223C591F214B89F900C69F3F /* BLTWalletIO.h */,
 				223C5920214B89F900C69F3F /* BLTWalletIO.mm */,
-				223C5922214B91DD00C69F3F /* BLTWallet.swift */,
 				223C5924214B9DE100C69F3F /* BLTWalletHeader.h */,
 			);
 			path = PA_EWallet;
@@ -33921,7 +33920,6 @@
 				22E40AAD211453D600F1648C /* FingerPrinterConfirmViewController.swift in Sources */,
 				725F68052101B8E50006BBA1 /* SetWalletActions.swift in Sources */,
 				733714E2212431E200B2ED90 /* LGButton.swift in Sources */,
-				223C5923214B91DD00C69F3F /* BLTWallet.swift in Sources */,
 				72FE5B802100867B00B29FEC /* SafeLineView.swift in Sources */,
 				2253C53A2111A6450043AAF7 /* PriKeyReducers.swift in Sources */,
 				223C590E214A52AE00C69F3F /* BLTCardSearchCoordinator.swift in Sources */,
@@ -34164,6 +34162,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
@@ -34259,6 +34258,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";

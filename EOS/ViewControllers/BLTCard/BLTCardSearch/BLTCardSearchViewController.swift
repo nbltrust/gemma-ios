@@ -17,6 +17,8 @@ class BLTCardSearchViewController: BaseViewController {
 
     var indicatorView: UIActivityIndicatorView?
     
+    var BLTIO: BLTWalletIO?
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,11 +44,14 @@ class BLTCardSearchViewController: BaseViewController {
     }
     
     override func leftAction(_ sender: UIButton) {
-        
+        self.coordinator?.dismissSearchVC()
     }
 
     func setupData() {
-        
+        BLTIO = BLTWalletIO.init()
+        BLTIO?.didSearchDevice = {[weak self] device in
+            guard let `self` = self else { return }
+        }
     }
     
     func setupEvent() {
