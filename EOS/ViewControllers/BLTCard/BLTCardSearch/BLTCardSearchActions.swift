@@ -11,6 +11,7 @@ import ReSwift
 import RxCocoa
 import SwiftyJSON
 
+
 //MARK: - State
 struct BLTCardSearchState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)

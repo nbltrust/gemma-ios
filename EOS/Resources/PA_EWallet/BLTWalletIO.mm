@@ -14,6 +14,8 @@
 
 void *savedDevH;
 
+static BLTWalletIO *selfClass = nil;
+
 int BatteryCallback(const int nBatterySource, const int nBatteryState)
 {
     NSLog(@"current battery source is: %d, current battery state is: 0x%X", nBatterySource, nBatteryState);
@@ -26,7 +28,9 @@ int EnumCallback(const char *szDevName, int nRSSI, int nState)
     wallet.name = [NSString stringWithUTF8String:szDevName];
     wallet.RSSI = nRSSI;
     wallet.state = nState;
-    
+    if (selfClass.didSearchDevice) {
+        selfClass.didSearchDevice(wallet);
+    }
     return PAEW_RET_SUCCESS;
 }
 
@@ -34,6 +38,15 @@ int DisconnectedCallback(const int status, const char *description)
 {
     NSLog(@"device has disconnected already, status code is: %d, detail is: %s", status, description);
     return PAEW_RET_SUCCESS;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        selfClass = self;
+    }
+    return self;
 }
 
 
@@ -45,7 +58,7 @@ int DisconnectedCallback(const int status, const char *description)
     __block EnumContext DevContext = {0};
     DevContext.timeout = 10;//scanning may found nothing if timeout is lower than 2 seconds. So the suggested timeout value should be larger than 2
     //typedef int(*tFunc_EnumCallback)(const char *szDevName, int nRSSI, int nState)
-    
+//    tFunc_EnumCallback *callback;
     DevContext.enumCallBack = EnumCallback;
     NSString *devName = @"WOOKONG BIO";
     strcpy(DevContext.searchName, [[devName stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet] UTF8String]);
@@ -82,5 +95,9 @@ int DisconnectedCallback(const int status, const char *description)
 
     });
 }
+
+@end
+
+@implementation BLTWallet
 
 @end
