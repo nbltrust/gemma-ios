@@ -40,7 +40,7 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="fpS-1M-ene" firstAttribute="top" secondItem="ImE-GX-GNV" secondAttribute="top" id="63M-Ga-I3y"/>
+                        <constraint firstItem="fpS-1M-ene" firstAttribute="top" secondItem="ImE-GX-GNV" secondAttribute="top" constant="7" id="63M-Ga-I3y"/>
                         <constraint firstAttribute="trailing" secondItem="fpS-1M-ene" secondAttribute="trailing" id="M8g-t2-qB9"/>
                         <constraint firstAttribute="trailing" secondItem="eLT-mr-G6c" secondAttribute="trailing" id="Nhg-qf-fJC"/>
                         <constraint firstAttribute="trailing" secondItem="ooB-mJ-nSx" secondAttribute="trailing" id="bFJ-YZ-qkn"/>

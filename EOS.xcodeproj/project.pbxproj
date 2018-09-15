@@ -183,6 +183,25 @@
 		3B3147072108134600E815BD /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3147062108134600E815BD /* PageView.swift */; };
 		3B3147092108134E00E815BD /* PageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3147082108134E00E815BD /* PageView.xib */; };
 		3B3935712147B30100AB0A30 /* MonkeyKingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B39356B2147B30100AB0A30 /* MonkeyKingManager.swift */; };
+		3B39358D214A479300AB0A30 /* VerifyMnemonicWordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B393589214A479300AB0A30 /* VerifyMnemonicWordCoordinator.swift */; };
+		3B39358E214A479300AB0A30 /* VerifyMnemonicWordActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B39358A214A479300AB0A30 /* VerifyMnemonicWordActions.swift */; };
+		3B39358F214A479300AB0A30 /* VerifyMnemonicWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B39358B214A479300AB0A30 /* VerifyMnemonicWordViewController.swift */; };
+		3B393590214A479300AB0A30 /* VerifyMnemonicWordReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B39358C214A479300AB0A30 /* VerifyMnemonicWordReducers.swift */; };
+		3B393592214A47B700AB0A30 /* Mnemonic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B393591214A47B700AB0A30 /* Mnemonic.storyboard */; };
+		3B393597214A47EF00AB0A30 /* VerifyMnemonicWordViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B393594214A47EF00AB0A30 /* VerifyMnemonicWordViewAdapter.swift */; };
+		3B393598214A47EF00AB0A30 /* VerifyMnemonicWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B393595214A47EF00AB0A30 /* VerifyMnemonicWordView.swift */; };
+		3B393599214A47EF00AB0A30 /* VerifyMnemonicWordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B393596214A47EF00AB0A30 /* VerifyMnemonicWordView.xib */; };
+		3B3935A6214B50A000AB0A30 /* BackupMnemonicWordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935A2214B50A000AB0A30 /* BackupMnemonicWordCoordinator.swift */; };
+		3B3935A7214B50A000AB0A30 /* BackupMnemonicWordActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935A3214B50A000AB0A30 /* BackupMnemonicWordActions.swift */; };
+		3B3935A8214B50A000AB0A30 /* BackupMnemonicWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935A4214B50A000AB0A30 /* BackupMnemonicWordViewController.swift */; };
+		3B3935A9214B50A000AB0A30 /* BackupMnemonicWordReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935A5214B50A000AB0A30 /* BackupMnemonicWordReducers.swift */; };
+		3B3935AF214B5AF600AB0A30 /* MnemonicContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935AB214B5AF600AB0A30 /* MnemonicContentCoordinator.swift */; };
+		3B3935B0214B5AF600AB0A30 /* MnemonicContentActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935AC214B5AF600AB0A30 /* MnemonicContentActions.swift */; };
+		3B3935B1214B5AF600AB0A30 /* MnemonicContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935AD214B5AF600AB0A30 /* MnemonicContentViewController.swift */; };
+		3B3935B2214B5AF600AB0A30 /* MnemonicContentReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935AE214B5AF600AB0A30 /* MnemonicContentReducers.swift */; };
+		3B3935B7214B5B9100AB0A30 /* MnemonicContentViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935B4214B5B9100AB0A30 /* MnemonicContentViewAdapter.swift */; };
+		3B3935B8214B5B9100AB0A30 /* MnemonicContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935B5214B5B9100AB0A30 /* MnemonicContentView.swift */; };
+		3B3935B9214B5B9100AB0A30 /* MnemonicContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3935B6214B5B9100AB0A30 /* MnemonicContentView.xib */; };
 		3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */; };
 		3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */; };
 		3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */; };
@@ -3494,6 +3513,25 @@
 		3B3147062108134600E815BD /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		3B3147082108134E00E815BD /* PageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageView.xib; sourceTree = "<group>"; };
 		3B39356B2147B30100AB0A30 /* MonkeyKingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonkeyKingManager.swift; sourceTree = "<group>"; };
+		3B393589214A479300AB0A30 /* VerifyMnemonicWordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMnemonicWordCoordinator.swift; sourceTree = "<group>"; };
+		3B39358A214A479300AB0A30 /* VerifyMnemonicWordActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMnemonicWordActions.swift; sourceTree = "<group>"; };
+		3B39358B214A479300AB0A30 /* VerifyMnemonicWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMnemonicWordViewController.swift; sourceTree = "<group>"; };
+		3B39358C214A479300AB0A30 /* VerifyMnemonicWordReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMnemonicWordReducers.swift; sourceTree = "<group>"; };
+		3B393591214A47B700AB0A30 /* Mnemonic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mnemonic.storyboard; sourceTree = "<group>"; };
+		3B393594214A47EF00AB0A30 /* VerifyMnemonicWordViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMnemonicWordViewAdapter.swift; sourceTree = "<group>"; };
+		3B393595214A47EF00AB0A30 /* VerifyMnemonicWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMnemonicWordView.swift; sourceTree = "<group>"; };
+		3B393596214A47EF00AB0A30 /* VerifyMnemonicWordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerifyMnemonicWordView.xib; sourceTree = "<group>"; };
+		3B3935A2214B50A000AB0A30 /* BackupMnemonicWordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupMnemonicWordCoordinator.swift; sourceTree = "<group>"; };
+		3B3935A3214B50A000AB0A30 /* BackupMnemonicWordActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupMnemonicWordActions.swift; sourceTree = "<group>"; };
+		3B3935A4214B50A000AB0A30 /* BackupMnemonicWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupMnemonicWordViewController.swift; sourceTree = "<group>"; };
+		3B3935A5214B50A000AB0A30 /* BackupMnemonicWordReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupMnemonicWordReducers.swift; sourceTree = "<group>"; };
+		3B3935AB214B5AF600AB0A30 /* MnemonicContentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicContentCoordinator.swift; sourceTree = "<group>"; };
+		3B3935AC214B5AF600AB0A30 /* MnemonicContentActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicContentActions.swift; sourceTree = "<group>"; };
+		3B3935AD214B5AF600AB0A30 /* MnemonicContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicContentViewController.swift; sourceTree = "<group>"; };
+		3B3935AE214B5AF600AB0A30 /* MnemonicContentReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicContentReducers.swift; sourceTree = "<group>"; };
+		3B3935B4214B5B9100AB0A30 /* MnemonicContentViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicContentViewAdapter.swift; sourceTree = "<group>"; };
+		3B3935B5214B5B9100AB0A30 /* MnemonicContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicContentView.swift; sourceTree = "<group>"; };
+		3B3935B6214B5B9100AB0A30 /* MnemonicContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MnemonicContentView.xib; sourceTree = "<group>"; };
 		3B39903D3D0FDB9211C184998407AE9E /* tuple_helpers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tuple_helpers.hpp; sourceTree = "<group>"; };
 		3B47CAE3420AA277462F4FE60488AD6A /* heterogeneous_conversion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = heterogeneous_conversion.hpp; sourceTree = "<group>"; };
 		3B4A04FBBD7409A50517FA29231C4A82 /* console_appender.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = console_appender.hpp; sourceTree = "<group>"; };
@@ -17358,6 +17396,72 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		3B393588214A467600AB0A30 /* Mnemonic */ = {
+			isa = PBXGroup;
+			children = (
+				3B3935AA214B5AC800AB0A30 /* MnemonicContent */,
+				3B39359B214B505000AB0A30 /* BackupMnemonicWord */,
+				3B39359A214B4FFD00AB0A30 /* VerifyMnemonicWord */,
+				3B393591214A47B700AB0A30 /* Mnemonic.storyboard */,
+			);
+			path = Mnemonic;
+			sourceTree = "<group>";
+		};
+		3B393593214A47D700AB0A30 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B393594214A47EF00AB0A30 /* VerifyMnemonicWordViewAdapter.swift */,
+				3B393595214A47EF00AB0A30 /* VerifyMnemonicWordView.swift */,
+				3B393596214A47EF00AB0A30 /* VerifyMnemonicWordView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3B39359A214B4FFD00AB0A30 /* VerifyMnemonicWord */ = {
+			isa = PBXGroup;
+			children = (
+				3B393593214A47D700AB0A30 /* Views */,
+				3B393589214A479300AB0A30 /* VerifyMnemonicWordCoordinator.swift */,
+				3B39358A214A479300AB0A30 /* VerifyMnemonicWordActions.swift */,
+				3B39358B214A479300AB0A30 /* VerifyMnemonicWordViewController.swift */,
+				3B39358C214A479300AB0A30 /* VerifyMnemonicWordReducers.swift */,
+			);
+			path = VerifyMnemonicWord;
+			sourceTree = "<group>";
+		};
+		3B39359B214B505000AB0A30 /* BackupMnemonicWord */ = {
+			isa = PBXGroup;
+			children = (
+				3B3935A2214B50A000AB0A30 /* BackupMnemonicWordCoordinator.swift */,
+				3B3935A3214B50A000AB0A30 /* BackupMnemonicWordActions.swift */,
+				3B3935A4214B50A000AB0A30 /* BackupMnemonicWordViewController.swift */,
+				3B3935A5214B50A000AB0A30 /* BackupMnemonicWordReducers.swift */,
+			);
+			path = BackupMnemonicWord;
+			sourceTree = "<group>";
+		};
+		3B3935AA214B5AC800AB0A30 /* MnemonicContent */ = {
+			isa = PBXGroup;
+			children = (
+				3B3935B3214B5B6F00AB0A30 /* Views */,
+				3B3935AB214B5AF600AB0A30 /* MnemonicContentCoordinator.swift */,
+				3B3935AC214B5AF600AB0A30 /* MnemonicContentActions.swift */,
+				3B3935AD214B5AF600AB0A30 /* MnemonicContentViewController.swift */,
+				3B3935AE214B5AF600AB0A30 /* MnemonicContentReducers.swift */,
+			);
+			path = MnemonicContent;
+			sourceTree = "<group>";
+		};
+		3B3935B3214B5B6F00AB0A30 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B3935B4214B5B9100AB0A30 /* MnemonicContentViewAdapter.swift */,
+				3B3935B5214B5B9100AB0A30 /* MnemonicContentView.swift */,
+				3B3935B6214B5B9100AB0A30 /* MnemonicContentView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3B4C90D920F48C51004F4C52 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
@@ -23758,6 +23862,7 @@
 		7D5F1CA04F5428CB9A826437282B6A3D /* Entry */ = {
 			isa = PBXGroup;
 			children = (
+				3B393588214A467600AB0A30 /* Mnemonic */,
 				3B6D7435214761680076F444 /* Activate */,
 				3BEC3F4E2111B4CB003C38FB /* BackupPrivateKey */,
 				22C0239A20F6FD6600284A0A /* CreatationComplete */,
@@ -33184,6 +33289,7 @@
 				8F646FEBEE2D46FAF41B872C7A17F301 /* Entry.storyboard in Resources */,
 				09BC81571B45BABB01754EFB5518F50D /* Home.storyboard in Resources */,
 				164698F0CB23A683324222A5E7A26EC5 /* InfoPlist.strings in Resources */,
+				3B393599214A47EF00AB0A30 /* VerifyMnemonicWordView.xib in Resources */,
 				7B1CEF30AADC2C46D737ADF198E7B1DE /* LaunchScreen.storyboard in Resources */,
 				4F54A816B50553869ECBE25FEB1B2533 /* LineView.xib in Resources */,
 				A561C0B98764E60251FBFA42445906D8 /* Localizable.strings in Resources */,
@@ -33212,6 +33318,7 @@
 				EE38F45E0DF99CC93B99EA2437E547B5 /* Rubik-Medium.ttf in Resources */,
 				01BE9E6EAA0EF905279B30392E1DF224 /* Rubik-MediumItalic.ttf in Resources */,
 				2214A969211D73A2003256D2 /* VoteFootView.xib in Resources */,
+				3B393592214A47B700AB0A30 /* Mnemonic.storyboard in Resources */,
 				5FD71CEC1E7854589FDBD33B0B42EDBD /* Rubik-Regular.ttf in Resources */,
 				7610C85F17FAA9095B27B17656342765 /* SharpCornerTipsLabelView.xib in Resources */,
 				C53CFE1AA8DBFB2C3E6AD341D171268E /* algorithm in Resources */,
@@ -33327,6 +33434,7 @@
 				3BD3666520FDEB76004DE09D /* TitleTextfieldView.xib in Resources */,
 				AB3C76C8A35E87D4FC3468CCB17C236E /* producer_schedule.hpp.bk in Resources */,
 				CBBC4032171E02C95B5699B839009177 /* queue in Resources */,
+				3B3935B9214B5B9100AB0A30 /* MnemonicContentView.xib in Resources */,
 				5971E2AB60AE901EB20F113D8E5FB9C8 /* queue.SUNWCCh in Resources */,
 				72FE5B9621009F2200B29FEC /* LeadInKeyView.xib in Resources */,
 				0A1E009BF6F89F6B1DB93B0495D2318A /* random in Resources */,
@@ -33501,6 +33609,7 @@
 				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/ESTabBarController-swift/ESTabBarController_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/FCUUID/FCUUID.framework",
+				"${BUILT_PRODUCTS_DIR}/FGRoute/FGRoute.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/GRDB.swift/GRDB.framework",
 				"${BUILT_PRODUCTS_DIR}/GrowingTextView/GrowingTextView.framework",
@@ -33583,6 +33692,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FCUUID.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FGRoute.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GrowingTextView.framework",
@@ -33718,12 +33828,14 @@
 				3BD3663B20F6F9E3004DE09D /* TransferConfirmCoordinator.swift in Sources */,
 				72FE5B7421006B0700B29FEC /* NormalContentCoordinator.swift in Sources */,
 				3B3146F82106D56500E815BD /* ResourceMortgageActions.swift in Sources */,
+				3B3935AF214B5AF600AB0A30 /* MnemonicContentCoordinator.swift in Sources */,
 				72101699210197C10059B37E /* ChangeWalletNameActions.swift in Sources */,
 				3BD3664520F72914004DE09D /* TransferConfirmRootCoordinator.swift in Sources */,
 				3B4C90FC20F4D686004F4C52 /* PaymentsDetailActions.swift in Sources */,
 				3B4C90FE20F4D686004F4C52 /* PaymentsDetailReducers.swift in Sources */,
 				3B6D7464214761690076F444 /* FriendViewAdapter.swift in Sources */,
 				221EC1C621008EF50059F856 /* GestureLockSetCoordinator.swift in Sources */,
+				3B39358E214A479300AB0A30 /* VerifyMnemonicWordActions.swift in Sources */,
 				22A93240211A9DBB00ACC63C /* StatusView.swift in Sources */,
 				733714E4212431E200B2ED90 /* FontLoader.swift in Sources */,
 				22C023A020F6FDB900284A0A /* CreatationCompleteActions.swift in Sources */,
@@ -33788,6 +33900,7 @@
 				3BC12AA821060927006EEB80 /* AccountListCoordinator.swift in Sources */,
 				72FE5B6B2100491A00B29FEC /* AboutCoordinator.swift in Sources */,
 				72FE5B552100490200B29FEC /* SafeViewController.swift in Sources */,
+				3B3935A6214B50A000AB0A30 /* BackupMnemonicWordCoordinator.swift in Sources */,
 				2253C5302111A6300043AAF7 /* QRCodeActions.swift in Sources */,
 				3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */,
 				72FE5B542100490200B29FEC /* SafeActions.swift in Sources */,
@@ -33798,7 +33911,9 @@
 				72FE5B642100491300B29FEC /* ServersActions.swift in Sources */,
 				722D24CA21115B5000A093CA /* ContainerNormalCellView.swift in Sources */,
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
+				3B39358F214A479300AB0A30 /* VerifyMnemonicWordViewController.swift in Sources */,
 				22C023BD20FEF0A300284A0A /* ScanRootCoordinator.swift in Sources */,
+				3B393590214A479300AB0A30 /* VerifyMnemonicWordReducers.swift in Sources */,
 				73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */,
 				3B726C1621133502001E4850 /* ScreenShotAlertViewController.swift in Sources */,
 				9CD3F0FA07578C28658D2A1189A8E39D /* EOSIONetworkService.swift in Sources */,
@@ -33808,6 +33923,7 @@
 				3B3146F92106D56500E815BD /* ResourceMortgageViewController.swift in Sources */,
 				22E40AB52114540600F1648C /* FaceIDComfirmViewController.swift in Sources */,
 				3BF842E7211BE60100AF9963 /* BuyRamReducers.swift in Sources */,
+				3B3935B7214B5B9100AB0A30 /* MnemonicContentViewAdapter.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
 				3B6D7479214761690076F444 /* InvitationCodeToActivateViewController.swift in Sources */,
 				3B6D7461214761690076F444 /* FriendToActivateActions.swift in Sources */,
@@ -33828,6 +33944,7 @@
 				73B5A6A820F5F62D00756391 /* AttributeStyle.swift in Sources */,
 				71B491763DB2622DA9A6CD8DEE644F17 /* EntryViewController.swift in Sources */,
 				72FE5B662100491300B29FEC /* ServersReducers.swift in Sources */,
+				3B3935B0214B5AF600AB0A30 /* MnemonicContentActions.swift in Sources */,
 				C2AE7CD84347385A7C552C6564375D8D /* HomeActions.swift in Sources */,
 				2253C5392111A6450043AAF7 /* PriKeyViewController.swift in Sources */,
 				72FE5B6E2100491A00B29FEC /* AboutReducers.swift in Sources */,
@@ -33856,9 +33973,11 @@
 				72FE5B8B21009E4D00B29FEC /* LeadInReducers.swift in Sources */,
 				7302299B212E50460073D5CE /* Sprite.swift in Sources */,
 				72FE5B4C210048F500B29FEC /* NormalActions.swift in Sources */,
+				3B3935A9214B50A000AB0A30 /* BackupMnemonicWordReducers.swift in Sources */,
 				72FE5B5E2100490B00B29FEC /* HelpReducers.swift in Sources */,
 				3BD3664C20F72B5E004DE09D /* TransferConfirmPasswordViewController.swift in Sources */,
 				1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */,
+				3B3935B2214B5AF600AB0A30 /* MnemonicContentReducers.swift in Sources */,
 				221EC1D121008F1B0059F856 /* GestureLockComfirmReducers.swift in Sources */,
 				73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */,
 				72FE5B5C2100490B00B29FEC /* HelpActions.swift in Sources */,
@@ -33922,6 +34041,7 @@
 				721016A5210197F40059B37E /* WalletListHeaderView.swift in Sources */,
 				3BEC3F532111B4FC003C38FB /* BackupPrivateKeyCoordinator.swift in Sources */,
 				3BD366B721009DE0004DE09D /* UIFont+Additions.swift in Sources */,
+				3B3935B1214B5AF600AB0A30 /* MnemonicContentViewController.swift in Sources */,
 				737F8DD42146647E00DD522A /* DBProtocol.swift in Sources */,
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
@@ -33943,6 +34063,7 @@
 				22E40AAC211453D600F1648C /* FingerPrinterConfirmActions.swift in Sources */,
 				2253C53E2111C9390043AAF7 /* TitleSubTitleView.swift in Sources */,
 				3BC12AA721060927006EEB80 /* AccountListRootCoordinator.swift in Sources */,
+				3B39358D214A479300AB0A30 /* VerifyMnemonicWordCoordinator.swift in Sources */,
 				2253C5482111CD6C0043AAF7 /* PriKeyView.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
 				22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */,
@@ -33960,6 +34081,7 @@
 				221EC1D72100A8D50059F856 /* CGFloat+Extensions.swift in Sources */,
 				3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */,
 				7224712920F57BA800536BF4 /* TransferCoordinator.swift in Sources */,
+				3B393598214A47EF00AB0A30 /* VerifyMnemonicWordView.swift in Sources */,
 				3B4C90FD20F4D686004F4C52 /* PaymentsDetailViewController.swift in Sources */,
 				73B5A6A720F5F62D00756391 /* NSScanner+Swift.swift in Sources */,
 				3B6D747F2147680B0076F444 /* BaseLabel.swift in Sources */,
@@ -33983,6 +34105,7 @@
 				72FE5B8921009E4D00B29FEC /* LeadInActions.swift in Sources */,
 				2257876F212197F3004C4579 /* SelectedVoteCoordinator.swift in Sources */,
 				3BD3666320FDEB76004DE09D /* TitleTextView.swift in Sources */,
+				3B3935B8214B5B9100AB0A30 /* MnemonicContentView.swift in Sources */,
 				3B6D747D214761690076F444 /* InvitationCodeToActivateReducers.swift in Sources */,
 				223C58F5214A50F300C69F3F /* BLTCardConfirmPinCoordinator.swift in Sources */,
 				7224712C20F57BA800536BF4 /* TransferReducers.swift in Sources */,
@@ -34020,6 +34143,7 @@
 				7210169E210197C10059B37E /* WalletManagerActions.swift in Sources */,
 				72FE5B6C2100491A00B29FEC /* AboutActions.swift in Sources */,
 				22C023B220FCB09300284A0A /* ScanReducers.swift in Sources */,
+				3B3935A8214B50A000AB0A30 /* BackupMnemonicWordViewController.swift in Sources */,
 				3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */,
 				FF428CE559D9BAC66E25585F0A149FB9 /* ViewController.swift in Sources */,
 				72101694210197C10059B37E /* WalletTableViewCell.swift in Sources */,
@@ -34032,6 +34156,7 @@
 				3BD3664020F7086A004DE09D /* TransferConfirmView.swift in Sources */,
 				22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */,
 				3BD3665C20FDEB3A004DE09D /* CornerAndShadowView.swift in Sources */,
+				3B3935A7214B50A000AB0A30 /* BackupMnemonicWordActions.swift in Sources */,
 				3B6D747A214761690076F444 /* InvitationView.swift in Sources */,
 				22A93235211A991D00ACC63C /* VoteReducers.swift in Sources */,
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
@@ -34042,6 +34167,7 @@
 				3B6D7467214761690076F444 /* ExchangeToActivateActions.swift in Sources */,
 				3B3147032106D95100E815BD /* ResourceMortgageView.swift in Sources */,
 				3B4C90F320F4CDDC004F4C52 /* PaymentsReducers.swift in Sources */,
+				3B393597214A47EF00AB0A30 /* VerifyMnemonicWordViewAdapter.swift in Sources */,
 				7224713020F57C0C00536BF4 /* TransferRootCoordinator.swift in Sources */,
 				3B6D7474214761690076F444 /* PayToActivateReducers.swift in Sources */,
 			);

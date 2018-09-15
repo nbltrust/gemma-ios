@@ -10,7 +10,7 @@ import UIKit
 
 class SharpCornerTipsLabelView: UIView {
     
-    @IBOutlet weak var mTextLabel: UILabel!
+    @IBOutlet weak var mTextLabel: BaseLabel!
     
     @IBOutlet weak var mImageView: UIImageView!
     
@@ -20,6 +20,10 @@ class SharpCornerTipsLabelView: UIView {
         self.mTextLabel.text = text
         updateHeight()
         
+    }
+    
+    func setup() {
+        self.mTextLabel.text = R.string.localizable.pwd_tips_warning.key.localized()
     }
     
     fileprivate func updateHeight(){
@@ -46,11 +50,13 @@ class SharpCornerTipsLabelView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
+        setup()
     }
     
     fileprivate func loadViewFromNib() {
