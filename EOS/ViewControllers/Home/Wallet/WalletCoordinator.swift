@@ -11,10 +11,14 @@ import ReSwift
 
 protocol WalletCoordinatorProtocol {
     func pushToWalletManager(data: WalletManagerModel)
+    
     func pushToEntryVC()
 
     func pushToLeadInWallet()
+    
     func popToLastVC()
+    
+    func pushToBLTEntryVC()
 }
 
 protocol WalletStateManagerProtocol {
@@ -78,6 +82,14 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
+    
+    func pushToBLTEntryVC() {
+        if let vc = R.storyboard.bltCard.bltCardEntryViewController() {
+            let coordinator = BLTCardEntryCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
 
 }
 
@@ -118,6 +130,14 @@ extension WalletCoordinator: WalletStateManagerProtocol {
                                             content_line_number: 1,
                                             isShowLineView: false),
                 LineView.LineViewModel.init(name: R.string.localizable.create_wallet.key.localized(),
+                                            content: "",
+                                            image_name: R.image.icArrow.name,
+                                            name_style: LineViewStyleNames.normal_name,
+                                            content_style: LineViewStyleNames.normal_content,
+                                            isBadge: false,
+                                            content_line_number: 1,
+                                            isShowLineView: false),
+                LineView.LineViewModel.init(name: R.string.localizable.pair_wookong.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
