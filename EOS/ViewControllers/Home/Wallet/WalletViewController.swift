@@ -128,6 +128,7 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
             switch indexPath.row {
             case 0:self.coordinator?.pushToLeadInWallet()
             case 1:self.coordinator?.pushToEntryVC()
+            case 2:self.coordinator?.pushToBLTEntryVC()
             default:
                 break
             }

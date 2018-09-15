@@ -503,3 +503,20 @@
 "selected_node" = "已选节点";
 "vote_failed" = "投票失败";
 "vote_successed" = "投票成功";
+
+//Bluetooth
+"wookong_title" = "WOOKONG Bio";
+"pair_wookong" = "配对 WOOKONG Bio";
+"pair_wookong_introduce" = "WOOKONG Bio 是一款面向个人用户使用的便携式蓝牙硬件钱包，为数字资产提供更安全的保护。";
+"pair_start" = "开始配对";
+"wookong_des_title" = "第一款支持EOS的蓝牙指纹硬件钱包";
+"wookong_des_click" = "点击查看更多的 WOOKONG Bio 介绍";
+"wookong_des_prepare" = "准备使用WOOKONG Bio";
+"wookong_des_first" = "1.确保手机蓝牙已开启";
+"wookong_des_second" = "2.启动WOOKONG Bio";
+"start_pair" = "开始配对";
+"pair_first_step" = "请在WOOKONG Bio上按键以确认初始化";
+"pair_second_step" = "请在WOOKONG Bio上按指纹以确认初始化";
+"pair_third_step" = "请输入WOOKONG Bio 的密码以确认配对";
+"pair_third_step_pla" = "请输入WOOKONG Bio的密码";
+"confirm_pair" = "确认配对";

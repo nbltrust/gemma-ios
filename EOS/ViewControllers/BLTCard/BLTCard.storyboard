@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="uGr-3t-JRI">
+            <objects>
+                <viewController id="FV2-e1-9rj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9XE-xI-3Dm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="A5C-Jr-Kt2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lte-ke-wad" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14" y="90"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="QfS-mp-rG2">
+            <objects>
+                <viewController id="IJC-3M-1Mp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sD7-jc-Hmt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="67L-59-6UY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HKh-A1-hsu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="688" y="92"/>
+        </scene>
+        <!--Card Search View Controller-->
+        <scene sceneID="Asb-E2-dKC">
+            <objects>
+                <viewController storyboardIdentifier="BLTCardSearchViewController" id="WeY-lz-eJ3" customClass="BLTCardSearchViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jrA-Kk-oly">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hrf-Vw-mdy">
+                                <rect key="frame" x="31" y="30" width="313" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="pair_first_step"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Z1Z-Ok-IaI" firstAttribute="trailing" secondItem="Hrf-Vw-mdy" secondAttribute="trailing" constant="31" id="80s-aF-ehg"/>
+                            <constraint firstItem="Hrf-Vw-mdy" firstAttribute="top" secondItem="Z1Z-Ok-IaI" secondAttribute="top" constant="10" id="YcO-be-Z1f"/>
+                            <constraint firstItem="Hrf-Vw-mdy" firstAttribute="leading" secondItem="Z1Z-Ok-IaI" secondAttribute="leading" constant="31" id="hRl-p5-s2d"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Z1Z-Ok-IaI"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dXO-tj-MEC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1364" y="95"/>
+        </scene>
+        <!--Card Entry View Controller-->
+        <scene sceneID="wT3-uS-qVK">
+            <objects>
+                <viewController storyboardIdentifier="BLTCardEntryViewController" id="y8n-Sy-yEY" customClass="BLTCardEntryViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qLu-zz-f1A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ot-VI-qTo">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OhR-Va-3Un">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBT-E0-DQr" customClass="BLTCardEntryView" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="112" y="306" width="240" height="128"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="BBT-E0-DQr" firstAttribute="top" secondItem="OhR-Va-3Un" secondAttribute="top" id="Yj1-3N-efD"/>
+                                            <constraint firstItem="BBT-E0-DQr" firstAttribute="leading" secondItem="OhR-Va-3Un" secondAttribute="leading" id="f6C-KQ-bJN"/>
+                                            <constraint firstAttribute="trailing" secondItem="BBT-E0-DQr" secondAttribute="trailing" id="uJm-Lz-8dY"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="OhR-Va-3Un" firstAttribute="leading" secondItem="1Ot-VI-qTo" secondAttribute="leading" id="MpY-Ld-Jev"/>
+                                    <constraint firstItem="OhR-Va-3Un" firstAttribute="top" secondItem="1Ot-VI-qTo" secondAttribute="top" id="Sn8-gd-lm4"/>
+                                    <constraint firstItem="BBT-E0-DQr" firstAttribute="width" secondItem="1Ot-VI-qTo" secondAttribute="width" id="dln-ZM-Weq"/>
+                                    <constraint firstAttribute="trailing" secondItem="OhR-Va-3Un" secondAttribute="trailing" id="fX2-9P-zxS"/>
+                                    <constraint firstAttribute="bottom" secondItem="OhR-Va-3Un" secondAttribute="bottom" id="w1G-qY-EPV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CDZ-hX-pxS" firstAttribute="trailing" secondItem="1Ot-VI-qTo" secondAttribute="trailing" id="JYI-1f-DeB"/>
+                            <constraint firstItem="1Ot-VI-qTo" firstAttribute="top" secondItem="CDZ-hX-pxS" secondAttribute="top" id="fh4-4M-NYR"/>
+                            <constraint firstItem="1Ot-VI-qTo" firstAttribute="leading" secondItem="CDZ-hX-pxS" secondAttribute="leading" id="i4M-9C-Bmh"/>
+                            <constraint firstItem="CDZ-hX-pxS" firstAttribute="bottom" secondItem="1Ot-VI-qTo" secondAttribute="bottom" id="x0H-jk-5Qs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CDZ-hX-pxS"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="BBT-E0-DQr" id="i1U-28-N8V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EpC-MX-Bbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2051" y="95"/>
+        </scene>
+    </scenes>
+</document>
