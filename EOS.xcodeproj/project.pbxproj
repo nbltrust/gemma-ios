@@ -81,7 +81,6 @@
 		223C5916214A532800C69F3F /* BLTCardEntryViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C5913214A532800C69F3F /* BLTCardEntryViewAdapter.swift */; };
 		223C5917214A532800C69F3F /* BLTCardEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C5914214A532800C69F3F /* BLTCardEntryView.swift */; };
 		223C5918214A532800C69F3F /* BLTCardEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223C5915214A532800C69F3F /* BLTCardEntryView.xib */; };
-		223C5921214B89F900C69F3F /* BLTWalletIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = 223C5920214B89F900C69F3F /* BLTWalletIO.mm */; };
 		2253C51C211052020043AAF7 /* SafeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C51B211052020043AAF7 /* SafeManager.swift */; };
 		2253C5272111A5F90043AAF7 /* CopyPriKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */; };
 		2253C5282111A5F90043AAF7 /* CopyPriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5242111A5F90043AAF7 /* CopyPriKeyActions.swift */; };
@@ -491,6 +490,7 @@
 		73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */; };
 		73D47EC7214D583200A8BF29 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		73D47ED1214D66E700A8BF29 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */; };
+		73D47EDB214D678B00A8BF29 /* BLTWalletIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
 		73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F1DE44214675250065BD72 /* Mirror+Extension.swift */; };
 		73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */; };
@@ -2272,7 +2272,6 @@
 		223C5915214A532800C69F3F /* BLTCardEntryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLTCardEntryView.xib; sourceTree = "<group>"; };
 		223C591B214B66A100C69F3F /* PA_EWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PA_EWallet.h; sourceTree = "<group>"; };
 		223C591F214B89F900C69F3F /* BLTWalletIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTWalletIO.h; sourceTree = "<group>"; };
-		223C5920214B89F900C69F3F /* BLTWalletIO.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BLTWalletIO.mm; sourceTree = "<group>"; };
 		223C5924214B9DE100C69F3F /* BLTWalletHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTWalletHeader.h; sourceTree = "<group>"; };
 		223DDA4AF8715440D7C22A944229DCF4 /* instantiate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = instantiate.hpp; sourceTree = "<group>"; };
 		22403BDCE77301650B8AFFE1E8981DE5 /* resolver_service.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = resolver_service.hpp; sourceTree = "<group>"; };
@@ -6236,6 +6235,7 @@
 		73D47EB1214D535000A8BF29 /* Repeat.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Repeat.modulemap; sourceTree = "<group>"; };
 		73D47EB2214D535000A8BF29 /* Repeat.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Repeat.xcconfig; sourceTree = "<group>"; };
 		73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiOS_EWallet.a; sourceTree = "<group>"; };
+		73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BLTWalletIO.mm; sourceTree = "<group>"; };
 		73D60EA94E41654A2AD320B7B324BDA9 /* assert_word_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = assert_word_matcher.hpp; sourceTree = "<group>"; };
 		73DD7EB84F77B2E916A74B72ED0C0250 /* sub.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sub.hpp; sourceTree = "<group>"; };
 		73DDD9A12113F6B900023973 /* BannerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerColor.swift; sourceTree = "<group>"; };
@@ -15200,7 +15200,7 @@
 				73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */,
 				223C591B214B66A100C69F3F /* PA_EWallet.h */,
 				223C591F214B89F900C69F3F /* BLTWalletIO.h */,
-				223C5920214B89F900C69F3F /* BLTWalletIO.mm */,
+				73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */,
 				223C5924214B9DE100C69F3F /* BLTWalletHeader.h */,
 			);
 			path = PA_EWallet;
@@ -33877,7 +33877,6 @@
 				733714E3212431E200B2ED90 /* FontAwesome.swift in Sources */,
 				73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */,
 				223C5917214A532800C69F3F /* BLTCardEntryView.swift in Sources */,
-				223C5921214B89F900C69F3F /* BLTWalletIO.mm in Sources */,
 				2253C54C2112D83D0043AAF7 /* QRCodeView.swift in Sources */,
 				7210169D210197C10059B37E /* WalletManagerReducers.swift in Sources */,
 				3BEC3F592111B689003C38FB /* BackupPrivateKeyView.swift in Sources */,
@@ -34066,6 +34065,7 @@
 				1C5B18A93C3E4FE5D23D305731F6C2DF /* WalletManager.swift in Sources */,
 				72FE5B4B210048F500B29FEC /* NormalCoordinator.swift in Sources */,
 				223C58C92148BD9200C69F3F /* NetworkSettingManager.swift in Sources */,
+				73D47EDB214D678B00A8BF29 /* BLTWalletIO.mm in Sources */,
 				223C5911214A52AE00C69F3F /* BLTCardSearchReducers.swift in Sources */,
 				3BC12A8E210608AB006EEB80 /* TransferConfirmPasswordRootCoordinator.swift in Sources */,
 				3BD3664020F7086A004DE09D /* TransferConfirmView.swift in Sources */,

@@ -31,6 +31,7 @@ int EnumCallback(const char *szDevName, int nRSSI, int nState)
     if (selfClass.didSearchDevice) {
         selfClass.didSearchDevice(wallet);
     }
+
     return PAEW_RET_SUCCESS;
 }
 
