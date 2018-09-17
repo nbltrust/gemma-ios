@@ -84,7 +84,6 @@
 		223C5916214A532800C69F3F /* BLTCardEntryViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C5913214A532800C69F3F /* BLTCardEntryViewAdapter.swift */; };
 		223C5917214A532800C69F3F /* BLTCardEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C5914214A532800C69F3F /* BLTCardEntryView.swift */; };
 		223C5918214A532800C69F3F /* BLTCardEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223C5915214A532800C69F3F /* BLTCardEntryView.xib */; };
-		223C5921214B89F900C69F3F /* BLTWalletIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = 223C5920214B89F900C69F3F /* BLTWalletIO.mm */; };
 		2253C51C211052020043AAF7 /* SafeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C51B211052020043AAF7 /* SafeManager.swift */; };
 		2253C5272111A5F90043AAF7 /* CopyPriKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */; };
 		2253C5282111A5F90043AAF7 /* CopyPriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5242111A5F90043AAF7 /* CopyPriKeyActions.swift */; };
@@ -450,23 +449,17 @@
 		7302299F212E50460073D5CE /* ViewTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302299A212E50450073D5CE /* ViewTexture.swift */; };
 		7307A939212527D400BD6444 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7307A938212527D300BD6444 /* BaseView.swift */; };
 		731C8502211D6B5B00C3FAA8 /* Pods_EOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */; };
-		733714DE212431E200B2ED90 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 733714C0212431E100B2ED90 /* .gitignore */; };
-		733714DF212431E200B2ED90 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 733714C1212431E100B2ED90 /* .travis.yml */; };
-		733714E0212431E200B2ED90 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 733714C3212431E100B2ED90 /* .gitkeep */; };
-		733714E1212431E200B2ED90 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 733714C5212431E100B2ED90 /* .gitkeep */; };
 		733714E2212431E200B2ED90 /* LGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714C6212431E100B2ED90 /* LGButton.swift */; };
 		733714E3212431E200B2ED90 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714C8212431E100B2ED90 /* FontAwesome.swift */; };
 		733714E4212431E200B2ED90 /* FontLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714C9212431E100B2ED90 /* FontLoader.swift */; };
 		733714E5212431E200B2ED90 /* Iconic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714CA212431E100B2ED90 /* Iconic.swift */; };
 		733714E6212431E200B2ED90 /* IonIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714CB212431E100B2ED90 /* IonIcons.swift */; };
-		733714E7212431E200B2ED90 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 733714CC212431E100B2ED90 /* LICENSE */; };
 		733714E8212431E200B2ED90 /* MapIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714CD212431E100B2ED90 /* MapIcon.swift */; };
 		733714E9212431E200B2ED90 /* MaterialIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714CE212431E100B2ED90 /* MaterialIcon.swift */; };
 		733714EA212431E200B2ED90 /* Octicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714CF212431E100B2ED90 /* Octicon.swift */; };
 		733714EB212431E200B2ED90 /* SwiftIconFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714D0212431E100B2ED90 /* SwiftIconFont.swift */; };
 		733714EC212431E200B2ED90 /* SwiftIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714D1212431E100B2ED90 /* SwiftIconLabel.swift */; };
 		733714ED212431E200B2ED90 /* ThemifyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714D2212431E100B2ED90 /* ThemifyIcon.swift */; };
-		733714EE212431E200B2ED90 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 733714D3212431E100B2ED90 /* Info.plist */; };
 		733714EF212431E200B2ED90 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733714D6212431E100B2ED90 /* FontAwesome.ttf */; };
 		733714F0212431E200B2ED90 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733714D7212431E100B2ED90 /* Ionicons.ttf */; };
 		733714F1212431E200B2ED90 /* LGButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 733714D8212431E100B2ED90 /* LGButton.xib */; };
@@ -497,6 +490,10 @@
 		73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A520F5F62B00756391 /* String+Detection.swift */; };
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
+		73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */; };
+		73D47EC7214D583200A8BF29 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		73D47ED1214D66E700A8BF29 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */; };
+		73D47EDB214D678B00A8BF29 /* BLTWalletIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
 		73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F1DE44214675250065BD72 /* Mirror+Extension.swift */; };
 		73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */; };
@@ -550,7 +547,6 @@
 		A6EFBB3B53A79BD8C9D018099642EB76 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2FF57FFD8938F15BC936FEAD77763 /* BaseNavigationController.swift */; };
 		A7A6CEC5DA1E512787C61400F0E1FC99 /* iostream in Resources */ = {isa = PBXBuildFile; fileRef = 04F13761A5F95B09E5B8828F78E7037E /* iostream */; };
 		A7D7E408438EB9EC40128F2BBC7BB514 /* deque.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = B90F900C966BEC5F25315555853F6171 /* deque.SUNWCCh */; };
-		AA569F9C0AB8912ECA3953F600AE87EF /* cmath in Resources */ = {isa = PBXBuildFile; fileRef = D1E00210049881E445E924321803FE4F /* cmath */; };
 		AACEB0A4AEC8DE4B8F9DBC239E3C0A91 /* cassert in Resources */ = {isa = PBXBuildFile; fileRef = F31F077601EB3E4033BE540BB06047C3 /* cassert */; };
 		AB3C76C8A35E87D4FC3468CCB17C236E /* producer_schedule.hpp.bk in Resources */ = {isa = PBXBuildFile; fileRef = 86805A122C04FD2CBBD4708CEF87C7F8 /* producer_schedule.hpp.bk */; };
 		ABD754F61B6B4596661C239D7EE0621B /* libappbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E820DFBEDE8948881A4760C672F918 /* libappbase.a */; };
@@ -620,47 +616,40 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 73752FAE214C12D50089BD21;
+			remoteInfo = NBLCommonModule;
+		};
+		73D47EB9214D535000A8BF29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73D47E8B214D535000A8BF29 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A6C96BF2BFDE8DA69AA6278294483A9A;
+			remoteInfo = "Pods-NBLCommonModule";
+		};
+		73D47EBB214D535000A8BF29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73D47E8B214D535000A8BF29 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 557CBB21ABD6A00D52B7C4BB84744DF3;
+			remoteInfo = "Pods-NBLCommonModuleTests";
+		};
+		73D47EBD214D535000A8BF29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73D47E8B214D535000A8BF29 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FB7F9ABD44B0B4FC9F11D1B28220A2D0;
+			remoteInfo = Repeat;
+		};
 		73EDFEEC211AC44E000DF796 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AE6389277B2FA13D27D9CDFC76332268 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C60743183A5E3BAD235C9971F3122EF5;
 			remoteInfo = EOS;
-		};
-		73F1DE9C2146784F0065BD72 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73F1DE652146784F0065BD72 /* NBLCommonModule.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 737F8C432146539100DD522A;
-			remoteInfo = NBLCommonModule;
-		};
-		73F1DE9E2146784F0065BD72 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73F1DE652146784F0065BD72 /* NBLCommonModule.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 737F8C4C2146539100DD522A;
-			remoteInfo = NBLCommonModuleTests;
-		};
-		73F1DEA32146784F0065BD72 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73F1DE722146784F0065BD72 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A6C96BF2BFDE8DA69AA6278294483A9A;
-			remoteInfo = "Pods-NBLCommonModule";
-		};
-		73F1DEA52146784F0065BD72 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73F1DE722146784F0065BD72 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 557CBB21ABD6A00D52B7C4BB84744DF3;
-			remoteInfo = "Pods-NBLCommonModuleTests";
-		};
-		73F1DEA72146784F0065BD72 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73F1DE722146784F0065BD72 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FB7F9ABD44B0B4FC9F11D1B28220A2D0;
-			remoteInfo = Repeat;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -2289,7 +2278,6 @@
 		223C5915214A532800C69F3F /* BLTCardEntryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLTCardEntryView.xib; sourceTree = "<group>"; };
 		223C591B214B66A100C69F3F /* PA_EWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PA_EWallet.h; sourceTree = "<group>"; };
 		223C591F214B89F900C69F3F /* BLTWalletIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTWalletIO.h; sourceTree = "<group>"; };
-		223C5920214B89F900C69F3F /* BLTWalletIO.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BLTWalletIO.mm; sourceTree = "<group>"; };
 		223C5924214B9DE100C69F3F /* BLTWalletHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTWalletHeader.h; sourceTree = "<group>"; };
 		223DDA4AF8715440D7C22A944229DCF4 /* instantiate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = instantiate.hpp; sourceTree = "<group>"; };
 		22403BDCE77301650B8AFFE1E8981DE5 /* resolver_service.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = resolver_service.hpp; sourceTree = "<group>"; };
@@ -6147,23 +6135,17 @@
 		732C10EEA42E17B8090E6B2CB32C73E1 /* arity40_0.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = arity40_0.hpp; sourceTree = "<group>"; };
 		7330AD1EBE4EC0876CEA7421F1A5E819 /* has_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = has_function.hpp; sourceTree = "<group>"; };
 		7333484E54C2926C918E6559674BF3B6 /* qi_match_attr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_match_attr.hpp; sourceTree = "<group>"; };
-		733714C0212431E100B2ED90 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		733714C1212431E100B2ED90 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
-		733714C3212431E100B2ED90 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		733714C5212431E100B2ED90 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		733714C6212431E100B2ED90 /* LGButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGButton.swift; sourceTree = "<group>"; };
 		733714C8212431E100B2ED90 /* FontAwesome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		733714C9212431E100B2ED90 /* FontLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontLoader.swift; sourceTree = "<group>"; };
 		733714CA212431E100B2ED90 /* Iconic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Iconic.swift; sourceTree = "<group>"; };
 		733714CB212431E100B2ED90 /* IonIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IonIcons.swift; sourceTree = "<group>"; };
-		733714CC212431E100B2ED90 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		733714CD212431E100B2ED90 /* MapIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapIcon.swift; sourceTree = "<group>"; };
 		733714CE212431E100B2ED90 /* MaterialIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialIcon.swift; sourceTree = "<group>"; };
 		733714CF212431E100B2ED90 /* Octicon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Octicon.swift; sourceTree = "<group>"; };
 		733714D0212431E100B2ED90 /* SwiftIconFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftIconFont.swift; sourceTree = "<group>"; };
 		733714D1212431E100B2ED90 /* SwiftIconLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftIconLabel.swift; sourceTree = "<group>"; };
 		733714D2212431E100B2ED90 /* ThemifyIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemifyIcon.swift; sourceTree = "<group>"; };
-		733714D3212431E100B2ED90 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		733714D4212431E100B2ED90 /* LGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGButton.h; sourceTree = "<group>"; };
 		733714D6212431E100B2ED90 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		733714D7212431E100B2ED90 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
@@ -6221,6 +6203,45 @@
 		73B7092474BF279955D825D4E7B6CB4F /* support.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = support.hpp; sourceTree = "<group>"; };
 		73BD769A0C773A8F78575956DB91C1DC /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		73CAF80D39A4581F26A830ABC0587047 /* fail_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fail_function.hpp; sourceTree = "<group>"; };
+		73D47E81214D535000A8BF29 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		73D47E82214D535000A8BF29 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		73D47E83214D535000A8BF29 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
+		73D47E85214D535000A8BF29 /* NBLCommonModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBLCommonModule.swift; sourceTree = "<group>"; };
+		73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = NBLCommonModule.xcodeproj; sourceTree = "<group>"; };
+		73D47E8A214D535000A8BF29 /* Manifest.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Manifest.lock; sourceTree = "<group>"; };
+		73D47E8B214D535000A8BF29 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Pods.xcodeproj; sourceTree = "<group>"; };
+		73D47E8F214D535000A8BF29 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		73D47E90214D535000A8BF29 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		73D47E93214D535000A8BF29 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
+		73D47E94214D535000A8BF29 /* Repeater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repeater.swift; sourceTree = "<group>"; };
+		73D47E95214D535000A8BF29 /* Throttler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Throttler.swift; sourceTree = "<group>"; };
+		73D47E98214D535000A8BF29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73D47E99214D535000A8BF29 /* Pods-NBLCommonModule-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-NBLCommonModule-acknowledgements.markdown"; sourceTree = "<group>"; };
+		73D47E9A214D535000A8BF29 /* Pods-NBLCommonModule-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-NBLCommonModule-acknowledgements.plist"; sourceTree = "<group>"; };
+		73D47E9B214D535000A8BF29 /* Pods-NBLCommonModule-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Pods-NBLCommonModule-dummy.m"; sourceTree = "<group>"; };
+		73D47E9C214D535000A8BF29 /* Pods-NBLCommonModule-resources.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "Pods-NBLCommonModule-resources.sh"; sourceTree = "<group>"; };
+		73D47E9D214D535000A8BF29 /* Pods-NBLCommonModule-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pods-NBLCommonModule-umbrella.h"; sourceTree = "<group>"; };
+		73D47E9E214D535000A8BF29 /* Pods-NBLCommonModule.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-NBLCommonModule.debug.xcconfig"; sourceTree = "<group>"; };
+		73D47E9F214D535000A8BF29 /* Pods-NBLCommonModule.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NBLCommonModule.modulemap"; sourceTree = "<group>"; };
+		73D47EA0214D535000A8BF29 /* Pods-NBLCommonModule.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-NBLCommonModule.release.xcconfig"; sourceTree = "<group>"; };
+		73D47EA2214D535000A8BF29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73D47EA3214D535000A8BF29 /* Pods-NBLCommonModuleTests-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-NBLCommonModuleTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		73D47EA4214D535000A8BF29 /* Pods-NBLCommonModuleTests-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-NBLCommonModuleTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		73D47EA5214D535000A8BF29 /* Pods-NBLCommonModuleTests-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Pods-NBLCommonModuleTests-dummy.m"; sourceTree = "<group>"; };
+		73D47EA6214D535000A8BF29 /* Pods-NBLCommonModuleTests-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "Pods-NBLCommonModuleTests-frameworks.sh"; sourceTree = "<group>"; };
+		73D47EA7214D535000A8BF29 /* Pods-NBLCommonModuleTests-resources.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "Pods-NBLCommonModuleTests-resources.sh"; sourceTree = "<group>"; };
+		73D47EA8214D535000A8BF29 /* Pods-NBLCommonModuleTests-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pods-NBLCommonModuleTests-umbrella.h"; sourceTree = "<group>"; };
+		73D47EA9214D535000A8BF29 /* Pods-NBLCommonModuleTests.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-NBLCommonModuleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		73D47EAA214D535000A8BF29 /* Pods-NBLCommonModuleTests.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NBLCommonModuleTests.modulemap"; sourceTree = "<group>"; };
+		73D47EAB214D535000A8BF29 /* Pods-NBLCommonModuleTests.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-NBLCommonModuleTests.release.xcconfig"; sourceTree = "<group>"; };
+		73D47EAD214D535000A8BF29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73D47EAE214D535000A8BF29 /* Repeat-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Repeat-dummy.m"; sourceTree = "<group>"; };
+		73D47EAF214D535000A8BF29 /* Repeat-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Repeat-prefix.pch"; sourceTree = "<group>"; };
+		73D47EB0214D535000A8BF29 /* Repeat-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Repeat-umbrella.h"; sourceTree = "<group>"; };
+		73D47EB1214D535000A8BF29 /* Repeat.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Repeat.modulemap; sourceTree = "<group>"; };
+		73D47EB2214D535000A8BF29 /* Repeat.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Repeat.xcconfig; sourceTree = "<group>"; };
+		73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiOS_EWallet.a; sourceTree = "<group>"; };
+		73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BLTWalletIO.mm; sourceTree = "<group>"; };
 		73D60EA94E41654A2AD320B7B324BDA9 /* assert_word_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = assert_word_matcher.hpp; sourceTree = "<group>"; };
 		73DD7EB84F77B2E916A74B72ED0C0250 /* sub.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sub.hpp; sourceTree = "<group>"; };
 		73DDD9A12113F6B900023973 /* BannerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerColor.swift; sourceTree = "<group>"; };
@@ -6231,48 +6252,6 @@
 		73EDFEEB211AC44E000DF796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73EDFEF1211AC600000DF796 /* EOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		73F1DE44214675250065BD72 /* Mirror+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+Extension.swift"; sourceTree = "<group>"; };
-		73F1DE602146784F0065BD72 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		73F1DE622146784F0065BD72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73F1DE632146784F0065BD72 /* NBLCommonModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBLCommonModule.h; sourceTree = "<group>"; };
-		73F1DE642146784F0065BD72 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
-		73F1DE652146784F0065BD72 /* NBLCommonModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = NBLCommonModule.xcodeproj; sourceTree = "<group>"; };
-		73F1DE682146784F0065BD72 /* NBLCommonModule.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = NBLCommonModule.xcworkspace; sourceTree = "<group>"; };
-		73F1DE6A2146784F0065BD72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73F1DE6B2146784F0065BD72 /* NBLCommonModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBLCommonModuleTests.swift; sourceTree = "<group>"; };
-		73F1DE6C2146784F0065BD72 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
-		73F1DE6D2146784F0065BD72 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
-		73F1DE712146784F0065BD72 /* Manifest.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Manifest.lock; sourceTree = "<group>"; };
-		73F1DE722146784F0065BD72 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Pods.xcodeproj; sourceTree = "<group>"; };
-		73F1DE762146784F0065BD72 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		73F1DE772146784F0065BD72 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		73F1DE7A2146784F0065BD72 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
-		73F1DE7B2146784F0065BD72 /* Repeater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repeater.swift; sourceTree = "<group>"; };
-		73F1DE7C2146784F0065BD72 /* Throttler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Throttler.swift; sourceTree = "<group>"; };
-		73F1DE7F2146784F0065BD72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73F1DE802146784F0065BD72 /* Pods-NBLCommonModule-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-NBLCommonModule-acknowledgements.markdown"; sourceTree = "<group>"; };
-		73F1DE812146784F0065BD72 /* Pods-NBLCommonModule-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-NBLCommonModule-acknowledgements.plist"; sourceTree = "<group>"; };
-		73F1DE822146784F0065BD72 /* Pods-NBLCommonModule-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Pods-NBLCommonModule-dummy.m"; sourceTree = "<group>"; };
-		73F1DE832146784F0065BD72 /* Pods-NBLCommonModule-resources.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "Pods-NBLCommonModule-resources.sh"; sourceTree = "<group>"; };
-		73F1DE842146784F0065BD72 /* Pods-NBLCommonModule-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pods-NBLCommonModule-umbrella.h"; sourceTree = "<group>"; };
-		73F1DE852146784F0065BD72 /* Pods-NBLCommonModule.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-NBLCommonModule.debug.xcconfig"; sourceTree = "<group>"; };
-		73F1DE862146784F0065BD72 /* Pods-NBLCommonModule.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NBLCommonModule.modulemap"; sourceTree = "<group>"; };
-		73F1DE872146784F0065BD72 /* Pods-NBLCommonModule.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-NBLCommonModule.release.xcconfig"; sourceTree = "<group>"; };
-		73F1DE892146784F0065BD72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73F1DE8A2146784F0065BD72 /* Pods-NBLCommonModuleTests-acknowledgements.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Pods-NBLCommonModuleTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		73F1DE8B2146784F0065BD72 /* Pods-NBLCommonModuleTests-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pods-NBLCommonModuleTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		73F1DE8C2146784F0065BD72 /* Pods-NBLCommonModuleTests-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Pods-NBLCommonModuleTests-dummy.m"; sourceTree = "<group>"; };
-		73F1DE8D2146784F0065BD72 /* Pods-NBLCommonModuleTests-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "Pods-NBLCommonModuleTests-frameworks.sh"; sourceTree = "<group>"; };
-		73F1DE8E2146784F0065BD72 /* Pods-NBLCommonModuleTests-resources.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "Pods-NBLCommonModuleTests-resources.sh"; sourceTree = "<group>"; };
-		73F1DE8F2146784F0065BD72 /* Pods-NBLCommonModuleTests-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pods-NBLCommonModuleTests-umbrella.h"; sourceTree = "<group>"; };
-		73F1DE902146784F0065BD72 /* Pods-NBLCommonModuleTests.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-NBLCommonModuleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		73F1DE912146784F0065BD72 /* Pods-NBLCommonModuleTests.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NBLCommonModuleTests.modulemap"; sourceTree = "<group>"; };
-		73F1DE922146784F0065BD72 /* Pods-NBLCommonModuleTests.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-NBLCommonModuleTests.release.xcconfig"; sourceTree = "<group>"; };
-		73F1DE942146784F0065BD72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73F1DE952146784F0065BD72 /* Repeat-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Repeat-dummy.m"; sourceTree = "<group>"; };
-		73F1DE962146784F0065BD72 /* Repeat-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Repeat-prefix.pch"; sourceTree = "<group>"; };
-		73F1DE972146784F0065BD72 /* Repeat-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Repeat-umbrella.h"; sourceTree = "<group>"; };
-		73F1DE982146784F0065BD72 /* Repeat.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Repeat.modulemap; sourceTree = "<group>"; };
-		73F1DE992146784F0065BD72 /* Repeat.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Repeat.xcconfig; sourceTree = "<group>"; };
 		73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoActions.swift; sourceTree = "<group>"; };
 		73F30B3D20F6E6FF0016E950 /* UserInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCoordinator.swift; sourceTree = "<group>"; };
 		73F30B3E20F6E6FF0016E950 /* UserInfoReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoReducers.swift; sourceTree = "<group>"; };
@@ -10456,7 +10435,6 @@
 		D1D3B816DD8258DB84391899A07CD4BA /* shallow_history.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = shallow_history.hpp; sourceTree = "<group>"; };
 		D1D55BC22C1A7E21B9543CE922C8CA03 /* time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = time.hpp; sourceTree = "<group>"; };
 		D1DFCBF2C1BF51C05ADC53CE6D730A76 /* parsers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = parsers.hpp; sourceTree = "<group>"; };
-		D1E00210049881E445E924321803FE4F /* cmath */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmath; sourceTree = "<group>"; };
 		D1E311F689B873BD04C319669869B296 /* begin_end_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = begin_end_impl.hpp; sourceTree = "<group>"; };
 		D1EC684EA4E736633DA458B214857226 /* iomanip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iomanip; sourceTree = "<group>"; };
 		D1F0661671FA8C30304BAA3F3089B9A7 /* cpp_expression_grammar_gen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cpp_expression_grammar_gen.hpp; sourceTree = "<group>"; };
@@ -12490,13 +12468,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73D47EC7214D583200A8BF29 /* (null) in Frameworks */,
+				73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */,
 				E202643E00EC75259A3A2DCFB44749FD /* Pods_EOS.framework in Frameworks */,
 				ABD754F61B6B4596661C239D7EE0621B /* libappbase.a in Frameworks */,
 				D75E543507B22593734132C3402ADCF2 /* libboost_atomic.a in Frameworks */,
 				3E49C3B86F3BE922F2644DAD486997CF /* libboost_chrono.a in Frameworks */,
 				9CF8A1B36F741E822329BA9042E628CC /* libboost_context.a in Frameworks */,
 				94141BDA2CC7BF9CFCAEEEDBC978B0DE /* libboost_date_time.a in Frameworks */,
-				221786AC214D5FD800A3EE96 /* libiOS_EWallet.a in Frameworks */,
 				86EDCD944530822F4057D7D0D4E75450 /* libboost_filesystem.a in Frameworks */,
 				FA1B324B0C87816F5024221B1F5D8996 /* libboost_graph.a in Frameworks */,
 				B07D792547E891483663C5FCAFD8E84A /* libboost_iostreams.a in Frameworks */,
@@ -12511,6 +12490,7 @@
 				95B8DDDF4AFED777D4E18239D5089FFD /* libcrypto.a in Frameworks */,
 				6729F23278361B30E5C02D41B5C38B4E /* libeos_utilities.a in Frameworks */,
 				FAE42FB8272608796B84D45337A61B85 /* libeosio_chain.a in Frameworks */,
+				73D47ED1214D66E700A8BF29 /* libiOS_EWallet.a in Frameworks */,
 				B66249D25E5FAEA4E9976E8DB2466B14 /* libfc.a in Frameworks */,
 				B59F91139082B6BA1A41D0F42DFBC842 /* libsoftfloat.a in Frameworks */,
 				FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */,
@@ -15233,9 +15213,10 @@
 		223C5919214B66A100C69F3F /* PA_EWallet */ = {
 			isa = PBXGroup;
 			children = (
+				73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */,
 				223C591B214B66A100C69F3F /* PA_EWallet.h */,
 				223C591F214B89F900C69F3F /* BLTWalletIO.h */,
-				223C5920214B89F900C69F3F /* BLTWalletIO.mm */,
+				73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */,
 				223C5924214B9DE100C69F3F /* BLTWalletHeader.h */,
 			);
 			path = PA_EWallet;
@@ -22578,29 +22559,16 @@
 		733714BF212431E100B2ED90 /* LGButton */ = {
 			isa = PBXGroup;
 			children = (
-				733714C0212431E100B2ED90 /* .gitignore */,
-				733714C1212431E100B2ED90 /* .travis.yml */,
-				733714C2212431E100B2ED90 /* Assets */,
 				733714C4212431E100B2ED90 /* Classes */,
-				733714D3212431E100B2ED90 /* Info.plist */,
 				733714D4212431E100B2ED90 /* LGButton.h */,
 				733714D5212431E100B2ED90 /* Resources */,
 			);
 			path = LGButton;
 			sourceTree = "<group>";
 		};
-		733714C2212431E100B2ED90 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				733714C3212431E100B2ED90 /* .gitkeep */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
 		733714C4212431E100B2ED90 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				733714C5212431E100B2ED90 /* .gitkeep */,
 				733714C6212431E100B2ED90 /* LGButton.swift */,
 				733714C7212431E100B2ED90 /* SwiftIconFont */,
 			);
@@ -22614,7 +22582,6 @@
 				733714C9212431E100B2ED90 /* FontLoader.swift */,
 				733714CA212431E100B2ED90 /* Iconic.swift */,
 				733714CB212431E100B2ED90 /* IonIcons.swift */,
-				733714CC212431E100B2ED90 /* LICENSE */,
 				733714CD212431E100B2ED90 /* MapIcon.swift */,
 				733714CE212431E100B2ED90 /* MaterialIcon.swift */,
 				733714CF212431E100B2ED90 /* Octicon.swift */,
@@ -22755,6 +22722,140 @@
 			path = detail;
 			sourceTree = "<group>";
 		};
+		73D47E80214D535000A8BF29 /* NBLCommonModule */ = {
+			isa = PBXGroup;
+			children = (
+				73D47E81214D535000A8BF29 /* .gitignore */,
+				73D47E82214D535000A8BF29 /* Cartfile */,
+				73D47E83214D535000A8BF29 /* Cartfile.resolved */,
+				73D47E84214D535000A8BF29 /* NBLCommonModule */,
+				73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */,
+				73D47E89214D535000A8BF29 /* Pods */,
+			);
+			path = NBLCommonModule;
+			sourceTree = "<group>";
+		};
+		73D47E84214D535000A8BF29 /* NBLCommonModule */ = {
+			isa = PBXGroup;
+			children = (
+				73D47E85214D535000A8BF29 /* NBLCommonModule.swift */,
+			);
+			path = NBLCommonModule;
+			sourceTree = "<group>";
+		};
+		73D47E87214D535000A8BF29 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73D47E89214D535000A8BF29 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				73D47E8A214D535000A8BF29 /* Manifest.lock */,
+				73D47E8B214D535000A8BF29 /* Pods.xcodeproj */,
+				73D47E8E214D535000A8BF29 /* Repeat */,
+				73D47E96214D535000A8BF29 /* Target Support Files */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		73D47E8C214D535000A8BF29 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73D47EBA214D535000A8BF29 /* Pods_NBLCommonModule.framework */,
+				73D47EBC214D535000A8BF29 /* Pods_NBLCommonModuleTests.framework */,
+				73D47EBE214D535000A8BF29 /* Repeat.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73D47E8E214D535000A8BF29 /* Repeat */ = {
+			isa = PBXGroup;
+			children = (
+				73D47E8F214D535000A8BF29 /* LICENSE */,
+				73D47E90214D535000A8BF29 /* README.md */,
+				73D47E91214D535000A8BF29 /* Sources */,
+			);
+			path = Repeat;
+			sourceTree = "<group>";
+		};
+		73D47E91214D535000A8BF29 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				73D47E92214D535000A8BF29 /* Repeat */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		73D47E92214D535000A8BF29 /* Repeat */ = {
+			isa = PBXGroup;
+			children = (
+				73D47E93214D535000A8BF29 /* Debouncer.swift */,
+				73D47E94214D535000A8BF29 /* Repeater.swift */,
+				73D47E95214D535000A8BF29 /* Throttler.swift */,
+			);
+			path = Repeat;
+			sourceTree = "<group>";
+		};
+		73D47E96214D535000A8BF29 /* Target Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				73D47E97214D535000A8BF29 /* Pods-NBLCommonModule */,
+				73D47EA1214D535000A8BF29 /* Pods-NBLCommonModuleTests */,
+				73D47EAC214D535000A8BF29 /* Repeat */,
+			);
+			path = "Target Support Files";
+			sourceTree = "<group>";
+		};
+		73D47E97214D535000A8BF29 /* Pods-NBLCommonModule */ = {
+			isa = PBXGroup;
+			children = (
+				73D47E98214D535000A8BF29 /* Info.plist */,
+				73D47E99214D535000A8BF29 /* Pods-NBLCommonModule-acknowledgements.markdown */,
+				73D47E9A214D535000A8BF29 /* Pods-NBLCommonModule-acknowledgements.plist */,
+				73D47E9B214D535000A8BF29 /* Pods-NBLCommonModule-dummy.m */,
+				73D47E9C214D535000A8BF29 /* Pods-NBLCommonModule-resources.sh */,
+				73D47E9D214D535000A8BF29 /* Pods-NBLCommonModule-umbrella.h */,
+				73D47E9E214D535000A8BF29 /* Pods-NBLCommonModule.debug.xcconfig */,
+				73D47E9F214D535000A8BF29 /* Pods-NBLCommonModule.modulemap */,
+				73D47EA0214D535000A8BF29 /* Pods-NBLCommonModule.release.xcconfig */,
+			);
+			path = "Pods-NBLCommonModule";
+			sourceTree = "<group>";
+		};
+		73D47EA1214D535000A8BF29 /* Pods-NBLCommonModuleTests */ = {
+			isa = PBXGroup;
+			children = (
+				73D47EA2214D535000A8BF29 /* Info.plist */,
+				73D47EA3214D535000A8BF29 /* Pods-NBLCommonModuleTests-acknowledgements.markdown */,
+				73D47EA4214D535000A8BF29 /* Pods-NBLCommonModuleTests-acknowledgements.plist */,
+				73D47EA5214D535000A8BF29 /* Pods-NBLCommonModuleTests-dummy.m */,
+				73D47EA6214D535000A8BF29 /* Pods-NBLCommonModuleTests-frameworks.sh */,
+				73D47EA7214D535000A8BF29 /* Pods-NBLCommonModuleTests-resources.sh */,
+				73D47EA8214D535000A8BF29 /* Pods-NBLCommonModuleTests-umbrella.h */,
+				73D47EA9214D535000A8BF29 /* Pods-NBLCommonModuleTests.debug.xcconfig */,
+				73D47EAA214D535000A8BF29 /* Pods-NBLCommonModuleTests.modulemap */,
+				73D47EAB214D535000A8BF29 /* Pods-NBLCommonModuleTests.release.xcconfig */,
+			);
+			path = "Pods-NBLCommonModuleTests";
+			sourceTree = "<group>";
+		};
+		73D47EAC214D535000A8BF29 /* Repeat */ = {
+			isa = PBXGroup;
+			children = (
+				73D47EAD214D535000A8BF29 /* Info.plist */,
+				73D47EAE214D535000A8BF29 /* Repeat-dummy.m */,
+				73D47EAF214D535000A8BF29 /* Repeat-prefix.pch */,
+				73D47EB0214D535000A8BF29 /* Repeat-umbrella.h */,
+				73D47EB1214D535000A8BF29 /* Repeat.modulemap */,
+				73D47EB2214D535000A8BF29 /* Repeat.xcconfig */,
+			);
+			path = Repeat;
+			sourceTree = "<group>";
+		};
 		73DDD9A02113F69700023973 /* NotificationBanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -22771,170 +22872,6 @@
 				73EDFEF1211AC600000DF796 /* EOSTests-Bridging-Header.h */,
 			);
 			path = EOSTests;
-			sourceTree = "<group>";
-		};
-		73F1DE5F2146784F0065BD72 /* NBLCommonModule */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE602146784F0065BD72 /* .gitignore */,
-				73F1DE612146784F0065BD72 /* NBLCommonModule */,
-				73F1DE652146784F0065BD72 /* NBLCommonModule.xcodeproj */,
-				73F1DE682146784F0065BD72 /* NBLCommonModule.xcworkspace */,
-				73F1DE692146784F0065BD72 /* NBLCommonModuleTests */,
-				73F1DE6C2146784F0065BD72 /* Podfile */,
-				73F1DE6D2146784F0065BD72 /* Podfile.lock */,
-				73F1DE6E2146784F0065BD72 /* Pods */,
-			);
-			path = NBLCommonModule;
-			sourceTree = "<group>";
-		};
-		73F1DE612146784F0065BD72 /* NBLCommonModule */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE622146784F0065BD72 /* Info.plist */,
-				73F1DE632146784F0065BD72 /* NBLCommonModule.h */,
-				73F1DE642146784F0065BD72 /* test.swift */,
-			);
-			path = NBLCommonModule;
-			sourceTree = "<group>";
-		};
-		73F1DE662146784F0065BD72 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE9D2146784F0065BD72 /* NBLCommonModule.framework */,
-				73F1DE9F2146784F0065BD72 /* NBLCommonModuleTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		73F1DE692146784F0065BD72 /* NBLCommonModuleTests */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE6A2146784F0065BD72 /* Info.plist */,
-				73F1DE6B2146784F0065BD72 /* NBLCommonModuleTests.swift */,
-			);
-			path = NBLCommonModuleTests;
-			sourceTree = "<group>";
-		};
-		73F1DE6E2146784F0065BD72 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE6F2146784F0065BD72 /* Headers */,
-				73F1DE702146784F0065BD72 /* Local Podspecs */,
-				73F1DE712146784F0065BD72 /* Manifest.lock */,
-				73F1DE722146784F0065BD72 /* Pods.xcodeproj */,
-				73F1DE752146784F0065BD72 /* Repeat */,
-				73F1DE7D2146784F0065BD72 /* Target Support Files */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		73F1DE6F2146784F0065BD72 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		73F1DE702146784F0065BD72 /* Local Podspecs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Local Podspecs";
-			sourceTree = "<group>";
-		};
-		73F1DE732146784F0065BD72 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DEA42146784F0065BD72 /* Pods_NBLCommonModule.framework */,
-				73F1DEA62146784F0065BD72 /* Pods_NBLCommonModuleTests.framework */,
-				73F1DEA82146784F0065BD72 /* Repeat.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		73F1DE752146784F0065BD72 /* Repeat */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE762146784F0065BD72 /* LICENSE */,
-				73F1DE772146784F0065BD72 /* README.md */,
-				73F1DE782146784F0065BD72 /* Sources */,
-			);
-			path = Repeat;
-			sourceTree = "<group>";
-		};
-		73F1DE782146784F0065BD72 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE792146784F0065BD72 /* Repeat */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		73F1DE792146784F0065BD72 /* Repeat */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE7A2146784F0065BD72 /* Debouncer.swift */,
-				73F1DE7B2146784F0065BD72 /* Repeater.swift */,
-				73F1DE7C2146784F0065BD72 /* Throttler.swift */,
-			);
-			path = Repeat;
-			sourceTree = "<group>";
-		};
-		73F1DE7D2146784F0065BD72 /* Target Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE7E2146784F0065BD72 /* Pods-NBLCommonModule */,
-				73F1DE882146784F0065BD72 /* Pods-NBLCommonModuleTests */,
-				73F1DE932146784F0065BD72 /* Repeat */,
-			);
-			path = "Target Support Files";
-			sourceTree = "<group>";
-		};
-		73F1DE7E2146784F0065BD72 /* Pods-NBLCommonModule */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE7F2146784F0065BD72 /* Info.plist */,
-				73F1DE802146784F0065BD72 /* Pods-NBLCommonModule-acknowledgements.markdown */,
-				73F1DE812146784F0065BD72 /* Pods-NBLCommonModule-acknowledgements.plist */,
-				73F1DE822146784F0065BD72 /* Pods-NBLCommonModule-dummy.m */,
-				73F1DE832146784F0065BD72 /* Pods-NBLCommonModule-resources.sh */,
-				73F1DE842146784F0065BD72 /* Pods-NBLCommonModule-umbrella.h */,
-				73F1DE852146784F0065BD72 /* Pods-NBLCommonModule.debug.xcconfig */,
-				73F1DE862146784F0065BD72 /* Pods-NBLCommonModule.modulemap */,
-				73F1DE872146784F0065BD72 /* Pods-NBLCommonModule.release.xcconfig */,
-			);
-			path = "Pods-NBLCommonModule";
-			sourceTree = "<group>";
-		};
-		73F1DE882146784F0065BD72 /* Pods-NBLCommonModuleTests */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE892146784F0065BD72 /* Info.plist */,
-				73F1DE8A2146784F0065BD72 /* Pods-NBLCommonModuleTests-acknowledgements.markdown */,
-				73F1DE8B2146784F0065BD72 /* Pods-NBLCommonModuleTests-acknowledgements.plist */,
-				73F1DE8C2146784F0065BD72 /* Pods-NBLCommonModuleTests-dummy.m */,
-				73F1DE8D2146784F0065BD72 /* Pods-NBLCommonModuleTests-frameworks.sh */,
-				73F1DE8E2146784F0065BD72 /* Pods-NBLCommonModuleTests-resources.sh */,
-				73F1DE8F2146784F0065BD72 /* Pods-NBLCommonModuleTests-umbrella.h */,
-				73F1DE902146784F0065BD72 /* Pods-NBLCommonModuleTests.debug.xcconfig */,
-				73F1DE912146784F0065BD72 /* Pods-NBLCommonModuleTests.modulemap */,
-				73F1DE922146784F0065BD72 /* Pods-NBLCommonModuleTests.release.xcconfig */,
-			);
-			path = "Pods-NBLCommonModuleTests";
-			sourceTree = "<group>";
-		};
-		73F1DE932146784F0065BD72 /* Repeat */ = {
-			isa = PBXGroup;
-			children = (
-				73F1DE942146784F0065BD72 /* Info.plist */,
-				73F1DE952146784F0065BD72 /* Repeat-dummy.m */,
-				73F1DE962146784F0065BD72 /* Repeat-prefix.pch */,
-				73F1DE972146784F0065BD72 /* Repeat-umbrella.h */,
-				73F1DE982146784F0065BD72 /* Repeat.modulemap */,
-				73F1DE992146784F0065BD72 /* Repeat.xcconfig */,
-			);
-			path = Repeat;
 			sourceTree = "<group>";
 		};
 		73F30B3B20F6E6E30016E950 /* UserInfo */ = {
@@ -23591,7 +23528,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				221786AB214D5FD800A3EE96 /* libiOS_EWallet.a */,
+				73D47E80214D535000A8BF29 /* NBLCommonModule */,
 				731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */,
 				265B178A60DBF67AF041067718C08728 /* Pods_EOS.framework */,
 				61E820DFBEDE8948881A4760C672F918 /* libappbase.a */,
@@ -25128,7 +25065,6 @@
 		8F92DF495C0D008C5C5B16173233FE53 = {
 			isa = PBXGroup;
 			children = (
-				73F1DE5F2146784F0065BD72 /* NBLCommonModule */,
 				11EABB82155077EEA9FB2BF04848ADB8 /* EOS */,
 				73EDFEE8211AC44E000DF796 /* EOSTests */,
 				7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */,
@@ -25667,7 +25603,6 @@
 				78712F6C3AEC324027505490B1A30400 /* cfloat */,
 				A56465013122603CC96F76E2942D687D /* climits */,
 				A2647FB6D64C3D541511D2FDEB6C7256 /* clocale */,
-				D1E00210049881E445E924321803FE4F /* cmath */,
 				4AEFC71BCDF230EAC17DF8F787ED8378 /* csetjmp */,
 				F207E24743C123FDB01D76C48745A314 /* csignal */,
 				AF682C1F911F7DDB76029271E53D6DAF /* cstdarg */,
@@ -33234,12 +33169,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 73F1DE662146784F0065BD72 /* Products */;
-					ProjectRef = 73F1DE652146784F0065BD72 /* NBLCommonModule.xcodeproj */;
+					ProductGroup = 73D47E87214D535000A8BF29 /* Products */;
+					ProjectRef = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
 				},
 				{
-					ProductGroup = 73F1DE732146784F0065BD72 /* Products */;
-					ProjectRef = 73F1DE722146784F0065BD72 /* Pods.xcodeproj */;
+					ProductGroup = 73D47E8C214D535000A8BF29 /* Products */;
+					ProjectRef = 73D47E8B214D535000A8BF29 /* Pods.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -33251,39 +33186,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		73F1DE9D2146784F0065BD72 /* NBLCommonModule.framework */ = {
+		73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = NBLCommonModule.framework;
-			remoteRef = 73F1DE9C2146784F0065BD72 /* PBXContainerItemProxy */;
+			fileType = archive.ar;
+			path = libNBLCommonModule.a;
+			remoteRef = 73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		73F1DE9F2146784F0065BD72 /* NBLCommonModuleTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = NBLCommonModuleTests.xctest;
-			remoteRef = 73F1DE9E2146784F0065BD72 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		73F1DEA42146784F0065BD72 /* Pods_NBLCommonModule.framework */ = {
+		73D47EBA214D535000A8BF29 /* Pods_NBLCommonModule.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Pods_NBLCommonModule.framework;
-			remoteRef = 73F1DEA32146784F0065BD72 /* PBXContainerItemProxy */;
+			remoteRef = 73D47EB9214D535000A8BF29 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		73F1DEA62146784F0065BD72 /* Pods_NBLCommonModuleTests.framework */ = {
+		73D47EBC214D535000A8BF29 /* Pods_NBLCommonModuleTests.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Pods_NBLCommonModuleTests.framework;
-			remoteRef = 73F1DEA52146784F0065BD72 /* PBXContainerItemProxy */;
+			remoteRef = 73D47EBB214D535000A8BF29 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		73F1DEA82146784F0065BD72 /* Repeat.framework */ = {
+		73D47EBE214D535000A8BF29 /* Repeat.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Repeat.framework;
-			remoteRef = 73F1DEA72146784F0065BD72 /* PBXContainerItemProxy */;
+			remoteRef = 73D47EBD214D535000A8BF29 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -33325,7 +33253,6 @@
 				3B6D7476214761690076F444 /* Activate.storyboard in Resources */,
 				E1C4FA3283A242CC2CC04EA9134C6231 /* Rubik-LightItalic.ttf in Resources */,
 				3B4C90F520F4CE07004F4C52 /* Payments.storyboard in Resources */,
-				733714EE212431E200B2ED90 /* Info.plist in Resources */,
 				EE38F45E0DF99CC93B99EA2437E547B5 /* Rubik-Medium.ttf in Resources */,
 				01BE9E6EAA0EF905279B30392E1DF224 /* Rubik-MediumItalic.ttf in Resources */,
 				2214A969211D73A2003256D2 /* VoteFootView.xib in Resources */,
@@ -33335,7 +33262,6 @@
 				C53CFE1AA8DBFB2C3E6AD341D171268E /* algorithm in Resources */,
 				7224713420F5F93600536BF4 /* HomeHeaderView.xib in Resources */,
 				A4767A6C44780F87D5917F9FFAC0FB70 /* algorithm.SUNWCCh in Resources */,
-				733714DF212431E200B2ED90 /* .travis.yml in Resources */,
 				3B19506D211BF531002C7991 /* BuyRam.storyboard in Resources */,
 				3B4C910020F4D6A4004F4C52 /* PaymentsDetail.storyboard in Resources */,
 				DBD92836718CE10F249DB505B4B452DD /* array in Resources */,
@@ -33359,7 +33285,6 @@
 				2154824915CF85B858D26F531215E1F8 /* climits in Resources */,
 				151F0D30E16DBC47AD591FB7E78754AB /* clocale in Resources */,
 				22A9323E211A9C7200ACC63C /* NodeView.xib in Resources */,
-				AA569F9C0AB8912ECA3953F600AE87EF /* cmath in Resources */,
 				DE711D13AB681C2C14CB1085231EF631 /* cmath in Resources */,
 				72199D6021043CF000575226 /* SetWalletContentView.xib in Resources */,
 				4D8868C7FCCE4437A953D625C31F9D60 /* cmath.SUNWCCh in Resources */,
@@ -33384,7 +33309,6 @@
 				ED71B5E1A34FBB3FC872E2E07640AC5F /* ctime in Resources */,
 				DEE6FDAB441B865631415C6775DF1E43 /* cwchar in Resources */,
 				3BC12AA621060927006EEB80 /* AccountCellView.xib in Resources */,
-				733714E0212431E200B2ED90 /* .gitkeep in Resources */,
 				4675BAAB54FD05ECC0BA9DA3D1204007 /* cwctype in Resources */,
 				EF6489CA93976FA5A79FDBDA1F95360E /* deque in Resources */,
 				3BEC3F5B2111B697003C38FB /* BackupPrivateKeyView.xib in Resources */,
@@ -33461,7 +33385,6 @@
 				225825DA20F4591F00AA2A4B /* Button.xib in Resources */,
 				733714F1212431E200B2ED90 /* LGButton.xib in Resources */,
 				860FD723B36CDFD314E513832ABBD43A /* stack in Resources */,
-				733714E7212431E200B2ED90 /* LICENSE in Resources */,
 				F6E1F7D79D9DB296584612D81F800561 /* stack.SUNWCCh in Resources */,
 				1613197F507A12EA69063BC5874B6642 /* stdexcept in Resources */,
 				53D61214A07881E7FB199AD31B381127 /* stdexcept.SUNWCCh in Resources */,
@@ -33481,7 +33404,6 @@
 				3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */,
 				8601A7A3CDCBA5FDDFFEB50F48C225F8 /* tuple.SUNWCCh in Resources */,
 				65296AC08841C5E299ADC77C5441031E /* type_traits in Resources */,
-				733714DE212431E200B2ED90 /* .gitignore in Resources */,
 				6B97C35FD52DBADB978F2FCD447AABB4 /* type_traits.SUNWCCh in Resources */,
 				1131F4CEFAD4037E8C4AB8AC12019994 /* typeinfo in Resources */,
 				9185574FA64B12DD68B665A8C0BFFCA9 /* typeinfo.SUNWCCh in Resources */,
@@ -33497,7 +33419,6 @@
 				0FC0ED763C7C2B273102F2D50920AC4B /* valarray.SUNWCCh in Resources */,
 				2253C5402111C9500043AAF7 /* TitleSubTitleView.xib in Resources */,
 				7927AB1019CF3FE10A5376C9D899A432 /* vector in Resources */,
-				733714E1212431E200B2ED90 /* .gitkeep in Resources */,
 				52417D185297BDB895F73B5E78ED3574 /* vector.SUNWCCh in Resources */,
 				3B3147012106D63A00E815BD /* GeneralCellView.xib in Resources */,
 				51567B373731C69289D924A39B9C9962 /* wasm_interface.hpp.bk in Resources */,
@@ -33974,7 +33895,6 @@
 				733714E3212431E200B2ED90 /* FontAwesome.swift in Sources */,
 				73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */,
 				223C5917214A532800C69F3F /* BLTCardEntryView.swift in Sources */,
-				223C5921214B89F900C69F3F /* BLTWalletIO.mm in Sources */,
 				2253C54C2112D83D0043AAF7 /* QRCodeView.swift in Sources */,
 				7210169D210197C10059B37E /* WalletManagerReducers.swift in Sources */,
 				3BEC3F592111B689003C38FB /* BackupPrivateKeyView.swift in Sources */,
@@ -34163,6 +34083,7 @@
 				1C5B18A93C3E4FE5D23D305731F6C2DF /* WalletManager.swift in Sources */,
 				72FE5B4B210048F500B29FEC /* NormalCoordinator.swift in Sources */,
 				223C58C92148BD9200C69F3F /* NetworkSettingManager.swift in Sources */,
+				73D47EDB214D678B00A8BF29 /* BLTWalletIO.mm in Sources */,
 				223C5911214A52AE00C69F3F /* BLTCardSearchReducers.swift in Sources */,
 				3BC12A8E210608AB006EEB80 /* TransferConfirmPasswordRootCoordinator.swift in Sources */,
 				3BD3664020F7086A004DE09D /* TransferConfirmView.swift in Sources */,
