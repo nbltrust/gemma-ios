@@ -15,6 +15,8 @@ class BLTCardSearchViewController: BaseViewController {
 
 	var coordinator: (BLTCardSearchCoordinatorProtocol & BLTCardSearchStateManagerProtocol)?
 
+    @IBOutlet weak var deviceTable: UITableView!
+    
     var indicatorView: UIActivityIndicatorView?
     
     var BLTIO: BLTWalletIO?
@@ -38,6 +40,9 @@ class BLTCardSearchViewController: BaseViewController {
     func setupUI() {
         configLeftNavButton(R.image.icTransferClose())
         
+        let nibString = R.nib.bltDeviceCell.identifier
+        deviceTable.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
+        
         indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         indicatorView?.startAnimating()
         configRightCustomView(indicatorView!)
@@ -49,13 +54,28 @@ class BLTCardSearchViewController: BaseViewController {
 
     func setupData() {
         BLTIO = BLTWalletIO.init()
+//        BLTIO.
         BLTIO?.didSearchDevice = {[weak self] device in
             guard let `self` = self else { return }
+            self.coordinator?.searchedADevice(device!)
+            self.deviceTable.reloadData()
         }
+        BLTIO?.searchBLTCard()
     }
     
     func setupEvent() {
         
+    }
+    
+    func modelWithDevice(device: BLTDevice) -> LineView.LineViewModel {
+        return LineView.LineViewModel.init(name: device.name,
+                                           content: "",
+                                           image_name: R.image.icArrow.name,
+                                           name_style: LineViewStyleNames.normal_name,
+                                           content_style: LineViewStyleNames.normal_content,
+                                           isBadge: false,
+                                           content_line_number: 0,
+                                           isShowLineView: false)
     }
     
     override func configureObserveState() {
@@ -68,17 +88,34 @@ class BLTCardSearchViewController: BaseViewController {
 
 //MARK: - TableViewDelegate
 
-//extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 10
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//          let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.<#cell#>.name, for: indexPath) as! <#cell#>
-//
-//        return cell
-//    }
-//}
+extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let devices = self.coordinator?.state.devices {
+            return devices.count
+        }
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let nibString = String.init(describing:type(of: BLTDeviceCell()))
+        let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! BLTDeviceCell
+        if let devices = self.coordinator?.state.devices {
+            cell.setup(modelWithDevice(device: devices[indexPath.row]), indexPath: indexPath)
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let devices = self.coordinator?.state.devices {
+            let device = devices[indexPath.row]
+            self.coordinator?.connectDevice(device, complication: { (success, deviceId) in
+                
+            })
+        }
+    }
+}
+
+
 
 
 //MARK: - View Event

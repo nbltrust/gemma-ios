@@ -15,9 +15,15 @@ import SwiftyJSON
 //MARK: - State
 struct BLTCardSearchState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
+    
+    var devices: [BLTDevice] = []
 }
 
 //MARK: - Action
 struct BLTCardSearchFetchedAction: Action {
     var data:JSON
+}
+
+struct SetDevicesAction : Action {
+    var datas : [BLTDevice]
 }
