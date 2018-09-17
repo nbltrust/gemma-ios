@@ -54,17 +54,34 @@
                                 <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="pair_first_step"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="pair_search_title"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5IQ-o9-sDq">
+                                <rect key="frame" x="0.0" y="67" width="375" height="250"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="atQ-oh-7UQ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="WeY-lz-eJ3" id="Ke7-og-Ve8"/>
+                                    <outlet property="delegate" destination="WeY-lz-eJ3" id="jy7-zN-ilw"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="Z1Z-Ok-IaI" firstAttribute="trailing" secondItem="5IQ-o9-sDq" secondAttribute="trailing" id="4Yn-OY-zOC"/>
                             <constraint firstItem="Z1Z-Ok-IaI" firstAttribute="trailing" secondItem="Hrf-Vw-mdy" secondAttribute="trailing" constant="31" id="80s-aF-ehg"/>
                             <constraint firstItem="Hrf-Vw-mdy" firstAttribute="top" secondItem="Z1Z-Ok-IaI" secondAttribute="top" constant="10" id="YcO-be-Z1f"/>
+                            <constraint firstItem="5IQ-o9-sDq" firstAttribute="leading" secondItem="Z1Z-Ok-IaI" secondAttribute="leading" id="gNq-cd-QsB"/>
                             <constraint firstItem="Hrf-Vw-mdy" firstAttribute="leading" secondItem="Z1Z-Ok-IaI" secondAttribute="leading" constant="31" id="hRl-p5-s2d"/>
+                            <constraint firstItem="5IQ-o9-sDq" firstAttribute="top" secondItem="Hrf-Vw-mdy" secondAttribute="bottom" constant="20" id="zO5-jZ-i38"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Z1Z-Ok-IaI"/>
                     </view>
+                    <connections>
+                        <outlet property="deviceTable" destination="5IQ-o9-sDq" id="saf-Ld-IAj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXO-tj-MEC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

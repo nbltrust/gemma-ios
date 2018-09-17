@@ -24,13 +24,13 @@ int BatteryCallback(const int nBatterySource, const int nBatteryState)
 
 int EnumCallback(const char *szDevName, int nRSSI, int nState)
 {
-    BLTWallet *wallet = [[BLTWallet alloc] init];
-    wallet.name = [NSString stringWithUTF8String:szDevName];
-    wallet.RSSI = nRSSI;
-    wallet.state = nState;
-    if (selfClass.didSearchDevice) {
-        selfClass.didSearchDevice(wallet);
-    }
+    BLTDevice *device = [[BLTDevice alloc] init];
+    device.name = [NSString stringWithUTF8String:szDevName];
+    device.RSSI = nRSSI;
+    device.state = nState;
+//    if (selfClass.didSearchDevice) {
+        selfClass.didSearchDevice(device);
+//    }
     return PAEW_RET_SUCCESS;
 }
 
@@ -49,8 +49,7 @@ int DisconnectedCallback(const int status, const char *description)
     return self;
 }
 
-
-+ (void)searchBLTCard {
+- (void)searchBLTCard {
     __block unsigned char nDeviceType = PAEW_DEV_TYPE_BT;
     __block char *szDeviceNames = (char *)malloc(512*16);
     __block size_t nDeviceNameLen = 512*16;
@@ -98,6 +97,6 @@ int DisconnectedCallback(const int status, const char *description)
 
 @end
 
-@implementation BLTWallet
+@implementation BLTDevice
 
 @end
