@@ -8,25 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-@class BLTWallet;
+@class BLTDevice;
 
 @interface BLTWalletIO : NSObject
 
 //Complication
-typedef void(^ DidSearchDevice)(BLTWallet *wallet);
+typedef void(^ DidSearchDevice)(BLTDevice *wallet);
 
 typedef void(^ connectComplication)(BOOL isConnected,NSInteger savedDevice);
 
-@property (nonatomic,weak) DidSearchDevice didSearchDevice;
+@property (nonatomic,strong) DidSearchDevice didSearchDevice;
 
-+ (void)searchBLTCard;
+- (void)searchBLTCard;
 
 + (void)connectCard:(NSString *)deviceNameId complication:(connectComplication)complication;
 
 //+ (void)
 @end
 
-@interface BLTWallet : NSObject
+@interface BLTDevice : NSObject
 
 @property (nonatomic,strong) NSString *name;
 

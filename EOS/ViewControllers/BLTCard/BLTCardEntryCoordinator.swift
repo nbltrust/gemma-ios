@@ -48,7 +48,7 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
     func presentBLTCardSearchVC() {
         let width = ModalSize.full
         
-        let height:Float = 205
+        let height:Float = 320
         let heightSize = ModalSize.custom(size: height)
         
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - height.cgFloat))
