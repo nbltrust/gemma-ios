@@ -9,15 +9,22 @@
 import UIKit
 import ReSwift
 import SwiftNotificationCenter
+import RxCocoa
 
 protocol BLTCardSearchCoordinatorProtocol {
     func dismissSearchVC()
+    
+    func pushAfterDeviceConnected()
 }
 
 protocol BLTCardSearchStateManagerProtocol {
     var state: BLTCardSearchState { get }
     
     func switchPageState(_ state:PageState)
+    
+    func searchedADevice(_ device: BLTDevice)
+    
+    func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void)
 }
 
 class BLTCardSearchCoordinator: BLTCardRootCoordinator {
@@ -41,10 +48,25 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
     func dismissSearchVC() {
         self.rootVC.dismiss(animated: true, completion: nil)
     }
+    
+    func pushAfterDeviceConnected() {
+        
+    }
 }
 
 extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
+    
     func switchPageState(_ state:PageState) {
         self.store.dispatch(PageStateAction(state: state))
+    }
+    
+    func searchedADevice(_ device: BLTDevice) {
+        self.store.dispatch(SetDevicesAction(datas: [device]))
+    }
+    
+    func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void) {
+        BLTWalletIO.connectCard(device.name) { (success, deviceId) in
+            complication(success, deviceId)
+        }
     }
 }
