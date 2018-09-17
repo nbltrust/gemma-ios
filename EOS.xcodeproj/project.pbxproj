@@ -39,9 +39,9 @@
 		2214A96A211D73A2003256D2 /* VoteFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A968211D73A1003256D2 /* VoteFootView.swift */; };
 		2214A96C211D73CF003256D2 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A96B211D73CE003256D2 /* Error.swift */; };
 		2214A96E211D7B78003256D2 /* NodeVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A96D211D7B78003256D2 /* NodeVote.swift */; };
-		221786AC214D5FD800A3EE96 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 221786AB214D5FD800A3EE96 /* libiOS_EWallet.a */; };
 		221786B4214EBE0A00A3EE96 /* BLTDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221786B2214EBE0A00A3EE96 /* BLTDeviceCell.swift */; };
 		221786B5214EBE0A00A3EE96 /* BLTDeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221786B3214EBE0A00A3EE96 /* BLTDeviceCell.xib */; };
+		221786C6214F571500A3EE96 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 221786C1214F571400A3EE96 /* libiOS_EWallet.a */; };
 		221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */; };
 		221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BD210076C30059F856 /* GestureItemLayer.swift */; };
 		221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BF21007B510059F856 /* GestureLockSetting.swift */; };
@@ -492,7 +492,6 @@
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
 		73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */; };
 		73D47EC7214D583200A8BF29 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		73D47ED1214D66E700A8BF29 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */; };
 		73D47EDB214D678B00A8BF29 /* BLTWalletIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
 		73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F1DE44214675250065BD72 /* Mirror+Extension.swift */; };
@@ -2222,9 +2221,9 @@
 		2214A968211D73A1003256D2 /* VoteFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteFootView.swift; sourceTree = "<group>"; };
 		2214A96B211D73CE003256D2 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		2214A96D211D7B78003256D2 /* NodeVote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeVote.swift; sourceTree = "<group>"; };
-		221786AB214D5FD800A3EE96 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
 		221786B2214EBE0A00A3EE96 /* BLTDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTDeviceCell.swift; sourceTree = "<group>"; };
 		221786B3214EBE0A00A3EE96 /* BLTDeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLTDeviceCell.xib; sourceTree = "<group>"; };
+		221786C1214F571400A3EE96 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
 		221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureInfoItemLayer.swift; sourceTree = "<group>"; };
 		221EC1BD210076C30059F856 /* GestureItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureItemLayer.swift; sourceTree = "<group>"; };
 		221EC1BF21007B510059F856 /* GestureLockSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockSetting.swift; sourceTree = "<group>"; };
@@ -6240,7 +6239,6 @@
 		73D47EB0214D535000A8BF29 /* Repeat-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Repeat-umbrella.h"; sourceTree = "<group>"; };
 		73D47EB1214D535000A8BF29 /* Repeat.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Repeat.modulemap; sourceTree = "<group>"; };
 		73D47EB2214D535000A8BF29 /* Repeat.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Repeat.xcconfig; sourceTree = "<group>"; };
-		73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiOS_EWallet.a; sourceTree = "<group>"; };
 		73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BLTWalletIO.mm; sourceTree = "<group>"; };
 		73D60EA94E41654A2AD320B7B324BDA9 /* assert_word_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = assert_word_matcher.hpp; sourceTree = "<group>"; };
 		73DD7EB84F77B2E916A74B72ED0C0250 /* sub.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sub.hpp; sourceTree = "<group>"; };
@@ -12471,6 +12469,7 @@
 				73D47EC7214D583200A8BF29 /* (null) in Frameworks */,
 				73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */,
 				E202643E00EC75259A3A2DCFB44749FD /* Pods_EOS.framework in Frameworks */,
+				221786C6214F571500A3EE96 /* libiOS_EWallet.a in Frameworks */,
 				ABD754F61B6B4596661C239D7EE0621B /* libappbase.a in Frameworks */,
 				D75E543507B22593734132C3402ADCF2 /* libboost_atomic.a in Frameworks */,
 				3E49C3B86F3BE922F2644DAD486997CF /* libboost_chrono.a in Frameworks */,
@@ -12490,7 +12489,6 @@
 				95B8DDDF4AFED777D4E18239D5089FFD /* libcrypto.a in Frameworks */,
 				6729F23278361B30E5C02D41B5C38B4E /* libeos_utilities.a in Frameworks */,
 				FAE42FB8272608796B84D45337A61B85 /* libeosio_chain.a in Frameworks */,
-				73D47ED1214D66E700A8BF29 /* libiOS_EWallet.a in Frameworks */,
 				B66249D25E5FAEA4E9976E8DB2466B14 /* libfc.a in Frameworks */,
 				B59F91139082B6BA1A41D0F42DFBC842 /* libsoftfloat.a in Frameworks */,
 				FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */,
@@ -15213,7 +15211,6 @@
 		223C5919214B66A100C69F3F /* PA_EWallet */ = {
 			isa = PBXGroup;
 			children = (
-				73D47ED0214D66E600A8BF29 /* libiOS_EWallet.a */,
 				223C591B214B66A100C69F3F /* PA_EWallet.h */,
 				223C591F214B89F900C69F3F /* BLTWalletIO.h */,
 				73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */,
@@ -23528,6 +23525,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				221786C1214F571400A3EE96 /* libiOS_EWallet.a */,
 				73D47E80214D535000A8BF29 /* NBLCommonModule */,
 				731C8501211D6B5B00C3FAA8 /* Pods_EOS.framework */,
 				265B178A60DBF67AF041067718C08728 /* Pods_EOS.framework */,
