@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PA_EWallet.h"
+#import "BLTWalletHeader.h"
 
 @class BLTDevice;
 
@@ -17,12 +19,15 @@ typedef void(^ DidSearchDevice)(BLTDevice *wallet);
 
 typedef void(^ connectComplication)(BOOL isConnected,NSInteger savedDevice);
 
+typedef void(^ getDeviceInfoComplication)(BOOL successed,PAEW_DevInfo *info);
+
 @property (nonatomic,strong) DidSearchDevice didSearchDevice;
 
 - (void)searchBLTCard;
 
 + (void)connectCard:(NSString *)deviceNameId complication:(connectComplication)complication;
 
++ (void)getDeviceInfo:(NSInteger)savedDevice complication:(getDeviceInfoComplication)complication;
 //+ (void)
 @end
 

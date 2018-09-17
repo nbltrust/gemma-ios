@@ -7,8 +7,6 @@
 //
 
 #import "BLTWalletIO.h"
-#import "PA_EWallet.h"
-#import "BLTWalletHeader.h"
 
 @implementation BLTWalletIO
 
@@ -92,6 +90,36 @@ int DisconnectedCallback(const int status, const char *description)
             }
         });
 
+    });
+}
+
++ (void)getDeviceInfo:(NSInteger)savedDevice complication:(getDeviceInfoComplication)complication {
+    if (savedDevice) {
+        //        继续执行
+    } else {
+        return;
+    }
+    __block  size_t            i = 0;
+    __block PAEW_DevInfo    devInfo;
+    
+    __block uint32_t        nDevInfoType = 0;
+    
+    nDevInfoType = PAEW_DEV_INFOTYPE_COS_TYPE | PAEW_DEV_INFOTYPE_COS_VERSION | PAEW_DEV_INFOTYPE_SN | PAEW_DEV_INFOTYPE_CHAIN_TYPE | PAEW_DEV_INFOTYPE_PIN_STATE | PAEW_DEV_INFOTYPE_LIFECYCLE;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        void *ppPAEWContext = (void*)savedDevice;
+        int devInfoState = PAEW_GetDevInfo(ppPAEWContext, i, nDevInfoType, &devInfo);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (devInfoState == PAEW_RET_SUCCESS) {
+                for (int i = 0; i < PAEW_DEV_INFO_SN_LEN; i++) {
+                    if (devInfo.pbSerialNumber[i] == 0xFF) {
+                        devInfo.pbSerialNumber[i] = 0;
+                    }
+                }
+                complication(true,&devInfo);
+            } else {
+                complication(false,nil);
+            }
+        });
     });
 }
 

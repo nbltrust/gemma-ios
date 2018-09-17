@@ -14,7 +14,7 @@ import RxCocoa
 protocol BLTCardSearchCoordinatorProtocol {
     func dismissSearchVC()
     
-    func pushAfterDeviceConnected()
+    func pushAfterDeviceConnected(_ deviceInfo: PAEW_DevInfo)
 }
 
 protocol BLTCardSearchStateManagerProtocol {
@@ -25,6 +25,8 @@ protocol BLTCardSearchStateManagerProtocol {
     func searchedADevice(_ device: BLTDevice)
     
     func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void)
+    
+    func getDeviceInfo(_ savedDevice: Int, complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void)
 }
 
 class BLTCardSearchCoordinator: BLTCardRootCoordinator {
@@ -49,8 +51,17 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
         self.rootVC.dismiss(animated: true, completion: nil)
     }
     
-    func pushAfterDeviceConnected() {
-        
+    func pushAfterDeviceConnected(_ deviceInfo: PAEW_DevInfo) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let homeCoor = appDelegate.appcoordinator?.homeCoordinator {
+            self.rootVC.dismiss(animated: true) {
+                if let vc = R.storyboard.leadIn.setWalletViewController() {
+                    vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
+                    vc.settingType = .updatePas
+                    vc.deviceInfo = deviceInfo
+                    homeCoor.rootVC.pushViewController(vc, animated: true)
+                }
+            }
+        }
     }
 }
 
@@ -67,6 +78,12 @@ extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
     func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void) {
         BLTWalletIO.connectCard(device.name) { (success, deviceId) in
             complication(success, deviceId)
+        }
+    }
+    
+    func getDeviceInfo(_ savedDevice: Int, complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void) {
+        BLTWalletIO.getDeviceInfo(savedDevice) { (success, deviceInfo) in
+            complocation(success, deviceInfo)
         }
     }
 }
