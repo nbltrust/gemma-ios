@@ -61,17 +61,25 @@ extension UIViewController {
 
 extension UIViewController {
     func startLoading() {
-        startLoadingOnSelf(true)
+        startLoadingOnSelf(true, message: "")
     }
     
-    func startLoadingOnSelf(_ isOn: Bool) {
+    func startLoadingWithMessage(message: String) {
+        startLoadingOnSelf(true, message: message)
+    }
+    
+    func startLoadingOnSelf(_ isOn: Bool, message: String) {
         if isOn {
             _ = KRProgressHUD.showOn(self)
         }
-        KRProgressHUD.set(maskType: .clear)
-        KRProgressHUD.set(style: .black)
-        KRProgressHUD.set(activityIndicatorViewStyle: .gradationColor(head: UIColor.whiteTwo, tail: UIColor.whiteThree))
-        KRProgressHUD.show()
+        KRProgressHUD.set(maskType: .custom(color: UIColor.black40))
+        KRProgressHUD.set(style: .custom(background: UIColor.white, text: UIColor.cornflowerBlueTwo, icon: UIColor.cornflowerBlueTwo))
+        KRProgressHUD.set(activityIndicatorViewStyle: .gradationColor(head: UIColor.cornflowerBlueTwo, tail: UIColor.cornflowerBlueTwo))
+        if message == "" {
+            KRProgressHUD.show()
+        } else {
+            KRProgressHUD.show(withMessage: message, completion: nil)
+        }
     }
     
     func endLoading() {

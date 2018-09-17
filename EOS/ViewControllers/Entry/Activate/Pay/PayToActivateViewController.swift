@@ -37,7 +37,8 @@ class PayToActivateViewController: BaseViewController,IndicatorInfoProvider {
     }
 
     func setupData() {
-        
+        self.coordinator?.getBill()
+        self.coordinator?.initOrder()
     }
     
     func setupEvent() {

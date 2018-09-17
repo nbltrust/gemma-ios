@@ -17,6 +17,10 @@ enum NBLService {
     case accountVerify(account:String)
     case accountHistory(account:String, showNum:Int, lastPosition:Int)
     case producer(showNum:Int)
+    case initOrder(account:String, pubKey:String, platform:String, serial_number:String)
+    case getBill
+    case place(orderId: String)
+    case getOrder(orderId: String)
 }
 
 func defaultManager() -> Alamofire.SessionManager {
@@ -89,6 +93,14 @@ extension NBLService : TargetType {
             return "/api/v1/account/history/\(account)/\(lastPosition)/\(showNum)"
         case let .producer(showNum):
             return "/api/v1/producer/\(showNum)"
+        case .initOrder(_, _, _, _):
+            return "/api/v1/pay/order"
+        case .getBill:
+            return "/api/v1/pay/bill"
+        case let .place(orderId):
+            return "/api/v1/pay/order/\(orderId)/place"
+        case let .getOrder(orderId):
+            return "/api/v1/pay/order/\(orderId)"
         }
     }
     
@@ -101,6 +113,14 @@ extension NBLService : TargetType {
         case .accountHistory:
             return .get
         case .producer(_):
+            return .get
+        case .initOrder:
+            return .post
+        case .getBill:
+            return .get
+        case .place:
+            return .post
+        case .getOrder:
             return .get
         }
     }
@@ -115,6 +135,14 @@ extension NBLService : TargetType {
             return [:]
         case .producer:
             return [:]
+        case let .initOrder(account, pubKey, platform, serial_number):
+            return ["account_name": account, "public_key": pubKey, "platform": platform, "serial_number": serial_number]
+        case .getBill:
+            return [:]
+        case .place:
+            return [:]
+        case .getOrder:
+            return [:]
         }
     }
     
@@ -127,6 +155,14 @@ extension NBLService : TargetType {
         case .accountHistory:
             return .requestPlain
         case .producer:
+            return .requestPlain
+        case .initOrder:
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .getBill:
+            return .requestPlain
+        case .place:
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .getOrder:
             return .requestPlain
         }
     }

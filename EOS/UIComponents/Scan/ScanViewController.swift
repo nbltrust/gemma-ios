@@ -25,7 +25,7 @@ class ScanViewController: BaseViewController {
         super.viewDidLoad()
         viewSize = self.view.bounds.size
         setupUI()
-        self.startLoadingOnSelf(false)
+        self.startLoadingOnSelf(false, message: "")
         checkCameraAuth()
     }
     
