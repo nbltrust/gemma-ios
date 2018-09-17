@@ -41,7 +41,6 @@
 		2214A96E211D7B78003256D2 /* NodeVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A96D211D7B78003256D2 /* NodeVote.swift */; };
 		221786B4214EBE0A00A3EE96 /* BLTDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221786B2214EBE0A00A3EE96 /* BLTDeviceCell.swift */; };
 		221786B5214EBE0A00A3EE96 /* BLTDeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221786B3214EBE0A00A3EE96 /* BLTDeviceCell.xib */; };
-		221786C6214F571500A3EE96 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 221786C1214F571400A3EE96 /* libiOS_EWallet.a */; };
 		221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */; };
 		221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BD210076C30059F856 /* GestureItemLayer.swift */; };
 		221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BF21007B510059F856 /* GestureLockSetting.swift */; };
@@ -300,6 +299,8 @@
 		3BF842E5211BE60100AF9963 /* BuyRamActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E1211BE60100AF9963 /* BuyRamActions.swift */; };
 		3BF842E6211BE60100AF9963 /* BuyRamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E2211BE60100AF9963 /* BuyRamViewController.swift */; };
 		3BF842E7211BE60100AF9963 /* BuyRamReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E3211BE60100AF9963 /* BuyRamReducers.swift */; };
+		3BFE07CC214FC17900F5645B /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BFE07C4214FC17900F5645B /* libiOS_EWallet.a */; };
+		3BFE07CE214FC1BF00F5645B /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE07CD214FC1BF00F5645B /* Order.swift */; };
 		3BFF4E062109F8390047F996 /* OperationLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF4E052109F8390047F996 /* OperationLeftView.swift */; };
 		3BFF4E092109F89F0047F996 /* OperationLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BFF4E082109F89F0047F996 /* OperationLeftView.xib */; };
 		3BFF4E0B2109F8BD0047F996 /* OperationRightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF4E0A2109F8BD0047F996 /* OperationRightView.swift */; };
@@ -490,7 +491,7 @@
 		73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A520F5F62B00756391 /* String+Detection.swift */; };
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
-		73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */; };
+		73D47EBF214D536200A8BF29 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; };
 		73D47EC7214D583200A8BF29 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		73D47EDB214D678B00A8BF29 /* BLTWalletIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
@@ -615,6 +616,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3BFE07C7214FC17900F5645B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 737F8C4C2146539100DD522A;
+			remoteInfo = NBLCommonModuleTests;
+		};
 		73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
@@ -3644,6 +3652,8 @@
 		3BF842E2211BE60100AF9963 /* BuyRamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamViewController.swift; sourceTree = "<group>"; };
 		3BF842E3211BE60100AF9963 /* BuyRamReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamReducers.swift; sourceTree = "<group>"; };
 		3BF928F31E78F72898331F1E4BB10BF1 /* zip_view.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = zip_view.hpp; sourceTree = "<group>"; };
+		3BFE07C4214FC17900F5645B /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiOS_EWallet.a; sourceTree = "<group>"; };
+		3BFE07CD214FC1BF00F5645B /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		3BFF4E052109F8390047F996 /* OperationLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationLeftView.swift; sourceTree = "<group>"; };
 		3BFF4E082109F89F0047F996 /* OperationLeftView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OperationLeftView.xib; sourceTree = "<group>"; };
 		3BFF4E0A2109F8BD0047F996 /* OperationRightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationRightView.swift; sourceTree = "<group>"; };
@@ -12467,9 +12477,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				73D47EC7214D583200A8BF29 /* (null) in Frameworks */,
-				73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */,
+				73D47EBF214D536200A8BF29 /* NBLCommonModule.framework in Frameworks */,
 				E202643E00EC75259A3A2DCFB44749FD /* Pods_EOS.framework in Frameworks */,
-				221786C6214F571500A3EE96 /* libiOS_EWallet.a in Frameworks */,
+				3BFE07CC214FC17900F5645B /* libiOS_EWallet.a in Frameworks */,
 				ABD754F61B6B4596661C239D7EE0621B /* libappbase.a in Frameworks */,
 				D75E543507B22593734132C3402ADCF2 /* libboost_atomic.a in Frameworks */,
 				3E49C3B86F3BE922F2644DAD486997CF /* libboost_chrono.a in Frameworks */,
@@ -15211,6 +15221,7 @@
 		223C5919214B66A100C69F3F /* PA_EWallet */ = {
 			isa = PBXGroup;
 			children = (
+				3BFE07C4214FC17900F5645B /* libiOS_EWallet.a */,
 				223C591B214B66A100C69F3F /* PA_EWallet.h */,
 				223C591F214B89F900C69F3F /* BLTWalletIO.h */,
 				73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */,
@@ -22743,7 +22754,8 @@
 		73D47E87214D535000A8BF29 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */,
+				73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */,
+				3BFE07C8214FC17900F5645B /* NBLCommonModuleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -24778,6 +24790,7 @@
 		89DAD1F7FEB61D3D4AFAF36421675A42 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3BFE07CD214FC1BF00F5645B /* Order.swift */,
 				2214A96D211D7B78003256D2 /* NodeVote.swift */,
 				037EA7EF67D3633CBA8C8AB082548C91 /* Account.swift */,
 				73B5A6AC20F601DE00756391 /* Payment.swift */,
@@ -33184,10 +33197,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */ = {
+		3BFE07C8214FC17900F5645B /* NBLCommonModuleTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libNBLCommonModule.a;
+			fileType = wrapper.cfbundle;
+			path = NBLCommonModuleTests.xctest;
+			remoteRef = 3BFE07C7214FC17900F5645B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = NBLCommonModule.framework;
 			remoteRef = 73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -33832,6 +33852,7 @@
 				3BC12AA821060927006EEB80 /* AccountListCoordinator.swift in Sources */,
 				72FE5B6B2100491A00B29FEC /* AboutCoordinator.swift in Sources */,
 				72FE5B552100490200B29FEC /* SafeViewController.swift in Sources */,
+				3BFE07CE214FC1BF00F5645B /* Order.swift in Sources */,
 				3B3935A6214B50A000AB0A30 /* BackupMnemonicWordCoordinator.swift in Sources */,
 				2253C5302111A6300043AAF7 /* QRCodeActions.swift in Sources */,
 				3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */,
