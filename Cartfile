@@ -1,1 +1,6 @@
-github "Alamofire/Alamofire"
+git "https://github.com/Moya/Moya" "12.0.0-beta.1"
+github "onevcat/Kingfisher"
+github "alibaba/HandyJSON"
+github "groue/GRDB.swift"
+github "devxoul/UINavigationItem-Margin"
+github "eggswift/ESTabBarController"

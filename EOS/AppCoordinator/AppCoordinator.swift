@@ -8,10 +8,9 @@
 
 import Foundation
 import ReSwift
-import ESTabBarController_swift
+import ESTabBarController
 import SwifterSwift
 import Presentr
-import Aspects
 import Localize_Swift
 
 class AppCoordinator {
