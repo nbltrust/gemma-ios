@@ -61,7 +61,11 @@ class EntryViewController: BaseViewController {
     func setupEvent() {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
-            self.coordinator?.pushToActivateVC()
+            self.coordinator?.verifyAccount(self.registerView.nameView.textField.text!, completion: { (success) in
+                if success == true {
+                    self.coordinator?.pushToActivateVC()
+                }
+            })
 //            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: { (success) in
 //                
 //            })

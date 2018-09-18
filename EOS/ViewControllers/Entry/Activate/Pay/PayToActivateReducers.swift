@@ -13,6 +13,9 @@ func PayToActivateReducer(action:Action, state:PayToActivateState?) -> PayToActi
     let state = state ?? PayToActivateState()
         
     switch action {
+    case let action as BillAction:
+        let model = transToModel(action)
+        state.billInfo.accept(model)
     default:
         break
     }
@@ -20,4 +23,11 @@ func PayToActivateReducer(action:Action, state:PayToActivateState?) -> PayToActi
     return state
 }
 
-
+func transToModel(_ action: BillAction) -> BillModel {
+    var model = BillModel()
+    model.cpu = action.data.cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    model.net = action.data.net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    model.ram = action.data.ram + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    model.rmb = action.data.rmbPrice + " RMB"
+    return model
+}

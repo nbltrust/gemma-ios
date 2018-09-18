@@ -28,6 +28,7 @@ protocol EntryStateManagerProtocol {
     func validComfirmPassword(_ password: String, comfirmPassword: String)
     func checkAgree(_ agree: Bool)
     func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion:@escaping (Bool)->())
+    func verifyAccount(_ name: String, completion: @escaping (Bool) -> ())
 }
 
 class EntryCoordinator: EntryRootCoordinator {
@@ -78,6 +79,30 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<EntryState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
+    }
+    
+    func verifyAccount(_ name: String, completion: @escaping (Bool) -> ()) {
+        self.rootVC.topViewController?.startLoading()
+        NBLNetwork.request(target: .accountVerify(account: name), success: { (data) in
+            self.rootVC.topViewController?.endLoading()
+            if data["valid"].boolValue == false {
+                completion(true)
+            } else {
+                showFailTop(R.string.localizable.error_account_registered.key.localized())
+                completion(false)
+            }
+        }, error: { (code) in
+            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                let error = GemmaError.NBLCode(code: gemmaerror)
+                showFailTop(error.localizedDescription)
+            } else {
+                showFailTop(R.string.localizable.error_unknow.key.localized())
+            }
+            completion(false)
+        }) { (error) in
+            completion(false)
+            showFailTop(R.string.localizable.request_failed.key.localized())
+        }
     }
     
     func validWalletName(_ name: String) {
