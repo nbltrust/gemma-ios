@@ -94,9 +94,7 @@ int DisconnectedCallback(const int status, const char *description)
 }
 
 + (void)getDeviceInfo:(NSInteger)savedDevice complication:(getDeviceInfoComplication)complication {
-    if (savedDevice) {
-        //        继续执行
-    } else {
+    if (!savedDevice) {
         return;
     }
     __block  size_t            i = 0;
@@ -120,6 +118,19 @@ int DisconnectedCallback(const int status, const char *description)
                 complication(false,nil);
             }
         });
+    });
+}
+
++ (void)initPin:(NSInteger)savedDevice pin:(NSString *)pin complication:(successedComplication)complication {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        int devIdx = 0;
+        void *ppPAEWContext = (void*)savedDevice;
+        int initState = PAEW_InitPIN(ppPAEWContext, devIdx, [pin UTF8String]);
+        if (initState == PAEW_RET_SUCCESS) {
+            complication(true,@"");
+        } else {
+            complication(false,[BLTUtils errorCodeToString:initState]);
+        }
     });
 }
 

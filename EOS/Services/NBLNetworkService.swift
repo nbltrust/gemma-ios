@@ -11,9 +11,24 @@ import Moya
 import SwifterSwift
 import SwiftyJSON
 import Alamofire
+import HandyJSON
+
+struct WookongValidation: HandyJSON {
+    var SN: String!
+    var SN_sig: String!
+    var public_key: String!
+    var public_key_sig: String!
+}
+
+enum CreateAPPId: Int {
+    case gemma = 1
+    case wookongSolo
+    case wookong
+    case bluetooth
+}
 
 enum NBLService {
-    case createAccount(account:String, pubKey:String, invitationCode:String, hash:String)
+    case createAccount(type: CreateAPPId, account:String, pubKey:String, invitationCode:String, validation:WookongValidation?)
     case accountVerify(account:String)
     case accountHistory(account:String, showNum:Int, lastPosition:Int)
     case producer(showNum:Int)
@@ -81,7 +96,7 @@ extension NBLService : TargetType {
     
     var path: String {
         switch self {
-        case .createAccount(_, _, _, _):
+        case .createAccount(_, _, _, _, _):
             return "/api/v1/account/new"
         case let .accountVerify(account):
             return "/api/v1/account/\(account)/verify"
@@ -94,7 +109,7 @@ extension NBLService : TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .createAccount(_, _, _, _):
+        case .createAccount(_, _, _, _, _):
             return .post
         case .accountVerify(_):
             return .get
@@ -107,8 +122,12 @@ extension NBLService : TargetType {
     
     var parameters: [String: Any] {
         switch self {
-        case let .createAccount(account, pubKey, invitationCode, hash):
-            return ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": 1, "hash": hash]
+        case let .createAccount(type ,account, pubKey, invitationCode, validation):
+            var map: [String: Any] =  ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": type]
+            if let val = validation {
+                map["validation"] = val.toJSON()
+            }
+            return map
         case .accountVerify:
             return [:]
         case .accountHistory:

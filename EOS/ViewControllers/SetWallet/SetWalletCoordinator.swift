@@ -22,13 +22,17 @@ protocol SetWalletStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<SetWalletState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func validForm(_ password:String, confirmPassword:String, hint:String) -> (Bool, String)
-    func importLocalWallet(_ password:String, hint:String, completion: @escaping (Bool)->Void)
-    func updatePassword(_ password:String, hint:String)
+    func validForm(_ password: String, confirmPassword: String, hint: String) -> (Bool, String)
+    func importLocalWallet(_ password: String, hint: String, completion: @escaping (Bool)->Void)
+    func updatePassword(_ password: String, hint: String)
     
     func validPassword(_ password: String)
+    
     func validComfirmPassword(_ password: String, comfirmPassword: String)
+    
     func checkAgree(_ agree: Bool)
+    
+    func setWalletPin(_ password: String, hint: String, complecation: @escaping (Bool) -> Void)
 }
 
 class SetWalletCoordinator: HomeRootCoordinator {
@@ -98,5 +102,9 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
     
     func checkAgree(_ agree: Bool) {
         self.store.dispatch(SetWalletAgreeAction(isAgree: agree))
+    }
+    
+    func setWalletPin(_ password: String, hint: String, complecation: @escaping (Bool) -> Void) {
+//        BLTWalletIO.initPin(<#T##savedDevice: Int##Int#>, pin: <#T##String!#>, complication: <#T##successedComplication!##successedComplication!##(Bool, String?) -> Void#>)
     }
 }

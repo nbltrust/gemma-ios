@@ -51,10 +51,15 @@ class BLTCardSearchViewController: BaseViewController {
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismissSearchVC()
     }
+    
+    override func rightAction(_ sender: UIButton) {
+        if BLTIO != nil {
+            BLTIO?.searchBLTCard()
+        }
+    }
 
     func setupData() {
         BLTIO = BLTWalletIO.init()
-//        BLTIO.
         BLTIO?.didSearchDevice = {[weak self] device in
             guard let `self` = self else { return }
             self.coordinator?.searchedADevice(device!)

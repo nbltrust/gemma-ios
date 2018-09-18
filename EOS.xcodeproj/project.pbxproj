@@ -42,6 +42,7 @@
 		221786B4214EBE0A00A3EE96 /* BLTDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221786B2214EBE0A00A3EE96 /* BLTDeviceCell.swift */; };
 		221786B5214EBE0A00A3EE96 /* BLTDeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221786B3214EBE0A00A3EE96 /* BLTDeviceCell.xib */; };
 		221786C6214F571500A3EE96 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 221786C1214F571400A3EE96 /* libiOS_EWallet.a */; };
+		221786D5214FBEA500A3EE96 /* BLTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 221786CF214FBEA300A3EE96 /* BLTUtils.m */; };
 		221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */; };
 		221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BD210076C30059F856 /* GestureItemLayer.swift */; };
 		221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BF21007B510059F856 /* GestureLockSetting.swift */; };
@@ -490,7 +491,7 @@
 		73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A520F5F62B00756391 /* String+Detection.swift */; };
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
-		73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */; };
+		73D47EBF214D536200A8BF29 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; };
 		73D47EC7214D583200A8BF29 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		73D47EDB214D678B00A8BF29 /* BLTWalletIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
@@ -2224,6 +2225,8 @@
 		221786B2214EBE0A00A3EE96 /* BLTDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTDeviceCell.swift; sourceTree = "<group>"; };
 		221786B3214EBE0A00A3EE96 /* BLTDeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLTDeviceCell.xib; sourceTree = "<group>"; };
 		221786C1214F571400A3EE96 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
+		221786CF214FBEA300A3EE96 /* BLTUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTUtils.m; sourceTree = "<group>"; };
+		221786D4214FBEA400A3EE96 /* BLTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTUtils.h; sourceTree = "<group>"; };
 		221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureInfoItemLayer.swift; sourceTree = "<group>"; };
 		221EC1BD210076C30059F856 /* GestureItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureItemLayer.swift; sourceTree = "<group>"; };
 		221EC1BF21007B510059F856 /* GestureLockSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockSetting.swift; sourceTree = "<group>"; };
@@ -12467,7 +12470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73D47EC7214D583200A8BF29 /* (null) in Frameworks */,
-				73D47EBF214D536200A8BF29 /* libNBLCommonModule.a in Frameworks */,
+				73D47EBF214D536200A8BF29 /* NBLCommonModule.framework in Frameworks */,
 				E202643E00EC75259A3A2DCFB44749FD /* Pods_EOS.framework in Frameworks */,
 				221786C6214F571500A3EE96 /* libiOS_EWallet.a in Frameworks */,
 				ABD754F61B6B4596661C239D7EE0621B /* libappbase.a in Frameworks */,
@@ -15211,6 +15214,8 @@
 		223C5919214B66A100C69F3F /* PA_EWallet */ = {
 			isa = PBXGroup;
 			children = (
+				221786D4214FBEA400A3EE96 /* BLTUtils.h */,
+				221786CF214FBEA300A3EE96 /* BLTUtils.m */,
 				223C591B214B66A100C69F3F /* PA_EWallet.h */,
 				223C591F214B89F900C69F3F /* BLTWalletIO.h */,
 				73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */,
@@ -22743,7 +22748,7 @@
 		73D47E87214D535000A8BF29 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */,
+				73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -33184,10 +33189,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		73D47EB5214D535000A8BF29 /* libNBLCommonModule.a */ = {
+		73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libNBLCommonModule.a;
+			fileType = wrapper.framework;
+			path = NBLCommonModule.framework;
 			remoteRef = 73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -33781,6 +33786,7 @@
 				8ADE05B3B02C07CFCE0F069867999417 /* BaseViewController.swift in Sources */,
 				2253C5282111A5F90043AAF7 /* CopyPriKeyActions.swift in Sources */,
 				2253C5292111A5F90043AAF7 /* CopyPriKeyViewController.swift in Sources */,
+				221786D5214FBEA500A3EE96 /* BLTUtils.m in Sources */,
 				22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */,
 				3BD3664A20F72B5E004DE09D /* TransferConfirmPasswordCoordinator.swift in Sources */,
 				3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */,

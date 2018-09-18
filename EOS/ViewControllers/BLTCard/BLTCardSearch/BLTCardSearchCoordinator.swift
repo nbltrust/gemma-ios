@@ -56,7 +56,7 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
             self.rootVC.dismiss(animated: true) {
                 if let vc = R.storyboard.leadIn.setWalletViewController() {
                     vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
-                    vc.settingType = .updatePas
+                    vc.settingType = .wookong
                     vc.deviceInfo = deviceInfo
                     homeCoor.rootVC.pushViewController(vc, animated: true)
                 }
@@ -72,7 +72,17 @@ extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
     }
     
     func searchedADevice(_ device: BLTDevice) {
-        self.store.dispatch(SetDevicesAction(datas: [device]))
+        var devices: [BLTDevice] = self.store.state.devices
+        var valid: Bool = true
+        devices.forEach { (hisDevice) in
+            if hisDevice.name == device.name {
+                valid = false
+            }
+        }
+        if valid {
+            devices.append(device)
+        }
+        self.store.dispatch(SetDevicesAction(datas: devices))
     }
     
     func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void) {

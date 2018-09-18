@@ -98,6 +98,11 @@ class SetWalletViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
+        
+        mnemonic.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+        }).disposed(by: disposeBag)
+        
         servers.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
             self.coordinator?.pushToServiceProtocolVC()
