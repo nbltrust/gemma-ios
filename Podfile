@@ -1,16 +1,13 @@
 platform :ios, '9.0'
 
 def network
-    pod 'Moya', :git => 'https://github.com/Moya/Moya', :tag => '12.0.0-beta.1'
-    pod 'Kingfisher'
 end
 
 def data
-    pod 'HandyJSON'
     pod 'SwiftyJSON'
-    pod 'GRDB.swift'
+#    pod 'GRDB.swift'
     pod 'CryptoSwift'
-    pod 'RxGRDB'
+#    pod 'RxGRDB'
     pod 'IQKeyboardManagerSwift'
     pod 'Guitar'
     pod 'SwiftyUserDefaults',:git => 'https://github.com/radex/SwiftyUserDefaults', :tag => '4.0.0-alpha.1'
@@ -41,7 +38,7 @@ def architecture
    pod 'RxCocoa'
    pod 'AwaitKit'
    pod 'Hydra'
-   pod 'Aspects'
+#   pod 'Aspects'
 end
 
 def permission
@@ -64,7 +61,6 @@ end
 def ui
     pod 'TagListView' #助记词
     pod 'TinyConstraints'
-    pod 'ESTabBarController-swift'
     pod 'IHKeyboardAvoiding'
     pod 'Typist'
     pod 'RxGesture'
@@ -83,7 +79,7 @@ def ui
     pod 'Bartinter'
     pod 'NotificationBannerSwift'
     pod 'ActiveLabel'
-    pod 'UINavigationItem+Margin'
+#    pod 'UINavigationItem+Margin'
 end
 
 def other
@@ -114,7 +110,6 @@ end
 
 target 'EOS' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
   inhibit_all_warnings!
 
   
