@@ -16,7 +16,7 @@ class LeadInKeyView: UIView {
     
     @IBOutlet weak var creatButton: Button!
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     func setup() {

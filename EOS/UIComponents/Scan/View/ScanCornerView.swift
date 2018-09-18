@@ -34,7 +34,7 @@ class ScanCornerView: UIView {
         animation.autoreverses = true
         animation.repeatCount = HUGE
         animation.isRemovedOnCompletion = false
-        animation.fillMode = kCAFillModeForwards
+        animation.fillMode = CAMediaTimingFillMode.forwards
         
         lineView.layer.add(animation, forKey: nil)
     }

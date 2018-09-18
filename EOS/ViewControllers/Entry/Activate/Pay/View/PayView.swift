@@ -9,7 +9,7 @@
 import Foundation
 
 @IBDesignable
-class PayView: BaseView {
+class PayView: EOSBaseView {
     @IBOutlet weak var nextButton: Button!
     
     enum Event:String {

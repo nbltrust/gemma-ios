@@ -25,7 +25,6 @@
 		1613197F507A12EA69063BC5874B6642 /* stdexcept in Resources */ = {isa = PBXBuildFile; fileRef = 4571D95D82A14E82F7BAC11DD60DBE2E /* stdexcept */; };
 		164698F0CB23A683324222A5E7A26EC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55CF1EBCEA4511E9749F7A3C843C7B10 /* InfoPlist.strings */; };
 		16C60233163D6961AFD8E06130C2FD8C /* utility in Resources */ = {isa = PBXBuildFile; fileRef = AC733F990DA002CAEBFC9898011C5B77 /* utility */; };
-		173223C45F10FDDC1912D6D77E87B01D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342082DC8D7E16C445169D61D81D3CA0 /* R.generated.swift */; };
 		177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBAE2D9FE3A3ABFE2D6936CBDDF046 /* badgeView.swift */; };
 		198ADC3234DA1F0FCE339EB63F88937A /* limits.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = CE19BC977F09D2E5654122D09A0CEB46 /* limits.SUNWCCh */; };
 		1AF91DDB63AD128393A4FF1AC59C06D1 /* new.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = E49F07DE4BD812FCA7CB8B26DEEEE9BE /* new.SUNWCCh */; };
@@ -41,7 +40,6 @@
 		2214A96E211D7B78003256D2 /* NodeVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A96D211D7B78003256D2 /* NodeVote.swift */; };
 		221786B4214EBE0A00A3EE96 /* BLTDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221786B2214EBE0A00A3EE96 /* BLTDeviceCell.swift */; };
 		221786B5214EBE0A00A3EE96 /* BLTDeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221786B3214EBE0A00A3EE96 /* BLTDeviceCell.xib */; };
-		221786C6214F571500A3EE96 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 221786C1214F571400A3EE96 /* libiOS_EWallet.a */; };
 		221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */; };
 		221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BD210076C30059F856 /* GestureItemLayer.swift */; };
 		221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EC1BF21007B510059F856 /* GestureLockSetting.swift */; };
@@ -446,8 +444,7 @@
 		7302299D212E50460073D5CE /* StarWarsGLAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022998212E50450073D5CE /* StarWarsGLAnimator.swift */; };
 		7302299E212E50460073D5CE /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022999212E50450073D5CE /* Vector2.swift */; };
 		7302299F212E50460073D5CE /* ViewTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302299A212E50450073D5CE /* ViewTexture.swift */; };
-		7307A939212527D400BD6444 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7307A938212527D300BD6444 /* BaseView.swift */; };
-		731C8502211D6B5B00C3FAA8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		731C8502211D6B5B00C3FAA8 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3710214FB83900CB3A58 /* Kingfisher.framework */; };
 		732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3711214FB83900CB3A58 /* HandyJSON.framework */; };
 		732F371D214FB83F00CB3A58 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3712214FB83A00CB3A58 /* RxBlocking.framework */; };
@@ -483,11 +480,34 @@
 		733714F5212431E200B2ED90 /* open-iconic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733714DC212431E100B2ED90 /* open-iconic.ttf */; };
 		733714F6212431E200B2ED90 /* themify.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733714DD212431E100B2ED90 /* themify.ttf */; };
 		73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73378F74211C233200ACAA90 /* EOSIOTableRow.swift */; };
+		734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734450822150A10900593A8F /* XLPagerTabStrip.framework */; };
+		734450972150ACED00593A8F /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734450962150ACED00593A8F /* libiOS_EWallet.a */; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
 		737F8DD42146647E00DD522A /* DBProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DD02146647E00DD522A /* DBProtocol.swift */; };
 		737FCFBE211D70B200859F82 /* RPCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737FCFBD211D70B200859F82 /* RPCTest.swift */; };
+		739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D852150D45300A1074B /* KRActivityIndicatorView.framework */; };
+		739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D862150D45400A1074B /* KRProgressHUD.framework */; };
+		739A4D9E2150DDDA00A1074B /* MarqueeLabelSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */; };
+		739A4D9F2150DDDA00A1074B /* NotificationBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D9C2150DDD900A1074B /* NotificationBanner.framework */; };
+		739A4DA02150DDDA00A1074B /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D9D2150DDDA00A1074B /* SnapKit.framework */; };
+		739A4DB52150DF2800A1074B /* GestureFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DA42150DF2700A1074B /* GestureFactory.swift */; };
+		739A4DB62150DF2800A1074B /* TransformGestureRecognizers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DA62150DF2700A1074B /* TransformGestureRecognizers.swift */; };
+		739A4DB72150DF2800A1074B /* UIGestureRecognizer+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DA72150DF2700A1074B /* UIGestureRecognizer+RxGesture.swift */; };
+		739A4DB82150DF2800A1074B /* UILongPressGestureRecognizer+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DA82150DF2700A1074B /* UILongPressGestureRecognizer+RxGesture.swift */; };
+		739A4DB92150DF2800A1074B /* UIPanGestureRecognizer+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DA92150DF2700A1074B /* UIPanGestureRecognizer+RxGesture.swift */; };
+		739A4DBA2150DF2800A1074B /* UIPinchGestureRecognizer+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DAA2150DF2700A1074B /* UIPinchGestureRecognizer+RxGesture.swift */; };
+		739A4DBB2150DF2800A1074B /* UIRotationGestureRecognizer+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DAB2150DF2700A1074B /* UIRotationGestureRecognizer+RxGesture.swift */; };
+		739A4DBC2150DF2800A1074B /* UIScreenEdgePanGestureRecognizer+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DAC2150DF2700A1074B /* UIScreenEdgePanGestureRecognizer+RxGesture.swift */; };
+		739A4DBD2150DF2800A1074B /* UISwipeGestureRecognizer+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DAD2150DF2700A1074B /* UISwipeGestureRecognizer+RxGesture.swift */; };
+		739A4DBE2150DF2800A1074B /* UITapGestureRecognizer+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DAE2150DF2700A1074B /* UITapGestureRecognizer+RxGesture.swift */; };
+		739A4DBF2150DF2800A1074B /* RxGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DAF2150DF2700A1074B /* RxGestureRecognizerDelegate.swift */; };
+		739A4DC02150DF2800A1074B /* SharedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DB02150DF2700A1074B /* SharedTypes.swift */; };
+		739A4DC12150DF2800A1074B /* View+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DB12150DF2700A1074B /* View+RxGesture.swift */; };
+		739A4DC82150E1B600A1074B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DC42150E1B500A1074B /* R.generated.swift */; };
+		739A4DDA2150E3FC00A1074B /* rswift in Resources */ = {isa = PBXBuildFile; fileRef = 739A4DD92150E3FA00A1074B /* rswift */; };
+		739A4DDC2150E92D00A1074B /* EOSBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DDB2150E92D00A1074B /* EOSBaseView.swift */; };
 		73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68B20F5B42600756391 /* Double+Extensions.swift */; };
 		73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */; };
 		73B5A69020F5B54C00756391 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68F20F5B54C00756391 /* String+Extensions.swift */; };
@@ -2243,7 +2263,6 @@
 		2214A96D211D7B78003256D2 /* NodeVote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeVote.swift; sourceTree = "<group>"; };
 		221786B2214EBE0A00A3EE96 /* BLTDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTDeviceCell.swift; sourceTree = "<group>"; };
 		221786B3214EBE0A00A3EE96 /* BLTDeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLTDeviceCell.xib; sourceTree = "<group>"; };
-		221786C1214F571400A3EE96 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
 		221EC1BB210076840059F856 /* GestureInfoItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureInfoItemLayer.swift; sourceTree = "<group>"; };
 		221EC1BD210076C30059F856 /* GestureItemLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureItemLayer.swift; sourceTree = "<group>"; };
 		221EC1BF21007B510059F856 /* GestureLockSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureLockSetting.swift; sourceTree = "<group>"; };
@@ -3203,7 +3222,6 @@
 		3414D3F18DB753F869E6813BF52DEAB2 /* formatters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = formatters.hpp; sourceTree = "<group>"; };
 		341534423567ED054C5C79FBCBDD48B5 /* multiset_adaptor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = multiset_adaptor.hpp; sourceTree = "<group>"; };
 		341FC4323E2A78C515D956F916FBF8D4 /* greater_equal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = greater_equal.hpp; sourceTree = "<group>"; };
-		342082DC8D7E16C445169D61D81D3CA0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		342180EFF78CCE8B994E6B69AB93CED3 /* greater_equal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = greater_equal.hpp; sourceTree = "<group>"; };
 		3423674E3EA492125201A2F4A0138E5A /* fold_right.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fold_right.hpp; sourceTree = "<group>"; };
 		3429797595095D64E8D890ED11A90E13 /* polynomial_horner3_17.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = polynomial_horner3_17.hpp; sourceTree = "<group>"; };
@@ -6143,7 +6161,6 @@
 		73022999212E50450073D5CE /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
 		7302299A212E50450073D5CE /* ViewTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTexture.swift; sourceTree = "<group>"; };
 		7303786B14932B58CF3428E1760B056F /* rational_horner1_18.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rational_horner1_18.hpp; sourceTree = "<group>"; };
-		7307A938212527D300BD6444 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7307B94E3DA4A89CA5C8FEE82010BDD8 /* basic_regex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = basic_regex.hpp; sourceTree = "<group>"; };
 		730C66307D456E13E4BD20F641135E28 /* authority.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = authority.hpp; sourceTree = "<group>"; };
 		7322156FDF1CA3AE1A2A2FC89962447D /* istream */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = istream; sourceTree = "<group>"; };
@@ -6190,6 +6207,8 @@
 		73378F74211C233200ACAA90 /* EOSIOTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSIOTableRow.swift; sourceTree = "<group>"; };
 		73378F76211C2D5300ACAA90 /* EOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EOS.entitlements; sourceTree = "<group>"; };
 		733874DA18B6FC7EA389E80149C09885 /* sliced.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sliced.hpp; sourceTree = "<group>"; };
+		734450822150A10900593A8F /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XLPagerTabStrip.framework; path = Carthage/Build/iOS/XLPagerTabStrip.framework; sourceTree = "<group>"; };
+		734450962150ACED00593A8F /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiOS_EWallet.a; sourceTree = "<group>"; };
 		7344C3DDB72697A50126EC3549E8DFB6 /* auto_link.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = auto_link.hpp; sourceTree = "<group>"; };
 		734F610FE87C479427D37CCF1E1CD8F8 /* lookbehind_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lookbehind_matcher.hpp; sourceTree = "<group>"; };
 		735884357D5B11850014705FED3512ED /* to_python_indirect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_python_indirect.hpp; sourceTree = "<group>"; };
@@ -6211,6 +6230,27 @@
 		7393B91A8DC4BD7FC616A5D3920374BD /* copy_array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = copy_array.hpp; sourceTree = "<group>"; };
 		739707D3B3D8545D83974B0F7043985B /* to_python_value.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_python_value.hpp; sourceTree = "<group>"; };
 		7399985C56AAA7C630D773B380378805 /* equal_to.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = equal_to.hpp; sourceTree = "<group>"; };
+		739A4D852150D45300A1074B /* KRActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KRActivityIndicatorView.framework; path = Carthage/Build/iOS/KRActivityIndicatorView.framework; sourceTree = "<group>"; };
+		739A4D862150D45400A1074B /* KRProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KRProgressHUD.framework; path = Carthage/Build/iOS/KRProgressHUD.framework; sourceTree = "<group>"; };
+		739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabelSwift.framework; path = Carthage/Build/iOS/MarqueeLabelSwift.framework; sourceTree = "<group>"; };
+		739A4D9C2150DDD900A1074B /* NotificationBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationBanner.framework; path = Carthage/Build/iOS/NotificationBanner.framework; sourceTree = "<group>"; };
+		739A4D9D2150DDDA00A1074B /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		739A4DA42150DF2700A1074B /* GestureFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureFactory.swift; sourceTree = "<group>"; };
+		739A4DA62150DF2700A1074B /* TransformGestureRecognizers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformGestureRecognizers.swift; sourceTree = "<group>"; };
+		739A4DA72150DF2700A1074B /* UIGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
+		739A4DA82150DF2700A1074B /* UILongPressGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILongPressGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
+		739A4DA92150DF2700A1074B /* UIPanGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
+		739A4DAA2150DF2700A1074B /* UIPinchGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPinchGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
+		739A4DAB2150DF2700A1074B /* UIRotationGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRotationGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
+		739A4DAC2150DF2700A1074B /* UIScreenEdgePanGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreenEdgePanGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
+		739A4DAD2150DF2700A1074B /* UISwipeGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISwipeGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
+		739A4DAE2150DF2700A1074B /* UITapGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITapGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
+		739A4DAF2150DF2700A1074B /* RxGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
+		739A4DB02150DF2700A1074B /* SharedTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTypes.swift; sourceTree = "<group>"; };
+		739A4DB12150DF2700A1074B /* View+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+RxGesture.swift"; sourceTree = "<group>"; };
+		739A4DC42150E1B500A1074B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		739A4DD92150E3FA00A1074B /* rswift */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rswift; sourceTree = "<group>"; };
+		739A4DDB2150E92D00A1074B /* EOSBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSBaseView.swift; sourceTree = "<group>"; };
 		739BB48149915B4F416717807337A788 /* begin.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = begin.hpp; sourceTree = "<group>"; };
 		73A80E7F0D19BC17C299F55BC6D2090D /* make_vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = make_vector.hpp; sourceTree = "<group>"; };
 		73ABB9E52211D9D7635865D74BB4E1E6 /* asin.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = asin.hpp; sourceTree = "<group>"; };
@@ -12503,20 +12543,26 @@
 				73D47EBF214D536200A8BF29 /* NBLCommonModule.framework in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
+				734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */,
 				732F372F214FC0C700CB3A58 /* GRDB.framework in Frameworks */,
+				739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */,
+				739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */,
 				732F3732214FC24E00CB3A58 /* GRDBCipher.framework in Frameworks */,
 				732F3733214FC24E00CB3A58 /* GRDBCustomSQLite.framework in Frameworks */,
 				732F371D214FB83F00CB3A58 /* RxBlocking.framework in Frameworks */,
 				732F373D214FC48300CB3A58 /* UINavigationItem_Margin.framework in Frameworks */,
+				739A4D9E2150DDDA00A1074B /* MarqueeLabelSwift.framework in Frameworks */,
+				739A4D9F2150DDDA00A1074B /* NotificationBanner.framework in Frameworks */,
+				739A4DA02150DDDA00A1074B /* SnapKit.framework in Frameworks */,
 				732F371E214FB83F00CB3A58 /* RxCocoa.framework in Frameworks */,
 				732F371F214FB83F00CB3A58 /* RxMoya.framework in Frameworks */,
 				732F3720214FB83F00CB3A58 /* Result.framework in Frameworks */,
 				732F3721214FB83F00CB3A58 /* ReactiveMoya.framework in Frameworks */,
 				732F3722214FB83F00CB3A58 /* Alamofire.framework in Frameworks */,
+				734450972150ACED00593A8F /* libiOS_EWallet.a in Frameworks */,
 				732F3723214FB83F00CB3A58 /* RxSwift.framework in Frameworks */,
 				732F3724214FB83F00CB3A58 /* Moya.framework in Frameworks */,
 				732F3725214FB83F00CB3A58 /* ReactiveSwift.framework in Frameworks */,
-				221786C6214F571500A3EE96 /* libiOS_EWallet.a in Frameworks */,
 				ABD754F61B6B4596661C239D7EE0621B /* libappbase.a in Frameworks */,
 				D75E543507B22593734132C3402ADCF2 /* libboost_atomic.a in Frameworks */,
 				3E49C3B86F3BE922F2644DAD486997CF /* libboost_chrono.a in Frameworks */,
@@ -12548,7 +12594,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				731C8502211D6B5B00C3FAA8 /* BuildFile in Frameworks */,
+				731C8502211D6B5B00C3FAA8 /* (null) in Frameworks */,
 				D793B8BC195DF00D1DCDB56A /* libPods-EOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -14270,8 +14316,8 @@
 				778E2FB094094F597056F12BA4850DAB /* Assets.xcassets */,
 				E8C89DF5B10B783E40D83BB3C86E700D /* EOS-Bridging-Header.h */,
 				017E5A17AE45A2B724BB0B367641F01E /* Info.plist */,
+				739A4DC42150E1B500A1074B /* R.generated.swift */,
 				133700A3CC78F9E6E9EE7D93BD01A646 /* LaunchScreen.storyboard */,
-				342082DC8D7E16C445169D61D81D3CA0 /* R.generated.swift */,
 				8D6DCAB8F96446139DBCE56777785B34 /* ViewController.swift */,
 			);
 			path = EOS;
@@ -22673,6 +22719,34 @@
 			path = DataProvider;
 			sourceTree = "<group>";
 		};
+		739A4DA32150DF2700A1074B /* RxGesture */ = {
+			isa = PBXGroup;
+			children = (
+				739A4DA42150DF2700A1074B /* GestureFactory.swift */,
+				739A4DA52150DF2700A1074B /* iOS */,
+				739A4DAF2150DF2700A1074B /* RxGestureRecognizerDelegate.swift */,
+				739A4DB02150DF2700A1074B /* SharedTypes.swift */,
+				739A4DB12150DF2700A1074B /* View+RxGesture.swift */,
+			);
+			path = RxGesture;
+			sourceTree = "<group>";
+		};
+		739A4DA52150DF2700A1074B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				739A4DA62150DF2700A1074B /* TransformGestureRecognizers.swift */,
+				739A4DA72150DF2700A1074B /* UIGestureRecognizer+RxGesture.swift */,
+				739A4DA82150DF2700A1074B /* UILongPressGestureRecognizer+RxGesture.swift */,
+				739A4DA92150DF2700A1074B /* UIPanGestureRecognizer+RxGesture.swift */,
+				739A4DAA2150DF2700A1074B /* UIPinchGestureRecognizer+RxGesture.swift */,
+				739A4DAB2150DF2700A1074B /* UIRotationGestureRecognizer+RxGesture.swift */,
+				739A4DAC2150DF2700A1074B /* UIScreenEdgePanGestureRecognizer+RxGesture.swift */,
+				739A4DAD2150DF2700A1074B /* UISwipeGestureRecognizer+RxGesture.swift */,
+				739A4DAE2150DF2700A1074B /* UITapGestureRecognizer+RxGesture.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		73B4C3E360CD0824C1B527EB20CA394D /* detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -23572,6 +23646,12 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */,
+				739A4D9C2150DDD900A1074B /* NotificationBanner.framework */,
+				739A4D9D2150DDDA00A1074B /* SnapKit.framework */,
+				739A4D852150D45300A1074B /* KRActivityIndicatorView.framework */,
+				739A4D862150D45400A1074B /* KRProgressHUD.framework */,
+				734450822150A10900593A8F /* XLPagerTabStrip.framework */,
 				732F373C214FC48300CB3A58 /* UINavigationItem_Margin.framework */,
 				732F3730214FC24D00CB3A58 /* GRDBCipher.framework */,
 				732F3731214FC24D00CB3A58 /* GRDBCustomSQLite.framework */,
@@ -23587,7 +23667,7 @@
 				732F3713214FB83A00CB3A58 /* RxCocoa.framework */,
 				732F3714214FB83B00CB3A58 /* RxMoya.framework */,
 				732F3718214FB83D00CB3A58 /* RxSwift.framework */,
-				221786C1214F571400A3EE96 /* libiOS_EWallet.a */,
+				734450962150ACED00593A8F /* libiOS_EWallet.a */,
 				73D47E80214D535000A8BF29 /* NBLCommonModule */,
 				61E820DFBEDE8948881A4760C672F918 /* libappbase.a */,
 				CA3066B0CEE09F5FD6CD43970E4A7F0A /* libboost_atomic.a */,
@@ -25124,6 +25204,7 @@
 		8F92DF495C0D008C5C5B16173233FE53 = {
 			isa = PBXGroup;
 			children = (
+				739A4DD92150E3FA00A1074B /* rswift */,
 				11EABB82155077EEA9FB2BF04848ADB8 /* EOS */,
 				73EDFEE8211AC44E000DF796 /* EOSTests */,
 				7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */,
@@ -30125,13 +30206,13 @@
 			isa = PBXGroup;
 			children = (
 				3B6D747E2147680A0076F444 /* BaseLabel.swift */,
-				7307A938212527D300BD6444 /* BaseView.swift */,
 				251827CD4D9BA425A6143E130269952A /* BaseCollectionViewCell.swift */,
 				52A2FF57FFD8938F15BC936FEAD77763 /* BaseNavigationController.swift */,
 				444BD09BA2422B50FD3691AB5204C86A /* BaseTabbarViewController.swift */,
 				0B21F842EDAA2C738697E10E5E668845 /* BaseTableViewCell.swift */,
 				58C31E477791C74FBCB33C4FC946E170 /* BaseViewController.swift */,
 				4F8935C54739AEE59DA2310B17591480 /* BaseWebViewController.swift */,
+				739A4DDB2150E92D00A1074B /* EOSBaseView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -32233,6 +32314,7 @@
 		F27B729DE29CAB9AC865E67DD8F6A980 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				739A4DA32150DF2700A1074B /* RxGesture */,
 				73022994212E50450073D5CE /* StarWars */,
 				73B5A69120F5DFF400756391 /* Jdenticon */,
 			);
@@ -33169,12 +33251,12 @@
 			buildConfigurationList = 698161299C2752D489C2E2F8E009C33E /* Build configuration list for PBXNativeTarget "EOS" */;
 			buildPhases = (
 				C17A4728A15BBCFF27675A877B93F873 /* [CP] Check Pods Manifest.lock */,
+				526C699A0C9DCFFA46450A633E55C5DE /* R.swift */,
 				28E1E85156393E2D747693472011609F /* Sources */,
 				2AA1AEF5455B05A71395618B4A67D394 /* Frameworks */,
 				4929B8EE7C2F136E4A24158BBB556CB5 /* Resources */,
 				2755E3B19D75CA943738072DCEBADFFD /* build auto increment */,
 				C75A54D8CA3FD1F807CC9E9282BADD29 /* color set */,
-				526C699A0C9DCFFA46450A633E55C5DE /* R.swift */,
 				AFF7EE0B2B4179DEFEDE0DDE919988C0 /* [CP] Embed Pods Frameworks */,
 				734811752106F61B000BF1B8 /* fabric */,
 				7A1881594FD1FEBBD44F72D8 /* [CP] Copy Pods Resources */,
@@ -33324,6 +33406,7 @@
 				C53CFE1AA8DBFB2C3E6AD341D171268E /* algorithm in Resources */,
 				7224713420F5F93600536BF4 /* HomeHeaderView.xib in Resources */,
 				A4767A6C44780F87D5917F9FFAC0FB70 /* algorithm.SUNWCCh in Resources */,
+				739A4DDA2150E3FC00A1074B /* rswift in Resources */,
 				3B19506D211BF531002C7991 /* BuyRam.storyboard in Resources */,
 				3B4C910020F4D6A4004F4C52 /* PaymentsDetail.storyboard in Resources */,
 				DBD92836718CE10F249DB505B4B452DD /* array in Resources */,
@@ -33525,7 +33608,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"\n";
+			shellScript = "\"$SRCROOT/rswift\" generate \"$SRCROOT\"\n";
 		};
 		732F370E214FB63A00CB3A58 /* carthage */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -33549,6 +33632,12 @@
 				"$(SRCROOT)/Carthage/Build/iOS/GRDBCustomSQLite.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/UINavigationItem_Margin.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ESTabBarController.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/XLPagerTabStrip.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KRActivityIndicatorView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KRProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NotificationBanner.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MarqueeLabelSwift.framework",
 			);
 			name = carthage;
 			outputPaths = (
@@ -33568,10 +33657,16 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/GRDBCustomSQLite.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/UINavigationItem_Margin.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ESTabBarController.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/XLPagerTabStrip.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/KRActivityIndicatorView.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/KRProgressHUD.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NotificationBanner.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MarqueeLabelSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		732F370F214FB64100CB3A58 /* appstore-bug */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -33607,7 +33702,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-resources.sh",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/App.storyboard",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/FileType/icon_file_type_7z@2x.png",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/FileType/icon_file_type_7z@3x.png",
@@ -33734,7 +33829,6 @@
 				"${PODS_ROOT}/Presentr/Presentr/SourceSansPro-Regular.ttf",
 				"${PODS_CONFIGURATION_BUILD_DIR}/SDCAlertView/SDCAlertView.bundle",
 				"${PODS_ROOT}/Siren/Sources/Siren.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/XLPagerTabStrip/XLPagerTabStrip.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -33864,11 +33958,10 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SourceSansPro-Regular.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDCAlertView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Siren.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/XLPagerTabStrip.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9E5745DB930C4D0B9549467C /* [CP] Check Pods Manifest.lock */ = {
@@ -33895,7 +33988,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-17/iOS/RevealServer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -33904,7 +33997,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C17A4728A15BBCFF27675A877B93F873 /* [CP] Check Pods Manifest.lock */ = {
@@ -33974,6 +34067,7 @@
 				22E40AB42114540600F1648C /* FaceIDComfirmActions.swift in Sources */,
 				4E8664CF0182B65EC69790B3811E80C3 /* BaseTableViewCell.swift in Sources */,
 				3BD3663B20F6F9E3004DE09D /* TransferConfirmCoordinator.swift in Sources */,
+				739A4DBD2150DF2800A1074B /* UISwipeGestureRecognizer+RxGesture.swift in Sources */,
 				72FE5B7421006B0700B29FEC /* NormalContentCoordinator.swift in Sources */,
 				3B3146F82106D56500E815BD /* ResourceMortgageActions.swift in Sources */,
 				3B3935AF214B5AF600AB0A30 /* MnemonicContentCoordinator.swift in Sources */,
@@ -34002,13 +34096,14 @@
 				3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */,
 				22C023A120F6FDB900284A0A /* CreatationCompleteViewController.swift in Sources */,
 				223C58DD214A4A5000C69F3F /* BLTCardEntryActions.swift in Sources */,
+				739A4DC02150DF2800A1074B /* SharedTypes.swift in Sources */,
 				223C58E1214A4A8700C69F3F /* BLTCardRootCoordinator.swift in Sources */,
 				72101692210197C10059B37E /* WalletViewController.swift in Sources */,
 				7210169A210197C10059B37E /* ChangeWalletNameView.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
 				22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */,
+				739A4DB62150DF2800A1074B /* TransformGestureRecognizers.swift in Sources */,
 				22578772212197F3004C4579 /* SelectedVoteReducers.swift in Sources */,
-				7307A939212527D400BD6444 /* BaseView.swift in Sources */,
 				72FE5B6D2100491A00B29FEC /* AboutViewController.swift in Sources */,
 				737F8DD32146647E00DD522A /* DBManager.swift in Sources */,
 				22A93234211A991D00ACC63C /* VoteViewController.swift in Sources */,
@@ -34073,6 +34168,7 @@
 				3BF842E7211BE60100AF9963 /* BuyRamReducers.swift in Sources */,
 				3B3935B7214B5B9100AB0A30 /* MnemonicContentViewAdapter.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
+				739A4DBE2150DF2800A1074B /* UITapGestureRecognizer+RxGesture.swift in Sources */,
 				3B6D7479214761690076F444 /* InvitationCodeToActivateViewController.swift in Sources */,
 				3B6D7461214761690076F444 /* FriendToActivateActions.swift in Sources */,
 				73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */,
@@ -34097,6 +34193,7 @@
 				2253C5392111A6450043AAF7 /* PriKeyViewController.swift in Sources */,
 				72FE5B6E2100491A00B29FEC /* AboutReducers.swift in Sources */,
 				22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */,
+				739A4DC82150E1B600A1074B /* R.generated.swift in Sources */,
 				737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */,
 				3130D0258A7A377AC1EBE65F9BD4ED69 /* HomeCoordinator.swift in Sources */,
 				3B6D746D214761690076F444 /* ActivateCoordinator.swift in Sources */,
@@ -34130,6 +34227,7 @@
 				72FE5B5C2100490B00B29FEC /* HelpActions.swift in Sources */,
 				73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */,
 				22578770212197F3004C4579 /* SelectedVoteActions.swift in Sources */,
+				739A4DBB2150DF2800A1074B /* UIRotationGestureRecognizer+RxGesture.swift in Sources */,
 				3BD3663E20F6F9E3004DE09D /* TransferConfirmReducers.swift in Sources */,
 				725F68042101B8E50006BBA1 /* SetWalletCoordinator.swift in Sources */,
 				2253C5322111A6300043AAF7 /* QRCodeReducers.swift in Sources */,
@@ -34137,6 +34235,7 @@
 				733714E6212431E200B2ED90 /* IonIcons.swift in Sources */,
 				722D24C72111555B00A093CA /* WithNoDataView.swift in Sources */,
 				22578771212197F3004C4579 /* SelectedVoteViewController.swift in Sources */,
+				739A4DB82150DF2800A1074B /* UILongPressGestureRecognizer+RxGesture.swift in Sources */,
 				223C58EF214A50C700C69F3F /* AccountSetViewController.swift in Sources */,
 				22C023A620FCACA400284A0A /* GestureLockView.swift in Sources */,
 				3B195066211BE7CF002C7991 /* GeneralRamCellView.swift in Sources */,
@@ -34145,6 +34244,7 @@
 				3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */,
 				73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */,
 				221EC1CF21008F1B0059F856 /* GestureLockComfirmActions.swift in Sources */,
+				739A4DB92150DF2800A1074B /* UIPanGestureRecognizer+RxGesture.swift in Sources */,
 				08979875F7919749EE9911341C1DA85E /* NavCoordinator.swift in Sources */,
 				72101698210197C10059B37E /* ChangeWalletNameCoordinator.swift in Sources */,
 				227527962147614A0089FADA /* NetworkDataCache.swift in Sources */,
@@ -34161,7 +34261,9 @@
 				22E40AB32114540600F1648C /* FaceIDComfirmCoordinator.swift in Sources */,
 				73B5A6A920F5F62D00756391 /* AttributedText.swift in Sources */,
 				733714EC212431E200B2ED90 /* SwiftIconLabel.swift in Sources */,
+				739A4DC12150DF2800A1074B /* View+RxGesture.swift in Sources */,
 				3BD3663C20F6F9E3004DE09D /* TransferConfirmActions.swift in Sources */,
+				739A4DDC2150E92D00A1074B /* EOSBaseView.swift in Sources */,
 				223C58F7214A50F300C69F3F /* BLTCardConfirmPinViewController.swift in Sources */,
 				22C023A220F6FDB900284A0A /* CreatationCompleteReducers.swift in Sources */,
 				733714E9212431E200B2ED90 /* MaterialIcon.swift in Sources */,
@@ -34173,7 +34275,6 @@
 				3B6D746B214761690076F444 /* ActivateReducers.swift in Sources */,
 				3B6D7470214761690076F444 /* PayToActivateViewController.swift in Sources */,
 				2214A96A211D73A2003256D2 /* VoteFootView.swift in Sources */,
-				173223C45F10FDDC1912D6D77E87B01D /* R.generated.swift in Sources */,
 				D3269330F6567878EEBA3EB42293912B /* RegisterContentView.swift in Sources */,
 				72FE5B5B2100490B00B29FEC /* HelpCoordinator.swift in Sources */,
 				73F30B4120F6E6FF0016E950 /* UserInfoCoordinator.swift in Sources */,
@@ -34182,6 +34283,7 @@
 				3BC12AA421060927006EEB80 /* AccountTableViewCell.swift in Sources */,
 				3BD3666820FDEB94004DE09D /* TransferContentView.swift in Sources */,
 				3B6D7462214761690076F444 /* FriendToActivateViewController.swift in Sources */,
+				739A4DBC2150DF2800A1074B /* UIScreenEdgePanGestureRecognizer+RxGesture.swift in Sources */,
 				2253C52F2111A6300043AAF7 /* QRCodeCoordinator.swift in Sources */,
 				3BD3664F20F76594004DE09D /* TransferConfirmPasswordView.swift in Sources */,
 				721016A5210197F40059B37E /* WalletListHeaderView.swift in Sources */,
@@ -34197,6 +34299,7 @@
 				725F68062101B8E50006BBA1 /* SetWalletViewController.swift in Sources */,
 				73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */,
 				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,
+				739A4DBA2150DF2800A1074B /* UIPinchGestureRecognizer+RxGesture.swift in Sources */,
 				22A9323B211A9C5E00ACC63C /* NodeCell.swift in Sources */,
 				223C590F214A52AE00C69F3F /* BLTCardSearchActions.swift in Sources */,
 				F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */,
@@ -34274,6 +34377,7 @@
 				3B3146FF2106D62900E815BD /* GeneralCellView.swift in Sources */,
 				4B99E2557500F5FC08BF1D2C32999A25 /* UserDefaultsService.swift in Sources */,
 				3BFF4E062109F8390047F996 /* OperationLeftView.swift in Sources */,
+				739A4DB72150DF2800A1074B /* UIGestureRecognizer+RxGesture.swift in Sources */,
 				3B726C1421133502001E4850 /* ScreenShotAlertCoordinator.swift in Sources */,
 				2253C5382111A6450043AAF7 /* PriKeyActions.swift in Sources */,
 				3B3146FA2106D56500E815BD /* ResourceMortgageReducers.swift in Sources */,
@@ -34304,6 +34408,7 @@
 				22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */,
 				3BD3665C20FDEB3A004DE09D /* CornerAndShadowView.swift in Sources */,
 				3B3935A7214B50A000AB0A30 /* BackupMnemonicWordActions.swift in Sources */,
+				739A4DB52150DF2800A1074B /* GestureFactory.swift in Sources */,
 				3B6D747A214761690076F444 /* InvitationView.swift in Sources */,
 				22A93235211A991D00ACC63C /* VoteReducers.swift in Sources */,
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
@@ -34312,6 +34417,7 @@
 				177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */,
 				72FE5B532100490200B29FEC /* SafeCoordinator.swift in Sources */,
 				3B6D7467214761690076F444 /* ExchangeToActivateActions.swift in Sources */,
+				739A4DBF2150DF2800A1074B /* RxGestureRecognizerDelegate.swift in Sources */,
 				3B3147032106D95100E815BD /* ResourceMortgageView.swift in Sources */,
 				3B4C90F320F4CDDC004F4C52 /* PaymentsReducers.swift in Sources */,
 				3B393597214A47EF00AB0A30 /* VerifyMnemonicWordViewAdapter.swift in Sources */,
@@ -34402,13 +34508,15 @@
 					"$(PROJECT_DIR)/library/libboost",
 					"$(inherited)",
 					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Release;
 		};
@@ -34464,12 +34572,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Debug;
 		};
@@ -34481,6 +34591,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Z4LN46787D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -34502,6 +34613,7 @@
 					"$(PROJECT_DIR)/library/libboost",
 					"$(inherited)",
 					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=100 -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -debug-time-function-bodies";
@@ -34509,8 +34621,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Debug;
 		};
@@ -34609,12 +34722,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Release;
 		};

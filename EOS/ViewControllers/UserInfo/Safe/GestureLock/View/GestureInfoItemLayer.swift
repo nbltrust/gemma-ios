@@ -30,7 +30,7 @@ class GestureInfoItemLayer: CAShapeLayer {
     
     var index: Int = 0
     
-    var origin: CGPoint = CGPoint.zero {
+    var origin: CGPoint = CGPoint(x: 0, y: 0) {
         didSet {
             frame.origin = origin
         }

@@ -121,7 +121,7 @@ class TitleTextView: UIView {
             let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(introduce))
             introduceLabel.addGestureRecognizer(tapGestureRecognizer)
             
-            textView.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.cloudyBlue,NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)])
+            textView.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.cloudyBlue,NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
             textView.isSecureTextEntry = setting.isSecureTextEntry
             gapView.alpha = setting.showLine ? 1.0 : 0.0
         }
@@ -220,7 +220,7 @@ class TitleTextView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     func updateHeight() {

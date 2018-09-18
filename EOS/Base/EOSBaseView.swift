@@ -1,17 +1,16 @@
 //
-//  BaseView.swift
-//  cybexMobile
+//  EOSBaseView.swift
+//  EOS
 //
-//  Created by koofrank on 2018/8/16.
-//  Copyright © 2018年 Cybex. All rights reserved.
+//  Created by koofrank on 2018/9/18.
+//  Copyright © 2018年 com.nbltrustdev. All rights reserved.
 //
 
 import Foundation
 import SwiftNotificationCenter
 
 @IBDesignable
-class BaseView: UIControl {
-    
+class EOSBaseView: UIControl {
     var xibView:UIView!
     var foreView:UIView!
     
@@ -46,12 +45,12 @@ class BaseView: UIControl {
             }
         }
     }
-
+    
     let touchDisableRadius : CGFloat = 20
-
+    
     @IBInspectable public var showTouchFeedback: Bool = true
-
-    var data: Any?
+    
+    var data: Any? = nil
     
     func updateUI<T>(_ model:T, handler:((T)->Void)?) {
         self.data = model
@@ -117,7 +116,7 @@ class BaseView: UIControl {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {

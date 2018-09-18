@@ -140,7 +140,7 @@ open class AttributedLabelView: UIView {
         let detection: Detection
         init(detection: Detection) {
             self.detection = detection
-            super.init(frame: .zero)
+            super.init(frame: CGRect(x:0, y:0, width:0, height:0))
             self.isExclusiveTouch = true
         }
         
@@ -161,7 +161,7 @@ open class AttributedLabelView: UIView {
         let button = DetectionAreaButton(detection: detection)
         button.accessibilityLabel = text
         button.isAccessibilityElement = true
-        button.accessibilityTraits = UIAccessibilityTraitButton
+        button.accessibilityTraits = UIAccessibilityTraits.button
         button.isUserInteractionEnabled = state.isEnabled
         button.addTarget(self, action: #selector(handleDetectionAreaButtonClick), for: .touchUpInside)
         detectionAreaButtons.append(button)
@@ -219,7 +219,7 @@ extension NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = textAlignment
         
-        let inheritedAttributes = [NSAttributedStringKey.font: font as Any, NSAttributedStringKey.paragraphStyle: paragraphStyle as Any]
+        let inheritedAttributes = [NSAttributedString.Key.font: font as Any, NSAttributedString.Key.paragraphStyle: paragraphStyle as Any]
         let result = NSMutableAttributedString(string: string, attributes: inheritedAttributes)
         
         result.beginEditing()

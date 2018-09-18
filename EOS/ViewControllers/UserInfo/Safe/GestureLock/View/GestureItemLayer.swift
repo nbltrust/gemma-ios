@@ -33,7 +33,7 @@ class GestureItemLayer: CAShapeLayer {
     
     var centerRadio: CGFloat = 0
     
-    var origin: CGPoint = CGPoint.zero {
+    var origin: CGPoint = CGPoint(x: 0, y: 0) {
         didSet {
             frame.origin = origin
         }
@@ -114,7 +114,7 @@ class GestureItemLayer: CAShapeLayer {
         animation.duration = 0
         animation.autoreverses = false
         animation.isRemovedOnCompletion = false
-        animation.fillMode = kCAFillModeForwards
+        animation.fillMode = CAMediaTimingFillMode.forwards
         self.add(animation, forKey: "rotation")
     }
     

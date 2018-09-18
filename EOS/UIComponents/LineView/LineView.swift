@@ -157,7 +157,7 @@ class LineView: UIView {
     }
     
     override var intrinsicContentSize: CGSize{
-        return CGSize(width: UIViewNoIntrinsicMetric, height: dynamicHeight())
+        return CGSize(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
     
     fileprivate func dynamicHeight() -> CGFloat{
