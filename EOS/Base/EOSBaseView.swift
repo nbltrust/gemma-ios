@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwiftNotificationCenter
+import NBLCommonModule
 
 @IBDesignable
 class EOSBaseView: UIControl {

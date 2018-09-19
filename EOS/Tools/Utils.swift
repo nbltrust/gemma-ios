@@ -11,7 +11,7 @@ import SwifterSwift
 import Guitar
 import Device
 import NotificationBanner
-import SwiftNotificationCenter
+import NBLCommonModule
 import KRProgressHUD
 import SwiftyUserDefaults
 

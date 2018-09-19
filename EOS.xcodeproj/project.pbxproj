@@ -6875,7 +6875,6 @@
 		73D47E81214D535000A8BF29 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		73D47E82214D535000A8BF29 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		73D47E83214D535000A8BF29 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
-		73D47E85214D535000A8BF29 /* NBLCommonModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBLCommonModule.swift; sourceTree = "<group>"; };
 		73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = NBLCommonModule.xcodeproj; sourceTree = "<group>"; };
 		73D47E8A214D535000A8BF29 /* Manifest.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Manifest.lock; sourceTree = "<group>"; };
 		73D47E8B214D535000A8BF29 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Pods.xcodeproj; sourceTree = "<group>"; };
@@ -24394,17 +24393,8 @@
 				73D47E81214D535000A8BF29 /* .gitignore */,
 				73D47E82214D535000A8BF29 /* Cartfile */,
 				73D47E83214D535000A8BF29 /* Cartfile.resolved */,
-				73D47E84214D535000A8BF29 /* NBLCommonModule */,
 				73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */,
 				73D47E89214D535000A8BF29 /* Pods */,
-			);
-			path = NBLCommonModule;
-			sourceTree = "<group>";
-		};
-		73D47E84214D535000A8BF29 /* NBLCommonModule */ = {
-			isa = PBXGroup;
-			children = (
-				73D47E85214D535000A8BF29 /* NBLCommonModule.swift */,
 			);
 			path = NBLCommonModule;
 			sourceTree = "<group>";
@@ -35450,7 +35440,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-17/iOS/RevealServer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -35459,7 +35449,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C17A4728A15BBCFF27675A877B93F873 /* [CP] Check Pods Manifest.lock */ = {
@@ -35500,7 +35490,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-resources.sh",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/App.storyboard",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/FileType/icon_file_type_7z@2x.png",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/FileType/icon_file_type_7z@3x.png",
@@ -35759,7 +35749,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -36288,7 +36278,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = EOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -36395,7 +36385,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = EOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

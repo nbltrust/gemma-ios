@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 import KRProgressHUD
-import SwiftNotificationCenter
+import NBLCommonModule
 
 protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()
