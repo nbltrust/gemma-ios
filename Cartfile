@@ -1,9 +1,10 @@
 git "https://github.com/Moya/Moya" "12.0.0-beta.1"
-github "onevcat/Kingfisher"
+github "onevcat/Kingfisher" "master"
 git "https://github.com/alibaba/HandyJSON" "dev_for_swift4.2"
-github "groue/GRDB.swift" "v3.3.0"
 github "devxoul/UINavigationItem-Margin"
 git "https://github.com/Aite/ESTabBarController" "swift-4.2"
 github "xmartlabs/XLPagerTabStrip"
 github "phpmaple/KRProgressHUD"
 github "phpmaple/NotificationBanner" "swift4.2"
+
+github "groue/GRDB.swift" "v3.3.0"
