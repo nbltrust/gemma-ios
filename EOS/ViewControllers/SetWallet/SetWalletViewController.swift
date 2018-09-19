@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import SwiftNotificationCenter
+import NBLCommonModule
 
 enum WalletSettingType: Int {
     case leadIn = 0

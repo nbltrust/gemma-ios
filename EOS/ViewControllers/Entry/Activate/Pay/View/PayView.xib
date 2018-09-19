@@ -12,7 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PayView" customModule="EOS" customModuleProvider="target">
             <connections>
+                <outlet property="cpuLabel" destination="WCe-s8-AYh" id="ggA-uD-90z"/>
+                <outlet property="netLabel" destination="eVu-Dj-ZC7" id="zUh-Ot-bdX"/>
                 <outlet property="nextButton" destination="l3J-NG-KrL" id="VcP-pi-B12"/>
+                <outlet property="ramLabel" destination="tkH-UB-61z" id="gG8-ez-84S"/>
+                <outlet property="rmbPriceLabel" destination="0ms-Fu-diM" id="hQy-Ou-V2t"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -41,11 +41,6 @@ class VerifyMnemonicWordViewController: BaseViewController {
     
     func setupUI() {
         self.title = R.string.localizable.verify_mnemonic_title.key.localized()
-        configRightNavButton(R.image.ic_close())
-    }
-    
-    override func rightAction(_ sender: UIButton) {
-        test()
     }
 
     func setupData() {
@@ -99,16 +94,6 @@ extension VerifyMnemonicWordViewController {
                 }
             }
         }
-    }
-    
-    func test() {
-        let testVC = TestViewController.init()
-        self.navigationController?.pushViewController(testVC)
-//        BLTWalletIO.shareInstance().getSN({ (sn, sn_sig) in
-//            log.debug("哈哈" + sn! + sn_sig!)
-//        }) { (reason) in
-//            log.debug("哈哈" + reason!)
-//        }
     }
 }
 

@@ -10,9 +10,8 @@ import Foundation
 import SwifterSwift
 import Guitar
 import Device
-import NotificationBannerSwift
-import RxGesture
-import SwiftNotificationCenter
+import NotificationBanner
+import NBLCommonModule
 import KRProgressHUD
 import SwiftyUserDefaults
 

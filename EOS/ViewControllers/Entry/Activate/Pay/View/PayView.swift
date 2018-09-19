@@ -9,8 +9,12 @@
 import Foundation
 
 @IBDesignable
-class PayView: BaseView {
+class PayView: EOSBaseView {
     @IBOutlet weak var nextButton: Button!
+    @IBOutlet weak var cpuLabel: BaseLabel!
+    @IBOutlet weak var netLabel: BaseLabel!
+    @IBOutlet weak var ramLabel: BaseLabel!
+    @IBOutlet weak var rmbPriceLabel: BaseLabel!
     
     enum Event:String {
         case PayViewDidClicked

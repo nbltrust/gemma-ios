@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+<<<<<<< HEAD
 import RxGesture
 import SwiftNotificationCenter
 import Async
@@ -18,6 +19,9 @@ enum CreateWalletType: Int {
     case normal = 0
     case wookong
 }
+=======
+import NBLCommonModule
+>>>>>>> a8a7446540287fdc06b09accc027bef988038e76
 
 class EntryViewController: BaseViewController {
     
@@ -72,12 +76,20 @@ class EntryViewController: BaseViewController {
     func setupEvent() {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
+<<<<<<< HEAD
             switch self.createType {
             case .wookong:
                 self.coordinator?.copyMnemonicWord()
             default:
                 self.coordinator?.pushToActivateVC()
             }
+=======
+            self.coordinator?.verifyAccount(self.registerView.nameView.textField.text!, completion: { (success) in
+                if success == true {
+                    self.coordinator?.pushToActivateVC()
+                }
+            })
+>>>>>>> a8a7446540287fdc06b09accc027bef988038e76
 //            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: { (success) in
 //                
 //            })

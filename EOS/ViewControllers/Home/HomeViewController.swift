@@ -12,7 +12,7 @@ import RxCocoa
 import ReSwift
 import HandyJSON
 import SwiftyJSON
-import NotificationBannerSwift
+import NotificationBanner
 import Device
 
 class HomeViewController: BaseViewController {

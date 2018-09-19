@@ -1,8 +1,4 @@
 PODS:
-  - Action (3.6.0):
-    - RxCocoa (~> 4.2.0)
-    - RxSwift (~> 4.2.0)
-  - ActiveLabel (0.9.0)
   - AsyncSwift (2.0.4)
   - AwaitKit (5.0.0):
     - PromiseKit (~> 6)
@@ -11,7 +7,7 @@ PODS:
   - CocoaDebug (0.1.3)
   - Crashlytics (3.10.7):
     - Fabric (~> 1.7.11)
-  - CryptoSwift (0.11.0)
+  - CryptoSwift (0.12.0)
   - Device (3.1.0)
   - DifferenceKit (0.5.3):
     - DifferenceKit/Core (= 0.5.3)
@@ -19,38 +15,25 @@ PODS:
   - DifferenceKit/Core (0.5.3)
   - DifferenceKit/UIExtensions (0.5.3):
     - DifferenceKit/Core
-  - Differentiator (3.0.2)
   - Dollar (7.1.0)
-  - EFQRCode (4.2.2)
+  - EFQRCode (4.3.0)
   - ESPullToRefresh (2.7)
   - Fabric (1.7.11)
   - FCUUID (1.3.1):
     - UICKeyChainStore (~> 2.1.0)
   - FGRoute (1.0.4)
-  - FSPagerView (0.7.2)
   - GrowingTextView (0.5.6)
-  - Guitar (0.4.1)
-  - Hydra (1.3.5)
-  - IHKeyboardAvoiding (4.3)
+  - Guitar (0.5.0)
+  - Hydra (1.3.6)
   - IQKeyboardManagerSwift (6.1.1)
   - JHChainableAnimations (3.0.1)
-  - "Keyboard+LayoutGuide (1.2.3)"
   - KeychainAccess (3.1.1)
   - KMNavigationBarTransition (1.1.5)
-  - KRActivityIndicatorView (2.1.2)
-  - KRProgressHUD (3.2.2):
-    - KRActivityIndicatorView (= 2.1.2)
   - KUIPopOver (1.0.4)
   - Lightning (2.0.0)
   - Localize-Swift (2.0.0)
-  - MarqueeLabel/Swift (3.1.6)
   - MonkeyKing (1.11.0)
   - Nimble (7.3.0)
-  - NotificationBannerSwift (1.6.3):
-    - MarqueeLabel/Swift
-    - SnapKit (~> 4.0)
-  - ObservableArray-RxSwift (0.2.0):
-    - RxSwift (~> 4.0)
   - Presentr (1.3.2)
   - PromiseKit (6.4.0):
     - PromiseKit/CorePromise (= 6.4.0)
@@ -61,12 +44,11 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.4.0):
     - PromiseKit/CorePromise
-  - Proposer (1.2.0)
+  - Proposer (1.2.1)
   - Quick (1.3.1)
-  - QuickLayout (2.0.2)
-  - R.swift (4.0.0):
-    - R.swift.Library (~> 4.0.0)
-  - R.swift.Library (4.0.0)
+  - R.swift (5.0.0.alpha.2):
+    - R.swift.Library (~> 5.0.0.alpha.2)
+  - R.swift.Library (5.0.0.alpha.2)
   - RealReachability (1.3.0):
     - RealReachability/Connection (= 1.3.0)
     - RealReachability/Ping (= 1.3.0)
@@ -75,66 +57,36 @@ PODS:
   - Repeat (0.5.6)
   - ReSwift (4.0.1)
   - Reveal-SDK (17)
-  - RxCocoa (4.2.0):
-    - RxSwift (~> 4.0)
-  - RxDataSources (3.0.2):
-    - Differentiator (~> 3.0)
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
-  - RxGesture (1.2.1):
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
-  - RxKeyboard (0.8.3):
-    - RxCocoa (>= 4.1.0)
-    - RxSwift (>= 4.1.0)
-  - RxSwift (4.2.0)
-  - RxSwiftExt (3.3.0):
-    - RxSwiftExt/Core (= 3.3.0)
-  - RxSwiftExt/Core (3.3.0):
-    - RxSwift (~> 4.0)
-  - RxValidator (0.0.9):
-    - RxCocoa (>= 4.1.0)
-    - RxSwift (>= 4.1.0)
-  - SDCAlertView (8.1.1)
-  - Siren (3.4.3)
-  - SnapKit (4.0.0)
+  - SDCAlertView (8.1)
+  - Siren (3.5.0)
   - SwiftDate (5.0.7)
-  - SwiftEntryKit (0.6.0):
-    - QuickLayout (= 2.0.2)
-  - SwifterSwift (4.4.0):
-    - SwifterSwift/AppKit (= 4.4.0)
-    - SwifterSwift/CoreGraphics (= 4.4.0)
-    - SwifterSwift/CoreLocation (= 4.4.0)
-    - SwifterSwift/Foundation (= 4.4.0)
-    - SwifterSwift/MapKit (= 4.4.0)
-    - SwifterSwift/SpriteKit (= 4.4.0)
-    - SwifterSwift/SwiftStdlib (= 4.4.0)
-    - SwifterSwift/UIKit (= 4.4.0)
-  - SwifterSwift/AppKit (4.4.0)
-  - SwifterSwift/CoreGraphics (4.4.0)
-  - SwifterSwift/CoreLocation (4.4.0)
-  - SwifterSwift/Foundation (4.4.0)
-  - SwifterSwift/MapKit (4.4.0)
-  - SwifterSwift/SpriteKit (4.4.0)
-  - SwifterSwift/SwiftStdlib (4.4.0)
-  - SwifterSwift/UIKit (4.4.0)
-  - SwiftNotificationCenter (1.0.3)
-  - SwiftRichString (2.0.1)
-  - SwiftyBeaver (1.6.0)
+  - SwifterSwift (4.5.0):
+    - SwifterSwift/AppKit (= 4.5.0)
+    - SwifterSwift/CoreGraphics (= 4.5.0)
+    - SwifterSwift/CoreLocation (= 4.5.0)
+    - SwifterSwift/Foundation (= 4.5.0)
+    - SwifterSwift/MapKit (= 4.5.0)
+    - SwifterSwift/SpriteKit (= 4.5.0)
+    - SwifterSwift/SwiftStdlib (= 4.5.0)
+    - SwifterSwift/UIKit (= 4.5.0)
+  - SwifterSwift/AppKit (4.5.0)
+  - SwifterSwift/CoreGraphics (4.5.0)
+  - SwifterSwift/CoreLocation (4.5.0)
+  - SwifterSwift/Foundation (4.5.0)
+  - SwifterSwift/MapKit (4.5.0)
+  - SwifterSwift/SpriteKit (4.5.0)
+  - SwifterSwift/SwiftStdlib (4.5.0)
+  - SwifterSwift/UIKit (4.5.0)
+  - SwiftRichString (2.0.4)
+  - SwiftyBeaver (1.6.1)
   - SwiftyJSON (4.1.0)
   - SwiftyUserDefaults (4.0.0-alpha.1)
   - TagListView (1.3.1)
   - TinyConstraints (3.2.1)
-  - Typist (1.2.2)
   - UICKeyChainStore (2.1.1)
   - UIFontComplete (3.0.0)
-  - Validator (3.0.2)
-  - XLPagerTabStrip (8.0.1)
-  - ZLaunchAd (2.0.4)
 
 DEPENDENCIES:
-  - Action
-  - ActiveLabel
   - AsyncSwift
   - AwaitKit
   - Bartinter
@@ -143,68 +95,47 @@ DEPENDENCIES:
   - Crashlytics
   - CryptoSwift
   - Device
-  - DifferenceKit
+  - DifferenceKit (from `https://github.com/ra1028/DifferenceKit`, branch `master`)
   - Dollar
   - EFQRCode
-  - ESPullToRefresh
+  - ESPullToRefresh (from `https://github.com/phpmaple/pull-to-refresh`, branch `swift-4.2`)
   - Fabric
   - FCUUID
   - FGRoute
-  - FSPagerView
-  - GrowingTextView
+  - GrowingTextView (from `https://github.com/phpmaple/GrowingTextView`, branch `swift4.2`)
   - Guitar
   - Hydra
-  - IHKeyboardAvoiding
   - IQKeyboardManagerSwift
   - JHChainableAnimations
-  - "Keyboard+LayoutGuide"
   - KeychainAccess
   - KMNavigationBarTransition
-  - KRProgressHUD
   - KUIPopOver
   - Lightning
   - Localize-Swift
-  - MonkeyKing
+  - MonkeyKing (from `https://github.com/nixzhu/MonkeyKing`, branch `master`)
   - Nimble
-  - NotificationBannerSwift
-  - ObservableArray-RxSwift
   - Presentr
   - Proposer
   - Quick
-  - R.swift
+  - R.swift (from `https://github.com/mac-cain13/R.swift`, branch `master`)
   - RealReachability
   - Repeat
   - ReSwift
   - Reveal-SDK
-  - RxCocoa
-  - RxDataSources
-  - RxGesture
-  - RxKeyboard
-  - RxSwift
-  - RxSwiftExt
-  - RxValidator
-  - SDCAlertView
+  - SDCAlertView (from `https://github.com/sberrevoets/SDCAlertView`, branch `swift-4.2`)
   - Siren
   - SwiftDate
-  - SwiftEntryKit
-  - SwifterSwift
-  - SwiftNotificationCenter
-  - SwiftRichString (from `https://github.com/malcommac/SwiftRichString`, tag `2.0.1`)
+  - SwifterSwift (from `https://github.com/SwifterSwift/SwifterSwift`, branch `xcode-10-update`)
+  - SwiftRichString (from `https://github.com/mezhevikin/SwiftRichString`, branch `swift4.2`)
   - SwiftyBeaver
   - SwiftyJSON
   - SwiftyUserDefaults (from `https://github.com/radex/SwiftyUserDefaults`, tag `4.0.0-alpha.1`)
-  - TagListView
-  - TinyConstraints
-  - Typist
+  - TagListView (from `https://github.com/ElaWorkshop/TagListView`, branch `master`)
+  - TinyConstraints (from `https://github.com/roberthein/TinyConstraints`, branch `release/Swift-4.2`)
   - UIFontComplete
-  - Validator
-  - XLPagerTabStrip
-  - ZLaunchAd
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Action
-    - ActiveLabel
     - AsyncSwift
     - AwaitKit
     - Bartinter
@@ -213,163 +144,158 @@ SPEC REPOS:
     - Crashlytics
     - CryptoSwift
     - Device
-    - DifferenceKit
-    - Differentiator
     - Dollar
     - EFQRCode
-    - ESPullToRefresh
     - Fabric
     - FCUUID
     - FGRoute
-    - FSPagerView
-    - GrowingTextView
     - Guitar
     - Hydra
-    - IHKeyboardAvoiding
     - IQKeyboardManagerSwift
     - JHChainableAnimations
-    - "Keyboard+LayoutGuide"
     - KeychainAccess
     - KMNavigationBarTransition
-    - KRActivityIndicatorView
-    - KRProgressHUD
     - KUIPopOver
     - Lightning
     - Localize-Swift
-    - MarqueeLabel
-    - MonkeyKing
     - Nimble
-    - NotificationBannerSwift
-    - ObservableArray-RxSwift
     - Presentr
     - PromiseKit
     - Proposer
     - Quick
-    - QuickLayout
-    - R.swift
     - R.swift.Library
     - RealReachability
     - Repeat
     - ReSwift
     - Reveal-SDK
-    - RxCocoa
-    - RxDataSources
-    - RxGesture
-    - RxKeyboard
-    - RxSwift
-    - RxSwiftExt
-    - RxValidator
-    - SDCAlertView
     - Siren
-    - SnapKit
     - SwiftDate
-    - SwiftEntryKit
-    - SwifterSwift
-    - SwiftNotificationCenter
     - SwiftyBeaver
     - SwiftyJSON
-    - TagListView
-    - TinyConstraints
-    - Typist
     - UICKeyChainStore
     - UIFontComplete
-    - Validator
-    - XLPagerTabStrip
-    - ZLaunchAd
 
 EXTERNAL SOURCES:
+  DifferenceKit:
+    :branch: master
+    :git: https://github.com/ra1028/DifferenceKit
+  ESPullToRefresh:
+    :branch: swift-4.2
+    :git: https://github.com/phpmaple/pull-to-refresh
+  GrowingTextView:
+    :branch: swift4.2
+    :git: https://github.com/phpmaple/GrowingTextView
+  MonkeyKing:
+    :branch: master
+    :git: https://github.com/nixzhu/MonkeyKing
+  R.swift:
+    :branch: master
+    :git: https://github.com/mac-cain13/R.swift
+  SDCAlertView:
+    :branch: swift-4.2
+    :git: https://github.com/sberrevoets/SDCAlertView
+  SwifterSwift:
+    :branch: xcode-10-update
+    :git: https://github.com/SwifterSwift/SwifterSwift
   SwiftRichString:
-    :git: https://github.com/malcommac/SwiftRichString
-    :tag: 2.0.1
+    :branch: swift4.2
+    :git: https://github.com/mezhevikin/SwiftRichString
   SwiftyUserDefaults:
     :git: https://github.com/radex/SwiftyUserDefaults
     :tag: 4.0.0-alpha.1
+  TagListView:
+    :branch: master
+    :git: https://github.com/ElaWorkshop/TagListView
+  TinyConstraints:
+    :branch: release/Swift-4.2
+    :git: https://github.com/roberthein/TinyConstraints
 
 CHECKOUT OPTIONS:
+  DifferenceKit:
+    :commit: 6b0937cf0cf6f99a2beead641127cdf3f85cbb42
+    :git: https://github.com/ra1028/DifferenceKit
+  ESPullToRefresh:
+    :commit: be717f439d6e805c6ed085aab51836467cef9ea2
+    :git: https://github.com/phpmaple/pull-to-refresh
+  GrowingTextView:
+    :commit: 38293475cc99083164083e6fb46411d15c1fae66
+    :git: https://github.com/phpmaple/GrowingTextView
+  MonkeyKing:
+    :commit: 9721c4186564d9549b4ae29df72a8f7c4db0cc23
+    :git: https://github.com/nixzhu/MonkeyKing
+  R.swift:
+    :commit: f96758593573d3d1d9ae8084721033ab0bf392f6
+    :git: https://github.com/mac-cain13/R.swift
+  SDCAlertView:
+    :commit: 845954c0d3bba8c7d0b70563bd7ea264f438f018
+    :git: https://github.com/sberrevoets/SDCAlertView
+  SwifterSwift:
+    :commit: 5e0b44a2f6b6cb195d387223c2fe90a47721486f
+    :git: https://github.com/SwifterSwift/SwifterSwift
   SwiftRichString:
-    :git: https://github.com/malcommac/SwiftRichString
-    :tag: 2.0.1
+    :commit: b1f2d15d7c274c1b64321d43b7aec404b12b38d8
+    :git: https://github.com/mezhevikin/SwiftRichString
   SwiftyUserDefaults:
     :git: https://github.com/radex/SwiftyUserDefaults
     :tag: 4.0.0-alpha.1
+  TagListView:
+    :commit: 60e799080de57d8100be62402f74f9a8a123fbcb
+    :git: https://github.com/ElaWorkshop/TagListView
+  TinyConstraints:
+    :commit: 6e7e5bcb68368bac126adb2d847b164dc033249e
+    :git: https://github.com/roberthein/TinyConstraints
 
 SPEC CHECKSUMS:
-  Action: 3d9486d3da02b572b0a034b6c49ac4c3fbcc8b63
-  ActiveLabel: c4fdd14a288483e98b5a3dff0ab214699aeee74a
   AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
   AwaitKit: d8a6e30eeb2da916630270b44636b31033388bd8
   Bartinter: cfc2ebf2fb8560a7d878dcbdc7d3c667c79090c9
   BiometricAuthentication: ce2f923d4df7a4b340e154137e7b47e544abc1ae
   CocoaDebug: 776d21a594a7af45f54f9532ff325fcfd9d4d0fd
   Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
-  CryptoSwift: ad5208dd2aae0a764ea4ce2c2d34bd067cae67f0
+  CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
   Device: 8a21a61f5f938a12dadd44d82287996081b6919b
   DifferenceKit: 2037137305c55a39ff729baa72697efa30b1052d
-  Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   Dollar: dc69a2997fa5df12ae7a91fec897963664c26750
-  EFQRCode: 203846c7b135b5f7c1d18bb7923bc32a74c8b363
-  ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
+  EFQRCode: 51b67bd10952da9ef619ae0a396abb746b94263f
+  ESPullToRefresh: 6ad8838e5c89b2039fa10ea097a3b3948594441e
   Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   FGRoute: 5a1da5e6702e672b07409904b0db50159c5711be
-  FSPagerView: 7515f63c424da71623d299d4fbbfb3dd884642ff
   GrowingTextView: 8958f4fb7419de58dd622021b2d0696487e00e70
-  Guitar: 7410dc37f2c12d5b8b67711d771608900c37636e
-  Hydra: 4c634a0391419b6235ccd5d0d818128febfbb5de
-  IHKeyboardAvoiding: e6a8f06434baf4c3b45825c3eedb35cea5d0d76b
+  Guitar: 84256d4716829d44c0c5f1c029bd8c146bdcc957
+  Hydra: 50680e3e2fa16a678781d5c10c409c84bc4406b3
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   JHChainableAnimations: 0237489ed063f0ec5b351f5c7bb26c1891517074
-  "Keyboard+LayoutGuide": dd88e39e7dfaeefdf18ffcad2e11b5a90b0459bb
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   KMNavigationBarTransition: 7a52c9bc25b39b6e3343e980b453facee1591b82
-  KRActivityIndicatorView: 27e7a7e3da7fbc8e5405fbc4088b51cc2095a410
-  KRProgressHUD: 8872da74b1c462e15c82a8fff250a2d34ee82ea2
   KUIPopOver: 1002fb1ab2460ac4db2bafe4f01f0c28fca806d2
   Lightning: c6a02102c761491a4957c6265d9161dc5452c3bf
   Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
-  MarqueeLabel: 0c41f08ef5773e29c0f71064a8fa788a2fd8b365
   MonkeyKing: 3810c7d6ba823d4c29b141b02348b607bc787d8d
   Nimble: c8d6a1f463701921c46de965c673e13cafa09196
-  NotificationBannerSwift: b231e4c3244848ef300e1c53ce027b9756b9b06f
-  ObservableArray-RxSwift: 905a088f51b1653f7eb55e6887f8a13916618f50
   Presentr: 797ae6ec8904eaba4ec58a4c2065bd66e31569ea
   PromiseKit: ae3616f45d7bb9bf4ff1e91abc9b7a8c48a340e0
-  Proposer: 722fe61822b89f551ae10afe8314067f98c39c28
+  Proposer: 97409ade1f80d8b19bba20972c03c9253bdd59b1
   Quick: d17304d58d0d169dd0bd1c6e5c28e3318de32a1a
-  QuickLayout: a730730b646b231fd4ef7cffaeb1e81fe0e1ca92
-  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
-  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  R.swift: 31fa1bd537fa81307815cc622122f33331f32174
+  R.swift.Library: 3c21b823839bf5a6769dc7f96cb44479dab51b1b
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   Repeat: 79fae833c601ef457148ba6ffae276e5c629ab0a
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
   Reveal-SDK: a6df49f47319bd19a110c960c498af32df72c0af
-  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
-  RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
-  RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
-  RxKeyboard: e5efbaa109c35be909dd888e53de0f0efdf5169e
-  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
-  RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
-  RxValidator: d6b0d10dbd669010cfb328f0457d7b1af02ad8e4
-  SDCAlertView: f22a66f7af875fa42eaf3e84d124c87b405cf937
-  Siren: e3cf1a93fa0fa73c03452107e95e5c10768d1d08
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SDCAlertView: c497f7c812ccc06095d6f772aa282ebe1a216f4a
+  Siren: 1a33b8b5f5e925648b2f5eb5f969a169076c8352
   SwiftDate: f053fb89250c59af5eff777f3b832d2b9dd57403
-  SwiftEntryKit: ba070426598304c5773d84b54ed8b0763b5f2060
-  SwifterSwift: 1ce0e31801ddd3a2bd3256626275425adb01067a
-  SwiftNotificationCenter: 309e912a10d664ef68979deb1df7f17c2bdbe2ea
-  SwiftRichString: 3b29b5f2eb0eb244497532f2fd2ec26318eae584
-  SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
+  SwifterSwift: 45339f9100181f0ca1d9b46248e45d0879a48596
+  SwiftRichString: 2905437b6eb14a24e2e42f65ecaea582a8bcf6b8
+  SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SwiftyUserDefaults: cebe0ff9472f52699772a514b6f7155861d8069b
   TagListView: 6dafd34a61021c6db72c0c8e3a044054c9854311
   TinyConstraints: 5ca700872f726c49d10829d7b00f31e4ec731f36
-  Typist: 61acc798767f15bf24c61fb9a43d285974380f37
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   UIFontComplete: 5b0f59a83308816c610164b79a2540b3520f9b72
-  Validator: bf211c1d71b3f910d230c09c70e62429d0fef63a
-  XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
-  ZLaunchAd: 34f79abb60018f2e2a5168d6287d90473024ab81
 
-PODFILE CHECKSUM: f0de24b5389063c747cf7aea75db47f2b6bc6f4c
+PODFILE CHECKSUM: b8e4f66a1db542dbe084ee5f45efdffe93081adb
 
 COCOAPODS: 1.5.3

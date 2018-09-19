@@ -51,7 +51,7 @@ class RichStyle {
         let agreement_style = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
             $0.color = UIColor.darkSlateBlue
-            $0.underline = (.styleSingle,UIColor.darkSlateBlue)
+            $0.underline = (.single,UIColor.darkSlateBlue)
         }
         Styles.register(StyleNames.agreement.rawValue, style: agreement_style)
         
@@ -65,7 +65,7 @@ class RichStyle {
         let check_style = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
             $0.color = UIColor.darkSlateBlue
-            $0.underline = (.styleSingle,UIColor.darkSlateBlue)
+            $0.underline = (.single,UIColor.darkSlateBlue)
         }
         Styles.register(StyleNames.agreement.rawValue, style: check_style)
         
@@ -123,7 +123,7 @@ class RichStyle {
         let corn_flower_blue_underline = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
             $0.color = UIColor.cornflowerBlue
-            $0.underline = (.styleSingle, UIColor.cornflowerBlue)
+            $0.underline = (.single, UIColor.cornflowerBlue)
             $0.alignment = .center
         }
         

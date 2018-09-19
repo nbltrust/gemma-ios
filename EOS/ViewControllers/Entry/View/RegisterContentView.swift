@@ -50,7 +50,7 @@ class RegisterContentView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     func updateContentSize() {
@@ -98,7 +98,7 @@ class RegisterContentView: UIView {
         titleTextfieldView.textField.delegate = self
         titleTextfieldView.delegate = self
         titleTextfieldView.datasource = self
-//        titleTextfieldView.textField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.font: UIFont.pfScR14])
+//        titleTextfieldView.textField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.pfScR14])
         titleTextfieldView.updateContentSize()
         titleTextfieldView.textField.addTarget(self, action: #selector(handleTextFiledDidChanged(_:)), for: .editingChanged)
     }

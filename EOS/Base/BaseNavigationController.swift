@@ -30,9 +30,9 @@ class BaseNavigationController: UINavigationController {
         self.navigationBar.shadowImage = UIImage()
         setupNav()
 
-        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17),NSAttributedStringKey.foregroundColor:UIColor.whiteTwo]
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17),NSAttributedString.Key.foregroundColor:UIColor.whiteTwo]
         if #available(iOS 11.0, *) {
-            self.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.whiteTwo]
+            self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.whiteTwo]
         }
         self.navigationBar.tintColor = UIColor.whiteTwo
         
@@ -69,12 +69,12 @@ class BaseNavigationController: UINavigationController {
     
     @discardableResult
     override func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
-        if self.childViewControllers.count == 2 {
-            let vc = self.childViewControllers[1]
+        if self.children.count == 2 {
+            let vc = self.children[1]
             vc.hidesBottomBarWhenPushed = false
         } else {
-            let count = self.childViewControllers.count - 2
-            let vc = self.childViewControllers[count]
+            let count = self.children.count - 2
+            let vc = self.children[count]
             vc.hidesBottomBarWhenPushed = true
         }
         return super.popToViewController(viewController, animated: animated)

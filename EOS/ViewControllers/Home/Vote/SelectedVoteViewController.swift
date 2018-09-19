@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import SwiftNotificationCenter
+import NBLCommonModule
 
 class SelectedVoteViewController: BaseViewController {
     @IBOutlet weak var voteTable: UITableView!
@@ -89,7 +89,7 @@ extension SelectedVoteViewController: UITableViewDelegate,UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

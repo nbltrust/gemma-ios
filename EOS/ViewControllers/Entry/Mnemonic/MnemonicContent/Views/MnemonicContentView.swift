@@ -10,7 +10,7 @@ import Foundation
 import TagListView
 
 @IBDesignable
-class MnemonicContentView: BaseView, TagListViewDelegate {
+class MnemonicContentView: EOSBaseView, TagListViewDelegate {
     
     @IBOutlet weak var contentTagListView: TagListView!
     @IBOutlet weak var nextButton: Button!

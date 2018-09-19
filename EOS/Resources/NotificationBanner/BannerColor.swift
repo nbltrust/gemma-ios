@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import NotificationBannerSwift
+import NotificationBanner
 
 class BannerColor: BannerColorsProtocol {
     internal func color(for style: BannerStyle) -> UIColor {

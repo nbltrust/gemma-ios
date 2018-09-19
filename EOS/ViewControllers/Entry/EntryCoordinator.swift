@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 import KRProgressHUD
-import SwiftNotificationCenter
+import NBLCommonModule
 
 protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()
@@ -30,6 +30,7 @@ protocol EntryStateManagerProtocol {
     func validComfirmPassword(_ password: String, comfirmPassword: String)
     
     func checkAgree(_ agree: Bool)
+<<<<<<< HEAD
     
     func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion:@escaping (Bool)->())
     
@@ -40,6 +41,10 @@ protocol EntryStateManagerProtocol {
     func getPubkey(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void)
     
     func checkSeedSuccessed()
+=======
+    func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion:@escaping (Bool)->())
+    func verifyAccount(_ name: String, completion: @escaping (Bool) -> ())
+>>>>>>> a8a7446540287fdc06b09accc027bef988038e76
 }
 
 class EntryCoordinator: EntryRootCoordinator {
@@ -92,6 +97,30 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func verifyAccount(_ name: String, completion: @escaping (Bool) -> ()) {
+        self.rootVC.topViewController?.startLoading()
+        NBLNetwork.request(target: .accountVerify(account: name), success: { (data) in
+            self.rootVC.topViewController?.endLoading()
+            if data["valid"].boolValue == false {
+                completion(true)
+            } else {
+                showFailTop(R.string.localizable.error_account_registered.key.localized())
+                completion(false)
+            }
+        }, error: { (code) in
+            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                let error = GemmaError.NBLCode(code: gemmaerror)
+                showFailTop(error.localizedDescription)
+            } else {
+                showFailTop(R.string.localizable.error_unknow.key.localized())
+            }
+            completion(false)
+        }) { (error) in
+            completion(false)
+            showFailTop(R.string.localizable.request_failed.key.localized())
+        }
+    }
+    
     func validWalletName(_ name: String) {
         self.store.dispatch(nameAction(isValid: WalletManager.shared.isValidWalletName(name)))
     }
@@ -108,11 +137,19 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(agreeAction(isAgree: agree))
     }
     
+<<<<<<< HEAD
     func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion: @escaping (Bool) -> ()) {
         KRProgressHUD.show()
         NBLNetwork.request(target: .createAccount(type: type,account: accountName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: validation), success: { (data) in
             KRProgressHUD.showSuccess()
             WalletManager.shared.saveWallket(accountName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
+=======
+    func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {
+        self.rootVC.topViewController?.startLoading()
+        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, hash: ""), success: { (data) in
+            self.rootVC.topViewController?.endLoading()
+            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
+>>>>>>> a8a7446540287fdc06b09accc027bef988038e76
             self.pushToCreateSuccessVC()
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {

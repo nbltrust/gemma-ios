@@ -28,7 +28,7 @@ class GestureLockView: UIView {
     
     private(set) var password = ""
     
-    private var lastLocation = CGPoint.zero
+    private var lastLocation = CGPoint(x: 0, y: 0)
     
     private var shapeLayer: CAShapeLayer? {
         return layer as? CAShapeLayer
@@ -45,7 +45,7 @@ class GestureLockView: UIView {
     }
     
     convenience init() {
-        self.init(frame: .zero)
+        self.init(frame: CGRect(x:0, y:0, width:0, height:0))
     }
     
     override init(frame: CGRect) {
@@ -61,8 +61,8 @@ class GestureLockView: UIView {
     }
     
     fileprivate func setupLayer() {
-        self.shapeLayer?.lineCap = kCALineCapRound
-        self.shapeLayer?.lineJoin = kCALineJoinRound
+        self.shapeLayer?.lineCap = CAShapeLayerLineCap.round
+        self.shapeLayer?.lineJoin = CAShapeLayerLineJoin.round
         self.shapeLayer?.fillColor = UIColor.clear.cgColor
         self.shapeLayer?.strokeColor = GestureLockSetting.lockHighlightedColor.cgColor
         self.shapeLayer?.lineWidth = GestureLockSetting.lockHighlightedBorderWidth

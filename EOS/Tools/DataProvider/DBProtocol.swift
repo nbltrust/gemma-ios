@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import GRDB
 import HandyJSON
+import GRDB
 
 struct TestModel: DBProtocol {
     var int: Int = 0

@@ -11,6 +11,7 @@ import KeychainAccess
 import SwifterSwift
 import SwiftyUserDefaults
 import Repeat
+import SwiftDate
 
 class WalletManager {
     static let shared = WalletManager()
@@ -328,8 +329,8 @@ class WalletManager {
         EOSIONetwork.request(target: .get_info, success: { (info) in
             let lib = info["last_irreversible_block_num"].stringValue
             EOSIONetwork.request(target: .get_block(num: lib), success: { (block) in
-                let time = block["timestamp"].stringValue.toISODate()!
-                let createdTime = created.toISODate()!
+                let time = block["timestamp"].stringValue.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", region: Region.ISO)!
+                let createdTime = created.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", region: Region.ISO)!
                 if  time >= createdTime {
                     completion(true)
                 }

@@ -32,6 +32,10 @@ enum NBLService {
     case accountVerify(account:String)
     case accountHistory(account:String, showNum:Int, lastPosition:Int)
     case producer(showNum:Int)
+    case initOrder(account:String, pubKey:String, platform:String, client_ip: String, serial_number:String)
+    case getBill
+    case place(orderId: String)
+    case getOrder(orderId: String)
 }
 
 func defaultManager() -> Alamofire.SessionManager {
@@ -99,11 +103,19 @@ extension NBLService : TargetType {
         case .createAccount(_, _, _, _, _):
             return "/api/v1/account/new"
         case let .accountVerify(account):
-            return "/api/v1/account/\(account)/verify"
+            return "/api/v1/account/verify/\(account)"
         case let .accountHistory(account, showNum, lastPosition):
             return "/api/v1/account/history/\(account)/\(lastPosition)/\(showNum)"
         case let .producer(showNum):
             return "/api/v1/producer/\(showNum)"
+        case .initOrder(_, _, _, _, _):
+            return "/api/v1/pay/order"
+        case .getBill:
+            return "/api/v1/pay/bill"
+        case let .place(orderId):
+            return "/api/v1/pay/order/\(orderId)/place"
+        case let .getOrder(orderId):
+            return "/api/v1/pay/order/\(orderId)"
         }
     }
     
@@ -112,16 +124,25 @@ extension NBLService : TargetType {
         case .createAccount(_, _, _, _, _):
             return .post
         case .accountVerify(_):
-            return .get
+            return .post
         case .accountHistory:
             return .get
         case .producer(_):
+            return .get
+        case .initOrder:
+            return .post
+        case .getBill:
+            return .get
+        case .place:
+            return .post
+        case .getOrder:
             return .get
         }
     }
     
     var parameters: [String: Any] {
         switch self {
+<<<<<<< HEAD
         case let .createAccount(type ,account, pubKey, invitationCode, validation):
             var map: [String: Any] =  ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": type]
             if let val = validation {
@@ -129,10 +150,23 @@ extension NBLService : TargetType {
             }
             return map
         case .accountVerify:
+=======
+        case let .createAccount(account, pubKey, invitationCode, hash):
+            return ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": 1, "hash": hash]
+        case let .accountVerify(account):
+>>>>>>> a8a7446540287fdc06b09accc027bef988038e76
             return [:]
         case .accountHistory:
             return [:]
         case .producer:
+            return [:]
+        case let .initOrder(account, pubKey, platform, client_ip, serial_number):
+            return ["account_name": account, "public_key": pubKey, "platform": platform, "client_ip": client_ip, "serial_number": serial_number]
+        case .getBill:
+            return [:]
+        case .place:
+            return [:]
+        case .getOrder:
             return [:]
         }
     }
@@ -146,6 +180,14 @@ extension NBLService : TargetType {
         case .accountHistory:
             return .requestPlain
         case .producer:
+            return .requestPlain
+        case .initOrder:
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .getBill:
+            return .requestPlain
+        case .place:
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .getOrder:
             return .requestPlain
         }
     }

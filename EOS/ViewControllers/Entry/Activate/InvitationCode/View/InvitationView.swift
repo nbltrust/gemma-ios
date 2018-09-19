@@ -9,7 +9,7 @@
 import Foundation
 
 @IBDesignable
-class InvitationView: BaseView {
+class InvitationView: EOSBaseView {
     
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var introLabel: BaseLabel!

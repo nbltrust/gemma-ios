@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import ActiveLabel
-import SwiftNotificationCenter
+import NBLCommonModule
 
 @IBDesignable
-class FriendView: BaseView {
+class FriendView: EOSBaseView {
     
     @IBOutlet weak var priKeyLabel: BaseLabel!
     @IBOutlet weak var memoTitleLabel: BaseLabel!

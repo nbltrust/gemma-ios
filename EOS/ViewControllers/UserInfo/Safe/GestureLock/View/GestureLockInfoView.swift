@@ -19,7 +19,7 @@ class GestureLockInfoView: UIView {
     }
     
     convenience init() {
-        self.init(frame: .zero)
+        self.init(frame: CGRect(x:0, y:0, width:0, height:0))
     }
     
     override init(frame: CGRect) {
