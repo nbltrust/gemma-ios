@@ -26,7 +26,7 @@ protocol BLTCardSearchStateManagerProtocol {
     
     func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void)
     
-    func getDeviceInfo(_ savedDevice: Int, complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void)
+    func getDeviceInfo(_ complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void)
 }
 
 class BLTCardSearchCoordinator: BLTCardRootCoordinator {
@@ -54,8 +54,9 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
     func pushAfterDeviceConnected(_ deviceInfo: PAEW_DevInfo) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let homeCoor = appDelegate.appcoordinator?.homeCoordinator {
             self.rootVC.dismiss(animated: true) {
+                BLTWalletIO.shareInstance().startHeartBeat()
                 if let vc = R.storyboard.leadIn.setWalletViewController() {
-                    vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
+                    vc.coordinator = SetWalletCoordinator(rootVC: homeCoor.rootVC)
                     vc.settingType = .wookong
                     vc.deviceInfo = deviceInfo
                     homeCoor.rootVC.pushViewController(vc, animated: true)
@@ -86,13 +87,13 @@ extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
     }
     
     func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void) {
-        BLTWalletIO.connectCard(device.name) { (success, deviceId) in
+        BLTWalletIO.shareInstance().connectCard(device.name) { (success, deviceId) in
             complication(success, deviceId)
         }
     }
     
-    func getDeviceInfo(_ savedDevice: Int, complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void) {
-        BLTWalletIO.getDeviceInfo(savedDevice) { (success, deviceInfo) in
+    func getDeviceInfo(_ complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void) {
+        BLTWalletIO.shareInstance().getDeviceInfo { (success, deviceInfo) in
             complocation(success, deviceInfo)
         }
     }

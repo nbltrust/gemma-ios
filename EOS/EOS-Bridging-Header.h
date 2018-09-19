@@ -9,3 +9,4 @@
 #import "EOSIO.h"
 #import "PA_EWallet.h"
 #import "BLTWalletIO.h"
+#import "TestViewController.h"

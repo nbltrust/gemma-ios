@@ -21,10 +21,22 @@ struct EntryState: StateType {
 
 struct EntryPropertyState {
     var nameValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     var passwordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     var comfirmPasswordValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     var inviteCodeValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     var isAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    var validation: BehaviorRelay<WookongValidation> = BehaviorRelay(value: WookongValidation())
+    
+    var checkSeedSuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    var getSNSuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    var getPubKeySuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 }
 
 struct EntryCallbackState {
@@ -45,6 +57,22 @@ struct comfirmPasswordAction: Action {
 
 struct agreeAction: Action {
     var isAgree: Bool = false
+}
+
+struct SetValidationAction: Action {
+    var validation: WookongValidation?
+}
+
+struct SetCheckSeedSuccessedAction: Action {
+    var isCheck: Bool = false
+}
+
+struct SetSNSuccessedAction: Action {
+    var isSuccessed: Bool = false
+}
+
+struct SetPubkeySuccessedAction: Action {
+    var isSuccessed: Bool = false
 }
 
 //MARK: - Action Creator

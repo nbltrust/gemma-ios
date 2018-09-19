@@ -14,10 +14,10 @@ import Alamofire
 import HandyJSON
 
 struct WookongValidation: HandyJSON {
-    var SN: String!
-    var SN_sig: String!
-    var public_key: String!
-    var public_key_sig: String!
+    var SN = ""
+    var SN_sig = ""
+    var public_key = ""
+    var public_key_sig = ""
 }
 
 enum CreateAPPId: Int {
@@ -82,7 +82,7 @@ struct NBLNetwork {
 
 extension NBLService : TargetType {
     var baseURL: URL {
-        return NetworkConfiguration.NBL_BASE_URL
+        return NetworkConfiguration.NBL_BASE_TEST_URL
     }
     
     var isNeedCache: Bool {
@@ -125,7 +125,7 @@ extension NBLService : TargetType {
         case let .createAccount(type ,account, pubKey, invitationCode, validation):
             var map: [String: Any] =  ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": type]
             if let val = validation {
-                map["validation"] = val.toJSON()
+                map["validation"] = val
             }
             return map
         case .accountVerify:

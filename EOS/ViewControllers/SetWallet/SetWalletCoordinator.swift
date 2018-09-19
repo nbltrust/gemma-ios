@@ -13,7 +13,10 @@ import SwiftNotificationCenter
 protocol SetWalletCoordinatorProtocol {
     
     func pushToServiceProtocolVC()
+    
     func importFinished()
+    
+    func pushToSetAccountVC(_ hint: String)
 }
 
 protocol SetWalletStateManagerProtocol {
@@ -23,7 +26,9 @@ protocol SetWalletStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func validForm(_ password: String, confirmPassword: String, hint: String) -> (Bool, String)
+    
     func importLocalWallet(_ password: String, hint: String, completion: @escaping (Bool)->Void)
+    
     func updatePassword(_ password: String, hint: String)
     
     func validPassword(_ password: String)
@@ -32,7 +37,7 @@ protocol SetWalletStateManagerProtocol {
     
     func checkAgree(_ agree: Bool)
     
-    func setWalletPin(_ password: String, hint: String, complecation: @escaping (Bool) -> Void)
+    func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void)
 }
 
 class SetWalletCoordinator: HomeRootCoordinator {
@@ -65,6 +70,15 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
         if count - 3 > 0, let vc = self.rootVC.viewControllers[count - 3] as? LeadInViewController {
             vc.coordinator?.state.callback.fadeCallback.value?()
         }
+    }
+    
+    func pushToSetAccountVC(_ hint: String) {
+        let vc = R.storyboard.entry.entryViewController()
+        vc?.createType = .wookong
+        vc?.hint = hint
+        let accountCoordinator = EntryCoordinator(rootVC: self.rootVC)
+        vc?.coordinator = accountCoordinator
+        self.rootVC.pushViewController(vc!, animated: true)
     }
 }
 
@@ -104,7 +118,8 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
         self.store.dispatch(SetWalletAgreeAction(isAgree: agree))
     }
     
-    func setWalletPin(_ password: String, hint: String, complecation: @escaping (Bool) -> Void) {
-//        BLTWalletIO.initPin(<#T##savedDevice: Int##Int#>, pin: <#T##String!#>, complication: <#T##successedComplication!##successedComplication!##(Bool, String?) -> Void#>)
+    func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void) {
+        BLTWalletIO.shareInstance().initPin(password, success: success, failed: failed)
     }
+
 }

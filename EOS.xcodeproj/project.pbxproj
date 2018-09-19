@@ -113,6 +113,7 @@
 		2257877A2122861D004C4579 /* NodeSelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225787782122861D004C4579 /* NodeSelCell.xib */; };
 		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
 		227072AF2150EDE90097FE61 /* BLTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 227072AA2150EDE80097FE61 /* BLTUtils.m */; };
+		227072B5215251DB0097FE61 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 227072B4215251DB0097FE61 /* TestViewController.m */; };
 		227527962147614A0089FADA /* NetworkDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22752791214761490089FADA /* NetworkDataCache.swift */; };
 		227597EF2146849D0032DC60 /* DBTableCreatation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227597EE2146849C0032DC60 /* DBTableCreatation.swift */; };
 		22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322E211A991D00ACC63C /* VoteCoordinator.swift */; };
@@ -506,7 +507,7 @@
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
 		73D47EBF214D536200A8BF29 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; };
-		73D47EDB214D678B00A8BF29 /* BLTWalletIO.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */; };
+		73D47EDB214D678B00A8BF29 /* BLTWalletIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
 		73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F1DE44214675250065BD72 /* Mirror+Extension.swift */; };
 		73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F30B3C20F6E6FF0016E950 /* UserInfoActions.swift */; };
@@ -2346,6 +2347,8 @@
 		226FF31E514C3CCAE5B692F4E7EDAF60 /* fcontext_ppc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fcontext_ppc.hpp; sourceTree = "<group>"; };
 		227072AA2150EDE80097FE61 /* BLTUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTUtils.m; sourceTree = "<group>"; };
 		227072AE2150EDE80097FE61 /* BLTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTUtils.h; sourceTree = "<group>"; };
+		227072B3215251DB0097FE61 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		227072B4215251DB0097FE61 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		2274FEA09AFF140C23971C744BC9C814 /* polymorphic_oarchive.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = polymorphic_oarchive.hpp; sourceTree = "<group>"; };
 		22752791214761490089FADA /* NetworkDataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataCache.swift; sourceTree = "<group>"; };
 		227597EE2146849C0032DC60 /* DBTableCreatation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBTableCreatation.swift; sourceTree = "<group>"; };
@@ -6275,7 +6278,7 @@
 		73D47EB0214D535000A8BF29 /* Repeat-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Repeat-umbrella.h"; sourceTree = "<group>"; };
 		73D47EB1214D535000A8BF29 /* Repeat.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Repeat.modulemap; sourceTree = "<group>"; };
 		73D47EB2214D535000A8BF29 /* Repeat.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Repeat.xcconfig; sourceTree = "<group>"; };
-		73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BLTWalletIO.mm; sourceTree = "<group>"; };
+		73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTWalletIO.m; sourceTree = "<group>"; };
 		73D60EA94E41654A2AD320B7B324BDA9 /* assert_word_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = assert_word_matcher.hpp; sourceTree = "<group>"; };
 		73DD7EB84F77B2E916A74B72ED0C0250 /* sub.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sub.hpp; sourceTree = "<group>"; };
 		73DDD9A12113F6B900023973 /* BannerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerColor.swift; sourceTree = "<group>"; };
@@ -15265,8 +15268,10 @@
 				227072AA2150EDE80097FE61 /* BLTUtils.m */,
 				223C591B214B66A100C69F3F /* PA_EWallet.h */,
 				223C591F214B89F900C69F3F /* BLTWalletIO.h */,
-				73D47ED6214D678A00A8BF29 /* BLTWalletIO.mm */,
+				73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */,
 				223C5924214B9DE100C69F3F /* BLTWalletHeader.h */,
+				227072B3215251DB0097FE61 /* TestViewController.h */,
+				227072B4215251DB0097FE61 /* TestViewController.m */,
 			);
 			path = PA_EWallet;
 			sourceTree = "<group>";
@@ -34094,6 +34099,7 @@
 				73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */,
 				3B6D7478214761690076F444 /* InvitationCodeToActivateCoordinator.swift in Sources */,
 				227597EF2146849D0032DC60 /* DBTableCreatation.swift in Sources */,
+				227072B5215251DB0097FE61 /* TestViewController.m in Sources */,
 				73B5A6A820F5F62D00756391 /* AttributeStyle.swift in Sources */,
 				71B491763DB2622DA9A6CD8DEE644F17 /* EntryViewController.swift in Sources */,
 				72FE5B662100491300B29FEC /* ServersReducers.swift in Sources */,
@@ -34303,7 +34309,7 @@
 				1C5B18A93C3E4FE5D23D305731F6C2DF /* WalletManager.swift in Sources */,
 				72FE5B4B210048F500B29FEC /* NormalCoordinator.swift in Sources */,
 				223C58C92148BD9200C69F3F /* NetworkSettingManager.swift in Sources */,
-				73D47EDB214D678B00A8BF29 /* BLTWalletIO.mm in Sources */,
+				73D47EDB214D678B00A8BF29 /* BLTWalletIO.m in Sources */,
 				223C5911214A52AE00C69F3F /* BLTCardSearchReducers.swift in Sources */,
 				3BC12A8E210608AB006EEB80 /* TransferConfirmPasswordRootCoordinator.swift in Sources */,
 				3BD3664020F7086A004DE09D /* TransferConfirmView.swift in Sources */,
@@ -34410,7 +34416,7 @@
 					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -34511,7 +34517,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=100 -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

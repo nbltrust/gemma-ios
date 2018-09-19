@@ -32,6 +32,14 @@ protocol EntryStateManagerProtocol {
     func checkAgree(_ agree: Bool)
     
     func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion:@escaping (Bool)->())
+    
+    func copyMnemonicWord()
+    
+    func getSN(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void)
+    
+    func getPubkey(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void)
+    
+    func checkSeedSuccessed()
 }
 
 class EntryCoordinator: EntryRootCoordinator {
@@ -116,5 +124,54 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         }) { (error) in
             showFailTop(R.string.localizable.request_failed.key.localized())
         }
+    }
+    
+    func copyMnemonicWord() {
+        let mnemonicWordVC = R.storyboard.mnemonic.backupMnemonicWordViewController()
+        let coor = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
+        mnemonicWordVC?.coordinator = coor
+        self.rootVC.pushViewController(mnemonicWordVC!, animated: true)
+    }
+    
+    func getSN(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void) {
+        BLTWalletIO.shareInstance().getSN(success, failed: failed)
+    }
+    
+    func getPubkey(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void) {
+        BLTWalletIO.shareInstance().getPubKey(success, failed: failed)
+    }
+    
+    func getSN() {
+        getSN({ [weak self] (sn, sn_sig) in
+            guard let `self` = self else { return }
+            var validation = self.state.property.validation.value
+            validation.SN = sn ?? ""
+            validation.SN_sig = sn_sig ?? ""
+            self.store.dispatch(SetValidationAction(validation: validation))
+            self.getPubkey()
+        }) { (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        }
+    }
+    
+    func getPubkey() {
+        getPubkey({ [weak self] (pubkey, pubkey_sig) in
+            guard let `self` = self else { return }
+            var validation = self.state.property.validation.value
+            validation.public_key = pubkey ?? ""
+            validation.public_key_sig = pubkey_sig ?? ""
+            self.store.dispatch(SetValidationAction(validation: validation))
+        }) { (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        }
+    }
+    
+    func checkSeedSuccessed() {
+        self.store.dispatch(SetCheckSeedSuccessedAction(isCheck: true))
+        getSN()
     }
 }

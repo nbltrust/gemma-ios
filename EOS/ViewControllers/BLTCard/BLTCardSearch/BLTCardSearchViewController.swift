@@ -59,7 +59,7 @@ class BLTCardSearchViewController: BaseViewController {
     }
 
     func setupData() {
-        BLTIO = BLTWalletIO.init()
+        BLTIO = BLTWalletIO.shareInstance()
         BLTIO?.didSearchDevice = {[weak self] device in
             guard let `self` = self else { return }
             self.coordinator?.searchedADevice(device!)
@@ -115,7 +115,7 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
             let device = devices[indexPath.row]
             self.coordinator?.connectDevice(device, complication: { [weak self] (success, deviceId) in
                 guard let `self` = self else { return }
-                self.coordinator?.getDeviceInfo(deviceId, complocation: { (successedGetInfo, deviceInfo) in
+                self.coordinator?.getDeviceInfo({ (successedGetInfo, deviceInfo) in
                     if successedGetInfo {
                         if let info = deviceInfo?.move() {
                             self.coordinator?.pushAfterDeviceConnected(info)

@@ -535,3 +535,5 @@
 "wookong_pas_set_title" = "设置WOOKONG Bio密码";
 "wookong_creat_new_wallet" = "创建新钱包";
 "wookong_inport_mnemonic" = "导入助记词";
+"wookong_mnemonic_ver_failed" = "验证失败";
+"wookong_mnemonic_ver_successed" = "验证成功！";

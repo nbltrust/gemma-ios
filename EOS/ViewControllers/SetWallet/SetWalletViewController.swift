@@ -90,9 +90,17 @@ class SetWalletViewController: BaseViewController {
                         self.showSuccess(message: R.string.localizable.change_password_success.key.localized())
                     }
                 case .wookong :
-                    if let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text{
-                        self.coordinator?.updatePassword(password, hint: hint)
-                        self.showSuccess(message: R.string.localizable.change_password_success.key.localized())
+                    if let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text {
+
+                        self.coordinator?.setWalletPin(password, success: { [weak self] in
+                            guard let `self` = self else { return }
+                            self.coordinator?.pushToSetAccountVC(hint)
+                        }, failed: { [weak self] (reason) in
+                            guard let `self` = self else { return }
+                            if let failedReason = reason {
+                                self.showError(message: failedReason)
+                            }
+                        })
                     }
                 }
             }
@@ -125,6 +133,8 @@ class SetWalletViewController: BaseViewController {
                                     }
                                     return arg0.0 && arg0.1 && arg0.2
             }.bind(to: finished.isEnabel).disposed(by: disposeBag)
+        
+        
     }
 }
 

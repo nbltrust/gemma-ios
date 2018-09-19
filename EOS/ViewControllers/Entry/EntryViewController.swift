@@ -12,6 +12,7 @@ import RxCocoa
 import ReSwift
 import RxGesture
 import SwiftNotificationCenter
+import Async
 
 enum CreateWalletType: Int {
     case normal = 0
@@ -30,6 +31,8 @@ class EntryViewController: BaseViewController {
     
     var createType: CreateWalletType = .normal
     
+    var hint = ""
+    
     var coordinator: (EntryCoordinatorProtocol & EntryStateManagerProtocol)?
 
 	override func viewDidLoad() {
@@ -41,6 +44,8 @@ class EntryViewController: BaseViewController {
         setupUI()
         setupEvent()
         Broadcaster.register(EntryViewController.self, observer: self)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(createWookongWallet), name: NSNotification.Name(rawValue: "createBLTWallet"), object: nil)
     }
     
     @IBAction func agreeAction(_ sender: Any) {
@@ -60,11 +65,19 @@ class EntryViewController: BaseViewController {
         }
     }
     
+    @objc func createWookongWallet() {
+        self.coordinator?.checkSeedSuccessed()
+    }
+    
     func setupEvent() {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
-            
-            self.coordinator?.pushToActivateVC()
+            switch self.createType {
+            case .wookong:
+                self.coordinator?.copyMnemonicWord()
+            default:
+                self.coordinator?.pushToActivateVC()
+            }
 //            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: { (success) in
 //                
 //            })
@@ -90,6 +103,14 @@ class EntryViewController: BaseViewController {
                                     }
         }.bind(to: creatButton.isEnabel).disposed(by: disposeBag)
         
+        coordinator?.state.property.validation.asObservable().subscribe(onNext: {[weak self] (validation) in
+            guard let `self` = self else { return }
+            if !validation.SN.isEmpty && !validation.SN_sig.isEmpty && !validation.public_key.isEmpty && !validation.public_key_sig.isEmpty{
+                self.coordinator?.createWallet(.bluetooth, accountName: self.registerView.nameView.textField.text!, password: "", prompt: "", inviteCode: "", validation: validation, completion: { (successed) in
+                    
+                })
+            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 
