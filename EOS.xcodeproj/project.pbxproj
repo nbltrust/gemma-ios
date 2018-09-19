@@ -246,6 +246,7 @@
 		3B726C1621133502001E4850 /* ScreenShotAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1221133502001E4850 /* ScreenShotAlertViewController.swift */; };
 		3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */; };
 		3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */; };
+		3B89E829215207EE00FD065A /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B89E828215207ED00FD065A /* libiOS_EWallet.a */; };
 		3B8A0F0188C26CD5B89B88BB7CD2021A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BACC4715E3CF39C51CF4E44B54222588 /* Rubik-Light.ttf */; };
 		3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A69210587B4006EEB80 /* RedWarningView.swift */; };
 		3BC12A6C210587BD006EEB80 /* RedWarningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC12A6B210587BD006EEB80 /* RedWarningView.xib */; };
@@ -480,7 +481,6 @@
 		733714F6212431E200B2ED90 /* themify.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733714DD212431E100B2ED90 /* themify.ttf */; };
 		73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73378F74211C233200ACAA90 /* EOSIOTableRow.swift */; };
 		734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734450822150A10900593A8F /* XLPagerTabStrip.framework */; };
-		734450972150ACED00593A8F /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734450962150ACED00593A8F /* libiOS_EWallet.a */; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
@@ -647,11 +647,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3B89E823215207BE00FD065A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 737F8C4C2146539100DD522A;
+			remoteInfo = NBLCommonModuleTests;
+		};
 		732F373A214FC37500CB3A58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 7336B7A9214F5F1D0086A9DF;
+			remoteGlobalIDString = 737F8C422146539100DD522A;
 			remoteInfo = NBLCommonModule;
 		};
 		73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */ = {
@@ -3614,6 +3621,7 @@
 		3B7311947531F77FD28B5CBD2AE901D1 /* handle_tangencies.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle_tangencies.hpp; sourceTree = "<group>"; };
 		3B78507A0E83F865A114EC9D04BBA86C /* is_view_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_view_impl.hpp; sourceTree = "<group>"; };
 		3B83B6E9EAD0C0202FBF327C01B4C1C5 /* qi_advance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_advance.hpp; sourceTree = "<group>"; };
+		3B89E828215207ED00FD065A /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
 		3B974FADA735E2EF32FE8E822EE4E006 /* match_attr_traits.ipp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = match_attr_traits.ipp; sourceTree = "<group>"; };
 		3B9DD251A425CA0A59F2B07B32C905F1 /* list20.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = list20.hpp; sourceTree = "<group>"; };
 		3BABA78FEF18B2A96DE8CCFFAD22ED2E /* apply_wrap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = apply_wrap.hpp; sourceTree = "<group>"; };
@@ -6207,7 +6215,6 @@
 		73378F76211C2D5300ACAA90 /* EOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EOS.entitlements; sourceTree = "<group>"; };
 		733874DA18B6FC7EA389E80149C09885 /* sliced.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sliced.hpp; sourceTree = "<group>"; };
 		734450822150A10900593A8F /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XLPagerTabStrip.framework; path = Carthage/Build/iOS/XLPagerTabStrip.framework; sourceTree = "<group>"; };
-		734450962150ACED00593A8F /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiOS_EWallet.a; sourceTree = "<group>"; };
 		7344C3DDB72697A50126EC3549E8DFB6 /* auto_link.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = auto_link.hpp; sourceTree = "<group>"; };
 		734F610FE87C479427D37CCF1E1CD8F8 /* lookbehind_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lookbehind_matcher.hpp; sourceTree = "<group>"; };
 		735884357D5B11850014705FED3512ED /* to_python_indirect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_python_indirect.hpp; sourceTree = "<group>"; };
@@ -12539,6 +12546,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B89E829215207EE00FD065A /* libiOS_EWallet.a in Frameworks */,
 				73D47EBF214D536200A8BF29 /* NBLCommonModule.framework in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
@@ -12557,7 +12565,6 @@
 				732F3720214FB83F00CB3A58 /* Result.framework in Frameworks */,
 				732F3721214FB83F00CB3A58 /* ReactiveMoya.framework in Frameworks */,
 				732F3722214FB83F00CB3A58 /* Alamofire.framework in Frameworks */,
-				734450972150ACED00593A8F /* libiOS_EWallet.a in Frameworks */,
 				732F3723214FB83F00CB3A58 /* RxSwift.framework in Frameworks */,
 				732F3724214FB83F00CB3A58 /* Moya.framework in Frameworks */,
 				732F3725214FB83F00CB3A58 /* ReactiveSwift.framework in Frameworks */,
@@ -22863,6 +22870,7 @@
 			isa = PBXGroup;
 			children = (
 				73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */,
+				3B89E824215207BE00FD065A /* NBLCommonModuleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -23644,6 +23652,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B89E828215207ED00FD065A /* libiOS_EWallet.a */,
 				739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */,
 				739A4D9C2150DDD900A1074B /* NotificationBanner.framework */,
 				739A4D9D2150DDDA00A1074B /* SnapKit.framework */,
@@ -23665,7 +23674,6 @@
 				732F3713214FB83A00CB3A58 /* RxCocoa.framework */,
 				732F3714214FB83B00CB3A58 /* RxMoya.framework */,
 				732F3718214FB83D00CB3A58 /* RxSwift.framework */,
-				734450962150ACED00593A8F /* libiOS_EWallet.a */,
 				73D47E80214D535000A8BF29 /* NBLCommonModule */,
 				61E820DFBEDE8948881A4760C672F918 /* libappbase.a */,
 				CA3066B0CEE09F5FD6CD43970E4A7F0A /* libboost_atomic.a */,
@@ -33328,6 +33336,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		3B89E824215207BE00FD065A /* NBLCommonModuleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NBLCommonModuleTests.xctest;
+			remoteRef = 3B89E823215207BE00FD065A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -33613,8 +33628,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = carthage;
@@ -33658,7 +33671,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-resources.sh",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/App.storyboard",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/FileType/icon_file_type_7z@2x.png",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/FileType/icon_file_type_7z@3x.png",
@@ -33917,7 +33930,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9E5745DB930C4D0B9549467C /* [CP] Check Pods Manifest.lock */ = {
@@ -33944,7 +33957,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-17/iOS/RevealServer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -33953,7 +33966,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C17A4728A15BBCFF27675A877B93F873 /* [CP] Check Pods Manifest.lock */ = {
