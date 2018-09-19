@@ -9,7 +9,7 @@
 import Foundation
 
 @IBDesignable
-class PayView: BaseView {
+class PayView: EOSBaseView {
     @IBOutlet weak var nextButton: Button!
     @IBOutlet weak var cpuLabel: BaseLabel!
     @IBOutlet weak var netLabel: BaseLabel!

@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 def network
 end
@@ -12,30 +12,30 @@ def data
     pod 'Guitar'
     pod 'SwiftyUserDefaults',:git => 'https://github.com/radex/SwiftyUserDefaults', :tag => '4.0.0-alpha.1'
     pod 'SwiftDate'
-    pod 'DifferenceKit'
+    pod 'DifferenceKit', :git => 'https://github.com/ra1028/DifferenceKit', :branch => 'master'
     pod 'Dollar'
-    pod 'Validator'
+#    pod 'Validator'
 end
 
 def resource
-    pod 'R.swift'
+    pod 'R.swift', :git => 'https://github.com/mac-cain13/R.swift', :branch => 'master'
 end
 
 def architecture
    pod 'ReSwift'
-   pod 'RxSwift'
-   pod 'ObservableArray-RxSwift'
-   pod 'RxSwiftExt'
-   pod 'RxDataSources'
-   pod 'RxKeyboard'
-   pod 'RxValidator'
-   pod 'Action'
+#   pod 'RxSwift'
+#   pod 'ObservableArray-RxSwift'
+#   pod 'RxSwiftExt'
+#   pod 'RxDataSources'
+#   pod 'RxKeyboard'
+#   pod 'RxValidator'
+#   pod 'Action'
 
    pod 'Lightning'
 
    pod 'Localize-Swift'
    pod 'UIFontComplete'
-   pod 'RxCocoa'
+#   pod 'RxCocoa'
    pod 'AwaitKit'
    pod 'Hydra'
 #   pod 'Aspects'
@@ -48,37 +48,37 @@ end
 
 def animation
     pod 'JHChainableAnimations'
-    pod 'KRProgressHUD'
+#    pod 'KRProgressHUD', :git => 'https://github.com/phpmaple/KRProgressHUD', :branch => 'swift4.2'
 end
 
 def extension
     pod 'KeychainAccess'
-    pod 'SwifterSwift'
+    pod 'SwifterSwift', :git => 'https://github.com/SwifterSwift/SwifterSwift', :branch => 'xcode-10-update'
     pod 'Repeat'
     pod 'AsyncSwift'
 end
 
 def ui
-    pod 'TagListView' #助记词
-    pod 'TinyConstraints'
-    pod 'IHKeyboardAvoiding'
-    pod 'Typist'
-    pod 'RxGesture'
-    pod 'SwiftRichString', :git => 'https://github.com/malcommac/SwiftRichString', :tag => '2.0.1'
-    pod 'ZLaunchAd'
-    pod 'SDCAlertView'
+    pod 'TagListView', :git => 'https://github.com/ElaWorkshop/TagListView', :branch => 'master'
+    pod 'TinyConstraints', :git => 'https://github.com/roberthein/TinyConstraints', :branch => 'release/Swift-4.2'
+#    pod 'IHKeyboardAvoiding'
+#    pod 'Typist'
+#    pod 'RxGesture'
+    pod 'SwiftRichString', :git => 'https://github.com/mezhevikin/SwiftRichString', :branch => 'swift4.2', :inhibit_warnings => true
+    #    pod 'ZLaunchAd'
+    pod 'SDCAlertView', :git => 'https://github.com/sberrevoets/SDCAlertView', :branch => 'swift-4.2'
     pod 'Presentr'
-    pod 'SwiftEntryKit'
-    pod 'Keyboard+LayoutGuide'
-    pod 'XLPagerTabStrip'
+#    pod 'SwiftEntryKit'
+#    pod 'Keyboard+LayoutGuide'
+#    pod 'XLPagerTabStrip'
     pod 'EFQRCode'
-    pod 'FSPagerView' #轮播图
-    pod 'ESPullToRefresh'
+#    pod 'FSPagerView' #轮播图
+    pod 'ESPullToRefresh', :git => 'https://github.com/phpmaple/pull-to-refresh', :branch => 'swift-4.2'
     pod 'KUIPopOver'
-    pod 'GrowingTextView'
+    pod 'GrowingTextView', :git => 'https://github.com/phpmaple/GrowingTextView', :branch => 'swift4.2'
     pod 'Bartinter'
-    pod 'NotificationBannerSwift'
-    pod 'ActiveLabel'
+#    pod 'NotificationBannerSwift', :git => 'https://github.com/phpmaple/NotificationBanner', :branch => 'swift4.2'
+#    pod 'ActiveLabel'
 #    pod 'UINavigationItem+Margin'
 end
 
@@ -87,7 +87,7 @@ def other
     #pod 'MLeaksFinder'
     pod 'Device'
     pod 'SwiftNotificationCenter'
-    pod 'MonkeyKing'
+    pod 'MonkeyKing', :git => 'https://github.com/nixzhu/MonkeyKing', :branch => 'master'
     pod 'FGRoute'
 end
 

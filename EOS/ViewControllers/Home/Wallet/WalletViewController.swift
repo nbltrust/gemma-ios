@@ -37,7 +37,7 @@ class WalletViewController: BaseViewController {
             dataArray.append(model)
         }
         tableView.reloadData()
-        tableView.selectRow(at: IndexPath(row: indexPath, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
+        tableView.selectRow(at: IndexPath(row: indexPath, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.none)
     }
     
     override func viewWillAppear(_ animated: Bool) {

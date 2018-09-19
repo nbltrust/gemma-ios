@@ -10,7 +10,7 @@ import Foundation
 import TagListView
 
 @IBDesignable
-class VerifyMnemonicWordView: BaseView {
+class VerifyMnemonicWordView: EOSBaseView {
     
     @IBOutlet weak var myTagListView: TagListView!
     @IBOutlet weak var poolTagListView: TagListView!

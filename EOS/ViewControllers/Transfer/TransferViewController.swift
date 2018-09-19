@@ -56,7 +56,7 @@ class TransferViewController: BaseViewController {
         self.title = R.string.localizable.tabbarTransfer.key.localized()
 
         self.accountTextField.delegate = self
-        self.accountTextField.attributedPlaceholder = NSMutableAttributedString.init(string: R.string.localizable.account_name.key.localized(), attributes: [NSAttributedStringKey.foregroundColor: UIColor.blueyGrey,NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)])
+        self.accountTextField.attributedPlaceholder = NSMutableAttributedString.init(string: R.string.localizable.account_name.key.localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueyGrey,NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
         transferContentView.reload()
         clearData()

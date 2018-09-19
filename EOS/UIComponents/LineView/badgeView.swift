@@ -53,7 +53,7 @@ class badgeView: UIView {
         if self.width <= height {
             return CGSize(width: dynamicHeight(), height: dynamicHeight())
         }else{
-            return CGSize(width: UIViewNoIntrinsicMetric, height: dynamicHeight())
+            return CGSize(width: UIView.noIntrinsicMetric, height: dynamicHeight())
         }
     }
     

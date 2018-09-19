@@ -9,7 +9,7 @@
 import Foundation
 
 @IBDesignable
-class BLTCardEntryView: BaseView {
+class BLTCardEntryView: EOSBaseView {
     
     @IBOutlet weak var actionView: Button!
     

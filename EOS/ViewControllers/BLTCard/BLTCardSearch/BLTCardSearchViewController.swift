@@ -43,7 +43,7 @@ class BLTCardSearchViewController: BaseViewController {
         let nibString = R.nib.bltDeviceCell.identifier
         deviceTable.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         
-        indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        indicatorView = UIActivityIndicatorView(style: .gray)
         indicatorView?.startAnimating()
         configRightCustomView(indicatorView!)
     }

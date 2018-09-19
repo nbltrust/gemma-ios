@@ -11,7 +11,6 @@ import ReSwift
 import PromiseKit
 import AwaitKit
 import Presentr
-import Typist
 
 protocol TransferCoordinatorProtocol {
     func pushToTransferConfirmVC(data: ConfirmViewModel)
