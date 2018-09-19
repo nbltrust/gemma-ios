@@ -9,7 +9,10 @@
 import Foundation
 
 extension PayView {
-    func adapterModelToPayView(_ model:PayAdapterModel) {
-        
+    func adapterModelToPayView(_ model:BillModel) {
+        self.cpuLabel.text = model.cpu
+        self.netLabel.text = model.net
+        self.ramLabel.text = model.ram
+        self.rmbPriceLabel.text = model.rmb
     }
 }

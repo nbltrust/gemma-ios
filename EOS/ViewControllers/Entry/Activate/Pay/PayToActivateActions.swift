@@ -14,6 +14,7 @@ import SwiftyJSON
 //MARK: - State
 struct PayToActivateState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
+    var billInfo: BehaviorRelay<BillModel> = BehaviorRelay(value: BillModel())
 }
 
 //MARK: - Action
@@ -21,9 +22,22 @@ struct PayToActivateFetchedAction: Action {
     var data:JSON
 }
 
-struct PayAdapterModel {
+struct BillModel {
     var cpu = ""
     var net = ""
     var ram = ""
     var rmb = ""
+}
+
+struct WXPayModel {
+    var appid = ""
+    var noncestr = ""
+    var partnerid = ""
+    var prepayid = ""
+    var timestamp = ""
+    var sign = ""
+}
+
+struct BillAction : Action {
+    var data : Bill
 }

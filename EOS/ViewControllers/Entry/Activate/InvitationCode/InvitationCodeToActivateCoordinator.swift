@@ -66,8 +66,7 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateStateMana
     }
     
     func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> ()) {
-        KRProgressHUD.show()
-        
+        self.rootVC.topViewController?.startLoading()
         var walletName = ""
         var password = ""
         var prompt = ""
@@ -77,7 +76,7 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateStateMana
             prompt = vc.registerView.passwordPromptView.textField.text!
         }
         NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, hash: ""), success: { (data) in
-            KRProgressHUD.showSuccess()
+            self.rootVC.topViewController?.endLoading()
             WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
             self.pushToCreateSuccessVC()
         }, error: { (code) in

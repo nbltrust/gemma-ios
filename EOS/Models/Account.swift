@@ -100,6 +100,12 @@ struct DelegatedBandWidth:HandyJSON {
     init() {}
 }
 
+struct Valid:HandyJSON {
+    var valid:Bool!
+    
+    init() {}
+}
+
 open class GemmaDateFormatTransform: DateFormatterTransform {
     
     public init(formatString: String) {
@@ -112,3 +118,5 @@ open class GemmaDateFormatTransform: DateFormatterTransform {
         super.init(dateFormatter: formatter)
     }
 }
+
+

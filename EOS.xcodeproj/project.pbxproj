@@ -247,6 +247,7 @@
 		3B726C1621133502001E4850 /* ScreenShotAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1221133502001E4850 /* ScreenShotAlertViewController.swift */; };
 		3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */; };
 		3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */; };
+		3B89E88F21522A6C00FD065A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89E86F21522A6B00FD065A /* Order.swift */; };
 		3B8A0F0188C26CD5B89B88BB7CD2021A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BACC4715E3CF39C51CF4E44B54222588 /* Rubik-Light.ttf */; };
 		3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A69210587B4006EEB80 /* RedWarningView.swift */; };
 		3BC12A6C210587BD006EEB80 /* RedWarningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC12A6B210587BD006EEB80 /* RedWarningView.xib */; };
@@ -3793,6 +3794,7 @@
 		3B7311947531F77FD28B5CBD2AE901D1 /* handle_tangencies.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle_tangencies.hpp; sourceTree = "<group>"; };
 		3B78507A0E83F865A114EC9D04BBA86C /* is_view_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_view_impl.hpp; sourceTree = "<group>"; };
 		3B83B6E9EAD0C0202FBF327C01B4C1C5 /* qi_advance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_advance.hpp; sourceTree = "<group>"; };
+		3B89E86F21522A6B00FD065A /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		3B974FADA735E2EF32FE8E822EE4E006 /* match_attr_traits.ipp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = match_attr_traits.ipp; sourceTree = "<group>"; };
 		3B9DD251A425CA0A59F2B07B32C905F1 /* list20.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = list20.hpp; sourceTree = "<group>"; };
 		3BABA78FEF18B2A96DE8CCFFAD22ED2E /* apply_wrap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = apply_wrap.hpp; sourceTree = "<group>"; };
@@ -26463,6 +26465,7 @@
 		89DAD1F7FEB61D3D4AFAF36421675A42 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3B89E86F21522A6B00FD065A /* Order.swift */,
 				2214A96D211D7B78003256D2 /* NodeVote.swift */,
 				037EA7EF67D3633CBA8C8AB082548C91 /* Account.swift */,
 				73B5A6AC20F601DE00756391 /* Payment.swift */,
@@ -35386,8 +35389,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = carthage;
@@ -35449,7 +35450,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-17/iOS/RevealServer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -35458,7 +35459,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C17A4728A15BBCFF27675A877B93F873 /* [CP] Check Pods Manifest.lock */ = {
@@ -35498,10 +35499,8 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-resources.sh",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/App.storyboard",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/FileType/icon_file_type_7z@2x.png",
 				"${PODS_ROOT}/CocoaDebug/Sources/Resources/FileType/icon_file_type_7z@3x.png",
@@ -35630,8 +35629,6 @@
 				"${PODS_ROOT}/Siren/Sources/Siren.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/App.storyboardc",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icon_file_type_7z@2x.png",
@@ -35762,7 +35759,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EOS/Pods-EOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -35974,6 +35971,7 @@
 				3B195066211BE7CF002C7991 /* GeneralRamCellView.swift in Sources */,
 				72FE5B9021009EE300B29FEC /* LeadInIntroduceView.swift in Sources */,
 				22C023B120FCB09300284A0A /* ScanViewController.swift in Sources */,
+				3B89E88F21522A6C00FD065A /* Order.swift in Sources */,
 				3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */,
 				73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */,
 				221EC1CF21008F1B0059F856 /* GestureLockComfirmActions.swift in Sources */,
@@ -36370,6 +36368,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				VALID_ARCHS = "arm64 armv7s";
@@ -36520,6 +36519,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
