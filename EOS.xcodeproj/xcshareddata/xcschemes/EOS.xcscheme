@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "python scripts/xUnique.py EOS.xcodeproj/project.pbxproj">
+               scriptText = "python scripts/xUnique.py EOS.xcodeproj/project.pbxproj&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

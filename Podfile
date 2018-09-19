@@ -1,13 +1,14 @@
 platform :ios, '10.0'
+#use_frameworks!
 
 def network
 end
 
 def data
     pod 'SwiftyJSON'
-#    pod 'GRDB.swift'
     pod 'CryptoSwift'
 #    pod 'RxGRDB'
+#    pod 'RxGRDB/GRDBCipher'
     pod 'IQKeyboardManagerSwift'
     pod 'Guitar'
     pod 'SwiftyUserDefaults',:git => 'https://github.com/radex/SwiftyUserDefaults', :tag => '4.0.0-alpha.1'

@@ -1,3 +1,6 @@
 [submodule "NBLCommonModule"]
 	path = NBLCommonModule
 	url = https://github.com/phpmaple/NBLCommonModule
+[submodule "GRDB.swift"]
+	path = GRDB.swift
+	url = https://github.com/groue/GRDB.swift

@@ -9,8 +9,8 @@
 import UIKit
 import ReSwift
 import SwiftNotificationCenter
-import Async
 import FGRoute
+import Async
 
 protocol PayToActivateCoordinatorProtocol {
 }
