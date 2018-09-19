@@ -68,7 +68,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         Broadcaster.notify(EntryViewController.self) { (vc) in
             walletName = vc.registerView.nameView.textField.text!
         }
-        NBLNetwork.request(target: .initOrder(account: walletName, pubKey: WalletManager.shared.currentPubKey, platform: "iOS", client_ip:FGRoute.getIPAddress(), serial_number: "1"), success: { (data) in
+        NBLNetwork.request(target: .initOrder(account: walletName, pubKey: WalletManager.shared.currentPubKey, platform: "iOS", client_ip:"FGRoute.getIPAddress()", serial_number: "1"), success: { (data) in
             if let orderID = Order.deserialize(from: data.dictionaryObject) {
                 NBLNetwork.request(target: .place(orderId: orderID._id), success: { (result) in
                     if let place = Place.deserialize(from: result.dictionaryObject) {

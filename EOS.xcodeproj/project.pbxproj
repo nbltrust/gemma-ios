@@ -247,6 +247,7 @@
 		3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */; };
 		3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */; };
 		3B89E829215207EE00FD065A /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B89E828215207ED00FD065A /* libiOS_EWallet.a */; };
+		3B89E84121521AC100FD065A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89E83D21521AC000FD065A /* Order.swift */; };
 		3B8A0F0188C26CD5B89B88BB7CD2021A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BACC4715E3CF39C51CF4E44B54222588 /* Rubik-Light.ttf */; };
 		3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A69210587B4006EEB80 /* RedWarningView.swift */; };
 		3BC12A6C210587BD006EEB80 /* RedWarningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC12A6B210587BD006EEB80 /* RedWarningView.xib */; };
@@ -647,18 +648,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3B89E823215207BE00FD065A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 737F8C4C2146539100DD522A;
-			remoteInfo = NBLCommonModuleTests;
-		};
 		732F373A214FC37500CB3A58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 737F8C422146539100DD522A;
+			remoteGlobalIDString = 7336B7A9214F5F1D0086A9DF;
 			remoteInfo = NBLCommonModule;
 		};
 		73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */ = {
@@ -3622,6 +3616,7 @@
 		3B78507A0E83F865A114EC9D04BBA86C /* is_view_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_view_impl.hpp; sourceTree = "<group>"; };
 		3B83B6E9EAD0C0202FBF327C01B4C1C5 /* qi_advance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_advance.hpp; sourceTree = "<group>"; };
 		3B89E828215207ED00FD065A /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
+		3B89E83D21521AC000FD065A /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		3B974FADA735E2EF32FE8E822EE4E006 /* match_attr_traits.ipp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = match_attr_traits.ipp; sourceTree = "<group>"; };
 		3B9DD251A425CA0A59F2B07B32C905F1 /* list20.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = list20.hpp; sourceTree = "<group>"; };
 		3BABA78FEF18B2A96DE8CCFFAD22ED2E /* apply_wrap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = apply_wrap.hpp; sourceTree = "<group>"; };
@@ -6284,7 +6279,6 @@
 		73D47E81214D535000A8BF29 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		73D47E82214D535000A8BF29 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		73D47E83214D535000A8BF29 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
-		73D47E85214D535000A8BF29 /* NBLCommonModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBLCommonModule.swift; sourceTree = "<group>"; };
 		73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = NBLCommonModule.xcodeproj; sourceTree = "<group>"; };
 		73D47E8A214D535000A8BF29 /* Manifest.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Manifest.lock; sourceTree = "<group>"; };
 		73D47E8B214D535000A8BF29 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Pods.xcodeproj; sourceTree = "<group>"; };
@@ -22851,17 +22845,8 @@
 				73D47E81214D535000A8BF29 /* .gitignore */,
 				73D47E82214D535000A8BF29 /* Cartfile */,
 				73D47E83214D535000A8BF29 /* Cartfile.resolved */,
-				73D47E84214D535000A8BF29 /* NBLCommonModule */,
 				73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */,
 				73D47E89214D535000A8BF29 /* Pods */,
-			);
-			path = NBLCommonModule;
-			sourceTree = "<group>";
-		};
-		73D47E84214D535000A8BF29 /* NBLCommonModule */ = {
-			isa = PBXGroup;
-			children = (
-				73D47E85214D535000A8BF29 /* NBLCommonModule.swift */,
 			);
 			path = NBLCommonModule;
 			sourceTree = "<group>";
@@ -22870,7 +22855,6 @@
 			isa = PBXGroup;
 			children = (
 				73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */,
-				3B89E824215207BE00FD065A /* NBLCommonModuleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -24925,6 +24909,7 @@
 		89DAD1F7FEB61D3D4AFAF36421675A42 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3B89E83D21521AC000FD065A /* Order.swift */,
 				2214A96D211D7B78003256D2 /* NodeVote.swift */,
 				037EA7EF67D3633CBA8C8AB082548C91 /* Account.swift */,
 				73B5A6AC20F601DE00756391 /* Payment.swift */,
@@ -33336,13 +33321,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3B89E824215207BE00FD065A /* NBLCommonModuleTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = NBLCommonModuleTests.xctest;
-			remoteRef = 3B89E823215207BE00FD065A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -34210,6 +34188,7 @@
 				3B195066211BE7CF002C7991 /* GeneralRamCellView.swift in Sources */,
 				72FE5B9021009EE300B29FEC /* LeadInIntroduceView.swift in Sources */,
 				22C023B120FCB09300284A0A /* ScanViewController.swift in Sources */,
+				3B89E84121521AC100FD065A /* Order.swift in Sources */,
 				3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */,
 				73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */,
 				221EC1CF21008F1B0059F856 /* GestureLockComfirmActions.swift in Sources */,
