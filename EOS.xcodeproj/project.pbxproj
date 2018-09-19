@@ -458,7 +458,6 @@
 		732F3725214FB83F00CB3A58 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F371A214FB83F00CB3A58 /* ReactiveSwift.framework */; };
 		732F372F214FC0C700CB3A58 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F372E214FC0C700CB3A58 /* GRDB.framework */; };
 		732F3732214FC24E00CB3A58 /* GRDBCipher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3730214FC24D00CB3A58 /* GRDBCipher.framework */; };
-		732F3733214FC24E00CB3A58 /* GRDBCustomSQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3731214FC24D00CB3A58 /* GRDBCustomSQLite.framework */; };
 		732F373D214FC48300CB3A58 /* UINavigationItem_Margin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F373C214FC48300CB3A58 /* UINavigationItem_Margin.framework */; };
 		733714E2212431E200B2ED90 /* LGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714C6212431E100B2ED90 /* LGButton.swift */; };
 		733714E3212431E200B2ED90 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733714C8212431E100B2ED90 /* FontAwesome.swift */; };
@@ -12548,7 +12547,6 @@
 				739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */,
 				739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */,
 				732F3732214FC24E00CB3A58 /* GRDBCipher.framework in Frameworks */,
-				732F3733214FC24E00CB3A58 /* GRDBCustomSQLite.framework in Frameworks */,
 				732F371D214FB83F00CB3A58 /* RxBlocking.framework in Frameworks */,
 				732F373D214FC48300CB3A58 /* UINavigationItem_Margin.framework in Frameworks */,
 				739A4D9E2150DDDA00A1074B /* MarqueeLabelSwift.framework in Frameworks */,
@@ -33615,58 +33613,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/HandyJSON.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ReactiveSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ReactiveMoya.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxMoya.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/GRDB.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/GRDBCipher.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/GRDBCustomSQLite.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/UINavigationItem_Margin.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ESTabBarController.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/XLPagerTabStrip.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/KRActivityIndicatorView.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/KRProgressHUD.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/NotificationBanner.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MarqueeLabelSwift.framework",
 			);
 			name = carthage;
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HandyJSON.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Kingfisher.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Moya.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Result.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReactiveSwift.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxBlocking.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReactiveMoya.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxMoya.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/GRDB.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/GRDBCipher.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/GRDBCustomSQLite.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/UINavigationItem_Margin.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ESTabBarController.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/XLPagerTabStrip.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/KRActivityIndicatorView.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/KRProgressHUD.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NotificationBanner.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MarqueeLabelSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "carthage-copy-frameworks\n";
 		};
 		732F370F214FB64100CB3A58 /* appstore-bug */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -34513,6 +34469,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -34619,6 +34576,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=100 -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
