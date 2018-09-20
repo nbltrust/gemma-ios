@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import SwiftNotificationCenter
+import NBLCommonModule
 
 class VoteViewController: BaseViewController {
     @IBOutlet weak var voteTable: UITableView!

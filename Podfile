@@ -87,7 +87,7 @@ def other
     pod 'Siren'
     #pod 'MLeaksFinder'
     pod 'Device'
-    pod 'SwiftNotificationCenter'
+#    pod 'SwiftNotificationCenter'
     pod 'MonkeyKing', :git => 'https://github.com/nixzhu/MonkeyKing', :branch => 'master'
     pod 'FGRoute'
 end

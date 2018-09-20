@@ -77,7 +77,6 @@ PODS:
   - SwifterSwift/SpriteKit (4.5.0)
   - SwifterSwift/SwiftStdlib (4.5.0)
   - SwifterSwift/UIKit (4.5.0)
-  - SwiftNotificationCenter (1.0.3)
   - SwiftRichString (2.0.4)
   - SwiftyBeaver (1.6.1)
   - SwiftyJSON (4.1.0)
@@ -127,7 +126,6 @@ DEPENDENCIES:
   - Siren
   - SwiftDate
   - SwifterSwift (from `https://github.com/SwifterSwift/SwifterSwift`, branch `xcode-10-update`)
-  - SwiftNotificationCenter
   - SwiftRichString (from `https://github.com/mezhevikin/SwiftRichString`, branch `swift4.2`)
   - SwiftyBeaver
   - SwiftyJSON
@@ -172,7 +170,6 @@ SPEC REPOS:
     - Reveal-SDK
     - Siren
     - SwiftDate
-    - SwiftNotificationCenter
     - SwiftyBeaver
     - SwiftyJSON
     - UICKeyChainStore
@@ -290,7 +287,6 @@ SPEC CHECKSUMS:
   Siren: 1a33b8b5f5e925648b2f5eb5f969a169076c8352
   SwiftDate: f053fb89250c59af5eff777f3b832d2b9dd57403
   SwifterSwift: 45339f9100181f0ca1d9b46248e45d0879a48596
-  SwiftNotificationCenter: 309e912a10d664ef68979deb1df7f17c2bdbe2ea
   SwiftRichString: 2905437b6eb14a24e2e42f65ecaea582a8bcf6b8
   SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
@@ -300,6 +296,6 @@ SPEC CHECKSUMS:
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   UIFontComplete: 5b0f59a83308816c610164b79a2540b3520f9b72
 
-PODFILE CHECKSUM: 70fcbac52f428ab086374782e8d00ccc2e425e73
+PODFILE CHECKSUM: b8e4f66a1db542dbe084ee5f45efdffe93081adb
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.1
