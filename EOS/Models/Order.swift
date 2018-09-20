@@ -21,10 +21,10 @@ struct Bill: HandyJSON {
 }
 
 struct Place: HandyJSON {
-    var return_code: String!
     var appid: String!
-    var mch_id: String!
-    var nonce_str: String!
+    var partnerid: String!
+    var nonceStr: String!
     var sign: String!
-    var prepay_id: String!
+    var prepayid: String!
+    var timestamp: String!
 }
