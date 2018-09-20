@@ -10,12 +10,14 @@ import UIKit
 import ReSwift
 
 func PayToActivateReducer(action:Action, state:PayToActivateState?) -> PayToActivateState {
-    let state = state ?? PayToActivateState()
+    var state = state ?? PayToActivateState()
         
     switch action {
     case let action as BillAction:
         let model = transToModel(action)
         state.billInfo.accept(model)
+    case let action as OrderIdAction:
+        state.orderId = action.orderId
     default:
         break
     }

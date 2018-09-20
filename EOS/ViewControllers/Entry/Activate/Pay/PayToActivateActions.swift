@@ -15,11 +15,16 @@ import SwiftyJSON
 struct PayToActivateState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     var billInfo: BehaviorRelay<BillModel> = BehaviorRelay(value: BillModel())
+    var orderId = ""
 }
 
 //MARK: - Action
 struct PayToActivateFetchedAction: Action {
     var data:JSON
+}
+
+struct OrderIdAction: Action {
+    var orderId:String
 }
 
 struct BillModel {
