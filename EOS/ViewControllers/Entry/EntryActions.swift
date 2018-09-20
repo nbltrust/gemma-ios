@@ -30,13 +30,7 @@ struct EntryPropertyState {
     
     var isAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     
-    var validation: BehaviorRelay<WookongValidation> = BehaviorRelay(value: WookongValidation())
-    
     var checkSeedSuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    
-    var getSNSuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    
-    var getPubKeySuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 }
 
 struct EntryCallbackState {
@@ -59,20 +53,8 @@ struct agreeAction: Action {
     var isAgree: Bool = false
 }
 
-struct SetValidationAction: Action {
-    var validation: WookongValidation?
-}
-
 struct SetCheckSeedSuccessedAction: Action {
     var isCheck: Bool = false
-}
-
-struct SetSNSuccessedAction: Action {
-    var isSuccessed: Bool = false
-}
-
-struct SetPubkeySuccessedAction: Action {
-    var isSuccessed: Bool = false
 }
 
 //MARK: - Action Creator
