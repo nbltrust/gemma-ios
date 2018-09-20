@@ -54,24 +54,28 @@ class ResourceMortgageView: UIView {
     }
     
     func setupUI() {
-        cpuView.name = R.string.localizable.cpu()
-        cpuView.leftSubText = R.string.localizable.use() + " - " + R.string.localizable.ms()
-        cpuView.rightSubText = R.string.localizable.total() + " - " + R.string.localizable.ms()
+        cpuView.name = R.string.localizable.cpu.key.localized()
+        cpuView.leftSubText = R.string.localizable.use.key.localized() + " - " + R.string.localizable.ms.key.localized()
+        cpuView.rightSubText = R.string.localizable.total.key.localized() + " - " + R.string.localizable.ms.key.localized()
         cpuView.eos = "- EOS"
         cpuView.lineIsHidden = false
         
         netView.name = R.string.localizable.net()
-        netView.leftSubText = R.string.localizable.use() + " - " + R.string.localizable.kb()
-        netView.rightSubText = R.string.localizable.total() + " - " + R.string.localizable.kb()
+        netView.leftSubText = R.string.localizable.use.key.localized() + " - " + R.string.localizable.kb.key.localized()
+        netView.rightSubText = R.string.localizable.total.key.localized() + " - " + R.string.localizable.kb.key.localized()
         netView.eos = "- EOS"
         netView.lineIsHidden = true
 
+        pageView.leftText = R.string.localizable.mortgage_resource.key.localized()
+        pageView.rightText = R.string.localizable.cancel_mortgage.key.localized()
+        pageView.balance = R.string.localizable.balance_pre.key.localized() + "- EOS"
+        
         leftNextButton.isHidden = false
         rightNextButton.isHidden = true
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {

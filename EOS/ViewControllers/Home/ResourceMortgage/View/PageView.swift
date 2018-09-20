@@ -24,7 +24,7 @@ class PageView: UIView {
     var data: Any? {
         didSet {
             if let data = data as? PageViewModel {
-                balance = R.string.localizable.balance_pre() + data.balance
+                balance = R.string.localizable.balance_pre.key.localized() + data.balance
                 leftLabel.text = data.leftText
                 rightLabel.text = data.rightText
                 leftView.data = data.operationLeft
@@ -113,7 +113,7 @@ class PageView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {

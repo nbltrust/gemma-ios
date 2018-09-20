@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import SwiftyUserDefaults
 
 protocol NormalCoordinatorProtocol {
     func openContent(_ sender : Int)
@@ -18,6 +19,8 @@ protocol NormalStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<NormalState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func contentWithSender(_ sender: CustomSettingType) -> String
 }
 
 class NormalCoordinator: UserInfoRootCoordinator {
@@ -33,7 +36,7 @@ class NormalCoordinator: UserInfoRootCoordinator {
 
 extension NormalCoordinator: NormalCoordinatorProtocol {
     func openContent(_ sender : Int) {
-        if let vc = R.storyboard.userInfo.normalContentViewController() ,let type = NormalContentViewController.vc_type(rawValue: sender){
+        if let vc = R.storyboard.userInfo.normalContentViewController() ,let type = CustomSettingType(rawValue: sender) {
             vc.coordinator = NormalContentCoordinator(rootVC: self.rootVC)
             vc.type = type
             self.rootVC.pushViewController(vc, animated: true)
@@ -52,4 +55,18 @@ extension NormalCoordinator: NormalStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func contentWithSender(_ sender: CustomSettingType) -> String {
+        var data = [String]()
+        switch sender {
+        case .language:
+            let configuration = LanguageConfiguration()
+            data = configuration.keys
+            let index = configuration.indexWithValue(Defaults[.language])
+            return data[index]
+        case .asset:
+            return CoinUnitConfiguration.values[Defaults[.coinUnit]]
+        case .node:
+            return EOSBaseURLNodesConfiguration.values[Defaults[.currentURLNode]]
+        }
+    }
 }

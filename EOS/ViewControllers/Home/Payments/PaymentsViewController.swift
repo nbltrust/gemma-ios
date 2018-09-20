@@ -28,7 +28,7 @@ class PaymentsViewController: BaseViewController {
     }
     
     func setupUI(){
-        self.title = R.string.localizable.payments_history()
+        self.title = R.string.localizable.payments_history.key.localized()
         let name = String.init(describing:PaymentsRecordsCell.self)
         tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
     }
@@ -55,9 +55,6 @@ class PaymentsViewController: BaseViewController {
                 self.data += (self.coordinator?.state.property.data)!
                 self.tableView.reloadData()
             }
-            else {
-                self.showError(message: R.string.localizable.request_failed())
-            }
             
             }, isRefresh:true)
         
@@ -79,7 +76,7 @@ class PaymentsViewController: BaseViewController {
                     self.tableView.reloadData()
                 }
                 else {
-                    self.showError(message: R.string.localizable.request_failed())
+                    self.showError(message: R.string.localizable.request_failed.key.localized())
                 }
             },isRefresh: true)
         }
@@ -105,25 +102,7 @@ class PaymentsViewController: BaseViewController {
         }
     }
     
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        
-    }
-    
     override func configureObserveState() {
-        commonObserveState()
-        
         
     }
     

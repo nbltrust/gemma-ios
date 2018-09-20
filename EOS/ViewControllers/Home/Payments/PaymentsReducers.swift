@@ -64,7 +64,7 @@ func convertTransferViewModel(data:[Payment]) -> [PaymentsRecordsViewModel] {
         let transferState = payment.status.description()
         let money = isSend ? "-" + payment.value : "+" + payment.value
         
-        dataArray.append(PaymentsRecordsViewModel(stateImageName: stateImage, address: address!, time: time, transferState: transferState, money: money, transferStateBool: state, block: payment.block, memo: payment.memo, hashNumber: payment.hash.hashNano))
+        dataArray.append(PaymentsRecordsViewModel(stateImageName: stateImage, address: address!, time: time, transferState: transferState, money: money, transferStateBool: state, block: payment.block, memo: payment.memo, hashNumber: payment.hash.hashNano, hash: payment.hash))
         
     }
     return dataArray

@@ -27,7 +27,7 @@ class TransferContentView: UIView {
     
     var balance = "0 EOS" {
         didSet {
-            self.moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre() + balance
+            self.moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre.key.localized() + balance
 
         }
     }
@@ -60,6 +60,21 @@ class TransferContentView: UIView {
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
+    func reload() {
+        accountTitleTextView.reloadData()
+        moneyTitleTextView.reloadData()
+        remarkTitleTextView.reloadData()
+        
+        accountTitleTextView.reloadActionViews(isEditing: false)
+        moneyTitleTextView.reloadActionViews(isEditing: false)
+        remarkTitleTextView.reloadActionViews(isEditing: false)
+
+        accountTitleTextView.checkStatus = TextUIStyle.common
+        moneyTitleTextView.checkStatus = TextUIStyle.common
+        remarkTitleTextView.checkStatus = TextUIStyle.common
+
+    }
+    
     func setUp() {
         
         handleSetupSubView(accountTitleTextView, tag: InputType.account.rawValue)
@@ -69,15 +84,17 @@ class TransferContentView: UIView {
         remarkTitleTextView.datasource = self
         remarkTitleTextView.textView.delegate = self
         remarkTitleTextView.textView.maxHeight = 80
-        nextButton.title = R.string.localizable.check_transfer()
-        moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre() + "0.0000 EOS"
+        remarkTitleTextView.textView.font = UIFont.pfScS16
+        nextButton.title = R.string.localizable.tabbarTransfer.key.localized()
+        moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre.key.localized() + "0.0000 EOS"
+        moneyTitleTextView.textField.keyboardType = UIKeyboardType.decimalPad
         remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
         
         accountTitleTextView.titleLabel.font = UIFont.cnTipMedium
-        accountTitleTextView.textField.font = UIFont.pfScR16
+        accountTitleTextView.textField.font = UIFont.pfScS16
         moneyTitleTextView.titleLabel.font = UIFont.cnTipMedium
-        moneyTitleTextView.textField.font = UIFont.pfScR16
+        moneyTitleTextView.textField.font = UIFont.pfScS16
         moneyTitleTextView.introduceLabel.font = UIFont.pfScR12
         moneyTitleTextView.introduceLabel.textColor = UIColor(red: 83/255, green: 92/255, blue: 138/255, alpha: 1)
         updateHeight()
@@ -94,7 +111,7 @@ class TransferContentView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {
@@ -160,24 +177,24 @@ extension TransferContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
     
     func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting {
         if titleTextFieldView == accountTitleTextView {
-            return TitleTextSetting(title: R.string.localizable.payment_account(),
-                                    placeholder: R.string.localizable.name_ph(),
-                                    warningText: R.string.localizable.name_warning(),
+            return TitleTextSetting(title: R.string.localizable.payment_account.key.localized(),
+                                    placeholder: R.string.localizable.name_ph.key.localized(),
+                                    warningText: R.string.localizable.name_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: true,
                                     showLine: true,
                                     isSecureTextEntry: false)
         } else if titleTextFieldView == moneyTitleTextView {
-            return TitleTextSetting(title: R.string.localizable.money(),
-                                    placeholder: R.string.localizable.input_transfer_money(),
-                                    warningText: R.string.localizable.big_money(),//文案未提供
+            return TitleTextSetting(title: R.string.localizable.money.key.localized(),
+                                    placeholder: R.string.localizable.input_transfer_money.key.localized(),
+                                    warningText: R.string.localizable.big_money.key.localized(),//文案未提供
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
                                     isSecureTextEntry: false)
         } else {
-            return TitleTextSetting(title: R.string.localizable.remark(),
-                                    placeholder: R.string.localizable.input_transfer_remark(),
+            return TitleTextSetting(title: R.string.localizable.remark.key.localized(),
+                                    placeholder: R.string.localizable.input_transfer_remark.key.localized(),
                                     warningText: "",//文案未提供
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
@@ -214,8 +231,8 @@ extension TransferContentView: UITextFieldDelegate {
             moneyTitleTextView.reloadActionViews(isEditing: false)
             
             if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = moneyTitleTextView.textField.text?.toDouble() {
-                moneyTitleTextView.checkStatus = balenceDouble > moneyDouble  ? TextUIStyle.common : TextUIStyle.warning
-                nextButton.button.isEnabled = balenceDouble > moneyDouble ? true : false
+                moneyTitleTextView.checkStatus = balenceDouble >= moneyDouble  ? TextUIStyle.common : TextUIStyle.warning
+                nextButton.isEnabel.accept(balenceDouble >= moneyDouble ? true : false)
             }
             self.sendEventWith(TextChangeEvent.transferMoney.rawValue, userinfo: ["textfield" : textField])
         default:
@@ -282,9 +299,9 @@ extension TransferContentView: TitleTextViewDelegate,TitleTextViewDataSource {
     }
     
     func textUISetting(titleTextView: TitleTextView) -> TitleTextSetting {
-        return TitleTextSetting(title: R.string.localizable.remark(),
-                                placeholder: R.string.localizable.input_transfer_remark(),
-                                warningText: R.string.localizable.name_warning(),
+        return TitleTextSetting(title: R.string.localizable.remark.key.localized(),
+                                placeholder: R.string.localizable.input_transfer_remark.key.localized(),
+                                warningText: R.string.localizable.name_warning.key.localized(),
                                 introduce: "",
                                 isShowPromptWhenEditing: true,
                                 showLine: true,

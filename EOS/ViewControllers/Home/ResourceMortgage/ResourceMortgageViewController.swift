@@ -38,25 +38,10 @@ class ResourceMortgageViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.resource_manager()
+        self.title = R.string.localizable.resource_manager.key.localized()
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
+
     override func configureObserveState() {
-        commonObserveState()
         
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
@@ -156,9 +141,9 @@ extension ResourceMortgageViewController {
             }
             
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
-            model.remark = R.string.localizable.delegate() + cpuAmount + R.string.localizable.eos_for_cpu() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net()
+            model.remark = R.string.localizable.delegate.key.localized() + cpuAmount + R.string.localizable.eos_for_cpu.key.localized() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net.key.localized()
         }
-        model.buttonTitle = R.string.localizable.confirm_mortgage()
+        model.buttonTitle = R.string.localizable.confirm_mortgage.key.localized()
         
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }
@@ -176,9 +161,9 @@ extension ResourceMortgageViewController {
                 netAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
             }
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
-            model.remark = R.string.localizable.undelegate() + cpuAmount + R.string.localizable.eos_for_cpu() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net()
+            model.remark = R.string.localizable.undelegate.key.localized() + cpuAmount + R.string.localizable.eos_for_cpu.key.localized() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net.key.localized()
         }
-        model.buttonTitle = R.string.localizable.confirm_relieve_mortgage()
+        model.buttonTitle = R.string.localizable.confirm_relieve_mortgage.key.localized()
         
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }
@@ -193,6 +178,10 @@ extension ResourceMortgageViewController {
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+            cpuTextFieldView.textField.text = ""
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
     @objc func net(_ data: [String:Any]) {
@@ -206,6 +195,10 @@ extension ResourceMortgageViewController {
                 netTextFieldView.checkStatus = balenceDouble >= netMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.netValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+            netTextFieldView.textField.text = ""
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
     
@@ -220,6 +213,10 @@ extension ResourceMortgageViewController {
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.cpuReliveValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+            cpuTextFieldView.textField.text = ""
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
     @objc func netcancel(_ data: [String:Any]) {
@@ -233,6 +230,10 @@ extension ResourceMortgageViewController {
                 netTextFieldView.checkStatus = balenceDouble >= netMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.netReliveValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+            netTextFieldView.textField.text = ""
+            let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
+            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
 }

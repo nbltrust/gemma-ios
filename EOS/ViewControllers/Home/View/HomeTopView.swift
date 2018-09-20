@@ -25,6 +25,8 @@ class HomeTopView: UIView {
                 if data.portrait.count > 0 {
                     let generator = IconGenerator(size: 168, hash: Data(hex: data.portrait))
                     icon.image = UIImage(cgImage: generator.render()!)
+                } else {
+                    icon.image = nil
                 }
             }
         }
@@ -43,7 +45,7 @@ class HomeTopView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {

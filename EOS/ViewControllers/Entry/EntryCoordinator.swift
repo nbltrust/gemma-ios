@@ -9,11 +9,12 @@
 import UIKit
 import ReSwift
 import KRProgressHUD
+import NBLCommonModule
 
 protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()
-    func pushToGetInviteCodeIntroductionVC()
     func pushToCreateSuccessVC()
+    func pushToActivateVC()
 }
 
 protocol EntryStateManagerProtocol {
@@ -23,11 +24,24 @@ protocol EntryStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func validWalletName(_ name: String)
+    
     func validPassword(_ password: String)
+    
     func validComfirmPassword(_ password: String, comfirmPassword: String)
-    func validInviteCode(_ code: String)
+    
     func checkAgree(_ agree: Bool)
-    func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion:@escaping (Bool)->())
+    
+    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion:@escaping (Bool)->())
+    
+    func copyMnemonicWord()
+    
+    func getSN(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void)
+    
+    func getPubkey(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void)
+    
+    func checkSeedSuccessed()
+    
+    func verifyAccount(_ name: String, completion: @escaping (Bool) -> ())
 }
 
 class EntryCoordinator: EntryRootCoordinator {
@@ -39,20 +53,18 @@ class EntryCoordinator: EntryRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override func register() {
+        Broadcaster.register(EntryCoordinatorProtocol.self, observer: self)
+        Broadcaster.register(EntryStateManagerProtocol.self, observer: self)
+    }
 }
 
 extension EntryCoordinator: EntryCoordinatorProtocol {
     func pushToServiceProtocolVC() {
         let vc = BaseWebViewController()
         vc.url = H5AddressConfiguration.REGISTER_PROTOCOL_URL
-        vc.title = R.string.localizable.service_protocol()
-        self.rootVC.pushViewController(vc, animated: true)
-    }
-    
-    func pushToGetInviteCodeIntroductionVC() {
-        let vc = BaseWebViewController()
-        vc.url = H5AddressConfiguration.GET_INVITECODE_URL
-        vc.title = R.string.localizable.invitationcode_introduce()
+        vc.title = R.string.localizable.service_protocol.key.localized()
         self.rootVC.pushViewController(vc, animated: true)
     }
     
@@ -61,6 +73,13 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         let coordinator = CreatationCompleteCoordinator(rootVC: self.rootVC)
         createCompleteVC?.coordinator = coordinator
         self.rootVC.pushViewController(createCompleteVC!, animated: true)
+    }
+    
+    func pushToActivateVC() {
+        let copyVC = ActivateViewController()
+        let copyCoordinator = ActivateCoordinator(rootVC: self.rootVC)
+        copyVC.coordinator = copyCoordinator
+        self.rootVC.pushViewController(copyVC, animated: true)
     }
 }
 
@@ -75,6 +94,30 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func verifyAccount(_ name: String, completion: @escaping (Bool) -> ()) {
+        self.rootVC.topViewController?.startLoading()
+        NBLNetwork.request(target: .accountVerify(account: name), success: { (data) in
+            self.rootVC.topViewController?.endLoading()
+            if data["valid"].boolValue == false {
+                completion(true)
+            } else {
+                showFailTop(R.string.localizable.error_account_registered.key.localized())
+                completion(false)
+            }
+        }, error: { (code) in
+            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                let error = GemmaError.NBLCode(code: gemmaerror)
+                showFailTop(error.localizedDescription)
+            } else {
+                showFailTop(R.string.localizable.error_unknow.key.localized())
+            }
+            completion(false)
+        }) { (error) in
+            completion(false)
+            showFailTop(R.string.localizable.request_failed.key.localized())
+        }
+    }
+    
     func validWalletName(_ name: String) {
         self.store.dispatch(nameAction(isValid: WalletManager.shared.isValidWalletName(name)))
     }
@@ -87,29 +130,74 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(comfirmPasswordAction(isValid: WalletManager.shared.isValidComfirmPassword(password, comfirmPassword: comfirmPassword)))
     }
     
-    func validInviteCode(_ code: String) {
-        self.store.dispatch(inviteCodeAction(isValid: !code.isEmpty))
-    }
-    
     func checkAgree(_ agree: Bool) {
         self.store.dispatch(agreeAction(isAgree: agree))
     }
     
-    func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {
+    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion: @escaping (Bool) -> ()) {
         KRProgressHUD.show()
-        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, hash: ""), success: { (data) in
+        NBLNetwork.request(target: .createAccount(type: type,account: accountName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: validation), success: { (data) in
             KRProgressHUD.showSuccess()
-            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
+            WalletManager.shared.saveWallket(accountName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
             self.pushToCreateSuccessVC()
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)
-                KRProgressHUD.showError(withMessage: error.localizedDescription)
+                showFailTop(error.localizedDescription)
             } else {
-                KRProgressHUD.showError(withMessage: R.string.localizable.error_unknow())
+                showFailTop(R.string.localizable.error_unknow.key.localized())
             }
         }) { (error) in
-            KRProgressHUD.showError(withMessage: R.string.localizable.request_failed())
+            showFailTop(R.string.localizable.request_failed.key.localized())
         }
+    }
+    
+    func copyMnemonicWord() {
+        let mnemonicWordVC = R.storyboard.mnemonic.backupMnemonicWordViewController()
+        let coor = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
+        mnemonicWordVC?.coordinator = coor
+        self.rootVC.pushViewController(mnemonicWordVC!, animated: true)
+    }
+    
+    func getSN(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void) {
+        BLTWalletIO.shareInstance().getSN(success, failed: failed)
+    }
+    
+    func getPubkey(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void) {
+        BLTWalletIO.shareInstance().getPubKey(success, failed: failed)
+    }
+    
+    func getSN() {
+        getSN({ [weak self] (sn, sn_sig) in
+            guard let `self` = self else { return }
+            var validation = self.state.property.validation.value
+            validation.SN = sn ?? ""
+            validation.SN_sig = sn_sig ?? ""
+            self.store.dispatch(SetValidationAction(validation: validation))
+            self.getPubkey()
+        }) { (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        }
+    }
+    
+    func getPubkey() {
+        getPubkey({ [weak self] (pubkey, pubkey_sig) in
+            guard let `self` = self else { return }
+            var validation = self.state.property.validation.value
+            validation.public_key = pubkey ?? ""
+            validation.public_key_sig = pubkey_sig ?? ""
+            self.store.dispatch(SetValidationAction(validation: validation))
+        }) { (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        }
+    }
+    
+    func checkSeedSuccessed() {
+        self.store.dispatch(SetCheckSeedSuccessedAction(isCheck: true))
+        getSN()
     }
 }

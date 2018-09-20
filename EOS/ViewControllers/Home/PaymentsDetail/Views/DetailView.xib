@@ -157,7 +157,7 @@
                                                                     <color key="textColor" red="0.55700000000000005" green="0.55700000000000005" blue="0.57599999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="block_time"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="transaction_time"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHB-Ix-bb4">
@@ -255,7 +255,7 @@
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="locali" value="remark"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7p-GB-wRO">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7p-GB-wRO">
                                                                     <rect key="frame" x="315" y="15" width="13" height="22"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -359,11 +359,24 @@
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="wel-rz-GBB"/>
                                                                     </constraints>
                                                                 </view>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISZ-TZ-ylF">
+                                                                    <rect key="frame" x="296" y="18.5" width="16" height="16"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="16" id="1sU-Jt-U8P"/>
+                                                                        <constraint firstAttribute="height" constant="16" id="BhF-rt-9MO"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button" image="icTabCopySelected"/>
+                                                                    <connections>
+                                                                        <action selector="copyButtonClick:" destination="-1" eventType="touchUpInside" id="inf-cy-12t"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="a8g-Ts-hHh" secondAttribute="trailing" constant="15" id="1Fg-kr-fbG"/>
+                                                                <constraint firstItem="a8g-Ts-hHh" firstAttribute="leading" secondItem="ISZ-TZ-ylF" secondAttribute="trailing" constant="3" id="3on-O2-mvu"/>
                                                                 <constraint firstAttribute="bottom" secondItem="iXG-Ci-kKl" secondAttribute="bottom" constant="13" id="9Ir-Vy-Ykz"/>
+                                                                <constraint firstItem="a8g-Ts-hHh" firstAttribute="centerY" secondItem="ISZ-TZ-ylF" secondAttribute="centerY" id="K63-Uc-KUE"/>
                                                                 <constraint firstItem="Ybq-YJ-yrf" firstAttribute="leading" secondItem="iXG-Ci-kKl" secondAttribute="leading" id="Vdp-La-i34"/>
                                                                 <constraint firstItem="a8g-Ts-hHh" firstAttribute="trailing" secondItem="Ybq-YJ-yrf" secondAttribute="trailing" id="eWX-sm-K6o"/>
                                                                 <constraint firstItem="iXG-Ci-kKl" firstAttribute="top" secondItem="6wP-7N-W81" secondAttribute="top" constant="15" id="gVz-8Z-0VT"/>
@@ -510,6 +523,7 @@
     </objects>
     <resources>
         <image name="icIncomeWhite" width="24" height="24"/>
+        <image name="icTabCopySelected" width="16" height="16"/>
         <image name="imgSendBg" width="343" height="105"/>
     </resources>
 </document>

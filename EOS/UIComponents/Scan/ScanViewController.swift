@@ -19,11 +19,13 @@ class ScanViewController: BaseViewController {
     var titleLabel: UILabel?
     var subTitle: String?
     var captusession: AVCaptureSession?
-    
+    var viewSize: CGSize!
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.black
+        viewSize = self.view.bounds.size
+        setupUI()
+        self.startLoadingOnSelf(false, message: "")
         checkCameraAuth()
     }
     
@@ -39,16 +41,15 @@ class ScanViewController: BaseViewController {
                 self.loadScanView()
             } else {
                 self.loadScanView()
-                self.showAlert(title: R.string.localizable.prompt(), message: R.string.localizable.guide_open_camera(), buttonTitles: [R.string.localizable.got_it()])
+                self.showAlert(title: R.string.localizable.prompt.key.localized(), message: R.string.localizable.guide_open_camera.key.localized(), buttonTitles: [R.string.localizable.got_it.key.localized()])
             }
         } else {
             self.loadScanView()
-            self.showAlert(title: R.string.localizable.prompt(), message: R.string.localizable.unsupport_camera(), buttonTitles: [R.string.localizable.got_it()])
+            self.showAlert(title: R.string.localizable.prompt.key.localized(), message: R.string.localizable.unsupport_camera.key.localized(), buttonTitles: [R.string.localizable.got_it.key.localized()])
         }
     }
     
     func loadScanView() {
-        loadLabel()
         initSession()
     }
     
@@ -56,22 +57,9 @@ class ScanViewController: BaseViewController {
         super.viewDidAppear(animated)
     }
     
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
-    func loadLabel() {
-        self.title = R.string.localizable.scan_title()
+    func setupUI() {
+        self.view.backgroundColor = UIColor.black
+        self.title = R.string.localizable.scan_title.key.localized()
         self.configLeftNavButton(nil)
         let rect = ScanSetting.scanRect
         titleLabel = UILabel.init(frame: CGRect(x: 0, y: rect.maxY + 29, width: self.view.width, height: 20))
@@ -93,17 +81,17 @@ class ScanViewController: BaseViewController {
     }
     
     func initSession() {
-        let size = self.view.bounds.size
         DispatchQueue.global().async {
             let session = AVCaptureSession()
             session.sessionPreset = .high
             self.addInput(session)
-            self.addOutput(session, size: size)
+            self.addOutput(session, size: self.viewSize)
             session.startRunning()
         
             DispatchQueue.main.async {
                 self.captusession = session
                 self.setupPreviewLayer()
+                self.endLoading()
             }
         }
        
@@ -136,7 +124,6 @@ class ScanViewController: BaseViewController {
     }
     
     override func configureObserveState() {
-        commonObserveState()
     }
 }
 

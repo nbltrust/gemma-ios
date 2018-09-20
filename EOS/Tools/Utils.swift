@@ -10,11 +10,12 @@ import Foundation
 import SwifterSwift
 import Guitar
 import Device
-import NotificationBannerSwift
-import RxGesture
-import SwiftNotificationCenter
+import NotificationBanner
+import NBLCommonModule
 import KRProgressHUD
+import SwiftyUserDefaults
 
+//Nav BackgroundImage
 func navBgImage() -> UIImage? {
     switch UIScreen.main.bounds.width {
     case 320:
@@ -26,6 +27,21 @@ func navBgImage() -> UIImage? {
     default:
         return nil
     }
+}
+
+//Coin Datas
+func coinUnit() -> String {
+    let data = CoinUnitConfiguration.values
+    let coinIndex = Defaults[.coinUnit]
+    return data[coinIndex]
+}
+
+func coinType() -> CoinType {
+    let coinIndex = Defaults[.coinUnit]
+    if let type = CoinType(rawValue: coinIndex) {
+        return type
+    }
+    return .CNY
 }
 
 //func print<T>(file: String = #file, function: String = #function, line: Int = #line, _ message: T, color: UIColor = UIColor.white) {
@@ -178,7 +194,7 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
             }, error: { (error_code) in
                 callback(false, actionModel.faile)
             }) { (error) in
-                callback(false,R.string.localizable.request_failed() )
+                callback(false,R.string.localizable.request_failed.key.localized() )
             }
             
         }, error: { (code) in
@@ -271,7 +287,7 @@ extension String {
     }
     
     var hashNano: String {
-        if let front = self.substring(from: 0, length: 8), let behind = self.substring(from: self.count - 9, length: 8) {
+        if let front = self.substring(from: 0, length: 8), let behind = self.substring(from: self.count - 8, length: 8) {
             return front + "..." + behind
         }
         
@@ -286,7 +302,7 @@ extension Date {
         let hour = ceil((interval - day * 86400) / 3600)
         
         if day >= 0 && hour >= 0 {
-            return String.init(format: "%@%02.0f%@%02.0f%@", R.string.localizable.rest(), day, R.string.localizable.day(), hour, R.string.localizable.hour())
+            return String.init(format: "%@%02.0f%@%02.0f%@", R.string.localizable.rest.key.localized(), day, R.string.localizable.day.key.localized(), hour, R.string.localizable.hour.key.localized())
         }
         else {
             return ""
@@ -322,6 +338,27 @@ extension UIImage {
     
 }
 
+func getCurrentLanguage() -> String {
+    //        let defs = UserDefaults.standard
+    //        let languages = defs.object(forKey: "AppleLanguages")
+    //        let preferredLang = (languages! as AnyObject).object(0)
+    let preferredLang = Bundle.main.preferredLocalizations.first! as NSString
+    //        let preferredLang = (languages! as AnyObject).object(0)
+    log.debug("当前系统语言:\(preferredLang)")
+    
+    switch String(describing: preferredLang) {
+    case "en-US", "en-CN":
+        return "en"//英文
+    case "zh-Hans-US","zh-Hans-CN","zh-Hant-CN","zh-TW","zh-HK","zh-Hans":
+        return "cn"//中文
+    default:
+        return "en"
+    }
+}
+
+func labelBaselineOffset(_ lineHeight:CGFloat, fontHeight:CGFloat) -> Float {
+    return ((lineHeight - lineHeight) / 4.0).float
+}
 
 //func correctAmount(_ sender:String) -> String{
 //    if let _ = sender.toDouble(){

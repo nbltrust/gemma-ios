@@ -10,39 +10,51 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import MessageUI
 
 class UserInfoViewController: BaseViewController {
     
-    @IBOutlet weak var testView: NormalCellView!
+    @IBOutlet weak var customView: NormalCellView!
     
+    @IBOutlet weak var safeView: NormalCellView!
+    
+    @IBOutlet weak var feedbackView: NormalCellView!
+    
+    @IBOutlet weak var protocolView: NormalCellView!
+    
+    @IBOutlet weak var aboutView: NormalCellView!
     
     var coordinator: (UserInfoCoordinatorProtocol & UserInfoStateManagerProtocol)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        setupUI()
+    }
+    
+    override func languageChanged() {
+        super.languageChanged()
+        reload()
+    }
+    
+    func reload() {
         setupUI()
+        customView.reload()
+        safeView.reload()
+        feedbackView.reload()
+        protocolView.reload()
+        aboutView.reload()
     }
     
     func setupUI() {
-        self.title = R.string.localizable.mine_title()
-    }
-        
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
+        self.title = R.string.localizable.mine_title.key.localized()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
+    }
+  
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }
@@ -60,3 +72,24 @@ extension UserInfoViewController {
         }
     }
 }
+
+extension UserInfoViewController:MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+
+        switch result.rawValue{
+        case MFMailComposeResult.sent.rawValue:
+            print("邮件已发送")
+        case MFMailComposeResult.cancelled.rawValue:
+            print("邮件已取消")
+        case MFMailComposeResult.saved.rawValue:
+            print("邮件已保存")
+        case MFMailComposeResult.failed.rawValue:
+            print("邮件发送失败")
+        default:
+            print("邮件没有发送")
+            break
+        }
+    }
+}
+

@@ -16,6 +16,8 @@ class GestureLockView: UIView {
 
     open weak var delegate: GestureLockViewDelegate?
     
+    open var locked = false
+    
     private var itemLayers: [GestureItemLayer] = []
     
     private var selectedItemLayers: [GestureItemLayer] = []
@@ -26,7 +28,7 @@ class GestureLockView: UIView {
     
     private(set) var password = ""
     
-    private var lastLocation = CGPoint.zero
+    private var lastLocation = CGPoint(x: 0, y: 0)
     
     private var shapeLayer: CAShapeLayer? {
         return layer as? CAShapeLayer
@@ -43,7 +45,7 @@ class GestureLockView: UIView {
     }
     
     convenience init() {
-        self.init(frame: .zero)
+        self.init(frame: CGRect(x:0, y:0, width:0, height:0))
     }
     
     override init(frame: CGRect) {
@@ -59,8 +61,8 @@ class GestureLockView: UIView {
     }
     
     fileprivate func setupLayer() {
-        self.shapeLayer?.lineCap = kCALineCapRound
-        self.shapeLayer?.lineJoin = kCALineJoinRound
+        self.shapeLayer?.lineCap = CAShapeLayerLineCap.round
+        self.shapeLayer?.lineJoin = CAShapeLayerLineJoin.round
         self.shapeLayer?.fillColor = UIColor.clear.cgColor
         self.shapeLayer?.strokeColor = GestureLockSetting.lockHighlightedColor.cgColor
         self.shapeLayer?.lineWidth = GestureLockSetting.lockHighlightedBorderWidth
@@ -72,18 +74,25 @@ class GestureLockView: UIView {
             itemLayers.append(itemLayer)
             layer.addSublayer(itemLayer)
         }
-        let marginX = (frame.width - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
-        let marginY = (frame.height - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
         
-        for (idx, sublayer) in itemLayers.enumerated() {
-            let row = CGFloat(idx % 3)
-            let col = CGFloat(idx / 3)
-            let originX = (itemSizes.width.adapt() + itemSizes.gap.adapt()) * row + marginX
-            let originY = (itemSizes.width.adapt() + itemSizes.gap.adapt()) * col + marginY
-            sublayer.index = idx
-            sublayer.centerRadio = itemSizes.centerRadius
-            sublayer.width = itemSizes.width.adapt()
-            sublayer.origin = CGPoint(x: originX, y: originY)
+        reSizeLayer()
+    }
+    
+    func reSizeLayer() {
+        if itemLayers.count > 0 {
+            let marginX = (frame.width - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
+            let marginY = (frame.height - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
+            
+            for (idx, sublayer) in itemLayers.enumerated() {
+                let row = CGFloat(idx % 3)
+                let col = CGFloat(idx / 3)
+                let originX = (itemSizes.width.adapt() + itemSizes.gap.adapt()) * row + marginX
+                let originY = (itemSizes.width.adapt() + itemSizes.gap.adapt()) * col + marginY
+                sublayer.index = idx
+                sublayer.centerRadio = itemSizes.centerRadius
+                sublayer.width = itemSizes.width.adapt()
+                sublayer.origin = CGPoint(x: originX, y: originY)
+            }
         }
     }
     
@@ -95,6 +104,7 @@ class GestureLockView: UIView {
         
     override func layoutSubviews() {
         super.layoutSubviews()
+        reSizeLayer()
     }
     
     override open func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
@@ -123,11 +133,12 @@ class GestureLockView: UIView {
         }
         selectedItemLayers.append(itemLayer)
         password += itemLayer.index.description
-        itemLayer.status = .highlighted
+        itemLayer.status = locked ? .locked : .highlighted
         drawLine()
     }
     
     private func touchesEnd() {
+        self.isUserInteractionEnabled = false
         delegate?.gestureLockViewDidTouchesEnd(self)
         delay(1.0) {
             self.reset()
@@ -187,8 +198,9 @@ class GestureLockView: UIView {
     }
     
     public func reset() {
+        self.isUserInteractionEnabled = true
         interval = 0
-        shapeLayer?.strokeColor = GestureLockSetting.lockHighlightedColor.cgColor
+        shapeLayer?.strokeColor = locked ? GestureLockSetting.warningColor.cgColor : GestureLockSetting.lockHighlightedColor.cgColor
         selectedItemLayers.forEach { $0.status = .normal }
         selectedItemLayers.removeAll()
         mainPath.removeAllPoints()

@@ -23,6 +23,7 @@ class FingerPrinterConfirmViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
+        self.coordinator?.confirm()
         if canDismiss {
             self.configLeftNavButton(R.image.icTransferClose())
         }
@@ -42,19 +43,7 @@ class FingerPrinterConfirmViewController: BaseViewController {
         UIApplication.shared.statusBarStyle = .lightContent
     }
     
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
+    override func configureObserveState() {
         clickView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
             self.coordinator?.confirm()
@@ -64,10 +53,5 @@ class FingerPrinterConfirmViewController: BaseViewController {
             guard let `self` = self else { return }
             self.coordinator?.confirm()
         }).disposed(by: disposeBag)
-    }
-    
-    override func configureObserveState() {
-        commonObserveState()
-        
     }
 }

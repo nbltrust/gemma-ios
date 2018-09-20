@@ -20,20 +20,19 @@ class SafeViewController: BaseViewController {
     @IBOutlet weak var gestureView: SafeLineView!
     @IBOutlet weak var gestureActionView: NormalCellView!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        updateSafeSetting()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupEvent()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         updateSafeSetting()
     }
     
     func setupUI() {
-        self.title = R.string.localizable.mine_safesetting()
+        self.title = R.string.localizable.mine_safesetting.key.localized()
     }
     
     func setupEvent() {
@@ -109,23 +108,8 @@ class SafeViewController: BaseViewController {
         gestureView.isShowLineView = SafeManager.shared.isGestureLockOpened()
         gestureActionView.isHidden = !SafeManager.shared.isGestureLockOpened()
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
+
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }

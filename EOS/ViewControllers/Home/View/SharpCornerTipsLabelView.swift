@@ -10,7 +10,7 @@ import UIKit
 
 class SharpCornerTipsLabelView: UIView {
     
-    @IBOutlet weak var mTextLabel: UILabel!
+    @IBOutlet weak var mTextLabel: BaseLabel!
     
     @IBOutlet weak var mImageView: UIImageView!
     
@@ -22,6 +22,10 @@ class SharpCornerTipsLabelView: UIView {
         
     }
     
+    func setup() {
+        self.mTextLabel.text = R.string.localizable.pwd_tips_warning.key.localized()
+    }
+    
     fileprivate func updateHeight(){
         layoutIfNeeded()
         self.frame.size.height = dynamicHeight()
@@ -29,7 +33,7 @@ class SharpCornerTipsLabelView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric, height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
     
     fileprivate func dynamicHeight() -> CGFloat {
@@ -46,11 +50,13 @@ class SharpCornerTipsLabelView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
+        setup()
     }
     
     fileprivate func loadViewFromNib() {

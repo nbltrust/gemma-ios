@@ -24,36 +24,22 @@ class ChangeWalletNameViewController: BaseViewController {
     }
     
     func setUpUI() {
-        self.title = R.string.localizable.change_wallet_name()
-        configRightNavButton(R.string.localizable.normal_save())
+        self.title = R.string.localizable.change_wallet_name.key.localized()
+        configRightNavButton(R.string.localizable.normal_save.key.localized())
         changeWalletNameView.text = model.name
     }
     
     override func rightAction(_ sender: UIButton) {
         //保存
         self.view.endEditing(true)
+
         model.name = changeWalletNameView.textField.text ?? ""
         if self.coordinator?.updateWalletName(model: model) == true {
             self.coordinator?.popToLastVC()
         }
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
+
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }

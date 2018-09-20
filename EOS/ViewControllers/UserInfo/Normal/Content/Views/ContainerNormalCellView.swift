@@ -17,7 +17,19 @@ class ContainerNormalCellView: UIView {
     
     @IBOutlet weak var stackView: UIStackView!
     
-    var selectedIndex : Int = 0
+    var selectedIndex : Int = 0 {
+        didSet {
+            if selectedIndex != oldValue {
+                if let oldView = self.stackView.viewWithTag(oldValue + 1) as? NormalCellView {
+                    oldView.rightIconName = R.image.select.name
+                }
+                
+                if let newView = self.stackView.viewWithTag(selectedIndex + 1) as? NormalCellView {
+                    newView.rightIconName = R.image.group.name
+                }
+            }
+        }
+    }
     var data : Any? {
         didSet{
             if let data = data as? [String] {
@@ -28,6 +40,7 @@ class ContainerNormalCellView: UIView {
                     cellView.index = index
                     cellView.name_text = item
                     cellView.state = 1
+                    cellView.tag = (index + 1)
                     cellView.backgroundColor = UIColor.whiteTwo89
                     cellView.name_style = LineViewStyleNames.normal_name.rawValue
                     cellView.rightIconName = index == self.selectedIndex ? R.image.group.name : R.image.select.name
@@ -69,7 +82,7 @@ class ContainerNormalCellView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {
@@ -102,17 +115,8 @@ class ContainerNormalCellView: UIView {
 extension ContainerNormalCellView {
     @objc func clickCellView(_ sender : [String:Any]) {
         if let index = sender["index"] as? Int {
-            for subView in self.stackView.arrangedSubviews {
-                if let view = subView as? NormalCellView {
-                    if view.index == index {
-                        view.rightIconName = R.image.group.name
-                    }
-                    else {
-                        view.rightIconName = R.image.select.name
-                    }
-                }
-            }
+            self.selectedIndex = index
+            self.sendEventWith(event.selectedSetting.rawValue, userinfo: ["index":index])
         }
-        self.sendEventWith(event.selectedSetting.rawValue, userinfo: ["index":index])
     }
 }

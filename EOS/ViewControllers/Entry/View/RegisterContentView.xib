@@ -5,17 +5,17 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterContentView" customModule="EOS" customModuleProvider="target">
             <connections>
-                <outlet property="inviteCodeView" destination="9qd-Dt-GCr" id="ZJ2-5w-TFp"/>
                 <outlet property="nameView" destination="7eI-ET-PPs" id="zKV-wR-3t6"/>
                 <outlet property="passwordComfirmView" destination="s0M-Q5-YdH" id="dN7-Zq-Kpb"/>
                 <outlet property="passwordPromptView" destination="g8m-6B-Aoo" id="ngi-gg-R4f"/>
                 <outlet property="passwordView" destination="hhP-ye-AF6" id="PJp-9f-y1x"/>
+                <outlet property="tipsView" destination="ll4-eo-BHd" id="TKy-cs-VMo"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -23,47 +23,70 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="790"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-ET-PPs" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-ye-AF6" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="93" width="375" height="65.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0M-Q5-YdH" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="200" width="375" height="65.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8m-6B-Aoo" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="281" width="375" height="65.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-Dt-GCr" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="400" width="375" height="65.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="czO-oJ-kjc">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="298"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-ET-PPs" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ll4-eo-BHd" customClass="SharpCornerTipsLabelView" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="91" id="xIH-q2-JO5"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ll4-eo-BHd" secondAttribute="trailing" id="3M1-WX-k8C"/>
+                                <constraint firstItem="ll4-eo-BHd" firstAttribute="leading" secondItem="7eI-ET-PPs" secondAttribute="leading" id="TXe-Ve-iWX"/>
+                                <constraint firstItem="ll4-eo-BHd" firstAttribute="top" secondItem="7eI-ET-PPs" secondAttribute="top" constant="-10" id="vH8-U8-b3k"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-ye-AF6" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="85.5" width="375" height="65.5"/>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0M-Q5-YdH" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="151" width="375" height="65.5"/>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8m-6B-Aoo" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="216.5" width="375" height="65.5"/>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BCe-ps-ThL" userLabel="gap">
+                            <rect key="frame" x="0.0" y="282" width="375" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="bjf-sk-rxy"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="7eI-ET-PPs" secondAttribute="trailing" id="166-GO-fJL"/>
+                        <constraint firstAttribute="trailing" secondItem="hhP-ye-AF6" secondAttribute="trailing" id="5XA-l2-7Ms"/>
+                        <constraint firstItem="s0M-Q5-YdH" firstAttribute="top" secondItem="hhP-ye-AF6" secondAttribute="bottom" constant="16" id="65f-iw-tQR"/>
+                        <constraint firstItem="s0M-Q5-YdH" firstAttribute="leading" secondItem="czO-oJ-kjc" secondAttribute="leading" id="6eb-o5-nMF"/>
+                        <constraint firstAttribute="trailing" secondItem="BCe-ps-ThL" secondAttribute="trailing" id="6j5-eu-Bue"/>
+                        <constraint firstItem="BCe-ps-ThL" firstAttribute="top" secondItem="g8m-6B-Aoo" secondAttribute="bottom" id="FCb-Ff-dyN"/>
+                        <constraint firstAttribute="trailing" secondItem="g8m-6B-Aoo" secondAttribute="trailing" id="HwR-Xk-Usd"/>
+                        <constraint firstItem="g8m-6B-Aoo" firstAttribute="top" secondItem="s0M-Q5-YdH" secondAttribute="bottom" constant="16" id="Mh7-U0-OtB"/>
+                        <constraint firstItem="BCe-ps-ThL" firstAttribute="leading" secondItem="czO-oJ-kjc" secondAttribute="leading" id="Ybh-2T-pBs"/>
+                        <constraint firstItem="hhP-ye-AF6" firstAttribute="top" secondItem="7eI-ET-PPs" secondAttribute="bottom" constant="16" id="Z8A-SR-T2Q"/>
+                        <constraint firstAttribute="bottom" secondItem="BCe-ps-ThL" secondAttribute="bottom" id="d7A-nl-dfK"/>
+                        <constraint firstAttribute="trailing" secondItem="s0M-Q5-YdH" secondAttribute="trailing" id="h7l-U5-ssH"/>
+                        <constraint firstItem="g8m-6B-Aoo" firstAttribute="leading" secondItem="czO-oJ-kjc" secondAttribute="leading" id="ngM-a5-Kbq"/>
+                        <constraint firstItem="7eI-ET-PPs" firstAttribute="top" secondItem="czO-oJ-kjc" secondAttribute="top" id="qUr-fT-zjg"/>
+                        <constraint firstItem="7eI-ET-PPs" firstAttribute="leading" secondItem="czO-oJ-kjc" secondAttribute="leading" id="rwD-ZR-Fri"/>
+                        <constraint firstItem="hhP-ye-AF6" firstAttribute="leading" secondItem="czO-oJ-kjc" secondAttribute="leading" id="xTh-IO-pYT"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="g8m-6B-Aoo" firstAttribute="top" secondItem="s0M-Q5-YdH" secondAttribute="bottom" id="0O4-TJ-qoK"/>
-                <constraint firstAttribute="trailing" secondItem="hhP-ye-AF6" secondAttribute="trailing" id="6XO-0u-kYx"/>
-                <constraint firstItem="7eI-ET-PPs" firstAttribute="top" secondItem="dZe-KR-nHX" secondAttribute="top" id="7Oi-ii-tBx"/>
-                <constraint firstItem="s0M-Q5-YdH" firstAttribute="top" secondItem="hhP-ye-AF6" secondAttribute="bottom" id="CGw-bS-dyc"/>
-                <constraint firstItem="hhP-ye-AF6" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="EMJ-xR-fhL"/>
-                <constraint firstItem="g8m-6B-Aoo" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="Eh7-HF-e9S"/>
-                <constraint firstItem="hhP-ye-AF6" firstAttribute="top" secondItem="7eI-ET-PPs" secondAttribute="bottom" id="J2R-zt-wHt"/>
-                <constraint firstAttribute="trailing" secondItem="9qd-Dt-GCr" secondAttribute="trailing" id="XY0-6L-qsG"/>
-                <constraint firstItem="7eI-ET-PPs" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="aFc-Uk-7Ky"/>
-                <constraint firstAttribute="trailing" secondItem="7eI-ET-PPs" secondAttribute="trailing" id="g0i-qf-2Rn"/>
-                <constraint firstAttribute="trailing" secondItem="s0M-Q5-YdH" secondAttribute="trailing" id="kp1-Mk-UDI"/>
-                <constraint firstAttribute="trailing" secondItem="g8m-6B-Aoo" secondAttribute="trailing" id="lOy-ct-Bof"/>
-                <constraint firstItem="9qd-Dt-GCr" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="sic-mr-HT9"/>
-                <constraint firstItem="9qd-Dt-GCr" firstAttribute="top" secondItem="g8m-6B-Aoo" secondAttribute="bottom" id="vyG-3U-pPq"/>
-                <constraint firstItem="s0M-Q5-YdH" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="z38-9Y-iaV"/>
+                <constraint firstItem="czO-oJ-kjc" firstAttribute="leading" secondItem="dZe-KR-nHX" secondAttribute="leading" id="QtW-hA-x9P"/>
+                <constraint firstItem="czO-oJ-kjc" firstAttribute="top" secondItem="dZe-KR-nHX" secondAttribute="top" id="dzF-cc-Gmd"/>
+                <constraint firstAttribute="trailing" secondItem="czO-oJ-kjc" secondAttribute="trailing" id="vyl-QJ-Rb3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-170" y="-29"/>
+            <point key="canvasLocation" x="-170.5" y="-29"/>
         </view>
     </objects>
 </document>

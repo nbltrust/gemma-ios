@@ -14,6 +14,7 @@ enum StyleNames:String {
     case agree
     case agreement
     case comfirmContent
+    case activate
 }
 
 enum LineViewStyleNames:String {
@@ -22,6 +23,14 @@ enum LineViewStyleNames:String {
     case normal_content
     case transfer_confirm
     case confirm_name
+}
+
+extension Style {
+    func setupLineHeight(_ lineHeight:CGFloat, fontHeight:CGFloat) {
+        self.maximumLineHeight = lineHeight
+        self.minimumLineHeight = lineHeight
+        self.baselineOffset = labelBaselineOffset(lineHeight, fontHeight: lineHeight)
+    }
 }
 
 class RichStyle {
@@ -42,7 +51,7 @@ class RichStyle {
         let agreement_style = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
             $0.color = UIColor.darkSlateBlue
-            $0.underline = (.styleSingle,UIColor.darkSlateBlue)
+            $0.underline = (.single,UIColor.darkSlateBlue)
         }
         Styles.register(StyleNames.agreement.rawValue, style: agreement_style)
         
@@ -56,11 +65,12 @@ class RichStyle {
         let check_style = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
             $0.color = UIColor.darkSlateBlue
-            $0.underline = (.styleSingle,UIColor.darkSlateBlue)
+            $0.underline = (.single,UIColor.darkSlateBlue)
         }
         Styles.register(StyleNames.agreement.rawValue, style: check_style)
         
         initLineViewStyle()
+        initActivateLabelStyle()
       }
     
     func initLineViewStyle(){
@@ -93,5 +103,31 @@ class RichStyle {
             $0.color = UIColor.steel
         }
         Styles.register(LineViewStyleNames.confirm_name.rawValue, style: confirm_name_style)
+    }
+    
+    func initActivateLabelStyle() {
+        let base = Style{
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
+            $0.color = UIColor.blueyGrey
+        }
+//
+//        let bluey_grey = Style {
+//            $0.color = UIColor.blueyGrey
+//        }
+        
+        let corn_flower_blue = Style {
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
+            $0.color = UIColor.cornflowerBlue
+        }
+        
+        let corn_flower_blue_underline = Style {
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
+            $0.color = UIColor.cornflowerBlue
+            $0.underline = (.single, UIColor.cornflowerBlue)
+            $0.alignment = .center
+        }
+        
+        let myGroup = StyleGroup(base: base, ["corn_flower_blue_underline":corn_flower_blue_underline,"corn_flower_blue":corn_flower_blue])
+        StylesManager.shared.register(StyleNames.activate.rawValue, style: myGroup)
     }
 }

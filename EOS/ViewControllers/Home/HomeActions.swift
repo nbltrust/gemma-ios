@@ -42,18 +42,20 @@ struct AccountListViewModel {
 struct HomePropertyState {
     var info:BehaviorRelay<AccountViewModel> = BehaviorRelay(value: AccountViewModel())
     var CNY_price:String = ""
+    var Other_price:String = ""
 }
 
 struct BalanceFetchedAction:Action {
-    var balance:JSON
+    var balance:JSON?
 }
 
 struct AccountFetchedAction:Action {
-    var info:Account
+    var info:Account?
 }
 
 struct RMBPriceFetchedAction:Action {
-    var price:JSON
+    var price:JSON?
+    var otherPrice:JSON?
 }
 
 //MARK: - Action Creator

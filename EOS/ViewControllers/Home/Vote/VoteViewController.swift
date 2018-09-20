@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import SwiftNotificationCenter
+import NBLCommonModule
 
 class VoteViewController: BaseViewController {
     @IBOutlet weak var voteTable: UITableView!
@@ -18,7 +18,7 @@ class VoteViewController: BaseViewController {
     @IBOutlet weak var footView: VoteFootView!
     
     var coordinator: (VoteCoordinatorProtocol & VoteStateManagerProtocol)?
-
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -28,7 +28,7 @@ class VoteViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.vote_title()
+        self.title = R.string.localizable.vote_title.key.localized()
         
         let nibString = R.nib.nodeCell.identifier
         voteTable.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
@@ -97,33 +97,16 @@ class VoteViewController: BaseViewController {
         }
         self.coordinator?.updateIndexPaths(voteTable.indexPathsForSelectedRows)
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
+
+    override func configureObserveState() {
         coordinator?.state.property.delagatedInfo.asObservable().subscribe(onNext: {[weak self] (info) in
             guard let `self` = self else { return }
             if let info = info {
-                self.footView.subTitleLabel.text = info.delagetedAmount.string + " " + R.string.localizable.eos()
+                self.footView.subTitleLabel.text = info.delagetedAmount.string + " " + R.string.localizable.eos.key.localized()
                 self.footView.statusView.highlighted = info.delagetedAmount > 0
+                self.voteTable.allowsSelection = info.delagetedAmount > 0
             }
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
-    }
-    
-    override func configureObserveState() {
-        commonObserveState()
-        
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 
@@ -144,7 +127,7 @@ extension VoteViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

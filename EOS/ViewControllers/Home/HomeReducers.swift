@@ -19,33 +19,49 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
     
     switch action {
     case let action as BalanceFetchedAction:
-        var viewmodel = state.info.value
-        if let balance = action.balance.arrayValue.first?.string {
-            viewmodel.balance = balance
-          
+
+        if action.balance != nil {
+            var viewmodel = state.info.value
+
+            if let balance = action.balance?.arrayValue.first?.string {
+                viewmodel.balance = balance
+                
+            }
+            else {
+                viewmodel.balance = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+            }
+            
+            viewmodel.allAssets = calculateTotalAsset(viewmodel)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
+            state.info.accept(viewmodel)
+        } else {
+            let viewmodel = initAccountViewModel()
+            state.info.accept(viewmodel)
         }
-        else {
-            viewmodel.balance = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        }
-        
-        viewmodel.allAssets = calculateTotalAsset(viewmodel)
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
-        
-        state.info.accept(viewmodel)
-        
     case let action as AccountFetchedAction:
-        var viewmodel = convertAccountViewModelWithAccount(action.info, viewmodel:state.info.value)
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
-
-        state.info.accept(viewmodel)
-        
+        if action.info != nil {
+            var viewmodel = convertAccountViewModelWithAccount(action.info!, viewmodel:state.info.value)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
+            
+            state.info.accept(viewmodel)
+        } else {
+            let viewmodel = initAccountViewModel()
+            state.info.accept(viewmodel)
+        }
     case let action as RMBPriceFetchedAction:
-        var viewmodel = state.info.value
-        state.CNY_price = action.price["value"].stringValue
-        
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price)
-        state.info.accept(viewmodel)
-
+        if action.price != nil {
+            var viewmodel = state.info.value
+            state.CNY_price = action.price!["value"].stringValue
+            if action.otherPrice != nil {
+                state.Other_price = action.otherPrice!["value"].stringValue
+            }
+            
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
+            state.info.accept(viewmodel)
+        } else {
+            let viewmodel = initAccountViewModel()
+            state.info.accept(viewmodel)
+        }
     default:
         break
     }
@@ -53,17 +69,39 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
     return state
 }
 
+func initAccountViewModel() -> AccountViewModel {
+    var newViewModel = AccountViewModel()
+    newViewModel.account = "--"
+    newViewModel.portrait = ""
+    newViewModel.cpuValue = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    newViewModel.netValue = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    
+    newViewModel.cpuProgress = 0
+    newViewModel.netProgress = 0
+    newViewModel.ramProgress = 0
+    
+    newViewModel.ramValue = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    
+    newViewModel.recentRefundAsset = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+
+    newViewModel.refundTime = ""
+    
+    newViewModel.allAssets = calculateTotalAsset(newViewModel)
+    
+    return newViewModel
+}
+
 func convertAccountViewModelWithAccount(_ account:Account, viewmodel:AccountViewModel) -> AccountViewModel {
     var newViewModel = viewmodel
     newViewModel.account = account.account_name
     newViewModel.portrait = account.account_name.sha256()
-    newViewModel.cpuValue = account.total_resources?.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    newViewModel.netValue = account.total_resources?.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    newViewModel.cpuValue = account.self_delegated_bandwidth?.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    newViewModel.netValue = account.self_delegated_bandwidth?.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
     
     if let used = account.cpu_limit?.used.string,let max = account.cpu_limit?.max.string {
         newViewModel.cpuProgress = used.float()! / max.float()!
     }
-    if let used = account.net_limit?.used.string,let max = account.cpu_limit?.max.string  {
+    if let used = account.net_limit?.used.string,let max = account.net_limit?.max.string  {
         newViewModel.netProgress = used.float()! / max.float()!
     }
     newViewModel.ramProgress = Float(account.ram_usage) / Float(account.ram_quota)
@@ -107,13 +145,21 @@ func calculateTotalAsset(_ viewmodel:AccountViewModel) -> String {
     }
 }
 
-func calculateRMBPrice(_ viewmodel:AccountViewModel, price:String) -> String {
+func calculateRMBPrice(_ viewmodel:AccountViewModel, price:String, otherPrice:String) -> String {
     if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDouble(), all != 0 {
         let cny = unit * all
-        return "≈" + cny.string(digits: 2) + " CNY"
+        if coinType() == .CNY {
+            return "≈" + cny.string(digits: 2) + " \(coinUnit())"
+        } else {
+            if let otherPriceDouble = otherPrice.toDouble() {
+                return "≈" + (cny / otherPriceDouble).string(digits: 2) + " \(coinUnit())"
+            } else {
+                return "≈- \(coinUnit())"
+            }
+        }
     }
     else {
-        return "≈- CNY"
+        return "≈- \(coinUnit())"
     }
 }
 

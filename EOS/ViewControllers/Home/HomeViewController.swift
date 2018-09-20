@@ -12,7 +12,8 @@ import RxCocoa
 import ReSwift
 import HandyJSON
 import SwiftyJSON
-import NotificationBannerSwift
+import NotificationBanner
+import Device
 
 class HomeViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -24,15 +25,19 @@ class HomeViewController: BaseViewController {
     var data : Any?
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.automaticallyAdjustsScrollViewInsets = true
 
         setupUI()
     }
     
     override func refreshViewController() {
-        WalletManager.shared.FetchAccount { (account) in
-            self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+        if let wallet = WalletManager.shared.currentWallet() {
+            if wallet.creatStatus != WalletCreatStatus.creatSuccessed.rawValue {
+                self.coordinator?.checkAccount()
+            }
+            WalletManager.shared.FetchAccount { (account) in
+                self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+            }
         }
     }
     
@@ -50,6 +55,7 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.tableView.reloadData()
         if let nav = self.navigationController as? BaseNavigationController {
             nav.navStyle = .clear
         }
@@ -62,14 +68,16 @@ class HomeViewController: BaseViewController {
         if let nav = self.navigationController as? BaseNavigationController {
             nav.navStyle = .common
         }
-
+        self.navigationController?.navigationBar.alpha = 1
     }
     
     func setupUI(){
+        self.navigationItem.title = "GEMMA"
         self.configRightNavButton(R.image.walletAdd())
         let nibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
-//        self.automaticallyAdjustsScrollViewInsets = true
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
+//        self.automaticallyAdjustsScrollViewInsets = true 
     }
     
     func updateUI() {
@@ -79,22 +87,12 @@ class HomeViewController: BaseViewController {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = false
         }
         
-        if let wallket = WalletManager.shared.currentWallet() {
-            if wallket.isBackUp {
+        if let wallet = WalletManager.shared.currentWallet() {
+            if let walletBackuped = wallet.isBackUp, walletBackuped {
                 tableHeaderView.backupLabelViewIsHidden = true
-            }
-            else {
+            } else {
                 tableHeaderView.backupLabelViewIsHidden = false
             }
-            
-            self.coordinator?.checkAccount({ (show) in
-                if show {
-                    showWarning(R.string.localizable.red_warning())
-                }
-                else {
-                    
-                }
-            })
         }
         else {
             tableHeaderView.backupLabelViewIsHidden = true
@@ -105,22 +103,7 @@ class HomeViewController: BaseViewController {
         self.coordinator?.pushWallet()
     }
     
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
     override func configureObserveState() {
-        commonObserveState()
         
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
@@ -156,6 +139,33 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
         case 3:self.coordinator?.pushResourceMortgageVC()
         default:
             break
+        }
+    }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        log.debug(scrollView.contentOffset.y)
+        var offsetY = 0
+        
+        if Device.version() == Version.iPhoneX {
+            offsetY = -40
+        } else {
+            offsetY = -20
+        }
+        
+        if scrollView.contentOffset.y > offsetY.cgFloat {
+            if let nav = self.navigationController as? BaseNavigationController {
+                nav.navStyle = .common
+                self.navigationItem.title = self.coordinator?.state.property.info.value.account
+                self.navigationController?.navigationBar.alpha = (scrollView.contentOffset.y - offsetY.cgFloat) / 44
+            }
+        } else {
+            if let nav = self.navigationController as? BaseNavigationController {
+                nav.navStyle = .clear
+            }
+            self.navigationController?.navigationBar.alpha = 1
+            self.navigationItem.title = "GEMMA"
         }
     }
 }

@@ -80,7 +80,7 @@ class TitleTextfieldView: UIView {
             let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(introduce))
             introduceLabel.addGestureRecognizer(tapGestureRecognizer)
             
-            textField.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.cloudyBlue])
+            textField.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.cloudyBlue,NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
             textField.isSecureTextEntry = setting.isSecureTextEntry
             gapView.alpha = setting.showLine ? 1.0 : 0.0
         }
@@ -171,7 +171,7 @@ class TitleTextfieldView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     func updateContentSize() {

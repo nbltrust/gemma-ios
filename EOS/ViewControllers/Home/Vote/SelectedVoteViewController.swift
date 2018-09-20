@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import SwiftNotificationCenter
+import NBLCommonModule
 
 class SelectedVoteViewController: BaseViewController {
     @IBOutlet weak var voteTable: UITableView!
@@ -63,26 +63,11 @@ class SelectedVoteViewController: BaseViewController {
         if let dataCount = voteTable.indexPathsForSelectedRows?.count {
             count = dataCount
         }
-        self.title = R.string.localizable.selected_node() + "(" + count.string + "/30)"
+        self.title = R.string.localizable.selected_node.key.localized() + "(" + count.string + "/30)"
         
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
+
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }
@@ -104,7 +89,7 @@ extension SelectedVoteViewController: UITableViewDelegate,UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

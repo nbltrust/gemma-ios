@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BLTCardEntryView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="actionView" destination="wCd-29-JrR" id="Kbn-Vx-FGo"/>
+                <outlet property="clickLabel" destination="EHy-NL-9HU" id="rd0-eX-q3z"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="fID-Fz-IR3">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="479"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPI-pb-G6H">
+                    <rect key="frame" x="0.0" y="24" width="375" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_des_title"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wookong_bio" translatesAutoresizingMaskIntoConstraints="NO" id="dvs-SQ-rrS">
+                    <rect key="frame" x="17" y="63.5" width="341" height="204"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHy-NL-9HU">
+                    <rect key="frame" x="182.5" y="287.5" width="11.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.25900000000000001" green="0.41999999999999998" blue="0.83099999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_des_chick"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="styleName" value="corn_flower_blue_underline"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIV-OT-wdf">
+                    <rect key="frame" x="32" y="351" width="11.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_des_first"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7t-BP-ev9">
+                    <rect key="frame" x="32" y="378.5" width="11.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_des_second"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pui-Ot-yRw">
+                    <rect key="frame" x="32" y="321" width="311" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_des_prepare"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCd-29-JrR" customClass="Button" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="32" y="428" width="311" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="HVs-hX-grL"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="pair_start"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="style">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="EHy-NL-9HU" firstAttribute="centerX" secondItem="fID-Fz-IR3" secondAttribute="centerX" id="1aP-h9-j2f"/>
+                <constraint firstItem="dvs-SQ-rrS" firstAttribute="top" secondItem="MPI-pb-G6H" secondAttribute="bottom" constant="20" id="2AS-Ev-HWO"/>
+                <constraint firstItem="9Tn-dX-KZb" firstAttribute="trailing" secondItem="dvs-SQ-rrS" secondAttribute="trailing" constant="17" id="C29-9K-pGG"/>
+                <constraint firstItem="u7t-BP-ev9" firstAttribute="top" secondItem="tIV-OT-wdf" secondAttribute="bottom" constant="13" id="D02-11-UpT"/>
+                <constraint firstItem="wCd-29-JrR" firstAttribute="top" secondItem="u7t-BP-ev9" secondAttribute="bottom" constant="35" id="D8W-Fg-ZrM"/>
+                <constraint firstItem="tIV-OT-wdf" firstAttribute="top" secondItem="pui-Ot-yRw" secondAttribute="bottom" constant="13" id="FC6-oM-gY8"/>
+                <constraint firstItem="pui-Ot-yRw" firstAttribute="top" secondItem="EHy-NL-9HU" secondAttribute="bottom" constant="19" id="HXd-lG-1vY"/>
+                <constraint firstItem="EHy-NL-9HU" firstAttribute="top" secondItem="dvs-SQ-rrS" secondAttribute="bottom" constant="20" id="I4N-l9-vlx"/>
+                <constraint firstItem="dvs-SQ-rrS" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" constant="17" id="Lwh-rg-wkR"/>
+                <constraint firstItem="MPI-pb-G6H" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" id="Obw-a3-5PG"/>
+                <constraint firstItem="wCd-29-JrR" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" constant="32" id="SgX-IE-gzA"/>
+                <constraint firstItem="MPI-pb-G6H" firstAttribute="top" secondItem="9Tn-dX-KZb" secondAttribute="top" constant="24" id="VI1-Qc-QMk"/>
+                <constraint firstItem="9Tn-dX-KZb" firstAttribute="trailing" secondItem="MPI-pb-G6H" secondAttribute="trailing" id="ZA2-S0-h9r"/>
+                <constraint firstItem="9Tn-dX-KZb" firstAttribute="trailing" secondItem="wCd-29-JrR" secondAttribute="trailing" constant="32" id="bYp-dX-Q1L"/>
+                <constraint firstItem="9Tn-dX-KZb" firstAttribute="trailing" secondItem="pui-Ot-yRw" secondAttribute="trailing" constant="32" id="diO-Lg-zqh"/>
+                <constraint firstItem="tIV-OT-wdf" firstAttribute="leading" secondItem="pui-Ot-yRw" secondAttribute="leading" id="qaW-dQ-vW9"/>
+                <constraint firstItem="u7t-BP-ev9" firstAttribute="leading" secondItem="pui-Ot-yRw" secondAttribute="leading" id="vMC-Hl-Zlg"/>
+                <constraint firstItem="pui-Ot-yRw" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" constant="32" id="wAh-Hv-sXI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="9Tn-dX-KZb"/>
+            <point key="canvasLocation" x="56.5" y="-87.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="wookong_bio" width="342" height="204"/>
+    </resources>
+</document>

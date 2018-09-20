@@ -56,6 +56,7 @@ extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
         if let vc = R.storyboard.leadIn.setWalletViewController() {
             let coordinator = SetWalletCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
+            vc.settingType = .leadIn
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
@@ -76,7 +77,7 @@ extension LeadInKeyCoordinator: LeadInKeyStateManagerProtocol {
         if let _ = EOSIO.getPublicKey(privKey) {
             return (true, "")
         } else {
-            self.rootVC.showError(message: R.string.localizable.privatekey_faile())
+            self.rootVC.showError(message: R.string.localizable.privatekey_faile.key.localized())
             return (false, "")
         }
     }

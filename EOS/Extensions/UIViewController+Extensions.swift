@@ -9,25 +9,34 @@
 import Foundation
 import ESPullToRefresh
 import KRProgressHUD
+import UINavigationItem_Margin
 
 extension UIViewController {
     func configLeftNavButton(_ image:UIImage?) {
         let leftNavButton = UIButton.init(type: .custom)
-        leftNavButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        leftNavButton.frame = CGRect(x: 0, y: 0, width: 48, height: 24)
         leftNavButton.setImage(image ?? #imageLiteral(resourceName: "ic_back_24_px"), for: .normal)
         leftNavButton.addTarget(self, action: #selector(leftAction(_:)), for: .touchUpInside)
         leftNavButton.isHidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftNavButton)
+        self.navigationItem.leftMargin = 0
     }
     
     func configRightNavButton(_ image:UIImage? = nil) {
         let rightNavButton = UIButton.init(type: .custom)
-        rightNavButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        rightNavButton.frame = CGRect(x: 0, y: 0, width: 48, height: 24)
         rightNavButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         rightNavButton.setImage(image ?? #imageLiteral(resourceName: "icSettings24Px"), for: .normal)
         rightNavButton.addTarget(self, action: #selector(rightAction(_:)), for: .touchUpInside)
         rightNavButton.isHidden = false
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightNavButton)
+        self.navigationItem.rightMargin = 0
+    }
+    
+    func configRightCustomView(_ view: UIView) {
+        view.width = 48
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: view)
+        self.navigationItem.rightMargin = 0
     }
     
     func configRightNavButton(_ locali:String) {
@@ -52,7 +61,25 @@ extension UIViewController {
 
 extension UIViewController {
     func startLoading() {
-        KRProgressHUD.show()
+        startLoadingOnSelf(true, message: "")
+    }
+    
+    func startLoadingWithMessage(message: String) {
+        startLoadingOnSelf(true, message: message)
+    }
+    
+    func startLoadingOnSelf(_ isOn: Bool, message: String) {
+        if isOn {
+            _ = KRProgressHUD.showOn(self)
+        }
+        KRProgressHUD.set(maskType: .custom(color: UIColor.black40))
+        KRProgressHUD.set(style: .custom(background: UIColor.white, text: UIColor.cornflowerBlueTwo, icon: UIColor.cornflowerBlueTwo))
+        KRProgressHUD.set(activityIndicatorViewStyle: .gradationColor(head: UIColor.cornflowerBlueTwo, tail: UIColor.cornflowerBlueTwo))
+        if message == "" {
+            KRProgressHUD.show()
+        } else {
+            KRProgressHUD.show(withMessage: message, completion: nil)
+        }
     }
     
     func endLoading() {

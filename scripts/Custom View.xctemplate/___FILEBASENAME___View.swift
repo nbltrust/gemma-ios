@@ -17,7 +17,12 @@ class ___VARIABLE_productName:identifier___View: BaseView {
     override func setup() {
         super.setup()
         
+        setupUI()
         setupSubViewEvent()
+    }
+    
+    func setupUI() {
+        
     }
     
     func setupSubViewEvent() {
@@ -25,6 +30,6 @@ class ___VARIABLE_productName:identifier___View: BaseView {
     }
     
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.___VARIABLE_productName:identifier___ViewDidClicked.rawValue, userinfo: ["data": self.data ?? ""])
+        self.next?.sendEventWith(Event.___VARIABLE_productName:identifier___ViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }

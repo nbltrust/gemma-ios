@@ -69,13 +69,13 @@ class SafeManager {
         appdelegate.appcoordinator?.rootVC.present(nav, animated: true, completion: nil)
         
         if self.isFaceIdOpened() {
-            confirmFaceIdLock(R.string.localizable.faceid_reason()) { (result) in
+            confirmFaceIdLock(R.string.localizable.faceid_reason.key.localized()) { (result) in
                 if result {
                     nav.dismiss(animated: true)
                 }
             }
         } else if self.isFingerPrinterLockOpened() {
-            confirmFingerSingerLock(R.string.localizable.fingerid_reason()) { (result) in
+            confirmFingerSingerLock(R.string.localizable.fingerid_reason.key.localized()) { (result) in
                 if result {
                     nav.dismiss(animated: true)
                 }
@@ -93,43 +93,43 @@ class SafeManager {
                 if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
                     callback(false)
                 } else if error == .passcodeNotSet || error == .biometryNotAvailable || error == .biometryNotEnrolled {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.faceid_start_failed())
+                    showFailTop(R.string.localizable.faceid_start_failed.key.localized())
                     callback(false)
                 } else if error == .biometryLockedout {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.faceid_auth_lock())
+                    showFailTop(R.string.localizable.faceid_auth_lock.key.localized())
                     callback(false)
                 } else {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.faceid_auth_failed())
+                    showFailTop(R.string.localizable.faceid_auth_failed.key.localized())
                     callback(false)
                 }
             }
         } else {
-            KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_faceid())
+            showFailTop(R.string.localizable.unsupport_faceid())
             callback(false)
         }
     }
     
     func confirmFingerSingerLock(_ reason: String, callback: @escaping (Bool) -> ()) {
         if self.biometricType() == .touch {
-            BioMetricAuthenticator.authenticateWithPasscode(reason: R.string.localizable.fingerid_reason(), success: {
+            BioMetricAuthenticator.authenticateWithPasscode(reason: R.string.localizable.fingerid_reason.key.localized(), success: {
                 self.openFingerPrinter()
                 callback(true)
             }) { (error) in
                 if error == .canceledByUser || error == .canceledBySystem || error == .fallback {
                     callback(false)
                 } else if error == .passcodeNotSet || error == .biometryNotAvailable || error == .biometryNotEnrolled {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.touchid_start_failed())
+                    showFailTop(R.string.localizable.touchid_start_failed.key.localized())
                     callback(false)
                 } else if error == .biometryLockedout {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.touchid_auth_lock())
+                    showFailTop(R.string.localizable.touchid_auth_lock.key.localized())
                     callback(false)
                 } else {
-                    KRProgressHUD.showError(withMessage: R.string.localizable.touchid_auth_failed())
+                    showFailTop(R.string.localizable.touchid_auth_failed.key.localized())
                     callback(false)
                 }
             }
         } else {
-            KRProgressHUD.showError(withMessage: R.string.localizable.unsupport_touchid())
+            showFailTop(R.string.localizable.unsupport_touchid.key.localized())
             callback(false)
         }
     }
@@ -188,6 +188,30 @@ class SafeManager {
         Defaults[.isGestureLockOpened] = true
         keychain[string: "\(gestureLockPassword)-gestureLockPassword"] = password
         Defaults[.isGestureLockOpened] = true
+    }
+    
+    func isGestureLockLocked() -> Bool {
+        return leftUnLockGestureLockTime() > 0
+    }
+    
+    func leftUnLockGestureLockTime() -> Int {
+        let lockedTime = Defaults[.gestureLockLockedTime]
+        if lockedTime > 0 {
+            let now = NSDate()
+            let timeGap = now.timeIntervalSince1970.int - lockedTime
+            if timeGap > 0 && timeGap < GestureLockSetting.gestureLockTimeDuration {
+                return GestureLockSetting.gestureLockTimeDuration - timeGap
+            }
+        }
+        return 0
+    }
+    
+    func lockGestureLock() {
+        Defaults[.gestureLockLockedTime] = NSDate().timeIntervalSince1970.int
+    }
+    
+    func unlockGestureLock() {
+        Defaults[.gestureLockLockedTime] = 0
     }
     
     func biometricType() -> BiometricType {

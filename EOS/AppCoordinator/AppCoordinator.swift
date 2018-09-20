@@ -8,10 +8,10 @@
 
 import Foundation
 import ReSwift
-import ESTabBarController_swift
+import ESTabBarController
 import SwifterSwift
 import Presentr
-import Aspects
+import Localize_Swift
 
 class AppCoordinator {
     var store = Store<AppState> (
@@ -29,6 +29,9 @@ class AppCoordinator {
     var homeCoordinator: HomeRootCoordinator!
     var transferCoordinator: TransferRootCoordinator!
     var userinfoCoordinator: UserInfoRootCoordinator!
+    var homeItem: ESTabBarItem!
+    var transferItem: ESTabBarItem!
+    var userInfoItem: ESTabBarItem!
 
     var entryCoordinator: EntryRootCoordinator?
 
@@ -39,9 +42,15 @@ class AppCoordinator {
     init(rootVC: BaseTabbarViewController) {
         self.rootVC = rootVC
         
-        rootVC.didHijackHandler = { (tab, vc, index) in
-            vc.refreshViewController()
+        rootVC.shouldHijackHandler = {[weak self] (tab, vc, index) in
+            guard let `self` = self else { return false }
+            if self.rootVC.selectedIndex == index, let nav = vc as? BaseNavigationController {
+                nav.topViewController?.refreshViewController()
+            }
+            
+            return false
         }
+        
     }
     
     func start() {
@@ -52,30 +61,42 @@ class AppCoordinator {
         
         let home = BaseNavigationController()
         homeCoordinator = HomeRootCoordinator(rootVC: home)
-        home.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
-        //        home.tabBarItem.badgeValue = ""
+        homeItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet.key.localized(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
+        home.tabBarItem = homeItem
         
         let transfer = BaseNavigationController()
         transferCoordinator = TransferRootCoordinator(rootVC: transfer)
-        transfer.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarTransfer(), image: R.image.ic_send_normal(), selectedImage: R.image.ic_send_selected())
+        transferItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarTransfer.key.localized(), image: R.image.ic_send_normal(), selectedImage: R.image.ic_send_selected())
+        transfer.tabBarItem = transferItem
         
         let userinfo = BaseNavigationController()
         userinfoCoordinator = UserInfoRootCoordinator(rootVC: userinfo)
-        userinfo.tabBarItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
+        userInfoItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine.key.localized(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
+        userinfo.tabBarItem = userInfoItem
         
         homeCoordinator.start()
         transferCoordinator.start()
         userinfoCoordinator.start()
 
         rootVC.viewControllers = [home, transfer, userinfo]
-        
         aspect()
     }
     
+    func updateTabbar() {
+        homeItem.title = R.string.localizable.tabbarWallet.key.localized()
+        transferItem.title = R.string.localizable.tabbarTransfer.key.localized()
+        userInfoItem.title = R.string.localizable.tabbarMine.key.localized()
+    }
+    
     func aspect() {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil) {[weak self] (notifi) in
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) {[weak self] (notifi) in
             guard let `self` = self else { return }
             self.curDisplayingCoordinator().rootVC.topViewController?.refreshViewController()
+        }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil, queue: nil) {[weak self] (notifi) in
+            guard let `self` = self else { return }
+            self.updateTabbar()
         }
     }
     
@@ -90,7 +111,7 @@ class AppCoordinator {
         entryCoordinator?.start()
         
         SwifterSwift.delay(milliseconds: 100) {
-            self.rootVC.present(nav, animated: true, completion: nil)
+            self.rootVC.present(nav, animated: false, completion: nil)
         }
         
     }
@@ -113,7 +134,7 @@ class AppCoordinator {
         
     }
     
-    func showPresenterPwd(leftIconType: leftIconType, pubKey:String = WalletManager.shared.currentPubKey, type: String,completion: StringCallback? = nil) {
+    func showPresenterPwd(leftIconType: leftIconType, pubKey:String = WalletManager.shared.currentPubKey, type: String, producers: [String], completion: StringCallback? = nil) {
         let width = ModalSize.full
         
         var height:Float = 271.0
@@ -126,31 +147,35 @@ class AppCoordinator {
         let customType = PresentationType.custom(width: width, height: heightSize, center: center)
         
         let presenter = Presentr(presentationType: customType)
-        presenter.keyboardTranslationType = .moveUp
+        presenter.keyboardTranslationType = .stickToTop
         
         let newVC = BaseNavigationController()
         newVC.navStyle = .white
         let transferConfirmpwd = TransferConfirmPasswordRootCoordinator(rootVC: newVC)
             
-        if let entryCoor = entryCoordinator {
-            entryCoor.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-        }
-        else {
-            curDisplayingCoordinator().rootVC.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-        }
+
         if let vc = R.storyboard.transfer.transferConfirmPasswordViewController() {
             let coordinator = TransferConfirmPasswordCoordinator(rootVC: transferConfirmpwd.rootVC)
             vc.coordinator = coordinator
             vc.publicKey = pubKey
             vc.iconType = leftIconType.rawValue
             vc.type = type
+            vc.producers = producers
             vc.callback = {[weak vc] priKey in
                 vc?.dismiss(animated: true, completion: {
                     completion?(priKey)
                 })
             }
             transferConfirmpwd.rootVC.pushViewController(vc, animated: true)
+            
+            if let entryCoor = entryCoordinator {
+                entryCoor.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+            }
+            else {
+                curDisplayingCoordinator().rootVC.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+            }
         }
+
     }
     
 }

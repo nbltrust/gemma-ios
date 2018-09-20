@@ -27,6 +27,7 @@ class TransferConfirmPasswordView: UIView {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nextButton: Button!
+    @IBOutlet weak var clearButton: UIButton!
     
     var title = "" {
         didSet {
@@ -48,17 +49,22 @@ class TransferConfirmPasswordView: UIView {
     
     var placeHolder = "" {
         didSet {
-            textField.placeholder = R.string.localizable.input() + placeHolder + R.string.localizable.password()
+            textField.placeholder = R.string.localizable.input.key.localized() + placeHolder + R.string.localizable.password.key.localized()
             
         }
     }
     
     
     func setUp() {
+        clearButton.isHidden = true
         setupEvent()
         textField.isSecureTextEntry = true
         updateHeight()
 
+    }
+    
+    @IBAction func clearBtnClick(_ sender: Any) {
+        textField.text = ""
     }
     
     func setupEvent() {
@@ -69,7 +75,7 @@ class TransferConfirmPasswordView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {
@@ -112,4 +118,17 @@ class TransferConfirmPasswordView: UIView {
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
+}
+
+extension TransferConfirmPasswordView:UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.clearButton.isHidden = true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        clearButton.isHidden = false
+        
+    }
+    
+    
 }

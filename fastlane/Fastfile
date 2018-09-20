@@ -1,0 +1,102 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :fir do
+    xcode_select("/Applications/Xcode.app")
+    app_identifier="com.nbltrustdev.gemma.fir"
+    update_app_identifier(
+      xcodeproj: "EOS.xcodeproj", # Optional path to xcodeproj, will use the first .xcodeproj if not set
+      plist_path: "EOS/Info.plist", # Path to info plist file, relative to xcodeproj
+      app_identifier: "com.nbltrustdev.gemma.fir" # The App Identifier
+    )
+    gym(
+      xcargs: "-UseNewBuildSystem=YES",
+      output_name: "gemma-fir",
+      scheme:"EOS",
+      workspace:"EOS.xcworkspace",
+      configuration:"Release",
+      export_method:"ad-hoc",
+      output_directory:"~/Documents/ipa",
+      export_xcargs: "-allowProvisioningUpdates",
+      export_options: {
+        compileBitcode: false,
+        provisioningProfiles: {
+          "com.nbltrustdev.gemma.fir" => "AdHoc com.nbltrustdev.gemma.fir"
+        }
+      }
+    )
+    firim(firim_api_token:"92fc2819f9894e4890c9fd27d4c1d234")
+    slack(message: "Successfully distributed gemma to fir, download_url: 	https://fir.im/xrp8 ", slack_url:"https://hooks.slack.com/services/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")
+  end
+
+  lane :publish do
+    xcode_select("/Applications/Xcode.app")
+    app_identifier="com.nbltrustdev.gemma"
+    update_app_identifier(
+      xcodeproj: "EOS.xcodeproj", # Optional path to xcodeproj, will use the first .xcodeproj if not set
+      plist_path: "EOS/Info.plist", # Path to info plist file, relative to xcodeproj
+      app_identifier: "com.nbltrustdev.gemma" # The App Identifier
+    )
+    gym(
+      output_name: "gemma-appstore",
+      scheme:"EOS",
+      workspace:"EOS.xcworkspace",
+      configuration:"Release",
+      export_method:"app-store",
+      output_directory:"~/Documents/ipa",
+      export_xcargs: "-allowProvisioningUpdates",
+      export_options: {
+        compileBitcode: false,
+        provisioningProfiles: {
+          "com.nbltrustdev.gemma" => "AppStore #{app_identifier}"
+        }
+      }
+    )
+    appstore
+    slack(message: "Successfully distributed gemma to appstore", slack_url:"https://hooks.slack.com/services/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")
+  end
+  
+   lane :test do
+    xcode_select("/Applications/Xcode.app")
+      app_identifier="com.nbltrustdev.gemma"
+      update_app_identifier(
+        xcodeproj: "EOS.xcodeproj", # Optional path to xcodeproj, will use the first .xcodeproj if not set
+        plist_path: "EOS/Info.plist", # Path to info plist file, relative to xcodeproj
+        app_identifier: "com.nbltrustdev.gemma" # The App Identifier
+      )
+      gym(
+        output_name: "gemma-testflight",
+        scheme:"EOS",
+        workspace:"EOS.xcworkspace",
+        configuration:"Release",
+        export_method:"app-store",
+        output_directory:"~/Documents/ipa",
+        export_xcargs: "-allowProvisioningUpdates",
+        export_options: {
+          compileBitcode: false,
+          provisioningProfiles: {
+            "com.nbltrustdev.gemma" => "AppStore #{app_identifier}"
+          }
+        }
+      )
+      upload_to_testflight
+      slack(message: "Successfully distributed gemma to testflight", slack_url:"https://hooks.slack.com/services/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")
+    end
+
+end

@@ -64,9 +64,13 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
     }
     
     func isValidWalletName(name: String) -> Bool {
+        if name == "" {
+            self.rootVC.showError(message: R.string.localizable.walletname_not_empty.key.localized())
+            return false
+        }
         for walletList in WalletManager.shared.wallketList() {
             if walletList.name == name {
-                self.rootVC.showError(message: R.string.localizable.walletname_invalid())
+                self.rootVC.showError(message: R.string.localizable.walletname_invalid.key.localized())
                 return false
             }
         }

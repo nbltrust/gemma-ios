@@ -30,16 +30,25 @@ class TransferConfirmPasswordViewController: BaseViewController {
     
     var iconType = ""
     
+    var producers: [String] = []
+    
     var callback: StringCallback?
     
     var publicKey = WalletManager.shared.currentPubKey
     
+    var errCount = 0
+    
     @IBOutlet weak var passwordView: TransferConfirmPasswordView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-           
+//        setupUI()
+        
 //        log.debug(String(reflecting: type(of: a!)))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
     }
     
     func setupUI() {
@@ -50,8 +59,8 @@ class TransferConfirmPasswordViewController: BaseViewController {
         }
         
         if type == confirmType.updatePwd.rawValue {
-            passwordView.title = R.string.localizable.update_pwd_title()
-            passwordView.btnTitle = R.string.localizable.update_pwd_btntitle()
+            passwordView.title = R.string.localizable.update_pwd_title.key.localized()
+            passwordView.btnTitle = R.string.localizable.update_pwd_btntitle.key.localized()
         }
     }
     
@@ -59,26 +68,12 @@ class TransferConfirmPasswordViewController: BaseViewController {
         if self.iconType == leftIconType.dismiss.rawValue {
             self.coordinator?.dismissConfirmPwdVC()
         } else {
+            self.passwordView.textField.resignFirstResponder()
             self.coordinator?.popConfirmPwdVC()
         }
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
+
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }
@@ -86,13 +81,22 @@ class TransferConfirmPasswordViewController: BaseViewController {
 extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
         guard let priKey = WalletManager.shared.getCachedPriKey(publicKey, password: passwordView.textField.text!) else {
-            self.showError(message: R.string.localizable.password_not_match())
+            self.errCount  = self.errCount + 1
+            if self.errCount == 3 {
+                if let message = WalletManager.shared.getPasswordHint(publicKey) {
+                    self.showError(message: message)
+                }
+            } else {
+                self.showError(message: R.string.localizable.password_not_match.key.localized())
+            }
             return
         }
         
         if let callback = self.callback {
-            callback(priKey)
-            return
+            if self.type != confirmType.voteNode.rawValue {
+                callback(priKey)
+                return
+            }
         }
         
         let myType = self.type
@@ -102,7 +106,7 @@ extension TransferConfirmPasswordViewController {
             self.coordinator?.transferAccounts(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.showSuccess(message: message)
+                    self.endLoading()
                     self.coordinator?.finishTransfer()
                 } else {
                     self.showError(message: message)
@@ -114,7 +118,7 @@ extension TransferConfirmPasswordViewController {
             self.coordinator?.mortgage(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.showSuccess(message: message)
+                    self.endLoading()
                     self.coordinator?.finishMortgage()
                 } else {
                     self.showError(message: message)
@@ -127,7 +131,7 @@ extension TransferConfirmPasswordViewController {
             self.coordinator?.relieveMortgage(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.showSuccess(message: message)
+                    self.endLoading()
                     self.coordinator?.finishMortgage()
                 } else {
                     self.showError(message: message)
@@ -139,7 +143,7 @@ extension TransferConfirmPasswordViewController {
             self.coordinator?.buyRam(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.showSuccess(message: message)
+                    self.endLoading()
                     self.coordinator?.finishBuyRam()
                 } else {
                     self.showError(message: message)
@@ -151,14 +155,24 @@ extension TransferConfirmPasswordViewController {
             self.coordinator?.sellRam(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.showSuccess(message: message)
+                    self.endLoading()
                     self.coordinator?.finishBuyRam()
                 } else {
                     self.showError(message: message)
                 }
             })
         } else if myType == confirmType.voteNode.rawValue {
-            
+            self.view.endEditing(true)
+            self.startLoading()
+            self.coordinator?.voteNode(passwordView.textField.text!, account: WalletManager.shared.getAccount(), amount: amount, remark: remark, producers: producers, callback: { [weak self] (isSuccess, message) in
+                guard let `self` = self else { return }
+                if isSuccess {
+                    self.showSuccess(message: message)
+                    self.coordinator?.finishVoteNode()
+                } else {
+                    self.showError(message: message)
+                }
+            })
         }
 
     }

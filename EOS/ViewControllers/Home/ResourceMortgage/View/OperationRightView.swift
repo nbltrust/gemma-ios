@@ -28,7 +28,7 @@ class OperationRightView: UIView {
             cpuMortgageCancelView.reloadData()
             netMortgageCancelView.reloadData()
             if let data = data as? BuyRamViewModel {
-                cpuMortgageCancelView.introduceLabel.text = R.string.localizable.can_use() + data.rightTrade
+                cpuMortgageCancelView.introduceLabel.text = R.string.localizable.can_use.key.localized() + data.rightTrade
             }
             updateHeight()
         }
@@ -51,7 +51,7 @@ class OperationRightView: UIView {
         titleTextfieldView.textField.font = UIFont.pfScR16
         titleTextfieldView.textField.tag = tag
         titleTextfieldView.textField.delegate = self
-        titleTextfieldView.textField.keyboardType = .numbersAndPunctuation
+        titleTextfieldView.textField.keyboardType = .decimalPad
         titleTextfieldView.introduceLabel.font = UIFont.pfScR12
         titleTextfieldView.introduceLabel.textColor = UIColor.darkSlateBlueTwo
         titleTextfieldView.delegate = self
@@ -60,7 +60,7 @@ class OperationRightView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {
@@ -121,8 +121,8 @@ extension OperationRightView: TitleTextFieldViewDelegate,TitleTextFieldViewDataS
                                             showLine: data[0].showLine,
                                             isSecureTextEntry: data[0].isSecureTextEntry)
                 }
-                return TitleTextSetting(title: R.string.localizable.sell_ram(),
-                                        placeholder: R.string.localizable.sell_ram_placeholder(),
+                return TitleTextSetting(title: R.string.localizable.sell_ram.key.localized(),
+                                        placeholder: R.string.localizable.sell_ram_placeholder.key.localized(),
                                         warningText: "",
                                         introduce: "",
                                         isShowPromptWhenEditing: true,
@@ -138,8 +138,8 @@ extension OperationRightView: TitleTextFieldViewDelegate,TitleTextFieldViewDataS
                                             showLine: data[1].showLine,
                                             isSecureTextEntry: data[1].isSecureTextEntry)
                 }
-                return TitleTextSetting(title: R.string.localizable.sell_ram(),
-                                        placeholder: R.string.localizable.sell_ram_placeholder(),
+                return TitleTextSetting(title: R.string.localizable.sell_ram.key.localized(),
+                                        placeholder: R.string.localizable.sell_ram_placeholder.key.localized(),
                                         warningText: "",
                                         introduce: "",
                                         isShowPromptWhenEditing: true,
@@ -149,16 +149,16 @@ extension OperationRightView: TitleTextFieldViewDelegate,TitleTextFieldViewDataS
         } else {
             if titleTextFieldView == cpuMortgageCancelView {
                 if isHiddenBottomView == true {
-                    return TitleTextSetting(title: R.string.localizable.sell_ram(),
-                                            placeholder: R.string.localizable.sell_ram_placeholder(),
+                    return TitleTextSetting(title: R.string.localizable.sell_ram.key.localized(),
+                                            placeholder: R.string.localizable.sell_ram_placeholder.key.localized(),
                                             warningText: "",
                                             introduce: "",
                                             isShowPromptWhenEditing: true,
                                             showLine: true,
                                             isSecureTextEntry: false)
                 } else {
-                    return TitleTextSetting(title: R.string.localizable.cpu(),
-                                            placeholder: R.string.localizable.mortgage_cancel_placeholder(),
+                    return TitleTextSetting(title: R.string.localizable.cpu.key.localized(),
+                                            placeholder: R.string.localizable.mortgage_cancel_placeholder.key.localized(),
                                             warningText: "",
                                             introduce: "",
                                             isShowPromptWhenEditing: true,
@@ -166,8 +166,8 @@ extension OperationRightView: TitleTextFieldViewDelegate,TitleTextFieldViewDataS
                                             isSecureTextEntry: false)
                 }
             } else {
-                return TitleTextSetting(title: R.string.localizable.net(),
-                                        placeholder: R.string.localizable.mortgage_cancel_placeholder(),
+                return TitleTextSetting(title: R.string.localizable.net.key.localized(),
+                                        placeholder: R.string.localizable.mortgage_cancel_placeholder.key.localized(),
                                         warningText: "",
                                         introduce: "",
                                         isShowPromptWhenEditing: true,

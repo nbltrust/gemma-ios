@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 import Presentr
-import SwiftNotificationCenter
+import NBLCommonModule
 
 protocol BuyRamCoordinatorProtocol {
     func presentMortgageConfirmVC(data: ConfirmViewModel)
@@ -53,26 +53,27 @@ extension BuyRamCoordinator: BuyRamCoordinatorProtocol {
         
         let presenter = Presentr(presentationType: customType)
         presenter.dismissOnTap = false
-        presenter.keyboardTranslationType = .moveUp
+        presenter.keyboardTranslationType = .stickToTop
         
         let newVC = BaseNavigationController()
         newVC.navStyle = .white
         let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
         
-        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
         if let vc = R.storyboard.transfer.transferConfirmViewController() {
             let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
             vc.coordinator = coordinator
             vc.data = data
             transferConfirm.rootVC.pushViewController(vc, animated: true)
         }
+        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
     }
     
     func pushToPaymentVC() {
-        let vc = R.storyboard.payments.paymentsViewController()!
-        let coor = PaymentsCoordinator(rootVC: self.rootVC)
-        vc.coordinator = coor
-        self.rootVC.pushViewController(vc, animated: true)
+        if let vc = R.storyboard.payments.paymentsViewController() {
+            let coordinator = PaymentsCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
     }
 }
 
@@ -108,7 +109,7 @@ extension BuyRamCoordinator: BuyRamStateManagerProtocol {
             
         }
         
-        EOSIONetwork.request(target: .get_account(account: account), success: { (json) in
+        EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 self.store.dispatch(BAccountFetchedAction(info: accountObj))
             }

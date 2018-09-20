@@ -22,28 +22,13 @@ class QRCodeViewController: BaseViewController, IndicatorInfoProvider {
         super.viewDidLoad()
     }
     
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }
 
 extension QRCodeViewController {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(stringLiteral: R.string.localizable.qrcode_title())
+        return IndicatorInfo(stringLiteral: R.string.localizable.qrcode_title.key.localized())
     }
 }

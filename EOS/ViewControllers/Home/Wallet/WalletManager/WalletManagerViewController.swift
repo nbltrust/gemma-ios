@@ -29,25 +29,11 @@ class WalletManagerViewController: BaseViewController {
     }
     
     func setUpUI() {
-        self.title = R.string.localizable.manager_wallet()
+        self.title = R.string.localizable.manager_wallet.key.localized()
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
+
     
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }
@@ -60,6 +46,7 @@ extension WalletManagerViewController {
     
     @objc func exportPrivateKeyClick(_ data: [String: Any]) {
         self.coordinator?.pushToExportPrivateKey(self.data.address)
+//        self.coordinator?.pushToBackupMnemonicVC()
     }
     
     @objc func changePasswordClick(_ data: [String: Any]) {

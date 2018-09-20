@@ -21,26 +21,10 @@ class CreatationCompleteViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = R.string.localizable.back_up_wallet()
+        self.title = R.string.localizable.back_up_wallet.key.localized()
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
-    
+
     override func configureObserveState() {
-        commonObserveState()
-        
         comfirmView.cancelButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
             self.coordinator?.dismissCurrentNav(nil)

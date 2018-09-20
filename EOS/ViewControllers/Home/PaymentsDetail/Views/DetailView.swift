@@ -29,6 +29,11 @@ class DetailView: UIView {
     @IBOutlet weak var people: UILabel!
     
     @IBOutlet weak var webLabel: UILabel!
+    
+    enum event {
+        case copy
+    }
+    
     var data : Any? {
         didSet{
             if let data = data as? PaymentsRecordsViewModel {
@@ -42,14 +47,15 @@ class DetailView: UIView {
                 stateIcon.image = data.stateImageName ==  R.image.icIncome() ? R.image.icIncomeWhite() : R.image.ic_income_white()
                 money.text = data.money
                 
-                titleLabel.text = data.stateImageName ==  R.image.icIncome() ? R.string.localizable.receive() : R.string.localizable.send()
-                people.text = data.stateImageName !=  R.image.icIncome() ? R.string.localizable.receiver() : R.string.localizable.sender()
+                titleLabel.text = data.stateImageName ==  R.image.icIncome() ? R.string.localizable.receive.key.localized() : R.string.localizable.send.key.localized()
+                people.text = data.stateImageName !=  R.image.icIncome() ? R.string.localizable.receiver.key.localized() : R.string.localizable.sender.key.localized()
             }
         }
     }
     
     
     func setup(){
+        setupEvent()
         updateHeight()
         self.webLabel.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(openSafair))
@@ -57,8 +63,20 @@ class DetailView: UIView {
         self.webLabel.addGestureRecognizer(tap)
     }
     
+    func setupEvent() {
+        
+    }
+    
+    @IBAction func copyButtonClick(_ sender: Any) {
+        let pasteboard = UIPasteboard.general
+        if let data = data as? PaymentsRecordsViewModel {
+            pasteboard.string = data.hash
+            showSuccessTop(R.string.localizable.have_copied.key.localized())
+        }
+    }
+    
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {

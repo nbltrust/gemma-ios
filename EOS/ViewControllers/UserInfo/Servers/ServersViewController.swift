@@ -20,24 +20,11 @@ class ServersViewController: BaseViewController {
         setupUI()
     }
     func setupUI() {
-        self.title = R.string.localizable.mine_server()
+        self.title = R.string.localizable.mine_server.key.localized()
     }
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
+
     
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }

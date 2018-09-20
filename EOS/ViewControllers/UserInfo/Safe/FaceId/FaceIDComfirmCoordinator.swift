@@ -53,7 +53,7 @@ extension FaceIDComfirmCoordinator: FaceIDComfirmStateManagerProtocol {
     }
     
     func confirm() {
-        SafeManager.shared.confirmFaceIdLock(R.string.localizable.fingerid_reason()) {[weak self] (result) in
+        SafeManager.shared.confirmFaceIdLock(R.string.localizable.fingerid_reason.key.localized()) {[weak self] (result) in
             guard let `self` = self else { return }
             if result {
                 self.rootVC.dismiss(animated: true) {

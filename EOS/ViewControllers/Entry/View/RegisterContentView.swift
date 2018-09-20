@@ -14,32 +14,22 @@ import GrowingTextView
 class RegisterContentView: UIView {
 
     @IBOutlet weak var nameView: TitleTextfieldView!
-    
     @IBOutlet weak var passwordView: TitleTextfieldView!
-    
     @IBOutlet weak var passwordComfirmView: TitleTextfieldView!
-    
     @IBOutlet weak var passwordPromptView: TitleTextfieldView!
-    
-    @IBOutlet weak var inviteCodeView: TitleTextfieldView!
+    @IBOutlet weak var tipsView: SharpCornerTipsLabelView!
     
     enum InputType: Int {
         case name = 1
         case password
         case comfirmPassword
         case passwordPrompt
-        case invitationCode
     }
     
     enum TextChangeEvent: String {
         case walletName
         case walletPassword
         case walletComfirmPassword
-        case walletInviteCode
-    }
-    
-    enum IntroduceEvent: String {
-        case getInviteCode
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,7 +50,7 @@ class RegisterContentView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     func updateContentSize() {
@@ -96,11 +86,11 @@ class RegisterContentView: UIView {
     }
     
     func setupUI() {
+        tipsView.isHidden = true
         handleSetupSubView(nameView, tag: InputType.name.rawValue)
         handleSetupSubView(passwordView, tag: InputType.password.rawValue)
         handleSetupSubView(passwordComfirmView, tag: InputType.comfirmPassword.rawValue)
         handleSetupSubView(passwordPromptView, tag: InputType.passwordPrompt.rawValue)
-        handleSetupSubView(inviteCodeView, tag: InputType.invitationCode.rawValue)
     }
     
     func handleSetupSubView(_ titleTextfieldView : TitleTextfieldView, tag: Int) {
@@ -108,7 +98,9 @@ class RegisterContentView: UIView {
         titleTextfieldView.textField.delegate = self
         titleTextfieldView.delegate = self
         titleTextfieldView.datasource = self
+//        titleTextfieldView.textField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.pfScR14])
         titleTextfieldView.updateContentSize()
+        titleTextfieldView.textField.addTarget(self, action: #selector(handleTextFiledDidChanged(_:)), for: .editingChanged)
     }
     
     func passwordSwitch(isSelected: Bool) {
@@ -122,67 +114,73 @@ class RegisterContentView: UIView {
         passwordComfirmView.textField.isSecureTextEntry = !isSelected
         passwordComfirmView.textField.text = tempComfirmPassword
     }
+    
+    @objc func handleTextFiledDidChanged(_ textField: UITextField) {
+        handleTextField(textField)
+    }
 }
 
 extension RegisterContentView: TitleTextFieldViewDelegate,TitleTextFieldViewDataSource {
     func textIntroduction(titleTextFieldView: TitleTextfieldView) {
-        if titleTextFieldView == inviteCodeView {
-            self.sendEventWith(IntroduceEvent.getInviteCode.rawValue, userinfo: [:])
-        }
+//        if titleTextFieldView == inviteCodeView {
+//            self.sendEventWith(IntroduceEvent.getInviteCode.rawValue, userinfo: [:])
+//        }
     }
     
     func textActionTrigger(titleTextFieldView: TitleTextfieldView, selected: Bool, index: NSInteger) {
         if titleTextFieldView == passwordView {
             if index == 0 {
                 titleTextFieldView.clearText()
+                handleTextField(titleTextFieldView.textField)
             } else if index == 1 {
                 passwordSwitch(isSelected: selected)
             }
         } else {
             if index == 0 {
                 titleTextFieldView.clearText()
+                handleTextField(titleTextFieldView.textField)
             }
         }
     }
     
     func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting {
         if titleTextFieldView == nameView {
-            return TitleTextSetting(title: R.string.localizable.account_wallet_name(),
-                                    placeholder: R.string.localizable.name_ph(),
-                                    warningText: R.string.localizable.name_warning(),
+            return TitleTextSetting(title: R.string.localizable.account_wallet_name.key.localized(),
+                                    placeholder: R.string.localizable.name_ph.key.localized(),
+                                    warningText: R.string.localizable.name_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: true,
                                     showLine: true,
                                     isSecureTextEntry: false)
         } else if titleTextFieldView == passwordView {
-            return TitleTextSetting(title: R.string.localizable.account_setting_password(),
-                                    placeholder: R.string.localizable.password_ph(),
-                                    warningText: R.string.localizable.password_warning(),
+            return TitleTextSetting(title: R.string.localizable.account_setting_password.key.localized(),
+                                    placeholder: R.string.localizable.password_ph.key.localized(),
+                                    warningText: R.string.localizable.password_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
                                     isSecureTextEntry: true)
         } else if titleTextFieldView == passwordComfirmView {
-            return TitleTextSetting(title: R.string.localizable.account_comfirm_password(),
-                                    placeholder: R.string.localizable.comfirm_password_ph(),
-                                    warningText: R.string.localizable.comfirm_password_warning(),
+            return TitleTextSetting(title: R.string.localizable.account_comfirm_password.key.localized(),
+                                    placeholder: R.string.localizable.comfirm_password_ph.key.localized(),
+                                    warningText: R.string.localizable.comfirm_password_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
                                     isSecureTextEntry: true)
         } else if titleTextFieldView == passwordPromptView {
-            return TitleTextSetting(title: R.string.localizable.account_password_prompt(),
-                                    placeholder: R.string.localizable.password_prompt_ph(),
+            return TitleTextSetting(title: R.string.localizable.account_password_prompt.key.localized(),
+                                    placeholder: R.string.localizable.password_prompt_ph.key.localized(),
                                     warningText: "",
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
-                                    showLine: true,
+                                    showLine: false,
                                     isSecureTextEntry: false)
         } else {
-            return TitleTextSetting(title: R.string.localizable.account_invitationcode(),
-                                    placeholder: R.string.localizable.invitationcode_ph(),
-                                    warningText: R.string.localizable.invitationcode_warning(),
-                                    introduce: R.string.localizable.invitationcode_introduce(),
+            return TitleTextSetting(title: R.string.localizable.account_invitationcode.key.localized(),
+                                    placeholder: R.string.localizable.invitationcode_ph.key.localized(),
+                                    warningText: R.string.localizable.invitationcode_warning.key.localized(),
+                                    introduce: R.string.localizable.invitationcode_introduce.key.localized(),
                                     isShowPromptWhenEditing: false,
                                     showLine: false,
                                     isSecureTextEntry: false)
@@ -214,19 +212,30 @@ extension RegisterContentView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.name.rawValue:
             nameView.reloadActionViews(isEditing: true)
-            nameView.checkStatus = TextUIStyle.highlight
+            if nameView.checkStatus != TextUIStyle.warning {
+                nameView.checkStatus = TextUIStyle.highlight
+            }
         case InputType.password.rawValue:
             passwordView.reloadActionViews(isEditing: true)
-            passwordView.checkStatus = TextUIStyle.highlight
+            if passwordView.checkStatus != TextUIStyle.warning {
+                passwordView.checkStatus = TextUIStyle.highlight
+            }
+            tipsView.isHidden = false
+            tipsView.superview?.bringSubviewToFront(tipsView)
+            SwifterSwift.delay(milliseconds: 3000) {
+                self.tipsView.isHidden = true
+            }
         case InputType.comfirmPassword.rawValue:
             passwordComfirmView.reloadActionViews(isEditing: true)
-            passwordComfirmView.checkStatus = TextUIStyle.highlight
+            if passwordComfirmView.checkStatus != TextUIStyle.warning {
+                passwordComfirmView.checkStatus = TextUIStyle.highlight
+            }
         case InputType.passwordPrompt.rawValue:
             passwordPromptView.reloadActionViews(isEditing: true)
+            if passwordPromptView.checkStatus != TextUIStyle.warning {
+                passwordPromptView.checkStatus = TextUIStyle.highlight
+            }
             passwordPromptView.checkStatus = TextUIStyle.highlight
-        case InputType.invitationCode.rawValue:
-            inviteCodeView.reloadActionViews(isEditing: true)
-            inviteCodeView.checkStatus = TextUIStyle.highlight
         default:
             return
         }
@@ -236,40 +245,46 @@ extension RegisterContentView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.name.rawValue:
             nameView.reloadActionViews(isEditing: false)
-            nameView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            if textField.text == "" {
+                nameView.checkStatus = TextUIStyle.common
+            } else {
+                nameView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            }
         case InputType.password.rawValue:
             passwordView.reloadActionViews(isEditing: false)
-            passwordView.checkStatus = WalletManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            if textField.text == "" {
+                passwordView.checkStatus = TextUIStyle.common
+            } else {
+                passwordView.checkStatus = WalletManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            }
         case InputType.comfirmPassword.rawValue:
+            if textField.text == "" {
+                passwordComfirmView.checkStatus = TextUIStyle.common
+            } else {
+                passwordComfirmView.checkStatus = WalletManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: passwordView.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            }
             passwordComfirmView.reloadActionViews(isEditing: false)
-            passwordComfirmView.checkStatus = WalletManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: passwordView.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.passwordPrompt.rawValue:
             passwordPromptView.reloadActionViews(isEditing: false)
             passwordPromptView.checkStatus = TextUIStyle.common
-        case InputType.invitationCode.rawValue:
-            inviteCodeView.reloadActionViews(isEditing: false)
-            inviteCodeView.checkStatus = (textField.text?.isEmpty)! ? TextUIStyle.warning : TextUIStyle.common
         default:
             return
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text ?? ""
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+    
+    func handleTextField(_ textField: UITextField) {
+        let text = textField.text ?? ""
         switch textField.tag {
         case InputType.name.rawValue:
-            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : text])
         case InputType.password.rawValue:
-            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : text])
         case InputType.comfirmPassword.rawValue:
-            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : newText])
-        case InputType.invitationCode.rawValue:
-            self.sendEventWith(TextChangeEvent.walletInviteCode.rawValue, userinfo: ["content" : newText])
+            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : text])
         default:
-            return true
+            return
         }
-        return true
     }
     
 //    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {

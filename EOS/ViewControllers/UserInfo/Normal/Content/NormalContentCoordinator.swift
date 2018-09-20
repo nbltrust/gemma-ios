@@ -8,8 +8,11 @@
 
 import UIKit
 import ReSwift
+import SwiftyUserDefaults
+import Localize_Swift
 
 protocol NormalContentCoordinatorProtocol {
+    func popVC()
 }
 
 protocol NormalContentStateManagerProtocol {
@@ -18,7 +21,13 @@ protocol NormalContentStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<NormalContentState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func setData(_ sender : Int ,callback:@escaping([String])->())
+    func settingDatas(_ sender : CustomSettingType) -> [String]
+    
+    func selectedIndex(_ sender : CustomSettingType) -> Int
+    
+    func setSelectIndex(_ sender : CustomSettingType, index: Int)
+    
+    func titleWithIndex(_ sender : CustomSettingType) -> String
 }
 
 class NormalContentCoordinator: UserInfoRootCoordinator {
@@ -33,7 +42,9 @@ class NormalContentCoordinator: UserInfoRootCoordinator {
 }
 
 extension NormalContentCoordinator: NormalContentCoordinatorProtocol {
-    
+    func popVC() {
+        self.rootVC.popViewController(animated: true)
+    }
 }
 
 extension NormalContentCoordinator: NormalContentStateManagerProtocol {
@@ -47,17 +58,60 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
-    func setData(_ sender : Int ,callback:@escaping([String])->()) {
+    func settingDatas(_ sender: CustomSettingType) -> [String] {
         var data = [String]()
         switch sender {
-        case 0:data = [R.string.localizable.language_system(),R.string.localizable.language_cn(),R.string.localizable.language_en()]
-        case 1:data = ["CNY","USD"]
-        case 2:data = ["https://mainnet-eos.token.im","https://api1-imtoken.eosasia.one","http://api-direct.eosasia.one","https://api.helloeos.com.cn"]
-        default:
-            break
+        case .language:
+            let configuration = LanguageConfiguration()
+            data = configuration.keys
+        case .asset:
+            data = CoinUnitConfiguration.values
+        case .node:
+            data = EOSBaseURLNodesConfiguration.values
         }
-        callback(data)
-//        self.store.dispatch(SetDataAction(data:data))
+        return data
+    }
+    
+    func selectedIndex(_ sender: CustomSettingType) -> Int {
+        switch sender {
+        case .language:
+            let configuration = LanguageConfiguration()
+            return configuration.indexWithValue(Defaults[.language])
+        case .asset:
+            return Defaults[.coinUnit]
+        case .node:
+            return Defaults[.currentURLNode]
+        }
+    }
+    
+    func setSelectIndex(_ sender: CustomSettingType, index: Int) {
+        switch sender {
+        case .language:
+            if index > 0 {
+                let configuration = LanguageConfiguration()
+                let language = configuration.valueWithIndex(index)
+                Defaults[.language] = language
+                Localize.setCurrentLanguage(language)
+            } else {
+                Defaults.remove(.language)
+                Localize.setCurrentLanguage(Localize.defaultLanguage())
+            }
+        case .asset:
+            Defaults[.coinUnit] = index
+        case .node:
+            Defaults[.currentURLNode] = index
+        }
+    }
+    
+    func titleWithIndex(_ sender: CustomSettingType) -> String {
+        switch sender {
+        case .language:
+            return R.string.localizable.normal_language.key.localized()
+        case .asset:
+            return R.string.localizable.normal_asset.key.localized()
+        case .node:
+            return R.string.localizable.normal_node.key.localized()
+        }
     }
     
 }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwiftNotificationCenter
+import NBLCommonModule
 
 protocol NavProtocol {
     func openWebVC(url:URL)

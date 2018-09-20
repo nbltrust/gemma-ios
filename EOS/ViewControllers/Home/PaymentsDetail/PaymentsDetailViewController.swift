@@ -20,7 +20,7 @@ class PaymentsDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = R.string.localizable.payments_history()
+        self.title = R.string.localizable.payments_detail.key.localized()
         hiddenNavBar()
         self.detailView.data = data
     }
@@ -30,29 +30,15 @@ class PaymentsDetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
+
     
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }
 
 extension PaymentsDetailViewController {
     @objc func open_safair(_ sender : Any){
-       self.coordinator?.openWebView()
+        self.coordinator?.openWebView(txid: (data?.hash)!)
     }
 }

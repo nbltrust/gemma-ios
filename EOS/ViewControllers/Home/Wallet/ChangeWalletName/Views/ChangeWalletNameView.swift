@@ -20,6 +20,7 @@ class ChangeWalletNameView: UIView {
     }
     
     func setUp() {
+        textField.becomeFirstResponder()
         setUpUI()
         updateHeight()
     }
@@ -34,7 +35,7 @@ class ChangeWalletNameView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {
@@ -87,9 +88,6 @@ extension ChangeWalletNameView:UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         clearButton.isHidden = false
-
     }
-    
-    
 }
 

@@ -44,7 +44,7 @@ class QRCodeView: UIView {
     }
     
     func buttonTitle() -> String {
-        return isShowQRCode ? R.string.localizable.save_key_safe() : R.string.localizable.show_qrcode()
+        return isShowQRCode ? R.string.localizable.save_key_safe.key.localized() : R.string.localizable.show_qrcode.key.localized()
     }
     
     @objc func action(_ sender: UIButton) {
@@ -62,7 +62,7 @@ class QRCodeView: UIView {
             ) {
             updateQrCode(qrCodeImage)
         } else {
-            KRProgressHUD.showError(withMessage: R.string.localizable.qrcode_generate_failed())
+            showFailTop(R.string.localizable.qrcode_generate_failed.key.localized())
         }
     }
     

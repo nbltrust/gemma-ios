@@ -41,16 +41,16 @@ class BuyRamView: UIView {
     }
     
     func setupUI() {
-        generalRamView.generalView.name = R.string.localizable.ram()
-        generalRamView.generalView.leftSubText = R.string.localizable.use() + " - " + R.string.localizable.ms()
-        generalRamView.generalView.rightSubText = R.string.localizable.total() + " - " + R.string.localizable.ms()
+        generalRamView.generalView.name = R.string.localizable.ram.key.localized()
+        generalRamView.generalView.leftSubText = R.string.localizable.use.key.localized() + " - " + R.string.localizable.ms.key.localized()
+        generalRamView.generalView.rightSubText = R.string.localizable.total.key.localized() + " - " + R.string.localizable.ms.key.localized()
         generalRamView.generalView.eos = ""
         generalRamView.generalView.lineIsHidden = false
         generalRamView.priceLabel.text = "≈- EOS/KB"
         
-        pageView.titleLabel.text = R.string.localizable.trade()
-        pageView.leftText = R.string.localizable.buy()
-        pageView.rightText = R.string.localizable.sell()
+        pageView.titleLabel.text = R.string.localizable.trade.key.localized()
+        pageView.leftText = R.string.localizable.buy.key.localized()
+        pageView.rightText = R.string.localizable.sell.key.localized()
         pageView.balance = ""
         exchangeLabelView.isHidden = true
         
@@ -79,7 +79,7 @@ class BuyRamView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     fileprivate func updateHeight() {

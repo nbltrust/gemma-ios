@@ -147,8 +147,18 @@ class NormalCellView: UIView {
         self.state = NormalCellViewState.normal.rawValue
     }
     
+    func reload() {
+        if let text = name_text {
+            name.attributedText = text.localized().set(style: name_style ?? "")
+        }
+        
+        if let text = content_text {
+            content.attributedText = text.localized().set(style: content_style ?? "")
+        }
+    }
+    
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIViewNoIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
     func updateHeight() {
@@ -197,7 +207,7 @@ extension NormalCellView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.subviews.last?.backgroundColor = self.normal_bgColor
+        self.perform(#selector(becomeNormal), with: nil, afterDelay: 0.3)
         self.clickCellViewAction()
     }
     
@@ -206,6 +216,10 @@ extension NormalCellView {
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.subviews.last?.backgroundColor = self.normal_bgColor
+    }
+    
+    @objc func becomeNormal() {
         self.subviews.last?.backgroundColor = self.normal_bgColor
     }
     

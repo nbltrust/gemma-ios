@@ -14,7 +14,7 @@ import SwiftyJSON
 enum EOSIOService {
     //chain
     case get_currency_balance(account: String)
-    case get_account(account: String)
+    case get_account(account: String, otherNode: Bool)
     case get_info
     case get_block(num: String)
     case abi_json_to_bin(json: String)
@@ -28,7 +28,7 @@ enum EOSIOService {
 }
 
 struct EOSIONetwork {
-    static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil, manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(), plugins: [NetworkLoggerPlugin(verbose: true)], trackInflights: false)
+    static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil, manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(), plugins: [NetworkLoggerPlugin(verbose: true),DataCachePlugin()], trackInflights: false)
     
     static func request(
         target: EOSIOService,
@@ -36,7 +36,6 @@ struct EOSIONetwork {
         error errorCallback: @escaping (_ statusCode: Int) -> Void,
         failure failureCallback: @escaping (MoyaError) -> Void
         ) {
-        
         provider.request(target) { (result) in
             switch result {
             case let .success(response):
@@ -46,9 +45,20 @@ struct EOSIONetwork {
                     successCallback(json)
                 }
                 catch _ {
+                    do {
+                        let json = try JSON(response.mapJSON())
+                        let error = json["error"]["code"].debugDescription
+                        let codeKey = AppConfiguration.EOS_ERROR_CODE_BASE + error
+                        let codeValue = codeKey.localized()
+                        showFailTop(codeValue)
+                    }
+                    catch _ {
+                        
+                    }
                     errorCallback(0)
                 }
             case let .failure(error):
+                showFailTop(R.string.localizable.request_failed.key.localized())
                 failureCallback(error)
             }
         }
@@ -59,9 +69,24 @@ struct EOSIONetwork {
 
 extension EOSIOService : TargetType {
     var baseURL: URL {
+        let configuration = NetworkConfiguration()
         switch self {
+        case let .get_account(_, otherNode):
+            if otherNode {
+                return  configuration.EOSIO_OTHER_BASE_URL
+            }
+            return configuration.EOSIO_BASE_URL
         default:
-            return NetworkConfiguration.EOSIO_BASE_TEST_URL
+            return configuration.EOSIO_BASE_URL
+        }
+    }
+    
+    var isNeedCache: Bool {
+        switch self {
+        case .get_account(_,_):
+            return true
+        default:
+            return false
         }
     }
     
@@ -69,7 +94,7 @@ extension EOSIOService : TargetType {
         switch self {
         case .get_currency_balance(_):
             return "/v1/chain/get_currency_balance"
-        case .get_account(_):
+        case .get_account(_,_):
             return "/v1/chain/get_account"
         case .get_info:
             return "/v1/chain/get_info"
@@ -95,7 +120,7 @@ extension EOSIOService : TargetType {
         switch self {
         case let .get_currency_balance(account):
             return ["account": account, "code": EOSIOContract.TOKEN_CODE, "symbol": NetworkConfiguration.EOSIO_DEFAULT_SYMBOL]
-        case let .get_account(account):
+        case let .get_account(account,_):
             return ["account_name": account]
         case .get_info:
             return [:]

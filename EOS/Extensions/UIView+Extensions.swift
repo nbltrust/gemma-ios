@@ -95,7 +95,7 @@ extension UIView {
 }
 
 extension UIView {
-    public func edgesToDevice(vc:UIViewController, insets: TinyEdgeInsets = .zero, priority: LayoutPriority = .required, isActive: Bool = true, usingSafeArea: Bool = false) {
+    public func edgesToDevice(vc:UIViewController, insets: TinyEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), priority: LayoutPriority = .required, isActive: Bool = true, usingSafeArea: Bool = false) {
         if #available(iOS 11.0, *) {
             edgesToSuperview(insets: insets, priority: priority, isActive: isActive, usingSafeArea: usingSafeArea)
         }

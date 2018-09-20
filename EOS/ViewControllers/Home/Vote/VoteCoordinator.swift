@@ -8,10 +8,12 @@
 
 import UIKit
 import ReSwift
-import SwiftNotificationCenter
+import NBLCommonModule
 
 protocol VoteCoordinatorProtocol {
     func pushSelectedVote()
+    
+    func popVC()
 }
 
 protocol VoteStateManagerProtocol {
@@ -53,6 +55,10 @@ extension VoteCoordinator: VoteCoordinatorProtocol {
         selVoteVC?.coordinator = coordinator
         self.rootVC.pushViewController(selVoteVC!, animated: true)
     }
+    
+    func popVC() {
+        self.rootVC.popViewController(animated: true)
+    }
 }
 
 extension VoteCoordinator: VoteStateManagerProtocol {
@@ -63,38 +69,25 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
     
     func loadVoteList(_ completed: @escaping (Bool) -> ()) {
-        //Debug
-//        var testData: [NodeVoteViewModel] = []
-//        for index in 0...20 {
-//            var nodeModel = NodeVoteViewModel()
-//            nodeModel.name = "test"
-//            nodeModel.owner = "canadaeos"
-//            nodeModel.percent = "2.1%"
-//            nodeModel.url = "http://www.baidu.com"
-//            nodeModel.rank = "1"
-//            testData.append(nodeModel)
-//        }
-//        self.store.dispatch(SetVoteNodeListAction(datas: testData))
-//        completed(true)
-        //Debug
-        
-
         NBLNetwork.request(target: .producer(showNum: 999), success: {[weak self] (json) in
-            let result = json["result"].dictionaryValue
-            let producers = result["producers"]?.arrayValue
-            var nodes: [NodeVoteViewModel] = [NodeVoteViewModel]()
-            producers?.forEachInParallel({ (producer) in
-                let node = NodeVote.deserialize(from: producer.dictionaryObject)
-                var nodeModel = NodeVoteViewModel()
-                nodeModel.name = node?.alias
-                nodeModel.owner = node?.account
-                nodeModel.percent = String(format: "%f%", (node?.percentage)! * 100)
-                nodeModel.url = node?.url
-                nodeModel.rank = "1"
-                nodes.append(nodeModel)
-            })
-            self?.store.dispatch(SetVoteNodeListAction(datas: nodes))
-            completed(true)
+            let result = json.dictionaryValue
+            if let producers = result["producers"]?.arrayValue {
+                var nodes: [NodeVoteViewModel] = [NodeVoteViewModel]()
+                for producer in producers {
+                    let node = NodeVote.deserialize(from: producer.dictionaryObject)
+                    var nodeModel = NodeVoteViewModel()
+                    nodeModel.name = node?.alias
+                    nodeModel.owner = node?.account
+                    nodeModel.percent = String(format: "%g", (node?.percentage)! * 100) + "%"
+                    nodeModel.url = node?.url
+                    nodeModel.rank = " "
+                    nodes.append(nodeModel)
+                }
+                self?.store.dispatch(SetVoteNodeListAction(datas: nodes))
+                completed(true)
+            } else {
+                completed(true)
+            }
             }, error: { (code) in
                 completed(false)
         }) { (error) in
@@ -109,7 +102,7 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
     
     func getAccountInfo(_ account:String) {
-        EOSIONetwork.request(target: .get_account(account: account), success: { (json) in
+        EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 var delegateInfo = DelegatedInfoModel()
                 
@@ -128,11 +121,17 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     
     func voteSelNodes() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, completion: {[weak self] (result) in
-                guard let `self` = self else { return }
-                self.rootVC.popViewController(animated: true)
-            })
+            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, producers: selectedProducers(), completion: nil)
         }
+    }
+    
+    func selectedProducers() -> [String] {
+        var producers: [String] = []
+        for indexPath in self.state.property.selIndexPaths {
+            let producer = self.state.property.datas[indexPath.row]
+            producers.append(producer.owner)
+        }
+        return producers
     }
     
     var state: VoteState {

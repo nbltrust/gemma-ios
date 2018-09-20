@@ -20,7 +20,7 @@ class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
 	override func viewDidLoad() {
         setupSetting()
         super.viewDidLoad()
-        self.title = R.string.localizable.copy_priKey_title()
+        self.title = R.string.localizable.copy_priKey_title.key.localized()
         self.coordinator?.showAlertMessage()
     }
     

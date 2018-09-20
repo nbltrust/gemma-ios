@@ -9,12 +9,12 @@
 import UIKit
 import ReSwift
 import Presentr
+import SwiftyJSON
 
 protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
     func pushPayment()
     func pushWallet()
-//    func pushScreenShotAlert()
     func pushAccountList()
     func pushResourceMortgageVC()
     func pushBackupVC()
@@ -33,7 +33,7 @@ protocol HomeStateManagerProtocol {
     
     func createDataInfo() -> [LineView.LineViewModel]
     
-    func checkAccount(_ completion:@escaping ResultCallback)
+    func checkAccount()
 }
 
 class HomeCoordinator: HomeRootCoordinator {
@@ -48,22 +48,6 @@ class HomeCoordinator: HomeRootCoordinator {
 }
 
 extension HomeCoordinator: HomeCoordinatorProtocol {
-    //截屏弹框测试代码
-//    func pushScreenShotAlert() {
-//        let width = ModalSize.custom(size: 270)
-//        let height = ModalSize.custom(size: 230)
-//        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: (UIScreen.main.bounds.width-270)/2, y: UIScreen.main.bounds.height/2-115))
-//        let customType = PresentationType.custom(width: width, height: height, center: center)
-//
-//        let presenter = Presentr(presentationType: customType)
-//        presenter.keyboardTranslationType = .moveUp
-//
-//        if let vc = R.storyboard.screenShotAlert.screenShotAlertViewController() {
-//            let coordinator = ScreenShotAlertCoordinator(rootVC: self.rootVC)
-//            vc.coordinator = coordinator
-//            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
-//        }
-//    }
     func pushBackupVC() {
         if let vc = R.storyboard.entry.backupPrivateKeyViewController() {
             let coordinator = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
@@ -83,7 +67,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
         let customType = PresentationType.custom(width: width, height: height, center: center)
         
         let presenter = Presentr(presentationType: customType)
-        presenter.keyboardTranslationType = .moveUp
+        presenter.keyboardTranslationType = .stickToTop
 
         let newVC = BaseNavigationController()
         newVC.navStyle = .white
@@ -161,32 +145,37 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
             self.store.dispatch(BalanceFetchedAction(balance: json))
         }, error: { (code) in
-            
+            self.store.dispatch(BalanceFetchedAction(balance: nil))
         }) { (error) in
-            
+            self.store.dispatch(BalanceFetchedAction(balance: nil))
         }
         
-        EOSIONetwork.request(target: .get_account(account: account), success: { (json) in
+        EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 self.store.dispatch(AccountFetchedAction(info: accountObj))
             }
 
         }, error: { (code) in
-            
+            self.store.dispatch(AccountFetchedAction(info: nil))
         }) { (error) in
-            
+            self.store.dispatch(AccountFetchedAction(info: nil))
         }
         
         SimpleHTTPService.requestETHPrice().done { (json) in
+            
             if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIO_DEFAULT_SYMBOL }).first {
-                self.store.dispatch(RMBPriceFetchedAction(price: eos))
+                if coinType() == .CNY {
+                    self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: nil))
+                } else if coinType() == .USD, let usd = json.filter({ $0["name"].stringValue == NetworkConfiguration.USDT_DEFAULT_SYMBOL }).first {
+                    self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: usd))
+                }
             }
             
         }.cauterize()
     }
     
     func createDataInfo() -> [LineView.LineViewModel] {
-        return [LineView.LineViewModel.init(name: R.string.localizable.payments_history(),
+        return [LineView.LineViewModel.init(name: R.string.localizable.payments_history.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
@@ -194,7 +183,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
-                LineView.LineViewModel.init(name: R.string.localizable.node_vote(),
+                LineView.LineViewModel.init(name: R.string.localizable.node_vote.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
@@ -202,7 +191,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
-                LineView.LineViewModel.init(name: R.string.localizable.deal_ram(),
+                LineView.LineViewModel.init(name: R.string.localizable.deal_ram.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
@@ -210,8 +199,8 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
-                LineView.LineViewModel.init(name: R.string.localizable.resources_pledge(),
-                                            content: R.string.localizable.resource_get(),
+                LineView.LineViewModel.init(name: R.string.localizable.resource_manager.key.localized(),
+                                            content: R.string.localizable.resource_get.key.localized(),
                                             image_name: R.image.icArrow.name,
                                             name_style: LineViewStyleNames.normal_name,
                                             content_style: LineViewStyleNames.normal_content,
@@ -221,14 +210,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         ]
     }
     
-    func checkAccount(_ completion:@escaping ResultCallback) {
-        if let walletlist = WalletManager.shared.currentWallet() {
-            if walletlist.isImport == true  {
-                WalletManager.shared.validChainAccountCreated(walletlist.name, completion: completion)
-            } else {
-                WalletManager.shared.validAccountRegisterSuccess(WalletManager.shared.currentPubKey, completion: completion)
-                
-            }
-        }
+    func checkAccount() {
+        WalletManager.shared.checkCurrentWallet()
     }
 }

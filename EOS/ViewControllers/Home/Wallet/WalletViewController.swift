@@ -28,8 +28,8 @@ class WalletViewController: BaseViewController {
         
         for (index, wallet) in WalletManager.shared.wallketList().enumerated() {
             var model = WalletManagerModel()
-            model.name = wallet.name
-            model.address = wallet.publicKey
+            model.name = wallet.name ?? "--"
+            model.address = wallet.publicKey ?? "--"
             if model.name == WalletManager.shared.currentWallet()?.name {
                 indexPath = index
             }
@@ -37,7 +37,7 @@ class WalletViewController: BaseViewController {
             dataArray.append(model)
         }
         tableView.reloadData()
-        tableView.selectRow(at: IndexPath(row: indexPath, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
+        tableView.selectRow(at: IndexPath(row: indexPath, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.none)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +48,7 @@ class WalletViewController: BaseViewController {
     }
     
     func setupUI(){
-        self.title = R.string.localizable.tabbarWallet()
+        self.title = R.string.localizable.tabbarWallet.key.localized()
         
         let homeNibString = R.nib.homeTableCell.identifier
         tableView.register(UINib.init(nibName: homeNibString, bundle: nil), forCellReuseIdentifier: homeNibString)
@@ -56,23 +56,9 @@ class WalletViewController: BaseViewController {
         let walletNibString = R.nib.walletTableViewCell.name
         tableView.register(UINib.init(nibName: walletNibString, bundle: nil), forCellReuseIdentifier: walletNibString)
     }
-    
-    func commonObserveState() {
-        coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-        
-        coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
-                return false
-            })
-        }
-    }
+
     
     override func configureObserveState() {
-        commonObserveState()
         
     }
 }
@@ -82,9 +68,9 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
         let headView = WalletListHeaderView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 52))
 
         if section == 0 {
-            headView.titleText = R.string.localizable.have_wallet()
+            headView.titleText = R.string.localizable.have_wallet.key.localized()
         } else {
-            headView.titleText = R.string.localizable.wallet_manager()
+            headView.titleText = R.string.localizable.wallet_manager.key.localized()
         }
         return headView
 
@@ -135,12 +121,14 @@ extension WalletViewController : UITableViewDataSource,UITableViewDelegate{
             if let wallet = WalletManager.shared.currentWallet(), wallet.publicKey != dataArray[indexPath.row].address {
                 self.coordinator?.switchWallet(dataArray[indexPath.row].address)
                 self.coordinator?.popToLastVC()
+            } else {
+                self.coordinator?.popToLastVC()
             }
-          
         } else {
             switch indexPath.row {
             case 0:self.coordinator?.pushToLeadInWallet()
             case 1:self.coordinator?.pushToEntryVC()
+            case 2:self.coordinator?.pushToBLTEntryVC()
             default:
                 break
             }
