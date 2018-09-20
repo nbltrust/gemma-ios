@@ -12,6 +12,11 @@ import RxCocoa
 import ReSwift
 import NBLCommonModule
 
+enum CreateWalletType: Int {
+    case normal = 0
+    case wookong
+}
+
 class EntryViewController: BaseViewController {
     
     @IBOutlet weak var registerView: RegisterContentView!
@@ -21,6 +26,11 @@ class EntryViewController: BaseViewController {
     @IBOutlet weak var creatButton: Button!
     
     @IBOutlet weak var protocolLabel: UILabel!
+    
+    var createType: CreateWalletType = .normal
+    
+    var hint = ""
+    
     var coordinator: (EntryCoordinatorProtocol & EntryStateManagerProtocol)?
 
 	override func viewDidLoad() {
@@ -32,6 +42,8 @@ class EntryViewController: BaseViewController {
         setupUI()
         setupEvent()
         Broadcaster.register(EntryViewController.self, observer: self)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(createWookongWallet), name: NSNotification.Name(rawValue: "createBLTWallet"), object: nil)
     }
     
     @IBAction func agreeAction(_ sender: Any) {
@@ -40,31 +52,34 @@ class EntryViewController: BaseViewController {
     }
     
     func setupUI() {
-//        let protocolStyle = AttributeStyle("protocol").underlineStyle(.styleSingle).foregroundColor(UIColor.darkSlateBlue)
-//        let allStyle = AttributeStyle.font(.systemFont(ofSize: 12)).foregroundColor(UIColor.blueyGrey)
-//        let agreeStr = String(format: "%@ %@", R.string.localizable.agree_title(),R.string.localizable.service_protocol())
-//        let protocolStr = R.string.localizable.service_protocol()
-//        let range = agreeStr.range(of: protocolStr)
-//        let detection = Detection.init(type: .range, style: protocolStyle, range: range!)
-//        agreeView.attributedText = AttributedText.init(string: agreeStr, detections: [detection], baseStyle: allStyle)
-//        agreeView.onClick = { attributedView, detection in
-//            switch detection.type {
-//            case .link(let url):
-//                UIApplication.shared.openURL(url)
-//            default:
-//                break
-//            }
-//        }
+        switch createType {
+        case .wookong:
+            registerView.passwordView.isHidden = true
+            registerView.passwordComfirmView.isHidden = true
+            registerView.passwordPromptView.isHidden = true
+            registerView.nameView.gapView.isHidden = true
+        default:
+            return
+        }
+    }
+    
+    @objc func createWookongWallet() {
+        self.coordinator?.checkSeedSuccessed()
     }
     
     func setupEvent() {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
-            self.coordinator?.verifyAccount(self.registerView.nameView.textField.text!, completion: { (success) in
-                if success == true {
-                    self.coordinator?.pushToActivateVC()
-                }
-            })
+            switch self.createType {
+            case .wookong:
+                self.coordinator?.copyMnemonicWord()
+            default:
+                self.coordinator?.verifyAccount(self.registerView.nameView.textField.text!, completion: { (success) in
+                    if success == true {
+                        self.coordinator?.pushToActivateVC()
+                    }
+                })
+            }
 //            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: { (success) in
 //                
 //            })
@@ -80,10 +95,24 @@ class EntryViewController: BaseViewController {
         Observable.combineLatest(self.coordinator!.state.property.nameValid.asObservable(),
                                  self.coordinator!.state.property.passwordValid.asObservable(),
                                  self.coordinator!.state.property.comfirmPasswordValid.asObservable(),
-                                 self.coordinator!.state.property.isAgree.asObservable()).map { (arg0) -> Bool in
-            return arg0.0 && arg0.1 && arg0.2 && arg0.3
+                                 self.coordinator!.state.property.isAgree.asObservable()).map { [weak self] (arg0) -> Bool in
+                                    guard let `self` = self else { return false }
+                                    switch self.createType {
+                                    case .wookong:
+                                        return arg0.0 && arg0.3
+                                    default:
+                                        return arg0.0 && arg0.1 && arg0.2 && arg0.3
+                                    }
         }.bind(to: creatButton.isEnabel).disposed(by: disposeBag)
         
+        coordinator?.state.property.validation.asObservable().subscribe(onNext: {[weak self] (validation) in
+            guard let `self` = self else { return }
+            if !validation.SN.isEmpty && !validation.SN_sig.isEmpty && !validation.public_key.isEmpty && !validation.public_key_sig.isEmpty{
+                self.coordinator?.createWallet(.bluetooth, accountName: self.registerView.nameView.textField.text!, password: "", prompt: "", inviteCode: "", validation: validation, completion: { (successed) in
+                    
+                })
+            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 

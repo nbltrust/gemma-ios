@@ -2,6 +2,7 @@
 #define _PA_EWALLET_H_
 
 #include <stdint.h>
+#include <string.h>
 
 #ifndef _WIN32
 #include <stddef.h> //for size_t

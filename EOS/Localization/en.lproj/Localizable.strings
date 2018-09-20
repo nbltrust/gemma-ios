@@ -535,3 +535,8 @@
 "pair_third_step" = "请输入WOOKONG Bio 的密码以确认配对";
 "pair_third_step_pla" = "请输入WOOKONG Bio的密码";
 "confirm_pair" = "确认配对";
+"wookong_pas_set_title" = "设置WOOKONG Bio密码";
+"wookong_creat_new_wallet" = "创建新钱包";
+"wookong_inport_mnemonic" = "导入助记词";
+"wookong_mnemonic_ver_failed" = "验证失败";
+"wookong_mnemonic_ver_successed" = "验证成功！";

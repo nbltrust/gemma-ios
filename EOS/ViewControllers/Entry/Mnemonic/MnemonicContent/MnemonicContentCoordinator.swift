@@ -19,6 +19,10 @@ protocol MnemonicContentStateManagerProtocol {
     var state: MnemonicContentState { get }
     
     func switchPageState(_ state:PageState)
+    
+    func getSeeds(_ success: @escaping GetSeedsComplication, failed: @escaping FailedComplication)
+    
+    func setSeeds(_ seeds: ([String],String))
 }
 
 class MnemonicContentCoordinator: HomeRootCoordinator {
@@ -42,6 +46,8 @@ extension MnemonicContentCoordinator: MnemonicContentCoordinatorProtocol {
     func pushToVerifyMnemonicVC() {
         if let vc = R.storyboard.mnemonic.verifyMnemonicWordViewController() {
             let coordinator = VerifyMnemonicWordCoordinator(rootVC: self.rootVC)
+            vc.seeds = self.state.seedData.value.0
+            vc.checkStr = self.state.seedData.value.1
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }
@@ -53,5 +59,12 @@ extension MnemonicContentCoordinator: MnemonicContentStateManagerProtocol {
         Async.main {
             self.store.dispatch(PageStateAction(state: state))
         }
+    }
+    func getSeeds(_ success: @escaping GetSeedsComplication, failed: @escaping FailedComplication) {
+        BLTWalletIO.shareInstance().getSeed(success, failed: failed)
+    }
+    
+    func setSeeds(_ seeds: ([String],String)) {
+        self.store.dispatch(SetSeedsAction(datas: seeds))
     }
 }

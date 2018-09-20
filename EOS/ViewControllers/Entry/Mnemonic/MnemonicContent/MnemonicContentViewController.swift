@@ -17,6 +17,8 @@ class MnemonicContentViewController: BaseViewController {
 
     @IBOutlet weak var contentView: MnemonicContentView!
     
+    var seeds: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,8 +40,21 @@ class MnemonicContentViewController: BaseViewController {
     }
 
     func setupData() {
-        let array = ["home","avocado","cabin","flip","tilt","front","during","share","style"]
-        contentView.setMnemonicWordArray(array)
+        self.coordinator?.getSeeds({ [weak self] (datas,checkStr) in
+            guard let `self` = self else { return }
+            if let tempDatas = datas as? [String],let check = checkStr {
+                DispatchQueue.main.sync {
+                    self.seeds = tempDatas
+                    self.coordinator?.setSeeds((tempDatas, check))
+                    self.contentView.setMnemonicWordArray(self.seeds)
+                }
+            }
+        }, failed: { [weak self] (reason) in
+            guard let `self` = self else { return }
+            if let failedReason = reason {
+                self.showError(message: failedReason)
+            }
+        })
     }
     
     func setupEvent() {
