@@ -221,7 +221,7 @@ extension RegisterContentView: UITextFieldDelegate {
                 passwordView.checkStatus = TextUIStyle.highlight
             }
             tipsView.isHidden = false
-            tipsView.superview?.bringSubview(toFront: tipsView)
+            tipsView.superview?.bringSubviewToFront(tipsView)
             SwifterSwift.delay(milliseconds: 3000) {
                 self.tipsView.isHidden = true
             }

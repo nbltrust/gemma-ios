@@ -142,19 +142,13 @@ extension NBLService : TargetType {
     
     var parameters: [String: Any] {
         switch self {
-<<<<<<< HEAD
         case let .createAccount(type ,account, pubKey, invitationCode, validation):
             var map: [String: Any] =  ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": type]
             if let val = validation {
                 map["validation"] = val
             }
             return map
-        case .accountVerify:
-=======
-        case let .createAccount(account, pubKey, invitationCode, hash):
-            return ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": 1, "hash": hash]
         case let .accountVerify(account):
->>>>>>> a8a7446540287fdc06b09accc027bef988038e76
             return [:]
         case .accountHistory:
             return [:]

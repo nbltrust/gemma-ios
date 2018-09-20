@@ -30,7 +30,6 @@ protocol EntryStateManagerProtocol {
     func validComfirmPassword(_ password: String, comfirmPassword: String)
     
     func checkAgree(_ agree: Bool)
-<<<<<<< HEAD
     
     func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion:@escaping (Bool)->())
     
@@ -41,10 +40,8 @@ protocol EntryStateManagerProtocol {
     func getPubkey(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void)
     
     func checkSeedSuccessed()
-=======
-    func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion:@escaping (Bool)->())
+    
     func verifyAccount(_ name: String, completion: @escaping (Bool) -> ())
->>>>>>> a8a7446540287fdc06b09accc027bef988038e76
 }
 
 class EntryCoordinator: EntryRootCoordinator {
@@ -137,19 +134,11 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(agreeAction(isAgree: agree))
     }
     
-<<<<<<< HEAD
     func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion: @escaping (Bool) -> ()) {
         KRProgressHUD.show()
         NBLNetwork.request(target: .createAccount(type: type,account: accountName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: validation), success: { (data) in
             KRProgressHUD.showSuccess()
             WalletManager.shared.saveWallket(accountName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
-=======
-    func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {
-        self.rootVC.topViewController?.startLoading()
-        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, hash: ""), success: { (data) in
-            self.rootVC.topViewController?.endLoading()
-            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
->>>>>>> a8a7446540287fdc06b09accc027bef988038e76
             self.pushToCreateSuccessVC()
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {

@@ -75,13 +75,9 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateStateMana
             password = vc.registerView.passwordView.textField.text!
             prompt = vc.registerView.passwordPromptView.textField.text!
         }
-<<<<<<< HEAD
+        
         NBLNetwork.request(target: .createAccount(type: .gemma, account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: nil), success: { (data) in
             KRProgressHUD.showSuccess()
-=======
-        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, hash: ""), success: { (data) in
-            self.rootVC.topViewController?.endLoading()
->>>>>>> a8a7446540287fdc06b09accc027bef988038e76
             WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
             self.pushToCreateSuccessVC()
         }, error: { (code) in
