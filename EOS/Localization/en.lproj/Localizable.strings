@@ -206,6 +206,13 @@
 "backup_mnemonic_red_text" = "请务必备份助记词，助记词能够恢复私钥，而私钥掌管着数字资产的控制权及所有权。当意外发生时，这是唯一找回资产的途径。";
 "backup_prikey_red_text" = "请务必备份私钥，私钥掌管着数字资产的控制权及所有权。当意外发生时，这是唯一找回资产的途径。";
 "pwd_tips_warning" = "密码用于加密钱包等机密信息，请务必牢记或使用密码管理工具存储。Gemma不存储密码，无法提供密码找回服务";
+"pay_tips_warning" = "请在10分钟内完成支付";
+"pay_failed" = "支付未完成";
+"pay_timeout" = "支付超时";
+"price_change" = "价格变动";
+"pay_timeout_tips" = "若你已支付，费用将在24小时内退回到微信。";
+"price_change_tips" = "由于EOS价格变动，创建账户的费用已变为 55 RAM 。";
+"pay_sure" = "确认支付";
 
 //zsy end
 

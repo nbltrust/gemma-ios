@@ -31,7 +31,14 @@ class PayToActivateViewController: BaseViewController,IndicatorInfoProvider {
     }
     
     override func refreshViewController() {
-        
+        switch self.coordinator?.state.pageState.value {
+        case .loading?:
+            self.endLoading()
+            //支付未完成
+        default:
+            break
+        }
+
     }
     
     func setupUI() {
@@ -84,6 +91,11 @@ extension PayToActivateViewController {
     }
     
     @objc func NextClick(_ data:[String :Any]) {
-        self.coordinator?.initOrder()
+        self.coordinator?.state.pageState.accept(.loading)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshViewController), name: UIApplication.didBecomeActiveNotification, object: nil)
+        self.coordinator?.initOrder(completion: { (success) in
+            
+        })
     }
+    
 }
