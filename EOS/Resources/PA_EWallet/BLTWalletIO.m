@@ -252,13 +252,22 @@ static BLTWalletIO* _instance = nil;
     if (!savedDevH) {
         return;
     }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
+    __block BOOL success_sn = false;
+    __block BOOL success_pub = false;
+    __block NSString *sn = @"";
+    __block NSString *sn_sig = @"";
+    __block NSString *pub = @"";
+    __block NSString *pub_sig = @"";
+    __block NSString *failedReason = @"";
+    
+    dispatch_queue_t disqueue =  dispatch_queue_create("com.shidaiyinuo.NetWorkStudy", DISPATCH_QUEUE_SERIAL);
+    dispatch_group_t disgroup = dispatch_group_create();
+
+    dispatch_group_async(disgroup, disqueue, ^{
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
         unsigned char *pbCheckCode = NULL;
-        unsigned char bAddress[1024] = {0};
         size_t nAddressLen = 1024;
         
         iRtn = PAEW_GetDeviceCheckCode(ppPAEWContext, devIdx, pbCheckCode, &nAddressLen);
@@ -267,43 +276,50 @@ static BLTWalletIO* _instance = nil;
             memset(pbCheckCode, 0, nAddressLen);
             iRtn = PAEW_GetDeviceCheckCode(ppPAEWContext, 0, pbCheckCode, &nAddressLen);
             if (iRtn != PAEW_RET_SUCCESS) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    failedCompliction([BLTUtils errorCodeToString:iRtn]);
-                });
+                failedReason = [BLTUtils errorCodeToString:iRtn];
             } else {
                 NSString *temp = [BLTUtils bytesToHexString:pbCheckCode length:nAddressLen];
-                NSString *sn = [temp substringToIndex:31];
-                NSString *sn_sig = [temp substringFromIndex:32];
-                iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
-                if (iRtn != PAEW_RET_SUCCESS) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        failedCompliction([BLTUtils errorCodeToString:iRtn]);
-                    });
-                } else {
-                    iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, bAddress, &nAddressLen);
-                    if (iRtn != PAEW_RET_SUCCESS) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            failedCompliction([BLTUtils errorCodeToString:iRtn]);
-                        });
-                    } else {
-                        nAddressLen = 1024;
-                        size_t addressLen = strlen(bAddress);
-                        NSString *pubkey_sig = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1] ];
-                        NSString *pubKey = [NSString stringWithUTF8String:(char *)bAddress];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            successComlication(sn,sn_sig,pubKey,pubkey_sig);
-                        });
-                    }
-                }
+                sn = [temp substringToIndex:32];
+                sn_sig = [temp substringFromIndex:32];
+                success_sn = true;
             }
             if (pbCheckCode) {
                 free(pbCheckCode);
             }
         } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                failedCompliction([BLTUtils errorCodeToString:iRtn]);
-            });
+            failedReason = [BLTUtils errorCodeToString:iRtn];
         }
+    });
+    dispatch_group_async(disgroup, disqueue, ^{
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        unsigned char bAddress[1024] = {0};
+        size_t nAddressLen = 1024;
+        
+        iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
+        if (iRtn != PAEW_RET_SUCCESS) {
+            failedReason = [BLTUtils errorCodeToString:iRtn];
+        } else {
+            iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, bAddress, &nAddressLen);
+            if (iRtn != PAEW_RET_SUCCESS) {
+                failedReason = [BLTUtils errorCodeToString:iRtn];
+            } else {
+                size_t addressLen = strlen(bAddress);
+                pub_sig = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1] ];
+                pub = [BLTUtils bytesToHexString:bAddress length:addressLen];
+                success_pub = true;
+            }
+        }
+    });
+    dispatch_group_notify(disgroup, disqueue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success_pub && success_sn) {
+                successComlication(sn,sn_sig,pub,pub_sig);
+            } else {
+                failedCompliction(failedReason);
+            }
+        });
     });
 }
 
