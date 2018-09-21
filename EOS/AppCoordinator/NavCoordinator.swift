@@ -22,8 +22,12 @@ class NavCoordinator:NavProtocol {
         register()
     }
     
-    func start()  {
+    func start()  {//初次进入
         
+    }
+    
+    class func start(_ root: BaseNavigationController) -> BaseViewController {
+        return BaseViewController()
     }
     
     func register() {

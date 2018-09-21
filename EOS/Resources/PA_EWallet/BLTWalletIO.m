@@ -248,6 +248,65 @@ static BLTWalletIO* _instance = nil;
     });
 }
 
+- (void)getVolidation:(GetVolidationComplication)successComlication failed:(FailedComplication)failedCompliction {
+    if (!savedDevH) {
+        return;
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        unsigned char *pbCheckCode = NULL;
+        unsigned char bAddress[1024] = {0};
+        size_t nAddressLen = 1024;
+        
+        iRtn = PAEW_GetDeviceCheckCode(ppPAEWContext, devIdx, pbCheckCode, &nAddressLen);
+        if (iRtn == PAEW_RET_SUCCESS) {
+            pbCheckCode = (unsigned char *)malloc(nAddressLen);
+            memset(pbCheckCode, 0, nAddressLen);
+            iRtn = PAEW_GetDeviceCheckCode(ppPAEWContext, 0, pbCheckCode, &nAddressLen);
+            if (iRtn != PAEW_RET_SUCCESS) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    failedCompliction([BLTUtils errorCodeToString:iRtn]);
+                });
+            } else {
+                NSString *temp = [BLTUtils bytesToHexString:pbCheckCode length:nAddressLen];
+                NSString *sn = [temp substringToIndex:31];
+                NSString *sn_sig = [temp substringFromIndex:32];
+                iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
+                if (iRtn != PAEW_RET_SUCCESS) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        failedCompliction([BLTUtils errorCodeToString:iRtn]);
+                    });
+                } else {
+                    iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, bAddress, &nAddressLen);
+                    if (iRtn != PAEW_RET_SUCCESS) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            failedCompliction([BLTUtils errorCodeToString:iRtn]);
+                        });
+                    } else {
+                        nAddressLen = 1024;
+                        size_t addressLen = strlen(bAddress);
+                        NSString *pubkey_sig = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1] ];
+                        NSString *pubKey = [NSString stringWithUTF8String:(char *)bAddress];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            successComlication(sn,sn_sig,pubKey,pubkey_sig);
+                        });
+                    }
+                }
+            }
+            if (pbCheckCode) {
+                free(pbCheckCode);
+            }
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            });
+        }
+    });
+}
+
 - (void)getSN:(GetSNComplication)successComlication failed:(FailedComplication)failedCompliction {
     if (!savedDevH) {
         return;
@@ -269,8 +328,8 @@ static BLTWalletIO* _instance = nil;
                     failedCompliction([BLTUtils errorCodeToString:iRtn]);
                 });
             } else {
-                NSString *temp = [NSString stringWithFormat:@"%@",[BLTUtils bytesToHexString:pbCheckCode length:80]];
-                NSString *sn = [NSString stringWithFormat:@"%@",[BLTUtils bytesToHexString:pbCheckCode length:16]];
+                NSString *temp = [BLTUtils bytesToHexString:pbCheckCode length:nAddressLen];
+                NSString *sn = [temp substringToIndex:31];
                 NSString *sn_sig = [temp substringFromIndex:32];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     successComlication(sn, sn_sig);

@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 import Presentr
 import SwiftyJSON
+import NBLCommonModule
 
 protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
@@ -36,7 +37,7 @@ protocol HomeStateManagerProtocol {
     func checkAccount()
 }
 
-class HomeCoordinator: HomeRootCoordinator {
+class HomeCoordinator: NavCoordinator {
     
     lazy var creator = HomePropertyActionCreate()
     
@@ -45,6 +46,14 @@ class HomeCoordinator: HomeRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+        let vc = R.storyboard.home.homeViewController()!
+        let coordinator = HomeCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+//        Broadcaster.notify(<#T##protocolType: T.Type##T.Type#>, block: <#T##(T) -> Void#>)
+        return vc
+    }
 }
 
 extension HomeCoordinator: HomeCoordinatorProtocol {

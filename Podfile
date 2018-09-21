@@ -54,7 +54,7 @@ end
 
 def extension
     pod 'KeychainAccess'
-    pod 'SwifterSwift', :git => 'https://github.com/SwifterSwift/SwifterSwift', :branch => 'xcode-10-update'
+    pod 'SwifterSwift', :git => 'https://github.com/SwifterSwift/SwifterSwift', :branch => 'master'
     pod 'Repeat'
     pod 'AsyncSwift'
 end

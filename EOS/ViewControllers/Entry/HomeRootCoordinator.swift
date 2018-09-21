@@ -10,10 +10,6 @@ import Foundation
 
 class HomeRootCoordinator: NavCoordinator {
     override func start() {
-        if let vc = R.storyboard.home.homeViewController() {
-            let coordinator = HomeCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
-        }
+        self.rootVC.pushViewController(HomeCoordinator.start(self.rootVC), animated: true)
     }
 }

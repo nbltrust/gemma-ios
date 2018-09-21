@@ -1,8 +1,8 @@
 //
-//  InvitationCodeToActivateViewController.swift
+//  BLTCardSetPrinterViewController.swift
 //  EOS
 //
-//  Created zhusongyu on 2018/9/6.
+//  Created peng zhu on 2018/9/20.
 //  Copyright © 2018年 com.nbltrustdev. All rights reserved.
 //
 
@@ -10,15 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import XLPagerTabStrip
 
-class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoProvider {
+class BLTCardSetPrinterViewController: BaseViewController {
 
-	var coordinator: (InvitationCodeToActivateCoordinatorProtocol & InvitationCodeToActivateStateManagerProtocol)?
+	var coordinator: (BLTCardSetPrinterCoordinatorProtocol & BLTCardSetPrinterStateManagerProtocol)?
 
-    @IBOutlet weak var contentView: InvitationView!
-    
-    override func viewDidLoad() {
+	override func viewDidLoad() {
         super.viewDidLoad()
         
         setupData()
@@ -86,8 +83,8 @@ class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoPr
 ////                }
 //                break
 //                
-//            case .error(let error, let reason): break
-////                self.showToastBox(false, message: error.localizedDescription)
+//            case .error(let error, let reason):
+//                self.showToastBox(false, message: error.localizedDescription)
 //                
 ////                if reason == PageLoadReason.manualLoadMore {
 ////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
@@ -102,7 +99,7 @@ class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoPr
 
 //MARK: - TableViewDelegate
 
-//extension InvitationCodeToActivateViewController: UITableViewDataSource, UITableViewDelegate {
+//extension BLTCardSetPrinterViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 10
 //    }
@@ -117,25 +114,11 @@ class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoPr
 
 //MARK: - View Event
 
-//extension InvitationCodeToActivateViewController {
+//extension BLTCardSetPrinterViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
 //        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
 //
 //        }
 //    }
 //}
-extension InvitationCodeToActivateViewController {
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(stringLiteral: R.string.localizable.invitationcode_to_activate.key.localized())
-    }
-    
-    @objc func IntroClick(_ data: [String : Any]) {
-        self.coordinator?.pushToGetInviteCodeIntroductionVC()
-    }
-    
-    @objc func NextClick(_ data: [String : Any]) {
-        self.coordinator?.createWallet(self.contentView.textfield.text!, completion: { (success) in
-            
-        })
-    }
-}
+

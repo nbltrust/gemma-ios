@@ -97,13 +97,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    
+    // iOS 10
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        MonkeyKingManager.shared.handleOpenURL(url: url)
+        return true
+    }
+    // iOS 9
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        MonkeyKingManager.shared.handleOpenURL(url: url)
+        return true
+    }
 }
 
 extension AppDelegate {
     func configApplication() {
         if !UserDefaults.standard.hasKey(.language) {
-            if let language = NSLocale.preferredLanguages.first, language == "zh-Hans-CN" {
+            if let language = NSLocale.preferredLanguages.first, language.hasPrefix("zh") {
                 Localize.setCurrentLanguage("zh-Hans")
             }
             else {

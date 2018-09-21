@@ -53,7 +53,13 @@ extension CreatationCompleteCoordinator: CreatationCompleteCoordinatorProtocol {
                 self.dismissCurrentNav(entry)
             }
         }
-      
+        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 3] as? EntryViewController {
+            coor.state.callback.hadSaveCallback.accept {[weak self] in
+                guard let `self` = self else { return }
+                self.dismissCurrentNav(entry)
+            }
+        }
+
         vc.coordinator = coor
         self.rootVC.pushViewController(vc, animated: true)
     }

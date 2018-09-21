@@ -15,6 +15,7 @@ protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()
     func pushToCreateSuccessVC()
     func pushToActivateVC()
+    func pushToPrinterSetView()
 }
 
 protocol EntryStateManagerProtocol {
@@ -35,9 +36,7 @@ protocol EntryStateManagerProtocol {
     
     func copyMnemonicWord()
     
-    func getSN(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void)
-    
-    func getPubkey(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void)
+    func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication)
     
     func checkSeedSuccessed()
     
@@ -80,6 +79,13 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         let copyCoordinator = ActivateCoordinator(rootVC: self.rootVC)
         copyVC.coordinator = copyCoordinator
         self.rootVC.pushViewController(copyVC, animated: true)
+    }
+    
+    func pushToPrinterSetView() {
+        let printerVC = R.storyboard.bltCard.bltCardSetPrinterViewController()
+        let coor = BLTCardSetPrinterCoordinator(rootVC: self.rootVC)
+        printerVC?.coordinator = coor;
+        self.rootVC.pushViewController(printerVC!, animated: true)
     }
 }
 
@@ -152,6 +158,10 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         }
     }
     
+    func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication) {
+        BLTWalletIO.shareInstance()?.getVolidation(success, failed: failed)
+    }
+    
     func copyMnemonicWord() {
         let mnemonicWordVC = R.storyboard.mnemonic.backupMnemonicWordViewController()
         let coor = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
@@ -167,37 +177,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         BLTWalletIO.shareInstance().getPubKey(success, failed: failed)
     }
     
-    func getSN() {
-        getSN({ [weak self] (sn, sn_sig) in
-            guard let `self` = self else { return }
-            var validation = self.state.property.validation.value
-            validation.SN = sn ?? ""
-            validation.SN_sig = sn_sig ?? ""
-            self.store.dispatch(SetValidationAction(validation: validation))
-            self.getPubkey()
-        }) { (reason) in
-            if let failedReason = reason {
-                showFailTop(failedReason)
-            }
-        }
-    }
-    
-    func getPubkey() {
-        getPubkey({ [weak self] (pubkey, pubkey_sig) in
-            guard let `self` = self else { return }
-            var validation = self.state.property.validation.value
-            validation.public_key = pubkey ?? ""
-            validation.public_key_sig = pubkey_sig ?? ""
-            self.store.dispatch(SetValidationAction(validation: validation))
-        }) { (reason) in
-            if let failedReason = reason {
-                showFailTop(failedReason)
-            }
-        }
-    }
-    
     func checkSeedSuccessed() {
         self.store.dispatch(SetCheckSeedSuccessedAction(isCheck: true))
-        getSN()
     }
 }
