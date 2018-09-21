@@ -478,8 +478,10 @@
 		733714F6212431E200B2ED90 /* themify.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 733714DD212431E100B2ED90 /* themify.ttf */; };
 		73378F75211C233200ACAA90 /* EOSIOTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73378F74211C233200ACAA90 /* EOSIOTableRow.swift */; };
 		734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734450822150A10900593A8F /* XLPagerTabStrip.framework */; };
-		734CC7432154D3A30009EEE6 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; };
-		734CC7B42154F8A30009EEE6 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; };
+		734CC7B72154FABE0009EEE6 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; };
+		734CC7B82154FABE0009EEE6 /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		734CC7BC2154FB2A0009EEE6 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; };
+		734CC7BD2154FB2A0009EEE6 /* NBLCommonModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
@@ -642,12 +644,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		734CC7B52154F8B40009EEE6 /* PBXContainerItemProxy */ = {
+		734CC7B92154FABE0009EEE6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 73921EC7215224AE00744811 /* GRDB.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
 			remoteInfo = GRDBiOS;
+		};
+		734CC7BE2154FB2A0009EEE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7336B7A9214F5F1D0086A9DF;
+			remoteInfo = NBLCommonModule;
 		};
 		73922010215224B000744811 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -853,6 +862,21 @@
 			remoteInfo = EOS;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		734CC7BB2154FABF0009EEE6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				734CC7BD2154FB2A0009EEE6 /* NBLCommonModule.framework in Embed Frameworks */,
+				734CC7B82154FABE0009EEE6 /* GRDB.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		000C7B47B84900A8DB3D1EC8DA0E6305 /* deep_copy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = deep_copy.hpp; sourceTree = "<group>"; };
@@ -13084,8 +13108,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				734CC7B42154F8A30009EEE6 /* GRDB.framework in Frameworks */,
-				734CC7432154D3A30009EEE6 /* NBLCommonModule.framework in Frameworks */,
 				7392217A21549C8A00744811 /* libiOS_EWallet.a in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
@@ -13100,6 +13122,7 @@
 				732F371E214FB83F00CB3A58 /* RxCocoa.framework in Frameworks */,
 				732F371F214FB83F00CB3A58 /* RxMoya.framework in Frameworks */,
 				732F3720214FB83F00CB3A58 /* Result.framework in Frameworks */,
+				734CC7B72154FABE0009EEE6 /* GRDB.framework in Frameworks */,
 				73921E07215220A100744811 /* RxSwift.framework in Frameworks */,
 				732F3721214FB83F00CB3A58 /* ReactiveMoya.framework in Frameworks */,
 				732F3722214FB83F00CB3A58 /* Alamofire.framework in Frameworks */,
@@ -13124,6 +13147,7 @@
 				95B8DDDF4AFED777D4E18239D5089FFD /* libcrypto.a in Frameworks */,
 				6729F23278361B30E5C02D41B5C38B4E /* libeos_utilities.a in Frameworks */,
 				FAE42FB8272608796B84D45337A61B85 /* libeosio_chain.a in Frameworks */,
+				734CC7BC2154FB2A0009EEE6 /* NBLCommonModule.framework in Frameworks */,
 				B66249D25E5FAEA4E9976E8DB2466B14 /* libfc.a in Frameworks */,
 				B59F91139082B6BA1A41D0F42DFBC842 /* libsoftfloat.a in Frameworks */,
 				FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */,
@@ -34648,11 +34672,13 @@
 				732F370E214FB63A00CB3A58 /* carthage */,
 				732F370F214FB64100CB3A58 /* appstore-bug */,
 				DDAFAC48AA5252B46F987377 /* [CP] Copy Pods Resources */,
+				734CC7BB2154FABF0009EEE6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				734CC7B62154F8B40009EEE6 /* PBXTargetDependency */,
+				734CC7BA2154FABE0009EEE6 /* PBXTargetDependency */,
+				734CC7BF2154FB2A0009EEE6 /* PBXTargetDependency */,
 			);
 			name = EOS;
 			productName = EOS;
@@ -35980,10 +36006,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		734CC7B62154F8B40009EEE6 /* PBXTargetDependency */ = {
+		734CC7BA2154FABE0009EEE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GRDBiOS;
-			targetProxy = 734CC7B52154F8B40009EEE6 /* PBXContainerItemProxy */;
+			targetProxy = 734CC7B92154FABE0009EEE6 /* PBXContainerItemProxy */;
+		};
+		734CC7BF2154FB2A0009EEE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NBLCommonModule;
+			targetProxy = 734CC7BE2154FB2A0009EEE6 /* PBXContainerItemProxy */;
 		};
 		73EDFEED211AC44E000DF796 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -36090,6 +36121,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6A4140EE1953CB92C9353597EDFC56C3 /* Pods-EOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
@@ -36198,6 +36230,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7BDFB5438559F4D9366AFF9A759912D2 /* Pods-EOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
