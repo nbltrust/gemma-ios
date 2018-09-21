@@ -25,7 +25,7 @@ protocol MnemonicContentStateManagerProtocol {
     func setSeeds(_ seeds: ([String],String))
 }
 
-class MnemonicContentCoordinator: HomeRootCoordinator {
+class MnemonicContentCoordinator: NavCoordinator {
     var store = Store(
         reducer: MnemonicContentReducer,
         state: nil,

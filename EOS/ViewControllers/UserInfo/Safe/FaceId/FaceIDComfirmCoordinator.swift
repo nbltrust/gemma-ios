@@ -22,7 +22,7 @@ protocol FaceIDComfirmStateManagerProtocol {
     func confirm()
 }
 
-class FaceIDComfirmCoordinator: UserInfoRootCoordinator {
+class FaceIDComfirmCoordinator: NavCoordinator {
     
     lazy var creator = FaceIDComfirmPropertyActionCreate()
     

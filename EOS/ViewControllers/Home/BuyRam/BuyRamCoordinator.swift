@@ -28,7 +28,7 @@ protocol BuyRamStateManagerProtocol {
     func sellRamValid(_ sellRam: String, blance: String)
 }
 
-class BuyRamCoordinator: HomeRootCoordinator {
+class BuyRamCoordinator: NavCoordinator {
     
     lazy var creator = BuyRamPropertyActionCreate()
     
@@ -37,6 +37,14 @@ class BuyRamCoordinator: HomeRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+        let vc = R.storyboard.buyRam.buyRamViewController()!
+        let coordinator = BuyRamCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        
+        return vc
+    }
     
     override func register() {
         Broadcaster.register(BuyRamCoordinatorProtocol.self, observer: self)
@@ -55,17 +63,15 @@ extension BuyRamCoordinator: BuyRamCoordinatorProtocol {
         presenter.dismissOnTap = false
         presenter.keyboardTranslationType = .stickToTop
         
-        let newVC = BaseNavigationController()
-        newVC.navStyle = .white
-        let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
-        
-        if let vc = R.storyboard.transfer.transferConfirmViewController() {
-            let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
-            vc.coordinator = coordinator
-            vc.data = data
-            transferConfirm.rootVC.pushViewController(vc, animated: true)
-        }
-        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+        presentVC(TransferConfirmCoordinator.self, animated: true, setup: { (vc) in
+            if let vc = vc as? TransferConfirmViewController {
+                vc.data = data
+            }
+        }, navSetup: { (nav) in
+            nav.navStyle = .white
+        }) { (top, target) in
+            top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
+        }   
     }
     
     func pushToPaymentVC() {

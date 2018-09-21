@@ -23,7 +23,7 @@ protocol ActivateStateManagerProtocol {
     func pageVCs() -> [BaseViewController]
 }
 
-class ActivateCoordinator: EntryRootCoordinator {
+class ActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: ActivateReducer,
         state: nil,

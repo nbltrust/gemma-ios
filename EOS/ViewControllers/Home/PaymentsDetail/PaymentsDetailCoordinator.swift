@@ -20,7 +20,7 @@ protocol PaymentsDetailStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class PaymentsDetailCoordinator: HomeRootCoordinator {
+class PaymentsDetailCoordinator: NavCoordinator {
     
     lazy var creator = PaymentsDetailPropertyActionCreate()
     

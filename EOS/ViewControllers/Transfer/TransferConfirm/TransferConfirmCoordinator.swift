@@ -21,7 +21,7 @@ protocol TransferConfirmStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class TransferConfirmCoordinator: TransferRootCoordinator {
+class TransferConfirmCoordinator: NavCoordinator {
     
     lazy var creator = TransferConfirmPropertyActionCreate()
     
@@ -30,6 +30,13 @@ class TransferConfirmCoordinator: TransferRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+        let vc = R.storyboard.transfer.transferConfirmViewController()!
+        let coordinator = TransferConfirmCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        return vc
+    }
 }
 
 extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {

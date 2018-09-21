@@ -20,7 +20,7 @@ protocol AccountListStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class AccountListCoordinator: AccountListRootCoordinator {
+class AccountListCoordinator: NavCoordinator {
     
     lazy var creator = AccountListPropertyActionCreate()
     
@@ -29,6 +29,14 @@ class AccountListCoordinator: AccountListRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+        let vc = R.storyboard.accountList.accountListViewController()!
+        let coordinator = AccountListCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        return vc
+    }
+
 }
 
 extension AccountListCoordinator: AccountListCoordinatorProtocol {

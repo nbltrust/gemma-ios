@@ -38,7 +38,7 @@ protocol TransferConfirmPasswordStateManagerProtocol {
 
 }
 
-class TransferConfirmPasswordCoordinator: TransferConfirmPasswordRootCoordinator {
+class TransferConfirmPasswordCoordinator: NavCoordinator {
     
     lazy var creator = TransferConfirmPasswordPropertyActionCreate()
     
@@ -47,6 +47,13 @@ class TransferConfirmPasswordCoordinator: TransferConfirmPasswordRootCoordinator
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+        let vc = R.storyboard.transfer.transferConfirmPasswordViewController()!
+        let coordinator = TransferConfirmPasswordCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        return vc
+    }
 }
 
 extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinatorProtocol {

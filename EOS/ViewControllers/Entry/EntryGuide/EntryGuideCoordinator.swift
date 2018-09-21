@@ -23,7 +23,7 @@ protocol EntryGuideStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class EntryGuideCoordinator: EntryRootCoordinator {
+class EntryGuideCoordinator: NavCoordinator {
     
     lazy var creator = EntryGuidePropertyActionCreate()
     
@@ -32,6 +32,13 @@ class EntryGuideCoordinator: EntryRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+        let vc = R.storyboard.entry.entryGuideViewController()!
+        let coordinator = EntryGuideCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        return vc
+    }
 }
 
 extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {

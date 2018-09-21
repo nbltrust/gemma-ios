@@ -27,7 +27,7 @@ protocol UserInfoStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class UserInfoCoordinator: UserInfoRootCoordinator {
+class UserInfoCoordinator: NavCoordinator {
     
     lazy var creator = UserInfoPropertyActionCreate()
     
@@ -36,6 +36,13 @@ class UserInfoCoordinator: UserInfoRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+        let vc = R.storyboard.userInfo.userInfoViewController()!
+        let coordinator = UserInfoCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        return vc
+    }
 }
 
 extension UserInfoCoordinator: UserInfoCoordinatorProtocol {

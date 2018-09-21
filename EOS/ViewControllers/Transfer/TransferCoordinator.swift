@@ -33,7 +33,7 @@ protocol TransferStateManagerProtocol {
     func checkAccountName(_ name:String) ->(Bool,error_info:String)
 }
 
-class TransferCoordinator: TransferRootCoordinator {
+class TransferCoordinator: NavCoordinator {
     
     lazy var creator = TransferPropertyActionCreate()
     
@@ -42,6 +42,13 @@ class TransferCoordinator: TransferRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+        let vc = R.storyboard.transfer.transferViewController()!
+        let coordinator = TransferCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        return vc
+    }
 }
 
 extension TransferCoordinator: TransferCoordinatorProtocol {
@@ -63,23 +70,16 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         presenter.dismissOnTap = false
         presenter.keyboardTranslationType = .stickToTop
 
-        let newVC = BaseNavigationController()
-        newVC.navStyle = .white
-        let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
-        
-//        transferConfirm .start()
-        if let vc = R.storyboard.transfer.transferConfirmViewController() {
-            let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
-            vc.coordinator = coordinator
-            vc.data = data
-            transferConfirm.rootVC.pushViewController(vc, animated: true)
+        presentVC(TransferConfirmCoordinator.self, animated: true, setup: { (vc) in
+            if let vc = vc as? TransferConfirmViewController {
+                vc.data = data
+            }
+        }, navSetup: { (nav) in
+            nav.navStyle = .white
+        }) { (top, target) in
+            top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }
-        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-
-        
     }
-    
-    
 }
 
 extension TransferCoordinator: TransferStateManagerProtocol {

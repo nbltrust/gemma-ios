@@ -20,7 +20,7 @@ protocol AboutStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class AboutCoordinator: UserInfoRootCoordinator {
+class AboutCoordinator: NavCoordinator {
     
     lazy var creator = AboutPropertyActionCreate()
     

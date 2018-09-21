@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         configApplication()
         self.handlerNetworkChanged()
-
+        
 //        self.appcoordinator?.showTest()
         
         //test

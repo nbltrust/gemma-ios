@@ -33,7 +33,7 @@ protocol WalletStateManagerProtocol {
     func switchWallet(_ pubKey:String)
 }
 
-class WalletCoordinator: HomeRootCoordinator {
+class WalletCoordinator: NavCoordinator {
     
     lazy var creator = WalletPropertyActionCreate()
     
