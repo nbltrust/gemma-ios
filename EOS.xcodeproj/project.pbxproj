@@ -480,8 +480,7 @@
 		734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734450822150A10900593A8F /* XLPagerTabStrip.framework */; };
 		734CC7B72154FABE0009EEE6 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; };
 		734CC7B82154FABE0009EEE6 /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		734CC7BC2154FB2A0009EEE6 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; };
-		734CC7BD2154FB2A0009EEE6 /* NBLCommonModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		734CC824215503D20009EEE6 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
@@ -650,13 +649,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
 			remoteInfo = GRDBiOS;
-		};
-		734CC7BE2154FB2A0009EEE6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7336B7A9214F5F1D0086A9DF;
-			remoteInfo = NBLCommonModule;
 		};
 		73922010215224B000744811 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -870,7 +862,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				734CC7BD2154FB2A0009EEE6 /* NBLCommonModule.framework in Embed Frameworks */,
 				734CC7B82154FABE0009EEE6 /* GRDB.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -13108,6 +13099,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				734CC824215503D20009EEE6 /* NBLCommonModule.framework in Frameworks */,
 				7392217A21549C8A00744811 /* libiOS_EWallet.a in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
@@ -13147,7 +13139,6 @@
 				95B8DDDF4AFED777D4E18239D5089FFD /* libcrypto.a in Frameworks */,
 				6729F23278361B30E5C02D41B5C38B4E /* libeos_utilities.a in Frameworks */,
 				FAE42FB8272608796B84D45337A61B85 /* libeosio_chain.a in Frameworks */,
-				734CC7BC2154FB2A0009EEE6 /* NBLCommonModule.framework in Frameworks */,
 				B66249D25E5FAEA4E9976E8DB2466B14 /* libfc.a in Frameworks */,
 				B59F91139082B6BA1A41D0F42DFBC842 /* libsoftfloat.a in Frameworks */,
 				FEF64CB1996AAFED806D292A1CC8F761 /* libssl.a in Frameworks */,
@@ -34678,7 +34669,6 @@
 			);
 			dependencies = (
 				734CC7BA2154FABE0009EEE6 /* PBXTargetDependency */,
-				734CC7BF2154FB2A0009EEE6 /* PBXTargetDependency */,
 			);
 			name = EOS;
 			productName = EOS;
@@ -36011,11 +36001,6 @@
 			name = GRDBiOS;
 			targetProxy = 734CC7B92154FABE0009EEE6 /* PBXContainerItemProxy */;
 		};
-		734CC7BF2154FB2A0009EEE6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = NBLCommonModule;
-			targetProxy = 734CC7BE2154FB2A0009EEE6 /* PBXContainerItemProxy */;
-		};
 		73EDFEED211AC44E000DF796 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C60743183A5E3BAD235C9971F3122EF5 /* EOS */;
@@ -36125,6 +36110,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z4LN46787D;
@@ -36234,6 +36220,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
