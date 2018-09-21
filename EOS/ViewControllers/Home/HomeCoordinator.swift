@@ -77,11 +77,11 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
         let presenter = Presentr(presentationType: customType)
         presenter.keyboardTranslationType = .stickToTop
 
-        let newVC = BaseNavigationController()
-        newVC.navStyle = .white
-        let accountList = NavCoordinator(rootVC: newVC)
-        
-        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+        presentVC(AccountListCoordinator.self, animated: true, setup: nil, navSetup: { (nav) in
+            nav.navStyle = .white
+        }) { (top, target) in
+            top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
+        }
     }
 
     func pushPaymentDetail() {
