@@ -28,6 +28,8 @@ typedef void(^ GetDeviceInfoComplication)(BOOL successed,PAEW_DevInfo *info);
 
 typedef void(^ GetSeedsComplication)(NSArray *seeds, NSString *checkStr);
 
+typedef void(^ GetVolidationComplication)(NSString *SN,NSString *SN_sig,NSString *pubkey,NSString *pubkey_si);
+
 typedef void(^ GetSNComplication)(NSString *SN,NSString *SN_sig);
 
 typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
@@ -55,6 +57,8 @@ typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 - (void)getSeed:(GetSeedsComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)checkSeed:(NSString *)seed success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+
+- (void)getVolidation:(GetVolidationComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)getSN:(GetSNComplication)successComlication failed:(FailedComplication)failedCompliction;
 

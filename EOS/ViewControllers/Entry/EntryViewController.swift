@@ -65,6 +65,22 @@ class EntryViewController: BaseViewController {
     
     @objc func createWookongWallet() {
         self.coordinator?.checkSeedSuccessed()
+        self.coordinator?.getValidation({ [weak self] (sn, sn_sig, pub, pub_sig) in
+            guard let `self` = self else { return }
+            var validation = WookongValidation()
+            validation.SN = sn ?? ""
+            validation.SN_sig = sn_sig ?? ""
+            validation.public_key = pub ?? ""
+            validation.public_key_sig = pub_sig ?? ""
+            self.coordinator?.createWallet(.bluetooth, accountName: self.registerView.nameView.textField.text!, password: "", prompt: "", inviteCode: "", validation: validation, completion: { (successed) in
+                self.coordinator?.pushToPrinterSetView()
+            })
+        }, failed: { [weak self] (reason) in
+            guard let `self` = self else { return }
+            if let failedReason = reason {
+                self.showError(message: failedReason)
+            }
+        })
     }
     
     func setupEvent() {
@@ -104,15 +120,6 @@ class EntryViewController: BaseViewController {
                                         return arg0.0 && arg0.1 && arg0.2 && arg0.3
                                     }
         }.bind(to: creatButton.isEnabel).disposed(by: disposeBag)
-        
-        coordinator?.state.property.validation.asObservable().subscribe(onNext: {[weak self] (validation) in
-            guard let `self` = self else { return }
-            if !validation.SN.isEmpty && !validation.SN_sig.isEmpty && !validation.public_key.isEmpty && !validation.public_key_sig.isEmpty{
-                self.coordinator?.createWallet(.bluetooth, accountName: self.registerView.nameView.textField.text!, password: "", prompt: "", inviteCode: "", validation: validation, completion: { (successed) in
-                    
-                })
-            }
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 
