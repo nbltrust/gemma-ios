@@ -1,7 +1,7 @@
 
 
 
-# cybex-ios
+# gemma-ios
 
 ## Requirements
 
