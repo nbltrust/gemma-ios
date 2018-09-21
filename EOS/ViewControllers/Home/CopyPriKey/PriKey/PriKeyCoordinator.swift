@@ -19,7 +19,7 @@ protocol PriKeyStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class PriKeyCoordinator: HomeRootCoordinator {
+class PriKeyCoordinator: NavCoordinator {
     
     lazy var creator = PriKeyPropertyActionCreate()
     

@@ -23,7 +23,7 @@ protocol CopyPriKeyStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class CopyPriKeyCoordinator: HomeRootCoordinator {
+class CopyPriKeyCoordinator: NavCoordinator {
     
     lazy var creator = CopyPriKeyPropertyActionCreate()
     

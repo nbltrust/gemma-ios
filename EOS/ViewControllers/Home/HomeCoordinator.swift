@@ -51,7 +51,6 @@ class HomeCoordinator: NavCoordinator {
         let vc = R.storyboard.home.homeViewController()!
         let coordinator = HomeCoordinator(rootVC: root)
         vc.coordinator = coordinator
-//        Broadcaster.notify(<#T##protocolType: T.Type##T.Type#>, block: <#T##(T) -> Void#>)
         return vc
     }
 }
@@ -80,10 +79,9 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
 
         let newVC = BaseNavigationController()
         newVC.navStyle = .white
-        let accountList = AccountListRootCoordinator(rootVC: newVC)
+        let accountList = NavCoordinator(rootVC: newVC)
         
         self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-        accountList .start()
     }
 
     func pushPaymentDetail() {
@@ -119,11 +117,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
     }
     
     func pushBuyRamVC() {
-        if let vc = R.storyboard.buyRam.buyRamViewController() {
-            let coordinator = BuyRamCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
-        }
+        self.pushVC(BuyRamCoordinator.self, animated: true, setup: nil)
     }
     
     func pushVoteVC() {

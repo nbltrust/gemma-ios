@@ -29,7 +29,7 @@ protocol ResourceMortgageStateManagerProtocol {
     func netReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
 }
 
-class ResourceMortgageCoordinator: HomeRootCoordinator {
+class ResourceMortgageCoordinator: NavCoordinator {
     
     lazy var creator = ResourceMortgagePropertyActionCreate()
     
@@ -53,18 +53,14 @@ extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
         
         let newVC = BaseNavigationController()
         newVC.navStyle = .white
-        let transferConfirm = TransferConfirmRootCoordinator(rootVC: newVC)
-        
-        //        transferConfirm .start()
-        if let vc = R.storyboard.transfer.transferConfirmViewController() {
-            let coordinator = TransferConfirmCoordinator(rootVC: transferConfirm.rootVC)
-            vc.coordinator = coordinator
-            vc.data = data
-            transferConfirm.rootVC.pushViewController(vc, animated: true)
+        let transferConfirm = NavCoordinator(rootVC: newVC)
+        transferConfirm.pushVC(TransferConfirmCoordinator.self, animated: true) { (vc) in
+            if let vc = vc as? TransferConfirmViewController {
+                vc.data = data
+            }
         }
+       
         self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-
-        
     }
     
     func pushToPaymentVC() {

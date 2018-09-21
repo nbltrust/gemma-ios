@@ -21,7 +21,7 @@ protocol CreatationCompleteStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class CreatationCompleteCoordinator: EntryRootCoordinator {
+class CreatationCompleteCoordinator: NavCoordinator {
     
     lazy var creator = CreatationCompletePropertyActionCreate()
     

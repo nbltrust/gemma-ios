@@ -43,7 +43,7 @@ protocol EntryStateManagerProtocol {
     func verifyAccount(_ name: String, completion: @escaping (Bool) -> ())
 }
 
-class EntryCoordinator: EntryRootCoordinator {
+class EntryCoordinator: NavCoordinator {
     
     lazy var creator = EntryPropertyActionCreate()
     

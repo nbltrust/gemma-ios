@@ -22,7 +22,7 @@ protocol ChangeWalletNameStateManagerProtocol {
     func updateWalletName(model: WalletManagerModel) -> Bool
 }
 
-class ChangeWalletNameCoordinator: HomeRootCoordinator {
+class ChangeWalletNameCoordinator: NavCoordinator {
     
     lazy var creator = ChangeWalletNamePropertyActionCreate()
     

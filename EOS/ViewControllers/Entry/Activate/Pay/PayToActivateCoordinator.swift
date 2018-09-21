@@ -26,7 +26,7 @@ protocol PayToActivateStateManagerProtocol {
     func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> ())
 }
 
-class PayToActivateCoordinator: EntryRootCoordinator {
+class PayToActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: PayToActivateReducer,
         state: nil,

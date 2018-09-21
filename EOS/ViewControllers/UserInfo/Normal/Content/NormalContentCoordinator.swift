@@ -30,7 +30,7 @@ protocol NormalContentStateManagerProtocol {
     func titleWithIndex(_ sender : CustomSettingType) -> String
 }
 
-class NormalContentCoordinator: UserInfoRootCoordinator {
+class NormalContentCoordinator: NavCoordinator {
     
     lazy var creator = NormalContentPropertyActionCreate()
     

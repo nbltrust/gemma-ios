@@ -23,7 +23,7 @@ protocol NormalStateManagerProtocol {
     func contentWithSender(_ sender: CustomSettingType) -> String
 }
 
-class NormalCoordinator: UserInfoRootCoordinator {
+class NormalCoordinator: NavCoordinator {
     
     lazy var creator = NormalPropertyActionCreate()
     

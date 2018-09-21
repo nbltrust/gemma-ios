@@ -27,7 +27,7 @@ protocol VerifyMnemonicWordStateManagerProtocol {
     func checkFeedSuccessed()
 }
 
-class VerifyMnemonicWordCoordinator: HomeRootCoordinator {
+class VerifyMnemonicWordCoordinator: NavCoordinator {
     var store = Store(
         reducer: VerifyMnemonicWordReducer,
         state: nil,

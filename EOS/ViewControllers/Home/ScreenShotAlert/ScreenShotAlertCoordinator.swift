@@ -20,7 +20,7 @@ protocol ScreenShotAlertStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class ScreenShotAlertCoordinator: HomeRootCoordinator {
+class ScreenShotAlertCoordinator: NavCoordinator {
     
     lazy var creator = ScreenShotAlertPropertyActionCreate()
     
