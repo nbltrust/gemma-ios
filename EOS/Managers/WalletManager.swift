@@ -43,9 +43,10 @@ class WalletManager {
         
         addToLocalWallet(isImport, accountName: account)
         switchWallet(currentPubKey)
+        account_names = [account]
+
         switchAccount(0)
         
-        account_names = [account]
         removePriKey()
     }
     
