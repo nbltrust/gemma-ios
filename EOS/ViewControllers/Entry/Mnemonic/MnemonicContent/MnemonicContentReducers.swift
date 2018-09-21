@@ -13,6 +13,8 @@ func MnemonicContentReducer(action:Action, state:MnemonicContentState?) -> Mnemo
     let state = state ?? MnemonicContentState()
         
     switch action {
+    case let action as SetSeedsAction:
+        state.seedData.accept(action.datas)
     default:
         break
     }

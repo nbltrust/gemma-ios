@@ -14,7 +14,7 @@ import RxCocoa
 protocol BLTCardSearchCoordinatorProtocol {
     func dismissSearchVC()
     
-    func pushAfterDeviceConnected()
+    func pushAfterDeviceConnected(_ deviceInfo: PAEW_DevInfo)
 }
 
 protocol BLTCardSearchStateManagerProtocol {
@@ -25,6 +25,8 @@ protocol BLTCardSearchStateManagerProtocol {
     func searchedADevice(_ device: BLTDevice)
     
     func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void)
+    
+    func getDeviceInfo(_ complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void)
 }
 
 class BLTCardSearchCoordinator: BLTCardRootCoordinator {
@@ -49,8 +51,18 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
         self.rootVC.dismiss(animated: true, completion: nil)
     }
     
-    func pushAfterDeviceConnected() {
-        
+    func pushAfterDeviceConnected(_ deviceInfo: PAEW_DevInfo) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let homeCoor = appDelegate.appcoordinator?.homeCoordinator {
+            self.rootVC.dismiss(animated: true) {
+                BLTWalletIO.shareInstance().startHeartBeat()
+                if let vc = R.storyboard.leadIn.setWalletViewController() {
+                    vc.coordinator = SetWalletCoordinator(rootVC: homeCoor.rootVC)
+                    vc.settingType = .wookong
+                    vc.deviceInfo = deviceInfo
+                    homeCoor.rootVC.pushViewController(vc, animated: true)
+                }
+            }
+        }
     }
 }
 
@@ -61,12 +73,28 @@ extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
     }
     
     func searchedADevice(_ device: BLTDevice) {
-        self.store.dispatch(SetDevicesAction(datas: [device]))
+        var devices: [BLTDevice] = self.store.state.devices
+        var valid: Bool = true
+        devices.forEach { (hisDevice) in
+            if hisDevice.name == device.name {
+                valid = false
+            }
+        }
+        if valid {
+            devices.append(device)
+        }
+        self.store.dispatch(SetDevicesAction(datas: devices))
     }
     
     func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void) {
-        BLTWalletIO.connectCard(device.name) { (success, deviceId) in
+        BLTWalletIO.shareInstance().connectCard(device.name) { (success, deviceId) in
             complication(success, deviceId)
+        }
+    }
+    
+    func getDeviceInfo(_ complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void) {
+        BLTWalletIO.shareInstance().getDeviceInfo { (success, deviceInfo) in
+            complocation(success, deviceInfo)
         }
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,14 +25,41 @@
             </objects>
             <point key="canvasLocation" x="14" y="90"/>
         </scene>
-        <!--View Controller-->
+        <!--Card Set Printer View Controller-->
         <scene sceneID="QfS-mp-rG2">
             <objects>
-                <viewController id="IJC-3M-1Mp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BLTCardSetPrinterViewController" id="IJC-3M-1Mp" customClass="BLTCardSetPrinterViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sD7-jc-Hmt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wookong_bio_fingerprint" translatesAutoresizingMaskIntoConstraints="NO" id="rVa-SS-rpt">
+                                <rect key="frame" x="17" y="44" width="341" height="224"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn5-7J-xR3">
+                                <rect key="frame" x="75" y="288" width="225" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" name="steel" red="0.557" green="0.557" blue="0.576" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWX-JC-dZH">
+                                <rect key="frame" x="147.5" y="331" width="80" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="lvA-7V-kXA"/>
+                                    <constraint firstAttribute="height" constant="100" id="qKe-0B-y6q"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="aWX-JC-dZH" firstAttribute="top" secondItem="bn5-7J-xR3" secondAttribute="bottom" constant="26" id="Oey-pA-0jy"/>
+                            <constraint firstItem="rVa-SS-rpt" firstAttribute="top" secondItem="67L-59-6UY" secondAttribute="top" constant="24" id="POf-cK-3fl"/>
+                            <constraint firstItem="67L-59-6UY" firstAttribute="trailing" secondItem="rVa-SS-rpt" secondAttribute="trailing" constant="17" id="ds2-jJ-tHv"/>
+                            <constraint firstItem="bn5-7J-xR3" firstAttribute="leading" secondItem="67L-59-6UY" secondAttribute="leading" constant="75" id="iFW-h1-yDu"/>
+                            <constraint firstItem="bn5-7J-xR3" firstAttribute="top" secondItem="rVa-SS-rpt" secondAttribute="bottom" constant="20" id="jfh-p0-pRj"/>
+                            <constraint firstItem="aWX-JC-dZH" firstAttribute="centerX" secondItem="sD7-jc-Hmt" secondAttribute="centerX" id="lcU-Gi-k13"/>
+                            <constraint firstItem="rVa-SS-rpt" firstAttribute="leading" secondItem="67L-59-6UY" secondAttribute="leading" constant="17" id="oob-tV-8WD"/>
+                            <constraint firstItem="67L-59-6UY" firstAttribute="trailing" secondItem="bn5-7J-xR3" secondAttribute="trailing" constant="75" id="vrL-JG-e34"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="67L-59-6UY"/>
                     </view>
                 </viewController>
@@ -58,10 +85,10 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5IQ-o9-sDq">
-                                <rect key="frame" x="0.0" y="67" width="375" height="250"/>
+                                <rect key="frame" x="0.0" y="67" width="375" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="atQ-oh-7UQ"/>
+                                    <constraint firstAttribute="height" constant="200" id="atQ-oh-7UQ"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="WeY-lz-eJ3" id="Ke7-og-Ve8"/>
@@ -139,4 +166,7 @@
             <point key="canvasLocation" x="2051" y="95"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="wookong_bio_fingerprint" width="375" height="224"/>
+    </resources>
 </document>

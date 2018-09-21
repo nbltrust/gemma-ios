@@ -14,9 +14,15 @@ import SwiftyJSON
 //MARK: - State
 struct MnemonicContentState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
+    
+    var seedData: BehaviorRelay<([String],String)> = BehaviorRelay(value: ([],""))
 }
 
 //MARK: - Action
 struct MnemonicContentFetchedAction: Action {
     var data:JSON
+}
+
+struct SetSeedsAction: Action {
+    var datas:([String],String)
 }

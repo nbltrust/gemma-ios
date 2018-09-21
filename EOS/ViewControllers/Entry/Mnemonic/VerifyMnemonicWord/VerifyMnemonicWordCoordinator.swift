@@ -12,12 +12,19 @@ import NBLCommonModule
 import Async
 
 protocol VerifyMnemonicWordCoordinatorProtocol {
+    func popToVC(_ vc: UIViewController)
 }
 
 protocol VerifyMnemonicWordStateManagerProtocol {
     var state: VerifyMnemonicWordState { get }
     
     func switchPageState(_ state:PageState)
+    
+    func validSequence(_ datas: [String], compairDatas: [String]) -> Bool
+    
+    func checkSeed(_ seed: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void)
+    
+    func checkFeedSuccessed()
 }
 
 class VerifyMnemonicWordCoordinator: HomeRootCoordinator {
@@ -38,6 +45,10 @@ class VerifyMnemonicWordCoordinator: HomeRootCoordinator {
 }
 
 extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordCoordinatorProtocol {
+    func popToVC(_ vc: UIViewController) {
+        self.rootVC.popToViewController(vc, animated: true)
+    }
+    
     
 }
 
@@ -45,6 +56,33 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
     func switchPageState(_ state:PageState) {
         Async.main {
             self.store.dispatch(PageStateAction(state: state))
+        }
+    }
+    
+    func validSequence(_ datas: [String], compairDatas: [String]) -> Bool {
+        if datas.count != compairDatas.count {
+            return false
+        } else {
+            for i in 0..<datas.count {
+                if datas[i] != compairDatas[i] {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    func checkSeed(_ seed: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void) {
+        BLTWalletIO.shareInstance().checkSeed(seed, success: success, failed: failed)
+    }
+    
+    func checkFeedSuccessed() {
+        self.rootVC.viewControllers.forEach { (vc) in
+            if let entryVC = vc as? EntryViewController {
+                self.popToVC(entryVC)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "createBLTWallet"), object: self,
+                                                userInfo: nil)
+            }
         }
     }
 }

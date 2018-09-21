@@ -13,7 +13,10 @@ import NBLCommonModule
 protocol SetWalletCoordinatorProtocol {
     
     func pushToServiceProtocolVC()
+    
     func importFinished()
+    
+    func pushToSetAccountVC(_ hint: String)
 }
 
 protocol SetWalletStateManagerProtocol {
@@ -22,13 +25,19 @@ protocol SetWalletStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<SetWalletState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func validForm(_ password:String, confirmPassword:String, hint:String) -> (Bool, String)
-    func importLocalWallet(_ password:String, hint:String, completion: @escaping (Bool)->Void)
-    func updatePassword(_ password:String, hint:String)
+    func validForm(_ password: String, confirmPassword: String, hint: String) -> (Bool, String)
+    
+    func importLocalWallet(_ password: String, hint: String, completion: @escaping (Bool)->Void)
+    
+    func updatePassword(_ password: String, hint: String)
     
     func validPassword(_ password: String)
+    
     func validComfirmPassword(_ password: String, comfirmPassword: String)
+    
     func checkAgree(_ agree: Bool)
+    
+    func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void)
 }
 
 class SetWalletCoordinator: HomeRootCoordinator {
@@ -61,6 +70,15 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
         if count - 3 > 0, let vc = self.rootVC.viewControllers[count - 3] as? LeadInViewController {
             vc.coordinator?.state.callback.fadeCallback.value?()
         }
+    }
+    
+    func pushToSetAccountVC(_ hint: String) {
+        let vc = R.storyboard.entry.entryViewController()
+        vc?.createType = .wookong
+        vc?.hint = hint
+        let accountCoordinator = EntryCoordinator(rootVC: self.rootVC)
+        vc?.coordinator = accountCoordinator
+        self.rootVC.pushViewController(vc!, animated: true)
     }
 }
 
@@ -99,4 +117,9 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
     func checkAgree(_ agree: Bool) {
         self.store.dispatch(SetWalletAgreeAction(isAgree: agree))
     }
+    
+    func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void) {
+        BLTWalletIO.shareInstance().initPin(password, success: success, failed: failed)
+    }
+
 }

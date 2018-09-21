@@ -1,8 +1,8 @@
 //
-//  MnemonicContentViewController.swift
+//  BLTCardSetPrinterViewController.swift
 //  EOS
 //
-//  Created zhusongyu on 2018/9/14.
+//  Created peng zhu on 2018/9/20.
 //  Copyright © 2018年 com.nbltrustdev. All rights reserved.
 //
 
@@ -11,15 +11,11 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class MnemonicContentViewController: BaseViewController {
+class BLTCardSetPrinterViewController: BaseViewController {
 
-	var coordinator: (MnemonicContentCoordinatorProtocol & MnemonicContentStateManagerProtocol)?
+	var coordinator: (BLTCardSetPrinterCoordinatorProtocol & BLTCardSetPrinterStateManagerProtocol)?
 
-    @IBOutlet weak var contentView: MnemonicContentView!
-    
-    var seeds: [String] = []
-    
-    override func viewDidLoad() {
+	override func viewDidLoad() {
         super.viewDidLoad()
         
         setupData()
@@ -36,25 +32,11 @@ class MnemonicContentViewController: BaseViewController {
     }
     
     func setupUI() {
-        self.title = R.string.localizable.backup_mnemonic_title.key.localized()
+        
     }
 
     func setupData() {
-        self.coordinator?.getSeeds({ [weak self] (datas,checkStr) in
-            guard let `self` = self else { return }
-            if let tempDatas = datas as? [String],let check = checkStr {
-                DispatchQueue.main.sync {
-                    self.seeds = tempDatas
-                    self.coordinator?.setSeeds((tempDatas, check))
-                    self.contentView.setMnemonicWordArray(self.seeds)
-                }
-            }
-        }, failed: { [weak self] (reason) in
-            guard let `self` = self else { return }
-            if let failedReason = reason {
-                self.showError(message: failedReason)
-            }
-        })
+        
     }
     
     func setupEvent() {
@@ -117,7 +99,7 @@ class MnemonicContentViewController: BaseViewController {
 
 //MARK: - TableViewDelegate
 
-//extension MnemonicContentViewController: UITableViewDataSource, UITableViewDelegate {
+//extension BLTCardSetPrinterViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 10
 //    }
@@ -132,14 +114,11 @@ class MnemonicContentViewController: BaseViewController {
 
 //MARK: - View Event
 
-extension MnemonicContentViewController {
+//extension BLTCardSetPrinterViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
 //        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
 //
 //        }
 //    }
-    @objc func Copied(_ data:[String: Any]) {
-        self.coordinator?.pushToVerifyMnemonicVC()
-    }
-}
+//}
 

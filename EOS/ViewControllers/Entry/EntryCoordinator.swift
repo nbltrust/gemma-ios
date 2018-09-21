@@ -15,6 +15,7 @@ protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()
     func pushToCreateSuccessVC()
     func pushToActivateVC()
+    func pushToPrinterSetView()
 }
 
 protocol EntryStateManagerProtocol {
@@ -24,10 +25,21 @@ protocol EntryStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func validWalletName(_ name: String)
+    
     func validPassword(_ password: String)
+    
     func validComfirmPassword(_ password: String, comfirmPassword: String)
+    
     func checkAgree(_ agree: Bool)
-    func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion:@escaping (Bool)->())
+    
+    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion:@escaping (Bool)->())
+    
+    func copyMnemonicWord()
+    
+    func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication)
+    
+    func checkSeedSuccessed()
+    
     func verifyAccount(_ name: String, completion: @escaping (Bool) -> ())
 }
 
@@ -67,6 +79,13 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         let copyCoordinator = ActivateCoordinator(rootVC: self.rootVC)
         copyVC.coordinator = copyCoordinator
         self.rootVC.pushViewController(copyVC, animated: true)
+    }
+    
+    func pushToPrinterSetView() {
+        let printerVC = R.storyboard.bltCard.bltCardSetPrinterViewController()
+        let coor = BLTCardSetPrinterCoordinator(rootVC: self.rootVC)
+        printerVC?.coordinator = coor;
+        self.rootVC.pushViewController(printerVC!, animated: true)
     }
 }
 
@@ -121,11 +140,11 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(agreeAction(isAgree: agree))
     }
     
-    func createWallet(_ walletName: String, password: String, prompt: String, inviteCode: String, completion: @escaping (Bool) -> ()) {
-        self.rootVC.topViewController?.startLoading()
-        NBLNetwork.request(target: .createAccount(account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, hash: ""), success: { (data) in
-            self.rootVC.topViewController?.endLoading()
-            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
+    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion: @escaping (Bool) -> ()) {
+        KRProgressHUD.show()
+        NBLNetwork.request(target: .createAccount(type: type,account: accountName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: validation), success: { (data) in
+            KRProgressHUD.showSuccess()
+            WalletManager.shared.saveWallket(accountName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
             self.pushToCreateSuccessVC()
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
@@ -137,5 +156,28 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         }) { (error) in
             showFailTop(R.string.localizable.request_failed.key.localized())
         }
+    }
+    
+    func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication) {
+        BLTWalletIO.shareInstance()?.getVolidation(success, failed: failed)
+    }
+    
+    func copyMnemonicWord() {
+        let mnemonicWordVC = R.storyboard.mnemonic.backupMnemonicWordViewController()
+        let coor = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
+        mnemonicWordVC?.coordinator = coor
+        self.rootVC.pushViewController(mnemonicWordVC!, animated: true)
+    }
+    
+    func getSN(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void) {
+        BLTWalletIO.shareInstance().getSN(success, failed: failed)
+    }
+    
+    func getPubkey(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void) {
+        BLTWalletIO.shareInstance().getPubKey(success, failed: failed)
+    }
+    
+    func checkSeedSuccessed() {
+        self.store.dispatch(SetCheckSeedSuccessedAction(isCheck: true))
     }
 }

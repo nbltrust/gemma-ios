@@ -21,10 +21,16 @@ struct EntryState: StateType {
 
 struct EntryPropertyState {
     var nameValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     var passwordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     var comfirmPasswordValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     var inviteCodeValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     var isAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    var checkSeedSuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 }
 
 struct EntryCallbackState {
@@ -45,6 +51,10 @@ struct comfirmPasswordAction: Action {
 
 struct agreeAction: Action {
     var isAgree: Bool = false
+}
+
+struct SetCheckSeedSuccessedAction: Action {
+    var isCheck: Bool = false
 }
 
 //MARK: - Action Creator
