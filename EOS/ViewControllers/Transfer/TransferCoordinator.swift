@@ -70,17 +70,16 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         presenter.dismissOnTap = false
         presenter.keyboardTranslationType = .stickToTop
 
-        let newVC = BaseNavigationController()
-        newVC.navStyle = .white
-        let transferConfirm = NavCoordinator(rootVC: newVC)
-        transferConfirm.pushVC(TransferConfirmCoordinator.self, animated: true) { (vc) in
+        presentVC(TransferConfirmCoordinator.self, animated: true, setup: { (vc) in
             if let vc = vc as? TransferConfirmViewController {
                 vc.data = data
             }
+        }, navSetup: { (nav) in
+            nav.navStyle = .white
+        }) { (top, target) in
+            top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }
-        
-        self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-    }    
+    }
 }
 
 extension TransferCoordinator: TransferStateManagerProtocol {

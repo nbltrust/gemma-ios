@@ -173,6 +173,13 @@ class AppCoordinator {
 }
 
 extension AppCoordinator {
+    func pushVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true) {
+        let topside = curDisplayingCoordinator().rootVC!
+        let vc = coordinator.start(topside)
+
+        topside.pushViewController(vc, animated: animated)
+    }
+    
     func presentVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true) {
         let nav = BaseNavigationController()
         let coor = NavCoordinator(rootVC: nav)
