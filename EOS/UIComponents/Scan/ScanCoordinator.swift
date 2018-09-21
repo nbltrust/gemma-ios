@@ -22,7 +22,7 @@ protocol ScanStateManagerProtocol {
     func updateScanResult(result: String)
 }
 
-class ScanCoordinator: ScanRootCoordinator {
+class ScanCoordinator: NavCoordinator {
     
     lazy var creator = ScanPropertyActionCreate()
     
@@ -31,6 +31,15 @@ class ScanCoordinator: ScanRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+        let vc = ScanViewController()
+        vc.subTitle = R.string.localizable.scan_subTitle.key.localized()
+        let coordinator = ScanCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        return vc
+    }
+
 }
 
 extension ScanCoordinator: ScanCoordinatorProtocol {

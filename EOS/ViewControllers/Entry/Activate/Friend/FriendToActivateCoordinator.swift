@@ -20,7 +20,7 @@ protocol FriendToActivateStateManagerProtocol {
     func switchPageState(_ state:PageState)
 }
 
-class FriendToActivateCoordinator: EntryRootCoordinator {
+class FriendToActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: FriendToActivateReducer,
         state: nil,

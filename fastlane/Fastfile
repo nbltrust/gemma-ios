@@ -55,6 +55,7 @@ platform :ios do
       build_configuration: "Release",
       code_signing_identity: "iPhone Distribution" # optionally specify the codesigning identity
     )
+    increment_build_number
     gym(
       xcargs: "-UseNewBuildSystem=YES",
       output_name: "gemma-fir",
@@ -91,6 +92,7 @@ platform :ios do
       build_configuration: "Release",
       code_signing_identity: "iPhone Distribution" # optionally specify the codesigning identity
     )
+    increment_build_number
     gym(
       output_name: "gemma-appstore",
       scheme:"EOS",
@@ -126,6 +128,7 @@ platform :ios do
         build_configuration: "Release",
         code_signing_identity: "iPhone Distribution" # optionally specify the codesigning identity
       )
+      increment_build_number
       gym(
         output_name: "gemma-testflight",
         scheme:"EOS",
@@ -139,7 +142,7 @@ platform :ios do
           }
         }
       )
-      upload_to_testflight
+      upload_to_testflight(skip_waiting_for_build_processing:true)
       slack(message: "Successfully distributed gemma to testflight", slack_url:"https://hooks.slack.com/services/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")
     end
 

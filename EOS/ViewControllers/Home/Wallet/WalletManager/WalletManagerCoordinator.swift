@@ -24,7 +24,7 @@ protocol WalletManagerStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class WalletManagerCoordinator: HomeRootCoordinator {
+class WalletManagerCoordinator: NavCoordinator {
     
     lazy var creator = WalletManagerPropertyActionCreate()
     

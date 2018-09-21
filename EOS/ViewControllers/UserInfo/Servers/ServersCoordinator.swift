@@ -19,7 +19,7 @@ protocol ServersStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class ServersCoordinator: UserInfoRootCoordinator {
+class ServersCoordinator: NavCoordinator {
     
     lazy var creator = ServersPropertyActionCreate()
     

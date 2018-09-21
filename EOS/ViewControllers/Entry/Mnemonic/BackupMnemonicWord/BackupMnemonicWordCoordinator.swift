@@ -21,7 +21,7 @@ protocol BackupMnemonicWordStateManagerProtocol {
     func switchPageState(_ state:PageState)
 }
 
-class BackupMnemonicWordCoordinator: HomeRootCoordinator {
+class BackupMnemonicWordCoordinator: NavCoordinator {
     var store = Store(
         reducer: BackupMnemonicWordReducer,
         state: nil,

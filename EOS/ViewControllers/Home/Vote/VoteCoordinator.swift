@@ -33,7 +33,7 @@ protocol VoteStateManagerProtocol {
     func voteSelNodes()
 }
 
-class VoteCoordinator: HomeRootCoordinator {
+class VoteCoordinator: NavCoordinator {
     lazy var creator = VotePropertyActionCreate()
     
     var store = Store<VoteState>(

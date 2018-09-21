@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 import Presentr
 import SwiftyJSON
+import NBLCommonModule
 
 protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
@@ -36,7 +37,7 @@ protocol HomeStateManagerProtocol {
     func checkAccount()
 }
 
-class HomeCoordinator: HomeRootCoordinator {
+class HomeCoordinator: NavCoordinator {
     
     lazy var creator = HomePropertyActionCreate()
     
@@ -45,6 +46,13 @@ class HomeCoordinator: HomeRootCoordinator {
         state: nil,
         middleware:[TrackingMiddleware]
     )
+    
+    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+        let vc = R.storyboard.home.homeViewController()!
+        let coordinator = HomeCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        return vc
+    }
 }
 
 extension HomeCoordinator: HomeCoordinatorProtocol {
@@ -71,10 +79,9 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
 
         let newVC = BaseNavigationController()
         newVC.navStyle = .white
-        let accountList = AccountListRootCoordinator(rootVC: newVC)
+        let accountList = NavCoordinator(rootVC: newVC)
         
         self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-        accountList .start()
     }
 
     func pushPaymentDetail() {
@@ -110,11 +117,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
     }
     
     func pushBuyRamVC() {
-        if let vc = R.storyboard.buyRam.buyRamViewController() {
-            let coordinator = BuyRamCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
-        }
+        self.pushVC(BuyRamCoordinator.self, animated: true, setup: nil)
     }
     
     func pushVoteVC() {

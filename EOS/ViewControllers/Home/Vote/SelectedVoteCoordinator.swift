@@ -24,7 +24,7 @@ protocol SelectedVoteStateManagerProtocol {
     func updateAtIndexPath(_ indexPath: IndexPath, isSel: Bool)
 }
 
-class SelectedVoteCoordinator: HomeRootCoordinator {
+class SelectedVoteCoordinator: NavCoordinator {
     lazy var creator = SelectedVotePropertyActionCreate()
 
     var store = Store<SelectedVoteState>(

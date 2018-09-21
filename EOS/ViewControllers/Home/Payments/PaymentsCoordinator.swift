@@ -26,7 +26,7 @@ protocol PaymentsStateManagerProtocol {
     func getDataFromServer(_ account: String, completion: @escaping (Bool)->Void,isRefresh:Bool)
 }
 
-class PaymentsCoordinator: HomeRootCoordinator {
+class PaymentsCoordinator: NavCoordinator {
     
     lazy var creator = PaymentsPropertyActionCreate()
     

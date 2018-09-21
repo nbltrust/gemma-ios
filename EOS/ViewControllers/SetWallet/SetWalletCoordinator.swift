@@ -40,7 +40,7 @@ protocol SetWalletStateManagerProtocol {
     func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void)
 }
 
-class SetWalletCoordinator: HomeRootCoordinator {
+class SetWalletCoordinator: NavCoordinator {
     
     lazy var creator = SetWalletPropertyActionCreate()
     

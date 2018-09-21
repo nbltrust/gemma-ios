@@ -19,7 +19,7 @@ protocol HelpStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class HelpCoordinator: UserInfoRootCoordinator {
+class HelpCoordinator: NavCoordinator {
     
     lazy var creator = HelpPropertyActionCreate()
     

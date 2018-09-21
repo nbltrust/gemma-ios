@@ -42,7 +42,7 @@ protocol SafeStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class SafeCoordinator: UserInfoRootCoordinator {
+class SafeCoordinator: NavCoordinator {
     
     lazy var creator = SafePropertyActionCreate()
     

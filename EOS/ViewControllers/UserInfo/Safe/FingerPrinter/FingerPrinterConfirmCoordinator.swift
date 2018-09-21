@@ -22,7 +22,7 @@ protocol FingerPrinterConfirmStateManagerProtocol {
     func confirm()
 }
 
-class FingerPrinterConfirmCoordinator: UserInfoRootCoordinator {
+class FingerPrinterConfirmCoordinator: NavCoordinator {
     
     lazy var creator = FingerPrinterConfirmPropertyActionCreate()
     

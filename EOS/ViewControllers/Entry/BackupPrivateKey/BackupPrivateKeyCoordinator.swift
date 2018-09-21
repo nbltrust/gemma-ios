@@ -21,7 +21,7 @@ protocol BackupPrivateKeyStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class BackupPrivateKeyCoordinator: EntryRootCoordinator {
+class BackupPrivateKeyCoordinator: NavCoordinator {
     
     lazy var creator = BackupPrivateKeyPropertyActionCreate()
     

@@ -22,7 +22,7 @@ protocol LeadInStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
 }
 
-class LeadInCoordinator: HomeRootCoordinator {
+class LeadInCoordinator: NavCoordinator {
     
     lazy var creator = LeadInPropertyActionCreate()
     
@@ -35,16 +35,15 @@ class LeadInCoordinator: HomeRootCoordinator {
 
 extension LeadInCoordinator: LeadInCoordinatorProtocol {
     func openScan() {
-        let vc = BaseNavigationController()
-        vc.navStyle = .clear
-        let scanCoordinator = ScanRootCoordinator(rootVC: vc)
-        scanCoordinator.start()
-        if let vc = scanCoordinator.rootVC.topViewController as? ScanViewController {
-            vc.coordinator?.state.callback.scanResult.accept({[weak self] (result) in
-                log.debug(result)
-            })
-        }
-        self.rootVC.present(vc, animated: true, completion: nil)
+        presentVC(ScanCoordinator.self, animated: true, setup: { (vc) in
+            if let vc = vc as? ScanViewController {
+                vc.coordinator?.state.callback.scanResult.accept({[weak self] (result) in
+                    log.debug(result)
+                })
+            }
+        }, navSetup: { (nav) in
+            nav.navStyle = .clear
+        }, presentSetup: nil)
     }
     
     

@@ -20,7 +20,7 @@ protocol ExchangeToActivateStateManagerProtocol {
     func switchPageState(_ state:PageState)
 }
 
-class ExchangeToActivateCoordinator: EntryRootCoordinator {
+class ExchangeToActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: ExchangeToActivateReducer,
         state: nil,
