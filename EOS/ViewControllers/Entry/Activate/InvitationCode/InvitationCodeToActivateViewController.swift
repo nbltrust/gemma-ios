@@ -86,8 +86,8 @@ class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoPr
 ////                }
 //                break
 //                
-//            case .error(let error, let reason):
-//                self.showToastBox(false, message: error.localizedDescription)
+//            case .error(let error, let reason): break
+////                self.showToastBox(false, message: error.localizedDescription)
 //                
 ////                if reason == PageLoadReason.manualLoadMore {
 ////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)

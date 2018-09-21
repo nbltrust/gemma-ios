@@ -85,7 +85,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                         let timeInterval = Date().timeIntervalSince1970
                         let string = "weixin://app/\(place.appid!)/pay/?nonceStr=\(place.nonceStr!)&package=Sign%3DWXPay&partnerId=\(place.partnerid!)&prepayId=\(place.prepayid!)&timeStamp=\(UInt32(timeInterval))&sign=\(place.sign!)&signType=SHA1"
                         MonkeyKingManager.shared.wechatPay(urlString: string, resultCallback: { (success) in
-                            self.state.pageState.accept(.normal)
+                            self.state.pageState.accept(.initial)
                             self.askToPay()
                             completion(success)
                         })

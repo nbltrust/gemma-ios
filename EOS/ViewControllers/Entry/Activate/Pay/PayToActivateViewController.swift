@@ -96,7 +96,7 @@ extension PayToActivateViewController {
     }
     
     @objc func NextClick(_ data:[String :Any]) {
-        self.coordinator?.state.pageState.accept(.loading)
+        self.coordinator?.state.pageState.accept(.loading(reason: .manualRefresh))
         NotificationCenter.default.addObserver(self, selector: #selector(refreshPage), name: UIApplication.didBecomeActiveNotification, object: nil)
         self.coordinator?.initOrder(completion: { (success) in
             
