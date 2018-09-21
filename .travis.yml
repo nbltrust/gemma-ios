@@ -4,6 +4,7 @@ notifications:
   slack: cybexio:fp4g1kMG5C3Qj7PW3yBo5Fc0
 cache:
   directories:
+  - library
   - Carthage
   - NBLCommonModule/Carthage
 before_install:
