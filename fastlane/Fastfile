@@ -16,7 +16,27 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
+  keychain_name = "ios-build.keychain"
+  keychain_password = ENV["KEY_PASSWORD"]
+  ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "300"
+  ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "10"
+
+  create_keychain(
+    name: keychain_name,
+    password: keychain_password,
+    default_keychain: true,
+    unlock: true,
+    timeout: 3600,
+    add_to_search_list: true
+  )
+
+  import_certificate(
+    certificate_path: ".travis/nbl-dis.p12",
+    certificate_password: ENV["KEY_PASSWORD"],
+    keychain_name: keychain_name,
+    keychain_password: keychain_password
+  )
+
   lane :fir do
     xcode_select("/Applications/Xcode.app")
     app_identifier="com.nbltrustdev.gemma.fir"
@@ -25,6 +45,16 @@ platform :ios do
       plist_path: "EOS/Info.plist", # Path to info plist file, relative to xcodeproj
       app_identifier: "com.nbltrustdev.gemma.fir" # The App Identifier
     )
+    disable_automatic_code_signing(
+      path: "EOS.xcodeproj"
+    )
+    update_project_provisioning(
+      xcodeproj: "EOS.xcodeproj",
+      profile: ".travis/AdHoc_gemma.mobileprovision", # optional if you use sigh
+      target_filter: "EOS", # matches name or type of a target
+      build_configuration: "Release",
+      code_signing_identity: "iPhone Distribution" # optionally specify the codesigning identity
+    )
     gym(
       xcargs: "-UseNewBuildSystem=YES",
       output_name: "gemma-fir",
@@ -32,12 +62,10 @@ platform :ios do
       workspace:"EOS.xcworkspace",
       configuration:"Release",
       export_method:"ad-hoc",
-      output_directory:"~/Documents/ipa",
-      export_xcargs: "-allowProvisioningUpdates",
       export_options: {
         compileBitcode: false,
         provisioningProfiles: {
-          "com.nbltrustdev.gemma.fir" => "AdHoc com.nbltrustdev.gemma.fir"
+          "com.nbltrustdev.gemma.fir" => "iOS AdHoc gemma"
         }
       }
     )
@@ -53,18 +81,26 @@ platform :ios do
       plist_path: "EOS/Info.plist", # Path to info plist file, relative to xcodeproj
       app_identifier: "com.nbltrustdev.gemma" # The App Identifier
     )
+    disable_automatic_code_signing(
+      path: "EOS.xcodeproj"
+    )
+    update_project_provisioning(
+      xcodeproj: "EOS.xcodeproj",
+      profile: ".travis/AppStore_gemma.mobileprovision", # optional if you use sigh
+      target_filter: "EOS", # matches name or type of a target
+      build_configuration: "Release",
+      code_signing_identity: "iPhone Distribution" # optionally specify the codesigning identity
+    )
     gym(
       output_name: "gemma-appstore",
       scheme:"EOS",
       workspace:"EOS.xcworkspace",
       configuration:"Release",
       export_method:"app-store",
-      output_directory:"~/Documents/ipa",
-      export_xcargs: "-allowProvisioningUpdates",
       export_options: {
         compileBitcode: false,
         provisioningProfiles: {
-          "com.nbltrustdev.gemma" => "AppStore #{app_identifier}"
+          "com.nbltrustdev.gemma" => "iOS AppStore gemma"
         }
       }
     )
@@ -73,12 +109,22 @@ platform :ios do
   end
   
    lane :test do
-    xcode_select("/Applications/Xcode.app")
+      xcode_select("/Applications/Xcode.app")
       app_identifier="com.nbltrustdev.gemma"
       update_app_identifier(
         xcodeproj: "EOS.xcodeproj", # Optional path to xcodeproj, will use the first .xcodeproj if not set
         plist_path: "EOS/Info.plist", # Path to info plist file, relative to xcodeproj
         app_identifier: "com.nbltrustdev.gemma" # The App Identifier
+      )
+      disable_automatic_code_signing(
+        path: "EOS.xcodeproj"
+      )
+      update_project_provisioning(
+        xcodeproj: "EOS.xcodeproj",
+        profile: ".travis/AppStore_gemma.mobileprovision", # optional if you use sigh
+        target_filter: "EOS", # matches name or type of a target
+        build_configuration: "Release",
+        code_signing_identity: "iPhone Distribution" # optionally specify the codesigning identity
       )
       gym(
         output_name: "gemma-testflight",
@@ -86,12 +132,10 @@ platform :ios do
         workspace:"EOS.xcworkspace",
         configuration:"Release",
         export_method:"app-store",
-        output_directory:"~/Documents/ipa",
-        export_xcargs: "-allowProvisioningUpdates",
         export_options: {
           compileBitcode: false,
           provisioningProfiles: {
-            "com.nbltrustdev.gemma" => "AppStore #{app_identifier}"
+            "com.nbltrustdev.gemma" => "iOS AppStore gemma"
           }
         }
       )

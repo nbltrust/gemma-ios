@@ -110,7 +110,6 @@
 		225787792122861D004C4579 /* NodeSelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225787772122861D004C4579 /* NodeSelCell.swift */; };
 		2257877A2122861D004C4579 /* NodeSelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225787782122861D004C4579 /* NodeSelCell.xib */; };
 		225825DA20F4591F00AA2A4B /* Button.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225825D920F4591F00AA2A4B /* Button.xib */; };
-		226C736B2152C759003A70B3 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 226C736A2152C758003A70B3 /* libiOS_EWallet.a */; };
 		227072AF2150EDE90097FE61 /* BLTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 227072AA2150EDE80097FE61 /* BLTUtils.m */; };
 		227527962147614A0089FADA /* NetworkDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22752791214761490089FADA /* NetworkDataCache.swift */; };
 		227597EF2146849D0032DC60 /* DBTableCreatation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227597EE2146849C0032DC60 /* DBTableCreatation.swift */; };
@@ -492,6 +491,7 @@
 		737FCFBE211D70B200859F82 /* RPCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737FCFBD211D70B200859F82 /* RPCTest.swift */; };
 		73921E07215220A100744811 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73921E06215220A100744811 /* RxSwift.framework */; };
 		73922059215224BA00744811 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; };
+		7392217A21549C8A00744811 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7392217921549C8900744811 /* libiOS_EWallet.a */; };
 		739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D852150D45300A1074B /* KRActivityIndicatorView.framework */; };
 		739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D862150D45400A1074B /* KRProgressHUD.framework */; };
 		739A4D9E2150DDDA00A1074B /* MarqueeLabelSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */; };
@@ -2543,7 +2543,6 @@
 		22673B9CA1401589242EC668FDA327F1 /* vector_forward_ctor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_forward_ctor.hpp; sourceTree = "<group>"; };
 		2269B704171EEC0AD09B75F1BB1692BF /* operators.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = operators.hpp; sourceTree = "<group>"; };
 		226AF486B70B5DEAC909FB521E5339F6 /* signal5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = signal5.hpp; sourceTree = "<group>"; };
-		226C736A2152C758003A70B3 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
 		226CCB9A5A3CB4E686678516C1BF21D7 /* difference_type_of.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = difference_type_of.hpp; sourceTree = "<group>"; };
 		226E2E59189F5CFFD0423333638F7176 /* symbols.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = symbols.hpp; sourceTree = "<group>"; };
 		226FF31E514C3CCAE5B692F4E7EDAF60 /* fcontext_ppc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fcontext_ppc.hpp; sourceTree = "<group>"; };
@@ -6834,6 +6833,7 @@
 		73922003215224AF00744811 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		73922006215224AF00744811 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		73922007215224AF00744811 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		7392217921549C8900744811 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
 		7392769288407F75D4107A3EFBB3DE5E /* connected_components.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = connected_components.hpp; sourceTree = "<group>"; };
 		7393B91A8DC4BD7FC616A5D3920374BD /* copy_array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = copy_array.hpp; sourceTree = "<group>"; };
 		739707D3B3D8545D83974B0F7043985B /* to_python_value.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_python_value.hpp; sourceTree = "<group>"; };
@@ -13146,6 +13146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7392217A21549C8A00744811 /* libiOS_EWallet.a in Frameworks */,
 				73922059215224BA00744811 /* GRDB.framework in Frameworks */,
 				73D47EBF214D536200A8BF29 /* NBLCommonModule.framework in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
@@ -13164,7 +13165,6 @@
 				73921E07215220A100744811 /* RxSwift.framework in Frameworks */,
 				732F3721214FB83F00CB3A58 /* ReactiveMoya.framework in Frameworks */,
 				732F3722214FB83F00CB3A58 /* Alamofire.framework in Frameworks */,
-				226C736B2152C759003A70B3 /* libiOS_EWallet.a in Frameworks */,
 				732F3724214FB83F00CB3A58 /* Moya.framework in Frameworks */,
 				732F3725214FB83F00CB3A58 /* ReactiveSwift.framework in Frameworks */,
 				ABD754F61B6B4596661C239D7EE0621B /* libappbase.a in Frameworks */,
@@ -25209,6 +25209,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7392217921549C8900744811 /* libiOS_EWallet.a */,
 				73921E0B215224AE00744811 /* GRDB.swift */,
 				73921E06215220A100744811 /* RxSwift.framework */,
 				739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */,
@@ -25229,7 +25230,6 @@
 				732F3713214FB83A00CB3A58 /* RxCocoa.framework */,
 				732F3714214FB83B00CB3A58 /* RxMoya.framework */,
 				73D47E80214D535000A8BF29 /* NBLCommonModule */,
-				226C736A2152C758003A70B3 /* libiOS_EWallet.a */,
 				61E820DFBEDE8948881A4760C672F918 /* libappbase.a */,
 				CA3066B0CEE09F5FD6CD43970E4A7F0A /* libboost_atomic.a */,
 				5DBF9AB820CAFD145D1C762D00368697 /* libboost_chrono.a */,
