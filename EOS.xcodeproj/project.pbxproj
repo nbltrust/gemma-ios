@@ -34653,11 +34653,11 @@
 			buildPhases = (
 				C17A4728A15BBCFF27675A877B93F873 /* [CP] Check Pods Manifest.lock */,
 				526C699A0C9DCFFA46450A633E55C5DE /* R.swift */,
+				2755E3B19D75CA943738072DCEBADFFD /* build auto increment */,
+				C75A54D8CA3FD1F807CC9E9282BADD29 /* color set */,
 				28E1E85156393E2D747693472011609F /* Sources */,
 				2AA1AEF5455B05A71395618B4A67D394 /* Frameworks */,
 				4929B8EE7C2F136E4A24158BBB556CB5 /* Resources */,
-				2755E3B19D75CA943738072DCEBADFFD /* build auto increment */,
-				C75A54D8CA3FD1F807CC9E9282BADD29 /* color set */,
 				AFF7EE0B2B4179DEFEDE0DDE919988C0 /* [CP] Embed Pods Frameworks */,
 				734811752106F61B000BF1B8 /* fabric */,
 				732F370E214FB63A00CB3A58 /* carthage */,
@@ -35199,7 +35199,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nfi\n";
+			shellScript = "if [ ${CONFIGURATION} == \"Release\" ]; then\nbuildNumber=$(git rev-list HEAD | wc -l | tr -d ' ')\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nfi\n";
 		};
 		526C699A0C9DCFFA46450A633E55C5DE /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -35255,7 +35255,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" ad1bae7799daed7def3ecc7e9267ff85bfeb3349 bf9dd4220092f8ad1464194e5427fb7ce82ca5e2ae529e469e722fbd45eda2f9 ";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ad1bae7799daed7def3ecc7e9267ff85bfeb3349 bf9dd4220092f8ad1464194e5427fb7ce82ca5e2ae529e469e722fbd45eda2f9 \n";
 		};
 		9E5745DB930C4D0B9549467C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -35323,7 +35323,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if [ \"${CONFIGURATION}\" = \"Release\" ]; then\nchmod -R 777 Pods/ &\npython scripts/named_colors_compat.py\n#fi";
+			shellScript = "#if [ \"${CONFIGURATION}\" = \"Release\" ]; then\nchmod -R 777 Pods/ &\npython scripts/named_colors_compat.py\n#fi\n";
 		};
 		DDAFAC48AA5252B46F987377 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -36137,7 +36137,7 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
@@ -36249,7 +36249,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=100 -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
