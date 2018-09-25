@@ -10,11 +10,7 @@ import UIKit
 import ReSwift
 
 func TransferConfirmPasswordReducer(action:Action, state:TransferConfirmPasswordState?) -> TransferConfirmPasswordState {
-    return TransferConfirmPasswordState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: TransferConfirmPasswordPropertyReducer(state?.property, action: action))
-}
-
-func TransferConfirmPasswordPropertyReducer(_ state: TransferConfirmPasswordPropertyState?, action: Action) -> TransferConfirmPasswordPropertyState {
-    var state = state ?? TransferConfirmPasswordPropertyState()
+    let state = state ?? TransferConfirmPasswordState()
     
     switch action {
     default:

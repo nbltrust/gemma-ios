@@ -52,7 +52,7 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
     }
     
     func pushAfterDeviceConnected(_ deviceInfo: PAEW_DevInfo) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let homeCoor = appDelegate.appcoordinator?.homeCoordinator {
+        if let homeCoor = app_coodinator.homeCoordinator {
             self.rootVC.dismiss(animated: true) {
                 BLTWalletIO.shareInstance().startHeartBeat()
                 if let vc = R.storyboard.leadIn.setWalletViewController() {

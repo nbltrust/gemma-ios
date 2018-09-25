@@ -31,6 +31,7 @@ def architecture
 #   pod 'RxKeyboard'
 #   pod 'RxValidator'
 #   pod 'Action'
+   pod 'URLNavigator'
 
    pod 'Lightning'
 

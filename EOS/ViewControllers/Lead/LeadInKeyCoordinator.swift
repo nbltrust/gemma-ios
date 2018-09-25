@@ -38,18 +38,18 @@ class LeadInKeyCoordinator: NavCoordinator {
 
 extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
     func openScan() {
-        presentVC(ScanCoordinator.self, animated: true, setup: { (vc) in
-            if let vc = vc as? ScanViewController {
-                vc.coordinator?.state.callback.scanResult.accept({[weak self] (result) in
-                    if let leadInVC = self?.rootVC.topViewController as? LeadInKeyViewController {
-                        leadInVC.leadInKeyView.textView.text = result
-                    }
-                })
+        let context = ScanContext()
+        context.scanResult.accept { (result) in
+            if let leadInVC = self.rootVC.topViewController as? LeadInKeyViewController {
+                leadInVC.leadInKeyView.textView.text = result
             }
-        }, navSetup: { (nav) in
+        }
+        
+        presentVC(ScanCoordinator.self, context: context, navSetup: { (nav) in
             nav.navStyle = .clear
-        }, presentSetup: nil)
-   
+        }) { (top, target) in
+            
+        }
     }
     
     func openSetWallet() {

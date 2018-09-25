@@ -85,6 +85,7 @@ PODS:
   - TinyConstraints (3.2.1)
   - UICKeyChainStore (2.1.1)
   - UIFontComplete (3.0.0)
+  - URLNavigator (2.0.6)
 
 DEPENDENCIES:
   - AsyncSwift
@@ -125,7 +126,7 @@ DEPENDENCIES:
   - SDCAlertView (from `https://github.com/sberrevoets/SDCAlertView`, branch `swift-4.2`)
   - Siren
   - SwiftDate
-  - SwifterSwift (from `https://github.com/SwifterSwift/SwifterSwift`, branch `xcode-10-update`)
+  - SwifterSwift (from `https://github.com/SwifterSwift/SwifterSwift`, branch `master`)
   - SwiftRichString (from `https://github.com/mezhevikin/SwiftRichString`, branch `swift4.2`)
   - SwiftyBeaver
   - SwiftyJSON
@@ -133,6 +134,7 @@ DEPENDENCIES:
   - TagListView (from `https://github.com/ElaWorkshop/TagListView`, branch `master`)
   - TinyConstraints (from `https://github.com/roberthein/TinyConstraints`, branch `release/Swift-4.2`)
   - UIFontComplete
+  - URLNavigator
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -174,6 +176,7 @@ SPEC REPOS:
     - SwiftyJSON
     - UICKeyChainStore
     - UIFontComplete
+    - URLNavigator
 
 EXTERNAL SOURCES:
   DifferenceKit:
@@ -195,7 +198,7 @@ EXTERNAL SOURCES:
     :branch: swift-4.2
     :git: https://github.com/sberrevoets/SDCAlertView
   SwifterSwift:
-    :branch: xcode-10-update
+    :branch: master
     :git: https://github.com/SwifterSwift/SwifterSwift
   SwiftRichString:
     :branch: swift4.2
@@ -230,7 +233,7 @@ CHECKOUT OPTIONS:
     :commit: 845954c0d3bba8c7d0b70563bd7ea264f438f018
     :git: https://github.com/sberrevoets/SDCAlertView
   SwifterSwift:
-    :commit: 5e0b44a2f6b6cb195d387223c2fe90a47721486f
+    :commit: b24e70f9245d004b449319d3ac9145f34608f612
     :git: https://github.com/SwifterSwift/SwifterSwift
   SwiftRichString:
     :commit: b1f2d15d7c274c1b64321d43b7aec404b12b38d8
@@ -295,7 +298,8 @@ SPEC CHECKSUMS:
   TinyConstraints: 5ca700872f726c49d10829d7b00f31e4ec731f36
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   UIFontComplete: 5b0f59a83308816c610164b79a2540b3520f9b72
+  URLNavigator: 2357a32f3b3787b748bf87deb927761f8b0f7f53
 
-PODFILE CHECKSUM: b8e4f66a1db542dbe084ee5f45efdffe93081adb
+PODFILE CHECKSUM: 6c79e4078a46232431f397c6a2eba2564f494e20
 
 COCOAPODS: 1.6.0.beta.1

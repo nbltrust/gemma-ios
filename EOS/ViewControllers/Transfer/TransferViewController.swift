@@ -70,7 +70,7 @@ class TransferViewController: BaseViewController {
 
     
     override func configureObserveState() {
-        self.coordinator?.state.property.balance.asObservable().subscribe(onNext: { (blance) in
+        self.coordinator?.state.balance.asObservable().subscribe(onNext: { (blance) in
             
             self.transferContentView.balance = blance!
         }, onError: nil, onCompleted: {
@@ -78,8 +78,8 @@ class TransferViewController: BaseViewController {
         }, onDisposed: nil).disposed(by: disposeBag)
         
         
-        Observable.combineLatest(self.coordinator!.state.property.toNameValid.asObservable(),
-                                 self.coordinator!.state.property.moneyValid.asObservable()
+        Observable.combineLatest(self.coordinator!.state.toNameValid.asObservable(),
+                                 self.coordinator!.state.moneyValid.asObservable()
                                  ).map { (arg0) -> Bool in
                                     var warning = ""
                                     warning = arg0.1.1

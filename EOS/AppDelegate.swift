@@ -14,17 +14,20 @@ import Localize_Swift
 import Fabric
 import Crashlytics
 import SwiftDate
+import URLNavigator
+import MonkeyKing
 
 let log = SwiftyBeaver.self
+let navigator = Navigator()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var appcoordinator:AppCoordinator?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self, Answers.self])
+        URLNavigationMap.initialize(navigator: navigator)
 
         let console = ConsoleDestination()
         log.addDestination(console)
@@ -40,13 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         _ = RichStyle.init()
 
-        let rootVC = BaseTabbarViewController()
-        appcoordinator = AppCoordinator(rootVC: rootVC)
-        
-        window?.rootViewController = appcoordinator!.rootVC
+        window?.rootViewController = AppConfiguration.shared.appCoordinator.rootVC
         self.window?.makeKeyAndVisible()
         
-        appcoordinator!.start()
+        AppConfiguration.shared.appCoordinator.start()
         RealReachability.sharedInstance().startNotifier()
         NotificationCenter.default.addObserver(forName: NSNotification.Name.realReachabilityChanged, object: nil, queue: nil) { (notifi) in
             self.handlerNetworkChanged()
@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         if !WalletManager.shared.existWallet() {
-            appcoordinator!.showEntry()
+            AppConfiguration.shared.appCoordinator!.showEntry()
         } else {
             SafeManager.shared.checkForOpenAPP()
         }
@@ -71,7 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DBManager.shared.setupDB()
         
         NetworkSettingManager.shared.setup()
-        
+        if let url = launchOptions?[.url] as? URL {
+            let opened = navigator.open(url)
+            if !opened {
+                navigator.present(url)
+            }
+        }
+
         return true
     }
     
@@ -97,16 +103,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    // iOS 10
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        MonkeyKingManager.shared.handleOpenURL(url: url)
-        return true
+        // URLNavigator Handler
+        if MonkeyKing.handleOpenURL(url) {
+            return true
+        }
+        
+        if navigator.open(url) {
+            return true
+        }
+        
+        // URLNavigator View Controller
+        if navigator.present(url, wrap: UINavigationController.self) != nil {
+            return true
+        }
+        
+        return false
     }
-    // iOS 9
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        MonkeyKingManager.shared.handleOpenURL(url: url)
-        return true
-    }
+
 }
 
 extension AppDelegate {

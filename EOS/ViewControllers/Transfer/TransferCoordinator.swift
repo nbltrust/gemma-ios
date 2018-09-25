@@ -34,19 +34,17 @@ protocol TransferStateManagerProtocol {
 }
 
 class TransferCoordinator: NavCoordinator {
-    
-    lazy var creator = TransferPropertyActionCreate()
-    
     var store = Store<TransferState>(
         reducer: TransferReducer,
         state: nil,
         middleware:[TrackingMiddleware]
     )
     
-    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.transfer.transferViewController()!
         let coordinator = TransferCoordinator(rootVC: root)
         vc.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
         return vc
     }
 }
@@ -70,11 +68,10 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         presenter.dismissOnTap = false
         presenter.keyboardTranslationType = .stickToTop
 
-        presentVC(TransferConfirmCoordinator.self, animated: true, setup: { (vc) in
-            if let vc = vc as? TransferConfirmViewController {
-                vc.data = data
-            }
-        }, navSetup: { (nav) in
+        var context = TransferConfirmContext()
+        context.data = data
+        
+        presentVC(TransferConfirmCoordinator.self, animated: true, context: context, navSetup: { (nav) in
             nav.navStyle = .white
         }) { (top, target) in
             top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)

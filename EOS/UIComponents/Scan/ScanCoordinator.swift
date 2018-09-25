@@ -23,20 +23,18 @@ protocol ScanStateManagerProtocol {
 }
 
 class ScanCoordinator: NavCoordinator {
-    
-    lazy var creator = ScanPropertyActionCreate()
-    
     var store = Store<ScanState>(
         reducer: ScanReducer,
         state: nil,
         middleware:[TrackingMiddleware]
     )
     
-    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = ScanViewController()
         vc.subTitle = R.string.localizable.scan_subTitle.key.localized()
         let coordinator = ScanCoordinator(rootVC: root)
         vc.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
         return vc
     }
 
@@ -60,7 +58,8 @@ extension ScanCoordinator: ScanStateManagerProtocol {
     }
     
     func updateScanResult(result: String) {
-        self.state.callback.scanResult.value?(result)
+        guard let context = self.state.context.value as? ScanContext else { return }
+        context.scanResult.value?(result)
         self.dismissVC()
     }
     

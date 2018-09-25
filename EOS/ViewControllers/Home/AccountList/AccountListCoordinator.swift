@@ -30,10 +30,12 @@ class AccountListCoordinator: NavCoordinator {
         middleware:[TrackingMiddleware]
     )
     
-    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.accountList.accountListViewController()!
         let coordinator = AccountListCoordinator(rootVC: root)
         vc.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
+
         return vc
     }
 
