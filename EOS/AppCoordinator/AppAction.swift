@@ -68,6 +68,7 @@ extension PageState: Equatable {
 
 protocol BaseState: StateType {
     var pageState:BehaviorRelay<PageState> { get set }
+    var context: BehaviorRelay<RouteContext?> { get set }
 }
 
 struct AppState:StateType {
@@ -76,6 +77,10 @@ struct AppState:StateType {
 
 struct AppPropertyState {
     
+}
+
+struct RouteContextAction: Action {
+    var context: RouteContext?
 }
 
 struct PageStateAction: Action {

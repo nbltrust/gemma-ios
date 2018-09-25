@@ -13,6 +13,8 @@ import SwiftyJSON
 
 //MARK: - State
 struct MnemonicContentState: BaseState {
+    var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
+    
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     
     var seedData: BehaviorRelay<([String],String)> = BehaviorRelay(value: ([],""))

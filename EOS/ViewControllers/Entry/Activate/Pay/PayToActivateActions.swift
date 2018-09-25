@@ -13,6 +13,8 @@ import SwiftyJSON
 
 //MARK: - State
 struct PayToActivateState: BaseState {
+    var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
+
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     var billInfo: BehaviorRelay<BillModel> = BehaviorRelay(value: BillModel())
     var orderId = ""

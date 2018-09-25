@@ -42,7 +42,7 @@ class SafeManager {
         let faceIdCoordinator = FaceIDComfirmCoordinator(rootVC: nav)
         vc.coordinator = faceIdCoordinator
         nav.pushViewController(vc, animated: true)
-        appdelegate.appcoordinator?.rootVC.present(nav, animated: true, completion: nil)
+        app_coodinator.rootVC.present(nav, animated: true, completion: nil)
     }
     
     func showFingerSingerComfirmVC() {
@@ -54,7 +54,7 @@ class SafeManager {
         let fingerCoordinator = FingerPrinterConfirmCoordinator(rootVC: nav)
         vc.coordinator = fingerCoordinator
         nav.pushViewController(vc, animated: true)
-        appdelegate.appcoordinator?.rootVC.present(nav, animated: true, completion: nil)
+        app_coodinator.rootVC.present(nav, animated: true, completion: nil)
     }
     
     func showGestureComfirmVC() {
@@ -66,7 +66,7 @@ class SafeManager {
         let gestureCoordinator = GestureLockComfirmCoordinator(rootVC: nav)
         vc.coordinator = gestureCoordinator
         nav.pushViewController(vc, animated: true)
-        appdelegate.appcoordinator?.rootVC.present(nav, animated: true, completion: nil)
+        app_coodinator.rootVC.present(nav, animated: true, completion: nil)
         
         if self.isFaceIdOpened() {
             confirmFaceIdLock(R.string.localizable.faceid_reason.key.localized()) { (result) in

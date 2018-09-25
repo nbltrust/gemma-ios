@@ -75,9 +75,9 @@ class AppCoordinator {
         userInfoItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine.key.localized(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
         userinfo.tabBarItem = userInfoItem
         
-        homeCoordinator.pushVC(HomeCoordinator.self, animated: true, setup: nil)
-        transferCoordinator.pushVC(TransferCoordinator.self, animated: true, setup: nil)
-        userinfoCoordinator.pushVC(UserInfoCoordinator.self, animated: true, setup: nil)
+        homeCoordinator.pushVC(HomeCoordinator.self, animated: true, context: nil)
+        transferCoordinator.pushVC(TransferCoordinator.self, animated: true, context: nil)
+        userinfoCoordinator.pushVC(UserInfoCoordinator.self, animated: true, context: nil)
 
         rootVC.viewControllers = [home, transfer, userinfo]
         aspect()
@@ -107,7 +107,7 @@ class AppCoordinator {
     }
     
     func showEntry() {
-        presentVC(EntryGuideCoordinator.self, animated: true)
+        presentVC(EntryGuideCoordinator.self, animated: true, context: nil, navSetup: nil, presentSetup: nil)
     }
     
     func endEntry() {
@@ -147,19 +147,18 @@ class AppCoordinator {
         let newVC = BaseNavigationController()
         newVC.navStyle = .white
         let transferConfirmpwd = NavCoordinator(rootVC: newVC)
-        transferConfirmpwd.pushVC(TransferConfirmPasswordCoordinator.self, animated: true) { (vc) in
-            if let vc = vc as? TransferConfirmPasswordViewController {
-                vc.publicKey = pubKey
-                vc.iconType = leftIconType.rawValue
-                vc.type = type
-                vc.producers = producers
-                vc.callback = {[weak vc] priKey in
-                    vc?.dismiss(animated: true, completion: {
-                        completion?(priKey)
-                    })
-                }
-            }
+        var context = TransferConfirmPasswordContext()
+        context.publicKey = pubKey
+        context.iconType = leftIconType.rawValue
+        context.type = type
+        context.producers = producers
+        context.callback = { (priKey, vc) in
+            vc.dismiss(animated: true, completion: {
+                completion?(priKey)
+            })
         }
+        
+        transferConfirmpwd.pushVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context)
         
         var topside = curDisplayingCoordinator().rootVC!
         
@@ -173,17 +172,19 @@ class AppCoordinator {
 }
 
 extension AppCoordinator {
-    func pushVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true) {
+    func pushVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true, context:RouteContext? = nil) {
         let topside = curDisplayingCoordinator().rootVC!
-        let vc = coordinator.start(topside)
-
+        let vc = coordinator.start(topside, context: context)
         topside.pushViewController(vc, animated: animated)
     }
     
-    func presentVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true) {
+    func presentVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true, context:RouteContext? = nil,
+                                     navSetup: ((BaseNavigationController) -> Void)?,
+                                     presentSetup:((_ top:BaseNavigationController, _ target:BaseNavigationController) -> Void)?) {
         let nav = BaseNavigationController()
+        navSetup?(nav)
         let coor = NavCoordinator(rootVC: nav)
-        coor.pushVC(coordinator, animated: true, setup: nil)
+        coor.pushVC(coordinator, animated: false, context: context)
         
         var topside = curDisplayingCoordinator().rootVC!
         
@@ -191,8 +192,13 @@ extension AppCoordinator {
             topside = topside.presentedViewController as! BaseNavigationController
         }
         
-        SwifterSwift.delay(milliseconds: 100) {
-            topside.present(nav, animated: animated, completion: nil)
+        if presentSetup == nil {
+            SwifterSwift.delay(milliseconds: 100) {
+                topside.present(nav, animated: animated, completion: nil)
+            }
+        }
+        else {
+            presentSetup?(topside, nav)
         }
     }
 }

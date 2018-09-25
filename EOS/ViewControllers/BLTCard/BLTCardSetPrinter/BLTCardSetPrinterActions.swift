@@ -13,6 +13,8 @@ import SwiftyJSON
 
 //MARK: - State
 struct BLTCardSetPrinterState: BaseState {
+    var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
+
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     var checkFingerData: BehaviorRelay<(isScueess: Bool, accessCount: Int)> = BehaviorRelay(value: (false,0))
 }

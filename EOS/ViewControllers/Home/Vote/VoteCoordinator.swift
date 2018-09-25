@@ -120,9 +120,7 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
     
     func voteSelNodes() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.appcoordinator?.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, producers: selectedProducers(), completion: nil)
-        }
+        app_coodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, producers: selectedProducers(), completion: nil)
     }
     
     func selectedProducers() -> [String] {

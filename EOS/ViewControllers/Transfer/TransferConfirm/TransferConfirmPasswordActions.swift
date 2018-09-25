@@ -8,16 +8,13 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
 
 //MARK: - State
-struct TransferConfirmPasswordState: StateType {
-    var isLoading = false
-    var page: Int = 1
-    var errorMessage:String?
-    var property: TransferConfirmPasswordPropertyState
-}
-
-struct TransferConfirmPasswordPropertyState {
+struct TransferConfirmPasswordState:BaseState {
+    var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
+    
+    var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
 }
 
 //MARK: - Action Creator

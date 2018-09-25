@@ -10,11 +10,7 @@ import UIKit
 import ReSwift
 
 func TransferConfirmReducer(action:Action, state:TransferConfirmState?) -> TransferConfirmState {
-    return TransferConfirmState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: TransferConfirmPropertyReducer(state?.property, action: action))
-}
-
-func TransferConfirmPropertyReducer(_ state: TransferConfirmPropertyState?, action: Action) -> TransferConfirmPropertyState {
-    var state = state ?? TransferConfirmPropertyState()
+    let state = state ?? TransferConfirmState()
     
     switch action {
     default:

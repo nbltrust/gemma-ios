@@ -19,7 +19,9 @@ typealias ObjectOptionalCallback = (Any?) -> Void
 typealias ResultCallback = (Bool) -> Void
 typealias HandlerResult = (Bool, String)
 
-
+var app_coodinator:AppCoordinator {
+    return AppConfiguration.shared.appCoordinator
+}
 
 struct AppConfiguration {
     static let APPID = ""
@@ -27,6 +29,14 @@ struct AppConfiguration {
     static let EOS_PRECISION = 4
     
     static let EOS_ERROR_CODE_BASE = "eos_errorcode_"
+    
+    static let shared = AppConfiguration()
+    var appCoordinator: AppCoordinator!
+    
+    private init() {
+        let rootVC = BaseTabbarViewController()
+        appCoordinator = AppCoordinator(rootVC: rootVC)
+    }
 }
 
 struct NetworkConfiguration {

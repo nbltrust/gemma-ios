@@ -9,31 +9,17 @@
 import Foundation
 import ReSwift
 import RxCocoa
+import HandyJSON
 
-typealias ScanResult = ((_ pickurler: String) -> Void)
-//MARK: - State
-struct ScanState: StateType {
-    var isLoading = false
-    var page: Int = 1
-    var errorMessage:String?
-    var property: ScanPropertyState
-    var callback: ScanCallbackState
-}
-
-struct ScanPropertyState {
-}
-
-struct ScanCallbackState {
+struct ScanContext: RouteContext, HandyJSON {
     var scanResult: BehaviorRelay<ScanResult?> = BehaviorRelay(value: nil)
 }
 
-//MARK: - Action Creator
-class ScanPropertyActionCreate {
-    public typealias ActionCreator = (_ state: ScanState, _ store: Store<ScanState>) -> Action?
+typealias ScanResult = ((_ pickurler: String) -> Void)
+//MARK: - State
+struct ScanState:BaseState {
+    var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     
-    public typealias AsyncActionCreator = (
-        _ state: ScanState,
-        _ store: Store <ScanState>,
-        _ actionCreatorCallback: @escaping ((ActionCreator) -> Void)
-        ) -> Void
+    var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
 }
+
