@@ -213,7 +213,9 @@
 "pay_timeout_tips" = "若你已支付，费用将在24小时内退回到微信。";
 "price_change_tips" = "由于EOS价格变动，创建账户的费用已变为 55 RAM 。";
 "pay_sure" = "确认支付";
-
+"lead_in_fail" = "导入钱包失败";
+"verify_prikey_title" = "请输入备份的私钥，已验证是否正确";
+"verify" = "验证";
 
 //zsy end
 

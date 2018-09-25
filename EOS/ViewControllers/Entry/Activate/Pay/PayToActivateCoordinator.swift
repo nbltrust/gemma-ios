@@ -82,8 +82,8 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 self.store.dispatch(OrderIdAction(orderId: orderID._id))
                 NBLNetwork.request(target: .place(orderId: orderID._id), success: { (result) in
                     if let place = Place.deserialize(from: result.dictionaryObject) {
-                        let timeInterval = Date().timeIntervalSince1970
-                        let string = "weixin://app/\(place.appid!)/pay/?nonceStr=\(place.nonceStr!)&package=Sign%3DWXPay&partnerId=\(place.partnerid!)&prepayId=\(place.prepayid!)&timeStamp=\(UInt32(timeInterval))&sign=\(place.sign!)&signType=SHA1"
+                        let timeInterval = place.timestamp.string
+                        let string = "weixin://app/\(place.appid!)/pay/?nonceStr=\(place.nonceStr!)&package=Sign%3DWXPay&partnerId=\(place.partnerid!)&prepayId=\(place.prepayid!)&timeStamp=\(UInt32(timeInterval)!)&sign=\(place.sign!)&signType=SHA1"
                         MonkeyKingManager.shared.wechatPay(urlString: string, resultCallback: { (success) in
                             self.state.pageState.accept(.initial)
                             self.askToPay()
@@ -130,7 +130,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             } else if payState == "NOTPAY", state == "CLOSED" {
                 
             } else if payState == "SUCCESS", state == "DONE" {
-                self.createWallet(self.state.orderId, completion: { (data) in
+                self.createWallet(self.state.orderId, completion: { (newData) in
                     
                 })
             } else if payState == "SUCCESS", state == "TOREFUND" {
