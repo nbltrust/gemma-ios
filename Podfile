@@ -100,7 +100,7 @@ end
 
 def debug
     pod 'SwiftyBeaver'
-    pod 'Reveal-SDK', :configurations => ['Debug']
+#    pod 'Reveal-SDK', :configurations => ['Debug']
     pod 'CocoaDebug', :configurations => ['Debug']
 end
 

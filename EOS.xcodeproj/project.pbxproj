@@ -34689,7 +34689,6 @@
 				28E1E85156393E2D747693472011609F /* Sources */,
 				2AA1AEF5455B05A71395618B4A67D394 /* Frameworks */,
 				4929B8EE7C2F136E4A24158BBB556CB5 /* Resources */,
-				AFF7EE0B2B4179DEFEDE0DDE919988C0 /* [CP] Embed Pods Frameworks */,
 				734811752106F61B000BF1B8 /* fabric */,
 				732F370E214FB63A00CB3A58 /* carthage */,
 				732F370F214FB64100CB3A58 /* appstore-bug */,
@@ -35272,7 +35271,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "scripts/appstore.sh\n";
+			shellScript = "#scripts/appstore.sh\n";
 		};
 		734811752106F61B000BF1B8 /* fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -35305,24 +35304,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AFF7EE0B2B4179DEFEDE0DDE919988C0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-17/iOS/RevealServer.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOS/Pods-EOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C17A4728A15BBCFF27675A877B93F873 /* [CP] Check Pods Manifest.lock */ = {
@@ -36172,6 +36153,7 @@
 					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -36282,6 +36264,7 @@
 					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=100 -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
