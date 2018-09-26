@@ -216,6 +216,7 @@
 "lead_in_fail" = "导入钱包失败";
 "verify_prikey_title" = "请输入备份的私钥，已验证是否正确";
 "verify" = "验证";
+"prikey_verify_fail" = "私钥验证失败";
 
 //zsy end
 

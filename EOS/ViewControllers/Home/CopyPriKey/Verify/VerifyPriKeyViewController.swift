@@ -34,6 +34,7 @@ class VerifyPriKeyViewController: BaseViewController {
     }
     
     func setupUI() {
+        self.title = R.string.localizable.copy_priKey_title.key.localized()
         self.contentView.title = R.string.localizable.verify_prikey_title.key.localized()
         self.contentView.buttonTitle = R.string.localizable.verify()
     }
@@ -117,11 +118,13 @@ class VerifyPriKeyViewController: BaseViewController {
 
 //MARK: - View Event
 
-//extension VerifyPriKeyViewController {
-//    @objc func <#view#>DidClicked(_ data:[String: Any]) {
-//        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
-//
-//        }
-//    }
-//}
+extension VerifyPriKeyViewController {
+    @objc func beginLeadInAction(_ sender : [String:Any]) {
+        if let priKey = self.contentView.textView.text, priKey == WalletManager.shared.priKey {
+            self.coordinator?.finishCopy()
+        } else {
+            self.showError(message: R.string.localizable.prikey_verify_fail.key.localized())
+        }
+    }
+}
 

@@ -12,6 +12,7 @@ import NBLCommonModule
 import Async
 
 protocol VerifyPriKeyCoordinatorProtocol {
+    func finishCopy()
 }
 
 protocol VerifyPriKeyStateManagerProtocol {
@@ -35,10 +36,26 @@ class VerifyPriKeyCoordinator: NavCoordinator {
         Broadcaster.register(VerifyPriKeyCoordinatorProtocol.self, observer: self)
         Broadcaster.register(VerifyPriKeyStateManagerProtocol.self, observer: self)
     }
+    
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
+        let vc = R.storyboard.home.verifyPriKeyViewController()!
+        let coordinator = VerifyPriKeyCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
+        return vc
+    }
+
 }
 
 extension VerifyPriKeyCoordinator: VerifyPriKeyCoordinatorProtocol {
-    
+    func finishCopy() {
+        if let pubKey = EOSIO.getPublicKey(WalletManager.shared.priKey) {
+            WalletManager.shared.backupSuccess(pubKey)
+        }
+        if let lastVC = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 3] as? BackupPrivateKeyViewController {
+            lastVC.coordinator?.state.callback.hadSaveCallback.value?()
+        }
+    }
 }
 
 extension VerifyPriKeyCoordinator: VerifyPriKeyStateManagerProtocol {

@@ -52,6 +52,6 @@ class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
 
 extension CopyPriKeyViewController {
     @objc func savedKeySafely(_ data: [String : Any]) {
-        self.coordinator?.finishCopy()
+        self.coordinator?.pushVerifyPriKey()
     }
 }
