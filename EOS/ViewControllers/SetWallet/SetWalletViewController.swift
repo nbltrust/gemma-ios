@@ -74,13 +74,15 @@ class SetWalletViewController: BaseViewController {
                 switch self.settingType {
                 case .leadIn:
                     if let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text {
-                        
+                        self.startLoading()
                         self.coordinator?.importLocalWallet(password, hint: hint, completion: {[weak self] (success) in
                             guard let `self` = self else { return }
+                            self.endLoading()
                             if success {
                                 self.coordinator?.importFinished()
                             }
                             else {
+                                self.showError(message: R.string.localizable.lead_in_fail.key.localized())
                             }
                         })
                     }

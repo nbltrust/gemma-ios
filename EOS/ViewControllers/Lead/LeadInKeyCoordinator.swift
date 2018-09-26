@@ -47,9 +47,7 @@ extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
         
         presentVC(ScanCoordinator.self, context: context, navSetup: { (nav) in
             nav.navStyle = .clear
-        }) { (top, target) in
-            
-        }
+        }, presentSetup: nil) 
     }
     
     func openSetWallet() {
