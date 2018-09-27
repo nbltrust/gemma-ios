@@ -15,6 +15,7 @@ protocol NavProtocol {
     func openWebVC(url:URL)
     func pushVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool, context:RouteContext?)
     func presentVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool, context:RouteContext?, navSetup: ((BaseNavigationController) -> Void)?, presentSetup:((_ top:BaseNavigationController, _ target:BaseNavigationController) -> Void)?)
+    func presentVCNoNav<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool, context:RouteContext?, presentSetup:((_ top:BaseNavigationController, _ target:BaseViewController) -> Void)?)
     
     func register()
 }
@@ -70,6 +71,27 @@ extension NavCoordinator {
             presentSetup?(topside, nav)
         }
   
+    }
+    
+    func presentVCNoNav<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true,
+                                     context:RouteContext?,
+                                     presentSetup:((_ top:BaseNavigationController, _ target:BaseViewController) -> Void)?) {
+        let vc = coordinator.start(self.rootVC, context: context)
+        var topside = self.rootVC!
+        
+        while topside.presentedViewController != nil  {
+            topside = topside.presentedViewController as! BaseNavigationController
+        }
+        
+        if presentSetup == nil {
+            SwifterSwift.delay(milliseconds: 100) {
+                topside.present(vc, animated: animated, completion: nil)
+            }
+        }
+        else {
+            presentSetup?(topside, vc)
+        }
+        
     }
     
     @objc func register() {
