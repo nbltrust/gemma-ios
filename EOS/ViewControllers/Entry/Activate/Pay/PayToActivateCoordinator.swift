@@ -13,6 +13,8 @@ import Async
 
 protocol PayToActivateCoordinatorProtocol {
     func pushToCreateSuccessVC()
+    func pushBackupPrivateKeyVC()
+    func dismissCurrentNav(_ entry:UIViewController?)
 }
 
 protocol PayToActivateStateManagerProtocol {
@@ -50,6 +52,36 @@ extension PayToActivateCoordinator: PayToActivateCoordinatorProtocol {
         createCompleteVC?.coordinator = coordinator
         self.rootVC.pushViewController(createCompleteVC!, animated: true)
     }
+    
+    func pushBackupPrivateKeyVC() {
+        let vc = R.storyboard.entry.backupPrivateKeyViewController()!
+        let coor = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
+        
+        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
+            coor.state.callback.hadSaveCallback.accept {[weak self] in
+                guard let `self` = self else { return }
+                self.dismissCurrentNav(entry)
+            }
+        }
+        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 3] as? EntryViewController {
+            coor.state.callback.hadSaveCallback.accept {[weak self] in
+                guard let `self` = self else { return }
+                self.dismissCurrentNav(entry)
+            }
+        }
+        
+        vc.coordinator = coor
+        self.rootVC.pushViewController(vc, animated: true)
+    }
+    func dismissCurrentNav(_ entry:UIViewController? = nil) {
+        if let entry = entry as? EntryViewController {
+            entry.coordinator?.state.callback.endCallback.value?()
+            return
+        }
+        if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
+            vc.coordinator?.state.callback.endCallback.value?()
+        }
+    }
 }
 
 extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
@@ -82,8 +114,8 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 self.store.dispatch(OrderIdAction(orderId: orderID._id))
                 NBLNetwork.request(target: .place(orderId: orderID._id), success: { (result) in
                     if let place = Place.deserialize(from: result.dictionaryObject) {
-                        let timeInterval = Date().timeIntervalSince1970
-                        let string = "weixin://app/\(place.appid!)/pay/?nonceStr=\(place.nonceStr!)&package=Sign%3DWXPay&partnerId=\(place.partnerid!)&prepayId=\(place.prepayid!)&timeStamp=\(UInt32(timeInterval))&sign=\(place.sign!)&signType=SHA1"
+                        let timeInterval = place.timestamp.string
+                        let string = "weixin://app/\(place.appid!)/pay/?nonceStr=\(place.nonceStr!)&package=Sign%3DWXPay&partnerId=\(place.partnerid!)&prepayId=\(place.prepayid!)&timeStamp=\(UInt32(timeInterval)!)&sign=\(place.sign!)&signType=SHA1"
                         MonkeyKingManager.shared.wechatPay(urlString: string, resultCallback: { (success) in
                             self.state.pageState.accept(.initial)
                             self.askToPay()
@@ -130,7 +162,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             } else if payState == "NOTPAY", state == "CLOSED" {
                 
             } else if payState == "SUCCESS", state == "DONE" {
-                self.createWallet(self.state.orderId, completion: { (data) in
+                self.createWallet(self.state.orderId, completion: { (newData) in
                     
                 })
             } else if payState == "SUCCESS", state == "TOREFUND" {
@@ -171,7 +203,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         NBLNetwork.request(target: .createAccount(type: .gemma, account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: nil), success: { (data) in
             self.rootVC.topViewController?.endLoading()
             WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
-            self.pushToCreateSuccessVC()
+            self.pushBackupPrivateKeyVC()
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)

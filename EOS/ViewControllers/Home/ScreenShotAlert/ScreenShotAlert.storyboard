@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,13 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1e-Bg-DgA" customClass="ScreenShotAlertView" customModule="EOS" customModuleProvider="target">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="230" translatesAutoresizingMaskIntoConstraints="NO" id="A1e-Bg-DgA" customClass="ScreenShotAlertView" customModule="EOS" customModuleProvider="target">
                                 <rect key="frame" x="52.5" y="218.5" width="270" height="230"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="270" id="8uL-wm-Pkv"/>
-                                    <constraint firstAttribute="height" constant="230" id="lke-zv-9l9"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="12"/>
@@ -36,6 +32,8 @@
                         <constraints>
                             <constraint firstItem="A1e-Bg-DgA" firstAttribute="centerY" secondItem="UFF-uh-fRx" secondAttribute="centerY" id="7Uo-4V-xdw"/>
                             <constraint firstItem="A1e-Bg-DgA" firstAttribute="centerX" secondItem="UFF-uh-fRx" secondAttribute="centerX" id="bQp-jc-5bZ"/>
+                            <constraint firstItem="A1e-Bg-DgA" firstAttribute="leading" secondItem="fpK-sN-rzS" secondAttribute="leading" constant="52.5" id="gJI-07-yI3"/>
+                            <constraint firstItem="fpK-sN-rzS" firstAttribute="trailing" secondItem="A1e-Bg-DgA" secondAttribute="trailing" constant="52.5" id="ryn-Sy-igt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fpK-sN-rzS"/>
                         <userDefinedRuntimeAttributes>
@@ -44,6 +42,9 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <connections>
+                        <outlet property="alertView" destination="A1e-Bg-DgA" id="fBr-tx-aPe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52S-GE-J2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

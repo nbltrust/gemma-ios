@@ -12,8 +12,8 @@ import Presentr
 
 protocol CopyPriKeyCoordinatorProtocol {
     func showAlertMessage()
-    
     func finishCopy()
+    func pushVerifyPriKey()
 }
 
 protocol CopyPriKeyStateManagerProtocol {
@@ -36,18 +36,11 @@ class CopyPriKeyCoordinator: NavCoordinator {
 
 extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
     func showAlertMessage() {
-        let width = ModalSize.custom(size: 270)
-        let height = ModalSize.custom(size: 230)
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: (UIScreen.main.bounds.width-270)/2, y: UIScreen.main.bounds.height/2-115))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
-        
-        let presenter = Presentr(presentationType: customType)
+        let presenter = Presentr(presentationType: PresentationType.fullScreen)
         presenter.keyboardTranslationType = .stickToTop
         
-        if let vc = R.storyboard.screenShotAlert.screenShotAlertViewController() {
-            let coordinator = ScreenShotAlertCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: vc, animated: false, completion: nil)
+        presentVCNoNav(ScreenShotAlertCoordinator.self, context: nil) { (top, target) in
+            top.customPresentViewController(presenter, viewController: target, animated: true)
         }
     }
     
@@ -58,6 +51,10 @@ extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
         if let lastVC = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? BackupPrivateKeyViewController {
             lastVC.coordinator?.state.callback.hadSaveCallback.value?()
         }
+    }
+    
+    func pushVerifyPriKey() {
+        pushVC(VerifyPriKeyCoordinator.self, animated: true, context: nil)
     }
 }
 

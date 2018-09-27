@@ -16,6 +16,8 @@ protocol EntryCoordinatorProtocol {
     func pushToCreateSuccessVC()
     func pushToActivateVC()
     func pushToPrinterSetView()
+    func pushBackupPrivateKeyVC()
+    func dismissCurrentNav(_ entry:UIViewController?)
 }
 
 protocol EntryStateManagerProtocol {
@@ -87,6 +89,36 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         printerVC?.coordinator = coor;
         self.rootVC.pushViewController(printerVC!, animated: true)
     }
+    
+    func pushBackupPrivateKeyVC() {
+        let vc = R.storyboard.entry.backupPrivateKeyViewController()!
+        let coor = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
+        
+        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
+            coor.state.callback.hadSaveCallback.accept {[weak self] in
+                guard let `self` = self else { return }
+                self.dismissCurrentNav(entry)
+            }
+        }
+        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 3] as? EntryViewController {
+            coor.state.callback.hadSaveCallback.accept {[weak self] in
+                guard let `self` = self else { return }
+                self.dismissCurrentNav(entry)
+            }
+        }
+        
+        vc.coordinator = coor
+        self.rootVC.pushViewController(vc, animated: true)
+    }
+    func dismissCurrentNav(_ entry:UIViewController? = nil) {
+        if let entry = entry as? EntryViewController {
+            entry.coordinator?.state.callback.endCallback.value?()
+            return
+        }
+        if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
+            vc.coordinator?.state.callback.endCallback.value?()
+        }
+    }
 }
 
 extension EntryCoordinator: EntryStateManagerProtocol {
@@ -145,7 +177,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         NBLNetwork.request(target: .createAccount(type: type,account: accountName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: validation), success: { (data) in
             KRProgressHUD.showSuccess()
             WalletManager.shared.saveWallket(accountName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
-            self.pushToCreateSuccessVC()
+            self.pushBackupPrivateKeyVC()
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)

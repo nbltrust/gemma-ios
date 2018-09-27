@@ -111,9 +111,7 @@ class AppCoordinator {
     }
     
     func endEntry() {
-        entryCoordinator?.rootVC.dismiss(animated: true) { [weak self] in
-            self?.entryCoordinator = nil
-        }
+        curDisplayingCoordinator().rootVC.dismiss(animated: true, completion: nil)
     }
 
     func showTest() {
@@ -143,10 +141,6 @@ class AppCoordinator {
         let presenter = Presentr(presentationType: customType)
         presenter.keyboardTranslationType = .stickToTop
         
-        
-        let newVC = BaseNavigationController()
-        newVC.navStyle = .white
-        let transferConfirmpwd = NavCoordinator(rootVC: newVC)
         var context = TransferConfirmPasswordContext()
         context.publicKey = pubKey
         context.iconType = leftIconType.rawValue
@@ -157,18 +151,21 @@ class AppCoordinator {
                 completion?(priKey)
             })
         }
-        
-        transferConfirmpwd.pushVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context)
-        
-        var topside = curDisplayingCoordinator().rootVC!
-        
-        while topside.presentedViewController != nil  {
-            topside = topside.presentedViewController as! BaseNavigationController
+        presentVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context, navSetup: { (nav) in
+            nav.navStyle = .white
+
+        }) { (top, target) in
+            top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }
-        
-        curDisplayingCoordinator().rootVC.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
     }
-    
+    func showGemmaAlert(_ context: ScreenShotAlertContext? = nil) {
+        let presenter = Presentr(presentationType: PresentationType.fullScreen)
+        presenter.keyboardTranslationType = .stickToTop
+        
+        presentVCNoNav(ScreenShotAlertCoordinator.self, context: context) { (top, target) in
+            top.customPresentViewController(presenter, viewController: target, animated: true)
+        }
+    }
 }
 
 extension AppCoordinator {
@@ -199,6 +196,26 @@ extension AppCoordinator {
         }
         else {
             presentSetup?(topside, nav)
+        }
+    }
+    
+    func presentVCNoNav<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true, context:RouteContext? = nil,
+                                     presentSetup:((_ top:BaseNavigationController, _ target:BaseViewController) -> Void)?) {
+        var topside = curDisplayingCoordinator().rootVC!
+        let vc = coordinator.start(topside, context: context)
+        
+        
+        while topside.presentedViewController != nil  {
+            topside = topside.presentedViewController as! BaseNavigationController
+        }
+        
+        if presentSetup == nil {
+            SwifterSwift.delay(milliseconds: 100) {
+                topside.present(vc, animated: animated, completion: nil)
+            }
+        }
+        else {
+            presentSetup?(topside, vc)
         }
     }
 }
