@@ -225,6 +225,12 @@ class WalletManager {
         try? keychain.remove("\(publicKey)-passwordHint")
         try? keychain.remove("\(publicKey)-pubKey")
         try? keychain.remove("\(publicKey)-cypher")
+        
+        if wallets.count == 0 {
+            app_coodinator.curDisplayingCoordinator().rootVC.popToRootViewController(animated: true)
+        } else {
+            app_coodinator.curDisplayingCoordinator().rootVC.popToRootViewController(animated: true)
+        }
     }
     
     func switchToLastestWallet() -> Bool {
@@ -308,14 +314,15 @@ class WalletManager {
                             completion(true,created)
                             return
                         }
-                    } else {
-                        if var wallet = self.currentWallet() {
-                            wallet.creatStatus = WalletCreatStatus.failedWithReName.rawValue
-                            self.updateWallet(wallet)
-                            self.checkCurrentWallet()
-                            return
-                        }
                     }
+//                    else {
+//                        if var wallet = self.currentWallet() {
+//                            wallet.creatStatus = WalletCreatStatus.failedWithReName.rawValue
+//                            self.updateWallet(wallet)
+//                            self.checkCurrentWallet()
+//                            return
+//                        }
+//                    }
                     completion(false,"")
                 })
             }
@@ -411,6 +418,7 @@ class WalletManager {
     
     func failedGetAccountInfo() {
         showWarning(R.string.localizable.error_createAccount_failed.key.localized())
+        self.removeWallet(self.currentPubKey)
     }
     
     func failedWithReName() {
