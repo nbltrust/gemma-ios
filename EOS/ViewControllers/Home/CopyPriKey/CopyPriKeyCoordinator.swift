@@ -36,12 +36,13 @@ class CopyPriKeyCoordinator: NavCoordinator {
 
 extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
     func showAlertMessage() {
-        let presenter = Presentr(presentationType: PresentationType.fullScreen)
-        presenter.keyboardTranslationType = .stickToTop
-        
-        presentVCNoNav(ScreenShotAlertCoordinator.self, context: nil) { (top, target) in
-            top.customPresentViewController(presenter, viewController: target, animated: true)
-        }
+        var context = ScreenShotAlertContext()
+        context.desc = RichStyle.shared.tagText(R.string.localizable.backup_introduce_three.key.localized(), fontSize: 14, color: UIColor.blueyGrey, lineHeight: 20)
+        context.title = R.string.localizable.dont_screen_shot.key.localized()
+        context.buttonTitle = R.string.localizable.i_know.key.localized()
+        context.imageName = R.image.icPopNoScreenshots.name
+        context.needCancel = false
+        app_coodinator.showGemmaAlert(context)
     }
     
     func finishCopy() {
