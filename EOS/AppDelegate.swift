@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        WalletManager.shared.switchToLastestWallet()
         
         _ = RichStyle.init()
+        RichStyle.shared.start()
 
         window?.rootViewController = AppConfiguration.shared.appCoordinator.rootVC
         self.window?.makeKeyAndVisible()

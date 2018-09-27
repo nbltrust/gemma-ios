@@ -8,25 +8,26 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
+import HandyJSON
+
+struct ScreenShotAlertContext: RouteContext, HandyJSON {
+    init() {
+        title = ""
+        buttonTitle = ""
+    }
+    
+    var imageName: String?
+    var title: String
+    var desc: String?
+    var needCancel: Bool = false
+    var buttonTitle: String
+    var sureShot: CompletionCallback?
+}
 
 //MARK: - State
-struct ScreenShotAlertState: StateType {
-    var isLoading = false
-    var page: Int = 1
-    var errorMessage:String?
-    var property: ScreenShotAlertPropertyState
-}
-
-struct ScreenShotAlertPropertyState {
-}
-
-//MARK: - Action Creator
-class ScreenShotAlertPropertyActionCreate {
-    public typealias ActionCreator = (_ state: ScreenShotAlertState, _ store: Store<ScreenShotAlertState>) -> Action?
+struct ScreenShotAlertState: BaseState {
+    var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     
-    public typealias AsyncActionCreator = (
-        _ state: ScreenShotAlertState,
-        _ store: Store <ScreenShotAlertState>,
-        _ actionCreatorCallback: @escaping ((ActionCreator) -> Void)
-        ) -> Void
+    var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
 }

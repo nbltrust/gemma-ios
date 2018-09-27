@@ -169,6 +169,15 @@ class AppCoordinator {
         curDisplayingCoordinator().rootVC.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
     }
     
+    func showGemmaAlert(_ context: ScreenShotAlertContext? = nil) {
+        let presenter = Presentr(presentationType: PresentationType.fullScreen)
+        presenter.keyboardTranslationType = .stickToTop
+        
+        presentVCNoNav(ScreenShotAlertCoordinator.self, context: context) { (top, target) in
+            top.customPresentViewController(presenter, viewController: target, animated: true)
+        }
+    }
+    
 }
 
 extension AppCoordinator {
@@ -199,6 +208,26 @@ extension AppCoordinator {
         }
         else {
             presentSetup?(topside, nav)
+        }
+    }
+    
+    func presentVCNoNav<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true, context:RouteContext? = nil,
+                                     presentSetup:((_ top:BaseNavigationController, _ target:BaseViewController) -> Void)?) {
+        var topside = curDisplayingCoordinator().rootVC!
+        let vc = coordinator.start(topside, context: context)
+        
+        
+        while topside.presentedViewController != nil  {
+            topside = topside.presentedViewController as! BaseNavigationController
+        }
+        
+        if presentSetup == nil {
+            SwifterSwift.delay(milliseconds: 100) {
+                topside.present(vc, animated: animated, completion: nil)
+            }
+        }
+        else {
+            presentSetup?(topside, vc)
         }
     }
 }

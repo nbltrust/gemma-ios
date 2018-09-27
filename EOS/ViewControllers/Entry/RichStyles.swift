@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftRichString
+import Localize_Swift
 
 enum StyleNames:String {
     case introduce
@@ -34,7 +35,20 @@ extension Style {
 }
 
 class RichStyle {
+    static var shared = RichStyle()
+    
+    func start() {
+        
+    }
+    
     init() {
+        changeStyle()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: LCLLanguageChangeNotification), object: nil, queue: nil, using: {notification in
+            self.start()
+            self.changeStyle()
+        })
+        
         let introduce_style = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
             $0.color = UIColor.steel
@@ -71,7 +85,34 @@ class RichStyle {
         
         initLineViewStyle()
         initActivateLabelStyle()
-      }
+    }
+    
+    func changeStyle() {
+        
+    }
+    
+    //PingFangSC-Regular_12_#F7F8FAFF_20
+    func constructStyle(_ fontSize: CGFloat = 12, color:UIColor = UIColor.white, lineHeight: CGFloat = 20, font: SystemFonts = SystemFonts.PingFangSC_Regular) {
+        let style = Style {
+            let realfont = font.font(size: fontSize)
+            $0.font = realfont
+            $0.color = color
+            
+            $0.setupLineHeight(lineHeight, fontHeight: realfont.lineHeight)
+        }
+        
+        Styles.register("\(font.rawValue)_\(fontSize)_\(color.hexString)_\(lineHeight)", style: style)
+    }
+    
+    func tagText(_ nestText: String, fontSize: CGFloat = 12, color: UIColor = UIColor.white, lineHeight: CGFloat = 20, font: SystemFonts = SystemFonts.PingFangSC_Regular) -> String {
+        let tag = "\(font.rawValue)_\(fontSize)_\(color.hexString)_\(lineHeight)"
+        
+        if !StylesManager.shared.styles.keys.contains(tag) {
+            constructStyle(fontSize, color: color, lineHeight: lineHeight, font: font)
+        }
+        return "<\(tag)>" + nestText + "</\(tag)>"
+    }
+
     
     func initLineViewStyle(){
         let name_style = Style{
@@ -97,7 +138,7 @@ class RichStyle {
             $0.color = UIColor.darkSlateBlue
         }
         Styles.register(LineViewStyleNames.transfer_confirm.rawValue, style: confirm_style)
-
+        
         let confirm_name_style = Style{
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
             $0.color = UIColor.steel
@@ -110,10 +151,10 @@ class RichStyle {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
             $0.color = UIColor.blueyGrey
         }
-//
-//        let bluey_grey = Style {
-//            $0.color = UIColor.blueyGrey
-//        }
+        //
+        //        let bluey_grey = Style {
+        //            $0.color = UIColor.blueyGrey
+        //        }
         
         let corn_flower_blue = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)

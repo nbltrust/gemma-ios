@@ -11,12 +11,15 @@ import Foundation
 @IBDesignable
 class ScreenShotAlertView: UIView {
     
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var knowButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tipsLabel: UILabel!
+    @IBOutlet weak var titleImage: UIImageView!
     
     enum ScreenShotEvent: String {
         case sureShot
+        case cancelShot
     }
     
     var tips = "" {
@@ -39,13 +42,18 @@ class ScreenShotAlertView: UIView {
             guard let `self` = self else { return }
             self.sendEventWith(ScreenShotEvent.sureShot.rawValue, userinfo: [ : ])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
+        cancelButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+            guard let `self` = self else { return }
+            self.sendEventWith(ScreenShotEvent.cancelShot.rawValue, userinfo: [ : ])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
     
-    fileprivate func updateHeight() {
+    func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()
