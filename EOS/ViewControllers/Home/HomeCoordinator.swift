@@ -47,10 +47,12 @@ class HomeCoordinator: NavCoordinator {
         middleware:[TrackingMiddleware]
     )
     
-    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.home.homeViewController()!
         let coordinator = HomeCoordinator(rootVC: root)
         vc.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
+
         return vc
     }
 }
@@ -77,7 +79,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
         let presenter = Presentr(presentationType: customType)
         presenter.keyboardTranslationType = .stickToTop
 
-        presentVC(AccountListCoordinator.self, animated: true, setup: nil, navSetup: { (nav) in
+        presentVC(AccountListCoordinator.self, animated: true, context: nil, navSetup: { (nav) in
             nav.navStyle = .white
         }) { (top, target) in
             top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
@@ -117,7 +119,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
     }
     
     func pushBuyRamVC() {
-        self.pushVC(BuyRamCoordinator.self, animated: true, setup: nil)
+        self.pushVC(BuyRamCoordinator.self, animated: true, context: nil)
     }
     
     func pushVoteVC() {

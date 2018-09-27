@@ -48,17 +48,18 @@ class TransferConfirmPasswordCoordinator: NavCoordinator {
         middleware:[TrackingMiddleware]
     )
     
-    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.transfer.transferConfirmPasswordViewController()!
         let coordinator = TransferConfirmPasswordCoordinator(rootVC: root)
         vc.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
         return vc
     }
 }
 
 extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinatorProtocol {
     func finishTransfer() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let transferCoor = appDelegate.appcoordinator?.transferCoordinator, let transferVC = transferCoor.rootVC.topViewController as? TransferViewController {
+        if let transferCoor = app_coodinator.transferCoordinator, let transferVC = transferCoor.rootVC.topViewController as? TransferViewController {
             self.rootVC.dismiss(animated: true) {
                 transferVC.resetData()
             }
@@ -66,7 +67,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
     }
     
     func finishMortgage() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let mortgageCoor = appDelegate.appcoordinator?.homeCoordinator, let mortgageVC = mortgageCoor.rootVC.topViewController as? ResourceMortgageViewController {
+        if let mortgageCoor = app_coodinator.homeCoordinator, let mortgageVC = mortgageCoor.rootVC.topViewController as? ResourceMortgageViewController {
             self.rootVC.dismiss(animated: true) {
                 mortgageVC.resetData()
             }
@@ -74,7 +75,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
     }
     
     func finishBuyRam() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let coor = appDelegate.appcoordinator?.homeCoordinator, let vc = coor.rootVC.topViewController as? BuyRamViewController {
+        if let coor = app_coodinator.homeCoordinator, let vc = coor.rootVC.topViewController as? BuyRamViewController {
             self.rootVC.dismiss(animated: true) {
                 vc.resetData()
             }
@@ -82,7 +83,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
     }
     
     func finishVoteNode() {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let coor = appDelegate.appcoordinator?.homeCoordinator, let vc = coor.rootVC.topViewController as? VoteViewController {
+        if let coor = app_coodinator.homeCoordinator, let vc = coor.rootVC.topViewController as? VoteViewController {
             self.rootVC.dismiss(animated: true) {
                 vc.coordinator?.popVC()
             }

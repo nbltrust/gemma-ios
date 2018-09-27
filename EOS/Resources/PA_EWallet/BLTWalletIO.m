@@ -8,6 +8,12 @@
 
 #import "BLTWalletIO.h"
 
+@interface BLTWalletIO () {
+    int lastSignState;
+}
+
+@end
+
 @implementation BLTWalletIO
 
 void *savedDevH;
@@ -30,9 +36,7 @@ int EnumCallback(const char *szDevName, int nRSSI, int nState)
     device.name = [NSString stringWithUTF8String:szDevName];
     device.RSSI = nRSSI;
     device.state = nState;
-//    if (selfClass.didSearchDevice) {
-        selfClass.didSearchDevice(device);
-//    }
+    selfClass.didSearchDevice(device);
     return PAEW_RET_SUCCESS;
 }
 
@@ -62,6 +66,14 @@ static BLTWalletIO* _instance = nil;
         selfClass = self;
     }
     return self;
+}
+
+- (NSCondition *)abortCondition
+{
+    if (!_abortCondition) {
+        _abortCondition = [[NSCondition alloc] init];
+    }
+    return _abortCondition;
 }
 
 - (void)formmart {
@@ -142,7 +154,6 @@ static BLTWalletIO* _instance = nil;
     __block void *ppPAEWContext = 0;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         int connectDev = PAEW_InitContextWithDevNameAndDevContext(&ppPAEWContext, szDeviceName, PAEW_DEV_TYPE_BT, &additional, sizeof(additional), 0x00, 0x00);
-        NSLog(@"-------connect returns: 0x%X", connectDev);
         if (ppPAEWContext) {
             savedDevH = ppPAEWContext;
         }
@@ -394,6 +405,58 @@ static BLTWalletIO* _instance = nil;
             }
         }
     });
+}
+
+- (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed {
+    if (!savedDevH) {
+        return;
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        int startEnrollS = PAEW_EnrollFP(savedDevH, 0);
+        if (startEnrollS != PAEW_RET_SUCCESS) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failed([BLTUtils errorCodeToString:startEnrollS]);
+            });
+        } else {
+            int iRtn = PAEW_RET_UNKNOWN_FAIL;
+            int lastRtn = PAEW_RET_SUCCESS;
+            do {
+                
+                iRtn = PAEW_GetFPState(savedDevH, 0);
+                if (lastRtn != iRtn) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        stateComplication([BLTUtils stateWithValue:iRtn]);
+                    });
+                    lastRtn = iRtn;
+                }
+            } while ((iRtn == PAEW_RET_DEV_WAITING) || (iRtn == PAEW_RET_DEV_FP_GOOG_FINGER) || (iRtn == PAEW_RET_DEV_FP_REDUNDANT) || (iRtn == PAEW_RET_DEV_FP_BAD_IMAGE) || (iRtn == PAEW_RET_DEV_FP_NO_FINGER) || (iRtn == PAEW_RET_DEV_FP_NOT_FULL_FINGER));
+            if (iRtn != PAEW_RET_SUCCESS) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    failed([BLTUtils errorCodeToString:iRtn]);
+                });
+                return;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success();
+            });
+        }
+    });
+}
+
+
+- (void)printLog:(NSString *)format, ...
+{
+    va_list args;
+    va_start(args, format);
+    NSString *str = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    if ([NSThread isMainThread]) {
+        NSLog(@"%@",str);
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"%@",str);
+        });
+    }
 }
 
 @end

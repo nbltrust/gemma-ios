@@ -30,9 +30,19 @@
 				<string>wxae3306b1fdcca166</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>gemma</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>gemma</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>17</string>
+	<string>19</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

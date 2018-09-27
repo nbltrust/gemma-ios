@@ -1,8 +1,8 @@
 //
-//  BLTCardConfirmFingerPrinterActions.swift
+//  BLTCardSetFingerPrinterActions.swift
 //  EOS
 //
-//  Created peng zhu on 2018/9/13.
+//  Created peng zhu on 2018/9/25.
 //  Copyright © 2018年 com.nbltrustdev. All rights reserved.
 //
 
@@ -12,13 +12,14 @@ import RxCocoa
 import SwiftyJSON
 
 //MARK: - State
-struct BLTCardConfirmFingerPrinterState: BaseState {
+struct BLTCardSetFingerPrinterState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
-
+    
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
 }
 
 //MARK: - Action
-struct BLTCardConfirmFingerPrinterFetchedAction: Action {
+struct BLTCardSetFingerPrinterFetchedAction: Action {
     var data:JSON
 }
+

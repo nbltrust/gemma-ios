@@ -20,23 +20,9 @@ class TransferConfirmPasswordViewController: BaseViewController {
 
 	var coordinator: (TransferConfirmPasswordCoordinatorProtocol & TransferConfirmPasswordStateManagerProtocol)?
 
-    var receiver = ""
-    
-    var amount = ""
-    
-    var remark = ""
-    
-    var type = ""
-    
-    var iconType = ""
-    
-    var producers: [String] = []
-    
-    var callback: StringCallback?
-    
-    var publicKey = WalletManager.shared.currentPubKey
-    
     var errCount = 0
+    
+    private(set) var context:TransferConfirmPasswordContext?
     
     @IBOutlet weak var passwordView: TransferConfirmPasswordView!
     override func viewDidLoad() {
@@ -48,24 +34,12 @@ class TransferConfirmPasswordViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupUI()
-    }
-    
-    func setupUI() {
-        if self.iconType == leftIconType.dismiss.rawValue {
-            configLeftNavButton(R.image.icTransferClose())
-        } else {
-            configLeftNavButton(R.image.icBack())
-        }
-        
-        if type == confirmType.updatePwd.rawValue {
-            passwordView.title = R.string.localizable.update_pwd_title.key.localized()
-            passwordView.btnTitle = R.string.localizable.update_pwd_btntitle.key.localized()
-        }
     }
     
     override func leftAction(_ sender: UIButton) {
-        if self.iconType == leftIconType.dismiss.rawValue {
+        guard let context = context else { return }
+        
+        if context.iconType == leftIconType.dismiss.rawValue {
             self.coordinator?.dismissConfirmPwdVC()
         } else {
             self.passwordView.textField.resignFirstResponder()
@@ -74,16 +48,36 @@ class TransferConfirmPasswordViewController: BaseViewController {
     }
 
     override func configureObserveState() {
-        
+        self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
+            guard let `self` = self else { return }
+            
+            if let context = context as? TransferConfirmPasswordContext {
+                self.context = context
+
+                if context.iconType == leftIconType.dismiss.rawValue {
+                    self.configLeftNavButton(R.image.icTransferClose())
+                } else {
+                    self.configLeftNavButton(R.image.icBack())
+                }
+                
+                if context.type == confirmType.updatePwd.rawValue {
+                    self.passwordView.title = R.string.localizable.update_pwd_title.key.localized()
+                    self.passwordView.btnTitle = R.string.localizable.update_pwd_btntitle.key.localized()
+                }
+            }
+        }).disposed(by: disposeBag)
+
     }
 }
 
 extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
-        guard let priKey = WalletManager.shared.getCachedPriKey(publicKey, password: passwordView.textField.text!) else {
+        guard let context = context else { return }
+        
+        guard let priKey = WalletManager.shared.getCachedPriKey(context.publicKey, password: passwordView.textField.text!) else {
             self.errCount  = self.errCount + 1
             if self.errCount == 3 {
-                if let message = WalletManager.shared.getPasswordHint(publicKey) {
+                if let message = WalletManager.shared.getPasswordHint(context.publicKey) {
                     self.showError(message: message)
                 }
             } else {
@@ -92,18 +86,18 @@ extension TransferConfirmPasswordViewController {
             return
         }
         
-        if let callback = self.callback {
-            if self.type != confirmType.voteNode.rawValue {
-                callback(priKey)
+        if let callback = context.callback {
+            if context.type != confirmType.voteNode.rawValue {
+                callback(priKey, self)
                 return
             }
         }
         
-        let myType = self.type
+        let myType = context.type
         if myType == confirmType.transfer.rawValue {
             self.view.endEditing(true)
             self.startLoading()
-            self.coordinator?.transferAccounts(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
+            self.coordinator?.transferAccounts(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.endLoading()
@@ -115,7 +109,7 @@ extension TransferConfirmPasswordViewController {
         } else if myType == confirmType.mortgage.rawValue {
             self.view.endEditing(true)
             self.startLoading()
-            self.coordinator?.mortgage(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
+            self.coordinator?.mortgage(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.endLoading()
@@ -128,7 +122,7 @@ extension TransferConfirmPasswordViewController {
         } else if myType == confirmType.relieveMortgage.rawValue {
             self.view.endEditing(true)
             self.startLoading()
-            self.coordinator?.relieveMortgage(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
+            self.coordinator?.relieveMortgage(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.endLoading()
@@ -140,7 +134,7 @@ extension TransferConfirmPasswordViewController {
         } else if myType == confirmType.buyRam.rawValue {
             self.view.endEditing(true)
             self.startLoading()
-            self.coordinator?.buyRam(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
+            self.coordinator?.buyRam(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.endLoading()
@@ -152,7 +146,7 @@ extension TransferConfirmPasswordViewController {
         } else if myType == confirmType.sellRam.rawValue {
             self.view.endEditing(true)
             self.startLoading()
-            self.coordinator?.sellRam(passwordView.textField.text!, account: receiver, amount: amount, remark: remark, callback: { [weak self] (isSuccess, message) in
+            self.coordinator?.sellRam(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.endLoading()
@@ -164,7 +158,7 @@ extension TransferConfirmPasswordViewController {
         } else if myType == confirmType.voteNode.rawValue {
             self.view.endEditing(true)
             self.startLoading()
-            self.coordinator?.voteNode(passwordView.textField.text!, account: WalletManager.shared.getAccount(), amount: amount, remark: remark, producers: producers, callback: { [weak self] (isSuccess, message) in
+            self.coordinator?.voteNode(passwordView.textField.text!, account: WalletManager.shared.getAccount(), amount: context.amount, remark: context.remark, producers: context.producers, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.showSuccess(message: message)

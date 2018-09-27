@@ -1,6 +1,6 @@
 PODS:
   - AsyncSwift (2.0.4)
-  - AwaitKit (5.0.0):
+  - AwaitKit (5.0.1):
     - PromiseKit (~> 6)
   - Bartinter (0.0.4)
   - BiometricAuthentication (2.0.2)
@@ -9,11 +9,11 @@ PODS:
     - Fabric (~> 1.7.11)
   - CryptoSwift (0.12.0)
   - Device (3.1.0)
-  - DifferenceKit (0.5.3):
-    - DifferenceKit/Core (= 0.5.3)
-    - DifferenceKit/UIExtensions (= 0.5.3)
-  - DifferenceKit/Core (0.5.3)
-  - DifferenceKit/UIExtensions (0.5.3):
+  - DifferenceKit (0.6.0):
+    - DifferenceKit/Core (= 0.6.0)
+    - DifferenceKit/UIKitExtension (= 0.6.0)
+  - DifferenceKit/Core (0.6.0)
+  - DifferenceKit/UIKitExtension (0.6.0):
     - DifferenceKit/Core
   - Dollar (7.1.0)
   - EFQRCode (4.3.0)
@@ -32,8 +32,11 @@ PODS:
   - KUIPopOver (1.0.4)
   - Lightning (2.0.0)
   - Localize-Swift (2.0.0)
-  - MonkeyKing (1.11.0)
-  - Nimble (7.3.0)
+  - Macaw (0.9.2):
+    - SWXMLHash
+  - MonkeyKing (1.12.0)
+  - Nimble (7.3.1)
+  - PocketSVG (2.4.0)
   - Presentr (1.3.2)
   - PromiseKit (6.4.0):
     - PromiseKit/CorePromise (= 6.4.0)
@@ -45,7 +48,7 @@ PODS:
   - PromiseKit/UIKit (6.4.0):
     - PromiseKit/CorePromise
   - Proposer (1.2.1)
-  - Quick (1.3.1)
+  - Quick (1.3.2)
   - R.swift (5.0.0.alpha.2):
     - R.swift.Library (~> 5.0.0.alpha.2)
   - R.swift.Library (5.0.0.alpha.2)
@@ -54,12 +57,12 @@ PODS:
     - RealReachability/Ping (= 1.3.0)
   - RealReachability/Connection (1.3.0)
   - RealReachability/Ping (1.3.0)
-  - Repeat (0.5.6)
+  - Repeat (0.5.7)
   - ReSwift (4.0.1)
-  - Reveal-SDK (17)
+  - Reveal-SDK (18)
   - SDCAlertView (8.1)
-  - Siren (3.5.0)
-  - SwiftDate (5.0.7)
+  - Siren (3.6.0)
+  - SwiftDate (5.0.9)
   - SwifterSwift (4.5.0):
     - SwifterSwift/AppKit (= 4.5.0)
     - SwifterSwift/CoreGraphics (= 4.5.0)
@@ -79,12 +82,14 @@ PODS:
   - SwifterSwift/UIKit (4.5.0)
   - SwiftRichString (2.0.4)
   - SwiftyBeaver (1.6.1)
-  - SwiftyJSON (4.1.0)
+  - SwiftyJSON (4.2.0)
   - SwiftyUserDefaults (4.0.0-alpha.1)
+  - SWXMLHash (4.7.2)
   - TagListView (1.3.1)
   - TinyConstraints (3.2.1)
   - UICKeyChainStore (2.1.1)
   - UIFontComplete (3.0.0)
+  - URLNavigator (2.0.6)
 
 DEPENDENCIES:
   - AsyncSwift
@@ -112,8 +117,10 @@ DEPENDENCIES:
   - KUIPopOver
   - Lightning
   - Localize-Swift
+  - Macaw (from `https://github.com/exyte/Macaw`, branch `master`)
   - MonkeyKing (from `https://github.com/nixzhu/MonkeyKing`, branch `master`)
   - Nimble
+  - PocketSVG
   - Presentr
   - Proposer
   - Quick
@@ -133,6 +140,7 @@ DEPENDENCIES:
   - TagListView (from `https://github.com/ElaWorkshop/TagListView`, branch `master`)
   - TinyConstraints (from `https://github.com/roberthein/TinyConstraints`, branch `release/Swift-4.2`)
   - UIFontComplete
+  - URLNavigator
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -159,6 +167,7 @@ SPEC REPOS:
     - Lightning
     - Localize-Swift
     - Nimble
+    - PocketSVG
     - Presentr
     - PromiseKit
     - Proposer
@@ -172,8 +181,10 @@ SPEC REPOS:
     - SwiftDate
     - SwiftyBeaver
     - SwiftyJSON
+    - SWXMLHash
     - UICKeyChainStore
     - UIFontComplete
+    - URLNavigator
 
 EXTERNAL SOURCES:
   DifferenceKit:
@@ -185,6 +196,9 @@ EXTERNAL SOURCES:
   GrowingTextView:
     :branch: swift4.2
     :git: https://github.com/phpmaple/GrowingTextView
+  Macaw:
+    :branch: master
+    :git: https://github.com/exyte/Macaw
   MonkeyKing:
     :branch: master
     :git: https://github.com/nixzhu/MonkeyKing
@@ -212,7 +226,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DifferenceKit:
-    :commit: 6b0937cf0cf6f99a2beead641127cdf3f85cbb42
+    :commit: d22741e5002da6979a6e0bebc68c101dbbf1efd0
     :git: https://github.com/ra1028/DifferenceKit
   ESPullToRefresh:
     :commit: be717f439d6e805c6ed085aab51836467cef9ea2
@@ -220,8 +234,11 @@ CHECKOUT OPTIONS:
   GrowingTextView:
     :commit: 38293475cc99083164083e6fb46411d15c1fae66
     :git: https://github.com/phpmaple/GrowingTextView
+  Macaw:
+    :commit: f1951eb288d162e4264f6e1393e492f01376a768
+    :git: https://github.com/exyte/Macaw
   MonkeyKing:
-    :commit: 9721c4186564d9549b4ae29df72a8f7c4db0cc23
+    :commit: b25dc4d050823a32df50eb29447fc5de3fb5da9c
     :git: https://github.com/nixzhu/MonkeyKing
   R.swift:
     :commit: f96758593573d3d1d9ae8084721033ab0bf392f6
@@ -247,14 +264,14 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
-  AwaitKit: d8a6e30eeb2da916630270b44636b31033388bd8
+  AwaitKit: a6d0b0b6d603cedda8ef1c1c249b8d6730359917
   Bartinter: cfc2ebf2fb8560a7d878dcbdc7d3c667c79090c9
   BiometricAuthentication: ce2f923d4df7a4b340e154137e7b47e544abc1ae
   CocoaDebug: 776d21a594a7af45f54f9532ff325fcfd9d4d0fd
   Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
   Device: 8a21a61f5f938a12dadd44d82287996081b6919b
-  DifferenceKit: 2037137305c55a39ff729baa72697efa30b1052d
+  DifferenceKit: 824ab6ecd2a20cc658071b2c0c071114cf91e4c9
   Dollar: dc69a2997fa5df12ae7a91fec897963664c26750
   EFQRCode: 51b67bd10952da9ef619ae0a396abb746b94263f
   ESPullToRefresh: 6ad8838e5c89b2039fa10ea097a3b3948594441e
@@ -271,31 +288,35 @@ SPEC CHECKSUMS:
   KUIPopOver: 1002fb1ab2460ac4db2bafe4f01f0c28fca806d2
   Lightning: c6a02102c761491a4957c6265d9161dc5452c3bf
   Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
-  MonkeyKing: 3810c7d6ba823d4c29b141b02348b607bc787d8d
-  Nimble: c8d6a1f463701921c46de965c673e13cafa09196
+  Macaw: 6db42cb10c1e018ee940a906b42a1ead5557e080
+  MonkeyKing: 9366e0358b990fc42a615a57332a447c77371ba9
+  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
+  PocketSVG: 8ac7b20a881ca1a3d46ba1e54ee2b0f2307c3d48
   Presentr: 797ae6ec8904eaba4ec58a4c2065bd66e31569ea
   PromiseKit: ae3616f45d7bb9bf4ff1e91abc9b7a8c48a340e0
   Proposer: 97409ade1f80d8b19bba20972c03c9253bdd59b1
-  Quick: d17304d58d0d169dd0bd1c6e5c28e3318de32a1a
+  Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
   R.swift: 31fa1bd537fa81307815cc622122f33331f32174
   R.swift.Library: 3c21b823839bf5a6769dc7f96cb44479dab51b1b
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
-  Repeat: 79fae833c601ef457148ba6ffae276e5c629ab0a
+  Repeat: 73c5ee602aed8f3c7bf1aa12d4cd0d3dc3edea0a
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
-  Reveal-SDK: a6df49f47319bd19a110c960c498af32df72c0af
+  Reveal-SDK: cce79388da3fd0bbb6ae19d769b906cfc3a33a89
   SDCAlertView: c497f7c812ccc06095d6f772aa282ebe1a216f4a
-  Siren: 1a33b8b5f5e925648b2f5eb5f969a169076c8352
-  SwiftDate: f053fb89250c59af5eff777f3b832d2b9dd57403
+  Siren: 1cc00ecb985ec9864b96e7a88d23b84af7820201
+  SwiftDate: 52b718d32ec006861a2be2756cbfa482d438e781
   SwifterSwift: 45339f9100181f0ca1d9b46248e45d0879a48596
   SwiftRichString: 2905437b6eb14a24e2e42f65ecaea582a8bcf6b8
   SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   SwiftyUserDefaults: cebe0ff9472f52699772a514b6f7155861d8069b
+  SWXMLHash: f0761e5c5d1a49f6553609bd0f5696a61738c5b9
   TagListView: 6dafd34a61021c6db72c0c8e3a044054c9854311
   TinyConstraints: 5ca700872f726c49d10829d7b00f31e4ec731f36
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   UIFontComplete: 5b0f59a83308816c610164b79a2540b3520f9b72
+  URLNavigator: 2357a32f3b3787b748bf87deb927761f8b0f7f53
 
-PODFILE CHECKSUM: ecd97ec6c35e2c9b69864d1be42a8425311fbf79
+PODFILE CHECKSUM: 08f21425022d3a9a597d462c7bdec5f031864e86
 
 COCOAPODS: 1.6.0.beta.1

@@ -115,13 +115,17 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
             let device = devices[indexPath.row]
             self.coordinator?.connectDevice(device, complication: { [weak self] (success, deviceId) in
                 guard let `self` = self else { return }
-                self.coordinator?.getDeviceInfo({ (successedGetInfo, deviceInfo) in
-                    if successedGetInfo {
-                        if let info = deviceInfo?.move() {
-                            self.coordinator?.pushAfterDeviceConnected(info)
-                        }
-                    }
-                })
+                if success {
+                     self.coordinator?.testFinger()
+                }
+//                self.coordinator?.getDeviceInfo({ (successedGetInfo, deviceInfo) in
+//                    if successedGetInfo {
+//                        if let info = deviceInfo?.move() {
+//                            self.coordinator?.testFinger()
+////                            self.coordinator?.pushAfterDeviceConnected(info)
+//                        }
+//                    }
+//                })
             })
         }
     }

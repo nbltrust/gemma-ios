@@ -25,47 +25,59 @@
             </objects>
             <point key="canvasLocation" x="14" y="90"/>
         </scene>
-        <!--Card Set Printer View Controller-->
+        <!--Card Set Finger Printer View Controller-->
         <scene sceneID="QfS-mp-rG2">
             <objects>
-                <viewController storyboardIdentifier="BLTCardSetPrinterViewController" id="IJC-3M-1Mp" customClass="BLTCardSetPrinterViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BLTCardSetFingerPrinterViewController" id="IJC-3M-1Mp" customClass="BLTCardSetFingerPrinterViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sD7-jc-Hmt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wookong_bio_fingerprint" translatesAutoresizingMaskIntoConstraints="NO" id="rVa-SS-rpt">
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wookong_bio_fingerprint" translatesAutoresizingMaskIntoConstraints="NO" id="rVa-SS-rpt">
                                 <rect key="frame" x="17" y="44" width="341" height="224"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn5-7J-xR3">
                                 <rect key="frame" x="75" y="288" width="225" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" name="steel" red="0.557" green="0.557" blue="0.576" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.55700000000000005" green="0.55700000000000005" blue="0.57599999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_set_fp_title"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWX-JC-dZH">
-                                <rect key="frame" x="147.5" y="331" width="80" height="100"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lYQ-ej-uq6">
+                                <rect key="frame" x="127.5" y="332" width="120" height="170"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="lvA-7V-kXA"/>
-                                    <constraint firstAttribute="height" constant="100" id="qKe-0B-y6q"/>
+                                    <constraint firstAttribute="width" constant="120" id="17V-Fj-eLK"/>
+                                    <constraint firstAttribute="height" constant="170" id="wVh-Sf-6HZ"/>
                                 </constraints>
-                            </view>
+                                <connections>
+                                    <outlet property="delegate" destination="IJC-3M-1Mp" id="Aoh-if-dIR"/>
+                                </connections>
+                            </webView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="aWX-JC-dZH" firstAttribute="top" secondItem="bn5-7J-xR3" secondAttribute="bottom" constant="26" id="Oey-pA-0jy"/>
                             <constraint firstItem="rVa-SS-rpt" firstAttribute="top" secondItem="67L-59-6UY" secondAttribute="top" constant="24" id="POf-cK-3fl"/>
+                            <constraint firstItem="lYQ-ej-uq6" firstAttribute="centerX" secondItem="sD7-jc-Hmt" secondAttribute="centerX" id="R0g-BW-Spn"/>
                             <constraint firstItem="67L-59-6UY" firstAttribute="trailing" secondItem="rVa-SS-rpt" secondAttribute="trailing" constant="17" id="ds2-jJ-tHv"/>
                             <constraint firstItem="bn5-7J-xR3" firstAttribute="leading" secondItem="67L-59-6UY" secondAttribute="leading" constant="75" id="iFW-h1-yDu"/>
                             <constraint firstItem="bn5-7J-xR3" firstAttribute="top" secondItem="rVa-SS-rpt" secondAttribute="bottom" constant="20" id="jfh-p0-pRj"/>
-                            <constraint firstItem="aWX-JC-dZH" firstAttribute="centerX" secondItem="sD7-jc-Hmt" secondAttribute="centerX" id="lcU-Gi-k13"/>
                             <constraint firstItem="rVa-SS-rpt" firstAttribute="leading" secondItem="67L-59-6UY" secondAttribute="leading" constant="17" id="oob-tV-8WD"/>
+                            <constraint firstItem="lYQ-ej-uq6" firstAttribute="top" secondItem="bn5-7J-xR3" secondAttribute="bottom" constant="27" id="s2e-Jj-FIB"/>
                             <constraint firstItem="67L-59-6UY" firstAttribute="trailing" secondItem="bn5-7J-xR3" secondAttribute="trailing" constant="75" id="vrL-JG-e34"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="67L-59-6UY"/>
                     </view>
+                    <connections>
+                        <outlet property="fpHeight" destination="wVh-Sf-6HZ" id="bzA-fb-wcF"/>
+                        <outlet property="fpView" destination="lYQ-ej-uq6" id="b5o-6p-438"/>
+                        <outlet property="fpWidth" destination="17V-Fj-eLK" id="tuJ-NP-WSD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKh-A1-hsu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="688" y="92"/>
+            <point key="canvasLocation" x="687.20000000000005" y="91.304347826086968"/>
         </scene>
         <!--Card Search View Controller-->
         <scene sceneID="Asb-E2-dKC">

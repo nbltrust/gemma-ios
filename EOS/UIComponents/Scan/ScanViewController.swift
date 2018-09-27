@@ -15,6 +15,8 @@ import AVFoundation
 class ScanViewController: BaseViewController {
 
 	var coordinator: (ScanCoordinatorProtocol & ScanStateManagerProtocol)?
+    private(set) var context:ScanContext?
+    
     var preView: ScanPreviewView?
     var titleLabel: UILabel?
     var subTitle: String?
@@ -124,6 +126,14 @@ class ScanViewController: BaseViewController {
     }
     
     override func configureObserveState() {
+        self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
+            guard let `self` = self else { return }
+            
+            if let context = context as? ScanContext {
+                self.context = context
+            }
+        }).disposed(by: disposeBag)
+
     }
 }
 

@@ -8,16 +8,29 @@
 
 import Foundation
 import ReSwift
+import RxCocoa
+import HandyJSON
 
-//MARK: - State
-struct TransferConfirmPasswordState: StateType {
-    var isLoading = false
-    var page: Int = 1
-    var errorMessage:String?
-    var property: TransferConfirmPasswordPropertyState
+struct TransferConfirmPasswordContext: RouteContext, HandyJSON {
+    init() {
+        
+    }
+    
+    var publicKey = WalletManager.shared.currentPubKey
+    var iconType = ""
+    var producers: [String] = []
+    var type = ""
+    var receiver = ""
+    var amount = ""
+    var remark = ""
+    var callback: ((_ priKey:String, _ vc:UIViewController) -> Void)?
 }
 
-struct TransferConfirmPasswordPropertyState {
+//MARK: - State
+struct TransferConfirmPasswordState:BaseState {
+    var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
+    
+    var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
 }
 
 //MARK: - Action Creator

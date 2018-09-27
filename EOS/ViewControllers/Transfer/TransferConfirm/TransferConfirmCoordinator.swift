@@ -8,6 +8,11 @@
 
 import UIKit
 import ReSwift
+import HandyJSON
+
+struct TransferConfirmContext: RouteContext, HandyJSON {
+    var data: ConfirmViewModel = ConfirmViewModel()
+}
 
 protocol TransferConfirmCoordinatorProtocol {
     func pushToTransferConfirmPwdVC(toAccount:String,money:String,remark:String,type:String)
@@ -31,34 +36,25 @@ class TransferConfirmCoordinator: NavCoordinator {
         middleware:[TrackingMiddleware]
     )
     
-    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.transfer.transferConfirmViewController()!
         let coordinator = TransferConfirmCoordinator(rootVC: root)
         vc.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
         return vc
     }
 }
 
 extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
     func pushToTransferConfirmPwdVC(toAccount:String,money:String,remark:String,type:String) {
-//        let width = ModalSize.full
-//        let height = ModalSize.custom(size: 369)
-//        let center = ModalCenterPosition.bottomCenter
-//        let customType = PresentationType.custom(width: width, height: height, center: center)
-//        
-//        let presenter = Presentr(presentationType: customType)
+        var context = TransferConfirmPasswordContext()
+        context.receiver = toAccount
+        context.amount = money
+        context.remark = remark
+        context.type = type
+        context.iconType = leftIconType.pop.rawValue
         
-        guard let transferConfirmPwdVC = self.rootVC.topViewController as? TransferConfirmViewController else { return }
-        
-        let vc = R.storyboard.transfer.transferConfirmPasswordViewController()
-        let coordinator = TransferConfirmPasswordCoordinator(rootVC: self.rootVC)
-        vc?.coordinator = coordinator
-        vc?.receiver = toAccount
-        vc?.amount = money
-        vc?.remark = remark
-        vc?.type = type
-        vc?.iconType = leftIconType.pop.rawValue
-        self.rootVC.pushViewController(vc!, animated: true)
+        pushVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context)
     }
     
     func dismissConfirmVC() {

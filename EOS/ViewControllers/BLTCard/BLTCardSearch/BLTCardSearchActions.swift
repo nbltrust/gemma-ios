@@ -14,6 +14,8 @@ import SwiftyJSON
 
 //MARK: - State
 struct BLTCardSearchState: BaseState {
+    var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
+    
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     
     var devices: [BLTDevice] = []

@@ -33,10 +33,11 @@ class EntryGuideCoordinator: NavCoordinator {
         middleware:[TrackingMiddleware]
     )
     
-    override class func start(_ root: BaseNavigationController) -> BaseViewController {
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.entry.entryGuideViewController()!
         let coordinator = EntryGuideCoordinator(rootVC: root)
         vc.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
         return vc
     }
 }
@@ -47,7 +48,7 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
         let coordinator = EntryCoordinator(rootVC: self.rootVC)
         coordinator.state.callback.endCallback.accept {
             if let appdelegate = UIApplication.shared.delegate as? AppDelegate {
-                appdelegate.appcoordinator?.endEntry()
+                app_coodinator.endEntry()
             }
         }
         createVC.coordinator = coordinator
@@ -59,7 +60,7 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
         let coordinator = LeadInCoordinator(rootVC: self.rootVC)
         coordinator.state.callback.fadeCallback.accept {
             if let delegate = UIApplication.shared.delegate as? AppDelegate {
-                delegate.appcoordinator?.endEntry()
+                app_coodinator.endEntry()
             }
         }
         leadInVC.coordinator = coordinator

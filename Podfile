@@ -31,6 +31,7 @@ def architecture
 #   pod 'RxKeyboard'
 #   pod 'RxValidator'
 #   pod 'Action'
+   pod 'URLNavigator'
 
    pod 'Lightning'
 
@@ -78,6 +79,8 @@ def ui
     pod 'KUIPopOver'
     pod 'GrowingTextView', :git => 'https://github.com/phpmaple/GrowingTextView', :branch => 'swift4.2'
     pod 'Bartinter'
+    pod 'Macaw', :git => 'https://github.com/exyte/Macaw', :branch => 'master'
+    pod 'PocketSVG'
 #    pod 'NotificationBannerSwift', :git => 'https://github.com/phpmaple/NotificationBanner', :branch => 'swift4.2'
 #    pod 'ActiveLabel'
 #    pod 'UINavigationItem+Margin'

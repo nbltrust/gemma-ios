@@ -35,13 +35,7 @@ class LeadInCoordinator: NavCoordinator {
 
 extension LeadInCoordinator: LeadInCoordinatorProtocol {
     func openScan() {
-        presentVC(ScanCoordinator.self, animated: true, setup: { (vc) in
-            if let vc = vc as? ScanViewController {
-                vc.coordinator?.state.callback.scanResult.accept({[weak self] (result) in
-                    log.debug(result)
-                })
-            }
-        }, navSetup: { (nav) in
+        presentVC(ScanCoordinator.self, animated: true, context: nil, navSetup: { (nav) in
             nav.navStyle = .clear
         }, presentSetup: nil)
     }

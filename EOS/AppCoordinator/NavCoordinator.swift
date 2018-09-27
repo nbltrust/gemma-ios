@@ -10,10 +10,11 @@ import Foundation
 import NBLCommonModule
 import SwifterSwift
 
+protocol RouteContext {}
 protocol NavProtocol {
     func openWebVC(url:URL)
-    func pushVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool, setup: ((BaseViewController) -> Void)?)
-    func presentVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool, setup: ((BaseViewController) -> Void)?, navSetup: ((BaseNavigationController) -> Void)?, presentSetup:((_ top:BaseNavigationController, _ target:BaseNavigationController) -> Void)?)
+    func pushVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool, context:RouteContext?)
+    func presentVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool, context:RouteContext?, navSetup: ((BaseNavigationController) -> Void)?, presentSetup:((_ top:BaseNavigationController, _ target:BaseNavigationController) -> Void)?)
     
     func register()
 }
@@ -27,7 +28,7 @@ class NavCoordinator:NavProtocol {
         register()
     }
     
-    class func start(_ root: BaseNavigationController) -> BaseViewController {
+    class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
         return BaseViewController()
     }
 }
@@ -40,20 +41,19 @@ extension NavCoordinator {
         self.rootVC.pushViewController(web, animated: true)
     }
 
-    func pushVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true, setup: ((BaseViewController) -> Void)?) {
-        let vc = coordinator.start(self.rootVC)
-        setup?(vc)
+    func pushVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true, context:RouteContext?) {
+        let vc = coordinator.start(self.rootVC, context: context)
         self.rootVC.pushViewController(vc, animated: animated)
     }
     
     func presentVC<T:NavCoordinator>(_ coordinator: T.Type, animated:Bool = true,
-                                     setup: ((BaseViewController) -> Void)?,
+                                     context:RouteContext?,
                                      navSetup: ((BaseNavigationController) -> Void)?,
                                      presentSetup:((_ top:BaseNavigationController, _ target:BaseNavigationController) -> Void)?) {
         let nav = BaseNavigationController()
         navSetup?(nav)
         let coor = NavCoordinator(rootVC: nav)
-        coor.pushVC(coordinator, animated: false, setup: setup)
+        coor.pushVC(coordinator, animated: false, context: context)
         
         var topside = self.rootVC!
         

@@ -15,6 +15,8 @@ protocol BLTCardSearchCoordinatorProtocol {
     func dismissSearchVC()
     
     func pushAfterDeviceConnected(_ deviceInfo: PAEW_DevInfo)
+    
+    func testFinger()
 }
 
 protocol BLTCardSearchStateManagerProtocol {
@@ -52,7 +54,7 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
     }
     
     func pushAfterDeviceConnected(_ deviceInfo: PAEW_DevInfo) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let homeCoor = appDelegate.appcoordinator?.homeCoordinator {
+        if let homeCoor = app_coodinator.homeCoordinator {
             self.rootVC.dismiss(animated: true) {
                 BLTWalletIO.shareInstance().startHeartBeat()
                 if let vc = R.storyboard.leadIn.setWalletViewController() {
@@ -61,6 +63,18 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
                     vc.deviceInfo = deviceInfo
                     homeCoor.rootVC.pushViewController(vc, animated: true)
                 }
+            }
+        }
+    }
+    
+    func testFinger() {
+        if let homeCoor = app_coodinator.homeCoordinator {
+            self.rootVC.dismiss(animated: true) {
+                let printerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()!
+                let nav = BaseNavigationController.init(rootViewController: printerVC)
+                let coor = BLTCardSetFingerPrinterCoordinator(rootVC: nav)
+                printerVC.coordinator = coor;
+                homeCoor.rootVC.present(nav, animated: true, completion: nil)
             }
         }
     }
@@ -98,3 +112,4 @@ extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
         }
     }
 }
+
