@@ -251,6 +251,10 @@
 		3B726C1621133502001E4850 /* ScreenShotAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1221133502001E4850 /* ScreenShotAlertViewController.swift */; };
 		3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */; };
 		3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */; };
+		3B85EEA3215A12E600795083 /* VerifyPriKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EE9F215A12E600795083 /* VerifyPriKeyCoordinator.swift */; };
+		3B85EEA4215A12E600795083 /* VerifyPriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA0215A12E600795083 /* VerifyPriKeyActions.swift */; };
+		3B85EEA5215A12E600795083 /* VerifyPriKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA1215A12E600795083 /* VerifyPriKeyViewController.swift */; };
+		3B85EEA6215A12E600795083 /* VerifyPriKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA2215A12E600795083 /* VerifyPriKeyReducers.swift */; };
 		3B89E88F21522A6C00FD065A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89E86F21522A6B00FD065A /* Order.swift */; };
 		3B8A0F0188C26CD5B89B88BB7CD2021A /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BACC4715E3CF39C51CF4E44B54222588 /* Rubik-Light.ttf */; };
 		3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A69210587B4006EEB80 /* RedWarningView.swift */; };
@@ -3798,6 +3802,10 @@
 		3B7311947531F77FD28B5CBD2AE901D1 /* handle_tangencies.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle_tangencies.hpp; sourceTree = "<group>"; };
 		3B78507A0E83F865A114EC9D04BBA86C /* is_view_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_view_impl.hpp; sourceTree = "<group>"; };
 		3B83B6E9EAD0C0202FBF327C01B4C1C5 /* qi_advance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_advance.hpp; sourceTree = "<group>"; };
+		3B85EE9F215A12E600795083 /* VerifyPriKeyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPriKeyCoordinator.swift; sourceTree = "<group>"; };
+		3B85EEA0215A12E600795083 /* VerifyPriKeyActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPriKeyActions.swift; sourceTree = "<group>"; };
+		3B85EEA1215A12E600795083 /* VerifyPriKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPriKeyViewController.swift; sourceTree = "<group>"; };
+		3B85EEA2215A12E600795083 /* VerifyPriKeyReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPriKeyReducers.swift; sourceTree = "<group>"; };
 		3B89E86F21522A6B00FD065A /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		3B974FADA735E2EF32FE8E822EE4E006 /* match_attr_traits.ipp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = match_attr_traits.ipp; sourceTree = "<group>"; };
 		3B9DD251A425CA0A59F2B07B32C905F1 /* list20.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = list20.hpp; sourceTree = "<group>"; };
@@ -15915,6 +15923,7 @@
 		2253C5202111A4E50043AAF7 /* CopyPriKey */ = {
 			isa = PBXGroup;
 			children = (
+				3B85EE83215A12B900795083 /* Verify */,
 				2253C5222111A5A60043AAF7 /* QRCode */,
 				2253C5212111A5970043AAF7 /* PriKey */,
 				2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */,
@@ -18278,6 +18287,17 @@
 				3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */,
 			);
 			path = ScreenShotAlert;
+			sourceTree = "<group>";
+		};
+		3B85EE83215A12B900795083 /* Verify */ = {
+			isa = PBXGroup;
+			children = (
+				3B85EE9F215A12E600795083 /* VerifyPriKeyCoordinator.swift */,
+				3B85EEA0215A12E600795083 /* VerifyPriKeyActions.swift */,
+				3B85EEA1215A12E600795083 /* VerifyPriKeyViewController.swift */,
+				3B85EEA2215A12E600795083 /* VerifyPriKeyReducers.swift */,
+			);
+			path = Verify;
 			sourceTree = "<group>";
 		};
 		3B882F1A3034C7B36767B4A923AD6077 /* thread */ = {
@@ -34669,7 +34689,6 @@
 				28E1E85156393E2D747693472011609F /* Sources */,
 				2AA1AEF5455B05A71395618B4A67D394 /* Frameworks */,
 				4929B8EE7C2F136E4A24158BBB556CB5 /* Resources */,
-				AFF7EE0B2B4179DEFEDE0DDE919988C0 /* [CP] Embed Pods Frameworks */,
 				734811752106F61B000BF1B8 /* fabric */,
 				732F370E214FB63A00CB3A58 /* carthage */,
 				732F370F214FB64100CB3A58 /* appstore-bug */,
@@ -35252,7 +35271,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "scripts/appstore.sh\n";
+			shellScript = "#scripts/appstore.sh\n";
 		};
 		734811752106F61B000BF1B8 /* fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -35708,6 +35727,7 @@
 				3B6D746A214761690076F444 /* ExchangeToActivateReducers.swift in Sources */,
 				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
 				228A83C12153C1C9005DEDD7 /* BLTCardSetPrinterViewController.swift in Sources */,
+				3B85EEA5215A12E600795083 /* VerifyPriKeyViewController.swift in Sources */,
 				2253C52A2111A5F90043AAF7 /* CopyPriKeyReducers.swift in Sources */,
 				0795BFD28C42BE58BB94BAA17ADB6B91 /* EOSIO.mm in Sources */,
 				2214A96C211D73CF003256D2 /* Error.swift in Sources */,
@@ -35732,6 +35752,7 @@
 				3B393590214A479300AB0A30 /* VerifyMnemonicWordReducers.swift in Sources */,
 				73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */,
 				3B726C1621133502001E4850 /* ScreenShotAlertViewController.swift in Sources */,
+				3B85EEA6215A12E600795083 /* VerifyPriKeyReducers.swift in Sources */,
 				9CD3F0FA07578C28658D2A1189A8E39D /* EOSIONetworkService.swift in Sources */,
 				228A83BF2153C1C9005DEDD7 /* BLTCardSetPrinterReducers.swift in Sources */,
 				3B6D7477214761690076F444 /* InvitationCodeToActivateActions.swift in Sources */,
@@ -35754,6 +35775,7 @@
 				73B5A6AD20F601DE00756391 /* Payment.swift in Sources */,
 				221EC1C921008EF50059F856 /* GestureLockSetReducers.swift in Sources */,
 				3B726C1521133502001E4850 /* ScreenShotAlertActions.swift in Sources */,
+				3B85EEA4215A12E600795083 /* VerifyPriKeyActions.swift in Sources */,
 				223C58FE214A51DC00C69F3F /* BLTCardConfirmFingerPrinterActions.swift in Sources */,
 				73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */,
 				3B6D7478214761690076F444 /* InvitationCodeToActivateCoordinator.swift in Sources */,
@@ -35863,6 +35885,7 @@
 				721016A5210197F40059B37E /* WalletListHeaderView.swift in Sources */,
 				3BEC3F532111B4FC003C38FB /* BackupPrivateKeyCoordinator.swift in Sources */,
 				3BD366B721009DE0004DE09D /* UIFont+Additions.swift in Sources */,
+				3B85EEA3215A12E600795083 /* VerifyPriKeyCoordinator.swift in Sources */,
 				3B3935B1214B5AF600AB0A30 /* MnemonicContentViewController.swift in Sources */,
 				737F8DD42146647E00DD522A /* DBProtocol.swift in Sources */,
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
@@ -36148,6 +36171,7 @@
 					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -36258,6 +36282,7 @@
 					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=100 -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;

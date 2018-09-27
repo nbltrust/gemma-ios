@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -241,7 +241,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="huY-Rh-Py6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3473" y="228"/>
+            <point key="canvasLocation" x="3311" y="143"/>
+        </scene>
+        <!--Verify Pri Key View Controller-->
+        <scene sceneID="HhG-WM-QeN">
+            <objects>
+                <viewController storyboardIdentifier="VerifyPriKeyViewController" id="5P3-RQ-yvL" customClass="VerifyPriKeyViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xSd-ba-HAR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaW-wZ-zgR" customClass="LeadInKeyView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Q05-qB-m1I" firstAttribute="trailing" secondItem="BaW-wZ-zgR" secondAttribute="trailing" id="lFe-oz-xfE"/>
+                            <constraint firstItem="BaW-wZ-zgR" firstAttribute="leading" secondItem="Q05-qB-m1I" secondAttribute="leading" id="ouu-dg-d1V"/>
+                            <constraint firstItem="Q05-qB-m1I" firstAttribute="bottom" secondItem="BaW-wZ-zgR" secondAttribute="bottom" id="uzp-aH-brb"/>
+                            <constraint firstItem="BaW-wZ-zgR" firstAttribute="top" secondItem="Q05-qB-m1I" secondAttribute="top" id="wf9-Qt-Iam"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Q05-qB-m1I"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="BaW-wZ-zgR" id="tkw-sl-HUS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iTR-Bp-kNy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4094" y="143"/>
         </scene>
     </scenes>
 </document>

@@ -13,7 +13,7 @@ class LeadInKeyView: UIView {
         case beginLeadInAction
     }
     @IBOutlet weak var textView: UITextView!
-    
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var creatButton: Button!
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
@@ -26,6 +26,18 @@ class LeadInKeyView: UIView {
             guard let `self` = self else { return }
             self.next?.sendEventWith(event_name.beginLeadInAction.rawValue, userinfo: ["data":""])
         }).disposed(by: disposeBag)
+    }
+    
+    var title = "" {
+        didSet {
+            titleLabel.text = title
+        }
+    }
+    
+    var buttonTitle = "" {
+        didSet {
+            creatButton.locali = buttonTitle
+        }
     }
     
     func updateHeight() {

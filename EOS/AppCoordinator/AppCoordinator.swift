@@ -111,9 +111,7 @@ class AppCoordinator {
     }
     
     func endEntry() {
-        entryCoordinator?.rootVC.dismiss(animated: true) { [weak self] in
-            self?.entryCoordinator = nil
-        }
+        curDisplayingCoordinator().rootVC.dismiss(animated: true, completion: nil)
     }
 
     func showTest() {
@@ -143,10 +141,6 @@ class AppCoordinator {
         let presenter = Presentr(presentationType: customType)
         presenter.keyboardTranslationType = .stickToTop
         
-        
-        let newVC = BaseNavigationController()
-        newVC.navStyle = .white
-        let transferConfirmpwd = NavCoordinator(rootVC: newVC)
         var context = TransferConfirmPasswordContext()
         context.publicKey = pubKey
         context.iconType = leftIconType.rawValue
@@ -157,18 +151,13 @@ class AppCoordinator {
                 completion?(priKey)
             })
         }
-        
-        transferConfirmpwd.pushVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context)
-        
-        var topside = curDisplayingCoordinator().rootVC!
-        
-        while topside.presentedViewController != nil  {
-            topside = topside.presentedViewController as! BaseNavigationController
+        presentVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context, navSetup: { (nav) in
+            nav.navStyle = .white
+
+        }) { (top, target) in
+            top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }
-        
-        curDisplayingCoordinator().rootVC.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
     }
-    
     func showGemmaAlert(_ context: ScreenShotAlertContext? = nil) {
         let presenter = Presentr(presentationType: PresentationType.fullScreen)
         presenter.keyboardTranslationType = .stickToTop
@@ -177,7 +166,6 @@ class AppCoordinator {
             top.customPresentViewController(presenter, viewController: target, animated: true)
         }
     }
-    
 }
 
 extension AppCoordinator {
