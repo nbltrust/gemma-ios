@@ -115,8 +115,8 @@ enum CoinType: Int {
 
 //Node Datas
 struct EOSBaseURLNodesConfiguration {
-    static let values = [                         "https://eos.greymass.com",
-"http://52.77.177.200:8888",
+    static let values = ["http://47.75.154.248:50003",
+                         "http://52.77.177.200:8888",
                          "http://api-mainnet.starteos.io",
                          "https://api.eosnewyork.io",
                          "https://eos.greymass.com",

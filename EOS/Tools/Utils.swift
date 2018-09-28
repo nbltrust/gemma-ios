@@ -360,6 +360,14 @@ func labelBaselineOffset(_ lineHeight:CGFloat, fontHeight:CGFloat) -> Float {
     return ((lineHeight - lineHeight) / 4.0).float
 }
 
+func dismiss() {
+    if let vc = UIViewController.topMost {
+        vc.dismiss(animated: true) {
+            
+        }
+    }
+}
+
 //func correctAmount(_ sender:String) -> String{
 //    if let _ = sender.toDouble(){
 //        if sender.contains("."),let last = sender.components(separatedBy: ".").last{
