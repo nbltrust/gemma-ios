@@ -8,22 +8,6 @@
 
 import UIKit
 import ReSwift
-import HandyJSON
-
-struct TransferConfirmPasswordContext: RouteContext, HandyJSON {
-    init() {
-        
-    }
-    
-    var publicKey = WalletManager.shared.currentPubKey
-    var iconType = ""
-    var producers: [String] = []
-    var type = ""
-    var receiver = ""
-    var amount = ""
-    var remark = ""
-    var callback: ((_ priKey:String, _ vc:UIViewController) -> Void)?
-}
 
 protocol TransferConfirmPasswordCoordinatorProtocol {
     func finishTransfer()

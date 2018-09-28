@@ -8,11 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, FingerPrinterState)
+{
+    common = 0,
+    redundant,
+    good,
+    none,
+    notFull,
+    badImage
+};
+
 @interface BLTUtils : NSObject
 
 + (NSString *)errorCodeToString:(int)retValue;
 + (NSString *)bytesToHexString:(NSData *)data;
 + (NSString *)bytesToHexString:(void *)data length:(size_t)length;
 + (NSData *)hexStringToBytes:(NSString *)hexString;
++ (FingerPrinterState)stateWithValue:(int)value;
 
 @end

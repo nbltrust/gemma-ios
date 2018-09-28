@@ -65,7 +65,11 @@ class EntryViewController: BaseViewController {
     
     @objc func createWookongWallet() {
         self.coordinator?.checkSeedSuccessed()
-        self.coordinator?.getValidation({ [weak self] (sn, sn_sig, pub, pub_sig) in
+    }
+    
+    func test() {
+        self.startLoading()
+        BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, sn_sig, pub, pub_sig) in
             guard let `self` = self else { return }
             var validation = WookongValidation()
             validation.SN = sn ?? ""
@@ -75,11 +79,12 @@ class EntryViewController: BaseViewController {
             self.coordinator?.createWallet(.bluetooth, accountName: self.registerView.nameView.textField.text!, password: "", prompt: "", inviteCode: "", validation: validation, completion: { (successed) in
                 self.coordinator?.pushToPrinterSetView()
             })
-        }, failed: { [weak self] (reason) in
-            guard let `self` = self else { return }
-            if let failedReason = reason {
-                self.showError(message: failedReason)
-            }
+            }, failed: { [weak self] (reason) in
+                guard let `self` = self else { return }
+                if let failedReason = reason {
+                    self.endLoading()
+                    self.showError(message: failedReason)
+                }
         })
     }
     
@@ -88,7 +93,11 @@ class EntryViewController: BaseViewController {
             guard let `self` = self else { return }
             switch self.createType {
             case .wookong:
-                self.coordinator?.copyMnemonicWord()
+                if (self.coordinator?.state.property.checkSeedSuccessed.value ?? false)! {
+                    self.test()
+                } else {
+                    self.coordinator?.copyMnemonicWord()
+                }
             default:
                 self.coordinator?.verifyAccount(self.registerView.nameView.textField.text!, completion: { (success) in
                     if success == true {
