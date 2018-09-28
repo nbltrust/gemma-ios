@@ -53,6 +53,7 @@ class ScreenShotAlertViewController: BaseViewController {
         if let desc = context.desc {
             self.alertView.tipsLabel.superview?.isHidden = false
             self.alertView.tipsLabel.text = desc
+            self.alertView.tipsLabel.lineBreakMode = NSLineBreakMode.byCharWrapping
         }
         else {
             self.alertView.tipsLabel.superview?.isHidden = true

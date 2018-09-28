@@ -49,7 +49,7 @@
                             <rect key="frame" x="0.0" y="54" width="270" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhj-CC-y7g" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
-                                    <rect key="frame" x="115.5" y="8.5" width="39.5" height="30.5"/>
+                                    <rect key="frame" x="115.5" y="8.5" width="39.5" height="41.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="0.012" green="0.012" blue="0.012" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -62,15 +62,18 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="mhj-CC-y7g" firstAttribute="centerX" secondItem="b7R-wr-yNS" secondAttribute="centerX" id="2b9-et-TWl"/>
-                                <constraint firstAttribute="bottom" secondItem="mhj-CC-y7g" secondAttribute="bottom" constant="11" id="FuB-iI-ObZ"/>
+                                <constraint firstAttribute="bottom" secondItem="mhj-CC-y7g" secondAttribute="bottom" id="FuB-iI-ObZ"/>
                                 <constraint firstItem="mhj-CC-y7g" firstAttribute="top" secondItem="b7R-wr-yNS" secondAttribute="top" constant="8.5" id="Mbs-cZ-Orb"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ecj-Hc-ozs">
                             <rect key="frame" x="0.0" y="104" width="270" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统截图在相册中可能被其他APP查看。" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zV-Jq-qXh" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
-                                    <rect key="frame" x="29.5" y="11" width="211" height="39"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统截图在相册中可能被其他APP查看。" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zV-Jq-qXh" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="28.5" y="11" width="213" height="39"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="213" id="zdD-sR-dVl"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -82,9 +85,8 @@
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="2zV-Jq-qXh" secondAttribute="trailing" constant="29.5" id="7Gn-R7-tih"/>
                                 <constraint firstItem="2zV-Jq-qXh" firstAttribute="top" secondItem="ecj-Hc-ozs" secondAttribute="top" constant="11" id="FBx-1L-lDg"/>
-                                <constraint firstItem="2zV-Jq-qXh" firstAttribute="leading" secondItem="ecj-Hc-ozs" secondAttribute="leading" constant="29.5" id="g2C-cG-4w4"/>
+                                <constraint firstItem="2zV-Jq-qXh" firstAttribute="centerX" secondItem="ecj-Hc-ozs" secondAttribute="centerX" id="bRf-D1-C8D"/>
                                 <constraint firstAttribute="bottom" secondItem="2zV-Jq-qXh" secondAttribute="bottom" id="jtf-0t-uax"/>
                             </constraints>
                         </view>

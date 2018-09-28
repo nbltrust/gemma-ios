@@ -183,6 +183,11 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.buttonTitle = R.string.localizable.pay_sure.key.localized()
                 context.imageName = R.image.icMoney.name
                 context.needCancel = true
+                context.sureShot = {
+                    if let vc = self.rootVC.topViewController as? ActivateViewController, let payVC = vc.viewControllers[0] as? PayToActivateViewController{
+                        payVC.NextClick([:])
+                    }
+                }
                 app_coodinator.showGemmaAlert(context)
             } else if payState == "REFUND" {
                 var context = ScreenShotAlertContext()
