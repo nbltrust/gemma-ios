@@ -80,8 +80,7 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
         self.rootVC.viewControllers.forEach { (vc) in
             if let entryVC = vc as? EntryViewController {
                 self.popToVC(entryVC)
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "createBLTWallet"), object: self,
-                                                userInfo: nil)
+                entryVC.coordinator?.state.callback.finishBLTWalletCallback.value?()
             }
         }
     }

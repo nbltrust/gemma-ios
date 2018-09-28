@@ -44,7 +44,7 @@ class BLTCardSearchViewController: BaseViewController {
         deviceTable.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         
         indicatorView = UIActivityIndicatorView(style: .gray)
-        indicatorView?.startAnimating()
+        indicatorView?.hidesWhenStopped = false
         configRightCustomView(indicatorView!)
     }
     
@@ -54,7 +54,7 @@ class BLTCardSearchViewController: BaseViewController {
     
     override func rightAction(_ sender: UIButton) {
         if BLTIO != nil {
-            BLTIO?.searchBLTCard()
+            searchDevice()
         }
     }
 
@@ -65,7 +65,17 @@ class BLTCardSearchViewController: BaseViewController {
             self.coordinator?.searchedADevice(device!)
             self.deviceTable.reloadData()
         }
-        BLTIO?.searchBLTCard()
+        searchDevice()
+    }
+    
+    func searchDevice() {
+        indicatorView?.startAnimating()
+        self.startLoading(true)
+        BLTIO?.searchBLTCard({ [weak self] in
+            guard let `self` = self else { return }
+            self.endLoading()
+            self.indicatorView?.stopAnimating()
+        })
     }
     
     func setupEvent() {
@@ -116,16 +126,9 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
             self.coordinator?.connectDevice(device, complication: { [weak self] (success, deviceId) in
                 guard let `self` = self else { return }
                 if success {
-                     self.coordinator?.testFinger()
+                    BLTWalletIO.shareInstance()?.selectDevice = device
+                    self.coordinator?.pushAfterDeviceConnected()
                 }
-//                self.coordinator?.getDeviceInfo({ (successedGetInfo, deviceInfo) in
-//                    if successedGetInfo {
-//                        if let info = deviceInfo?.move() {
-//                            self.coordinator?.testFinger()
-////                            self.coordinator?.pushAfterDeviceConnected(info)
-//                        }
-//                    }
-//                })
             })
         }
     }

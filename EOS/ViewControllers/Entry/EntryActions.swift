@@ -35,6 +35,8 @@ struct EntryPropertyState {
 
 struct EntryCallbackState {
     var endCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
+    
+    var finishBLTWalletCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
 }
 
 struct nameAction: Action {
