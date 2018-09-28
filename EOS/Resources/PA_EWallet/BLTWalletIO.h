@@ -18,7 +18,9 @@
 //Complication
 typedef void(^ DidSearchDevice)(BLTDevice *wallet);
 
-typedef void(^ SuccessedComplication)();
+typedef void(^ EnrollFingerComplication)(FingerPrinterState state);
+
+typedef void(^ SuccessedComplication)(void);
 
 typedef void(^ FailedComplication)(NSString *failedReason);
 
@@ -37,6 +39,10 @@ typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 @property (nonatomic,strong) DidSearchDevice didSearchDevice;
 
 @property (nonatomic,strong) NSTimer *timer;
+
+@property (nonatomic, assign) BOOL abortBtnState;
+
+@property (nonatomic, strong) NSCondition *abortCondition;
 
 +(instancetype) shareInstance ;
 
@@ -63,6 +69,8 @@ typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 - (void)getSN:(GetSNComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)getPubKey:(GetPubKeyComplication)successComlication failed:(FailedComplication)failedCompliction;
+
+- (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed;
 
 @end
 

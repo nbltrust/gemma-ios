@@ -42,7 +42,7 @@ class BLTCardEntryCoordinator: BLTCardRootCoordinator {
 
 extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
     func pushIntroduceVC() {
-        
+
     }
     
     func presentBLTCardSearchVC() {

@@ -231,4 +231,27 @@
     return data;
 }
 
++ (FingerPrinterState)stateWithValue:(int)value {
+    switch (value) {
+        case PAEW_RET_DEV_FP_REDUNDANT:
+            return redundant;
+            break;
+        case PAEW_RET_DEV_FP_GOOG_FINGER:
+            return good;
+            break;
+        case PAEW_RET_DEV_FP_NO_FINGER:
+            return none;
+            break;
+        case PAEW_RET_DEV_FP_NOT_FULL_FINGER:
+            return notFull;
+            break;
+        case PAEW_RET_DEV_FP_BAD_IMAGE:
+            return badImage;
+            break;
+        default:
+            return common;
+            break;
+    }
+}
+
 @end

@@ -547,3 +547,8 @@
 "wookong_inport_mnemonic" = "导入助记词";
 "wookong_mnemonic_ver_failed" = "验证失败";
 "wookong_mnemonic_ver_successed" = "验证成功！";
+"wookong_set_fp" = "设置指纹";
+"wookong_set_fp_title" = "将手指放在指纹识别区域上再移开，\n重复此步骤";
+"wookong_set_fp_notfull" = "调整握持姿势\n获取指纹边缘";
+"wookong_jump" = "跳过";
+"wookong_set_fp_success" = "指纹设置成功！";

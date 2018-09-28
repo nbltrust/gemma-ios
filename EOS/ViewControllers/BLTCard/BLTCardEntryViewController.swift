@@ -34,11 +34,6 @@ class BLTCardEntryViewController: BaseViewController {
     
     func setupUI() {
         self.title = R.string.localizable.wookong_title.key.localized()
-        configRightNavButton(R.image.ic_close())
-    }
-    
-    override func rightAction(_ sender: UIButton) {
-        BLTWalletIO.shareInstance().powerOff()
     }
 
     func setupData() {

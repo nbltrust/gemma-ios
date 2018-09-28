@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         DBManager.shared.setupDB()
-        
+
         NetworkSettingManager.shared.setup()
         if let url = launchOptions?[.url] as? URL {
             let opened = navigator.open(url)

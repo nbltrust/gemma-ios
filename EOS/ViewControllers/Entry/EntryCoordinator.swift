@@ -84,8 +84,8 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
     }
     
     func pushToPrinterSetView() {
-        let printerVC = R.storyboard.bltCard.bltCardSetPrinterViewController()
-        let coor = BLTCardSetPrinterCoordinator(rootVC: self.rootVC)
+        let printerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()
+        let coor = BLTCardSetFingerPrinterCoordinator(rootVC: self.rootVC)
         printerVC?.coordinator = coor;
         self.rootVC.pushViewController(printerVC!, animated: true)
     }

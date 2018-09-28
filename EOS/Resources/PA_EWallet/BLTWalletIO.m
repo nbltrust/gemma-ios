@@ -8,6 +8,12 @@
 
 #import "BLTWalletIO.h"
 
+@interface BLTWalletIO () {
+    int lastSignState;
+}
+
+@end
+
 @implementation BLTWalletIO
 
 void *savedDevH;
@@ -30,9 +36,7 @@ int EnumCallback(const char *szDevName, int nRSSI, int nState)
     device.name = [NSString stringWithUTF8String:szDevName];
     device.RSSI = nRSSI;
     device.state = nState;
-//    if (selfClass.didSearchDevice) {
-        selfClass.didSearchDevice(device);
-//    }
+    selfClass.didSearchDevice(device);
     return PAEW_RET_SUCCESS;
 }
 
@@ -62,6 +66,14 @@ static BLTWalletIO* _instance = nil;
         selfClass = self;
     }
     return self;
+}
+
+- (NSCondition *)abortCondition
+{
+    if (!_abortCondition) {
+        _abortCondition = [[NSCondition alloc] init];
+    }
+    return _abortCondition;
 }
 
 - (void)formmart {
@@ -142,7 +154,6 @@ static BLTWalletIO* _instance = nil;
     __block void *ppPAEWContext = 0;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         int connectDev = PAEW_InitContextWithDevNameAndDevContext(&ppPAEWContext, szDeviceName, PAEW_DEV_TYPE_BT, &additional, sizeof(additional), 0x00, 0x00);
-        NSLog(@"-------connect returns: 0x%X", connectDev);
         if (ppPAEWContext) {
             savedDevH = ppPAEWContext;
         }
@@ -252,13 +263,22 @@ static BLTWalletIO* _instance = nil;
     if (!savedDevH) {
         return;
     }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
+    __block BOOL success_sn = false;
+    __block BOOL success_pub = false;
+    __block NSString *sn = @"";
+    __block NSString *sn_sig = @"";
+    __block NSString *pub = @"";
+    __block NSString *pub_sig = @"";
+    __block NSString *failedReason = @"";
+    
+    dispatch_queue_t disqueue =  dispatch_queue_create("com.shidaiyinuo.NetWorkStudy", DISPATCH_QUEUE_SERIAL);
+    dispatch_group_t disgroup = dispatch_group_create();
+
+    dispatch_group_async(disgroup, disqueue, ^{
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
         unsigned char *pbCheckCode = NULL;
-        unsigned char bAddress[1024] = {0};
         size_t nAddressLen = 1024;
         
         iRtn = PAEW_GetDeviceCheckCode(ppPAEWContext, devIdx, pbCheckCode, &nAddressLen);
@@ -267,43 +287,50 @@ static BLTWalletIO* _instance = nil;
             memset(pbCheckCode, 0, nAddressLen);
             iRtn = PAEW_GetDeviceCheckCode(ppPAEWContext, 0, pbCheckCode, &nAddressLen);
             if (iRtn != PAEW_RET_SUCCESS) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    failedCompliction([BLTUtils errorCodeToString:iRtn]);
-                });
+                failedReason = [BLTUtils errorCodeToString:iRtn];
             } else {
                 NSString *temp = [BLTUtils bytesToHexString:pbCheckCode length:nAddressLen];
-                NSString *sn = [temp substringToIndex:31];
-                NSString *sn_sig = [temp substringFromIndex:32];
-                iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
-                if (iRtn != PAEW_RET_SUCCESS) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        failedCompliction([BLTUtils errorCodeToString:iRtn]);
-                    });
-                } else {
-                    iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, bAddress, &nAddressLen);
-                    if (iRtn != PAEW_RET_SUCCESS) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            failedCompliction([BLTUtils errorCodeToString:iRtn]);
-                        });
-                    } else {
-                        nAddressLen = 1024;
-                        size_t addressLen = strlen(bAddress);
-                        NSString *pubkey_sig = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1] ];
-                        NSString *pubKey = [NSString stringWithUTF8String:(char *)bAddress];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            successComlication(sn,sn_sig,pubKey,pubkey_sig);
-                        });
-                    }
-                }
+                sn = [temp substringToIndex:32];
+                sn_sig = [temp substringFromIndex:32];
+                success_sn = true;
             }
             if (pbCheckCode) {
                 free(pbCheckCode);
             }
         } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                failedCompliction([BLTUtils errorCodeToString:iRtn]);
-            });
+            failedReason = [BLTUtils errorCodeToString:iRtn];
         }
+    });
+    dispatch_group_async(disgroup, disqueue, ^{
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        unsigned char bAddress[1024] = {0};
+        size_t nAddressLen = 1024;
+        
+        iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
+        if (iRtn != PAEW_RET_SUCCESS) {
+            failedReason = [BLTUtils errorCodeToString:iRtn];
+        } else {
+            iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, bAddress, &nAddressLen);
+            if (iRtn != PAEW_RET_SUCCESS) {
+                failedReason = [BLTUtils errorCodeToString:iRtn];
+            } else {
+                size_t addressLen = strlen(bAddress);
+                pub_sig = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1] ];
+                pub = [BLTUtils bytesToHexString:bAddress length:addressLen];
+                success_pub = true;
+            }
+        }
+    });
+    dispatch_group_notify(disgroup, disqueue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success_pub && success_sn) {
+                successComlication(sn,sn_sig,pub,pub_sig);
+            } else {
+                failedCompliction(failedReason);
+            }
+        });
     });
 }
 
@@ -378,6 +405,58 @@ static BLTWalletIO* _instance = nil;
             }
         }
     });
+}
+
+- (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed {
+    if (!savedDevH) {
+        return;
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        int startEnrollS = PAEW_EnrollFP(savedDevH, 0);
+        if (startEnrollS != PAEW_RET_SUCCESS) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failed([BLTUtils errorCodeToString:startEnrollS]);
+            });
+        } else {
+            int iRtn = PAEW_RET_UNKNOWN_FAIL;
+            int lastRtn = PAEW_RET_SUCCESS;
+            do {
+                
+                iRtn = PAEW_GetFPState(savedDevH, 0);
+                if (lastRtn != iRtn) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        stateComplication([BLTUtils stateWithValue:iRtn]);
+                    });
+                    lastRtn = iRtn;
+                }
+            } while ((iRtn == PAEW_RET_DEV_WAITING) || (iRtn == PAEW_RET_DEV_FP_GOOG_FINGER) || (iRtn == PAEW_RET_DEV_FP_REDUNDANT) || (iRtn == PAEW_RET_DEV_FP_BAD_IMAGE) || (iRtn == PAEW_RET_DEV_FP_NO_FINGER) || (iRtn == PAEW_RET_DEV_FP_NOT_FULL_FINGER));
+            if (iRtn != PAEW_RET_SUCCESS) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    failed([BLTUtils errorCodeToString:iRtn]);
+                });
+                return;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success();
+            });
+        }
+    });
+}
+
+
+- (void)printLog:(NSString *)format, ...
+{
+    va_list args;
+    va_start(args, format);
+    NSString *str = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    if ([NSThread isMainThread]) {
+        NSLog(@"%@",str);
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"%@",str);
+        });
+    }
 }
 
 @end
