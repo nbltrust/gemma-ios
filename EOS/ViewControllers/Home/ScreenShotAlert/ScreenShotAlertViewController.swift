@@ -64,7 +64,7 @@ class ScreenShotAlertViewController: BaseViewController {
 
 extension ScreenShotAlertViewController {
     @objc func sureShot(_ data:[String: Any]) {
-        self.coordinator?.dismiss()
+        self.coordinator?.dismissVC()
 
         if let context = self.context, let callback = context.sureShot {
             callback()
@@ -73,6 +73,6 @@ extension ScreenShotAlertViewController {
     }
     
     @objc func cancelShot(_ data:[String: Any]) {
-        self.coordinator?.dismiss()
+        self.coordinator?.dismissVC()
     }
 }

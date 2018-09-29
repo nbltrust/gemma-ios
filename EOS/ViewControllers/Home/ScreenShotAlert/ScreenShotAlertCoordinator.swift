@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 protocol ScreenShotAlertCoordinatorProtocol {
-    func dismiss()
+    func dismissVC()
 }
 
 protocol ScreenShotAlertStateManagerProtocol {
@@ -36,10 +36,8 @@ class ScreenShotAlertCoordinator: NavCoordinator {
 }
 
 extension ScreenShotAlertCoordinator: ScreenShotAlertCoordinatorProtocol {
-    func dismiss() {
-        self.rootVC.dismiss(animated: true) {
-            
-        }
+    func dismissVC() {
+        dismiss()
     }
 }
 

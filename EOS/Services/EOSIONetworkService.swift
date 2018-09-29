@@ -72,9 +72,9 @@ extension EOSIOService : TargetType {
         let configuration = NetworkConfiguration()
         switch self {
         case let .get_account(_, otherNode):
-            if otherNode {
-                return  configuration.EOSIO_OTHER_BASE_URL
-            }
+//            if otherNode {
+//                return  configuration.EOSIO_OTHER_BASE_URL
+//            }
             return configuration.EOSIO_BASE_URL
         default:
             return configuration.EOSIO_BASE_URL
