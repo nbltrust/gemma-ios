@@ -68,14 +68,6 @@ static BLTWalletIO* _instance = nil;
     return self;
 }
 
-- (NSCondition *)abortCondition
-{
-    if (!_abortCondition) {
-        _abortCondition = [[NSCondition alloc] init];
-    }
-    return _abortCondition;
-}
-
 - (void)formmart {
     if (!savedDevH) {
         return;
@@ -113,7 +105,7 @@ static BLTWalletIO* _instance = nil;
     });
 }
 
-- (void)searchBLTCard {
+- (void)searchBLTCard:(SuccessedComplication)complication {
     __block unsigned char nDeviceType = PAEW_DEV_TYPE_BT;
     __block char *szDeviceNames = (char *)malloc(512*16);
     __block size_t nDeviceNameLen = 512*16;
@@ -128,6 +120,7 @@ static BLTWalletIO* _instance = nil;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         int devInfoState = PAEW_GetDeviceListWithDevContext(nDeviceType, szDeviceNames, &nDeviceNameLen, &nDevCount, &DevContext, sizeof(DevContext));
         dispatch_async(dispatch_get_main_queue(), ^{
+            complication();
             free(szDeviceNames);
         });
         NSLog(@"%d", devInfoState);
@@ -269,6 +262,7 @@ static BLTWalletIO* _instance = nil;
     __block NSString *sn_sig = @"";
     __block NSString *pub = @"";
     __block NSString *pub_sig = @"";
+    __block NSString *public_key = @"";
     __block NSString *failedReason = @"";
     
     dispatch_queue_t disqueue =  dispatch_queue_create("com.shidaiyinuo.NetWorkStudy", DISPATCH_QUEUE_SERIAL);
@@ -317,8 +311,9 @@ static BLTWalletIO* _instance = nil;
                 failedReason = [BLTUtils errorCodeToString:iRtn];
             } else {
                 size_t addressLen = strlen(bAddress);
-                pub_sig = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1] ];
-                pub = [BLTUtils bytesToHexString:bAddress length:addressLen];
+                public_key = [NSString stringWithUTF8String:(char *)bAddress];
+                pub_sig = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1]];
+                pub = [[BLTUtils bytesToHexString:bAddress length:addressLen] stringByAppendingString:@"00"];
                 success_pub = true;
             }
         }
@@ -326,7 +321,7 @@ static BLTWalletIO* _instance = nil;
     dispatch_group_notify(disgroup, disqueue, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success_pub && success_sn) {
-                successComlication(sn,sn_sig,pub,pub_sig);
+                successComlication([sn lowercaseString],[sn_sig lowercaseString],[pub lowercaseString],[pub_sig lowercaseString],public_key);
             } else {
                 failedCompliction(failedReason);
             }

@@ -425,10 +425,12 @@
     var index = 0;
 
     function next() {
+      console.log('next: ' + index)
         index += 1;
 
         var group = document.querySelector("#group" + index);
-        group.classList.toggle('animate-in');
+        group.classList.remove('animate-out');
+        group.classList.add('animate-in');
 
         if (index === 8) {
             setTimeout(function() {part2.style.stroke = '#9EA3BD';}, 1000);
@@ -436,14 +438,17 @@
             index = 16;
         } else if (index === 9) {
            var path = document.querySelector("#Path-104");
-           path.classList.toggle('animate-in');
+           path.classList.remove('animate-out');
+           path.classList.add('animate-in');
            path.style.animationDuration='1s';
         }
     }
 
     function prev() {
+      console.log('prev: ' + index)
         var group = document.querySelector("#group" + index);
-        group.classList.toggle('animate-out');
+        group.classList.remove('animate-in');
+        group.classList.add('animate-out');
 
         index -= 1;
 
@@ -453,7 +458,8 @@
             index = 0;
         } else if (index === 9) {
            var path = document.querySelector("#Path-104");
-           path.classList.toggle('animate-out');
+           path.classList.remove('animate-in');
+           path.classList.add('animate-out');
            path.style.animationDuration='1s';
         }
     }
@@ -461,7 +467,33 @@
     function done() {
         while (index < 16) {
             index += 1;
-            document.querySelector("#group" + index).classList.toggle('animate-in');
+            var group = document.querySelector("#group" + index);
+            group.classList.remove('animate-out');
+            group.classList.add('animate-in');
+
+            if (index === 9) {
+               var path = document.querySelector("#Path-104");
+               path.classList.remove('animate-out');
+               path.classList.add('animate-in');
+               path.style.animationDuration='1s';
+            }
+        }    
+    }
+
+    function reset() {
+        while (index > 0) {
+            var group = document.querySelector("#group" + index);
+            group.classList.remove('animate-in');
+            // group.classList.add('animate-out');
+
+            if (index === 9) {
+               var path = document.querySelector("#Path-104");
+               path.classList.remove('animate-in');
+               // path.classList.add('animate-out');
+               // path.style.animationDuration='1s';
+            }
+
+            index -= 1;
         }
     }
 

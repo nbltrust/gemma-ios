@@ -30,8 +30,6 @@ class SetWalletViewController: BaseViewController {
     
     var settingType: WalletSettingType = .leadIn
     
-    var deviceInfo: PAEW_DevInfo?
-    
 	var coordinator: (SetWalletCoordinatorProtocol & SetWalletStateManagerProtocol)?
 
 	override func viewDidLoad() {

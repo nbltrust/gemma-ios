@@ -37,17 +37,25 @@ class WalletManager {
         }
     }
     
-    func saveWallket(_ account:String, password:String, hint:String, isImport:Bool = false, txID:String? = nil, invitationCode: String? = nil) {
-        savePriKey(priKey,publicKey: currentPubKey, password:password)
-        savePasswordHint(currentPubKey, hint:hint)
-        
-        addToLocalWallet(isImport, accountName: account)
-        switchWallet(currentPubKey)
-        account_names = [account]
-
-        switchAccount(0)
-        
-        removePriKey()
+    func saveWallket(_ account:String, password:String, hint:String, isImport:Bool = false, txID:String? = nil, invitationCode: String? = nil, type: CreateAPPId? = nil, deviceName: String? = nil) {
+        if type == .bluetooth {
+            savePriKey(priKey,publicKey: currentPubKey, password:password)
+            savePasswordHint(currentPubKey, hint:hint)
+            
+            addToLocalWallet(isImport, accountName: account, type: type, deviceName: deviceName)
+            switchWallet(currentPubKey)
+            account_names = [account]
+            
+            switchAccount(0)
+            
+            removePriKey()
+        } else {
+            addToLocalWallet(isImport, accountName: account, type: type, deviceName: deviceName)
+            switchWallet(currentPubKey)
+            account_names = [account]
+            
+            switchAccount(0)
+        }
     }
     
     func updateWalletPassword(_ password:String, hint:String) {
@@ -67,12 +75,16 @@ class WalletManager {
         }
     }
     
-    func addToLocalWallet(_ isImport:Bool = false, accountName:String?) {
+    func addToLocalWallet(_ isImport:Bool = false, accountName:String?, type: CreateAPPId? = nil, deviceName: String? = nil) {
         var wallets = Defaults[.walletList]
         
         if !wallets.map({ $0.publicKey }).contains(currentPubKey) {
             let currentIndex = currentWalletCount() + 1
-            let wallet = WalletList(name: "EOS-WALLET-\(currentIndex)", accountName: accountName, created: "", publicKey: currentPubKey, isBackUp: isImport ? true : false, creatStatus: WalletCreatStatus.willGetAccountInfo.rawValue, getAccountInfoDate: Date(), isImport: isImport)
+            var walletName = "EOS-WALLET-\(currentIndex)"
+            if let walletType = type, walletType == .bluetooth {
+                walletName = "WOOKONG Bio"
+            }
+            let wallet = WalletList(name: walletName, accountName: accountName, created: "", publicKey: currentPubKey, isBackUp: isImport ? true : false, creatStatus: WalletCreatStatus.willGetAccountInfo.rawValue, getAccountInfoDate: Date(), isImport: isImport, type: type, deviceName: deviceName)
             wallets.append(wallet)
             Defaults[.walletList] = wallets
         }
@@ -141,7 +153,7 @@ class WalletManager {
             if success {
                 self.currentPubKey = pubKey
                 
-                self.saveWallket(self.account_names[0], password: password, hint: hint, isImport: true, txID: nil)
+                self.saveWallket(self.account_names[0], password: password, hint: hint, isImport: true, txID: nil, type: .gemma, deviceName: nil)
             }
             completion(success)
         }

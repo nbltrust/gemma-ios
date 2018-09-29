@@ -15,7 +15,7 @@
 
 @interface BLTWalletIO : NSObject
 
-//Complication
+#pragma mark Complication
 typedef void(^ DidSearchDevice)(BLTDevice *wallet);
 
 typedef void(^ EnrollFingerComplication)(FingerPrinterState state);
@@ -30,7 +30,7 @@ typedef void(^ GetDeviceInfoComplication)(BOOL successed,PAEW_DevInfo *info);
 
 typedef void(^ GetSeedsComplication)(NSArray *seeds, NSString *checkStr);
 
-typedef void(^ GetVolidationComplication)(NSString *SN,NSString *SN_sig,NSString *pubkey,NSString *pubkey_si);
+typedef void(^ GetVolidationComplication)(NSString *SN,NSString *SN_sig,NSString *pubkey,NSString *pubkey_si,NSString *public_key);
 
 typedef void(^ GetSNComplication)(NSString *SN,NSString *SN_sig);
 
@@ -38,19 +38,18 @@ typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 
 @property (nonatomic,strong) DidSearchDevice didSearchDevice;
 
+@property (nonatomic,strong) BLTDevice *selectDevice;
+
 @property (nonatomic,strong) NSTimer *timer;
 
-@property (nonatomic, assign) BOOL abortBtnState;
++(instancetype) shareInstance;
 
-@property (nonatomic, strong) NSCondition *abortCondition;
-
-+(instancetype) shareInstance ;
-
+#pragma mark Request
 - (void)formmart;
 
 - (void)powerOff;
 
-- (void)searchBLTCard;
+- (void)searchBLTCard:(SuccessedComplication)complication;
 
 - (void)startHeartBeat;
 

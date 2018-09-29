@@ -17,11 +17,6 @@ enum WalletCreatStatus: Int {
     case creatSuccessed
 }
 
-enum WalletType: Int,Decodable,Encodable {
-    case custom = 1
-    case bluetooth
-}
-
 struct WalletList: Codable, DefaultsSerializable {
     var name: String?
     var accountName: String?
@@ -31,9 +26,8 @@ struct WalletList: Codable, DefaultsSerializable {
     var creatStatus: Int?
     var getAccountInfoDate: Date?
     var isImport: Bool?
-//    var type: WalletType?
-//    var deviceName: String?
-//    var bluetooth: BLTDevice?
+    var type: CreateAPPId?
+    var deviceName: String?
 }
 
 extension WalletList: DefaultsDefaultArrayValueType {
