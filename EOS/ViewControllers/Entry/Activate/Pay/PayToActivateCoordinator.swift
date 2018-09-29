@@ -154,9 +154,12 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
     
     func askToPay() {
         NBLNetwork.request(target: .getOrder(orderId: self.state.orderId), success: { (data) in
-            self.rootVC.topViewController?.endLoading()
             let payState = data["pay_state"].stringValue
             let state = data["status"].stringValue
+            if state != "DONE" {
+                self.rootVC.topViewController?.endLoading()
+            }
+            
             if payState == "NOTPAY", state == "INIT" {
                 
             } else if payState == "NOTPAY", state == "CLOSED" {
@@ -191,7 +194,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
     }
     
     func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> ()) {
-        self.rootVC.topViewController?.startLoading()
         var walletName = ""
         var password = ""
         var prompt = ""
