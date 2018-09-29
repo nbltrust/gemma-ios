@@ -44,12 +44,11 @@ class TransferViewController: BaseViewController {
         transferContentView.setAccountName(name: name)
         getData()
         setUpUI()
+        checkWalletType()
     }
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.coordinator?.fetchUserAccount()
     }
     
     func setUpUI() {
@@ -60,8 +59,18 @@ class TransferViewController: BaseViewController {
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
         transferContentView.reload()
         clearData()
-//        let info = WalletManager.shared.getAccount()
-//        transferContentView.setInfo(info: <#T##String#>)
+    }
+    
+    func checkWalletType() {
+        if let wallet = WalletManager.shared.currentWallet(), wallet.type == .bluetooth {
+            let bltView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
+            bltView.contentMode = .left
+            bltView.image = R.image.ic_wookong()
+            transferContentView.accountTitleTextView.textField.leftView = bltView
+            transferContentView.accountTitleTextView.textField.leftViewMode = .always
+            return
+        }
+        transferContentView.accountTitleTextView.textField.leftView = UIView()
     }
     
     func getData() {

@@ -35,6 +35,12 @@ protocol HomeStateManagerProtocol {
     func createDataInfo() -> [LineView.LineViewModel]
     
     func checkAccount()
+    
+    func isBluetoothWallet() -> Bool
+    
+    func bluetoothDataInfo() -> LineView.LineViewModel
+    
+    func handleBluetoothDevice()
 }
 
 class HomeCoordinator: NavCoordinator {
@@ -217,5 +223,27 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     
     func checkAccount() {
         WalletManager.shared.checkCurrentWallet()
+    }
+    
+    func isBluetoothWallet() -> Bool {
+        if let currentWallet = WalletManager.shared.currentWallet() {
+            return currentWallet.type == .bluetooth
+        }
+        return false
+    }
+    
+    func bluetoothDataInfo() -> LineView.LineViewModel {
+        return LineView.LineViewModel.init(name: R.string.localizable.wookong_title.key.localized(),
+                                    content: "",
+                                    image_name: R.image.icArrow.name,
+                                    name_style: LineViewStyleNames.normal_name,
+                                    content_style: LineViewStyleNames.normal_content,
+                                    isBadge: false,
+                                    content_line_number: 1,
+                                    isShowLineView: false)
+    }
+    
+    func handleBluetoothDevice() {
+        
     }
 }

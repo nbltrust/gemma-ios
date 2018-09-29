@@ -549,3 +549,8 @@
 "wookong_set_fp_notfull" = "调整握持姿势\n获取指纹边缘";
 "wookong_jump" = "跳过";
 "wookong_set_fp_success" = "指纹设置成功！";
+"wookong_connect_successed" = "已连接";
+"wookong_connect_none" = "未连接";
+"wookong_connect_ing" = "连接中";
+"wookong_connect_nopower" = "电量不足";
+"wookong_connect_failed" = "连接失败";
