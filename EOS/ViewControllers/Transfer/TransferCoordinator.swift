@@ -28,8 +28,6 @@ protocol TransferStateManagerProtocol {
 
     func fetchUserAccount(_ account:String)
     
-    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool)->())
-    
     func checkAccountName(_ name:String) ->(Bool,error_info:String)
 }
 
@@ -151,25 +149,5 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     
     func ValidingPassword(_ password : String) -> Bool{
         return WalletManager.shared.isValidPassword(password)
-    }
-
-    
-    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool)->()) {
-        
-        getPushTransaction(password, account: account, amount: amount, code: code,callback: { transaction in
-            if let transaction = transaction {
-                EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
-                    if let info = data.dictionaryObject,info["code"] == nil{
-                        callback(true)
-                    }else{
-                        callback(false)
-                    }
-                }, error: { (error_code) in
-                     callback(false)
-                }) { (error) in
-                    callback(false)
-                }
-            }
-        })
     }
 }
