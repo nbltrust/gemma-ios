@@ -10,17 +10,43 @@ import Foundation
 import HandyJSON
 import GRDB
 
-struct TestModel: DBProtocol {
-    var int: Int = 0
-    var string: String = ""
-    var id32: Int32 = 0
-    var id8: Int8 = 0
-    var id64: Int64 = 0
-    var float: Float = 0
-    var double: Double = 0
-    var date: Date = Date()
-    var data: Data = Data()
-    var bool: Bool = false
+struct AccountModel: DBProtocol {
+    var account_name:String! = ""
+    
+    var balance: String! = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    
+    var net_weight:String! = ""
+    var cpu_weight:String! = ""
+    var ram_bytes:Int64! = 0
+    
+    var from:String! = ""
+    var to:String! = ""
+    var delegate_net_weight:String! = ""
+    var delegate_cpu_weight:String! = ""
+    
+    var request_time:Date! = Date.init()
+    var net_amount:String! = ""
+    var cpu_amount:String! = ""
+    
+    var net_used:Int64! = 0
+    var net_available:Int64! = 0
+    var net_max:Int64! = 0
+    
+    var cpu_used:Int64! = 0
+    var cpu_available:Int64! = 0
+    var cpu_max:Int64! = 0
+    
+    var ram_quota:Int64! = 0
+    var ram_usage:Int64! = 0
+    var created:String! = ""
+    
+    var parent: String! = ""
+    var perm_name: String! = ""
+    
+    var threshold: Int64! = 0
+    
+    var key:String! = ""
+    var weight:Int64! = 0
 }
 
 public protocol DBProtocol : HandyJSON, MutablePersistableRecord, FetchableRecord, Codable {
@@ -64,9 +90,9 @@ extension DBProtocol {
     }
 }
 
-extension DBProtocol where Self == TestModel {
+extension DBProtocol where Self == AccountModel {
     mutating func primaryKey() -> String? {
-        return "int"
+        return "account_name"
     }
     
     mutating func whiteList() -> [String]? {

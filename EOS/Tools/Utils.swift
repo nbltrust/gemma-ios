@@ -14,6 +14,7 @@ import NotificationBanner
 import NBLCommonModule
 import KRProgressHUD
 import SwiftyUserDefaults
+import Alamofire
 
 //Nav BackgroundImage
 func navBgImage() -> UIImage? {
@@ -194,7 +195,6 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
             }, error: { (error_code) in
                 callback(false, actionModel.faile)
             }) { (error) in
-                callback(false,R.string.localizable.request_failed.key.localized() )
             }
             
         }, error: { (code) in
@@ -366,6 +366,45 @@ func dismiss() {
             
         }
     }
+}
+
+func getNetWorkReachability() -> String {
+    let data = Defaults[.NetworkReachability]
+    return data
+}
+
+func saveNetWorkReachability() {
+    let manager = NetworkReachabilityManager()
+    switch manager?.networkReachabilityStatus {
+    case .unknown?:
+        Defaults[.NetworkReachability] = WifiStatus.unknown.rawValue
+    case .notReachable?:
+        Defaults[.NetworkReachability] = WifiStatus.notReachable.rawValue
+    case .reachable?:
+        if (manager?.isReachableOnWWAN)! {
+            Defaults[.NetworkReachability] = WifiStatus.wwan.rawValue
+        } else if (manager?.isReachableOnEthernetOrWiFi)! {
+            Defaults[.NetworkReachability] = WifiStatus.wifi.rawValue
+        }
+    default:
+        break
+    }
+    
+    manager?.listener = { status in
+        switch status {
+        case .unknown:
+            Defaults[.NetworkReachability] = WifiStatus.unknown.rawValue
+        case .notReachable:
+            Defaults[.NetworkReachability] = WifiStatus.notReachable.rawValue
+        case .reachable:
+            if (manager?.isReachableOnWWAN)! {
+                Defaults[.NetworkReachability] = WifiStatus.wwan.rawValue
+            } else if (manager?.isReachableOnEthernetOrWiFi)! {
+                Defaults[.NetworkReachability] = WifiStatus.wifi.rawValue
+            }
+        }
+    }
+    manager?.startListening()
 }
 
 //func correctAmount(_ sender:String) -> String{

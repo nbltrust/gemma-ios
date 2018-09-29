@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 navigator.present(url)
             }
         }
-
+        saveNetWorkReachability()
         return true
     }
     

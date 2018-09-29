@@ -98,7 +98,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
         }) { (error) in
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
     
@@ -134,7 +133,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                     }
                 }, failure: { (error) in
                     completion(false)
-                    showFailTop(R.string.localizable.request_failed.key.localized())
                 })
                 
             }
@@ -148,7 +146,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             }
         }) { (error) in
             completion(false)
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
     
@@ -231,7 +228,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             }
         }) { (error) in
             self.rootVC.topViewController?.endLoading()
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
     
@@ -256,7 +252,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
         }) { (error) in
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
     

@@ -43,7 +43,8 @@ extension WalletList: DefaultsDefaultArrayValueType {
 extension DefaultsKeys {
     static let walletList = DefaultsKey<[WalletList]>("walletLists")
     static let currentWallet = DefaultsKey<String>("current-wallet")//公钥
-    
+    static let accountNames = DefaultsKey<[String]>("accountNames")//公钥
+
     //通用Setting
     static let language = DefaultsKey<String>("language")            //当前语言
     static let currentURLNode = DefaultsKey<Int>("currentURLNode")//当前EOS主网节点
@@ -55,4 +56,7 @@ extension DefaultsKeys {
     static let isGestureLockOpened = DefaultsKey<Bool>("isGestureLockOpened")
     static let gestureLockPassword = DefaultsKey<String>("gestureLockPassword")
     static let isFingerPrinterLockOpened = DefaultsKey<Bool>("isFingerPrinterLockOpened")
+    
+    //网络
+    static let NetworkReachability = DefaultsKey<String>("NetworkReachability")//网络
 }

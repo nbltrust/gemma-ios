@@ -152,7 +152,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             completion(false)
         }) { (error) in
             completion(false)
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
     
@@ -186,7 +185,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
         }) { (error) in
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
     

@@ -58,7 +58,10 @@ struct EOSIONetwork {
                     errorCallback(0)
                 }
             case let .failure(error):
-                showFailTop(R.string.localizable.request_failed.key.localized())
+                let networkStr = getNetWorkReachability()
+                if networkStr != WifiStatus.notReachable.rawValue {
+                    showFailTop(R.string.localizable.request_failed.key.localized())
+                }
                 failureCallback(error)
             }
         }

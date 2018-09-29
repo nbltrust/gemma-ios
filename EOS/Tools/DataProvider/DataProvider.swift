@@ -94,7 +94,7 @@ class DataProvider {
     }
     
     func conditionSql(_ conditionData: DataFetchCondition) -> String {
-        return conditionData.key + conditionData.check.desc() + conditionData.value
+        return conditionData.key + conditionData.check.desc() + "'" + conditionData.value + "'"
     }
     
     //Custom search

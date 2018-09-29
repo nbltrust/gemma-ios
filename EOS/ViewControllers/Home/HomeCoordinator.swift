@@ -11,6 +11,7 @@ import ReSwift
 import Presentr
 import SwiftyJSON
 import NBLCommonModule
+import SwiftyUserDefaults
 
 protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
@@ -35,6 +36,7 @@ protocol HomeStateManagerProtocol {
     func createDataInfo() -> [LineView.LineViewModel]
     
     func checkAccount()
+    func getCurrentFromLocal()
 }
 
 class HomeCoordinator: NavCoordinator {
@@ -146,6 +148,15 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func getAccountFromLocal() {
+        
+        if let jsonStr = Defaults.object(forKey: WalletManager.shared.getAccount()) as? String {
+            if let accountObj = Account.deserialize(from: jsonStr) {
+                self.store.dispatch(AccountFetchedAction(info: accountObj))
+            }
+        }
+    }
+    
     func getAccountInfo(_ account:String) {
         EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
             self.store.dispatch(BalanceFetchedAction(balance: json))
@@ -157,6 +168,8 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         
         EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
+//                let jsonStr = accountObj.toJSONString()
+//                Defaults.set(jsonStr, forKey: WalletManager.shared.getAccount())
                 self.store.dispatch(AccountFetchedAction(info: accountObj))
             }
 
@@ -217,5 +230,10 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     
     func checkAccount() {
         WalletManager.shared.checkCurrentWallet()
+    }
+    
+    func getCurrentFromLocal() {
+        let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
+        self.store.dispatch(AccountFetchedFromLocalAction(model: model))
     }
 }
