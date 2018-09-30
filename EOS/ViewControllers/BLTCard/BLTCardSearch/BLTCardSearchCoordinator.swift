@@ -14,9 +14,7 @@ import RxCocoa
 protocol BLTCardSearchCoordinatorProtocol {
     func dismissSearchVC()
     
-    func pushAfterDeviceConnected(_ deviceInfo: PAEW_DevInfo)
-    
-    func testFinger()
+    func pushAfterDeviceConnected()
 }
 
 protocol BLTCardSearchStateManagerProtocol {
@@ -53,28 +51,14 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
         self.rootVC.dismiss(animated: true, completion: nil)
     }
     
-    func pushAfterDeviceConnected(_ deviceInfo: PAEW_DevInfo) {
+    func pushAfterDeviceConnected() {
         if let homeCoor = app_coodinator.homeCoordinator {
             self.rootVC.dismiss(animated: true) {
-                BLTWalletIO.shareInstance().startHeartBeat()
                 if let vc = R.storyboard.leadIn.setWalletViewController() {
                     vc.coordinator = SetWalletCoordinator(rootVC: homeCoor.rootVC)
                     vc.settingType = .wookong
-                    vc.deviceInfo = deviceInfo
                     homeCoor.rootVC.pushViewController(vc, animated: true)
                 }
-            }
-        }
-    }
-    
-    func testFinger() {
-        if let homeCoor = app_coodinator.homeCoordinator {
-            self.rootVC.dismiss(animated: true) {
-                let printerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()!
-                let nav = BaseNavigationController.init(rootViewController: printerVC)
-                let coor = BLTCardSetFingerPrinterCoordinator(rootVC: nav)
-                printerVC.coordinator = coor;
-                homeCoor.rootVC.present(nav, animated: true, completion: nil)
             }
         }
     }

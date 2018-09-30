@@ -15,6 +15,7 @@ import NBLCommonModule
 import KRProgressHUD
 import SwiftyUserDefaults
 import Alamofire
+import SwiftyJSON
 
 //Nav BackgroundImage
 func navBgImage() -> UIImage? {
@@ -83,7 +84,7 @@ class VoteProducerActionModel: ActionModel {
 
 func getAbi(_ action:String, actionModel: ActionModel) -> String! {
     var abi: String = ""
-    if action == EOSAction.transfer.rawValue {
+    if action == EOSAction.transfer.rawValue || action == EOSAction.bltTransfer.rawValue {
         if let actionModel = actionModel as? TransferActionModel {
             if let abiStr = EOSIO.getAbiJsonString(EOSIOContract.TOKEN_CODE, action: action, from: actionModel.fromAccount, to: actionModel.toAccount, quantity: actionModel.amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: actionModel.remark) {
                 abi = abiStr
@@ -174,6 +175,12 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
             let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: actionModel.password)
             if action == EOSAction.transfer.rawValue {
                 transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
+            } else if action == EOSAction.bltTransfer.rawValue {
+                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
+                let json = JSON.init(parseJSON: transaction)
+                var jsonMap = json.dictionaryObject
+                jsonMap?.removeValue(forKey: "sign")
+                transaction = jsonMap?.jsonString() ?? ""
             } else if action == EOSAction.delegatebw.rawValue {
                 transaction = EOSIO.getDelegateTransaction(privakey, code: EOSIOContract.EOSIO_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
             } else if action == EOSAction.undelegatebw.rawValue {

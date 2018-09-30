@@ -135,20 +135,35 @@ class HomeViewController: BaseViewController {
 }
 extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.coordinator?.createDataInfo().count)!
+        var count = (self.coordinator?.createDataInfo().count)!
+        if self.coordinator?.isBluetoothWallet() ?? false {
+            count = count + 1
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = String.init(describing:type(of: HomeTableCell()))
         let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
-        
-        cell.setup(self.coordinator?.createDataInfo()[indexPath.row], indexPath: indexPath)
+        let isBluetooth = self.coordinator?.isBluetoothWallet() ?? false
+        if indexPath.row == 0 && isBluetooth {
+            cell.setup(self.coordinator?.bluetoothDataInfo(), indexPath: indexPath)
+            cell.homeCellView.leftImg.isHidden = false
+            cell.homeCellView.leftImg.image = R.image.ic_wookong()
+        } else {
+            cell.homeCellView.leftImg.isHidden = true
+            cell.setup(self.coordinator?.createDataInfo()[indexPath.row - (isBluetooth ? 1: 0)], indexPath: indexPath)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        switch indexPath.row {
+        let isBluetooth = self.coordinator?.isBluetoothWallet() ?? false
+        if isBluetooth {
+            self.coordinator?.handleBluetoothDevice()
+        }
+        switch (indexPath.row - (isBluetooth ? 1: 0)) {
         case 0:self.coordinator?.pushPayment()
         case 1:self.coordinator?.pushVoteVC()
         case 2:self.coordinator?.pushBuyRamVC()
@@ -161,7 +176,6 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
 
 extension HomeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        log.debug(scrollView.contentOffset.y)
         var offsetY = 0
         
         if Device.version() == Version.iPhoneX {

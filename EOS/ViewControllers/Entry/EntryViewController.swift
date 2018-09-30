@@ -67,34 +67,13 @@ class EntryViewController: BaseViewController {
         self.coordinator?.checkSeedSuccessed()
     }
     
-    func test() {
-        self.startLoading()
-        BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, sn_sig, pub, pub_sig) in
-            guard let `self` = self else { return }
-            var validation = WookongValidation()
-            validation.SN = sn ?? ""
-            validation.SN_sig = sn_sig ?? ""
-            validation.public_key = pub ?? ""
-            validation.public_key_sig = pub_sig ?? ""
-            self.coordinator?.createWallet(.bluetooth, accountName: self.registerView.nameView.textField.text!, password: "", prompt: "", inviteCode: "", validation: validation, completion: { (successed) in
-                self.coordinator?.pushToPrinterSetView()
-            })
-            }, failed: { [weak self] (reason) in
-                guard let `self` = self else { return }
-                if let failedReason = reason {
-                    self.endLoading()
-                    self.showError(message: failedReason)
-                }
-        })
-    }
-    
     func setupEvent() {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
             switch self.createType {
             case .wookong:
                 if (self.coordinator?.state.property.checkSeedSuccessed.value ?? false)! {
-                    self.test()
+                    self.createBltWallet()
                 } else {
                     self.coordinator?.copyMnemonicWord()
                 }
@@ -114,6 +93,11 @@ class EntryViewController: BaseViewController {
             guard let `self` = self else { return }
             self.coordinator?.pushToServiceProtocolVC()
         }).disposed(by: disposeBag)
+        
+        self.coordinator?.state.callback.finishBLTWalletCallback.accept({
+            self.coordinator?.checkSeedSuccessed()
+            self.createBltWallet()
+        })
     }
     
     override func configureObserveState() {
@@ -129,6 +113,13 @@ class EntryViewController: BaseViewController {
                                         return arg0.0 && arg0.1 && arg0.2 && arg0.3
                                     }
         }.bind(to: creatButton.isEnabel).disposed(by: disposeBag)
+    }
+    
+    func createBltWallet() {
+        self.startLoading()
+        self.coordinator?.createWallet(self.registerView.nameView.textField.text!, completion: { (success) in
+            self.endLoading()
+        })
     }
 }
 

@@ -18,9 +18,10 @@ struct WookongValidation: HandyJSON {
     var SN_sig = ""
     var public_key = ""
     var public_key_sig = ""
+    var publicKey = ""
 }
 
-enum CreateAPPId: Int {
+enum CreateAPPId: Int,Codable {
     case gemma = 1
     case wookongSolo
     case wookong
@@ -149,7 +150,11 @@ extension NBLService : TargetType {
         case let .createAccount(type ,account, pubKey, invitationCode, validation):
             var map: [String: Any] =  ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": type.rawValue]
             if let val = validation {
-                map["validation"] = val
+                var valDic = val.toJSON()
+                map["public_key"] = valDic?["publicKey"]
+                valDic?.removeValue(forKey: "publicKey")
+                map.removeValue(forKey: "invitation_code")
+                map["validation"] = valDic
             }
             return map
         case let .accountVerify(account):

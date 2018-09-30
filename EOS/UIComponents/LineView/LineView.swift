@@ -22,6 +22,7 @@ class LineView: UIView {
         var isShowLineView : Bool = false
     }
     
+    @IBOutlet weak var leftImg: UIImageView!
     @IBOutlet weak var sepatateView: UIView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var content: UILabel!
@@ -120,6 +121,7 @@ class LineView: UIView {
     }
     
     func setup(){
+        leftImg.contentMode = .left
         setupEvent()
         updateHeight()
     }

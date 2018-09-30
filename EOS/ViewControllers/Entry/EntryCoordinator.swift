@@ -15,8 +15,8 @@ protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()
     func pushToCreateSuccessVC()
     func pushToActivateVC()
-    func pushToPrinterSetView()
     func pushBackupPrivateKeyVC()
+    func presentSetFingerPrinterVC()
     func dismissCurrentNav(_ entry:UIViewController?)
 }
 
@@ -34,7 +34,7 @@ protocol EntryStateManagerProtocol {
     
     func checkAgree(_ agree: Bool)
     
-    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion:@escaping (Bool)->())
+    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, deviceName: String?, completion:@escaping (Bool)->())
     
     func copyMnemonicWord()
     
@@ -43,6 +43,8 @@ protocol EntryStateManagerProtocol {
     func checkSeedSuccessed()
     
     func verifyAccount(_ name: String, completion: @escaping (Bool) -> ())
+    
+    func createWallet(_ name: String, completion:@escaping (Bool)->())
 }
 
 class EntryCoordinator: NavCoordinator {
@@ -83,13 +85,6 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         self.rootVC.pushViewController(copyVC, animated: true)
     }
     
-    func pushToPrinterSetView() {
-        let printerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()
-        let coor = BLTCardSetFingerPrinterCoordinator(rootVC: self.rootVC)
-        printerVC?.coordinator = coor;
-        self.rootVC.pushViewController(printerVC!, animated: true)
-    }
-    
     func pushBackupPrivateKeyVC() {
         let vc = R.storyboard.entry.backupPrivateKeyViewController()!
         let coor = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
@@ -110,6 +105,17 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         vc.coordinator = coor
         self.rootVC.pushViewController(vc, animated: true)
     }
+    
+    func presentSetFingerPrinterVC() {
+        let printerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()!
+        let nav = BaseNavigationController.init(rootViewController: printerVC)
+        let coor = BLTCardSetFingerPrinterCoordinator(rootVC: nav)
+        printerVC.coordinator = coor;
+        self.rootVC.present(nav, animated: true) {
+            self.rootVC.popToRootViewController(animated: true)
+        }
+    }
+    
     func dismissCurrentNav(_ entry:UIViewController? = nil) {
         if let entry = entry as? EntryViewController {
             entry.coordinator?.state.callback.endCallback.value?()
@@ -171,12 +177,12 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(agreeAction(isAgree: agree))
     }
     
-    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, completion: @escaping (Bool) -> ()) {
-        KRProgressHUD.show()
+    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, deviceName: String?, completion: @escaping (Bool) -> ()) {
         NBLNetwork.request(target: .createAccount(type: type,account: accountName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: validation), success: { (data) in
-            KRProgressHUD.showSuccess()
-            WalletManager.shared.saveWallket(accountName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
+            WalletManager.shared.currentPubKey = validation?.publicKey ?? ""
+            WalletManager.shared.saveWallket(accountName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode, type: type, deviceName: deviceName)
             self.pushBackupPrivateKeyVC()
+            completion(true)
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)
@@ -184,7 +190,9 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             } else {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
+            completion(false)
         }) { (error) in
+            completion(false)
         }
     }
     
@@ -199,15 +207,34 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.rootVC.pushViewController(mnemonicWordVC!, animated: true)
     }
     
-    func getSN(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void) {
-        BLTWalletIO.shareInstance().getSN(success, failed: failed)
-    }
-    
-    func getPubkey(_ success: @escaping (String?, String?) -> Void, failed: @escaping (String?) -> Void) {
-        BLTWalletIO.shareInstance().getPubKey(success, failed: failed)
-    }
-    
     func checkSeedSuccessed() {
         self.store.dispatch(SetCheckSeedSuccessedAction(isCheck: true))
+    }
+    
+    func createWallet(_ name: String, completion: @escaping (Bool) -> ()) {
+        if let device = BLTWalletIO.shareInstance()?.selectDevice {
+            BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, sn_sig, pub, pub_sig, publicKey) in
+                guard let `self` = self else { return }
+                var validation = WookongValidation()
+                validation.SN = sn ?? ""
+                validation.SN_sig = sn_sig ?? ""
+                validation.public_key = pub ?? ""
+                validation.public_key_sig = pub_sig ?? ""
+                validation.publicKey = publicKey ?? ""
+                self.createWallet(.bluetooth, accountName: name, password: "", prompt: "", inviteCode: "", validation: validation, deviceName:device.name , completion: { (successed) in
+                    completion(successed)
+                    if successed {
+                        self.presentSetFingerPrinterVC()
+                    }
+                })
+                }, failed: { (reason) in
+                    completion(false)
+                    if let failedReason = reason {
+                        showFailTop(failedReason)
+                    }
+            })
+        } else {
+            completion(false)
+        }
     }
 }
