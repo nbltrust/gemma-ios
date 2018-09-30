@@ -487,7 +487,7 @@
 		734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734450822150A10900593A8F /* XLPagerTabStrip.framework */; };
 		734CC7B72154FABE0009EEE6 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; };
 		734CC7B82154FABE0009EEE6 /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		734CC824215503D20009EEE6 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; };
+		735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735A3D132160A99700FC8922 /* NBLCommonModule.framework */; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
@@ -846,13 +846,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 567374381B4D46600089DE44;
 			remoteInfo = iOS;
-		};
-		73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 73752FAE214C12D50089BD21;
-			remoteInfo = NBLCommonModule;
 		};
 		73EDFEEC211AC44E000DF796 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -6402,6 +6395,7 @@
 		7344C3DDB72697A50126EC3549E8DFB6 /* auto_link.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = auto_link.hpp; sourceTree = "<group>"; };
 		734F610FE87C479427D37CCF1E1CD8F8 /* lookbehind_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lookbehind_matcher.hpp; sourceTree = "<group>"; };
 		735884357D5B11850014705FED3512ED /* to_python_indirect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_python_indirect.hpp; sourceTree = "<group>"; };
+		735A3D132160A99700FC8922 /* NBLCommonModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NBLCommonModule.framework; path = Carthage/Build/iOS/Static/NBLCommonModule.framework; sourceTree = "<group>"; };
 		735CD7C60716D045054789EFDC524745 /* set */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = set; sourceTree = "<group>"; };
 		735F67F74A9387E23065016ED5CEE36C /* utf8_codecvt_facet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utf8_codecvt_facet.hpp; sourceTree = "<group>"; };
 		7363115565E60B21FCB230608925D785 /* workarounds_gcc-2_95.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "workarounds_gcc-2_95.hpp"; sourceTree = "<group>"; };
@@ -6887,10 +6881,6 @@
 		73BA4B3A215A244600EF4C72 /* URLNavigationMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLNavigationMap.swift; sourceTree = "<group>"; };
 		73BD769A0C773A8F78575956DB91C1DC /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		73CAF80D39A4581F26A830ABC0587047 /* fail_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fail_function.hpp; sourceTree = "<group>"; };
-		73D47E81214D535000A8BF29 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		73D47E82214D535000A8BF29 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		73D47E83214D535000A8BF29 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
-		73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = NBLCommonModule.xcodeproj; sourceTree = "<group>"; };
 		73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTWalletIO.m; sourceTree = "<group>"; };
 		73D60EA94E41654A2AD320B7B324BDA9 /* assert_word_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = assert_word_matcher.hpp; sourceTree = "<group>"; };
 		73DD7EB84F77B2E916A74B72ED0C0250 /* sub.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sub.hpp; sourceTree = "<group>"; };
@@ -13115,7 +13105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				734CC824215503D20009EEE6 /* NBLCommonModule.framework in Frameworks */,
+				735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */,
 				7392217A21549C8A00744811 /* libiOS_EWallet.a in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
@@ -24414,25 +24404,6 @@
 			path = detail;
 			sourceTree = "<group>";
 		};
-		73D47E80214D535000A8BF29 /* NBLCommonModule */ = {
-			isa = PBXGroup;
-			children = (
-				73D47E81214D535000A8BF29 /* .gitignore */,
-				73D47E82214D535000A8BF29 /* Cartfile */,
-				73D47E83214D535000A8BF29 /* Cartfile.resolved */,
-				73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */,
-			);
-			path = NBLCommonModule;
-			sourceTree = "<group>";
-		};
-		73D47E87214D535000A8BF29 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		73DDD9A02113F69700023973 /* NotificationBanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -25104,6 +25075,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				735A3D132160A99700FC8922 /* NBLCommonModule.framework */,
 				7392217921549C8900744811 /* libiOS_EWallet.a */,
 				73921E0B215224AE00744811 /* GRDB.swift */,
 				73921E06215220A100744811 /* RxSwift.framework */,
@@ -25124,7 +25096,6 @@
 				732F3712214FB83A00CB3A58 /* RxBlocking.framework */,
 				732F3713214FB83A00CB3A58 /* RxCocoa.framework */,
 				732F3714214FB83B00CB3A58 /* RxMoya.framework */,
-				73D47E80214D535000A8BF29 /* NBLCommonModule */,
 				61E820DFBEDE8948881A4760C672F918 /* libappbase.a */,
 				CA3066B0CEE09F5FD6CD43970E4A7F0A /* libboost_atomic.a */,
 				5DBF9AB820CAFD145D1C762D00368697 /* libboost_chrono.a */,
@@ -34810,10 +34781,6 @@
 					ProductGroup = 73921F1D215224AF00744811 /* Products */;
 					ProjectRef = 73921F1C215224AF00744811 /* iOS.xcodeproj */;
 				},
-				{
-					ProductGroup = 73D47E87214D535000A8BF29 /* Products */;
-					ProjectRef = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -35011,13 +34978,6 @@
 			fileType = wrapper.application;
 			path = iOS.app;
 			remoteRef = 73922057215224B000744811 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = NBLCommonModule.framework;
-			remoteRef = 73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -36186,6 +36146,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/EOS/Core/eos/include",
@@ -36297,6 +36258,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/EOS/Core/eos/include",
