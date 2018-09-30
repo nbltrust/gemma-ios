@@ -35758,7 +35758,6 @@
 				7210169F210197C10059B37E /* WalletManagerView.swift in Sources */,
 				3B6D746A214761690076F444 /* ExchangeToActivateReducers.swift in Sources */,
 				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
-				228A83C12153C1C9005DEDD7 /* BLTCardSetPrinterViewController.swift in Sources */,
 				3B85EEA5215A12E600795083 /* VerifyPriKeyViewController.swift in Sources */,
 				2253C52A2111A5F90043AAF7 /* CopyPriKeyReducers.swift in Sources */,
 				0795BFD28C42BE58BB94BAA17ADB6B91 /* EOSIO.mm in Sources */,
@@ -36213,7 +36212,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64 armv7s";
+				VALID_ARCHS = arm64;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -36278,7 +36277,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				VALID_ARCHS = "arm64 armv7s";
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
@@ -36326,7 +36325,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64 armv7s";
+				VALID_ARCHS = arm64;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -36434,7 +36433,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 armv7s";
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};
