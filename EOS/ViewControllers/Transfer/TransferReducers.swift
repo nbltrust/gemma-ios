@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import SwiftyUserDefaults
 
 func TransferReducer(action:Action, state:TransferState?) -> TransferState {
     var state = state ?? TransferState()
@@ -22,7 +23,16 @@ func TransferReducer(action:Action, state:TransferState?) -> TransferState {
         } else {
             state.balance.accept("")
         }
-
+    case let action as AccountFetchedFromLocalAction:
+        if let name = action.model?.account_name {
+            if let balance = Defaults[name + NetworkConfiguration.BALANCE_DEFAULT_SYMBOL] as? String {
+                state.balanceLocal.accept(balance)
+                
+            }
+        }
+        else {
+            state.balanceLocal.accept("")
+        }
     case let action as moneyAction:
         if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = action.money.toDouble() {
             var valid = false

@@ -433,7 +433,10 @@ class WalletManager {
     
     func failedGetAccountInfo() {
         showWarning(R.string.localizable.error_createAccount_failed.key.localized())
-        self.removeWallet(self.currentPubKey)
+        let networkStr = getNetWorkReachability()
+        if networkStr != WifiStatus.notReachable.rawValue {
+            self.removeWallet(self.currentPubKey)
+        } 
     }
     
     func failedWithReName() {

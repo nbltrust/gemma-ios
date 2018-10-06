@@ -71,6 +71,8 @@ struct NetworkConfiguration {
 
     static let EOSIO_DEFAULT_SYMBOL = "EOS"
     static let USDT_DEFAULT_SYMBOL = "USDT"
+    static let BALANCE_DEFAULT_SYMBOL = "balance"
+    static let RAMPRICE_DEFAULT_SYMBOL = "ramprice"
 
     static let EOSFLARE_BASE_URLString = "https://eosflare.io/tx/"
 
@@ -115,9 +117,8 @@ enum CoinType: Int {
 
 //Node Datas
 struct EOSBaseURLNodesConfiguration {
-    static let values = [                         "https://api.eosnewyork.io",
-
-        "http://47.75.154.248:50003",
+    static let values = [
+//        "http://47.75.154.248:50003",
                          "http://52.77.177.200:8888",
                          "http://api-mainnet.starteos.io",
                          "https://api.eosnewyork.io",
@@ -154,6 +155,7 @@ enum EOSAction:String {
     case buyram
     case sellram
     case voteproducer
+    case bltTransfer
 }
 
 enum EOSIOTable:String {
@@ -166,4 +168,9 @@ enum WifiStatus: String {
     case notReachable
     case wwan
     case wifi
+}
+
+struct Unit {
+    static let USD_UNIT = "usdunit"
+    static let RMB_UNIT = "rmbunit"
 }

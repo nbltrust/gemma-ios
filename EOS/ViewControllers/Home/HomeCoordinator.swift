@@ -174,8 +174,6 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         
         EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
-//                let jsonStr = accountObj.toJSONString()
-//                Defaults.set(jsonStr, forKey: WalletManager.shared.getAccount())
                 self.store.dispatch(AccountFetchedAction(info: accountObj))
             }
 

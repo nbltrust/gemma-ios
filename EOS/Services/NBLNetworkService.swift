@@ -80,6 +80,8 @@ struct NBLNetwork {
                 let networkStr = getNetWorkReachability()
                 if networkStr != WifiStatus.notReachable.rawValue {
                     showFailTop(R.string.localizable.request_failed.key.localized())
+                } else {
+                    endProgress()
                 }
                 failureCallback(error)
             }

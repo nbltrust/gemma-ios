@@ -42,8 +42,8 @@ class TransferViewController: BaseViewController {
         super.viewWillAppear(true)
         let name = WalletManager.shared.getAccount()
         transferContentView.setAccountName(name: name)
-        getData()
         setUpUI()
+        getData()
         checkWalletType()
     }
     
@@ -74,6 +74,7 @@ class TransferViewController: BaseViewController {
     }
     
     func getData() {
+        self.coordinator?.getCurrentFromLocal()
         self.coordinator?.fetchUserAccount(WalletManager.shared.getAccount())
     }
 
@@ -86,6 +87,12 @@ class TransferViewController: BaseViewController {
             
         }, onDisposed: nil).disposed(by: disposeBag)
         
+        self.coordinator?.state.balanceLocal.asObservable().subscribe(onNext: { (blance) in
+            
+            self.transferContentView.balance = blance!
+        }, onError: nil, onCompleted: {
+            
+        }, onDisposed: nil).disposed(by: disposeBag)
         
         Observable.combineLatest(self.coordinator!.state.toNameValid.asObservable(),
                                  self.coordinator!.state.moneyValid.asObservable()

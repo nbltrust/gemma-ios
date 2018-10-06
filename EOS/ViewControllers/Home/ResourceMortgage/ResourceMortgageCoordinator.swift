@@ -27,6 +27,7 @@ protocol ResourceMortgageStateManagerProtocol {
     
     func cpuReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
     func netReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
+    func getCurrentFromLocal() 
 }
 
 class ResourceMortgageCoordinator: NavCoordinator {
@@ -114,5 +115,10 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
     
     func netReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
         self.store.dispatch(netReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+    }
+    
+    func getCurrentFromLocal() {
+        let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
+        self.store.dispatch(AccountFetchedFromLocalAction(model: model))
     }
 }

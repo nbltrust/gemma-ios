@@ -222,6 +222,7 @@
 "closed" = "订单已关闭";
 "userpaying" = "正在支付";
 "payerror" = "支付错误";
+"check_network" = "请检查网络";
 
 //zsy end
 
