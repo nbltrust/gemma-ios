@@ -279,7 +279,7 @@ extension RegisterContentView: UITextFieldDelegate {
             if text.count > 12 {
                 textField.text = text.substring(from: 0, length: 12)
             }
-            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : text])
+            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : textField.text])
         case InputType.password.rawValue:
             self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : text])
         case InputType.comfirmPassword.rawValue:

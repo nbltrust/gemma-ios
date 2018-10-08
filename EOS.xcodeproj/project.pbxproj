@@ -172,6 +172,9 @@
 		357B2FFEE0242335494EAFE624066A39 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B76AA4B9209D95DD8A19D16B285CE327 /* secp256k1.a */; };
 		3890842A031D291CCD43AB9299B13243 /* complex in Resources */ = {isa = PBXBuildFile; fileRef = BA56900B90B048CC786C28695EB48251 /* complex */; };
 		3B02F23D2168524000DD9211 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B02F23C2168524000DD9211 /* AccountModel.swift */; };
+		3B0EB6F2216B46D80039A773 /* BatteryViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0EB6EF216B46D80039A773 /* BatteryViewAdapter.swift */; };
+		3B0EB6F3216B46D80039A773 /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0EB6F0216B46D80039A773 /* BatteryView.swift */; };
+		3B0EB6F4216B46D80039A773 /* BatteryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0EB6F1216B46D80039A773 /* BatteryView.xib */; };
 		3B195062211BE732002C7991 /* BuyRamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B195060211BE732002C7991 /* BuyRamView.swift */; };
 		3B195063211BE732002C7991 /* BuyRamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B195061211BE732002C7991 /* BuyRamView.xib */; };
 		3B195066211BE7CF002C7991 /* GeneralRamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B195064211BE7CF002C7991 /* GeneralRamCellView.swift */; };
@@ -3705,6 +3708,9 @@
 		3B02F23C2168524000DD9211 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		3B04CAFE4108CED517D861206EAD0E64 /* kinematic_viscosity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kinematic_viscosity.hpp; sourceTree = "<group>"; };
 		3B0B9A60CDAC6E5AA4DFB4232BE6C7A8 /* variadic.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = variadic.hpp; sourceTree = "<group>"; };
+		3B0EB6EF216B46D80039A773 /* BatteryViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryViewAdapter.swift; sourceTree = "<group>"; };
+		3B0EB6F0216B46D80039A773 /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
+		3B0EB6F1216B46D80039A773 /* BatteryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BatteryView.xib; sourceTree = "<group>"; };
 		3B0FD5213D6EB9044764932EF7E8CF68 /* map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = map.hpp; sourceTree = "<group>"; };
 		3B173972A65939B7B8C8BAA7941B4231 /* exception.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = exception.hpp; sourceTree = "<group>"; };
 		3B195060211BE732002C7991 /* BuyRamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamView.swift; sourceTree = "<group>"; };
@@ -15417,6 +15423,9 @@
 				3BC12A6B210587BD006EEB80 /* RedWarningView.xib */,
 				2253C53D2111C9390043AAF7 /* TitleSubTitleView.swift */,
 				2253C53F2111C9500043AAF7 /* TitleSubTitleView.xib */,
+				3B0EB6EF216B46D80039A773 /* BatteryViewAdapter.swift */,
+				3B0EB6F0216B46D80039A773 /* BatteryView.swift */,
+				3B0EB6F1216B46D80039A773 /* BatteryView.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -35044,6 +35053,7 @@
 				72101693210197C10059B37E /* WalletTableViewCell.xib in Resources */,
 				FD1CABB572E0D7F1ED79EE81741CFCE4 /* bitset in Resources */,
 				C94B5818C99B648CF164FD0433A0EB01 /* bitset.SUNWCCh in Resources */,
+				3B0EB6F4216B46D80039A773 /* BatteryView.xib in Resources */,
 				3EB725F5715CD5F10C3BA10D8EF4447A /* block_header.hpp.bk in Resources */,
 				AACEB0A4AEC8DE4B8F9DBC239E3C0A91 /* cassert in Resources */,
 				9E97878370D74707276FBF9BBA8D743A /* cctype in Resources */,
@@ -35664,6 +35674,7 @@
 				3B6D7464214761690076F444 /* FriendViewAdapter.swift in Sources */,
 				221EC1C621008EF50059F856 /* GestureLockSetCoordinator.swift in Sources */,
 				3B39358E214A479300AB0A30 /* VerifyMnemonicWordActions.swift in Sources */,
+				3B0EB6F3216B46D80039A773 /* BatteryView.swift in Sources */,
 				22A93240211A9DBB00ACC63C /* StatusView.swift in Sources */,
 				733714E4212431E200B2ED90 /* FontLoader.swift in Sources */,
 				22C023A020F6FDB900284A0A /* CreatationCompleteActions.swift in Sources */,
@@ -35952,6 +35963,7 @@
 				223C58F5214A50F300C69F3F /* BLTCardConfirmPinCoordinator.swift in Sources */,
 				7224712C20F57BA800536BF4 /* TransferReducers.swift in Sources */,
 				72101696210197C10059B37E /* ChangeWalletNameReducers.swift in Sources */,
+				3B0EB6F2216B46D80039A773 /* BatteryViewAdapter.swift in Sources */,
 				733714EA212431E200B2ED90 /* Octicon.swift in Sources */,
 				AD352B30A178C8A63FF0D742FDFD3081 /* UIImageView+Additions.swift in Sources */,
 				3BEC3F542111B4FC003C38FB /* BackupPrivateKeyActions.swift in Sources */,
