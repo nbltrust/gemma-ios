@@ -187,7 +187,8 @@ extension HomeViewController: UIScrollViewDelegate {
         if scrollView.contentOffset.y > offsetY.cgFloat {
             if let nav = self.navigationController as? BaseNavigationController {
                 nav.navStyle = .common
-                self.navigationItem.title = self.coordinator?.state.property.info.value.account
+                let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
+                self.navigationItem.title = model?.account_name
                 self.navigationController?.navigationBar.alpha = (scrollView.contentOffset.y - offsetY.cgFloat) / 44
             }
         } else {
