@@ -87,8 +87,6 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
             let payment:[Payment] = []
             self.store.dispatch(FetchPaymentsRecordsListAction(data: payment))
             completion(false)
-
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
 }

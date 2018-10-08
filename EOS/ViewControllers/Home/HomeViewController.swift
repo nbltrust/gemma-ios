@@ -14,6 +14,7 @@ import HandyJSON
 import SwiftyJSON
 import NotificationBanner
 import Device
+import SwiftyUserDefaults
 
 class HomeViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -54,7 +55,8 @@ class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
+        self.coordinator?.getCurrentFromLocal()
         self.tableView.reloadData()
         if let nav = self.navigationController as? BaseNavigationController {
             nav.navStyle = .clear
@@ -107,14 +109,28 @@ class HomeViewController: BaseViewController {
         
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
+            if model.account == WalletManager.shared.getAccount() {
+                self.tableHeaderView.data = model
+                self.updateUI()
+                
+                self.tableHeaderView.layoutIfNeeded()
+                
+                self.tableView.tableHeaderView?.height = self.tableHeaderView.height
+                self.tableView.reloadData()
+            }
+
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
+        coordinator?.state.property.model.asObservable().subscribe(onNext: {[weak self] (model) in
+            guard let `self` = self else { return }
             self.tableHeaderView.data = model
             self.updateUI()
-
+            
             self.tableHeaderView.layoutIfNeeded()
             
             self.tableView.tableHeaderView?.height = self.tableHeaderView.height
             self.tableView.reloadData()
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
@@ -171,7 +187,8 @@ extension HomeViewController: UIScrollViewDelegate {
         if scrollView.contentOffset.y > offsetY.cgFloat {
             if let nav = self.navigationController as? BaseNavigationController {
                 nav.navStyle = .common
-                self.navigationItem.title = self.coordinator?.state.property.info.value.account
+                let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
+                self.navigationItem.title = model?.account_name
                 self.navigationController?.navigationBar.alpha = (scrollView.contentOffset.y - offsetY.cgFloat) / 44
             }
         } else {

@@ -77,6 +77,12 @@ struct NBLNetwork {
                     errorCallback(99999)
                 }
             case let .failure(error):
+                let networkStr = getNetWorkReachability()
+                if networkStr != WifiStatus.notReachable.rawValue {
+                    showFailTop(R.string.localizable.request_failed.key.localized())
+                } else {
+                    endProgress()
+                }
                 failureCallback(error)
             }
         }
@@ -87,7 +93,7 @@ struct NBLNetwork {
 
 extension NBLService : TargetType {
     var baseURL: URL {
-        return NetworkConfiguration.NBL_BASE_TEST_URL
+        return NetworkConfiguration.NBL_BASE_URL
     }
     
     var isNeedCache: Bool {

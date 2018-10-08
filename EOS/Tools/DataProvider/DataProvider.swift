@@ -28,7 +28,7 @@ class DataProvider {
         try dbQueue.write { db in
             let sqlStr = self.sqlStringWith(mulValueConditons)
             let updateStr = self.sqlSetStringWith(newData)
-            try db.execute(String(format: "UPDATE %@ %@ %@", tableName, newData, sqlStr))
+            try db.execute(String(format: "UPDATE %@ %@ %@", tableName, updateStr, sqlStr))
         }
     }
     
@@ -125,7 +125,7 @@ class DataProvider {
     }
     
     func conditionSql(_ conditionData: DataFetchCondition) -> String {
-        return conditionData.key + conditionData.check.desc() + conditionData.value
+        return conditionData.key + conditionData.check.desc() + "'" + conditionData.value + "'"
     }
     
     //Custom search

@@ -29,6 +29,7 @@ protocol TransferStateManagerProtocol {
     func fetchUserAccount(_ account:String)
     
     func checkAccountName(_ name:String) ->(Bool,error_info:String)
+    func getCurrentFromLocal()
 }
 
 class TransferCoordinator: NavCoordinator {
@@ -149,5 +150,10 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     
     func ValidingPassword(_ password : String) -> Bool{
         return WalletManager.shared.isValidPassword(password)
+    }
+    
+    func getCurrentFromLocal() {
+        let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
+        self.store.dispatch(AccountFetchedFromLocalAction(model: model))
     }
 }
