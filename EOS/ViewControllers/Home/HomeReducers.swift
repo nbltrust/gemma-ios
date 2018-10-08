@@ -184,9 +184,9 @@ func convertToViewModelWithModel(model: AccountModel) -> AccountViewModel {
     viewModel.cpuValue = model.delegate_cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
     viewModel.netValue = model.delegate_net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
     viewModel.ramValue = model.ram_bytes.ramCount ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    viewModel.cpuProgress = Float(model.cpu_used / model.cpu_max)
-    viewModel.netProgress = Float(model.net_used / model.net_max)
-    viewModel.ramProgress = Float(model.ram_usage / model.ram_quota)
+    viewModel.cpuProgress = Float(model.cpu_used) / Float(model.cpu_max)
+    viewModel.netProgress = Float(model.net_used) / Float(model.net_max)
+    viewModel.ramProgress = Float(model.ram_usage) / Float(model.ram_quota)
     if let balance = Defaults[model.account_name + NetworkConfiguration.BALANCE_DEFAULT_SYMBOL] as? String {
         viewModel.balance = balance
     }
