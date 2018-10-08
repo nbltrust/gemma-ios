@@ -123,11 +123,14 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let devices = self.coordinator?.state.devices {
             let device = devices[indexPath.row]
-            self.coordinator?.connectDevice(device, complication: { [weak self] (success, deviceId) in
+            self.coordinator?.connectDevice(device, success: { [weak self] in
                 guard let `self` = self else { return }
-                if success {
-                    BLTWalletIO.shareInstance()?.selectDevice = device
-                    self.coordinator?.pushAfterDeviceConnected()
+                BLTWalletIO.shareInstance()?.selectDevice = device
+                self.coordinator?.pushAfterDeviceConnected()
+            }, failed: { [weak self] (reason) in
+                guard let `self` = self else { return }
+                if let failedReason = reason {
+                    self.showError(message: failedReason)
                 }
             })
         }

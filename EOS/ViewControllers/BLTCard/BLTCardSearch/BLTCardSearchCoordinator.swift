@@ -24,7 +24,7 @@ protocol BLTCardSearchStateManagerProtocol {
     
     func searchedADevice(_ device: BLTDevice)
     
-    func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void)
+    func connectDevice(_ device: BLTDevice, success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
     
     func getDeviceInfo(_ complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void)
 }
@@ -84,10 +84,8 @@ extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
         self.store.dispatch(SetDevicesAction(datas: devices))
     }
     
-    func connectDevice(_ device: BLTDevice, complication: @escaping (Bool, Int) -> Void) {
-        BLTWalletIO.shareInstance().connectCard(device.name) { (success, deviceId) in
-            complication(success, deviceId)
-        }
+    func connectDevice(_ device: BLTDevice, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
+        BLTWalletIO.shareInstance()?.connectCard(device.name, success: success, failed: failed)
     }
     
     func getDeviceInfo(_ complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void) {

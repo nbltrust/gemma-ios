@@ -58,6 +58,8 @@ class ActionModel {
 class TransferActionModel: ActionModel {
     var amount: String = ""
     var remark: String = ""
+    var type: CreateAPPId = .gemma
+    var sign: String = ""
 }
 
 class DelegateActionModel: ActionModel {
@@ -178,7 +180,9 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                 transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
                 let json = JSON.init(parseJSON: transaction)
                 var jsonMap = json.dictionaryObject
-                jsonMap?.removeValue(forKey: "sign")
+                if let actionModel = actionModel as? TransferActionModel {
+                    jsonMap?["sign"] = actionModel.sign
+                }
                 transaction = jsonMap?.jsonString() ?? ""
             } else if action == EOSAction.delegatebw.rawValue {
                 transaction = EOSIO.getDelegateTransaction(privakey, code: EOSIOContract.EOSIO_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
