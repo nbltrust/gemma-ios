@@ -272,11 +272,13 @@ extension RegisterContentView: UITextFieldDelegate {
         }
     }
     
-    
     func handleTextField(_ textField: UITextField) {
         let text = textField.text ?? ""
         switch textField.tag {
         case InputType.name.rawValue:
+            if text.count > 12 {
+                textField.text = text.substring(from: 0, length: 12)
+            }
             self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : text])
         case InputType.password.rawValue:
             self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : text])
