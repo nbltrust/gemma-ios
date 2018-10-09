@@ -223,6 +223,10 @@
 "userpaying" = "正在支付";
 "payerror" = "支付错误";
 "check_network" = "请检查网络";
+"refund_money_suf" = "，24小时内会退款";
+"error_chain_fail" = "上链失败";
+"error_account_rush_regist" = "EOS账户被抢注";
+"connect_customer_service" = "请联系客服";
 
 //zsy end
 
