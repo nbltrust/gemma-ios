@@ -247,10 +247,26 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)
-                showFailTop(error.localizedDescription)
+                if code == GemmaError.NBLNetworkErrorCode.chainFailedCode.rawValue {
+                    self.store.dispatch(NumsAction(nums: self.state.nums))
+                    if self.state.nums <= 3 {
+                        self.createWallet(self.state.orderId, completion: { (newCode) in
+                            
+                        })
+                    } else {
+                        showFailTop(R.string.localizable.error_chain_fail.key.localized())
+                    }
+                } else if code == GemmaError.NBLNetworkErrorCode.parameterWrongCode.rawValue ||
+                    code == GemmaError.NBLNetworkErrorCode.invitecodeInexistenceCode.rawValue ||
+                    code == GemmaError.NBLNetworkErrorCode.invitecodeRegiteredCode.rawValue {
+                    showFailTop(error.localizedDescription + R.string.localizable.connect_customer_service.key.localized())
+                } else {
+                    showFailTop(error.localizedDescription + R.string.localizable.refund_money_suf.key.localized())
+                }
             } else {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
+
         }) { (error) in
         }
     }
