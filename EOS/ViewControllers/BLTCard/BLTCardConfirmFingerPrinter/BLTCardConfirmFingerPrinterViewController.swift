@@ -24,6 +24,12 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
         setupData()
         setupUI()
         setupEvent()
+        
+        
+    }
+    
+    func test() {
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

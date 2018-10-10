@@ -70,6 +70,7 @@
 		223008332165FCDE000E39CF /* BLTCardConnectActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230082F2165FCDE000E39CF /* BLTCardConnectActions.swift */; };
 		223008342165FCDE000E39CF /* BLTCardConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223008302165FCDE000E39CF /* BLTCardConnectViewController.swift */; };
 		223008352165FCDE000E39CF /* BLTCardConnectReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223008312165FCDE000E39CF /* BLTCardConnectReducers.swift */; };
+		22300839216C9EAE000E39CF /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22300838216C9EAE000E39CF /* libiOS_EWallet.a */; };
 		223C58C92148BD9200C69F3F /* NetworkSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58C82148BD9200C69F3F /* NetworkSettingManager.swift */; };
 		223C58DC214A4A5000C69F3F /* BLTCardEntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58D8214A4A5000C69F3F /* BLTCardEntryCoordinator.swift */; };
 		223C58DD214A4A5000C69F3F /* BLTCardEntryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58D9214A4A5000C69F3F /* BLTCardEntryActions.swift */; };
@@ -505,7 +506,6 @@
 		737F8DD42146647E00DD522A /* DBProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DD02146647E00DD522A /* DBProtocol.swift */; };
 		737FCFBE211D70B200859F82 /* RPCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737FCFBD211D70B200859F82 /* RPCTest.swift */; };
 		73921E07215220A100744811 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73921E06215220A100744811 /* RxSwift.framework */; };
-		7392217A21549C8A00744811 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7392217921549C8900744811 /* libiOS_EWallet.a */; };
 		739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D852150D45300A1074B /* KRActivityIndicatorView.framework */; };
 		739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D862150D45400A1074B /* KRProgressHUD.framework */; };
 		739A4D9E2150DDDA00A1074B /* MarqueeLabelSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */; };
@@ -2494,6 +2494,7 @@
 		2230082F2165FCDE000E39CF /* BLTCardConnectActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardConnectActions.swift; sourceTree = "<group>"; };
 		223008302165FCDE000E39CF /* BLTCardConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardConnectViewController.swift; sourceTree = "<group>"; };
 		223008312165FCDE000E39CF /* BLTCardConnectReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardConnectReducers.swift; sourceTree = "<group>"; };
+		22300838216C9EAE000E39CF /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
 		22337127DBE3C47A4814C75135C91637 /* knuth_morris_pratt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = knuth_morris_pratt.hpp; sourceTree = "<group>"; };
 		22344D4100DCB68CB7C7E16019D51E11 /* finder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = finder.hpp; sourceTree = "<group>"; };
 		2236B33B58370C0103C42610CD66BBD5 /* collection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = collection.hpp; sourceTree = "<group>"; };
@@ -6858,7 +6859,6 @@
 		73922003215224AF00744811 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		73922006215224AF00744811 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		73922007215224AF00744811 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
-		7392217921549C8900744811 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
 		7392769288407F75D4107A3EFBB3DE5E /* connected_components.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = connected_components.hpp; sourceTree = "<group>"; };
 		7393B91A8DC4BD7FC616A5D3920374BD /* copy_array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = copy_array.hpp; sourceTree = "<group>"; };
 		739707D3B3D8545D83974B0F7043985B /* to_python_value.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_python_value.hpp; sourceTree = "<group>"; };
@@ -13138,7 +13138,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				734CC824215503D20009EEE6 /* NBLCommonModule.framework in Frameworks */,
-				7392217A21549C8A00744811 /* libiOS_EWallet.a in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
 				734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */,
@@ -13158,6 +13157,7 @@
 				732F3722214FB83F00CB3A58 /* Alamofire.framework in Frameworks */,
 				732F3724214FB83F00CB3A58 /* Moya.framework in Frameworks */,
 				732F3725214FB83F00CB3A58 /* ReactiveSwift.framework in Frameworks */,
+				22300839216C9EAE000E39CF /* libiOS_EWallet.a in Frameworks */,
 				ABD754F61B6B4596661C239D7EE0621B /* libappbase.a in Frameworks */,
 				D75E543507B22593734132C3402ADCF2 /* libboost_atomic.a in Frameworks */,
 				3E49C3B86F3BE922F2644DAD486997CF /* libboost_chrono.a in Frameworks */,
@@ -25153,7 +25153,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7392217921549C8900744811 /* libiOS_EWallet.a */,
+				22300838216C9EAE000E39CF /* libiOS_EWallet.a */,
 				73921E0B215224AE00744811 /* GRDB.swift */,
 				73921E06215220A100744811 /* RxSwift.framework */,
 				739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */,
@@ -36266,7 +36266,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
@@ -36378,7 +36378,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -warn-long-function-bodies=100 -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";

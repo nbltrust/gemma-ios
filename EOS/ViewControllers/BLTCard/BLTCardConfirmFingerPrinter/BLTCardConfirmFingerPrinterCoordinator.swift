@@ -59,23 +59,18 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
     
     func bltTransferAccounts(_ account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
         BLTWalletIO.shareInstance()?.submmitWaitingVerfyPin("123456")
-        BLTWalletIO.shareInstance()?.getEOSSign(.init(2), success: { (sign) in
-            let model = TransferActionModel()
-            model.toAccount = account
-            model.fromAccount = WalletManager.shared.getAccount()
-            model.success = R.string.localizable.transfer_successed.key.localized()
-            model.faile = R.string.localizable.transfer_failed.key.localized()
-            model.amount = amount
-            model.remark = remark
-            model.type = .bluetooth
-            model.sign = sign ?? ""
-            transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
-                callback(bool,showString)
-            }
-        }, failed: { (reason) in
-            if let failedReason = reason {
-                showFailTop(failedReason)
-            }
-        })
+        let model = TransferActionModel()
+        model.toAccount = account
+        model.fromAccount = WalletManager.shared.getAccount()
+        model.success = R.string.localizable.transfer_successed.key.localized()
+        model.faile = R.string.localizable.transfer_failed.key.localized()
+        model.amount = amount
+        model.remark = remark
+        model.type = .bluetooth
+        model.confirmType = fpType
+        model.password = "123456"
+        transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
+            callback(bool,showString)
+        }
     }
 }

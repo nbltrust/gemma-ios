@@ -87,7 +87,7 @@ typedef void(^ GetSignComplication)(NSString *sign);
 /*When type == PinType
  Need To implication Method “submmitWaitingVerfyPin”
  */
-- (void)getEOSSign:(AuthType)type success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
+- (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
 - (void)submmitWaitingVerfyPin:(NSString *)waitVerPin;
 

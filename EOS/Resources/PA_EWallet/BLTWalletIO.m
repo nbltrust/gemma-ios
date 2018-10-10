@@ -10,9 +10,7 @@
 
 @interface BLTWalletIO () {
     int lastSignState;
-    BOOL authTypeCached;
     unsigned char nAuthType;
-    int authTypeResult;
     BOOL pinCached;
     NSString *pin;
     int pinResult;
@@ -59,16 +57,8 @@ int DisconnectedCallback(const int status, const char *description)
 
 int GetAuthType(void * const pCallbackContext, unsigned char * const pnAuthType)
 {
-    int rtn = 0;
-    if (!_instance->authTypeCached) {
-        [_instance getAuthType];
-    }
-    rtn = _instance->authTypeResult;
-    if (rtn == PAEW_RET_SUCCESS) {
-        *pnAuthType = _instance->nAuthType;
-    }
-    _instance->authTypeCached = NO;
-    return rtn;
+    *pnAuthType = _instance->nAuthType;
+    return PAEW_RET_SUCCESS;
 }
 
 int GetPin(void * const pCallbackContext, unsigned char * const pbPIN, size_t * const pnPINLen)
@@ -350,13 +340,17 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         size_t nAddressLen = 1024;
         
         iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
+        unsigned char showOnScreen = 1;
         if (iRtn != PAEW_RET_SUCCESS) {
             failedReason = [BLTUtils errorCodeToString:iRtn];
         } else {
-            iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, bAddress, &nAddressLen);
+            iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, showOnScreen, bAddress, &nAddressLen);
             if (iRtn != PAEW_RET_SUCCESS) {
                 failedReason = [BLTUtils errorCodeToString:iRtn];
             } else {
+                if (showOnScreen) {
+                    PAEW_ClearLCD(ppPAEWContext, devIdx);
+                }
                 size_t addressLen = strlen(bAddress);
                 public_key = [NSString stringWithUTF8String:(char *)bAddress];
                 pub_sig = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1]];
@@ -427,17 +421,21 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         size_t nAddressLen = 1024;
         
         iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
+        unsigned char showOnScreen = 1;
         if (iRtn != PAEW_RET_SUCCESS) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failedCompliction([BLTUtils errorCodeToString:iRtn]);
             });
         } else {
-            iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, bAddress, &nAddressLen);
+            iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, showOnScreen, bAddress, &nAddressLen);
             if (iRtn != PAEW_RET_SUCCESS) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     failedCompliction([BLTUtils errorCodeToString:iRtn]);
                 });
             } else {
+                if (showOnScreen) {
+                    PAEW_ClearLCD(ppPAEWContext, devIdx);
+                }
                 size_t addressLen = strlen(bAddress);
                 NSString *signature = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1] ];
                 NSString *pubKey = [NSString stringWithUTF8String:(char *)bAddress];
@@ -485,15 +483,13 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)getEOSSign:(AuthType)type success:(GetSignComplication)complication failed:(FailedComplication)failedComplication{
+- (void)getEOSSign:(AuthType)type  chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication {
     if (!savedDevH) {
         return;
     }
-    int rtn = [self getAuthType];
-    if (rtn != PAEW_RET_SUCCESS) {
-        [self printLog:@"user canceled PAEW_EOS_TXSign_Ex"];
-        return;
-    }
+    _instance.abortBtnState = NO;
+    _instance->lastSignState = PAEW_RET_SUCCESS;
+    _instance->nAuthType = 0xFF;
     switch (type) {
         case pinType:
             _instance->nAuthType = PAEW_SIGN_AUTH_TYPE_PIN;
@@ -517,27 +513,82 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             });
             return ;
         }
-
-        unsigned char transaction[] = {0x74, 0x09, 0x70, 0xd9, 0xff, 0x01, 0xb5, 0x04, 0x63, 0x2f, 0xed, 0xe1, 0xad, 0xc3, 0xdf, 0xe5, 0x59, 0x90, 0x41, 0x5e, 0x4f, 0xde, 0x01, 0xe1, 0xb8, 0xf3, 0x15, 0xf8, 0x13, 0x6f, 0x47, 0x6c, 0x14, 0xc2, 0x67, 0x5b, 0x01, 0x24, 0x5f, 0x70, 0x5d, 0xd7, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0xa6, 0x82, 0x34, 0x03, 0xea, 0x30, 0x55, 0x00, 0x00, 0x00, 0x57, 0x2d, 0x3c, 0xcd, 0xcd, 0x01, 0x20, 0x29, 0xc2, 0xca, 0x55, 0x7a, 0x73, 0x57, 0x00, 0x00, 0x00, 0x00, 0xa8, 0xed, 0x32, 0x32, 0x21, 0x20, 0x29, 0xc2, 0xca, 0x55, 0x7a, 0x73, 0x57, 0x90, 0x55, 0x8c, 0x86, 0x77, 0x95, 0x4c, 0x3c, 0x10, 0x27, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x45, 0x4f, 0x53, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-        unsigned char *pbTXSig = (unsigned char *)malloc(1024);
-        size_t pnTXSigLen = 1024;
-        signCallbacks callBack;
-        callBack.getAuthType = GetAuthType;
-        callBack.getPIN = GetPin;
-        callBack.putSignState = PutSignState;
-        _instance->lastSignState = PAEW_RET_SUCCESS;
-
-        iRtn = PAEW_EOS_TXSign_Ex(ppPAEWContext, devIdx, transaction, sizeof(transaction), pbTXSig, &pnTXSigLen, &callBack, 0);
-        if (iRtn) {
+        
+        NSString *transStr = [transaction stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+        unsigned char eosPut[512] = {};
+        size_t transSize = 512;
+        iRtn = PAEW_EOS_TX_Serialize([transStr UTF8String], eosPut, &transSize);
+        
+        unsigned char tx[1024] = {};
+        
+        NSMutableData*apnsTokenMutableData = [[NSMutableData alloc]init];
+        unsigned charwhole_byte;
+        char byte_chars[2] = {'\0','\0'};
+        
+        int i;
+        for(i=0; i < [chainId length]/2; i++) {
+            byte_chars[0] = [chainId characterAtIndex:i*2];
+            byte_chars[1] = [chainId characterAtIndex:i*2+1];
+            
+            charwhole_byte= strtol(byte_chars, NULL, 16);
+            [apnsTokenMutableData appendBytes:&charwhole_byte length:1];
+        }
+        
+        const char *header = apnsTokenMutableData.bytes;
+        memcpy(tx, header, 32);
+        
+        memcpy(tx + 32, eosPut, transSize);
+        
+        const char foot[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+        memcpy(tx + 32 + transSize, foot, 32);
+        
+//        NSMutableString * result = [[NSMutableString alloc] init];
+//        size_t i;
+//        for (i=0; i<transSize; i++) {
+//            [result appendString:[NSString stringWithFormat:@"%02x",eosPut[i]]];
+//        }
+//
+//        unsigned char tx[1024] = {};
+//
+//        NSMutableString *footResult = [[NSMutableString alloc] init];
+//        size_t j;
+//        for (j=0; j<32; j++) {
+//            [footResult appendString:[NSString stringWithFormat:@"%02x",foot[j]]];
+//        }
+        
+        if (iRtn == PAEW_RET_SUCCESS) {
+//            NSMutableString *trans = [NSMutableString new];
+//            [trans appendString:[BLTUtils bytesToHexString:(void *) length:32]];
+//            [trans appendString:result];
+//            [trans appendString:footResult];
+//            const char * transChar = [trans UTF8String];
+//            size_t transLength = strlen(transChar) + 1;
+//            memcpy(tx, transChar, transLength);
+            
+            unsigned char *pbTXSig = (unsigned char *)malloc(1024);
+            size_t pnTXSigLen = 1024;
+            signCallbacks callBack;
+            callBack.getAuthType = GetAuthType;
+            callBack.getPIN = GetPin;
+            callBack.putSignState = PutSignState;
+            _instance->lastSignState = PAEW_RET_UNKNOWN_FAIL;
+            
+            iRtn = PAEW_EOS_TXSign_Ex(ppPAEWContext, devIdx, tx, sizeof(tx), pbTXSig, &pnTXSigLen, &callBack, 0);
+            if (iRtn) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    failedComplication([BLTUtils errorCodeToString:iRtn]);
+                });
+                return;
+            }
+            NSString *sign = [[NSString alloc] initWithBytes:pbTXSig length:pnTXSigLen encoding:NSASCIIStringEncoding];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complication(sign);
+            });
+        } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failedComplication([BLTUtils errorCodeToString:iRtn]);
             });
-            return;
         }
-        NSString *sign = [[NSString alloc] initWithBytes:pbTXSig length:pnTXSigLen encoding:NSASCIIStringEncoding];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            complication(sign);
-        });
     });
 }
 
@@ -557,20 +608,6 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     self->pinResult = rtn;
     return rtn;
 }
-
-- (int)getAuthType
-{
-    int sel = 1;
-    self->authTypeCached = YES;
-    int rtn = PAEW_RET_DEV_OP_CANCEL;
-    if (sel >= 0) {
-        _instance->nAuthType = PAEW_SIGN_AUTH_TYPE_FP;
-        rtn = PAEW_RET_SUCCESS;
-    }
-    self->authTypeResult = rtn;
-    return rtn;
-}
-
 
 - (void)printLog:(NSString *)format, ...
 {

@@ -170,6 +170,13 @@ class WalletManager {
         return nil
     }
     
+    func isBluetoothWallet() -> Bool {
+        if let wallet = currentWallet() {
+            return wallet.type == .bluetooth
+        }
+        return false
+    }
+    
     func wallketList() -> [WalletList] {
         return Defaults[.walletList]
     }
