@@ -156,7 +156,6 @@ enum EOSAction:String {
     case buyram
     case sellram
     case voteproducer
-    case bltTransfer
 }
 
 enum EOSIOTable:String {

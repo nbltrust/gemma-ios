@@ -6,3 +6,5 @@ git "https://github.com/Aite/ESTabBarController" "swift-4.2"
 github "xmartlabs/XLPagerTabStrip"
 github "phpmaple/KRProgressHUD"
 github "Daltron/NotificationBanner" "master"
+
+git "https://github.com/phpmaple/NBLCommonModule" "master"
