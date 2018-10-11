@@ -31,6 +31,7 @@ class SimpleHTTPService {
                 rmb_prices.append(price)
             }
             seal.fulfill(rmb_prices)
+            saveUnitToLocal(rmbPrices: rmb_prices)
         }
         return promise
     }

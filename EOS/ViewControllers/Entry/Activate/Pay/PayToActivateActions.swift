@@ -18,6 +18,7 @@ struct PayToActivateState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     var billInfo: BehaviorRelay<BillModel> = BehaviorRelay(value: BillModel())
     var orderId = ""
+    var nums:Int = 0
 }
 
 //MARK: - Action
@@ -27,6 +28,10 @@ struct PayToActivateFetchedAction: Action {
 
 struct OrderIdAction: Action {
     var orderId:String
+}
+
+struct NumsAction: Action {
+    var nums:Int
 }
 
 struct BillModel {

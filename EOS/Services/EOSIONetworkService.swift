@@ -10,6 +10,7 @@ import Foundation
 import Moya
 import SwifterSwift
 import SwiftyJSON
+import SwiftyUserDefaults
 
 enum EOSIOService {
     //chain
@@ -42,6 +43,34 @@ struct EOSIONetwork {
                 do {
                     _ = try response.filterSuccessfulStatusCodes()
                     let json = try JSON(response.mapJSON())
+                    switch target {
+                    case let .get_currency_balance(accountName):
+                        if let balance = json.arrayValue.first?.string {
+                            Defaults.set(balance, forKey: "\(accountName)balance")
+                        }
+                    case .get_account(_,_):
+                        if let accountObj = Account.deserialize(from: json.dictionaryObject) {
+                            var model = accountObj.toAccountModel()
+                            model.saveToLocal()
+                        }
+                    case .get_info:break
+                        
+                    case .get_block:break
+                        
+                    case .abi_json_to_bin:break
+                        
+                    case .abi_bin_to_json:break
+                        
+                    case .push_transaction:break
+                        
+                    case .get_key_accounts:break
+                        
+                    case .get_transaction:break
+                        
+                    case .get_table_rows:break
+                        
+                    }
+
                     successCallback(json)
                 }
                 catch _ {
@@ -58,12 +87,17 @@ struct EOSIONetwork {
                     errorCallback(0)
                 }
             case let .failure(error):
-                showFailTop(R.string.localizable.request_failed.key.localized())
+                let networkStr = getNetWorkReachability()
+                if networkStr != WifiStatus.notReachable.rawValue {
+                    showFailTop(R.string.localizable.request_failed.key.localized())
+                } else {
+                    endProgress()
+                }
+                
                 failureCallback(error)
             }
         }
     }
-    
 }
 
 
@@ -172,3 +206,5 @@ private extension String {
         return data(using: .utf8)!
     }
 }
+
+

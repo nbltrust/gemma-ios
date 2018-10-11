@@ -11,6 +11,7 @@ import ReSwift
 import Presentr
 import SwiftyJSON
 import NBLCommonModule
+import SwiftyUserDefaults
 
 protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
@@ -35,6 +36,8 @@ protocol HomeStateManagerProtocol {
     func createDataInfo() -> [LineView.LineViewModel]
     
     func checkAccount()
+
+    func getCurrentFromLocal()
     
     func isBluetoothWallet() -> Bool
     
@@ -152,6 +155,15 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func getAccountFromLocal() {
+        
+        if let jsonStr = Defaults.object(forKey: WalletManager.shared.getAccount()) as? String {
+            if let accountObj = Account.deserialize(from: jsonStr) {
+                self.store.dispatch(AccountFetchedAction(info: accountObj))
+            }
+        }
+    }
+    
     func getAccountInfo(_ account:String) {
         EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
             self.store.dispatch(BalanceFetchedAction(balance: json))
@@ -223,6 +235,11 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     
     func checkAccount() {
         WalletManager.shared.checkCurrentWallet()
+    }
+    
+    func getCurrentFromLocal() {
+        let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
+        self.store.dispatch(AccountFetchedFromLocalAction(model: model))
     }
     
     func isBluetoothWallet() -> Bool {

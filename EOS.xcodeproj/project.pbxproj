@@ -161,6 +161,7 @@
 		22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B320FCB0EB00284A0A /* ScanShadeView.swift */; };
 		22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B520FD8A0600284A0A /* ScanPreviewView.swift */; };
 		22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B820FDDF0400284A0A /* ScanCornerView.swift */; };
+		22D9739B216F028600E5D90C /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9739A216F028500E5D90C /* NBLCommonModule.framework */; };
 		22E40AAB211453D600F1648C /* FingerPrinterConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AA7211453D600F1648C /* FingerPrinterConfirmCoordinator.swift */; };
 		22E40AAC211453D600F1648C /* FingerPrinterConfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AA8211453D600F1648C /* FingerPrinterConfirmActions.swift */; };
 		22E40AAD211453D600F1648C /* FingerPrinterConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AA9211453D600F1648C /* FingerPrinterConfirmViewController.swift */; };
@@ -499,7 +500,6 @@
 		734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734450822150A10900593A8F /* XLPagerTabStrip.framework */; };
 		734CC7B72154FABE0009EEE6 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; };
 		734CC7B82154FABE0009EEE6 /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		734CC824215503D20009EEE6 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
@@ -857,13 +857,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 567374381B4D46600089DE44;
 			remoteInfo = iOS;
-		};
-		73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 73752FAE214C12D50089BD21;
-			remoteInfo = NBLCommonModule;
 		};
 		73EDFEEC211AC44E000DF796 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2628,6 +2621,7 @@
 		22CDC4BF0E954C8438D0279DDC06CFD2 /* types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = types.hpp; sourceTree = "<group>"; };
 		22CFC60A4F44245890BD1FABA9227E90 /* bind_fwd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bind_fwd.hpp; sourceTree = "<group>"; };
 		22D6933D9F7CD5DCDF7B536336B420D9 /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
+		22D9739A216F028500E5D90C /* NBLCommonModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NBLCommonModule.framework; path = Carthage/Build/iOS/Static/NBLCommonModule.framework; sourceTree = "<group>"; };
 		22DCD20D8FA4FFC155EF5959188449C8 /* random_access_index.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = random_access_index.hpp; sourceTree = "<group>"; };
 		22E024D118A9C05B839986337C342ADD /* deref_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = deref_impl.hpp; sourceTree = "<group>"; };
 		22E40AA7211453D600F1648C /* FingerPrinterConfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerPrinterConfirmCoordinator.swift; sourceTree = "<group>"; };
@@ -6909,10 +6903,6 @@
 		73BA4B3A215A244600EF4C72 /* URLNavigationMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLNavigationMap.swift; sourceTree = "<group>"; };
 		73BD769A0C773A8F78575956DB91C1DC /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
 		73CAF80D39A4581F26A830ABC0587047 /* fail_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fail_function.hpp; sourceTree = "<group>"; };
-		73D47E81214D535000A8BF29 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		73D47E82214D535000A8BF29 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		73D47E83214D535000A8BF29 /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
-		73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = NBLCommonModule.xcodeproj; sourceTree = "<group>"; };
 		73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTWalletIO.m; sourceTree = "<group>"; };
 		73D60EA94E41654A2AD320B7B324BDA9 /* assert_word_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = assert_word_matcher.hpp; sourceTree = "<group>"; };
 		73DD7EB84F77B2E916A74B72ED0C0250 /* sub.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sub.hpp; sourceTree = "<group>"; };
@@ -13137,9 +13127,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				734CC824215503D20009EEE6 /* NBLCommonModule.framework in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
+				22D9739B216F028600E5D90C /* NBLCommonModule.framework in Frameworks */,
 				734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */,
 				739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */,
 				739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */,
@@ -24463,25 +24453,6 @@
 			path = detail;
 			sourceTree = "<group>";
 		};
-		73D47E80214D535000A8BF29 /* NBLCommonModule */ = {
-			isa = PBXGroup;
-			children = (
-				73D47E81214D535000A8BF29 /* .gitignore */,
-				73D47E82214D535000A8BF29 /* Cartfile */,
-				73D47E83214D535000A8BF29 /* Cartfile.resolved */,
-				73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */,
-			);
-			path = NBLCommonModule;
-			sourceTree = "<group>";
-		};
-		73D47E87214D535000A8BF29 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		73DDD9A02113F69700023973 /* NotificationBanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -25153,6 +25124,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22D9739A216F028500E5D90C /* NBLCommonModule.framework */,
 				22300838216C9EAE000E39CF /* libiOS_EWallet.a */,
 				73921E0B215224AE00744811 /* GRDB.swift */,
 				73921E06215220A100744811 /* RxSwift.framework */,
@@ -25173,7 +25145,6 @@
 				732F3712214FB83A00CB3A58 /* RxBlocking.framework */,
 				732F3713214FB83A00CB3A58 /* RxCocoa.framework */,
 				732F3714214FB83B00CB3A58 /* RxMoya.framework */,
-				73D47E80214D535000A8BF29 /* NBLCommonModule */,
 				61E820DFBEDE8948881A4760C672F918 /* libappbase.a */,
 				CA3066B0CEE09F5FD6CD43970E4A7F0A /* libboost_atomic.a */,
 				5DBF9AB820CAFD145D1C762D00368697 /* libboost_chrono.a */,
@@ -34859,10 +34830,6 @@
 					ProductGroup = 73921F1D215224AF00744811 /* Products */;
 					ProjectRef = 73921F1C215224AF00744811 /* iOS.xcodeproj */;
 				},
-				{
-					ProductGroup = 73D47E87214D535000A8BF29 /* Products */;
-					ProjectRef = 73D47E86214D535000A8BF29 /* NBLCommonModule.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -35060,13 +35027,6 @@
 			fileType = wrapper.application;
 			path = iOS.app;
 			remoteRef = 73922057215224B000744811 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		73D47EB5214D535000A8BF29 /* NBLCommonModule.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = NBLCommonModule.framework;
-			remoteRef = 73D47EB4214D535000A8BF29 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -36246,7 +36206,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/EOS/Core/eos/include",
 					"$(inherited)",
@@ -36272,7 +36234,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64 armv7s";
+				VALID_ARCHS = arm64;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -36337,7 +36299,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				VALID_ARCHS = "arm64 armv7s";
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
@@ -36357,6 +36319,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/EOS/Core/eos/include",
@@ -36385,7 +36348,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64 armv7s";
+				VALID_ARCHS = arm64;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -36493,7 +36456,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 armv7s";
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};

@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import SwiftyUserDefaults
 
 func ResourceMortgageReducer(action:Action, state:ResourceMortgageState?) -> ResourceMortgageState {
     return ResourceMortgageState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: ResourceMortgagePropertyReducer(state?.property, action: action))
@@ -122,6 +123,17 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
         var viewmodel = state.info.value
         viewmodel = convertResourceViewModelWithAccount(action.info, viewmodel:viewmodel)
             state.info.accept(viewmodel)
+    case let action as AccountFetchedFromLocalAction:
+        let viewmodel = initViewModel()
+
+        if action.model != nil {
+            let viewmodel = convertToViewModelWithModel(model: action.model!, viewmodel:viewmodel)
+            state.info.accept(viewmodel)
+        } else {
+            state.info.accept(viewmodel)
+        }
+        
+
     default:
         break
     }
@@ -157,26 +169,27 @@ func convertResourceViewModelWithAccount(_ account:Account, viewmodel:ResourceVi
     }
 }
 
-//func calculateTotalAsset(_ viewmodel:MortgageViewModel) -> String {
-//    if let balance = viewmodel.balance.eosAmount.toDouble(), let cpu = viewmodel.cpuValue.eosAmount.toDouble(),
-//        let net = viewmodel.netValue.eosAmount.toDouble() {
-//        let total = balance + cpu + net
-//        
-//        return total.string(digits: AppConfiguration.EOS_PRECISION) + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-//    }
-//    else {
-//        return "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-//    }
-//}
-//
-//func calculateRMBPrice(_ viewmodel:MortgageViewModel, price:String) -> String {
-//    if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDouble(), all != 0 {
-//        let cny = unit * all
-//        return "≈" + cny.string(digits: 2) + " CNY"
-//    }
-//    else {
-//        return "≈- CNY"
-//    }
-//}
+func convertToViewModelWithModel(model: AccountModel, viewmodel:ResourceViewModel?) -> ResourceViewModel {
+    if var newViewModel = viewmodel {
+        newViewModel.general[0].eos = model.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+        newViewModel.general[1].eos = model.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+        if let used = model.cpu_used,let max = model.cpu_max {
+            newViewModel.general[0].leftSub = R.string.localizable.use.key.localized() + " \(used.toMS) " + R.string.localizable.ms.key.localized()
+            newViewModel.general[0].rightSub = R.string.localizable.total.key.localized() + " \(max.toMS) " + R.string.localizable.ms.key.localized()
+            newViewModel.general[0].progress = used.toMS.float()! / max.toMS.float()!
+        }
+        if let used = model.net_used,let max = model.net_max  {
+            newViewModel.general[1].leftSub = R.string.localizable.use.key.localized() + " \(used.toKB) " + R.string.localizable.kb.key.localized()
+            newViewModel.general[1].rightSub = R.string.localizable.total.key.localized() + " \(max.toKB) " + R.string.localizable.kb.key.localized()
+            newViewModel.general[1].progress = used.toKB.float()! / max.toKB.float()!
+        }
+        
+        if let balance = Defaults[model.account_name + NetworkConfiguration.BALANCE_DEFAULT_SYMBOL] as? String {
+            newViewModel.page.balance = balance
+        }
+        return newViewModel
+    }
+    return viewmodel!
+}
 
 

@@ -14,6 +14,7 @@ import NotificationBanner
 import NBLCommonModule
 import KRProgressHUD
 import SwiftyUserDefaults
+import Alamofire
 import SwiftyJSON
 
 //Nav BackgroundImage
@@ -204,6 +205,11 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                     })
                     return
                 }
+                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
+                let json = JSON.init(parseJSON: transaction)
+                var jsonMap = json.dictionaryObject
+                jsonMap?.removeValue(forKey: "sign")
+                transaction = jsonMap?.jsonString() ?? ""
             } else if action == EOSAction.delegatebw.rawValue {
                 transaction = EOSIO.getDelegateTransaction(privakey, code: EOSIOContract.EOSIO_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
             } else if action == EOSAction.undelegatebw.rawValue {
@@ -215,7 +221,6 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
             } else if action == EOSAction.voteproducer.rawValue {
                 transaction = EOSIO.getVoteTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, vote_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
             }
-            
             pushTransaction(transaction, actionModel: actionModel, callback: callback)
         }, error: { (code) in
             
@@ -281,6 +286,10 @@ func showFailTop(_ str:String) {
     banner.show()
 }
 
+func endProgress() {
+    KRProgressHUD.dismiss()
+}
+
 func getRamPrice(_ completion:@escaping ObjectOptionalCallback) {
     EOSIONetwork.request(target: .get_table_rows(json: RamMarket().toJSONString()!), success: { (json) in
         let row = json["rows"][0]
@@ -292,7 +301,7 @@ func getRamPrice(_ completion:@escaping ObjectOptionalCallback) {
             let quote_weight = quote["weight"].string {
             let unit = Decimal(string: quote_quantity)! / Decimal(string: base_quantity)!
             let price = unit * Decimal(string: quote_weight)!
-            
+            Defaults.set(price.stringValue, forKey: NetworkConfiguration.RAMPRICE_DEFAULT_SYMBOL)
             completion(price)
         }
         
@@ -400,6 +409,59 @@ func dismiss() {
             
         }
     }
+}
+
+func getNetWorkReachability() -> String {
+    let data = Defaults[.NetworkReachability]
+    return data
+}
+
+func saveNetWorkReachability() {
+    let manager = NetworkReachabilityManager()
+    switch manager?.networkReachabilityStatus {
+    case .unknown?:
+        Defaults[.NetworkReachability] = WifiStatus.unknown.rawValue
+    case .notReachable?:
+        Defaults[.NetworkReachability] = WifiStatus.notReachable.rawValue
+    case .reachable?:
+        if (manager?.isReachableOnWWAN)! {
+            Defaults[.NetworkReachability] = WifiStatus.wwan.rawValue
+        } else if (manager?.isReachableOnEthernetOrWiFi)! {
+            Defaults[.NetworkReachability] = WifiStatus.wifi.rawValue
+        }
+    default:
+        break
+    }
+    
+    manager?.listener = { status in
+        switch status {
+        case .unknown:
+            Defaults[.NetworkReachability] = WifiStatus.unknown.rawValue
+        case .notReachable:
+            Defaults[.NetworkReachability] = WifiStatus.notReachable.rawValue
+        case .reachable:
+            if (manager?.isReachableOnWWAN)! {
+                Defaults[.NetworkReachability] = WifiStatus.wwan.rawValue
+            } else if (manager?.isReachableOnEthernetOrWiFi)! {
+                Defaults[.NetworkReachability] = WifiStatus.wifi.rawValue
+            }
+        }
+    }
+    manager?.startListening()
+}
+
+func saveUnitToLocal(rmbPrices: [JSON]) {
+    var rmbStr = ""
+    var usdStr = ""
+    if let rmb = rmbPrices.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIO_DEFAULT_SYMBOL }).first {
+        rmbStr = rmb["value"].stringValue
+    }
+    if let usd = rmbPrices.filter({ $0["name"].stringValue == NetworkConfiguration.USDT_DEFAULT_SYMBOL }).first {
+        usdStr = usd["value"].stringValue
+    }
+    
+    Defaults.set(rmbStr, forKey: Unit.RMB_UNIT)
+    Defaults.set(usdStr, forKey: Unit.USD_UNIT)
 }
 
 //func correctAmount(_ sender:String) -> String{

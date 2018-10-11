@@ -19,7 +19,7 @@ class WalletManager {
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
 
     var currentPubKey:String = Defaults[.currentWallet]
-    var account_names:[String] = []
+    var account_names:[String] = Defaults[.accountNames]
     
     var priKey:String = ""
     
@@ -37,6 +37,7 @@ class WalletManager {
         }
     }
     
+
     func saveWallket(_ account:String, password:String, hint:String, isImport:Bool = false, txID:String? = nil, invitationCode: String? = nil, type: CreateAPPId? = nil, deviceName: String? = nil) {
         if type == .bluetooth {
             savePriKey(priKey,publicKey: currentPubKey, password:password)
@@ -130,6 +131,8 @@ class WalletManager {
         EOSIONetwork.request(target: .get_key_accounts(pubKey: publicKey), success: { (json) in
             if let names = json["account_names"].arrayObject as? [String] {
                 self.account_names = names
+                Defaults[.accountNames] = names
+
                 completion(names.count > 0)
             }
         }, error: { (code) in
@@ -244,6 +247,12 @@ class WalletManager {
         try? keychain.remove("\(publicKey)-passwordHint")
         try? keychain.remove("\(publicKey)-pubKey")
         try? keychain.remove("\(publicKey)-cypher")
+        
+        if wallets.count == 0 {
+            app_coodinator.curDisplayingCoordinator().rootVC.popToRootViewController(animated: true)
+        } else {
+            app_coodinator.curDisplayingCoordinator().rootVC.popToRootViewController(animated: true)
+        }
     }
     
     func switchToLastestWallet() -> Bool {
@@ -327,14 +336,15 @@ class WalletManager {
                             completion(true,created)
                             return
                         }
-                    } else {
-                        if var wallet = self.currentWallet() {
-                            wallet.creatStatus = WalletCreatStatus.failedWithReName.rawValue
-                            self.updateWallet(wallet)
-                            self.checkCurrentWallet()
-                            return
-                        }
                     }
+//                    else {
+//                        if var wallet = self.currentWallet() {
+//                            wallet.creatStatus = WalletCreatStatus.failedWithReName.rawValue
+//                            self.updateWallet(wallet)
+//                            self.checkCurrentWallet()
+//                            return
+//                        }
+//                    }
                     completion(false,"")
                 })
             }
@@ -430,6 +440,10 @@ class WalletManager {
     
     func failedGetAccountInfo() {
         showWarning(R.string.localizable.error_createAccount_failed.key.localized())
+        let networkStr = getNetWorkReachability()
+        if networkStr != WifiStatus.notReachable.rawValue {
+            self.removeWallet(self.currentPubKey)
+        } 
     }
     
     func failedWithReName() {
@@ -476,5 +490,46 @@ class WalletManager {
         let regex = "^[1-5a-z]{12}+$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with:name)
+    }
+    
+    //MARK: Account DB
+    func getAccountModelsWithAccountName(name: String) -> AccountModel? {
+        var condition = DataFetchCondition()
+        condition.key = "account_name"
+        condition.value = name
+        condition.check = .equal
+        do {
+            let data = try DataProvider.shared.selectData("AccountModel", valueConditon: condition)
+            if data.count > 0 {
+                let dict = data[0]
+                var accountModel = AccountModel()
+                accountModel.account_name = dict["account_name"] as? String
+                accountModel.net_weight = dict["net_weight"] as? String
+                accountModel.cpu_weight = dict["cpu_weight"] as? String
+                accountModel.ram_bytes = dict["ram_bytes"] as? Int64
+                accountModel.from = dict["from"] as? String
+                accountModel.to = dict["to"] as? String
+                accountModel.delegate_net_weight = dict["delegate_net_weight"] as? String
+                accountModel.delegate_cpu_weight = dict["delegate_cpu_weight"] as? String
+                accountModel.request_time = dict["request_time"] as? Date
+                accountModel.net_amount = dict["net_amount"] as? String
+                accountModel.cpu_amount = dict["cpu_amount"] as? String
+                accountModel.net_used = dict["net_used"] as? Int64
+                accountModel.net_available = dict["net_available"] as? Int64
+                accountModel.net_max = dict["net_max"] as? Int64
+                accountModel.cpu_used = dict["cpu_used"] as? Int64
+                accountModel.cpu_available = dict["cpu_available"] as? Int64
+                accountModel.cpu_max = dict["cpu_max"] as? Int64
+                accountModel.ram_quota = dict["ram_quota"] as? Int64
+                accountModel.ram_usage = dict["ram_usage"]  as? Int64
+                accountModel.created = dict["created"] as? String
+                return accountModel
+            }
+
+        }
+        catch {
+            
+        }
+        return nil
     }
 }

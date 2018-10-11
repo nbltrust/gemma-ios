@@ -211,12 +211,22 @@
 "pay_timeout" = "支付超时";
 "price_change" = "价格变动";
 "pay_timeout_tips" = "若你已支付，费用将在24小时内退回到微信。";
-"price_change_tips" = "由于EOS价格变动，创建账户的费用已变为 55 RAM 。";
+"price_change_tips" = "由于EOS价格变动，创建账户的费用已变为 ";
 "pay_sure" = "确认支付";
 "lead_in_fail" = "导入钱包失败";
 "verify_prikey_title" = "请输入备份的私钥，已验证是否正确";
 "verify" = "验证";
 "prikey_verify_fail" = "私钥验证失败";
+"confirm" = "确定";
+"refund_title" = "已退款";
+"closed" = "订单已关闭";
+"userpaying" = "正在支付";
+"payerror" = "支付错误";
+"check_network" = "请检查网络";
+"refund_money_suf" = "，24小时内会退款";
+"error_chain_fail" = "上链失败";
+"error_account_rush_regist" = "EOS账户被抢注";
+"connect_customer_service" = "请联系客服";
 
 //zsy end
 

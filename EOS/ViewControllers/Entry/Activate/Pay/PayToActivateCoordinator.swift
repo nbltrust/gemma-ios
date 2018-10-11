@@ -98,7 +98,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
         }) { (error) in
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
     
@@ -134,7 +133,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                     }
                 }, failure: { (error) in
                     completion(false)
-                    showFailTop(R.string.localizable.request_failed.key.localized())
                 })
                 
             }
@@ -148,7 +146,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             }
         }) { (error) in
             completion(false)
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
     
@@ -161,23 +158,65 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             }
             
             if payState == "NOTPAY", state == "INIT" {
-                
+                var context = ScreenShotAlertContext()
+                context.title = R.string.localizable.pay_failed.key.localized()
+                context.buttonTitle = R.string.localizable.confirm.key.localized()
+                context.imageName = R.image.icFail.name
+                context.needCancel = false
+                app_coodinator.showGemmaAlert(context)
             } else if payState == "NOTPAY", state == "CLOSED" {
-                
+                var context = ScreenShotAlertContext()
+                context.desc = R.string.localizable.pay_timeout_tips.key.localized()
+                context.title = R.string.localizable.pay_timeout.key.localized()
+                context.buttonTitle = R.string.localizable.confirm.key.localized()
+                context.imageName = R.image.icTime.name
+                context.needCancel = false
+                app_coodinator.showGemmaAlert(context)
             } else if payState == "SUCCESS", state == "DONE" {
                 self.createWallet(self.state.orderId, completion: { (newData) in
                     
                 })
             } else if payState == "SUCCESS", state == "TOREFUND" {
-                
+                var context = ScreenShotAlertContext()
+                context.desc = R.string.localizable.price_change_tips.key.localized() + RichStyle.shared.tagText("55 RAM", fontSize: 14, color: UIColor.warmBlue, lineHeight: 16) + "。"
+                context.title = R.string.localizable.price_change.key.localized()
+                context.buttonTitle = R.string.localizable.pay_sure.key.localized()
+                context.imageName = R.image.icMoney.name
+                context.needCancel = true
+                context.sureShot = {
+                    if let vc = self.rootVC.topViewController as? ActivateViewController, let payVC = vc.viewControllers[0] as? PayToActivateViewController{
+                        payVC.NextClick([:])
+                    }
+                }
+                app_coodinator.showGemmaAlert(context)
             } else if payState == "REFUND" {
-                
+                var context = ScreenShotAlertContext()
+                context.title = R.string.localizable.refund_title.key.localized()
+                context.buttonTitle = R.string.localizable.confirm.key.localized()
+                context.imageName = R.image.icFail.name
+                context.needCancel = false
+                app_coodinator.showGemmaAlert(context)
             } else if payState == "CLOSED" {
-                
+                var context = ScreenShotAlertContext()
+                context.title = R.string.localizable.closed.key.localized()
+                context.buttonTitle = R.string.localizable.confirm.key.localized()
+                context.imageName = R.image.icFail.name
+                context.needCancel = false
+                app_coodinator.showGemmaAlert(context)
             } else if payState == "USERPAYING" {
-                
+                var context = ScreenShotAlertContext()
+                context.title = R.string.localizable.userpaying.key.localized()
+                context.buttonTitle = R.string.localizable.confirm.key.localized()
+                context.imageName = R.image.icFail.name
+                context.needCancel = false
+                app_coodinator.showGemmaAlert(context)
             } else if payState == "PAYERROR" {
-                
+                var context = ScreenShotAlertContext()
+                context.title = R.string.localizable.payerror.key.localized()
+                context.buttonTitle = R.string.localizable.confirm.key.localized()
+                context.imageName = R.image.icFail.name
+                context.needCancel = false
+                app_coodinator.showGemmaAlert(context)
             }
         }, error: { (code) in
             self.rootVC.topViewController?.endLoading()
@@ -189,7 +228,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             }
         }) { (error) in
             self.rootVC.topViewController?.endLoading()
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
     
@@ -209,12 +247,27 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)
-                showFailTop(error.localizedDescription)
+                if code == GemmaError.NBLNetworkErrorCode.chainFailedCode.rawValue {
+                    self.store.dispatch(NumsAction(nums: self.state.nums))
+                    if self.state.nums <= 3 {
+                        self.createWallet(self.state.orderId, completion: { (newCode) in
+                            
+                        })
+                    } else {
+                        showFailTop(R.string.localizable.error_chain_fail.key.localized())
+                    }
+                } else if code == GemmaError.NBLNetworkErrorCode.parameterWrongCode.rawValue ||
+                    code == GemmaError.NBLNetworkErrorCode.invitecodeInexistenceCode.rawValue ||
+                    code == GemmaError.NBLNetworkErrorCode.invitecodeRegiteredCode.rawValue {
+                    showFailTop(error.localizedDescription + R.string.localizable.connect_customer_service.key.localized())
+                } else {
+                    showFailTop(error.localizedDescription + R.string.localizable.refund_money_suf.key.localized())
+                }
             } else {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
+
         }) { (error) in
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
     

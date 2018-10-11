@@ -40,6 +40,12 @@ class PayToActivateViewController: BaseViewController,IndicatorInfoProvider {
         switch self.coordinator?.state.pageState.value {
         case .loading?:
             self.endLoading()
+            var context = ScreenShotAlertContext()
+            context.title = R.string.localizable.pay_failed.key.localized()
+            context.buttonTitle = "确定"
+            context.imageName = R.image.icFail.name
+            context.needCancel = false
+            app_coodinator.showGemmaAlert(context)
         //支付未完成
         default:
             break

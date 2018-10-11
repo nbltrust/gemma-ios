@@ -10,19 +10,6 @@ import Foundation
 import HandyJSON
 import GRDB
 
-struct TestModel: DBProtocol {
-    var int: Int = 0
-    var string: String = ""
-    var id32: Int32 = 0
-    var id8: Int8 = 0
-    var id64: Int64 = 0
-    var float: Float = 0
-    var double: Double = 0
-    var date: Date = Date()
-    var data: Data = Data()
-    var bool: Bool = false
-}
-
 public protocol DBProtocol : HandyJSON, MutablePersistableRecord, FetchableRecord, Codable {
     init()
     //Table Setting
@@ -61,24 +48,6 @@ extension DBProtocol {
                 try _ = self.delete(db)
             }
         } catch {}
-    }
-}
-
-extension DBProtocol where Self == TestModel {
-    mutating func primaryKey() -> String? {
-        return "int"
-    }
-    
-    mutating func whiteList() -> [String]? {
-        return []
-    }
-    
-    mutating func blackList() -> [String]? {
-        return []
-    }
-    
-    mutating func extensionColumns() -> [String : ParameterType]? {
-        return nil
     }
 }
 

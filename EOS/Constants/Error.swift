@@ -20,7 +20,9 @@ enum GemmaError: Error {
         case retryFailCode             = 10013
         case balanceNotEnoughCode      = 20001
         case creatAccountFailedCode    = 20002
-        
+        case chainFailedCode           = 10022
+        case accountNameExistCode      = 10020
+
         func desc() -> String {
             switch self {
             case .invitecodeRegiteredCode:
@@ -41,6 +43,10 @@ enum GemmaError: Error {
                 return R.string.localizable.error_balance_unenough.key.localized()
             case .creatAccountFailedCode:
                 return R.string.localizable.error_createAccount_failed.key.localized()
+            case .chainFailedCode:
+                return R.string.localizable.error_chain_fail.key.localized()
+            case .accountNameExistCode:
+                return R.string.localizable.error_account_rush_regist.key.localized()
             default:
                 return ""
             }
