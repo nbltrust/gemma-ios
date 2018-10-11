@@ -10,6 +10,22 @@ import Foundation
 import ReSwift
 import RxCocoa
 import SwiftyJSON
+import HandyJSON
+
+struct BLTCardConfirmFingerPrinterContext: RouteContext, HandyJSON {
+    init() {
+        
+    }
+    
+    var publicKey = WalletManager.shared.currentPubKey
+    var iconType = ""
+    var producers: [String] = []
+    var type = ""
+    var receiver = ""
+    var amount = ""
+    var remark = ""
+    var callback: ((_ priKey:String, _ vc:UIViewController) -> Void)?
+}
 
 //MARK: - State
 struct BLTCardConfirmFingerPrinterState: BaseState {

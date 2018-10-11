@@ -19,6 +19,8 @@ class TransferConfirmViewController: BaseViewController {
 
     var data: ConfirmViewModel = ConfirmViewModel()
     
+    var type: CreateAPPId = .gemma
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
@@ -45,6 +47,7 @@ class TransferConfirmViewController: BaseViewController {
             
             if let context = context as? TransferConfirmContext {
                 self.data = context.data
+                self.type = context.type
             }
         }).disposed(by: disposeBag)
 
@@ -55,7 +58,11 @@ extension TransferConfirmViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
         let type: String = data["btntitle"] as! String
         if type == R.string.localizable.check_transfer.key.localized() {
-            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.transfer.rawValue)
+            if self.type == .gemma {
+                self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.transfer.rawValue)
+            } else {
+                self.coordinator?.pushToTransferFPConfirmVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.bltTransfer.rawValue)
+            }
         } else if type == R.string.localizable.confirm_mortgage.key.localized() {
             self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: confirmType.mortgage.rawValue)
         } else if type == R.string.localizable.confirm_relieve_mortgage.key.localized() {

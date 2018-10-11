@@ -59,6 +59,18 @@
 		2226A72B215A166F00B97B1E /* SVGAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226A72A215A166F00B97B1E /* SVGAnimationView.swift */; };
 		2226A7FB215B954D00B97B1E /* SVGAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2226A7FA215B954D00B97B1E /* SVGAnimationView.xib */; };
 		2226A890215CCFB500B97B1E /* finger.html in Resources */ = {isa = PBXBuildFile; fileRef = 2226A88F215CCFB400B97B1E /* finger.html */; };
+		2226A97D2160EA0D00B97B1E /* BLTCardPowerOnCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226A9792160EA0D00B97B1E /* BLTCardPowerOnCoordinator.swift */; };
+		2226A97E2160EA0D00B97B1E /* BLTCardPowerOnActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226A97A2160EA0D00B97B1E /* BLTCardPowerOnActions.swift */; };
+		2226A97F2160EA0D00B97B1E /* BLTCardPowerOnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226A97B2160EA0D00B97B1E /* BLTCardPowerOnViewController.swift */; };
+		2226A9802160EA0D00B97B1E /* BLTCardPowerOnReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226A97C2160EA0D00B97B1E /* BLTCardPowerOnReducers.swift */; };
+		2226A9842163A61B00B97B1E /* BLTCardIntroViewViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226A9812163A61B00B97B1E /* BLTCardIntroViewViewAdapter.swift */; };
+		2226A9852163A61B00B97B1E /* BLTCardIntroViewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226A9822163A61B00B97B1E /* BLTCardIntroViewView.swift */; };
+		2226A9862163A61B00B97B1E /* BLTCardIntroViewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2226A9832163A61B00B97B1E /* BLTCardIntroViewView.xib */; };
+		223008322165FCDE000E39CF /* BLTCardConnectCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230082E2165FCDE000E39CF /* BLTCardConnectCoordinator.swift */; };
+		223008332165FCDE000E39CF /* BLTCardConnectActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2230082F2165FCDE000E39CF /* BLTCardConnectActions.swift */; };
+		223008342165FCDE000E39CF /* BLTCardConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223008302165FCDE000E39CF /* BLTCardConnectViewController.swift */; };
+		223008352165FCDE000E39CF /* BLTCardConnectReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223008312165FCDE000E39CF /* BLTCardConnectReducers.swift */; };
+		22300839216C9EAE000E39CF /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22300838216C9EAE000E39CF /* libiOS_EWallet.a */; };
 		223C58C92148BD9200C69F3F /* NetworkSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58C82148BD9200C69F3F /* NetworkSettingManager.swift */; };
 		223C58DC214A4A5000C69F3F /* BLTCardEntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58D8214A4A5000C69F3F /* BLTCardEntryCoordinator.swift */; };
 		223C58DD214A4A5000C69F3F /* BLTCardEntryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58D9214A4A5000C69F3F /* BLTCardEntryActions.swift */; };
@@ -149,6 +161,7 @@
 		22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B320FCB0EB00284A0A /* ScanShadeView.swift */; };
 		22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B520FD8A0600284A0A /* ScanPreviewView.swift */; };
 		22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C023B820FDDF0400284A0A /* ScanCornerView.swift */; };
+		22D9739B216F028600E5D90C /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D9739A216F028500E5D90C /* NBLCommonModule.framework */; };
 		22E40AAB211453D600F1648C /* FingerPrinterConfirmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AA7211453D600F1648C /* FingerPrinterConfirmCoordinator.swift */; };
 		22E40AAC211453D600F1648C /* FingerPrinterConfirmActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AA8211453D600F1648C /* FingerPrinterConfirmActions.swift */; };
 		22E40AAD211453D600F1648C /* FingerPrinterConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E40AA9211453D600F1648C /* FingerPrinterConfirmViewController.swift */; };
@@ -171,10 +184,6 @@
 		35659865121853108F1175F64F0C9028 /* bcc32.SUNWCCh in Resources */ = {isa = PBXBuildFile; fileRef = EC45843C825E7D4AF8E6DD14F08B757A /* bcc32.SUNWCCh */; };
 		357B2FFEE0242335494EAFE624066A39 /* secp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B76AA4B9209D95DD8A19D16B285CE327 /* secp256k1.a */; };
 		3890842A031D291CCD43AB9299B13243 /* complex in Resources */ = {isa = PBXBuildFile; fileRef = BA56900B90B048CC786C28695EB48251 /* complex */; };
-		3B02F23D2168524000DD9211 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B02F23C2168524000DD9211 /* AccountModel.swift */; };
-		3B0EB6F2216B46D80039A773 /* BatteryViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0EB6EF216B46D80039A773 /* BatteryViewAdapter.swift */; };
-		3B0EB6F3216B46D80039A773 /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0EB6F0216B46D80039A773 /* BatteryView.swift */; };
-		3B0EB6F4216B46D80039A773 /* BatteryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0EB6F1216B46D80039A773 /* BatteryView.xib */; };
 		3B195062211BE732002C7991 /* BuyRamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B195060211BE732002C7991 /* BuyRamView.swift */; };
 		3B195063211BE732002C7991 /* BuyRamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B195061211BE732002C7991 /* BuyRamView.xib */; };
 		3B195066211BE7CF002C7991 /* GeneralRamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B195064211BE7CF002C7991 /* GeneralRamCellView.swift */; };
@@ -491,14 +500,12 @@
 		734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734450822150A10900593A8F /* XLPagerTabStrip.framework */; };
 		734CC7B72154FABE0009EEE6 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; };
 		734CC7B82154FABE0009EEE6 /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7392201B215224B000744811 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735A3D132160A99700FC8922 /* NBLCommonModule.framework */; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
 		737F8DD42146647E00DD522A /* DBProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DD02146647E00DD522A /* DBProtocol.swift */; };
 		737FCFBE211D70B200859F82 /* RPCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737FCFBD211D70B200859F82 /* RPCTest.swift */; };
 		73921E07215220A100744811 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73921E06215220A100744811 /* RxSwift.framework */; };
-		7392217A21549C8A00744811 /* libiOS_EWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7392217921549C8900744811 /* libiOS_EWallet.a */; };
 		739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D852150D45300A1074B /* KRActivityIndicatorView.framework */; };
 		739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D862150D45400A1074B /* KRProgressHUD.framework */; };
 		739A4D9E2150DDDA00A1074B /* MarqueeLabelSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */; };
@@ -2466,9 +2473,21 @@
 		2226A72A215A166F00B97B1E /* SVGAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGAnimationView.swift; sourceTree = "<group>"; };
 		2226A7FA215B954D00B97B1E /* SVGAnimationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SVGAnimationView.xib; sourceTree = "<group>"; };
 		2226A88F215CCFB400B97B1E /* finger.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = finger.html; sourceTree = "<group>"; };
+		2226A9792160EA0D00B97B1E /* BLTCardPowerOnCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardPowerOnCoordinator.swift; sourceTree = "<group>"; };
+		2226A97A2160EA0D00B97B1E /* BLTCardPowerOnActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardPowerOnActions.swift; sourceTree = "<group>"; };
+		2226A97B2160EA0D00B97B1E /* BLTCardPowerOnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardPowerOnViewController.swift; sourceTree = "<group>"; };
+		2226A97C2160EA0D00B97B1E /* BLTCardPowerOnReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardPowerOnReducers.swift; sourceTree = "<group>"; };
+		2226A9812163A61B00B97B1E /* BLTCardIntroViewViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardIntroViewViewAdapter.swift; sourceTree = "<group>"; };
+		2226A9822163A61B00B97B1E /* BLTCardIntroViewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardIntroViewView.swift; sourceTree = "<group>"; };
+		2226A9832163A61B00B97B1E /* BLTCardIntroViewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLTCardIntroViewView.xib; sourceTree = "<group>"; };
 		222B4D3E4B886BD819F31FC35FD5E96E /* win_mutex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = win_mutex.hpp; sourceTree = "<group>"; };
 		222D540555D490A4FCCAADA838E1AD23 /* interface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interface.hpp; sourceTree = "<group>"; };
 		222DE10E2A1A00BBDA8E98EE4CB559B1 /* dont_care.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dont_care.hpp; sourceTree = "<group>"; };
+		2230082E2165FCDE000E39CF /* BLTCardConnectCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardConnectCoordinator.swift; sourceTree = "<group>"; };
+		2230082F2165FCDE000E39CF /* BLTCardConnectActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardConnectActions.swift; sourceTree = "<group>"; };
+		223008302165FCDE000E39CF /* BLTCardConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardConnectViewController.swift; sourceTree = "<group>"; };
+		223008312165FCDE000E39CF /* BLTCardConnectReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardConnectReducers.swift; sourceTree = "<group>"; };
+		22300838216C9EAE000E39CF /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
 		22337127DBE3C47A4814C75135C91637 /* knuth_morris_pratt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = knuth_morris_pratt.hpp; sourceTree = "<group>"; };
 		22344D4100DCB68CB7C7E16019D51E11 /* finder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = finder.hpp; sourceTree = "<group>"; };
 		2236B33B58370C0103C42610CD66BBD5 /* collection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = collection.hpp; sourceTree = "<group>"; };
@@ -2602,6 +2621,7 @@
 		22CDC4BF0E954C8438D0279DDC06CFD2 /* types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = types.hpp; sourceTree = "<group>"; };
 		22CFC60A4F44245890BD1FABA9227E90 /* bind_fwd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bind_fwd.hpp; sourceTree = "<group>"; };
 		22D6933D9F7CD5DCDF7B536336B420D9 /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transform.hpp; sourceTree = "<group>"; };
+		22D9739A216F028500E5D90C /* NBLCommonModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NBLCommonModule.framework; path = Carthage/Build/iOS/Static/NBLCommonModule.framework; sourceTree = "<group>"; };
 		22DCD20D8FA4FFC155EF5959188449C8 /* random_access_index.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = random_access_index.hpp; sourceTree = "<group>"; };
 		22E024D118A9C05B839986337C342ADD /* deref_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = deref_impl.hpp; sourceTree = "<group>"; };
 		22E40AA7211453D600F1648C /* FingerPrinterConfirmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerPrinterConfirmCoordinator.swift; sourceTree = "<group>"; };
@@ -3705,12 +3725,8 @@
 		3AEBD2416E54054D7AB383DE6FE00F3E /* peeker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = peeker.hpp; sourceTree = "<group>"; };
 		3AEE8FF95187B3BDF79E2EEAD955F519 /* in_state_reaction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = in_state_reaction.hpp; sourceTree = "<group>"; };
 		3AF3527A72BBF8A87B0468E4079E3F4D /* is_pure.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_pure.hpp; sourceTree = "<group>"; };
-		3B02F23C2168524000DD9211 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		3B04CAFE4108CED517D861206EAD0E64 /* kinematic_viscosity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kinematic_viscosity.hpp; sourceTree = "<group>"; };
 		3B0B9A60CDAC6E5AA4DFB4232BE6C7A8 /* variadic.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = variadic.hpp; sourceTree = "<group>"; };
-		3B0EB6EF216B46D80039A773 /* BatteryViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryViewAdapter.swift; sourceTree = "<group>"; };
-		3B0EB6F0216B46D80039A773 /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
-		3B0EB6F1216B46D80039A773 /* BatteryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BatteryView.xib; sourceTree = "<group>"; };
 		3B0FD5213D6EB9044764932EF7E8CF68 /* map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = map.hpp; sourceTree = "<group>"; };
 		3B173972A65939B7B8C8BAA7941B4231 /* exception.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = exception.hpp; sourceTree = "<group>"; };
 		3B195060211BE732002C7991 /* BuyRamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamView.swift; sourceTree = "<group>"; };
@@ -6403,7 +6419,6 @@
 		7344C3DDB72697A50126EC3549E8DFB6 /* auto_link.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = auto_link.hpp; sourceTree = "<group>"; };
 		734F610FE87C479427D37CCF1E1CD8F8 /* lookbehind_matcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lookbehind_matcher.hpp; sourceTree = "<group>"; };
 		735884357D5B11850014705FED3512ED /* to_python_indirect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_python_indirect.hpp; sourceTree = "<group>"; };
-		735A3D132160A99700FC8922 /* NBLCommonModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NBLCommonModule.framework; path = Carthage/Build/iOS/Static/NBLCommonModule.framework; sourceTree = "<group>"; };
 		735CD7C60716D045054789EFDC524745 /* set */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = set; sourceTree = "<group>"; };
 		735F67F74A9387E23065016ED5CEE36C /* utf8_codecvt_facet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utf8_codecvt_facet.hpp; sourceTree = "<group>"; };
 		7363115565E60B21FCB230608925D785 /* workarounds_gcc-2_95.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "workarounds_gcc-2_95.hpp"; sourceTree = "<group>"; };
@@ -6838,7 +6853,6 @@
 		73922003215224AF00744811 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		73922006215224AF00744811 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		73922007215224AF00744811 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
-		7392217921549C8900744811 /* libiOS_EWallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiOS_EWallet.a; path = library/libiOS_EWallet.a; sourceTree = "<group>"; };
 		7392769288407F75D4107A3EFBB3DE5E /* connected_components.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = connected_components.hpp; sourceTree = "<group>"; };
 		7393B91A8DC4BD7FC616A5D3920374BD /* copy_array.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = copy_array.hpp; sourceTree = "<group>"; };
 		739707D3B3D8545D83974B0F7043985B /* to_python_value.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = to_python_value.hpp; sourceTree = "<group>"; };
@@ -13113,10 +13127,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */,
-				7392217A21549C8A00744811 /* libiOS_EWallet.a in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
+				22D9739B216F028600E5D90C /* NBLCommonModule.framework in Frameworks */,
 				734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */,
 				739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */,
 				739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */,
@@ -13134,6 +13147,7 @@
 				732F3722214FB83F00CB3A58 /* Alamofire.framework in Frameworks */,
 				732F3724214FB83F00CB3A58 /* Moya.framework in Frameworks */,
 				732F3725214FB83F00CB3A58 /* ReactiveSwift.framework in Frameworks */,
+				22300839216C9EAE000E39CF /* libiOS_EWallet.a in Frameworks */,
 				ABD754F61B6B4596661C239D7EE0621B /* libappbase.a in Frameworks */,
 				D75E543507B22593734132C3402ADCF2 /* libboost_atomic.a in Frameworks */,
 				3E49C3B86F3BE922F2644DAD486997CF /* libboost_chrono.a in Frameworks */,
@@ -15423,9 +15437,6 @@
 				3BC12A6B210587BD006EEB80 /* RedWarningView.xib */,
 				2253C53D2111C9390043AAF7 /* TitleSubTitleView.swift */,
 				2253C53F2111C9500043AAF7 /* TitleSubTitleView.xib */,
-				3B0EB6EF216B46D80039A773 /* BatteryViewAdapter.swift */,
-				3B0EB6F0216B46D80039A773 /* BatteryView.swift */,
-				3B0EB6F1216B46D80039A773 /* BatteryView.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -15806,9 +15817,33 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		2226A95D2160E9FA00B97B1E /* BLTCardPowerOn */ = {
+			isa = PBXGroup;
+			children = (
+				2226A9792160EA0D00B97B1E /* BLTCardPowerOnCoordinator.swift */,
+				2226A97A2160EA0D00B97B1E /* BLTCardPowerOnActions.swift */,
+				2226A97B2160EA0D00B97B1E /* BLTCardPowerOnViewController.swift */,
+				2226A97C2160EA0D00B97B1E /* BLTCardPowerOnReducers.swift */,
+			);
+			path = BLTCardPowerOn;
+			sourceTree = "<group>";
+		};
+		223008122165FCC3000E39CF /* BLTCardConnect */ = {
+			isa = PBXGroup;
+			children = (
+				2230082E2165FCDE000E39CF /* BLTCardConnectCoordinator.swift */,
+				2230082F2165FCDE000E39CF /* BLTCardConnectActions.swift */,
+				223008302165FCDE000E39CF /* BLTCardConnectViewController.swift */,
+				223008312165FCDE000E39CF /* BLTCardConnectReducers.swift */,
+			);
+			path = BLTCardConnect;
+			sourceTree = "<group>";
+		};
 		223C58D2214A48E100C69F3F /* BLTCard */ = {
 			isa = PBXGroup;
 			children = (
+				223008122165FCC3000E39CF /* BLTCardConnect */,
+				2226A95D2160E9FA00B97B1E /* BLTCardPowerOn */,
 				228A839B2153C1C8005DEDD7 /* BLTCardSetFingerPrinter */,
 				223C58E8214A506500C69F3F /* AccountSet */,
 				223C58E7214A4F2000C69F3F /* BLTCardConfirmPin */,
@@ -15888,6 +15923,9 @@
 				223C5913214A532800C69F3F /* BLTCardEntryViewAdapter.swift */,
 				223C5914214A532800C69F3F /* BLTCardEntryView.swift */,
 				223C5915214A532800C69F3F /* BLTCardEntryView.xib */,
+				2226A9812163A61B00B97B1E /* BLTCardIntroViewViewAdapter.swift */,
+				2226A9822163A61B00B97B1E /* BLTCardIntroViewView.swift */,
+				2226A9832163A61B00B97B1E /* BLTCardIntroViewView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -25086,8 +25124,8 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				735A3D132160A99700FC8922 /* NBLCommonModule.framework */,
-				7392217921549C8900744811 /* libiOS_EWallet.a */,
+				22D9739A216F028500E5D90C /* NBLCommonModule.framework */,
+				22300838216C9EAE000E39CF /* libiOS_EWallet.a */,
 				73921E0B215224AE00744811 /* GRDB.swift */,
 				73921E06215220A100744811 /* RxSwift.framework */,
 				739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */,
@@ -26361,7 +26399,6 @@
 				037EA7EF67D3633CBA8C8AB082548C91 /* Account.swift */,
 				73B5A6AC20F601DE00756391 /* Payment.swift */,
 				73378F74211C233200ACAA90 /* EOSIOTableRow.swift */,
-				3B02F23C2168524000DD9211 /* AccountModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -35000,6 +35037,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8877D305582B74E2AE781118F82F93AF /* AccountInfoView.xib in Resources */,
+				2226A9862163A61B00B97B1E /* BLTCardIntroViewView.xib in Resources */,
 				721016A0210197C10059B37E /* WalletManagerView.xib in Resources */,
 				E6A86169B62F74A02FD2D90E79A34236 /* Assets.xcassets in Resources */,
 				52E1D58FFB466DBAFAA4E5AE1E73E130 /* ComfirmView.xib in Resources */,
@@ -35053,7 +35091,6 @@
 				72101693210197C10059B37E /* WalletTableViewCell.xib in Resources */,
 				FD1CABB572E0D7F1ED79EE81741CFCE4 /* bitset in Resources */,
 				C94B5818C99B648CF164FD0433A0EB01 /* bitset.SUNWCCh in Resources */,
-				3B0EB6F4216B46D80039A773 /* BatteryView.xib in Resources */,
 				3EB725F5715CD5F10C3BA10D8EF4447A /* block_header.hpp.bk in Resources */,
 				AACEB0A4AEC8DE4B8F9DBC239E3C0A91 /* cassert in Resources */,
 				9E97878370D74707276FBF9BBA8D743A /* cctype in Resources */,
@@ -35642,6 +35679,7 @@
 				223C58ED214A50C700C69F3F /* AccountSetCoordinator.swift in Sources */,
 				72FE5B652100491300B29FEC /* ServersViewController.swift in Sources */,
 				C73324715ED7A5B530EC3656557D421F /* AccountInfoView.swift in Sources */,
+				2226A97F2160EA0D00B97B1E /* BLTCardPowerOnViewController.swift in Sources */,
 				417C7C9D234791A2280A26237B79A7D0 /* AppAction.swift in Sources */,
 				733714E8212431E200B2ED90 /* MapIcon.swift in Sources */,
 				3B6D7469214761690076F444 /* ExchangeToActivateViewController.swift in Sources */,
@@ -35674,7 +35712,6 @@
 				3B6D7464214761690076F444 /* FriendViewAdapter.swift in Sources */,
 				221EC1C621008EF50059F856 /* GestureLockSetCoordinator.swift in Sources */,
 				3B39358E214A479300AB0A30 /* VerifyMnemonicWordActions.swift in Sources */,
-				3B0EB6F3216B46D80039A773 /* BatteryView.swift in Sources */,
 				22A93240211A9DBB00ACC63C /* StatusView.swift in Sources */,
 				733714E4212431E200B2ED90 /* FontLoader.swift in Sources */,
 				22C023A020F6FDB900284A0A /* CreatationCompleteActions.swift in Sources */,
@@ -35686,6 +35723,7 @@
 				3B6D7475214761690076F444 /* ActivateActions.swift in Sources */,
 				72FE5B8A21009E4D00B29FEC /* LeadInViewController.swift in Sources */,
 				8ADE05B3B02C07CFCE0F069867999417 /* BaseViewController.swift in Sources */,
+				2226A9802160EA0D00B97B1E /* BLTCardPowerOnReducers.swift in Sources */,
 				2253C5282111A5F90043AAF7 /* CopyPriKeyActions.swift in Sources */,
 				2253C5292111A5F90043AAF7 /* CopyPriKeyViewController.swift in Sources */,
 				22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */,
@@ -35698,6 +35736,7 @@
 				2226A725215A0AF800B97B1E /* BLTCardSetFingerPrinterReducers.swift in Sources */,
 				72101692210197C10059B37E /* WalletViewController.swift in Sources */,
 				7210169A210197C10059B37E /* ChangeWalletNameView.swift in Sources */,
+				2226A97E2160EA0D00B97B1E /* BLTCardPowerOnActions.swift in Sources */,
 				63DAC238B1BEF4EEC106ED9C63E25317 /* Button.swift in Sources */,
 				22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */,
 				739A4DB62150DF2800A1074B /* TransformGestureRecognizers.swift in Sources */,
@@ -35726,6 +35765,7 @@
 				150F934C0EC159C581ACAAC7FD6F6484 /* Constants.swift in Sources */,
 				3BC12A9D21060927006EEB80 /* AccountListActions.swift in Sources */,
 				3BC12AA121060927006EEB80 /* AccountCellView.swift in Sources */,
+				223008352165FCDE000E39CF /* BLTCardConnectReducers.swift in Sources */,
 				223C5906214A521A00C69F3F /* BLTCardInitCoordinator.swift in Sources */,
 				72D645B621106860003F660D /* LeadInKeyCoordinator.swift in Sources */,
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,
@@ -35744,6 +35784,7 @@
 				72FE5B552100490200B29FEC /* SafeViewController.swift in Sources */,
 				3B3935A6214B50A000AB0A30 /* BackupMnemonicWordCoordinator.swift in Sources */,
 				2253C5302111A6300043AAF7 /* QRCodeActions.swift in Sources */,
+				223008342165FCDE000E39CF /* BLTCardConnectViewController.swift in Sources */,
 				3B4C90FB20F4D686004F4C52 /* PaymentsDetailCoordinator.swift in Sources */,
 				72FE5B542100490200B29FEC /* SafeActions.swift in Sources */,
 				223C5909214A521A00C69F3F /* BLTCardInitReducers.swift in Sources */,
@@ -35751,6 +35792,7 @@
 				7302299D212E50460073D5CE /* StarWarsGLAnimator.swift in Sources */,
 				3B6D746E214761690076F444 /* PayToActivateActions.swift in Sources */,
 				72FE5B642100491300B29FEC /* ServersActions.swift in Sources */,
+				2226A9852163A61B00B97B1E /* BLTCardIntroViewView.swift in Sources */,
 				722D24CA21115B5000A093CA /* ContainerNormalCellView.swift in Sources */,
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
 				3B39358F214A479300AB0A30 /* VerifyMnemonicWordViewController.swift in Sources */,
@@ -35801,6 +35843,7 @@
 				733714EB212431E200B2ED90 /* SwiftIconFont.swift in Sources */,
 				72101691210197C10059B37E /* WalletActions.swift in Sources */,
 				7302299C212E50460073D5CE /* SpriteRender.swift in Sources */,
+				223008322165FCDE000E39CF /* BLTCardConnectCoordinator.swift in Sources */,
 				733714E3212431E200B2ED90 /* FontAwesome.swift in Sources */,
 				73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */,
 				223C5917214A532800C69F3F /* BLTCardEntryView.swift in Sources */,
@@ -35821,6 +35864,7 @@
 				1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */,
 				3B3935B2214B5AF600AB0A30 /* MnemonicContentReducers.swift in Sources */,
 				221EC1D121008F1B0059F856 /* GestureLockComfirmReducers.swift in Sources */,
+				223008332165FCDE000E39CF /* BLTCardConnectActions.swift in Sources */,
 				73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */,
 				72FE5B5C2100490B00B29FEC /* HelpActions.swift in Sources */,
 				73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */,
@@ -35909,6 +35953,7 @@
 				725F68072101B8E50006BBA1 /* SetWalletReducers.swift in Sources */,
 				73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */,
 				3B6D7460214761690076F444 /* FriendToActivateCoordinator.swift in Sources */,
+				2226A9842163A61B00B97B1E /* BLTCardIntroViewViewAdapter.swift in Sources */,
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
 				22E40AAC211453D600F1648C /* FingerPrinterConfirmActions.swift in Sources */,
 				2253C53E2111C9390043AAF7 /* TitleSubTitleView.swift in Sources */,
@@ -35925,6 +35970,7 @@
 				727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */,
 				2214A96E211D7B78003256D2 /* NodeVote.swift in Sources */,
 				3B6D7473214761690076F444 /* PayViewAdapter.swift in Sources */,
+				2226A97D2160EA0D00B97B1E /* BLTCardPowerOnCoordinator.swift in Sources */,
 				3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */,
 				3B6D747C214761690076F444 /* InvitationViewAdapter.swift in Sources */,
 				221EC1D72100A8D50059F856 /* CGFloat+Extensions.swift in Sources */,
@@ -35940,7 +35986,6 @@
 				22A93247211BE4DE00ACC63C /* TKBaseSwitcher.swift in Sources */,
 				7224712A20F57BA800536BF4 /* TransferActions.swift in Sources */,
 				223C58DC214A4A5000C69F3F /* BLTCardEntryCoordinator.swift in Sources */,
-				3B02F23D2168524000DD9211 /* AccountModel.swift in Sources */,
 				72FE5B4E210048F500B29FEC /* NormalReducers.swift in Sources */,
 				223C58EE214A50C700C69F3F /* AccountSetActions.swift in Sources */,
 				7224713220F5F92B00536BF4 /* HomeHeaderView.swift in Sources */,
@@ -35963,7 +36008,6 @@
 				223C58F5214A50F300C69F3F /* BLTCardConfirmPinCoordinator.swift in Sources */,
 				7224712C20F57BA800536BF4 /* TransferReducers.swift in Sources */,
 				72101696210197C10059B37E /* ChangeWalletNameReducers.swift in Sources */,
-				3B0EB6F2216B46D80039A773 /* BatteryViewAdapter.swift in Sources */,
 				733714EA212431E200B2ED90 /* Octicon.swift in Sources */,
 				AD352B30A178C8A63FF0D742FDFD3081 /* UIImageView+Additions.swift in Sources */,
 				3BEC3F542111B4FC003C38FB /* BackupPrivateKeyActions.swift in Sources */,
@@ -36164,6 +36208,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/EOS/Core/eos/include",
 					"$(inherited)",

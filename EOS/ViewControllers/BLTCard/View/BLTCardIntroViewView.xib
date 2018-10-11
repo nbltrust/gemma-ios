@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BLTCardIntroViewView">
+            <connections>
+                <outlet property="introView" destination="I0k-5C-FSi" id="3aX-1j-YiH"/>
+                <outlet property="titleLabel" destination="FAz-YT-nFu" id="7jk-uU-e8d"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="btM-Yo-6kI">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="428"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAz-YT-nFu">
+                    <rect key="frame" x="31" y="12" width="313" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I0k-5C-FSi">
+                    <rect key="frame" x="16" y="49" width="343" height="200"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="FAz-YT-nFu" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="31" id="6RU-aG-C1b"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="FAz-YT-nFu" secondAttribute="trailing" constant="31" id="KnO-Uv-rNX"/>
+                <constraint firstItem="I0k-5C-FSi" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="16" id="Lbn-ng-mMc"/>
+                <constraint firstItem="FAz-YT-nFu" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" constant="12" id="Zc7-M3-LeU"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="I0k-5C-FSi" secondAttribute="trailing" constant="16" id="bJL-Zu-BVM"/>
+                <constraint firstItem="I0k-5C-FSi" firstAttribute="top" secondItem="FAz-YT-nFu" secondAttribute="bottom" constant="20" id="ucT-MV-ush"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
+            <point key="canvasLocation" x="-193" y="-171"/>
+        </view>
+    </objects>
+</document>

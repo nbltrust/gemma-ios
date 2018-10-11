@@ -551,6 +551,7 @@
 "pair_second_step" = "请在WOOKONG Bio上按指纹以确认初始化";
 "pair_third_step" = "请输入WOOKONG Bio 的密码以确认配对";
 "pair_third_step_pla" = "请输入WOOKONG Bio的密码";
+"pair_confirm_transfer" = "请在WOOKONG Bio上按键以确认转账";
 "confirm_pair" = "确认配对";
 "wookong_pas_set_title" = "设置WOOKONG Bio密码";
 "wookong_creat_new_wallet" = "创建新钱包";
@@ -567,3 +568,8 @@
 "wookong_connect_ing" = "连接中";
 "wookong_connect_nopower" = "电量不足";
 "wookong_connect_failed" = "连接失败";
+"wookong_connecting_title" = "若未找到，请检查手机蓝牙和设备电源。";
+"wookong_connecting" = "正在连接WOOKONG Bio";
+"wookong_connectfailed_title" = "连接失败。请检查手机蓝牙和设备电源。";
+"wookong_reconnect" = "重试连接";
+"wookong_fp_confirm_title" = "请在WOOKONG Bio上按指纹以确认授权";

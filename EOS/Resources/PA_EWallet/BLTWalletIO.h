@@ -11,6 +11,11 @@
 #import "BLTWalletHeader.h"
 #import "BLTUtils.h"
 
+typedef enum : NSUInteger {
+    pinType = 1,
+    fpType = 2,
+} AuthType;
+
 @class BLTDevice;
 
 @interface BLTWalletIO : NSObject
@@ -24,8 +29,6 @@ typedef void(^ SuccessedComplication)(void);
 
 typedef void(^ FailedComplication)(NSString *failedReason);
 
-typedef void(^ ConnectComplication)(BOOL isConnected,NSInteger savedDevice);
-
 typedef void(^ GetDeviceInfoComplication)(BOOL successed,PAEW_DevInfo *info);
 
 typedef void(^ GetSeedsComplication)(NSArray *seeds, NSString *checkStr);
@@ -36,11 +39,19 @@ typedef void(^ GetSNComplication)(NSString *SN,NSString *SN_sig);
 
 typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 
+typedef void(^ GetSignComplication)(NSString *sign);
+
 @property (nonatomic,strong) DidSearchDevice didSearchDevice;
 
 @property (nonatomic,strong) BLTDevice *selectDevice;
 
 @property (nonatomic,strong) NSTimer *timer;
+
+@property (nonatomic, assign) BOOL abortBtnState;
+
+@property (nonatomic, strong) NSCondition *abortCondition;
+
+@property (nonatomic, copy) void(^abortHandelBlock)(BOOL abortState);
 
 +(instancetype) shareInstance;
 
@@ -53,7 +64,9 @@ typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 
 - (void)startHeartBeat;
 
-- (void)connectCard:(NSString *)deviceNameId complication:(ConnectComplication)complication;
+- (BOOL)isConnection;
+
+- (void)connectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)getDeviceInfo:(GetDeviceInfoComplication)complication;
 
@@ -70,6 +83,13 @@ typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 - (void)getPubKey:(GetPubKeyComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed;
+
+/*When type == PinType
+ Need To implication Method “submmitWaitingVerfyPin”
+ */
+- (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
+
+- (void)submmitWaitingVerfyPin:(NSString *)waitVerPin;
 
 @end
 

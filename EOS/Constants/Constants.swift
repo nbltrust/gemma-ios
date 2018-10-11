@@ -150,6 +150,7 @@ struct H5AddressConfiguration {
 
 enum EOSAction:String {
     case transfer
+    case bltTransfer
     case delegatebw
     case undelegatebw
     case buyram

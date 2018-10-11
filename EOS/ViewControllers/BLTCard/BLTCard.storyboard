@@ -10,14 +10,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Card Power On View Controller-->
         <scene sceneID="uGr-3t-JRI">
             <objects>
-                <viewController id="FV2-e1-9rj" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BLTCardPowerOnViewController" id="FV2-e1-9rj" customClass="BLTCardPowerOnViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9XE-xI-3Dm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wookong_bio_close" translatesAutoresizingMaskIntoConstraints="NO" id="8Ez-bU-sC5">
+                                <rect key="frame" x="16" y="69" width="343" height="224"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXm-oI-AcO">
+                                <rect key="frame" x="30" y="32" width="315" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="pair_first_step"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="A5C-Jr-Kt2" firstAttribute="trailing" secondItem="8Ez-bU-sC5" secondAttribute="trailing" constant="16" id="Dyk-6z-cR2"/>
+                            <constraint firstItem="8Ez-bU-sC5" firstAttribute="leading" secondItem="A5C-Jr-Kt2" secondAttribute="leading" constant="16" id="KSy-aH-ebW"/>
+                            <constraint firstItem="A5C-Jr-Kt2" firstAttribute="trailing" secondItem="aXm-oI-AcO" secondAttribute="trailing" constant="30" id="b0a-nd-m3Q"/>
+                            <constraint firstItem="aXm-oI-AcO" firstAttribute="leading" secondItem="A5C-Jr-Kt2" secondAttribute="leading" constant="30" id="pOi-SZ-6LW"/>
+                            <constraint firstItem="aXm-oI-AcO" firstAttribute="top" secondItem="A5C-Jr-Kt2" secondAttribute="top" constant="12" id="v6Y-rk-h1l"/>
+                            <constraint firstItem="8Ez-bU-sC5" firstAttribute="top" secondItem="aXm-oI-AcO" secondAttribute="bottom" constant="20" id="yqZ-ib-Pev"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="A5C-Jr-Kt2"/>
                     </view>
                 </viewController>
@@ -177,8 +198,99 @@
             </objects>
             <point key="canvasLocation" x="2051" y="95"/>
         </scene>
+        <!--Card Connect View Controller-->
+        <scene sceneID="9cS-jL-sHj">
+            <objects>
+                <viewController storyboardIdentifier="BLTCardConnectViewController" id="DwA-Xx-cFs" customClass="BLTCardConnectViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4pV-4Y-3rk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWQ-iA-YEt">
+                                <rect key="frame" x="31" y="32" width="313" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvU-Il-Ksd">
+                                <rect key="frame" x="31" y="99" width="313" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="G5z-7U-JJs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_connecting"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sir-tJ-iv6" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="31" y="87" width="313" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="epy-sT-O7S"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_reconnect"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="NvU-Il-Ksd" firstAttribute="leading" secondItem="A4K-Jt-yCe" secondAttribute="leading" constant="31" id="3ck-BO-icS"/>
+                            <constraint firstItem="WWQ-iA-YEt" firstAttribute="leading" secondItem="A4K-Jt-yCe" secondAttribute="leading" constant="31" id="G14-rU-zCi"/>
+                            <constraint firstItem="Sir-tJ-iv6" firstAttribute="centerY" secondItem="NvU-Il-Ksd" secondAttribute="centerY" id="Idk-C7-cOx"/>
+                            <constraint firstItem="Sir-tJ-iv6" firstAttribute="leading" secondItem="A4K-Jt-yCe" secondAttribute="leading" constant="31" id="LwD-fq-GLQ"/>
+                            <constraint firstItem="WWQ-iA-YEt" firstAttribute="top" secondItem="A4K-Jt-yCe" secondAttribute="top" constant="12" id="TzG-am-HMn"/>
+                            <constraint firstItem="NvU-Il-Ksd" firstAttribute="top" secondItem="WWQ-iA-YEt" secondAttribute="bottom" constant="50" id="XdP-ec-FRj"/>
+                            <constraint firstItem="A4K-Jt-yCe" firstAttribute="trailing" secondItem="NvU-Il-Ksd" secondAttribute="trailing" constant="31" id="Yt5-3b-wut"/>
+                            <constraint firstItem="A4K-Jt-yCe" firstAttribute="trailing" secondItem="Sir-tJ-iv6" secondAttribute="trailing" constant="31" id="nC2-hQ-CJW"/>
+                            <constraint firstItem="A4K-Jt-yCe" firstAttribute="trailing" secondItem="WWQ-iA-YEt" secondAttribute="trailing" constant="31" id="toO-cH-YIt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="A4K-Jt-yCe"/>
+                    </view>
+                    <connections>
+                        <outlet property="connectButton" destination="Sir-tJ-iv6" id="ynr-BR-g8V"/>
+                        <outlet property="contentLabel" destination="NvU-Il-Ksd" id="hjN-iK-tSN"/>
+                        <outlet property="titleLabel" destination="WWQ-iA-YEt" id="LO0-Is-d66"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Lx-O3-j9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2853.5999999999999" y="94.902548725637189"/>
+        </scene>
+        <!--Card Confirm Finger Printer View Controller-->
+        <scene sceneID="STq-rH-2yq">
+            <objects>
+                <viewController storyboardIdentifier="BLTCardConfirmFingerPrinterViewController" id="EmH-F6-mi8" customClass="BLTCardConfirmFingerPrinterViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lr7-BM-iUW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSD-Sp-Era" customClass="BLTCardIntroViewView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="152" width="375" height="128"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="8b5-An-Q3w" firstAttribute="trailing" secondItem="aSD-Sp-Era" secondAttribute="trailing" id="2V3-ss-UFC"/>
+                            <constraint firstItem="aSD-Sp-Era" firstAttribute="top" secondItem="8b5-An-Q3w" secondAttribute="top" id="5EB-uh-PNe"/>
+                            <constraint firstItem="aSD-Sp-Era" firstAttribute="leading" secondItem="8b5-An-Q3w" secondAttribute="leading" id="Fcw-vn-2gD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8b5-An-Q3w"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="aSD-Sp-Era" id="0Be-0Z-3Qc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DSm-Kc-mcK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3559" y="95"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="wookong_bio_close" width="375" height="224"/>
         <image name="wookong_bio_fingerprint" width="375" height="224"/>
     </resources>
 </document>
