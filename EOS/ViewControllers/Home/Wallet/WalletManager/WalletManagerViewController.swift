@@ -41,7 +41,11 @@ class WalletManagerViewController: BaseViewController {
 extension WalletManagerViewController {
     @objc func wallNameClick(_ data: [String: Any]) {
         let model: WalletManagerModel = data["indicator"] as! WalletManagerModel
-        self.coordinator?.pushToChangeWalletName(model: model)
+        if model.type == .gemma {
+            self.coordinator?.pushToChangeWalletName(model: model)
+        } else if model.type == .bluetooth {
+            self.coordinator?.pushToDetailVC(model: model)
+        }
     }
     
     @objc func exportPrivateKeyClick(_ data: [String: Any]) {
@@ -51,5 +55,14 @@ extension WalletManagerViewController {
     
     @objc func changePasswordClick(_ data: [String: Any]) {
         self.coordinator?.pushToChangePassword(self.data.address)
+    }
+    
+    @objc func btnClick(_ data: [String: Any]) {
+        let model: WalletManagerModel = data["data"] as! WalletManagerModel
+        if model.connected == true {
+            self.coordinator?.disConnect()
+        } else {
+            self.coordinator?.connect()
+        }
     }
 }

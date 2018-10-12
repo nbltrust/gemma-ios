@@ -51,11 +51,16 @@ class WalletManager {
             
             removePriKey()
         } else {
+            savePriKey(priKey,publicKey: currentPubKey, password:password)
+            savePasswordHint(currentPubKey, hint:hint)
+            
             addToLocalWallet(isImport, accountName: account, type: type, deviceName: deviceName)
             switchWallet(currentPubKey)
             account_names = [account]
             
             switchAccount(0)
+            removePriKey()
+
         }
     }
     

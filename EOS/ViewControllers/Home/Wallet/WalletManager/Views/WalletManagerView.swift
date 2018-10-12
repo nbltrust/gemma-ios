@@ -17,23 +17,59 @@ import Foundation
 
 class WalletManagerView: UIView {
     
+    @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var walletNameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var exportPrivateKeyLineView: LineView!
     @IBOutlet weak var changePasswordLineView: LineView!
     
     @IBOutlet weak var walletNameView: CornerAndShadowView!
+    @IBOutlet weak var batteryContentView: UIView!
+    @IBOutlet weak var progressLabel: BaseLabel!
+    @IBOutlet weak var batteryView: BatteryView!
+    @IBOutlet weak var btnView: UIView!
+    @IBOutlet weak var btn: Button!
     
     enum event: String {
         case wallNameClick
         case exportPrivateKeyClick
         case changePasswordClick
+        case btnClick
     }
     
-    var data : WalletManagerModel! {
+    var data : Any? {
         didSet {
-            walletNameLabel.text = data.name
-            addressLabel.text = data.address
+            if let data = data as? WalletManagerModel {
+                walletNameLabel.text = data.name
+                addressLabel.text = data.address
+                if data.type == .gemma {
+                    batteryContentView.isHidden = true
+                    btnView.isHidden = true
+                } else if data.type == .bluetooth {
+                    batteryContentView.isHidden = false
+                    btnView.isHidden = false
+
+                    if data.connected == true {
+                        btn.title = R.string.localizable.disconnect.key.localized()
+                        batteryView.progress = data.batteryProgress
+                        progressLabel.text = "50%"
+                        if data.fingerprinted == true {
+                            exportPrivateKeyLineView.name_text = R.string.localizable.change_password.key.localized()
+                            changePasswordLineView.name_text = R.string.localizable.change_fingerprint.key.localized()
+
+                        } else {
+                            exportPrivateKeyLineView.isHidden = true
+                            changePasswordLineView.name_text = R.string.localizable.fingerprint_password.key.localized()
+                        }
+                    } else {
+                        batteryView.isHidden = true
+                        iconImageView.isHidden = true
+                        btn.title = R.string.localizable.connect.key.localized()
+                        progressLabel.text = R.string.localizable.wookong_connect_none.key.localized()
+                    }
+
+                }
+            }
         }
     }
     
@@ -55,6 +91,7 @@ class WalletManagerView: UIView {
         changePasswordLineView.content_text = ""
         changePasswordLineView.image_name = R.image.icArrow.name
         changePasswordLineView.backgroundColor = UIColor.clear
+        
     }
     
     func setUpEvent() {
@@ -77,6 +114,11 @@ class WalletManagerView: UIView {
             
             self.changePasswordLineView.next?.sendEventWith(event.changePasswordClick.rawValue, userinfo: ["indicator": self.data ?? []])
             
+        }).disposed(by: disposeBag)
+        
+        btn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            self.next?.sendEventWith(event.btnClick.rawValue, userinfo: ["data":self.data ?? []])
         }).disposed(by: disposeBag)
     }
     
