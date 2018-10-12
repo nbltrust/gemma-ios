@@ -596,6 +596,61 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     _instance->pin = waitVerPin;
 }
 
+- (void)getFPList:(GetFPListComplication)complication failed:(FailedComplication)failedComplication {
+    dispatch_async(bltQueue, ^{
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        size_t nListLen = 0;
+        FingerPrintID *pFPList = NULL;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        iRtn = PAEW_GetFPList(ppPAEWContext, devIdx, 0, &nListLen);
+        if (iRtn != PAEW_RET_SUCCESS) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complication(nil);
+            });
+            return ;
+        } else if (nListLen == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failedComplication([BLTUtils errorCodeToString:iRtn]);
+            });
+            return ;
+        } else {
+            pFPList = (FingerPrintID *)malloc(sizeof(FingerPrintID) * nListLen);
+            iRtn = PAEW_GetFPList(ppPAEWContext, devIdx, pFPList, &nListLen);
+            if (iRtn == PAEW_RET_SUCCESS) {
+                complication(pFPList);
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    failedComplication([BLTUtils errorCodeToString:iRtn]);
+                });
+            }
+            free(pFPList);
+        }
+    });
+}
+
+- (void)deleteFP:(NSArray *)fpList success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication {
+    dispatch_async(bltQueue, ^{
+        FingerPrintID   *localFPList = 0;
+        int nFPCount = 0;
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        iRtn = PAEW_DeleteFP(ppPAEWContext, devIdx, localFPList, nFPCount);
+        
+        if (iRtn != PAEW_RET_SUCCESS) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                successComlication();
+            });
+            return ;
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failedComplication([BLTUtils errorCodeToString:iRtn]);
+            });
+        }
+    });
+}
+
 -(int)getPIN
 {
     NSString *pin = @"123456";
