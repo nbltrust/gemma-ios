@@ -16,6 +16,7 @@ protocol WalletManagerCoordinatorProtocol {
     func pushToChangePassword(_ pubKey:String)
     func pushToBackupMnemonicVC()
     func pushToDetailVC(model: WalletManagerModel)
+    func pushToFingerVC(model: WalletManagerModel)
 }
 
 protocol WalletManagerStateManagerProtocol {
@@ -82,18 +83,18 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
         }
     }
     
-    func pushToWalletDetail(model: WalletManagerModel) {
-        if let vc = R.storyboard.wallet.changeWalletNameViewController() {
-            let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
+    func pushToDetailVC(model: WalletManagerModel) {
+        if let vc = R.storyboard.wallet.walletDetailViewController() {
+            let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
             vc.model = model
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
     
-    func pushToDetailVC(model: WalletManagerModel) {
-        if let vc = R.storyboard.wallet.walletDetailViewController() {
-            let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
+    func pushToFingerVC(model: WalletManagerModel) {
+        if let vc = R.storyboard.wallet.fingerViewController() {
+            let coordinator = FingerCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
             vc.model = model
             self.rootVC.pushViewController(vc, animated: true)

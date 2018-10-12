@@ -12,8 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletDetailView">
             <connections>
+                <outlet property="batteryLineView" destination="Iu6-iD-1Xf" id="C9k-0V-d7j"/>
                 <outlet property="disConnectBtn" destination="oyL-S2-VaY" id="w4h-zc-lAQ"/>
                 <outlet property="formatBtn" destination="eGS-D9-Bm2" id="b2x-FN-80m"/>
+                <outlet property="nameLineView" destination="ZdK-Cd-liI" id="otv-80-jl9"/>
+                <outlet property="pubkeyLineView" destination="Vkm-XZ-ITV" id="c2j-zp-9qA"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -269,6 +269,13 @@
 		3B726C1621133502001E4850 /* ScreenShotAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1221133502001E4850 /* ScreenShotAlertViewController.swift */; };
 		3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */; };
 		3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */; };
+		3B858BC2217077FB00499FAC /* FingerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BBE217077FB00499FAC /* FingerCoordinator.swift */; };
+		3B858BC3217077FB00499FAC /* FingerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BBF217077FB00499FAC /* FingerActions.swift */; };
+		3B858BC4217077FB00499FAC /* FingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BC0217077FB00499FAC /* FingerViewController.swift */; };
+		3B858BC5217077FB00499FAC /* FingerReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BC1217077FB00499FAC /* FingerReducers.swift */; };
+		3B858BCA21707A7600499FAC /* FingerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BC721707A7600499FAC /* FingerViewAdapter.swift */; };
+		3B858BCB21707A7600499FAC /* FingerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BC821707A7600499FAC /* FingerView.swift */; };
+		3B858BCC21707A7600499FAC /* FingerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B858BC921707A7600499FAC /* FingerView.xib */; };
 		3B85EEA3215A12E600795083 /* VerifyPriKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EE9F215A12E600795083 /* VerifyPriKeyCoordinator.swift */; };
 		3B85EEA4215A12E600795083 /* VerifyPriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA0215A12E600795083 /* VerifyPriKeyActions.swift */; };
 		3B85EEA5215A12E600795083 /* VerifyPriKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA1215A12E600795083 /* VerifyPriKeyViewController.swift */; };
@@ -3835,6 +3842,13 @@
 		3B7311947531F77FD28B5CBD2AE901D1 /* handle_tangencies.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle_tangencies.hpp; sourceTree = "<group>"; };
 		3B78507A0E83F865A114EC9D04BBA86C /* is_view_impl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_view_impl.hpp; sourceTree = "<group>"; };
 		3B83B6E9EAD0C0202FBF327C01B4C1C5 /* qi_advance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = qi_advance.hpp; sourceTree = "<group>"; };
+		3B858BBE217077FB00499FAC /* FingerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerCoordinator.swift; sourceTree = "<group>"; };
+		3B858BBF217077FB00499FAC /* FingerActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerActions.swift; sourceTree = "<group>"; };
+		3B858BC0217077FB00499FAC /* FingerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerViewController.swift; sourceTree = "<group>"; };
+		3B858BC1217077FB00499FAC /* FingerReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerReducers.swift; sourceTree = "<group>"; };
+		3B858BC721707A7600499FAC /* FingerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerViewAdapter.swift; sourceTree = "<group>"; };
+		3B858BC821707A7600499FAC /* FingerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerView.swift; sourceTree = "<group>"; };
+		3B858BC921707A7600499FAC /* FingerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FingerView.xib; sourceTree = "<group>"; };
 		3B85EE9F215A12E600795083 /* VerifyPriKeyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPriKeyCoordinator.swift; sourceTree = "<group>"; };
 		3B85EEA0215A12E600795083 /* VerifyPriKeyActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPriKeyActions.swift; sourceTree = "<group>"; };
 		3B85EEA1215A12E600795083 /* VerifyPriKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPriKeyViewController.swift; sourceTree = "<group>"; };
@@ -18378,6 +18392,28 @@
 			path = ScreenShotAlert;
 			sourceTree = "<group>";
 		};
+		3B858BA3217077DC00499FAC /* Finger */ = {
+			isa = PBXGroup;
+			children = (
+				3B858BC62170783100499FAC /* Views */,
+				3B858BBE217077FB00499FAC /* FingerCoordinator.swift */,
+				3B858BBF217077FB00499FAC /* FingerActions.swift */,
+				3B858BC0217077FB00499FAC /* FingerViewController.swift */,
+				3B858BC1217077FB00499FAC /* FingerReducers.swift */,
+			);
+			path = Finger;
+			sourceTree = "<group>";
+		};
+		3B858BC62170783100499FAC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B858BC721707A7600499FAC /* FingerViewAdapter.swift */,
+				3B858BC821707A7600499FAC /* FingerView.swift */,
+				3B858BC921707A7600499FAC /* FingerView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3B85EE83215A12B900795083 /* Verify */ = {
 			isa = PBXGroup;
 			children = (
@@ -23039,6 +23075,7 @@
 		72101676210197C00059B37E /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				3B858BA3217077DC00499FAC /* Finger */,
 				3B1EC87221703EF10044DEB5 /* WalletDetail */,
 				72101677210197C00059B37E /* WalletReducers.swift */,
 				72101678210197C00059B37E /* WalletCoordinator.swift */,
@@ -35236,6 +35273,7 @@
 				9B84E2ACF57208CFCC2A8009CC4953F5 /* ostream in Resources */,
 				293724C94FEA66BB7CBDEC50A91A0C83 /* ostream.SUNWCCh in Resources */,
 				733714F6212431E200B2ED90 /* themify.ttf in Resources */,
+				3B858BCC21707A7600499FAC /* FingerView.xib in Resources */,
 				3BD3666520FDEB76004DE09D /* TitleTextfieldView.xib in Resources */,
 				AB3C76C8A35E87D4FC3468CCB17C236E /* producer_schedule.hpp.bk in Resources */,
 				CBBC4032171E02C95B5699B839009177 /* queue in Resources */,
@@ -35785,6 +35823,7 @@
 				22C023A120F6FDB900284A0A /* CreatationCompleteViewController.swift in Sources */,
 				223C58DD214A4A5000C69F3F /* BLTCardEntryActions.swift in Sources */,
 				739A4DC02150DF2800A1074B /* SharedTypes.swift in Sources */,
+				3B858BC3217077FB00499FAC /* FingerActions.swift in Sources */,
 				223C58E1214A4A8700C69F3F /* BLTCardRootCoordinator.swift in Sources */,
 				2226A725215A0AF800B97B1E /* BLTCardSetFingerPrinterReducers.swift in Sources */,
 				72101692210197C10059B37E /* WalletViewController.swift in Sources */,
@@ -35878,6 +35917,7 @@
 				223C58FE214A51DC00C69F3F /* BLTCardConfirmFingerPrinterActions.swift in Sources */,
 				73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */,
 				3B6D7478214761690076F444 /* InvitationCodeToActivateCoordinator.swift in Sources */,
+				3B858BCB21707A7600499FAC /* FingerView.swift in Sources */,
 				227597EF2146849D0032DC60 /* DBTableCreatation.swift in Sources */,
 				73B5A6A820F5F62D00756391 /* AttributeStyle.swift in Sources */,
 				71B491763DB2622DA9A6CD8DEE644F17 /* EntryViewController.swift in Sources */,
@@ -35972,6 +36012,7 @@
 				3B6D746B214761690076F444 /* ActivateReducers.swift in Sources */,
 				3B1EC88C217040B80044DEB5 /* WalletDetailView.swift in Sources */,
 				3B6D7470214761690076F444 /* PayToActivateViewController.swift in Sources */,
+				3B858BC5217077FB00499FAC /* FingerReducers.swift in Sources */,
 				2214A96A211D73A2003256D2 /* VoteFootView.swift in Sources */,
 				D3269330F6567878EEBA3EB42293912B /* RegisterContentView.swift in Sources */,
 				72FE5B5B2100490B00B29FEC /* HelpCoordinator.swift in Sources */,
@@ -35982,6 +36023,7 @@
 				7342E4E8216F1F8A0093E2C2 /* BLTCardPowerOnReducers.swift in Sources */,
 				3BD3666820FDEB94004DE09D /* TransferContentView.swift in Sources */,
 				3B6D7462214761690076F444 /* FriendToActivateViewController.swift in Sources */,
+				3B858BC4217077FB00499FAC /* FingerViewController.swift in Sources */,
 				739A4DBC2150DF2800A1074B /* UIScreenEdgePanGestureRecognizer+RxGesture.swift in Sources */,
 				2253C52F2111A6300043AAF7 /* QRCodeCoordinator.swift in Sources */,
 				3BD3664F20F76594004DE09D /* TransferConfirmPasswordView.swift in Sources */,
@@ -36014,6 +36056,7 @@
 				22E40AAC211453D600F1648C /* FingerPrinterConfirmActions.swift in Sources */,
 				2253C53E2111C9390043AAF7 /* TitleSubTitleView.swift in Sources */,
 				3B39358D214A479300AB0A30 /* VerifyMnemonicWordCoordinator.swift in Sources */,
+				3B858BCA21707A7600499FAC /* FingerViewAdapter.swift in Sources */,
 				2253C5482111CD6C0043AAF7 /* PriKeyView.swift in Sources */,
 				5F27A594C8678910CB1C4BCDE883634A /* UIColor+Additions.swift in Sources */,
 				22C023B620FD8A0600284A0A /* ScanPreviewView.swift in Sources */,
@@ -36101,6 +36144,7 @@
 				3B1EC87921703F120044DEB5 /* WalletDetailViewController.swift in Sources */,
 				22C023B220FCB09300284A0A /* ScanReducers.swift in Sources */,
 				3B3935A8214B50A000AB0A30 /* BackupMnemonicWordViewController.swift in Sources */,
+				3B858BC2217077FB00499FAC /* FingerCoordinator.swift in Sources */,
 				73BA4B3B215A244600EF4C72 /* URLNavigationMap.swift in Sources */,
 				7342E4F2216F1FF80093E2C2 /* BLTCardIntroViewView.swift in Sources */,
 				3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */,
