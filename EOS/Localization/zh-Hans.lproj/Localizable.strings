@@ -233,6 +233,11 @@
 "fingerprint_password" = "指纹与密码";
 "unpair" = "取消配对";
 "format" = "格式化";
+"name" = "名称";
+"pubkey" = "公钥";
+"battery" = "电量";
+"finger" = "指纹";
+"add_finger" = "添加指纹";
 
 //zsy end
 
