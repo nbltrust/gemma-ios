@@ -27,7 +27,7 @@ struct WalletManagerModel {
     var batteryProgress = 0.0
     var connected = false
     var fingerprinted = false
-    var fingerDict : [String: String] = [:]
+    var fingerArray : [String] = []
 }
 
 //MARK: - Action Creator
