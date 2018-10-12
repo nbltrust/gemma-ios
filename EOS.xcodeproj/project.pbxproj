@@ -276,6 +276,13 @@
 		3B858BCA21707A7600499FAC /* FingerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BC721707A7600499FAC /* FingerViewAdapter.swift */; };
 		3B858BCB21707A7600499FAC /* FingerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BC821707A7600499FAC /* FingerView.swift */; };
 		3B858BCC21707A7600499FAC /* FingerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B858BC921707A7600499FAC /* FingerView.xib */; };
+		3B858BFC2170A19400499FAC /* DeleteFingerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BF82170A19400499FAC /* DeleteFingerCoordinator.swift */; };
+		3B858BFD2170A19400499FAC /* DeleteFingerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BF92170A19400499FAC /* DeleteFingerActions.swift */; };
+		3B858BFE2170A19400499FAC /* DeleteFingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BFA2170A19400499FAC /* DeleteFingerViewController.swift */; };
+		3B858BFF2170A19400499FAC /* DeleteFingerReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BFB2170A19400499FAC /* DeleteFingerReducers.swift */; };
+		3B858C042170A1B500499FAC /* DeleteFingerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858C012170A1B500499FAC /* DeleteFingerViewAdapter.swift */; };
+		3B858C052170A1B500499FAC /* DeleteFingerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858C022170A1B500499FAC /* DeleteFingerView.swift */; };
+		3B858C062170A1B500499FAC /* DeleteFingerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B858C032170A1B500499FAC /* DeleteFingerView.xib */; };
 		3B85EEA3215A12E600795083 /* VerifyPriKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EE9F215A12E600795083 /* VerifyPriKeyCoordinator.swift */; };
 		3B85EEA4215A12E600795083 /* VerifyPriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA0215A12E600795083 /* VerifyPriKeyActions.swift */; };
 		3B85EEA5215A12E600795083 /* VerifyPriKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA1215A12E600795083 /* VerifyPriKeyViewController.swift */; };
@@ -3849,6 +3856,13 @@
 		3B858BC721707A7600499FAC /* FingerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerViewAdapter.swift; sourceTree = "<group>"; };
 		3B858BC821707A7600499FAC /* FingerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerView.swift; sourceTree = "<group>"; };
 		3B858BC921707A7600499FAC /* FingerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FingerView.xib; sourceTree = "<group>"; };
+		3B858BF82170A19400499FAC /* DeleteFingerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFingerCoordinator.swift; sourceTree = "<group>"; };
+		3B858BF92170A19400499FAC /* DeleteFingerActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFingerActions.swift; sourceTree = "<group>"; };
+		3B858BFA2170A19400499FAC /* DeleteFingerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFingerViewController.swift; sourceTree = "<group>"; };
+		3B858BFB2170A19400499FAC /* DeleteFingerReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFingerReducers.swift; sourceTree = "<group>"; };
+		3B858C012170A1B500499FAC /* DeleteFingerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFingerViewAdapter.swift; sourceTree = "<group>"; };
+		3B858C022170A1B500499FAC /* DeleteFingerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFingerView.swift; sourceTree = "<group>"; };
+		3B858C032170A1B500499FAC /* DeleteFingerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteFingerView.xib; sourceTree = "<group>"; };
 		3B85EE9F215A12E600795083 /* VerifyPriKeyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPriKeyCoordinator.swift; sourceTree = "<group>"; };
 		3B85EEA0215A12E600795083 /* VerifyPriKeyActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPriKeyActions.swift; sourceTree = "<group>"; };
 		3B85EEA1215A12E600795083 /* VerifyPriKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPriKeyViewController.swift; sourceTree = "<group>"; };
@@ -18395,6 +18409,7 @@
 		3B858BA3217077DC00499FAC /* Finger */ = {
 			isa = PBXGroup;
 			children = (
+				3B858BDD2170A16800499FAC /* DeleteFinger */,
 				3B858BC62170783100499FAC /* Views */,
 				3B858BBE217077FB00499FAC /* FingerCoordinator.swift */,
 				3B858BBF217077FB00499FAC /* FingerActions.swift */,
@@ -18410,6 +18425,28 @@
 				3B858BC721707A7600499FAC /* FingerViewAdapter.swift */,
 				3B858BC821707A7600499FAC /* FingerView.swift */,
 				3B858BC921707A7600499FAC /* FingerView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3B858BDD2170A16800499FAC /* DeleteFinger */ = {
+			isa = PBXGroup;
+			children = (
+				3B858C002170A1A700499FAC /* Views */,
+				3B858BF82170A19400499FAC /* DeleteFingerCoordinator.swift */,
+				3B858BF92170A19400499FAC /* DeleteFingerActions.swift */,
+				3B858BFA2170A19400499FAC /* DeleteFingerViewController.swift */,
+				3B858BFB2170A19400499FAC /* DeleteFingerReducers.swift */,
+			);
+			path = DeleteFinger;
+			sourceTree = "<group>";
+		};
+		3B858C002170A1A700499FAC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B858C012170A1B500499FAC /* DeleteFingerViewAdapter.swift */,
+				3B858C022170A1B500499FAC /* DeleteFingerView.swift */,
+				3B858C032170A1B500499FAC /* DeleteFingerView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -35128,6 +35165,7 @@
 				52E1D58FFB466DBAFAA4E5AE1E73E130 /* ComfirmView.xib in Resources */,
 				8F646FEBEE2D46FAF41B872C7A17F301 /* Entry.storyboard in Resources */,
 				09BC81571B45BABB01754EFB5518F50D /* Home.storyboard in Resources */,
+				3B858C062170A1B500499FAC /* DeleteFingerView.xib in Resources */,
 				164698F0CB23A683324222A5E7A26EC5 /* InfoPlist.strings in Resources */,
 				3B393599214A47EF00AB0A30 /* VerifyMnemonicWordView.xib in Resources */,
 				7B1CEF30AADC2C46D737ADF198E7B1DE /* LaunchScreen.storyboard in Resources */,
@@ -35846,6 +35884,7 @@
 				BB08391AA7F1D732D97B698F412B3651 /* ComfirmView.swift in Sources */,
 				3BF842E6211BE60100AF9963 /* BuyRamViewController.swift in Sources */,
 				3B3146F72106D56500E815BD /* ResourceMortgageCoordinator.swift in Sources */,
+				3B858BFF2170A19400499FAC /* DeleteFingerReducers.swift in Sources */,
 				73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */,
 				223C58F6214A50F300C69F3F /* BLTCardConfirmPinActions.swift in Sources */,
 				3B6D7471214761690076F444 /* PayView.swift in Sources */,
@@ -35861,6 +35900,7 @@
 				72D645B621106860003F660D /* LeadInKeyCoordinator.swift in Sources */,
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,
 				7210169F210197C10059B37E /* WalletManagerView.swift in Sources */,
+				3B858C042170A1B500499FAC /* DeleteFingerViewAdapter.swift in Sources */,
 				3B6D746A214761690076F444 /* ExchangeToActivateReducers.swift in Sources */,
 				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
 				3B1EC87721703F120044DEB5 /* WalletDetailCoordinator.swift in Sources */,
@@ -36009,6 +36049,7 @@
 				2B427CD0E35711458F16196E6587BA7A /* PaymentsRecordsCellView.swift in Sources */,
 				7210168F210197C10059B37E /* WalletReducers.swift in Sources */,
 				72FE5B7521006B0700B29FEC /* NormalContentActions.swift in Sources */,
+				3B858C052170A1B500499FAC /* DeleteFingerView.swift in Sources */,
 				3B6D746B214761690076F444 /* ActivateReducers.swift in Sources */,
 				3B1EC88C217040B80044DEB5 /* WalletDetailView.swift in Sources */,
 				3B6D7470214761690076F444 /* PayToActivateViewController.swift in Sources */,
@@ -36066,6 +36107,7 @@
 				73F30B4320F6E6FF0016E950 /* UserInfoViewController.swift in Sources */,
 				221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */,
 				2253C51C211052020043AAF7 /* SafeManager.swift in Sources */,
+				3B858BFE2170A19400499FAC /* DeleteFingerViewController.swift in Sources */,
 				727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */,
 				2214A96E211D7B78003256D2 /* NodeVote.swift in Sources */,
 				3B6D7473214761690076F444 /* PayViewAdapter.swift in Sources */,
@@ -36091,6 +36133,7 @@
 				223C58F0214A50C700C69F3F /* AccountSetReducers.swift in Sources */,
 				737F8DD22146647E00DD522A /* DataProvider.swift in Sources */,
 				72D645B721106860003F660D /* LeadInKeyActions.swift in Sources */,
+				3B858BFD2170A19400499FAC /* DeleteFingerActions.swift in Sources */,
 				221EC1C721008EF50059F856 /* GestureLockSetActions.swift in Sources */,
 				22E40AAE211453D600F1648C /* FingerPrinterConfirmReducers.swift in Sources */,
 				221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */,
@@ -36128,6 +36171,7 @@
 				739A4DB72150DF2800A1074B /* UIGestureRecognizer+RxGesture.swift in Sources */,
 				3B726C1421133502001E4850 /* ScreenShotAlertCoordinator.swift in Sources */,
 				7342E4ED216F1F8A0093E2C2 /* BLTCardConnectActions.swift in Sources */,
+				3B858BFC2170A19400499FAC /* DeleteFingerCoordinator.swift in Sources */,
 				2253C5382111A6450043AAF7 /* PriKeyActions.swift in Sources */,
 				3B3146FA2106D56500E815BD /* ResourceMortgageReducers.swift in Sources */,
 				7210169C210197C10059B37E /* WalletManagerViewController.swift in Sources */,

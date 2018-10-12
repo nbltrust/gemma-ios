@@ -49,6 +49,7 @@ class WalletViewController: BaseViewController {
         if model.type == .bluetooth {
             model.batteryProgress = 0.5//实时获取,暂时填0.5
             model.connected = true//实时获取
+            model.fingerArray = ["指纹一", "指纹二"]
         }
         if model.name == WalletManager.shared.currentWallet()?.name {
             indexPath = dataArray.count
