@@ -1,5 +1,5 @@
 //
-//  WalletDetailViewController.swift
+//  FingerViewController.swift
 //  EOS
 //
 //  Created zhusongyu on 2018/10/12.
@@ -11,14 +11,15 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class WalletDetailViewController: BaseViewController {
+class FingerViewController: BaseViewController {
 
-    @IBOutlet weak var contentView: WalletDetailView!
-    var coordinator: (WalletDetailCoordinatorProtocol & WalletDetailStateManagerProtocol)?
-    private(set) var context: WalletDetailContext?
+	var coordinator: (FingerCoordinatorProtocol & FingerStateManagerProtocol)?
+    private(set) var context: FingerContext?
+    
+    @IBOutlet weak var contentView: FingerView!
     var model = WalletManagerModel()
 
-	override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         setupData()
@@ -39,9 +40,7 @@ class WalletDetailViewController: BaseViewController {
     }
 
     func setupData() {
-        contentView.data = self.model
-        contentView.adapterModelToWalletDetailView(self.model)
-        self.title = self.model.name
+        contentView.adapterModelToFingerView(self.model)
     }
     
     func setupEvent() {
@@ -52,7 +51,7 @@ class WalletDetailViewController: BaseViewController {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
             
-            if let context = context as? WalletDetailContext {
+            if let context = context as? FingerContext {
                 self.context = context
             }
             
@@ -60,32 +59,32 @@ class WalletDetailViewController: BaseViewController {
         
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
-//            
+//
 //            self.endLoading()
-//            
+//
 //            switch state {
 //            case .initial:
 //                self.coordinator?.switchPageState(PageState.refresh(type: PageRefreshType.initial))
-//                
+//
 //            case .loading(let reason):
 //                if reason == .initialRefresh {
 //                    self.startLoading()
 //                }
-//                
+//
 //            case .refresh(let type):
 //                self.coordinator?.switchPageState(.loading(reason: type.mapReason()))
-//                
+//
 //            case .loadMore(let page):
 //                self.coordinator?.switchPageState(.loading(reason: PageLoadReason.manualLoadMore))
-//                
+//
 //            case .noMore:
 ////                self.stopInfiniteScrolling(self.tableView, haveNoMore: true)
 //                break
-//                
+//
 //            case .noData:
 ////                self.view.showNoData(<#title#>, icon: <#imageName#>)
 //                break
-//                
+//
 //            case .normal(let reason):
 ////                self.view.hiddenNoData()
 ////
@@ -96,10 +95,10 @@ class WalletDetailViewController: BaseViewController {
 ////                    self.stopPullRefresh(self.tableView)
 ////                }
 //                break
-//                
+//
 //            case .error(let error, let reason):
 ////                self.showToastBox(false, message: error.localizedDescription)
-//                
+//
 ////                if reason == PageLoadReason.manualLoadMore {
 ////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
 ////                }
@@ -114,7 +113,7 @@ class WalletDetailViewController: BaseViewController {
 
 //MARK: - TableViewDelegate
 
-//extension WalletDetailViewController: UITableViewDataSource, UITableViewDelegate {
+//extension FingerViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 10
 //    }
@@ -129,10 +128,9 @@ class WalletDetailViewController: BaseViewController {
 
 //MARK: - View Event
 
-extension WalletDetailViewController {
-    @objc func nameDidClicked(_ data:[String: Any]) {
-        let model: WalletManagerModel = data["model"] as! WalletManagerModel
-        self.coordinator?.pushToChangeWalletName(model: model)
+extension FingerViewController {
+    @objc func ChangePwdDidClicked(_ data:[String: Any]) {
+
     }
 }
 

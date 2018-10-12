@@ -12,6 +12,7 @@ import NBLCommonModule
 import Async
 
 protocol WalletDetailCoordinatorProtocol {
+    func pushToChangeWalletName(model: WalletManagerModel)
 }
 
 protocol WalletDetailStateManagerProtocol {
@@ -42,6 +43,15 @@ class WalletDetailCoordinator: NavCoordinator {
     override func register() {
         Broadcaster.register(WalletDetailCoordinatorProtocol.self, observer: self)
         Broadcaster.register(WalletDetailStateManagerProtocol.self, observer: self)
+    }
+    
+    func pushToChangeWalletName(model: WalletManagerModel) {
+        if let vc = R.storyboard.wallet.changeWalletNameViewController() {
+            let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            vc.model = model
+            self.rootVC.pushViewController(vc, animated: true)
+        }
     }
 }
 

@@ -49,12 +49,25 @@ extension WalletManagerViewController {
     }
     
     @objc func exportPrivateKeyClick(_ data: [String: Any]) {
-        self.coordinator?.pushToExportPrivateKey(self.data.address)
-//        self.coordinator?.pushToBackupMnemonicVC()
+        let model: WalletManagerModel = data["indicator"] as! WalletManagerModel
+        if model.type == .gemma {
+            self.coordinator?.pushToExportPrivateKey(self.data.address)
+        } else if model.type == .bluetooth {
+            self.coordinator?.pushToChangePassword(self.data.address)
+        }
     }
     
     @objc func changePasswordClick(_ data: [String: Any]) {
-        self.coordinator?.pushToChangePassword(self.data.address)
+        let model: WalletManagerModel = data["indicator"] as! WalletManagerModel
+        if model.type == .gemma {
+            self.coordinator?.pushToChangePassword(self.data.address)
+        } else if model.type == .bluetooth {
+            if model.fingerprinted == true {
+                self.coordinator?.pushToFingerVC(model: model)
+            } else {
+                self.coordinator?.pushToFingerVC(model: model)
+            }
+        }
     }
     
     @objc func btnClick(_ data: [String: Any]) {
