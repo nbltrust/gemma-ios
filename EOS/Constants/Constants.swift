@@ -118,7 +118,7 @@ enum CoinType: Int {
 //Node Datas
 struct EOSBaseURLNodesConfiguration {
     static let values = [
-//        "http://47.75.154.248:50003",
+        "http://47.75.154.248:50003",
                          "http://52.77.177.200:8888",
                          "http://api-mainnet.starteos.io",
                          "https://api.eosnewyork.io",
@@ -156,7 +156,6 @@ enum EOSAction:String {
     case buyram
     case sellram
     case voteproducer
-    case bltTransfer
 }
 
 enum EOSIOTable:String {

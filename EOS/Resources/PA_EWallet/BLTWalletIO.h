@@ -41,6 +41,7 @@ typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 
 typedef void(^ GetSignComplication)(NSString *sign);
 
+
 @property (nonatomic,strong) DidSearchDevice didSearchDevice;
 
 @property (nonatomic,strong) BLTDevice *selectDevice;
@@ -90,6 +91,7 @@ typedef void(^ GetSignComplication)(NSString *sign);
 - (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
 - (void)submmitWaitingVerfyPin:(NSString *)waitVerPin;
+
 
 @end
 
