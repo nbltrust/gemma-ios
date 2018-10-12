@@ -23,14 +23,14 @@ class FingerView: EOSBaseView {
     override var data: Any? {
         didSet {
             if let data = self.data as? WalletManagerModel {
-                self.dataDict = data.fingerDict
+                self.dataArray = data.fingerArray
             }
         }
     }
     
-    var dataDict : [String: String] = [:] {
+    var dataArray : [String] = [] {
         didSet {
-            dataDict["add"] = R.string.localizable.add_finger.key.localized()
+            dataArray.append(R.string.localizable.add_finger.key.localized())
             self.tableView.reloadData()
         }
     }
@@ -56,9 +56,9 @@ class FingerView: EOSBaseView {
         self.next?.sendEventWith(Event.FingerViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
     
-    func createSectionOneDataInfo(oneData: [String: String]) -> [LineView.LineViewModel] {
+    func createSectionOneDataInfo(oneData: [String]) -> [LineView.LineViewModel] {
         var array: [LineView.LineViewModel] = []
-        for content in oneData.values {
+        for content in oneData {
             let model = LineView.LineViewModel.init(name: content,
                                                     content: "",
                                                     image_name: R.image.icTabMore.name,
@@ -102,7 +102,7 @@ extension FingerView : UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return createSectionOneDataInfo(oneData: dataDict).count
+            return createSectionOneDataInfo(oneData: dataArray).count
         } else {
             return 1
         }
@@ -112,13 +112,13 @@ extension FingerView : UITableViewDataSource,UITableViewDelegate{
         if indexPath.section == 0 {
             let nibString = String.init(describing:type(of: HomeTableCell()))
             let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
-            cell.setup(createSectionOneDataInfo(oneData: dataDict)[indexPath.row], indexPath: indexPath)
+            cell.setup(createSectionOneDataInfo(oneData: dataArray)[indexPath.row], indexPath: indexPath)
             return cell
             
         } else {
             let nibString = String.init(describing:type(of: HomeTableCell()))
             let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
-            cell.setup(createSectionOneDataInfo(oneData: [R.string.localizable.change_password.key.localized(): R.string.localizable.change_password.key.localized()])[indexPath.row], indexPath: indexPath)
+            cell.setup(createSectionOneDataInfo(oneData: [R.string.localizable.change_password.key.localized()])[indexPath.row], indexPath: indexPath)
             return cell
         }
         
@@ -127,7 +127,7 @@ extension FingerView : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            if indexPath.row == dataDict.values.count {
+            if indexPath.row == dataArray.count {
                 self.next?.sendEventWith(Event.AddFingerDidClicked.rawValue, userinfo: [:])
             } else {
                 self.next?.sendEventWith(Event.ChangeFingerNameDidClicked.rawValue, userinfo: [:])

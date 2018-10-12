@@ -36,7 +36,7 @@ class FingerViewController: BaseViewController {
     }
     
     func setupUI() {
-        
+        self.title = R.string.localizable.fingerprint_password.key.localized()
     }
 
     func setupData() {

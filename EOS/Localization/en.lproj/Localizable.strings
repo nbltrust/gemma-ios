@@ -238,6 +238,9 @@
 "battery" = "电量";
 "finger" = "指纹";
 "add_finger" = "添加指纹";
+"change_name" = "修改名称";
+"delete_finger" = "删除指纹";
+
 //zsy end
 
 //eos errorcode start
