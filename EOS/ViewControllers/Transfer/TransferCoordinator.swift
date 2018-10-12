@@ -58,10 +58,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
     }
     
     func pushToTransferConfirmVC(data: ConfirmViewModel) {
-        var isBltWallet = false
-        if let wallet = WalletManager.shared.currentWallet() {
-            isBltWallet = (wallet.type == .bluetooth)
-        }
+        let isBltWallet = WalletManager.shared.isBluetoothWallet()
         if isBltWallet && !(BLTWalletIO.shareInstance()?.isConnection() ?? false) {
             let width = ModalSize.full
             let height = ModalSize.custom(size: 180)

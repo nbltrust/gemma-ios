@@ -606,7 +606,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         iRtn = PAEW_GetFPList(ppPAEWContext, devIdx, 0, &nListLen);
         if (iRtn != PAEW_RET_SUCCESS) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                complication(nil);
+                complication([NSArray new]);
             });
             return ;
         } else if (nListLen == 0) {
@@ -618,7 +618,11 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             pFPList = (FingerPrintID *)malloc(sizeof(FingerPrintID) * nListLen);
             iRtn = PAEW_GetFPList(ppPAEWContext, devIdx, pFPList, &nListLen);
             if (iRtn == PAEW_RET_SUCCESS) {
-                complication(pFPList);
+                NSMutableArray *tempData = [NSMutableArray new];
+                for (int i = 0; i < nListLen; i++) {
+                    [tempData addObject:[NSString stringWithFormat:@"%u",pFPList[i].data[0]]];
+                }
+                complication(tempData);
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     failedComplication([BLTUtils errorCodeToString:iRtn]);

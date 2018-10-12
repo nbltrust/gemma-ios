@@ -62,7 +62,7 @@ class TransferViewController: BaseViewController {
     }
     
     func checkWalletType() {
-        if let wallet = WalletManager.shared.currentWallet(), wallet.type == .bluetooth {
+        if WalletManager.shared.isBluetoothWallet() {
             let bltView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
             bltView.contentMode = .left
             bltView.image = R.image.ic_wookong()
