@@ -59,6 +59,9 @@ class ActionModel {
 class TransferActionModel: ActionModel {
     var amount: String = ""
     var remark: String = ""
+    var type: CreateAPPId = .gemma
+    var confirmType: AuthType = pinType
+    var sign: String = ""
 }
 
 class DelegateActionModel: ActionModel {
@@ -86,7 +89,7 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
     var abi: String = ""
     if action == EOSAction.transfer.rawValue || action == EOSAction.bltTransfer.rawValue {
         if let actionModel = actionModel as? TransferActionModel {
-            if let abiStr = EOSIO.getAbiJsonString(EOSIOContract.TOKEN_CODE, action: action, from: actionModel.fromAccount, to: actionModel.toAccount, quantity: actionModel.amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: actionModel.remark) {
+            if let abiStr = EOSIO.getAbiJsonString(EOSIOContract.TOKEN_CODE, action: EOSAction.transfer.rawValue, from: actionModel.fromAccount, to: actionModel.toAccount, quantity: actionModel.amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: actionModel.remark) {
                 abi = abiStr
             }
         }
@@ -172,10 +175,36 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
         EOSIONetwork.request(target: .abi_json_to_bin(json: abi), success: { (bin_json) in
             var transaction = ""
             let abiStr = bin_json["binargs"].stringValue
-            let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: actionModel.password)
+            var privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: actionModel.password)
             if action == EOSAction.transfer.rawValue {
                 transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
             } else if action == EOSAction.bltTransfer.rawValue {
+                if let keys = EOSIO.createKey(), let pri = keys[optional: 1] {
+                    privakey = pri
+                }
+                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
+                let transJson = JSON.init(parseJSON: transaction)
+                var transJsonMap = transJson.dictionaryObject
+                if let actionModel = actionModel as? TransferActionModel {
+                    var tempTransaction = transaction
+                    var tempMap = JSON.init(parseJSON: tempTransaction).dictionaryObject
+                    if let prewfixValue = tempMap?["ref_block_prefix"] {
+                        tempMap?["ref_block_prefix"] = String(format: "%d", prewfixValue as! CVarArg)
+                    }
+                    tempMap?.removeValue(forKey: "signatures")
+                    
+                    let jsonDic = json.dictionaryObject
+                    let chainId = jsonDic?["chain_id"] as? String ?? ""
+                    tempTransaction = (tempMap?.jsonString() ?? "")
+                    BLTWalletIO.shareInstance()?.getEOSSign(actionModel.confirmType, chainId: chainId, transaction: tempTransaction, success: { (sign) in
+                        transJsonMap?["sign"] = actionModel.sign
+                        transaction = transJsonMap?.jsonString() ?? ""
+                        pushTransaction(transaction, actionModel: actionModel, callback: callback)
+                    }, failed: { (failedReason) in
+                        callback(false,failedReason ?? actionModel.faile)
+                    })
+                    return
+                }
                 transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
                 let json = JSON.init(parseJSON: transaction)
                 var jsonMap = json.dictionaryObject
@@ -192,18 +221,7 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
             } else if action == EOSAction.voteproducer.rawValue {
                 transaction = EOSIO.getVoteTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, vote_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
             }
-            
-            EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
-                if let info = data.dictionaryObject,info["code"] == nil {
-                    callback(true, actionModel.success)
-                }else{
-                    callback(false, actionModel.faile)
-                }
-            }, error: { (error_code) in
-                callback(false, actionModel.faile)
-            }) { (error) in
-            }
-            
+            pushTransaction(transaction, actionModel: actionModel, callback: callback)
         }, error: { (code) in
             
         }, failure: { (error) in
@@ -213,6 +231,20 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
         
     }) { (error) in
         
+    }
+}
+
+func pushTransaction(_ transaction: String, actionModel: ActionModel, callback:@escaping (Bool, String)->()) {
+    EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
+        if let info = data.dictionaryObject,info["code"] == nil {
+            callback(true, actionModel.success)
+        }else{
+            callback(false, actionModel.faile)
+        }
+    }, error: { (error_code) in
+        callback(false, actionModel.faile)
+    }) { (error) in
+        callback(false,R.string.localizable.request_failed.key.localized() )
     }
 }
 

@@ -36,6 +36,7 @@ protocol HomeStateManagerProtocol {
     func createDataInfo() -> [LineView.LineViewModel]
     
     func checkAccount()
+
     func getCurrentFromLocal()
     
     func isBluetoothWallet() -> Bool

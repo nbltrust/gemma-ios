@@ -58,6 +58,37 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
     }
     
     func pushToTransferConfirmVC(data: ConfirmViewModel) {
+        var isBltWallet = false
+        if let wallet = WalletManager.shared.currentWallet() {
+            isBltWallet = (wallet.type == .bluetooth)
+        }
+        if isBltWallet && !(BLTWalletIO.shareInstance()?.isConnection() ?? false) {
+            let width = ModalSize.full
+            let height = ModalSize.custom(size: 180)
+            let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 180))
+            let customType = PresentationType.custom(width: width, height: height, center: center)
+
+            let presenter = Presentr(presentationType: customType)
+            presenter.dismissOnTap = false
+            presenter.keyboardTranslationType = .stickToTop
+
+            var context = BLTCardConnectContext()
+            context.connectSuccessed = { [weak self] in
+                guard let `self` = self else { return }
+                self.showComfirmVC(data: data, type: .bluetooth)
+            }
+
+            presentVC(BLTCardConnectCoordinator.self, animated: true, context: context, navSetup: { (nav) in
+                nav.navStyle = .white
+            }) { (top, target) in
+                top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
+            }
+        } else {
+            showComfirmVC(data: data, type: isBltWallet ? .bluetooth :.gemma)
+        }
+    }
+    
+    func showComfirmVC(data: ConfirmViewModel, type: CreateAPPId) {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 369)
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 369))
@@ -66,9 +97,10 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         let presenter = Presentr(presentationType: customType)
         presenter.dismissOnTap = false
         presenter.keyboardTranslationType = .stickToTop
-
+        
         var context = TransferConfirmContext()
         context.data = data
+        context.type = type
         
         presentVC(TransferConfirmCoordinator.self, animated: true, context: context, navSetup: { (nav) in
             nav.navStyle = .white

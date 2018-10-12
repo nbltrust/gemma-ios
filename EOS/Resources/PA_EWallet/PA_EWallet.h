@@ -2,7 +2,6 @@
 #define _PA_EWALLET_H_
 
 #include <stdint.h>
-#include <string.h>
 
 #ifndef _WIN32
 #include <stddef.h> //for size_t
@@ -400,6 +399,12 @@ typedef struct _PAEW_ERC20Info
 	unsigned char	pbTokenAddress[PAEW_ERC20_TOKEN_ADDRESS_LEN];
 } PAEW_ERC20Info;
 
+//image
+#define PAEW_IMAGE_NAME_MAX_LEN		63
+#define PAEW_LCD_CLEAR				0x00
+#define PAEW_LCD_SHOW_LOGO			0x01
+#define PAEW_LCD_CLEAR_SHOW_LOGO	0x02
+
 /*
 获取库的版本号
 [OUT] pbVersion：用于存储版本号的地址，目前的定义为：PA_VERSION_PRODUCT || PA_VERSION_RESERVED || PA_VERSION_MAJOR || PA_VERSION_MINOR
@@ -607,11 +612,12 @@ int EWALLET_API PAEW_DeriveTradeAddress(void * const pPAEWContext, const size_t 
 [IN] pPAEWContext：上下文结构体指针，不可为NULL
 [IN] nDevIndex：（个人版钱包专用）操作的设备索引号，范围为[0, nDevCount-1]
 [IN] nCoinType：币种类型PAEW_COIN_TYPE_XXX，必须与PAEW_DeriveTradeAddress时传入的币种一致
+[IN] nShowOnScreen：是否在屏幕上显示给用户以确认，0为不需用户确认，非0为需要用户确认
 [OUT] pbTradeAddress：接收数字货币地址的缓冲区，不可为NULL
 [IN OUT] pnTradeAddressLen：输入时的值表示pbTradeAddress缓冲区的长度，输出的值为数字货币地址的长度
 [RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
 */
-int EWALLET_API PAEW_GetTradeAddress(void * const pPAEWContext, const size_t nDevIndex, const unsigned char nCoinType, unsigned char * const pbTradeAddress, size_t * const pnTradeAddressLen);
+int EWALLET_API PAEW_GetTradeAddress(void * const pPAEWContext, const size_t nDevIndex, const unsigned char nCoinType, const unsigned char nShowOnScreen, unsigned char * const pbTradeAddress, size_t * const pnTradeAddressLen);
 
 /*
 比特币签名，要求先调用PAEW_DeriveTradeAddress
@@ -968,6 +974,90 @@ int EWALLET_API PAEW_GetERC20List(void * const pPAEWContext, const size_t nDevIn
 [RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
 */
 int EWALLET_API PAEW_ImportERC20Record(void * const pPAEWContext, const size_t nDevIndex, const unsigned char * const pbERC20RecordData, const size_t nERC20RecordLen);
+
+/*
+写入SN号（临时）
+[IN] pPAEWContext：上下文结构体指针，不可为NULL
+[IN] nDevIndex：操作的设备索引号，范围为[0, nDevCount-1]
+[IN] pbSerialNumber：存储SN号的存储区，不可为NULL
+[IN] nSerialNumberLen：pbSerialNumber的字节长度，必须为PAEW_DEV_INFO_SN_LEN
+[RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
+*/
+int EWALLET_API PAEW_WriteSN(void * const pPAEWContext, const size_t nDevIndex, const unsigned char * const pbSerialNumber, const size_t nSerialNumberLen);
+
+/*
+设置图像数据（仅用于指纹钱包）
+[IN] pPAEWContext：上下文结构体指针，不可为NULL
+[IN] nDevIndex：操作的设备索引号，范围为[0, nDevCount-1]
+[IN] nImageIndex：图像索引，范围为[0, nImageCount-1]
+[IN] pbImageData：图像数据，不可为NULL
+[IN] nImageDataLen：图像数据长度，不可为0
+[RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
+*/
+int EWALLET_API PAEW_SetImageData(void * const pPAEWContext, const size_t nDevIndex, const unsigned char nImageIndex, const unsigned char * const pbImageData, const size_t nImageDataLen);
+
+/*
+显示图像到屏幕（仅用于指纹钱包）
+[IN] pPAEWContext：上下文结构体指针，不可为NULL
+[IN] nDevIndex：操作的设备索引号，范围为[0, nDevCount-1]
+[IN] nImageIndex：需要显示的图像索引，范围为[0, nImageCount-1]
+[IN] nLCDMode：屏幕刷新模式，取值为PAEW_LCD_XXX
+[RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
+*/
+int EWALLET_API PAEW_ShowImage(void * const pPAEWContext, const size_t nDevIndex, const unsigned char nImageIndex, const unsigned char nLCDMode);
+
+/*
+设置主图像索引（仅用于指纹钱包）
+[IN] pPAEWContext：上下文结构体指针，不可为NULL
+[IN] nDevIndex：操作的设备索引号，范围为[0, nDevCount-1]
+[IN] nImageIndex：需要显示的图像索引，范围为[0, nImageCount-1]
+[RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
+*/
+int EWALLET_API PAEW_SetLogoImage(void * const pPAEWContext, const size_t nDevIndex, const unsigned char nImageIndex);
+
+/*
+获取图像列表（仅用于指纹钱包）
+[IN] pPAEWContext：上下文结构体指针，不可为NULL
+[IN] nDevIndex：操作的设备索引号，范围为[0, nDevCount-1]
+[OUT] pbImageIndex：保存图像索引的缓冲区，目前必须为NULL
+[OUT] pnImageCount：最大支持的图像个数，不可为NULL
+[RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
+*/
+int EWALLET_API PAEW_GetImageList(void * const pPAEWContext, const size_t nDevIndex, unsigned char * const pbImageIndex, size_t * const pnImageCount);
+
+/*
+获取图像名称（仅用于指纹钱包）
+[IN] pPAEWContext：上下文结构体指针，不可为NULL
+[IN] nDevIndex：操作的设备索引号，范围为[0, nDevCount-1]
+[IN] nImageIndex：需要显示的图像索引，范围为[0, nImageCount-1]
+[OUT] pbImageName：保存图像名称的缓冲区
+[OUT] pnImageCount：传入时表示pbImageName的长度（不可小于PAEW_IMAGE_NAME_MAX_LEN），传出时表示图像名称的真实长度
+[RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
+*/
+int EWALLET_API PAEW_GetImageName(void * const pPAEWContext, const size_t nDevIndex, const unsigned char nImageIndex, unsigned char * const pbImageName, size_t * const pnImageNameLen);
+
+/*
+设置图像名称（仅用于指纹钱包）
+[IN] pPAEWContext：上下文结构体指针，不可为NULL
+[IN] nDevIndex：操作的设备索引号，范围为[0, nDevCount-1]
+[IN] nImageIndex：需要显示的图像索引，范围为[0, nImageCount-1]
+[IN] pbImageName：保存图像名称的缓冲区，不可为NULL
+[IN] nImageCount：pbImageName的长度
+[RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
+*/
+int EWALLET_API PAEW_SetImageName(void * const pPAEWContext, const size_t nDevIndex, const unsigned char nImageIndex, const unsigned char * const pbImageName, const size_t nImageNameLen);
+
+/*
+转换二值BMP图像用于设置给设备（仅用于指纹钱包）
+[IN] pbOrigImage：原始图像数据，不可为NULL
+[IN] nOrigImageLen：原始图像数据长度
+[IN] nWidth：原始图像的像素宽度
+[IN] nHeight：原始图像的像素高度
+[OUT] pbDestImage：保存输出图像的缓冲区
+[OUT] pnDestImageLen：传入时表示pbDestImage的长度，传出时表示输出图像数据的真实长度
+[RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
+*/
+int EWALLET_API PAEW_ConvertBMP(const unsigned char * const pbOrigImage, const size_t nOrigImageLen, const size_t nWidth, const size_t nHeight, unsigned char * const pbDestImage, size_t * const pnDestImageLen);
 
 #ifdef __cplusplus
 };
