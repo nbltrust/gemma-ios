@@ -15,6 +15,7 @@ protocol WalletManagerCoordinatorProtocol {
     func pushToExportPrivateKey(_ pubKey: String)
     func pushToChangePassword(_ pubKey:String)
     func pushToBackupMnemonicVC()
+    func pushToDetailVC(model: WalletManagerModel)
 }
 
 protocol WalletManagerStateManagerProtocol {
@@ -22,6 +23,9 @@ protocol WalletManagerStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<WalletManagerState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func connect()
+    func disConnect()
 }
 
 class WalletManagerCoordinator: NavCoordinator {
@@ -77,6 +81,24 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
+    
+    func pushToWalletDetail(model: WalletManagerModel) {
+        if let vc = R.storyboard.wallet.changeWalletNameViewController() {
+            let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            vc.model = model
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func pushToDetailVC(model: WalletManagerModel) {
+        if let vc = R.storyboard.wallet.walletDetailViewController() {
+            let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            vc.model = model
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
@@ -90,4 +112,11 @@ extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func connect() {
+        
+    }
+    
+    func disConnect() {
+        
+    }
 }
