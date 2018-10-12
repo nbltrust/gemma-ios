@@ -78,13 +78,4 @@ extension WalletManagerViewController {
             self.coordinator?.connect()
         }
     }
-    
-    @objc func btnClick(_ data: [String: Any]) {
-        let model: WalletManagerModel = data["data"] as! WalletManagerModel
-        if model.connected == true {
-            self.coordinator?.disConnect()
-        } else {
-            self.coordinator?.connect()
-        }
-    }
 }
