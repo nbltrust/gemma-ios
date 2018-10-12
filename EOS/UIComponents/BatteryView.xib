@@ -19,14 +19,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="btM-Yo-6kI">
-            <rect key="frame" x="0.0" y="0.0" width="194" height="89"/>
+            <rect key="frame" x="0.0" y="0.0" width="163" height="79"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ze4-DX-kMH">
-                    <rect key="frame" x="0.0" y="0.0" width="24" height="11.5"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ze4-DX-kMH">
+                    <rect key="frame" x="0.0" y="0.0" width="160" height="79"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Q7-T6-p1M">
-                            <rect key="frame" x="2" y="2" width="0.0" height="7.5"/>
+                            <rect key="frame" x="2" y="2" width="0.0" height="75"/>
                             <color key="backgroundColor" red="0.77600000000000002" green="0.79200000000000004" blue="0.871" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" id="F29-mD-nZ9"/>
@@ -41,9 +41,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="0Q7-T6-p1M" firstAttribute="leading" secondItem="Ze4-DX-kMH" secondAttribute="leading" constant="2" id="QpM-Kn-1eG"/>
-                        <constraint firstAttribute="width" constant="24" id="UQJ-0s-m64"/>
                         <constraint firstItem="0Q7-T6-p1M" firstAttribute="top" secondItem="Ze4-DX-kMH" secondAttribute="top" constant="2" id="ecT-G2-Lzw"/>
-                        <constraint firstAttribute="height" constant="11.5" id="ggV-4X-kAY"/>
                         <constraint firstAttribute="bottom" secondItem="0Q7-T6-p1M" secondAttribute="bottom" constant="2" id="h1N-6h-dUU"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -59,7 +57,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nub" translatesAutoresizingMaskIntoConstraints="NO" id="y3l-cQ-B2j">
-                    <rect key="frame" x="192" y="4" width="2" height="4"/>
+                    <rect key="frame" x="161" y="37.5" width="2" height="4"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="4" id="UR3-T4-x0s"/>
                         <constraint firstAttribute="width" constant="2" id="tiG-Xl-0Mh"/>
@@ -67,8 +65,9 @@
                 </imageView>
             </subviews>
             <constraints>
+                <constraint firstItem="y3l-cQ-B2j" firstAttribute="leading" secondItem="Ze4-DX-kMH" secondAttribute="trailing" constant="1" id="7my-b8-2p5"/>
                 <constraint firstItem="Ze4-DX-kMH" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="BF1-5L-T5y"/>
-                <constraint firstAttribute="bottom" secondItem="Ze4-DX-kMH" secondAttribute="bottom" id="VdA-bZ-P6u"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="bottom" secondItem="Ze4-DX-kMH" secondAttribute="bottom" id="BuG-dR-AdO"/>
                 <constraint firstItem="y3l-cQ-B2j" firstAttribute="centerY" secondItem="Ze4-DX-kMH" secondAttribute="centerY" id="jnw-mr-dOu"/>
                 <constraint firstAttribute="trailing" secondItem="y3l-cQ-B2j" secondAttribute="trailing" id="mbz-Y4-OoL"/>
                 <constraint firstItem="Ze4-DX-kMH" firstAttribute="top" secondItem="btM-Yo-6kI" secondAttribute="top" id="p0K-7f-Zr8"/>
@@ -76,7 +75,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
-            <point key="canvasLocation" x="-312" y="-413.3433283358321"/>
+            <point key="canvasLocation" x="-336.80000000000001" y="-417.8410794602699"/>
         </view>
     </objects>
     <resources>

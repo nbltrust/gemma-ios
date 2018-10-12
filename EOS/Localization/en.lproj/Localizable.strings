@@ -227,6 +227,12 @@
 "error_chain_fail" = "上链失败";
 "error_account_rush_regist" = "EOS账户被抢注";
 "connect_customer_service" = "请联系客服";
+"change_fingerprint" = "修改指纹";
+"connect" = "连接";
+"disconnect" = "断开连接";
+"fingerprint_password" = "指纹与密码";
+"unpair" = "取消配对";
+"format" = "格式化";
 
 //zsy end
 

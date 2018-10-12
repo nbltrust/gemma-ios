@@ -30,12 +30,32 @@ class WalletViewController: BaseViewController {
             var model = WalletManagerModel()
             model.name = wallet.name ?? "--"
             model.address = wallet.publicKey ?? "--"
+            model.type = wallet.type ?? .gemma
+            if model.type == .bluetooth {
+                model.batteryProgress = 0.5//实时获取,暂时填0.5
+                model.connected = true//实时获取
+            }
             if model.name == WalletManager.shared.currentWallet()?.name {
                 indexPath = index
             }
             
             dataArray.append(model)
         }
+        ////测试代码
+        var model = WalletManagerModel()
+        model.name = "wookong"
+        model.address = "12345678"
+        model.type = .bluetooth
+        if model.type == .bluetooth {
+            model.batteryProgress = 0.5//实时获取,暂时填0.5
+            model.connected = true//实时获取
+        }
+        if model.name == WalletManager.shared.currentWallet()?.name {
+            indexPath = dataArray.count
+        }
+        dataArray.append(model)
+        ////
+        
         tableView.reloadData()
         tableView.selectRow(at: IndexPath(row: indexPath, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.none)
     }
