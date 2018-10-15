@@ -542,11 +542,18 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         const char foot[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
         memcpy(tx + 32 + transSize, foot, 32);
         
-//        NSMutableString * result = [[NSMutableString alloc] init];
-//        size_t i;
-//        for (i=0; i<transSize; i++) {
-//            [result appendString:[NSString stringWithFormat:@"%02x",eosPut[i]]];
-//        }
+        
+        NSMutableString * result = [[NSMutableString alloc] init];
+        size_t m;
+        for (m=0; m<transSize; m++) {
+            [result appendString:[NSString stringWithFormat:@"%02x",eosPut[m]]];
+        }
+        
+        NSMutableString * toresult = [[NSMutableString alloc] init];
+        size_t n;
+        for (n=0; n<transSize + 64; n++) {
+            [toresult appendString:[NSString stringWithFormat:@"%02x",tx[n]]];
+        }
 //
 //        unsigned char tx[1024] = {};
 //
@@ -581,6 +588,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
                 return;
             }
             NSString *sign = [[NSString alloc] initWithBytes:pbTXSig length:pnTXSigLen encoding:NSASCIIStringEncoding];
+            NSLog(@"测试%@\n测试%@\n测试%@",result,toresult,sign);
             dispatch_async(dispatch_get_main_queue(), ^{
                 complication(sign);
             });

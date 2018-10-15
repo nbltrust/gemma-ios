@@ -87,8 +87,8 @@ class TransferViewController: BaseViewController {
             
         }, onDisposed: nil).disposed(by: disposeBag)
         
-        self.coordinator?.state.balanceLocal.asObservable().subscribe(onNext: { (blance) in
-            
+        self.coordinator?.state.balanceLocal.asObservable().subscribe(onNext: {[weak self] (blance) in
+            guard let `self` = self else { return }
             self.transferContentView.balance = blance!
         }, onError: nil, onCompleted: {
             
@@ -104,7 +104,7 @@ class TransferViewController: BaseViewController {
                                         self.transferContentView.moneyTitleTextView.checkStatus = .warning
 
                                     }
-                                    return arg0.0 && arg0.1.0
+                                    return arg0.0
             }.bind(to: self.transferContentView.nextButton.isEnabel).disposed(by: disposeBag)
         
         
