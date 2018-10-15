@@ -61,7 +61,6 @@ class TransferActionModel: ActionModel {
     var remark: String = ""
     var type: CreateAPPId = .gemma
     var confirmType: AuthType = pinType
-    var sign: String = ""
 }
 
 class DelegateActionModel: ActionModel {
@@ -197,7 +196,7 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                     let chainId = jsonDic?["chain_id"] as? String ?? ""
                     tempTransaction = (tempMap?.jsonString() ?? "")
                     BLTWalletIO.shareInstance()?.getEOSSign(actionModel.confirmType, chainId: chainId, transaction: tempTransaction, success: { (sign) in
-                        transJsonMap?["sign"] = actionModel.sign
+                        transJsonMap?["signatures"] = sign?.substring(from: 0, length: (sign?.count ?? 1) - 1)
                         transaction = transJsonMap?.jsonString() ?? ""
                         pushTransaction(transaction, actionModel: actionModel, callback: callback)
                     }, failed: { (failedReason) in
@@ -205,11 +204,6 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                     })
                     return
                 }
-                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
-                let json = JSON.init(parseJSON: transaction)
-                var jsonMap = json.dictionaryObject
-                jsonMap?.removeValue(forKey: "sign")
-                transaction = jsonMap?.jsonString() ?? ""
             } else if action == EOSAction.delegatebw.rawValue {
                 transaction = EOSIO.getDelegateTransaction(privakey, code: EOSIOContract.EOSIO_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
             } else if action == EOSAction.undelegatebw.rawValue {

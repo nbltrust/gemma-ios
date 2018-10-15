@@ -26,7 +26,10 @@ protocol WalletManagerStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func connect()
+    
     func disConnect()
+    
+    func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication)
 }
 
 class WalletManagerCoordinator: NavCoordinator {
@@ -119,5 +122,9 @@ extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
     
     func disConnect() {
         
+    }
+    
+    func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication) {
+        BLTWalletIO.shareInstance()?.getFPList(success, failed: failed)
     }
 }
