@@ -537,4 +537,22 @@ class WalletManager {
         }
         return nil
     }
+    
+    func getFingerNameArray(indexArray: [String]) -> [String]{
+        var array: [String] = []
+        for str in indexArray {
+            if Defaults[WalletManager.shared.getCurrentSavedPublicKey() + str] == nil {
+                Defaults[WalletManager.shared.getCurrentSavedPublicKey() + str] = R.string.localizable.finger.key.localized() + str
+            }
+            if let name = Defaults[WalletManager.shared.getCurrentSavedPublicKey() + str] as? String {
+                array.append(name)
+            }
+        }
+        return array
+    }
+    
+    func updateFingerName(_  model:WalletManagerModel, index:Int, fingerName:String) {
+        Defaults[model.address + model.fingerIndexArray[index]] = fingerName
+    }
+    
 }

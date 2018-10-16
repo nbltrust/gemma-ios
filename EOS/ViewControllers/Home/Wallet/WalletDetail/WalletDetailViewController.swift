@@ -21,13 +21,13 @@ class WalletDetailViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupData()
         setupUI()
         setupEvent()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupData()
     }
     
     override func refreshViewController() {

@@ -18409,7 +18409,7 @@
 		3B858BA3217077DC00499FAC /* Finger */ = {
 			isa = PBXGroup;
 			children = (
-				3B858BDD2170A16800499FAC /* DeleteFinger */,
+				3B858BDD2170A16800499FAC /* ManagerFinger */,
 				3B858BC62170783100499FAC /* Views */,
 				3B858BBE217077FB00499FAC /* FingerCoordinator.swift */,
 				3B858BBF217077FB00499FAC /* FingerActions.swift */,
@@ -18429,7 +18429,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		3B858BDD2170A16800499FAC /* DeleteFinger */ = {
+		3B858BDD2170A16800499FAC /* ManagerFinger */ = {
 			isa = PBXGroup;
 			children = (
 				3B858C002170A1A700499FAC /* Views */,
@@ -18438,7 +18438,7 @@
 				3B858BFA2170A19400499FAC /* DeleteFingerViewController.swift */,
 				3B858BFB2170A19400499FAC /* DeleteFingerReducers.swift */,
 			);
-			path = DeleteFinger;
+			path = ManagerFinger;
 			sourceTree = "<group>";
 		};
 		3B858C002170A1A700499FAC /* Views */ = {

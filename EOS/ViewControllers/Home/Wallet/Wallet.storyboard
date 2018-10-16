@@ -193,6 +193,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zfj-1z-1Re"/>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="Zop-i1-B76" id="Fki-tp-unf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yi9-oJ-KAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

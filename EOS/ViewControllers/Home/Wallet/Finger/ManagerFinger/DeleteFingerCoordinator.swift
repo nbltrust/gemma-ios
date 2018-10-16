@@ -12,6 +12,7 @@ import NBLCommonModule
 import Async
 
 protocol DeleteFingerCoordinatorProtocol {
+    func pushToChangeWalletName(model: WalletManagerModel, index: Int)
 }
 
 protocol DeleteFingerStateManagerProtocol {
@@ -46,7 +47,15 @@ class DeleteFingerCoordinator: NavCoordinator {
 }
 
 extension DeleteFingerCoordinator: DeleteFingerCoordinatorProtocol {
-    
+    func pushToChangeWalletName(model: WalletManagerModel, index: Int) {
+        if let vc = R.storyboard.wallet.changeWalletNameViewController() {
+            let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            vc.model = model
+            vc.index = index
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension DeleteFingerCoordinator: DeleteFingerStateManagerProtocol {
