@@ -12,6 +12,7 @@ import SwifterSwift
 import SwiftyUserDefaults
 import Repeat
 import SwiftDate
+//import Eth_golang_lib
 
 class WalletManager {
     static let shared = WalletManager()
