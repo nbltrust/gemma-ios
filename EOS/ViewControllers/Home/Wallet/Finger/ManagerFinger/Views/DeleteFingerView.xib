@@ -29,7 +29,7 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="NO"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="change_name"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="image_name" value="icArrow"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naS-gG-Gkm" customClass="Button" customModule="EOS" customModuleProvider="target">

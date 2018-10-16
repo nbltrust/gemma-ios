@@ -23,7 +23,7 @@ class FingerView: EOSBaseView {
     override var data: Any? {
         didSet {
             if let data = self.data as? WalletManagerModel {
-                self.dataArray = data.fingerArray
+                self.dataArray = data.fingerNameArray
             }
         }
     }
@@ -61,7 +61,7 @@ class FingerView: EOSBaseView {
         for content in oneData {
             let model = LineView.LineViewModel.init(name: content,
                                                     content: "",
-                                                    image_name: R.image.icTabMore.name,
+                                                    image_name: R.image.icArrow.name,
                                                     name_style: LineViewStyleNames.normal_name,
                                                     content_style: LineViewStyleNames.normal_content,
                                                     isBadge: false,
@@ -127,10 +127,12 @@ extension FingerView : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            if indexPath.row == dataArray.count {
+            if indexPath.row == (dataArray.count - 1) {
                 self.next?.sendEventWith(Event.AddFingerDidClicked.rawValue, userinfo: [:])
             } else {
-                self.next?.sendEventWith(Event.ChangeFingerNameDidClicked.rawValue, userinfo: [:])
+                if let newData = self.data {
+                    self.next?.sendEventWith(Event.ChangeFingerNameDidClicked.rawValue, userinfo: ["data": newData, "index": indexPath.row])
+                }
             }
         } else {
             self.next?.sendEventWith(Event.ChangePwdDidClicked.rawValue, userinfo: [:])

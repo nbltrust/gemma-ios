@@ -12,6 +12,7 @@ import NBLCommonModule
 import Async
 
 protocol FingerCoordinatorProtocol {
+    func pushToManagerFingerVC(model: WalletManagerModel, index: Int)
 }
 
 protocol FingerStateManagerProtocol {
@@ -46,7 +47,15 @@ class FingerCoordinator: NavCoordinator {
 }
 
 extension FingerCoordinator: FingerCoordinatorProtocol {
-    
+    func pushToManagerFingerVC(model: WalletManagerModel, index: Int) {
+        if let vc = R.storyboard.wallet.deleteFingerViewController() {
+            let coordinator = DeleteFingerCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            vc.model = model
+            vc.index = index
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension FingerCoordinator: FingerStateManagerProtocol {
