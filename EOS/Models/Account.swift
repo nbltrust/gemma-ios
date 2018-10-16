@@ -119,4 +119,31 @@ open class GemmaDateFormatTransform: DateFormatterTransform {
     }
 }
 
+extension Account {
+    func toAccountModel() -> AccountModel {
+        var accountModel = AccountModel()
+        accountModel.account_name = self.account_name
+        accountModel.net_weight = self.total_resources?.net_weight
+        accountModel.cpu_weight = self.total_resources?.cpu_weight
+        accountModel.ram_bytes = self.total_resources?.ram_bytes
+        accountModel.from = self.self_delegated_bandwidth?.from
+        accountModel.to = self.self_delegated_bandwidth?.to
+        accountModel.delegate_net_weight = self.self_delegated_bandwidth?.net_weight
+        accountModel.delegate_cpu_weight = self.self_delegated_bandwidth?.cpu_weight
+        accountModel.request_time = self.refund_request?.request_time
+        accountModel.net_amount = self.refund_request?.net_amount
+        accountModel.cpu_amount = self.refund_request?.cpu_amount
+        accountModel.net_used = self.net_limit?.used
+        accountModel.net_available = self.net_limit?.available
+        accountModel.net_max = self.net_limit?.max
+        accountModel.cpu_used = self.cpu_limit?.used
+        accountModel.cpu_available = self.cpu_limit?.available
+        accountModel.cpu_max = self.cpu_limit?.max
+        accountModel.ram_quota = self.ram_quota
+        accountModel.ram_usage = self.ram_usage
+        accountModel.created = self.created
+        
+        return accountModel
+    }
+}
 

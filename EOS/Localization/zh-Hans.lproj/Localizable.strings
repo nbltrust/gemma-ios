@@ -211,12 +211,35 @@
 "pay_timeout" = "支付超时";
 "price_change" = "价格变动";
 "pay_timeout_tips" = "若你已支付，费用将在24小时内退回到微信。";
-"price_change_tips" = "由于EOS价格变动，创建账户的费用已变为 55 RAM 。";
+"price_change_tips" = "由于EOS价格变动，创建账户的费用已变为 ";
 "pay_sure" = "确认支付";
 "lead_in_fail" = "导入钱包失败";
 "verify_prikey_title" = "请输入备份的私钥，已验证是否正确";
 "verify" = "验证";
 "prikey_verify_fail" = "私钥验证失败";
+"confirm" = "确定";
+"refund_title" = "已退款";
+"closed" = "订单已关闭";
+"userpaying" = "正在支付";
+"payerror" = "支付错误";
+"check_network" = "请检查网络";
+"refund_money_suf" = "，24小时内会退款";
+"error_chain_fail" = "上链失败";
+"error_account_rush_regist" = "EOS账户被抢注";
+"connect_customer_service" = "请联系客服";
+"change_fingerprint" = "修改指纹";
+"connect" = "连接";
+"disconnect" = "断开连接";
+"fingerprint_password" = "指纹与密码";
+"unpair" = "取消配对";
+"format" = "格式化";
+"name" = "名称";
+"pubkey" = "公钥";
+"battery" = "电量";
+"finger" = "指纹";
+"add_finger" = "添加指纹";
+"change_name" = "修改名称";
+"delete_finger" = "删除指纹";
 
 //zsy end
 
@@ -541,6 +564,7 @@
 "pair_second_step" = "请在WOOKONG Bio上按指纹以确认初始化";
 "pair_third_step" = "请输入WOOKONG Bio 的密码以确认配对";
 "pair_third_step_pla" = "请输入WOOKONG Bio的密码";
+"pair_confirm_transfer" = "请在WOOKONG Bio上按键以确认转账";
 "confirm_pair" = "确认配对";
 "wookong_pas_set_title" = "设置WOOKONG Bio密码";
 "wookong_creat_new_wallet" = "创建新钱包";
@@ -552,3 +576,13 @@
 "wookong_set_fp_notfull" = "调整握持姿势\n获取指纹边缘";
 "wookong_jump" = "跳过";
 "wookong_set_fp_success" = "指纹设置成功！";
+"wookong_connect_successed" = "已连接";
+"wookong_connect_none" = "未连接";
+"wookong_connect_ing" = "连接中";
+"wookong_connect_nopower" = "电量不足";
+"wookong_connect_failed" = "连接失败";
+"wookong_connecting_title" = "若未找到，请检查手机蓝牙和设备电源。";
+"wookong_connecting" = "正在连接WOOKONG Bio";
+"wookong_connectfailed_title" = "连接失败。请检查手机蓝牙和设备电源。";
+"wookong_reconnect" = "重试连接";
+"wookong_fp_confirm_title" = "请在WOOKONG Bio上按指纹以确认授权";

@@ -18,6 +18,8 @@ func PayToActivateReducer(action:Action, state:PayToActivateState?) -> PayToActi
         state.billInfo.accept(model)
     case let action as OrderIdAction:
         state.orderId = action.orderId
+    case let action as NumsAction:
+        state.nums = action.nums + 1
     default:
         break
     }

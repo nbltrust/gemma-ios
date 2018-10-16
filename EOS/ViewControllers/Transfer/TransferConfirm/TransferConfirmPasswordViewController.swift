@@ -74,30 +74,44 @@ extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String : Any]) {
         guard let context = context else { return }
         
-        guard let priKey = WalletManager.shared.getCachedPriKey(context.publicKey, password: passwordView.textField.text!) else {
-            self.errCount  = self.errCount + 1
-            if self.errCount == 3 {
-                if let message = WalletManager.shared.getPasswordHint(context.publicKey) {
-                    self.showError(message: message)
+        if context.type != confirmType.bltTransfer.rawValue {
+            guard let priKey = WalletManager.shared.getCachedPriKey(context.publicKey, password: passwordView.textField.text!) else {
+                self.errCount  = self.errCount + 1
+                if self.errCount == 3 {
+                    if let message = WalletManager.shared.getPasswordHint(context.publicKey) {
+                        self.showError(message: message)
+                    }
+                } else {
+                    self.showError(message: R.string.localizable.password_not_match.key.localized())
                 }
-            } else {
-                self.showError(message: R.string.localizable.password_not_match.key.localized())
-            }
-            return
-        }
-        
-        if let callback = context.callback {
-            if context.type != confirmType.voteNode.rawValue {
-                callback(priKey, self)
                 return
+            }
+            
+            if let callback = context.callback {
+                if context.type != confirmType.voteNode.rawValue {
+                    callback(priKey, self)
+                    return
+                }
             }
         }
         
         let myType = context.type
         if myType == confirmType.transfer.rawValue {
             self.view.endEditing(true)
-            self.startLoading()
+            self.startLoading(true)
             self.coordinator?.transferAccounts(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
+                guard let `self` = self else { return }
+                if isSuccess {
+                    self.endLoading()
+                    self.coordinator?.finishTransfer()
+                } else {
+                    self.showError(message: message)
+                }
+            })
+        } else if myType == confirmType.bltTransfer.rawValue {
+            self.view.endEditing(true)
+            self.startLoading(true)
+            self.coordinator?.bltTransferAccounts(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.endLoading()

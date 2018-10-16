@@ -11,6 +11,7 @@ import ReSwift
 import Presentr
 import SwiftyJSON
 import NBLCommonModule
+import SwiftyUserDefaults
 
 protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
@@ -35,6 +36,14 @@ protocol HomeStateManagerProtocol {
     func createDataInfo() -> [LineView.LineViewModel]
     
     func checkAccount()
+
+    func getCurrentFromLocal()
+    
+    func isBluetoothWallet() -> Bool
+    
+    func bluetoothDataInfo() -> LineView.LineViewModel
+    
+    func handleBluetoothDevice()
 }
 
 class HomeCoordinator: NavCoordinator {
@@ -146,6 +155,15 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func getAccountFromLocal() {
+        
+        if let jsonStr = Defaults.object(forKey: WalletManager.shared.getAccount()) as? String {
+            if let accountObj = Account.deserialize(from: jsonStr) {
+                self.store.dispatch(AccountFetchedAction(info: accountObj))
+            }
+        }
+    }
+    
     func getAccountInfo(_ account:String) {
         EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
             self.store.dispatch(BalanceFetchedAction(balance: json))
@@ -217,5 +235,32 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     
     func checkAccount() {
         WalletManager.shared.checkCurrentWallet()
+    }
+    
+    func getCurrentFromLocal() {
+        let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
+        self.store.dispatch(AccountFetchedFromLocalAction(model: model))
+    }
+    
+    func isBluetoothWallet() -> Bool {
+        if let currentWallet = WalletManager.shared.currentWallet() {
+            return currentWallet.type == .bluetooth
+        }
+        return false
+    }
+    
+    func bluetoothDataInfo() -> LineView.LineViewModel {
+        return LineView.LineViewModel.init(name: R.string.localizable.wookong_title.key.localized(),
+                                    content: "",
+                                    image_name: R.image.icArrow.name,
+                                    name_style: LineViewStyleNames.normal_name,
+                                    content_style: LineViewStyleNames.normal_content,
+                                    isBadge: false,
+                                    content_line_number: 1,
+                                    isShowLineView: false)
+    }
+    
+    func handleBluetoothDevice() {
+        
     }
 }

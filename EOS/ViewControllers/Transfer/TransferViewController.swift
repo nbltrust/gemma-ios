@@ -42,14 +42,13 @@ class TransferViewController: BaseViewController {
         super.viewWillAppear(true)
         let name = WalletManager.shared.getAccount()
         transferContentView.setAccountName(name: name)
-        getData()
         setUpUI()
+        getData()
+        checkWalletType()
     }
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.coordinator?.fetchUserAccount()
     }
     
     func setUpUI() {
@@ -60,11 +59,22 @@ class TransferViewController: BaseViewController {
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
         transferContentView.reload()
         clearData()
-//        let info = WalletManager.shared.getAccount()
-//        transferContentView.setInfo(info: <#T##String#>)
+    }
+    
+    func checkWalletType() {
+        if WalletManager.shared.isBluetoothWallet() {
+            let bltView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
+            bltView.contentMode = .left
+            bltView.image = R.image.ic_wookong()
+            transferContentView.accountTitleTextView.textField.leftView = bltView
+            transferContentView.accountTitleTextView.textField.leftViewMode = .always
+            return
+        }
+        transferContentView.accountTitleTextView.textField.leftView = UIView()
     }
     
     func getData() {
+        self.coordinator?.getCurrentFromLocal()
         self.coordinator?.fetchUserAccount(WalletManager.shared.getAccount())
     }
 
@@ -77,6 +87,12 @@ class TransferViewController: BaseViewController {
             
         }, onDisposed: nil).disposed(by: disposeBag)
         
+        self.coordinator?.state.balanceLocal.asObservable().subscribe(onNext: {[weak self] (blance) in
+            guard let `self` = self else { return }
+            self.transferContentView.balance = blance!
+        }, onError: nil, onCompleted: {
+            
+        }, onDisposed: nil).disposed(by: disposeBag)
         
         Observable.combineLatest(self.coordinator!.state.toNameValid.asObservable(),
                                  self.coordinator!.state.moneyValid.asObservable()
@@ -88,7 +104,7 @@ class TransferViewController: BaseViewController {
                                         self.transferContentView.moneyTitleTextView.checkStatus = .warning
 
                                     }
-                                    return arg0.0 && arg0.1.0
+                                    return arg0.0
             }.bind(to: self.transferContentView.nextButton.isEnabel).disposed(by: disposeBag)
         
         

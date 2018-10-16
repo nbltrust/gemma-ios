@@ -15,6 +15,8 @@ protocol WalletManagerCoordinatorProtocol {
     func pushToExportPrivateKey(_ pubKey: String)
     func pushToChangePassword(_ pubKey:String)
     func pushToBackupMnemonicVC()
+    func pushToDetailVC(model: WalletManagerModel)
+    func pushToFingerVC(model: WalletManagerModel)
 }
 
 protocol WalletManagerStateManagerProtocol {
@@ -22,6 +24,12 @@ protocol WalletManagerStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<WalletManagerState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
+    
+    func connect()
+    
+    func disConnect()
+    
+    func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication)
 }
 
 class WalletManagerCoordinator: NavCoordinator {
@@ -77,6 +85,24 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
+    
+    func pushToDetailVC(model: WalletManagerModel) {
+        if let vc = R.storyboard.wallet.walletDetailViewController() {
+            let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            vc.model = model
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func pushToFingerVC(model: WalletManagerModel) {
+        if let vc = R.storyboard.wallet.fingerViewController() {
+            let coordinator = FingerCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            vc.model = model
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
@@ -90,4 +116,15 @@ extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
+    func connect() {
+        
+    }
+    
+    func disConnect() {
+        
+    }
+    
+    func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication) {
+        BLTWalletIO.shareInstance()?.getFPList(success, failed: failed)
+    }
 }

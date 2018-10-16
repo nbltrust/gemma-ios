@@ -28,6 +28,7 @@ struct TransferState:BaseState {
     var balance : BehaviorRelay<String?> = BehaviorRelay(value: "")
     var moneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
     var toNameValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    var balanceLocal : BehaviorRelay<String?> = BehaviorRelay(value: "")
 }
 
 struct moneyAction: Action {

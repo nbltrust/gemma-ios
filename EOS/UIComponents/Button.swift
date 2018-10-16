@@ -14,6 +14,8 @@ enum ButtonStyle: Int {
     case full = 1
     case border
     case fullWhite
+    case fullWhiteTwo
+    case fullWhiteTwoScarlet
 }
 
 class Button: UIView {
@@ -48,6 +50,10 @@ class Button: UIView {
             fullButton()
         case ButtonStyle.fullWhite.rawValue:
             fullWhiteButton()
+        case ButtonStyle.fullWhiteTwo.rawValue:
+            fullWhiteTwoButton()
+        case ButtonStyle.fullWhiteTwoScarlet.rawValue:
+            fullWhiteTwoScarletButton()
         default:
             return
         }
@@ -79,6 +85,20 @@ class Button: UIView {
     fileprivate func fullWhiteButton() {
         button.backgroundColor = UIColor.white
         button.setTitleColor(UIColor.cornflowerBlueTwo, for: .normal)
+        button.layer.borderColor = UIColor.clear.cgColor
+        button.isUserInteractionEnabled = true
+    }
+    
+    fileprivate func fullWhiteTwoButton() {
+        button.backgroundColor = UIColor.whiteTwo
+        button.setTitleColor(UIColor.cornflowerBlue, for: .normal)
+        button.layer.borderColor = UIColor.clear.cgColor
+        button.isUserInteractionEnabled = true
+    }
+    
+    fileprivate func fullWhiteTwoScarletButton() {
+        button.backgroundColor = UIColor.whiteTwo
+        button.setTitleColor(UIColor.scarlet, for: .normal)
         button.layer.borderColor = UIColor.clear.cgColor
         button.isUserInteractionEnabled = true
     }

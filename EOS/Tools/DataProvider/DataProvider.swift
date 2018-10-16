@@ -15,6 +15,23 @@ class DataProvider {
     
     fileprivate var dbQueue: DatabaseQueue = DBManager.shared.dbQueue
     
+    //Update part colum
+    func updateData(_ tableName: String, newData: [String : Any], valueConditon: DataFetchCondition? = nil) throws {
+        try updateData(tableName, newData: newData, valueConditions: valueConditon == nil ? [] : [valueConditon!])
+    }
+    
+    func updateData(_ tableName: String, newData: [String : Any], valueConditions: [DataFetchCondition]) throws {
+        try updateData(tableName, newData: newData, mulValueConditons: [valueConditions])
+    }
+    
+    func updateData(_ tableName: String, newData: [String : Any], mulValueConditons: [[DataFetchCondition]]) throws {
+        try dbQueue.write { db in
+            let sqlStr = self.sqlStringWith(mulValueConditons)
+            let updateStr = self.sqlSetStringWith(newData)
+            try db.execute(String(format: "UPDATE %@ %@ %@", tableName, updateStr, sqlStr))
+        }
+    }
+    
     //Delete
     func deleteData(_ tableName: String, valueConditon: DataFetchCondition? = nil) throws {
         try deleteData(tableName, valueConditions: valueConditon == nil ? [] : [valueConditon!])
@@ -76,6 +93,20 @@ class DataProvider {
         return datas
     }
     
+    func sqlSetStringWith(_ newData: [String : Any]) -> String {
+        var sqlStr = ""
+        
+        newData.forEachInParallel { (arg0) in
+            sqlStr.append(arg0.key + "= '" + "\(arg0.value)" + "',")
+        }
+
+        if !sqlStr.isEmpty {
+            sqlStr.removeLast()
+            sqlStr = "SET " + sqlStr
+        }
+        return sqlStr
+    }
+    
     func sqlStringWith(_ valueConditons: [[DataFetchCondition]]) -> String {
         var sqlStr = ""
         for index in 0..<valueConditons.count {
@@ -94,7 +125,7 @@ class DataProvider {
     }
     
     func conditionSql(_ conditionData: DataFetchCondition) -> String {
-        return conditionData.key + conditionData.check.desc() + conditionData.value
+        return conditionData.key + conditionData.check.desc() + "'" + conditionData.value + "'"
     }
     
     //Custom search

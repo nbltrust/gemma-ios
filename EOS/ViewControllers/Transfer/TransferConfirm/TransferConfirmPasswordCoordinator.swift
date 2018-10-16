@@ -26,6 +26,8 @@ protocol TransferConfirmPasswordStateManagerProtocol {
     
     func transferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
     
+    func bltTransferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
+    
     func mortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
     
     func relieveMortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
@@ -114,7 +116,6 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         return WalletManager.shared.isValidPassword(password)
     }
     
-    
     func transferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
         let model = TransferActionModel()
         model.password = password
@@ -125,6 +126,23 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.amount = amount
         model.remark = remark
         transaction(EOSAction.transfer.rawValue, actionModel: model) { (bool, showString) in
+            callback(bool,showString)
+        }
+    }
+    
+    func bltTransferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+        BLTWalletIO.shareInstance()?.submmitWaitingVerfyPin(password)
+        let model = TransferActionModel()
+        model.password = password
+        model.toAccount = account
+        model.fromAccount = WalletManager.shared.getAccount()
+        model.success = R.string.localizable.transfer_successed.key.localized()
+        model.faile = R.string.localizable.transfer_failed.key.localized()
+        model.amount = amount
+        model.remark = remark
+        model.type = .bluetooth
+        model.confirmType = pinType
+        transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
             callback(bool,showString)
         }
     }

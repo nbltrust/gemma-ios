@@ -121,7 +121,6 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateStateMana
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
         }) { (error) in
-            showFailTop(R.string.localizable.request_failed.key.localized())
         }
     }
 }
