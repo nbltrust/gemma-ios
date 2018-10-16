@@ -523,7 +523,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         
         NSMutableData*apnsTokenMutableData = [[NSMutableData alloc]init];
         unsigned charwhole_byte;
-        char byte_chars[2] = {'\0','\0'};
+        char byte_chars[3] = {'\0','\0','\0'};
         
         int i;
         for(i=0; i < [chainId length]/2; i++) {
@@ -554,24 +554,8 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         for (n=0; n<transSize + 64; n++) {
             [toresult appendString:[NSString stringWithFormat:@"%02x",tx[n]]];
         }
-//
-//        unsigned char tx[1024] = {};
-//
-//        NSMutableString *footResult = [[NSMutableString alloc] init];
-//        size_t j;
-//        for (j=0; j<32; j++) {
-//            [footResult appendString:[NSString stringWithFormat:@"%02x",foot[j]]];
-//        }
         
         if (iRtn == PAEW_RET_SUCCESS) {
-//            NSMutableString *trans = [NSMutableString new];
-//            [trans appendString:[BLTUtils bytesToHexString:(void *) length:32]];
-//            [trans appendString:result];
-//            [trans appendString:footResult];
-//            const char * transChar = [trans UTF8String];
-//            size_t transLength = strlen(transChar) + 1;
-//            memcpy(tx, transChar, transLength);
-            
             unsigned char *pbTXSig = (unsigned char *)malloc(1024);
             size_t pnTXSigLen = 1024;
             signCallbacks callBack;
@@ -588,7 +572,6 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
                 return;
             }
             NSString *sign = [[NSString alloc] initWithBytes:pbTXSig length:pnTXSigLen encoding:NSASCIIStringEncoding];
-            NSLog(@"测试%@\n测试%@\n测试%@",result,toresult,sign);
             dispatch_async(dispatch_get_main_queue(), ^{
                 complication(sign);
             });

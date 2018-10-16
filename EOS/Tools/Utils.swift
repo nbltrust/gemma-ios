@@ -184,10 +184,8 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                 transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
                 let transJson = JSON.init(parseJSON: transaction)
                 var transJsonMap = transJson.dictionaryObject
-//                transJsonMap?["expiration"] = "2018-10-15T13:00:45"
                 if let actionModel = actionModel as? TransferActionModel {
-                    let tempTransaction = transaction
-                    var tempMap = JSON.init(parseJSON: tempTransaction).dictionaryObject
+                    var tempMap = transJsonMap
                     if let prewfixValue = tempMap?["ref_block_prefix"] {
                         tempMap?["ref_block_prefix"] = "\(prewfixValue)"
                     }
@@ -197,12 +195,11 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                     
                     let chainId = jsonDic?["chain_id"] as? String ?? ""
                     
-                    let transString = tempMap?.zx_sortJsonString() ?? ""
+                    let transString = tempMap?.sortJsonString() ?? ""
                     
                     BLTWalletIO.shareInstance()?.getEOSSign(actionModel.confirmType, chainId: chainId, transaction: transString, success: { (sign) in
                         transJsonMap?["signatures"] = [sign?.substring(from: 0, length: (sign?.count ?? 1) - 1)]
                         transaction = transJsonMap?.jsonString() ?? ""
-                        NSLog("测试%@", "\(transaction)")
                         pushTransaction(transaction, actionModel: actionModel, callback: callback)
                     }, failed: { (failedReason) in
                         callback(false,failedReason ?? actionModel.faile)
@@ -461,71 +458,4 @@ func saveUnitToLocal(rmbPrices: [JSON]) {
     
     Defaults.set(rmbStr, forKey: Unit.RMB_UNIT)
     Defaults.set(usdStr, forKey: Unit.USD_UNIT)
-}
-
-//func correctAmount(_ sender:String) -> String{
-//    if let _ = sender.toDouble(){
-//        if sender.contains("."),let last = sender.components(separatedBy: ".").last{
-//            if last.count > 4{
-//                return sender.components(separatedBy: ".").first! + last.substring(from: 0, length: 4)!
-//            }
-//            return sender
-//        }
-//    }
-//    return ""
-//}
-
-
-
-extension Dictionary {
-    func zx_sortJsonString() -> String {
-        var tempDic = self as! Dictionary<String,Any>
-        var keys = Array<String>()
-        for key in tempDic.keys {
-            keys.append(key)
-        }
-        keys.sort { $0 < $1 }
-        var signString = "{"
-        var arr: Array<String> = []
-        for key in keys {
-            let value = tempDic[key]
-            if let value = value as? Dictionary<String,Any> {//Dictionary 递归
-                arr.append("\"\(key)\":\(value.zx_sortJsonString())")
-            }else if let value = value as? Array<Any> {//Array 递归
-                arr.append("\"\(key)\":\(value.zx_sortJsonString())")
-            }else{//其他 直接拼接
-                let value = tempDic[key]
-                
-                if value is Int {
-                    arr.append("\"\(key)\":\(value!)")
-                } else {
-                    arr.append("\"\(key)\":\"\(value!)\"")
-                }
-            }
-        }
-        signString += arr.joined(separator: ",")
-        signString += "}"
-        return signString
-    }
-}
-
-extension Array {
-    func  zx_sortJsonString() -> String {
-        let array = self
-        var arr: Array<String> = []
-        var signString = "["
-        for value in array {
-            if let value = value as? Dictionary<String,Any> {//Dictionary 递归
-                arr.append(value.zx_sortJsonString())
-            }else if let value = value as? Array<Any> {//Array 递归
-                arr.append(value.zx_sortJsonString())
-            }else{//其他 直接拼接
-                arr.append("\"\(value)\"")
-            }
-        }
-        arr.sort { $0 < $1 }
-        signString += arr.joined(separator: ",")
-        signString += "]"
-        return signString
-    }
 }
