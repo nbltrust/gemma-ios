@@ -31,6 +31,19 @@ class WalletManagerViewController: BaseViewController {
     func setUpUI() {
         self.title = R.string.localizable.manager_wallet.key.localized()
     }
+    
+    func checkBLTState() {
+        data.connected = BLTWalletIO.shareInstance()?.isConnection() ?? false
+        self.coordinator?.getFPList({ [weak self] (fpList) in
+            guard let `self` = self else { return }
+            self.data.fingerprinted = fpList?.count ?? 0 > 0
+        }, failed: { [weak self] (reason) in
+            guard let `self` = self else { return }
+            if let failedReason = reason {
+                self.showError(message: failedReason)
+            }
+        })
+    }
 
     
     override func configureObserveState() {

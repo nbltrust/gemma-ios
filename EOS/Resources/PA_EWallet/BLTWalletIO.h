@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PA_EWallet.h"
+#import <iOS_EWalletDynamic/PA_EWallet.h>
 #import "BLTWalletHeader.h"
 #import "BLTUtils.h"
 
@@ -41,6 +41,8 @@ typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 
 typedef void(^ GetSignComplication)(NSString *sign);
 
+typedef void(^ GetFPListComplication)(NSArray *fpList);
+
 
 @property (nonatomic,strong) DidSearchDevice didSearchDevice;
 
@@ -56,7 +58,7 @@ typedef void(^ GetSignComplication)(NSString *sign);
 
 +(instancetype) shareInstance;
 
-#pragma mark Request
+#pragma mark Bluetooth Action Request
 - (void)formmart;
 
 - (void)powerOff;
@@ -91,6 +93,10 @@ typedef void(^ GetSignComplication)(NSString *sign);
 - (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
 - (void)submmitWaitingVerfyPin:(NSString *)waitVerPin;
+
+- (void)getFPList:(GetFPListComplication)complication failed:(FailedComplication)failedComplication;
+
+- (void)deleteFP:(NSArray *)fpList success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication;
 
 
 @end
