@@ -2590,7 +2590,6 @@
 		22752791214761490089FADA /* NetworkDataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataCache.swift; sourceTree = "<group>"; };
 		227597EE2146849C0032DC60 /* DBTableCreatation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBTableCreatation.swift; sourceTree = "<group>"; };
 		2278257638035A4787F554DD07DD2D4E /* subtract_with_carry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = subtract_with_carry.hpp; sourceTree = "<group>"; };
-		227F83822170A200005FB567 /* iOS_EWalletDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOS_EWalletDynamic.framework; path = Carthage/Build/iOS/iOS_EWalletDynamic.framework; sourceTree = "<group>"; };
 		227F83842170A429005FB567 /* iOS_EWalletDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOS_EWalletDynamic.framework; path = library/iOS_EWalletDynamic.framework; sourceTree = "<group>"; };
 		2283DD3511C991C7F0C53E45582BA546 /* illuminance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = illuminance.hpp; sourceTree = "<group>"; };
 		22886BA46EDC7973C8F7A8AFB4AF260B /* minimal_pair_header.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = minimal_pair_header.hpp; sourceTree = "<group>"; };
@@ -25245,7 +25244,6 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				227F83822170A200005FB567 /* iOS_EWalletDynamic.framework */,
 				227F83842170A429005FB567 /* iOS_EWalletDynamic.framework */,
 				735A3D132160A99700FC8922 /* NBLCommonModule.framework */,
 				73921E0B215224AE00744811 /* GRDB.swift */,
