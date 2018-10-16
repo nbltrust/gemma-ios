@@ -19,7 +19,7 @@ class DeleteFingerView: EOSBaseView {
         case ChangeNameViewDidClicked
         case DeleteBtnDidClicked
     }
-        
+    
     override func setup() {
         super.setup()
         
@@ -28,14 +28,14 @@ class DeleteFingerView: EOSBaseView {
     }
     
     func setupUI() {
-        
+        changeNameLineView.name_text = R.string.localizable.change_name.key.localized()
     }
     
     func setupSubViewEvent() {
         changeNameLineView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }
             
-            self.changeNameLineView.next?.sendEventWith(Event.ChangeNameViewDidClicked.rawValue, userinfo: ["indicator": self.data ?? []])
+            self.changeNameLineView.next?.sendEventWith(Event.ChangeNameViewDidClicked.rawValue, userinfo: ["data": self.data ?? []])
         }).disposed(by: disposeBag)
         
         deleteButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in

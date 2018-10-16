@@ -102,7 +102,7 @@
 
 "wallet_name" = "钱包名";
 "manager_wallet" = "管理钱包";
-"change_wallet_name" = "修改钱包名";
+"change_wallet_name" = "修改钱包名称";
 "i_know" = "我知道了";
 "red_warning" = "账户创建中，请勿在EOS区块100%确认之前往账户转账！";
 "mortgage_button" = "抵押CPU和NET";
@@ -240,6 +240,8 @@
 "add_finger" = "添加指纹";
 "change_name" = "修改名称";
 "delete_finger" = "删除指纹";
+"change_finger_name" = "修改指纹名称";
+"manager_finger" = "管理指纹";
 
 //zsy end
 

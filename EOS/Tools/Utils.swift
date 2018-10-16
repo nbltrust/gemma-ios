@@ -459,3 +459,44 @@ func saveUnitToLocal(rmbPrices: [JSON]) {
     Defaults.set(rmbStr, forKey: Unit.RMB_UNIT)
     Defaults.set(usdStr, forKey: Unit.USD_UNIT)
 }
+
+func dataToDictionary(data:Data) ->Dictionary<String, Any>?{
+    do{
+        let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        let dic = json as! Dictionary<String, Any>
+        return dic
+    }catch _ {
+        print("失败")
+        return nil
+    }
+}
+
+func jsonToData(jsonDic:Dictionary<String, Any>) -> Data? {
+    if (!JSONSerialization.isValidJSONObject(jsonDic)) {
+        print("is not a valid json object")
+        return nil
+    }
+    //利用自带的json库转换成Data
+    //如果设置options为JSONSerialization.WritingOptions.prettyPrinted，则打印格式更好阅读
+    let data = try? JSONSerialization.data(withJSONObject: jsonDic, options: [])
+    //Data转换成String打印输出
+    let str = String(data:data!, encoding: String.Encoding.utf8)
+    //输出json字符串
+    print("Json Str:\(str!)")
+    return data
+}
+
+//func correctAmount(_ sender:String) -> String{
+//    if let _ = sender.toDouble(){
+//        if sender.contains("."),let last = sender.components(separatedBy: ".").last{
+//            if last.count > 4{
+//                return sender.components(separatedBy: ".").first! + last.substring(from: 0, length: 4)!
+//            }
+//            return sender
+//        }
+//    }
+//    return ""
+//}
+
+
+
