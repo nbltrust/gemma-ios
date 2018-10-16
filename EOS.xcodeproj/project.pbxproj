@@ -2592,7 +2592,6 @@
 		22752791214761490089FADA /* NetworkDataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataCache.swift; sourceTree = "<group>"; };
 		227597EE2146849C0032DC60 /* DBTableCreatation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBTableCreatation.swift; sourceTree = "<group>"; };
 		2278257638035A4787F554DD07DD2D4E /* subtract_with_carry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = subtract_with_carry.hpp; sourceTree = "<group>"; };
-		227F83822170A200005FB567 /* iOS_EWalletDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOS_EWalletDynamic.framework; path = Carthage/Build/iOS/iOS_EWalletDynamic.framework; sourceTree = "<group>"; };
 		227F83842170A429005FB567 /* iOS_EWalletDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOS_EWalletDynamic.framework; path = library/iOS_EWalletDynamic.framework; sourceTree = "<group>"; };
 		227F83AA2175B98F005FB567 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		227F83C62175B9BB005FB567 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
@@ -25251,7 +25250,6 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				227F83822170A200005FB567 /* iOS_EWalletDynamic.framework */,
 				227F83842170A429005FB567 /* iOS_EWalletDynamic.framework */,
 				735A3D132160A99700FC8922 /* NBLCommonModule.framework */,
 				73921E0B215224AE00744811 /* GRDB.swift */,
