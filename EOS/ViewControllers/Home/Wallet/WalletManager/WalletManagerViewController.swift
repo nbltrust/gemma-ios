@@ -22,14 +22,9 @@ class WalletManagerViewController: BaseViewController {
         setUpUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        walletManagerView.data = data
-    }
-    
     func setUpUI() {
         self.title = R.string.localizable.manager_wallet.key.localized()
+        walletManagerView.data = data
     }
     
     func checkBLTState() {

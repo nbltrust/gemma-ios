@@ -18,6 +18,7 @@
                 <outlet property="btn" destination="8G0-mZ-uUB" id="fCn-Ys-gf0"/>
                 <outlet property="btnView" destination="XBZ-P1-jd8" id="ltV-j9-zaL"/>
                 <outlet property="changePasswordLineView" destination="jRo-n6-YkD" id="ySl-Al-0xe"/>
+                <outlet property="clickView" destination="gBU-Hp-zpE" id="12Q-FI-7WF"/>
                 <outlet property="exportPrivateKeyLineView" destination="ehN-3v-Cvu" id="Qif-NI-Myl"/>
                 <outlet property="iconImageView" destination="7an-sF-36S" id="EJ2-VQ-jTH"/>
                 <outlet property="progressLabel" destination="KNe-C9-vTB" id="RdQ-Pl-kn3"/>

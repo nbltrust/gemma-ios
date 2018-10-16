@@ -46,9 +46,10 @@ class BLTCardConnectViewController: BaseViewController {
         configLeftNavButton(R.image.icTransferClose())
         
         indicatorView = UIActivityIndicatorView(style: .gray)
-        indicatorView?.hidesWhenStopped = false
+        indicatorView?.hidesWhenStopped = true
         configRightCustomView(indicatorView!)
     }
+    
     
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismissVC({})

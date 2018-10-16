@@ -61,13 +61,13 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 #pragma mark Bluetooth Action Request
 - (void)formmart;
 
-- (void)powerOff;
-
-- (void)searchBLTCard:(SuccessedComplication)complication;
-
 - (void)startHeartBeat;
 
 - (BOOL)isConnection;
+
+- (void)powerOff:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+
+- (void)searchBLTCard:(SuccessedComplication)complication;
 
 - (void)connectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 

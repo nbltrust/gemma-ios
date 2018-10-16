@@ -122,22 +122,19 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)powerOff {
-    if (!savedDevH) {
-        return;
+- (void)startHeartBeat {
+    if (_timer == nil) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(repatGetDeviceInfo) userInfo:nil repeats:true];
     }
-    dispatch_async(bltQueue, ^{
-        int devIdx = 0;
-        void *ppPAEWContext = savedDevH;
-        int iRtn = PAEW_RET_UNKNOWN_FAIL;
-        iRtn = PAEW_PowerOff(ppPAEWContext, devIdx);
-        if (iRtn != PAEW_RET_SUCCESS) {
-            NSLog(@"PAEW_PowerOff returns failed");
-            return ;
-        } else {
-            NSLog(@"PAEW_PowerOff returns success");
-        }
-    });
+    [_timer fire];
+}
+
+- (void)repatGetDeviceInfo {
+    [self getDeviceInfo:^(BOOL successed, PAEW_DevInfo *info) { }];
+}
+
+- (BOOL)isConnection {
+    return savedDevH != nil;
 }
 
 - (void)searchBLTCard:(SuccessedComplication)complication {
@@ -162,19 +159,21 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)startHeartBeat {
-    if (_timer == nil) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(repatGetDeviceInfo) userInfo:nil repeats:true];
+- (void)powerOff:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+    if (!savedDevH) {
+        return;
     }
-    [_timer fire];
-}
-
-- (void)repatGetDeviceInfo {
-    [self getDeviceInfo:^(BOOL successed, PAEW_DevInfo *info) { }];
-}
-
-- (BOOL)isConnection {
-    return savedDevH != nil;
+    dispatch_async(bltQueue, ^{
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        iRtn = PAEW_PowerOff(ppPAEWContext, devIdx);
+        if (iRtn != PAEW_RET_SUCCESS) {
+            successComlication();
+        } else {
+            failedCompliction([BLTUtils errorCodeToString:iRtn]);
+        }
+    });
 }
 
 - (void)connectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
