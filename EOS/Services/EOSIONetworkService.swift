@@ -166,8 +166,8 @@ extension EOSIOService : TargetType {
             var transaction:[String: Any] = ["compression":"none"]
             var jsonOb = JSON(parseJSON: json).dictionaryObject ?? [:]
             let signatures = jsonOb["signatures"]
-            jsonOb["signatures"] = [signatures]
-            transaction["signatures"] = [signatures]
+            jsonOb.removeValue(forKey: "signatures")
+            transaction["signatures"] = signatures
             transaction["transaction"] = jsonOb
             
             return transaction

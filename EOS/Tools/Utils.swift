@@ -185,18 +185,20 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                 let transJson = JSON.init(parseJSON: transaction)
                 var transJsonMap = transJson.dictionaryObject
                 if let actionModel = actionModel as? TransferActionModel {
-                    var tempTransaction = transaction
-                    var tempMap = JSON.init(parseJSON: tempTransaction).dictionaryObject
+                    var tempMap = transJsonMap
                     if let prewfixValue = tempMap?["ref_block_prefix"] {
-                        tempMap?["ref_block_prefix"] = String(format: "%d", prewfixValue as! CVarArg)
+                        tempMap?["ref_block_prefix"] = "\(prewfixValue)"
                     }
                     tempMap?.removeValue(forKey: "signatures")
                     
                     let jsonDic = json.dictionaryObject
+                    
                     let chainId = jsonDic?["chain_id"] as? String ?? ""
-                    tempTransaction = (tempMap?.jsonString() ?? "")
-                    BLTWalletIO.shareInstance()?.getEOSSign(actionModel.confirmType, chainId: chainId, transaction: tempTransaction, success: { (sign) in
-                        transJsonMap?["signatures"] = sign?.substring(from: 0, length: (sign?.count ?? 1) - 1)
+                    
+                    let transString = tempMap?.sortJsonString() ?? ""
+                    
+                    BLTWalletIO.shareInstance()?.getEOSSign(actionModel.confirmType, chainId: chainId, transaction: transString, success: { (sign) in
+                        transJsonMap?["signatures"] = [sign?.substring(from: 0, length: (sign?.count ?? 1) - 1)]
                         transaction = transJsonMap?.jsonString() ?? ""
                         pushTransaction(transaction, actionModel: actionModel, callback: callback)
                     }, failed: { (failedReason) in
@@ -457,18 +459,3 @@ func saveUnitToLocal(rmbPrices: [JSON]) {
     Defaults.set(rmbStr, forKey: Unit.RMB_UNIT)
     Defaults.set(usdStr, forKey: Unit.USD_UNIT)
 }
-
-//func correctAmount(_ sender:String) -> String{
-//    if let _ = sender.toDouble(){
-//        if sender.contains("."),let last = sender.components(separatedBy: ".").last{
-//            if last.count > 4{
-//                return sender.components(separatedBy: ".").first! + last.substring(from: 0, length: 4)!
-//            }
-//            return sender
-//        }
-//    }
-//    return ""
-//}
-
-
-
