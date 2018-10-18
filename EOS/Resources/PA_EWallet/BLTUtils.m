@@ -1,10 +1,11 @@
 //
 //  BLTUtils.m
-//  TestCompileDemo
+//  EOS
 //
-//  Created by 周权威 on 2018/8/22.
-//  Copyright © 2018年 extropies. All rights reserved.
+//  Created by peng zhu on 2018/9/14.
+//  Copyright © 2018年 com.nbltrustdev. All rights reserved.
 //
+
 
 #import "BLTUtils.h"
 #import "PA_EWallet.h"
@@ -252,6 +253,14 @@
             return common;
             break;
     }
+}
+
++ (NSString *)batteryChangedNFName {
+    return NotificationBatteryChanged;
+}
+
++ (NSString *)deviceSearchedNFName {
+    return NotificationDeviceSearched;
 }
 
 @end

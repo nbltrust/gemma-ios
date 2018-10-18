@@ -19,7 +19,7 @@ class DeleteFingerViewController: BaseViewController {
     @IBOutlet weak var contentView: DeleteFingerView!
     
     var model = WalletManagerModel()
-    var index = -1
+    var index = 0
     
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class DeleteFingerViewController: BaseViewController {
     }
 
     func setupData() {
-        self.contentView.changeNameLineView.content_text = model.fingerNameArray[index]
+        self.contentView.changeNameLineView.content_text = WalletManager.shared.fingerName(model, index: index)
     }
     
 
@@ -60,58 +60,6 @@ class DeleteFingerViewController: BaseViewController {
             }
             
         }).disposed(by: disposeBag)
-        
-//        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
-//            guard let `self` = self else { return }
-//            
-//            self.endLoading()
-//            
-//            switch state {
-//            case .initial:
-//                self.coordinator?.switchPageState(PageState.refresh(type: PageRefreshType.initial))
-//                
-//            case .loading(let reason):
-//                if reason == .initialRefresh {
-//                    self.startLoading()
-//                }
-//                
-//            case .refresh(let type):
-//                self.coordinator?.switchPageState(.loading(reason: type.mapReason()))
-//                
-//            case .loadMore(let page):
-//                self.coordinator?.switchPageState(.loading(reason: PageLoadReason.manualLoadMore))
-//                
-//            case .noMore:
-////                self.stopInfiniteScrolling(self.tableView, haveNoMore: true)
-//                break
-//                
-//            case .noData:
-////                self.view.showNoData(<#title#>, icon: <#imageName#>)
-//                break
-//                
-//            case .normal(let reason):
-////                self.view.hiddenNoData()
-////
-////                if reason == PageLoadReason.manualLoadMore {
-////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
-////                }
-////                else if reason == PageLoadReason.manualRefresh {
-////                    self.stopPullRefresh(self.tableView)
-////                }
-//                break
-//                
-//            case .error(let error, let reason):
-////                self.showToastBox(false, message: error.localizedDescription)
-//                
-////                if reason == PageLoadReason.manualLoadMore {
-////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
-////                }
-////                else if reason == PageLoadReason.manualRefresh {
-////                    self.stopPullRefresh(self.tableView)
-////                }
-//                break
-//            }
-//        }).disposed(by: disposeBag)
     }
 }
 
@@ -137,7 +85,7 @@ extension DeleteFingerViewController {
         self.coordinator?.pushToChangeWalletName(model: self.model, index: self.index)
     }
     @objc func DeleteBtnDidClicked(_ data:[String: Any]) {
-        
+        self.coordinator?.deleteCurrentFinger(model, index: index)
     }
 }
 

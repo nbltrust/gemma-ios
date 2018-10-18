@@ -58,6 +58,15 @@ class WalletDetailViewController: BaseViewController {
             
         }).disposed(by: disposeBag)
         
+        self.contentView.disConnectBtn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            self.coordinator?.cancelPair()
+        }).disposed(by: disposeBag)
+        
+        self.contentView.formatBtn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+            guard let `self` = self else { return }
+            self.coordinator?.formmat()
+        }).disposed(by: disposeBag)
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
 //            

@@ -19,6 +19,10 @@ protocol WalletDetailStateManagerProtocol {
     var state: WalletDetailState { get }
     
     func switchPageState(_ state:PageState)
+    
+    func cancelPair()
+    
+    func formmat()
 }
 
 class WalletDetailCoordinator: NavCoordinator {
@@ -64,5 +68,13 @@ extension WalletDetailCoordinator: WalletDetailStateManagerProtocol {
         Async.main {
             self.store.dispatch(PageStateAction(state: state))
         }
+    }
+    
+    func cancelPair() {
+        
+    }
+    
+    func formmat() {
+        
     }
 }

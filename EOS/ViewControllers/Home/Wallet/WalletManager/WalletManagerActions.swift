@@ -24,11 +24,7 @@ struct WalletManagerModel {
     var name = "-"
     var address = "-"
     var type : CreateAPPId = .gemma
-    var batteryProgress = 0.0
     var connected = false
-    var fingerprinted = false
-    var fingerIndexArray : [String] = []
-    var fingerNameArray : [String] = []
 }
 
 //MARK: - Action Creator

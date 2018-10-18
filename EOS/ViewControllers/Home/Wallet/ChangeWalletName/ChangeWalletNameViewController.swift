@@ -11,11 +11,17 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
+enum ChangeNameType: Int {
+    case walletName = 0
+    case fingerName
+}
+
 class ChangeWalletNameViewController: BaseViewController {
 
 	var coordinator: (ChangeWalletNameCoordinatorProtocol & ChangeWalletNameStateManagerProtocol)?
     var model = WalletManagerModel()
-    var index = -1
+    var fingerIndex = 0
+    var type: ChangeNameType = .walletName
     
     @IBOutlet weak var changeWalletNameView: ChangeWalletNameView!
     
@@ -25,17 +31,12 @@ class ChangeWalletNameViewController: BaseViewController {
     }
     
     func setUpUI() {
-        if index == -1 {
+        if type == .walletName {
             self.title = R.string.localizable.change_wallet_name.key.localized()
             changeWalletNameView.text = model.name
         } else {
-            if model.type == .gemma {
-                self.title = R.string.localizable.change_wallet_name.key.localized()
-                changeWalletNameView.text = model.name
-            } else if model.type == .bluetooth {
-                self.title = R.string.localizable.change_finger_name.key.localized()
-                changeWalletNameView.text = model.fingerNameArray[index]
-            }
+            self.title = R.string.localizable.change_finger_name.key.localized()
+            changeWalletNameView.text = WalletManager.shared.fingerName(model, index: fingerIndex)
         }
 
         configRightNavButton(R.string.localizable.normal_save.key.localized())
@@ -45,22 +46,14 @@ class ChangeWalletNameViewController: BaseViewController {
         //保存
         self.view.endEditing(true)
 
-        if index == -1 {
+        if type == .walletName {
             model.name = changeWalletNameView.textField.text ?? ""
             if self.coordinator?.updateWalletName(model: model) == true {
                 self.coordinator?.popToLastVC()
             }
         } else {
-            if model.type == .gemma {
-                model.name = changeWalletNameView.textField.text ?? ""
-                if self.coordinator?.updateWalletName(model: model) == true {
-                    self.coordinator?.popToLastVC()
-                }
-            } else if model.type == .bluetooth {
-                model.fingerNameArray[index] = changeWalletNameView.textField.text ?? ""
-                if self.coordinator?.updateFingerName(model: model, index: index) == true {
-                    self.coordinator?.popToLastVC()
-                }
+            if self.coordinator?.updateFingerName(model: model, index: fingerIndex, newName: changeWalletNameView.textField.text ?? "") == true {
+                self.coordinator?.popToLastVC()
             }
         }
     }

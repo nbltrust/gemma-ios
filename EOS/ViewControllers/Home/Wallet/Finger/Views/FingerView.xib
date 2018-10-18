@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SBY-sH-a9a">
-                    <rect key="frame" x="16" y="20" width="343" height="408"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="428"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="C2O-yz-enB"/>
@@ -31,9 +31,9 @@
             </subviews>
             <constraints>
                 <constraint firstItem="Lhl-p8-24W" firstAttribute="bottom" secondItem="SBY-sH-a9a" secondAttribute="bottom" id="Rfw-1q-N7n"/>
-                <constraint firstItem="SBY-sH-a9a" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" constant="20" id="YNa-8i-NfJ"/>
-                <constraint firstItem="SBY-sH-a9a" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="16" id="tL7-PP-38B"/>
-                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="SBY-sH-a9a" secondAttribute="trailing" constant="16" id="xbA-x4-6jq"/>
+                <constraint firstItem="SBY-sH-a9a" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" id="YNa-8i-NfJ"/>
+                <constraint firstItem="SBY-sH-a9a" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="tL7-PP-38B"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="SBY-sH-a9a" secondAttribute="trailing" id="xbA-x4-6jq"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
