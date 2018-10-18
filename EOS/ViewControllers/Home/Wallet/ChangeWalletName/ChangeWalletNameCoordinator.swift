@@ -20,7 +20,7 @@ protocol ChangeWalletNameStateManagerProtocol {
     ) where S.StoreSubscriberStateType == SelectedState
     
     func updateWalletName(model: WalletManagerModel) -> Bool
-    func updateFingerName(model: WalletManagerModel, index: Int) -> Bool
+    func updateFingerName(model: WalletManagerModel, index: Int, newName: String) -> Bool
 }
 
 class ChangeWalletNameCoordinator: NavCoordinator {
@@ -70,9 +70,9 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
         }
     }
     
-    func updateFingerName(model: WalletManagerModel, index: Int) -> Bool {
-        if isValidWalletName(name: model.fingerNameArray[index]) {
-            WalletManager.shared.updateFingerName(model, index: index, fingerName: model.fingerNameArray[index])
+    func updateFingerName(model: WalletManagerModel, index: Int, newName: String) -> Bool {
+        if isValidWalletName(name: newName) {
+            WalletManager.shared.updateFingerName(model, index: index, fingerName: newName)
             
             if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? DeleteFingerViewController {
                 vc.model = model

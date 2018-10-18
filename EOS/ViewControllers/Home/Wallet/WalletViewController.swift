@@ -35,6 +35,7 @@ class WalletViewController: BaseViewController {
             if model.type == .bluetooth {
                 model.connected = BLTWalletIO.shareInstance()?.isConnection() ?? false
             }
+            
             if model.name == WalletManager.shared.currentWallet()?.name {
                 indexPath = index
             }

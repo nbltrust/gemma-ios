@@ -19,9 +19,10 @@ class BatteryView: EOSBaseView {
         case BatteryViewDidClicked
     }
     
-    var progress = 0.0 {
+    var progress = 0 {
         didSet {
-            progressWidthConstant.constant = CGFloat(20 * progress)
+//            borderView.con
+            progressWidthConstant.constant = CGFloat(progress / 100) * borderView.width
         }
     }
     

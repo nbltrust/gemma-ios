@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "if_ic_fingerprint_48_px_3669427.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "if_ic_fingerprint_48_px_3669427@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "if_ic_fingerprint_48_px_3669427@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

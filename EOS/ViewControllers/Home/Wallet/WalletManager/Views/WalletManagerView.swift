@@ -20,6 +20,9 @@ class WalletManagerView: UIView {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var walletNameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    
+    
+    @IBOutlet weak var clickView: UIView!
     @IBOutlet weak var exportPrivateKeyLineView: LineView!
     @IBOutlet weak var changePasswordLineView: LineView!
     
@@ -48,19 +51,13 @@ class WalletManagerView: UIView {
                 } else if data.type == .bluetooth {
                     batteryContentView.isHidden = false
                     btnView.isHidden = false
+                    clickView.isHidden = !data.connected
+                    changePasswordLineView.isHidden = true
 
                     if data.connected == true {
                         btn.title = R.string.localizable.disconnect.key.localized()
-                        batteryView.progress = data.batteryProgress
                         progressLabel.text = "50%"
-                        if data.fingerprinted == true {
-                            exportPrivateKeyLineView.name_text = R.string.localizable.change_password.key.localized()
-                            changePasswordLineView.name_text = R.string.localizable.change_fingerprint.key.localized()
-
-                        } else {
-                            exportPrivateKeyLineView.isHidden = true
-                            changePasswordLineView.name_text = R.string.localizable.fingerprint_password.key.localized()
-                        }
+                        exportPrivateKeyLineView.name_text = R.string.localizable.fingerprint_password.key.localized()
                     } else {
                         batteryView.isHidden = true
                         iconImageView.isHidden = true

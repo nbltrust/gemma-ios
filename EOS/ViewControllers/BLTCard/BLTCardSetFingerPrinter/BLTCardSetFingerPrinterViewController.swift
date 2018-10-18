@@ -43,7 +43,9 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
         
         setupFPView()
     
-        configRightNavButton(R.string.localizable.wookong_jump.key.localized())
+        if self.navigationController?.viewControllers.count == 1 {
+             configRightNavButton(R.string.localizable.wookong_jump.key.localized())
+        }
     }
     
     override func rightAction(_ sender: UIButton) {
@@ -75,7 +77,11 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
     func done() {
         fpView.stringByEvaluatingJavaScript(from: "done()")
         showSuccess(message: R.string.localizable.wookong_set_fp_success.key.localized())
-        self.coordinator?.dismissVC()
+        if self.navigationController?.viewControllers.count == 1 {
+            self.coordinator?.dismissVC()
+        } else {
+            self.coordinator?.popVC()
+        }
     }
 
     func setupData() {

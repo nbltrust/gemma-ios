@@ -25,9 +25,9 @@ protocol WalletManagerStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<WalletManagerState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
     
-    func connect()
+    func connect(_ complicatiopn: @escaping CompletionCallback)
     
-    func disConnect()
+    func disConnect(_ complication: @escaping CompletionCallback)
     
     func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication)
 }
@@ -116,12 +116,20 @@ extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
     
-    func connect() {
-        
+    func connect(_ complicatiopn: @escaping CompletionCallback) {
+        connectBLTCard {
+            complicatiopn()
+        }
     }
     
-    func disConnect() {
-        
+    func disConnect(_ complication: @escaping CompletionCallback) {
+        BLTWalletIO.shareInstance()?.disConnect({
+            complication()
+        }, failed: {  (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        })
     }
     
     func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication) {

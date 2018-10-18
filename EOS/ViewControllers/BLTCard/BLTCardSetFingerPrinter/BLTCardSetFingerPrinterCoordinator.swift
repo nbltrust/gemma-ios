@@ -13,6 +13,8 @@ import Async
 
 protocol BLTCardSetFingerPrinterCoordinatorProtocol {
     func dismissVC()
+    
+    func popVC()
 }
 
 protocol BLTCardSetFingerPrinterStateManagerProtocol {
@@ -43,6 +45,10 @@ class BLTCardSetFingerPrinterCoordinator: BLTCardRootCoordinator {
 extension BLTCardSetFingerPrinterCoordinator: BLTCardSetFingerPrinterCoordinatorProtocol {
     func dismissVC() {
         self.rootVC.dismiss(animated: true, completion: nil)
+    }
+    
+    func popVC() {
+        self.rootVC.popViewController(animated: true)
     }
 }
 
