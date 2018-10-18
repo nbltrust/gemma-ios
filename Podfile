@@ -75,9 +75,9 @@ def ui
 #    pod 'XLPagerTabStrip'
     pod 'EFQRCode'
 #    pod 'FSPagerView' #轮播图
-    pod 'ESPullToRefresh', :git => 'https://github.com/phpmaple/pull-to-refresh', :branch => 'swift-4.2'
+    pod 'ESPullToRefresh', :git => 'https://github.com/eggswift/pull-to-refresh', :branch => 'master'
     pod 'KUIPopOver'
-    pod 'GrowingTextView', :git => 'https://github.com/phpmaple/GrowingTextView', :branch => 'swift4.2'
+    pod 'GrowingTextView', '0.6.1'
     pod 'Bartinter'
     pod 'Macaw', :git => 'https://github.com/exyte/Macaw', :branch => 'master'
     pod 'PocketSVG'
