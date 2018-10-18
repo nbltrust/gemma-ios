@@ -129,8 +129,10 @@ func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Buy
         }
     case let action as AccountFetchedFromLocalAction:
         var viewmodel = state.info.value
-        viewmodel = convertToViewModelWithModel(model: action.model!, viewmodel:viewmodel)
-        state.info.accept(viewmodel)
+        if let model = action.model {
+            viewmodel = convertToViewModelWithModel(model: model, viewmodel:viewmodel)
+            state.info.accept(viewmodel)
+        }
     default:
         break
     }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NewHomeTableCell" customModule="EOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="193"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Que-29-TJh" customClass="CardView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="382" height="163"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Que-29-TJh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Cec-XI-yOt"/>
+                <constraint firstItem="Que-29-TJh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="KnG-At-Z5C"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Que-29-TJh" secondAttribute="trailing" id="Obb-gI-qcm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Que-29-TJh" secondAttribute="bottom" constant="30" id="vpn-3b-xdy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="cardView" destination="Que-29-TJh" id="9E5-SE-p5Z"/>
+                <outlet property="contentView" destination="Que-29-TJh" id="gLg-DB-ggn"/>
+            </connections>
+            <point key="canvasLocation" x="11.199999999999999" y="-229.83508245877064"/>
+        </view>
+    </objects>
+</document>

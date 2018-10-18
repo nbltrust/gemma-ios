@@ -243,6 +243,35 @@
             </objects>
             <point key="canvasLocation" x="3311" y="143"/>
         </scene>
+        <!--New Home View Controller-->
+        <scene sceneID="vyl-Ge-rwq">
+            <objects>
+                <viewController storyboardIdentifier="NewHomeViewController" id="x0q-1E-OjR" customClass="NewHomeViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8L6-gI-CEd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Exc-s2-E0c" customClass="NewHomeView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="335" height="647"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Exc-s2-E0c" firstAttribute="top" secondItem="au5-A9-RyL" secondAttribute="top" id="Xax-Jq-ykP"/>
+                            <constraint firstItem="au5-A9-RyL" firstAttribute="trailing" secondItem="Exc-s2-E0c" secondAttribute="trailing" constant="20" id="Xcf-YX-88P"/>
+                            <constraint firstItem="Exc-s2-E0c" firstAttribute="leading" secondItem="au5-A9-RyL" secondAttribute="leading" constant="20" id="cbt-16-vg3"/>
+                            <constraint firstItem="au5-A9-RyL" firstAttribute="bottom" secondItem="Exc-s2-E0c" secondAttribute="bottom" id="yKU-iy-A9C"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="au5-A9-RyL"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="Exc-s2-E0c" id="83M-jk-e2B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gUO-Ea-oiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2782" y="828"/>
+        </scene>
         <!--Verify Pri Key View Controller-->
         <scene sceneID="HhG-WM-QeN">
             <objects>

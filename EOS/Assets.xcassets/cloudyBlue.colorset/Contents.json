@@ -5,16 +5,16 @@
   },
   "colors" : [
     {
-      "idiom" : "universal",
       "color" : {
         "color-space" : "srgb",
         "components" : {
-          "green" : "0.792",
+          "blue" : "0.871",
           "alpha" : "1.000",
           "red" : "0.776",
-          "blue" : "0.871"
+          "green" : "0.792"
         }
-      }
+      },
+      "idiom" : "universal"
     }
   ]
 }
