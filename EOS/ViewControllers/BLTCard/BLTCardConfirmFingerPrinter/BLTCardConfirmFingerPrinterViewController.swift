@@ -12,15 +12,24 @@ import RxCocoa
 import ReSwift
 
 class BLTCardConfirmFingerPrinterViewController: BaseViewController {
-
+    @IBOutlet weak var contentView: BLTCardIntroViewView!
+    
 	var coordinator: (BLTCardConfirmFingerPrinterCoordinatorProtocol & BLTCardConfirmFingerPrinterStateManagerProtocol)?
 
+    private(set) var context:BLTCardConfirmFingerPrinterContext?
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         
         setupData()
         setupUI()
         setupEvent()
+        
+        
+    }
+    
+    func test() {
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,6 +41,10 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
     }
     
     func setupUI() {
+        var uiModel = BLTCardIntroModel()
+        uiModel.title = R.string.localizable.wookong_fp_confirm_title.key.localized()
+        uiModel.imageName = R.image.wookong_bio_fingerprint.name
+        contentView.adapterModelToBLTCardIntroViewView(uiModel)
         
     }
 
@@ -40,14 +53,33 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
     }
     
     func setupEvent() {
-        
+        self.startLoading(true)
+        guard let context = context else { return }
+        self.coordinator?.bltTransferAccounts(context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
+            guard let `self` = self else { return }
+            if isSuccess {
+                self.endLoading()
+                self.coordinator?.finishTransfer()
+            } else {
+                self.showError(message: message)
+            }
+        })
     }
     
     override func configureObserveState() {
-        coordinator?.state.pageState.asObservable().subscribe(onNext: {[weak self] (state) in
+        self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
             
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+            if let context = context as? BLTCardConfirmFingerPrinterContext {
+                self.context = context
+                
+                if context.iconType == leftIconType.dismiss.rawValue {
+                    self.configLeftNavButton(R.image.icTransferClose())
+                } else {
+                    self.configLeftNavButton(R.image.icBack())
+                }
+            }
+        }).disposed(by: disposeBag)
     }
 }
 

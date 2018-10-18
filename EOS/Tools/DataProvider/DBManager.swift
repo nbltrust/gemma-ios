@@ -19,7 +19,7 @@ enum TableHandleAction: Int {
 class DBManager {
     static let shared = DBManager()
     
-    var dbQueue: DatabaseQueue!
+    var dbQueue: DatabaseQueue?
     
     func setupDB() {
         do {
@@ -40,12 +40,7 @@ class DBManager {
         dbQueue = try DatabaseQueue(path: filePath.path)
     }
     
-    fileprivate func checkDB() throws {
-        let testModel = TestModel()
-        try handleTableCreation(testModel)
-    }
-    
-    fileprivate func handleTableCreation(_ data: Any, primaryKey: String? = nil, whiteList: [String]? = nil, blackList: [String]? = nil, exxtensionColumns: [String : ParameterType]? = nil) throws {
+    func handleTableCreation(_ data: Any, primaryKey: String? = nil, whiteList: [String]? = nil, blackList: [String]? = nil, exxtensionColumns: [String : ParameterType]? = nil) throws {
         let anyMirror = Mirror(reflecting: data)
         let tableName = anyMirror.className()
         var dataStructure = anyMirror.dataStructure()
@@ -93,12 +88,12 @@ class DBManager {
     }
     
     fileprivate func createTable(_ tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
-        try dbQueue.write{ db in
-            try self.handleTableCreation(db, tableName: tableName, primaryKey: primaryKey, structure: structure)
+        try dbQueue?.write{ db in
+            try self.handleCustomTableCreation(db, tableName: tableName, primaryKey: primaryKey, structure: structure)
         }
     }
     
-    fileprivate func handleTableCreation(_ db: Database, tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
+    func handleCustomTableCreation(_ db: Database, tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
         try db.create(table: tableName) { t in
             for key in structure.keys {
                 if let value = structure[key] {
@@ -113,10 +108,11 @@ class DBManager {
     }
     
     fileprivate func migrateTable(_ tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
+        guard let dbQueue = dbQueue else { return }
         let tempTableName = tableName + "temp"
         var migrator = DatabaseMigrator()
         migrator.registerMigrationWithDeferredForeignKeyCheck("remove data to newTabel from oldtable") { db in
-            try self.handleTableCreation(db, tableName: tempTableName, primaryKey: primaryKey, structure: structure)
+            try self.handleCustomTableCreation(db, tableName: tempTableName, primaryKey: primaryKey, structure: structure)
             try db.execute(self.migrateSQLStatement(tempTableName, db: db, toTable: tableName))
             try db.drop(table: tableName)
             try db.rename(table: tempTableName, to: tableName)
@@ -145,7 +141,7 @@ class DBManager {
     
     fileprivate func tableAction(_ tableName: String, structure: [String : ParameterType]) throws -> TableHandleAction {
         var action = TableHandleAction.none
-        try dbQueue.write{ db in
+        try dbQueue?.write{ db in
             if try db.tableExists(tableName) {
                 let columns = try db.columns(in: tableName)
                 if structure.keys.count != columns.count {

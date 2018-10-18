@@ -12,10 +12,14 @@ import HandyJSON
 
 struct TransferConfirmContext: RouteContext, HandyJSON {
     var data: ConfirmViewModel = ConfirmViewModel()
+    var type: CreateAPPId = .gemma
 }
 
 protocol TransferConfirmCoordinatorProtocol {
     func pushToTransferConfirmPwdVC(toAccount:String,money:String,remark:String,type:String)
+    
+    func pushToTransferFPConfirmVC(toAccount:String,money:String,remark:String,type:String)
+    
     func dismissConfirmVC()
 }
 
@@ -55,6 +59,17 @@ extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
         context.iconType = leftIconType.pop.rawValue
         
         pushVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context)
+    }
+    
+    func pushToTransferFPConfirmVC(toAccount: String, money: String, remark: String, type: String) {
+        var context = BLTCardConfirmFingerPrinterContext()
+        context.receiver = toAccount
+        context.amount = money
+        context.remark = remark
+        context.type = type
+        context.iconType = leftIconType.pop.rawValue
+        
+        pushVC(BLTCardConfirmFingerPrinterCoordinator.self, animated: true, context: context)
     }
     
     func dismissConfirmVC() {

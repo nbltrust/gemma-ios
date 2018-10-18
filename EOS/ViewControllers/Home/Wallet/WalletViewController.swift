@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import SwiftyUserDefaults
 
 class WalletViewController: BaseViewController {
 
@@ -30,12 +31,18 @@ class WalletViewController: BaseViewController {
             var model = WalletManagerModel()
             model.name = wallet.name ?? "--"
             model.address = wallet.publicKey ?? "--"
+            model.type = wallet.type ?? .gemma
+            if model.type == .bluetooth {
+                model.connected = BLTWalletIO.shareInstance()?.isConnection() ?? false
+            }
+            
             if model.name == WalletManager.shared.currentWallet()?.name {
                 indexPath = index
             }
             
             dataArray.append(model)
         }
+        
         tableView.reloadData()
         tableView.selectRow(at: IndexPath(row: indexPath, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.none)
     }

@@ -24,6 +24,7 @@ class BuyRamViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.coordinator?.getCurrentFromLocal()
         coordinator?.getAccountInfo(WalletManager.shared.getAccount())
     }
     

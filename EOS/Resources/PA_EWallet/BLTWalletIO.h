@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PA_EWallet.h"
+#import <iOS_EWalletDynamic/PA_EWallet.h>
 #import "BLTWalletHeader.h"
 #import "BLTUtils.h"
+#import "BLTDevice.h"
 
-@class BLTDevice;
+typedef enum : NSUInteger {
+    pinType = 1,
+    fpType = 2,
+} AuthType;
 
 @interface BLTWalletIO : NSObject
 
@@ -24,8 +28,6 @@ typedef void(^ SuccessedComplication)(void);
 
 typedef void(^ FailedComplication)(NSString *failedReason);
 
-typedef void(^ ConnectComplication)(BOOL isConnected,NSInteger savedDevice);
-
 typedef void(^ GetDeviceInfoComplication)(BOOL successed,PAEW_DevInfo *info);
 
 typedef void(^ GetSeedsComplication)(NSArray *seeds, NSString *checkStr);
@@ -36,24 +38,37 @@ typedef void(^ GetSNComplication)(NSString *SN,NSString *SN_sig);
 
 typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 
+typedef void(^ GetSignComplication)(NSString *sign);
+
+typedef void(^ GetFPListComplication)(NSArray *fpList);
+
+
 @property (nonatomic,strong) DidSearchDevice didSearchDevice;
 
 @property (nonatomic,strong) BLTDevice *selectDevice;
 
 @property (nonatomic,strong) NSTimer *timer;
 
+@property (nonatomic, assign) BOOL abortBtnState;
+
+@property (nonatomic, strong) NSCondition *abortCondition;
+
+@property (nonatomic, copy) void(^abortHandelBlock)(BOOL abortState);
+
 +(instancetype) shareInstance;
 
-#pragma mark Request
-- (void)formmart;
+#pragma mark Bluetooth Action Request
+- (void)startHeartBeat;
 
-- (void)powerOff;
+- (BOOL)isConnection;
+
+- (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+
+- (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)searchBLTCard:(SuccessedComplication)complication;
 
-- (void)startHeartBeat;
-
-- (void)connectCard:(NSString *)deviceNameId complication:(ConnectComplication)complication;
+- (void)connectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)getDeviceInfo:(GetDeviceInfoComplication)complication;
 
@@ -71,14 +86,16 @@ typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
 
 - (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed;
 
-@end
+/*When type == PinType
+ Need To implication Method “submmitWaitingVerfyPin”
+ */
+- (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
-@interface BLTDevice : NSObject
+- (void)submmitWaitingVerfyPin:(NSString *)waitVerPin;
 
-@property (nonatomic,strong) NSString *name;
+- (void)getFPList:(GetFPListComplication)complication failed:(FailedComplication)failedComplication;
 
-@property (nonatomic,assign) int RSSI;
+- (void)deleteFP:(NSArray *)fpList success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication;
 
-@property (nonatomic,assign) int state;
 
 @end

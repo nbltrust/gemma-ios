@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -113,6 +113,93 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sk5-Fy-XYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1418" y="152"/>
+        </scene>
+        <!--Wallet Detail View Controller-->
+        <scene sceneID="cdO-Mb-rOd">
+            <objects>
+                <viewController storyboardIdentifier="WalletDetailViewController" id="DYW-Sn-lwb" customClass="WalletDetailViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="P4w-js-s1E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bLh-cv-vuX" customClass="WalletDetailView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bLh-cv-vuX" firstAttribute="top" secondItem="zW6-yf-Abt" secondAttribute="top" id="Lex-F3-MSV"/>
+                            <constraint firstItem="bLh-cv-vuX" firstAttribute="leading" secondItem="zW6-yf-Abt" secondAttribute="leading" id="Pl7-qs-lW4"/>
+                            <constraint firstItem="zW6-yf-Abt" firstAttribute="trailing" secondItem="bLh-cv-vuX" secondAttribute="trailing" id="YJj-WP-Hek"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zW6-yf-Abt"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="bLh-cv-vuX" id="Z2p-Fs-pbr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dhf-Ba-eK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2150" y="151"/>
+        </scene>
+        <!--Finger View Controller-->
+        <scene sceneID="pBS-cf-TaP">
+            <objects>
+                <viewController storyboardIdentifier="FingerViewController" id="sQN-TC-lgv" customClass="FingerViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Gr-if-q08">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="teo-43-pbU" customClass="FingerView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qDo-BX-MjS" firstAttribute="bottom" secondItem="teo-43-pbU" secondAttribute="bottom" id="0JE-2T-QSA"/>
+                            <constraint firstItem="teo-43-pbU" firstAttribute="top" secondItem="qDo-BX-MjS" secondAttribute="top" id="8gH-v1-PNi"/>
+                            <constraint firstItem="qDo-BX-MjS" firstAttribute="trailing" secondItem="teo-43-pbU" secondAttribute="trailing" id="En4-Ax-1MH"/>
+                            <constraint firstItem="teo-43-pbU" firstAttribute="leading" secondItem="qDo-BX-MjS" secondAttribute="leading" id="I7W-W2-1B6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qDo-BX-MjS"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="teo-43-pbU" id="qLh-Tl-Q4N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o6P-jA-kZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2790" y="152"/>
+        </scene>
+        <!--Delete Finger View Controller-->
+        <scene sceneID="nUW-VB-gtp">
+            <objects>
+                <viewController storyboardIdentifier="DeleteFingerViewController" id="ymR-TD-EYH" customClass="DeleteFingerViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rqa-1z-m9B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zop-i1-B76" customClass="DeleteFingerView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Zop-i1-B76" firstAttribute="leading" secondItem="zfj-1z-1Re" secondAttribute="leading" id="2Lr-jq-267"/>
+                            <constraint firstItem="Zop-i1-B76" firstAttribute="top" secondItem="zfj-1z-1Re" secondAttribute="top" id="L8m-XQ-taF"/>
+                            <constraint firstItem="zfj-1z-1Re" firstAttribute="trailing" secondItem="Zop-i1-B76" secondAttribute="trailing" id="iE4-uW-H9z"/>
+                            <constraint firstItem="zfj-1z-1Re" firstAttribute="bottom" secondItem="Zop-i1-B76" secondAttribute="bottom" id="zS3-fw-KnN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zfj-1z-1Re"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="Zop-i1-B76" id="Fki-tp-unf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yi9-oJ-KAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3471" y="152"/>
         </scene>
     </scenes>
 </document>

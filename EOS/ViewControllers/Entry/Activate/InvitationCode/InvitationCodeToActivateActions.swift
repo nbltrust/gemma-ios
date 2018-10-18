@@ -21,3 +21,4 @@ struct InvitationCodeToActivateState: BaseState {
 struct InvitationCodeToActivateFetchedAction: Action {
     var data:JSON
 }
+

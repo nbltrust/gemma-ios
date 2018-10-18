@@ -22,14 +22,14 @@ class WalletManagerViewController: BaseViewController {
         setUpUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    func setUpUI() {
+        self.title = R.string.localizable.manager_wallet.key.localized()
         walletManagerView.data = data
     }
     
-    func setUpUI() {
-        self.title = R.string.localizable.manager_wallet.key.localized()
+    func reloadUI() {
+        data.connected = BLTWalletIO.shareInstance()?.isConnection() ?? false
+        walletManagerView.data = data
     }
 
     
@@ -41,15 +41,41 @@ class WalletManagerViewController: BaseViewController {
 extension WalletManagerViewController {
     @objc func wallNameClick(_ data: [String: Any]) {
         let model: WalletManagerModel = data["indicator"] as! WalletManagerModel
-        self.coordinator?.pushToChangeWalletName(model: model)
+        if model.type == .gemma {
+            self.coordinator?.pushToChangeWalletName(model: model)
+        } else if model.type == .bluetooth {
+            self.coordinator?.pushToDetailVC(model: model)
+        }
     }
     
     @objc func exportPrivateKeyClick(_ data: [String: Any]) {
-        self.coordinator?.pushToExportPrivateKey(self.data.address)
-//        self.coordinator?.pushToBackupMnemonicVC()
+        let model: WalletManagerModel = data["indicator"] as! WalletManagerModel
+        if model.type == .gemma {
+            self.coordinator?.pushToExportPrivateKey(self.data.address)
+        } else if model.type == .bluetooth {
+            self.coordinator?.pushToFingerVC(model: model)
+        }
     }
     
     @objc func changePasswordClick(_ data: [String: Any]) {
-        self.coordinator?.pushToChangePassword(self.data.address)
+        let model: WalletManagerModel = data["indicator"] as! WalletManagerModel
+        if model.type == .gemma {
+            self.coordinator?.pushToChangePassword(self.data.address)
+        }
+    }
+    
+    @objc func btnClick(_ data: [String: Any]) {
+        let model: WalletManagerModel = data["data"] as! WalletManagerModel
+        if model.connected == true {
+            self.coordinator?.disConnect({ [weak self] in
+                guard let `self` = self else { return }
+                self.reloadUI()
+            })
+        } else {
+            self.coordinator?.connect({ [weak self] in
+                guard let `self` = self else { return }
+                self.reloadUI()
+            })
+        }
     }
 }

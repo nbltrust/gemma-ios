@@ -28,9 +28,8 @@ protocol TransferStateManagerProtocol {
 
     func fetchUserAccount(_ account:String)
     
-    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool)->())
-    
     func checkAccountName(_ name:String) ->(Bool,error_info:String)
+    func getCurrentFromLocal()
 }
 
 class TransferCoordinator: NavCoordinator {
@@ -59,6 +58,34 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
     }
     
     func pushToTransferConfirmVC(data: ConfirmViewModel) {
+        let isBltWallet = WalletManager.shared.isBluetoothWallet()
+        if isBltWallet && !(BLTWalletIO.shareInstance()?.isConnection() ?? false) {
+            let width = ModalSize.full
+            let height = ModalSize.custom(size: 180)
+            let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 180))
+            let customType = PresentationType.custom(width: width, height: height, center: center)
+
+            let presenter = Presentr(presentationType: customType)
+            presenter.dismissOnTap = false
+            presenter.keyboardTranslationType = .stickToTop
+
+            var context = BLTCardConnectContext()
+            context.connectSuccessed = { [weak self] in
+                guard let `self` = self else { return }
+                self.showComfirmVC(data: data, type: .bluetooth)
+            }
+
+            presentVC(BLTCardConnectCoordinator.self, animated: true, context: context, navSetup: { (nav) in
+                nav.navStyle = .white
+            }) { (top, target) in
+                top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
+            }
+        } else {
+            showComfirmVC(data: data, type: isBltWallet ? .bluetooth :.gemma)
+        }
+    }
+    
+    func showComfirmVC(data: ConfirmViewModel, type: CreateAPPId) {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 369)
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 369))
@@ -67,9 +94,10 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         let presenter = Presentr(presentationType: customType)
         presenter.dismissOnTap = false
         presenter.keyboardTranslationType = .stickToTop
-
+        
         var context = TransferConfirmContext()
         context.data = data
+        context.type = type
         
         presentVC(TransferConfirmCoordinator.self, animated: true, context: context, navSetup: { (nav) in
             nav.navStyle = .white
@@ -152,24 +180,9 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     func ValidingPassword(_ password : String) -> Bool{
         return WalletManager.shared.isValidPassword(password)
     }
-
     
-    func transferAccounts(_ password:String, account:String, amount:String, code:String ,callback:@escaping (Bool)->()) {
-        
-        getPushTransaction(password, account: account, amount: amount, code: code,callback: { transaction in
-            if let transaction = transaction {
-                EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
-                    if let info = data.dictionaryObject,info["code"] == nil{
-                        callback(true)
-                    }else{
-                        callback(false)
-                    }
-                }, error: { (error_code) in
-                     callback(false)
-                }) { (error) in
-                    callback(false)
-                }
-            }
-        })
+    func getCurrentFromLocal() {
+        let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
+        self.store.dispatch(AccountFetchedFromLocalAction(model: model))
     }
 }

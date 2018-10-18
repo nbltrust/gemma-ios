@@ -23,6 +23,8 @@ struct WalletManagerPropertyState {
 struct WalletManagerModel {
     var name = "-"
     var address = "-"
+    var type : CreateAPPId = .gemma
+    var connected = false
 }
 
 //MARK: - Action Creator

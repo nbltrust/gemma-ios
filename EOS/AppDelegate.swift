@@ -62,14 +62,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        WalletManager.shared.logoutWallet()
 //        log.debug(WalletManager.shared.getAccount())
 
-        
+//        DBManager.shared.setupDB()
+
         if !WalletManager.shared.existWallet() {
             AppConfiguration.shared.appCoordinator!.showEntry()
         } else {
             SafeManager.shared.checkForOpenAPP()
         }
         
-        DBManager.shared.setupDB()
 
         NetworkSettingManager.shared.setup()
         if let url = launchOptions?[.url] as? URL {
@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 navigator.present(url)
             }
         }
-
+        saveNetWorkReachability()
         return true
     }
     

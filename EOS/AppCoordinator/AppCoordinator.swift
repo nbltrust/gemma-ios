@@ -26,12 +26,14 @@ class AppCoordinator {
     
     var rootVC: BaseTabbarViewController
     
+    var newHomeCoordinator: NavCoordinator!
     var homeCoordinator: NavCoordinator!
     var transferCoordinator: NavCoordinator!
     var userinfoCoordinator: NavCoordinator!
     var homeItem: ESTabBarItem!
     var transferItem: ESTabBarItem!
     var userInfoItem: ESTabBarItem!
+    var newHomeItem: ESTabBarItem!
 
     var entryCoordinator: NavCoordinator?
 
@@ -59,6 +61,12 @@ class AppCoordinator {
             tabBar.backgroundImage = UIImage()
         }
         
+//        let newhome = BaseNavigationController()
+//        newHomeCoordinator = NavCoordinator(rootVC: newhome)
+//
+//        newHomeItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet.key.localized(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
+//        newhome.tabBarItem = homeItem
+        
         let home = BaseNavigationController()
         homeCoordinator = NavCoordinator(rootVC: home)
         
@@ -75,6 +83,7 @@ class AppCoordinator {
         userInfoItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine.key.localized(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
         userinfo.tabBarItem = userInfoItem
         
+//        newHomeCoordinator.pushVC(NewHomeCoordinator.self, animated: true, context: nil)
         homeCoordinator.pushVC(HomeCoordinator.self, animated: true, context: nil)
         transferCoordinator.pushVC(TransferCoordinator.self, animated: true, context: nil)
         userinfoCoordinator.pushVC(UserInfoCoordinator.self, animated: true, context: nil)

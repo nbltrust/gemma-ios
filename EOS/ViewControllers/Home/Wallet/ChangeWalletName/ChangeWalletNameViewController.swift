@@ -11,10 +11,17 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
+enum ChangeNameType: Int {
+    case walletName = 0
+    case fingerName
+}
+
 class ChangeWalletNameViewController: BaseViewController {
 
 	var coordinator: (ChangeWalletNameCoordinatorProtocol & ChangeWalletNameStateManagerProtocol)?
     var model = WalletManagerModel()
+    var fingerIndex = 0
+    var type: ChangeNameType = .walletName
     
     @IBOutlet weak var changeWalletNameView: ChangeWalletNameView!
     
@@ -24,18 +31,30 @@ class ChangeWalletNameViewController: BaseViewController {
     }
     
     func setUpUI() {
-        self.title = R.string.localizable.change_wallet_name.key.localized()
+        if type == .walletName {
+            self.title = R.string.localizable.change_wallet_name.key.localized()
+            changeWalletNameView.text = model.name
+        } else {
+            self.title = R.string.localizable.change_finger_name.key.localized()
+            changeWalletNameView.text = WalletManager.shared.fingerName(model, index: fingerIndex)
+        }
+
         configRightNavButton(R.string.localizable.normal_save.key.localized())
-        changeWalletNameView.text = model.name
     }
     
     override func rightAction(_ sender: UIButton) {
         //保存
         self.view.endEditing(true)
 
-        model.name = changeWalletNameView.textField.text ?? ""
-        if self.coordinator?.updateWalletName(model: model) == true {
-            self.coordinator?.popToLastVC()
+        if type == .walletName {
+            model.name = changeWalletNameView.textField.text ?? ""
+            if self.coordinator?.updateWalletName(model: model) == true {
+                self.coordinator?.popToLastVC()
+            }
+        } else {
+            if self.coordinator?.updateFingerName(model: model, index: fingerIndex, newName: changeWalletNameView.textField.text ?? "") == true {
+                self.coordinator?.popToLastVC()
+            }
         }
     }
 

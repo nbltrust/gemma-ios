@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 extension DBManager {
-    
+    func checkDB() throws {
+        var accountModel = AccountModel()
+        try handleTableCreation(accountModel, primaryKey: accountModel.primaryKey())
+    }
 }

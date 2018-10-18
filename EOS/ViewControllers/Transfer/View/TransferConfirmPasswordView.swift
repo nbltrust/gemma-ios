@@ -10,6 +10,7 @@ import Foundation
 
 enum confirmType: String {
     case transfer
+    case bltTransfer
     case mortgage
     case relieveMortgage
     case updatePwd
