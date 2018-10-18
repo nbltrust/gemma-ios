@@ -50,7 +50,6 @@ int EnumCallback(const char *szDevName, int nRSSI, int nState)
 
 int DisconnectedCallback(const int status, const char *description)
 {
-    NSLog(@"device has disconnected already, status code is: %d, detail is: %s", status, description);
     savedDevH = nil;
     return PAEW_RET_SUCCESS;
 }
@@ -103,25 +102,6 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     return _instance ;
 }
 
-- (void)formmart {
-    if (!savedDevH) {
-        return;
-    }
-    dispatch_async(bltQueue, ^{
-        int devIdx = 0;
-        void *ppPAEWContext = savedDevH;
-        int iRtn = PAEW_RET_UNKNOWN_FAIL;
-        
-        iRtn = PAEW_Format(ppPAEWContext, devIdx);
-        if (iRtn != PAEW_RET_SUCCESS) {
-            NSLog(@"PAEW_Format returns failed");
-            return ;
-        } else {
-            NSLog(@"PAEW_Format returns success");
-        }
-    });
-}
-
 - (void)startHeartBeat {
     if (_timer == nil) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(repatGetDeviceInfo) userInfo:nil repeats:true];
@@ -159,7 +139,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)powerOff:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+- (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
     if (!savedDevH) {
         return;
     }
@@ -167,12 +147,53 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
-        iRtn = PAEW_PowerOff(ppPAEWContext, devIdx);
+        
+        iRtn = PAEW_Format(ppPAEWContext, devIdx);
         if (iRtn != PAEW_RET_SUCCESS) {
-            successComlication();
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            });
+            return ;
         } else {
-            failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            const unsigned char number = (const unsigned char)[self ret15bitString];
+            iRtn = PAEW_WriteSN(savedDevH, 0, &number, sizeof(number));
+            if (iRtn != PAEW_RET_SUCCESS) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    failedCompliction([BLTUtils errorCodeToString:iRtn]);
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    successComlication();
+                });
+            }
         }
+    });
+}
+
+- (NSString *)ret15bitString
+{
+    char data[15];
+    for (int x=0;x<15;data[x++] = (char)((arc4random_uniform(10))));
+    return [[NSString alloc] initWithBytes:data length:15 encoding:NSUTF8StringEncoding];
+}
+
+
+- (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+    if (!savedDevH) {
+        return;
+    }
+    dispatch_async(bltQueue, ^{
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        iRtn = PAEW_FreeContext(ppPAEWContext);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (iRtn == PAEW_RET_SUCCESS) {
+                savedDevH = nil;
+                successComlication();
+            } else {
+                failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            }
+        });
     });
 }
 
@@ -596,52 +617,53 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         iRtn = PAEW_GetFPList(ppPAEWContext, devIdx, 0, &nListLen);
         if (iRtn != PAEW_RET_SUCCESS) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                complication([NSArray new]);
+                failedComplication([BLTUtils errorCodeToString:iRtn]);
             });
             return ;
         } else if (nListLen == 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                failedComplication([BLTUtils errorCodeToString:iRtn]);
+                complication([NSArray new]);
             });
             return ;
         } else {
             pFPList = (FingerPrintID *)malloc(sizeof(FingerPrintID) * nListLen);
             iRtn = PAEW_GetFPList(ppPAEWContext, devIdx, pFPList, &nListLen);
-            if (iRtn == PAEW_RET_SUCCESS) {
-                NSMutableArray *tempData = [NSMutableArray new];
-                for (int i = 0; i < nListLen; i++) {
-                    [tempData addObject:[NSString stringWithFormat:@"%u",pFPList[i].data[0]]];
-                }
-                complication(tempData);
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (iRtn == PAEW_RET_SUCCESS) {
+                    NSMutableArray *tempData = [NSMutableArray new];
+                    for (int i = 0; i < nListLen; i++) {
+                        [tempData addObject:[NSString stringWithFormat:@"%u",pFPList[i].data[0]]];
+                    }
+                    complication(tempData);
+                } else {
                     failedComplication([BLTUtils errorCodeToString:iRtn]);
-                });
-            }
-            free(pFPList);
+                }
+                free(pFPList);
+            });
         }
     });
 }
 
 - (void)deleteFP:(NSArray *)fpList success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication {
     dispatch_async(bltQueue, ^{
-        FingerPrintID   *localFPList = 0;
-        int nFPCount = 0;
+        FingerPrintID  *localFPList = (FingerPrintID *)malloc(sizeof(FingerPrintID) * fpList.count);
+        for (int i = 0; i < fpList.count; i++) {
+            int index = [fpList[i] intValue];
+            unsigned char fp = (unsigned char)index;
+            localFPList[i].data[0] = fp;
+        }
+        int nFPCount = (int)fpList.count;
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
         iRtn = PAEW_DeleteFP(ppPAEWContext, devIdx, localFPList, nFPCount);
-        
-        if (iRtn != PAEW_RET_SUCCESS) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (iRtn == PAEW_RET_SUCCESS) {
                 successComlication();
-            });
-            return ;
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
+            } else {
                 failedComplication([BLTUtils errorCodeToString:iRtn]);
-            });
-        }
+            }
+        });
     });
 }
 
@@ -672,9 +694,5 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         });
     }
 }
-
-@end
-
-@implementation BLTDevice
 
 @end

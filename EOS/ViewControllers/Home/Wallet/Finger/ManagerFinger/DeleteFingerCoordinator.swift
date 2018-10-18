@@ -19,6 +19,8 @@ protocol DeleteFingerStateManagerProtocol {
     var state: DeleteFingerState { get }
     
     func switchPageState(_ state:PageState)
+    
+    func deleteCurrentFinger(_ model: WalletManagerModel, index: Int)
 }
 
 class DeleteFingerCoordinator: NavCoordinator {
@@ -52,7 +54,8 @@ extension DeleteFingerCoordinator: DeleteFingerCoordinatorProtocol {
             let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
             vc.model = model
-            vc.index = index
+            vc.fingerIndex = index
+            vc.type = .fingerName
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
@@ -63,5 +66,17 @@ extension DeleteFingerCoordinator: DeleteFingerStateManagerProtocol {
         Async.main {
             self.store.dispatch(PageStateAction(state: state))
         }
+    }
+    
+    func deleteCurrentFinger(_ model: WalletManagerModel, index: Int) {
+        BLTWalletIO.shareInstance()?.deleteFP([String(format: "%d", index)], success: { [weak self] in
+            guard let `self` = self else { return }
+            WalletManager.shared.deleteFingerName(model, index: index)
+            self.rootVC.popViewController(animated: true)
+        }, failed: { (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        })
     }
 }

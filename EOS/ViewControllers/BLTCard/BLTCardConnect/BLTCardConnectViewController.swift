@@ -37,7 +37,7 @@ class BLTCardConnectViewController: BaseViewController {
     }
     
     override func refreshViewController() {
-        
+    
     }
     
     func setupUI() {

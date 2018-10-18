@@ -13,12 +13,16 @@ import Async
 
 protocol FingerCoordinatorProtocol {
     func pushToManagerFingerVC(model: WalletManagerModel, index: Int)
+    
+    func pushToENtroFingerVC()
 }
 
 protocol FingerStateManagerProtocol {
     var state: FingerState { get }
     
     func switchPageState(_ state:PageState)
+    
+    func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication)
 }
 
 class FingerCoordinator: NavCoordinator {
@@ -47,6 +51,13 @@ class FingerCoordinator: NavCoordinator {
 }
 
 extension FingerCoordinator: FingerCoordinatorProtocol {
+    func pushToENtroFingerVC() {
+        let fingerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()!
+        let coor = BLTCardSetFingerPrinterCoordinator(rootVC: self.rootVC)
+        fingerVC.coordinator = coor;
+        self.rootVC.pushViewController(fingerVC, animated: true)
+    }
+    
     func pushToManagerFingerVC(model: WalletManagerModel, index: Int) {
         if let vc = R.storyboard.wallet.deleteFingerViewController() {
             let coordinator = DeleteFingerCoordinator(rootVC: self.rootVC)
@@ -63,5 +74,9 @@ extension FingerCoordinator: FingerStateManagerProtocol {
         Async.main {
             self.store.dispatch(PageStateAction(state: state))
         }
+    }
+    
+    func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication) {
+        BLTWalletIO.shareInstance()?.getFPList(success, failed: failed)
     }
 }

@@ -10,13 +10,12 @@
 #import <iOS_EWalletDynamic/PA_EWallet.h>
 #import "BLTWalletHeader.h"
 #import "BLTUtils.h"
+#import "BLTDevice.h"
 
 typedef enum : NSUInteger {
     pinType = 1,
     fpType = 2,
 } AuthType;
-
-@class BLTDevice;
 
 @interface BLTWalletIO : NSObject
 
@@ -59,13 +58,13 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 +(instancetype) shareInstance;
 
 #pragma mark Bluetooth Action Request
-- (void)formmart;
-
 - (void)startHeartBeat;
 
 - (BOOL)isConnection;
 
-- (void)powerOff:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+- (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+
+- (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)searchBLTCard:(SuccessedComplication)complication;
 
@@ -98,15 +97,5 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 
 - (void)deleteFP:(NSArray *)fpList success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication;
 
-
-@end
-
-@interface BLTDevice : NSObject
-
-@property (nonatomic,strong) NSString *name;
-
-@property (nonatomic,assign) int RSSI;
-
-@property (nonatomic,assign) int state;
 
 @end

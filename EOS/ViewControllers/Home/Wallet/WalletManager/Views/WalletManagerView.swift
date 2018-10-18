@@ -56,7 +56,6 @@ class WalletManagerView: UIView {
 
                     if data.connected == true {
                         btn.title = R.string.localizable.disconnect.key.localized()
-                        batteryView.progress = data.batteryProgress
                         progressLabel.text = "50%"
                         exportPrivateKeyLineView.name_text = R.string.localizable.fingerprint_password.key.localized()
                     } else {

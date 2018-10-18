@@ -20,17 +20,8 @@ class FingerView: EOSBaseView {
         case ChangeFingerNameDidClicked
     }
     
-    override var data: Any? {
-        didSet {
-            if let data = self.data as? WalletManagerModel {
-                self.dataArray = data.fingerNameArray
-            }
-        }
-    }
-    
     var dataArray : [String] = [] {
         didSet {
-            dataArray.append(R.string.localizable.add_finger.key.localized())
             self.tableView.reloadData()
         }
     }
@@ -56,20 +47,27 @@ class FingerView: EOSBaseView {
         self.next?.sendEventWith(Event.FingerViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
     
-    func createSectionOneDataInfo(oneData: [String]) -> [LineView.LineViewModel] {
-        var array: [LineView.LineViewModel] = []
-        for content in oneData {
-            let model = LineView.LineViewModel.init(name: content,
-                                                    content: "",
-                                                    image_name: R.image.icArrow.name,
-                                                    name_style: LineViewStyleNames.normal_name,
-                                                    content_style: LineViewStyleNames.normal_content,
-                                                    isBadge: false,
-                                                    content_line_number: 1,
-                                                    isShowLineView: false)
-            array.append(model)
+    func modelWithIndexPath(_ indexPath: IndexPath) -> LineView.LineViewModel {
+        if indexPath.section == 0 {
+            if indexPath.row < dataArray.count {
+                return lineModelWithName(dataArray[indexPath.row])
+            } else {
+                return lineModelWithName(R.string.localizable.add_finger.key.localized())
+            }
+        } else {
+            return lineModelWithName(R.string.localizable.change_password.key.localized())
         }
-        return array
+    }
+    
+    func lineModelWithName(_ name: String) -> LineView.LineViewModel {
+        return LineView.LineViewModel.init(name: name,
+                                           content: "",
+                                           image_name: R.image.icArrow.name,
+                                           name_style: LineViewStyleNames.normal_name,
+                                           content_style: LineViewStyleNames.normal_content,
+                                           isBadge: false,
+                                           content_line_number: 1,
+                                           isShowLineView: false)
     }
 }
 
@@ -102,37 +100,32 @@ extension FingerView : UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return createSectionOneDataInfo(oneData: dataArray).count
+            return min(dataArray.count + 1, 3)
         } else {
             return 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let nibString = String.init(describing:type(of: HomeTableCell()))
-            let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
-            cell.setup(createSectionOneDataInfo(oneData: dataArray)[indexPath.row], indexPath: indexPath)
-            return cell
-            
+        let nibString = String.init(describing:type(of: HomeTableCell()))
+        let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
+        cell.setup(modelWithIndexPath(indexPath), indexPath: indexPath)
+        if indexPath.section == 0 && indexPath.row == dataArray.count {
+            cell.homeCellView.leftImg.image = R.image.if_ic_fingerprint_48_px_3669427()
         } else {
-            let nibString = String.init(describing:type(of: HomeTableCell()))
-            let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
-            cell.setup(createSectionOneDataInfo(oneData: [R.string.localizable.change_password.key.localized()])[indexPath.row], indexPath: indexPath)
-            return cell
+            cell.homeCellView.leftImg.image = nil
         }
+        return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            if indexPath.row == (dataArray.count - 1) {
+            if indexPath.row == dataArray.count {
                 self.next?.sendEventWith(Event.AddFingerDidClicked.rawValue, userinfo: [:])
             } else {
-                if let newData = self.data {
-                    self.next?.sendEventWith(Event.ChangeFingerNameDidClicked.rawValue, userinfo: ["data": newData, "index": indexPath.row])
-                }
+                self.next?.sendEventWith(Event.ChangeFingerNameDidClicked.rawValue, userinfo: ["index": indexPath.row])
             }
         } else {
             self.next?.sendEventWith(Event.ChangePwdDidClicked.rawValue, userinfo: [:])

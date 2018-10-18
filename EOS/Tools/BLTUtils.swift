@@ -28,7 +28,9 @@ func connectBLTCard(_ complication: @escaping CompletionCallback) {
         if let connectVC = R.storyboard.bltCard.bltCardConnectViewController() {
             let nav = BaseNavigationController.init(rootViewController: connectVC)
             nav.navStyle = .white
-            connectVC.coordinator = BLTCardConnectCoordinator(rootVC:nav)
+            let coordinator = BLTCardConnectCoordinator(rootVC:nav)
+            connectVC.coordinator = coordinator
+            coordinator.store.dispatch(RouteContextAction(context: context))
             vc.customPresentViewController(presenter, viewController: nav, animated: true)
         }
     }

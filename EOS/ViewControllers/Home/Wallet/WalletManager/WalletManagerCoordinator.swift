@@ -123,7 +123,13 @@ extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
     }
     
     func disConnect(_ complication: @escaping CompletionCallback) {
-        
+        BLTWalletIO.shareInstance()?.disConnect({
+            complication()
+        }, failed: {  (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        })
     }
     
     func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication) {
