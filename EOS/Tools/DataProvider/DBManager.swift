@@ -19,7 +19,7 @@ enum TableHandleAction: Int {
 class DBManager {
     static let shared = DBManager()
     
-    var dbQueue: DatabaseQueue!
+    var dbQueue: DatabaseQueue?
     
     func setupDB() {
         do {
@@ -88,7 +88,7 @@ class DBManager {
     }
     
     fileprivate func createTable(_ tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
-        try dbQueue.write{ db in
+        try dbQueue?.write{ db in
             try self.handleCustomTableCreation(db, tableName: tableName, primaryKey: primaryKey, structure: structure)
         }
     }
@@ -108,6 +108,7 @@ class DBManager {
     }
     
     fileprivate func migrateTable(_ tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
+        guard let dbQueue = dbQueue else { return }
         let tempTableName = tableName + "temp"
         var migrator = DatabaseMigrator()
         migrator.registerMigrationWithDeferredForeignKeyCheck("remove data to newTabel from oldtable") { db in
@@ -140,7 +141,7 @@ class DBManager {
     
     fileprivate func tableAction(_ tableName: String, structure: [String : ParameterType]) throws -> TableHandleAction {
         var action = TableHandleAction.none
-        try dbQueue.write{ db in
+        try dbQueue?.write{ db in
             if try db.tableExists(tableName) {
                 let columns = try db.columns(in: tableName)
                 if structure.keys.count != columns.count {

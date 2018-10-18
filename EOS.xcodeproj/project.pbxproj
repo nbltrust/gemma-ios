@@ -559,6 +559,9 @@
 		739A4DC12150DF2800A1074B /* View+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DB12150DF2700A1074B /* View+RxGesture.swift */; };
 		739A4DC82150E1B600A1074B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DC42150E1B500A1074B /* R.generated.swift */; };
 		739A4DDC2150E92D00A1074B /* EOSBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DDB2150E92D00A1074B /* EOSBaseView.swift */; };
+		73A453BC2177278F0075E290 /* WalletCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A453BB2177278F0075E290 /* WalletCacheService.swift */; };
+		73A453BE217727E00075E290 /* BaseCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A453BD217727E00075E290 /* BaseCacheService.swift */; };
+		73A453C1217731350075E290 /* Seed39.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A453C0217731340075E290 /* Seed39.framework */; };
 		73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68B20F5B42600756391 /* Double+Extensions.swift */; };
 		73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */; };
 		73B5A69020F5B54C00756391 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68F20F5B54C00756391 /* String+Extensions.swift */; };
@@ -6940,6 +6943,9 @@
 		739A4DD92150E3FA00A1074B /* rswift */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rswift; sourceTree = "<group>"; };
 		739A4DDB2150E92D00A1074B /* EOSBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSBaseView.swift; sourceTree = "<group>"; };
 		739BB48149915B4F416717807337A788 /* begin.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = begin.hpp; sourceTree = "<group>"; };
+		73A453BB2177278F0075E290 /* WalletCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCacheService.swift; sourceTree = "<group>"; };
+		73A453BD217727E00075E290 /* BaseCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCacheService.swift; sourceTree = "<group>"; };
+		73A453C0217731340075E290 /* Seed39.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Seed39.framework; path = library/Seed39.framework; sourceTree = "<group>"; };
 		73A80E7F0D19BC17C299F55BC6D2090D /* make_vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = make_vector.hpp; sourceTree = "<group>"; };
 		73ABB9E52211D9D7635865D74BB4E1E6 /* asin.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = asin.hpp; sourceTree = "<group>"; };
 		73B32429E7D9E2D466E9C9F63B781C21 /* sha256.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sha256.hpp; sourceTree = "<group>"; };
@@ -13188,6 +13194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73A453C1217731350075E290 /* Seed39.framework in Frameworks */,
 				227F83852170A42A005FB567 /* iOS_EWalletDynamic.framework in Frameworks */,
 				735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
@@ -24490,6 +24497,15 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
+		73A453BF217727EB0075E290 /* LocalCache */ = {
+			isa = PBXGroup;
+			children = (
+				73A453BB2177278F0075E290 /* WalletCacheService.swift */,
+				73A453BD217727E00075E290 /* BaseCacheService.swift */,
+			);
+			path = LocalCache;
+			sourceTree = "<group>";
+		};
 		73B4C3E360CD0824C1B527EB20CA394D /* detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -25262,6 +25278,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73A453C0217731340075E290 /* Seed39.framework */,
 				227F83842170A429005FB567 /* iOS_EWalletDynamic.framework */,
 				735A3D132160A99700FC8922 /* NBLCommonModule.framework */,
 				73921E0B215224AE00744811 /* GRDB.swift */,
@@ -28263,6 +28280,7 @@
 				73B5A69D20F5E08900756391 /* SimpleHTTPService.swift */,
 				22752791214761490089FADA /* NetworkDataCache.swift */,
 				223C58C82148BD9200C69F3F /* NetworkSettingManager.swift */,
+				73A453BF217727EB0075E290 /* LocalCache */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -35984,6 +36002,7 @@
 				3B6D7479214761690076F444 /* InvitationCodeToActivateViewController.swift in Sources */,
 				3B6D7461214761690076F444 /* FriendToActivateActions.swift in Sources */,
 				73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */,
+				73A453BE217727E00075E290 /* BaseCacheService.swift in Sources */,
 				7302299E212E50460073D5CE /* Vector2.swift in Sources */,
 				73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */,
 				72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */,
@@ -36053,6 +36072,7 @@
 				722D24C72111555B00A093CA /* WithNoDataView.swift in Sources */,
 				22578771212197F3004C4579 /* SelectedVoteViewController.swift in Sources */,
 				739A4DB82150DF2800A1074B /* UILongPressGestureRecognizer+RxGesture.swift in Sources */,
+				73A453BC2177278F0075E290 /* WalletCacheService.swift in Sources */,
 				223C58EF214A50C700C69F3F /* AccountSetViewController.swift in Sources */,
 				22C023A620FCACA400284A0A /* GestureLockView.swift in Sources */,
 				3B195066211BE7CF002C7991 /* GeneralRamCellView.swift in Sources */,

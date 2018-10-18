@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        WalletManager.shared.logoutWallet()
 //        log.debug(WalletManager.shared.getAccount())
 
-        DBManager.shared.setupDB()
+//        DBManager.shared.setupDB()
 
         if !WalletManager.shared.existWallet() {
             AppConfiguration.shared.appCoordinator!.showEntry()
