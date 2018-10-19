@@ -614,7 +614,6 @@
 		739A4DDC2150E92D00A1074B /* EOSBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DDB2150E92D00A1074B /* EOSBaseView.swift */; };
 		73A453BC2177278F0075E290 /* WalletCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A453BB2177278F0075E290 /* WalletCacheService.swift */; };
 		73A453BE217727E00075E290 /* BaseCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A453BD217727E00075E290 /* BaseCacheService.swift */; };
-		73A453C1217731350075E290 /* Seed39.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A453C0217731340075E290 /* Seed39.framework */; };
 		73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68B20F5B42600756391 /* Double+Extensions.swift */; };
 		73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68D20F5B4DE00756391 /* Decimal+Extensions.swift */; };
 		73B5A69020F5B54C00756391 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A68F20F5B54C00756391 /* String+Extensions.swift */; };
@@ -7049,7 +7048,6 @@
 		739BB48149915B4F416717807337A788 /* begin.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = begin.hpp; sourceTree = "<group>"; };
 		73A453BB2177278F0075E290 /* WalletCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCacheService.swift; sourceTree = "<group>"; };
 		73A453BD217727E00075E290 /* BaseCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCacheService.swift; sourceTree = "<group>"; };
-		73A453C0217731340075E290 /* Seed39.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Seed39.framework; path = library/Seed39.framework; sourceTree = "<group>"; };
 		73A80E7F0D19BC17C299F55BC6D2090D /* make_vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = make_vector.hpp; sourceTree = "<group>"; };
 		73ABB9E52211D9D7635865D74BB4E1E6 /* asin.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = asin.hpp; sourceTree = "<group>"; };
 		73B32429E7D9E2D466E9C9F63B781C21 /* sha256.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sha256.hpp; sourceTree = "<group>"; };
@@ -13289,7 +13287,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73A453C1217731350075E290 /* Seed39.framework in Frameworks */,
 				227F83852170A42A005FB567 /* iOS_EWalletDynamic.framework in Frameworks */,
 				735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
@@ -25514,7 +25511,6 @@
 				73539CDF2179B4A5008395AC /* SwiftyUserDefaults.framework */,
 				73539CE92179B4AA008395AC /* TinyConstraints.framework */,
 				73539CE02179B4A6008395AC /* UIFontComplete.framework */,
-				73A453C0217731340075E290 /* Seed39.framework */,
 				227F83842170A429005FB567 /* iOS_EWalletDynamic.framework */,
 				735A3D132160A99700FC8922 /* NBLCommonModule.framework */,
 				73921E0B215224AE00744811 /* GRDB.swift */,
