@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol PayToActivateCoordinatorProtocol {
     func pushToCreateSuccessVC()
@@ -272,7 +271,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
     }
     
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

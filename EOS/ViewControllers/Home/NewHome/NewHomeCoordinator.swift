@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol NewHomeCoordinatorProtocol {
 }
@@ -51,7 +50,7 @@ extension NewHomeCoordinator: NewHomeCoordinatorProtocol {
 
 extension NewHomeCoordinator: NewHomeStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

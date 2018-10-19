@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol FingerCoordinatorProtocol {
     func pushToManagerFingerVC(model: WalletManagerModel, index: Int)
@@ -71,7 +70,7 @@ extension FingerCoordinator: FingerCoordinatorProtocol {
 
 extension FingerCoordinator: FingerStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
