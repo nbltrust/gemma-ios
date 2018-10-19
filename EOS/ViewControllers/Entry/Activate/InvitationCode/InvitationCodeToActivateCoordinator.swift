@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 import KRProgressHUD
 
 protocol InvitationCodeToActivateCoordinatorProtocol {
@@ -93,7 +92,7 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateCoordinat
 
 extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

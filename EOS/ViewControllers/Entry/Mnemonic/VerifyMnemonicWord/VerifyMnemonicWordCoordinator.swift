@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol VerifyMnemonicWordCoordinatorProtocol {
     func popToVC(_ vc: UIViewController)
@@ -54,7 +53,7 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordCoordinatorProtocol {
 
 extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

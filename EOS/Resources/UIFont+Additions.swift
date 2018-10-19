@@ -8,12 +8,7 @@
 
 import UIKit
 
-extension UIFont {
-    
-    class var enTextNormal: UIFont {
-        return UIFont(name: "Rubik-Medium", size: 16.0)!
-    }
-    
+extension UIFont {    
     class var cnTitleMedium: UIFont {
         return UIFont(name: "PingFangSC-Regular", size: 14.0)!
     }
