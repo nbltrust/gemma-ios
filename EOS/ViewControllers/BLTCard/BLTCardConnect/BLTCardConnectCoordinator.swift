@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol BLTCardConnectCoordinatorProtocol {
     func dismissVC(_ complication: @escaping () -> Void)
@@ -56,7 +55,7 @@ extension BLTCardConnectCoordinator: BLTCardConnectCoordinatorProtocol {
 
 extension BLTCardConnectCoordinator: BLTCardConnectStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

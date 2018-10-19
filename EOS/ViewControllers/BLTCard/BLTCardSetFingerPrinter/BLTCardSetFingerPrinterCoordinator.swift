@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol BLTCardSetFingerPrinterCoordinatorProtocol {
     func dismissVC()
@@ -54,7 +53,7 @@ extension BLTCardSetFingerPrinterCoordinator: BLTCardSetFingerPrinterCoordinator
 
 extension BLTCardSetFingerPrinterCoordinator: BLTCardSetFingerPrinterStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

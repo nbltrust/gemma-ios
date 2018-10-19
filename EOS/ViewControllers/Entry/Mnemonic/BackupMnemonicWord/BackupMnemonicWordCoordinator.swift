@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol BackupMnemonicWordCoordinatorProtocol {
     func pushToMnemonicWordContentVC()
@@ -50,7 +49,7 @@ extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
 
 extension BackupMnemonicWordCoordinator: BackupMnemonicWordStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol ActivateCoordinatorProtocol {
     func pushToGetInviteCodeIntroductionVC()
@@ -51,7 +50,7 @@ extension ActivateCoordinator: ActivateCoordinatorProtocol {
 
 extension ActivateCoordinator: ActivateStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

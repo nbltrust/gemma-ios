@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol VerifyPriKeyCoordinatorProtocol {
     func finishCopy()
@@ -60,7 +59,7 @@ extension VerifyPriKeyCoordinator: VerifyPriKeyCoordinatorProtocol {
 
 extension VerifyPriKeyCoordinator: VerifyPriKeyStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

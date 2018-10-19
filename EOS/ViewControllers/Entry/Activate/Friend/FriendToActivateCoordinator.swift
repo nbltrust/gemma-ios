@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol FriendToActivateCoordinatorProtocol {
 }
@@ -43,7 +42,7 @@ extension FriendToActivateCoordinator: FriendToActivateCoordinatorProtocol {
 
 extension FriendToActivateCoordinator: FriendToActivateStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

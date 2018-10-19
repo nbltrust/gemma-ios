@@ -9,7 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
 
 protocol DeleteFingerCoordinatorProtocol {
     func pushToChangeWalletName(model: WalletManagerModel, index: Int)
@@ -63,7 +62,7 @@ extension DeleteFingerCoordinator: DeleteFingerCoordinatorProtocol {
 
 extension DeleteFingerCoordinator: DeleteFingerStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }

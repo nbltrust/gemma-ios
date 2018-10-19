@@ -14,11 +14,12 @@ import Localize_Swift
 import Fabric
 import Crashlytics
 import SwiftDate
-import URLNavigator
 import MonkeyKing
+import Reachability
 
 let log = SwiftyBeaver.self
 let navigator = Navigator()
+let reachability = Reachability()!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,7 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        #if !DEBUG
         Fabric.with([Crashlytics.self, Answers.self])
+        #else
+        Fabric.sharedSDK().debug = true
+        #endif
         URLNavigationMap.initialize(navigator: navigator)
 
         let console = ConsoleDestination()
@@ -48,12 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         AppConfiguration.shared.appCoordinator.start()
-        RealReachability.sharedInstance().startNotifier()
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.realReachabilityChanged, object: nil, queue: nil) { (notifi) in
-            self.handlerNetworkChanged()
-        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handlerNetworkChanged(note:)), name: .reachabilityChanged, object: reachability)
+        try? reachability.startNotifier()
+
         configApplication()
-        self.handlerNetworkChanged()
         
 //        self.appcoordinator?.showTest()
         
@@ -62,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        WalletManager.shared.logoutWallet()
 //        log.debug(WalletManager.shared.getAccount())
 
-//        DBManager.shared.setupDB()
+        DBManager.shared.setupDB()
 
         if !WalletManager.shared.existWallet() {
             AppConfiguration.shared.appCoordinator!.showEntry()
@@ -140,13 +144,12 @@ extension AppDelegate {
        
     }
     
-    func handlerNetworkChanged() {
-        let status = RealReachability.sharedInstance().currentReachabilityStatus()
-        if status == .RealStatusNotReachable || status  == .RealStatusUnknown {
-           
-        }
-        else {
-            
+   @objc func handlerNetworkChanged(note: Notification) {
+        let reachability = note.object as! Reachability
+    
+        switch reachability.connection {
+        case .none:break
+        default:break
         }
     }
 }

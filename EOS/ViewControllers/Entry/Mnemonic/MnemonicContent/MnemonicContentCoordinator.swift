@@ -9,8 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Async
-import Seed39
 
 protocol MnemonicContentCoordinatorProtocol {
     func pushToVerifyMnemonicVC()
@@ -57,7 +55,7 @@ extension MnemonicContentCoordinator: MnemonicContentCoordinatorProtocol {
 
 extension MnemonicContentCoordinator: MnemonicContentStateManagerProtocol {
     func switchPageState(_ state:PageState) {
-        Async.main {
+        DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
