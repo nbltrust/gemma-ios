@@ -16,16 +16,15 @@
             <rect key="frame" x="0.0" y="0.0" width="382" height="193"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Que-29-TJh" customClass="CardView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="382" height="163"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Que-29-TJh" customClass="CardView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="20" y="30" width="342" height="163"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Que-29-TJh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Cec-XI-yOt"/>
-                <constraint firstItem="Que-29-TJh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="KnG-At-Z5C"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Que-29-TJh" secondAttribute="trailing" id="Obb-gI-qcm"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Que-29-TJh" secondAttribute="bottom" constant="30" id="vpn-3b-xdy"/>
+                <constraint firstItem="Que-29-TJh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="Cec-XI-yOt"/>
+                <constraint firstItem="Que-29-TJh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="KnG-At-Z5C"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Que-29-TJh" secondAttribute="trailing" constant="20" id="Obb-gI-qcm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Que-29-TJh" secondAttribute="bottom" id="vpn-3b-xdy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

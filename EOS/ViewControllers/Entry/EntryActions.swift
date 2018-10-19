@@ -31,6 +31,8 @@ struct EntryPropertyState {
     var isAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     
     var checkSeedSuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    var model: WalletModel? = nil
 }
 
 struct EntryCallbackState {
@@ -57,6 +59,16 @@ struct agreeAction: Action {
 
 struct SetCheckSeedSuccessedAction: Action {
     var isCheck: Bool = false
+}
+
+struct WalletModelAction: Action {
+    var model: WalletModel?
+}
+
+struct WalletModel {
+    var pwd: String
+    var prompt: String
+    var type: WalletType
 }
 
 //MARK: - Action Creator

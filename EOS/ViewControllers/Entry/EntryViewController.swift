@@ -78,9 +78,14 @@ class EntryViewController: BaseViewController {
                     self.coordinator?.copyMnemonicWord()
                 }
             default:
-                self.coordinator?.verifyAccount(self.registerView.nameView.textField.text!, completion: { (success) in
+                self.coordinator?.verifyAccount(self.registerView.nameView.textField.text!, completion: {[weak self] (success) in
+                    guard let `self` = self else {return }
                     if success == true {
-                        self.coordinator?.pushToActivateVC()
+//                        self.coordinator?.pushToActivateVC()
+                        self.coordinator?.createTempWallet(self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, type: .HD)
+                        
+                            self.coordinator?.pushBackupMnemonicVC()
+
                     }
                 })
             }

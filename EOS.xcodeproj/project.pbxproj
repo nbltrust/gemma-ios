@@ -331,8 +331,6 @@
 		3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3664920F72B5E004DE09D /* TransferConfirmPasswordReducers.swift */; };
 		3BD3664F20F76594004DE09D /* TransferConfirmPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3664E20F76594004DE09D /* TransferConfirmPasswordView.swift */; };
 		3BD3665120F765AB004DE09D /* TransferConfirmPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3665020F765AB004DE09D /* TransferConfirmPasswordView.xib */; };
-		3BD3665C20FDEB3A004DE09D /* CornerAndShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3665A20FDEB39004DE09D /* CornerAndShadowView.swift */; };
-		3BD3665D20FDEB3A004DE09D /* CornerAndShadowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3665B20FDEB39004DE09D /* CornerAndShadowView.xib */; };
 		3BD3666220FDEB76004DE09D /* TitleTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD3665E20FDEB72004DE09D /* TitleTextView.xib */; };
 		3BD3666320FDEB76004DE09D /* TitleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3665F20FDEB73004DE09D /* TitleTextView.swift */; };
 		3BD3666420FDEB76004DE09D /* TitleTextfieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3666020FDEB74004DE09D /* TitleTextfieldView.swift */; };
@@ -353,6 +351,8 @@
 		3BF842E5211BE60100AF9963 /* BuyRamActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E1211BE60100AF9963 /* BuyRamActions.swift */; };
 		3BF842E6211BE60100AF9963 /* BuyRamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E2211BE60100AF9963 /* BuyRamViewController.swift */; };
 		3BF842E7211BE60100AF9963 /* BuyRamReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E3211BE60100AF9963 /* BuyRamReducers.swift */; };
+		3BFE28C6217986820099CED0 /* CornerAndShadowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BFE28C4217986800099CED0 /* CornerAndShadowView.xib */; };
+		3BFE28C7217986820099CED0 /* CornerAndShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE28C5217986810099CED0 /* CornerAndShadowView.swift */; };
 		3BFF4E062109F8390047F996 /* OperationLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF4E052109F8390047F996 /* OperationLeftView.swift */; };
 		3BFF4E092109F89F0047F996 /* OperationLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BFF4E082109F89F0047F996 /* OperationLeftView.xib */; };
 		3BFF4E0B2109F8BD0047F996 /* OperationRightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF4E0A2109F8BD0047F996 /* OperationRightView.swift */; };
@@ -3940,8 +3940,6 @@
 		3BD3664920F72B5E004DE09D /* TransferConfirmPasswordReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmPasswordReducers.swift; sourceTree = "<group>"; };
 		3BD3664E20F76594004DE09D /* TransferConfirmPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferConfirmPasswordView.swift; sourceTree = "<group>"; };
 		3BD3665020F765AB004DE09D /* TransferConfirmPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferConfirmPasswordView.xib; sourceTree = "<group>"; };
-		3BD3665A20FDEB39004DE09D /* CornerAndShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerAndShadowView.swift; sourceTree = "<group>"; };
-		3BD3665B20FDEB39004DE09D /* CornerAndShadowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CornerAndShadowView.xib; sourceTree = "<group>"; };
 		3BD3665E20FDEB72004DE09D /* TitleTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleTextView.xib; sourceTree = "<group>"; };
 		3BD3665F20FDEB73004DE09D /* TitleTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTextView.swift; sourceTree = "<group>"; };
 		3BD3666020FDEB74004DE09D /* TitleTextfieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTextfieldView.swift; sourceTree = "<group>"; };
@@ -3969,6 +3967,8 @@
 		3BF842E2211BE60100AF9963 /* BuyRamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamViewController.swift; sourceTree = "<group>"; };
 		3BF842E3211BE60100AF9963 /* BuyRamReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamReducers.swift; sourceTree = "<group>"; };
 		3BF928F31E78F72898331F1E4BB10BF1 /* zip_view.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = zip_view.hpp; sourceTree = "<group>"; };
+		3BFE28C4217986800099CED0 /* CornerAndShadowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CornerAndShadowView.xib; sourceTree = "<group>"; };
+		3BFE28C5217986810099CED0 /* CornerAndShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerAndShadowView.swift; sourceTree = "<group>"; };
 		3BFF4E052109F8390047F996 /* OperationLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationLeftView.swift; sourceTree = "<group>"; };
 		3BFF4E082109F89F0047F996 /* OperationLeftView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OperationLeftView.xib; sourceTree = "<group>"; };
 		3BFF4E0A2109F8BD0047F996 /* OperationRightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationRightView.swift; sourceTree = "<group>"; };
@@ -15515,14 +15515,14 @@
 				ED5CF0797F269847E5CBEAEC6E2C89E5 /* LineView */,
 				8B351582A8E6943BACF62B02A64F0841 /* Button.swift */,
 				225825D920F4591F00AA2A4B /* Button.xib */,
+				3BFE28C5217986810099CED0 /* CornerAndShadowView.swift */,
+				3BFE28C4217986800099CED0 /* CornerAndShadowView.xib */,
 				4A03620E0D075F6EAC0DDDEEA65296E0 /* ComfirmView.swift */,
 				3AA8EBBBC7AA834B69D653ECE6DCC4F5 /* ComfirmView.xib */,
 				3BD3665F20FDEB73004DE09D /* TitleTextView.swift */,
 				3BD3665E20FDEB72004DE09D /* TitleTextView.xib */,
 				3BD3666020FDEB74004DE09D /* TitleTextfieldView.swift */,
 				3BD3666120FDEB75004DE09D /* TitleTextfieldView.xib */,
-				3BD3665A20FDEB39004DE09D /* CornerAndShadowView.swift */,
-				3BD3665B20FDEB39004DE09D /* CornerAndShadowView.xib */,
 				3BD3666C20FF0AEF004DE09D /* ScreenShotAlertView.swift */,
 				3BD3666E20FF0AF9004DE09D /* ScreenShotAlertView.xib */,
 				721016A3210197F30059B37E /* WalletListHeaderView.swift */,
@@ -35371,7 +35371,6 @@
 				F60569E26E39D85FBBCB98CDCDBDB3C7 /* iostream.SUNWCCh in Resources */,
 				5BA5BDF6B5E2C9F8466441F48E517278 /* istream in Resources */,
 				22A93242211A9DE000ACC63C /* StatusView.xib in Resources */,
-				3BD3665D20FDEB3A004DE09D /* CornerAndShadowView.xib in Resources */,
 				3BD3666F20FF0AF9004DE09D /* ScreenShotAlertView.xib in Resources */,
 				3B1EC88D217040B80044DEB5 /* WalletDetailView.xib in Resources */,
 				4456CACEF6AAF0C1FE6DCA145549F499 /* istream.SUNWCCh in Resources */,
@@ -35388,6 +35387,7 @@
 				C15624E04928CCC4C0CD3E4B9E9DBAE5 /* locale.SUNWCCh in Resources */,
 				3B195067211BE7CF002C7991 /* GeneralRamCellView.xib in Resources */,
 				4DE991E5F9D34CCB2216D2367D2932FB /* map in Resources */,
+				3BFE28C6217986820099CED0 /* CornerAndShadowView.xib in Resources */,
 				721016A4210197F40059B37E /* WalletListHeaderView.xib in Resources */,
 				221786B5214EBE0A00A3EE96 /* BLTDeviceCell.xib in Resources */,
 				24DB2001F45219964C7C00660C7FAD74 /* map.SUNWCCh in Resources */,
@@ -36014,6 +36014,7 @@
 				3BC12AA121060927006EEB80 /* AccountCellView.swift in Sources */,
 				223C5906214A521A00C69F3F /* BLTCardInitCoordinator.swift in Sources */,
 				72D645B621106860003F660D /* LeadInKeyCoordinator.swift in Sources */,
+				3BFE28C7217986820099CED0 /* CornerAndShadowView.swift in Sources */,
 				3B018A5F2176DC2B008791AF /* NewHomeTableCell.swift in Sources */,
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,
 				7210169F210197C10059B37E /* WalletManagerView.swift in Sources */,
@@ -36330,7 +36331,6 @@
 				223C5911214A52AE00C69F3F /* BLTCardSearchReducers.swift in Sources */,
 				3BD3664020F7086A004DE09D /* TransferConfirmView.swift in Sources */,
 				22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */,
-				3BD3665C20FDEB3A004DE09D /* CornerAndShadowView.swift in Sources */,
 				3B3935A7214B50A000AB0A30 /* BackupMnemonicWordActions.swift in Sources */,
 				739A4DB52150DF2800A1074B /* GestureFactory.swift in Sources */,
 				3B6D747A214761690076F444 /* InvitationView.swift in Sources */,

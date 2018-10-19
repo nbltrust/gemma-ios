@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 import NBLCommonModule
 import Async
+import Seed39
 
 protocol MnemonicContentCoordinatorProtocol {
     func pushToVerifyMnemonicVC()

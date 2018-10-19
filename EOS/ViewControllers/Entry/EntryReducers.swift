@@ -14,7 +14,7 @@ func EntryReducer(action:Action, state:EntryState?) -> EntryState {
 }
 
 func EntryPropertyReducer(_ state: EntryPropertyState?, action: Action) -> EntryPropertyState {
-    let state = state ?? EntryPropertyState()
+    var state = state ?? EntryPropertyState()
     
     switch action {
     case let action as nameAction:
@@ -27,6 +27,8 @@ func EntryPropertyReducer(_ state: EntryPropertyState?, action: Action) -> Entry
         state.isAgree.accept(action.isAgree)
     case let action as SetCheckSeedSuccessedAction:
         state.checkSeedSuccessed.accept(action.isCheck)
+    case let action as WalletModelAction:
+        state.model = action.model
     default:
         break
     }

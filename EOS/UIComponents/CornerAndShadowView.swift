@@ -14,91 +14,128 @@ class CornerAndShadowView: UIView {
     @IBOutlet weak var cornerView: UIView!
     
     @IBInspectable
-    var cornerRadiusInt: Int = 4 {
+    var newCornerRadius: CGFloat = 4 {
         didSet {
-            cornerView.cornerRadius = cornerRadiusInt.cgFloat
-        }
-    }
-    
-    @IBInspectable
-    var shadowR: Int = 4 {
-        didSet {
+            cornerView.cornerRadius = newCornerRadius
             self.subviews.forEach { [weak self](subView) in
                 guard let `self` = self else { return }
-                if subView.shadowOpacity == 1 {
-                    subView.shadowRadius = self.shadowR.cgFloat
+                if subView.shadowOpacity == 0 {
+                    subView.cornerRadius = self.cornerView.cornerRadius
                 }
             }
         }
     }
     
     @IBInspectable
-    var newShadowColor: UIColor = UIColor.duskBlue5 {
+    var newShadowRadius: CGFloat = 4 {
         didSet {
-            self.subviews.forEach { [weak self](subView) in
-                guard let `self` = self else { return }
+            self.subviews.forEach { (subView) in
                 if subView.shadowOpacity == 1 {
-                    subView.shadowColor = self.newShadowColor
+                    subView.shadowRadius = newShadowRadius
                 }
             }
         }
     }
     
     
+    @IBInspectable
+    var newShadowColor: UIColor = UIColor.duskBlue20 {
+        didSet {
+            self.subviews.forEach { (subView) in
+                if subView.shadowOpacity == 1 {
+                    subView.shadowColor = newShadowColor
+                }
+            }
+        }
+    }
+
+//    @IBInspectable
+//    var newTheme1ShadowColor:UIColor = UIColor.dark20 {
+//        didSet {
+//            self.subviews.forEach { (subView) in
+//                if subView.shadowOpacity == 1 {
+//                    subView.theme1ShadowColor = newTheme1ShadowColor
+//                }
+//            }
+//        }
+//    }
+//    
+//    @IBInspectable
+//    var newTheme2ShadowColor:UIColor = UIColor.dark20 {
+//        didSet {
+//            self.subviews.forEach { (subView) in
+//                if subView.shadowOpacity == 1 {
+//                    subView.theme2ShadowColor = newTheme2ShadowColor
+//                }
+//            }
+//        }
+//    }
     
-    func setUp() {
-        //        self.shadowView.shadowColor = UIColor.red
-        //        self.shadowView.shadowOffset = CGSize(width: 1, height: 2)
-        updateHeight()
+    @IBInspectable
+    var newShadowOffset: CGSize = CGSize(width: 0, height: 0) {
+        didSet {
+            self.subviews.forEach { (subView) in
+                if subView.shadowOpacity == 1 {
+                    subView.shadowOffset = newShadowOffset
+                }
+            }
+        }
     }
     
-    func updateContentSize() {
-        updateHeight()
+    @IBInspectable
+    var newShadowOpcity: Float = 1 {
+        didSet {
+            self.subviews.forEach { (subView) in
+                if subView.shadowOpacity == 1 {
+                    subView.shadowOpacity = newShadowOpcity
+                }
+            }
+        }
     }
     
-    override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
-    }
     
-    fileprivate func updateHeight() {
-        layoutIfNeeded()
-        self.height = dynamicHeight()
-        invalidateIntrinsicContentSize()
+    @IBInspectable
+    var newSpread: CGFloat = 0 {
+        didSet {
+            self.subviews.forEach { (subView) in
+                if subView.shadowOpacity == 1 {
+                    if subView.spread == 0 {
+                        subView.layer.shadowPath = nil
+                    }
+                    else {
+                        let rect = subView.bounds.insetBy(dx: -newSpread, dy: -newSpread)
+                        subView.layer.shadowPath = UIBezierPath(rect: rect).cgPath
+                    }
+                }
+            }
+        }
     }
-    
-    fileprivate func dynamicHeight() -> CGFloat {
-        let lastView = self.subviews.last?.subviews.last
-        return lastView?.bottom ?? 0
-        
+
+    func setup() {
+        print("\(self.cornerView)")
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
-        self.subviews.forEach { [weak self](subView) in
-            guard let `self` = self else { return }
-            if subView.shadowOpacity == 0 {
-                subView.cornerRadius = self.cornerView.cornerRadius
-            }
-        }
+        
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
-        setUp()
-        
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
-        setUp()
+        setup()
     }
     
     fileprivate func loadViewFromNib() {
-        let bundle = Bundle(for: type(of: self))
-        let nibName = String(describing: type(of: self))
+        let bundle = Bundle(for:CornerAndShadowView.self)
+        let nibName = String(describing: CornerAndShadowView.self)
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
