@@ -39,13 +39,14 @@ class NewHomeViewController: BaseViewController {
         var array: [NewHomeViewModel] = []
         for _ in 0...3 {
             var model = NewHomeViewModel()
+            model.currencyImg = R.image.eosBg()!
             model.account = "nbltrust"
             model.balance = "0.0000"
             model.currency = "EOS"
             model.currencyIcon = "http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=tup&step_word=&hs=0&pn=2&spn=0&di=174209992220&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=undefined&cs=266253535%2C2688670012&os=2527543112%2C2836803760&simid=3356443065%2C250398293&adpicid=0&lpn=0&ln=1788&fr=&fmq=1539836114404_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Ffa.topitme.com%2Fa%2Fa2%2F8a%2F1130147841d058aa2al.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bp5rtp_z%26e3B4jAzdH3Fk65w1%3Fpyrj%3Dwsk74%26t1%3D8baa89d&gsm=0&rpstart=0&rpnum=0&islist=&querylist="
             model.otherBalance = "≈ ¥ 4,000,000.000"
-            model.tokenArray = ["","","","",""]
-//            model.tokens = "+ 4 tokens"
+//            model.tokenArray = ["","","","",""]
+            model.tokens = "+ 4 tokens"
             model.unit = "EOS"
             array.append(model)
         }

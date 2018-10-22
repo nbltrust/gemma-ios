@@ -42,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lfX-JQ-Yxx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="14" y="142"/>
+            <point key="canvasLocation" x="-31" y="143"/>
         </scene>
         <!--Wallet Manager View Controller-->
         <scene sceneID="EfX-RJ-vVA">

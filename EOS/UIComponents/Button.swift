@@ -104,7 +104,7 @@ class Button: UIView {
     }
     
     fileprivate func unEnablebutton() {
-        button.backgroundColor = UIColor.blueyGrey
+        button.backgroundColor = UIColor.cloudyBlueFour
         button.setTitleColor(UIColor.whiteTwo, for: .normal)
         button.layer.borderColor = UIColor.clear.cgColor
         button.isUserInteractionEnabled = false

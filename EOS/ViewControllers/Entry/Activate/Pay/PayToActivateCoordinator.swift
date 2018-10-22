@@ -177,7 +177,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 })
             } else if payState == "SUCCESS", state == "TOREFUND" {
                 var context = ScreenShotAlertContext()
-                context.desc = R.string.localizable.price_change_tips.key.localized() + RichStyle.shared.tagText("55 RAM", fontSize: 14, color: UIColor.warmBlue, lineHeight: 16) + "。"
+                context.desc = R.string.localizable.price_change_tips.key.localized() + RichStyle.shared.tagText("55 RAM", fontSize: 14, color: UIColor.azul, lineHeight: 16) + "。"
                 context.title = R.string.localizable.price_change.key.localized()
                 context.buttonTitle = R.string.localizable.pay_sure.key.localized()
                 context.imageName = R.image.icMoney.name

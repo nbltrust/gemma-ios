@@ -20,8 +20,9 @@ extension CardView {
         self.unitLabel.text = model.unit
         self.tokenLabel.text = model.tokens
         self.tokenArray = model.tokenArray
+        self.otherBalanceLabel.text = model.otherBalance
         
-        if model.tokens == "" {
+        if model.tokenArray.count == 0 {
             self.tokenLabel.isHidden = true
             self.tokenView.isHidden = true
         }

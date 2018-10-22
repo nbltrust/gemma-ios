@@ -304,6 +304,9 @@
 		3B85EEA5215A12E600795083 /* VerifyPriKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA1215A12E600795083 /* VerifyPriKeyViewController.swift */; };
 		3B85EEA6215A12E600795083 /* VerifyPriKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA2215A12E600795083 /* VerifyPriKeyReducers.swift */; };
 		3B89E88F21522A6C00FD065A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89E86F21522A6B00FD065A /* Order.swift */; };
+		3BBA3E1D217DA31100EB9190 /* NavBarViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBA3E1A217DA31100EB9190 /* NavBarViewAdapter.swift */; };
+		3BBA3E1E217DA31100EB9190 /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBA3E1B217DA31100EB9190 /* NavBarView.swift */; };
+		3BBA3E1F217DA31100EB9190 /* NavBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBA3E1C217DA31100EB9190 /* NavBarView.xib */; };
 		3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A69210587B4006EEB80 /* RedWarningView.swift */; };
 		3BC12A6C210587BD006EEB80 /* RedWarningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC12A6B210587BD006EEB80 /* RedWarningView.xib */; };
 		3BC12A9D21060927006EEB80 /* AccountListActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A9021060926006EEB80 /* AccountListActions.swift */; };
@@ -3943,6 +3946,9 @@
 		3BABA78FEF18B2A96DE8CCFFAD22ED2E /* apply_wrap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = apply_wrap.hpp; sourceTree = "<group>"; };
 		3BAC6ABCBD7892E37679B44577A466E5 /* multi_point.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = multi_point.hpp; sourceTree = "<group>"; };
 		3BAF61F74B116400102C32E12CA8E5AE /* is_function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = is_function.hpp; sourceTree = "<group>"; };
+		3BBA3E1A217DA31100EB9190 /* NavBarViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarViewAdapter.swift; sourceTree = "<group>"; };
+		3BBA3E1B217DA31100EB9190 /* NavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarView.swift; sourceTree = "<group>"; };
+		3BBA3E1C217DA31100EB9190 /* NavBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarView.xib; sourceTree = "<group>"; };
 		3BBA94C90C3037001ED15816A1F6D96B /* lex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lex.hpp; sourceTree = "<group>"; };
 		3BBE543A4F5599E8BF7677E7634501F4 /* equal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = equal.hpp; sourceTree = "<group>"; };
 		3BC12A69210587B4006EEB80 /* RedWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedWarningView.swift; sourceTree = "<group>"; };
@@ -18273,6 +18279,9 @@
 		3B0856252175E9920025B178 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3BBA3E1A217DA31100EB9190 /* NavBarViewAdapter.swift */,
+				3BBA3E1B217DA31100EB9190 /* NavBarView.swift */,
+				3BBA3E1C217DA31100EB9190 /* NavBarView.xib */,
 				3B0856262175E9D20025B178 /* CardViewAdapter.swift */,
 				3B0856272175E9D20025B178 /* CardView.swift */,
 				3B0856282175E9D30025B178 /* CardView.xib */,
@@ -35569,6 +35578,7 @@
 				97DC2EDAD86CA182E980CBEE9F373996 /* tuple in Resources */,
 				72101695210197C10059B37E /* Wallet.storyboard in Resources */,
 				733714F4212431E200B2ED90 /* octicons.ttf in Resources */,
+				3BBA3E1F217DA31100EB9190 /* NavBarView.xib in Resources */,
 				3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */,
 				8601A7A3CDCBA5FDDFFEB50F48C225F8 /* tuple.SUNWCCh in Resources */,
 				65296AC08841C5E299ADC77C5441031E /* type_traits in Resources */,
@@ -35835,6 +35845,7 @@
 				3B6D7465214761690076F444 /* FriendView.swift in Sources */,
 				7342E4E9216F1F8A0093E2C2 /* BLTCardPowerOnActions.swift in Sources */,
 				22C023AF20FCB09300284A0A /* ScanCoordinator.swift in Sources */,
+				3BBA3E1E217DA31100EB9190 /* NavBarView.swift in Sources */,
 				733714E5212431E200B2ED90 /* Iconic.swift in Sources */,
 				72FE5B7621006B0700B29FEC /* NormalContentViewController.swift in Sources */,
 				223C5916214A532800C69F3F /* BLTCardEntryViewAdapter.swift in Sources */,
@@ -35889,6 +35900,7 @@
 				3B6D746E214761690076F444 /* PayToActivateActions.swift in Sources */,
 				72FE5B642100491300B29FEC /* ServersActions.swift in Sources */,
 				722D24CA21115B5000A093CA /* ContainerNormalCellView.swift in Sources */,
+				3BBA3E1D217DA31100EB9190 /* NavBarViewAdapter.swift in Sources */,
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
 				3B39358F214A479300AB0A30 /* VerifyMnemonicWordViewController.swift in Sources */,
 				3B393590214A479300AB0A30 /* VerifyMnemonicWordReducers.swift in Sources */,

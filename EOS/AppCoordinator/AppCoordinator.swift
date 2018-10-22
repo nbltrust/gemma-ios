@@ -61,11 +61,11 @@ class AppCoordinator {
             tabBar.backgroundImage = UIImage()
         }
         
-//        let newhome = BaseNavigationController()
-//        newHomeCoordinator = NavCoordinator(rootVC: newhome)
-//
-//        newHomeItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet.key.localized(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
-//        newhome.tabBarItem = homeItem
+        let newhome = BaseNavigationController()
+        newHomeCoordinator = NavCoordinator(rootVC: newhome)
+
+        newHomeItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet.key.localized(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
+        newhome.tabBarItem = newHomeItem
         
         let home = BaseNavigationController()
         homeCoordinator = NavCoordinator(rootVC: home)
@@ -83,12 +83,12 @@ class AppCoordinator {
         userInfoItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine.key.localized(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
         userinfo.tabBarItem = userInfoItem
         
-//        newHomeCoordinator.pushVC(NewHomeCoordinator.self, animated: true, context: nil)
+        newHomeCoordinator.pushVC(NewHomeCoordinator.self, animated: true, context: nil)
         homeCoordinator.pushVC(HomeCoordinator.self, animated: true, context: nil)
         transferCoordinator.pushVC(TransferCoordinator.self, animated: true, context: nil)
         userinfoCoordinator.pushVC(UserInfoCoordinator.self, animated: true, context: nil)
 
-        rootVC.viewControllers = [home, transfer, userinfo]
+        rootVC.viewControllers = [newhome,home, transfer, userinfo]
         aspect()
     }
     

@@ -9,7 +9,7 @@
 import Foundation
 
 @IBDesignable
-class NewHomeView: EOSBaseView {
+class NewHomeView: UIView {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,14 +17,12 @@ class NewHomeView: EOSBaseView {
         case NewHomeViewDidClicked
     }
     
-    override var data: Any? {
+    var data: Any? {
         didSet {
             self.tableView.reloadData()
         }
     }
-    override func setup() {
-        super.setup()
-        
+    func setup() {
         setupUI()
         setupSubViewEvent()
     }
@@ -38,8 +36,48 @@ class NewHomeView: EOSBaseView {
     
     }
     
-    @objc override func didClicked() {
-        self.next?.sendEventWith(Event.NewHomeViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+    override var intrinsicContentSize: CGSize {
+        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
+    }
+    
+    fileprivate func updateHeight() {
+        layoutIfNeeded()
+        self.height = dynamicHeight()
+        invalidateIntrinsicContentSize()
+    }
+    
+    fileprivate func dynamicHeight() -> CGFloat {
+        let lastView = self.subviews.last?.subviews.last
+        return lastView?.bottom ?? 0
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutIfNeeded()
+        
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadViewFromNib()
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        loadViewFromNib()
+        setup()
+    }
+    
+    fileprivate func loadViewFromNib() {
+        let bundle = Bundle(for: type(of: self))
+        let nibName = String(describing: type(of: self))
+        let nib = UINib.init(nibName: nibName, bundle: bundle)
+        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        
+        addSubview(view)
+        view.frame = self.bounds
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 }
 
@@ -47,6 +85,16 @@ extension NewHomeView: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let data = data as? [NewHomeViewModel] {
             return data.count
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let data = data as? [NewHomeViewModel] {
+            if data[indexPath.row].tokenArray.count == 0 {
+                return 178 + 30
+            }
+            return 212 + 30
         }
         return 0
     }
