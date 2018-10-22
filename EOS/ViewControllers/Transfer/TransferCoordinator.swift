@@ -11,6 +11,7 @@ import ReSwift
 import PromiseKit
 import AwaitKit
 import Presentr
+import eos_ios_core_cpp
 
 protocol TransferCoordinatorProtocol {
     func pushToTransferConfirmVC(data: ConfirmViewModel)

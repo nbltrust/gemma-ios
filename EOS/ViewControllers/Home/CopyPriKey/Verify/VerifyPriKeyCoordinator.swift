@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
+import eos_ios_core_cpp
 
 protocol VerifyPriKeyCoordinatorProtocol {
     func finishCopy()

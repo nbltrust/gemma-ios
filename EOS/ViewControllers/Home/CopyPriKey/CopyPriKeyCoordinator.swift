@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import Presentr
+import eos_ios_core_cpp
 
 protocol CopyPriKeyCoordinatorProtocol {
     func showAlertMessage()
