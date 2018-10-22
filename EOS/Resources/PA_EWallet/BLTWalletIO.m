@@ -155,8 +155,8 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             });
             return ;
         } else {
-            const unsigned char number = (const unsigned char)[self ret15bitString];
-            iRtn = PAEW_WriteSN(savedDevH, 0, &number, sizeof(number));
+            const unsigned char number = (const unsigned char)[[self ret15bitString] UTF8String];
+            iRtn = PAEW_WriteSN(savedDevH, 0, &number, PAEW_DEV_INFO_SN_LEN);
             if (iRtn != PAEW_RET_SUCCESS) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     failedCompliction([BLTUtils errorCodeToString:iRtn]);
@@ -172,9 +172,12 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
 
 - (NSString *)ret15bitString
 {
-    char data[15];
-    for (int x=0;x<15;data[x++] = (char)((arc4random_uniform(10))));
-    return [[NSString alloc] initWithBytes:data length:15 encoding:NSUTF8StringEncoding];
+    NSString *tempStr = @"";
+    for (int i = 0; i < 15; i++) {
+        int value = arc4random() % 10;
+        tempStr = [tempStr stringByAppendingFormat:@"%d",value];
+    }
+    return tempStr;
 }
 
 
@@ -471,6 +474,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     if (!savedDevH) {
         return;
     }
+    self.stopEntroll = false;
     dispatch_async(bltQueue, ^{
         int startEnrollS = PAEW_EnrollFP(savedDevH, 0);
         if (startEnrollS != PAEW_RET_SUCCESS) {
@@ -489,17 +493,39 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
                     });
                     lastRtn = iRtn;
                 }
-            } while ((iRtn == PAEW_RET_DEV_WAITING) || (iRtn == PAEW_RET_DEV_FP_GOOG_FINGER) || (iRtn == PAEW_RET_DEV_FP_REDUNDANT) || (iRtn == PAEW_RET_DEV_FP_BAD_IMAGE) || (iRtn == PAEW_RET_DEV_FP_NO_FINGER) || (iRtn == PAEW_RET_DEV_FP_NOT_FULL_FINGER));
+            } while (((iRtn == PAEW_RET_DEV_WAITING) || (iRtn == PAEW_RET_DEV_FP_GOOG_FINGER) || (iRtn == PAEW_RET_DEV_FP_REDUNDANT) || (iRtn == PAEW_RET_DEV_FP_BAD_IMAGE) || (iRtn == PAEW_RET_DEV_FP_NO_FINGER) || (iRtn == PAEW_RET_DEV_FP_NOT_FULL_FINGER)) && !self.stopEntroll);
             if (iRtn != PAEW_RET_SUCCESS) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    failed([BLTUtils errorCodeToString:iRtn]);
-                });
+                if (!self.stopEntroll) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        failed([BLTUtils errorCodeToString:iRtn]);
+                    });
+                }
                 return;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 success();
             });
         }
+    });
+}
+
+- (void)cancelEntrollFingerPrinter:(SuccessedComplication)success failed:(FailedComplication)failed; {
+    self.stopEntroll = true;
+    if (!savedDevH) {
+        return;
+    }
+    dispatch_async(bltQueue, ^{
+        uint64_t temp = (uint64_t)savedDevH;
+        void *ppPAEWContext = (void*)temp;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        iRtn = PAEW_AbortFP(ppPAEWContext, 0);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (iRtn == PAEW_RET_SUCCESS) {
+                success();
+            } else {
+                failed([BLTUtils errorCodeToString:iRtn]);
+            }
+        });
     });
 }
 

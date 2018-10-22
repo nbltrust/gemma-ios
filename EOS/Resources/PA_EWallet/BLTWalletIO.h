@@ -47,6 +47,8 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 
 @property (nonatomic,strong) BLTDevice *selectDevice;
 
+@property (nonatomic,assign) BOOL stopEntroll;
+
 @property (nonatomic,strong) NSTimer *timer;
 
 @property (nonatomic, assign) BOOL abortBtnState;
@@ -61,6 +63,8 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 - (void)startHeartBeat;
 
 - (BOOL)isConnection;
+
+- (NSString *)ret15bitString;
 
 - (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
@@ -86,6 +90,7 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 
 - (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed;
 
+- (void)cancelEntrollFingerPrinter:(SuccessedComplication)success failed:(FailedComplication)failed;;
 /*When type == PinType
  Need To implication Method “submmitWaitingVerfyPin”
  */

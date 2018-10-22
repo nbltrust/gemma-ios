@@ -74,7 +74,7 @@ class TransferViewController: BaseViewController {
     }
     
     func getData() {
-        self.coordinator?.getCurrentFromLocal()
+//        self.coordinator?.getCurrentFromLocal()
         self.coordinator?.fetchUserAccount(WalletManager.shared.getAccount())
     }
 
