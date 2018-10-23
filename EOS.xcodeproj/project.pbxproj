@@ -103,7 +103,6 @@
 		227072AF2150EDE90097FE61 /* BLTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 227072AA2150EDE80097FE61 /* BLTUtils.m */; };
 		227527962147614A0089FADA /* NetworkDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22752791214761490089FADA /* NetworkDataCache.swift */; };
 		227597EF2146849D0032DC60 /* DBTableCreatation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227597EE2146849C0032DC60 /* DBTableCreatation.swift */; };
-		227F83852170A42A005FB567 /* iOS_EWalletDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 227F83842170A429005FB567 /* iOS_EWalletDynamic.framework */; };
 		227F83AB2175B98F005FB567 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227F83AA2175B98F005FB567 /* Array+Extensions.swift */; };
 		227F83C72175B9BB005FB567 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227F83C62175B9BB005FB567 /* Dictionary+Extensions.swift */; };
 		227F849E2175ECDB005FB567 /* BLTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227F849D2175ECDB005FB567 /* BLTUtils.swift */; };
@@ -525,9 +524,10 @@
 		73539D502179BC39008395AC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D4D2179BC39008395AC /* Fabric.framework */; };
 		73539D522179BC53008395AC /* UICKeyChainStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D512179BC53008395AC /* UICKeyChainStore.framework */; };
 		735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735A3D132160A99700FC8922 /* NBLCommonModule.framework */; };
-		73742191217DBBC100B63982 /* seed39.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374206E217DAC5E00B63982 /* seed39.framework */; };
 		7374B31C217DD9BC00B63982 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
 		7374B371217EC38600B63982 /* eos_ios_core_cpp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */; };
+		7374B37D217EC9BD00B63982 /* iOS_EWalletDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */; };
+		7374B37E217EC9BD00B63982 /* seed39.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B37C217EC9BD00B63982 /* seed39.framework */; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
@@ -782,7 +782,6 @@
 		227072AE2150EDE80097FE61 /* BLTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTUtils.h; sourceTree = "<group>"; };
 		22752791214761490089FADA /* NetworkDataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataCache.swift; sourceTree = "<group>"; };
 		227597EE2146849C0032DC60 /* DBTableCreatation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBTableCreatation.swift; sourceTree = "<group>"; };
-		227F83842170A429005FB567 /* iOS_EWalletDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOS_EWalletDynamic.framework; path = library/iOS_EWalletDynamic.framework; sourceTree = "<group>"; };
 		227F83AA2175B98F005FB567 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		227F83C62175B9BB005FB567 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		227F849D2175ECDB005FB567 /* BLTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTUtils.swift; sourceTree = "<group>"; };
@@ -1210,10 +1209,10 @@
 		73539D4D2179BC39008395AC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Carthage/Build/iOS/Fabric.framework; sourceTree = "<group>"; };
 		73539D512179BC53008395AC /* UICKeyChainStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UICKeyChainStore.framework; path = Carthage/Build/iOS/UICKeyChainStore.framework; sourceTree = "<group>"; };
 		735A3D132160A99700FC8922 /* NBLCommonModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NBLCommonModule.framework; path = Carthage/Build/iOS/Static/NBLCommonModule.framework; sourceTree = "<group>"; };
-		7374206E217DAC5E00B63982 /* seed39.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = seed39.framework; path = library/seed39.framework; sourceTree = "<group>"; };
-		7374B2FE217DD7CF00B63982 /* eos_ios_core_cpp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = eos_ios_core_cpp.framework; path = library/eos_ios_core_cpp.framework; sourceTree = "<group>"; };
 		7374B300217DD9B000B63982 /* GRDB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GRDB.xcodeproj; path = GRDB.swift/GRDB.xcodeproj; sourceTree = "<group>"; };
 		7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = eos_ios_core_cpp.framework; path = Carthage/Build/iOS/eos_ios_core_cpp.framework; sourceTree = "<group>"; };
+		7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOS_EWalletDynamic.framework; path = Carthage/Build/iOS/iOS_EWalletDynamic.framework; sourceTree = "<group>"; };
+		7374B37C217EC9BD00B63982 /* seed39.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = seed39.framework; path = Carthage/Build/iOS/seed39.framework; sourceTree = "<group>"; };
 		737F8DCD2146647E00DD522A /* DataFetchConditon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFetchConditon.swift; sourceTree = "<group>"; };
 		737F8DCE2146647E00DD522A /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		737F8DCF2146647E00DD522A /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -1313,9 +1312,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7374B31C217DD9BC00B63982 /* GRDB.framework in Frameworks */,
+				7374B37D217EC9BD00B63982 /* iOS_EWalletDynamic.framework in Frameworks */,
+				7374B37E217EC9BD00B63982 /* seed39.framework in Frameworks */,
 				7374B371217EC38600B63982 /* eos_ios_core_cpp.framework in Frameworks */,
-				227F83852170A42A005FB567 /* iOS_EWalletDynamic.framework in Frameworks */,
-				73742191217DBBC100B63982 /* seed39.framework in Frameworks */,
 				735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
@@ -2838,9 +2837,9 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7374B2FE217DD7CF00B63982 /* eos_ios_core_cpp.framework */,
+				7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */,
+				7374B37C217EC9BD00B63982 /* seed39.framework */,
 				7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */,
-				7374206E217DAC5E00B63982 /* seed39.framework */,
 				73539D512179BC53008395AC /* UICKeyChainStore.framework */,
 				73539D4C2179BC38008395AC /* Crashlytics.framework */,
 				73539D4D2179BC39008395AC /* Fabric.framework */,
@@ -2876,7 +2875,6 @@
 				73539CDF2179B4A5008395AC /* SwiftyUserDefaults.framework */,
 				73539CE92179B4AA008395AC /* TinyConstraints.framework */,
 				73539CE02179B4A6008395AC /* UIFontComplete.framework */,
-				227F83842170A429005FB567 /* iOS_EWalletDynamic.framework */,
 				735A3D132160A99700FC8922 /* NBLCommonModule.framework */,
 				73921E06215220A100744811 /* RxSwift.framework */,
 				739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */,
@@ -3121,7 +3119,6 @@
 				4929B8EE7C2F136E4A24158BBB556CB5 /* Resources */,
 				734811752106F61B000BF1B8 /* fabric */,
 				732F370E214FB63A00CB3A58 /* carthage */,
-				227F83862170A43D005FB567 /* carthage-custom */,
 				732F370F214FB64100CB3A58 /* appstore-bug */,
 				73539D532179BF9D008395AC /* Integrate Reveal Server */,
 			);
@@ -3360,26 +3357,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		227F83862170A43D005FB567 /* carthage-custom */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/library/iOS_EWalletDynamic.framework",
-			);
-			name = "carthage-custom";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/iOS_EWalletDynamic.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		2755E3B19D75CA943738072DCEBADFFD /* build auto increment */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3413,7 +3390,10 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/seed39.framework",
 			);
 			name = carthage;
 			outputPaths = (
@@ -4026,7 +4006,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/library",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = EOS/Info.plist;
@@ -4136,7 +4115,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/library",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = EOS/Info.plist;
