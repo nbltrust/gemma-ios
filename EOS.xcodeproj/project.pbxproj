@@ -3139,7 +3139,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = com.nbltrustdev;
 				TargetAttributes = {
 					73EDFEE6211AC44E000DF796 = {
@@ -3393,7 +3393,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/seed39.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Seed39.framework",
 			);
 			name = carthage;
 			outputPaths = (
@@ -4015,17 +4015,14 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/library",
-					"$(PROJECT_DIR)/library/libboost",
 					"$(inherited)",
-					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4124,10 +4121,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/library",
-					"$(PROJECT_DIR)/library/libboost",
 					"$(inherited)",
-					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = YES;
