@@ -527,7 +527,7 @@
 		7374B31C217DD9BC00B63982 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
 		7374B371217EC38600B63982 /* eos_ios_core_cpp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */; };
 		7374B37D217EC9BD00B63982 /* iOS_EWalletDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */; };
-		7374B37E217EC9BD00B63982 /* seed39.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B37C217EC9BD00B63982 /* seed39.framework */; };
+		7374B38D217ED90F00B63982 /* Seed39.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B38C217ED90F00B63982 /* Seed39.framework */; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
@@ -1212,7 +1212,7 @@
 		7374B300217DD9B000B63982 /* GRDB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GRDB.xcodeproj; path = GRDB.swift/GRDB.xcodeproj; sourceTree = "<group>"; };
 		7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = eos_ios_core_cpp.framework; path = Carthage/Build/iOS/eos_ios_core_cpp.framework; sourceTree = "<group>"; };
 		7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOS_EWalletDynamic.framework; path = Carthage/Build/iOS/iOS_EWalletDynamic.framework; sourceTree = "<group>"; };
-		7374B37C217EC9BD00B63982 /* seed39.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = seed39.framework; path = Carthage/Build/iOS/seed39.framework; sourceTree = "<group>"; };
+		7374B38C217ED90F00B63982 /* Seed39.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Seed39.framework; path = Carthage/Build/iOS/Seed39.framework; sourceTree = "<group>"; };
 		737F8DCD2146647E00DD522A /* DataFetchConditon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFetchConditon.swift; sourceTree = "<group>"; };
 		737F8DCE2146647E00DD522A /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		737F8DCF2146647E00DD522A /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -1313,7 +1313,7 @@
 			files = (
 				7374B31C217DD9BC00B63982 /* GRDB.framework in Frameworks */,
 				7374B37D217EC9BD00B63982 /* iOS_EWalletDynamic.framework in Frameworks */,
-				7374B37E217EC9BD00B63982 /* seed39.framework in Frameworks */,
+				7374B38D217ED90F00B63982 /* Seed39.framework in Frameworks */,
 				7374B371217EC38600B63982 /* eos_ios_core_cpp.framework in Frameworks */,
 				735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
@@ -2837,8 +2837,8 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7374B38C217ED90F00B63982 /* Seed39.framework */,
 				7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */,
-				7374B37C217EC9BD00B63982 /* seed39.framework */,
 				7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */,
 				73539D512179BC53008395AC /* UICKeyChainStore.framework */,
 				73539D4C2179BC38008395AC /* Crashlytics.framework */,
@@ -3139,7 +3139,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = com.nbltrustdev;
 				TargetAttributes = {
 					73EDFEE6211AC44E000DF796 = {
@@ -3393,7 +3393,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/seed39.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Seed39.framework",
 			);
 			name = carthage;
 			outputPaths = (
@@ -4015,17 +4015,14 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/library",
-					"$(PROJECT_DIR)/library/libboost",
 					"$(inherited)",
-					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4124,10 +4121,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/library",
-					"$(PROJECT_DIR)/library/libboost",
 					"$(inherited)",
-					"$(PROJECT_DIR)/EOS/Resources/PA_EWallet",
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = YES;
