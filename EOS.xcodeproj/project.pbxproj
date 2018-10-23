@@ -524,10 +524,8 @@
 		73539D502179BC39008395AC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D4D2179BC39008395AC /* Fabric.framework */; };
 		73539D522179BC53008395AC /* UICKeyChainStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D512179BC53008395AC /* UICKeyChainStore.framework */; };
 		735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735A3D132160A99700FC8922 /* NBLCommonModule.framework */; };
-		7374B31C217DD9BC00B63982 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
 		7374B371217EC38600B63982 /* eos_ios_core_cpp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */; };
 		7374B37D217EC9BD00B63982 /* iOS_EWalletDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */; };
-		7374B38D217ED90F00B63982 /* Seed39.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B38C217ED90F00B63982 /* Seed39.framework */; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
@@ -573,6 +571,9 @@
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
 		73BA4B3B215A244600EF4C72 /* URLNavigationMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BA4B3A215A244600EF4C72 /* URLNavigationMap.swift */; };
+		73BEF1C8217F0D2200707DFC /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
+		73BEF1C9217F0D2200707DFC /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		73BEF1D0217F0E5700707DFC /* seed39_ios_golang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BEF1CF217F0E5700707DFC /* seed39_ios_golang.framework */; };
 		73D47EDB214D678B00A8BF29 /* BLTWalletIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
 		73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F1DE44214675250065BD72 /* Mirror+Extension.swift */; };
@@ -674,6 +675,13 @@
 			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
 			remoteInfo = GRDBiOS;
 		};
+		73BEF1CA217F0D2200707DFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
+			remoteInfo = GRDBiOS;
+		};
 		73EDFEEC211AC44E000DF796 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AE6389277B2FA13D27D9CDFC76332268 /* Project object */;
@@ -682,6 +690,20 @@
 			remoteInfo = EOS;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		73BEF1CC217F0D2200707DFC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				73BEF1C9217F0D2200707DFC /* GRDB.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		017E5A17AE45A2B724BB0B367641F01E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1212,7 +1234,6 @@
 		7374B300217DD9B000B63982 /* GRDB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GRDB.xcodeproj; path = GRDB.swift/GRDB.xcodeproj; sourceTree = "<group>"; };
 		7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = eos_ios_core_cpp.framework; path = Carthage/Build/iOS/eos_ios_core_cpp.framework; sourceTree = "<group>"; };
 		7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOS_EWalletDynamic.framework; path = Carthage/Build/iOS/iOS_EWalletDynamic.framework; sourceTree = "<group>"; };
-		7374B38C217ED90F00B63982 /* Seed39.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Seed39.framework; path = Carthage/Build/iOS/Seed39.framework; sourceTree = "<group>"; };
 		737F8DCD2146647E00DD522A /* DataFetchConditon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFetchConditon.swift; sourceTree = "<group>"; };
 		737F8DCE2146647E00DD522A /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		737F8DCF2146647E00DD522A /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -1260,6 +1281,7 @@
 		73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Utils.swift"; sourceTree = "<group>"; };
 		73B5A6AC20F601DE00756391 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		73BA4B3A215A244600EF4C72 /* URLNavigationMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLNavigationMap.swift; sourceTree = "<group>"; };
+		73BEF1CF217F0E5700707DFC /* seed39_ios_golang.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = seed39_ios_golang.framework; path = Carthage/Build/iOS/seed39_ios_golang.framework; sourceTree = "<group>"; };
 		73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTWalletIO.m; sourceTree = "<group>"; };
 		73DDD9A12113F6B900023973 /* BannerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerColor.swift; sourceTree = "<group>"; };
 		73EDFEE7211AC44E000DF796 /* EOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1311,14 +1333,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7374B31C217DD9BC00B63982 /* GRDB.framework in Frameworks */,
 				7374B37D217EC9BD00B63982 /* iOS_EWalletDynamic.framework in Frameworks */,
-				7374B38D217ED90F00B63982 /* Seed39.framework in Frameworks */,
+				73BEF1D0217F0E5700707DFC /* seed39_ios_golang.framework in Frameworks */,
 				7374B371217EC38600B63982 /* eos_ios_core_cpp.framework in Frameworks */,
 				735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
 				734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */,
+				73BEF1C8217F0D2200707DFC /* GRDB.framework in Frameworks */,
 				739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */,
 				739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */,
 				732F371D214FB83F00CB3A58 /* RxBlocking.framework in Frameworks */,
@@ -2837,7 +2859,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7374B38C217ED90F00B63982 /* Seed39.framework */,
+				73BEF1CF217F0E5700707DFC /* seed39_ios_golang.framework */,
 				7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */,
 				7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */,
 				73539D512179BC53008395AC /* UICKeyChainStore.framework */,
@@ -3121,11 +3143,13 @@
 				732F370E214FB63A00CB3A58 /* carthage */,
 				732F370F214FB64100CB3A58 /* appstore-bug */,
 				73539D532179BF9D008395AC /* Integrate Reveal Server */,
+				73BEF1CC217F0D2200707DFC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				7374B31E217DD9C900B63982 /* PBXTargetDependency */,
+				73BEF1CB217F0D2200707DFC /* PBXTargetDependency */,
 			);
 			name = EOS;
 			productName = EOS;
@@ -3393,7 +3417,6 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Seed39.framework",
 			);
 			name = carthage;
 			outputPaths = (
@@ -3953,6 +3976,11 @@
 			name = GRDBiOS;
 			targetProxy = 7374B31D217DD9C900B63982 /* PBXContainerItemProxy */;
 		};
+		73BEF1CB217F0D2200707DFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GRDBiOS;
+			targetProxy = 73BEF1CA217F0D2200707DFC /* PBXContainerItemProxy */;
+		};
 		73EDFEED211AC44E000DF796 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C60743183A5E3BAD235C9971F3122EF5 /* EOS */;
@@ -3993,6 +4021,7 @@
 		5C8C3419E165D050C20C6335B44E1B72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
@@ -4098,6 +4127,7 @@
 		702B7DAA8F4E1F6E58885A5EFB7EF2D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
