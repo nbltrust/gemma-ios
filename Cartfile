@@ -42,3 +42,4 @@ github "sberrevoets/SDCAlertView"
 github "nixzhu/MonkeyKing"
 github "ElaWorkshop/TagListView" ~> 1.0
 github "ashleymills/Reachability.swift"
+binary "https://nbltrust.github.io/eos-ios-core-cpp/Carthage/iOS/eos-ios-core-cpp.json"
