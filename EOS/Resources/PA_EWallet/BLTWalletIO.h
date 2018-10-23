@@ -102,5 +102,7 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 
 - (void)deleteFP:(NSArray *)fpList success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication;
 
+- (void)verifyPin:(NSString *)pin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication;
 
+- (void)updatePin:(NSString *)oldPin new:(NSString *)newPin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication;
 @end
