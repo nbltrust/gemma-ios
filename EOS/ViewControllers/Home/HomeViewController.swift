@@ -56,7 +56,7 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.coordinator?.getCurrentFromLocal()
+//        self.coordinator?.getCurrentFromLocal()
         self.tableView.reloadData()
         if let nav = self.navigationController as? BaseNavigationController {
             nav.navStyle = .clear
@@ -203,7 +203,9 @@ extension HomeViewController: UIScrollViewDelegate {
 
 extension HomeViewController {
     @objc func accountlist(_ data: [String:Any]) {
-        self.coordinator?.pushAccountList()
+        self.coordinator?.pushAccountList {
+            
+        }
     }
     @objc func backupEvent(_ data: [String:Any]) {
         self.coordinator?.pushBackupVC()
