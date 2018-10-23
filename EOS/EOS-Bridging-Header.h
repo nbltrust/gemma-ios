@@ -5,6 +5,5 @@
 #import <KMNavigationBarTransition/KMNavigationBarTransition.h>
 
 #import "FCUUID.h"
-#import "EOSIO.h"
 #import "BLTWalletIO.h"
 #import <PocketSVG/PocketSVG.h>

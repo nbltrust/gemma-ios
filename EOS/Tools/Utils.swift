@@ -16,6 +16,7 @@ import KRProgressHUD
 import SwiftyUserDefaults
 import Alamofire
 import SwiftyJSON
+import eos_ios_core_cpp
 
 //Nav BackgroundImage
 func navBgImage() -> UIImage? {

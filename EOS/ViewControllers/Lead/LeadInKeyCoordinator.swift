@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import eos_ios_core_cpp
 
 protocol LeadInKeyCoordinatorProtocol {
     func openScan()

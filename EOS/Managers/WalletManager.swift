@@ -12,6 +12,7 @@ import SwifterSwift
 import SwiftyUserDefaults
 import Repeat
 import SwiftDate
+import eos_ios_core_cpp
 //import Eth_golang_lib
 
 class WalletManager {
