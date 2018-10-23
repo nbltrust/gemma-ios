@@ -97,16 +97,11 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUl-KB-hdl" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="24"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="24" id="xVn-Wj-UQ8"/>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="xVn-Wj-UQ8"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                                     <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40799999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                                                            <real key="value" value="24"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IS0-iK-I9A" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                                                     <rect key="frame" x="68" y="8" width="36" height="14"/>
@@ -136,30 +131,20 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIk-7y-hhi" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="39" width="35.5" height="14"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="14" id="3He-5x-xjr"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="WdB-Xp-cKk"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40799999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                                                    <real key="value" value="14"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wt-mQ-lQT" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="68" width="35.5" height="14"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="14" id="4Lg-Og-fDy"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="7zN-wu-3sj"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40799999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                                                    <real key="value" value="14"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
                                                 </stackView>

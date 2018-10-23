@@ -76,24 +76,8 @@ class VerifyMnemonicWordViewController: BaseViewController {
 //MARK: - View Event
 extension VerifyMnemonicWordViewController {
     @objc func VerifyMnemonicWord(_ data:[String: Any]) {
-        if let selectValues = data["data"] as? [String]  {
-            if selectValues.count == seeds.count {
-                if let isValid = self.coordinator?.validSequence(seeds, compairDatas: selectValues), isValid {
-                    showSuccess(message: R.string.localizable.wookong_mnemonic_ver_successed.key.localized())
-                    self.coordinator?.checkSeed(checkStr, success: { [weak self] in
-                        guard let `self` = self else { return }
-                        self.coordinator?.checkFeedSuccessed()
-                    }, failed: { [weak self] (reason) in
-                        guard let `self` = self else { return }
-                        if let failedReason = reason {
-                            self.showError(message: failedReason)
-                        }
-                    })
-                } else {
-                    showError(message: R.string.localizable.wookong_mnemonic_ver_failed.key.localized())
-                }
-            }
-        }
+        self.coordinator?.verifyMnemonicWord(data, seeds: self.seeds, checkStr: self.checkStr)
+
     }
 }
 

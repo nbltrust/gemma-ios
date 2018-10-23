@@ -44,7 +44,6 @@ class CardView: UIView {
                 imgView.image = R.image.eosBg()!
                 self.tokenView.insertSubview(imgView, at: 0)
             }
-            updateHeight()
         }
     }
     
@@ -61,7 +60,7 @@ class CardView: UIView {
         balanceView.isHidden = true
         refundView.isHidden = true
         progressView.isHidden = true
-        updateHeight()
+
     }
     
     func setupSubViewEvent() {

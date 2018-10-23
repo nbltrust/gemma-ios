@@ -160,6 +160,9 @@
 		3B018A5F2176DC2B008791AF /* NewHomeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B018A5E2176DC2B008791AF /* NewHomeTableCell.swift */; };
 		3B018A612176DE33008791AF /* NewHomeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B018A602176DE33008791AF /* NewHomeTableCell.xib */; };
 		3B018A632176DF7E008791AF /* NewHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B018A622176DF7E008791AF /* NewHomeView.xib */; };
+		3B0295B2217EC69000867D5F /* NavBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0295A8217EC69000867D5F /* NavBarView.xib */; };
+		3B0295B3217EC69000867D5F /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0295B0217EC69000867D5F /* NavBarView.swift */; };
+		3B0295B4217EC69000867D5F /* NavBarViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0295B1217EC69000867D5F /* NavBarViewAdapter.swift */; };
 		3B02F23D2168524000DD9211 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B02F23C2168524000DD9211 /* AccountModel.swift */; };
 		3B0856292175E9D30025B178 /* CardViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0856262175E9D20025B178 /* CardViewAdapter.swift */; };
 		3B08562A2175E9D30025B178 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0856272175E9D20025B178 /* CardView.swift */; };
@@ -844,6 +847,9 @@
 		3B018A5E2176DC2B008791AF /* NewHomeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeTableCell.swift; sourceTree = "<group>"; };
 		3B018A602176DE33008791AF /* NewHomeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewHomeTableCell.xib; sourceTree = "<group>"; };
 		3B018A622176DF7E008791AF /* NewHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewHomeView.xib; sourceTree = "<group>"; };
+		3B0295A8217EC69000867D5F /* NavBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavBarView.xib; sourceTree = "<group>"; };
+		3B0295B0217EC69000867D5F /* NavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarView.swift; sourceTree = "<group>"; };
+		3B0295B1217EC69000867D5F /* NavBarViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarViewAdapter.swift; sourceTree = "<group>"; };
 		3B02F23C2168524000DD9211 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		3B0856262175E9D20025B178 /* CardViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewAdapter.swift; sourceTree = "<group>"; };
 		3B0856272175E9D20025B178 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -1847,6 +1853,9 @@
 		3B0856252175E9920025B178 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B0295B0217EC69000867D5F /* NavBarView.swift */,
+				3B0295A8217EC69000867D5F /* NavBarView.xib */,
+				3B0295B1217EC69000867D5F /* NavBarViewAdapter.swift */,
 				3B0856262175E9D20025B178 /* CardViewAdapter.swift */,
 				3B0856272175E9D20025B178 /* CardView.swift */,
 				3B0856282175E9D30025B178 /* CardView.xib */,
@@ -3270,6 +3279,7 @@
 				7210169B210197C10059B37E /* ChangeWalletNameView.xib in Resources */,
 				3195BD9E030E3CAD06E18BEDA1C98306 /* RegisterContentView.xib in Resources */,
 				223C5918214A532800C69F3F /* BLTCardEntryView.xib in Resources */,
+				3B0295B2217EC69000867D5F /* NavBarView.xib in Resources */,
 				7342E4F4216F1FF80093E2C2 /* BLTCardIntroViewView.xib in Resources */,
 				3BC12AA221060927006EEB80 /* AccountListView.xib in Resources */,
 				72FE5B822100868800B29FEC /* SafeLineView.xib in Resources */,
@@ -3644,6 +3654,7 @@
 				722D24CA21115B5000A093CA /* ContainerNormalCellView.swift in Sources */,
 				73B5A69A20F5DFF400756391 /* IconGenerator.swift in Sources */,
 				3B39358F214A479300AB0A30 /* VerifyMnemonicWordViewController.swift in Sources */,
+				3B0295B4217EC69000867D5F /* NavBarViewAdapter.swift in Sources */,
 				3B393590214A479300AB0A30 /* VerifyMnemonicWordReducers.swift in Sources */,
 				73B5A69B20F5DFF400756391 /* Shapes.swift in Sources */,
 				3B726C1621133502001E4850 /* ScreenShotAlertViewController.swift in Sources */,
@@ -3782,6 +3793,7 @@
 				3B858C052170A1B500499FAC /* DeleteFingerView.swift in Sources */,
 				3B6D746B214761690076F444 /* ActivateReducers.swift in Sources */,
 				3B1EC88C217040B80044DEB5 /* WalletDetailView.swift in Sources */,
+				3B0295B3217EC69000867D5F /* NavBarView.swift in Sources */,
 				3B6D7470214761690076F444 /* PayToActivateViewController.swift in Sources */,
 				3B858BC5217077FB00499FAC /* FingerReducers.swift in Sources */,
 				2214A96A211D73A2003256D2 /* VoteFootView.swift in Sources */,

@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import NBLCommonModule
+import Seed39
 
 class MnemonicContentViewController: BaseViewController {
 
@@ -40,21 +42,32 @@ class MnemonicContentViewController: BaseViewController {
     }
 
     func setupData() {
-        self.coordinator?.getSeeds({ [weak self] (datas,checkStr) in
-            guard let `self` = self else { return }
-            if let tempDatas = datas as? [String],let check = checkStr {
-                DispatchQueue.main.sync {
-                    self.seeds = tempDatas
-                    self.coordinator?.setSeeds((tempDatas, check))
-                    self.contentView.setMnemonicWordArray(self.seeds)
+        Broadcaster.notify(EntryStateManagerProtocol.self) { (coor) in
+            let model = coor.state.property.model
+            if model?.type == .HD {
+                let mnemonic = Seed39NewMnemonic()
+                if let array = mnemonic?.components(separatedBy: " ") {
+                    self.coordinator?.setSeeds((array, mnemonic ?? ""))
+                    self.contentView.setMnemonicWordArray(array)
                 }
+            } else if model?.type == .bluetooth {
+                self.coordinator?.getSeeds({ [weak self] (datas,checkStr) in
+                    guard let `self` = self else { return }
+                    if let tempDatas = datas as? [String],let check = checkStr {
+                        DispatchQueue.main.sync {
+                            self.seeds = tempDatas
+                            self.coordinator?.setSeeds((tempDatas, check))
+                            self.contentView.setMnemonicWordArray(self.seeds)
+                        }
+                    }
+                    }, failed: { [weak self] (reason) in
+                        guard let `self` = self else { return }
+                        if let failedReason = reason {
+                            self.showError(message: failedReason)
+                        }
+                })
             }
-        }, failed: { [weak self] (reason) in
-            guard let `self` = self else { return }
-            if let failedReason = reason {
-                self.showError(message: failedReason)
-            }
-        })
+        }
     }
     
     func setupEvent() {

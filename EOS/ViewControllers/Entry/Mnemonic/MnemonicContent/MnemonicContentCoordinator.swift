@@ -59,6 +59,7 @@ extension MnemonicContentCoordinator: MnemonicContentStateManagerProtocol {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
+    
     func getSeeds(_ success: @escaping GetSeedsComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance().getSeed(success, failed: failed)
     }
