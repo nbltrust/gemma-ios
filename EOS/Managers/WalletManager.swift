@@ -13,7 +13,7 @@ import SwiftyUserDefaults
 import Repeat
 import SwiftDate
 import eos_ios_core_cpp
-//import Eth_golang_lib
+import seed39_ios_golang
 
 class WalletManager {
     static let shared = WalletManager()
@@ -29,7 +29,6 @@ class WalletManager {
 
     private init() {
         //test
-        
     }
     
     func createPairKey() {
