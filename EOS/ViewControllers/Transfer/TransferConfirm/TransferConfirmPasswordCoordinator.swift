@@ -131,7 +131,6 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
     }
     
     func bltTransferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
-        BLTWalletIO.shareInstance()?.submmitWaitingVerfyPin(password)
         let model = TransferActionModel()
         model.password = password
         model.toAccount = account

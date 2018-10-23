@@ -17,7 +17,7 @@ protocol HomeCoordinatorProtocol {
     func pushPaymentDetail()
     func pushPayment()
     func pushWallet()
-    func pushAccountList()
+    func pushAccountList(_ complication: CompletionCallback)
     func pushResourceMortgageVC()
     func pushBackupVC()
     func pushBuyRamVC()
@@ -79,7 +79,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
         }
     }
     
-    func pushAccountList() {
+    func pushAccountList(_ complication: () -> Void)  {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 272)
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 272))

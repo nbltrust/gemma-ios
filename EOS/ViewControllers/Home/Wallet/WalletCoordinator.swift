@@ -150,5 +150,8 @@ extension WalletCoordinator: WalletStateManagerProtocol {
     
     func switchWallet(_ pubKey:String) {
         WalletManager.shared.switchWallet(pubKey)
+        WalletManager.shared.fetchAccountNames(pubKey) { (result) in
+            
+        }
     }
 }

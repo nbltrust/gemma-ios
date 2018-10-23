@@ -4,10 +4,8 @@ notifications:
   slack: cybexio:fp4g1kMG5C3Qj7PW3yBo5Fc0
 cache:
   directories:
-  - library
   - Carthage
 before_install:
-- wget $LIBRARYURL -O tmp.zip && unzip -o tmp.zip && rm tmp.zip
 - brew install lvillani/tap/carthage-copy-frameworks
 - bundle install
 - bundle update

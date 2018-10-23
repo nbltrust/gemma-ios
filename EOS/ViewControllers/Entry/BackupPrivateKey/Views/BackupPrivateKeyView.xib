@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,13 +24,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icCommonSecurity" translatesAutoresizingMaskIntoConstraints="NO" id="B59-6j-CXs">
-                    <rect key="frame" x="160" y="84" width="54" height="54"/>
+                    <rect key="frame" x="160.5" y="84" width="54" height="54"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="54" id="6kn-5j-LBz"/>
                         <constraint firstAttribute="width" constant="54" id="cH9-Od-mHw"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0u-xd-2dc">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0u-xd-2dc">
                     <rect key="frame" x="187.5" y="154" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                     <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -39,13 +39,13 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="locali" value="back_up_wallet"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05K-v4-fPA" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="05K-v4-fPA" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="16" y="256" width="343" height="70"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bti-FP-PYI">
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bti-FP-PYI">
                             <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Z6-vI-FoS" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Z6-vI-FoS" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="42" y="12" width="285" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -70,7 +70,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv5-Ul-7Od" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv5-Ul-7Od" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="42" y="40" width="285" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,7 +82,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PgY-Io-e0s">
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PgY-Io-e0s">
                                     <rect key="frame" x="21" y="50" width="6" height="6"/>
                                     <color key="backgroundColor" red="0.81599999999999995" green="0.0080000000000000002" blue="0.106" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -119,13 +119,13 @@
                         <constraint firstItem="bti-FP-PYI" firstAttribute="leading" secondItem="05K-v4-fPA" secondAttribute="leading" id="rYh-0M-0TC"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="501-iJ-aQv" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="501-iJ-aQv" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="16" y="187" width="343" height="46"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bu4-Kt-1PG">
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bu4-Kt-1PG">
                             <rect key="frame" x="0.0" y="0.0" width="343" height="46"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emV-Va-eMu" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emV-Va-eMu" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="42" y="13" width="285" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -137,7 +137,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DIx-mJ-uAx">
-                                    <rect key="frame" x="21" y="24.5" width="6" height="6"/>
+                                    <rect key="frame" x="21" y="25" width="6" height="6"/>
                                     <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="6" id="Eyf-ec-R3V"/>
@@ -188,7 +188,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UT5-au-ZlE" customClass="Button" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="366" width="311" height="44"/>
+                    <rect key="frame" x="32" y="591" width="311" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="1OI-iA-R5H"/>
@@ -216,6 +216,7 @@
                 <constraint firstItem="UT5-au-ZlE" firstAttribute="top" secondItem="05K-v4-fPA" secondAttribute="bottom" constant="40" id="qUb-PX-wZk"/>
                 <constraint firstItem="05K-v4-fPA" firstAttribute="leading" secondItem="98U-qU-AoM" secondAttribute="leading" constant="16" id="qxg-iu-cjy"/>
                 <constraint firstItem="501-iJ-aQv" firstAttribute="top" secondItem="X0u-xd-2dc" secondAttribute="bottom" constant="33" id="uWB-PR-xqy"/>
+                <constraint firstItem="I6w-Bx-Mbe" firstAttribute="bottom" secondItem="UT5-au-ZlE" secondAttribute="bottom" constant="32" id="xUB-36-PA6"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="I6w-Bx-Mbe"/>
             <point key="canvasLocation" x="164.5" y="-151.5"/>

@@ -65,16 +65,16 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
 //            let viewmodel = initAccountViewModel()
 //            state.info.accept(viewmodel)
 //        }
-//    case let action as AccountFetchedFromLocalAction:
-//        if action.model != nil {
-//            let viewmodel = convertToViewModelWithModel(model: action.model!)
-////            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
-//            
-//            state.model.accept(viewmodel)
-//        } else {
-//            let viewmodel = initAccountViewModel()
-//            state.info.accept(viewmodel)
-//        }
+    case let action as AccountFetchedFromLocalAction:
+        if action.model != nil {
+            let viewmodel = convertToViewModelWithModel(model: action.model!)
+//            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
+            
+            state.model.accept(viewmodel)
+        } else {
+            let viewmodel = initAccountViewModel()
+            state.info.accept(viewmodel)
+        }
     default:
         break
     }
@@ -177,25 +177,25 @@ func calculateRMBPrice(_ viewmodel:AccountViewModel, price:String, otherPrice:St
 }
 
 
-//func convertToViewModelWithModel(model: AccountModel) -> AccountViewModel {
-//    var viewModel = AccountViewModel()
-//    viewModel.account = model.account_name
-//    viewModel.portrait = model.account_name.sha256()
-//    viewModel.cpuValue = model.delegate_cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-//    viewModel.netValue = model.delegate_net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-//    viewModel.ramValue = model.ram_bytes.ramCount ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-//    viewModel.cpuProgress = Float(model.cpu_used) / Float(model.cpu_max)
-//    viewModel.netProgress = Float(model.net_used) / Float(model.net_max)
-//    viewModel.ramProgress = Float(model.ram_usage) / Float(model.ram_quota)
-//    if let balance = Defaults[model.account_name + NetworkConfiguration.BALANCE_DEFAULT_SYMBOL] as? String {
-//        viewModel.balance = balance
-//    }
-//    viewModel.allAssets = calculateTotalAsset(viewModel)
-//    if let rmbUnit = Defaults[Unit.RMB_UNIT] as? String, let usdUnit = Defaults[Unit.USD_UNIT] as? String {
-//        viewModel.CNY = calculateRMBPrice(viewModel, price: rmbUnit, otherPrice: usdUnit)
-//    }
-//
-//    return viewModel
-//}
+func convertToViewModelWithModel(model: AccountModel) -> AccountViewModel {
+    var viewModel = AccountViewModel()
+    viewModel.account = model.account_name
+    viewModel.portrait = model.account_name.sha256()
+    viewModel.cpuValue = model.delegate_cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    viewModel.netValue = model.delegate_net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    viewModel.ramValue = model.ram_bytes != nil ? (model.ram_bytes.ramCount ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)") : ""
+    viewModel.cpuProgress = Float(model.cpu_used) / Float(model.cpu_max)
+    viewModel.netProgress = Float(model.net_used) / Float(model.net_max)
+    viewModel.ramProgress = Float(model.ram_usage) / Float(model.ram_quota)
+    if let balance = Defaults[model.account_name + NetworkConfiguration.BALANCE_DEFAULT_SYMBOL] as? String {
+        viewModel.balance = balance
+    }
+    viewModel.allAssets = calculateTotalAsset(viewModel)
+    if let rmbUnit = Defaults[Unit.RMB_UNIT] as? String, let usdUnit = Defaults[Unit.USD_UNIT] as? String {
+        viewModel.CNY = calculateRMBPrice(viewModel, price: rmbUnit, otherPrice: usdUnit)
+    }
+
+    return viewModel
+}
 
 
