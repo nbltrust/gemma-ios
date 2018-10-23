@@ -58,7 +58,6 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
     }
     
     func bltTransferAccounts(_ account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
-        BLTWalletIO.shareInstance()?.submmitWaitingVerfyPin("123456")
         let model = TransferActionModel()
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()
