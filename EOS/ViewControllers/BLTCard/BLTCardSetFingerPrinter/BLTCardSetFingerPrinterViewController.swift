@@ -34,6 +34,15 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
         super.viewWillAppear(animated)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        BLTWalletIO.shareInstance()?.cancelEntrollFingerPrinter({
+            
+        }, failed: { (reason) in
+            
+        })
+    }
+    
     override func refreshViewController() {
         
     }
@@ -94,7 +103,9 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
             if state == FingerPrinterState.good {
                 self.nextStep()
             } else {
-                self.prevStep()
+                if state != FingerPrinterState.common {
+                    self.prevStep()
+                }
             }
         }, success: { [weak self] in
             guard let `self` = self else { return }

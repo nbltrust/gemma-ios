@@ -50,7 +50,9 @@ class AccountListViewController: BaseViewController {
 
 extension AccountListViewController {
     @objc func didselectrow(_ data:[String:Any]) {
-        let accountName = data["accountname"]
-        
+        let index = data["index"] as? Int
+        WalletManager.shared.switchAccount(index ?? 0)
+        self.coordinator?.dismissListVC()
+
     }
 }

@@ -42,10 +42,11 @@ typedef void(^ GetSignComplication)(NSString *sign);
 
 typedef void(^ GetFPListComplication)(NSArray *fpList);
 
-
 @property (nonatomic,strong) DidSearchDevice didSearchDevice;
 
 @property (nonatomic,strong) BLTDevice *selectDevice;
+
+@property (nonatomic,assign) BOOL stopEntroll;
 
 @property (nonatomic,strong) NSTimer *timer;
 
@@ -61,6 +62,8 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 - (void)startHeartBeat;
 
 - (BOOL)isConnection;
+
+- (NSString *)ret15bitString;
 
 - (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
@@ -86,16 +89,15 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 
 - (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed;
 
-/*When type == PinType
- Need To implication Method “submmitWaitingVerfyPin”
- */
-- (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
+- (void)cancelEntrollFingerPrinter:(SuccessedComplication)success failed:(FailedComplication)failed;
 
-- (void)submmitWaitingVerfyPin:(NSString *)waitVerPin;
+- (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
 - (void)getFPList:(GetFPListComplication)complication failed:(FailedComplication)failedComplication;
 
 - (void)deleteFP:(NSArray *)fpList success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication;
 
+- (void)verifyPin:(NSString *)pin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication;
 
+- (void)updatePin:(NSString *)oldPin new:(NSString *)newPin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication;
 @end

@@ -24,7 +24,7 @@ class ResourceMortgageViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        coordinator?.getCurrentFromLocal()
+//        coordinator?.getCurrentFromLocal()
         coordinator?.getAccountInfo(WalletManager.shared.getAccount())
     }
     
