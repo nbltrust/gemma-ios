@@ -15,7 +15,11 @@ class BLTCardConfirmPinViewController: BaseViewController {
 
 	var coordinator: (BLTCardConfirmPinCoordinatorProtocol & BLTCardConfirmPinStateManagerProtocol)?
 
-	override func viewDidLoad() {
+    private(set) var context: BLTCardConfirmPinContext?
+    
+    @IBOutlet weak var confirmView: TransferConfirmPasswordView!
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         setupData()
@@ -32,7 +36,9 @@ class BLTCardConfirmPinViewController: BaseViewController {
     }
 
     func setupUI() {
-
+        self.confirmView.title = R.string.localizable.wookong_confirm_pin_title.key.localized()
+        self.confirmView.textField.placeholder = R.string.localizable.wookong_confirm_pin_pla.key.localized()
+        self.confirmView.btnTitle = R.string.localizable.wookong_confirm_pin_btn.key.localized()
     }
 
     func setupData() {
@@ -44,9 +50,14 @@ class BLTCardConfirmPinViewController: BaseViewController {
     }
 
     override func configureObserveState() {
-        coordinator?.state.pageState.asObservable().subscribe(onNext: {(_) in
-
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
+            guard let `self` = self else { return }
+            
+            if let context = context as? BLTCardConfirmPinContext {
+                self.context = context
+            }
+            
+        }).disposed(by: disposeBag)
     }
 }
 

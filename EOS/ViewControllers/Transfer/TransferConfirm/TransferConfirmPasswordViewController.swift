@@ -63,9 +63,6 @@ class TransferConfirmPasswordViewController: BaseViewController {
                 if context.type == confirmType.updatePwd.rawValue {
                     self.passwordView.title = R.string.localizable.update_pwd_title.key.localized()
                     self.passwordView.btnTitle = R.string.localizable.update_pwd_btntitle.key.localized()
-                } else if context.type == confirmType.updatePin.rawValue {
-                    self.passwordView.title = R.string.localizable.update_pwd_title.key.localized()
-                    self.passwordView.btnTitle = R.string.localizable.update_pwd_btntitle.key.localized()
                 }
             }
         }).disposed(by: disposeBag)

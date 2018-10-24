@@ -10,6 +10,11 @@ import Foundation
 import ReSwift
 import RxCocoa
 import SwiftyJSON
+import HandyJSON
+
+struct BLTCardConfirmPinContext: RouteContext, HandyJSON {
+    var confirmSuccessed: CompletionCallback?
+}
 
 // MARK: - State
 struct BLTCardConfirmPinState: BaseState {
