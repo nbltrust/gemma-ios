@@ -29,6 +29,7 @@ class WalletManager {
 
     private init() {
         //test
+        Seed39SignERC20()
     }
     
     func createPairKey() {

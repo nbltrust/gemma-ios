@@ -490,8 +490,6 @@
 		73539CF52179B4AF008395AC /* KMNavigationBarTransition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CDD2179B4A4008395AC /* KMNavigationBarTransition.framework */; };
 		73539CF62179B4AF008395AC /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CDE2179B4A5008395AC /* SwiftRichString.framework */; };
 		73539CF72179B4AF008395AC /* SwiftyUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CDF2179B4A5008395AC /* SwiftyUserDefaults.framework */; };
-		73539CF82179B4AF008395AC /* UIFontComplete.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CE02179B4A6008395AC /* UIFontComplete.framework */; };
-		73539CF92179B4AF008395AC /* Guitar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CE12179B4A6008395AC /* Guitar.framework */; };
 		73539CFA2179B4AF008395AC /* DifferenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CE22179B4A7008395AC /* DifferenceKit.framework */; };
 		73539CFB2179B4AF008395AC /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CE32179B4A7008395AC /* ReSwift.framework */; };
 		73539CFC2179B4AF008395AC /* SwifterSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CE42179B4A8008395AC /* SwifterSwift.framework */; };
@@ -507,9 +505,7 @@
 		73539D062179B4AF008395AC /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CEE2179B4AC008395AC /* EFQRCode.framework */; };
 		73539D072179B4AF008395AC /* GrowingTextView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CEF2179B4AD008395AC /* GrowingTextView.framework */; };
 		73539D082179B4AF008395AC /* ESPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CF02179B4AD008395AC /* ESPullToRefresh.framework */; };
-		73539D092179B4AF008395AC /* Macaw.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CF12179B4AE008395AC /* Macaw.framework */; };
 		73539D0A2179B4AF008395AC /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CF22179B4AE008395AC /* Rswift.framework */; };
-		73539D0B2179B4AF008395AC /* AwaitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CF32179B4AF008395AC /* AwaitKit.framework */; };
 		73539D3B2179B5B8008395AC /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 73539D1D2179B5B7008395AC /* FCUUID.m */; };
 		73539D3C2179B5B8008395AC /* UIDevice+FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 73539D1E2179B5B7008395AC /* UIDevice+FCUUID.m */; };
 		73539D442179B7CC008395AC /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D3D2179B7C9008395AC /* Reachability.framework */; };
@@ -517,7 +513,6 @@
 		73539D462179B7CC008395AC /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D3F2179B7C9008395AC /* SwiftDate.framework */; };
 		73539D472179B7CC008395AC /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D402179B7CA008395AC /* TagListView.framework */; };
 		73539D482179B7CC008395AC /* MonkeyKing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D412179B7CA008395AC /* MonkeyKing.framework */; };
-		73539D492179B7CC008395AC /* SDCAlertView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D422179B7CB008395AC /* SDCAlertView.framework */; };
 		73539D4A2179B7CC008395AC /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D432179B7CB008395AC /* KeychainAccess.framework */; };
 		73539D4E2179BC39008395AC /* IQKeyboardManagerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D4B2179BC37008395AC /* IQKeyboardManagerSwift.framework */; };
 		73539D4F2179BC39008395AC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539D4C2179BC38008395AC /* Crashlytics.framework */; };
@@ -536,7 +531,6 @@
 		739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D862150D45400A1074B /* KRProgressHUD.framework */; };
 		739A4D9E2150DDDA00A1074B /* MarqueeLabelSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */; };
 		739A4D9F2150DDDA00A1074B /* NotificationBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D9C2150DDD900A1074B /* NotificationBanner.framework */; };
-		739A4DA02150DDDA00A1074B /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739A4D9D2150DDDA00A1074B /* SnapKit.framework */; };
 		739A4DB52150DF2800A1074B /* GestureFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DA42150DF2700A1074B /* GestureFactory.swift */; };
 		739A4DB62150DF2800A1074B /* TransformGestureRecognizers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DA62150DF2700A1074B /* TransformGestureRecognizers.swift */; };
 		739A4DB72150DF2800A1074B /* UIGestureRecognizer+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DA72150DF2700A1074B /* UIGestureRecognizer+RxGesture.swift */; };
@@ -574,6 +568,7 @@
 		73BEF1C8217F0D2200707DFC /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
 		73BEF1C9217F0D2200707DFC /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		73BEF2362180154200707DFC /* seed39_ios_golang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BEF2352180154200707DFC /* seed39_ios_golang.framework */; };
+		73BEF239218025CF00707DFC /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BEF238218025CF00707DFC /* SnapKit.framework */; };
 		73D47EDB214D678B00A8BF29 /* BLTWalletIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
 		73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F1DE44214675250065BD72 /* Mirror+Extension.swift */; };
@@ -1195,8 +1190,6 @@
 		73539CDD2179B4A4008395AC /* KMNavigationBarTransition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KMNavigationBarTransition.framework; path = Carthage/Build/iOS/KMNavigationBarTransition.framework; sourceTree = "<group>"; };
 		73539CDE2179B4A5008395AC /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
 		73539CDF2179B4A5008395AC /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyUserDefaults.framework; path = Carthage/Build/iOS/SwiftyUserDefaults.framework; sourceTree = "<group>"; };
-		73539CE02179B4A6008395AC /* UIFontComplete.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIFontComplete.framework; path = Carthage/Build/iOS/UIFontComplete.framework; sourceTree = "<group>"; };
-		73539CE12179B4A6008395AC /* Guitar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Guitar.framework; path = Carthage/Build/iOS/Guitar.framework; sourceTree = "<group>"; };
 		73539CE22179B4A7008395AC /* DifferenceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DifferenceKit.framework; path = Carthage/Build/iOS/DifferenceKit.framework; sourceTree = "<group>"; };
 		73539CE32179B4A7008395AC /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/iOS/ReSwift.framework; sourceTree = "<group>"; };
 		73539CE42179B4A8008395AC /* SwifterSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifterSwift.framework; path = Carthage/Build/iOS/SwifterSwift.framework; sourceTree = "<group>"; };
@@ -1212,9 +1205,7 @@
 		73539CEE2179B4AC008395AC /* EFQRCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EFQRCode.framework; path = Carthage/Build/iOS/EFQRCode.framework; sourceTree = "<group>"; };
 		73539CEF2179B4AD008395AC /* GrowingTextView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GrowingTextView.framework; path = Carthage/Build/iOS/GrowingTextView.framework; sourceTree = "<group>"; };
 		73539CF02179B4AD008395AC /* ESPullToRefresh.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ESPullToRefresh.framework; path = Carthage/Build/iOS/ESPullToRefresh.framework; sourceTree = "<group>"; };
-		73539CF12179B4AE008395AC /* Macaw.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Macaw.framework; path = Carthage/Build/iOS/Macaw.framework; sourceTree = "<group>"; };
 		73539CF22179B4AE008395AC /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rswift.framework; path = Carthage/Build/iOS/Rswift.framework; sourceTree = "<group>"; };
-		73539CF32179B4AF008395AC /* AwaitKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AwaitKit.framework; path = Carthage/Build/iOS/AwaitKit.framework; sourceTree = "<group>"; };
 		73539D1D2179B5B7008395AC /* FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUUID.m; sourceTree = "<group>"; };
 		73539D1E2179B5B7008395AC /* UIDevice+FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+FCUUID.m"; sourceTree = "<group>"; };
 		73539D1F2179B5B7008395AC /* FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUUID.h; sourceTree = "<group>"; };
@@ -1224,7 +1215,6 @@
 		73539D3F2179B7C9008395AC /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
 		73539D402179B7CA008395AC /* TagListView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TagListView.framework; path = Carthage/Build/iOS/TagListView.framework; sourceTree = "<group>"; };
 		73539D412179B7CA008395AC /* MonkeyKing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MonkeyKing.framework; path = Carthage/Build/iOS/MonkeyKing.framework; sourceTree = "<group>"; };
-		73539D422179B7CB008395AC /* SDCAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDCAlertView.framework; path = Carthage/Build/iOS/SDCAlertView.framework; sourceTree = "<group>"; };
 		73539D432179B7CB008395AC /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
 		73539D4B2179BC37008395AC /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManagerSwift.framework; path = Carthage/Build/iOS/IQKeyboardManagerSwift.framework; sourceTree = "<group>"; };
 		73539D4C2179BC38008395AC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Carthage/Build/iOS/Crashlytics.framework; sourceTree = "<group>"; };
@@ -1244,7 +1234,6 @@
 		739A4D862150D45400A1074B /* KRProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KRProgressHUD.framework; path = Carthage/Build/iOS/KRProgressHUD.framework; sourceTree = "<group>"; };
 		739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabelSwift.framework; path = Carthage/Build/iOS/MarqueeLabelSwift.framework; sourceTree = "<group>"; };
 		739A4D9C2150DDD900A1074B /* NotificationBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationBanner.framework; path = Carthage/Build/iOS/NotificationBanner.framework; sourceTree = "<group>"; };
-		739A4D9D2150DDDA00A1074B /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		739A4DA42150DF2700A1074B /* GestureFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureFactory.swift; sourceTree = "<group>"; };
 		739A4DA62150DF2700A1074B /* TransformGestureRecognizers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformGestureRecognizers.swift; sourceTree = "<group>"; };
 		739A4DA72150DF2700A1074B /* UIGestureRecognizer+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+RxGesture.swift"; sourceTree = "<group>"; };
@@ -1282,6 +1271,7 @@
 		73B5A6AC20F601DE00756391 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		73BA4B3A215A244600EF4C72 /* URLNavigationMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLNavigationMap.swift; sourceTree = "<group>"; };
 		73BEF2352180154200707DFC /* seed39_ios_golang.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = seed39_ios_golang.framework; path = Carthage/Build/iOS/seed39_ios_golang.framework; sourceTree = "<group>"; };
+		73BEF238218025CF00707DFC /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTWalletIO.m; sourceTree = "<group>"; };
 		73DDD9A12113F6B900023973 /* BannerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerColor.swift; sourceTree = "<group>"; };
 		73EDFEE7211AC44E000DF796 /* EOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1347,20 +1337,16 @@
 				732F373D214FC48300CB3A58 /* UINavigationItem_Margin.framework in Frameworks */,
 				739A4D9E2150DDDA00A1074B /* MarqueeLabelSwift.framework in Frameworks */,
 				739A4D9F2150DDDA00A1074B /* NotificationBanner.framework in Frameworks */,
-				739A4DA02150DDDA00A1074B /* SnapKit.framework in Frameworks */,
 				73539CF42179B4AF008395AC /* Device.framework in Frameworks */,
 				73539D442179B7CC008395AC /* Reachability.framework in Frameworks */,
 				73539D452179B7CC008395AC /* PocketSVG.framework in Frameworks */,
 				73539D462179B7CC008395AC /* SwiftDate.framework in Frameworks */,
 				73539D472179B7CC008395AC /* TagListView.framework in Frameworks */,
 				73539D482179B7CC008395AC /* MonkeyKing.framework in Frameworks */,
-				73539D492179B7CC008395AC /* SDCAlertView.framework in Frameworks */,
 				73539D4A2179B7CC008395AC /* KeychainAccess.framework in Frameworks */,
 				73539CF52179B4AF008395AC /* KMNavigationBarTransition.framework in Frameworks */,
 				73539CF62179B4AF008395AC /* SwiftRichString.framework in Frameworks */,
 				73539CF72179B4AF008395AC /* SwiftyUserDefaults.framework in Frameworks */,
-				73539CF82179B4AF008395AC /* UIFontComplete.framework in Frameworks */,
-				73539CF92179B4AF008395AC /* Guitar.framework in Frameworks */,
 				73539CFA2179B4AF008395AC /* DifferenceKit.framework in Frameworks */,
 				73539CFB2179B4AF008395AC /* ReSwift.framework in Frameworks */,
 				73539CFC2179B4AF008395AC /* SwifterSwift.framework in Frameworks */,
@@ -1376,13 +1362,12 @@
 				73539D022179B4AF008395AC /* PromiseKit.framework in Frameworks */,
 				73539D032179B4AF008395AC /* CryptoSwift.framework in Frameworks */,
 				73539D042179B4AF008395AC /* Repeat.framework in Frameworks */,
+				73BEF239218025CF00707DFC /* SnapKit.framework in Frameworks */,
 				73539D052179B4AF008395AC /* BiometricAuthentication.framework in Frameworks */,
 				73539D062179B4AF008395AC /* EFQRCode.framework in Frameworks */,
 				73539D072179B4AF008395AC /* GrowingTextView.framework in Frameworks */,
 				73539D082179B4AF008395AC /* ESPullToRefresh.framework in Frameworks */,
-				73539D092179B4AF008395AC /* Macaw.framework in Frameworks */,
 				73539D0A2179B4AF008395AC /* Rswift.framework in Frameworks */,
-				73539D0B2179B4AF008395AC /* AwaitKit.framework in Frameworks */,
 				732F371E214FB83F00CB3A58 /* RxCocoa.framework in Frameworks */,
 				732F371F214FB83F00CB3A58 /* RxMoya.framework in Frameworks */,
 				732F3720214FB83F00CB3A58 /* Result.framework in Frameworks */,
@@ -2859,6 +2844,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73BEF238218025CF00707DFC /* SnapKit.framework */,
 				73BEF2352180154200707DFC /* seed39_ios_golang.framework */,
 				7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */,
 				7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */,
@@ -2870,10 +2856,8 @@
 				73539D412179B7CA008395AC /* MonkeyKing.framework */,
 				73539D3E2179B7C9008395AC /* PocketSVG.framework */,
 				73539D3D2179B7C9008395AC /* Reachability.framework */,
-				73539D422179B7CB008395AC /* SDCAlertView.framework */,
 				73539D3F2179B7C9008395AC /* SwiftDate.framework */,
 				73539D402179B7CA008395AC /* TagListView.framework */,
-				73539CF32179B4AF008395AC /* AwaitKit.framework */,
 				73539CED2179B4AC008395AC /* BiometricAuthentication.framework */,
 				73539CEB2179B4AB008395AC /* CryptoSwift.framework */,
 				73539CC22179B4A4008395AC /* Device.framework */,
@@ -2881,10 +2865,8 @@
 				73539CEE2179B4AC008395AC /* EFQRCode.framework */,
 				73539CF02179B4AD008395AC /* ESPullToRefresh.framework */,
 				73539CEF2179B4AD008395AC /* GrowingTextView.framework */,
-				73539CE12179B4A6008395AC /* Guitar.framework */,
 				73539CDD2179B4A4008395AC /* KMNavigationBarTransition.framework */,
 				73539CE62179B4A9008395AC /* Localize_Swift.framework */,
-				73539CF12179B4AE008395AC /* Macaw.framework */,
 				73539CE72179B4A9008395AC /* Presentr.framework */,
 				73539CEA2179B4AB008395AC /* PromiseKit.framework */,
 				73539CEC2179B4AB008395AC /* Repeat.framework */,
@@ -2896,12 +2878,10 @@
 				73539CE82179B4AA008395AC /* SwiftyJSON.framework */,
 				73539CDF2179B4A5008395AC /* SwiftyUserDefaults.framework */,
 				73539CE92179B4AA008395AC /* TinyConstraints.framework */,
-				73539CE02179B4A6008395AC /* UIFontComplete.framework */,
 				735A3D132160A99700FC8922 /* NBLCommonModule.framework */,
 				73921E06215220A100744811 /* RxSwift.framework */,
 				739A4D9B2150DDD900A1074B /* MarqueeLabelSwift.framework */,
 				739A4D9C2150DDD900A1074B /* NotificationBanner.framework */,
-				739A4D9D2150DDDA00A1074B /* SnapKit.framework */,
 				739A4D852150D45300A1074B /* KRActivityIndicatorView.framework */,
 				739A4D862150D45400A1074B /* KRProgressHUD.framework */,
 				734450822150A10900593A8F /* XLPagerTabStrip.framework */,

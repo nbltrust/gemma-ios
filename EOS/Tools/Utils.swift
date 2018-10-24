@@ -8,7 +8,6 @@
 
 import Foundation
 import SwifterSwift
-import Guitar
 import Device
 import NotificationBanner
 import NBLCommonModule
