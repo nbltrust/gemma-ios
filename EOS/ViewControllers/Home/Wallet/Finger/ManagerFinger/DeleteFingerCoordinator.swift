@@ -24,7 +24,7 @@ protocol DeleteFingerStateManagerProtocol {
 
 class DeleteFingerCoordinator: NavCoordinator {
     var store = Store(
-        reducer: DeleteFingerReducer,
+        reducer: gDeleteFingerReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

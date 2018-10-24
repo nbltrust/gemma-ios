@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func WalletDetailReducer(action: Action, state: WalletDetailState?) -> WalletDetailState {
+func gWalletDetailReducer(action: Action, state: WalletDetailState?) -> WalletDetailState {
     let state = state ?? WalletDetailState()
 
     switch action {

@@ -16,8 +16,8 @@ extension Decimal { // 解决double 计算精度丢失
     var doubleValue: Double {
         let str = self.stringValue
 
-        if let d = Double(str) {
-            return d
+        if let double = Double(str) {
+            return double
         }
         return 0
     }

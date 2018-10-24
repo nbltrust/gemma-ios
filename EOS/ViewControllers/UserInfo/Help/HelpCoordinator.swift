@@ -24,7 +24,7 @@ class HelpCoordinator: NavCoordinator {
     lazy var creator = HelpPropertyActionCreate()
 
     var store = Store<HelpState>(
-        reducer: HelpReducer,
+        reducer: gHelpReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

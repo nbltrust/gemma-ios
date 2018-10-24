@@ -11,7 +11,7 @@ import TinyConstraints
 
 class ContainerNormalCellView: UIView {
 
-    enum event: String {
+    enum Event: String {
         case selectedSetting
     }
 
@@ -38,11 +38,11 @@ class ContainerNormalCellView: UIView {
                     let item = data[index]
                     let cellView = NormalCellView(frame: CGRect(x: 0, y: 0, width: self.stackView.width, height: 48))
                     cellView.index = index
-                    cellView.name_text = item
+                    cellView.nameText = item
                     cellView.state = 1
                     cellView.tag = (index + 1)
                     cellView.backgroundColor = UIColor.whiteTwo89
-                    cellView.name_style = LineViewStyleNames.normalName.rawValue
+                    cellView.nameStyle = LineViewStyleNames.normalName.rawValue
                     cellView.rightIconName = index == self.selectedIndex ? R.image.group.name : R.image.select.name
                     if index == data.count - 1 {
                         cellView.isShowLineView = false
@@ -106,8 +106,6 @@ class ContainerNormalCellView: UIView {
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
 
-
-
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -117,7 +115,7 @@ extension ContainerNormalCellView {
     @objc func clickCellView(_ sender: [String: Any]) {
         if let index = sender["index"] as? Int {
             self.selectedIndex = index
-            self.sendEventWith(event.selectedSetting.rawValue, userinfo: ["index": index])
+            self.sendEventWith(Event.selectedSetting.rawValue, userinfo: ["index": index])
         }
     }
 }

@@ -18,7 +18,9 @@ class ScanPreviewView: UIView {
 
     var session: AVCaptureSession? {
         didSet {
-            let layer = self.layer as! AVCaptureVideoPreviewLayer
+            guard let layer = self.layer as? AVCaptureVideoPreviewLayer else {
+                return
+            }
             layer.videoGravity = .resizeAspectFill
             layer.session = session
         }

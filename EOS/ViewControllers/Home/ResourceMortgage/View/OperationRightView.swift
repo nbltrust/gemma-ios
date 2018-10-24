@@ -18,7 +18,7 @@ class OperationRightView: UIView {
         case net
     }
 
-    enum event: String {
+    enum Event: String {
         case cpucancel
         case netcancel
     }
@@ -96,7 +96,6 @@ class OperationRightView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
 
         //        self.insertSubview(view, at: 0)
 
@@ -212,12 +211,12 @@ extension OperationRightView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.cpu.rawValue:
             cpuMortgageCancelView.reloadActionViews(isEditing: false)
-            self.sendEventWith(event.cpucancel.rawValue, userinfo: ["cputextfieldview": cpuMortgageCancelView, "nettextfieldview": netMortgageCancelView])
-            self.sendEventWith(event.netcancel.rawValue, userinfo: ["cputextfieldview": cpuMortgageCancelView, "nettextfieldview": netMortgageCancelView])
+            self.sendEventWith(Event.cpucancel.rawValue, userinfo: ["cputextfieldview": cpuMortgageCancelView, "nettextfieldview": netMortgageCancelView])
+            self.sendEventWith(Event.netcancel.rawValue, userinfo: ["cputextfieldview": cpuMortgageCancelView, "nettextfieldview": netMortgageCancelView])
         case InputType.net.rawValue:
             netMortgageCancelView.reloadActionViews(isEditing: false)
-            self.sendEventWith(event.cpucancel.rawValue, userinfo: ["cputextfieldview": cpuMortgageCancelView, "nettextfieldview": netMortgageCancelView])
-            self.sendEventWith(event.netcancel.rawValue, userinfo: ["cputextfieldview": cpuMortgageCancelView, "nettextfieldview": netMortgageCancelView])
+            self.sendEventWith(Event.cpucancel.rawValue, userinfo: ["cputextfieldview": cpuMortgageCancelView, "nettextfieldview": netMortgageCancelView])
+            self.sendEventWith(Event.netcancel.rawValue, userinfo: ["cputextfieldview": cpuMortgageCancelView, "nettextfieldview": netMortgageCancelView])
 
         default:
             return

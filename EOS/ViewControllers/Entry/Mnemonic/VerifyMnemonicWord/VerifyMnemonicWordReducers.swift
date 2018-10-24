@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func VerifyMnemonicWordReducer(action: Action, state: VerifyMnemonicWordState?) -> VerifyMnemonicWordState {
+func gVerifyMnemonicWordReducer(action: Action, state: VerifyMnemonicWordState?) -> VerifyMnemonicWordState {
     let state = state ?? VerifyMnemonicWordState()
 
     switch action {

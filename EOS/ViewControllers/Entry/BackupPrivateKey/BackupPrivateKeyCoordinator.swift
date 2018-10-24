@@ -26,7 +26,7 @@ class BackupPrivateKeyCoordinator: NavCoordinator {
     lazy var creator = BackupPrivateKeyPropertyActionCreate()
 
     var store = Store<BackupPrivateKeyState>(
-        reducer: BackupPrivateKeyReducer,
+        reducer: gBackupPrivateKeyReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -34,7 +34,7 @@ class BackupPrivateKeyCoordinator: NavCoordinator {
 
 extension BackupPrivateKeyCoordinator: BackupPrivateKeyCoordinatorProtocol {
     func showPresenterVC(_ pubKey: String) {
-        appCoodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, type: confirmType.backupPrivateKey.rawValue, producers: [], completion: {[weak self] (_) in
+        appCoodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, type: ConfirmType.backupPrivateKey.rawValue, producers: [], completion: {[weak self] (_) in
             guard let `self` = self else { return }
             let copyVC = CopyPriKeyViewController()
             let copyCoordinator = CopyPriKeyCoordinator(rootVC: self.rootVC)

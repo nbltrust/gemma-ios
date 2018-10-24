@@ -9,11 +9,14 @@
 import UIKit
 import ReSwift
 
-func ServersReducer(action: Action, state: ServersState?) -> ServersState {
-    return ServersState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: ServersPropertyReducer(state?.property, action: action))
+func gServersReducer(action: Action, state: ServersState?) -> ServersState {
+    return ServersState(isLoading: loadingReducer(state?.isLoading, action: action),
+                        page: pageReducer(state?.page, action: action),
+                        errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                        property: gServersPropertyReducer(state?.property, action: action))
 }
 
-func ServersPropertyReducer(_ state: ServersPropertyState?, action: Action) -> ServersPropertyState {
+func gServersPropertyReducer(_ state: ServersPropertyState?, action: Action) -> ServersPropertyState {
     let state = state ?? ServersPropertyState()
 
     switch action {

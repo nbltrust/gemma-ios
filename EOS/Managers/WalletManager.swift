@@ -21,7 +21,7 @@ class WalletManager {
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
 
     var currentPubKey: String = Defaults[.currentWallet]
-    var account_names: [String] = Defaults[.accountNames]
+    var accountNames: [String] = Defaults[.accountNames]
 
     var priKey: String = ""
 
@@ -39,14 +39,21 @@ class WalletManager {
         }
     }
 
-    func saveWallket(_ account: String, password: String, hint: String, isImport: Bool = false, txID: String? = nil, invitationCode: String? = nil, type: CreateAPPId? = nil, deviceName: String? = nil) {
+    func saveWallket(_ account: String,
+                     password: String,
+                     hint: String,
+                     isImport: Bool = false,
+                     txID: String? = nil,
+                     invitationCode: String? = nil,
+                     type: CreateAPPId? = nil,
+                     deviceName: String? = nil) {
         if type == .bluetooth {
             savePriKey(priKey, publicKey: currentPubKey, password: password)
             savePasswordHint(currentPubKey, hint: hint)
 
             addToLocalWallet(isImport, accountName: account, type: type, deviceName: deviceName)
             switchWallet(currentPubKey)
-            account_names = [account]
+            accountNames = [account]
 
             switchAccount(0)
 
@@ -57,7 +64,7 @@ class WalletManager {
 
             addToLocalWallet(isImport, accountName: account, type: type, deviceName: deviceName)
             switchWallet(currentPubKey)
-            account_names = [account]
+            accountNames = [account]
 
             switchAccount(0)
             removePriKey()
@@ -91,7 +98,16 @@ class WalletManager {
             if let walletType = type, walletType == .bluetooth {
                 walletName = "WOOKONG Bio"
             }
-            let wallet = WalletList(name: walletName, accountName: accountName, created: "", publicKey: currentPubKey, isBackUp: isImport ? true : false, creatStatus: WalletCreatStatus.willGetAccountInfo.rawValue, getAccountInfoDate: Date(), isImport: isImport, type: type, deviceName: deviceName)
+            let wallet = WalletList(name: walletName,
+                                    accountName: accountName,
+                                    created: "",
+                                    publicKey: currentPubKey,
+                                    isBackUp: isImport ? true : false,
+                                    creatStatus: WalletCreatStatus.willGetAccountInfo.rawValue,
+                                    getAccountInfoDate: Date(),
+                                    isImport: isImport,
+                                    type: type,
+                                    deviceName: deviceName)
             wallets.append(wallet)
             Defaults[.walletList] = wallets
         }
@@ -101,7 +117,7 @@ class WalletManager {
         removePriKey()//清除私钥
 
         if let wallet = currentWallet() {
-            if account_names.count == 0 {
+            if accountNames.count == 0 {
                 return "--"
             }
             if let walletAccount = wallet.accountName {
@@ -112,20 +128,20 @@ class WalletManager {
         return "--"
     }
 
-    func FetchAccount(_ callback: @escaping StringCallback) {
+    func fetchAccount(_ callback: @escaping StringCallback) {
         if let wallet = currentWallet() {
             if let pubKey = wallet.publicKey {
-                if account_names.count == 0 {
+                if accountNames.count == 0 {
                     fetchAccountNames(pubKey) { (success) in
                         if success {
-                            callback(self.account_names[0])
+                            callback(self.accountNames[0])
                         } else {
                             callback("--")
                         }
                     }
                     return
                 }
-                return callback(self.account_names[0])
+                return callback(self.accountNames[0])
             }
         }
 
@@ -133,9 +149,9 @@ class WalletManager {
     }
 
     func fetchAccountNames(_ publicKey: String, completion: @escaping (Bool) -> Void) {
-        EOSIONetwork.request(target: .get_key_accounts(pubKey: publicKey), success: { (json) in
+        EOSIONetwork.request(target: .getKeyAccounts(pubKey: publicKey), success: { (json) in
             if let names = json["account_names"].arrayObject as? [String] {
-                self.account_names = names
+                self.accountNames = names
                 Defaults[.accountNames] = names
 
                 completion(names.count > 0)
@@ -161,7 +177,7 @@ class WalletManager {
             if success {
                 self.currentPubKey = pubKey
 
-                self.saveWallket(self.account_names[0], password: password, hint: hint, isImport: true, txID: nil, type: .gemma, deviceName: nil)
+                self.saveWallket(self.accountNames[0], password: password, hint: hint, isImport: true, txID: nil, type: .gemma, deviceName: nil)
             }
             completion(success)
         }
@@ -198,7 +214,7 @@ class WalletManager {
         var wallets = Defaults[.walletList]
         if let walletIndex = wallets.map({ $0.publicKey }).index(of: currentPubKey) {
             var wallet = wallets[walletIndex]
-            wallet.accountName = account_names[index]
+            wallet.accountName = accountNames[index]
             wallets[walletIndex] = wallet
             Defaults[.walletList] = wallets
         }
@@ -331,7 +347,7 @@ class WalletManager {
     }
 
     func getAccoutInfo(_ accountName: String, completion: @escaping (_ success: Bool, _ created: String) -> Void) {
-        EOSIONetwork.request(target: .get_account(account: accountName, otherNode: true), success: {[weak self] (account) in
+        EOSIONetwork.request(target: .getAccount(account: accountName, otherNode: true), success: {[weak self] (account) in
             guard let `self` = self else { return }
             if let account = Account.deserialize(from: account.dictionaryObject) {
                 self.checkPubKey(account, completion: { (success) in
@@ -360,9 +376,9 @@ class WalletManager {
     }
 
     func getLibInfo(_ created: String, completion: @escaping (Bool) -> Void) {
-        EOSIONetwork.request(target: .get_info, success: { (info) in
+        EOSIONetwork.request(target: .getInfo, success: { (info) in
             let lib = info["last_irreversible_block_num"].stringValue
-            EOSIONetwork.request(target: .get_block(num: lib), success: { (block) in
+            EOSIONetwork.request(target: .getBlock(num: lib), success: { (block) in
                 let time = block["timestamp"].stringValue.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", region: Region.ISO)!
                 let createdTime = created.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", region: Region.ISO)!
                 if  time >= createdTime {
@@ -455,7 +471,7 @@ class WalletManager {
 
     func checkPubKey(_ account: Account, completion:@escaping ResultCallback) {
         for permission in account.permissions {
-            for authKey in permission.required_auth.keys {
+            for authKey in permission.requiredAuth.keys {
                 if authKey.key == self.currentPubKey {
                     completion(true)
                     return
@@ -506,25 +522,25 @@ class WalletManager {
             if data.count > 0 {
                 let dict = data[0]
                 var accountModel = AccountModel()
-                accountModel.account_name = dict["account_name"] as? String
-                accountModel.net_weight = dict["net_weight"] as? String
-                accountModel.cpu_weight = dict["cpu_weight"] as? String
-                accountModel.ram_bytes = dict["ram_bytes"] as? Int64
+                accountModel.accountName = dict["account_name"] as? String
+                accountModel.netWeight = dict["net_weight"] as? String
+                accountModel.cpuWeight = dict["cpu_weight"] as? String
+                accountModel.ramBytes = dict["ram_bytes"] as? Int64
                 accountModel.from = dict["from"] as? String
                 accountModel.to = dict["to"] as? String
-                accountModel.delegate_net_weight = dict["delegate_net_weight"] as? String
-                accountModel.delegate_cpu_weight = dict["delegate_cpu_weight"] as? String
-                accountModel.request_time = dict["request_time"] as? Date
-                accountModel.net_amount = dict["net_amount"] as? String
-                accountModel.cpu_amount = dict["cpu_amount"] as? String
-                accountModel.net_used = dict["net_used"] as? Int64
-                accountModel.net_available = dict["net_available"] as? Int64
-                accountModel.net_max = dict["net_max"] as? Int64
-                accountModel.cpu_used = dict["cpu_used"] as? Int64
-                accountModel.cpu_available = dict["cpu_available"] as? Int64
-                accountModel.cpu_max = dict["cpu_max"] as? Int64
-                accountModel.ram_quota = dict["ram_quota"] as? Int64
-                accountModel.ram_usage = dict["ram_usage"]  as? Int64
+                accountModel.delegateNetWeight = dict["delegate_net_weight"] as? String
+                accountModel.delegateCpuWeight = dict["delegate_cpu_weight"] as? String
+                accountModel.requestTime = dict["request_time"] as? Date
+                accountModel.netAmount = dict["net_amount"] as? String
+                accountModel.cpuAmount = dict["cpu_amount"] as? String
+                accountModel.netUsed = dict["net_used"] as? Int64
+                accountModel.netAvailable = dict["net_available"] as? Int64
+                accountModel.netMax = dict["net_max"] as? Int64
+                accountModel.cpuUsed = dict["cpu_used"] as? Int64
+                accountModel.cpuAvailable = dict["cpu_available"] as? Int64
+                accountModel.cpuMax = dict["cpu_max"] as? Int64
+                accountModel.ramQuota = dict["ram_quota"] as? Int64
+                accountModel.ramUsage = dict["ram_usage"]  as? Int64
                 accountModel.created = dict["created"] as? String
                 return accountModel
             }

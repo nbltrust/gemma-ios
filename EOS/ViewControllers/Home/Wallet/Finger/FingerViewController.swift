@@ -101,14 +101,16 @@ class FingerViewController: BaseViewController {
 // MARK: - View Event
 
 extension FingerViewController {
-    @objc func ChangePwdDidClicked(_ data: [String: Any]) {
+    @objc func changePwdDidClicked(_ data: [String: Any]) {
 
     }
-    @objc func ChangeFingerNameDidClicked(_ data: [String: Any]) {
-        let index: Int = data["index"] as! Int
+    @objc func changeFingerNameDidClicked(_ data: [String: Any]) {
+        guard let index: Int = data["index"] as? Int else {
+            return
+        }
         self.coordinator?.pushToManagerFingerVC(model: model, index: Int(fpList[index]) ?? 0)
     }
-    @objc func AddFingerDidClicked(_ data: [String: Any]) {
+    @objc func addFingerDidClicked(_ data: [String: Any]) {
         self.coordinator?.pushToENtroFingerVC()
     }
 }

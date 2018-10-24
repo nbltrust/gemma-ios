@@ -65,7 +65,7 @@ class NormalViewController: BaseViewController {
 
 extension NormalViewController {
     @objc func clickCellView(_ sender: [String: Any]) {
-        let index = sender["index"] as! Int
+        guard let index = sender["index"] as? Int else { return }
         self.coordinator?.openContent(index)
     }
 }

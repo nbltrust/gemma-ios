@@ -12,7 +12,7 @@ class RedWarningView: UIView {
 
     @IBOutlet weak var dismissButton: UIButton!
 
-    enum event: String {
+    enum Event: String {
         case dismiss
     }
 
@@ -24,7 +24,7 @@ class RedWarningView: UIView {
     func setupEvent() {
         dismissButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.sendEventWith(event.dismiss.rawValue, userinfo: [ : ])
+            self.sendEventWith(Event.dismiss.rawValue, userinfo: [ : ])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 
@@ -65,7 +65,6 @@ class RedWarningView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
 
         //        self.insertSubview(view, at: 0)
 

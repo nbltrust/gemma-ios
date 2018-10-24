@@ -134,14 +134,18 @@ extension ResourceMortgageViewController {
         model.recever = WalletManager.shared.getAccount()
         if var cpuAmount = self.contentView.pageView.leftView.cpuMortgageView.textField.text, var netAmount = self.contentView.pageView.leftView.netMortgageView.textField.text {
             if cpuAmount == "" {
-                cpuAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
+                cpuAmount = 0.0.string(digits: AppConfiguration.EOSPrecision)
             }
             if netAmount == "" {
-                netAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
+                netAmount = 0.0.string(digits: AppConfiguration.EOSPrecision)
             }
 
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
-            model.remark = R.string.localizable.delegate.key.localized() + cpuAmount + R.string.localizable.eos_for_cpu.key.localized() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net.key.localized()
+            model.remark = R.string.localizable.delegate.key.localized() +
+                cpuAmount +
+                R.string.localizable.eos_for_cpu.key.localized() +
+                "\n    \(netAmount)"  +
+                R.string.localizable.eos_for_net.key.localized()
         }
         model.buttonTitle = R.string.localizable.confirm_mortgage.key.localized()
 
@@ -155,22 +159,28 @@ extension ResourceMortgageViewController {
         model.recever = WalletManager.shared.getAccount()
         if var cpuAmount = self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text, var netAmount = self.contentView.pageView.rightView.netMortgageCancelView.textField.text {
             if cpuAmount == "" {
-                cpuAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
+                cpuAmount = 0.0.string(digits: AppConfiguration.EOSPrecision)
             }
             if netAmount == "" {
-                netAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
+                netAmount = 0.0.string(digits: AppConfiguration.EOSPrecision)
             }
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
-            model.remark = R.string.localizable.undelegate.key.localized() + cpuAmount + R.string.localizable.eos_for_cpu.key.localized() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net.key.localized()
+            model.remark = R.string.localizable.undelegate.key.localized() +
+                cpuAmount +
+                R.string.localizable.eos_for_cpu.key.localized() +
+                "\n    \(netAmount)"  +
+                R.string.localizable.eos_for_net.key.localized()
         }
         model.buttonTitle = R.string.localizable.confirm_relieve_mortgage.key.localized()
 
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }
     @objc func cpu(_ data: [String: Any]) {
-        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let cpuMoney = cpuTextFieldView.textField.text?.toDouble(), let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,
+            let cpuMoney = cpuTextFieldView.textField.text?.toDouble(),
+            let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
             if cpuTextFieldView.textField.text != "" {
-                cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
+                cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOSPrecision)
             }
             let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
 
@@ -185,9 +195,11 @@ extension ResourceMortgageViewController {
         }
     }
     @objc func net(_ data: [String: Any]) {
-        if let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView, let netMoney = netTextFieldView.textField.text?.toDouble(), let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
+        if let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView,
+            let netMoney = netTextFieldView.textField.text?.toDouble(),
+            let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
             if netTextFieldView.textField.text != "" {
-                netTextFieldView.textField.text = netMoney.string(digits: AppConfiguration.EOS_PRECISION)
+                netTextFieldView.textField.text = netMoney.string(digits: AppConfiguration.EOSPrecision)
             }
             let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
 
@@ -203,9 +215,11 @@ extension ResourceMortgageViewController {
     }
 
     @objc func cpucancel(_ data: [String: Any]) {
-        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let cpuMoney = cpuTextFieldView.textField.text?.toDouble(), let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,
+            let cpuMoney = cpuTextFieldView.textField.text?.toDouble(),
+            let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
             if cpuTextFieldView.textField.text != "" {
-                cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
+                cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOSPrecision)
             }
             let balance = self.contentView.cpuView.eos
 
@@ -220,9 +234,11 @@ extension ResourceMortgageViewController {
         }
     }
     @objc func netcancel(_ data: [String: Any]) {
-        if let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView, let netMoney = netTextFieldView.textField.text?.toDouble(), let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
+        if let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView,
+            let netMoney = netTextFieldView.textField.text?.toDouble(),
+            let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
             if netTextFieldView.textField.text != "" {
-                netTextFieldView.textField.text = netMoney.string(digits: AppConfiguration.EOS_PRECISION)
+                netTextFieldView.textField.text = netMoney.string(digits: AppConfiguration.EOSPrecision)
             }
             let balance = self.contentView.netView.eos
 

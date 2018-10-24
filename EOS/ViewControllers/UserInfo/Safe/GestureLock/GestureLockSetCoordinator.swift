@@ -37,7 +37,7 @@ class GestureLockSetCoordinator: NavCoordinator {
     lazy var creator = GestureLockSetPropertyActionCreate()
 
     var store = Store<GestureLockSetState>(
-        reducer: GestureLockSetReducer,
+        reducer: gGestureLockSetReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -85,7 +85,7 @@ extension GestureLockSetCoordinator: GestureLockSetStateManagerProtocol {
 
     func addValidCount() {
         var num = self.state.property.reDrawFailedNum.value
-        num = num + 1
+        num += 1
         if num == GestureLockSetting.reDrawNum {
             self.clear()
             num = 0

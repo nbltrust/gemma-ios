@@ -27,7 +27,7 @@ class FingerPrinterConfirmCoordinator: NavCoordinator {
     lazy var creator = FingerPrinterConfirmPropertyActionCreate()
 
     var store = Store<FingerPrinterConfirmState>(
-        reducer: FingerPrinterConfirmReducer,
+        reducer: gFingerPrinterConfirmReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

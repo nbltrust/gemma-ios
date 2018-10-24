@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 class NormalCellView: UIView {
-    enum event_name: String {
+    enum EventName: String {
         case clickCellView
     }
 
@@ -49,36 +49,36 @@ class NormalCellView: UIView {
     var index: Int = 0
 
     @IBInspectable
-    var name_text: String? {
+    var nameText: String? {
         didSet {
-            if let text = name_text {
-                name.attributedText = text.localized().set(style: name_style ?? "")
+            if let text = nameText {
+                name.attributedText = text.localized().set(style: nameStyle ?? "")
             }
         }
     }
 
     @IBInspectable
-    var content_text: String? {
+    var contentText: String? {
         didSet {
-            if let text = content_text {
-                content.attributedText = text.localized().set(style: content_style ?? "")
+            if let text = contentText {
+                content.attributedText = text.localized().set(style: contentStyle ?? "")
             }
         }
     }
 
     @IBInspectable
-    var name_style: String? {
+    var nameStyle: String? {
         didSet {
-            let text = name_text ?? ""
-            name.attributedText = text.localized().set(style: name_style ?? "")
+            let text = nameText ?? ""
+            name.attributedText = text.localized().set(style: nameStyle ?? "")
         }
     }
 
     @IBInspectable
-    var content_style: String? {
+    var contentStyle: String? {
         didSet {
-            let text = content_text ?? ""
-            content.attributedText = text.localized().set(style: content_style ?? "")
+            let text = contentText ?? ""
+            content.attributedText = text.localized().set(style: contentStyle ?? "")
         }
     }
 
@@ -136,7 +136,7 @@ class NormalCellView: UIView {
 
         }
     }
-    fileprivate var normal_bgColor: UIColor? {
+    fileprivate var normalBgColor: UIColor? {
         didSet {
 
         }
@@ -147,12 +147,12 @@ class NormalCellView: UIView {
     }
 
     func reload() {
-        if let text = name_text {
-            name.attributedText = text.localized().set(style: name_style ?? "")
+        if let text = nameText {
+            name.attributedText = text.localized().set(style: nameStyle ?? "")
         }
 
-        if let text = content_text {
-            content.attributedText = text.localized().set(style: content_style ?? "")
+        if let text = contentText {
+            content.attributedText = text.localized().set(style: contentStyle ?? "")
         }
     }
 
@@ -194,7 +194,6 @@ class NormalCellView: UIView {
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
 
-
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -203,7 +202,7 @@ class NormalCellView: UIView {
 
 extension NormalCellView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.normal_bgColor = self.subviews.last?.backgroundColor
+        self.normalBgColor = self.subviews.last?.backgroundColor
         self.subviews.last?.backgroundColor = self.selectBackgroundColor
     }
 
@@ -217,19 +216,19 @@ extension NormalCellView {
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.subviews.last?.backgroundColor = self.normal_bgColor
+        self.subviews.last?.backgroundColor = self.normalBgColor
     }
 
     @objc func becomeNormal() {
-        self.subviews.last?.backgroundColor = self.normal_bgColor
+        self.subviews.last?.backgroundColor = self.normalBgColor
     }
 
     @objc func clickCellViewAction() {
         switch self.state {
         case NormalCellViewState.normal.rawValue:
-            self.sendEventWith(event_name.clickCellView.rawValue, userinfo: ["index": index])
+            self.sendEventWith(EventName.clickCellView.rawValue, userinfo: ["index": index])
         case NormalCellViewState.choose.rawValue :
-            self.sendEventWith(event_name.clickCellView.rawValue, userinfo: ["index": index])
+            self.sendEventWith(EventName.clickCellView.rawValue, userinfo: ["index": index])
         case NormalCellViewState.transform.rawValue:
             print("")
         default:break

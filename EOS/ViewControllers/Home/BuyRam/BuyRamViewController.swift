@@ -74,7 +74,7 @@ extension BuyRamViewController {
         var model = ConfirmViewModel()
         if var cpuAmount = self.contentView.pageView.leftView.cpuMortgageView.textField.text {
             if cpuAmount == "" {
-                cpuAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
+                cpuAmount = 0.0.string(digits: AppConfiguration.EOSPrecision)
             }
 
             model.amount = cpuAmount
@@ -91,7 +91,7 @@ extension BuyRamViewController {
         var model = ConfirmViewModel()
         if var cpuAmount = self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text {
             if cpuAmount == "" {
-                cpuAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
+                cpuAmount = 0.0.string(digits: AppConfiguration.EOSPrecision)
             }
             model.amount = cpuAmount.toDouble()!.string
             model.remark = R.string.localizable.sell_ram_remark.key.localized()
@@ -103,7 +103,7 @@ extension BuyRamViewController {
     @objc func cpu(_ data: [String: Any]) {
         if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let cpuMoney = cpuTextFieldView.textField.text?.toDouble() {
             if cpuTextFieldView.textField.text != "" {
-                cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
+                cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOSPrecision)
             }
             if var balance = self.contentView.pageView.leftView.cpuMortgageView.introduceLabel.text, balance != "" {
                 balance = balance.components(separatedBy: "：")[1]
@@ -124,7 +124,7 @@ extension BuyRamViewController {
     @objc func cpucancel(_ data: [String: Any]) {
         if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let cpuMoney = cpuTextFieldView.textField.text?.toDouble() {
             if cpuTextFieldView.textField.text != "" {
-                cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
+                cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOSPrecision)
             }
             if var balance = self.contentView.pageView.rightView.cpuMortgageCancelView.introduceLabel.text, balance != "" {
                 balance = balance.components(separatedBy: "：")[1]

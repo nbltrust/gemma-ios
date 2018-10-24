@@ -21,9 +21,9 @@ class FriendView: EOSBaseView {
     @IBOutlet weak var memoLabel: UILabel!
 
     enum Event: String {
-        case FriendViewDidClicked
-        case CopyKey
-        case CopyMemo
+        case friendViewDidClicked
+        case copyKey
+        case copyMemo
     }
 
     override func setup() {
@@ -51,7 +51,14 @@ class FriendView: EOSBaseView {
     func setContentAttribute(contentLabel: BaseLabel, contentLabelStr: String) {
         var text = ""
         if contentLabel == warningTitleLabel {
-            text = contentLabelStr.localizedFormat("<corn_flower_blue>", "</corn_flower_blue>", "<corn_flower_blue>", "</corn_flower_blue>", "<corn_flower_blue>", "</corn_flower_blue>", "<corn_flower_blue>", "</corn_flower_blue>")
+            text = contentLabelStr.localizedFormat("<corn_flower_blue>",
+                                                   "</corn_flower_blue>",
+                                                   "<corn_flower_blue>",
+                                                   "</corn_flower_blue>",
+                                                   "<corn_flower_blue>",
+                                                   "</corn_flower_blue>",
+                                                   "<corn_flower_blue>",
+                                                   "</corn_flower_blue>")
             contentLabel.attributedText = text.set(style: StyleNames.activate.rawValue)
         } else if contentLabel == memoTitleLabel {
             text = contentLabelStr.localizedFormat("<corn_flower_blue_underline>", "</corn_flower_blue_underline>", "<corn_flower_blue>", "</corn_flower_blue>")
@@ -73,7 +80,7 @@ class FriendView: EOSBaseView {
     }
 
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.FriendViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.friendViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 
     func copyText(_ text: String) {

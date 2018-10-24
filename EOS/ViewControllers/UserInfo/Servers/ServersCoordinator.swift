@@ -24,7 +24,7 @@ class ServersCoordinator: NavCoordinator {
     lazy var creator = ServersPropertyActionCreate()
 
     var store = Store<ServersState>(
-        reducer: ServersReducer,
+        reducer: gServersReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

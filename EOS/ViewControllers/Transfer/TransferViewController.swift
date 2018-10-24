@@ -55,7 +55,9 @@ class TransferViewController: BaseViewController {
         self.title = R.string.localizable.tabbarTransfer.key.localized()
 
         self.accountTextField.delegate = self
-        self.accountTextField.attributedPlaceholder = NSMutableAttributedString.init(string: R.string.localizable.account_name.key.localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueyGrey, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        self.accountTextField.attributedPlaceholder =
+            NSMutableAttributedString.init(string: R.string.localizable.account_name.key.localized(),
+                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueyGrey, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
         transferContentView.reload()
         clearData()
@@ -157,7 +159,8 @@ extension TransferViewController: UITextFieldDelegate {
 
 extension TransferViewController {
     @objc func walletName(_ data: [String: Any]) {
-        self.coordinator?.validName(data["content"] as! String)
+        guard let content = data["content"] as? String else { return }
+        self.coordinator?.validName(content)
     }
     @objc func sureTransfer(_ data: [String: Any]) {
         var data = ConfirmViewModel()
@@ -170,10 +173,10 @@ extension TransferViewController {
     }
     @objc func transferMoney(_ data: [String: Any]) {
         if let textfield = data["textfield"] as? UITextField, textfield.text != "", let money = textfield.text?.toDouble() {
-            textfield.text = money.string(digits: AppConfiguration.EOS_PRECISION)
+            textfield.text = money.string(digits: AppConfiguration.EOSPrecision)
 
             let balance = self.transferContentView.balance
-            self.coordinator?.validMoney(money.string(digits: AppConfiguration.EOS_PRECISION), blance: balance)
+            self.coordinator?.validMoney(money.string(digits: AppConfiguration.EOSPrecision), blance: balance)
         } else if let textfield = data["textfield"] as? UITextField {
             textfield.text = ""
             self.transferContentView.nextButton.isEnabel.accept(false)

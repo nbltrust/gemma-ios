@@ -35,7 +35,7 @@ class ResourceMortgageCoordinator: NavCoordinator {
     lazy var creator = ResourceMortgagePropertyActionCreate()
 
     var store = Store<ResourceMortgageState>(
-        reducer: ResourceMortgageReducer,
+        reducer: gResourceMortgageReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -81,7 +81,7 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
     }
 
     func getAccountInfo(_ account: String) {
-        EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
+        EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
             self.store.dispatch(MBalanceFetchedAction(balance: json))
         }, error: { (_) in
 
@@ -89,7 +89,7 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
 
         }
 
-        EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
+        EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 self.store.dispatch(MAccountFetchedAction(info: accountObj))
             }
@@ -102,19 +102,19 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
     }
 
     func cpuValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
-        self.store.dispatch(cpuMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+        self.store.dispatch(CpuMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
     }
 
     func netValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
-        self.store.dispatch(netMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+        self.store.dispatch(NetMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
     }
 
     func cpuReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
-        self.store.dispatch(cpuReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+        self.store.dispatch(CpuReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
     }
 
     func netReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
-        self.store.dispatch(netReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+        self.store.dispatch(NetReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
     }
 
     func getCurrentFromLocal() {

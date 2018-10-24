@@ -36,7 +36,7 @@ class HomeViewController: BaseViewController {
             if wallet.creatStatus != WalletCreatStatus.creatSuccessed.rawValue {
                 self.coordinator?.checkAccount()
             }
-            WalletManager.shared.FetchAccount { (_) in
+            WalletManager.shared.fetchAccount { (_) in
                 self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
             }
         }
@@ -83,7 +83,7 @@ class HomeViewController: BaseViewController {
     }
 
     func updateUI() {
-        if WalletManager.shared.account_names.count <= 1 {
+        if WalletManager.shared.accountNames.count <= 1 {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = true
         } else {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = false
@@ -143,7 +143,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = String.init(describing: type(of: HomeTableCell()))
-        let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? HomeTableCell else {
+            return UITableViewCell()
+        }
         let isBluetooth = self.coordinator?.isBluetoothWallet() ?? false
         if indexPath.row == 0 && isBluetooth {
             cell.setup(self.coordinator?.bluetoothDataInfo(), indexPath: indexPath)
@@ -187,7 +189,7 @@ extension HomeViewController: UIScrollViewDelegate {
             if let nav = self.navigationController as? BaseNavigationController {
                 nav.navStyle = .common
                 let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
-                self.navigationItem.title = model?.account_name
+                self.navigationItem.title = model?.accountName
                 self.navigationController?.navigationBar.alpha = (scrollView.contentOffset.y - offsetY.cgFloat) / 44
             }
         } else {

@@ -32,7 +32,7 @@ class WalletManagerView: UIView {
     @IBOutlet weak var btnView: UIView!
     @IBOutlet weak var btn: Button!
 
-    enum event: String {
+    enum Event: String {
         case wallNameClick
         case exportPrivateKeyClick
         case changePasswordClick
@@ -56,7 +56,7 @@ class WalletManagerView: UIView {
                     if data.connected == true {
                         btn.title = R.string.localizable.disconnect.key.localized()
                         progressLabel.text = "50%"
-                        exportPrivateKeyLineView.name_text = R.string.localizable.fingerprint_password.key.localized()
+                        exportPrivateKeyLineView.nameText = R.string.localizable.fingerprint_password.key.localized()
                     } else {
                         batteryView.isHidden = true
                         iconImageView.isHidden = true
@@ -76,15 +76,15 @@ class WalletManagerView: UIView {
     }
 
     func setUpUI() {
-        exportPrivateKeyLineView.name_text = R.string.localizable.export_private_key.key.localized()
+        exportPrivateKeyLineView.nameText = R.string.localizable.export_private_key.key.localized()
         exportPrivateKeyLineView.isShowLine = true
-        exportPrivateKeyLineView.content_text = ""
-        exportPrivateKeyLineView.image_name = R.image.icArrow.name
+        exportPrivateKeyLineView.contentText = ""
+        exportPrivateKeyLineView.imageName = R.image.icArrow.name
         exportPrivateKeyLineView.backgroundColor = UIColor.clear
 
-        changePasswordLineView.name_text = R.string.localizable.change_password.key.localized()
-        changePasswordLineView.content_text = ""
-        changePasswordLineView.image_name = R.image.icArrow.name
+        changePasswordLineView.nameText = R.string.localizable.change_password.key.localized()
+        changePasswordLineView.contentText = ""
+        changePasswordLineView.imageName = R.image.icArrow.name
         changePasswordLineView.backgroundColor = UIColor.clear
 
     }
@@ -93,27 +93,27 @@ class WalletManagerView: UIView {
         walletNameView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
 
-            self.walletNameView.next?.sendEventWith(event.wallNameClick.rawValue, userinfo: ["indicator": self.data ?? []])
+            self.walletNameView.next?.sendEventWith(Event.wallNameClick.rawValue, userinfo: ["indicator": self.data ?? []])
 
         }).disposed(by: disposeBag)
 
         exportPrivateKeyLineView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
 
-            self.exportPrivateKeyLineView.next?.sendEventWith(event.exportPrivateKeyClick.rawValue, userinfo: ["indicator": self.data ?? []])
+            self.exportPrivateKeyLineView.next?.sendEventWith(Event.exportPrivateKeyClick.rawValue, userinfo: ["indicator": self.data ?? []])
 
         }).disposed(by: disposeBag)
 
         changePasswordLineView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
 
-            self.changePasswordLineView.next?.sendEventWith(event.changePasswordClick.rawValue, userinfo: ["indicator": self.data ?? []])
+            self.changePasswordLineView.next?.sendEventWith(Event.changePasswordClick.rawValue, userinfo: ["indicator": self.data ?? []])
 
         }).disposed(by: disposeBag)
 
         btn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.next?.sendEventWith(event.btnClick.rawValue, userinfo: ["data": self.data ?? []])
+            self.next?.sendEventWith(Event.btnClick.rawValue, userinfo: ["data": self.data ?? []])
         }).disposed(by: disposeBag)
     }
 
@@ -157,8 +157,6 @@ class WalletManagerView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
-
 
         self.insertSubview(view, at: 0)
         view.frame = self.bounds

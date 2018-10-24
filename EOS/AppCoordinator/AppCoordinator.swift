@@ -142,11 +142,11 @@ class AppCoordinator {
 
     }
 
-    func showPresenterPwd(leftIconType: leftIconType, pubKey: String = WalletManager.shared.currentPubKey, type: String, producers: [String], completion: StringCallback? = nil) {
+    func showPresenterPwd(leftIconType: LeftIconType, pubKey: String = WalletManager.shared.currentPubKey, type: String, producers: [String], completion: StringCallback? = nil) {
         let width = ModalSize.full
 
         var height: Float = 271.0
-        if type == confirmType.updatePwd.rawValue {
+        if type == ConfirmType.updatePwd.rawValue {
             height = 249.0
         }
         let heightSize = ModalSize.custom(size: height)
@@ -222,7 +222,7 @@ extension AppCoordinator {
         guard var topside = curDisplayingCoordinator().rootVC else {
             return
         }
-        
+
         let viewController = coordinator.start(topside, context: context)
 
         while topside.presentedViewController != nil {
@@ -230,7 +230,7 @@ extension AppCoordinator {
                 topside = presented
             }
         }
-        
+
         if presentSetup == nil {
             SwifterSwift.delay(milliseconds: 100) {
                 topside.present(viewController, animated: animated, completion: nil)

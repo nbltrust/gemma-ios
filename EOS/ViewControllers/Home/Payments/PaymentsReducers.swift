@@ -9,11 +9,14 @@
 import UIKit
 import ReSwift
 
-func PaymentsReducer(action: Action, state: PaymentsState?) -> PaymentsState {
-    return PaymentsState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: PaymentsPropertyReducer(state?.property, action: action))
+func gPaymentsReducer(action: Action, state: PaymentsState?) -> PaymentsState {
+    return PaymentsState(isLoading: loadingReducer(state?.isLoading, action: action),
+                         page: pageReducer(state?.page, action: action),
+                         errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                         property: gPaymentsPropertyReducer(state?.property, action: action))
 }
 
-func PaymentsPropertyReducer(_ state: PaymentsPropertyState?, action: Action) -> PaymentsPropertyState {
+func gPaymentsPropertyReducer(_ state: PaymentsPropertyState?, action: Action) -> PaymentsPropertyState {
     var state = state ?? PaymentsPropertyState()
 
     switch action {
@@ -22,7 +25,7 @@ func PaymentsPropertyReducer(_ state: PaymentsPropertyState?, action: Action) ->
         let mData: [PaymentsRecordsViewModel] = convertTransferViewModel(data: action.data)
         state.data = mData
     case let action as GetLastPosAction:
-        state.last_pos = action.last_pos
+        state.lastPos = action.lastPos
     default:
         break
     }
@@ -64,7 +67,16 @@ func convertTransferViewModel(data: [Payment]) -> [PaymentsRecordsViewModel] {
         let transferState = payment.status.description()
         let money = isSend ? "-" + payment.value : "+" + payment.value
 
-        dataArray.append(PaymentsRecordsViewModel(stateImageName: stateImage, address: address!, time: time, transferState: transferState, money: money, transferStateBool: state, block: payment.block, memo: payment.memo, hashNumber: payment.hash.hashNano, hash: payment.hash))
+        dataArray.append(PaymentsRecordsViewModel(stateImageName: stateImage,
+                                                  address: address!,
+                                                  time: time,
+                                                  transferState: transferState,
+                                                  money: money,
+                                                  transferStateBool: state,
+                                                  block: payment.block,
+                                                  memo: payment.memo,
+                                                  hashNumber: payment.hash.hashNano,
+                                                  hash: payment.hash))
 
     }
     return dataArray

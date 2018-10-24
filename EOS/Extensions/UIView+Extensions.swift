@@ -10,15 +10,6 @@ import Foundation
 import TinyConstraints
 
 extension UIView {
-    var x: CGFloat {
-        get { return self.frame.origin.x }
-        set { self.frame.origin.x = newValue }
-    }
-
-    var y: CGFloat {
-        get { return self.frame.origin.y }
-        set { self.frame.origin.y = newValue }
-    }
 
     var width: CGFloat {
         get { return self.frame.size.width }
@@ -177,7 +168,11 @@ extension UIView {
 }
 
 extension UIView {
-    public func edgesToDevice(vc: UIViewController, insets: TinyEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), priority: LayoutPriority = .required, isActive: Bool = true, usingSafeArea: Bool = false) {
+    public func edgesToDevice(vc: UIViewController,
+                              insets: TinyEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0),
+                              priority: LayoutPriority = .required,
+                              isActive: Bool = true,
+                              usingSafeArea: Bool = false) {
         if #available(iOS 11.0, *) {
             edgesToSuperview(insets: insets, priority: priority, isActive: isActive, usingSafeArea: usingSafeArea)
         } else {
@@ -196,7 +191,12 @@ extension UIView {
 
     }
 
-    public func topToDevice( _ vc: UIViewController, offset: CGFloat = 0, relation: ConstraintRelation = .equal, priority: LayoutPriority = .required, isActive: Bool = true, usingSafeArea: Bool = false) -> Constraint {
+    public func topToDevice( _ vc: UIViewController,
+                             offset: CGFloat = 0,
+                             relation: ConstraintRelation = .equal,
+                             priority: LayoutPriority = .required,
+                             isActive: Bool = true,
+                             usingSafeArea: Bool = false) -> Constraint {
         if #available(iOS 11.0, *) {
             return topToSuperview(nil, offset: offset, relation: relation, priority: priority, isActive: isActive, usingSafeArea: usingSafeArea)
         } else {
@@ -228,23 +228,23 @@ extension UIView {
 
     func showNoData(_ noticeWord: String, icon: String) {
         if let _ = self.noDataView {
-            self.noDataView?.notice_word = noticeWord
-            self.noDataView?.icon_name = icon
+            self.noDataView?.noticeWord = noticeWord
+            self.noDataView?.iconName = icon
         } else {
             let nodata = WithNoDataView(frame: self.bounds)
             self.noDataView = nodata
-            self.noDataView?.notice_word = noticeWord
-            self.noDataView?.icon_name = icon
+            self.noDataView?.noticeWord = noticeWord
+            self.noDataView?.iconName = icon
         }
     }
 
     func showNoData(_ noticeWord: String) {
         if let _ = self.noDataView {
-            self.noDataView?.notice_word = noticeWord
+            self.noDataView?.noticeWord = noticeWord
         } else {
             let nodata = WithNoDataView(frame: self.bounds)
             self.noDataView = nodata
-            self.noDataView?.notice_word = noticeWord
+            self.noDataView?.noticeWord = noticeWord
             self.noDataView?.noticeContairner.constant = -64
         }
     }

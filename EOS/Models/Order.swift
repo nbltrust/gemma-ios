@@ -10,7 +10,12 @@ import Foundation
 import HandyJSON
 
 struct Order: HandyJSON {
-    var _id: String!
+    var id: String!
+
+    mutating func mapping(mapper: HelpingMapper) {
+        mapper <<<
+            self.id <-- "_id"
+    }
 }
 
 struct Bill: HandyJSON {

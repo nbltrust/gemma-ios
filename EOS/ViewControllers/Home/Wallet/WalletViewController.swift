@@ -105,7 +105,9 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let nibString = String.init(describing: type(of: WalletTableViewCell()))
-            let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! WalletTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? WalletTableViewCell else {
+                return UITableViewCell()
+            }
 
             cell.setup(self.coordinator?.createSectionOneDataInfo(data: dataArray)[indexPath.row], indexPath: indexPath)
             return cell
@@ -113,7 +115,9 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
 
             let nibString = String.init(describing: type(of: HomeTableCell()))
-            let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? HomeTableCell else {
+                return UITableViewCell()
+            }
 
             cell.setup(self.coordinator?.createSectionTwoDataInfo()[indexPath.row], indexPath: indexPath)
             return cell

@@ -51,7 +51,7 @@ class HomeCoordinator: NavCoordinator {
     lazy var creator = HomePropertyActionCreate()
 
     var store = Store<HomeState>(
-        reducer: HomeReducer,
+        reducer: gHomeReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -165,7 +165,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     }
 
     func getAccountInfo(_ account: String) {
-        EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
+        EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
             self.store.dispatch(BalanceFetchedAction(balance: json))
         }, error: { (_) in
             self.store.dispatch(BalanceFetchedAction(balance: nil))
@@ -173,7 +173,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
             self.store.dispatch(BalanceFetchedAction(balance: nil))
         }
 
-        EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
+        EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 self.store.dispatch(AccountFetchedAction(info: accountObj))
             }
@@ -186,10 +186,10 @@ extension HomeCoordinator: HomeStateManagerProtocol {
 
         SimpleHTTPService.requestETHPrice().done { (json) in
 
-            if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIO_DEFAULT_SYMBOL }).first {
+            if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIODefaultSymbol }).first {
                 if coinType() == .CNY {
                     self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: nil))
-                } else if coinType() == .USD, let usd = json.filter({ $0["name"].stringValue == NetworkConfiguration.USDT_DEFAULT_SYMBOL }).first {
+                } else if coinType() == .USD, let usd = json.filter({ $0["name"].stringValue == NetworkConfiguration.USDTDefaultSymbol }).first {
                     self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: usd))
                 }
             }
@@ -200,35 +200,35 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     func createDataInfo() -> [LineView.LineViewModel] {
         return [LineView.LineViewModel.init(name: R.string.localizable.payments_history.key.localized(),
                                             content: "",
-                                            image_name: R.image.icArrow.name,
-                                            name_style: LineViewStyleNames.normalName,
-                                            content_style: LineViewStyleNames.normalContent,
+                                            imageName: R.image.icArrow.name,
+                                            nameStyle: LineViewStyleNames.normalName,
+                                            contentStyle: LineViewStyleNames.normalContent,
                                             isBadge: false,
-                                            content_line_number: 1,
+                                            contentLineNumber: 1,
                                             isShowLineView: false),
                 LineView.LineViewModel.init(name: R.string.localizable.node_vote.key.localized(),
                                             content: "",
-                                            image_name: R.image.icArrow.name,
-                                            name_style: LineViewStyleNames.normalName,
-                                            content_style: LineViewStyleNames.normalContent,
+                                            imageName: R.image.icArrow.name,
+                                            nameStyle: LineViewStyleNames.normalName,
+                                            contentStyle: LineViewStyleNames.normalContent,
                                             isBadge: false,
-                                            content_line_number: 1,
+                                            contentLineNumber: 1,
                                             isShowLineView: false),
                 LineView.LineViewModel.init(name: R.string.localizable.deal_ram.key.localized(),
                                             content: "",
-                                            image_name: R.image.icArrow.name,
-                                            name_style: LineViewStyleNames.normalName,
-                                            content_style: LineViewStyleNames.normalContent,
+                                            imageName: R.image.icArrow.name,
+                                            nameStyle: LineViewStyleNames.normalName,
+                                            contentStyle: LineViewStyleNames.normalContent,
                                             isBadge: false,
-                                            content_line_number: 1,
+                                            contentLineNumber: 1,
                                             isShowLineView: false),
                 LineView.LineViewModel.init(name: R.string.localizable.resource_manager.key.localized(),
                                             content: R.string.localizable.resource_get.key.localized(),
-                                            image_name: R.image.icArrow.name,
-                                            name_style: LineViewStyleNames.normalName,
-                                            content_style: LineViewStyleNames.normalContent,
+                                            imageName: R.image.icArrow.name,
+                                            nameStyle: LineViewStyleNames.normalName,
+                                            contentStyle: LineViewStyleNames.normalContent,
                                             isBadge: false,
-                                            content_line_number: 1,
+                                            contentLineNumber: 1,
                                             isShowLineView: false)
         ]
     }
@@ -252,11 +252,11 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     func bluetoothDataInfo() -> LineView.LineViewModel {
         return LineView.LineViewModel.init(name: R.string.localizable.wookong_title.key.localized(),
                                     content: "",
-                                    image_name: R.image.icArrow.name,
-                                    name_style: LineViewStyleNames.normalName,
-                                    content_style: LineViewStyleNames.normalContent,
+                                    imageName: R.image.icArrow.name,
+                                    nameStyle: LineViewStyleNames.normalName,
+                                    contentStyle: LineViewStyleNames.normalContent,
                                     isBadge: false,
-                                    content_line_number: 1,
+                                    contentLineNumber: 1,
                                     isShowLineView: false)
     }
 

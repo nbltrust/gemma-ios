@@ -25,7 +25,7 @@ class PaymentsDetailCoordinator: NavCoordinator {
     lazy var creator = PaymentsDetailPropertyActionCreate()
 
     var store = Store<PaymentsDetailState>(
-        reducer: PaymentsDetailReducer,
+        reducer: gPaymentsDetailReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -33,7 +33,7 @@ class PaymentsDetailCoordinator: NavCoordinator {
 
 extension PaymentsDetailCoordinator: PaymentsDetailCoordinatorProtocol {
     func openWebView(txid: String) {
-        UIApplication.shared.open(URL(string: NetworkConfiguration.EOSFLARE_BASE_URLString + txid)!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: NetworkConfiguration.EOSFlareBaseURLString + txid)!, options: [:], completionHandler: nil)
 //        let vc = BaseWebViewController()
 //        vc.url = URL(string: NetworkConfiguration.EOSFLARE_BASE_URLString + txid)
 //        vc.title = R.string.localizable.invitationcode_introduce.key.localized()

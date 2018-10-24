@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum confirmType: String {
+enum ConfirmType: String {
     case transfer
     case bltTransfer
     case mortgage
@@ -113,8 +113,6 @@ class TransferConfirmPasswordView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
-
 
         addSubview(view)
         view.frame = self.bounds

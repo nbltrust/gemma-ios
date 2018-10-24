@@ -52,10 +52,10 @@ extension AttributedTextProtocol {
     private func makeAttributedString(getAttributes: (AttributeStyle)-> [NSAttributedString.Key: Any]) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: string, attributes: getAttributes(baseStyle))
 
-        for d in detections {
-            let attrs = getAttributes(d.style)
+        for detection in detections {
+            let attrs = getAttributes(detection.style)
             if attrs.count > 0 {
-                attributedString.addAttributes(attrs, range: NSRange(d.range, in: string))
+                attributedString.addAttributes(attrs, range: NSRange(detection.range, in: string))
             }
         }
 
@@ -143,8 +143,8 @@ extension AttributedTextProtocol {
     }
 
     public func style(range: Range<String.Index>, style: AttributeStyle) -> AttributedText {
-        let d = Detection(type: .range, style: style, range: range)
-        return AttributedText(string: string, detections: detections + [d], baseStyle: baseStyle)
+        let detection = Detection(type: .range, style: style, range: range)
+        return AttributedText(string: string, detections: detections + [detection], baseStyle: baseStyle)
     }
 }
 
@@ -167,12 +167,12 @@ extension String: AttributedTextProtocol {
 
         var ds: [Detection] = []
 
-        tagsInfo.forEach { t in
+        tagsInfo.forEach { tag in
 
-            if let style = (tags.first { style in style.name == t.tag.name }) {
-                ds.append(Detection(type: .tag(t.tag), style: style, range: t.range))
+            if let style = (tags.first { style in style.name == tag.tag.name }) {
+                ds.append(Detection(type: .tag(tag.tag), style: style, range: tag.range))
             } else {
-                ds.append(Detection(type: .tag(t.tag), style: AttributeStyle(), range: t.range))
+                ds.append(Detection(type: .tag(tag.tag), style: AttributeStyle(), range: tag.range))
             }
         }
 

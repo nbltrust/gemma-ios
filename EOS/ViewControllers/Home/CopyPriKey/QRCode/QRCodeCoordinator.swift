@@ -24,7 +24,7 @@ class QRCodeCoordinator: NavCoordinator {
     lazy var creator = QRCodePropertyActionCreate()
 
     var store = Store<QRCodeState>(
-        reducer: QRCodeReducer,
+        reducer: gQRCodeReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

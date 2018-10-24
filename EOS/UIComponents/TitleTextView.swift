@@ -82,7 +82,7 @@ class TitleTextView: UIView {
 
     @IBOutlet weak var unitLabel: UILabel!
 
-    let TextActionTag = 999
+    let textActionTag = 999
 
     weak var delegate: TitleTextViewDelegate?
 
@@ -121,7 +121,9 @@ class TitleTextView: UIView {
             let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(introduce))
             introduceLabel.addGestureRecognizer(tapGestureRecognizer)
 
-            textView.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.cloudyBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+            textView.attributedPlaceholder = NSMutableAttributedString.init(
+                string: setting.placeholder,
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.cloudyBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
             textView.isSecureTextEntry = setting.isSecureTextEntry
             gapView.alpha = setting.showLine ? 1.0 : 0.0
         }
@@ -161,7 +163,7 @@ class TitleTextView: UIView {
         for (index, value) in (buttonSettings?.enumerated())! {
             let image = UIImage(named: value.imageName)
             let btn = TextRightButton()
-            btn.tag = index + TextActionTag
+            btn.tag = index + textActionTag
             btn.setImage(image, for: .normal)
             btn.setImage(UIImage(named: value.selectedImageName), for: .selected)
             btn.addTarget(self, action: #selector(handleAction(sender:)), for: .touchUpInside)
@@ -182,7 +184,7 @@ class TitleTextView: UIView {
 
     @objc func handleAction(sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        delegate?.textActionTrigger(titleTextView: self, selected: sender.isSelected, index: sender.tag - TextActionTag)
+        delegate?.textActionTrigger(titleTextView: self, selected: sender.isSelected, index: sender.tag - textActionTag)
     }
 
     func clearText() {
@@ -256,8 +258,6 @@ class TitleTextView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
-
 
         addSubview(view)
         view.frame = self.bounds

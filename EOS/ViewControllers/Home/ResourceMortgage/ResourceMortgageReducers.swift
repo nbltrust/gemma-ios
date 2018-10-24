@@ -10,15 +10,18 @@ import UIKit
 import ReSwift
 import SwiftyUserDefaults
 
-func ResourceMortgageReducer(action: Action, state: ResourceMortgageState?) -> ResourceMortgageState {
-    return ResourceMortgageState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: ResourceMortgagePropertyReducer(state?.property, action: action))
+func gResourceMortgageReducer(action: Action, state: ResourceMortgageState?) -> ResourceMortgageState {
+    return ResourceMortgageState(isLoading: loadingReducer(state?.isLoading, action: action),
+                                 page: pageReducer(state?.page, action: action),
+                                 errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                                 property: gResourceMortgagePropertyReducer(state?.property, action: action))
 }
 
-func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, action: Action) -> ResourceMortgagePropertyState {
+func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, action: Action) -> ResourceMortgagePropertyState {
     let state = state ?? ResourceMortgagePropertyState()
 
     switch action {
-    case let action as cpuMoneyAction:
+    case let action as CpuMoneyAction:
         if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
@@ -27,7 +30,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
 
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
                 valid = false
                 if action.netMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -38,7 +41,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
 
             state.cpuMoneyValid.accept((valid, tips, action.cpuMoney))
         }
-    case let action as netMoneyAction:
+    case let action as NetMoneyAction:
         if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
@@ -47,7 +50,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
 
-            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
+            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
                 valid = false
                 if action.cpuMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -58,7 +61,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
 
             state.netMoneyValid.accept((valid, tips, action.netMoney))
         }
-    case let action as cpuReliveMoneyAction:
+    case let action as CpuReliveMoneyAction:
         if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
@@ -67,7 +70,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
 
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
                 valid = false
                 if action.netMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -78,7 +81,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
 
             state.cpuReliveMoneyValid.accept((valid, tips, action.cpuMoney))
         }
-    case let action as netReliveMoneyAction:
+    case let action as NetReliveMoneyAction:
         if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
@@ -87,7 +90,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
 
-            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
+            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
                 valid = false
                 if action.cpuMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -103,7 +106,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
             if let balance = action.balance.arrayValue.first?.string {
                 viewmodel.page.balance = balance
             } else {
-                viewmodel.page.balance = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+                viewmodel.page.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
             }
             state.info.accept(viewmodel)
         } else {
@@ -111,7 +114,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
             if let balance = action.balance.arrayValue.first?.string {
                 viewmodel.page.balance = balance
             } else {
-                viewmodel.page.balance = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+                viewmodel.page.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
             }
             state.info.accept(viewmodel)
         }
@@ -138,21 +141,73 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
 }
 
 func initViewModel() -> ResourceViewModel {
-    let newViewModel = ResourceViewModel(general: [GeneralViewModel(name: R.string.localizable.cpu.key.localized(), eos: "- EOS", leftSub: R.string.localizable.use.key.localized() + " - " + R.string.localizable.ms.key.localized(), rightSub: R.string.localizable.total.key.localized() + " - " + R.string.localizable.ms.key.localized(), lineHidden: false, progress: 0.0), GeneralViewModel(name: R.string.localizable.net.key.localized(), eos: "- EOS", leftSub: R.string.localizable.use.key.localized() + " - " + R.string.localizable.kb.key.localized(), rightSub: R.string.localizable.total.key.localized() + " - " + R.string.localizable.kb.key.localized(), lineHidden: true, progress: 0.0)], page: PageViewModel(balance: "- EOS", leftText: R.string.localizable.mortgage_resource.key.localized(), rightText: R.string.localizable.cancel_mortgage.key.localized(), operationLeft: [OperationViewModel(title: R.string.localizable.mortgage_cpu.key.localized(), placeholder: R.string.localizable.mortgage_placeholder.key.localized(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: true, isSecureTextEntry: false), OperationViewModel(title: R.string.localizable.mortgage_net.key.localized(), placeholder: R.string.localizable.mortgage_placeholder.key.localized(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: false, isSecureTextEntry: false)], operationRight: [OperationViewModel(title: R.string.localizable.cpu.key.localized(), placeholder: R.string.localizable.mortgage_cancel_placeholder.key.localized(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: true, isSecureTextEntry: false), OperationViewModel(title: R.string.localizable.net.key.localized(), placeholder: R.string.localizable.mortgage_cancel_placeholder.key.localized(), warning: "", introduce: "", isShowPromptWhenEditing: true, showLine: false, isSecureTextEntry: false)]))
+    let newViewModel = ResourceViewModel(
+        general: [GeneralViewModel(name: R.string.localizable.cpu.key.localized(),
+                                   eos: "- EOS",
+                                   leftSub: R.string.localizable.use.key.localized() +
+                                    " - " +
+                                    R.string.localizable.ms.key.localized(),
+                                   rightSub: R.string.localizable.total.key.localized() +
+                                    " - " +
+                                    R.string.localizable.ms.key.localized(),
+                                   lineHidden: false,
+                                   progress: 0.0),
+                  GeneralViewModel(name: R.string.localizable.net.key.localized(),
+                                   eos: "- EOS",
+                                   leftSub: R.string.localizable.use.key.localized() +
+                                    " - " +
+                                    R.string.localizable.kb.key.localized(),
+                                   rightSub: R.string.localizable.total.key.localized() +
+                                    " - " +
+                                    R.string.localizable.kb.key.localized(),
+                                   lineHidden: true,
+                                   progress: 0.0)],
+        page: PageViewModel(balance: "- EOS",
+                            leftText: R.string.localizable.mortgage_resource.key.localized(),
+                            rightText: R.string.localizable.cancel_mortgage.key.localized(),
+                            operationLeft: [OperationViewModel(
+                                title: R.string.localizable.mortgage_cpu.key.localized(),
+                                placeholder: R.string.localizable.mortgage_placeholder.key.localized(),
+                                warning: "",
+                                introduce: "",
+                                isShowPromptWhenEditing: true,
+                                showLine: true,
+                                isSecureTextEntry: false),
+                                            OperationViewModel(
+                                                title: R.string.localizable.mortgage_net.key.localized(), placeholder: R.string.localizable.mortgage_placeholder.key.localized(), warning: "",
+                                                introduce: "",
+                                                isShowPromptWhenEditing: true,
+                                                showLine: false,
+                                                isSecureTextEntry: false)],
+                            operationRight: [OperationViewModel(
+                                title: R.string.localizable.cpu.key.localized(),
+                                placeholder: R.string.localizable.mortgage_cancel_placeholder.key.localized(), warning: "",
+                                introduce: "",
+                                isShowPromptWhenEditing: true,
+                                showLine: true,
+                                isSecureTextEntry: false),
+                                             OperationViewModel(
+                                                title: R.string.localizable.net.key.localized(),
+                                                placeholder: R.string.localizable.mortgage_cancel_placeholder.key.localized(),
+                                                warning: "",
+                                                introduce: "",
+                                                isShowPromptWhenEditing: true,
+                                                showLine: false,
+                                                isSecureTextEntry: false)]))
     return newViewModel
 }
 
 func convertResourceViewModelWithAccount(_ account: Account, viewmodel: ResourceViewModel?) -> ResourceViewModel {
     if var newViewModel = viewmodel {
-        newViewModel.general[0].eos = account.total_resources?.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        newViewModel.general[1].eos = account.total_resources?.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        if let used = account.cpu_limit?.used, let max = account.cpu_limit?.max {
+        newViewModel.general[0].eos = account.totalResources?.cpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        newViewModel.general[1].eos = account.totalResources?.netWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        if let used = account.cpuLimit?.used, let max = account.cpuLimit?.max {
 
             newViewModel.general[0].leftSub = R.string.localizable.use.key.localized() + " \(used.toMS) " + R.string.localizable.ms.key.localized()
             newViewModel.general[0].rightSub = R.string.localizable.total.key.localized() + " \(max.toMS) " + R.string.localizable.ms.key.localized()
             newViewModel.general[0].progress = used.toMS.float()! / max.toMS.float()!
         }
-        if let used = account.net_limit?.used, let max = account.net_limit?.max {
+        if let used = account.netLimit?.used, let max = account.netLimit?.max {
             newViewModel.general[1].leftSub = R.string.localizable.use.key.localized() + " \(used.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].rightSub = R.string.localizable.total.key.localized() + " \(max.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].progress = used.toKB.float()! / max.toKB.float()!
@@ -167,20 +222,20 @@ func convertResourceViewModelWithAccount(_ account: Account, viewmodel: Resource
 
 func convertToViewModelWithModel(model: AccountModel, viewmodel: ResourceViewModel?) -> ResourceViewModel {
     if var newViewModel = viewmodel {
-        newViewModel.general[0].eos = model.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        newViewModel.general[1].eos = model.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        if let used = model.cpu_used, let max = model.cpu_max {
+        newViewModel.general[0].eos = model.cpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        newViewModel.general[1].eos = model.netWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        if let used = model.cpuUsed, let max = model.cpuMax {
             newViewModel.general[0].leftSub = R.string.localizable.use.key.localized() + " \(used.toMS) " + R.string.localizable.ms.key.localized()
             newViewModel.general[0].rightSub = R.string.localizable.total.key.localized() + " \(max.toMS) " + R.string.localizable.ms.key.localized()
             newViewModel.general[0].progress = used.toMS.float()! / max.toMS.float()!
         }
-        if let used = model.net_used, let max = model.net_max {
+        if let used = model.netUsed, let max = model.netMax {
             newViewModel.general[1].leftSub = R.string.localizable.use.key.localized() + " \(used.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].rightSub = R.string.localizable.total.key.localized() + " \(max.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].progress = used.toKB.float()! / max.toKB.float()!
         }
 
-        if let balance = Defaults[model.account_name + NetworkConfiguration.BALANCE_DEFAULT_SYMBOL] as? String {
+        if let balance = Defaults[model.accountName + NetworkConfiguration.BlanceDefaultSymbol] as? String {
             newViewModel.page.balance = balance
         }
         return newViewModel

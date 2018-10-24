@@ -15,9 +15,9 @@ import HandyJSON
 
 struct WookongValidation: HandyJSON {
     var SN = ""
-    var SN_sig = ""
-    var public_key = ""
-    var public_key_sig = ""
+    var SNSig = ""
+    var pubKey = ""
+    var publicKeySig = ""
     var publicKey = ""
 }
 
@@ -33,7 +33,7 @@ enum NBLService {
     case accountVerify(account:String)
     case accountHistory(account:String, showNum:Int, lastPosition:Int)
     case producer(showNum:Int)
-    case initOrder(account:String, pubKey:String, platform:String, client_ip: String, serial_number:String)
+    case initOrder(account:String, pubKey:String, platform:String, clientIP: String, serialNumber:String)
     case getBill
     case place(orderId: String)
     case getOrder(orderId: String)
@@ -90,7 +90,7 @@ struct NBLNetwork {
 
 extension NBLService: TargetType {
     var baseURL: URL {
-        return NetworkConfiguration.NBL_BASE_TEST_URL
+        return NetworkConfiguration.NBLBaseTestURL
     }
 
     var isNeedCache: Bool {
@@ -162,8 +162,8 @@ extension NBLService: TargetType {
             return [:]
         case .producer:
             return [:]
-        case let .initOrder(account, pubKey, platform, client_ip, serial_number):
-            return ["account_name": account, "public_key": pubKey, "platform": platform, "client_ip": client_ip, "serial_number": serial_number]
+        case let .initOrder(account, pubKey, platform, clientIP, serialNumber):
+            return ["account_name": account, "public_key": pubKey, "platform": platform, "client_ip": clientIP, "serial_number": serialNumber]
         case .getBill:
             return [:]
         case .place:
@@ -195,7 +195,10 @@ extension NBLService: TargetType {
     }
 
     var sampleData: Data {
-        return try! JSON(parameters).rawData()
+        if let data = try? JSON(parameters).rawData() {
+            return data
+        }
+        return Data()
     }
 
     var headers: [String: String]? {

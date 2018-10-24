@@ -30,7 +30,8 @@ class AboutViewController: BaseViewController {
 
 extension AboutViewController {
     @objc func clickCellView(_ sender: [String: Any]) {
-        switch sender["index"] as! Int {
+        guard let index = sender["index"] as? Int else { return }
+        switch index {
         case 0:self.coordinator?.openReleaseNotes()
 //        case 1:
         default:

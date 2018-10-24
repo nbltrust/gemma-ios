@@ -34,7 +34,7 @@ class BuyRamCoordinator: NavCoordinator {
     lazy var creator = BuyRamPropertyActionCreate()
 
     var store = Store<BuyRamState>(
-        reducer: BuyRamReducer,
+        reducer: gBuyRamReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -107,7 +107,7 @@ extension BuyRamCoordinator: BuyRamStateManagerProtocol {
     }
 
     func getAccountInfo(_ account: String) {
-        EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
+        EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
             self.store.dispatch(BBalanceFetchedAction(balance: json))
         }, error: { (_) in
 
@@ -115,7 +115,7 @@ extension BuyRamCoordinator: BuyRamStateManagerProtocol {
 
         }
 
-        EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
+        EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 self.store.dispatch(BAccountFetchedAction(info: accountObj))
             }

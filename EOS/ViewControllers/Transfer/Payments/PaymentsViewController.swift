@@ -65,7 +65,10 @@ extension PaymentsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let name = String.init(describing: PaymentsRecordsCell.self)
-        let cell = tableView.dequeueReusableCell(withIdentifier: name, for: indexPath) as! PaymentsRecordsCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: name, for: indexPath) as? PaymentsRecordsCell else {
+            return UITableViewCell()
+        }
+
         cell.setup(data[indexPath.row])
         return cell
 

@@ -128,11 +128,11 @@ extension InvitationCodeToActivateViewController {
         return IndicatorInfo(stringLiteral: R.string.localizable.invitationcode_to_activate.key.localized())
     }
 
-    @objc func IntroClick(_ data: [String: Any]) {
+    @objc func introClick(_ data: [String: Any]) {
         self.coordinator?.pushToGetInviteCodeIntroductionVC()
     }
 
-    @objc func NextClick(_ data: [String: Any]) {
+    @objc func nextClick(_ data: [String: Any]) {
         self.coordinator?.createWallet(self.contentView.textfield.text!, completion: { (_) in
 
         })

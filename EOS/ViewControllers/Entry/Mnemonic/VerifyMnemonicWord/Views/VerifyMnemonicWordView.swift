@@ -19,8 +19,8 @@ class VerifyMnemonicWordView: EOSBaseView {
     var selectValues: [String] = []
 
     enum Event: String {
-        case VerifyMnemonicWordViewDidClicked
-        case VerifyMnemonicWord
+        case verifyMnemonicWordViewDidClicked
+        case verifyMnemonicWord
     }
 
     override func setup() {
@@ -47,7 +47,7 @@ class VerifyMnemonicWordView: EOSBaseView {
     }
 
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.VerifyMnemonicWordViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.verifyMnemonicWordViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }
 
@@ -68,7 +68,7 @@ extension VerifyMnemonicWordView: TagListViewDelegate {
                 selectValues.append(title)
             }
             tagView.tagBackgroundColor = UIColor.white
-            self.next?.sendEventWith(Event.VerifyMnemonicWord.rawValue, userinfo: ["data": selectValues])
+            self.next?.sendEventWith(Event.verifyMnemonicWord.rawValue, userinfo: ["data": selectValues])
         }
     }
 }

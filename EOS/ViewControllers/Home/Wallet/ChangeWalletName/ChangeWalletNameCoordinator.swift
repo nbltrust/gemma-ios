@@ -28,7 +28,7 @@ class ChangeWalletNameCoordinator: NavCoordinator {
     lazy var creator = ChangeWalletNamePropertyActionCreate()
 
     var store = Store<ChangeWalletNameState>(
-        reducer: ChangeWalletNameReducer,
+        reducer: gChangeWalletNameReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

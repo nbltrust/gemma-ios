@@ -79,7 +79,7 @@ extension NBLService: CachePolicyGettable {
 extension EOSIOService: CachePolicyGettable {
     var cachePolicy: URLRequest.CachePolicy {
         switch self {
-        case .get_account:
+        case .getAccount:
             return .useProtocolCachePolicy
         default:
             return .reloadIgnoringLocalCacheData

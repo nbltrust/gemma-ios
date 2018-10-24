@@ -12,9 +12,10 @@ import Foundation
 class NewHomeView: UIView {
     
     @IBOutlet weak var tableView: UITableView!
-    
-    enum Event:String {
-        case NewHomeViewDidClicked
+
+
+    enum Event: String {
+        case newHomeViewDidClicked
     }
     
     var data: Any? {
@@ -101,7 +102,9 @@ extension NewHomeView: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = R.nib.newHomeTableCell.name
-        let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! NewHomeTableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? NewHomeTableCell else {
+            return UITableViewCell()
+        }
         cell.setup(self.data, indexPath: indexPath)
         
         return cell

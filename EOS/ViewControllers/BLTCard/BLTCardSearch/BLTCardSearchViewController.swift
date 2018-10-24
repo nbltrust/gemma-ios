@@ -85,11 +85,11 @@ class BLTCardSearchViewController: BaseViewController {
     func modelWithDevice(device: BLTDevice) -> LineView.LineViewModel {
         return LineView.LineViewModel.init(name: device.name,
                                            content: "",
-                                           image_name: R.image.icArrow.name,
-                                           name_style: LineViewStyleNames.normalName,
-                                           content_style: LineViewStyleNames.normalContent,
+                                           imageName: R.image.icArrow.name,
+                                           nameStyle: LineViewStyleNames.normalName,
+                                           contentStyle: LineViewStyleNames.normalContent,
                                            isBadge: false,
-                                           content_line_number: 0,
+                                           contentLineNumber: 0,
                                            isShowLineView: false)
     }
 
@@ -112,7 +112,9 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = String.init(describing: type(of: BLTDeviceCell()))
-        let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! BLTDeviceCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? BLTDeviceCell else {
+            return UITableViewCell()
+        }
         if let devices = self.coordinator?.state.devices {
             cell.setup(modelWithDevice(device: devices[indexPath.row]), indexPath: indexPath)
         }

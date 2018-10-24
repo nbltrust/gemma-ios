@@ -23,7 +23,7 @@ protocol NewHomeStateManagerProtocol {
 
 class NewHomeCoordinator: NavCoordinator {
     var store = Store(
-        reducer: NewHomeReducer,
+        reducer: gNewHomeReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

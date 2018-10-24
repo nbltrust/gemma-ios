@@ -31,7 +31,7 @@ protocol VerifyMnemonicWordStateManagerProtocol {
 
 class VerifyMnemonicWordCoordinator: NavCoordinator {
     var store = Store(
-        reducer: VerifyMnemonicWordReducer,
+        reducer: gVerifyMnemonicWordReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -64,8 +64,8 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
         if datas.count != compairDatas.count {
             return false
         } else {
-            for i in 0..<datas.count {
-                if datas[i] != compairDatas[i] {
+            for index in 0..<datas.count {
+                if datas[index] != compairDatas[index] {
                     return false
                 }
             }

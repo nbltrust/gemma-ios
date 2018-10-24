@@ -16,7 +16,7 @@ class BatteryView: EOSBaseView {
     @IBOutlet weak var progressWidthConstant: NSLayoutConstraint!
 
     enum Event: String {
-        case BatteryViewDidClicked
+        case batteryViewDidClicked
     }
 
     var progress = 0 {
@@ -42,6 +42,6 @@ class BatteryView: EOSBaseView {
     }
 
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.BatteryViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.batteryViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }

@@ -9,11 +9,14 @@
 import UIKit
 import ReSwift
 
-func LeadInKeyReducer(action: Action, state: LeadInKeyState?) -> LeadInKeyState {
-    return LeadInKeyState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: LeadInKeyPropertyReducer(state?.property, action: action))
+func gLeadInKeyReducer(action: Action, state: LeadInKeyState?) -> LeadInKeyState {
+    return LeadInKeyState(isLoading: loadingReducer(state?.isLoading, action: action),
+                          page: pageReducer(state?.page, action: action),
+                          errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                          property: gLeadInKeyPropertyReducer(state?.property, action: action))
 }
 
-func LeadInKeyPropertyReducer(_ state: LeadInKeyPropertyState?, action: Action) -> LeadInKeyPropertyState {
+func gLeadInKeyPropertyReducer(_ state: LeadInKeyPropertyState?, action: Action) -> LeadInKeyPropertyState {
     let state = state ?? LeadInKeyPropertyState()
 
     switch action {

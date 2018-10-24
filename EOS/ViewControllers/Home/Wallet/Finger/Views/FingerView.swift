@@ -14,10 +14,10 @@ class FingerView: EOSBaseView {
     @IBOutlet weak var tableView: UITableView!
 
     enum Event: String {
-        case FingerViewDidClicked
-        case ChangePwdDidClicked
-        case AddFingerDidClicked
-        case ChangeFingerNameDidClicked
+        case fingerViewDidClicked
+        case changePwdDidClicked
+        case addFingerDidClicked
+        case changeFingerNameDidClicked
     }
 
     var dataArray: [String] = [] {
@@ -44,7 +44,7 @@ class FingerView: EOSBaseView {
     }
 
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.FingerViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.fingerViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 
     func modelWithIndexPath(_ indexPath: IndexPath) -> LineView.LineViewModel {
@@ -62,11 +62,11 @@ class FingerView: EOSBaseView {
     func lineModelWithName(_ name: String) -> LineView.LineViewModel {
         return LineView.LineViewModel.init(name: name,
                                            content: "",
-                                           image_name: R.image.icArrow.name,
-                                           name_style: LineViewStyleNames.normalName,
-                                           content_style: LineViewStyleNames.normalContent,
+                                           imageName: R.image.icArrow.name,
+                                           nameStyle: LineViewStyleNames.normalName,
+                                           contentStyle: LineViewStyleNames.normalContent,
                                            isBadge: false,
-                                           content_line_number: 1,
+                                           contentLineNumber: 1,
                                            isShowLineView: false)
     }
 }
@@ -108,7 +108,9 @@ extension FingerView: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = String.init(describing: type(of: HomeTableCell()))
-        let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? HomeTableCell else {
+            return UITableViewCell()
+        }
         cell.setup(modelWithIndexPath(indexPath), indexPath: indexPath)
         if indexPath.section == 0 && indexPath.row == dataArray.count {
             cell.homeCellView.leftImg.image = R.image.if_ic_fingerprint_48_px_3669427()
@@ -123,12 +125,12 @@ extension FingerView: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
             if indexPath.row == dataArray.count {
-                self.next?.sendEventWith(Event.AddFingerDidClicked.rawValue, userinfo: [:])
+                self.next?.sendEventWith(Event.addFingerDidClicked.rawValue, userinfo: [:])
             } else {
-                self.next?.sendEventWith(Event.ChangeFingerNameDidClicked.rawValue, userinfo: ["index": indexPath.row])
+                self.next?.sendEventWith(Event.changeFingerNameDidClicked.rawValue, userinfo: ["index": indexPath.row])
             }
         } else {
-            self.next?.sendEventWith(Event.ChangePwdDidClicked.rawValue, userinfo: [:])
+            self.next?.sendEventWith(Event.changePwdDidClicked.rawValue, userinfo: [:])
         }
 
     }

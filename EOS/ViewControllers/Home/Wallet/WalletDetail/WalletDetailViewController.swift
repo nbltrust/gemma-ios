@@ -139,7 +139,9 @@ class WalletDetailViewController: BaseViewController {
 
 extension WalletDetailViewController {
     @objc func nameDidClicked(_ data: [String: Any]) {
-        let model: WalletManagerModel = data["model"] as! WalletManagerModel
+        guard let model = data["model"] as? WalletManagerModel else {
+            return
+        }
         self.coordinator?.pushToChangeWalletName(model: model)
     }
 }

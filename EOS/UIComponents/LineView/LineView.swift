@@ -14,11 +14,11 @@ class LineView: UIView {
     struct LineViewModel {
         var name: String = ""
         var content: String = ""
-        var image_name: String = ""
-        var name_style: LineViewStyleNames = .normalName
-        var content_style: LineViewStyleNames = .normalContent
+        var imageName: String = ""
+        var nameStyle: LineViewStyleNames = .normalName
+        var contentStyle: LineViewStyleNames = .normalContent
         var isBadge: Bool = false
-        var content_line_number: Int = 1
+        var contentLineNumber: Int = 1
         var isShowLineView: Bool = false
     }
 
@@ -30,8 +30,8 @@ class LineView: UIView {
     @IBOutlet weak var imgWidth: NSLayoutConstraint!
     @IBOutlet weak var bgView: UIView!
 
-    enum event: String {
-        case right_event
+    enum Event: String {
+        case rightEvent
     }
 
     var index: String = "" {
@@ -41,30 +41,30 @@ class LineView: UIView {
     }
 
     @IBInspectable
-    var name_style: String = LineViewStyleNames.normalName.rawValue {
+    var nameStyle: String = LineViewStyleNames.normalName.rawValue {
         didSet {
-            self.name.attributedText = name_text.set(style: name_style)
+            self.name.attributedText = nameText.set(style: nameStyle)
         }
     }
 
     @IBInspectable
-    var content_style: String = LineViewStyleNames.normalContent.rawValue {
+    var contentStyle: String = LineViewStyleNames.normalContent.rawValue {
         didSet {
-            self.content.attributedText = content_text.set(style: content_style)
+            self.content.attributedText = contentText.set(style: contentStyle)
         }
     }
 
     @IBInspectable
-    var name_text: String = ""{
+    var nameText: String = ""{
         didSet {
-            self.name.attributedText = name_text.set(style: name_style)
+            self.name.attributedText = nameText.set(style: nameStyle)
         }
     }
 
     @IBInspectable
-    var content_text: String = ""{
+    var contentText: String = ""{
         didSet {
-            self.content.attributedText = content_text.set(style: content_style)
+            self.content.attributedText = contentText.set(style: contentStyle)
             updateHeight()
         }
     }
@@ -77,10 +77,10 @@ class LineView: UIView {
     }
 
     @IBInspectable
-    var image_name: String = "icCheckCircleGreen" {
+    var imageName: String = "icCheckCircleGreen" {
         didSet {
-            self.rightImg.image = UIImage.init(named: image_name)
-            if image_name == " "{
+            self.rightImg.image = UIImage.init(named: imageName)
+            if imageName == " "{
                 imgWidth.constant = 0
                 layoutIfNeeded()
             }
@@ -88,10 +88,10 @@ class LineView: UIView {
     }
 
     @IBInspectable
-    var content_line_number: Int = 1 {
+    var contentLineNumber: Int = 1 {
         didSet {
-            content.numberOfLines = content_line_number
-            if content_line_number >= 1 {
+            content.numberOfLines = contentLineNumber
+            if contentLineNumber >= 1 {
                 content.lineBreakMode = .byTruncatingTail
             } else {
                 content.lineBreakMode = .byCharWrapping
@@ -102,17 +102,17 @@ class LineView: UIView {
     var data: Any? {
         didSet {
             if let data = data as? LineViewModel {
-                name_text = data.name
-                content_text = data.content
-                name_style = data.name_style.rawValue
+                nameText = data.name
+                contentText = data.content
+                nameStyle = data.nameStyle.rawValue
                 if data.isBadge {
 
                 } else {
-                    content_style = data.content_style.rawValue
+                    contentStyle = data.contentStyle.rawValue
                 }
-                content_line_number = data.content_line_number
+                contentLineNumber = data.contentLineNumber
                 isShowLine = data.isShowLineView
-                image_name = data.image_name
+                imageName = data.imageName
             }
         }
     }
@@ -127,7 +127,7 @@ class LineView: UIView {
         rightImg.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             if self.index != "" {
-                self.rightImg.next?.sendEventWith(event.right_event.rawValue, userinfo: ["index": self.index])
+                self.rightImg.next?.sendEventWith(Event.rightEvent.rawValue, userinfo: ["index": self.index])
             }
         }).disposed(by: disposeBag)
     }
@@ -168,7 +168,6 @@ class LineView: UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib.init(nibName: String.init(describing: type(of: self)), bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
 
         addSubview(view)
         view.frame = self.bounds

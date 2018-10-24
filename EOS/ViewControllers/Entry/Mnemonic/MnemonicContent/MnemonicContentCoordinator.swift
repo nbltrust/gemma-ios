@@ -26,7 +26,7 @@ protocol MnemonicContentStateManagerProtocol {
 
 class MnemonicContentCoordinator: NavCoordinator {
     var store = Store(
-        reducer: MnemonicContentReducer,
+        reducer: gMnemonicContentReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

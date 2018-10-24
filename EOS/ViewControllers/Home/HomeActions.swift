@@ -22,14 +22,14 @@ struct HomeState: StateType {
 struct AccountViewModel {
     var account: String = "-"
     var portrait: String = ""
-    var allAssets: String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"// 1.0000 EOS
-    var balance: String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    var allAssets: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"// 1.0000 EOS
+    var balance: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
     var CNY: String = "≈- CNY"
-    var recentRefundAsset: String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    var recentRefundAsset: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
     var refundTime: String = ""
-    var cpuValue: String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    var netValue: String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    var ramValue: String = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    var cpuValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+    var netValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+    var ramValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
     var cpuProgress: Float = 0.0
     var netProgress: Float = 0.0
     var ramProgress: Float = 0.0
@@ -42,8 +42,8 @@ struct AccountListViewModel {
 struct HomePropertyState {
     var info: BehaviorRelay<AccountViewModel> = BehaviorRelay(value: AccountViewModel())
     var model: BehaviorRelay<AccountViewModel> = BehaviorRelay(value: AccountViewModel())
-    var CNY_price: String = ""
-    var Other_price: String = ""
+    var cnyPrice: String = ""
+    var otherPrice: String = ""
 }
 
 struct BalanceFetchedAction: Action {

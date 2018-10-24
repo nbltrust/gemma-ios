@@ -10,7 +10,10 @@ import UIKit
 import ReSwift
 
 func gAccountListReducer(action: Action, state: AccountListState?) -> AccountListState {
-    return AccountListState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: gAccountListPropertyReducer(state?.property, action: action))
+    return AccountListState(isLoading: loadingReducer(state?.isLoading, action: action),
+                            page: pageReducer(state?.page, action: action),
+                            errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                            property: gAccountListPropertyReducer(state?.property, action: action))
 }
 
 func gAccountListPropertyReducer(_ state: AccountListPropertyState?, action: Action) -> AccountListPropertyState {

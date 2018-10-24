@@ -35,7 +35,7 @@ class NormalContentCoordinator: NavCoordinator {
     lazy var creator = NormalContentPropertyActionCreate()
 
     var store = Store<NormalContentState>(
-        reducer: NormalContentReducer,
+        reducer: gNormalContentReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

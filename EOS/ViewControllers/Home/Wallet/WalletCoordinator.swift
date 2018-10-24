@@ -38,7 +38,7 @@ class WalletCoordinator: NavCoordinator {
     lazy var creator = WalletPropertyActionCreate()
 
     var store = Store<WalletState>(
-        reducer: WalletReducer,
+        reducer: gWalletReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -109,11 +109,11 @@ extension WalletCoordinator: WalletStateManagerProtocol {
         for content: WalletManagerModel in data {
             let model = LineView.LineViewModel.init(name: content.name,
                                         content: "",
-                                        image_name: R.image.icTabMore.name,
-                                        name_style: LineViewStyleNames.normalName,
-                                        content_style: LineViewStyleNames.normalContent,
+                                        imageName: R.image.icTabMore.name,
+                                        nameStyle: LineViewStyleNames.normalName,
+                                        contentStyle: LineViewStyleNames.normalContent,
                                         isBadge: false,
-                                        content_line_number: 1,
+                                        contentLineNumber: 1,
                                         isShowLineView: false)
             array.append(model)
         }
@@ -123,27 +123,27 @@ extension WalletCoordinator: WalletStateManagerProtocol {
     func createSectionTwoDataInfo() -> [LineView.LineViewModel] {
         return [LineView.LineViewModel.init(name: R.string.localizable.import_wallet.key.localized(),
                                             content: "",
-                                            image_name: R.image.icArrow.name,
-                                            name_style: LineViewStyleNames.normalName,
-                                            content_style: LineViewStyleNames.normalContent,
+                                            imageName: R.image.icArrow.name,
+                                            nameStyle: LineViewStyleNames.normalName,
+                                            contentStyle: LineViewStyleNames.normalContent,
                                             isBadge: false,
-                                            content_line_number: 1,
+                                            contentLineNumber: 1,
                                             isShowLineView: false),
                 LineView.LineViewModel.init(name: R.string.localizable.create_wallet.key.localized(),
                                             content: "",
-                                            image_name: R.image.icArrow.name,
-                                            name_style: LineViewStyleNames.normalName,
-                                            content_style: LineViewStyleNames.normalContent,
+                                            imageName: R.image.icArrow.name,
+                                            nameStyle: LineViewStyleNames.normalName,
+                                            contentStyle: LineViewStyleNames.normalContent,
                                             isBadge: false,
-                                            content_line_number: 1,
+                                            contentLineNumber: 1,
                                             isShowLineView: false),
                 LineView.LineViewModel.init(name: R.string.localizable.pair_wookong.key.localized(),
                                             content: "",
-                                            image_name: R.image.icArrow.name,
-                                            name_style: LineViewStyleNames.normalName,
-                                            content_style: LineViewStyleNames.normalContent,
+                                            imageName: R.image.icArrow.name,
+                                            nameStyle: LineViewStyleNames.normalName,
+                                            contentStyle: LineViewStyleNames.normalContent,
                                             isBadge: false,
-                                            content_line_number: 1,
+                                            contentLineNumber: 1,
                                             isShowLineView: false)
         ]
     }

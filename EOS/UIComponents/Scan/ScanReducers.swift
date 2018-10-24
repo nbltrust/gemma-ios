@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func ScanReducer(action: Action, state: ScanState?) -> ScanState {
+func gScanReducer(action: Action, state: ScanState?) -> ScanState {
     let state = state ?? ScanState()
 
     return state

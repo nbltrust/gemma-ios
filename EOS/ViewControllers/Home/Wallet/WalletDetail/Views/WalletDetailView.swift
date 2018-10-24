@@ -18,7 +18,7 @@ class WalletDetailView: EOSBaseView {
     @IBOutlet weak var formatBtn: Button!
 
     enum Event: String {
-        case WalletDetailViewDidClicked
+        case walletDetailViewDidClicked
         case nameDidClicked
     }
 
@@ -48,6 +48,6 @@ class WalletDetailView: EOSBaseView {
     }
 
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.WalletDetailViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.walletDetailViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }

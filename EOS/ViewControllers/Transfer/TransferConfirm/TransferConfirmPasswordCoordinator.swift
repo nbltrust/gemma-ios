@@ -45,7 +45,7 @@ class TransferConfirmPasswordCoordinator: NavCoordinator {
     lazy var creator = TransferConfirmPasswordPropertyActionCreate()
 
     var store = Store<TransferConfirmPasswordState>(
-        reducer: TransferConfirmPasswordReducer,
+        reducer: gTransferConfirmPasswordReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -112,7 +112,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         store.subscribe(subscriber, transform: transform)
     }
 
-    func ValidingPassword(_ password: String) -> Bool {
+    func validingPassword(_ password: String) -> Bool {
         return WalletManager.shared.isValidPassword(password)
     }
 

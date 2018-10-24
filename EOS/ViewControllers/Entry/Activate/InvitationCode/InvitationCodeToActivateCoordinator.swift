@@ -28,7 +28,7 @@ protocol InvitationCodeToActivateStateManagerProtocol {
 
 class InvitationCodeToActivateCoordinator: NavCoordinator {
     var store = Store(
-        reducer: InvitationCodeToActivateReducer,
+        reducer: gInvitationCodeToActivateReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -46,7 +46,7 @@ class InvitationCodeToActivateCoordinator: NavCoordinator {
 extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateCoordinatorProtocol {
     func pushToGetInviteCodeIntroductionVC() {
         let vc = BaseWebViewController()
-        vc.url = H5AddressConfiguration.GET_INVITECODE_URL
+        vc.url = H5AddressConfiguration.GetInviteCodeURL
         vc.title = R.string.localizable.invitationcode_introduce.key.localized()
         self.rootVC.pushViewController(vc, animated: true)
     }

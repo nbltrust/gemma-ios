@@ -25,7 +25,7 @@ class AboutCoordinator: NavCoordinator {
     lazy var creator = AboutPropertyActionCreate()
 
     var store = Store<AboutState>(
-        reducer: AboutReducer,
+        reducer: gAboutReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -36,11 +36,11 @@ extension AboutCoordinator: AboutCoordinatorProtocol {
         let vc = BaseWebViewController()
         let language = getCurrentLanguage()
         if language == "en" {
-            vc.url = H5AddressConfiguration.RELEASE_NOTES_EN_URL
+            vc.url = H5AddressConfiguration.ReleaseNotesENURL
         } else if language == "cn" {
-            vc.url = H5AddressConfiguration.RELEASE_NOTES_CN_URL
+            vc.url = H5AddressConfiguration.ReleaseNotesCNURL
         } else {
-            vc.url = H5AddressConfiguration.RELEASE_NOTES_EN_URL
+            vc.url = H5AddressConfiguration.ReleaseNotesENURL
         }
         vc.title = R.string.localizable.about_info.key.localized()
         self.rootVC.pushViewController(vc, animated: true)

@@ -24,7 +24,7 @@ protocol ScanStateManagerProtocol {
 
 class ScanCoordinator: NavCoordinator {
     var store = Store<ScanState>(
-        reducer: ScanReducer,
+        reducer: gScanReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

@@ -15,7 +15,7 @@ class BackupPrivateKeyView: UIView {
     @IBOutlet weak var whiteTipOneLabel: BaseLabel!
     @IBOutlet weak var whiteTipTwoLabel: BaseLabel!
 
-    enum event: String {
+    enum Event: String {
         case know
     }
 
@@ -44,7 +44,7 @@ class BackupPrivateKeyView: UIView {
         setupUI()
         knowButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.next?.sendEventWith(event.know.rawValue, userinfo: ["data": ""])
+            self.next?.sendEventWith(Event.know.rawValue, userinfo: ["data": ""])
         }).disposed(by: disposeBag)
     }
 
@@ -81,8 +81,6 @@ class BackupPrivateKeyView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
-
 
         addSubview(view)
         view.frame = self.bounds

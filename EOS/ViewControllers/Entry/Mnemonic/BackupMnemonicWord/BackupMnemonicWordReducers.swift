@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func BackupMnemonicWordReducer(action: Action, state: BackupMnemonicWordState?) -> BackupMnemonicWordState {
+func gBackupMnemonicWordReducer(action: Action, state: BackupMnemonicWordState?) -> BackupMnemonicWordState {
     let state = state ?? BackupMnemonicWordState()
 
     switch action {

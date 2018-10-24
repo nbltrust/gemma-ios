@@ -94,7 +94,9 @@ extension SelectedVoteViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = String.init(describing: type(of: NodeSelCell()))
-        let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! NodeSelCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? NodeSelCell else {
+            return UITableViewCell()
+        }
         cell.setupNode((self.coordinator?.state.property.datas[indexPath.row])!)
         return cell
     }

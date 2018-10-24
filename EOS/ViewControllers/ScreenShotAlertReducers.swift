@@ -9,11 +9,14 @@
 import UIKit
 import ReSwift
 
-func ScreenShotAlertReducer(action: Action, state: ScreenShotAlertState?) -> ScreenShotAlertState {
-    return ScreenShotAlertState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: ScreenShotAlertPropertyReducer(state?.property, action: action))
+func gScreenShotAlertReducer(action: Action, state: ScreenShotAlertState?) -> ScreenShotAlertState {
+    return ScreenShotAlertState(isLoading: loadingReducer(state?.isLoading, action: action),
+                                page: pageReducer(state?.page, action: action),
+                                errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                                property: gScreenShotAlertPropertyReducer(state?.property, action: action))
 }
 
-func ScreenShotAlertPropertyReducer(_ state: ScreenShotAlertPropertyState?, action: Action) -> ScreenShotAlertPropertyState {
+func gScreenShotAlertPropertyReducer(_ state: ScreenShotAlertPropertyState?, action: Action) -> ScreenShotAlertPropertyState {
     var state = state ?? ScreenShotAlertPropertyState()
 
     switch action {

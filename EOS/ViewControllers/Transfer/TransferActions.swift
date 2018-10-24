@@ -31,11 +31,11 @@ struct TransferState: BaseState {
     var balanceLocal: BehaviorRelay<String?> = BehaviorRelay(value: "")
 }
 
-struct moneyAction: Action {
+struct MoneyAction: Action {
     var money = ""
     var balance = ""
 }
 
-struct toNameAction: Action {
+struct ToNameAction: Action {
     var isValid: Bool = false
 }

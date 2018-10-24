@@ -32,7 +32,7 @@ class UserInfoCoordinator: NavCoordinator {
     lazy var creator = UserInfoPropertyActionCreate()
 
     var store = Store<UserInfoState>(
-        reducer: UserInfoReducer,
+        reducer: gUserInfoReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -95,12 +95,12 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
         let vc = BaseWebViewController()
         let language = Defaults[.language]
         if language == "en" {
-            vc.url = H5AddressConfiguration.FEEDBACK_EN_URL
+            vc.url = H5AddressConfiguration.FeedbackENURL
         } else if language == "zh-Hans" {
-            vc.url = H5AddressConfiguration.FEEDBACK_CN_URL
+            vc.url = H5AddressConfiguration.FeedbackCNURL
         } else {
 
-            vc.url = H5AddressConfiguration.FEEDBACK_EN_URL
+            vc.url = H5AddressConfiguration.FeedbackENURL
         }
         vc.title = R.string.localizable.mine_help.key.localized()
         self.rootVC.pushViewController(vc, animated: true)
@@ -109,12 +109,12 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
         let vc = BaseWebViewController()
         let language = Defaults[.language]
         if language == "en" {
-            vc.url = H5AddressConfiguration.HELP_EN_URL
+            vc.url = H5AddressConfiguration.HelpENURL
         } else if language == "zh-Hans" {
-            vc.url = H5AddressConfiguration.HELP_CN_URL
+            vc.url = H5AddressConfiguration.HelpCNURL
         } else {
 
-            vc.url = H5AddressConfiguration.HELP_EN_URL
+            vc.url = H5AddressConfiguration.HelpENURL
         }
         vc.title = R.string.localizable.mine_server.key.localized()
         self.rootVC.pushViewController(vc, animated: true)

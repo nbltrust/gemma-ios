@@ -26,9 +26,9 @@ var appCoodinator: AppCoordinator {
 struct AppConfiguration {
     static let APPID = ""
 
-    static let EOS_PRECISION = 4
+    static let EOSPrecision = 4
 
-    static let EOS_ERROR_CODE_BASE = "eos_errorcode_"
+    static let EOSErrorCodeBase = "eos_errorcode_"
 
     static let shared = AppConfiguration()
     var appCoordinator: AppCoordinator!
@@ -40,12 +40,12 @@ struct AppConfiguration {
 }
 
 struct NetworkConfiguration {
-    static let NBL_BASE_URL = URL(string: "http://139.196.73.117:3001")!
-    static let NBL_BASE_TEST_URL = URL(string: "http://139.196.73.117:3002")!
+    static let NBLBaseURL = URL(string: "http://139.196.73.117:3001")!
+    static let NBLBaseTestURL = URL(string: "http://139.196.73.117:3002")!
 
-    static let EOSIO_BASE_TEST_URL = URL(string: "http://139.224.135.236:18888")!//URL(string: "http://172.20.5.25:9999")!
-    static let EOSIO_CANADA_TEST_URL = URL(string: "http://mainnet.eoscanada.com")!
-    var EOSIO_BASE_URL: URL {
+    static let EOSIOBaseTestURL = URL(string: "http://139.224.135.236:18888")!//URL(string: "http://172.20.5.25:9999")!
+    static let EOSIOCanadaTestURL = URL(string: "http://mainnet.eoscanada.com")!
+    var EOSIOBaseURL: URL {
         get {
             var index = Defaults[.currentURLNode]
             let urls = EOSBaseURLNodesConfiguration.values
@@ -55,7 +55,7 @@ struct NetworkConfiguration {
             return URL(string: urls[index])!
         }
     }
-    var EOSIO_OTHER_BASE_URL: URL {
+    var EOSIOOtherBaseURL: URL {
         get {
             let index = Defaults[.currentURLNode]
             var urls = EOSBaseURLNodesConfiguration.values
@@ -67,17 +67,17 @@ struct NetworkConfiguration {
         }
     }
     //URL(string: "http://139.196.73.117:8888")!
-    static let EOS_BP_URL = URL(string: "https://eosweb.net")!
+    static let EOSBPURL = URL(string: "https://eosweb.net")!
 
-    static let EOSIO_DEFAULT_SYMBOL = "EOS"
-    static let USDT_DEFAULT_SYMBOL = "USDT"
-    static let BALANCE_DEFAULT_SYMBOL = "balance"
-    static let RAMPRICE_DEFAULT_SYMBOL = "ramprice"
+    static let EOSIODefaultSymbol = "EOS"
+    static let USDTDefaultSymbol = "USDT"
+    static let BlanceDefaultSymbol = "balance"
+    static let RAMPriceDefaultSymbol = "ramprice"
 
-    static let EOSFLARE_BASE_URLString = "https://eosflare.io/tx/"
+    static let EOSFlareBaseURLString = "https://eosflare.io/tx/"
 
-    static let SERVER_BASE_URLString = "https://app.cybex.io/"
-    static let ETH_PRICE = SERVER_BASE_URLString + "price"
+    static let ServerBaseURLString = "https://app.cybex.io/"
+    static let ETHPrice = ServerBaseURLString + "price"
 }
 
 //Laguage Setting
@@ -132,20 +132,20 @@ struct EOSBaseURLNodesConfiguration {
 }
 
 struct EOSIOContract {
-    static let TOKEN_CODE = "eosio.token"
-    static let EOSIO_CODE = "eosio"
-    static let EOSIO_SYSTEM_CODE = "eosio.system"
+    static let TokenCode = "eosio.token"
+    static let EOSIOCode = "eosio"
+    static let EOSIOSystemCode = "eosio.system"
 }
 
 struct H5AddressConfiguration {
-    static let GET_INVITECODE_URL = URL(string: "https://nebuladownload.oss-cn-beijing.aliyuncs.com/gemma/gemma_policy_cn.html")
-    static let REGISTER_PROTOCOL_URL = URL(string: "https://nebuladownload.oss-cn-beijing.aliyuncs.com/gemma/gemma_policy_cn.html")
-    static let HELP_CN_URL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_policy_cn.html")
-    static let HELP_EN_URL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_policy_en.html")
-    static let RELEASE_NOTES_CN_URL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_release_desc_cn.html")
-    static let RELEASE_NOTES_EN_URL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_release_desc_en.html")
-    static let FEEDBACK_CN_URL = URL(string: "http://47.75.154.39:3009/gemma?lang=cn")
-    static let FEEDBACK_EN_URL = URL(string: "http://47.75.154.39:3009/gemma?lang=en")
+    static let GetInviteCodeURL = URL(string: "https://nebuladownload.oss-cn-beijing.aliyuncs.com/gemma/gemma_policy_cn.html")
+    static let RegisterProtocolURL = URL(string: "https://nebuladownload.oss-cn-beijing.aliyuncs.com/gemma/gemma_policy_cn.html")
+    static let HelpCNURL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_policy_cn.html")
+    static let HelpENURL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_policy_en.html")
+    static let ReleaseNotesCNURL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_release_desc_cn.html")
+    static let ReleaseNotesENURL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_release_desc_en.html")
+    static let FeedbackCNURL = URL(string: "http://47.75.154.39:3009/gemma?lang=cn")
+    static let FeedbackENURL = URL(string: "http://47.75.154.39:3009/gemma?lang=en")
 }
 
 enum EOSAction: String {
@@ -171,6 +171,6 @@ enum WifiStatus: String {
 }
 
 struct Unit {
-    static let USD_UNIT = "usdunit"
-    static let RMB_UNIT = "rmbunit"
+    static let USDUnit = "usdunit"
+    static let RMBUnit = "rmbunit"
 }

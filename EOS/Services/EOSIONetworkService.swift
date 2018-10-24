@@ -14,22 +14,25 @@ import SwiftyUserDefaults
 
 enum EOSIOService {
     //chain
-    case get_currency_balance(account: String)
-    case get_account(account: String, otherNode: Bool)
-    case get_info
-    case get_block(num: String)
-    case abi_json_to_bin(json: String)
-    case abi_bin_to_json(bin: String, action:EOSAction)
-    case push_transaction(json: String)
-    case get_table_rows(json:String)
+    case getCurrencyBalance(account: String)
+    case getAccount(account: String, otherNode: Bool)
+    case getInfo
+    case getBlock(num: String)
+    case abiJsonToBin(json: String)
+    case abiBinToJson(bin: String, action:EOSAction)
+    case pushTransaction(json: String)
+    case getTableRows(json:String)
 
     //history
-    case get_key_accounts(pubKey:String)
-    case get_transaction(id:String)
+    case getKeyAccounts(pubKey:String)
+    case getTransaction(id:String)
 }
 
 struct EOSIONetwork {
-    static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil, manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(), plugins: [NetworkLoggerPlugin(verbose: true), DataCachePlugin()], trackInflights: false)
+    static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil,
+                                                     manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(),
+                                                     plugins: [NetworkLoggerPlugin(verbose: true), DataCachePlugin()],
+                                                     trackInflights: false)
 
     static func request(
         target: EOSIOService,
@@ -44,30 +47,30 @@ struct EOSIONetwork {
                     _ = try response.filterSuccessfulStatusCodes()
                     let json = try JSON(response.mapJSON())
                     switch target {
-                    case let .get_currency_balance(accountName):
+                    case let .getCurrencyBalance(accountName):
                         if let balance = json.arrayValue.first?.string {
                             Defaults.set(balance, forKey: "\(accountName)balance")
                         }
-                    case .get_account:
+                    case .getAccount:
                         if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                             var model = accountObj.toAccountModel()
                             model.saveToLocal()
                         }
-                    case .get_info:break
+                    case .getInfo:break
 
-                    case .get_block:break
+                    case .getBlock:break
 
-                    case .abi_json_to_bin:break
+                    case .abiJsonToBin:break
 
-                    case .abi_bin_to_json:break
+                    case .abiBinToJson:break
 
-                    case .push_transaction:break
+                    case .pushTransaction:break
 
-                    case .get_key_accounts:break
+                    case .getKeyAccounts:break
 
-                    case .get_transaction:break
+                    case .getTransaction:break
 
-                    case .get_table_rows:break
+                    case .getTableRows:break
 
                     }
 
@@ -76,7 +79,7 @@ struct EOSIONetwork {
                     do {
                         let json = try JSON(response.mapJSON())
                         let error = json["error"]["code"].debugDescription
-                        let codeKey = AppConfiguration.EOS_ERROR_CODE_BASE + error
+                        let codeKey = AppConfiguration.EOSErrorCodeBase + error
                         let codeValue = codeKey.localized()
                         showFailTop(codeValue)
                     } catch _ {
@@ -102,19 +105,19 @@ extension EOSIOService: TargetType {
     var baseURL: URL {
         let configuration = NetworkConfiguration()
         switch self {
-        case .get_account:
+        case .getAccount:
 //            if otherNode {
 //                return  configuration.EOSIO_OTHER_BASE_URL
 //            }
-            return configuration.EOSIO_BASE_URL
+            return configuration.EOSIOBaseURL
         default:
-            return configuration.EOSIO_BASE_URL
+            return configuration.EOSIOBaseURL
         }
     }
 
     var isNeedCache: Bool {
         switch self {
-        case .get_account:
+        case .getAccount:
             return true
         default:
             return false
@@ -123,42 +126,42 @@ extension EOSIOService: TargetType {
 
     var path: String {
         switch self {
-        case .get_currency_balance:
+        case .getCurrencyBalance:
             return "/v1/chain/get_currency_balance"
-        case .get_account:
+        case .getAccount:
             return "/v1/chain/get_account"
-        case .get_info:
+        case .getInfo:
             return "/v1/chain/get_info"
-        case .get_block:
+        case .getBlock:
             return "/v1/chain/get_block"
-        case .abi_json_to_bin:
+        case .abiJsonToBin:
             return "/v1/chain/abi_json_to_bin"
-        case .abi_bin_to_json:
+        case .abiBinToJson:
             return "/v1/chain/abi_bin_to_json"
-        case .push_transaction:
+        case .pushTransaction:
             return "/v1/chain/push_transaction"
-        case .get_key_accounts:
+        case .getKeyAccounts:
             return "/v1/history/get_key_accounts"
-        case .get_transaction:
+        case .getTransaction:
             return "/v1/history/get_transaction"
-        case .get_table_rows:
+        case .getTableRows:
             return "/v1/chain/get_table_rows"
         }
     }
 
     var parameters: [String: Any] {
         switch self {
-        case let .get_currency_balance(account):
-            return ["account": account, "code": EOSIOContract.TOKEN_CODE, "symbol": NetworkConfiguration.EOSIO_DEFAULT_SYMBOL]
-        case let .get_account(account, _):
+        case let .getCurrencyBalance(account):
+            return ["account": account, "code": EOSIOContract.TokenCode, "symbol": NetworkConfiguration.EOSIODefaultSymbol]
+        case let .getAccount(account, _):
             return ["account_name": account]
-        case .get_info:
+        case .getInfo:
             return [:]
-        case let .get_block(num):
+        case let .getBlock(num):
             return ["block_num_or_id": num]
-        case let .abi_json_to_bin(json):
+        case let .abiJsonToBin(json):
             return JSON(parseJSON: json).dictionaryObject ?? [:]
-        case let .push_transaction(json):
+        case let .pushTransaction(json):
             var transaction: [String: Any] = ["compression": "none"]
             var jsonOb = JSON(parseJSON: json).dictionaryObject ?? [:]
             let signatures = jsonOb["signatures"]
@@ -167,13 +170,13 @@ extension EOSIOService: TargetType {
             transaction["transaction"] = jsonOb
 
             return transaction
-        case let .abi_bin_to_json(bin, action):
-            return ["code": EOSIOContract.TOKEN_CODE, "action": action.rawValue, "binargs": bin]
-        case let .get_key_accounts(pubKey):
+        case let .abiBinToJson(bin, action):
+            return ["code": EOSIOContract.TokenCode, "action": action.rawValue, "binargs": bin]
+        case let .getKeyAccounts(pubKey):
             return ["public_key": pubKey]
-        case let .get_transaction(id):
+        case let .getTransaction(id):
             return ["id": id]
-        case let .get_table_rows(json):
+        case let .getTableRows(json):
             return JSON(parseJSON: json).dictionaryObject ?? [:]
         }
     }
@@ -187,7 +190,10 @@ extension EOSIOService: TargetType {
     }
 
     var sampleData: Data {
-        return try! JSON(parameters).rawData()
+        guard let data = try? JSON(parameters).rawData() else {
+            return Data()
+        }
+        return data
     }
 
     var headers: [String: String]? {

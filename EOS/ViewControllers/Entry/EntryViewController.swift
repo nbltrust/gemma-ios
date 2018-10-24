@@ -89,9 +89,6 @@ class EntryViewController: BaseViewController {
 //                    }
 //                })
             }
-//            self.coordinator?.createWallet(self.registerView.nameView.textField.text!, password: self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, inviteCode: self.registerView.inviteCodeView.textField.text!, completion: { (success) in
-//                
-//            })
         }).disposed(by: disposeBag)
 
         protocolLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
@@ -130,14 +127,25 @@ class EntryViewController: BaseViewController {
 
 extension EntryViewController {
     @objc func walletName(_ data: [String: Any]) {
-        self.coordinator?.validWalletName(data["content"] as! String)
+        guard let content = data["content"] as? String else {
+            return
+        }
+        self.coordinator?.validWalletName(content)
     }
 
     @objc func walletPassword(_ data: [String: Any]) {
-        self.coordinator?.validPassword(data["content"] as! String)
+        guard let content = data["content"] as? String else {
+            return
+        }
+
+        self.coordinator?.validPassword(content)
     }
 
     @objc func walletComfirmPassword(_ data: [String: Any]) {
-        self.coordinator?.validComfirmPassword(data["content"] as! String, comfirmPassword: self.registerView.passwordView.textField.text!)
+        guard let content = data["content"] as? String else {
+            return
+        }
+
+        self.coordinator?.validComfirmPassword(content, comfirmPassword: self.registerView.passwordView.textField.text!)
     }
 }

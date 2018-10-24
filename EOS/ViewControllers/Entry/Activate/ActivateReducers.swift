@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func ActivateReducer(action: Action, state: ActivateState?) -> ActivateState {
+func gActivateReducer(action: Action, state: ActivateState?) -> ActivateState {
     let state = state ?? ActivateState()
 
     switch action {
