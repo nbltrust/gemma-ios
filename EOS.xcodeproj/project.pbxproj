@@ -72,6 +72,7 @@
 		223C5916214A532800C69F3F /* BLTCardEntryViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C5913214A532800C69F3F /* BLTCardEntryViewAdapter.swift */; };
 		223C5917214A532800C69F3F /* BLTCardEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C5914214A532800C69F3F /* BLTCardEntryView.swift */; };
 		223C5918214A532800C69F3F /* BLTCardEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223C5915214A532800C69F3F /* BLTCardEntryView.xib */; };
+		224D364D2180570E007EAD1C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D364C2180570E007EAD1C /* R.generated.swift */; };
 		2253C51C211052020043AAF7 /* SafeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C51B211052020043AAF7 /* SafeManager.swift */; };
 		2253C5272111A5F90043AAF7 /* CopyPriKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */; };
 		2253C5282111A5F90043AAF7 /* CopyPriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5242111A5F90043AAF7 /* CopyPriKeyActions.swift */; };
@@ -539,7 +540,6 @@
 		739A4DBF2150DF2800A1074B /* RxGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DAF2150DF2700A1074B /* RxGestureRecognizerDelegate.swift */; };
 		739A4DC02150DF2800A1074B /* SharedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DB02150DF2700A1074B /* SharedTypes.swift */; };
 		739A4DC12150DF2800A1074B /* View+RxGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DB12150DF2700A1074B /* View+RxGesture.swift */; };
-		739A4DC82150E1B600A1074B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DC42150E1B500A1074B /* R.generated.swift */; };
 		739A4DDC2150E92D00A1074B /* EOSBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A4DDB2150E92D00A1074B /* EOSBaseView.swift */; };
 		73A453BC2177278F0075E290 /* WalletCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A453BB2177278F0075E290 /* WalletCacheService.swift */; };
 		73A453BE217727E00075E290 /* BaseCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A453BD217727E00075E290 /* BaseCacheService.swift */; };
@@ -762,6 +762,7 @@
 		223C5915214A532800C69F3F /* BLTCardEntryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLTCardEntryView.xib; sourceTree = "<group>"; };
 		223C591F214B89F900C69F3F /* BLTWalletIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTWalletIO.h; sourceTree = "<group>"; };
 		223C5924214B9DE100C69F3F /* BLTWalletHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTWalletHeader.h; sourceTree = "<group>"; };
+		224D364C2180570E007EAD1C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		2253C51B211052020043AAF7 /* SafeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeManager.swift; sourceTree = "<group>"; };
 		2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyPriKeyCoordinator.swift; sourceTree = "<group>"; };
 		2253C5242111A5F90043AAF7 /* CopyPriKeyActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyPriKeyActions.swift; sourceTree = "<group>"; };
@@ -845,7 +846,7 @@
 		31FC1C0ABF5DB16A7CE2B85766922CB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34691991383C3221764B22D67442C56C /* EntryReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryReducers.swift; sourceTree = "<group>"; };
 		3AA8EBBBC7AA834B69D653ECE6DCC4F5 /* ComfirmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComfirmView.xib; sourceTree = "<group>"; };
-		3AB9FE30551A8102E01F746AB69BF50A /* RichStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RichStyles.swift; path = RichStyles.swift; sourceTree = "<group>"; };
+		3AB9FE30551A8102E01F746AB69BF50A /* RichStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichStyles.swift; sourceTree = "<group>"; };
 		3B018A342176D4B6008791AF /* NewHomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeCoordinator.swift; sourceTree = "<group>"; };
 		3B018A352176D4B6008791AF /* NewHomeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeActions.swift; sourceTree = "<group>"; };
 		3B018A362176D4B6008791AF /* NewHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeViewController.swift; sourceTree = "<group>"; };
@@ -1237,7 +1238,6 @@
 		739A4DAF2150DF2700A1074B /* RxGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
 		739A4DB02150DF2700A1074B /* SharedTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTypes.swift; sourceTree = "<group>"; };
 		739A4DB12150DF2700A1074B /* View+RxGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+RxGesture.swift"; sourceTree = "<group>"; };
-		739A4DC42150E1B500A1074B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		739A4DD92150E3FA00A1074B /* rswift */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rswift; sourceTree = "<group>"; };
 		739A4DDB2150E92D00A1074B /* EOSBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOSBaseView.swift; sourceTree = "<group>"; };
 		73A453BB2177278F0075E290 /* WalletCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCacheService.swift; sourceTree = "<group>"; };
@@ -1420,10 +1420,10 @@
 				31FC1C0ABF5DB16A7CE2B85766922CB6 /* AppDelegate.swift */,
 				778E2FB094094F597056F12BA4850DAB /* Assets.xcassets */,
 				E8C89DF5B10B783E40D83BB3C86E700D /* EOS-Bridging-Header.h */,
+				224D364C2180570E007EAD1C /* R.generated.swift */,
 				73378F76211C2D5300ACAA90 /* EOS.entitlements */,
 				017E5A17AE45A2B724BB0B367641F01E /* Info.plist */,
 				133700A3CC78F9E6E9EE7D93BD01A646 /* LaunchScreen.storyboard */,
-				739A4DC42150E1B500A1074B /* R.generated.swift */,
 				8D6DCAB8F96446139DBCE56777785B34 /* ViewController.swift */,
 			);
 			path = EOS;
@@ -3657,7 +3657,6 @@
 				2253C5392111A6450043AAF7 /* PriKeyViewController.swift in Sources */,
 				72FE5B6E2100491A00B29FEC /* AboutReducers.swift in Sources */,
 				22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */,
-				739A4DC82150E1B600A1074B /* R.generated.swift in Sources */,
 				73539CAC2179B3B8008395AC /* Navigator.swift in Sources */,
 				737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */,
 				227F84BD2176E72A005FB567 /* BLTDevice.m in Sources */,
@@ -3761,6 +3760,7 @@
 				7342E4E8216F1F8A0093E2C2 /* BLTCardPowerOnReducers.swift in Sources */,
 				3BD3666820FDEB94004DE09D /* TransferContentView.swift in Sources */,
 				3B6D7462214761690076F444 /* FriendToActivateViewController.swift in Sources */,
+				224D364D2180570E007EAD1C /* R.generated.swift in Sources */,
 				3B858BC4217077FB00499FAC /* FingerViewController.swift in Sources */,
 				739A4DBC2150DF2800A1074B /* UIScreenEdgePanGestureRecognizer+RxGesture.swift in Sources */,
 				2253C52F2111A6300043AAF7 /* QRCodeCoordinator.swift in Sources */,
