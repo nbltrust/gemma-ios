@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum confirmType: String {
+enum ConfirmType: String {
     case transfer
     case bltTransfer
     case mortgage

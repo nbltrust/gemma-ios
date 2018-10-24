@@ -29,9 +29,9 @@ func PayToActivateReducer(action: Action, state: PayToActivateState?) -> PayToAc
 
 func transToModel(_ action: BillAction) -> BillModel {
     var model = BillModel()
-    model.cpu = action.data.cpu + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    model.net = action.data.net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    model.ram = action.data.ram + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+    model.cpu = action.data.cpu + " \(NetworkConfiguration.EOSIODefaultSymbol)"
+    model.net = action.data.net + " \(NetworkConfiguration.EOSIODefaultSymbol)"
+    model.ram = action.data.ram + " \(NetworkConfiguration.EOSIODefaultSymbol)"
     model.rmb = action.data.rmbPrice + " RMB"
     return model
 }

@@ -56,7 +56,7 @@ class WalletManagerView: UIView {
                     if data.connected == true {
                         btn.title = R.string.localizable.disconnect.key.localized()
                         progressLabel.text = "50%"
-                        exportPrivateKeyLineView.name_text = R.string.localizable.fingerprint_password.key.localized()
+                        exportPrivateKeyLineView.nameText = R.string.localizable.fingerprint_password.key.localized()
                     } else {
                         batteryView.isHidden = true
                         iconImageView.isHidden = true
@@ -76,15 +76,15 @@ class WalletManagerView: UIView {
     }
 
     func setUpUI() {
-        exportPrivateKeyLineView.name_text = R.string.localizable.export_private_key.key.localized()
+        exportPrivateKeyLineView.nameText = R.string.localizable.export_private_key.key.localized()
         exportPrivateKeyLineView.isShowLine = true
-        exportPrivateKeyLineView.content_text = ""
-        exportPrivateKeyLineView.image_name = R.image.icArrow.name
+        exportPrivateKeyLineView.contentText = ""
+        exportPrivateKeyLineView.imageName = R.image.icArrow.name
         exportPrivateKeyLineView.backgroundColor = UIColor.clear
 
-        changePasswordLineView.name_text = R.string.localizable.change_password.key.localized()
-        changePasswordLineView.content_text = ""
-        changePasswordLineView.image_name = R.image.icArrow.name
+        changePasswordLineView.nameText = R.string.localizable.change_password.key.localized()
+        changePasswordLineView.contentText = ""
+        changePasswordLineView.imageName = R.image.icArrow.name
         changePasswordLineView.backgroundColor = UIColor.clear
 
     }

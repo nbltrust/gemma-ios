@@ -94,7 +94,11 @@ extension UIView {
 }
 
 extension UIView {
-    public func edgesToDevice(vc: UIViewController, insets: TinyEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), priority: LayoutPriority = .required, isActive: Bool = true, usingSafeArea: Bool = false) {
+    public func edgesToDevice(vc: UIViewController,
+                              insets: TinyEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0),
+                              priority: LayoutPriority = .required,
+                              isActive: Bool = true,
+                              usingSafeArea: Bool = false) {
         if #available(iOS 11.0, *) {
             edgesToSuperview(insets: insets, priority: priority, isActive: isActive, usingSafeArea: usingSafeArea)
         } else {
@@ -113,7 +117,12 @@ extension UIView {
 
     }
 
-    public func topToDevice( _ vc: UIViewController, offset: CGFloat = 0, relation: ConstraintRelation = .equal, priority: LayoutPriority = .required, isActive: Bool = true, usingSafeArea: Bool = false) -> Constraint {
+    public func topToDevice( _ vc: UIViewController,
+                             offset: CGFloat = 0,
+                             relation: ConstraintRelation = .equal,
+                             priority: LayoutPriority = .required,
+                             isActive: Bool = true,
+                             usingSafeArea: Bool = false) -> Constraint {
         if #available(iOS 11.0, *) {
             return topToSuperview(nil, offset: offset, relation: relation, priority: priority, isActive: isActive, usingSafeArea: usingSafeArea)
         } else {

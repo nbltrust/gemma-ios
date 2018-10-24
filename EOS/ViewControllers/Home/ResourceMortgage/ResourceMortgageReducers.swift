@@ -27,7 +27,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
 
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
                 valid = false
                 if action.netMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -47,7 +47,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
 
-            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
+            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
                 valid = false
                 if action.cpuMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -67,7 +67,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
 
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
                 valid = false
                 if action.netMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -87,7 +87,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
                 tips = ""
             }
 
-            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
+            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
                 valid = false
                 if action.cpuMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -103,7 +103,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
             if let balance = action.balance.arrayValue.first?.string {
                 viewmodel.page.balance = balance
             } else {
-                viewmodel.page.balance = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+                viewmodel.page.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
             }
             state.info.accept(viewmodel)
         } else {
@@ -111,7 +111,7 @@ func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, ac
             if let balance = action.balance.arrayValue.first?.string {
                 viewmodel.page.balance = balance
             } else {
-                viewmodel.page.balance = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
+                viewmodel.page.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
             }
             state.info.accept(viewmodel)
         }
@@ -144,15 +144,15 @@ func initViewModel() -> ResourceViewModel {
 
 func convertResourceViewModelWithAccount(_ account: Account, viewmodel: ResourceViewModel?) -> ResourceViewModel {
     if var newViewModel = viewmodel {
-        newViewModel.general[0].eos = account.total_resources?.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        newViewModel.general[1].eos = account.total_resources?.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        if let used = account.cpu_limit?.used, let max = account.cpu_limit?.max {
+        newViewModel.general[0].eos = account.totalResources?.cpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        newViewModel.general[1].eos = account.totalResources?.netWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        if let used = account.cpuLimit?.used, let max = account.cpuLimit?.max {
 
             newViewModel.general[0].leftSub = R.string.localizable.use.key.localized() + " \(used.toMS) " + R.string.localizable.ms.key.localized()
             newViewModel.general[0].rightSub = R.string.localizable.total.key.localized() + " \(max.toMS) " + R.string.localizable.ms.key.localized()
             newViewModel.general[0].progress = used.toMS.float()! / max.toMS.float()!
         }
-        if let used = account.net_limit?.used, let max = account.net_limit?.max {
+        if let used = account.netLimit?.used, let max = account.netLimit?.max {
             newViewModel.general[1].leftSub = R.string.localizable.use.key.localized() + " \(used.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].rightSub = R.string.localizable.total.key.localized() + " \(max.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].progress = used.toKB.float()! / max.toKB.float()!
@@ -167,20 +167,20 @@ func convertResourceViewModelWithAccount(_ account: Account, viewmodel: Resource
 
 func convertToViewModelWithModel(model: AccountModel, viewmodel: ResourceViewModel?) -> ResourceViewModel {
     if var newViewModel = viewmodel {
-        newViewModel.general[0].eos = model.cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        newViewModel.general[1].eos = model.net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-        if let used = model.cpu_used, let max = model.cpu_max {
+        newViewModel.general[0].eos = model.cpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        newViewModel.general[1].eos = model.netWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        if let used = model.cpuUsed, let max = model.cpuMax {
             newViewModel.general[0].leftSub = R.string.localizable.use.key.localized() + " \(used.toMS) " + R.string.localizable.ms.key.localized()
             newViewModel.general[0].rightSub = R.string.localizable.total.key.localized() + " \(max.toMS) " + R.string.localizable.ms.key.localized()
             newViewModel.general[0].progress = used.toMS.float()! / max.toMS.float()!
         }
-        if let used = model.net_used, let max = model.net_max {
+        if let used = model.netUsed, let max = model.netMax {
             newViewModel.general[1].leftSub = R.string.localizable.use.key.localized() + " \(used.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].rightSub = R.string.localizable.total.key.localized() + " \(max.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].progress = used.toKB.float()! / max.toKB.float()!
         }
 
-        if let balance = Defaults[model.account_name + NetworkConfiguration.BALANCE_DEFAULT_SYMBOL] as? String {
+        if let balance = Defaults[model.accountName + NetworkConfiguration.BlanceDefaultSymbol] as? String {
             newViewModel.page.balance = balance
         }
         return newViewModel

@@ -102,12 +102,12 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
 
     func getAccountInfo(_ account: String) {
-        EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
+        EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 var delegateInfo = DelegatedInfoModel()
 
-                if let delegatedObj = accountObj.self_delegated_bandwidth {
-                    delegateInfo.delagetedAmount = delegatedObj.cpu_weight.eosAmount.float()! + delegatedObj.net_weight.eosAmount.float()!
+                if let delegatedObj = accountObj.selfDelegatedBandwidth {
+                    delegateInfo.delagetedAmount = delegatedObj.cpuWeight.eosAmount.float()! + delegatedObj.netWeight.eosAmount.float()!
                 }
                 self.store.dispatch(SetDelegatedInfoAction(info: delegateInfo))
             }
@@ -120,7 +120,7 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
 
     func voteSelNodes() {
-        appCoodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, producers: selectedProducers(), completion: nil)
+        appCoodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: ConfirmType.voteNode.rawValue, producers: selectedProducers(), completion: nil)
     }
 
     func selectedProducers() -> [String] {

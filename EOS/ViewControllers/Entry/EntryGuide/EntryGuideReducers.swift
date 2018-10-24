@@ -9,11 +9,11 @@
 import UIKit
 import ReSwift
 
-func EntryGuideReducer(action: Action, state: EntryGuideState?) -> EntryGuideState {
-    return EntryGuideState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: EntryGuidePropertyReducer(state?.property, action: action))
+func gEntryGuideReducer(action: Action, state: EntryGuideState?) -> EntryGuideState {
+    return EntryGuideState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: gEntryGuidePropertyReducer(state?.property, action: action))
 }
 
-func EntryGuidePropertyReducer(_ state: EntryGuidePropertyState?, action: Action) -> EntryGuidePropertyState {
+func gEntryGuidePropertyReducer(_ state: EntryGuidePropertyState?, action: Action) -> EntryGuidePropertyState {
     let state = state ?? EntryGuidePropertyState()
 
     switch action {

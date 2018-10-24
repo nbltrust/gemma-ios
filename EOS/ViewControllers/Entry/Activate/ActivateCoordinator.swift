@@ -42,7 +42,7 @@ class ActivateCoordinator: NavCoordinator {
 extension ActivateCoordinator: ActivateCoordinatorProtocol {
     func pushToGetInviteCodeIntroductionVC() {
         let vc = BaseWebViewController()
-        vc.url = H5AddressConfiguration.GET_INVITECODE_URL
+        vc.url = H5AddressConfiguration.GetInviteCodeURL
         vc.title = R.string.localizable.invitationcode_introduce.key.localized()
         self.rootVC.pushViewController(vc, animated: true)
     }

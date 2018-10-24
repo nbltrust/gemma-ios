@@ -9,7 +9,7 @@
 import Foundation
 
 struct AccountModel: DBProtocol {
-    var account_name: String! = ""
+    var accountName: String! = ""
 
 //    var balance: String! = "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
 //    var cny: String! = ""
@@ -17,33 +17,33 @@ struct AccountModel: DBProtocol {
 
     //    var price: Decimal! = 0
 
-    var net_weight: String! = ""
-    var cpu_weight: String! = ""
-    var ram_bytes: Int64! = 0
+    var netWeight: String! = ""
+    var cpuWeight: String! = ""
+    var ramBytes: Int64! = 0
 
     var from: String! = ""
     var to: String! = ""
-    var delegate_net_weight: String! = ""
-    var delegate_cpu_weight: String! = ""
+    var delegateNetWeight: String! = ""
+    var delegateCpuWeight: String! = ""
 
-    var request_time: Date! = Date.init()
-    var net_amount: String! = ""
-    var cpu_amount: String! = ""
+    var requestTime: Date! = Date.init()
+    var netAmount: String! = ""
+    var cpuAmount: String! = ""
 
-    var net_used: Int64! = 0
-    var net_available: Int64! = 0
-    var net_max: Int64! = 0
+    var netUsed: Int64! = 0
+    var netAvailable: Int64! = 0
+    var netMax: Int64! = 0
 
-    var cpu_used: Int64! = 0
-    var cpu_available: Int64! = 0
-    var cpu_max: Int64! = 0
+    var cpuUsed: Int64! = 0
+    var cpuAvailable: Int64! = 0
+    var cpuMax: Int64! = 0
 
-    var ram_quota: Int64! = 0
-    var ram_usage: Int64! = 0
+    var ramQuota: Int64! = 0
+    var ramUsage: Int64! = 0
     var created: String! = ""
 
     var parent: String! = ""
-    var perm_name: String! = ""
+    var permName: String! = ""
 
     var threshold: Int64! = 0
 

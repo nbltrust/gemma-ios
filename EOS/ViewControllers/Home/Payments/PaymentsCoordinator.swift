@@ -30,7 +30,7 @@ class PaymentsCoordinator: NavCoordinator {
     lazy var creator = PaymentsPropertyActionCreate()
 
     var store = Store<PaymentsState>(
-        reducer: PaymentsReducer,
+        reducer: gPaymentsReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

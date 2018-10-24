@@ -9,11 +9,11 @@
 import UIKit
 import ReSwift
 
-func BackupPrivateKeyReducer(action: Action, state: BackupPrivateKeyState?) -> BackupPrivateKeyState {
-    return BackupPrivateKeyState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: BackupPrivateKeyPropertyReducer(state?.property, action: action), callback: state?.callback ?? BackupPrivateKeyCallbackState())
+func gBackupPrivateKeyReducer(action: Action, state: BackupPrivateKeyState?) -> BackupPrivateKeyState {
+    return BackupPrivateKeyState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: gBackupPrivateKeyPropertyReducer(state?.property, action: action), callback: state?.callback ?? BackupPrivateKeyCallbackState())
 }
 
-func BackupPrivateKeyPropertyReducer(_ state: BackupPrivateKeyPropertyState?, action: Action) -> BackupPrivateKeyPropertyState {
+func gBackupPrivateKeyPropertyReducer(_ state: BackupPrivateKeyPropertyState?, action: Action) -> BackupPrivateKeyPropertyState {
     let state = state ?? BackupPrivateKeyPropertyState()
 
     switch action {

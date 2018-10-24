@@ -13,7 +13,7 @@ import SwiftyJSON
 
 class SimpleHTTPService {
     static func requestETHPrice() -> Promise<[JSON]> {
-        var request = URLRequest(url: URL(string: NetworkConfiguration.ETH_PRICE)!)
+        var request = URLRequest(url: URL(string: NetworkConfiguration.ETHPrice)!)
         request.cachePolicy = .reloadIgnoringCacheData
         request.timeoutInterval = 5
 

@@ -45,7 +45,7 @@ class TransferConfirmPasswordCoordinator: NavCoordinator {
     lazy var creator = TransferConfirmPasswordPropertyActionCreate()
 
     var store = Store<TransferConfirmPasswordState>(
-        reducer: TransferConfirmPasswordReducer,
+        reducer: gTransferConfirmPasswordReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

@@ -35,7 +35,7 @@ class TransferConfirmCoordinator: NavCoordinator {
     lazy var creator = TransferConfirmPropertyActionCreate()
 
     var store = Store<TransferConfirmState>(
-        reducer: TransferConfirmReducer,
+        reducer: gTransferConfirmReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

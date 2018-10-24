@@ -9,11 +9,11 @@
 import UIKit
 import ReSwift
 
-func PaymentsReducer(action: Action, state: PaymentsState?) -> PaymentsState {
-    return PaymentsState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: PaymentsPropertyReducer(state?.property, action: action))
+func gPaymentsReducer(action: Action, state: PaymentsState?) -> PaymentsState {
+    return PaymentsState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: gPaymentsPropertyReducer(state?.property, action: action))
 }
 
-func PaymentsPropertyReducer(_ state: PaymentsPropertyState?, action: Action) -> PaymentsPropertyState {
+func gPaymentsPropertyReducer(_ state: PaymentsPropertyState?, action: Action) -> PaymentsPropertyState {
     var state = state ?? PaymentsPropertyState()
 
     switch action {

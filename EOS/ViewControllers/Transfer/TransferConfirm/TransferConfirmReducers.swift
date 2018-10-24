@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func TransferConfirmReducer(action: Action, state: TransferConfirmState?) -> TransferConfirmState {
+func gTransferConfirmReducer(action: Action, state: TransferConfirmState?) -> TransferConfirmState {
     let state = state ?? TransferConfirmState()
 
     switch action {

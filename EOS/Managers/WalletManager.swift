@@ -133,7 +133,7 @@ class WalletManager {
     }
 
     func fetchAccountNames(_ publicKey: String, completion: @escaping (Bool) -> Void) {
-        EOSIONetwork.request(target: .get_key_accounts(pubKey: publicKey), success: { (json) in
+        EOSIONetwork.request(target: .getKeyAccounts(pubKey: publicKey), success: { (json) in
             if let names = json["account_names"].arrayObject as? [String] {
                 self.account_names = names
                 Defaults[.accountNames] = names
@@ -331,7 +331,7 @@ class WalletManager {
     }
 
     func getAccoutInfo(_ accountName: String, completion: @escaping (_ success: Bool, _ created: String) -> Void) {
-        EOSIONetwork.request(target: .get_account(account: accountName, otherNode: true), success: {[weak self] (account) in
+        EOSIONetwork.request(target: .getAccount(account: accountName, otherNode: true), success: {[weak self] (account) in
             guard let `self` = self else { return }
             if let account = Account.deserialize(from: account.dictionaryObject) {
                 self.checkPubKey(account, completion: { (success) in
@@ -360,9 +360,9 @@ class WalletManager {
     }
 
     func getLibInfo(_ created: String, completion: @escaping (Bool) -> Void) {
-        EOSIONetwork.request(target: .get_info, success: { (info) in
+        EOSIONetwork.request(target: .getInfo, success: { (info) in
             let lib = info["last_irreversible_block_num"].stringValue
-            EOSIONetwork.request(target: .get_block(num: lib), success: { (block) in
+            EOSIONetwork.request(target: .getBlock(num: lib), success: { (block) in
                 let time = block["timestamp"].stringValue.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", region: Region.ISO)!
                 let createdTime = created.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", region: Region.ISO)!
                 if  time >= createdTime {
@@ -455,7 +455,7 @@ class WalletManager {
 
     func checkPubKey(_ account: Account, completion:@escaping ResultCallback) {
         for permission in account.permissions {
-            for authKey in permission.required_auth.keys {
+            for authKey in permission.requiredAuth.keys {
                 if authKey.key == self.currentPubKey {
                     completion(true)
                     return
@@ -506,25 +506,25 @@ class WalletManager {
             if data.count > 0 {
                 let dict = data[0]
                 var accountModel = AccountModel()
-                accountModel.account_name = dict["account_name"] as? String
-                accountModel.net_weight = dict["net_weight"] as? String
-                accountModel.cpu_weight = dict["cpu_weight"] as? String
-                accountModel.ram_bytes = dict["ram_bytes"] as? Int64
+                accountModel.accountName = dict["account_name"] as? String
+                accountModel.netWeight = dict["net_weight"] as? String
+                accountModel.cpuWeight = dict["cpu_weight"] as? String
+                accountModel.ramBytes = dict["ram_bytes"] as? Int64
                 accountModel.from = dict["from"] as? String
                 accountModel.to = dict["to"] as? String
-                accountModel.delegate_net_weight = dict["delegate_net_weight"] as? String
-                accountModel.delegate_cpu_weight = dict["delegate_cpu_weight"] as? String
-                accountModel.request_time = dict["request_time"] as? Date
-                accountModel.net_amount = dict["net_amount"] as? String
-                accountModel.cpu_amount = dict["cpu_amount"] as? String
-                accountModel.net_used = dict["net_used"] as? Int64
-                accountModel.net_available = dict["net_available"] as? Int64
-                accountModel.net_max = dict["net_max"] as? Int64
-                accountModel.cpu_used = dict["cpu_used"] as? Int64
-                accountModel.cpu_available = dict["cpu_available"] as? Int64
-                accountModel.cpu_max = dict["cpu_max"] as? Int64
-                accountModel.ram_quota = dict["ram_quota"] as? Int64
-                accountModel.ram_usage = dict["ram_usage"]  as? Int64
+                accountModel.delegateNetWeight = dict["delegate_net_weight"] as? String
+                accountModel.delegateCpuWeight = dict["delegate_cpu_weight"] as? String
+                accountModel.requestTime = dict["request_time"] as? Date
+                accountModel.netAmount = dict["net_amount"] as? String
+                accountModel.cpuAmount = dict["cpu_amount"] as? String
+                accountModel.netUsed = dict["net_used"] as? Int64
+                accountModel.netAvailable = dict["net_available"] as? Int64
+                accountModel.netMax = dict["net_max"] as? Int64
+                accountModel.cpuUsed = dict["cpu_used"] as? Int64
+                accountModel.cpuAvailable = dict["cpu_available"] as? Int64
+                accountModel.cpuMax = dict["cpu_max"] as? Int64
+                accountModel.ramQuota = dict["ram_quota"] as? Int64
+                accountModel.ramUsage = dict["ram_usage"]  as? Int64
                 accountModel.created = dict["created"] as? String
                 return accountModel
             }

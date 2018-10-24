@@ -40,9 +40,9 @@ class TransferConfirmView: UIView {
             if data.recever == "" {
                 receverView.isHidden = true
             } else {
-                receverView.content_text = "@" + data.recever
+                receverView.contentText = "@" + data.recever
             }
-            amountView.content_text = data.amount + " EOS"
+            amountView.contentText = data.amount + " EOS"
             if data.remark == "" {
                 data.remark = R.string.localizable.default_remark_pre.key.localized() + WalletManager.shared.getAccount() + R.string.localizable.default_remark_after.key.localized()
             }
@@ -52,19 +52,19 @@ class TransferConfirmView: UIView {
                 remarkView.content.numberOfLines = 0
             }
             if data.buttonTitle == R.string.localizable.confirm_sell.key.localized() {
-                amountView.content_text = data.amount + " KB"
-                amountView.name_text = R.string.localizable.amount.key.localized()
+                amountView.contentText = data.amount + " KB"
+                amountView.nameText = R.string.localizable.amount.key.localized()
             }
             if data.buttonTitle == R.string.localizable.confirm_sell.key.localized() || data.buttonTitle == R.string.localizable.confirm_buy.key.localized() {
-                remarkView.name_text = R.string.localizable.explain.key.localized()
+                remarkView.nameText = R.string.localizable.explain.key.localized()
             }
 
-            remarkView.content_text = data.remark
+            remarkView.contentText = data.remark
             if data.payAccount == "" {
                 bottomView.isHidden = true
             } else {
                 bottomView.isHidden = false
-                payAccountView.content_text = data.payAccount
+                payAccountView.contentText = data.payAccount
             }
             sureView.title = data.buttonTitle
             updateHeight()
@@ -79,15 +79,15 @@ class TransferConfirmView: UIView {
     }
 
     func setupUI() {
-        receverView.name_style = LineViewStyleNames.confirmName.rawValue
-        amountView.name_style = LineViewStyleNames.confirmName.rawValue
-        remarkView.name_style = LineViewStyleNames.confirmName.rawValue
-        payAccountView.name_style = LineViewStyleNames.confirmName.rawValue
+        receverView.nameStyle = LineViewStyleNames.confirmName.rawValue
+        amountView.nameStyle = LineViewStyleNames.confirmName.rawValue
+        remarkView.nameStyle = LineViewStyleNames.confirmName.rawValue
+        payAccountView.nameStyle = LineViewStyleNames.confirmName.rawValue
 
-        receverView.content_style = LineViewStyleNames.transferConfirm.rawValue
-        amountView.content_style = LineViewStyleNames.transferConfirm.rawValue
-        remarkView.content_style = LineViewStyleNames.normalName.rawValue
-        payAccountView.content_style = LineViewStyleNames.transferConfirm.rawValue
+        receverView.contentStyle = LineViewStyleNames.transferConfirm.rawValue
+        amountView.contentStyle = LineViewStyleNames.transferConfirm.rawValue
+        remarkView.contentStyle = LineViewStyleNames.normalName.rawValue
+        payAccountView.contentStyle = LineViewStyleNames.transferConfirm.rawValue
     }
 
     func setRichText() {
