@@ -113,7 +113,7 @@ class WalletManagerView: UIView {
 
         btn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.next?.sendEventWith(Event.btnClick.rawValue, userinfo: ["data": self.data ?? []])
+            self.next?.sendEventWith(Event.btnClick.rawValue, userinfo: ["indicator": self.data ?? []])
         }).disposed(by: disposeBag)
     }
 

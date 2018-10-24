@@ -40,13 +40,13 @@
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                         <integer key="value" value="0"/>
                                                                     </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_normal"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineNormal"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                         <integer key="value" value="0"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="mine_normal"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
@@ -70,13 +70,13 @@
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                         <integer key="value" value="0"/>
                                                                     </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_safesetting"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineSetting"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                         <integer key="value" value="1"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="mine_safesetting"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
@@ -106,12 +106,12 @@
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                                         <integer key="value" value="0"/>
                                                                                     </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_help"/>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineHelp"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                                         <integer key="value" value="2"/>
                                                                                     </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="mine_help"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
                                                                             <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ma-SW-gKs" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
@@ -124,12 +124,12 @@
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                                         <integer key="value" value="0"/>
                                                                                     </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_server"/>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineServers"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                                         <integer key="value" value="3"/>
                                                                                     </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="mine_server"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
                                                                             <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSn-DU-DlY" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
@@ -142,13 +142,13 @@
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                                         <integer key="value" value="0"/>
                                                                                     </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="mine_about"/>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="leftIconName" value="mineAbout"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
                                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                                         <integer key="value" value="4"/>
                                                                                     </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="mine_about"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
                                                                         </subviews>
