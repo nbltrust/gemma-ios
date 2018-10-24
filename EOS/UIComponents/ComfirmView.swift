@@ -14,16 +14,7 @@ typealias ComfirmSureHandle = () -> Void
 protocol ComfirmViewProtocol {
 
     func showComfirmView(inView view: UIView, withTitle title: String, content: String, cancelTitle: String, sureTitle: String, cancelCompeleted: ComfirmSureHandle, sureCompleted: ComfirmSureHandle)
-
-    func showComfirmView(inView view: UIView,
-                         withTitle title: String,
-                         content: String,
-                         cancelTitle: String,
-                         sureTitle: String,
-                         isShade: Bool,
-                         isTouchDismiss: Bool,
-                         cancelCompeleted: ComfirmSureHandle,
-                         sureCompleted: ComfirmSureHandle)
+   
 }
 
 extension ComfirmViewProtocol where Self: UIViewController {
@@ -35,27 +26,7 @@ extension ComfirmViewProtocol where Self: UIViewController {
                          sureTitle: String,
                          cancelCompeleted: ComfirmSureHandle,
                          sureCompleted: ComfirmSureHandle) {
-        showComfirmView(inView: view,
-                        withTitle: title,
-                        content: content,
-                        cancelTitle: cancelTitle,
-                        sureTitle: sureTitle,
-                        isShade: true,
-                        isTouchDismiss: true,
-                        cancelCompeleted: cancelCompeleted,
-                        sureCompleted: cancelCompeleted)
-    }
-
-    func showComfirmView(inView view: UIView,
-                         withTitle title: String,
-                         content: String,
-                         cancelTitle: String,
-                         sureTitle: String,
-                         isShade: Bool,
-                         isTouchDismiss: Bool,
-                         cancelCompeleted: ComfirmSureHandle,
-                         sureCompleted: ComfirmSureHandle) {
-
+       
     }
 }
 

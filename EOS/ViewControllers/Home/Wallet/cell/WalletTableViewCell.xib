@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,8 +24,8 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="image_name" value="icArrow"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="content_line_number">
+                                    <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="icArrow"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="contentLineNumber">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
@@ -61,13 +57,11 @@
                     <constraint firstAttribute="bottom" secondItem="fuX-3I-MXz" secondAttribute="bottom" constant="6" id="szR-RI-Usd"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" name="white" red="0.976" green="0.976" blue="0.976" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="walletCellView" destination="sHI-De-ebW" id="XhM-yj-U8F"/>
             </connections>
             <point key="canvasLocation" x="-524" y="-153.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-    </resources>
 </document>
