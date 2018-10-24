@@ -31,7 +31,7 @@ class PayToActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: PayToActivateReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: PayToActivateState {
@@ -162,7 +162,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.buttonTitle = R.string.localizable.confirm.key.localized()
                 context.imageName = R.image.icFail.name
                 context.needCancel = false
-                app_coodinator.showGemmaAlert(context)
+                appCoodinator.showGemmaAlert(context)
             } else if payState == "NOTPAY", state == "CLOSED" {
                 var context = ScreenShotAlertContext()
                 context.desc = R.string.localizable.pay_timeout_tips.key.localized()
@@ -170,7 +170,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.buttonTitle = R.string.localizable.confirm.key.localized()
                 context.imageName = R.image.icTime.name
                 context.needCancel = false
-                app_coodinator.showGemmaAlert(context)
+                appCoodinator.showGemmaAlert(context)
             } else if payState == "SUCCESS", state == "DONE" {
                 self.createWallet(self.state.orderId, completion: { (_) in
 
@@ -187,35 +187,35 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                         payVC.NextClick([:])
                     }
                 }
-                app_coodinator.showGemmaAlert(context)
+                appCoodinator.showGemmaAlert(context)
             } else if payState == "REFUND" {
                 var context = ScreenShotAlertContext()
                 context.title = R.string.localizable.refund_title.key.localized()
                 context.buttonTitle = R.string.localizable.confirm.key.localized()
                 context.imageName = R.image.icFail.name
                 context.needCancel = false
-                app_coodinator.showGemmaAlert(context)
+                appCoodinator.showGemmaAlert(context)
             } else if payState == "CLOSED" {
                 var context = ScreenShotAlertContext()
                 context.title = R.string.localizable.closed.key.localized()
                 context.buttonTitle = R.string.localizable.confirm.key.localized()
                 context.imageName = R.image.icFail.name
                 context.needCancel = false
-                app_coodinator.showGemmaAlert(context)
+                appCoodinator.showGemmaAlert(context)
             } else if payState == "USERPAYING" {
                 var context = ScreenShotAlertContext()
                 context.title = R.string.localizable.userpaying.key.localized()
                 context.buttonTitle = R.string.localizable.confirm.key.localized()
                 context.imageName = R.image.icFail.name
                 context.needCancel = false
-                app_coodinator.showGemmaAlert(context)
+                appCoodinator.showGemmaAlert(context)
             } else if payState == "PAYERROR" {
                 var context = ScreenShotAlertContext()
                 context.title = R.string.localizable.payerror.key.localized()
                 context.buttonTitle = R.string.localizable.confirm.key.localized()
                 context.imageName = R.image.icFail.name
                 context.needCancel = false
-                app_coodinator.showGemmaAlert(context)
+                appCoodinator.showGemmaAlert(context)
             }
         }, error: { (code) in
             self.rootVC.topViewController?.endLoading()

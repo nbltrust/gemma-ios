@@ -86,8 +86,8 @@ class BLTCardSearchViewController: BaseViewController {
         return LineView.LineViewModel.init(name: device.name,
                                            content: "",
                                            image_name: R.image.icArrow.name,
-                                           name_style: LineViewStyleNames.normal_name,
-                                           content_style: LineViewStyleNames.normal_content,
+                                           name_style: LineViewStyleNames.normalName,
+                                           content_style: LineViewStyleNames.normalContent,
                                            isBadge: false,
                                            content_line_number: 0,
                                            isShowLineView: false)

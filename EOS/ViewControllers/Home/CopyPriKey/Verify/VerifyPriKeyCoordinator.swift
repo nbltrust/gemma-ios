@@ -25,7 +25,7 @@ class VerifyPriKeyCoordinator: NavCoordinator {
     var store = Store(
         reducer: VerifyPriKeyReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: VerifyPriKeyState {

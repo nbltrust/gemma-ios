@@ -28,7 +28,7 @@ class WalletDetailCoordinator: NavCoordinator {
     var store = Store(
         reducer: WalletDetailReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: WalletDetailState {

@@ -29,7 +29,7 @@ class LeadInCoordinator: NavCoordinator {
     var store = Store<LeadInState>(
         reducer: LeadInReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

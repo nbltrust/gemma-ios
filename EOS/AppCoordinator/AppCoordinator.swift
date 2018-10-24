@@ -15,9 +15,9 @@ import Localize_Swift
 
 class AppCoordinator {
     var store = Store<AppState> (
-        reducer: AppReducer,
+        reducer: gAppReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: AppState {
@@ -192,36 +192,44 @@ extension AppCoordinator {
         let coor = NavCoordinator(rootVC: nav)
         coor.pushVC(coordinator, animated: false, context: context)
 
-        var topside = curDisplayingCoordinator().rootVC!
+        var topside = curDisplayingCoordinator().rootVC
 
-        while topside.presentedViewController != nil {
-            topside = topside.presentedViewController as! BaseNavigationController
+        while topside?.presentedViewController != nil {
+            topside = topside?.presentedViewController as? BaseNavigationController
         }
 
         if presentSetup == nil {
             SwifterSwift.delay(milliseconds: 100) {
-                topside.present(nav, animated: animated, completion: nil)
+                topside?.present(nav, animated: animated, completion: nil)
             }
-        } else {
-            presentSetup?(topside, nav)
+        } else if let top = topside {
+            presentSetup?(top, nav)
         }
     }
 
-    func presentVCNoNav<T: NavCoordinator>(_ coordinator: T.Type, animated: Bool = true, context: RouteContext? = nil,
-                                     presentSetup:((_ top: BaseNavigationController, _ target: BaseViewController) -> Void)?) {
-        var topside = curDisplayingCoordinator().rootVC!
-        let vc = coordinator.start(topside, context: context)
+    func presentVCNoNav<T: NavCoordinator>(_ coordinator: T.Type,
+                                           animated: Bool = true,
+                                           context: RouteContext? = nil,
+                                           presentSetup:((_ top: BaseNavigationController,
+        _ target: BaseViewController) -> Void)?) {
+        guard var topside = curDisplayingCoordinator().rootVC else {
+            return
+        }
+        
+        let viewController = coordinator.start(topside, context: context)
 
         while topside.presentedViewController != nil {
-            topside = topside.presentedViewController as! BaseNavigationController
+            if let presented = topside.presentedViewController as? BaseNavigationController {
+                topside = presented
+            }
         }
-
+        
         if presentSetup == nil {
             SwifterSwift.delay(milliseconds: 100) {
-                topside.present(vc, animated: animated, completion: nil)
+                topside.present(viewController, animated: animated, completion: nil)
             }
         } else {
-            presentSetup?(topside, vc)
+            presentSetup?(topside, viewController)
         }
     }
 }

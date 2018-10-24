@@ -30,7 +30,7 @@ class InvitationCodeToActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: InvitationCodeToActivateReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: InvitationCodeToActivateState {

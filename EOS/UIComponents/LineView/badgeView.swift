@@ -71,7 +71,9 @@ class badgeView: UIView {
         let nibString = String(describing: type(of: self))
         let nib = UINib(nibName: nibString, bundle: bundle)
 
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
+
+
         addSubview(view)
 
         view.frame = self.bounds

@@ -12,7 +12,7 @@ import Foundation
 struct URLNavigationMap {
     static func initialize(navigator: NavigatorType) {
         navigator.handle("gemma://transfer") { (_, values, context) -> Bool in
-            app_coodinator.pushVC(TransferCoordinator.self, animated: true, context: TransferContext.deserialize(from: values))
+            appCoodinator.pushVC(TransferCoordinator.self, animated: true, context: TransferContext.deserialize(from: values))
             return true
         }
 

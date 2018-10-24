@@ -254,9 +254,9 @@ class WalletManager {
         try? keychain.remove("\(publicKey)-cypher")
 
         if wallets.count == 0 {
-            app_coodinator.curDisplayingCoordinator().rootVC.popToRootViewController(animated: true)
+            appCoodinator.curDisplayingCoordinator().rootVC.popToRootViewController(animated: true)
         } else {
-            app_coodinator.curDisplayingCoordinator().rootVC.popToRootViewController(animated: true)
+            appCoodinator.curDisplayingCoordinator().rootVC.popToRootViewController(animated: true)
         }
     }
 

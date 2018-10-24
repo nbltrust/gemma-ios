@@ -25,9 +25,9 @@ class AccountListCoordinator: NavCoordinator {
     lazy var creator = AccountListPropertyActionCreate()
 
     var store = Store<AccountListState>(
-        reducer: AccountListReducer,
+        reducer: gAccountListReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {

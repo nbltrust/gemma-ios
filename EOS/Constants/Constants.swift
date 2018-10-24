@@ -19,7 +19,7 @@ typealias ObjectOptionalCallback = (Any?) -> Void
 typealias ResultCallback = (Bool) -> Void
 typealias HandlerResult = (Bool, String)
 
-var app_coodinator: AppCoordinator {
+var appCoodinator: AppCoordinator {
     return AppConfiguration.shared.appCoordinator
 }
 

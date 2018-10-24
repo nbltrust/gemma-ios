@@ -36,7 +36,7 @@ class TransferCoordinator: NavCoordinator {
     var store = Store<TransferState>(
         reducer: TransferReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {

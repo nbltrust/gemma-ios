@@ -24,7 +24,7 @@ class BackupMnemonicWordCoordinator: NavCoordinator {
     var store = Store(
         reducer: BackupMnemonicWordReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: BackupMnemonicWordState {

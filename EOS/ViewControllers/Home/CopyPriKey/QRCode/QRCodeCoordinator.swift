@@ -26,7 +26,7 @@ class QRCodeCoordinator: NavCoordinator {
     var store = Store<QRCodeState>(
         reducer: QRCodeReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

@@ -23,7 +23,7 @@ class FriendToActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: FriendToActivateReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: FriendToActivateState {

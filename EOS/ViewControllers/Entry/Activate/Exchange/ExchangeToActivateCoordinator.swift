@@ -23,7 +23,7 @@ class ExchangeToActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: ExchangeToActivateReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: ExchangeToActivateState {

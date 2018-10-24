@@ -39,7 +39,7 @@ class GestureLockSetCoordinator: NavCoordinator {
     var store = Store<GestureLockSetState>(
         reducer: GestureLockSetReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

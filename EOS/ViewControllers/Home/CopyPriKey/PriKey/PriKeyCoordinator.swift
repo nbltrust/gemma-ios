@@ -24,9 +24,9 @@ class PriKeyCoordinator: NavCoordinator {
     lazy var creator = PriKeyPropertyActionCreate()
 
     var store = Store<PriKeyState>(
-        reducer: PriKeyReducer,
+        reducer: gPriKeyReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

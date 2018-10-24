@@ -30,7 +30,7 @@ class NormalCoordinator: NavCoordinator {
     var store = Store<NormalState>(
         reducer: NormalReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

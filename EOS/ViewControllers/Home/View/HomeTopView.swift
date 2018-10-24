@@ -14,7 +14,7 @@ class HomeTopView: UIView {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var nameRightImgView: UIImageView!
 
-    enum event: String {
+    enum Event: String {
         case accountlist
     }
 
@@ -39,7 +39,7 @@ class HomeTopView: UIView {
     func setupEvent() {
         nameRightImgView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.nameRightImgView.next?.sendEventWith(event.accountlist.rawValue, userinfo: [:])
+            self.nameRightImgView.next?.sendEventWith(Event.accountlist.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
 
     }
@@ -81,7 +81,9 @@ class HomeTopView: UIView {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
+            return
+        }
 
         insertSubview(view, at: 0)
         view.frame = self.bounds

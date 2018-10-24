@@ -63,8 +63,8 @@ class FingerView: EOSBaseView {
         return LineView.LineViewModel.init(name: name,
                                            content: "",
                                            image_name: R.image.icArrow.name,
-                                           name_style: LineViewStyleNames.normal_name,
-                                           content_style: LineViewStyleNames.normal_content,
+                                           name_style: LineViewStyleNames.normalName,
+                                           content_style: LineViewStyleNames.normalContent,
                                            isBadge: false,
                                            content_line_number: 1,
                                            isShowLineView: false)
