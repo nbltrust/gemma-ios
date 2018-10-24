@@ -14,6 +14,8 @@ protocol FingerCoordinatorProtocol {
     func pushToManagerFingerVC(model: WalletManagerModel, index: Int)
 
     func pushToENtroFingerVC()
+    
+    func pushToUpdatePinVC()
 }
 
 protocol FingerStateManagerProtocol {
@@ -22,6 +24,8 @@ protocol FingerStateManagerProtocol {
     func switchPageState(_ state: PageState)
 
     func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication)
+    
+    func changePin()
 }
 
 class FingerCoordinator: NavCoordinator {
@@ -66,6 +70,14 @@ extension FingerCoordinator: FingerCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
+    
+    func pushToUpdatePinVC() {
+        if let vc = R.storyboard.leadIn.setWalletViewController() {
+            vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
+            vc.settingType = .updatePin
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension FingerCoordinator: FingerStateManagerProtocol {
@@ -77,5 +89,12 @@ extension FingerCoordinator: FingerStateManagerProtocol {
 
     func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance()?.getFPList(success, failed: failed)
+    }
+    
+    func changePin() {
+        confirmPin { [weak self] in
+            guard let `self` = self else { return }
+            self.pushToUpdatePinVC()
+        }
     }
 }

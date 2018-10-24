@@ -11,6 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol BLTCardConfirmPinCoordinatorProtocol {
+    func dismissVC(_ complication: @escaping () -> Void)
 }
 
 protocol BLTCardConfirmPinStateManagerProtocol {
@@ -39,7 +40,9 @@ class BLTCardConfirmPinCoordinator: BLTCardRootCoordinator {
 }
 
 extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinCoordinatorProtocol {
-
+    func dismissVC(_ complication: @escaping () -> Void) {
+        self.rootVC.dismiss(animated: true, completion: complication)
+    }
 }
 
 extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinStateManagerProtocol {

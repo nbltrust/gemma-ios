@@ -65,9 +65,11 @@ extension BLTCardConfirmPinViewController {
     @objc func sureTransfer(_ data: [String: Any]) {
         guard let context = context else { return }
         self.coordinator?.confirmPin(self.confirmView.textField.text ?? "", complication: {
-            if (context.confirmSuccessed != nil) {
-                context.confirmSuccessed!()
-            }
+            self.coordinator?.dismissVC({
+                if (context.confirmSuccessed != nil) {
+                    context.confirmSuccessed!()
+                }
+            })
         })
         
     }

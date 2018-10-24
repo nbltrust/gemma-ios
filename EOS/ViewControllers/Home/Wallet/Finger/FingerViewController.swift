@@ -102,7 +102,7 @@ class FingerViewController: BaseViewController {
 
 extension FingerViewController {
     @objc func ChangePwdDidClicked(_ data: [String: Any]) {
-
+        self.coordinator?.changePin()
     }
     @objc func ChangeFingerNameDidClicked(_ data: [String: Any]) {
         let index: Int = data["index"] as! Int

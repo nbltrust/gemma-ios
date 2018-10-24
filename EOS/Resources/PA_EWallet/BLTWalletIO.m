@@ -722,19 +722,19 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)updatePin:(NSString *)oldPin new:(NSString *)newPin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication {
+- (void)updatePin:(NSString *)newPin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication {
     if (!savedDevH) {
         return;
     }
     
-    if (!newPin || !oldPin) {
+    if (!newPin || !pin) {
         return;
     }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
-        int iRtn = PAEW_ChangePIN_Input(ppPAEWContext, devIdx, [oldPin UTF8String], [newPin UTF8String]);
+        int iRtn = PAEW_ChangePIN_Input(ppPAEWContext, devIdx, [pin UTF8String], [newPin UTF8String]);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (iRtn == PAEW_RET_SUCCESS) {
                 successComlication();
