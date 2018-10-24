@@ -20,9 +20,9 @@ protocol ScreenShotAlertStateManagerProtocol {
 class ScreenShotAlertCoordinator: NavCoordinator {
 
     var store = Store<ScreenShotAlertState>(
-        reducer: ScreenShotAlertReducer,
+        reducer: gScreenShotAlertReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {

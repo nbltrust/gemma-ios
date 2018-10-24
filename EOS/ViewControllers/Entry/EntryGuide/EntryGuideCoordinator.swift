@@ -30,7 +30,7 @@ class EntryGuideCoordinator: NavCoordinator {
     var store = Store<EntryGuideState>(
         reducer: EntryGuideReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
@@ -48,7 +48,7 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
         let coordinator = EntryCoordinator(rootVC: self.rootVC)
         coordinator.state.callback.endCallback.accept {
             if (UIApplication.shared.delegate as? AppDelegate) != nil {
-                app_coodinator.endEntry()
+                appCoodinator.endEntry()
             }
         }
         createVC.coordinator = coordinator
@@ -60,7 +60,7 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
         let coordinator = LeadInCoordinator(rootVC: self.rootVC)
         coordinator.state.callback.fadeCallback.accept {
             if (UIApplication.shared.delegate as? AppDelegate) != nil {
-                app_coodinator.endEntry()
+                appCoodinator.endEntry()
             }
         }
         leadInVC.coordinator = coordinator

@@ -85,15 +85,25 @@ class VoteProducerActionModel: ActionModel {
 
 func getAbi(_ action: String, actionModel: ActionModel) -> String! {
     var abi: String = ""
+    
     if action == EOSAction.transfer.rawValue || action == EOSAction.bltTransfer.rawValue {
         if let actionModel = actionModel as? TransferActionModel {
-            if let abiStr = EOSIO.getAbiJsonString(EOSIOContract.TOKEN_CODE, action: EOSAction.transfer.rawValue, from: actionModel.fromAccount, to: actionModel.toAccount, quantity: actionModel.amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: actionModel.remark) {
+            if let abiStr = EOSIO.getAbiJsonString(EOSIOContract.TOKEN_CODE,
+                                                   action: EOSAction.transfer.rawValue,
+                                                   from: actionModel.fromAccount,
+                                                   to: actionModel.toAccount,
+                                                   quantity: actionModel.amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL,
+                                                   memo: actionModel.remark) {
                 abi = abiStr
             }
         }
     } else if action == EOSAction.buyram.rawValue {
         if let actionModel = actionModel as? BuyRamActionModel {
-            if let abiStr = EOSIO.getBuyRamAbi(EOSIOContract.EOSIO_CODE, action: action, payer: WalletManager.shared.getAccount(), receiver: WalletManager.shared.getAccount(), quant: actionModel.amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL) {
+            if let abiStr = EOSIO.getBuyRamAbi(EOSIOContract.EOSIO_CODE,
+                                               action: action,
+                                               payer: WalletManager.shared.getAccount(),
+                                               receiver: WalletManager.shared.getAccount(),
+                                               quant: actionModel.amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL) {
                 abi = abiStr
             }
         }
@@ -104,14 +114,16 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
             }
         }
     } else if action == EOSAction.voteproducer.rawValue {
-        let voteModel = actionModel as! VoteProducerActionModel
+        guard let voteModel = actionModel as? VoteProducerActionModel else {
+            return ""
+        }
         let voter: [String: Any] = ["voter": WalletManager.shared.getAccount(), "proxy": "", "producers": voteModel.producers]
         let dic: [String: Any] = ["code": EOSIOContract.EOSIO_CODE, "action": action, "args": voter]
         abi = dic.jsonString()!
     } else {
         if action == EOSAction.delegatebw.rawValue || action == EOSAction.undelegatebw.rawValue {
             if (UIApplication.shared.delegate as? AppDelegate) != nil {
-                if let vc = app_coodinator.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
+                if let vc = appCoodinator.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
                     var cpuValue = ""
                     var netValue = ""
 
@@ -129,7 +141,12 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
                             netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
 
-                        if let abiStr = EOSIO.getDelegateAbi(EOSIOContract.EOSIO_CODE, action: action, from: actionModel.fromAccount, receiver: actionModel.toAccount, stake_net_quantity: netValue, stake_cpu_quantity: cpuValue) {
+                        if let abiStr = EOSIO.getDelegateAbi(EOSIOContract.EOSIO_CODE,
+                                                             action: action,
+                                                             from: actionModel.fromAccount,
+                                                             receiver: actionModel.toAccount,
+                                                             stake_net_quantity: netValue,
+                                                             stake_cpu_quantity: cpuValue) {
                             abi = abiStr
                         }
                     } else if action == EOSAction.undelegatebw.rawValue {
@@ -146,7 +163,12 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
                             netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
 
-                        if let abiStr = EOSIO.getUnDelegateAbi(EOSIOContract.EOSIO_CODE, action: action, from: actionModel.fromAccount, receiver: actionModel.toAccount, unstake_net_quantity: netValue, unstake_cpu_quantity: cpuValue) {
+                        if let abiStr = EOSIO.getUnDelegateAbi(EOSIOContract.EOSIO_CODE,
+                                                               action: action,
+                                                               from: actionModel.fromAccount,
+                                                               receiver: actionModel.toAccount,
+                                                               unstake_net_quantity: netValue,
+                                                               unstake_cpu_quantity: cpuValue) {
                             abi = abiStr
                         }
                     }
@@ -169,9 +191,9 @@ func transaction(_ action: String, actionModel: ActionModel, callback:@escaping 
 
     EOSIONetwork.request(target: .get_info, success: { (json) in
 
-        EOSIONetwork.request(target: .abi_json_to_bin(json: abi), success: { (bin_json) in
+        EOSIONetwork.request(target: .abi_json_to_bin(json: abi), success: { (binJson) in
             var transaction = ""
-            let abiStr = bin_json["binargs"].stringValue
+            let abiStr = binJson["binargs"].stringValue
             var privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: actionModel.password)
             if action == EOSAction.transfer.rawValue {
                 transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
@@ -209,11 +231,29 @@ func transaction(_ action: String, actionModel: ActionModel, callback:@escaping 
             } else if action == EOSAction.undelegatebw.rawValue {
                 transaction = EOSIO.getUnDelegateTransaction(privakey, code: EOSIOContract.EOSIO_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
             } else if action == EOSAction.buyram.rawValue {
-                transaction = EOSIO.getBuyRamTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, payer_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
+                transaction = EOSIO.getBuyRamTransaction(privakey,
+                                                         contract: EOSIOContract.EOSIO_CODE,
+                                                         payer_str: actionModel.fromAccount,
+                                                         infostr: json.rawString(),
+                                                         abistr: abiStr,
+                                                         max_cpu_usage_ms: 0,
+                                                         max_net_usage_words: 0)
             } else if action == EOSAction.sellram.rawValue {
-                transaction = EOSIO.getSellRamTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, account_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
+                transaction = EOSIO.getSellRamTransaction(privakey,
+                                                          contract: EOSIOContract.EOSIO_CODE,
+                                                          account_str: actionModel.fromAccount,
+                                                          infostr: json.rawString(),
+                                                          abistr: abiStr,
+                                                          max_cpu_usage_ms: 0,
+                                                          max_net_usage_words: 0)
             } else if action == EOSAction.voteproducer.rawValue {
-                transaction = EOSIO.getVoteTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, vote_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
+                transaction = EOSIO.getVoteTransaction(privakey,
+                                                       contract: EOSIOContract.EOSIO_CODE,
+                                                       vote_str: actionModel.fromAccount,
+                                                       infostr: json.rawString(),
+                                                       abistr: abiStr,
+                                                       max_cpu_usage_ms: 0,
+                                                       max_net_usage_words: 0)
             }
             pushTransaction(transaction, actionModel: actionModel, callback: callback)
         }, error: { (_) in
@@ -290,11 +330,11 @@ func getRamPrice(_ completion:@escaping ObjectOptionalCallback) {
         let base = row["base"]
         let quote = row["quote"]
 
-        if let base_quantity = base["balance"].stringValue.components(separatedBy: " ").first,
-            let quote_quantity = quote["balance"].stringValue.components(separatedBy: " ").first,
-            let quote_weight = quote["weight"].string {
-            let unit = Decimal(string: quote_quantity)! / Decimal(string: base_quantity)!
-            let price = unit * Decimal(string: quote_weight)!
+        if let baseQuantity = base["balance"].stringValue.components(separatedBy: " ").first,
+            let quoteQuantity = quote["balance"].stringValue.components(separatedBy: " ").first,
+            let quoteWeight = quote["weight"].string {
+            let unit = Decimal(string: quoteQuantity)! / Decimal(string: baseQuantity)!
+            let price = unit * Decimal(string: quoteWeight)!
             Defaults.set(price.stringValue, forKey: NetworkConfiguration.RAMPRICE_DEFAULT_SYMBOL)
             completion(price)
         }
@@ -459,7 +499,7 @@ func saveUnitToLocal(rmbPrices: [JSON]) {
 func dataToDictionary(data: Data) ->Dictionary<String, Any>? {
     do {
         let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-        let dic = json as! Dictionary<String, Any>
+        let dic = json as? Dictionary<String, Any>
         return dic
     } catch _ {
         print("失败")

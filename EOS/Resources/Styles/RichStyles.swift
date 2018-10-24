@@ -19,11 +19,11 @@ enum StyleNames: String {
 }
 
 enum LineViewStyleNames: String {
-    case normal_name
-    case select_name
-    case normal_content
-    case transfer_confirm
-    case confirm_name
+    case normalName
+    case selectName
+    case normalContent
+    case transferConfirm
+    case confirmName
 }
 
 extension Style {
@@ -118,31 +118,31 @@ class RichStyle {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
             $0.color = UIColor.darkSlateBlue
         }
-        Styles.register(LineViewStyleNames.normal_name.rawValue, style: name_style)
+        Styles.register(LineViewStyleNames.normalName.rawValue, style: name_style)
 
         let select_name_style = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
             $0.color = UIColor.whiteTwo
         }
-        Styles.register(LineViewStyleNames.select_name.rawValue, style: select_name_style)
+        Styles.register(LineViewStyleNames.selectName.rawValue, style: select_name_style)
 
         let content_style = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
             $0.color = UIColor.cloudyBlue
         }
-        Styles.register(LineViewStyleNames.normal_content.rawValue, style: content_style)
+        Styles.register(LineViewStyleNames.normalContent.rawValue, style: content_style)
 
         let confirm_style = Style {
             $0.font = SystemFonts.PingFangSC_Semibold.font(size: 16.0)
             $0.color = UIColor.darkSlateBlue
         }
-        Styles.register(LineViewStyleNames.transfer_confirm.rawValue, style: confirm_style)
+        Styles.register(LineViewStyleNames.transferConfirm.rawValue, style: confirm_style)
 
         let confirm_name_style = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
             $0.color = UIColor.steel
         }
-        Styles.register(LineViewStyleNames.confirm_name.rawValue, style: confirm_name_style)
+        Styles.register(LineViewStyleNames.confirmName.rawValue, style: confirm_name_style)
     }
 
     func initActivateLabelStyle() {

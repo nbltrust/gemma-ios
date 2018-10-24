@@ -36,7 +36,7 @@ class BuyRamCoordinator: NavCoordinator {
     var store = Store<BuyRamState>(
         reducer: BuyRamReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {

@@ -23,7 +23,7 @@ class BLTCardPowerOnCoordinator: NavCoordinator {
     var store = Store(
         reducer: BLTCardPowerOnReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: BLTCardPowerOnState {

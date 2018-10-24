@@ -33,7 +33,7 @@ class VerifyMnemonicWordCoordinator: NavCoordinator {
     var store = Store(
         reducer: VerifyMnemonicWordReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: VerifyMnemonicWordState {

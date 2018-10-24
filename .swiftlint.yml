@@ -2,3 +2,8 @@ included:
   - EOS
 excluded:
   - EOS/Vendor
+  - EOS/R.generated.swift
+  - EOS/UIComponents/LGButton
+  - EOS/UIComponents/AttributedLabelView
+  - EOS/UIComponents/Switch
+

@@ -9,11 +9,11 @@
 import Foundation
 import ReSwift
 
-func AppReducer(action: Action, state: AppState?) -> AppState {
-    return AppState(property: AppPropertyReducer(state?.property, action: action))
+func gAppReducer(action: Action, state: AppState?) -> AppState {
+    return AppState(property: gAppPropertyReducer(state?.property, action: action))
 }
 
-func AppPropertyReducer(_ state: AppPropertyState?, action: Action) -> AppPropertyState {
+func gAppPropertyReducer(_ state: AppPropertyState?, action: Action) -> AppPropertyState {
     let state = state ?? AppPropertyState()
 
     switch action {
@@ -60,7 +60,7 @@ func pageReducer(_ state: Int?, action: Action) -> Int {
 
     switch action {
     case _ as NextPage:
-        state = state + 1
+        state += 1
     case _ as ResetPage:
         state = 1
     default:
@@ -83,7 +83,7 @@ public class BlockSubscriber<S>: StoreSubscriber {
     }
 }
 
-let TrackingMiddleware: Middleware<Any> = { dispatch, getState in
+let trackingMiddleware: Middleware<Any> = { dispatch, getState in
     return { next in
         return { action in
             if let action = action as? PageStateAction, let state = getState() as? BaseState {

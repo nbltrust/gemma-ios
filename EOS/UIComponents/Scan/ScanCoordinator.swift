@@ -26,7 +26,7 @@ class ScanCoordinator: NavCoordinator {
     var store = Store<ScanState>(
         reducer: ScanReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {

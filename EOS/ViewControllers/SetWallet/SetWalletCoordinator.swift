@@ -47,7 +47,7 @@ class SetWalletCoordinator: NavCoordinator {
     var store = Store<SetWalletState>(
         reducer: SetWalletReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override func register() {

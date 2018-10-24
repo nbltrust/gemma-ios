@@ -28,7 +28,7 @@ class BLTCardSetFingerPrinterCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardSetFingerPrinterReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: BLTCardSetFingerPrinterState {

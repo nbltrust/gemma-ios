@@ -26,7 +26,7 @@ class BLTCardConfirmFingerPrinterCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardConfirmFingerPrinterReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: BLTCardConfirmFingerPrinterState {
@@ -44,7 +44,7 @@ class BLTCardConfirmFingerPrinterCoordinator: BLTCardRootCoordinator {
 
 extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterCoordinatorProtocol {
     func finishTransfer() {
-        if let transferCoor = app_coodinator.transferCoordinator, let transferVC = transferCoor.rootVC.topViewController as? TransferViewController {
+        if let transferCoor = appCoodinator.transferCoordinator, let transferVC = transferCoor.rootVC.topViewController as? TransferViewController {
             self.rootVC.dismiss(animated: true) {
                 transferVC.resetData()
             }

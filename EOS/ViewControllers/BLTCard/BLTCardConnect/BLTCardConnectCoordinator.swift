@@ -26,7 +26,7 @@ class BLTCardConnectCoordinator: NavCoordinator {
     var store = Store(
         reducer: BLTCardConnectReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: BLTCardConnectState {

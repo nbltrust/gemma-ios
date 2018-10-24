@@ -37,7 +37,7 @@ class TransferConfirmCoordinator: NavCoordinator {
     var store = Store<TransferConfirmState>(
         reducer: TransferConfirmReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {

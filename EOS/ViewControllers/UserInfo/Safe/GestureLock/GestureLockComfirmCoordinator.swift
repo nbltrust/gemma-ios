@@ -38,7 +38,7 @@ class GestureLockComfirmCoordinator: NavCoordinator {
     var store = Store<GestureLockComfirmState>(
         reducer: GestureLockComfirmReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

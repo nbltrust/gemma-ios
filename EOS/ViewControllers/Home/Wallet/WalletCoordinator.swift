@@ -40,7 +40,7 @@ class WalletCoordinator: NavCoordinator {
     var store = Store<WalletState>(
         reducer: WalletReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 
@@ -110,8 +110,8 @@ extension WalletCoordinator: WalletStateManagerProtocol {
             let model = LineView.LineViewModel.init(name: content.name,
                                         content: "",
                                         image_name: R.image.icTabMore.name,
-                                        name_style: LineViewStyleNames.normal_name,
-                                        content_style: LineViewStyleNames.normal_content,
+                                        name_style: LineViewStyleNames.normalName,
+                                        content_style: LineViewStyleNames.normalContent,
                                         isBadge: false,
                                         content_line_number: 1,
                                         isShowLineView: false)
@@ -124,24 +124,24 @@ extension WalletCoordinator: WalletStateManagerProtocol {
         return [LineView.LineViewModel.init(name: R.string.localizable.import_wallet.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
-                                            name_style: LineViewStyleNames.normal_name,
-                                            content_style: LineViewStyleNames.normal_content,
+                                            name_style: LineViewStyleNames.normalName,
+                                            content_style: LineViewStyleNames.normalContent,
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
                 LineView.LineViewModel.init(name: R.string.localizable.create_wallet.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
-                                            name_style: LineViewStyleNames.normal_name,
-                                            content_style: LineViewStyleNames.normal_content,
+                                            name_style: LineViewStyleNames.normalName,
+                                            content_style: LineViewStyleNames.normalContent,
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false),
                 LineView.LineViewModel.init(name: R.string.localizable.pair_wookong.key.localized(),
                                             content: "",
                                             image_name: R.image.icArrow.name,
-                                            name_style: LineViewStyleNames.normal_name,
-                                            content_style: LineViewStyleNames.normal_content,
+                                            name_style: LineViewStyleNames.normalName,
+                                            content_style: LineViewStyleNames.normalContent,
                                             isBadge: false,
                                             content_line_number: 1,
                                             isShowLineView: false)

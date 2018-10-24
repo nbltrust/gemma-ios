@@ -33,7 +33,7 @@ class LeadInKeyCoordinator: NavCoordinator {
     var store = Store<LeadInKeyState>(
         reducer: LeadInKeyReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

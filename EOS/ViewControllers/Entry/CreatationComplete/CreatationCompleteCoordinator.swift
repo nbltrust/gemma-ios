@@ -28,7 +28,7 @@ class CreatationCompleteCoordinator: NavCoordinator {
     var store = Store<CreatationCompleteState>(
         reducer: CreatationCompleteReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

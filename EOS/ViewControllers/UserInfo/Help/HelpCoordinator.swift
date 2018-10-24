@@ -26,7 +26,7 @@ class HelpCoordinator: NavCoordinator {
     var store = Store<HelpState>(
         reducer: HelpReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

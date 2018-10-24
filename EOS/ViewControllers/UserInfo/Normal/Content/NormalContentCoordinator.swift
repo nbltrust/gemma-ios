@@ -37,7 +37,7 @@ class NormalContentCoordinator: NavCoordinator {
     var store = Store<NormalContentState>(
         reducer: NormalContentReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

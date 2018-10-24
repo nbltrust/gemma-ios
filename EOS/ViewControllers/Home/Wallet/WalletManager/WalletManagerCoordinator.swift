@@ -39,7 +39,7 @@ class WalletManagerCoordinator: NavCoordinator {
     var store = Store<WalletManagerState>(
         reducer: WalletManagerReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 
@@ -55,7 +55,7 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
 
     func pushToChangePassword(_ pubKey: String) {
         if (UIApplication.shared.delegate as? AppDelegate) != nil {
-            app_coodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, type: confirmType.updatePwd.rawValue, producers: []) { _ in
+            appCoodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, type: confirmType.updatePwd.rawValue, producers: []) { _ in
                 if let vc = R.storyboard.leadIn.setWalletViewController() {
                     vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
                     vc.settingType = .updatePas

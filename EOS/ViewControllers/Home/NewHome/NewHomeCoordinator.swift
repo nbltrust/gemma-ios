@@ -11,28 +11,26 @@ import ReSwift
 import NBLCommonModule
 
 protocol NewHomeCoordinatorProtocol {
-    func pushToSetVC()
-    func pushWallet()
 }
 
 protocol NewHomeStateManagerProtocol {
     var state: NewHomeState { get }
-    
-    func switchPageState(_ state:PageState)
+
+    func switchPageState(_ state: PageState)
 }
 
 class NewHomeCoordinator: NavCoordinator {
     var store = Store(
         reducer: NewHomeReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
-    
+
     var state: NewHomeState {
         return store.state
     }
-    
-    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
+
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.home.newHomeViewController()!
         let coordinator = NewHomeCoordinator(rootVC: root)
         vc.coordinator = coordinator
@@ -47,25 +45,11 @@ class NewHomeCoordinator: NavCoordinator {
 }
 
 extension NewHomeCoordinator: NewHomeCoordinatorProtocol {
-    func pushToSetVC() {
-        if let vc = R.storyboard.userInfo.userInfoViewController() {
-            let coordinator = UserInfoCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
-        }
-    }
-    
-    func pushWallet() {
-        if let vc = R.storyboard.wallet.walletViewController() {
-            let coordinator = WalletCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
-        }
-    }
+
 }
 
 extension NewHomeCoordinator: NewHomeStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }

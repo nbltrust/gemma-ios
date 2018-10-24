@@ -44,7 +44,7 @@ class PayToActivateViewController: BaseViewController, IndicatorInfoProvider {
             context.buttonTitle = "确定"
             context.imageName = R.image.icFail.name
             context.needCancel = false
-            app_coodinator.showGemmaAlert(context)
+            appCoodinator.showGemmaAlert(context)
         //支付未完成
         default:
             break

@@ -56,7 +56,11 @@ class DBManager {
         }
     }
 
-    fileprivate func handleColums(_ structure: [String: ParameterType], whiteList: [String]? = nil, blackList: [String]? = nil, relyColumData: [String: ParameterType]? = nil) throws -> [String: ParameterType] {
+    fileprivate func handleColums(_ structure: [String: ParameterType],
+                                  whiteList: [String]? = nil,
+                                  blackList: [String]? = nil,
+                                  relyColumData: [String: ParameterType]? = nil
+        ) throws -> [String: ParameterType] {
         var tempData: [String: ParameterType] = [:]
         if let relyData = relyColumData {
             relyData.forEach { (data) in
@@ -94,13 +98,13 @@ class DBManager {
     }
 
     func handleCustomTableCreation(_ db: Database, tableName: String, primaryKey: String?, structure: [String: ParameterType]) throws {
-        try db.create(table: tableName) { t in
+        try db.create(table: tableName) { table in
             for key in structure.keys {
                 if let value = structure[key] {
                     if let priKey = primaryKey, key == priKey {
-                        t.column(key, self.columnType(value)).primaryKey()
+                        table.column(key, self.columnType(value)).primaryKey()
                     } else {
-                        t.column(key, self.columnType(value))
+                        table.column(key, self.columnType(value))
                     }
                 }
             }
@@ -130,7 +134,7 @@ class DBManager {
         let toColums = try db.columns(in: toTable)
         toColums.forEach({ (info) in
             if fromKeys.contains(info.name) {
-                tableKeys  = tableKeys + info.name + ","
+                tableKeys += info.name + ","
             }
         })
         if tableKeys.lengthOfBytes(using: .utf8) > 0 {

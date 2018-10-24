@@ -26,7 +26,7 @@ class ActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: ActivateReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: ActivateState {
