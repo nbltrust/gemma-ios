@@ -9,11 +9,14 @@
 import UIKit
 import ReSwift
 
-func QRCodeReducer(action: Action, state: QRCodeState?) -> QRCodeState {
-    return QRCodeState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: QRCodePropertyReducer(state?.property, action: action))
+func gQRCodeReducer(action: Action, state: QRCodeState?) -> QRCodeState {
+    return QRCodeState(isLoading: loadingReducer(state?.isLoading, action: action),
+                       page: pageReducer(state?.page, action: action),
+                       errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                       property: gQRCodePropertyReducer(state?.property, action: action))
 }
 
-func QRCodePropertyReducer(_ state: QRCodePropertyState?, action: Action) -> QRCodePropertyState {
+func gQRCodePropertyReducer(_ state: QRCodePropertyState?, action: Action) -> QRCodePropertyState {
     let state = state ?? QRCodePropertyState()
 
     switch action {

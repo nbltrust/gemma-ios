@@ -24,7 +24,7 @@ protocol ActivateStateManagerProtocol {
 
 class ActivateCoordinator: NavCoordinator {
     var store = Store(
-        reducer: ActivateReducer,
+        reducer: gActivateReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

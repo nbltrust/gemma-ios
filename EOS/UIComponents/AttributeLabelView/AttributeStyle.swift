@@ -65,13 +65,13 @@ public struct AttributeStyle {
         self.typedAttributes = typedAttributes
     }
 
-    public init(_ name: String, AttributeStyle: AttributeStyle) {
+    public init(_ name: String, attributeStyle: AttributeStyle) {
         self.name = name
-        self.typedAttributes = AttributeStyle.typedAttributes
+        self.typedAttributes = attributeStyle.typedAttributes
     }
 
     public func named(_ name: String) -> AttributeStyle {
-        return AttributeStyle(name, AttributeStyle: self)
+        return AttributeStyle(name, attributeStyle: self)
     }
 
     public func merged(with style: AttributeStyle) -> AttributeStyle {

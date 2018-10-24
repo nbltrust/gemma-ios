@@ -169,7 +169,6 @@ class LineView: UIView {
         let nib = UINib.init(nibName: String.init(describing: type(of: self)), bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
 
-
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]

@@ -21,7 +21,7 @@ protocol AccountSetStateManagerProtocol {
 
 class AccountSetCoordinator: BLTCardRootCoordinator {
     var store = Store(
-        reducer: AccountSetReducer,
+        reducer: gAccountSetReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

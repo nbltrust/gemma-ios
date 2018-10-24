@@ -22,7 +22,7 @@ protocol BackupMnemonicWordStateManagerProtocol {
 
 class BackupMnemonicWordCoordinator: NavCoordinator {
     var store = Store(
-        reducer: BackupMnemonicWordReducer,
+        reducer: gBackupMnemonicWordReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

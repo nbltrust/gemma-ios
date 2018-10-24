@@ -71,7 +71,7 @@ extension NavCoordinator {
         while topside?.presentedViewController != nil {
             topside = topside?.presentedViewController as? BaseNavigationController
         }
-        
+
         if presentSetup == nil {
             SwifterSwift.delay(milliseconds: 100) {
                 topside?.present(nav, animated: animated, completion: nil)
@@ -94,7 +94,7 @@ extension NavCoordinator {
                 topside = presented
             }
         }
-        
+
         if presentSetup == nil {
             SwifterSwift.delay(milliseconds: 100) {
                 topside.present(viewController, animated: animated, completion: nil)

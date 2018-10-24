@@ -9,11 +9,14 @@
 import UIKit
 import ReSwift
 
-func NormalContentReducer(action: Action, state: NormalContentState?) -> NormalContentState {
-    return NormalContentState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: NormalContentPropertyReducer(state?.property, action: action))
+func gNormalContentReducer(action: Action, state: NormalContentState?) -> NormalContentState {
+    return NormalContentState(isLoading: loadingReducer(state?.isLoading, action: action),
+                              page: pageReducer(state?.page, action: action),
+                              errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                              property: gNormalContentPropertyReducer(state?.property, action: action))
 }
 
-func NormalContentPropertyReducer(_ state: NormalContentPropertyState?, action: Action) -> NormalContentPropertyState {
+func gNormalContentPropertyReducer(_ state: NormalContentPropertyState?, action: Action) -> NormalContentPropertyState {
     var state = state ?? NormalContentPropertyState()
 
     switch action {

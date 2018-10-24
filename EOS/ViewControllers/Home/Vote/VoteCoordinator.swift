@@ -37,7 +37,7 @@ class VoteCoordinator: NavCoordinator {
     lazy var creator = VotePropertyActionCreate()
 
     var store = Store<VoteState>(
-        reducer: VoteReducer,
+        reducer: gVoteReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -96,7 +96,7 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
 
     func getAccountInfo() {
-        WalletManager.shared.FetchAccount { (_) in
+        WalletManager.shared.fetchAccount { (_) in
             self.getAccountInfo(WalletManager.shared.getAccount())
         }
     }

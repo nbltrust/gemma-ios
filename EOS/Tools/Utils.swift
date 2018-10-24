@@ -85,7 +85,7 @@ class VoteProducerActionModel: ActionModel {
 
 func getAbi(_ action: String, actionModel: ActionModel) -> String! {
     var abi: String = ""
-    
+
     if action == EOSAction.transfer.rawValue || action == EOSAction.bltTransfer.rawValue {
         if let actionModel = actionModel as? TransferActionModel {
             if let abiStr = EOSIO.getAbiJsonString(EOSIOContract.TokenCode,

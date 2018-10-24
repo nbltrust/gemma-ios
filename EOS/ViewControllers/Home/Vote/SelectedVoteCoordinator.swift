@@ -28,7 +28,7 @@ class SelectedVoteCoordinator: NavCoordinator {
     lazy var creator = SelectedVotePropertyActionCreate()
 
     var store = Store<SelectedVoteState>(
-        reducer: SelectedVoteReducer,
+        reducer: gSelectedVoteReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

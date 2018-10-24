@@ -47,7 +47,7 @@ class SafeCoordinator: NavCoordinator {
     lazy var creator = SafePropertyActionCreate()
 
     var store = Store<SafeState>(
-        reducer: SafeReducer,
+        reducer: gSafeReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

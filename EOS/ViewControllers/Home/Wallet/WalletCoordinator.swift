@@ -38,7 +38,7 @@ class WalletCoordinator: NavCoordinator {
     lazy var creator = WalletPropertyActionCreate()
 
     var store = Store<WalletState>(
-        reducer: WalletReducer,
+        reducer: gWalletReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

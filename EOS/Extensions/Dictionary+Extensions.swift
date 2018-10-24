@@ -10,7 +10,9 @@ import Foundation
 
 extension Dictionary {
     func sortJsonString() -> String {
-        var tempDic = self as! Dictionary<String, Any>
+        guard var tempDic = self as? [String: Any] else {
+            return ""
+        }
         var keys = Array<String>()
         for key in tempDic.keys {
             keys.append(key)

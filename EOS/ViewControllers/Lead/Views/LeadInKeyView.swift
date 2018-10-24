@@ -9,7 +9,7 @@
 import UIKit
 
 class LeadInKeyView: UIView {
-    enum event_name: String {
+    enum EventName: String {
         case beginLeadInAction
     }
     @IBOutlet weak var textView: UITextView!
@@ -24,7 +24,7 @@ class LeadInKeyView: UIView {
 
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.next?.sendEventWith(event_name.beginLeadInAction.rawValue, userinfo: ["data": ""])
+            self.next?.sendEventWith(EventName.beginLeadInAction.rawValue, userinfo: ["data": ""])
         }).disposed(by: disposeBag)
     }
 
@@ -73,8 +73,6 @@ class LeadInKeyView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
-
 
         addSubview(view)
         view.frame = self.bounds

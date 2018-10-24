@@ -27,7 +27,7 @@ class LeadInCoordinator: NavCoordinator {
     lazy var creator = LeadInPropertyActionCreate()
 
     var store = Store<LeadInState>(
-        reducer: LeadInReducer,
+        reducer: gLeadInReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

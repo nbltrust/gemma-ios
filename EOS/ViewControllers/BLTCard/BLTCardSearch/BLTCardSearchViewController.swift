@@ -112,7 +112,9 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = String.init(describing: type(of: BLTDeviceCell()))
-        let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! BLTDeviceCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? BLTDeviceCell else {
+            return UITableViewCell()
+        }
         if let devices = self.coordinator?.state.devices {
             cell.setup(modelWithDevice(device: devices[indexPath.row]), indexPath: indexPath)
         }

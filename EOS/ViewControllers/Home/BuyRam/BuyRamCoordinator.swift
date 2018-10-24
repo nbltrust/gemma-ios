@@ -34,7 +34,7 @@ class BuyRamCoordinator: NavCoordinator {
     lazy var creator = BuyRamPropertyActionCreate()
 
     var store = Store<BuyRamState>(
-        reducer: BuyRamReducer,
+        reducer: gBuyRamReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

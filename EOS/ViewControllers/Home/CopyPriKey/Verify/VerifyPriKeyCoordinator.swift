@@ -23,7 +23,7 @@ protocol VerifyPriKeyStateManagerProtocol {
 
 class VerifyPriKeyCoordinator: NavCoordinator {
     var store = Store(
-        reducer: VerifyPriKeyReducer,
+        reducer: gVerifyPriKeyReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

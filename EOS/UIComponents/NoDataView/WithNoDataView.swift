@@ -16,18 +16,18 @@ class WithNoDataView: UIView {
 
     @IBOutlet weak var noticeContairner: NSLayoutConstraint!
 
-    var notice_word: String? {
+    var noticeWord: String? {
         didSet {
-            if let notice_word = notice_word {
-                notice.text = notice_word
+            if let noticeWord = noticeWord {
+                notice.text = noticeWord
             }
         }
     }
 
-    var icon_name: String? {
+    var iconName: String? {
         didSet {
-            if let icon_name = icon_name {
-                icon.image = UIImage.init(named: icon_name)
+            if let iconName = iconName {
+                icon.image = UIImage.init(named: iconName)
             }
         }
     }
@@ -73,8 +73,6 @@ class WithNoDataView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
-
 
         addSubview(view)
         view.frame = self.bounds

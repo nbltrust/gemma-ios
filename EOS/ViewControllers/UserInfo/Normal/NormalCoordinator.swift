@@ -28,7 +28,7 @@ class NormalCoordinator: NavCoordinator {
     lazy var creator = NormalPropertyActionCreate()
 
     var store = Store<NormalState>(
-        reducer: NormalReducer,
+        reducer: gNormalReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

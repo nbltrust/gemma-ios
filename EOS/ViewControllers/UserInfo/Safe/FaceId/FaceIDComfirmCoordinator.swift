@@ -27,7 +27,7 @@ class FaceIDComfirmCoordinator: NavCoordinator {
     lazy var creator = FaceIDComfirmPropertyActionCreate()
 
     var store = Store<FaceIDComfirmState>(
-        reducer: FaceIDComfirmReducer,
+        reducer: gFaceIDComfirmReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

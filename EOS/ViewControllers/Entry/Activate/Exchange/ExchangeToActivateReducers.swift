@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func ExchangeToActivateReducer(action: Action, state: ExchangeToActivateState?) -> ExchangeToActivateState {
+func gExchangeToActivateReducer(action: Action, state: ExchangeToActivateState?) -> ExchangeToActivateState {
     let state = state ?? ExchangeToActivateState()
 
     switch action {

@@ -71,7 +71,6 @@ class PaymentsRecordsCellView: UIView {
         let nib = UINib.init(nibName: String(describing: type(of: self)), bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
 
-
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]

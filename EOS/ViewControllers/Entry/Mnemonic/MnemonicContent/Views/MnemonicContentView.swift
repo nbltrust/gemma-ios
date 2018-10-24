@@ -18,8 +18,8 @@ class MnemonicContentView: EOSBaseView, TagListViewDelegate {
     @IBOutlet weak var tipsLabel: BaseLabel!
 
     enum Event: String {
-        case MnemonicContentViewDidClicked
-        case Copied
+        case mnemonicContentViewDidClicked
+        case copied
     }
 
     override func setup() {
@@ -44,11 +44,11 @@ class MnemonicContentView: EOSBaseView, TagListViewDelegate {
     func setupSubViewEvent() {
         nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.nextButton.next?.sendEventWith(Event.Copied.rawValue, userinfo: ["data": ""])
+            self.nextButton.next?.sendEventWith(Event.copied.rawValue, userinfo: ["data": ""])
         }).disposed(by: disposeBag)
     }
 
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.MnemonicContentViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.mnemonicContentViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }

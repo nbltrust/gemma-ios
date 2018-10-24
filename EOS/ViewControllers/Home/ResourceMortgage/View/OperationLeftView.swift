@@ -18,7 +18,7 @@ class OperationLeftView: UIView {
         case net
     }
 
-    enum event: String {
+    enum Event: String {
         case cpu
         case net
     }
@@ -96,7 +96,6 @@ class OperationLeftView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
 
         //        self.insertSubview(view, at: 0)
 
@@ -215,15 +214,15 @@ extension OperationLeftView: UITextFieldDelegate {
                 cpuMortgageView.checkStatus = TextUIStyle.common
             }
             cpuMortgageView.reloadActionViews(isEditing: false)
-            self.sendEventWith(event.cpu.rawValue, userinfo: ["cputextfieldview": cpuMortgageView, "nettextfieldview": netMortgageView])
-            self.sendEventWith(event.net.rawValue, userinfo: ["cputextfieldview": cpuMortgageView, "nettextfieldview": netMortgageView])
+            self.sendEventWith(Event.cpu.rawValue, userinfo: ["cputextfieldview": cpuMortgageView, "nettextfieldview": netMortgageView])
+            self.sendEventWith(Event.net.rawValue, userinfo: ["cputextfieldview": cpuMortgageView, "nettextfieldview": netMortgageView])
         case InputType.net.rawValue:
             if textField.text == "" {
                 netMortgageView.checkStatus = TextUIStyle.common
             }
             netMortgageView.reloadActionViews(isEditing: false)
-            self.sendEventWith(event.cpu.rawValue, userinfo: ["cputextfieldview": cpuMortgageView, "nettextfieldview": netMortgageView])
-            self.sendEventWith(event.net.rawValue, userinfo: ["cputextfieldview": cpuMortgageView, "nettextfieldview": netMortgageView])
+            self.sendEventWith(Event.cpu.rawValue, userinfo: ["cputextfieldview": cpuMortgageView, "nettextfieldview": netMortgageView])
+            self.sendEventWith(Event.net.rawValue, userinfo: ["cputextfieldview": cpuMortgageView, "nettextfieldview": netMortgageView])
         default:
             return
         }

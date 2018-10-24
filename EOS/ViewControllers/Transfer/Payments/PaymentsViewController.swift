@@ -68,7 +68,7 @@ extension PaymentsViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: name, for: indexPath) as? PaymentsRecordsCell else {
             return UITableViewCell()
         }
-        
+
         cell.setup(data[indexPath.row])
         return cell
 

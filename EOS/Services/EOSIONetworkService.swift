@@ -29,7 +29,10 @@ enum EOSIOService {
 }
 
 struct EOSIONetwork {
-    static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil, manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(), plugins: [NetworkLoggerPlugin(verbose: true), DataCachePlugin()], trackInflights: false)
+    static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil,
+                                                     manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(),
+                                                     plugins: [NetworkLoggerPlugin(verbose: true), DataCachePlugin()],
+                                                     trackInflights: false)
 
     static func request(
         target: EOSIOService,
@@ -187,7 +190,10 @@ extension EOSIOService: TargetType {
     }
 
     var sampleData: Data {
-        return try! JSON(parameters).rawData()
+        guard let data = try? JSON(parameters).rawData() else {
+            return Data()
+        }
+        return data
     }
 
     var headers: [String: String]? {

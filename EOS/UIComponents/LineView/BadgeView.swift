@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class badgeView: UIView {
+class BadgeView: UIView {
 
     @IBOutlet weak var number: UILabel!
 
@@ -72,7 +72,6 @@ class badgeView: UIView {
         let nib = UINib(nibName: nibString, bundle: bundle)
 
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
 
         addSubview(view)
 

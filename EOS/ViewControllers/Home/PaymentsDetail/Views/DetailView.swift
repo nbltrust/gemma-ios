@@ -12,8 +12,8 @@ import RxCocoa
 import ReSwift
 
 class DetailView: UIView {
-    enum event_name: String {
-        case open_safair
+    enum EventName: String {
+        case openSafair
     }
 
     @IBOutlet weak var address: UILabel!
@@ -29,7 +29,7 @@ class DetailView: UIView {
 
     @IBOutlet weak var webLabel: UILabel!
 
-    enum event {
+    enum Event {
         case copy
     }
 
@@ -111,8 +111,6 @@ class DetailView: UIView {
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
 
-
-
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -121,6 +119,6 @@ class DetailView: UIView {
 }
 extension DetailView {
     @objc func openSafair() {
-        self.next?.sendEventWith(event_name.open_safair.rawValue, userinfo: [:])
+        self.next?.sendEventWith(EventName.openSafair.rawValue, userinfo: [:])
     }
 }

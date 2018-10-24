@@ -99,7 +99,7 @@ extension PayToActivateViewController {
         return IndicatorInfo(stringLiteral: R.string.localizable.pay_to_activate.key.localized())
     }
 
-    @objc func NextClick(_ data: [String: Any]) {
+    @objc func nextClick(_ data: [String: Any]) {
         self.coordinator?.state.pageState.accept(.loading(reason: .manualRefresh))
 
         NotificationCenter.default.addObserver(self, selector: #selector(refreshPage), name: UIApplication.didBecomeActiveNotification, object: nil)

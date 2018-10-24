@@ -9,11 +9,15 @@
 import UIKit
 import ReSwift
 
-func FingerPrinterConfirmReducer(action: Action, state: FingerPrinterConfirmState?) -> FingerPrinterConfirmState {
-    return FingerPrinterConfirmState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: FingerPrinterConfirmPropertyReducer(state?.property, action: action), callback: state?.callback ?? FingerPrinterConfirmCallbackState())
+func gFingerPrinterConfirmReducer(action: Action, state: FingerPrinterConfirmState?) -> FingerPrinterConfirmState {
+    return FingerPrinterConfirmState(isLoading: loadingReducer(state?.isLoading, action: action),
+                                     page: pageReducer(state?.page, action: action),
+                                     errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                                     property: gFingerPrinterConfirmPropertyReducer(state?.property, action: action),
+                                     callback: state?.callback ?? FingerPrinterConfirmCallbackState())
 }
 
-func FingerPrinterConfirmPropertyReducer(_ state: FingerPrinterConfirmPropertyState?, action: Action) -> FingerPrinterConfirmPropertyState {
+func gFingerPrinterConfirmPropertyReducer(_ state: FingerPrinterConfirmPropertyState?, action: Action) -> FingerPrinterConfirmPropertyState {
     let state = state ?? FingerPrinterConfirmPropertyState()
 
     switch action {

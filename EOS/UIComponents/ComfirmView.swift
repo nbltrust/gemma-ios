@@ -8,23 +8,53 @@
 
 import UIKit
 
-typealias comfirmCancelHandle = () -> Void
-typealias comfirmSureHandle = () -> Void
+typealias ComfirmCancelHandle = () -> Void
+typealias ComfirmSureHandle = () -> Void
 
 protocol ComfirmViewProtocol {
 
-    func showComfirmView(inView view: UIView, withTitle title: String, content: String, cancelTitle: String, sureTitle: String, cancelCompeleted: comfirmSureHandle, sureCompleted: comfirmSureHandle)
+    func showComfirmView(inView view: UIView, withTitle title: String, content: String, cancelTitle: String, sureTitle: String, cancelCompeleted: ComfirmSureHandle, sureCompleted: ComfirmSureHandle)
 
-    func showComfirmView(inView view: UIView, withTitle title: String, content: String, cancelTitle: String, sureTitle: String, isShade: Bool, isTouchDismiss: Bool, cancelCompeleted: comfirmSureHandle, sureCompleted: comfirmSureHandle)
+    func showComfirmView(inView view: UIView,
+                         withTitle title: String,
+                         content: String,
+                         cancelTitle: String,
+                         sureTitle: String,
+                         isShade: Bool,
+                         isTouchDismiss: Bool,
+                         cancelCompeleted: ComfirmSureHandle,
+                         sureCompleted: ComfirmSureHandle)
 }
 
 extension ComfirmViewProtocol where Self: UIViewController {
 
-    func showComfirmView(inView view: UIView, withTitle title: String, content: String, cancelTitle: String, sureTitle: String, cancelCompeleted: comfirmSureHandle, sureCompleted: comfirmSureHandle) {
-        showComfirmView(inView: view, withTitle: title, content: content, cancelTitle: cancelTitle, sureTitle: sureTitle, isShade: true, isTouchDismiss: true, cancelCompeleted: cancelCompeleted, sureCompleted: cancelCompeleted)
+    func showComfirmView(inView view: UIView,
+                         withTitle title: String,
+                         content: String,
+                         cancelTitle: String,
+                         sureTitle: String,
+                         cancelCompeleted: ComfirmSureHandle,
+                         sureCompleted: ComfirmSureHandle) {
+        showComfirmView(inView: view,
+                        withTitle: title,
+                        content: content,
+                        cancelTitle: cancelTitle,
+                        sureTitle: sureTitle,
+                        isShade: true,
+                        isTouchDismiss: true,
+                        cancelCompeleted: cancelCompeleted,
+                        sureCompleted: cancelCompeleted)
     }
 
-    func showComfirmView(inView view: UIView, withTitle title: String, content: String, cancelTitle: String, sureTitle: String, isShade: Bool, isTouchDismiss: Bool, cancelCompeleted: comfirmSureHandle, sureCompleted: comfirmSureHandle) {
+    func showComfirmView(inView view: UIView,
+                         withTitle title: String,
+                         content: String,
+                         cancelTitle: String,
+                         sureTitle: String,
+                         isShade: Bool,
+                         isTouchDismiss: Bool,
+                         cancelCompeleted: ComfirmSureHandle,
+                         sureCompleted: ComfirmSureHandle) {
 
     }
 }
@@ -42,8 +72,8 @@ class ComfirmView: UIView {
 
     @IBOutlet weak var sureButton: UIButton!
 
-    enum event: String {
-        case sure_event
+    enum Event: String {
+        case sureEvent
     }
 
     @IBInspectable var title: String? {
@@ -86,7 +116,7 @@ class ComfirmView: UIView {
     func setupEvent() {
         sureButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.sendEventWith(event.sure_event.rawValue, userinfo: [ : ])
+            self.sendEventWith(Event.sureEvent.rawValue, userinfo: [ : ])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 
@@ -127,8 +157,6 @@ class ComfirmView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
-
 
         addSubview(view)
         view.frame = self.bounds

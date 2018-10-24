@@ -6,19 +6,19 @@
 import Foundation
 
 public func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
-    let s = NSMutableAttributedString(attributedString: lhs)
-    s.append(rhs)
-    return s
+    let str = NSMutableAttributedString(attributedString: lhs)
+    str.append(rhs)
+    return str
 }
 
 public func + (lhs: String, rhs: NSAttributedString) -> NSAttributedString {
-    let s = NSMutableAttributedString(string: lhs)
-    s.append(rhs)
-    return s
+    let str = NSMutableAttributedString(string: lhs)
+    str.append(rhs)
+    return str
 }
 
 public func + (lhs: NSAttributedString, rhs: String) -> NSAttributedString {
-    let s = NSMutableAttributedString(attributedString: lhs)
-    s.append(NSAttributedString(string: rhs))
-    return s
+    let str = NSMutableAttributedString(attributedString: lhs)
+    str.append(NSAttributedString(string: rhs))
+    return str
 }

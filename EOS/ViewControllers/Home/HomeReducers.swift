@@ -11,11 +11,14 @@ import ReSwift
 import CryptoSwift
 import SwiftyUserDefaults
 
-func HomeReducer(action: Action, state: HomeState?) -> HomeState {
-    return HomeState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: HomePropertyReducer(state?.property, action: action))
+func gHomeReducer(action: Action, state: HomeState?) -> HomeState {
+    return HomeState(isLoading: loadingReducer(state?.isLoading, action: action),
+                     page: pageReducer(state?.page, action: action),
+                     errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                     property: gHomePropertyReducer(state?.property, action: action))
 }
 
-func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePropertyState {
+func gHomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePropertyState {
     var state = state ?? HomePropertyState()
 
     switch action {
@@ -31,7 +34,7 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
             }
 
             viewmodel.allAssets = calculateTotalAsset(viewmodel)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.CNY_price, otherPrice: state.Other_price)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
             state.info.accept(viewmodel)
         }
 //        else {
@@ -41,7 +44,7 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
     case let action as AccountFetchedAction:
         if action.info != nil {
             var viewmodel = convertAccountViewModelWithAccount(action.info!, viewmodel: state.info.value)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.CNY_price, otherPrice: state.Other_price)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
 
             state.info.accept(viewmodel)
         }
@@ -52,12 +55,12 @@ func HomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePro
     case let action as RMBPriceFetchedAction:
         if action.price != nil {
             var viewmodel = state.info.value
-            state.CNY_price = action.price!["value"].stringValue
+            state.cnyPrice = action.price!["value"].stringValue
             if action.otherPrice != nil {
-                state.Other_price = action.otherPrice!["value"].stringValue
+                state.otherPrice = action.otherPrice!["value"].stringValue
             }
 
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.CNY_price, otherPrice: state.Other_price)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
             state.info.accept(viewmodel)
         }
 //        else {
@@ -124,8 +127,8 @@ func convertAccountViewModelWithAccount(_ account: Account, viewmodel: AccountVi
         newViewModel.ramValue = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
     }
 
-    if let refund_net = account.refundRequest?.netAmount.eosAmount.toDouble(), let refund_cpu = account.refundRequest?.cpuAmount.eosAmount.toDouble() {
-        let asset = refund_cpu + refund_net
+    if let refundNet = account.refundRequest?.netAmount.eosAmount.toDouble(), let refundCpu = account.refundRequest?.cpuAmount.eosAmount.toDouble() {
+        let asset = refundCpu + refundNet
         newViewModel.recentRefundAsset = "\(asset.string(digits: AppConfiguration.EOSPrecision)) \(NetworkConfiguration.EOSIODefaultSymbol)"
     } else {
         newViewModel.recentRefundAsset = "- \(NetworkConfiguration.EOSIODefaultSymbol)"

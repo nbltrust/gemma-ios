@@ -34,7 +34,14 @@ protocol EntryStateManagerProtocol {
 
     func checkAgree(_ agree: Bool)
 
-    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, deviceName: String?, completion:@escaping (Bool) -> Void)
+    func createWallet(_ type: CreateAPPId,
+                      accountName: String,
+                      password: String,
+                      prompt: String,
+                      inviteCode: String,
+                      validation: WookongValidation?,
+                      deviceName: String?,
+                      completion:@escaping (Bool) -> Void)
 
     func copyMnemonicWord()
 
@@ -52,7 +59,7 @@ class EntryCoordinator: NavCoordinator {
     lazy var creator = EntryPropertyActionCreate()
 
     var store = Store<EntryState>(
-        reducer: EntryReducer,
+        reducer: gEntryReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -162,19 +169,19 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     }
 
     func validWalletName(_ name: String) {
-        self.store.dispatch(nameAction(isValid: WalletManager.shared.isValidWalletName(name)))
+        self.store.dispatch(NameAction(isValid: WalletManager.shared.isValidWalletName(name)))
     }
 
     func validPassword(_ password: String) {
-        self.store.dispatch(passwordAction(isValid: WalletManager.shared.isValidPassword(password)))
+        self.store.dispatch(PasswordAction(isValid: WalletManager.shared.isValidPassword(password)))
     }
 
     func validComfirmPassword(_ password: String, comfirmPassword: String) {
-        self.store.dispatch(comfirmPasswordAction(isValid: WalletManager.shared.isValidComfirmPassword(password, comfirmPassword: comfirmPassword)))
+        self.store.dispatch(ComfirmPasswordAction(isValid: WalletManager.shared.isValidComfirmPassword(password, comfirmPassword: comfirmPassword)))
     }
 
     func checkAgree(_ agree: Bool) {
-        self.store.dispatch(agreeAction(isAgree: agree))
+        self.store.dispatch(AgreeAction(isAgree: agree))
     }
 
     func createWallet(_ type: CreateAPPId,
@@ -185,7 +192,12 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                       validation: WookongValidation?,
                       deviceName: String?,
                       completion: @escaping (Bool) -> Void) {
-        NBLNetwork.request(target: .createAccount(type: type, account: accountName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: validation), success: { (data) in
+        NBLNetwork.request(target: .createAccount(type: type,
+                                                  account: accountName,
+                                                  pubKey: WalletManager.shared.currentPubKey,
+                                                  invitationCode: inviteCode,
+                                                  validation: validation),
+                           success: { (data) in
             WalletManager.shared.currentPubKey = validation?.publicKey ?? ""
             WalletManager.shared.saveWallket(accountName,
                                              password: password,
@@ -231,9 +243,9 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                 guard let `self` = self else { return }
                 var validation = WookongValidation()
                 validation.SN = sn ?? ""
-                validation.SN_sig = snSig ?? ""
-                validation.public_key = pub ?? ""
-                validation.public_key_sig = pubSig ?? ""
+                validation.SNSig = snSig ?? ""
+                validation.pubKey = pub ?? ""
+                validation.publicKeySig = pubSig ?? ""
                 validation.publicKey = publicKey ?? ""
                 self.createWallet(.bluetooth, accountName: name, password: "", prompt: "", inviteCode: "", validation: validation, deviceName: device.name, completion: { (successed) in
                     completion(successed)

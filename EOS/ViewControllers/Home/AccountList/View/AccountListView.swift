@@ -71,8 +71,6 @@ class AccountListView: UIView {
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
 
-
-
         self.insertSubview(view, at: 0)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -92,7 +90,9 @@ extension AccountListView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: AccountTableViewCell.self), for: indexPath) as! AccountTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: AccountTableViewCell.self), for: indexPath) as? AccountTableViewCell else {
+            return UITableViewCell()
+        }
 
         if let data = data as? [AccountListViewModel] {
             cell.setup(data[indexPath.row], indexPath: indexPath)

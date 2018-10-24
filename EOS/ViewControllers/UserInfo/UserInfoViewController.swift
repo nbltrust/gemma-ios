@@ -61,7 +61,8 @@ class UserInfoViewController: BaseViewController {
 
 extension UserInfoViewController {
     @objc func clickCellView(_ sender: [String: Any]) {
-        switch sender["index"] as! Int {
+        guard let index = sender["index"] as? Int else { return }
+        switch index {
         case 0:self.coordinator?.openNormalSetting()
         case 1:self.coordinator?.openSafeSetting()
         case 2:self.coordinator?.openHelpSetting()

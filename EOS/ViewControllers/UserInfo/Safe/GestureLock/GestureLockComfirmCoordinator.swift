@@ -36,7 +36,7 @@ class GestureLockComfirmCoordinator: NavCoordinator {
     var timer: Repeater?
 
     var store = Store<GestureLockComfirmState>(
-        reducer: GestureLockComfirmReducer,
+        reducer: gGestureLockComfirmReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -78,7 +78,7 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
 
     func addValidCount() {
         var num = self.state.property.reDrawFailedNum.value
-        num = num + 1
+        num += 1
         if num == GestureLockSetting.reDrawNum {
             lockGestureLock()
             num = 0

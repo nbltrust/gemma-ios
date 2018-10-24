@@ -78,10 +78,10 @@ class DeleteFingerViewController: BaseViewController {
 // MARK: - View Event
 
 extension DeleteFingerViewController {
-    @objc func ChangeNameViewDidClicked(_ data: [String: Any]) {
+    @objc func changeNameViewDidClicked(_ data: [String: Any]) {
         self.coordinator?.pushToChangeWalletName(model: self.model, index: self.index)
     }
-    @objc func DeleteBtnDidClicked(_ data: [String: Any]) {
+    @objc func deleteBtnDidClicked(_ data: [String: Any]) {
         self.coordinator?.deleteCurrentFinger(model, index: index)
     }
 }

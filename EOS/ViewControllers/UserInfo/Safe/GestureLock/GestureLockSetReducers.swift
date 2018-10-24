@@ -9,11 +9,15 @@
 import UIKit
 import ReSwift
 
-func GestureLockSetReducer(action: Action, state: GestureLockSetState?) -> GestureLockSetState {
-    return GestureLockSetState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: GestureLockSetPropertyReducer(state?.property, action: action), callback: state?.callback ?? GestureLockSetCallbackState())
+func gGestureLockSetReducer(action: Action, state: GestureLockSetState?) -> GestureLockSetState {
+    return GestureLockSetState(isLoading: loadingReducer(state?.isLoading, action: action),
+                               page: pageReducer(state?.page, action: action),
+                               errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                               property: gGestureLockSetPropertyReducer(state?.property, action: action),
+                               callback: state?.callback ?? GestureLockSetCallbackState())
 }
 
-func GestureLockSetPropertyReducer(_ state: GestureLockSetPropertyState?, action: Action) -> GestureLockSetPropertyState {
+func gGestureLockSetPropertyReducer(_ state: GestureLockSetPropertyState?, action: Action) -> GestureLockSetPropertyState {
     let state = state ?? GestureLockSetPropertyState()
 
     switch action {

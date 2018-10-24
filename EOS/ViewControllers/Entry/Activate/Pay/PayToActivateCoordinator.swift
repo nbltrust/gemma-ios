@@ -29,7 +29,7 @@ protocol PayToActivateStateManagerProtocol {
 
 class PayToActivateCoordinator: NavCoordinator {
     var store = Store(
-        reducer: PayToActivateReducer,
+        reducer: gPayToActivateReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -107,13 +107,19 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         Broadcaster.notify(EntryViewController.self) { (vc) in
             walletName = vc.registerView.nameView.textField.text!
         }
-        NBLNetwork.request(target: .initOrder(account: walletName, pubKey: WalletManager.shared.currentPubKey, platform: "iOS", client_ip:"10.18.14.9", serial_number: "1"), success: { (data) in
+        NBLNetwork.request(target: .initOrder(account: walletName, pubKey: WalletManager.shared.currentPubKey, platform: "iOS", clientIP:"10.18.14.9", serialNumber: "1"), success: { (data) in
             if let orderID = Order.deserialize(from: data.dictionaryObject) {
                 self.store.dispatch(OrderIdAction(orderId: orderID.id))
                 NBLNetwork.request(target: .place(orderId: orderID.id), success: { (result) in
                     if let place = Place.deserialize(from: result.dictionaryObject) {
                         let timeInterval = place.timestamp.string
-                        let string = "weixin://app/\(place.appid!)/pay/?nonceStr=\(place.nonceStr!)&package=Sign%3DWXPay&partnerId=\(place.partnerid!)&prepayId=\(place.prepayid!)&timeStamp=\(UInt32(timeInterval)!)&sign=\(place.sign!)&signType=SHA1"
+                        var string = "weixin://app/\(place.appid!)/pay/?"
+                        string += "nonceStr=\(place.nonceStr!)&"
+                        string += "package=Sign%3DWXPay&"
+                        string += "partnerId=\(place.partnerid!)&"
+                        string += "prepayId=\(place.prepayid!)&"
+                        string += "timeStamp=\(UInt32(timeInterval)!)&"
+                        string += "sign=\(place.sign!)&signType=SHA1"
                         MonkeyKingManager.shared.wechatPay(urlString: string, resultCallback: { (success) in
                             self.state.pageState.accept(.initial)
                             self.askToPay()
@@ -184,7 +190,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.needCancel = true
                 context.sureShot = {
                     if let vc = self.rootVC.topViewController as? ActivateViewController, let payVC = vc.viewControllers[0] as? PayToActivateViewController {
-                        payVC.NextClick([:])
+                        payVC.nextClick([:])
                     }
                 }
                 appCoodinator.showGemmaAlert(context)

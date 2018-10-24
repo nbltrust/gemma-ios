@@ -9,11 +9,15 @@
 import UIKit
 import ReSwift
 
-func SelectedVoteReducer(action: Action, state: SelectedVoteState?) -> SelectedVoteState {
-    return SelectedVoteState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: SelectedVotePropertyReducer(state?.property, action: action), callback: state?.callback ?? SelectedVoteCallbackState())
+func gSelectedVoteReducer(action: Action, state: SelectedVoteState?) -> SelectedVoteState {
+    return SelectedVoteState(isLoading: loadingReducer(state?.isLoading, action: action),
+                             page: pageReducer(state?.page, action: action),
+                             errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                             property: gSelectedVotePropertyReducer(state?.property, action: action),
+                             callback: state?.callback ?? SelectedVoteCallbackState())
 }
 
-func SelectedVotePropertyReducer(_ state: SelectedVotePropertyState?, action: Action) -> SelectedVotePropertyState {
+func gSelectedVotePropertyReducer(_ state: SelectedVotePropertyState?, action: Action) -> SelectedVotePropertyState {
     var state = state ?? SelectedVotePropertyState()
 
     switch action {

@@ -20,7 +20,7 @@ struct NodeVote: HandyJSON {
     var rateAt: Int64!
     var createdAt: Int64!
     var updatedAt: Int64!
-    
+
     mutating func mapping(mapper: HelpingMapper) {
         mapper <<<
             self.rateAt <-- "rate_at"

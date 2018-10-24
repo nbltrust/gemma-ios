@@ -28,7 +28,7 @@ protocol InvitationCodeToActivateStateManagerProtocol {
 
 class InvitationCodeToActivateCoordinator: NavCoordinator {
     var store = Store(
-        reducer: InvitationCodeToActivateReducer,
+        reducer: gInvitationCodeToActivateReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

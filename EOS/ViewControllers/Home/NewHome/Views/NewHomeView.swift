@@ -14,7 +14,7 @@ class NewHomeView: EOSBaseView {
     @IBOutlet weak var tableView: UITableView!
 
     enum Event: String {
-        case NewHomeViewDidClicked
+        case newHomeViewDidClicked
     }
 
     override var data: Any? {
@@ -39,7 +39,7 @@ class NewHomeView: EOSBaseView {
     }
 
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.NewHomeViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.newHomeViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }
 
@@ -53,7 +53,9 @@ extension NewHomeView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = R.nib.newHomeTableCell.name
-        let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! NewHomeTableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? NewHomeTableCell else {
+            return UITableViewCell()
+        }
         cell.setup(self.data, indexPath: indexPath)
 
         return cell

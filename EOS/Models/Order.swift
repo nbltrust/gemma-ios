@@ -11,7 +11,7 @@ import HandyJSON
 
 struct Order: HandyJSON {
     var id: String!
-    
+
     mutating func mapping(mapper: HelpingMapper) {
         mapper <<<
             self.id <-- "_id"
