@@ -57,28 +57,28 @@ struct ResourceMortgagePropertyState {
     var netMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
     var cpuReliveMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
     var netReliveMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
-    var CNY_price: String = ""
+    var CNYPrice: String = ""
 }
 
-struct cpuMoneyAction: Action {
+struct CpuMoneyAction: Action {
     var cpuMoney = ""
     var netMoney = ""
     var balance = ""
 }
 
-struct netMoneyAction: Action {
+struct NetMoneyAction: Action {
     var cpuMoney = ""
     var netMoney = ""
     var balance = ""
 }
 
-struct cpuReliveMoneyAction: Action {
+struct CpuReliveMoneyAction: Action {
     var cpuMoney = ""
     var netMoney = ""
     var balance = ""
 }
 
-struct netReliveMoneyAction: Action {
+struct NetReliveMoneyAction: Action {
     var cpuMoney = ""
     var netMoney = ""
     var balance = ""

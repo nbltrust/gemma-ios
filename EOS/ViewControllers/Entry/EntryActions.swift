@@ -39,19 +39,19 @@ struct EntryCallbackState {
     var finishBLTWalletCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
 }
 
-struct nameAction: Action {
+struct NameAction: Action {
     var isValid: Bool = false
 }
 
-struct passwordAction: Action {
+struct PasswordAction: Action {
     var isValid: Bool = false
 }
 
-struct comfirmPasswordAction: Action {
+struct ComfirmPasswordAction: Action {
     var isValid: Bool = false
 }
 
-struct agreeAction: Action {
+struct AgreeAction: Action {
     var isAgree: Bool = false
 }
 

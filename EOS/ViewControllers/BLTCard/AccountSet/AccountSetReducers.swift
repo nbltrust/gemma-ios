@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func AccountSetReducer(action: Action, state: AccountSetState?) -> AccountSetState {
+func gAccountSetReducer(action: Action, state: AccountSetState?) -> AccountSetState {
     let state = state ?? AccountSetState()
 
     switch action {

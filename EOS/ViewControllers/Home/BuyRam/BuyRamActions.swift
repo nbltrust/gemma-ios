@@ -35,8 +35,8 @@ struct BuyRamViewModel {
     var exchange = ""
     var leftTrade = ""
     var rightTrade = ""
-    var cpu_max: Int64 = 0
-    var net_max: Int64 = 0
+    var cpuMax: Int64 = 0
+    var netMax: Int64 = 0
 }
 
 struct BBalanceFetchedAction: Action {

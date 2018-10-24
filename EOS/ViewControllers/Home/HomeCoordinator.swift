@@ -51,7 +51,7 @@ class HomeCoordinator: NavCoordinator {
     lazy var creator = HomePropertyActionCreate()
 
     var store = Store<HomeState>(
-        reducer: HomeReducer,
+        reducer: gHomeReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

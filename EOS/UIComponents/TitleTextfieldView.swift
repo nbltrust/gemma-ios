@@ -34,7 +34,7 @@ class TitleTextfieldView: UIView {
 
     @IBOutlet weak var unitLabel: UILabel!
 
-    let TextActionTag = 999
+    let textActionTag = 999
 
     weak var delegate: TitleTextFieldViewDelegate?
 
@@ -80,7 +80,9 @@ class TitleTextfieldView: UIView {
             let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(introduce))
             introduceLabel.addGestureRecognizer(tapGestureRecognizer)
 
-            textField.attributedPlaceholder = NSMutableAttributedString.init(string: setting.placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.cloudyBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
+            textField.attributedPlaceholder = NSMutableAttributedString.init(
+                string: setting.placeholder,
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.cloudyBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
             textField.isSecureTextEntry = setting.isSecureTextEntry
             gapView.alpha = setting.showLine ? 1.0 : 0.0
         }
@@ -112,7 +114,7 @@ class TitleTextfieldView: UIView {
         for (index, value) in (buttonSettings?.enumerated())! {
             let image = UIImage(named: value.imageName)
             let btn = TextRightButton()
-            btn.tag = index + TextActionTag
+            btn.tag = index + textActionTag
             btn.setImage(image, for: .normal)
             btn.setImage(UIImage(named: value.selectedImageName), for: .selected)
             btn.addTarget(self, action: #selector(handleAction(sender:)), for: .touchUpInside)
@@ -133,7 +135,7 @@ class TitleTextfieldView: UIView {
 
     @objc func handleAction(sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        delegate?.textActionTrigger(titleTextFieldView: self, selected: sender.isSelected, index: sender.tag - TextActionTag)
+        delegate?.textActionTrigger(titleTextFieldView: self, selected: sender.isSelected, index: sender.tag - textActionTag)
     }
 
     func clearText() {
@@ -212,8 +214,6 @@ class TitleTextfieldView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
-
 
         addSubview(view)
         view.frame = self.bounds

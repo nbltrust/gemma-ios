@@ -72,7 +72,7 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
             if let context = context as? BLTCardConfirmFingerPrinterContext {
                 self.context = context
 
-                if context.iconType == leftIconType.dismiss.rawValue {
+                if context.iconType == LeftIconType.dismiss.rawValue {
                     self.configLeftNavButton(R.image.icTransferClose())
                 } else {
                     self.configLeftNavButton(R.image.icBack())

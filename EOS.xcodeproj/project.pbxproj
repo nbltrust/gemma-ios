@@ -12,7 +12,7 @@
 		09BC81571B45BABB01754EFB5518F50D /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2D83422C1978742731B5081FF95ADF9 /* Home.storyboard */; };
 		150F934C0EC159C581ACAAC7FD6F6484 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D5531EB3242194554382B4ACAD10A /* Constants.swift */; };
 		164698F0CB23A683324222A5E7A26EC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55CF1EBCEA4511E9749F7A3C843C7B10 /* InfoPlist.strings */; };
-		177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBAE2D9FE3A3ABFE2D6936CBDDF046 /* badgeView.swift */; };
+		177743A681C111BD4E7CDCB2BE37C18B /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EBAE2D9FE3A3ABFE2D6936CBDDF046 /* BadgeView.swift */; };
 		1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C141621766A7D0C2C3E31A00425A45A /* EntryCoordinator.swift */; };
 		1C5B18A93C3E4FE5D23D305731F6C2DF /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20796EDA35DD276BD78FBA7C8E796C /* WalletManager.swift */; };
 		1CB8E8A9088DF72B62548F44722FCA54 /* PaymentsRecordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE7AD5B97AC4FBA97618775FFC168F /* PaymentsRecordsCell.xib */; };
@@ -1029,7 +1029,7 @@
 		4D11CFAD3A91B7F05EF8E3926496049E /* PaymentsRecordsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRecordsCell.swift; sourceTree = "<group>"; };
 		4F38F5BCFFAFECC47D37D37C1728CFC0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4F8935C54739AEE59DA2310B17591480 /* BaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebViewController.swift; sourceTree = "<group>"; };
-		50EBAE2D9FE3A3ABFE2D6936CBDDF046 /* badgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = badgeView.swift; sourceTree = "<group>"; };
+		50EBAE2D9FE3A3ABFE2D6936CBDDF046 /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		519EB553EC74A8B5B410ED125DA754ED /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		52A2FF57FFD8938F15BC936FEAD77763 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		58C31E477791C74FBCB33C4FC946E170 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -3023,7 +3023,7 @@
 			children = (
 				5FD93970489E3F3320328E206C4A6970 /* LineView.swift */,
 				309BA00D590185CF214890F6380981E5 /* LineView.xib */,
-				50EBAE2D9FE3A3ABFE2D6936CBDDF046 /* badgeView.swift */,
+				50EBAE2D9FE3A3ABFE2D6936CBDDF046 /* BadgeView.swift */,
 				BD2FDF8F0CEDA4B1C889F95CFB3E2032 /* badgeView.xib */,
 			);
 			path = LineView;
@@ -3912,7 +3912,7 @@
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
 				221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */,
 				223C58FD214A51DC00C69F3F /* BLTCardConfirmFingerPrinterCoordinator.swift in Sources */,
-				177743A681C111BD4E7CDCB2BE37C18B /* badgeView.swift in Sources */,
+				177743A681C111BD4E7CDCB2BE37C18B /* BadgeView.swift in Sources */,
 				72FE5B532100490200B29FEC /* SafeCoordinator.swift in Sources */,
 				3B6D7467214761690076F444 /* ExchangeToActivateActions.swift in Sources */,
 				739A4DBF2150DF2800A1074B /* RxGestureRecognizerDelegate.swift in Sources */,

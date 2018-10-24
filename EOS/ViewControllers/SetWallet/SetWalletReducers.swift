@@ -9,11 +9,14 @@
 import UIKit
 import ReSwift
 
-func SetWalletReducer(action: Action, state: SetWalletState?) -> SetWalletState {
-    return SetWalletState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: SetWalletPropertyReducer(state?.property, action: action))
+func gSetWalletReducer(action: Action, state: SetWalletState?) -> SetWalletState {
+    return SetWalletState(isLoading: loadingReducer(state?.isLoading, action: action),
+                          page: pageReducer(state?.page, action: action),
+                          errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                          property: gSetWalletPropertyReducer(state?.property, action: action))
 }
 
-func SetWalletPropertyReducer(_ state: SetWalletPropertyState?, action: Action) -> SetWalletPropertyState {
+func gSetWalletPropertyReducer(_ state: SetWalletPropertyState?, action: Action) -> SetWalletPropertyState {
     let state = state ?? SetWalletPropertyState()
 
     switch action {

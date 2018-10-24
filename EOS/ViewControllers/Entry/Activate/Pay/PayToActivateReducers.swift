@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func PayToActivateReducer(action: Action, state: PayToActivateState?) -> PayToActivateState {
+func gPayToActivateReducer(action: Action, state: PayToActivateState?) -> PayToActivateState {
     var state = state ?? PayToActivateState()
 
     switch action {

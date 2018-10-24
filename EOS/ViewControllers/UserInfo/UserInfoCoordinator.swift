@@ -32,7 +32,7 @@ class UserInfoCoordinator: NavCoordinator {
     lazy var creator = UserInfoPropertyActionCreate()
 
     var store = Store<UserInfoState>(
-        reducer: UserInfoReducer,
+        reducer: gUserInfoReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

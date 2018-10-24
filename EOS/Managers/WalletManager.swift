@@ -21,7 +21,7 @@ class WalletManager {
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
 
     var currentPubKey: String = Defaults[.currentWallet]
-    var account_names: [String] = Defaults[.accountNames]
+    var accountNames: [String] = Defaults[.accountNames]
 
     var priKey: String = ""
 
@@ -39,14 +39,21 @@ class WalletManager {
         }
     }
 
-    func saveWallket(_ account: String, password: String, hint: String, isImport: Bool = false, txID: String? = nil, invitationCode: String? = nil, type: CreateAPPId? = nil, deviceName: String? = nil) {
+    func saveWallket(_ account: String,
+                     password: String,
+                     hint: String,
+                     isImport: Bool = false,
+                     txID: String? = nil,
+                     invitationCode: String? = nil,
+                     type: CreateAPPId? = nil,
+                     deviceName: String? = nil) {
         if type == .bluetooth {
             savePriKey(priKey, publicKey: currentPubKey, password: password)
             savePasswordHint(currentPubKey, hint: hint)
 
             addToLocalWallet(isImport, accountName: account, type: type, deviceName: deviceName)
             switchWallet(currentPubKey)
-            account_names = [account]
+            accountNames = [account]
 
             switchAccount(0)
 
@@ -57,7 +64,7 @@ class WalletManager {
 
             addToLocalWallet(isImport, accountName: account, type: type, deviceName: deviceName)
             switchWallet(currentPubKey)
-            account_names = [account]
+            accountNames = [account]
 
             switchAccount(0)
             removePriKey()
@@ -91,7 +98,16 @@ class WalletManager {
             if let walletType = type, walletType == .bluetooth {
                 walletName = "WOOKONG Bio"
             }
-            let wallet = WalletList(name: walletName, accountName: accountName, created: "", publicKey: currentPubKey, isBackUp: isImport ? true : false, creatStatus: WalletCreatStatus.willGetAccountInfo.rawValue, getAccountInfoDate: Date(), isImport: isImport, type: type, deviceName: deviceName)
+            let wallet = WalletList(name: walletName,
+                                    accountName: accountName,
+                                    created: "",
+                                    publicKey: currentPubKey,
+                                    isBackUp: isImport ? true : false,
+                                    creatStatus: WalletCreatStatus.willGetAccountInfo.rawValue,
+                                    getAccountInfoDate: Date(),
+                                    isImport: isImport,
+                                    type: type,
+                                    deviceName: deviceName)
             wallets.append(wallet)
             Defaults[.walletList] = wallets
         }
@@ -101,7 +117,7 @@ class WalletManager {
         removePriKey()//清除私钥
 
         if let wallet = currentWallet() {
-            if account_names.count == 0 {
+            if accountNames.count == 0 {
                 return "--"
             }
             if let walletAccount = wallet.accountName {
@@ -112,20 +128,20 @@ class WalletManager {
         return "--"
     }
 
-    func FetchAccount(_ callback: @escaping StringCallback) {
+    func fetchAccount(_ callback: @escaping StringCallback) {
         if let wallet = currentWallet() {
             if let pubKey = wallet.publicKey {
-                if account_names.count == 0 {
+                if accountNames.count == 0 {
                     fetchAccountNames(pubKey) { (success) in
                         if success {
-                            callback(self.account_names[0])
+                            callback(self.accountNames[0])
                         } else {
                             callback("--")
                         }
                     }
                     return
                 }
-                return callback(self.account_names[0])
+                return callback(self.accountNames[0])
             }
         }
 
@@ -135,7 +151,7 @@ class WalletManager {
     func fetchAccountNames(_ publicKey: String, completion: @escaping (Bool) -> Void) {
         EOSIONetwork.request(target: .getKeyAccounts(pubKey: publicKey), success: { (json) in
             if let names = json["account_names"].arrayObject as? [String] {
-                self.account_names = names
+                self.accountNames = names
                 Defaults[.accountNames] = names
 
                 completion(names.count > 0)
@@ -161,7 +177,7 @@ class WalletManager {
             if success {
                 self.currentPubKey = pubKey
 
-                self.saveWallket(self.account_names[0], password: password, hint: hint, isImport: true, txID: nil, type: .gemma, deviceName: nil)
+                self.saveWallket(self.accountNames[0], password: password, hint: hint, isImport: true, txID: nil, type: .gemma, deviceName: nil)
             }
             completion(success)
         }
@@ -198,7 +214,7 @@ class WalletManager {
         var wallets = Defaults[.walletList]
         if let walletIndex = wallets.map({ $0.publicKey }).index(of: currentPubKey) {
             var wallet = wallets[walletIndex]
-            wallet.accountName = account_names[index]
+            wallet.accountName = accountNames[index]
             wallets[walletIndex] = wallet
             Defaults[.walletList] = wallets
         }

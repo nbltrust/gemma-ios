@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-enum leftIconType: String {
+enum LeftIconType: String {
     case dismiss
     case pop
 }
@@ -39,7 +39,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
     override func leftAction(_ sender: UIButton) {
         guard let context = context else { return }
 
-        if context.iconType == leftIconType.dismiss.rawValue {
+        if context.iconType == LeftIconType.dismiss.rawValue {
             self.coordinator?.dismissConfirmPwdVC()
         } else {
             self.passwordView.textField.resignFirstResponder()
@@ -54,7 +54,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
             if let context = context as? TransferConfirmPasswordContext {
                 self.context = context
 
-                if context.iconType == leftIconType.dismiss.rawValue {
+                if context.iconType == LeftIconType.dismiss.rawValue {
                     self.configLeftNavButton(R.image.icTransferClose())
                 } else {
                     self.configLeftNavButton(R.image.icBack())

@@ -31,7 +31,7 @@ class LeadInKeyCoordinator: NavCoordinator {
     lazy var creator = LeadInKeyPropertyActionCreate()
 
     var store = Store<LeadInKeyState>(
-        reducer: LeadInKeyReducer,
+        reducer: gLeadInKeyReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

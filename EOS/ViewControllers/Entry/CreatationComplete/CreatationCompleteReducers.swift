@@ -9,11 +9,14 @@
 import UIKit
 import ReSwift
 
-func CreatationCompleteReducer(action: Action, state: CreatationCompleteState?) -> CreatationCompleteState {
-    return CreatationCompleteState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: CreatationCompletePropertyReducer(state?.property, action: action))
+func gCreatationCompleteReducer(action: Action, state: CreatationCompleteState?) -> CreatationCompleteState {
+    return CreatationCompleteState(isLoading: loadingReducer(state?.isLoading, action: action),
+                                   page: pageReducer(state?.page, action: action),
+                                   errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                                   property: gCreatationCompletePropertyReducer(state?.property, action: action))
 }
 
-func CreatationCompletePropertyReducer(_ state: CreatationCompletePropertyState?, action: Action) -> CreatationCompletePropertyState {
+func gCreatationCompletePropertyReducer(_ state: CreatationCompletePropertyState?, action: Action) -> CreatationCompletePropertyState {
     let state = state ?? CreatationCompletePropertyState()
 
     switch action {

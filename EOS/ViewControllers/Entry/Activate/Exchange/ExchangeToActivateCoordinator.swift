@@ -21,7 +21,7 @@ protocol ExchangeToActivateStateManagerProtocol {
 
 class ExchangeToActivateCoordinator: NavCoordinator {
     var store = Store(
-        reducer: ExchangeToActivateReducer,
+        reducer: gExchangeToActivateReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

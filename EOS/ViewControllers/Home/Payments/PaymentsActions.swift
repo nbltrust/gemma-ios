@@ -21,7 +21,7 @@ struct PaymentsState: StateType {
 
 struct PaymentsPropertyState {
     var data: [PaymentsRecordsViewModel] = []
-    var last_pos: Int = -1
+    var lastPos: Int = -1
     var payments: [Payment] = []
 }
 
@@ -30,7 +30,7 @@ struct FetchPaymentsRecordsListAction: Action {
 }
 
 struct GetLastPosAction: Action {
-    var last_pos: Int
+    var lastPos: Int
 }
 
 // MARK: - ViewModel

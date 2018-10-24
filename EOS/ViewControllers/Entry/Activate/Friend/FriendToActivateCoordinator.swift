@@ -21,7 +21,7 @@ protocol FriendToActivateStateManagerProtocol {
 
 class FriendToActivateCoordinator: NavCoordinator {
     var store = Store(
-        reducer: FriendToActivateReducer,
+        reducer: gFriendToActivateReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

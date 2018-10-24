@@ -31,8 +31,8 @@ class CardView: EOSBaseView {
                 shadeLabel.text = "+\(tokenArray.count)"
             }
 
-            for i in 0..<tokenArray.count {
-                let imgView = UIImageView(frame: CGRect(x: 88 - (i+1)*28 + i*13, y: 0, width: 28, height: 28))
+            for index in 0..<tokenArray.count {
+                let imgView = UIImageView(frame: CGRect(x: 88 - (index+1)*28 + index*13, y: 0, width: 28, height: 28))
 //                imgView.kf.setImage(with: URL(string: tokenArray[i]))
                 imgView.image = R.image.eosBg()!
                 self.tokenView.insertSubview(imgView, at: 0)
@@ -41,7 +41,7 @@ class CardView: EOSBaseView {
     }
 
     enum Event: String {
-        case CardViewDidClicked
+        case cardViewDidClicked
     }
 
     override func setup() {
@@ -60,6 +60,6 @@ class CardView: EOSBaseView {
     }
 
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.CardViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.cardViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }

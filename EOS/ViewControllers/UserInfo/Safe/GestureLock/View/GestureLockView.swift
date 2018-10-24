@@ -180,11 +180,11 @@ class GestureLockView: UIView {
 
     private func angleBetweenLines(_ startPoint: CGPoint, endPoint: CGPoint) -> CGFloat {
         let xPoint = CGPoint(x: startPoint.x + 100, y: startPoint.y)
-        let a = endPoint.x - startPoint.x
-        let b = endPoint.y - startPoint.y
-        let c = xPoint.x - startPoint.x
-        let d = xPoint.y - startPoint.y
-        var rads = acos(((a * c) + (b * d)) / ((sqrt(a * a + b * b)) * (sqrt(c * c + d * d))))
+        let endX = endPoint.x - startPoint.x
+        let endY = endPoint.y - startPoint.y
+        let startX = xPoint.x - startPoint.x
+        let startY = xPoint.y - startPoint.y
+        var rads = acos(((endX * startX) + (endY * startY)) / ((sqrt(endX * endX + endY * endY)) * (sqrt(startX * startX + startY * startY))))
         if startPoint.y > endPoint.y {
             rads = 2 * CGFloat.pi - rads
         }

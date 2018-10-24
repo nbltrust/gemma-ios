@@ -43,11 +43,15 @@ class ScanViewController: BaseViewController {
                 self.loadScanView()
             } else {
                 self.loadScanView()
-                self.showAlert(title: R.string.localizable.prompt.key.localized(), message: R.string.localizable.guide_open_camera.key.localized(), buttonTitles: [R.string.localizable.got_it.key.localized()])
+                self.showAlert(title: R.string.localizable.prompt.key.localized(),
+                               message: R.string.localizable.guide_open_camera.key.localized(),
+                               buttonTitles: [R.string.localizable.got_it.key.localized()])
             }
         } else {
             self.loadScanView()
-            self.showAlert(title: R.string.localizable.prompt.key.localized(), message: R.string.localizable.unsupport_camera.key.localized(), buttonTitles: [R.string.localizable.got_it.key.localized()])
+            self.showAlert(title: R.string.localizable.prompt.key.localized(),
+                           message: R.string.localizable.unsupport_camera.key.localized(),
+                           buttonTitles: [R.string.localizable.got_it.key.localized()])
         }
     }
 

@@ -19,7 +19,7 @@ class SimpleHTTPService {
 
         let (promise, seal) = Promise<[JSON]>.pending()
         Alamofire.request(request).responseJSON(queue: DispatchQueue.main, options: .allowFragments) { (response) in
-            var rmb_prices = [JSON]()
+            var rmbPrices = [JSON]()
             guard let value = response.result.value else {
                 seal.fulfill([])
                 return
@@ -28,10 +28,10 @@ class SimpleHTTPService {
 
             let prices = json["prices"].arrayValue
             for price in prices {
-                rmb_prices.append(price)
+                rmbPrices.append(price)
             }
-            seal.fulfill(rmb_prices)
-            saveUnitToLocal(rmbPrices: rmb_prices)
+            seal.fulfill(rmbPrices)
+            saveUnitToLocal(rmbPrices: rmbPrices)
         }
         return promise
     }

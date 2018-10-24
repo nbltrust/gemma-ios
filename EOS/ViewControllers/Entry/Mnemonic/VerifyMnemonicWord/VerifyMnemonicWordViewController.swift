@@ -55,10 +55,10 @@ class VerifyMnemonicWordViewController: BaseViewController {
 
     func shuffleArray(arr: [String]) -> [String] {
         var data: [String] = arr
-        for i in 1..<arr.count {
-            let index: Int = Int(arc4random()) % i
-            if index != i {
-                data.swapAt(i, index)
+        for index in 1..<arr.count {
+            let shuffleIndex: Int = Int(arc4random()) % index
+            if shuffleIndex != index {
+                data.swapAt(index, shuffleIndex)
             }
         }
         return data
@@ -75,7 +75,7 @@ class VerifyMnemonicWordViewController: BaseViewController {
 
 // MARK: - View Event
 extension VerifyMnemonicWordViewController {
-    @objc func VerifyMnemonicWord(_ data: [String: Any]) {
+    @objc func verifyMnemonicWord(_ data: [String: Any]) {
         if let selectValues = data["data"] as? [String] {
             if selectValues.count == seeds.count {
                 if let isValid = self.coordinator?.validSequence(seeds, compairDatas: selectValues), isValid {

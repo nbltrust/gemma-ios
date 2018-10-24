@@ -38,17 +38,17 @@ class PageView: UIView {
         }
     }
 
-    enum event: String {
+    enum Event: String {
         case left
         case right
     }
 
-    enum page: Int {
+    enum Page: Int {
         case left = 0
         case right = 1
     }
 
-    var index = page.left
+    var index = Page.left
 
     @IBInspectable
     var leftText: String = "" {
@@ -90,7 +90,7 @@ class PageView: UIView {
     }
 
     func updateLabelStatus() {
-        if index == page.left {
+        if index == Page.left {
             leftLabel.textColor = UIColor.darkSlateBlue
             rightLabel.textColor = UIColor.blueyGrey
         } else {
@@ -102,12 +102,12 @@ class PageView: UIView {
     func setupEvent() {
         leftLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.leftLabel.next?.sendEventWith(event.left.rawValue, userinfo: [:])
+            self.leftLabel.next?.sendEventWith(Event.left.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
 
         rightLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.rightLabel.next?.sendEventWith(event.right.rawValue, userinfo: [:])
+            self.rightLabel.next?.sendEventWith(Event.right.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
     }
 
@@ -149,7 +149,6 @@ class PageView: UIView {
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
 
-
 //                self.insertSubview(view, at: 0)
 
         addSubview(view)
@@ -162,15 +161,15 @@ extension PageView {
     @objc func left(_ data: [String: Any]) {
         lineView.centerX = leftLabel.centerX
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        index = page.left
+        index = Page.left
         updateLabelStatus()
-        self.next?.sendEventWith(event.left.rawValue, userinfo: [:])
+        self.next?.sendEventWith(Event.left.rawValue, userinfo: [:])
     }
     @objc func right(_ data: [String: Any]) {
         lineView.centerX = rightLabel.centerX
         scrollView.setContentOffset(CGPoint(x: self.width, y: 0), animated: true)
-        index = page.right
+        index = Page.right
         updateLabelStatus()
-        self.next?.sendEventWith(event.right.rawValue, userinfo: [:])
+        self.next?.sendEventWith(Event.right.rawValue, userinfo: [:])
     }
 }

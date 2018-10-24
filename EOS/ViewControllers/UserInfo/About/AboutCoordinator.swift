@@ -25,7 +25,7 @@ class AboutCoordinator: NavCoordinator {
     lazy var creator = AboutPropertyActionCreate()
 
     var store = Store<AboutState>(
-        reducer: AboutReducer,
+        reducer: gAboutReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

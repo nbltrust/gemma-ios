@@ -89,25 +89,25 @@ class WalletCacheService: BaseCacheService {
     }
 
     override func createTable() throws {
-        try queue?.write { db in
-            try db.create(table: Wallet.databaseTableName) { t in
-                t.column("id", .integer).primaryKey()
-                t.column("name", .text).notNull()
-                t.column("type", .integer).notNull()
-                t.column("cipher", .text)
-                t.column("deviceName", .text)
-                t.column("date", .date).defaults(to: Date())
+        try queue?.write { database in
+            try database.create(table: Wallet.databaseTableName) { table in
+                table.column("id", .integer).primaryKey()
+                table.column("name", .text).notNull()
+                table.column("type", .integer).notNull()
+                table.column("cipher", .text)
+                table.column("deviceName", .text)
+                table.column("date", .date).defaults(to: Date())
             }
         }
 
-        try queue?.write { db in
-            try db.create(table: Currency.databaseTableName) { t in
-                t.column("id", .integer).primaryKey()
-                t.column("type", .integer).notNull()
-                t.column("cipher", .text).notNull()
-                t.column("pubKey", .text).notNull()
-                t.column("wid", .integer).notNull()
-                t.column("date", .date).defaults(to: Date())
+        try queue?.write { database in
+            try database.create(table: Currency.databaseTableName) { table in
+                table.column("id", .integer).primaryKey()
+                table.column("type", .integer).notNull()
+                table.column("cipher", .text).notNull()
+                table.column("pubKey", .text).notNull()
+                table.column("wid", .integer).notNull()
+                table.column("date", .date).defaults(to: Date())
             }
         }
     }

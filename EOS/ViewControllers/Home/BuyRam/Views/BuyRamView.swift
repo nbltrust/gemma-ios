@@ -18,7 +18,7 @@ class BuyRamView: UIView {
     @IBOutlet weak var exchangeLabelView: UIView!
     @IBOutlet weak var exchangeLabel: UILabel!
 
-    enum event: String {
+    enum Event: String {
         case leftnext
         case rightnext
         case left
@@ -62,12 +62,12 @@ class BuyRamView: UIView {
         leftNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.endEditing(true)
-            self.sendEventWith(event.leftnext.rawValue, userinfo: [:])
+            self.sendEventWith(Event.leftnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         rightNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.endEditing(true)
-            self.sendEventWith(event.rightnext.rawValue, userinfo: [:])
+            self.sendEventWith(Event.rightnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 
@@ -128,11 +128,11 @@ extension BuyRamView {
     @objc func left(_ data: [String: Any]) {
         leftNextButton.isHidden = false
         rightNextButton.isHidden = true
-        self.next?.sendEventWith(event.left.rawValue, userinfo: [:])
+        self.next?.sendEventWith(Event.left.rawValue, userinfo: [:])
     }
     @objc func right(_ data: [String: Any]) {
         leftNextButton.isHidden = true
         rightNextButton.isHidden = false
-        self.next?.sendEventWith(event.right.rawValue, userinfo: [:])
+        self.next?.sendEventWith(Event.right.rawValue, userinfo: [:])
     }
 }

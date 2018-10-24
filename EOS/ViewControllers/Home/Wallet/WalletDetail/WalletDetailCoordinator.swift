@@ -26,7 +26,7 @@ protocol WalletDetailStateManagerProtocol {
 
 class WalletDetailCoordinator: NavCoordinator {
     var store = Store(
-        reducer: WalletDetailReducer,
+        reducer: gWalletDetailReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

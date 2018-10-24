@@ -112,7 +112,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         store.subscribe(subscriber, transform: transform)
     }
 
-    func ValidingPassword(_ password: String) -> Bool {
+    func validingPassword(_ password: String) -> Bool {
         return WalletManager.shared.isValidPassword(password)
     }
 

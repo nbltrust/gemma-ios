@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func VerifyPriKeyReducer(action: Action, state: VerifyPriKeyState?) -> VerifyPriKeyState {
+func gVerifyPriKeyReducer(action: Action, state: VerifyPriKeyState?) -> VerifyPriKeyState {
     let state = state ?? VerifyPriKeyState()
 
     switch action {

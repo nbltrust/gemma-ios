@@ -137,7 +137,7 @@ extension MnemonicContentViewController {
 //
 //        }
 //    }
-    @objc func Copied(_ data: [String: Any]) {
+    @objc func copied(_ data: [String: Any]) {
         self.coordinator?.pushToVerifyMnemonicVC()
     }
 }

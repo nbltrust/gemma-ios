@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func MnemonicContentReducer(action: Action, state: MnemonicContentState?) -> MnemonicContentState {
+func gMnemonicContentReducer(action: Action, state: MnemonicContentState?) -> MnemonicContentState {
     let state = state ?? MnemonicContentState()
 
     switch action {

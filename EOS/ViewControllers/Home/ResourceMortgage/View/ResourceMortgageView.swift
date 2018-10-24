@@ -17,7 +17,7 @@ class ResourceMortgageView: UIView {
     @IBOutlet weak var leftNextButton: Button!
     @IBOutlet weak var rightNextButton: Button!
 
-    enum event: String {
+    enum Event: String {
         case leftnext
         case rightnext
     }
@@ -44,12 +44,12 @@ class ResourceMortgageView: UIView {
             guard let `self` = self else { return }
             self.endEditing(true)
 //            self.pageView.leftView.cpuMortgageView.resignFirstResponder()
-            self.sendEventWith(event.leftnext.rawValue, userinfo: [:])
+            self.sendEventWith(Event.leftnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         rightNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.endEditing(true)
-            self.sendEventWith(event.rightnext.rawValue, userinfo: [:])
+            self.sendEventWith(Event.rightnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 
@@ -111,7 +111,6 @@ class ResourceMortgageView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
 
         //        self.insertSubview(view, at: 0)
 

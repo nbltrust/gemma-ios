@@ -9,11 +9,14 @@
 import UIKit
 import ReSwift
 
-func UserInfoReducer(action: Action, state: UserInfoState?) -> UserInfoState {
-    return UserInfoState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: UserInfoPropertyReducer(state?.property, action: action))
+func gUserInfoReducer(action: Action, state: UserInfoState?) -> UserInfoState {
+    return UserInfoState(isLoading: loadingReducer(state?.isLoading, action: action),
+                         page: pageReducer(state?.page, action: action),
+                         errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                         property: gUserInfoPropertyReducer(state?.property, action: action))
 }
 
-func UserInfoPropertyReducer(_ state: UserInfoPropertyState?, action: Action) -> UserInfoPropertyState {
+func gUserInfoPropertyReducer(_ state: UserInfoPropertyState?, action: Action) -> UserInfoPropertyState {
     let state = state ?? UserInfoPropertyState()
 
     switch action {

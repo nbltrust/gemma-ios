@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class SafeLineView: UIView {
 
-    enum event_name: String {
+    enum EventName: String {
         case clickCellView
     }
 
@@ -22,7 +22,7 @@ class SafeLineView: UIView {
     @IBInspectable
     var name: String? {
         didSet {
-            safeLineView.name_text = name
+            safeLineView.nameText = name
         }
     }
 
@@ -42,7 +42,7 @@ class SafeLineView: UIView {
 
     @IBAction func clickSwitchAction(sender: UISwitch) {
         sender.isOn = !sender.isOn
-        self.next?.sendEventWith(event_name.clickCellView.rawValue, userinfo: ["index": self.index])
+        self.next?.sendEventWith(EventName.clickCellView.rawValue, userinfo: ["index": self.index])
 
     }
 
@@ -89,8 +89,6 @@ class SafeLineView: UIView {
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
 
-
-
         insertSubview(view, at: 0)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -99,6 +97,6 @@ class SafeLineView: UIView {
 
 extension SafeLineView {
     @objc func clickCellView(_ sender: [String: Any]) {
-        self.next?.sendEventWith(event_name.clickCellView.rawValue, userinfo: sender)
+        self.next?.sendEventWith(EventName.clickCellView.rawValue, userinfo: sender)
     }
 }

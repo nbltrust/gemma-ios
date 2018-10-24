@@ -56,7 +56,7 @@ extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
         context.amount = money
         context.remark = remark
         context.type = type
-        context.iconType = leftIconType.pop.rawValue
+        context.iconType = LeftIconType.pop.rawValue
 
         pushVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context)
     }
@@ -67,7 +67,7 @@ extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
         context.amount = money
         context.remark = remark
         context.type = type
-        context.iconType = leftIconType.pop.rawValue
+        context.iconType = LeftIconType.pop.rawValue
 
         pushVC(BLTCardConfirmFingerPrinterCoordinator.self, animated: true, context: context)
     }

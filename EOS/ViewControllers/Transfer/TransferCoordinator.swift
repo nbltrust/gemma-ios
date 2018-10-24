@@ -154,9 +154,13 @@ extension TransferCoordinator: TransferStateManagerProtocol {
 
     func getPushTransaction(_ password: String, account: String, amount: String, code: String, callback:@escaping (String?) -> Void) {
 
-        getInfo { (get_info) in
+        getInfo { (getInfo) in
             let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: password)
-            let json = EOSIO.getAbiJsonString(EOSIOContract.TokenCode, action: EOSAction.transfer.rawValue, from: WalletManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIODefaultSymbol, memo: code)
+            let json = EOSIO.getAbiJsonString(EOSIOContract.TokenCode,
+                                              action: EOSAction.transfer.rawValue,
+                                              from: WalletManager.shared.getAccount(),
+                                              to: account,
+                                              quantity: amount + " " + NetworkConfiguration.EOSIODefaultSymbol, memo: code)
 
             EOSIONetwork.request(target: .abiJsonToBin(json:json!), success: { (data) in
                 let abiStr = data.stringValue
@@ -164,7 +168,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
                let transation = EOSIO.getTransferTransaction(privakey,
                                      code: EOSIOContract.TokenCode,
                                      from: account,
-                    getinfo: get_info,
+                    getinfo: getInfo,
                     abistr: abiStr)
                 callback(transation)
             }, error: { (_) in
@@ -176,7 +180,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
 
     }
 
-    func ValidingPassword(_ password: String) -> Bool {
+    func validingPassword(_ password: String) -> Bool {
         return WalletManager.shared.isValidPassword(password)
     }
 

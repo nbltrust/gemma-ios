@@ -10,7 +10,7 @@ import UIKit
 
 class LeadInIntroduceView: UIView {
 
-    enum event_name: String {
+    enum EventName: String {
         case switchToKeyView
     }
     @IBOutlet weak var beginLeadIn: Button!
@@ -22,7 +22,7 @@ class LeadInIntroduceView: UIView {
     func setup() {
         beginLeadIn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.next?.sendEventWith(event_name.switchToKeyView.rawValue, userinfo: ["data": ""])
+            self.next?.sendEventWith(EventName.switchToKeyView.rawValue, userinfo: ["data": ""])
         }).disposed(by: disposeBag)
     }
 
@@ -59,8 +59,6 @@ class LeadInIntroduceView: UIView {
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-
-
 
         addSubview(view)
         view.frame = self.bounds

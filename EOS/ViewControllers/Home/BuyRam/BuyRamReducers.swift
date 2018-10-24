@@ -10,11 +10,15 @@ import UIKit
 import ReSwift
 import SwiftyUserDefaults
 
-func BuyRamReducer(action: Action, state: BuyRamState?) -> BuyRamState {
-    return BuyRamState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: BuyRamPropertyReducer(state?.property, action: action), callback: state?.callback ?? BuyRamCallbackState())
+func gBuyRamReducer(action: Action, state: BuyRamState?) -> BuyRamState {
+    return BuyRamState(isLoading: loadingReducer(state?.isLoading, action: action),
+                       page: pageReducer(state?.page, action: action),
+                       errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                       property: gBuyRamPropertyReducer(state?.property, action: action),
+                       callback: state?.callback ?? BuyRamCallbackState())
 }
 
-func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> BuyRamPropertyState {
+func gBuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> BuyRamPropertyState {
     let state = state ?? BuyRamPropertyState()
 
     switch action {
@@ -148,11 +152,11 @@ func convertBuyRamViewModelWithAccount(_ account: Account, viewmodel: BuyRamView
 
         newViewModel.rightTrade = (max.float()! - used.float()!).string + " " + R.string.localizable.kb.key.localized()
 
-        if let cpu_max = account.cpuLimit?.max {
-            newViewModel.cpu_max = cpu_max
+        if let cpuMax = account.cpuLimit?.max {
+            newViewModel.cpuMax = cpuMax
         }
-        if let net_max = account.netLimit?.max {
-            newViewModel.net_max = net_max
+        if let netMax = account.netLimit?.max {
+            newViewModel.netMax = netMax
         }
         return newViewModel
     } else {
@@ -172,11 +176,11 @@ func convertToViewModelWithModel(model: AccountModel, viewmodel: BuyRamViewModel
 
         newViewModel.rightTrade = (max.float()! - used.float()!).string + " " + R.string.localizable.kb.key.localized()
 
-        if let cpu_max = model.cpuMax {
-            newViewModel.cpu_max = cpu_max
+        if let cpuMax = model.cpuMax {
+            newViewModel.cpuMax = cpuMax
         }
-        if let net_max = model.netMax {
-            newViewModel.net_max = net_max
+        if let netMax = model.netMax {
+            newViewModel.netMax = netMax
         }
 
         if let balance = Defaults[model.accountName + NetworkConfiguration.BlanceDefaultSymbol] as? String {

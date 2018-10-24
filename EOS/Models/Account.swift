@@ -22,7 +22,7 @@ struct Account: HandyJSON {
     var permissions: [Permission]!
 
     init() {}
-    
+
     mutating func mapping(mapper: HelpingMapper) {
         mapper <<< self.accountName <-- "account_name"
         mapper <<< self.totalResources <-- "total_resources"
@@ -57,7 +57,7 @@ struct Permission: HandyJSON {
     var parent: String!
     var permName: String!
     init() {}
-    
+
     mutating func mapping(mapper: HelpingMapper) {
         mapper <<< self.requiredAuth <-- "required_auth"
         mapper <<< self.permName <-- "perm_name"
@@ -93,7 +93,7 @@ struct TotalResource: HandyJSON {
     var ramBytes: Int64!
 
     init() {}
-    
+
     mutating func mapping(mapper: HelpingMapper) {
         mapper <<< self.netWeight <-- "net_weight"
         mapper <<< self.cpuWeight <-- "cpu_weight"
@@ -124,7 +124,7 @@ struct DelegatedBandWidth: HandyJSON {
     var cpuWeight: String!
 
     init() {}
-    
+
     mutating func mapping(mapper: HelpingMapper) {
         mapper <<< self.netWeight <-- "net_weight"
         mapper <<< self.cpuWeight <-- "cpu_weight"

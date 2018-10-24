@@ -26,7 +26,7 @@ class CreatationCompleteCoordinator: NavCoordinator {
     lazy var creator = CreatationCompletePropertyActionCreate()
 
     var store = Store<CreatationCompleteState>(
-        reducer: CreatationCompleteReducer,
+        reducer: gCreatationCompleteReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

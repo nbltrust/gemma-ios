@@ -35,7 +35,7 @@ class ResourceMortgageCoordinator: NavCoordinator {
     lazy var creator = ResourceMortgagePropertyActionCreate()
 
     var store = Store<ResourceMortgageState>(
-        reducer: ResourceMortgageReducer,
+        reducer: gResourceMortgageReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -102,19 +102,19 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
     }
 
     func cpuValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
-        self.store.dispatch(cpuMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+        self.store.dispatch(CpuMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
     }
 
     func netValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
-        self.store.dispatch(netMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+        self.store.dispatch(NetMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
     }
 
     func cpuReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
-        self.store.dispatch(cpuReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+        self.store.dispatch(CpuReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
     }
 
     func netReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
-        self.store.dispatch(netReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
+        self.store.dispatch(NetReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
     }
 
     func getCurrentFromLocal() {

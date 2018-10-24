@@ -25,8 +25,8 @@ class BaseCacheService {
             return nil
         }
 
-        if let q = _queue {
-            return q
+        if let que = _queue {
+            return que
         }
 
         let url = URL(string: path)!.appendingPathComponent(sqliteName)

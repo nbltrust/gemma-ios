@@ -34,7 +34,7 @@ class AccountListViewController: BaseViewController {
     func setupData() {
 
         var array: [AccountListViewModel] = []
-        for accountName in WalletManager.shared.account_names {
+        for accountName in WalletManager.shared.accountNames {
             var model = AccountListViewModel()
             model.account = accountName
             array.append(model)

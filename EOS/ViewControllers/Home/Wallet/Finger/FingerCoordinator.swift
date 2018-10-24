@@ -30,7 +30,7 @@ protocol FingerStateManagerProtocol {
 
 class FingerCoordinator: NavCoordinator {
     var store = Store(
-        reducer: FingerReducer,
+        reducer: gFingerReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
