@@ -17,6 +17,8 @@ protocol BLTCardConfirmPinStateManagerProtocol {
     var state: BLTCardConfirmPinState { get }
 
     func switchPageState(_ state: PageState)
+    
+    func confirmPin(_ pin: String, complication: @escaping SuccessedComplication)
 }
 
 class BLTCardConfirmPinCoordinator: BLTCardRootCoordinator {
@@ -43,5 +45,13 @@ extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinCoordinatorProtocol {
 extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinStateManagerProtocol {
     func switchPageState(_ state: PageState) {
         self.store.dispatch(PageStateAction(state: state))
+    }
+    
+    func confirmPin(_ pin: String, complication: @escaping SuccessedComplication) {
+        BLTWalletIO.shareInstance()?.verifyPin(pin, success: complication, failed: { (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        })
     }
 }
