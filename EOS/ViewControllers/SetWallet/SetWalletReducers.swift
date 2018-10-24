@@ -14,7 +14,7 @@ func SetWalletReducer(action:Action, state:SetWalletState?) -> SetWalletState {
 }
 
 func SetWalletPropertyReducer(_ state: SetWalletPropertyState?, action: Action) -> SetWalletPropertyState {
-    var state = state ?? SetWalletPropertyState()
+    let state = state ?? SetWalletPropertyState()
     
     switch action {
     case let action as SetWalletPasswordAction:

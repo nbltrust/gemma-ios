@@ -14,7 +14,7 @@ func QRCodeReducer(action:Action, state:QRCodeState?) -> QRCodeState {
 }
 
 func QRCodePropertyReducer(_ state: QRCodePropertyState?, action: Action) -> QRCodePropertyState {
-    var state = state ?? QRCodePropertyState()
+    let state = state ?? QRCodePropertyState()
     
     switch action {
     default:

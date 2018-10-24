@@ -14,7 +14,7 @@ func CreatationCompleteReducer(action:Action, state:CreatationCompleteState?) ->
 }
 
 func CreatationCompletePropertyReducer(_ state: CreatationCompletePropertyState?, action: Action) -> CreatationCompletePropertyState {
-    var state = state ?? CreatationCompletePropertyState()
+    let state = state ?? CreatationCompletePropertyState()
     
     switch action {
     default:

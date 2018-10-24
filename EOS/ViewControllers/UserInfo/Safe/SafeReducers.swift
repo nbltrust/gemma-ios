@@ -14,7 +14,7 @@ func SafeReducer(action:Action, state:SafeState?) -> SafeState {
 }
 
 func SafePropertyReducer(_ state: SafePropertyState?, action: Action) -> SafePropertyState {
-    var state = state ?? SafePropertyState()
+    let state = state ?? SafePropertyState()
     
     switch action {
     default:

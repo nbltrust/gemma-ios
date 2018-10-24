@@ -34,7 +34,6 @@ class SafeManager {
     }
     
     func showFaceIDComfirmVC() {
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let nav = BaseNavigationController()
         nav.navStyle = .clear
         let vc = R.storyboard.userInfo.faceIDComfirmViewController()!
@@ -46,7 +45,6 @@ class SafeManager {
     }
     
     func showFingerSingerComfirmVC() {
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let nav = BaseNavigationController()
         nav.navStyle = .clear
         let vc = R.storyboard.userInfo.fingerPrinterConfirmViewController()!
@@ -58,7 +56,6 @@ class SafeManager {
     }
     
     func showGestureComfirmVC() {
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let nav = BaseNavigationController()
         nav.navStyle = .clear
         let vc = R.storyboard.userInfo.gestureLockComfirmViewController()!

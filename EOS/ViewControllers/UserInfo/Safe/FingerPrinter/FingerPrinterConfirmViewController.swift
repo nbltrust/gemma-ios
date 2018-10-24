@@ -20,6 +20,11 @@ class FingerPrinterConfirmViewController: BaseViewController {
     var canDismiss: Bool = true
     
     var coordinator: (FingerPrinterConfirmCoordinatorProtocol & FingerPrinterConfirmStateManagerProtocol)?
+    var lightModel = false {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +40,18 @@ class FingerPrinterConfirmViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .default
+        lightModel = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
+        lightModel = true
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return lightModel ? .lightContent : .default
+    }
+
     override func configureObserveState() {
         clickView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
             guard let `self` = self else { return }

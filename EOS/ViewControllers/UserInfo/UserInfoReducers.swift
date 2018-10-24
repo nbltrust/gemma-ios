@@ -14,7 +14,7 @@ func UserInfoReducer(action:Action, state:UserInfoState?) -> UserInfoState {
 }
 
 func UserInfoPropertyReducer(_ state: UserInfoPropertyState?, action: Action) -> UserInfoPropertyState {
-    var state = state ?? UserInfoPropertyState()
+    let state = state ?? UserInfoPropertyState()
     
     switch action {
     default:

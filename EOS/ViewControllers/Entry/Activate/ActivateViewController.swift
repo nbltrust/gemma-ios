@@ -42,7 +42,7 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
         self.settings.style.buttonBarLeftContentInset = 34
         self.settings.style.buttonBarRightContentInset = 34
         
-        changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+        changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = UIColor.blueyGrey
             newCell?.label.textColor = UIColor.darkSlateBlue

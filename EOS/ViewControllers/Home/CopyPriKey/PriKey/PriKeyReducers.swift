@@ -14,7 +14,7 @@ func PriKeyReducer(action:Action, state:PriKeyState?) -> PriKeyState {
 }
 
 func PriKeyPropertyReducer(_ state: PriKeyPropertyState?, action: Action) -> PriKeyPropertyState {
-    var state = state ?? PriKeyPropertyState()
+    let state = state ?? PriKeyPropertyState()
     
     switch action {
     default:

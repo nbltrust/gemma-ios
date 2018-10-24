@@ -14,7 +14,7 @@ func WalletManagerReducer(action:Action, state:WalletManagerState?) -> WalletMan
 }
 
 func WalletManagerPropertyReducer(_ state: WalletManagerPropertyState?, action: Action) -> WalletManagerPropertyState {
-    var state = state ?? WalletManagerPropertyState()
+    let state = state ?? WalletManagerPropertyState()
     
     switch action {
     default:

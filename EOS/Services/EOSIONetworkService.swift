@@ -105,7 +105,7 @@ extension EOSIOService : TargetType {
     var baseURL: URL {
         let configuration = NetworkConfiguration()
         switch self {
-        case let .get_account(_, otherNode):
+        case .get_account(_, _):
 //            if otherNode {
 //                return  configuration.EOSIO_OTHER_BASE_URL
 //            }

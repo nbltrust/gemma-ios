@@ -14,7 +14,7 @@ func ServersReducer(action:Action, state:ServersState?) -> ServersState {
 }
 
 func ServersPropertyReducer(_ state: ServersPropertyState?, action: Action) -> ServersPropertyState {
-    var state = state ?? ServersPropertyState()
+    let state = state ?? ServersPropertyState()
     
     switch action {
     default:

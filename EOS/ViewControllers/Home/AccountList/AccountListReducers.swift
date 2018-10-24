@@ -14,7 +14,7 @@ func AccountListReducer(action:Action, state:AccountListState?) -> AccountListSt
 }
 
 func AccountListPropertyReducer(_ state: AccountListPropertyState?, action: Action) -> AccountListPropertyState {
-    var state = state ?? AccountListPropertyState()
+    let state = state ?? AccountListPropertyState()
     
     switch action {
     default:

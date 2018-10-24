@@ -14,7 +14,7 @@ func EntryGuideReducer(action:Action, state:EntryGuideState?) -> EntryGuideState
 }
 
 func EntryGuidePropertyReducer(_ state: EntryGuidePropertyState?, action: Action) -> EntryGuidePropertyState {
-    var state = state ?? EntryGuidePropertyState()
+    let state = state ?? EntryGuidePropertyState()
     
     switch action {
     default:

@@ -14,7 +14,7 @@ func NormalReducer(action:Action, state:NormalState?) -> NormalState {
 }
 
 func NormalPropertyReducer(_ state: NormalPropertyState?, action: Action) -> NormalPropertyState {
-    var state = state ?? NormalPropertyState()
+    let state = state ?? NormalPropertyState()
     
     switch action {
     default:

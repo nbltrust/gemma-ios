@@ -14,7 +14,7 @@ func ChangeWalletNameReducer(action:Action, state:ChangeWalletNameState?) -> Cha
 }
 
 func ChangeWalletNamePropertyReducer(_ state: ChangeWalletNamePropertyState?, action: Action) -> ChangeWalletNamePropertyState {
-    var state = state ?? ChangeWalletNamePropertyState()
+    let state = state ?? ChangeWalletNamePropertyState()
     
     switch action {
     default:

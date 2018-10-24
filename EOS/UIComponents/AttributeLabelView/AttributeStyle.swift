@@ -25,12 +25,6 @@ public enum StyleType {
     case highlighted
 }
 
-// workaround for https://github.com/psharanda/Atributika/issues/27
-#if swift(>=4.1)
-    extension NSAttributedString.Key: Equatable { }
-	extension NSAttributedString.Key: Hashable { }
-#endif
-
 public struct AttributeStyle {
     
     public let name: String

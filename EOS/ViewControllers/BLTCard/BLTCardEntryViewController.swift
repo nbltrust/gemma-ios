@@ -53,8 +53,7 @@ class BLTCardEntryViewController: BaseViewController {
     }
     
     override func configureObserveState() {
-        coordinator?.state.pageState.asObservable().subscribe(onNext: {[weak self] (state) in
-            guard let `self` = self else { return }
+        coordinator?.state.pageState.asObservable().subscribe(onNext: { (state) in
             
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }

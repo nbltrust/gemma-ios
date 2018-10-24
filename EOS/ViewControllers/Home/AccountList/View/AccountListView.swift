@@ -101,8 +101,7 @@ extension AccountListView:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let data = data as? [AccountListViewModel] {
-            let name = data[indexPath.row].account
+        if (data as? [AccountListViewModel]) != nil {
             self.sendEventWith(event.didselectrow.rawValue, userinfo: ["index": indexPath.row])
         }
     }

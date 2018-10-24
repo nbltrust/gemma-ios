@@ -14,7 +14,7 @@ func AboutReducer(action:Action, state:AboutState?) -> AboutState {
 }
 
 func AboutPropertyReducer(_ state: AboutPropertyState?, action: Action) -> AboutPropertyState {
-    var state = state ?? AboutPropertyState()
+    let state = state ?? AboutPropertyState()
     
     switch action {
     default:

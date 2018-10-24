@@ -93,11 +93,11 @@ class TransferConfirmView: UIView {
     }
     
     func setRichText() {
-        let money = Style{
+        let _ = Style{
             $0.font = SystemFonts.PingFangSC_Semibold.font(size: 16.0)
             $0.color = UIColor.darkSlateBlue
         }
-        let eos = Style{
+        let _ = Style{
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
             
         }

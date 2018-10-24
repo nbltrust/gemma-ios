@@ -21,6 +21,12 @@ class GestureLockComfirmViewController: BaseViewController {
     
     var coordinator: (GestureLockComfirmCoordinatorProtocol & GestureLockComfirmStateManagerProtocol)?
 
+    var lightModel = false {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         gestureLockView.delegate = self
@@ -36,12 +42,16 @@ class GestureLockComfirmViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .default
+        lightModel = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
+        lightModel = true
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return lightModel ? .lightContent : .default
     }
 
     override func configureObserveState() {

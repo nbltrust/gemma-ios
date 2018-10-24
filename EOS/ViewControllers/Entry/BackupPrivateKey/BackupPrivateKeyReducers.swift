@@ -14,7 +14,7 @@ func BackupPrivateKeyReducer(action:Action, state:BackupPrivateKeyState?) -> Bac
 }
 
 func BackupPrivateKeyPropertyReducer(_ state: BackupPrivateKeyPropertyState?, action: Action) -> BackupPrivateKeyPropertyState {
-    var state = state ?? BackupPrivateKeyPropertyState()
+    let state = state ?? BackupPrivateKeyPropertyState()
     
     switch action {
     default:

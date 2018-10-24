@@ -14,7 +14,7 @@ func LeadInReducer(action:Action, state:LeadInState?) -> LeadInState {
 }
 
 func LeadInPropertyReducer(_ state: LeadInPropertyState?, action: Action) -> LeadInPropertyState {
-    var state = state ?? LeadInPropertyState()
+    let state = state ?? LeadInPropertyState()
     
     switch action {
     default:

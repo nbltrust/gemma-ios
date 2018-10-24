@@ -11,7 +11,7 @@ import ReSwift
 import SwiftyUserDefaults
 
 func TransferReducer(action:Action, state:TransferState?) -> TransferState {
-    var state = state ?? TransferState()
+    let state = state ?? TransferState()
     
     
     switch action {

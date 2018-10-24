@@ -103,8 +103,6 @@ enum GemmaError: Error {
                 return R.string.localizable.unsupport_camera.key.localized()
             case .cameraNotOpen:
                 return R.string.localizable.guide_open_camera.key.localized()
-            default:
-                return ""
             }
         }
     }
@@ -125,8 +123,6 @@ extension GemmaError: Equatable {
         switch (lhs, rhs) {
         case (.NBLCode(let lhsCode), .NBLCode(let rhsCode)):
             return lhsCode.rawValue == rhsCode.rawValue
-        default:
-            return false
         }
     }
 

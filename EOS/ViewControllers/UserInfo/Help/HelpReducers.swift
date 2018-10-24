@@ -14,7 +14,7 @@ func HelpReducer(action:Action, state:HelpState?) -> HelpState {
 }
 
 func HelpPropertyReducer(_ state: HelpPropertyState?, action: Action) -> HelpPropertyState {
-    var state = state ?? HelpPropertyState()
+    let state = state ?? HelpPropertyState()
     
     switch action {
     default:

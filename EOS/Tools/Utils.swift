@@ -112,7 +112,7 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
     }
     else {
         if action == EOSAction.delegatebw.rawValue || action == EOSAction.undelegatebw.rawValue {
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            if (UIApplication.shared.delegate as? AppDelegate) != nil {
                 if let vc = app_coodinator.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
                     var cpuValue = ""
                     var netValue = ""

@@ -159,7 +159,7 @@ extension NBLService : TargetType {
                 map["validation"] = valDic
             }
             return map
-        case let .accountVerify(account):
+        case .accountVerify(_):
             return [:]
         case .accountHistory:
             return [:]

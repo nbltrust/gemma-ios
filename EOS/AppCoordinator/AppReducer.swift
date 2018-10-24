@@ -14,7 +14,7 @@ func AppReducer(action:Action, state:AppState?) -> AppState {
 }
 
 func AppPropertyReducer(_ state: AppPropertyState?, action: Action) -> AppPropertyState {
-    var state = state ?? AppPropertyState()
+    let state = state ?? AppPropertyState()
 
     switch action {
         

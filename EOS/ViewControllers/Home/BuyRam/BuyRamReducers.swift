@@ -15,7 +15,7 @@ func BuyRamReducer(action:Action, state:BuyRamState?) -> BuyRamState {
 }
 
 func BuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> BuyRamPropertyState {
-    var state = state ?? BuyRamPropertyState()
+    let state = state ?? BuyRamPropertyState()
     
     switch action {
     case let action as BuyRamAction:

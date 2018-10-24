@@ -183,7 +183,7 @@ func convertToViewModelWithModel(model: AccountModel) -> AccountViewModel {
     viewModel.portrait = model.account_name.sha256()
     viewModel.cpuValue = model.delegate_cpu_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
     viewModel.netValue = model.delegate_net_weight ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
-    viewModel.ramValue = model.ram_bytes != nil ? (model.ram_bytes.ramCount ?? "- \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)") : ""
+    viewModel.ramValue = model.ram_bytes != nil ? model.ram_bytes.ramCount : ""
     viewModel.cpuProgress = Float(model.cpu_used) / Float(model.cpu_max)
     viewModel.netProgress = Float(model.net_used) / Float(model.net_max)
     viewModel.ramProgress = Float(model.ram_usage) / Float(model.ram_quota)

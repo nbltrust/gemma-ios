@@ -78,7 +78,7 @@ extension UIViewController {
             KRProgressHUD.set(maskType: .custom(color: UIColor.black40))
         }
         KRProgressHUD.set(style: .custom(background: UIColor.white, text: UIColor.cornflowerBlueTwo, icon: UIColor.cornflowerBlueTwo))
-        KRProgressHUD.set(activityIndicatorViewStyle: .gradationColor(head: UIColor.cornflowerBlueTwo, tail: UIColor.cornflowerBlueTwo))
+        KRProgressHUD.set(activityIndicatorViewColors: [UIColor.cornflowerBlueTwo, UIColor.cornflowerBlueTwo])
         if message == "" {
             KRProgressHUD.show()
         } else {

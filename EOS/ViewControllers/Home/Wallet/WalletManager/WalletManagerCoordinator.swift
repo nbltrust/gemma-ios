@@ -54,7 +54,7 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
     }
     
     func pushToChangePassword(_ pubKey: String) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+        if (UIApplication.shared.delegate as? AppDelegate) != nil {
             app_coodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, type: confirmType.updatePwd.rawValue, producers: []) { priKey in
                 if let vc = R.storyboard.leadIn.setWalletViewController() {
                     vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)

@@ -14,7 +14,7 @@ func FingerPrinterConfirmReducer(action:Action, state:FingerPrinterConfirmState?
 }
 
 func FingerPrinterConfirmPropertyReducer(_ state: FingerPrinterConfirmPropertyState?, action: Action) -> FingerPrinterConfirmPropertyState {
-    var state = state ?? FingerPrinterConfirmPropertyState()
+    let state = state ?? FingerPrinterConfirmPropertyState()
     
     switch action {
     default:

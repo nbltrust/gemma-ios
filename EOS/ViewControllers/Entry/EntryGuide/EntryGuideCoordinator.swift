@@ -47,7 +47,7 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
         let createVC = R.storyboard.entry.entryViewController()!
         let coordinator = EntryCoordinator(rootVC: self.rootVC)
         coordinator.state.callback.endCallback.accept {
-            if let appdelegate = UIApplication.shared.delegate as? AppDelegate {
+            if (UIApplication.shared.delegate as? AppDelegate) != nil {
                 app_coodinator.endEntry()
             }
         }
@@ -59,7 +59,7 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
         let leadInVC = R.storyboard.leadIn.leadInViewController()!
         let coordinator = LeadInCoordinator(rootVC: self.rootVC)
         coordinator.state.callback.fadeCallback.accept {
-            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            if (UIApplication.shared.delegate as? AppDelegate) != nil {
                 app_coodinator.endEntry()
             }
         }

@@ -15,7 +15,7 @@ func ResourceMortgageReducer(action:Action, state:ResourceMortgageState?) -> Res
 }
 
 func ResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, action: Action) -> ResourceMortgagePropertyState {
-    var state = state ?? ResourceMortgagePropertyState()
+    let state = state ?? ResourceMortgagePropertyState()
     
     switch action {
     case let action as cpuMoneyAction:

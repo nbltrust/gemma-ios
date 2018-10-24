@@ -14,7 +14,7 @@ func PaymentsDetailReducer(action:Action, state:PaymentsDetailState?) -> Payment
 }
 
 func PaymentsDetailPropertyReducer(_ state: PaymentsDetailPropertyState?, action: Action) -> PaymentsDetailPropertyState {
-    var state = state ?? PaymentsDetailPropertyState()
+    let state = state ?? PaymentsDetailPropertyState()
     
     switch action {
     default:

@@ -36,7 +36,7 @@ final class EOSDataCachePlugin: DataCachePlugin {
                 do {
                     if let response = result.value {
                         _ = try response.filterSuccessfulStatusCodes()
-                        let json = try JSON(response.mapJSON())
+                        let _ = try JSON(response.mapJSON())
                     }
                 }
                 catch _ {}
@@ -55,7 +55,7 @@ final class NBLDataCachePlugin: DataCachePlugin {
                         let response = try response.filterSuccessfulStatusCodes()
                         let json = try JSON(response.mapJSON())
                         if json["code"].intValue == 0 {
-                            let result = json["result"]
+                            let _ = json["result"]
                             
                         }
                         

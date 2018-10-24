@@ -14,7 +14,7 @@ func FaceIDComfirmReducer(action:Action, state:FaceIDComfirmState?) -> FaceIDCom
 }
 
 func FaceIDComfirmPropertyReducer(_ state: FaceIDComfirmPropertyState?, action: Action) -> FaceIDComfirmPropertyState {
-    var state = state ?? FaceIDComfirmPropertyState()
+    let state = state ?? FaceIDComfirmPropertyState()
     
     switch action {
     default:

@@ -14,7 +14,7 @@ func WalletReducer(action:Action, state:WalletState?) -> WalletState {
 }
 
 func WalletPropertyReducer(_ state: WalletPropertyState?, action: Action) -> WalletPropertyState {
-    var state = state ?? WalletPropertyState()
+    let state = state ?? WalletPropertyState()
     
     switch action {
     default:

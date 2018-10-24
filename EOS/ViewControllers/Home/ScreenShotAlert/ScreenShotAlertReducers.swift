@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 func ScreenShotAlertReducer(action:Action, state:ScreenShotAlertState?) -> ScreenShotAlertState {
-    var state = state ?? ScreenShotAlertState()
+    let state = state ?? ScreenShotAlertState()
     
     switch action {
     default:

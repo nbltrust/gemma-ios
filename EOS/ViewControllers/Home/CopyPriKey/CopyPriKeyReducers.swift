@@ -14,7 +14,7 @@ func CopyPriKeyReducer(action:Action, state:CopyPriKeyState?) -> CopyPriKeyState
 }
 
 func CopyPriKeyPropertyReducer(_ state: CopyPriKeyPropertyState?, action: Action) -> CopyPriKeyPropertyState {
-    var state = state ?? CopyPriKeyPropertyState()
+    let state = state ?? CopyPriKeyPropertyState()
     
     switch action {
     default:
