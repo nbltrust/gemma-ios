@@ -511,6 +511,9 @@ class WalletManager {
         return predicate.evaluate(with: name)
     }
 
+}
+
+extension WalletManager {
     // MARK: Account DB
     func getAccountModelsWithAccountName(name: String) -> AccountModel? {
         var condition = DataFetchCondition()
@@ -544,26 +547,26 @@ class WalletManager {
                 accountModel.created = dict["created"] as? String
                 return accountModel
             }
-
+            
         } catch {
-
+            
         }
         return nil
     }
-
+    
     //FingerName Manage
     func updateFingerName(_ model: WalletManagerModel, index: Int, fingerName: String) {
         Defaults[fingerKey(model, index: index)] = fingerName
     }
-
+    
     func deleteFingerName(_ model: WalletManagerModel, index: Int) {
         updateFingerName(model, index: index, fingerName: "")
     }
-
+    
     func fingerKey(_ model: WalletManagerModel, index: Int) -> String {
         return model.address + "\(index)"
     }
-
+    
     func fingerName(_ model: WalletManagerModel, index: Int) -> String {
         if let name: String = Defaults[fingerKey(model, index: index)] as? String, !name.isEmpty {
             return name
@@ -571,7 +574,7 @@ class WalletManager {
             return R.string.localizable.finger.key.localized() + fingerIndexStr(index)
         }
     }
-
+    
     func fingerIndexStr(_ index: Int) -> String {
         switch index {
         case 0:
@@ -584,5 +587,4 @@ class WalletManager {
             return ""
         }
     }
-
 }

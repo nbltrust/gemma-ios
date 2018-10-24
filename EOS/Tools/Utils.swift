@@ -86,7 +86,8 @@ class VoteProducerActionModel: ActionModel {
 func getAbi(_ action: String, actionModel: ActionModel) -> String! {
     var abi: String = ""
 
-    if action == EOSAction.transfer.rawValue || action == EOSAction.bltTransfer.rawValue {
+    switch action {
+    case EOSAction.transfer.rawValue, EOSAction.bltTransfer.rawValue:
         if let actionModel = actionModel as? TransferActionModel {
             if let abiStr = EOSIO.getAbiJsonString(EOSIOContract.TokenCode,
                                                    action: EOSAction.transfer.rawValue,
@@ -97,7 +98,7 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
                 abi = abiStr
             }
         }
-    } else if action == EOSAction.buyram.rawValue {
+    case EOSAction.buyram.rawValue:
         if let actionModel = actionModel as? BuyRamActionModel {
             if let abiStr = EOSIO.getBuyRamAbi(EOSIOContract.EOSIOCode,
                                                action: action,
@@ -107,76 +108,79 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
                 abi = abiStr
             }
         }
-    } else if action == EOSAction.sellram.rawValue {
+    case EOSAction.sellram.rawValue:
         if let actionModel = actionModel as? SellRamActionModel {
             if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIOCode, action: action, account: WalletManager.shared.getAccount(), bytes: actionModel.amount.toBytes) {
                 abi = abiStr
             }
         }
-    } else if action == EOSAction.voteproducer.rawValue {
+    case EOSAction.voteproducer.rawValue:
         guard let voteModel = actionModel as? VoteProducerActionModel else {
             return ""
         }
         let voter: [String: Any] = ["voter": WalletManager.shared.getAccount(), "proxy": "", "producers": voteModel.producers]
         let dic: [String: Any] = ["code": EOSIOContract.EOSIOCode, "action": action, "args": voter]
         abi = dic.jsonString()!
-    } else {
-        if action == EOSAction.delegatebw.rawValue || action == EOSAction.undelegatebw.rawValue {
-            if (UIApplication.shared.delegate as? AppDelegate) != nil {
-                if let vc = appCoodinator.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
-                    var cpuValue = ""
-                    var netValue = ""
 
-                    if action == EOSAction.delegatebw.rawValue {
-                        if var cpu = vc.coordinator?.state.property.cpuMoneyValid.value.2 {
-                            if cpu == "" {
-                                cpu = "0.0000"
-                            }
-                            cpuValue = cpu + " \(NetworkConfiguration.EOSIODefaultSymbol)"
-                        }
-                        if var net = vc.coordinator?.state.property.netMoneyValid.value.2 {
-                            if net == "" {
-                                net = "0.0000"
-                            }
-                            netValue = net + " \(NetworkConfiguration.EOSIODefaultSymbol)"
-                        }
+    case EOSAction.delegatebw.rawValue, EOSAction.undelegatebw.rawValue:
+        if (UIApplication.shared.delegate as? AppDelegate) != nil {
+            if let vc = appCoodinator.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
+                var cpuValue = ""
+                var netValue = ""
 
-                        if let abiStr = EOSIO.getDelegateAbi(EOSIOContract.EOSIOCode,
-                                                             action: action,
-                                                             from: actionModel.fromAccount,
-                                                             receiver: actionModel.toAccount,
-                                                             stake_net_quantity: netValue,
-                                                             stake_cpu_quantity: cpuValue) {
-                            abi = abiStr
+                if action == EOSAction.delegatebw.rawValue {
+                    if var cpu = vc.coordinator?.state.property.cpuMoneyValid.value.2 {
+                        if cpu == "" {
+                            cpu = "0.0000"
                         }
-                    } else if action == EOSAction.undelegatebw.rawValue {
-                        if var cpu = vc.coordinator?.state.property.cpuReliveMoneyValid.value.2 {
-                            if cpu == "" {
-                                cpu = "0.0000"
-                            }
-                            cpuValue = cpu + " \(NetworkConfiguration.EOSIODefaultSymbol)"
+                        cpuValue = cpu + " \(NetworkConfiguration.EOSIODefaultSymbol)"
+                    }
+                    if var net = vc.coordinator?.state.property.netMoneyValid.value.2 {
+                        if net == "" {
+                            net = "0.0000"
                         }
-                        if var net = vc.coordinator?.state.property.netReliveMoneyValid.value.2 {
-                            if net == "" {
-                                net = "0.0000"
-                            }
-                            netValue = net + " \(NetworkConfiguration.EOSIODefaultSymbol)"
-                        }
-
-                        if let abiStr = EOSIO.getUnDelegateAbi(EOSIOContract.EOSIOCode,
-                                                               action: action,
-                                                               from: actionModel.fromAccount,
-                                                               receiver: actionModel.toAccount,
-                                                               unstake_net_quantity: netValue,
-                                                               unstake_cpu_quantity: cpuValue) {
-                            abi = abiStr
-                        }
+                        netValue = net + " \(NetworkConfiguration.EOSIODefaultSymbol)"
                     }
 
+                    if let abiStr = EOSIO.getDelegateAbi(EOSIOContract.EOSIOCode,
+                                                         action: action,
+                                                         from: actionModel.fromAccount,
+                                                         receiver: actionModel.toAccount,
+                                                         stake_net_quantity: netValue,
+                                                         stake_cpu_quantity: cpuValue) {
+                        abi = abiStr
+                    }
+                } else if action == EOSAction.undelegatebw.rawValue {
+                    if var cpu = vc.coordinator?.state.property.cpuReliveMoneyValid.value.2 {
+                        if cpu == "" {
+                            cpu = "0.0000"
+                        }
+                        cpuValue = cpu + " \(NetworkConfiguration.EOSIODefaultSymbol)"
+                    }
+                    if var net = vc.coordinator?.state.property.netReliveMoneyValid.value.2 {
+                        if net == "" {
+                            net = "0.0000"
+                        }
+                        netValue = net + " \(NetworkConfiguration.EOSIODefaultSymbol)"
+                    }
+
+                    if let abiStr = EOSIO.getUnDelegateAbi(EOSIOContract.EOSIOCode,
+                                                           action: action,
+                                                           from: actionModel.fromAccount,
+                                                           receiver: actionModel.toAccount,
+                                                           unstake_net_quantity: netValue,
+                                                           unstake_cpu_quantity: cpuValue) {
+                        abi = abiStr
+                    }
                 }
+
             }
         }
+    default:
+        break
+
     }
+  
     return abi
 }
 

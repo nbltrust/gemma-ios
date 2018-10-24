@@ -734,7 +734,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
-        int iRtn = PAEW_ChangePIN_Input(ppPAEWContext, devIdx, [pin UTF8String], [newPin UTF8String]);
+        int iRtn = PAEW_ChangePIN_Input(ppPAEWContext, devIdx, [self->pin UTF8String], [newPin UTF8String]);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (iRtn == PAEW_RET_SUCCESS) {
                 successComlication();
