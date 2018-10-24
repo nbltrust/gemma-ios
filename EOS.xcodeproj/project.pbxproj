@@ -162,6 +162,7 @@
 		3B0295B2217EC69000867D5F /* NavBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0295A8217EC69000867D5F /* NavBarView.xib */; };
 		3B0295B3217EC69000867D5F /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0295B0217EC69000867D5F /* NavBarView.swift */; };
 		3B0295B4217EC69000867D5F /* NavBarViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0295B1217EC69000867D5F /* NavBarViewAdapter.swift */; };
+		3B0295D42180511F00867D5F /* RichStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0295CC2180511F00867D5F /* RichStyles.swift */; };
 		3B02F23D2168524000DD9211 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B02F23C2168524000DD9211 /* AccountModel.swift */; };
 		3B0856292175E9D30025B178 /* CardViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0856262175E9D20025B178 /* CardViewAdapter.swift */; };
 		3B08562A2175E9D30025B178 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0856272175E9D20025B178 /* CardView.swift */; };
@@ -431,11 +432,6 @@
 		72FE5B9221009EED00B29FEC /* LeadInIntroduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9121009EED00B29FEC /* LeadInIntroduceView.xib */; };
 		72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */; };
 		72FE5B9621009F2200B29FEC /* LeadInKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */; };
-		7302299B212E50460073D5CE /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022996212E50450073D5CE /* Sprite.swift */; };
-		7302299C212E50460073D5CE /* SpriteRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022997212E50450073D5CE /* SpriteRender.swift */; };
-		7302299D212E50460073D5CE /* StarWarsGLAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022998212E50450073D5CE /* StarWarsGLAnimator.swift */; };
-		7302299E212E50460073D5CE /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022999212E50450073D5CE /* Vector2.swift */; };
-		7302299F212E50460073D5CE /* ViewTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302299A212E50450073D5CE /* ViewTexture.swift */; };
 		732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3710214FB83900CB3A58 /* Kingfisher.framework */; };
 		732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3711214FB83900CB3A58 /* HandyJSON.framework */; };
 		732F371D214FB83F00CB3A58 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3712214FB83A00CB3A58 /* RxBlocking.framework */; };
@@ -610,7 +606,6 @@
 		DBE18F3AD409206828C675AB4A85C4FD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEC2AE18E1002CD3BF355874DD0C743 /* Utils.swift */; };
 		E6A86169B62F74A02FD2D90E79A34236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778E2FB094094F597056F12BA4850DAB /* Assets.xcassets */; };
 		F0D8A54C805AE51A718FC78A78154C53 /* SharpCornerTipsLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23081BA3A1E2A632AC9811B07424CD1 /* SharpCornerTipsLabelView.swift */; };
-		F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9FE30551A8102E01F746AB69BF50A /* RichStyles.swift */; };
 		FF428CE559D9BAC66E25585F0A149FB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6DCAB8F96446139DBCE56777785B34 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -858,7 +853,6 @@
 		31FC1C0ABF5DB16A7CE2B85766922CB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34691991383C3221764B22D67442C56C /* EntryReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryReducers.swift; sourceTree = "<group>"; };
 		3AA8EBBBC7AA834B69D653ECE6DCC4F5 /* ComfirmView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComfirmView.xib; sourceTree = "<group>"; };
-		3AB9FE30551A8102E01F746AB69BF50A /* RichStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RichStyles.swift; path = EOS/ViewControllers/Entry/RichStyles.swift; sourceTree = SOURCE_ROOT; };
 		3B018A342176D4B6008791AF /* NewHomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeCoordinator.swift; sourceTree = "<group>"; };
 		3B018A352176D4B6008791AF /* NewHomeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeActions.swift; sourceTree = "<group>"; };
 		3B018A362176D4B6008791AF /* NewHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeViewController.swift; sourceTree = "<group>"; };
@@ -871,6 +865,7 @@
 		3B0295A8217EC69000867D5F /* NavBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavBarView.xib; sourceTree = "<group>"; };
 		3B0295B0217EC69000867D5F /* NavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarView.swift; sourceTree = "<group>"; };
 		3B0295B1217EC69000867D5F /* NavBarViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarViewAdapter.swift; sourceTree = "<group>"; };
+		3B0295CC2180511F00867D5F /* RichStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichStyles.swift; sourceTree = "<group>"; };
 		3B02F23C2168524000DD9211 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		3B0856262175E9D20025B178 /* CardViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewAdapter.swift; sourceTree = "<group>"; };
 		3B0856272175E9D20025B178 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -1137,11 +1132,6 @@
 		72FE5B9121009EED00B29FEC /* LeadInIntroduceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadInIntroduceView.xib; sourceTree = "<group>"; };
 		72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInKeyView.swift; sourceTree = "<group>"; };
 		72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadInKeyView.xib; sourceTree = "<group>"; };
-		73022996212E50450073D5CE /* Sprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
-		73022997212E50450073D5CE /* SpriteRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteRender.swift; sourceTree = "<group>"; };
-		73022998212E50450073D5CE /* StarWarsGLAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarWarsGLAnimator.swift; sourceTree = "<group>"; };
-		73022999212E50450073D5CE /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
-		7302299A212E50450073D5CE /* ViewTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTexture.swift; sourceTree = "<group>"; };
 		732F3710214FB83900CB3A58 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		732F3711214FB83900CB3A58 /* HandyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HandyJSON.framework; path = Carthage/Build/iOS/HandyJSON.framework; sourceTree = "<group>"; };
 		732F3712214FB83A00CB3A58 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
@@ -2594,26 +2584,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		73022994212E50450073D5CE /* StarWars */ = {
-			isa = PBXGroup;
-			children = (
-				73022995212E50450073D5CE /* StarWarsGLAnimator */,
-			);
-			path = StarWars;
-			sourceTree = "<group>";
-		};
-		73022995212E50450073D5CE /* StarWarsGLAnimator */ = {
-			isa = PBXGroup;
-			children = (
-				73022996212E50450073D5CE /* Sprite.swift */,
-				73022997212E50450073D5CE /* SpriteRender.swift */,
-				73022998212E50450073D5CE /* StarWarsGLAnimator.swift */,
-				73022999212E50450073D5CE /* Vector2.swift */,
-				7302299A212E50450073D5CE /* ViewTexture.swift */,
-			);
-			path = StarWarsGLAnimator;
-			sourceTree = "<group>";
-		};
 		733714BF212431E100B2ED90 /* LGButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -2999,7 +2969,7 @@
 		BDB000A6B05F9656F86F937D29156A83 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				3AB9FE30551A8102E01F746AB69BF50A /* RichStyles.swift */,
+				3B0295CC2180511F00867D5F /* RichStyles.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -3094,7 +3064,6 @@
 				73539D1C2179B5B7008395AC /* FCUUID */,
 				73539C9B2179B3B7008395AC /* URLNavigator */,
 				739A4DA32150DF2700A1074B /* RxGesture */,
-				73022994212E50450073D5CE /* StarWars */,
 				73B5A69120F5DFF400756391 /* Jdenticon */,
 			);
 			path = Vendor;
@@ -3632,6 +3601,7 @@
 				7210169F210197C10059B37E /* WalletManagerView.swift in Sources */,
 				3B858C042170A1B500499FAC /* DeleteFingerViewAdapter.swift in Sources */,
 				3B6D746A214761690076F444 /* ExchangeToActivateReducers.swift in Sources */,
+				3B0295D42180511F00867D5F /* RichStyles.swift in Sources */,
 				3BD3666D20FF0AEF004DE09D /* ScreenShotAlertView.swift in Sources */,
 				3B1EC87721703F120044DEB5 /* WalletDetailCoordinator.swift in Sources */,
 				3B85EEA5215A12E600795083 /* VerifyPriKeyViewController.swift in Sources */,
@@ -3651,7 +3621,6 @@
 				72FE5B542100490200B29FEC /* SafeActions.swift in Sources */,
 				223C5909214A521A00C69F3F /* BLTCardInitReducers.swift in Sources */,
 				3B6D7468214761690076F444 /* ExchangeToActivateCoordinator.swift in Sources */,
-				7302299D212E50460073D5CE /* StarWarsGLAnimator.swift in Sources */,
 				3B6D746E214761690076F444 /* PayToActivateActions.swift in Sources */,
 				72FE5B642100491300B29FEC /* ServersActions.swift in Sources */,
 				722D24CA21115B5000A093CA /* ContainerNormalCellView.swift in Sources */,
@@ -3677,7 +3646,6 @@
 				3B6D7461214761690076F444 /* FriendToActivateActions.swift in Sources */,
 				73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */,
 				73A453BE217727E00075E290 /* BaseCacheService.swift in Sources */,
-				7302299E212E50460073D5CE /* Vector2.swift in Sources */,
 				73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */,
 				72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */,
 				57988B0F4659572FB0099493045E18EE /* EntryReducers.swift in Sources */,
@@ -3712,7 +3680,6 @@
 				917CFC3CF79C268A4F4C59FBC103A951 /* HomeReducers.swift in Sources */,
 				733714EB212431E200B2ED90 /* SwiftIconFont.swift in Sources */,
 				72101691210197C10059B37E /* WalletActions.swift in Sources */,
-				7302299C212E50460073D5CE /* SpriteRender.swift in Sources */,
 				733714E3212431E200B2ED90 /* FontAwesome.swift in Sources */,
 				73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */,
 				223C5917214A532800C69F3F /* BLTCardEntryView.swift in Sources */,
@@ -3725,7 +3692,6 @@
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
 				72FE5B8821009E4D00B29FEC /* LeadInCoordinator.swift in Sources */,
 				72FE5B8B21009E4D00B29FEC /* LeadInReducers.swift in Sources */,
-				7302299B212E50460073D5CE /* Sprite.swift in Sources */,
 				72FE5B4C210048F500B29FEC /* NormalActions.swift in Sources */,
 				3B3935A9214B50A000AB0A30 /* BackupMnemonicWordReducers.swift in Sources */,
 				72FE5B5E2100490B00B29FEC /* HelpReducers.swift in Sources */,
@@ -3819,11 +3785,9 @@
 				3B85EEA3215A12E600795083 /* VerifyPriKeyCoordinator.swift in Sources */,
 				3B3935B1214B5AF600AB0A30 /* MnemonicContentViewController.swift in Sources */,
 				737F8DD42146647E00DD522A /* DBProtocol.swift in Sources */,
-				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				7224714A20F76B4600536BF4 /* DetailView.swift in Sources */,
 				223C58F8214A50F300C69F3F /* BLTCardConfirmPinReducers.swift in Sources */,
-				7302299F212E50460073D5CE /* ViewTexture.swift in Sources */,
 				725F68062101B8E50006BBA1 /* SetWalletViewController.swift in Sources */,
 				73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */,
 				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,
