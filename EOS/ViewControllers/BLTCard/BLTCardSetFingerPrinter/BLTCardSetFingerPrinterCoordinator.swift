@@ -12,29 +12,29 @@ import NBLCommonModule
 
 protocol BLTCardSetFingerPrinterCoordinatorProtocol {
     func dismissVC()
-    
+
     func popVC()
 }
 
 protocol BLTCardSetFingerPrinterStateManagerProtocol {
     var state: BLTCardSetFingerPrinterState { get }
-    
-    func switchPageState(_ state:PageState)
-    
-    func enrollFingerPrinter(_ state: @escaping EnrollFingerComplication,success: @escaping SuccessedComplication,failed: @escaping FailedComplication)
+
+    func switchPageState(_ state: PageState)
+
+    func enrollFingerPrinter(_ state: @escaping EnrollFingerComplication, success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
 }
 
 class BLTCardSetFingerPrinterCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardSetFingerPrinterReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: BLTCardSetFingerPrinterState {
         return store.state
     }
-            
+
     override func register() {
         Broadcaster.register(BLTCardSetFingerPrinterCoordinatorProtocol.self, observer: self)
         Broadcaster.register(BLTCardSetFingerPrinterStateManagerProtocol.self, observer: self)
@@ -45,19 +45,19 @@ extension BLTCardSetFingerPrinterCoordinator: BLTCardSetFingerPrinterCoordinator
     func dismissVC() {
         self.rootVC.dismiss(animated: true, completion: nil)
     }
-    
+
     func popVC() {
         self.rootVC.popViewController(animated: true)
     }
 }
 
 extension BLTCardSetFingerPrinterCoordinator: BLTCardSetFingerPrinterStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
-    
+
     func enrollFingerPrinter(_ state: @escaping EnrollFingerComplication, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance()?.enrollFingerPrinter(state, success: success, failed: failed)
     }

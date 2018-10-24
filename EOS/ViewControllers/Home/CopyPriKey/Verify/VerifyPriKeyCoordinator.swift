@@ -17,26 +17,26 @@ protocol VerifyPriKeyCoordinatorProtocol {
 
 protocol VerifyPriKeyStateManagerProtocol {
     var state: VerifyPriKeyState { get }
-    
-    func switchPageState(_ state:PageState)
+
+    func switchPageState(_ state: PageState)
 }
 
 class VerifyPriKeyCoordinator: NavCoordinator {
     var store = Store(
         reducer: VerifyPriKeyReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: VerifyPriKeyState {
         return store.state
     }
-            
+
     override func register() {
         Broadcaster.register(VerifyPriKeyCoordinatorProtocol.self, observer: self)
         Broadcaster.register(VerifyPriKeyStateManagerProtocol.self, observer: self)
     }
-    
+
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.home.verifyPriKeyViewController()!
         let coordinator = VerifyPriKeyCoordinator(rootVC: root)
@@ -59,7 +59,7 @@ extension VerifyPriKeyCoordinator: VerifyPriKeyCoordinatorProtocol {
 }
 
 extension VerifyPriKeyCoordinator: VerifyPriKeyStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }

@@ -9,15 +9,13 @@
 import UIKit
 import ReSwift
 
-func ExchangeToActivateReducer(action:Action, state:ExchangeToActivateState?) -> ExchangeToActivateState {
+func ExchangeToActivateReducer(action: Action, state: ExchangeToActivateState?) -> ExchangeToActivateState {
     let state = state ?? ExchangeToActivateState()
-        
+
     switch action {
     default:
         break
     }
-        
+
     return state
 }
-
-

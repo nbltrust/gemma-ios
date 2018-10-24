@@ -19,29 +19,29 @@ class ScreenShotAlertViewController: BaseViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.clear
     }
-    
+
     func commonObserveState() {
         coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
+            return sub.select { state in state.errorMessage }.skipRepeats({ (_, _) -> Bool in
                 return false
             })
         }
-        
+
         coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
+            return sub.select { state in state.isLoading }.skipRepeats({ (_, _) -> Bool in
                 return false
             })
         }
     }
-    
+
     override func configureObserveState() {
         commonObserveState()
-        
+
     }
 }
 
 extension ScreenShotAlertViewController {
-    @objc func sureShot(_ data: [String : Any]) {
+    @objc func sureShot(_ data: [String: Any]) {
         self.coordinator?.dismissScreenShotAlert()
     }
 }

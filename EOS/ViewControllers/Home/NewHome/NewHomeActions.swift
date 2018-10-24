@@ -14,18 +14,18 @@ import HandyJSON
 
 struct NewHomeContext: RouteContext, HandyJSON {
     init() {}
-    
+
 }
 
-//MARK: - State
+// MARK: - State
 struct NewHomeState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
 }
 
-//MARK: - Action
+// MARK: - Action
 struct NewHomeFetchedAction: Action {
-    var data:JSON
+    var data: JSON
 }
 
 struct NewHomeViewModel {

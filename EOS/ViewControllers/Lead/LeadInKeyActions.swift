@@ -10,21 +10,21 @@ import Foundation
 import ReSwift
 import RxCocoa
 
-//MARK: - State
+// MARK: - State
 struct LeadInKeyState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: LeadInKeyPropertyState
 }
 
 struct LeadInKeyPropertyState {
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class LeadInKeyPropertyActionCreate {
     public typealias ActionCreator = (_ state: LeadInKeyState, _ store: Store<LeadInKeyState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: LeadInKeyState,
         _ store: Store <LeadInKeyState>,

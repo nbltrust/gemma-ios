@@ -9,15 +9,13 @@
 import UIKit
 import ReSwift
 
-func BLTCardConnectReducer(action:Action, state:BLTCardConnectState?) -> BLTCardConnectState {
+func BLTCardConnectReducer(action: Action, state: BLTCardConnectState?) -> BLTCardConnectState {
     let state = state ?? BLTCardConnectState()
-        
+
     switch action {
     default:
         break
     }
-        
+
     return state
 }
-
-

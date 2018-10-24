@@ -12,40 +12,40 @@ import RxCocoa
 import ReSwift
 import XLPagerTabStrip
 
-class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoProvider {
+class InvitationCodeToActivateViewController: BaseViewController, IndicatorInfoProvider {
 
 	var coordinator: (InvitationCodeToActivateCoordinatorProtocol & InvitationCodeToActivateStateManagerProtocol)?
 
     @IBOutlet weak var contentView: InvitationView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func refreshViewController() {
-        
+
     }
-    
+
     func setupUI() {
-        
+
     }
 
     func setupData() {
-        
+
     }
-    
+
     func setupEvent() {
-        
+
     }
-    
+
     override func configureObserveState() {
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
@@ -100,7 +100,7 @@ class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoPr
     }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension InvitationCodeToActivateViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -114,8 +114,7 @@ class InvitationCodeToActivateViewController: BaseViewController,IndicatorInfoPr
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 //extension InvitationCodeToActivateViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
@@ -128,14 +127,14 @@ extension InvitationCodeToActivateViewController {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(stringLiteral: R.string.localizable.invitationcode_to_activate.key.localized())
     }
-    
-    @objc func IntroClick(_ data: [String : Any]) {
+
+    @objc func IntroClick(_ data: [String: Any]) {
         self.coordinator?.pushToGetInviteCodeIntroductionVC()
     }
-    
-    @objc func NextClick(_ data: [String : Any]) {
-        self.coordinator?.createWallet(self.contentView.textfield.text!, completion: { (success) in
-            
+
+    @objc func NextClick(_ data: [String: Any]) {
+        self.coordinator?.createWallet(self.contentView.textfield.text!, completion: { (_) in
+
         })
     }
 }

@@ -15,21 +15,21 @@ protocol BLTCardInitCoordinatorProtocol {
 
 protocol BLTCardInitStateManagerProtocol {
     var state: BLTCardInitState { get }
-    
-    func switchPageState(_ state:PageState)
+
+    func switchPageState(_ state: PageState)
 }
 
 class BLTCardInitCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardInitReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: BLTCardInitState {
         return store.state
     }
-            
+
     override func register() {
         Broadcaster.register(BLTCardInitCoordinatorProtocol.self, observer: self)
         Broadcaster.register(BLTCardInitStateManagerProtocol.self, observer: self)
@@ -37,11 +37,11 @@ class BLTCardInitCoordinator: BLTCardRootCoordinator {
 }
 
 extension BLTCardInitCoordinator: BLTCardInitCoordinatorProtocol {
-    
+
 }
 
 extension BLTCardInitCoordinator: BLTCardInitStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         self.store.dispatch(PageStateAction(state: state))
     }
 }

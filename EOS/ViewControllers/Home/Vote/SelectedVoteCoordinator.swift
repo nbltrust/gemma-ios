@@ -18,9 +18,9 @@ protocol SelectedVoteStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<SelectedVoteState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
+
     func loadDatas()
-    
+
     func updateAtIndexPath(_ indexPath: IndexPath, isSel: Bool)
 }
 
@@ -30,9 +30,9 @@ class SelectedVoteCoordinator: NavCoordinator {
     var store = Store<SelectedVoteState>(
         reducer: SelectedVoteReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-        
+
     override func register() {
         Broadcaster.register(SelectedVoteCoordinatorProtocol.self, observer: self)
         Broadcaster.register(SelectedVoteStateManagerProtocol.self, observer: self)
@@ -40,23 +40,23 @@ class SelectedVoteCoordinator: NavCoordinator {
 }
 
 extension SelectedVoteCoordinator: SelectedVoteCoordinatorProtocol {
-    
+
 }
 
 extension SelectedVoteCoordinator: SelectedVoteStateManagerProtocol {
     var state: SelectedVoteState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<SelectedVoteState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
     func loadDatas() {
         Broadcaster.notify(VoteStateManagerProtocol.self) { (pro) in
-            var lastSelData : [NodeVoteViewModel] = []
+            var lastSelData: [NodeVoteViewModel] = []
             for index in 0..<pro.state.property.selIndexPaths.count {
                 lastSelData.append(pro.state.property.datas[index])
             }
@@ -64,7 +64,7 @@ extension SelectedVoteCoordinator: SelectedVoteStateManagerProtocol {
             self.store.dispatch(SetVoteNodeListAction(datas: lastSelData))
         }
     }
-    
+
     func updateAtIndexPath(_ indexPath: IndexPath, isSel: Bool) {
         if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? VoteViewController {
             if isSel {

@@ -7,42 +7,41 @@
 //
 
 import UIKit
-import Macaw
 
 class SVGAnimationView: EOSBaseView {
-    
+
     var baseLayer: CAShapeLayer?
-    
+
     var animationLayer: CAShapeLayer?
-    
-    var progressData: (currentIndex: Int, successed: Bool) = (0, false)  {
+
+    var progressData: (currentIndex: Int, successed: Bool) = (0, false) {
         didSet {
             updateProgress()
         }
     }
-    
+
     private let mainPath = UIBezierPath()
-    
+
     private let animationPath = UIBezierPath()
-    
-    fileprivate var proFiles: [String] = ["f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12","f13","f14",]
-    
+
+    fileprivate var proFiles: [String] = ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11", "f12", "f13", "f14"]
+
     fileprivate var startFile = "f_start"
-    
+
     fileprivate var endFile = "f_end"
-    
+
     override func setup() {
         baseLayer = CAShapeLayer()
         baseLayer?.bounds = self.bounds
         self.layer.addSublayer(baseLayer!)
-        
+
         animationLayer = CAShapeLayer()
         animationLayer?.bounds = self.bounds
         self.layer.addSublayer(animationLayer!)
-        
+
         changeToStart()
     }
-    
+
     func changeToStart() {
         mainPath.removeAllPoints()
         let paths = pathsWithFile(startFile)
@@ -52,7 +51,7 @@ class SVGAnimationView: EOSBaseView {
             baseLayer?.path = mainPath.cgPath
         }
     }
-    
+
     func changeToEnd() {
         mainPath.removeAllPoints()
         let paths = pathsWithFile(endFile)
@@ -61,13 +60,13 @@ class SVGAnimationView: EOSBaseView {
         }
         baseLayer?.path = mainPath.cgPath
     }
-    
+
     func pathsWithFile(_ file: String) -> [SVGBezierPath] {
         let svgURL = Bundle.main.url(forResource: file, withExtension: "svg")!
         let paths = SVGBezierPath.pathsFromSVG(at: svgURL)
         return paths
     }
-    
+
     func updateProgress() {
         if progressData.currentIndex > 0 {
             let index = progressData.currentIndex - 1 - (!progressData.successed ? 1 : 0)
@@ -105,5 +104,5 @@ class SVGAnimationView: EOSBaseView {
             }
         }
     }
-    
+
 }

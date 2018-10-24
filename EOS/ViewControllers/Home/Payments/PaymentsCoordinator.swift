@@ -11,10 +11,9 @@ import ReSwift
 import KRProgressHUD
 
 protocol PaymentsCoordinatorProtocol {
-    
-    func pushPaymentsDetail(data:PaymentsRecordsViewModel)
 
-    
+    func pushPaymentsDetail(data: PaymentsRecordsViewModel)
+
 }
 
 protocol PaymentsStateManagerProtocol {
@@ -22,23 +21,23 @@ protocol PaymentsStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<PaymentsState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
-    func getDataFromServer(_ account: String, completion: @escaping (Bool)->Void,isRefresh:Bool)
+
+    func getDataFromServer(_ account: String, completion: @escaping (Bool) -> Void, isRefresh: Bool)
 }
 
 class PaymentsCoordinator: NavCoordinator {
-    
+
     lazy var creator = PaymentsPropertyActionCreate()
-    
+
     var store = Store<PaymentsState>(
         reducer: PaymentsReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
 extension PaymentsCoordinator: PaymentsCoordinatorProtocol {
-    func pushPaymentsDetail(data:PaymentsRecordsViewModel) {
+    func pushPaymentsDetail(data: PaymentsRecordsViewModel) {
         let vc = R.storyboard.paymentsDetail.paymentsDetailViewController()!
         let coordinator = PaymentsDetailCoordinator(rootVC: self.rootVC)
         vc.coordinator = coordinator
@@ -51,30 +50,30 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
     var state: PaymentsState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<PaymentsState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
-    func getDataFromServer(_ account: String, completion: @escaping (Bool)->Void, isRefresh:Bool) {
+
+    func getDataFromServer(_ account: String, completion: @escaping (Bool) -> Void, isRefresh: Bool) {
         NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: 10, lastPosition: isRefresh ? -1 :state.property.last_pos), success: { (data) in
             let transactions = data["transactions"].arrayValue
-            
+
             if let last_pos = data["last_pos"].int {
-                self.store.dispatch(GetLastPosAction(last_pos:last_pos))
-                
+                self.store.dispatch(GetLastPosAction(last_pos: last_pos))
+
                 let payments = transactions.map({ (json) in
                     Payment.deserialize(from: json.dictionaryObject)
                 })
-                
+
                 self.store.dispatch(FetchPaymentsRecordsListAction(data: payments as! [Payment]))
             }
-           
+
             completion(true)
         }, error: { (code) in
-           
+
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)
                 showFailTop(error.localizedDescription)
@@ -83,8 +82,8 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
             }
             completion(false)
 
-        }) { (moyaError) in
-            let payment:[Payment] = []
+        }) { (_) in
+            let payment: [Payment] = []
             self.store.dispatch(FetchPaymentsRecordsListAction(data: payment))
             completion(false)
         }

@@ -15,30 +15,30 @@ class PayView: EOSBaseView {
     @IBOutlet weak var netLabel: BaseLabel!
     @IBOutlet weak var ramLabel: BaseLabel!
     @IBOutlet weak var rmbPriceLabel: BaseLabel!
-    
-    enum Event:String {
+
+    enum Event: String {
         case PayViewDidClicked
         case NextClick
     }
-        
+
     override func setup() {
         super.setup()
-        
+
         setupUI()
         setupSubViewEvent()
     }
-    
+
     func setupUI() {
-        
+
     }
-    
+
     func setupSubViewEvent() {
-        nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+        nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.nextButton.next?.sendEventWith(Event.NextClick.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
     }
-    
+
     @objc override func didClicked() {
         self.next?.sendEventWith(Event.PayViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }

@@ -21,24 +21,24 @@ class TransferConfirmPasswordViewController: BaseViewController {
 	var coordinator: (TransferConfirmPasswordCoordinatorProtocol & TransferConfirmPasswordStateManagerProtocol)?
 
     var errCount = 0
-    
-    private(set) var context:TransferConfirmPasswordContext?
-    
+
+    private(set) var context: TransferConfirmPasswordContext?
+
     @IBOutlet weak var passwordView: TransferConfirmPasswordView!
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setupUI()
-        
+
 //        log.debug(String(reflecting: type(of: a!)))
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func leftAction(_ sender: UIButton) {
         guard let context = context else { return }
-        
+
         if context.iconType == leftIconType.dismiss.rawValue {
             self.coordinator?.dismissConfirmPwdVC()
         } else {
@@ -50,7 +50,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
     override func configureObserveState() {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
-            
+
             if let context = context as? TransferConfirmPasswordContext {
                 self.context = context
 
@@ -59,7 +59,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
                 } else {
                     self.configLeftNavButton(R.image.icBack())
                 }
-                
+
                 if context.type == confirmType.updatePwd.rawValue {
                     self.passwordView.title = R.string.localizable.update_pwd_title.key.localized()
                     self.passwordView.btnTitle = R.string.localizable.update_pwd_btntitle.key.localized()
@@ -71,9 +71,9 @@ class TransferConfirmPasswordViewController: BaseViewController {
 }
 
 extension TransferConfirmPasswordViewController {
-    @objc func sureTransfer(_ data: [String : Any]) {
+    @objc func sureTransfer(_ data: [String: Any]) {
         guard let context = context else { return }
-        
+
         if context.type != confirmType.bltTransfer.rawValue {
             guard let priKey = WalletManager.shared.getCachedPriKey(context.publicKey, password: passwordView.textField.text!) else {
                 self.errCount  = self.errCount + 1
@@ -86,7 +86,7 @@ extension TransferConfirmPasswordViewController {
                 }
                 return
             }
-            
+
             if let callback = context.callback {
                 if context.type != confirmType.voteNode.rawValue {
                     callback(priKey, self)
@@ -94,7 +94,7 @@ extension TransferConfirmPasswordViewController {
                 }
             }
         }
-        
+
         let myType = context.type
         if myType == confirmType.transfer.rawValue {
             self.view.endEditing(true)
@@ -185,4 +185,3 @@ extension TransferConfirmPasswordViewController {
 
     }
 }
-

@@ -10,12 +10,12 @@ import UIKit
 import AVFoundation
 
 class ScanPreviewView: UIView {
-    
+
     lazy var shadeView: ScanShadeView = {
         let shadeView = ScanShadeView.init(frame: self.bounds)
         return shadeView
     }()
-    
+
     var session: AVCaptureSession? {
         didSet {
             let layer = self.layer as! AVCaptureVideoPreviewLayer
@@ -23,24 +23,23 @@ class ScanPreviewView: UIView {
             layer.session = session
         }
     }
-    
+
     override class var layerClass: AnyClass {
         return AVCaptureVideoPreviewLayer.self
     }
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setupUI() {
         self.backgroundColor = UIColor.clear
         self.addSubview(shadeView)
     }
-    
+
 }

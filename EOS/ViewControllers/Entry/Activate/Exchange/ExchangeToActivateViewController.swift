@@ -12,41 +12,41 @@ import RxCocoa
 import ReSwift
 import XLPagerTabStrip
 
-class ExchangeToActivateViewController: BaseViewController,IndicatorInfoProvider {
+class ExchangeToActivateViewController: BaseViewController, IndicatorInfoProvider {
 
 	var coordinator: (ExchangeToActivateCoordinatorProtocol & ExchangeToActivateStateManagerProtocol)?
 
     @IBOutlet weak var contentView: FriendView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.contentView.updateTitle(memoText: R.string.localizable.exchange_activate_title.key, priKeyText: R.string.localizable.exchange_prikey_title_red.key.localized())
     }
-    
+
     override func refreshViewController() {
-        
+
     }
-    
+
     func setupUI() {
-        
+
     }
 
     func setupData() {
-        
+
     }
-    
+
     func setupEvent() {
-        
+
     }
-    
+
 //    override func configureObserveState() {
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
@@ -101,7 +101,7 @@ class ExchangeToActivateViewController: BaseViewController,IndicatorInfoProvider
 //    }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension ExchangeToActivateViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,8 +115,7 @@ class ExchangeToActivateViewController: BaseViewController,IndicatorInfoProvider
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 //extension ExchangeToActivateViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {

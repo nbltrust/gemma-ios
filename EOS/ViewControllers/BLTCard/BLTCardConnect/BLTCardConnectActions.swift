@@ -16,13 +16,13 @@ struct BLTCardConnectContext: RouteContext, HandyJSON {
     var connectSuccessed: CompletionCallback?
 }
 
-//MARK: - State
+// MARK: - State
 struct BLTCardConnectState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
 }
 
-//MARK: - Action
+// MARK: - Action
 struct BLTCardConnectFetchedAction: Action {
-    var data:JSON
+    var data: JSON
 }

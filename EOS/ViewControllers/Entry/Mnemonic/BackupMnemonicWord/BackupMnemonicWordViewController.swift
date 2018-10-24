@@ -16,23 +16,23 @@ class BackupMnemonicWordViewController: BaseViewController {
 	var coordinator: (BackupMnemonicWordCoordinatorProtocol & BackupMnemonicWordStateManagerProtocol)?
 
     @IBOutlet weak var contentView: BackupPrivateKeyView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func refreshViewController() {
-        
+
     }
-    
+
     func setupUI() {
         self.title = R.string.localizable.backup_mnemonic_title.key.localized()
         contentView.redTips = R.string.localizable.backup_mnemonic_red_text.key.localized()
@@ -40,19 +40,19 @@ class BackupMnemonicWordViewController: BaseViewController {
     }
 
     func setupData() {
-        
+
     }
-    
+
     func setupEvent() {
-        
+
     }
-    
+
     override func configureObserveState() {
 
     }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension BackupMnemonicWordViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,8 +66,7 @@ class BackupMnemonicWordViewController: BaseViewController {
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 extension BackupMnemonicWordViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
@@ -75,8 +74,7 @@ extension BackupMnemonicWordViewController {
 //
 //        }
 //    }
-    @objc func know(_ data:[String:Any]) {
+    @objc func know(_ data: [String: Any]) {
         self.coordinator?.pushToMnemonicWordContentVC()
     }
 }
-

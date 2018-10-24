@@ -19,26 +19,26 @@ protocol GestureLockComfirmStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<GestureLockComfirmState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
+
     func confirmLock(_ password: String)
-    
+
     func checkGestureLock()
-    
+
     func lockGestureLock()
-    
+
     func unLockGestureLock()
 }
 
 class GestureLockComfirmCoordinator: NavCoordinator {
-    
+
     lazy var creator = GestureLockComfirmPropertyActionCreate()
-    
-    var timer:Repeater?
-    
+
+    var timer: Repeater?
+
     var store = Store<GestureLockComfirmState>(
         reducer: GestureLockComfirmReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -54,13 +54,13 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
     var state: GestureLockComfirmState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<GestureLockComfirmState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
     func confirmLock(_ password: String) {
         if SafeManager.shared.validGesturePassword(password) {
             self.rootVC.dismiss(animated: true) {
@@ -75,7 +75,7 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
             }
         }
     }
-    
+
     func addValidCount() {
         var num = self.state.property.reDrawFailedNum.value
         num = num + 1
@@ -85,7 +85,7 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
         }
         self.store.dispatch(SetReDrawFailedNumAction(num: num))
     }
-    
+
     func checkGestureLock() {
         if SafeManager.shared.isGestureLockLocked() {
             lockGestureLock()
@@ -93,13 +93,13 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
             unLockGestureLock()
         }
     }
-    
+
     func lockGestureLock() {
         if SafeManager.shared.leftUnLockGestureLockTime() == 0 {
             SafeManager.shared.lockGestureLock()
         }
         self.store.dispatch(SetGestureLockLockedAction(value: true))
-        self.timer = Repeater.every(.seconds(1)) {[weak self] timer in
+        self.timer = Repeater.every(.seconds(1)) {[weak self] _ in
             guard let `self` = self else { return }
             DispatchQueue.main.async {
                 let leftTime = SafeManager.shared.leftUnLockGestureLockTime()
@@ -110,10 +110,10 @@ extension GestureLockComfirmCoordinator: GestureLockComfirmStateManagerProtocol 
                 }
             }
         }
-        
+
         timer?.start()
     }
-    
+
     func unLockGestureLock() {
         if self.timer != nil {
             self.timer?.pause()

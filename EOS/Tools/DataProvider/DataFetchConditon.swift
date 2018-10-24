@@ -16,7 +16,7 @@ enum ValueCheckType: String {
     case lessAndEqual = "<="
     case like = "LIKE"
     case not = "NOT"
-    
+
     func desc() -> String {
         return " " + self.rawValue + " "
     }

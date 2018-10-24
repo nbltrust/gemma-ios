@@ -16,9 +16,9 @@ protocol DeleteFingerCoordinatorProtocol {
 
 protocol DeleteFingerStateManagerProtocol {
     var state: DeleteFingerState { get }
-    
-    func switchPageState(_ state:PageState)
-    
+
+    func switchPageState(_ state: PageState)
+
     func deleteCurrentFinger(_ model: WalletManagerModel, index: Int)
 }
 
@@ -26,14 +26,14 @@ class DeleteFingerCoordinator: NavCoordinator {
     var store = Store(
         reducer: DeleteFingerReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: DeleteFingerState {
         return store.state
     }
-    
-    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
+
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.wallet.deleteFingerViewController()!
         let coordinator = DeleteFingerCoordinator(rootVC: root)
         vc.coordinator = coordinator
@@ -61,12 +61,12 @@ extension DeleteFingerCoordinator: DeleteFingerCoordinatorProtocol {
 }
 
 extension DeleteFingerCoordinator: DeleteFingerStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
-    
+
     func deleteCurrentFinger(_ model: WalletManagerModel, index: Int) {
         BLTWalletIO.shareInstance()?.deleteFP([String(format: "%d", index)], success: { [weak self] in
             guard let `self` = self else { return }

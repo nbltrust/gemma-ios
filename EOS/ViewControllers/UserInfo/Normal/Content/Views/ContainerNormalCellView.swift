@@ -11,27 +11,27 @@ import TinyConstraints
 
 class ContainerNormalCellView: UIView {
 
-    enum event : String {
+    enum event: String {
         case selectedSetting
     }
-    
+
     @IBOutlet weak var stackView: UIStackView!
-    
-    var selectedIndex : Int = 0 {
+
+    var selectedIndex: Int = 0 {
         didSet {
             if selectedIndex != oldValue {
                 if let oldView = self.stackView.viewWithTag(oldValue + 1) as? NormalCellView {
                     oldView.rightIconName = R.image.select.name
                 }
-                
+
                 if let newView = self.stackView.viewWithTag(selectedIndex + 1) as? NormalCellView {
                     newView.rightIconName = R.image.group.name
                 }
             }
         }
     }
-    var data : Any? {
-        didSet{
+    var data: Any? {
+        didSet {
             if let data = data as? [String] {
                 self.removeStackViewSubviews()
                 for index in 0..<data.count {
@@ -44,79 +44,78 @@ class ContainerNormalCellView: UIView {
                     cellView.backgroundColor = UIColor.whiteTwo89
                     cellView.name_style = LineViewStyleNames.normal_name.rawValue
                     cellView.rightIconName = index == self.selectedIndex ? R.image.group.name : R.image.select.name
-                    if index == data.count - 1{
+                    if index == data.count - 1 {
                         cellView.isShowLineView = false
                     }
                     self.stackView.addArrangedSubview(cellView)
                     cellView.height(48)
-                    
+
                 }
                 self.layoutIfNeeded()
                 updateHeight()
             }
         }
     }
-    
+
     fileprivate func removeStackViewSubviews() {
         for subView in self.stackView.arrangedSubviews {
             subView.removeFromSuperview()
         }
         updateHeight()
     }
-    
-    
+
     func setup() {
 
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
         setup()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
         setup()
     }
-    
+
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
-    
+
     fileprivate func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()
     }
-    
+
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
         return lastView!.bottom
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
     }
-    
+
     fileprivate func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
+
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 }
 extension ContainerNormalCellView {
-    @objc func clickCellView(_ sender : [String:Any]) {
+    @objc func clickCellView(_ sender: [String: Any]) {
         if let index = sender["index"] as? Int {
             self.selectedIndex = index
-            self.sendEventWith(event.selectedSetting.rawValue, userinfo: ["index":index])
+            self.sendEventWith(event.selectedSetting.rawValue, userinfo: ["index": index])
         }
     }
 }

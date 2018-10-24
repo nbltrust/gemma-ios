@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 @IBDesignable
 class PageView: UIView {
 
@@ -20,7 +19,7 @@ class PageView: UIView {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var leftView: OperationLeftView!
     @IBOutlet weak var rightView: OperationRightView!
-    
+
     var data: Any? {
         didSet {
             if let data = data as? PageViewModel {
@@ -34,44 +33,44 @@ class PageView: UIView {
                 leftView.data = data
                 rightView.data = data
             }
-            
+
             updateHeight()
         }
     }
-    
+
     enum event: String {
         case left
         case right
     }
-    
+
     enum page: Int {
         case left = 0
         case right = 1
     }
-    
+
     var index = page.left
-    
+
     @IBInspectable
     var leftText: String = "" {
         didSet {
             leftLabel.text = leftText
         }
     }
-    
+
     @IBInspectable
     var rightText: String = "" {
         didSet {
             rightLabel.text = rightText
         }
     }
-    
+
     @IBInspectable
     var balance: String = "" {
         didSet {
             balanceLabel.text = balance
         }
     }
-    
+
     var operationNumber = 2 {
         didSet {
             setUp()
@@ -79,7 +78,7 @@ class PageView: UIView {
             rightView.cpuMortgageCancelView.reloadData()
         }
     }
-    
+
     func setUp() {
         if operationNumber == 1 {
             leftView.isHiddenBottomView = true
@@ -89,7 +88,7 @@ class PageView: UIView {
         setupEvent()
         updateHeight()
     }
-    
+
     func updateLabelStatus() {
         if index == page.left {
             leftLabel.textColor = UIColor.darkSlateBlue
@@ -99,58 +98,58 @@ class PageView: UIView {
             rightLabel.textColor = UIColor.darkSlateBlue
         }
     }
-    
+
     func setupEvent() {
-        leftLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+        leftLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.leftLabel.next?.sendEventWith(event.left.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
-        
-        rightLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+
+        rightLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.rightLabel.next?.sendEventWith(event.right.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
     }
-    
+
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
-    
+
     fileprivate func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()
     }
-    
+
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
         return lastView?.bottom ?? 0
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
         setUp()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
         setUp()
     }
-    
+
     fileprivate func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
 //                self.insertSubview(view, at: 0)
-        
+
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]

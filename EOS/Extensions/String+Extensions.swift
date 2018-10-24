@@ -9,31 +9,31 @@
 import Foundation
 
 extension String {
-    static var numberFormatters:[NumberFormatter] = []
-    static var doubleFormat:NumberFormatter = NumberFormatter()
+    static var numberFormatters: [NumberFormatter] = []
+    static var doubleFormat: NumberFormatter = NumberFormatter()
 
     public func toDouble() -> Double? {
         if self == "" {
             return 0
         }
-        
+
         var selfString = self
-        if selfString.contains(","){
-            selfString = selfString.replacingOccurrences( of:"[^0-9.]", with: "", options: .regularExpression)
+        if selfString.contains(",") {
+            selfString = selfString.replacingOccurrences( of: "[^0-9.]", with: "", options: .regularExpression)
         }
-        
+
         return Double(selfString)
     }
-    
+
     func formatCurrency(digitNum: Int) -> String {
         if let str = toDouble()?.formatCurrency(digitNum: digitNum) {
             return str
         }
         return ""
     }
-    
+
     func suffixNumber(digitNum: Int = 5) -> String {
-        if let str = Double(self)?.suffixNumber(digitNum:digitNum) {
+        if let str = Double(self)?.suffixNumber(digitNum: digitNum) {
             return str
         }
         return ""

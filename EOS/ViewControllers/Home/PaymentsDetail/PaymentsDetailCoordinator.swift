@@ -21,20 +21,19 @@ protocol PaymentsDetailStateManagerProtocol {
 }
 
 class PaymentsDetailCoordinator: NavCoordinator {
-    
+
     lazy var creator = PaymentsDetailPropertyActionCreate()
-    
+
     var store = Store<PaymentsDetailState>(
         reducer: PaymentsDetailReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
 extension PaymentsDetailCoordinator: PaymentsDetailCoordinatorProtocol {
     func openWebView(txid: String) {
-        
-        UIApplication.shared.openURL(NSURL(string: NetworkConfiguration.EOSFLARE_BASE_URLString + txid)! as URL)
+        UIApplication.shared.open(URL(string: NetworkConfiguration.EOSFLARE_BASE_URLString + txid)!, options: [:], completionHandler: nil)
 //        let vc = BaseWebViewController()
 //        vc.url = URL(string: NetworkConfiguration.EOSFLARE_BASE_URLString + txid)
 //        vc.title = R.string.localizable.invitationcode_introduce.key.localized()
@@ -46,11 +45,11 @@ extension PaymentsDetailCoordinator: PaymentsDetailStateManagerProtocol {
     var state: PaymentsDetailState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<PaymentsDetailState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

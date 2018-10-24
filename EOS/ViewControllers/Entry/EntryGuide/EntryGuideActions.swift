@@ -9,21 +9,21 @@
 import Foundation
 import ReSwift
 
-//MARK: - State
+// MARK: - State
 struct EntryGuideState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: EntryGuidePropertyState
 }
 
 struct EntryGuidePropertyState {
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class EntryGuidePropertyActionCreate {
     public typealias ActionCreator = (_ state: EntryGuideState, _ store: Store<EntryGuideState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: EntryGuideState,
         _ store: Store <EntryGuideState>,

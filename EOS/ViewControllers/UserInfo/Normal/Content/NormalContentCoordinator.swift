@@ -20,24 +20,24 @@ protocol NormalContentStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<NormalContentState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
-    func settingDatas(_ sender : CustomSettingType) -> [String]
-    
-    func selectedIndex(_ sender : CustomSettingType) -> Int
-    
-    func setSelectIndex(_ sender : CustomSettingType, index: Int)
-    
-    func titleWithIndex(_ sender : CustomSettingType) -> String
+
+    func settingDatas(_ sender: CustomSettingType) -> [String]
+
+    func selectedIndex(_ sender: CustomSettingType) -> Int
+
+    func setSelectIndex(_ sender: CustomSettingType, index: Int)
+
+    func titleWithIndex(_ sender: CustomSettingType) -> String
 }
 
 class NormalContentCoordinator: NavCoordinator {
-    
+
     lazy var creator = NormalContentPropertyActionCreate()
-    
+
     var store = Store<NormalContentState>(
         reducer: NormalContentReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -51,13 +51,13 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
     var state: NormalContentState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<NormalContentState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
     func settingDatas(_ sender: CustomSettingType) -> [String] {
         var data = [String]()
         switch sender {
@@ -71,7 +71,7 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
         }
         return data
     }
-    
+
     func selectedIndex(_ sender: CustomSettingType) -> Int {
         switch sender {
         case .language:
@@ -83,7 +83,7 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
             return Defaults[.currentURLNode]
         }
     }
-    
+
     func setSelectIndex(_ sender: CustomSettingType, index: Int) {
         switch sender {
         case .language:
@@ -102,7 +102,7 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
             Defaults[.currentURLNode] = index
         }
     }
-    
+
     func titleWithIndex(_ sender: CustomSettingType) -> String {
         switch sender {
         case .language:
@@ -113,5 +113,5 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
             return R.string.localizable.normal_node.key.localized()
         }
     }
-    
+
 }

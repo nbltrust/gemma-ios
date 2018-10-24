@@ -9,10 +9,10 @@
 import Foundation
 
 extension FriendView {
-    func adapterModelToFriendView(_ model:FriendAdapterModel) {
-        
+    func adapterModelToFriendView(_ model: FriendAdapterModel) {
+
     }
-    func exchangeAdapterModelToFriendView(_ model:ExchangeAdapterModel) {
-        
+    func exchangeAdapterModelToFriendView(_ model: ExchangeAdapterModel) {
+
     }
 }

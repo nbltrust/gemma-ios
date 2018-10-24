@@ -19,74 +19,74 @@ class BLTCardPowerOnViewController: BaseViewController {
 
 	var coordinator: (BLTCardPowerOnCoordinatorProtocol & BLTCardPowerOnStateManagerProtocol)?
     private(set) var context: BLTCardPowerOnContext?
-    
+
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func refreshViewController() {
-        
+
     }
-    
+
     func setupUI() {
-        
+
     }
 
     func setupData() {
-        
+
     }
-    
+
     func setupEvent() {
-        
+
     }
-    
+
     override func configureObserveState() {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
-            
+
             if let context = context as? BLTCardPowerOnContext {
                 self.context = context
             }
-            
+
         }).disposed(by: disposeBag)
-        
+
         self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
             guard let `self` = self else { return }
-            
+
             self.endLoading()
-            
+
             switch state {
             case .initial:
                 self.coordinator?.switchPageState(PageState.refresh(type: PageRefreshType.initial))
-                
+
             case .loading(let reason):
                 if reason == .initialRefresh {
                     self.startLoading()
                 }
-                
+
             case .refresh(let type):
                 self.coordinator?.switchPageState(.loading(reason: type.mapReason()))
-                
-            case .loadMore(let page):
+
+            case .loadMore:
                 self.coordinator?.switchPageState(.loading(reason: PageLoadReason.manualLoadMore))
-                
+
             case .noMore:
 //                self.stopInfiniteScrolling(self.tableView, haveNoMore: true)
                 break
-                
+
             case .noData:
 //                self.view.showNoData(<#title#>, icon: <#imageName#>)
                 break
-                
-            case .normal(let reason):
+
+            case .normal:
 //                self.view.hiddenNoData()
 //
 //                if reason == PageLoadReason.manualLoadMore {
@@ -96,10 +96,10 @@ class BLTCardPowerOnViewController: BaseViewController {
 //                    self.stopPullRefresh(self.tableView)
 //                }
                 break
-                
-            case .error(let error, let reason):
+
+            case .error:
 //                self.showToastBox(false, message: error.localizedDescription)
-                
+
 //                if reason == PageLoadReason.manualLoadMore {
 //                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
 //                }
@@ -112,7 +112,7 @@ class BLTCardPowerOnViewController: BaseViewController {
     }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension BLTCardPowerOnViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -126,8 +126,7 @@ class BLTCardPowerOnViewController: BaseViewController {
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 //extension BLTCardPowerOnViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
@@ -136,4 +135,3 @@ class BLTCardPowerOnViewController: BaseViewController {
 //        }
 //    }
 //}
-

@@ -9,7 +9,7 @@
 import Foundation
 
 extension BLTCardIntroViewView {
-    func adapterModelToBLTCardIntroViewView(_ model:BLTCardIntroModel) {
+    func adapterModelToBLTCardIntroViewView(_ model: BLTCardIntroModel) {
         titleLabel.text = model.title
         let image = UIImage.init(imageLiteralResourceName: model.imageName)
         introView.image = image

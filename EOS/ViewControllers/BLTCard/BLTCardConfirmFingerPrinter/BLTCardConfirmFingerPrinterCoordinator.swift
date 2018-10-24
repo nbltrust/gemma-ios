@@ -16,23 +16,23 @@ protocol BLTCardConfirmFingerPrinterCoordinatorProtocol {
 
 protocol BLTCardConfirmFingerPrinterStateManagerProtocol {
     var state: BLTCardConfirmFingerPrinterState { get }
-    
-    func switchPageState(_ state:PageState)
-    
-    func bltTransferAccounts(_ account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
+
+    func switchPageState(_ state: PageState)
+
+    func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
 }
 
 class BLTCardConfirmFingerPrinterCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardConfirmFingerPrinterReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: BLTCardConfirmFingerPrinterState {
         return store.state
     }
-            
+
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.bltCard.bltCardConfirmFingerPrinterViewController()!
         let coordinator = BLTCardConfirmFingerPrinterCoordinator(rootVC: root)
@@ -53,11 +53,11 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterCoo
 }
 
 extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         self.store.dispatch(PageStateAction(state: state))
     }
-    
-    func bltTransferAccounts(_ account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+
+    func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
         let model = TransferActionModel()
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()
@@ -69,7 +69,7 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
         model.confirmType = fpType
         model.password = "123456"
         transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool,showString)
+            callback(bool, showString)
         }
     }
 }

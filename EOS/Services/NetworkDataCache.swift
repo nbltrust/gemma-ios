@@ -30,16 +30,15 @@ class DataCachePlugin: PluginType {
 final class EOSDataCachePlugin: DataCachePlugin {
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
         guard case Result.success(_) = result else { return }
-        
+
         if let service = target as? EOSIOService {
             if service.isNeedCache {
                 do {
                     if let response = result.value {
                         _ = try response.filterSuccessfulStatusCodes()
-                        let json = try JSON(response.mapJSON())
+                        _ = try JSON(response.mapJSON())
                     }
-                }
-                catch _ {}
+                } catch _ {}
             }
         }
     }
@@ -55,13 +54,12 @@ final class NBLDataCachePlugin: DataCachePlugin {
                         let response = try response.filterSuccessfulStatusCodes()
                         let json = try JSON(response.mapJSON())
                         if json["code"].intValue == 0 {
-                            let result = json["result"]
-                            
+                            _ = json["result"]
+
                         }
-                        
+
                     }
-                }
-                catch _ {}
+                } catch _ {}
             }
         }
     }
@@ -70,7 +68,7 @@ final class NBLDataCachePlugin: DataCachePlugin {
 extension NBLService: CachePolicyGettable {
     var cachePolicy: URLRequest.CachePolicy {
         switch self {
-        case .producer(_):
+        case .producer:
             return .useProtocolCachePolicy
         default:
             return .reloadIgnoringLocalCacheData
@@ -81,7 +79,7 @@ extension NBLService: CachePolicyGettable {
 extension EOSIOService: CachePolicyGettable {
     var cachePolicy: URLRequest.CachePolicy {
         switch self {
-        case .get_account(_,_):
+        case .get_account:
             return .useProtocolCachePolicy
         default:
             return .reloadIgnoringLocalCacheData

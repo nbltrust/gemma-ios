@@ -9,15 +9,13 @@
 import UIKit
 import ReSwift
 
-func FriendToActivateReducer(action:Action, state:FriendToActivateState?) -> FriendToActivateState {
+func FriendToActivateReducer(action: Action, state: FriendToActivateState?) -> FriendToActivateState {
     let state = state ?? FriendToActivateState()
-        
+
     switch action {
     default:
         break
     }
-        
+
     return state
 }
-
-

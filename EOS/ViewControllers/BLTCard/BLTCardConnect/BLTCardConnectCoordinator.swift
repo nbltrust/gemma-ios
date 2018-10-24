@@ -16,24 +16,24 @@ protocol BLTCardConnectCoordinatorProtocol {
 
 protocol BLTCardConnectStateManagerProtocol {
     var state: BLTCardConnectState { get }
-    
-    func switchPageState(_ state:PageState)
-    
-    func reconnectDevice(_ success: @escaping SuccessedComplication,  failed: @escaping FailedComplication)
+
+    func switchPageState(_ state: PageState)
+
+    func reconnectDevice(_ success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
 }
 
 class BLTCardConnectCoordinator: NavCoordinator {
     var store = Store(
         reducer: BLTCardConnectReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: BLTCardConnectState {
         return store.state
     }
-    
-    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
+
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.bltCard.bltCardConnectViewController()!
         let coordinator = BLTCardConnectCoordinator(rootVC: root)
         vc.coordinator = coordinator
@@ -54,13 +54,13 @@ extension BLTCardConnectCoordinator: BLTCardConnectCoordinatorProtocol {
 }
 
 extension BLTCardConnectCoordinator: BLTCardConnectStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
-    
-    func reconnectDevice(_ success: @escaping SuccessedComplication,  failed: @escaping FailedComplication) {
+
+    func reconnectDevice(_ success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
         var deviceName = ""
         if let wallet = WalletManager.shared.currentWallet() {
             deviceName = wallet.deviceName ?? ""

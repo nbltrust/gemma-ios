@@ -13,7 +13,7 @@ import RxCocoa
 enum PageRefreshType: Int {
     case initial = 0
     case manual
-    
+
     func mapReason() -> PageLoadReason {
         switch self {
         case .initial:
@@ -67,16 +67,16 @@ extension PageState: Equatable {
 }
 
 protocol BaseState: StateType {
-    var pageState:BehaviorRelay<PageState> { get set }
+    var pageState: BehaviorRelay<PageState> { get set }
     var context: BehaviorRelay<RouteContext?> { get set }
 }
 
-struct AppState:StateType {
+struct AppState: StateType {
     var property: AppPropertyState
 }
 
 struct AppPropertyState {
-    
+
 }
 
 struct RouteContextAction: Action {
@@ -94,13 +94,13 @@ struct EndLoading: Action {
     var vc: BaseViewController?
 }
 
-struct RefreshState:Action {
-    let sel:Selector
-    let vc:BaseViewController?
+struct RefreshState: Action {
+    let sel: Selector
+    let vc: BaseViewController?
 }
 
 struct NetworkErrorMessage: Action {
-    let errorMessage:String
+    let errorMessage: String
 }
 struct CleanErrorMessage: Action {}
 

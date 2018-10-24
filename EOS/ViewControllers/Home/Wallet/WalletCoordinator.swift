@@ -11,13 +11,13 @@ import ReSwift
 
 protocol WalletCoordinatorProtocol {
     func pushToWalletManager(data: WalletManagerModel)
-    
+
     func pushToEntryVC()
 
     func pushToLeadInWallet()
-    
+
     func popToLastVC()
-    
+
     func pushToBLTEntryVC()
 }
 
@@ -26,21 +26,21 @@ protocol WalletStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<WalletState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
+
     func createSectionOneDataInfo(data: [WalletManagerModel]) -> [LineView.LineViewModel]
     func createSectionTwoDataInfo() -> [LineView.LineViewModel]
 
-    func switchWallet(_ pubKey:String)
+    func switchWallet(_ pubKey: String)
 }
 
 class WalletCoordinator: NavCoordinator {
-    
+
     lazy var creator = WalletPropertyActionCreate()
-    
+
     var store = Store<WalletState>(
         reducer: WalletReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -48,7 +48,7 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
     func popToLastVC() {
         self.rootVC.popViewController()
     }
-    
+
     func pushToWalletManager(data: WalletManagerModel) {
         if let vc = R.storyboard.wallet.walletManagerViewController() {
             let coordinator = WalletManagerCoordinator(rootVC: self.rootVC)
@@ -57,10 +57,10 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
+
     func pushToEntryVC() {
         if let vc = R.storyboard.entry.entryViewController() {
-            
+
             let coordinator = EntryCoordinator(rootVC: self.rootVC)
             coordinator.state.callback.endCallback.accept {[weak self] in
                 guard let `self` = self else { return }
@@ -70,7 +70,7 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
+
     func pushToLeadInWallet() {
         if let vc = R.storyboard.leadIn.leadInViewController() {
             let coordinator = LeadInCoordinator(rootVC: self.rootVC)
@@ -82,7 +82,7 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
+
     func pushToBLTEntryVC() {
         if let vc = R.storyboard.bltCard.bltCardEntryViewController() {
             let coordinator = BLTCardEntryCoordinator(rootVC: self.rootVC)
@@ -97,13 +97,13 @@ extension WalletCoordinator: WalletStateManagerProtocol {
     var state: WalletState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<WalletState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
     func createSectionOneDataInfo(data: [WalletManagerModel]) -> [LineView.LineViewModel] {
         var array: [LineView.LineViewModel] = []
         for content: WalletManagerModel in data {
@@ -119,7 +119,7 @@ extension WalletCoordinator: WalletStateManagerProtocol {
         }
         return array
     }
-    
+
     func createSectionTwoDataInfo() -> [LineView.LineViewModel] {
         return [LineView.LineViewModel.init(name: R.string.localizable.import_wallet.key.localized(),
                                             content: "",
@@ -147,11 +147,11 @@ extension WalletCoordinator: WalletStateManagerProtocol {
                                             isShowLineView: false)
         ]
     }
-    
-    func switchWallet(_ pubKey:String) {
+
+    func switchWallet(_ pubKey: String) {
         WalletManager.shared.switchWallet(pubKey)
-        WalletManager.shared.fetchAccountNames(pubKey) { (result) in
-            
+        WalletManager.shared.fetchAccountNames(pubKey) { (_) in
+
         }
     }
 }

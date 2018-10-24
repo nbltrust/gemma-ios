@@ -18,7 +18,7 @@ class NodeSelCell: UITableViewCell {
         self.multipleSelectionBackgroundView = bgView
         // Initialization code
     }
-    
+
     func setupNode(_ node: NodeVoteViewModel) {
         nodeView.nameLabel.text = node.name
         nodeView.ownerLabel.text = node.name
@@ -30,5 +30,5 @@ class NodeSelCell: UITableViewCell {
         nodeView.checkButton.isSelected = selected
         // Configure the view for the selected state
     }
-    
+
 }

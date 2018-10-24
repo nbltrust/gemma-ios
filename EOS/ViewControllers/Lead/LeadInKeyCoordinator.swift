@@ -21,19 +21,19 @@ protocol LeadInKeyStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<LeadInKeyState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
+
     func validPrivateKey(_ privKey: String) -> (Bool, String)
     func importPrivKey(_ privKey: String)
 }
 
 class LeadInKeyCoordinator: NavCoordinator {
-    
+
     lazy var creator = LeadInKeyPropertyActionCreate()
-    
+
     var store = Store<LeadInKeyState>(
         reducer: LeadInKeyReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -45,12 +45,12 @@ extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
                 leadInVC.leadInKeyView.textView.text = result
             }
         }
-        
+
         presentVC(ScanCoordinator.self, context: context, navSetup: { (nav) in
             nav.navStyle = .clear
-        }, presentSetup: nil) 
+        }, presentSetup: nil)
     }
-    
+
     func openSetWallet() {
         if let vc = R.storyboard.leadIn.setWalletViewController() {
             let coordinator = SetWalletCoordinator(rootVC: self.rootVC)
@@ -65,13 +65,13 @@ extension LeadInKeyCoordinator: LeadInKeyStateManagerProtocol {
     var state: LeadInKeyState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<LeadInKeyState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
     func validPrivateKey(_ privKey: String) -> (Bool, String) {
         if let _ = EOSIO.getPublicKey(privKey) {
             return (true, "")
@@ -80,7 +80,7 @@ extension LeadInKeyCoordinator: LeadInKeyStateManagerProtocol {
             return (false, "")
         }
     }
-    
+
     func importPrivKey(_ privKey: String) {
         WalletManager.shared.addPrivatekey(privKey)
     }

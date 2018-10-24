@@ -11,10 +11,10 @@ import Foundation
 /// example: openPage("cybexapp://eto/home")
 struct URLNavigationMap {
     static func initialize(navigator: NavigatorType) {
-        navigator.handle("gemma://transfer") { (url, values, context) -> Bool in
+        navigator.handle("gemma://transfer") { (_, values, context) -> Bool in
             app_coodinator.pushVC(TransferCoordinator.self, animated: true, context: TransferContext.deserialize(from: values))
             return true
         }
-        
+
     }
 }

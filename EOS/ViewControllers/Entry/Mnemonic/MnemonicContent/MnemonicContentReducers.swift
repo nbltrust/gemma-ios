@@ -9,17 +9,15 @@
 import UIKit
 import ReSwift
 
-func MnemonicContentReducer(action:Action, state:MnemonicContentState?) -> MnemonicContentState {
+func MnemonicContentReducer(action: Action, state: MnemonicContentState?) -> MnemonicContentState {
     let state = state ?? MnemonicContentState()
-        
+
     switch action {
     case let action as SetSeedsAction:
         state.seedData.accept(action.datas)
     default:
         break
     }
-        
+
     return state
 }
-
-

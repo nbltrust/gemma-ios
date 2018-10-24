@@ -9,9 +9,9 @@
 import UIKit
 import ReSwift
 
-func PayToActivateReducer(action:Action, state:PayToActivateState?) -> PayToActivateState {
+func PayToActivateReducer(action: Action, state: PayToActivateState?) -> PayToActivateState {
     var state = state ?? PayToActivateState()
-        
+
     switch action {
     case let action as BillAction:
         let model = transToModel(action)
@@ -23,7 +23,7 @@ func PayToActivateReducer(action:Action, state:PayToActivateState?) -> PayToActi
     default:
         break
     }
-        
+
     return state
 }
 

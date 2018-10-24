@@ -9,17 +9,15 @@
 import UIKit
 import ReSwift
 
-func BLTCardConfirmFingerPrinterReducer(action:Action, state:BLTCardConfirmFingerPrinterState?) -> BLTCardConfirmFingerPrinterState {
+func BLTCardConfirmFingerPrinterReducer(action: Action, state: BLTCardConfirmFingerPrinterState?) -> BLTCardConfirmFingerPrinterState {
     let state = state ?? BLTCardConfirmFingerPrinterState()
-        
+
     switch action {
     case let action as PageStateAction:
         state.pageState.accept(action.state)
     default:
         break
     }
-        
+
     return state
 }
-
-

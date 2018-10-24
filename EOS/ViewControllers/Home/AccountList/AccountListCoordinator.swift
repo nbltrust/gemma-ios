@@ -21,15 +21,15 @@ protocol AccountListStateManagerProtocol {
 }
 
 class AccountListCoordinator: NavCoordinator {
-    
+
     lazy var creator = AccountListPropertyActionCreate()
-    
+
     var store = Store<AccountListState>(
         reducer: AccountListReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.accountList.accountListViewController()!
         let coordinator = AccountListCoordinator(rootVC: root)
@@ -51,11 +51,11 @@ extension AccountListCoordinator: AccountListStateManagerProtocol {
     var state: AccountListState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<AccountListState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

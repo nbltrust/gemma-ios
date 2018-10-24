@@ -9,9 +9,9 @@
 import UIKit
 import ReSwift
 
-func BLTCardSearchReducer(action:Action, state:BLTCardSearchState?) -> BLTCardSearchState {
+func BLTCardSearchReducer(action: Action, state: BLTCardSearchState?) -> BLTCardSearchState {
     var state = state ?? BLTCardSearchState()
-        
+
     switch action {
     case let action as PageStateAction:
         state.pageState.accept(action.state)
@@ -20,8 +20,6 @@ func BLTCardSearchReducer(action:Action, state:BLTCardSearchState?) -> BLTCardSe
     default:
         break
     }
-        
+
     return state
 }
-
-

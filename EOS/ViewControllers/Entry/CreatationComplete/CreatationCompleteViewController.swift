@@ -15,17 +15,17 @@ class CreatationCompleteViewController: BaseViewController {
 
     @IBOutlet weak var comfirmView: ComfirmView!
     @IBOutlet weak var contentView: UIView!
-    
+
     var coordinator: (CreatationCompleteCoordinatorProtocol & CreatationCompleteStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.title = R.string.localizable.back_up_wallet.key.localized()
     }
 
     override func configureObserveState() {
-        comfirmView.cancelButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+        comfirmView.cancelButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.coordinator?.dismissCurrentNav(nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
@@ -33,7 +33,7 @@ class CreatationCompleteViewController: BaseViewController {
 }
 
 extension CreatationCompleteViewController {
-    @objc func sure_event(_ data:[String:Any]) {
+    @objc func sure_event(_ data: [String: Any]) {
         self.coordinator?.pushBackupPrivateKeyVC()
     }
 }

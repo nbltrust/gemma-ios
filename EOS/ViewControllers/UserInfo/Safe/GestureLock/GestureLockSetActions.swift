@@ -10,11 +10,11 @@ import Foundation
 import ReSwift
 import RxCocoa
 
-//MARK: - State
+// MARK: - State
 struct GestureLockSetState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: GestureLockSetPropertyState
     var callback: GestureLockSetCallbackState
 }
@@ -22,7 +22,7 @@ struct GestureLockSetState: StateType {
 struct GestureLockSetPropertyState {
     var reDrawFailedNum: BehaviorRelay<Int> = BehaviorRelay(value: 0)
     var password: BehaviorRelay<String> = BehaviorRelay(value: "")
-    var promotData: BehaviorRelay<(message: String,isWarning: Bool)> = BehaviorRelay(value: (R.string.localizable.ges_pas_input_pla.key.localized(),false))
+    var promotData: BehaviorRelay<(message: String, isWarning: Bool)> = BehaviorRelay(value: (R.string.localizable.ges_pas_input_pla.key.localized(), false))
     var validedPassword: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 }
 
@@ -46,10 +46,10 @@ struct SetReDrawFailedNumAction: Action {
     var num = 0
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class GestureLockSetPropertyActionCreate {
     public typealias ActionCreator = (_ state: GestureLockSetState, _ store: Store<GestureLockSetState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: GestureLockSetState,
         _ store: Store <GestureLockSetState>,

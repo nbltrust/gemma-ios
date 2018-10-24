@@ -9,17 +9,16 @@
 import UIKit
 
 class PaymentsRecordsCellView: UIView {
-    
+
     @IBOutlet weak var state: UIImageView!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var transferState: UILabel!
     @IBOutlet weak var money: UILabel!
     @IBOutlet weak var transferStateView: UIView!
-    
-    
-    var data : Any?{
-        didSet{
+
+    var data: Any? {
+        didSet {
             guard let newData = data as? PaymentsRecordsViewModel else { return }
             address.text = newData.address
             time.text = newData.time
@@ -29,55 +28,49 @@ class PaymentsRecordsCellView: UIView {
             updateHeight()
         }
     }
-    
-    
-    func setup(){
-        
+
+    func setup() {
+
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadFromXIB()
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXIB()
         setup()
     }
-    
-    
-    
-    func updateHeight(){
+
+    func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()
     }
-    
+
     fileprivate func dynamicHeight() -> CGFloat {
         let view = self.subviews.last?.subviews.last
         return (view?.frame.origin.y)! + (view?.frame.size.height)!
     }
-    
+
     override var intrinsicContentSize: CGSize {
         return CGSize(width: UIViewNoIntrinsicMetric, height: dynamicHeight())
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
     }
-    
-    
-    
-    
-    func loadFromXIB(){
+
+    func loadFromXIB() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib.init(nibName: String(describing: type(of: self)), bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         addSubview(view)
         view.frame = self.bounds
-        view.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
 }

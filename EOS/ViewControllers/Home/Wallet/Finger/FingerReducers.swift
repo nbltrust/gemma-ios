@@ -9,15 +9,13 @@
 import UIKit
 import ReSwift
 
-func FingerReducer(action:Action, state:FingerState?) -> FingerState {
+func FingerReducer(action: Action, state: FingerState?) -> FingerState {
     let state = state ?? FingerState()
-        
+
     switch action {
     default:
         break
     }
-        
+
     return state
 }
-
-

@@ -11,46 +11,46 @@ import ReSwift
 import RxSwift
 import RxCocoa
 
-//MARK: - State
+// MARK: - State
 struct PaymentsState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: PaymentsPropertyState
 }
 
 struct PaymentsPropertyState {
-    var data : [PaymentsRecordsViewModel] = []
-    var last_pos : Int = -1
-    var payments : [Payment] = []
+    var data: [PaymentsRecordsViewModel] = []
+    var last_pos: Int = -1
+    var payments: [Payment] = []
 }
 
-struct FetchPaymentsRecordsListAction : Action {
-    var data : [Payment]
+struct FetchPaymentsRecordsListAction: Action {
+    var data: [Payment]
 }
 
-struct GetLastPosAction : Action {
-    var last_pos : Int
+struct GetLastPosAction: Action {
+    var last_pos: Int
 }
 
-//MARK: - ViewModel
+// MARK: - ViewModel
 struct PaymentsRecordsViewModel {
-    var stateImageName : UIImage?
-    var address : String = ""
-    var time : String = ""
-    var transferState : String = ""
-    var money : String = ""
-    var transferStateBool : Bool = true
-    var block : Int = 0
-    var memo : String = ""
-    var hashNumber : String = ""
-    var hash : String = ""
+    var stateImageName: UIImage?
+    var address: String = ""
+    var time: String = ""
+    var transferState: String = ""
+    var money: String = ""
+    var transferStateBool: Bool = true
+    var block: Int = 0
+    var memo: String = ""
+    var hashNumber: String = ""
+    var hash: String = ""
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class PaymentsPropertyActionCreate {
     public typealias ActionCreator = (_ state: PaymentsState, _ store: Store<PaymentsState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: PaymentsState,
         _ store: Store <PaymentsState>,

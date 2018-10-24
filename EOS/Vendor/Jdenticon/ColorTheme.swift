@@ -24,7 +24,7 @@ public final class ColorTheme {
             // Light color
             UIColor(correctedHue: hue, saturation: saturation, lightness: colorLightness(1)),
             // Dark color
-            UIColor(correctedHue: hue, saturation: saturation, lightness: colorLightness(0)),
+            UIColor(correctedHue: hue, saturation: saturation, lightness: colorLightness(0))
         ]
     }
 

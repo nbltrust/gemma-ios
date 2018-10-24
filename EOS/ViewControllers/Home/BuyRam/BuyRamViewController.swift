@@ -14,20 +14,20 @@ import ReSwift
 class BuyRamViewController: BaseViewController {
 
     @IBOutlet weak var contentView: BuyRamView!
-    
+
     var coordinator: (BuyRamCoordinatorProtocol & BuyRamStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
         self.title = R.string.localizable.buy_ram_title.key.localized()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        self.coordinator?.getCurrentFromLocal()
         coordinator?.getAccountInfo(WalletManager.shared.getAccount())
     }
-    
+
     func resetData() {
         self.contentView.pageView.leftView.cpuMortgageView.clearText()
         self.contentView.pageView.rightView.cpuMortgageCancelView.clearText()
@@ -35,13 +35,13 @@ class BuyRamViewController: BaseViewController {
         self.contentView.rightNextButton.isEnabel.accept(false)
         self.coordinator?.pushToPaymentVC()
     }
-    
+
     override func configureObserveState() {
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             self.contentView.data = model
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         coordinator?.state.property.buyRamValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             var warning = ""
@@ -52,7 +52,7 @@ class BuyRamViewController: BaseViewController {
             }
             self.contentView.leftNextButton.isEnabel.accept(model.0)
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         coordinator?.state.property.sellRamValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             var warning = ""
@@ -67,7 +67,7 @@ class BuyRamViewController: BaseViewController {
 }
 
 extension BuyRamViewController {
-    @objc func leftnext(_ data: [String:Any]) {
+    @objc func leftnext(_ data: [String: Any]) {
         if self.contentView.leftNextButton.isEnabel.value == false {
             return
         }
@@ -76,20 +76,20 @@ extension BuyRamViewController {
             if cpuAmount == "" {
                 cpuAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            
+
             model.amount = cpuAmount
             model.remark = R.string.localizable.buy_ram_remark.key.localized()
         }
         model.buttonTitle = R.string.localizable.confirm_buy.key.localized()
-        
+
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }
-    @objc func rightnext(_ data: [String:Any]) {
+    @objc func rightnext(_ data: [String: Any]) {
         if self.contentView.rightNextButton.isEnabel.value == false {
             return
         }
         var model = ConfirmViewModel()
-        if var cpuAmount = self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text{
+        if var cpuAmount = self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text {
             if cpuAmount == "" {
                 cpuAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
             }
@@ -97,22 +97,22 @@ extension BuyRamViewController {
             model.remark = R.string.localizable.sell_ram_remark.key.localized()
         }
         model.buttonTitle = R.string.localizable.confirm_sell.key.localized()
-        
+
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }
-    @objc func cpu(_ data: [String:Any]) {
-        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView , let cpuMoney = cpuTextFieldView.textField.text?.toDouble() {
+    @objc func cpu(_ data: [String: Any]) {
+        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let cpuMoney = cpuTextFieldView.textField.text?.toDouble() {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            if var balance = self.contentView.pageView.leftView.cpuMortgageView.introduceLabel.text,balance != "" {
+            if var balance = self.contentView.pageView.leftView.cpuMortgageView.introduceLabel.text, balance != "" {
                 balance = balance.components(separatedBy: "：")[1]
-                
-                if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
+
+                if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble() {
                     cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
                 }
                 self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .left)
-                self.coordinator?.buyRamValid(cpuTextFieldView.textField.text!,blance: balance)
+                self.coordinator?.buyRamValid(cpuTextFieldView.textField.text!, blance: balance)
             }
         } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
             cpuTextFieldView.textField.text = ""
@@ -120,15 +120,15 @@ extension BuyRamViewController {
             self.contentView.leftNextButton.isEnabel.accept(false)
         }
     }
-    
-    @objc func cpucancel(_ data: [String:Any]) {
-        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView , let cpuMoney = cpuTextFieldView.textField.text?.toDouble() {
+
+    @objc func cpucancel(_ data: [String: Any]) {
+        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let cpuMoney = cpuTextFieldView.textField.text?.toDouble() {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            if var balance = self.contentView.pageView.rightView.cpuMortgageCancelView.introduceLabel.text,balance != "" {
+            if var balance = self.contentView.pageView.rightView.cpuMortgageCancelView.introduceLabel.text, balance != "" {
                 balance = balance.components(separatedBy: "：")[1]
-                if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
+                if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble() {
                     cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
                 }
                 self.coordinator?.exchangeCalculate(cpuTextFieldView.textField.text!, type: .right)
@@ -139,7 +139,7 @@ extension BuyRamViewController {
             self.contentView.rightNextButton.isEnabel.accept(false)
         }
     }
-    
+
     @objc func left(_ data: [String: Any]) {
         self.coordinator?.exchangeCalculate(contentView.pageView.leftView.cpuMortgageView.textField.text!, type: .left)
     }

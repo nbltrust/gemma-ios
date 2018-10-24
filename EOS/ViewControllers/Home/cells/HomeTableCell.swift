@@ -10,9 +10,8 @@ import UIKit
 
 class HomeTableCell: BaseTableViewCell {
 
-    
     @IBOutlet var homeCellView: LineView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -25,7 +24,7 @@ class HomeTableCell: BaseTableViewCell {
             homeCellView.bgView.backgroundColor = UIColor.whiteTwo
         }
     }
-    
+
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
         if highlighted == true {
@@ -34,7 +33,7 @@ class HomeTableCell: BaseTableViewCell {
             homeCellView.bgView.backgroundColor = UIColor.whiteTwo
         }
     }
-    
+
     override func setup(_ data: Any?, indexPath: IndexPath) {
        homeCellView.data = data
     }

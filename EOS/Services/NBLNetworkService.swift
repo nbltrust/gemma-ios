@@ -21,7 +21,7 @@ struct WookongValidation: HandyJSON {
     var publicKey = ""
 }
 
-enum CreateAPPId: Int,Codable {
+enum CreateAPPId: Int, Codable {
     case gemma = 1
     case wookongSolo
     case wookong
@@ -43,22 +43,22 @@ func defaultManager() -> Alamofire.SessionManager {
     let configuration = URLSessionConfiguration.default
     configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
     configuration.timeoutIntervalForRequest = 5
-    
+
     let manager = Alamofire.SessionManager(configuration: configuration)
     manager.startRequestsImmediately = false
     return manager
 }
 
 struct NBLNetwork {
-    static let provider = MoyaProvider<NBLService>(callbackQueue: nil, manager: defaultManager(), plugins: [NetworkLoggerPlugin(verbose: true),DataCachePlugin()], trackInflights: false)
-    
+    static let provider = MoyaProvider<NBLService>(callbackQueue: nil, manager: defaultManager(), plugins: [NetworkLoggerPlugin(verbose: true), DataCachePlugin()], trackInflights: false)
+
     static func request(
         target: NBLService,
         success successCallback: @escaping (JSON) -> Void,
         error errorCallback: @escaping (_ statusCode: Int) -> Void,
         failure failureCallback: @escaping (MoyaError) -> Void
         ) {
-        
+
         provider.request(target) { (result) in
             switch result {
             case let .success(response):
@@ -68,12 +68,10 @@ struct NBLNetwork {
                     if json["code"].intValue == 0 {
                         let result = json["result"]
                         successCallback(result)
-                    }
-                    else {
+                    } else {
                         errorCallback(json["code"].intValue)
                     }
-                }
-                catch _ {
+                } catch _ {
                     errorCallback(99999)
                 }
             case let .failure(error):
@@ -90,24 +88,23 @@ struct NBLNetwork {
 
 }
 
-
-extension NBLService : TargetType {
+extension NBLService: TargetType {
     var baseURL: URL {
         return NetworkConfiguration.NBL_BASE_TEST_URL
     }
-    
+
     var isNeedCache: Bool {
         switch self {
-        case .producer(_):
+        case .producer:
             return true
         default:
             return false
         }
     }
-    
+
     var path: String {
         switch self {
-        case .createAccount(_, _, _, _, _):
+        case .createAccount:
             return "/api/v1/account/new"
         case let .accountVerify(account):
             return "/api/v1/account/verify/\(account)"
@@ -115,7 +112,7 @@ extension NBLService : TargetType {
             return "/api/v1/account/history/\(account)/\(lastPosition)/\(showNum)"
         case let .producer(showNum):
             return "/api/v1/producer/\(showNum)"
-        case .initOrder(_, _, _, _, _):
+        case .initOrder:
             return "/api/v1/pay/order"
         case .getBill:
             return "/api/v1/pay/bill"
@@ -125,16 +122,16 @@ extension NBLService : TargetType {
             return "/api/v1/pay/order/\(orderId)"
         }
     }
-    
+
     var method: Moya.Method {
         switch self {
-        case .createAccount(_, _, _, _, _):
+        case .createAccount:
             return .post
-        case .accountVerify(_):
+        case .accountVerify:
             return .post
         case .accountHistory:
             return .get
-        case .producer(_):
+        case .producer:
             return .get
         case .initOrder:
             return .post
@@ -146,10 +143,10 @@ extension NBLService : TargetType {
             return .get
         }
     }
-    
+
     var parameters: [String: Any] {
         switch self {
-        case let .createAccount(type ,account, pubKey, invitationCode, validation):
+        case let .createAccount(type, account, pubKey, invitationCode, validation):
             var map: [String: Any] =  ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": type.rawValue]
             if let val = validation {
                 var valDic = val.toJSON()
@@ -159,7 +156,7 @@ extension NBLService : TargetType {
                 map["validation"] = valDic
             }
             return map
-        case let .accountVerify(account):
+        case .accountVerify:
             return [:]
         case .accountHistory:
             return [:]
@@ -175,7 +172,7 @@ extension NBLService : TargetType {
             return [:]
         }
     }
-    
+
     var task: Task {
         switch self {
         case .createAccount:
@@ -201,8 +198,7 @@ extension NBLService : TargetType {
         return try! JSON(parameters).rawData()
     }
 
-    
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         return ["Content-type": "application/json"]
     }
 }
@@ -211,7 +207,7 @@ private extension String {
     var urlEscaped: String {
         return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
     }
-    
+
     var utf8Encoded: Data {
         return data(using: .utf8)!
     }

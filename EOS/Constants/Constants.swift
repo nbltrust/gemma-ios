@@ -19,20 +19,20 @@ typealias ObjectOptionalCallback = (Any?) -> Void
 typealias ResultCallback = (Bool) -> Void
 typealias HandlerResult = (Bool, String)
 
-var app_coodinator:AppCoordinator {
+var app_coodinator: AppCoordinator {
     return AppConfiguration.shared.appCoordinator
 }
 
 struct AppConfiguration {
     static let APPID = ""
-    
+
     static let EOS_PRECISION = 4
-    
+
     static let EOS_ERROR_CODE_BASE = "eos_errorcode_"
-    
+
     static let shared = AppConfiguration()
     var appCoordinator: AppCoordinator!
-    
+
     private init() {
         let rootVC = BaseTabbarViewController()
         appCoordinator = AppCoordinator(rootVC: rootVC)
@@ -55,7 +55,7 @@ struct NetworkConfiguration {
             return URL(string: urls[index])!
         }
     }
-    var EOSIO_OTHER_BASE_URL : URL {
+    var EOSIO_OTHER_BASE_URL: URL {
         get {
             let index = Defaults[.currentURLNode]
             var urls = EOSBaseURLNodesConfiguration.values
@@ -85,7 +85,7 @@ struct LanguageConfiguration {
     var keys = [R.string.localizable.language_system.key.localized(),
                        R.string.localizable.language_cn.key.localized(),
                        R.string.localizable.language_en.key.localized()]
-    
+
     func valueWithIndex(_ index: Int) -> String {
         if index == 1 {
             return "zh-Hans"
@@ -94,7 +94,7 @@ struct LanguageConfiguration {
         }
         return ""
     }
-    
+
     func indexWithValue(_ value: String) -> Int {
         if value == "zh-Hans" {
             return 1
@@ -107,7 +107,7 @@ struct LanguageConfiguration {
 
 //Coin Setting
 struct CoinUnitConfiguration {
-    static let values = ["CNY","USD"]
+    static let values = ["CNY", "USD"]
 }
 
 enum CoinType: Int {
@@ -148,7 +148,7 @@ struct H5AddressConfiguration {
     static let FEEDBACK_EN_URL = URL(string: "http://47.75.154.39:3009/gemma?lang=en")
 }
 
-enum EOSAction:String {
+enum EOSAction: String {
     case transfer
     case bltTransfer
     case delegatebw
@@ -158,7 +158,7 @@ enum EOSAction:String {
     case voteproducer
 }
 
-enum EOSIOTable:String {
+enum EOSIOTable: String {
     case producers
     case rammarket
 }

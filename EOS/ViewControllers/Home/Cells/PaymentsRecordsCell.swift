@@ -11,7 +11,7 @@ import UIKit
 class PaymentsRecordsCell: BaseTableViewCell {
 
     @IBOutlet weak var payRecordsCellView: PaymentsRecordsCellView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -20,5 +20,4 @@ class PaymentsRecordsCell: BaseTableViewCell {
         payRecordsCellView.data = data
     }
 
-    
 }

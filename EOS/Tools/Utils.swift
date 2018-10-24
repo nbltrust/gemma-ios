@@ -8,7 +8,6 @@
 
 import Foundation
 import SwifterSwift
-import Guitar
 import Device
 import NotificationBanner
 import NBLCommonModule
@@ -84,8 +83,7 @@ class VoteProducerActionModel: ActionModel {
     var producers: [String] = [String]()
 }
 
-
-func getAbi(_ action:String, actionModel: ActionModel) -> String! {
+func getAbi(_ action: String, actionModel: ActionModel) -> String! {
     var abi: String = ""
     if action == EOSAction.transfer.rawValue || action == EOSAction.bltTransfer.rawValue {
         if let actionModel = actionModel as? TransferActionModel {
@@ -101,23 +99,22 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
         }
     } else if action == EOSAction.sellram.rawValue {
         if let actionModel = actionModel as? SellRamActionModel {
-            if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIO_CODE, action: action, account: WalletManager.shared.getAccount(), bytes:actionModel.amount.toBytes) {
+            if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIO_CODE, action: action, account: WalletManager.shared.getAccount(), bytes: actionModel.amount.toBytes) {
                 abi = abiStr
             }
         }
     } else if action == EOSAction.voteproducer.rawValue {
         let voteModel = actionModel as! VoteProducerActionModel
-        let voter: [String : Any] = ["voter":WalletManager.shared.getAccount(),"proxy":"","producers":voteModel.producers]
-        let dic: [String : Any] = ["code":EOSIOContract.EOSIO_CODE,"action":action,"args":voter]
+        let voter: [String: Any] = ["voter": WalletManager.shared.getAccount(), "proxy": "", "producers": voteModel.producers]
+        let dic: [String: Any] = ["code": EOSIOContract.EOSIO_CODE, "action": action, "args": voter]
         abi = dic.jsonString()!
-    }
-    else {
+    } else {
         if action == EOSAction.delegatebw.rawValue || action == EOSAction.undelegatebw.rawValue {
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            if (UIApplication.shared.delegate as? AppDelegate) != nil {
                 if let vc = app_coodinator.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
                     var cpuValue = ""
                     var netValue = ""
-                    
+
                     if action == EOSAction.delegatebw.rawValue {
                         if var cpu = vc.coordinator?.state.property.cpuMoneyValid.value.2 {
                             if cpu == "" {
@@ -131,7 +128,7 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                             }
                             netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
-                        
+
                         if let abiStr = EOSIO.getDelegateAbi(EOSIOContract.EOSIO_CODE, action: action, from: actionModel.fromAccount, receiver: actionModel.toAccount, stake_net_quantity: netValue, stake_cpu_quantity: cpuValue) {
                             abi = abiStr
                         }
@@ -148,12 +145,12 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
                             }
                             netValue = net + " \(NetworkConfiguration.EOSIO_DEFAULT_SYMBOL)"
                         }
-                        
+
                         if let abiStr = EOSIO.getUnDelegateAbi(EOSIOContract.EOSIO_CODE, action: action, from: actionModel.fromAccount, receiver: actionModel.toAccount, unstake_net_quantity: netValue, unstake_cpu_quantity: cpuValue) {
                             abi = abiStr
                         }
                     }
-                    
+
                 }
             }
         }
@@ -161,28 +158,28 @@ func getAbi(_ action:String, actionModel: ActionModel) -> String! {
     return abi
 }
 
-func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (Bool, String)->()) {
+func transaction(_ action: String, actionModel: ActionModel, callback:@escaping (Bool, String) -> Void) {
     var abi = ""
     if let getabi = getAbi(action, actionModel: actionModel) {
         abi = getabi
     } else {
-        callback(false,"")
+        callback(false, "")
         return
     }
-    
+
     EOSIONetwork.request(target: .get_info, success: { (json) in
-        
+
         EOSIONetwork.request(target: .abi_json_to_bin(json: abi), success: { (bin_json) in
             var transaction = ""
             let abiStr = bin_json["binargs"].stringValue
             var privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: actionModel.password)
             if action == EOSAction.transfer.rawValue {
-                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
+                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
             } else if action == EOSAction.bltTransfer.rawValue {
                 if let keys = EOSIO.createKey(), let pri = keys[optional: 1] {
                     privakey = pri
                 }
-                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE,from: actionModel.fromAccount,getinfo: json.rawString(),abistr: abiStr)
+                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TOKEN_CODE, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
                 let transJson = JSON.init(parseJSON: transaction)
                 var transJsonMap = transJson.dictionaryObject
                 if let actionModel = actionModel as? TransferActionModel {
@@ -191,19 +188,19 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                         tempMap?["ref_block_prefix"] = "\(prewfixValue)"
                     }
                     tempMap?.removeValue(forKey: "signatures")
-                    
+
                     let jsonDic = json.dictionaryObject
-                    
+
                     let chainId = jsonDic?["chain_id"] as? String ?? ""
-                    
+
                     let transString = tempMap?.sortJsonString() ?? ""
-                    
+
                     BLTWalletIO.shareInstance()?.getEOSSign(actionModel.confirmType, chainId: chainId, transaction: transString, success: { (sign) in
                         transJsonMap?["signatures"] = [sign?.substring(from: 0, length: (sign?.count ?? 1) - 1)]
                         transaction = transJsonMap?.jsonString() ?? ""
                         pushTransaction(transaction, actionModel: actionModel, callback: callback)
                     }, failed: { (failedReason) in
-                        callback(false,failedReason ?? actionModel.faile)
+                        callback(false, failedReason ?? actionModel.faile)
                     })
                     return
                 }
@@ -219,50 +216,50 @@ func transaction(_ action:String, actionModel: ActionModel ,callback:@escaping (
                 transaction = EOSIO.getVoteTransaction(privakey, contract: EOSIOContract.EOSIO_CODE, vote_str: actionModel.fromAccount, infostr: json.rawString(), abistr: abiStr, max_cpu_usage_ms: 0, max_net_usage_words: 0)
             }
             pushTransaction(transaction, actionModel: actionModel, callback: callback)
-        }, error: { (code) in
-            
-        }, failure: { (error) in
-            
+        }, error: { (_) in
+
+        }, failure: { (_) in
+
         })
-    }, error: { (code) in
-        
-    }) { (error) in
-        
+    }, error: { (_) in
+
+    }) { (_) in
+
     }
 }
 
-func pushTransaction(_ transaction: String, actionModel: ActionModel, callback:@escaping (Bool, String)->()) {
+func pushTransaction(_ transaction: String, actionModel: ActionModel, callback:@escaping (Bool, String) -> Void) {
     EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
-        if let info = data.dictionaryObject,info["code"] == nil {
+        if let info = data.dictionaryObject, info["code"] == nil {
             callback(true, actionModel.success)
-        }else{
+        } else {
             callback(false, actionModel.faile)
         }
-    }, error: { (error_code) in
+    }, error: { (_) in
         callback(false, actionModel.faile)
-    }) { (error) in
-        callback(false,R.string.localizable.request_failed.key.localized() )
+    }) { (_) in
+        callback(false, R.string.localizable.request_failed.key.localized() )
     }
 }
 
-func showWarning(_ str:String) {
-    
+func showWarning(_ str: String) {
+
     let rightView = UIImageView(image: R.image.icNotifyCloseWhite())
     rightView.isUserInteractionEnabled = true
     rightView.contentMode = .center
-    
+
     let banner = NotificationBanner(title: "", subtitle: str, rightView: rightView, style: .danger, colors: BannerColor())
     banner.subtitleLabel?.type = .continuous
     banner.duration = 10
-    rightView.rx.tapGesture().when(.recognized).subscribe(onNext: { (tap) in
+    rightView.rx.tapGesture().when(.recognized).subscribe(onNext: { (_) in
         banner.dismiss()
     }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: banner.disposeBag)
-    
+
     banner.autoDismiss = false
     banner.show()
 }
 
-func showSuccessTop(_ str:String) {
+func showSuccessTop(_ str: String) {
     KRProgressHUD.dismiss()
 
     let banner = NotificationBanner(title: "", subtitle: str, style: .success, colors: BannerColor())
@@ -272,13 +269,13 @@ func showSuccessTop(_ str:String) {
     banner.show()
 }
 
-func showFailTop(_ str:String) {
+func showFailTop(_ str: String) {
     KRProgressHUD.dismiss()
 
     let banner = NotificationBanner(title: "", subtitle: str, style: .warning, colors: BannerColor())
     banner.subtitleLabel?.textAlignment = NSTextAlignment.center
     banner.duration = 2
-    
+
     banner.autoDismiss = true
     banner.show()
 }
@@ -292,7 +289,7 @@ func getRamPrice(_ completion:@escaping ObjectOptionalCallback) {
         let row = json["rows"][0]
         let base = row["base"]
         let quote = row["quote"]
-        
+
         if let base_quantity = base["balance"].stringValue.components(separatedBy: " ").first,
             let quote_quantity = quote["balance"].stringValue.components(separatedBy: " ").first,
             let quote_weight = quote["weight"].string {
@@ -301,11 +298,11 @@ func getRamPrice(_ completion:@escaping ObjectOptionalCallback) {
             Defaults.set(price.stringValue, forKey: NetworkConfiguration.RAMPRICE_DEFAULT_SYMBOL)
             completion(price)
         }
-        
-    }, error: { (code) in
+
+    }, error: { (_) in
         completion(nil)
 
-    }) { (error) in
+    }) { (_) in
         completion(nil)
     }
 }
@@ -320,62 +317,60 @@ extension String {
                 return first
             }
             return ""
-        }
-        else {
+        } else {
             return ""
         }
     }
-    
+
     var hashNano: String {
         if let front = self.substring(from: 0, length: 8), let behind = self.substring(from: self.count - 8, length: 8) {
             return front + "..." + behind
         }
-        
+
         return self
     }
 }
 
 extension Date {
-    var refundStatus:String {
+    var refundStatus: String {
         let interval = self.addingTimeInterval(72 * 3600).timeIntervalSince(Date())
         let day = floor(interval / 86400)
         let hour = ceil((interval - day * 86400) / 3600)
-        
+
         if day >= 0 && hour >= 0 {
             return String.init(format: "%@%02.0f%@%02.0f%@", R.string.localizable.rest.key.localized(), day, R.string.localizable.day.key.localized(), hour, R.string.localizable.hour.key.localized())
-        }
-        else {
+        } else {
             return ""
         }
     }
 }
 
 extension Int64 {
-    var ramCount:String {
+    var ramCount: String {
         return ByteCountFormatter.string(fromByteCount: self, countStyle: .file)
     }
 }
 
 extension Int64 {
-    var toKB:String {
+    var toKB: String {
         return (Double(self) / 1_024).string(digits: 2)
     }
 }
 
 extension Int64 {
-    var toMS:String {
+    var toMS: String {
         return (Double(self) / 1_024).string(digits: 2)
     }
 }
 
 extension String {
-    var toBytes:UInt32 {
+    var toBytes: UInt32 {
         return UInt32((Double(self)! * 1_024))
     }
 }
 
 extension UIImage {
-    
+
 }
 
 func getCurrentLanguage() -> String {
@@ -385,25 +380,25 @@ func getCurrentLanguage() -> String {
     let preferredLang = Bundle.main.preferredLocalizations.first! as NSString
     //        let preferredLang = (languages! as AnyObject).object(0)
     log.debug("当前系统语言:\(preferredLang)")
-    
+
     switch String(describing: preferredLang) {
     case "en-US", "en-CN":
         return "en"//英文
-    case "zh-Hans-US","zh-Hans-CN","zh-Hant-CN","zh-TW","zh-HK","zh-Hans":
+    case "zh-Hans-US", "zh-Hans-CN", "zh-Hant-CN", "zh-TW", "zh-HK", "zh-Hans":
         return "cn"//中文
     default:
         return "en"
     }
 }
 
-func labelBaselineOffset(_ lineHeight:CGFloat, fontHeight:CGFloat) -> Float {
+func labelBaselineOffset(_ lineHeight: CGFloat, fontHeight: CGFloat) -> Float {
     return ((lineHeight - lineHeight) / 4.0).float
 }
 
 func dismiss() {
     if let vc = UIViewController.topMost {
         vc.dismiss(animated: true) {
-            
+
         }
     }
 }
@@ -429,7 +424,7 @@ func saveNetWorkReachability() {
     default:
         break
     }
-    
+
     manager?.listener = { status in
         switch status {
         case .unknown:
@@ -456,23 +451,23 @@ func saveUnitToLocal(rmbPrices: [JSON]) {
     if let usd = rmbPrices.filter({ $0["name"].stringValue == NetworkConfiguration.USDT_DEFAULT_SYMBOL }).first {
         usdStr = usd["value"].stringValue
     }
-    
+
     Defaults.set(rmbStr, forKey: Unit.RMB_UNIT)
     Defaults.set(usdStr, forKey: Unit.USD_UNIT)
 }
 
-func dataToDictionary(data:Data) ->Dictionary<String, Any>?{
-    do{
+func dataToDictionary(data: Data) ->Dictionary<String, Any>? {
+    do {
         let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
         let dic = json as! Dictionary<String, Any>
         return dic
-    }catch _ {
+    } catch _ {
         print("失败")
         return nil
     }
 }
 
-func jsonToData(jsonDic:Dictionary<String, Any>) -> Data? {
+func jsonToData(jsonDic: Dictionary<String, Any>) -> Data? {
     if (!JSONSerialization.isValidJSONObject(jsonDic)) {
         print("is not a valid json object")
         return nil
@@ -481,7 +476,7 @@ func jsonToData(jsonDic:Dictionary<String, Any>) -> Data? {
     //如果设置options为JSONSerialization.WritingOptions.prettyPrinted，则打印格式更好阅读
     let data = try? JSONSerialization.data(withJSONObject: jsonDic, options: [])
     //Data转换成String打印输出
-    let str = String(data:data!, encoding: String.Encoding.utf8)
+    let str = String(data: data!, encoding: String.Encoding.utf8)
     //输出json字符串
     print("Json Str:\(str!)")
     return data
@@ -498,6 +493,3 @@ func jsonToData(jsonDic:Dictionary<String, Any>) -> Data? {
 //    }
 //    return ""
 //}
-
-
-

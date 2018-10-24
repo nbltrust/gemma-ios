@@ -16,25 +16,25 @@ protocol MnemonicContentCoordinatorProtocol {
 
 protocol MnemonicContentStateManagerProtocol {
     var state: MnemonicContentState { get }
-    
-    func switchPageState(_ state:PageState)
-    
+
+    func switchPageState(_ state: PageState)
+
     func getSeeds(_ success: @escaping GetSeedsComplication, failed: @escaping FailedComplication)
-    
-    func setSeeds(_ seeds: ([String],String))
+
+    func setSeeds(_ seeds: ([String], String))
 }
 
 class MnemonicContentCoordinator: NavCoordinator {
     var store = Store(
         reducer: MnemonicContentReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: MnemonicContentState {
         return store.state
     }
-            
+
     override func register() {
         Broadcaster.register(MnemonicContentCoordinatorProtocol.self, observer: self)
         Broadcaster.register(MnemonicContentStateManagerProtocol.self, observer: self)
@@ -54,7 +54,7 @@ extension MnemonicContentCoordinator: MnemonicContentCoordinatorProtocol {
 }
 
 extension MnemonicContentCoordinator: MnemonicContentStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
@@ -63,8 +63,8 @@ extension MnemonicContentCoordinator: MnemonicContentStateManagerProtocol {
     func getSeeds(_ success: @escaping GetSeedsComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance().getSeed(success, failed: failed)
     }
-    
-    func setSeeds(_ seeds: ([String],String)) {
+
+    func setSeeds(_ seeds: ([String], String)) {
         self.store.dispatch(SetSeedsAction(datas: seeds))
     }
 }

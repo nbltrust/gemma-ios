@@ -11,19 +11,19 @@ import ReSwift
 import RxCocoa
 import SwiftyJSON
 
-//MARK: - State
+// MARK: - State
 struct BuyRamState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: BuyRamPropertyState
     var callback: BuyRamCallbackState
 }
 
 struct BuyRamPropertyState {
-    var info:BehaviorRelay<BuyRamViewModel?> = BehaviorRelay(value: nil)
-    var buyRamValid: BehaviorRelay<(Bool,String,String)> = BehaviorRelay(value: (false,"",""))
-    var sellRamValid: BehaviorRelay<(Bool,String,String)> = BehaviorRelay(value: (false,"",""))
+    var info: BehaviorRelay<BuyRamViewModel?> = BehaviorRelay(value: nil)
+    var buyRamValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
+    var sellRamValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
 }
 
 struct BuyRamViewModel {
@@ -39,29 +39,29 @@ struct BuyRamViewModel {
     var net_max: Int64 = 0
 }
 
-struct BBalanceFetchedAction:Action {
-    var balance:JSON
+struct BBalanceFetchedAction: Action {
+    var balance: JSON
 }
 
-struct BAccountFetchedAction:Action {
-    var info:Account
+struct BAccountFetchedAction: Action {
+    var info: Account
 }
 
-struct BuyRamAction:Action {
+struct BuyRamAction: Action {
     var ram = ""
     var balance = ""
 }
 
-struct SellRamAction:Action {
+struct SellRamAction: Action {
     var ram = ""
     var balance = ""
 }
 
-struct RamPriceAction:Action {
+struct RamPriceAction: Action {
     var price: Decimal
 }
 
-struct ExchangeAction:Action {
+struct ExchangeAction: Action {
     var amount = ""
     var type: ExchangeType
 }
@@ -74,10 +74,10 @@ enum ExchangeType {
 struct BuyRamCallbackState {
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class BuyRamPropertyActionCreate {
     public typealias ActionCreator = (_ state: BuyRamState, _ store: Store<BuyRamState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: BuyRamState,
         _ store: Store <BuyRamState>,

@@ -21,13 +21,13 @@ protocol AboutStateManagerProtocol {
 }
 
 class AboutCoordinator: NavCoordinator {
-    
+
     lazy var creator = AboutPropertyActionCreate()
-    
+
     var store = Store<AboutState>(
         reducer: AboutReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -51,11 +51,11 @@ extension AboutCoordinator: AboutStateManagerProtocol {
     var state: AboutState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<AboutState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

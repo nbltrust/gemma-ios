@@ -18,7 +18,7 @@ protocol ScanStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<ScanState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
+
     func updateScanResult(result: String)
 }
 
@@ -26,9 +26,9 @@ class ScanCoordinator: NavCoordinator {
     var store = Store<ScanState>(
         reducer: ScanReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = ScanViewController()
         vc.subTitle = R.string.localizable.scan_subTitle.key.localized()
@@ -50,17 +50,17 @@ extension ScanCoordinator: ScanStateManagerProtocol {
     var state: ScanState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<ScanState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
     func updateScanResult(result: String) {
         guard let context = self.state.context.value as? ScanContext else { return }
         context.scanResult.value?(result)
         self.dismissVC()
     }
-    
+
 }

@@ -11,7 +11,7 @@ import UIKit
 class NodeCell: UITableViewCell {
 
     @IBOutlet weak var nodeView: NodeView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         let bgView = UIView()
@@ -19,7 +19,7 @@ class NodeCell: UITableViewCell {
         self.multipleSelectionBackgroundView = bgView
         // Initialization code
     }
-    
+
     func setupNode(_ node: NodeVoteViewModel) {
         nodeView.nameLabel.text = node.name
         nodeView.ownerLabel.text = node.name
@@ -34,5 +34,5 @@ class NodeCell: UITableViewCell {
         nodeView.backgroundColor = UIColor.whiteTwo
         // Configure the view for the selected state
     }
-    
+
 }

@@ -9,15 +9,13 @@
 import UIKit
 import ReSwift
 
-func NewHomeReducer(action:Action, state:NewHomeState?) -> NewHomeState {
+func NewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
     let state = state ?? NewHomeState()
-        
+
     switch action {
     default:
         break
     }
-        
+
     return state
 }
-
-

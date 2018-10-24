@@ -10,30 +10,30 @@ import Foundation
 
 @IBDesignable
 class BLTCardEntryView: EOSBaseView {
-    
+
     @IBOutlet weak var actionView: Button!
-    
+
     @IBOutlet weak var clickLabel: UILabel!
-    
-    enum Event:String {
+
+    enum Event: String {
         case BLTCardEntryViewDidClicked
     }
-        
+
     override func setup() {
         super.setup()
-        
+
         setupUI()
         setupSubViewEvent()
     }
-    
+
     func setupUI() {
-        
+
     }
-    
+
     func setupSubViewEvent() {
-    
+
     }
-    
+
     @objc override func didClicked() {
         self.next?.sendEventWith(Event.BLTCardEntryViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }

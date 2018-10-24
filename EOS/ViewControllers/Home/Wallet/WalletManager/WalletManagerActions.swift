@@ -9,11 +9,11 @@
 import Foundation
 import ReSwift
 
-//MARK: - State
+// MARK: - State
 struct WalletManagerState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: WalletManagerPropertyState
 }
 
@@ -23,14 +23,14 @@ struct WalletManagerPropertyState {
 struct WalletManagerModel {
     var name = "-"
     var address = "-"
-    var type : CreateAPPId = .gemma
+    var type: CreateAPPId = .gemma
     var connected = false
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class WalletManagerPropertyActionCreate {
     public typealias ActionCreator = (_ state: WalletManagerState, _ store: Store<WalletManagerState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: WalletManagerState,
         _ store: Store <WalletManagerState>,

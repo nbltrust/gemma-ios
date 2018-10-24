@@ -15,28 +15,28 @@ protocol InvitationCodeToActivateCoordinatorProtocol {
     func pushToGetInviteCodeIntroductionVC()
     func pushToCreateSuccessVC()
     func pushBackupPrivateKeyVC()
-    func dismissCurrentNav(_ entry:UIViewController?)
+    func dismissCurrentNav(_ entry: UIViewController?)
 }
 
 protocol InvitationCodeToActivateStateManagerProtocol {
     var state: InvitationCodeToActivateState { get }
-    
-    func switchPageState(_ state:PageState)
-    
-    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> ())
+
+    func switchPageState(_ state: PageState)
+
+    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void)
 }
 
 class InvitationCodeToActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: InvitationCodeToActivateReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: InvitationCodeToActivateState {
         return store.state
     }
-            
+
     override func register() {
         Broadcaster.register(InvitationCodeToActivateCoordinatorProtocol.self, observer: self)
         Broadcaster.register(InvitationCodeToActivateStateManagerProtocol.self, observer: self)
@@ -50,18 +50,18 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateCoordinat
         vc.title = R.string.localizable.invitationcode_introduce.key.localized()
         self.rootVC.pushViewController(vc, animated: true)
     }
-    
+
     func pushToCreateSuccessVC() {
         let createCompleteVC = R.storyboard.entry.creatationCompleteViewController()
         let coordinator = CreatationCompleteCoordinator(rootVC: self.rootVC)
         createCompleteVC?.coordinator = coordinator
         self.rootVC.pushViewController(createCompleteVC!, animated: true)
     }
-    
+
     func pushBackupPrivateKeyVC() {
         let vc = R.storyboard.entry.backupPrivateKeyViewController()!
         let coor = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
-        
+
         if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
             coor.state.callback.hadSaveCallback.accept {[weak self] in
                 guard let `self` = self else { return }
@@ -74,12 +74,12 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateCoordinat
                 self.dismissCurrentNav(entry)
             }
         }
-        
+
         vc.coordinator = coor
         self.rootVC.pushViewController(vc, animated: true)
     }
-    
-    func dismissCurrentNav(_ entry:UIViewController? = nil) {
+
+    func dismissCurrentNav(_ entry: UIViewController? = nil) {
         if let entry = entry as? EntryViewController {
             entry.coordinator?.state.callback.endCallback.value?()
             return
@@ -91,13 +91,13 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateCoordinat
 }
 
 extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
-    
-    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> ()) {
+
+    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void) {
         self.rootVC.topViewController?.startLoading()
         var walletName = ""
         var password = ""
@@ -107,10 +107,10 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateStateMana
             password = vc.registerView.passwordView.textField.text!
             prompt = vc.registerView.passwordPromptView.textField.text!
         }
-        
+
         NBLNetwork.request(target: .createAccount(type: .gemma, account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: nil), success: { (data) in
             KRProgressHUD.showSuccess()
-            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
+            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode: inviteCode)
             self.pushBackupPrivateKeyVC()
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
@@ -119,7 +119,7 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateStateMana
             } else {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
-        }) { (error) in
+        }) { (_) in
         }
     }
 }

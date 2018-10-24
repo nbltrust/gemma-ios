@@ -11,21 +11,20 @@ import ReSwift
 import RxCocoa
 import SwiftyJSON
 
-
-//MARK: - State
+// MARK: - State
 struct BLTCardSearchState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
-    
+
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
-    
+
     var devices: [BLTDevice] = []
 }
 
-//MARK: - Action
+// MARK: - Action
 struct BLTCardSearchFetchedAction: Action {
-    var data:JSON
+    var data: JSON
 }
 
-struct SetDevicesAction : Action {
-    var datas : [BLTDevice]
+struct SetDevicesAction: Action {
+    var datas: [BLTDevice]
 }

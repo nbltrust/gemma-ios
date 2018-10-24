@@ -10,61 +10,58 @@ import UIKit
 
 class LeadInIntroduceView: UIView {
 
-    enum event_name : String {
+    enum event_name: String {
         case switchToKeyView
     }
     @IBOutlet weak var beginLeadIn: Button!
-    
+
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
-    
-    
-    
+
     func setup() {
-        beginLeadIn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+        beginLeadIn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.next?.sendEventWith(event_name.switchToKeyView.rawValue, userinfo: ["data":""])
+            self.next?.sendEventWith(event_name.switchToKeyView.rawValue, userinfo: ["data": ""])
         }).disposed(by: disposeBag)
     }
-    
+
     func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()
     }
-    
+
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
         return lastView!.bottom
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
         setup()
     }
-    
+
     fileprivate func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
+
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 }
-

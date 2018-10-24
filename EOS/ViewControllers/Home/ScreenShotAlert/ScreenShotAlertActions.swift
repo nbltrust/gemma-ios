@@ -16,7 +16,7 @@ struct ScreenShotAlertContext: RouteContext, HandyJSON {
         title = ""
         buttonTitle = ""
     }
-    
+
     var imageName: String?
     var title: String
     var desc: String?
@@ -25,9 +25,9 @@ struct ScreenShotAlertContext: RouteContext, HandyJSON {
     var sureShot: CompletionCallback?
 }
 
-//MARK: - State
+// MARK: - State
 struct ScreenShotAlertState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
-    
+
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
 }

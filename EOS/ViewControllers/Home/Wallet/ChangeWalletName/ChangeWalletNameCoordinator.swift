@@ -18,19 +18,19 @@ protocol ChangeWalletNameStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<ChangeWalletNameState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
+
     func updateWalletName(model: WalletManagerModel) -> Bool
     func updateFingerName(model: WalletManagerModel, index: Int, newName: String) -> Bool
 }
 
 class ChangeWalletNameCoordinator: NavCoordinator {
-    
+
     lazy var creator = ChangeWalletNamePropertyActionCreate()
-    
+
     var store = Store<ChangeWalletNameState>(
         reducer: ChangeWalletNameReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -44,17 +44,17 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
     var state: ChangeWalletNameState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<ChangeWalletNameState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-  
+
     func updateWalletName(model: WalletManagerModel) -> Bool {
         if isValidWalletName(name: model.name) {
             WalletManager.shared.updateWalletName(model.address, walletName: model.name)
-            
+
             if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? WalletManagerViewController {
                 vc.data = model
             }
@@ -69,11 +69,11 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
             return false
         }
     }
-    
+
     func updateFingerName(model: WalletManagerModel, index: Int, newName: String) -> Bool {
         if isValidWalletName(name: newName) {
             WalletManager.shared.updateFingerName(model, index: index, fingerName: newName)
-            
+
             if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? DeleteFingerViewController {
                 vc.model = model
             }
@@ -82,7 +82,7 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
             return false
         }
     }
-    
+
     func isValidWalletName(name: String) -> Bool {
         if name == "" {
             self.rootVC.showError(message: R.string.localizable.walletname_not_empty.key.localized())

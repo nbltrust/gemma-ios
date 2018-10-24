@@ -17,63 +17,63 @@ import seed39_ios_golang
 
 class WalletManager {
     static let shared = WalletManager()
-    
+
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
 
-    var currentPubKey:String = Defaults[.currentWallet]
-    var account_names:[String] = Defaults[.accountNames]
-    
-    var priKey:String = ""
-    
-    var timer:Repeater?
+    var currentPubKey: String = Defaults[.currentWallet]
+    var account_names: [String] = Defaults[.accountNames]
+
+    var priKey: String = ""
+
+    var timer: Repeater?
 
     private init() {
         //test
+        Seed39SignERC20()
     }
-    
+
     func createPairKey() {
         if let keys = EOSIO.createKey(), let pub = keys[optional: 0], let pri = keys[optional: 1] {
             currentPubKey = pub
             priKey = pri
         }
     }
-    
 
-    func saveWallket(_ account:String, password:String, hint:String, isImport:Bool = false, txID:String? = nil, invitationCode: String? = nil, type: CreateAPPId? = nil, deviceName: String? = nil) {
+    func saveWallket(_ account: String, password: String, hint: String, isImport: Bool = false, txID: String? = nil, invitationCode: String? = nil, type: CreateAPPId? = nil, deviceName: String? = nil) {
         if type == .bluetooth {
-            savePriKey(priKey,publicKey: currentPubKey, password:password)
-            savePasswordHint(currentPubKey, hint:hint)
-            
+            savePriKey(priKey, publicKey: currentPubKey, password: password)
+            savePasswordHint(currentPubKey, hint: hint)
+
             addToLocalWallet(isImport, accountName: account, type: type, deviceName: deviceName)
             switchWallet(currentPubKey)
             account_names = [account]
-            
+
             switchAccount(0)
-            
+
             removePriKey()
         } else {
-            savePriKey(priKey,publicKey: currentPubKey, password:password)
-            savePasswordHint(currentPubKey, hint:hint)
-            
+            savePriKey(priKey, publicKey: currentPubKey, password: password)
+            savePasswordHint(currentPubKey, hint: hint)
+
             addToLocalWallet(isImport, accountName: account, type: type, deviceName: deviceName)
             switchWallet(currentPubKey)
             account_names = [account]
-            
+
             switchAccount(0)
             removePriKey()
 
         }
     }
-    
-    func updateWalletPassword(_ password:String, hint:String) {
+
+    func updateWalletPassword(_ password: String, hint: String) {
         guard let pubKey = EOSIO.getPublicKey(self.priKey) else { return }
-        savePriKey(self.priKey, publicKey: pubKey, password:password)
-        savePasswordHint(pubKey, hint:hint)
+        savePriKey(self.priKey, publicKey: pubKey, password: password)
+        savePasswordHint(pubKey, hint: hint)
     }
-    
-    func updateWalletName(_  publicKey:String, walletName:String) {
+
+    func updateWalletName(_  publicKey: String, walletName: String) {
         var wallets = Defaults[.walletList]
-        
+
         if let walletIndex = wallets.map({ $0.publicKey }).index(of: publicKey) {
             var wallet = wallets[walletIndex]
             wallet.name = walletName
@@ -81,10 +81,10 @@ class WalletManager {
             Defaults[.walletList] = wallets
         }
     }
-    
-    func addToLocalWallet(_ isImport:Bool = false, accountName:String?, type: CreateAPPId? = nil, deviceName: String? = nil) {
+
+    func addToLocalWallet(_ isImport: Bool = false, accountName: String?, type: CreateAPPId? = nil, deviceName: String? = nil) {
         var wallets = Defaults[.walletList]
-        
+
         if !wallets.map({ $0.publicKey }).contains(currentPubKey) {
             let currentIndex = currentWalletCount() + 1
             var walletName = "EOS-WALLET-\(currentIndex)"
@@ -96,10 +96,10 @@ class WalletManager {
             Defaults[.walletList] = wallets
         }
     }
-    
+
     func getAccount() -> String {
         removePriKey()//清除私钥
-        
+
         if let wallet = currentWallet() {
             if account_names.count == 0 {
                 return "--"
@@ -108,10 +108,10 @@ class WalletManager {
                 return walletAccount
             }
         }
-        
+
         return "--"
     }
-    
+
     func FetchAccount(_ callback: @escaping StringCallback) {
         if let wallet = currentWallet() {
             if let pubKey = wallet.publicKey {
@@ -119,8 +119,7 @@ class WalletManager {
                     fetchAccountNames(pubKey) { (success) in
                         if success {
                             callback(self.account_names[0])
-                        }
-                        else {
+                        } else {
                             callback("--")
                         }
                     }
@@ -129,11 +128,11 @@ class WalletManager {
                 return callback(self.account_names[0])
             }
         }
-        
+
         return callback("--")
     }
-    
-    func fetchAccountNames(_ publicKey:String, completion: @escaping (Bool)->Void) {
+
+    func fetchAccountNames(_ publicKey: String, completion: @escaping (Bool) -> Void) {
         EOSIONetwork.request(target: .get_key_accounts(pubKey: publicKey), success: { (json) in
             if let names = json["account_names"].arrayObject as? [String] {
                 self.account_names = names
@@ -141,61 +140,61 @@ class WalletManager {
 
                 completion(names.count > 0)
             }
-        }, error: { (code) in
+        }, error: { (_) in
             completion(false)
-        }) { (error) in
+        }) { (_) in
             completion(false)
         }
     }
-    
-    func addPrivatekey(_ pri:String) {
+
+    func addPrivatekey(_ pri: String) {
         self.priKey = pri
     }
-    
+
     func removePriKey() {
         self.priKey = ""
     }
-    
-    func importPrivateKey(_ password:String, hint:String, completion: @escaping (Bool)->Void) {
+
+    func importPrivateKey(_ password: String, hint: String, completion: @escaping (Bool) -> Void) {
         guard let pubKey = EOSIO.getPublicKey(self.priKey) else { completion(false); return }
         fetchAccountNames(pubKey) { (success) in
             if success {
                 self.currentPubKey = pubKey
-                
+
                 self.saveWallket(self.account_names[0], password: password, hint: hint, isImport: true, txID: nil, type: .gemma, deviceName: nil)
             }
             completion(success)
         }
     }
-    
+
     func currentWallet() -> WalletList? {
         let pubKey = Defaults[.currentWallet]
         let wallets = wallketList()
-        
+
         if let index = wallets.map({ $0.publicKey }).index(of: pubKey) {
             return wallets[index]
         }
-        
+
         return nil
     }
-    
+
     func isBluetoothWallet() -> Bool {
         if let wallet = currentWallet() {
             return wallet.type == .bluetooth
         }
         return false
     }
-    
+
     func wallketList() -> [WalletList] {
         return Defaults[.walletList]
     }
-    
-    func switchWallet(_ publicKey:String) {
+
+    func switchWallet(_ publicKey: String) {
         currentPubKey = publicKey
         Defaults[.currentWallet] = publicKey
     }
-    
-    func switchAccount(_ index:Int) {
+
+    func switchAccount(_ index: Int) {
         var wallets = Defaults[.walletList]
         if let walletIndex = wallets.map({ $0.publicKey }).index(of: currentPubKey) {
             var wallet = wallets[walletIndex]
@@ -204,110 +203,109 @@ class WalletManager {
             Defaults[.walletList] = wallets
         }
     }
-    
+
     func existWallet() -> Bool {
         return currentWalletCount() != 0
     }
-    
-    func registerSuccess(_ pubKey:String) {
+
+    func registerSuccess(_ pubKey: String) {
         var wallets = wallketList()
-        
+
         if let index = wallets.map({ $0.publicKey }).index(of: pubKey) {
             var wallet = wallets[index]
             wallet.creatStatus = WalletCreatStatus.creatSuccessed.rawValue
             wallets[index] = wallet
-            
+
             Defaults[.walletList] = wallets
         }
     }
-    
-    func backupSuccess(_ pubKey:String) {
+
+    func backupSuccess(_ pubKey: String) {
         var wallets = wallketList()
-        
+
         if let index = wallets.map({ $0.publicKey }).index(of: pubKey) {
             var wallet = wallets[index]
             wallet.isBackUp = true
             wallets[index] = wallet
-            
+
             Defaults[.walletList] = wallets
         }
     }
-    
+
     func currentWalletCount() -> Int {
         let wallets = Defaults[.walletList]
-       
+
         return wallets.count
     }
-    
+
     func removeAllWallets() {
         Defaults.remove(.walletList)
     }
-    
-    func removeWallet(_ publicKey:String) {
+
+    func removeWallet(_ publicKey: String) {
         var wallets = Defaults[.walletList]
         if let index = wallets.map({ $0.publicKey }).index(of: publicKey) {
             wallets.remove(at: index)
             Defaults[.walletList] = wallets
         }
-        
+
         try? keychain.remove("\(publicKey)-passwordHint")
         try? keychain.remove("\(publicKey)-pubKey")
         try? keychain.remove("\(publicKey)-cypher")
-        
+
         if wallets.count == 0 {
             app_coodinator.curDisplayingCoordinator().rootVC.popToRootViewController(animated: true)
         } else {
             app_coodinator.curDisplayingCoordinator().rootVC.popToRootViewController(animated: true)
         }
     }
-    
+
     func switchToLastestWallet() -> Bool {
         let wallets = Defaults[.walletList]
-        
+
         if let wallet = wallets.last {
             if let pubKey = wallet.publicKey {
                 switchWallet(pubKey)
                 return true
             }
         }
-        
+
         return false
     }
-    
+
     func getCurrentSavedPublicKey() -> String {
         return Defaults[.currentWallet]
     }
 
-    private func savePasswordHint(_ publicKey:String, hint:String) {
+    private func savePasswordHint(_ publicKey: String, hint: String) {
         guard hint.count > 0 else { return }
-        
+
         keychain[string: "\(publicKey)-passwordHint"] = hint
     }
-    
-    func getPasswordHint(_ publicKey:String) -> String? {
+
+    func getPasswordHint(_ publicKey: String) -> String? {
         if let hint = keychain[string: "\(publicKey)-passwordHint"] {
             return hint
         }
-        
+
         return nil
     }
-    
-    private func savePriKey(_ privateKey:String, publicKey:String, password:String) {
+
+    private func savePriKey(_ privateKey: String, publicKey: String, password: String) {
         if let cypher = EOSIO.getCypher(privateKey, password: password) {
             keychain[string: "\(publicKey)-cypher"] = cypher
         }
     }
-    
-    func getCachedPriKey(_ publicKey:String, password:String) -> String? {
+
+    func getCachedPriKey(_ publicKey: String, password: String) -> String? {
         if let cypher = keychain[string: "\(publicKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password), pri.count > 0, pri != "wrong password" {
             self.priKey = pri
             return pri
         }
         return nil
     }
-    
-    
-    //MARK: Check Wallet creation
+
+    // MARK: Check Wallet creation
     func checkCurrentWallet() {
         if let wallet = self.currentWallet() {
             if let creatStatus = wallet.creatStatus {
@@ -327,11 +325,11 @@ class WalletManager {
                 default:
                     return
                 }
-                
+
             }
         }
     }
-    
+
     func getAccoutInfo(_ accountName: String, completion: @escaping (_ success: Bool, _ created: String) -> Void) {
         EOSIONetwork.request(target: .get_account(account: accountName, otherNode: true), success: {[weak self] (account) in
             guard let `self` = self else { return }
@@ -339,7 +337,7 @@ class WalletManager {
                 self.checkPubKey(account, completion: { (success) in
                     if success {
                         if let created = account.created {
-                            completion(true,created)
+                            completion(true, created)
                             return
                         }
                     }
@@ -351,16 +349,16 @@ class WalletManager {
 //                            return
 //                        }
 //                    }
-                    completion(false,"")
+                    completion(false, "")
                 })
             }
-        }, error: { (code) in
-            completion(false,"")
-        }, failure: { (error) in
-            completion(false,"")
+        }, error: { (_) in
+            completion(false, "")
+        }, failure: { (_) in
+            completion(false, "")
         })
     }
-    
+
     func getLibInfo(_ created: String, completion: @escaping (Bool) -> Void) {
         EOSIONetwork.request(target: .get_info, success: { (info) in
             let lib = info["last_irreversible_block_num"].stringValue
@@ -369,30 +367,29 @@ class WalletManager {
                 let createdTime = created.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", region: Region.ISO)!
                 if  time >= createdTime {
                     completion(true)
-                }
-                else {
+                } else {
                     completion(false)
                 }
-                
-            }, error: { (code2) in
+
+            }, error: { (_) in
                 completion(false)
-            }, failure: { (error2) in
+            }, failure: { (_) in
                 completion(false)
             })
-        }, error: { (code3) in
+        }, error: { (_) in
             completion(false)
-        }, failure: { (error3) in
+        }, failure: { (_) in
             completion(false)
         })
     }
-    
+
     func willGetAccountInfo(_ wallet: WalletList) {
         var wallet = wallet
         if wallet.getAccountInfoDate == nil {
             wallet.getAccountInfoDate = Date()
             self.updateWallet(wallet)
         }
-        self.timer = Repeater.every(.seconds(10)) {[weak self] timer in
+        self.timer = Repeater.every(.seconds(10)) {[weak self] _ in
             guard let `self` = self else { return }
             if let account = wallet.accountName {
                 self.getAccoutInfo(account) {(success, created) in
@@ -414,10 +411,10 @@ class WalletManager {
                 }
             }
         }
-        
+
         timer?.start()
     }
-    
+
     func willGetLibInfo(_ wallet: WalletList) {
         var wallet = wallet
         if let created = wallet.created {
@@ -425,7 +422,7 @@ class WalletManager {
                 guard let `self` = self else { return }
                 if success {
                     if let account = wallet.accountName {
-                        self.getAccoutInfo(account, completion: { (success, created) in
+                        self.getAccoutInfo(account, completion: { (success, _) in
                             if success {
                                 wallet.creatStatus = WalletCreatStatus.creatSuccessed.rawValue
                                 self.updateWallet(wallet)
@@ -443,19 +440,19 @@ class WalletManager {
             }
         }
     }
-    
+
     func failedGetAccountInfo() {
         showWarning(R.string.localizable.error_createAccount_failed.key.localized())
         let networkStr = getNetWorkReachability()
         if networkStr != WifiStatus.notReachable.rawValue {
             self.removeWallet(self.currentPubKey)
-        } 
+        }
     }
-    
+
     func failedWithReName() {
         showWarning(R.string.localizable.error_account_registered.key.localized())
     }
-    
+
     func checkPubKey(_ account: Account, completion:@escaping ResultCallback) {
         for permission in account.permissions {
             for authKey in permission.required_auth.keys {
@@ -467,7 +464,7 @@ class WalletManager {
         }
         completion(false)
     }
-    
+
     func updateWallet(_ wallet: WalletList) {
         var wallets = wallketList()
         if let index = wallets.map({ $0.publicKey }).index(of: currentPubKey) {
@@ -475,30 +472,30 @@ class WalletManager {
             Defaults[.walletList] = wallets
         }
     }
-    
+
     func closeTimer() {
         if self.timer != nil {
             self.timer?.pause()
             self.timer = nil
         }
     }
-    
-    //MARK: Format Check
+
+    // MARK: Format Check
     func isValidPassword(_ password: String) -> Bool {
         return password.count >= 8
     }
-    
+
     func isValidComfirmPassword(_ password: String, comfirmPassword: String) -> Bool {
         return password == comfirmPassword
     }
-    
+
     func isValidWalletName(_ name: String) -> Bool {
         let regex = "^[1-5a-z]{12}+$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
-        return predicate.evaluate(with:name)
+        return predicate.evaluate(with: name)
     }
-    
-    //MARK: Account DB
+
+    // MARK: Account DB
     func getAccountModelsWithAccountName(name: String) -> AccountModel? {
         var condition = DataFetchCondition()
         condition.key = "account_name"
@@ -532,26 +529,25 @@ class WalletManager {
                 return accountModel
             }
 
-        }
-        catch {
-            
+        } catch {
+
         }
         return nil
     }
-    
+
     //FingerName Manage
     func updateFingerName(_ model: WalletManagerModel, index: Int, fingerName: String) {
         Defaults[fingerKey(model, index: index)] = fingerName
     }
-    
+
     func deleteFingerName(_ model: WalletManagerModel, index: Int) {
         updateFingerName(model, index: index, fingerName: "")
     }
-    
+
     func fingerKey(_ model: WalletManagerModel, index: Int) -> String {
         return model.address + "\(index)"
     }
-    
+
     func fingerName(_ model: WalletManagerModel, index: Int) -> String {
         if let name: String = Defaults[fingerKey(model, index: index)] as? String, !name.isEmpty {
             return name
@@ -559,7 +555,7 @@ class WalletManager {
             return R.string.localizable.finger.key.localized() + fingerIndexStr(index)
         }
     }
-    
+
     func fingerIndexStr(_ index: Int) -> String {
         switch index {
         case 0:
@@ -572,5 +568,5 @@ class WalletManager {
             return ""
         }
     }
-    
+
 }

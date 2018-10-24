@@ -11,11 +11,11 @@ import ReSwift
 import NBLCommonModule
 
 protocol SetWalletCoordinatorProtocol {
-    
+
     func pushToServiceProtocolVC()
-    
+
     func importFinished()
-    
+
     func pushToSetAccountVC(_ hint: String)
 }
 
@@ -24,32 +24,32 @@ protocol SetWalletStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<SetWalletState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
+
     func validForm(_ password: String, confirmPassword: String, hint: String) -> (Bool, String)
-    
-    func importLocalWallet(_ password: String, hint: String, completion: @escaping (Bool)->Void)
-    
+
+    func importLocalWallet(_ password: String, hint: String, completion: @escaping (Bool) -> Void)
+
     func updatePassword(_ password: String, hint: String)
-    
+
     func validPassword(_ password: String)
-    
+
     func validComfirmPassword(_ password: String, comfirmPassword: String)
-    
+
     func checkAgree(_ agree: Bool)
-    
+
     func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void)
 }
 
 class SetWalletCoordinator: NavCoordinator {
-    
+
     lazy var creator = SetWalletPropertyActionCreate()
-    
+
     var store = Store<SetWalletState>(
         reducer: SetWalletReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     override func register() {
         Broadcaster.register(SetWalletCoordinatorProtocol.self, observer: self)
         Broadcaster.register(SetWalletStateManagerProtocol.self, observer: self)
@@ -57,7 +57,7 @@ class SetWalletCoordinator: NavCoordinator {
 }
 
 extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
-    
+
     func pushToServiceProtocolVC() {
         let vc = BaseWebViewController()
         vc.url = H5AddressConfiguration.REGISTER_PROTOCOL_URL
@@ -71,7 +71,7 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
             vc.coordinator?.state.callback.fadeCallback.value?()
         }
     }
-    
+
     func pushToSetAccountVC(_ hint: String) {
         let vc = R.storyboard.entry.entryViewController()
         vc?.createType = .wookong
@@ -86,38 +86,38 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
     var state: SetWalletState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<SetWalletState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
-    func validForm(_ password:String, confirmPassword:String, hint:String) -> (Bool, String) {
+
+    func validForm(_ password: String, confirmPassword: String, hint: String) -> (Bool, String) {
         return (true, "")
     }
-    
-    func importLocalWallet(_ password:String, hint:String, completion: @escaping (Bool)->Void) {
+
+    func importLocalWallet(_ password: String, hint: String, completion: @escaping (Bool) -> Void) {
         WalletManager.shared.importPrivateKey(password, hint: hint, completion: completion)
     }
-    
-    func updatePassword(_ password:String, hint:String) {
+
+    func updatePassword(_ password: String, hint: String) {
         WalletManager.shared.updateWalletPassword(password, hint: hint)
         self.rootVC.popViewController()
     }
-    
+
     func validPassword(_ password: String) {
         self.store.dispatch(SetWalletPasswordAction(isValid: WalletManager.shared.isValidPassword(password)))
     }
-    
+
     func validComfirmPassword(_ password: String, comfirmPassword: String) {
         self.store.dispatch(SetWalletComfirmPasswordAction(isValid: WalletManager.shared.isValidComfirmPassword(password, comfirmPassword: comfirmPassword)))
     }
-    
+
     func checkAgree(_ agree: Bool) {
         self.store.dispatch(SetWalletAgreeAction(isAgree: agree))
     }
-    
+
     func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void) {
         BLTWalletIO.shareInstance().initPin(password, success: success, failed: failed)
     }

@@ -22,7 +22,7 @@ struct Wallet: Codable {
     var cipher: String? // 助记词密文
     var deviceName: String? // 蓝牙设备ID
     var date: Date?
-    
+
     public init(id: Int64?, name: String, type: WalletType, cipher: String?, deviceName: String?, date: Date?) {
         self.id = id
         self.name = name
@@ -32,7 +32,6 @@ struct Wallet: Codable {
         self.date = date
     }
 }
-
 
 extension Wallet: MutablePersistableRecord, FetchableRecord {
     static var databaseTableName: String = "Wallet"
@@ -45,7 +44,7 @@ extension Wallet: MutablePersistableRecord, FetchableRecord {
 enum CurrencyType: Int, DatabaseValueConvertible, Codable {
     case EOS
     case ETH
-    
+
     var derivationPath: String {
         switch self {
         case .EOS:
@@ -78,7 +77,7 @@ struct Currency: Codable {
 
 extension Currency: MutablePersistableRecord, FetchableRecord {
     static var databaseTableName: String = "Currency"
-    
+
     mutating func didInsert(with rowID: Int64, for column: String?) {
         id = rowID
     }
@@ -86,11 +85,11 @@ extension Currency: MutablePersistableRecord, FetchableRecord {
 
 class WalletCacheService: BaseCacheService {
     static let shared = WalletCacheService()
-    
+
     private init() {
         super.init("db.sqlite")
     }
-    
+
     override func createTable() throws {
         try queue?.write { db in
             try db.create(table: Wallet.databaseTableName) { t in
@@ -102,7 +101,7 @@ class WalletCacheService: BaseCacheService {
                 t.column("date", .date).defaults(to: Date())
             }
         }
-        
+
         try queue?.write { db in
             try db.create(table: Currency.databaseTableName) { t in
                 t.column("id", .integer).primaryKey()
@@ -115,7 +114,7 @@ class WalletCacheService: BaseCacheService {
             }
         }
     }
-    
+
     override func migration() {
 //        //添加字段
 //        migrator.registerMigration("AddDateToPlace") { db in
@@ -153,34 +152,34 @@ extension WalletCacheService {
 extension WalletCacheService {
     func insertWallet(wallet: Wallet) throws {
         var wallet = wallet
-        
+
         try queue?.write({ db in
             try wallet.insert(db)
         })
     }
-    
+
     func fetchAllWallet() throws -> [Wallet]? {
         return try queue?.inDatabase({ db in
             try Wallet.fetchAll(db)
         })
     }
-    
+
     func updateWallet(_ wallet: Wallet) throws {
         var wallet = wallet
-        
+
         try queue?.inDatabase({ db in
             try wallet.save(db)
         })
     }
-    
+
     func insertCurrency(_ currency: Currency) throws {
         var currency = currency
-        
+
         try queue?.write({ db in
             try currency.insert(db)
         })
     }
-    
+
     func fetchAllCurrencysBy(_ wallet: Wallet) throws -> [Currency]? {
         return try queue?.inDatabase({ db in
             try Currency.fetchAll(db,
@@ -188,13 +187,12 @@ extension WalletCacheService {
                                  arguments: [wallet.id!])
         })
     }
-    
+
     func updateCurrency(_ currency: Currency) throws {
         var currency = currency
-        
+
         try queue?.inDatabase({ db in
             try currency.save(db)
         })
     }
 }
-
