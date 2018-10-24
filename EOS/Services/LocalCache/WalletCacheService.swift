@@ -63,14 +63,16 @@ struct Currency: Codable {
     var pubKey: String
     var wid: Int64 // 关联钱包id
     var date: Date?
+    var address: String?
 
-    public init(id: Int64?, type: CurrencyType, cipher: String, pubKey: String, wid: Int64, date: Date?) {
+    public init(id: Int64?, type: CurrencyType, cipher: String, pubKey: String, wid: Int64, date: Date?, address: String?) {
         self.id = id
         self.type = type
         self.cipher = cipher
         self.pubKey = pubKey
         self.wid = wid
         self.date = date
+        self.address = address
     }
 }
 
@@ -109,6 +111,7 @@ class WalletCacheService: BaseCacheService {
                 t.column("pubKey", .text).notNull()
                 t.column("wid", .integer).notNull()
                 t.column("date", .date).defaults(to: Date())
+                t.column("address", .text)
             }
         }
     }

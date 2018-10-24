@@ -9,7 +9,8 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import Seed39
+import seed39_ios_golang
+import eos_ios_core_cpp
 
 protocol VerifyMnemonicWordCoordinatorProtocol {
     func popToVC(_ vc: UIViewController)
@@ -126,13 +127,19 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
             let wallet = Wallet(id: idNum, name: "EOS-WALLET-\(idNum)", type: .HD, cipher: cipher, deviceName: nil, date: date)
             
             let seed = Seed39SeedByMnemonic(checkStr)
-            let priCipher = Seed39KeyEncrypt(pwd, Seed39Derivepath(seed, CurrencyType.EOS.derivationPath))
-            
-            
+            let prikey = Seed39DeriveRaw(seed, CurrencyType.EOS.derivationPath)
+            let curCipher = Seed39KeyEncrypt(pwd, prikey)
+            let pubkey = EOSIO.getPublicKey(prikey)
             let currencys = try WalletCacheService.shared.fetchAllCurrencysBy(wallet)
             let cuNum: Int64 = Int64(currencys!.count) + 1
-
-//            let currency = Currency(id: cuNum, type: .EOS, cipher: priCipher!, pubKey: <#T##String#>, wid: idNum, date: date)
+            let currency = Currency(id: cuNum, type: .EOS, cipher: curCipher!, pubKey: pubkey!, wid: idNum, date: date)
+            
+            let seed2 = Seed39SeedByMnemonic(checkStr)
+            let prikey2 = Seed39DeriveRaw(seed, CurrencyType.EOS.derivationPath)
+            let curCipher2 = Seed39KeyEncrypt(pwd, prikey)
+            let pubkey2 = Seed39GetEthereumPublicKeyFromPrivateKey(prikey)
+            let cuNum2: Int64 = Int64(currencys!.count) + 1
+            let currency2 = Currency(id: cuNum2, type: .ETH, cipher: curCipher2!, pubKey: pubkey2!, wid: idNum, date: date)
             
         } catch {
         }
