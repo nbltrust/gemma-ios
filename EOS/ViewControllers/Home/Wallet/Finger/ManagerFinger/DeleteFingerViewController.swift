@@ -42,7 +42,7 @@ class DeleteFingerViewController: BaseViewController {
     }
 
     func setupData() {
-        self.contentView.changeNameLineView.content_text = WalletManager.shared.fingerName(model, index: index)
+        self.contentView.changeNameLineView.contentText = WalletManager.shared.fingerName(model, index: index)
     }
 
     func setupEvent() {

@@ -17,9 +17,9 @@ class InvitationView: EOSBaseView {
     @IBOutlet weak var clearButton: UIButton!
 
     enum Event: String {
-        case InvitationViewDidClicked
-        case IntroClick
-        case NextClick
+        case invitationViewDidClicked
+        case introClick
+        case nextClick
     }
 
     override func setup() {
@@ -42,20 +42,20 @@ class InvitationView: EOSBaseView {
     func setupSubViewEvent() {
         introLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.introLabel.next?.sendEventWith(Event.IntroClick.rawValue, userinfo: [:])
+            self.introLabel.next?.sendEventWith(Event.introClick.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
         nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             if self.textfield.text == "" {
                 self.nextButton.isEnabel.accept(false)
             } else {
-                self.nextButton.next?.sendEventWith(Event.NextClick.rawValue, userinfo: [:])
+                self.nextButton.next?.sendEventWith(Event.nextClick.rawValue, userinfo: [:])
             }
         }).disposed(by: disposeBag)
     }
 
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.InvitationViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.invitationViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }
 

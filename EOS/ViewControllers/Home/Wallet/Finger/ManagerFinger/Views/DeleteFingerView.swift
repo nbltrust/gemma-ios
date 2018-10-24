@@ -28,7 +28,7 @@ class DeleteFingerView: EOSBaseView {
     }
 
     func setupUI() {
-        changeNameLineView.name_text = R.string.localizable.change_name.key.localized()
+        changeNameLineView.nameText = R.string.localizable.change_name.key.localized()
     }
 
     func setupSubViewEvent() {

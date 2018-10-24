@@ -20,9 +20,9 @@ class WalletTableViewCell: BaseTableViewCell {
         super.setSelected(selected, animated: animated)
         if selected == true {
             walletCellView.bgView.backgroundColor = UIColor.cornflowerBlue
-            walletCellView.name_style = LineViewStyleNames.selectName.rawValue
+            walletCellView.nameStyle = LineViewStyleNames.selectName.rawValue
         } else {
-            walletCellView.name_style = LineViewStyleNames.normalName.rawValue
+            walletCellView.nameStyle = LineViewStyleNames.normalName.rawValue
             walletCellView.bgView.backgroundColor = UIColor.whiteTwo
         }
         // Configure the view for the selected state
@@ -35,9 +35,9 @@ class WalletTableViewCell: BaseTableViewCell {
         }
         if highlighted == true {
             walletCellView.bgView.backgroundColor = UIColor.cornflowerBlue
-            walletCellView.name_style = LineViewStyleNames.selectName.rawValue
+            walletCellView.nameStyle = LineViewStyleNames.selectName.rawValue
         } else {
-            walletCellView.name_style = LineViewStyleNames.normalName.rawValue
+            walletCellView.nameStyle = LineViewStyleNames.normalName.rawValue
             walletCellView.bgView.backgroundColor = UIColor.whiteTwo
         }
     }

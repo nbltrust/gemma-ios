@@ -34,7 +34,7 @@ protocol TransferStateManagerProtocol {
 
 class TransferCoordinator: NavCoordinator {
     var store = Store<TransferState>(
-        reducer: TransferReducer,
+        reducer: gTransferReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
@@ -113,11 +113,11 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     }
 
     func validMoney(_ money: String, blance: String) {
-        self.store.dispatch(moneyAction(money: money, balance: blance))
+        self.store.dispatch(MoneyAction(money: money, balance: blance))
     }
 
     func validName(_ name: String) {
-        self.store.dispatch(toNameAction(isValid: WalletManager.shared.isValidWalletName(name)))
+        self.store.dispatch(ToNameAction(isValid: WalletManager.shared.isValidWalletName(name)))
     }
 
     func subscribe<SelectedState, S: StoreSubscriber>(
@@ -128,7 +128,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
 
     func fetchUserAccount(_ account: String) {
 
-        EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
+        EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
             self.store.dispatch(BalanceFetchedAction(balance: json))
         }, error: { (_) in
 
@@ -142,7 +142,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     }
 
     func getInfo(callback:@escaping (String) -> Void) {
-        EOSIONetwork.request(target: .get_info, success: { (data) in
+        EOSIONetwork.request(target: .getInfo, success: { (data) in
             print("get_info : \(data)")
             callback(data.stringValue)
         }, error: { (_) in
@@ -156,13 +156,13 @@ extension TransferCoordinator: TransferStateManagerProtocol {
 
         getInfo { (get_info) in
             let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: password)
-            let json = EOSIO.getAbiJsonString(EOSIOContract.TOKEN_CODE, action: EOSAction.transfer.rawValue, from: WalletManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIO_DEFAULT_SYMBOL, memo: code)
+            let json = EOSIO.getAbiJsonString(EOSIOContract.TokenCode, action: EOSAction.transfer.rawValue, from: WalletManager.shared.getAccount(), to: account, quantity: amount + " " + NetworkConfiguration.EOSIODefaultSymbol, memo: code)
 
-            EOSIONetwork.request(target: .abi_json_to_bin(json:json!), success: { (data) in
+            EOSIONetwork.request(target: .abiJsonToBin(json:json!), success: { (data) in
                 let abiStr = data.stringValue
 
                let transation = EOSIO.getTransferTransaction(privakey,
-                                     code: EOSIOContract.TOKEN_CODE,
+                                     code: EOSIOContract.TokenCode,
                                      from: account,
                     getinfo: get_info,
                     abistr: abiStr)

@@ -66,7 +66,7 @@ class EntryCoordinator: NavCoordinator {
 extension EntryCoordinator: EntryCoordinatorProtocol {
     func pushToServiceProtocolVC() {
         let vc = BaseWebViewController()
-        vc.url = H5AddressConfiguration.REGISTER_PROTOCOL_URL
+        vc.url = H5AddressConfiguration.RegisterProtocolURL
         vc.title = R.string.localizable.service_protocol.key.localized()
         self.rootVC.pushViewController(vc, animated: true)
     }
@@ -177,10 +177,24 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(agreeAction(isAgree: agree))
     }
 
-    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, deviceName: String?, completion: @escaping (Bool) -> Void) {
+    func createWallet(_ type: CreateAPPId,
+                      accountName: String,
+                      password: String,
+                      prompt: String,
+                      inviteCode: String,
+                      validation: WookongValidation?,
+                      deviceName: String?,
+                      completion: @escaping (Bool) -> Void) {
         NBLNetwork.request(target: .createAccount(type: type, account: accountName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: validation), success: { (data) in
             WalletManager.shared.currentPubKey = validation?.publicKey ?? ""
-            WalletManager.shared.saveWallket(accountName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode: inviteCode, type: type, deviceName: deviceName)
+            WalletManager.shared.saveWallket(accountName,
+                                             password: password,
+                                             hint: prompt,
+                                             isImport: false,
+                                             txID: data["txId"].stringValue,
+                                             invitationCode: inviteCode,
+                                             type: type,
+                                             deviceName: deviceName)
             self.pushBackupPrivateKeyVC()
             completion(true)
         }, error: { (code) in
@@ -213,13 +227,13 @@ extension EntryCoordinator: EntryStateManagerProtocol {
 
     func createWallet(_ name: String, completion: @escaping (Bool) -> Void) {
         if let device = BLTWalletIO.shareInstance()?.selectDevice {
-            BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, sn_sig, pub, pub_sig, publicKey) in
+            BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, snSig, pub, pubSig, publicKey) in
                 guard let `self` = self else { return }
                 var validation = WookongValidation()
                 validation.SN = sn ?? ""
-                validation.SN_sig = sn_sig ?? ""
+                validation.SN_sig = snSig ?? ""
                 validation.public_key = pub ?? ""
-                validation.public_key_sig = pub_sig ?? ""
+                validation.public_key_sig = pubSig ?? ""
                 validation.publicKey = publicKey ?? ""
                 self.createWallet(.bluetooth, accountName: name, password: "", prompt: "", inviteCode: "", validation: validation, deviceName: device.name, completion: { (successed) in
                     completion(successed)

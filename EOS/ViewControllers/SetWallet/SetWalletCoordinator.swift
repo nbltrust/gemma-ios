@@ -60,7 +60,7 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
 
     func pushToServiceProtocolVC() {
         let vc = BaseWebViewController()
-        vc.url = H5AddressConfiguration.REGISTER_PROTOCOL_URL
+        vc.url = H5AddressConfiguration.RegisterProtocolURL
         vc.title = R.string.localizable.service_protocol.key.localized()
         self.rootVC.pushViewController(vc, animated: true)
     }

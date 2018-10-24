@@ -28,7 +28,7 @@ class EntryGuideCoordinator: NavCoordinator {
     lazy var creator = EntryGuidePropertyActionCreate()
 
     var store = Store<EntryGuideState>(
-        reducer: EntryGuideReducer,
+        reducer: gEntryGuideReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )

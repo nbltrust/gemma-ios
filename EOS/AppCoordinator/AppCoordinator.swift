@@ -139,7 +139,7 @@ class AppCoordinator {
         let width = ModalSize.full
 
         var height: Float = 271.0
-        if type == confirmType.updatePwd.rawValue {
+        if type == ConfirmType.updatePwd.rawValue {
             height = 249.0
         }
         let heightSize = ModalSize.custom(size: height)
