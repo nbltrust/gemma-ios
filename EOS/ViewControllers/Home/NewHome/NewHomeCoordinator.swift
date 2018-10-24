@@ -11,6 +11,8 @@ import ReSwift
 import NBLCommonModule
 
 protocol NewHomeCoordinatorProtocol {
+    func pushToSetVC()
+    func pushWallet()
 }
 
 protocol NewHomeStateManagerProtocol {
@@ -45,7 +47,21 @@ class NewHomeCoordinator: NavCoordinator {
 }
 
 extension NewHomeCoordinator: NewHomeCoordinatorProtocol {
-
+    func pushToSetVC() {
+        if let vc = R.storyboard.userInfo.userInfoViewController() {
+            let coordinator = UserInfoCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func pushWallet() {
+        if let vc = R.storyboard.wallet.walletViewController() {
+            let coordinator = WalletCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension NewHomeCoordinator: NewHomeStateManagerProtocol {
