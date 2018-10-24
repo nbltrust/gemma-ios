@@ -152,7 +152,7 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension WalletViewController {
-    @objc func right_event(_ data: [String: Any]) {
+    @objc func rightEvent(_ data: [String: Any]) {
         if let index = data["index"] as? String {
             self.coordinator?.pushToWalletManager(data: dataArray[index.int!])
         }

@@ -17,6 +17,8 @@ protocol SetWalletCoordinatorProtocol {
     func importFinished()
 
     func pushToSetAccountVC(_ hint: String)
+    
+    func popVC()
 }
 
 protocol SetWalletStateManagerProtocol {
@@ -38,6 +40,8 @@ protocol SetWalletStateManagerProtocol {
     func checkAgree(_ agree: Bool)
 
     func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void)
+    
+    func updatePin(_ new: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
 }
 
 class SetWalletCoordinator: NavCoordinator {
@@ -80,6 +84,10 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
         vc?.coordinator = accountCoordinator
         self.rootVC.pushViewController(vc!, animated: true)
     }
+    
+    func popVC() {
+        self.rootVC.popViewController(animated: true)
+    }
 }
 
 extension SetWalletCoordinator: SetWalletStateManagerProtocol {
@@ -120,6 +128,10 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
 
     func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void) {
         BLTWalletIO.shareInstance().initPin(password, success: success, failed: failed)
+    }
+    
+    func updatePin(_ new: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
+        BLTWalletIO.shareInstance()?.updatePin(new, success: success, failed: failed)
     }
 
 }
