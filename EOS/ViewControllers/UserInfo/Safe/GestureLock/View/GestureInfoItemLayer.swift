@@ -14,47 +14,47 @@ enum GestureInfoItemStatus: Int {
 }
 
 class GestureInfoItemLayer: CAShapeLayer {
-    
+
     var status: GestureInfoItemStatus = .normal {
         didSet {
             setupStatus()
         }
     }
-    
+
     var width: CGFloat = 0 {
         didSet {
             frame.size = CGSize(width: width, height: width)
             self.cornerRadius = width / 2
         }
     }
-    
+
     var index: Int = 0
-    
+
     var origin: CGPoint = CGPoint(x: 0, y: 0) {
         didSet {
             frame.origin = origin
         }
     }
-    
+
     override init() {
         super.init()
         setupStatus()
     }
-    
+
     override init(layer: Any) {
         super.init(layer: layer)
         setupStatus()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(layer: aDecoder)
         setupStatus()
     }
-    
+
     func reset() {
         status = .normal
     }
-    
+
     func setupStatus() {
         if status == .normal {
             self.turnNormal()
@@ -62,13 +62,13 @@ class GestureInfoItemLayer: CAShapeLayer {
             self.turnHighlighted()
         }
     }
-    
+
     fileprivate func turnNormal() {
         self.borderColor = GestureLockSetting.infoNormalColor.cgColor
         self.borderWidth = GestureLockSetting.infoNormalBorderWidth
         self.backgroundColor = UIColor.clear.cgColor
     }
-    
+
     fileprivate func turnHighlighted() {
         self.backgroundColor = GestureLockSetting.infoHighlightedColor.cgColor
         self.borderColor = GestureLockSetting.infoHighlightedColor.cgColor

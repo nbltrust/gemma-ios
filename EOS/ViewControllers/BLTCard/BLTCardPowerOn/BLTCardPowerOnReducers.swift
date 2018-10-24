@@ -9,15 +9,13 @@
 import UIKit
 import ReSwift
 
-func BLTCardPowerOnReducer(action:Action, state:BLTCardPowerOnState?) -> BLTCardPowerOnState {
+func BLTCardPowerOnReducer(action: Action, state: BLTCardPowerOnState?) -> BLTCardPowerOnState {
     let state = state ?? BLTCardPowerOnState()
-        
+
     switch action {
     default:
         break
     }
-        
+
     return state
 }
-
-

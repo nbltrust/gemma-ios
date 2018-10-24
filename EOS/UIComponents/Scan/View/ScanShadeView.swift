@@ -16,23 +16,23 @@ struct ScanSetting {
 }
 
 class ScanShadeView: UIView {
-    
+
     lazy var cornerView: ScanCornerView = {
         let cornerView = ScanCornerView.init(frame: ScanSetting.scanRect)
         return cornerView
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         self.isOpaque = false
         self.addSubview(cornerView)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func draw(_ rect: CGRect) {
         UIColor.black40.setFill()
         UIRectFill(rect)

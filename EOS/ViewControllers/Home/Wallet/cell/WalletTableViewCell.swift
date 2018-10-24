@@ -21,14 +21,13 @@ class WalletTableViewCell: BaseTableViewCell {
         if selected == true {
             walletCellView.bgView.backgroundColor = UIColor.cornflowerBlue
             walletCellView.name_style = LineViewStyleNames.select_name.rawValue
-        }
-        else {
+        } else {
             walletCellView.name_style = LineViewStyleNames.normal_name.rawValue
             walletCellView.bgView.backgroundColor = UIColor.whiteTwo
         }
         // Configure the view for the selected state
     }
-    
+
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
         if self.isSelected {
@@ -37,13 +36,12 @@ class WalletTableViewCell: BaseTableViewCell {
         if highlighted == true {
             walletCellView.bgView.backgroundColor = UIColor.cornflowerBlue
             walletCellView.name_style = LineViewStyleNames.select_name.rawValue
-        }
-        else {
+        } else {
             walletCellView.name_style = LineViewStyleNames.normal_name.rawValue
             walletCellView.bgView.backgroundColor = UIColor.whiteTwo
         }
     }
-    
+
     override func setup(_ data: Any?, indexPath: IndexPath) {
         walletCellView.index = indexPath.row.string
         walletCellView.data = data

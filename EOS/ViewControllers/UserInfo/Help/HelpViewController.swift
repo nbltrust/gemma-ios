@@ -23,8 +23,7 @@ class HelpViewController: BaseViewController {
         self.title = R.string.localizable.mine_help.key.localized()
     }
 
-    
     override func configureObserveState() {
-        
+
     }
 }

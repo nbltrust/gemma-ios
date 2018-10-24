@@ -9,15 +9,13 @@
 import UIKit
 import ReSwift
 
-func DeleteFingerReducer(action:Action, state:DeleteFingerState?) -> DeleteFingerState {
+func DeleteFingerReducer(action: Action, state: DeleteFingerState?) -> DeleteFingerState {
     let state = state ?? DeleteFingerState()
-        
+
     switch action {
     default:
         break
     }
-        
+
     return state
 }
-
-

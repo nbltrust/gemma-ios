@@ -10,11 +10,11 @@ import Foundation
 import ReSwift
 import RxCocoa
 
-//MARK: - State
+// MARK: - State
 struct VoteState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: VotePropertyState
     var callback: VoteCallbackState
 }
@@ -40,22 +40,22 @@ struct DelegatedInfoModel {
     var delagetedAmount: Float = 0
 }
 
-struct SetVoteNodeListAction : Action {
-    var datas : [NodeVoteViewModel]
+struct SetVoteNodeListAction: Action {
+    var datas: [NodeVoteViewModel]
 }
 
-struct SetDelegatedInfoAction : Action {
-    var info : DelegatedInfoModel
+struct SetDelegatedInfoAction: Action {
+    var info: DelegatedInfoModel
 }
 
-struct SetSelIndexPathsAction : Action {
-    var indexPaths : [IndexPath]
+struct SetSelIndexPathsAction: Action {
+    var indexPaths: [IndexPath]
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class VotePropertyActionCreate {
     public typealias ActionCreator = (_ state: VoteState, _ store: Store<VoteState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: VoteState,
         _ store: Store <VoteState>,

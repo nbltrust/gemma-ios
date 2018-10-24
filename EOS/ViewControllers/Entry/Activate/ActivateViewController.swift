@@ -20,16 +20,16 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
         setupSetting()
 
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     func setupSetting() {
         self.settings.style.buttonBarBackgroundColor = UIColor.whiteTwo
         self.settings.style.buttonBarItemBackgroundColor = UIColor.whiteTwo
@@ -41,34 +41,34 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
         self.settings.style.buttonBarHeight = 56
         self.settings.style.buttonBarLeftContentInset = 34
         self.settings.style.buttonBarRightContentInset = 34
-        
+
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = UIColor.blueyGrey
             newCell?.label.textColor = UIColor.darkSlateBlue
         }
     }
-    
+
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         return (self.coordinator?.pageVCs())!
     }
-    
+
     override func refreshViewController() {
-        
+
     }
-    
+
     func setupUI() {
         self.title = R.string.localizable.activate_title.key.localized()
     }
 
     func setupData() {
-        
+
     }
-    
+
     func setupEvent() {
-        
+
     }
-    
+
 //    override func configureObserveState() {
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
@@ -123,7 +123,7 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 //    }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension ActivateViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,8 +137,7 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 extension ActivateViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
@@ -148,4 +147,3 @@ extension ActivateViewController {
 //    }
 
 }
-

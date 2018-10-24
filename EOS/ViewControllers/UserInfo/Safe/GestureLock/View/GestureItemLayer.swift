@@ -21,53 +21,53 @@ class GestureItemLayer: CAShapeLayer {
             setupStatus()
         }
     }
-    
+
     var width: CGFloat = 0 {
         didSet {
             frame.size = CGSize(width: width, height: width)
             self.cornerRadius = width / 2
         }
     }
-    
+
     var index: Int = 0
-    
+
     var centerRadio: CGFloat = 0
-    
+
     var origin: CGPoint = CGPoint(x: 0, y: 0) {
         didSet {
             frame.origin = origin
         }
     }
-    
+
     var dirAngle: CGFloat = 0 {
         didSet {
             drawDirection()
         }
     }
-    
+
     private let mainPath = UIBezierPath()
-    
+
     private let cirLayer = CAShapeLayer()
-    
+
     override init() {
         super.init()
         setupStatus()
     }
-    
+
     override init(layer: Any) {
         super.init(layer: layer)
         setupStatus()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(layer: aDecoder)
         setupStatus()
     }
-    
+
     func reset() {
         status = .normal
     }
-    
+
     func setupStatus() {
         if status == .normal {
             self.turnNormal()
@@ -79,9 +79,9 @@ class GestureItemLayer: CAShapeLayer {
             self.turnLocked()
         }
     }
-    
+
     fileprivate func drawArcCenterLayer() {
-        
+
         let solidCirclePath = UIBezierPath()
         solidCirclePath.addArc(withCenter: CGPoint(x: width / 2, y: width / 2), radius: centerRadio, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
         solidCirclePath.close()
@@ -89,13 +89,13 @@ class GestureItemLayer: CAShapeLayer {
 
         path = mainPath.cgPath
     }
-    
+
     fileprivate func drawDirection() {
         self.transformSelf()
-        
-        let point1 = CGPoint(x:width / 2 + centerRadio + 8 + 6, y: width / 2)
-        let point2 = CGPoint(x:width / 2 + centerRadio + 8, y: width / 2 + 5)
-        let point3 = CGPoint(x:width / 2 + centerRadio + 8, y: width / 2 - 5)
+
+        let point1 = CGPoint(x: width / 2 + centerRadio + 8 + 6, y: width / 2)
+        let point2 = CGPoint(x: width / 2 + centerRadio + 8, y: width / 2 + 5)
+        let point3 = CGPoint(x: width / 2 + centerRadio + 8, y: width / 2 - 5)
         let trianglePath = UIBezierPath()
         trianglePath.move(to: point1)
         trianglePath.addLine(to: point2)
@@ -106,7 +106,7 @@ class GestureItemLayer: CAShapeLayer {
 
         path = mainPath.cgPath
     }
-    
+
     fileprivate func transformSelf() {
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.fromValue = dirAngle
@@ -117,12 +117,12 @@ class GestureItemLayer: CAShapeLayer {
         animation.fillMode = CAMediaTimingFillMode.forwards
         self.add(animation, forKey: "rotation")
     }
-    
+
     fileprivate func removePaths() {
         mainPath.removeAllPoints()
         path = mainPath.cgPath
     }
-    
+
     fileprivate func turnNormal() {
         borderColor = GestureLockSetting.lockNormalColor.cgColor
         borderWidth = GestureLockSetting.lockNormalBoderWidth
@@ -130,19 +130,19 @@ class GestureItemLayer: CAShapeLayer {
         fillColor = GestureLockSetting.lockHighlightedColor.cgColor
         removePaths()
     }
-    
+
     fileprivate func turnHighlighted() {
         borderColor = GestureLockSetting.lockHighlightedColor.cgColor
         borderWidth = GestureLockSetting.lockHighlightedBorderWidth
         drawArcCenterLayer()
     }
-    
+
     fileprivate func turnWarning() {
         borderColor = GestureLockSetting.warningColor.cgColor
         borderWidth = GestureLockSetting.lockHighlightedBorderWidth
         fillColor = GestureLockSetting.warningColor.cgColor
     }
-    
+
     fileprivate func turnLocked() {
         borderColor = GestureLockSetting.warningColor.cgColor
         borderWidth = GestureLockSetting.lockHighlightedBorderWidth

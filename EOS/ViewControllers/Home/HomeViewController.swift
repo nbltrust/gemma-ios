@@ -20,28 +20,28 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableHeaderView: HomeHeaderView!
     var headImageView: UIImageView?
-    
+
     var coordinator: (HomeCoordinatorProtocol & HomeStateManagerProtocol)?
-    
-    var data : Any?
+
+    var data: Any?
 	override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = true
 
         setupUI()
     }
-    
+
     override func refreshViewController() {
         if let wallet = WalletManager.shared.currentWallet() {
             if wallet.creatStatus != WalletCreatStatus.creatSuccessed.rawValue {
                 self.coordinator?.checkAccount()
             }
-            WalletManager.shared.FetchAccount { (account) in
+            WalletManager.shared.FetchAccount { (_) in
                 self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
             }
         }
     }
-    
+
     func setupBgImage() {
         if headImageView == nil {
             headImageView = UIImageView()
@@ -52,10 +52,10 @@ class HomeViewController: BaseViewController {
             headImageView!.right(to: self.view)
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
 //        self.coordinator?.getCurrentFromLocal()
         self.tableView.reloadData()
         if let nav = self.navigationController as? BaseNavigationController {
@@ -64,7 +64,7 @@ class HomeViewController: BaseViewController {
         setupBgImage()
         refreshViewController()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let nav = self.navigationController as? BaseNavigationController {
@@ -72,8 +72,8 @@ class HomeViewController: BaseViewController {
         }
         self.navigationController?.navigationBar.alpha = 1
     }
-    
-    func setupUI(){
+
+    func setupUI() {
         self.navigationItem.title = "GEMMA"
         self.configRightNavButton(R.image.walletAdd())
         let nibString = R.nib.homeTableCell.identifier
@@ -81,59 +81,58 @@ class HomeViewController: BaseViewController {
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
 //        self.automaticallyAdjustsScrollViewInsets = true 
     }
-    
+
     func updateUI() {
         if WalletManager.shared.account_names.count <= 1 {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = true
         } else {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = false
         }
-        
+
         if let wallet = WalletManager.shared.currentWallet() {
             if let walletBackuped = wallet.isBackUp, walletBackuped {
                 tableHeaderView.backupLabelViewIsHidden = true
             } else {
                 tableHeaderView.backupLabelViewIsHidden = false
             }
-        }
-        else {
+        } else {
             tableHeaderView.backupLabelViewIsHidden = true
         }
     }
-    
+
     override func rightAction(_ sender: UIButton) {
         self.coordinator?.pushWallet()
     }
-    
+
     override func configureObserveState() {
-        
+
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             if model.account == WalletManager.shared.getAccount() {
                 self.tableHeaderView.data = model
                 self.updateUI()
-                
+
                 self.tableHeaderView.layoutIfNeeded()
-                
+
                 self.tableView.tableHeaderView?.height = self.tableHeaderView.height
                 self.tableView.reloadData()
             }
 
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         coordinator?.state.property.model.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             self.tableHeaderView.data = model
             self.updateUI()
-            
+
             self.tableHeaderView.layoutIfNeeded()
-            
+
             self.tableView.tableHeaderView?.height = self.tableHeaderView.height
             self.tableView.reloadData()
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
-extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = (self.coordinator?.createDataInfo().count)!
         if self.coordinator?.isBluetoothWallet() ?? false {
@@ -141,9 +140,9 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
         }
         return count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let nibString = String.init(describing:type(of: HomeTableCell()))
+        let nibString = String.init(describing: type(of: HomeTableCell()))
         let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! HomeTableCell
         let isBluetooth = self.coordinator?.isBluetoothWallet() ?? false
         if indexPath.row == 0 && isBluetooth {
@@ -156,7 +155,7 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
         }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let isBluetooth = self.coordinator?.isBluetoothWallet() ?? false
@@ -177,13 +176,13 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate{
 extension HomeViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         var offsetY = 0
-        
+
         if Device.version() == Version.iPhoneX {
             offsetY = -40
         } else {
             offsetY = -20
         }
-        
+
         if scrollView.contentOffset.y > offsetY.cgFloat {
             if let nav = self.navigationController as? BaseNavigationController {
                 nav.navStyle = .common
@@ -202,22 +201,22 @@ extension HomeViewController: UIScrollViewDelegate {
 }
 
 extension HomeViewController {
-    @objc func accountlist(_ data: [String:Any]) {
+    @objc func accountlist(_ data: [String: Any]) {
         self.coordinator?.pushAccountList {
-            
+
         }
     }
-    @objc func backupEvent(_ data: [String:Any]) {
+    @objc func backupEvent(_ data: [String: Any]) {
         self.coordinator?.pushBackupVC()
     }
-    
-    @objc func cpuevent(_ data: [String:Any]) {
+
+    @objc func cpuevent(_ data: [String: Any]) {
         self.coordinator?.pushResourceMortgageVC()
     }
-    @objc func netevent(_ data: [String:Any]) {
+    @objc func netevent(_ data: [String: Any]) {
         self.coordinator?.pushResourceMortgageVC()
     }
-    @objc func ramevent(_ data: [String:Any]) {
+    @objc func ramevent(_ data: [String: Any]) {
         self.coordinator?.pushBuyRamVC()
     }
 }

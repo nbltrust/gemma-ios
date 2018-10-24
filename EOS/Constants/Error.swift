@@ -51,28 +51,28 @@ enum GemmaError: Error {
                 return ""
             }
         }
-        
+
     }
-    
+
     enum AuthErrorCode: Int {
-        //MARK: Face ID
+        // MARK: Face ID
         case faceIdUnSupport         = 30001
         case faceIdAuthFailed        = 30002
         case faceIdAuthNotSet        = 30003
         case faceIdAuthNotAvailible  = 30004
         case faceIdAuthLock          = 30005
         case faceIdAuthNotEnrolled   = 30006
-        //MARK: Touch ID
+        // MARK: Touch ID
         case touchIdUnSupport        = 30007
         case touchIdAuthFailed       = 30008
         case touchIdAuthNotSet       = 30009
         case touchIdAuthNotAvailible = 30010
         case touchIdAuthLock         = 30011
         case touchIdAuthNotEnrolled  = 30012
-        //MARK: Camera
+        // MARK: Camera
         case cameraUnSupport         = 30013
         case cameraNotOpen           = 30014
-        
+
         func desc() -> String {
             switch self {
             case .faceIdUnSupport:
@@ -106,10 +106,9 @@ enum GemmaError: Error {
             }
         }
     }
-    
-    
+
     case NBLCode(code: NBLNetworkErrorCode)
-    
+
     var localizedDescription: String {
         switch self {
         case let .NBLCode(code):
@@ -127,4 +126,3 @@ extension GemmaError: Equatable {
     }
 
 }
-

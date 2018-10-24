@@ -9,11 +9,11 @@
 import Foundation
 import ReSwift
 
-//MARK: - State
+// MARK: - State
 struct SelectedVoteState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: SelectedVotePropertyState
     var callback: SelectedVoteCallbackState
 }
@@ -26,10 +26,10 @@ struct SelectedVotePropertyState {
 struct SelectedVoteCallbackState {
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class SelectedVotePropertyActionCreate {
     public typealias ActionCreator = (_ state: SelectedVoteState, _ store: Store<SelectedVoteState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: SelectedVoteState,
         _ store: Store <SelectedVoteState>,

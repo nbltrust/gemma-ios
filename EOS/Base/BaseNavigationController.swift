@@ -20,27 +20,27 @@ class BaseNavigationController: UINavigationController {
             self.setupNav()
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.view.backgroundColor = UIColor.white
         self.interactivePopGestureRecognizer?.delegate = self
-        
+
         self.navigationBar.shadowImage = UIImage()
         setupNav()
 
-        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17),NSAttributedString.Key.foregroundColor:UIColor.whiteTwo]
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.whiteTwo]
         if #available(iOS 11.0, *) {
-            self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.whiteTwo]
+            self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteTwo]
         }
         self.navigationBar.tintColor = UIColor.whiteTwo
-        
+
         //    self.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "ic_arrow_back_16px")
         //    self.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_arrow_back_16px")
-        
+
     }
-    
+
     func setupNav() {
         if navStyle == .clear {
             let image = UIImage.init(color: UIColor.clear)
@@ -55,18 +55,17 @@ class BaseNavigationController: UINavigationController {
             self.navigationBar.isTranslucent = false
         }
     }
-    
+
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if self.viewControllers.count != 0 {
             viewController.hidesBottomBarWhenPushed = true
             viewController.configLeftNavButton(nil)
             super.pushViewController(viewController, animated: animated)
-        }
-        else {
+        } else {
             super.pushViewController(viewController, animated: animated)
         }
     }
-    
+
     @discardableResult
     override func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
         if self.children.count == 2 {
@@ -79,12 +78,12 @@ class BaseNavigationController: UINavigationController {
         }
         return super.popToViewController(viewController, animated: animated)
     }
- 
+
 }
 
-extension BaseNavigationController: UIGestureRecognizerDelegate{
+extension BaseNavigationController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        
+
         // Ignore interactive pop gesture when there is only one view controller on the navigation stack
         if viewControllers.count <= 1 {
             return false

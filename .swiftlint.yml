@@ -1,2 +1,4 @@
 included:
   - EOS
+excluded:
+  - EOS/Vendor

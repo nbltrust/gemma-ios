@@ -11,14 +11,14 @@ import ReSwift
 import RxCocoa
 import SwiftyJSON
 
-//MARK: - State
+// MARK: - State
 struct VerifyMnemonicWordState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
-    
+
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
 }
 
-//MARK: - Action
+// MARK: - Action
 struct VerifyMnemonicWordFetchedAction: Action {
-    var data:JSON
+    var data: JSON
 }

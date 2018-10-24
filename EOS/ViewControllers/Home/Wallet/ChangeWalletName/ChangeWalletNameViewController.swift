@@ -22,14 +22,14 @@ class ChangeWalletNameViewController: BaseViewController {
     var model = WalletManagerModel()
     var fingerIndex = 0
     var type: ChangeNameType = .walletName
-    
+
     @IBOutlet weak var changeWalletNameView: ChangeWalletNameView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
     }
-    
+
     func setUpUI() {
         if type == .walletName {
             self.title = R.string.localizable.change_wallet_name.key.localized()
@@ -41,7 +41,7 @@ class ChangeWalletNameViewController: BaseViewController {
 
         configRightNavButton(R.string.localizable.normal_save.key.localized())
     }
-    
+
     override func rightAction(_ sender: UIButton) {
         //保存
         self.view.endEditing(true)
@@ -59,6 +59,6 @@ class ChangeWalletNameViewController: BaseViewController {
     }
 
     override func configureObserveState() {
-        
+
     }
 }

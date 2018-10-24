@@ -9,9 +9,9 @@
 import UIKit
 
 class AccountTableViewCell: BaseTableViewCell {
-    
+
     @IBOutlet weak var cellView: AccountCellView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,7 +22,7 @@ class AccountTableViewCell: BaseTableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     override func setup(_ data: Any?, indexPath: IndexPath) {
         if let data = data as? AccountListViewModel {
             cellView.text = data.account

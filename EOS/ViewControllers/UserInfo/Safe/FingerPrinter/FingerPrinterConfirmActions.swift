@@ -10,11 +10,11 @@ import Foundation
 import ReSwift
 import RxCocoa
 
-//MARK: - State
+// MARK: - State
 struct FingerPrinterConfirmState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: FingerPrinterConfirmPropertyState
     var callback: FingerPrinterConfirmCallbackState
 }
@@ -26,10 +26,10 @@ struct FingerPrinterConfirmCallbackState {
     var confirmResult: BehaviorRelay<ResultCallback?> = BehaviorRelay(value: nil)
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class FingerPrinterConfirmPropertyActionCreate {
     public typealias ActionCreator = (_ state: FingerPrinterConfirmState, _ store: Store<FingerPrinterConfirmState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: FingerPrinterConfirmState,
         _ store: Store <FingerPrinterConfirmState>,

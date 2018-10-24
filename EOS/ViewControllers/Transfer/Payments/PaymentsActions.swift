@@ -9,36 +9,36 @@
 import Foundation
 import ReSwift
 
-//MARK: - State
+// MARK: - State
 struct PaymentsState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: PaymentsPropertyState
 }
 
 struct PaymentsPropertyState {
-    var data : [PaymentsRecordsViewModel] = []
+    var data: [PaymentsRecordsViewModel] = []
 }
 
-struct FetchPaymentsRecordsListAction : Action {
-    var data : [Any]
+struct FetchPaymentsRecordsListAction: Action {
+    var data: [Any]
 }
 
-//MARK: - ViewModel
+// MARK: - ViewModel
 struct PaymentsRecordsViewModel {
-    var stateBool : Bool = true
-    var address : String = ""
-    var time : String = ""
-    var transferState : String = ""
-    var money : String = ""
-    var transferStateBool : Bool = true
+    var stateBool: Bool = true
+    var address: String = ""
+    var time: String = ""
+    var transferState: String = ""
+    var money: String = ""
+    var transferStateBool: Bool = true
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class PaymentsPropertyActionCreate {
     public typealias ActionCreator = (_ state: PaymentsState, _ store: Store<PaymentsState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: PaymentsState,
         _ store: Store <PaymentsState>,

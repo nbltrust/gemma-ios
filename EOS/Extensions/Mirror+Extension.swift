@@ -27,9 +27,9 @@ extension Mirror {
     func className() -> String {
         return String(describing: self.subjectType)
     }
-    
-    func dataStructure() -> [String : ParameterType] {
-        var desc: [String : ParameterType] = [:]
+
+    func dataStructure() -> [String: ParameterType] {
+        var desc: [String: ParameterType] = [:]
         for child in self.children {
             if let label = child.label {
                 let type = parameterType(child.value)
@@ -42,7 +42,7 @@ extension Mirror {
         }
         return desc
     }
-    
+
     func parameterType(_ value: Any) -> ParameterType {
         switch value {
         case _ as Int:

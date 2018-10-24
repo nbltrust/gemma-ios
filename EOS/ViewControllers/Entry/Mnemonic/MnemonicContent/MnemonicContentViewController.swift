@@ -16,33 +16,33 @@ class MnemonicContentViewController: BaseViewController {
 	var coordinator: (MnemonicContentCoordinatorProtocol & MnemonicContentStateManagerProtocol)?
 
     @IBOutlet weak var contentView: MnemonicContentView!
-    
+
     var seeds: [String] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func refreshViewController() {
-        
+
     }
-    
+
     func setupUI() {
         self.title = R.string.localizable.backup_mnemonic_title.key.localized()
     }
 
     func setupData() {
-        self.coordinator?.getSeeds({ [weak self] (datas,checkStr) in
+        self.coordinator?.getSeeds({ [weak self] (datas, checkStr) in
             guard let `self` = self else { return }
-            if let tempDatas = datas as? [String],let check = checkStr {
+            if let tempDatas = datas as? [String], let check = checkStr {
                 DispatchQueue.main.sync {
                     self.seeds = tempDatas
                     self.coordinator?.setSeeds((tempDatas, check))
@@ -56,11 +56,11 @@ class MnemonicContentViewController: BaseViewController {
             }
         })
     }
-    
+
     func setupEvent() {
-        
+
     }
-    
+
     override func configureObserveState() {
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
@@ -115,7 +115,7 @@ class MnemonicContentViewController: BaseViewController {
     }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension MnemonicContentViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,8 +129,7 @@ class MnemonicContentViewController: BaseViewController {
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 extension MnemonicContentViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
@@ -138,8 +137,7 @@ extension MnemonicContentViewController {
 //
 //        }
 //    }
-    @objc func Copied(_ data:[String: Any]) {
+    @objc func Copied(_ data: [String: Any]) {
         self.coordinator?.pushToVerifyMnemonicVC()
     }
 }
-

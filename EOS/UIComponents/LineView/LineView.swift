@@ -12,16 +12,16 @@ import UIKit
 class LineView: UIView {
 
     struct LineViewModel {
-        var name : String = ""
-        var content : String = ""
-        var image_name : String = ""
-        var name_style : LineViewStyleNames = .normal_name
-        var content_style : LineViewStyleNames = .normal_content
-        var isBadge : Bool = false
-        var content_line_number : Int = 1
-        var isShowLineView : Bool = false
+        var name: String = ""
+        var content: String = ""
+        var image_name: String = ""
+        var name_style: LineViewStyleNames = .normal_name
+        var content_style: LineViewStyleNames = .normal_content
+        var isBadge: Bool = false
+        var content_line_number: Int = 1
+        var isShowLineView: Bool = false
     }
-    
+
     @IBOutlet weak var leftImg: UIImageView!
     @IBOutlet weak var sepatateView: UIView!
     @IBOutlet weak var name: UILabel!
@@ -29,58 +29,56 @@ class LineView: UIView {
     @IBOutlet weak var rightImg: UIImageView!
     @IBOutlet weak var imgWidth: NSLayoutConstraint!
     @IBOutlet weak var bgView: UIView!
-    
+
     enum event: String {
         case right_event
     }
-    
+
     var index: String = "" {
         didSet {
-            
+
         }
     }
-    
+
     @IBInspectable
-    var name_style : String = LineViewStyleNames.normal_name.rawValue {
-        didSet{
+    var name_style: String = LineViewStyleNames.normal_name.rawValue {
+        didSet {
             self.name.attributedText = name_text.set(style: name_style)
         }
     }
-    
+
     @IBInspectable
-    var content_style : String = LineViewStyleNames.normal_content.rawValue {
-        didSet{
+    var content_style: String = LineViewStyleNames.normal_content.rawValue {
+        didSet {
             self.content.attributedText = content_text.set(style: content_style)
         }
     }
-    
+
     @IBInspectable
-    var name_text : String = ""{
-        didSet{
+    var name_text: String = ""{
+        didSet {
             self.name.attributedText = name_text.set(style: name_style)
         }
     }
-    
+
     @IBInspectable
-    var content_text : String = ""{
-        didSet{
+    var content_text: String = ""{
+        didSet {
             self.content.attributedText = content_text.set(style: content_style)
             updateHeight()
         }
     }
-    
-    
+
     @IBInspectable
-    var isShowLine : Bool = false{
-        didSet{
+    var isShowLine: Bool = false {
+        didSet {
             self.sepatateView.isHidden = !isShowLine
         }
     }
-    
-    
+
     @IBInspectable
-    var image_name : String = "icCheckCircleGreen" {
-        didSet{
+    var image_name: String = "icCheckCircleGreen" {
+        didSet {
             self.rightImg.image = UIImage.init(named: image_name)
             if image_name == " "{
                 imgWidth.constant = 0
@@ -88,29 +86,28 @@ class LineView: UIView {
             }
         }
     }
-    
+
     @IBInspectable
-    var content_line_number : Int = 1{
-        didSet{
+    var content_line_number: Int = 1 {
+        didSet {
             content.numberOfLines = content_line_number
-            if content_line_number >= 1{
+            if content_line_number >= 1 {
                 content.lineBreakMode = .byTruncatingTail
-            }else{
+            } else {
                 content.lineBreakMode = .byCharWrapping
             }
         }
     }
-    
-    
-    var data : Any?{
-        didSet{
+
+    var data: Any? {
+        didSet {
             if let data = data as? LineViewModel {
                 name_text = data.name
                 content_text = data.content
                 name_style = data.name_style.rawValue
-                if data.isBadge{
-                    
-                }else{
+                if data.isBadge {
+
+                } else {
                     content_style = data.content_style.rawValue
                 }
                 content_line_number = data.content_line_number
@@ -119,61 +116,60 @@ class LineView: UIView {
             }
         }
     }
-    
-    func setup(){
+
+    func setup() {
         leftImg.contentMode = .left
         setupEvent()
         updateHeight()
     }
-    
+
     func setupEvent() {
-        rightImg.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+        rightImg.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             if self.index != "" {
-                self.rightImg.next?.sendEventWith(event.right_event.rawValue, userinfo: ["index":self.index])
+                self.rightImg.next?.sendEventWith(event.right_event.rawValue, userinfo: ["index": self.index])
             }
         }).disposed(by: disposeBag)
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadXIB()
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadXIB()
         setup()
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
     }
-    
-    private func updateHeight(){
+
+    private func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()
     }
-    
-    override var intrinsicContentSize: CGSize{
+
+    override var intrinsicContentSize: CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
-    
-    fileprivate func dynamicHeight() -> CGFloat{
+
+    fileprivate func dynamicHeight() -> CGFloat {
         let view = self.subviews.last?.subviews.last
         return (view?.frame.origin.y)! + (view?.frame.size.height)!
     }
-    
-    func loadXIB(){
+
+    func loadXIB() {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib.init(nibName: String.init(describing:type(of: self)), bundle: bundle)
+        let nib = UINib.init(nibName: String.init(describing: type(of: self)), bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         addSubview(view)
         view.frame = self.bounds
-        view.autoresizingMask = [.flexibleHeight,.flexibleWidth]
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 }
-

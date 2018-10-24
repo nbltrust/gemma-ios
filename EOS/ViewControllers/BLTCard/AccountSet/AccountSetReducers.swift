@@ -9,17 +9,15 @@
 import UIKit
 import ReSwift
 
-func AccountSetReducer(action:Action, state:AccountSetState?) -> AccountSetState {
+func AccountSetReducer(action: Action, state: AccountSetState?) -> AccountSetState {
     let state = state ?? AccountSetState()
-        
+
     switch action {
     case let action as PageStateAction:
         state.pageState.accept(action.state)
     default:
         break
     }
-        
+
     return state
 }
-
-

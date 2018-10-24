@@ -9,15 +9,13 @@
 import UIKit
 import ReSwift
 
-func InvitationCodeToActivateReducer(action:Action, state:InvitationCodeToActivateState?) -> InvitationCodeToActivateState {
+func InvitationCodeToActivateReducer(action: Action, state: InvitationCodeToActivateState?) -> InvitationCodeToActivateState {
     let state = state ?? InvitationCodeToActivateState()
-        
+
     switch action {
     default:
         break
     }
-        
+
     return state
 }
-
-

@@ -11,7 +11,7 @@ import ReSwift
 import SwiftyUserDefaults
 
 protocol NormalCoordinatorProtocol {
-    func openContent(_ sender : Int)
+    func openContent(_ sender: Int)
 }
 
 protocol NormalStateManagerProtocol {
@@ -19,24 +19,24 @@ protocol NormalStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<NormalState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
+
     func contentWithSender(_ sender: CustomSettingType) -> String
 }
 
 class NormalCoordinator: NavCoordinator {
-    
+
     lazy var creator = NormalPropertyActionCreate()
-    
+
     var store = Store<NormalState>(
         reducer: NormalReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
 extension NormalCoordinator: NormalCoordinatorProtocol {
-    func openContent(_ sender : Int) {
-        if let vc = R.storyboard.userInfo.normalContentViewController() ,let type = CustomSettingType(rawValue: sender) {
+    func openContent(_ sender: Int) {
+        if let vc = R.storyboard.userInfo.normalContentViewController(), let type = CustomSettingType(rawValue: sender) {
             vc.coordinator = NormalContentCoordinator(rootVC: self.rootVC)
             vc.type = type
             self.rootVC.pushViewController(vc, animated: true)
@@ -48,13 +48,13 @@ extension NormalCoordinator: NormalStateManagerProtocol {
     var state: NormalState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<NormalState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
     func contentWithSender(_ sender: CustomSettingType) -> String {
         var data = [String]()
         switch sender {

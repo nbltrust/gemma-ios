@@ -23,33 +23,33 @@ protocol TransferConfirmPasswordStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<TransferConfirmPasswordState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
-    func transferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
-    
-    func bltTransferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
-    
-    func mortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
-    
-    func relieveMortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
-    
-    func buyRam(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
-    
-    func sellRam(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->())
 
-    func voteNode(_ password:String, account:String, amount:String, remark:String, producers: [String] ,callback:@escaping (Bool, String)->())
+    func transferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+
+    func bltTransferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+
+    func mortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+
+    func relieveMortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+
+    func buyRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+
+    func sellRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+
+    func voteNode(_ password: String, account: String, amount: String, remark: String, producers: [String], callback:@escaping (Bool, String)->Void)
 
 }
 
 class TransferConfirmPasswordCoordinator: NavCoordinator {
-    
+
     lazy var creator = TransferConfirmPasswordPropertyActionCreate()
-    
+
     var store = Store<TransferConfirmPasswordState>(
         reducer: TransferConfirmPasswordReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.transfer.transferConfirmPasswordViewController()!
         let coordinator = TransferConfirmPasswordCoordinator(rootVC: root)
@@ -67,7 +67,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
             }
         }
     }
-    
+
     func finishMortgage() {
         if let mortgageCoor = app_coodinator.homeCoordinator, let mortgageVC = mortgageCoor.rootVC.topViewController as? ResourceMortgageViewController {
             self.rootVC.dismiss(animated: true) {
@@ -75,7 +75,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
             }
         }
     }
-    
+
     func finishBuyRam() {
         if let coor = app_coodinator.homeCoordinator, let vc = coor.rootVC.topViewController as? BuyRamViewController {
             self.rootVC.dismiss(animated: true) {
@@ -83,7 +83,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
             }
         }
     }
-    
+
     func finishVoteNode() {
         if let coor = app_coodinator.homeCoordinator, let vc = coor.rootVC.topViewController as? VoteViewController {
             self.rootVC.dismiss(animated: true) {
@@ -91,11 +91,11 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
             }
         }
     }
-    
+
     func dismissConfirmPwdVC() {
         self.rootVC.dismiss(animated: true, completion: nil)
     }
-    
+
     func popConfirmPwdVC() {
         self.rootVC.popViewController()
     }
@@ -105,18 +105,18 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
     var state: TransferConfirmPasswordState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<TransferConfirmPasswordState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
-    func ValidingPassword(_ password : String) -> Bool{
+
+    func ValidingPassword(_ password: String) -> Bool {
         return WalletManager.shared.isValidPassword(password)
     }
-    
-    func transferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+
+    func transferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
         let model = TransferActionModel()
         model.password = password
         model.toAccount = account
@@ -126,11 +126,11 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.amount = amount
         model.remark = remark
         transaction(EOSAction.transfer.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool,showString)
+            callback(bool, showString)
         }
     }
-    
-    func bltTransferAccounts(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+
+    func bltTransferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
         let model = TransferActionModel()
         model.password = password
         model.toAccount = account
@@ -142,11 +142,11 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.type = .bluetooth
         model.confirmType = pinType
         transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool,showString)
+            callback(bool, showString)
         }
     }
-    
-    func mortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+
+    func mortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
         let model = DelegateActionModel()
         model.password = password
         model.toAccount = account
@@ -154,11 +154,11 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.success = R.string.localizable.mortgage_success.key.localized()
         model.faile = R.string.localizable.mortgage_failed.key.localized()
         transaction(EOSAction.delegatebw.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool,showString)
+            callback(bool, showString)
         }
     }
 
-    func relieveMortgage(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+    func relieveMortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
         let model = UnDelegateActionModel()
         model.password = password
         model.toAccount = account
@@ -166,11 +166,11 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.success = R.string.localizable.cancel_mortgage_success.key.localized()
         model.faile = R.string.localizable.cancel_mortgage_failed.key.localized()
         transaction(EOSAction.undelegatebw.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool,showString)
+            callback(bool, showString)
         }
     }
-    
-    func buyRam(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+
+    func buyRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
         let model = BuyRamActionModel()
         model.password = password
         model.toAccount = account
@@ -179,11 +179,11 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.faile = R.string.localizable.buy_ram_faile.key.localized()
         model.amount = amount
         transaction(EOSAction.buyram.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool,showString)
+            callback(bool, showString)
         }
     }
-    
-    func sellRam(_ password:String, account:String, amount:String, remark:String ,callback:@escaping (Bool, String)->()) {
+
+    func sellRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
         let model = SellRamActionModel()
         model.password = password
         model.toAccount = account
@@ -192,11 +192,11 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.faile = R.string.localizable.sell_ram_faile.key.localized()
         model.amount = amount
         transaction(EOSAction.sellram.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool,showString)
+            callback(bool, showString)
         }
     }
-    
-    func voteNode(_ password: String, account: String, amount: String, remark: String, producers: [String], callback: @escaping (Bool, String) -> ()) {
+
+    func voteNode(_ password: String, account: String, amount: String, remark: String, producers: [String], callback: @escaping (Bool, String) -> Void) {
         let model = VoteProducerActionModel()
         model.password = password
         model.toAccount = account
@@ -205,7 +205,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.faile = R.string.localizable.vote_failed.key.localized()
         model.producers = producers
         transaction(EOSAction.voteproducer.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool,showString)
+            callback(bool, showString)
         }
     }
 }

@@ -12,27 +12,26 @@ import RxCocoa
 import ReSwift
 
 class LeadInViewController: BaseViewController {
-    
+
     var coordinator: (LeadInCoordinatorProtocol & LeadInStateManagerProtocol)?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    
+
     func setupUI() {
         self.title = R.string.localizable.lead_in.key.localized()
     }
 
-    
     override func configureObserveState() {
-        
+
     }
 }
 
 extension LeadInViewController {
-    @objc func switchToKeyView(_ sender : [String:Any]) {
+    @objc func switchToKeyView(_ sender: [String: Any]) {
         self.coordinator?.openLeadInKey()
     }
-    
+
 }

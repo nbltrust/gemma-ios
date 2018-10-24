@@ -21,13 +21,13 @@ protocol PaymentsDetailStateManagerProtocol {
 }
 
 class PaymentsDetailCoordinator: NavCoordinator {
-    
+
     lazy var creator = PaymentsDetailPropertyActionCreate()
-    
+
     var store = Store<PaymentsDetailState>(
         reducer: PaymentsDetailReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -45,11 +45,11 @@ extension PaymentsDetailCoordinator: PaymentsDetailStateManagerProtocol {
     var state: PaymentsDetailState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<PaymentsDetailState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

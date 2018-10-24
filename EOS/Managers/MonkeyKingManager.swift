@@ -19,9 +19,9 @@ class MonkeyKingManager {
             resultCallback(result)
         }
     }
-    
+
     func handleOpenURL(url: URL) {
         _ = MonkeyKing.handleOpenURL(url)
     }
-    
+
 }

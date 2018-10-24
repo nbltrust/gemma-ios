@@ -20,22 +20,22 @@ class WalletDetailViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupData()
     }
-    
+
     override func refreshViewController() {
-        
+
     }
-    
+
     func setupUI() {
-        
+
     }
 
     func setupData() {
@@ -43,27 +43,27 @@ class WalletDetailViewController: BaseViewController {
         contentView.adapterModelToWalletDetailView(self.model)
         self.title = self.model.name
     }
-    
+
     func setupEvent() {
-        
+
     }
-    
+
     override func configureObserveState() {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
-            
+
             if let context = context as? WalletDetailContext {
                 self.context = context
             }
-            
+
         }).disposed(by: disposeBag)
-        
-        self.contentView.disConnectBtn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+
+        self.contentView.disConnectBtn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.coordinator?.cancelPair()
         }).disposed(by: disposeBag)
-        
-        self.contentView.formatBtn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+
+        self.contentView.formatBtn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.coordinator?.formmat()
         }).disposed(by: disposeBag)
@@ -121,7 +121,7 @@ class WalletDetailViewController: BaseViewController {
     }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension WalletDetailViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -135,13 +135,11 @@ class WalletDetailViewController: BaseViewController {
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 extension WalletDetailViewController {
-    @objc func nameDidClicked(_ data:[String: Any]) {
+    @objc func nameDidClicked(_ data: [String: Any]) {
         let model: WalletManagerModel = data["model"] as! WalletManagerModel
         self.coordinator?.pushToChangeWalletName(model: model)
     }
 }
-

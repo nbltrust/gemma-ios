@@ -9,7 +9,7 @@
 import Foundation
 
 extension WalletDetailView {
-    func adapterModelToWalletDetailView(_ model:WalletManagerModel) {
+    func adapterModelToWalletDetailView(_ model: WalletManagerModel) {
         self.data = model
         self.nameLineView.name_text = R.string.localizable.name.key.localized()
         self.nameLineView.content_text = model.name

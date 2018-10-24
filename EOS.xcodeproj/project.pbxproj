@@ -428,11 +428,6 @@
 		72FE5B9221009EED00B29FEC /* LeadInIntroduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9121009EED00B29FEC /* LeadInIntroduceView.xib */; };
 		72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */; };
 		72FE5B9621009F2200B29FEC /* LeadInKeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */; };
-		7302299B212E50460073D5CE /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022996212E50450073D5CE /* Sprite.swift */; };
-		7302299C212E50460073D5CE /* SpriteRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022997212E50450073D5CE /* SpriteRender.swift */; };
-		7302299D212E50460073D5CE /* StarWarsGLAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022998212E50450073D5CE /* StarWarsGLAnimator.swift */; };
-		7302299E212E50460073D5CE /* Vector2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73022999212E50450073D5CE /* Vector2.swift */; };
-		7302299F212E50460073D5CE /* ViewTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7302299A212E50450073D5CE /* ViewTexture.swift */; };
 		732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3710214FB83900CB3A58 /* Kingfisher.framework */; };
 		732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3711214FB83900CB3A58 /* HandyJSON.framework */; };
 		732F371D214FB83F00CB3A58 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732F3712214FB83A00CB3A58 /* RxBlocking.framework */; };
@@ -1126,11 +1121,6 @@
 		72FE5B9121009EED00B29FEC /* LeadInIntroduceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadInIntroduceView.xib; sourceTree = "<group>"; };
 		72FE5B9321009F0A00B29FEC /* LeadInKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInKeyView.swift; sourceTree = "<group>"; };
 		72FE5B9521009F2200B29FEC /* LeadInKeyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadInKeyView.xib; sourceTree = "<group>"; };
-		73022996212E50450073D5CE /* Sprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
-		73022997212E50450073D5CE /* SpriteRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteRender.swift; sourceTree = "<group>"; };
-		73022998212E50450073D5CE /* StarWarsGLAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarWarsGLAnimator.swift; sourceTree = "<group>"; };
-		73022999212E50450073D5CE /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2.swift; sourceTree = "<group>"; };
-		7302299A212E50450073D5CE /* ViewTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTexture.swift; sourceTree = "<group>"; };
 		732F3710214FB83900CB3A58 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		732F3711214FB83900CB3A58 /* HandyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HandyJSON.framework; path = Carthage/Build/iOS/HandyJSON.framework; sourceTree = "<group>"; };
 		732F3712214FB83A00CB3A58 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
@@ -2570,26 +2560,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		73022994212E50450073D5CE /* StarWars */ = {
-			isa = PBXGroup;
-			children = (
-				73022995212E50450073D5CE /* StarWarsGLAnimator */,
-			);
-			path = StarWars;
-			sourceTree = "<group>";
-		};
-		73022995212E50450073D5CE /* StarWarsGLAnimator */ = {
-			isa = PBXGroup;
-			children = (
-				73022996212E50450073D5CE /* Sprite.swift */,
-				73022997212E50450073D5CE /* SpriteRender.swift */,
-				73022998212E50450073D5CE /* StarWarsGLAnimator.swift */,
-				73022999212E50450073D5CE /* Vector2.swift */,
-				7302299A212E50450073D5CE /* ViewTexture.swift */,
-			);
-			path = StarWarsGLAnimator;
-			sourceTree = "<group>";
-		};
 		733714BF212431E100B2ED90 /* LGButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -3065,7 +3035,6 @@
 				73539D1C2179B5B7008395AC /* FCUUID */,
 				73539C9B2179B3B7008395AC /* URLNavigator */,
 				739A4DA32150DF2700A1074B /* RxGesture */,
-				73022994212E50450073D5CE /* StarWars */,
 				73B5A69120F5DFF400756391 /* Jdenticon */,
 			);
 			path = Vendor;
@@ -3124,7 +3093,7 @@
 				732F370F214FB64100CB3A58 /* appstore-bug */,
 				73539D532179BF9D008395AC /* Integrate Reveal Server */,
 				73BEF1CC217F0D2200707DFC /* Embed Frameworks */,
-				737F7697218043E800198196 /* ShellScript */,
+				737F7697218043E800198196 /* swiftlint */,
 			);
 			buildRules = (
 			);
@@ -3453,7 +3422,7 @@
 			shellPath = /bin/sh;
 			shellScript = "REVEAL_APP_PATH=$(mdfind kMDItemCFBundleIdentifier=\"com.ittybittyapps.Reveal2\" | head -n 1)\nBUILD_SCRIPT_PATH=\"${REVEAL_APP_PATH}/Contents/SharedSupport/Scripts/reveal_server_build_phase.sh\"\nif [ \"${REVEAL_APP_PATH}\" -a -e \"${BUILD_SCRIPT_PATH}\" ]; then\n\"${BUILD_SCRIPT_PATH}\"\nelse\necho \"Reveal Server not loaded: Cannot find a compatible Reveal app.\"\nfi\n";
 		};
-		737F7697218043E800198196 /* ShellScript */ = {
+		737F7697218043E800198196 /* swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3462,13 +3431,14 @@
 			);
 			inputPaths = (
 			);
+			name = swiftlint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\necho \"ok\"\n#swiftlint\nelse\necho \"warning: SwiftLint not installed, please brew install SwiftLint\"\nfi\n";
 		};
 		9E5745DB930C4D0B9549467C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3639,7 +3609,6 @@
 				72FE5B542100490200B29FEC /* SafeActions.swift in Sources */,
 				223C5909214A521A00C69F3F /* BLTCardInitReducers.swift in Sources */,
 				3B6D7468214761690076F444 /* ExchangeToActivateCoordinator.swift in Sources */,
-				7302299D212E50460073D5CE /* StarWarsGLAnimator.swift in Sources */,
 				3B6D746E214761690076F444 /* PayToActivateActions.swift in Sources */,
 				72FE5B642100491300B29FEC /* ServersActions.swift in Sources */,
 				722D24CA21115B5000A093CA /* ContainerNormalCellView.swift in Sources */,
@@ -3664,7 +3633,6 @@
 				3B6D7461214761690076F444 /* FriendToActivateActions.swift in Sources */,
 				73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */,
 				73A453BE217727E00075E290 /* BaseCacheService.swift in Sources */,
-				7302299E212E50460073D5CE /* Vector2.swift in Sources */,
 				73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */,
 				72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */,
 				57988B0F4659572FB0099493045E18EE /* EntryReducers.swift in Sources */,
@@ -3699,7 +3667,6 @@
 				917CFC3CF79C268A4F4C59FBC103A951 /* HomeReducers.swift in Sources */,
 				733714EB212431E200B2ED90 /* SwiftIconFont.swift in Sources */,
 				72101691210197C10059B37E /* WalletActions.swift in Sources */,
-				7302299C212E50460073D5CE /* SpriteRender.swift in Sources */,
 				733714E3212431E200B2ED90 /* FontAwesome.swift in Sources */,
 				73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */,
 				223C5917214A532800C69F3F /* BLTCardEntryView.swift in Sources */,
@@ -3712,7 +3679,6 @@
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
 				72FE5B8821009E4D00B29FEC /* LeadInCoordinator.swift in Sources */,
 				72FE5B8B21009E4D00B29FEC /* LeadInReducers.swift in Sources */,
-				7302299B212E50460073D5CE /* Sprite.swift in Sources */,
 				72FE5B4C210048F500B29FEC /* NormalActions.swift in Sources */,
 				3B3935A9214B50A000AB0A30 /* BackupMnemonicWordReducers.swift in Sources */,
 				72FE5B5E2100490B00B29FEC /* HelpReducers.swift in Sources */,
@@ -3809,7 +3775,6 @@
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				7224714A20F76B4600536BF4 /* DetailView.swift in Sources */,
 				223C58F8214A50F300C69F3F /* BLTCardConfirmPinReducers.swift in Sources */,
-				7302299F212E50460073D5CE /* ViewTexture.swift in Sources */,
 				725F68062101B8E50006BBA1 /* SetWalletViewController.swift in Sources */,
 				73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */,
 				22C023B920FDDF0400284A0A /* ScanCornerView.swift in Sources */,

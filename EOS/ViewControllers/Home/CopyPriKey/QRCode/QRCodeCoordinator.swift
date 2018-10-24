@@ -20,13 +20,13 @@ protocol QRCodeStateManagerProtocol {
 }
 
 class QRCodeCoordinator: NavCoordinator {
-    
+
     lazy var creator = QRCodePropertyActionCreate()
-    
+
     var store = Store<QRCodeState>(
         reducer: QRCodeReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -37,11 +37,11 @@ extension QRCodeCoordinator: QRCodeStateManagerProtocol {
     var state: QRCodeState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<QRCodeState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

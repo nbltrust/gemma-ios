@@ -14,11 +14,11 @@ extension Array {
         var arr: Array<String> = []
         var signString = "["
         for value in array {
-            if let value = value as? Dictionary<String,Any> {//Dictionary 递归
+            if let value = value as? Dictionary<String, Any> {//Dictionary 递归
                 arr.append(value.sortJsonString())
-            }else if let value = value as? Array<Any> {//Array 递归
+            } else if let value = value as? Array<Any> {//Array 递归
                 arr.append(value.sortJsonString())
-            }else{//其他 直接拼接
+            } else {//其他 直接拼接
                 arr.append("\"\(value)\"")
             }
         }

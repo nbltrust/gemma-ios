@@ -10,11 +10,11 @@ import Foundation
 import ReSwift
 import RxCocoa
 
-//MARK: - State
+// MARK: - State
 struct FaceIDComfirmState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: FaceIDComfirmPropertyState
     var callback: FaceIDConfirmCallbackState
 }
@@ -26,10 +26,10 @@ struct FaceIDConfirmCallbackState {
     var confirmResult: BehaviorRelay<ResultCallback?> = BehaviorRelay(value: nil)
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class FaceIDComfirmPropertyActionCreate {
     public typealias ActionCreator = (_ state: FaceIDComfirmState, _ store: Store<FaceIDComfirmState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: FaceIDComfirmState,
         _ store: Store <FaceIDComfirmState>,

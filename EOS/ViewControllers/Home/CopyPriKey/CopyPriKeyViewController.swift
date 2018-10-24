@@ -16,14 +16,14 @@ import KRProgressHUD
 class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
 
 	var coordinator: (CopyPriKeyCoordinatorProtocol & CopyPriKeyStateManagerProtocol)?
-    
+
 	override func viewDidLoad() {
         setupSetting()
         super.viewDidLoad()
         self.title = R.string.localizable.copy_priKey_title.key.localized()
         self.coordinator?.showAlertMessage()
     }
-    
+
     func setupSetting() {
         self.settings.style.buttonBarBackgroundColor = UIColor.whiteTwo
         self.settings.style.buttonBarItemBackgroundColor = UIColor.whiteTwo
@@ -35,14 +35,14 @@ class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
         self.settings.style.buttonBarHeight = 56
         self.settings.style.buttonBarLeftContentInset = 34
         self.settings.style.buttonBarRightContentInset = 34
-        
+
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = UIColor.blueyGrey
             newCell?.label.textColor = UIColor.darkSlateBlue
         }
     }
-    
+
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let priKeyVC = R.storyboard.home.priKeyViewController()!
         let qrcodeVC = R.storyboard.home.qrCodeViewController()!
@@ -51,7 +51,7 @@ class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
 }
 
 extension CopyPriKeyViewController {
-    @objc func savedKeySafely(_ data: [String : Any]) {
+    @objc func savedKeySafely(_ data: [String: Any]) {
         self.coordinator?.pushVerifyPriKey()
     }
 }

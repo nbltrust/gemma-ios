@@ -19,7 +19,7 @@ enum WalletSettingType: Int {
 }
 
 class SetWalletViewController: BaseViewController {
-    
+
     @IBOutlet weak var agree: UIButton!
     @IBOutlet weak var servers: UILabel!
     @IBOutlet weak var finished: Button!
@@ -27,9 +27,9 @@ class SetWalletViewController: BaseViewController {
     @IBOutlet weak var fieldVIew: SetWalletContentView!
     @IBOutlet weak var cornerShadowView: CornerAndShadowView!
     @IBOutlet weak var agreeView: UIView!
-    
+
     var settingType: WalletSettingType = .leadIn
-    
+
 	var coordinator: (SetWalletCoordinatorProtocol & SetWalletStateManagerProtocol)?
 
 	override func viewDidLoad() {
@@ -38,7 +38,7 @@ class SetWalletViewController: BaseViewController {
 //        cornerShadowView.updateContentSize()
         setupEvent()
     }
-    
+
     func setupUI() {
         switch settingType {
         case .leadIn:
@@ -59,12 +59,12 @@ class SetWalletViewController: BaseViewController {
             finished.title = R.string.localizable.wookong_creat_new_wallet.key.localized()
             agreeView.isHidden = true
         }
-    
+
         agree.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
     }
-    
+
     func setupEvent() {
-        finished.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+        finished.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.coordinator?.validPassword(self.fieldVIew.password.textField.text!)
             self.coordinator?.validComfirmPassword(self.fieldVIew.resetPassword.textField.text!, comfirmPassword: self.fieldVIew.password.textField.text!)
@@ -78,14 +78,13 @@ class SetWalletViewController: BaseViewController {
                             self.endLoading()
                             if success {
                                 self.coordinator?.importFinished()
-                            }
-                            else {
+                            } else {
                                 self.showError(message: R.string.localizable.lead_in_fail.key.localized())
                             }
                         })
                     }
                 case .updatePas:
-                    if let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text{
+                    if let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text {
                         self.coordinator?.updatePassword(password, hint: hint)
                         self.showSuccess(message: R.string.localizable.change_password_success.key.localized())
                     }
@@ -105,12 +104,11 @@ class SetWalletViewController: BaseViewController {
                 }
             }
         }).disposed(by: disposeBag)
-        
-        
-        mnemonic.button.rx.controlEvent(.touchUpInside).subscribe(onNext: { tap in
+
+        mnemonic.button.rx.controlEvent(.touchUpInside).subscribe(onNext: { _ in
         }).disposed(by: disposeBag)
-        
-        servers.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+
+        servers.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.coordinator?.pushToServiceProtocolVC()
         }).disposed(by: disposeBag)
@@ -132,18 +130,17 @@ class SetWalletViewController: BaseViewController {
                                     }
                                     return arg0.0 && arg0.1 && arg0.2
             }.bind(to: finished.isEnabel).disposed(by: disposeBag)
-        
-        
+
     }
 }
 
 extension SetWalletViewController {
-    @objc func walletPassword(_ data: [String : Any]) {
+    @objc func walletPassword(_ data: [String: Any]) {
         self.coordinator?.validPassword(self.fieldVIew.password.textField.text!)
         self.coordinator?.validComfirmPassword(self.fieldVIew.password.textField.text!, comfirmPassword: self.fieldVIew.resetPassword.textField.text!)
     }
-    
-    @objc func walletComfirmPassword(_ data: [String : Any]) {
+
+    @objc func walletComfirmPassword(_ data: [String: Any]) {
         self.coordinator?.validComfirmPassword(self.fieldVIew.resetPassword.textField.text!, comfirmPassword: self.fieldVIew.password.textField.text!)
     }
 }

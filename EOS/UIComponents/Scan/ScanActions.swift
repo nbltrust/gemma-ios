@@ -16,10 +16,9 @@ struct ScanContext: RouteContext, HandyJSON {
 }
 
 typealias ScanResult = ((_ pickurler: String) -> Void)
-//MARK: - State
-struct ScanState:BaseState {
+// MARK: - State
+struct ScanState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
-    
+
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
 }
-

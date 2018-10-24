@@ -22,15 +22,15 @@ enum EOSIOService {
     case abi_bin_to_json(bin: String, action:EOSAction)
     case push_transaction(json: String)
     case get_table_rows(json:String)
-    
+
     //history
     case get_key_accounts(pubKey:String)
     case get_transaction(id:String)
 }
 
 struct EOSIONetwork {
-    static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil, manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(), plugins: [NetworkLoggerPlugin(verbose: true),DataCachePlugin()], trackInflights: false)
-    
+    static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil, manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(), plugins: [NetworkLoggerPlugin(verbose: true), DataCachePlugin()], trackInflights: false)
+
     static func request(
         target: EOSIOService,
         success successCallback: @escaping (JSON) -> Void,
@@ -48,41 +48,39 @@ struct EOSIONetwork {
                         if let balance = json.arrayValue.first?.string {
                             Defaults.set(balance, forKey: "\(accountName)balance")
                         }
-                    case .get_account(_,_):
+                    case .get_account:
                         if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                             var model = accountObj.toAccountModel()
                             model.saveToLocal()
                         }
                     case .get_info:break
-                        
+
                     case .get_block:break
-                        
+
                     case .abi_json_to_bin:break
-                        
+
                     case .abi_bin_to_json:break
-                        
+
                     case .push_transaction:break
-                        
+
                     case .get_key_accounts:break
-                        
+
                     case .get_transaction:break
-                        
+
                     case .get_table_rows:break
-                        
+
                     }
 
                     successCallback(json)
-                }
-                catch _ {
+                } catch _ {
                     do {
                         let json = try JSON(response.mapJSON())
                         let error = json["error"]["code"].debugDescription
                         let codeKey = AppConfiguration.EOS_ERROR_CODE_BASE + error
                         let codeValue = codeKey.localized()
                         showFailTop(codeValue)
-                    }
-                    catch _ {
-                        
+                    } catch _ {
+
                     }
                     errorCallback(0)
                 }
@@ -93,19 +91,18 @@ struct EOSIONetwork {
                 } else {
                     endProgress()
                 }
-                
+
                 failureCallback(error)
             }
         }
     }
 }
 
-
-extension EOSIOService : TargetType {
+extension EOSIOService: TargetType {
     var baseURL: URL {
         let configuration = NetworkConfiguration()
         switch self {
-        case .get_account(_, _):
+        case .get_account:
 //            if otherNode {
 //                return  configuration.EOSIO_OTHER_BASE_URL
 //            }
@@ -114,21 +111,21 @@ extension EOSIOService : TargetType {
             return configuration.EOSIO_BASE_URL
         }
     }
-    
+
     var isNeedCache: Bool {
         switch self {
-        case .get_account(_,_):
+        case .get_account:
             return true
         default:
             return false
         }
     }
-    
+
     var path: String {
         switch self {
-        case .get_currency_balance(_):
+        case .get_currency_balance:
             return "/v1/chain/get_currency_balance"
-        case .get_account(_,_):
+        case .get_account:
             return "/v1/chain/get_account"
         case .get_info:
             return "/v1/chain/get_info"
@@ -148,13 +145,12 @@ extension EOSIOService : TargetType {
             return "/v1/chain/get_table_rows"
         }
     }
-    
-    
+
     var parameters: [String: Any] {
         switch self {
         case let .get_currency_balance(account):
             return ["account": account, "code": EOSIOContract.TOKEN_CODE, "symbol": NetworkConfiguration.EOSIO_DEFAULT_SYMBOL]
-        case let .get_account(account,_):
+        case let .get_account(account, _):
             return ["account_name": account]
         case .get_info:
             return [:]
@@ -163,13 +159,13 @@ extension EOSIOService : TargetType {
         case let .abi_json_to_bin(json):
             return JSON(parseJSON: json).dictionaryObject ?? [:]
         case let .push_transaction(json):
-            var transaction:[String: Any] = ["compression":"none"]
+            var transaction: [String: Any] = ["compression": "none"]
             var jsonOb = JSON(parseJSON: json).dictionaryObject ?? [:]
             let signatures = jsonOb["signatures"]
             jsonOb.removeValue(forKey: "signatures")
             transaction["signatures"] = signatures
             transaction["transaction"] = jsonOb
-            
+
             return transaction
         case let .abi_bin_to_json(bin, action):
             return ["code": EOSIOContract.TOKEN_CODE, "action": action.rawValue, "binargs": bin]
@@ -181,7 +177,7 @@ extension EOSIOService : TargetType {
             return JSON(parseJSON: json).dictionaryObject ?? [:]
         }
     }
-    
+
     var task: Task {
         return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     }
@@ -189,13 +185,12 @@ extension EOSIOService : TargetType {
     var method: Moya.Method {
         return .post
     }
-    
+
     var sampleData: Data {
         return try! JSON(parameters).rawData()
     }
 
-    
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         return ["Content-type": "application/json"]
     }
 }
@@ -204,10 +199,8 @@ private extension String {
     var urlEscaped: String {
         return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
     }
-    
+
     var utf8Encoded: Data {
         return data(using: .utf8)!
     }
 }
-
-

@@ -9,13 +9,13 @@
 import UIKit
 import ReSwift
 
-func SelectedVoteReducer(action:Action, state:SelectedVoteState?) -> SelectedVoteState {
-    return SelectedVoteState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: SelectedVotePropertyReducer(state?.property, action: action), callback:state?.callback ?? SelectedVoteCallbackState())
+func SelectedVoteReducer(action: Action, state: SelectedVoteState?) -> SelectedVoteState {
+    return SelectedVoteState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: SelectedVotePropertyReducer(state?.property, action: action), callback: state?.callback ?? SelectedVoteCallbackState())
 }
 
 func SelectedVotePropertyReducer(_ state: SelectedVotePropertyState?, action: Action) -> SelectedVotePropertyState {
     var state = state ?? SelectedVotePropertyState()
-    
+
     switch action {
     case let action as SetVoteNodeListAction:
         state.datas = action.datas
@@ -24,9 +24,6 @@ func SelectedVotePropertyReducer(_ state: SelectedVotePropertyState?, action: Ac
     default:
         break
     }
-    
+
     return state
 }
-
-
-

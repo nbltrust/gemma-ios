@@ -9,7 +9,7 @@
 import Foundation
 import ReSwift
 
-func AppReducer(action:Action, state:AppState?) -> AppState {
+func AppReducer(action: Action, state: AppState?) -> AppState {
     return AppState(property: AppPropertyReducer(state?.property, action: action))
 }
 
@@ -17,18 +17,17 @@ func AppPropertyReducer(_ state: AppPropertyState?, action: Action) -> AppProper
     let state = state ?? AppPropertyState()
 
     switch action {
-        
+
     default:
         break
     }
-    
+
     return state
 }
 
-
 func loadingReducer(_ state: Bool?, action: Action) -> Bool {
     var state = state ?? false
-    
+
     switch action {
     case _ as StartLoading:
         state = true
@@ -37,13 +36,13 @@ func loadingReducer(_ state: Bool?, action: Action) -> Bool {
     default:
         break
     }
-    
+
     return state
 }
 
 func errorMessageReducer(_ state: String?, action: Action) -> String {
     var state = state ?? ""
-    
+
     switch action {
     case let action as NetworkErrorMessage:
         state = action.errorMessage
@@ -52,13 +51,13 @@ func errorMessageReducer(_ state: String?, action: Action) -> String {
     default:
         break
     }
-    
+
     return state
 }
 
 func pageReducer(_ state: Int?, action: Action) -> Int {
     var state = state ?? 1
-    
+
     switch action {
     case _ as NextPage:
         state = state + 1
@@ -67,18 +66,18 @@ func pageReducer(_ state: Int?, action: Action) -> Int {
     default:
         break
     }
-    
+
     return state
 }
 
 public class BlockSubscriber<S>: StoreSubscriber {
     public typealias StoreSubscriberStateType = S
     private let block: (S) -> Void
-    
+
     public init(block: @escaping (S) -> Void) {
         self.block = block
     }
-    
+
     public func newState(state: S) {
         self.block(state)
     }
@@ -89,14 +88,12 @@ let TrackingMiddleware: Middleware<Any> = { dispatch, getState in
         return { action in
             if let action = action as? PageStateAction, let state = getState() as? BaseState {
                 state.pageState.accept(action.state)
-            }
-            else if let action = action as? RouteContextAction, let state = getState() as? BaseState {
+            } else if let action = action as? RouteContextAction, let state = getState() as? BaseState {
                 state.context.accept(action.context)
-            }
-            else if let action = action as? RefreshState {
+            } else if let action = action as? RefreshState {
                 _ = action.vc?.perform(action.sel)
             }
-            
+
             return next(action)
         }
     }

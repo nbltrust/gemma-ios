@@ -17,40 +17,40 @@ class BLTCardInitViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func refreshViewController() {
-        
+
     }
-    
+
     func setupUI() {
-        
+
     }
 
     func setupData() {
-        
+
     }
-    
+
     func setupEvent() {
-        
+
     }
-    
+
     override func configureObserveState() {
-        coordinator?.state.pageState.asObservable().subscribe(onNext: {(state) in
-            
+        coordinator?.state.pageState.asObservable().subscribe(onNext: {(_) in
+
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension BLTCardInitViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,8 +64,7 @@ class BLTCardInitViewController: BaseViewController {
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 //extension BLTCardInitViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
@@ -74,4 +73,3 @@ class BLTCardInitViewController: BaseViewController {
 //        }
 //    }
 //}
-

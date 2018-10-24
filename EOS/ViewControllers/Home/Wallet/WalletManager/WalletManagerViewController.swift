@@ -16,25 +16,24 @@ class WalletManagerViewController: BaseViewController {
     @IBOutlet weak var walletManagerView: WalletManagerView!
     var coordinator: (WalletManagerCoordinatorProtocol & WalletManagerStateManagerProtocol)?
     var data = WalletManagerModel()
-    
+
 	override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
     }
-    
+
     func setUpUI() {
         self.title = R.string.localizable.manager_wallet.key.localized()
         walletManagerView.data = data
     }
-    
+
     func reloadUI() {
         data.connected = BLTWalletIO.shareInstance()?.isConnection() ?? false
         walletManagerView.data = data
     }
 
-    
     override func configureObserveState() {
-        
+
     }
 }
 
@@ -47,7 +46,7 @@ extension WalletManagerViewController {
             self.coordinator?.pushToDetailVC(model: model)
         }
     }
-    
+
     @objc func exportPrivateKeyClick(_ data: [String: Any]) {
         let model: WalletManagerModel = data["indicator"] as! WalletManagerModel
         if model.type == .gemma {
@@ -56,14 +55,14 @@ extension WalletManagerViewController {
             self.coordinator?.pushToFingerVC(model: model)
         }
     }
-    
+
     @objc func changePasswordClick(_ data: [String: Any]) {
         let model: WalletManagerModel = data["indicator"] as! WalletManagerModel
         if model.type == .gemma {
             self.coordinator?.pushToChangePassword(self.data.address)
         }
     }
-    
+
     @objc func btnClick(_ data: [String: Any]) {
         let model: WalletManagerModel = data["data"] as! WalletManagerModel
         if model.connected == true {

@@ -15,51 +15,51 @@ protocol GestureLockViewDelegate: NSObjectProtocol {
 class GestureLockView: UIView {
 
     open weak var delegate: GestureLockViewDelegate?
-    
+
     open var locked = false
-    
+
     private var itemLayers: [GestureItemLayer] = []
-    
+
     private var selectedItemLayers: [GestureItemLayer] = []
-    
+
     private var mainPath = UIBezierPath()
-    
+
     private var interval: TimeInterval = 0
-    
+
     private(set) var password = ""
-    
+
     private var lastLocation = CGPoint(x: 0, y: 0)
-    
+
     private var shapeLayer: CAShapeLayer? {
         return layer as? CAShapeLayer
     }
 
-    open var itemSizes: (width: CGFloat,gap: CGFloat,centerRadius: CGFloat) = (64,40,10) {
+    open var itemSizes: (width: CGFloat, gap: CGFloat, centerRadius: CGFloat) = (64, 40, 10) {
         didSet {
             setNeedsLayout()
         }
     }
-    
+
     override open class var layerClass: AnyClass {
         return CAShapeLayer.self
     }
-    
+
     convenience init() {
-        self.init(frame: CGRect(x:0, y:0, width:0, height:0))
+        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
         setupLayer()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
         setupLayer()
     }
-    
+
     fileprivate func setupLayer() {
         self.shapeLayer?.lineCap = CAShapeLayerLineCap.round
         self.shapeLayer?.lineJoin = CAShapeLayerLineJoin.round
@@ -67,22 +67,22 @@ class GestureLockView: UIView {
         self.shapeLayer?.strokeColor = GestureLockSetting.lockHighlightedColor.cgColor
         self.shapeLayer?.lineWidth = GestureLockSetting.lockHighlightedBorderWidth
     }
-    
+
     fileprivate func setupUI() {
         for _ in 0 ..< 9 {
             let itemLayer = GestureItemLayer()
             itemLayers.append(itemLayer)
             layer.addSublayer(itemLayer)
         }
-        
+
         reSizeLayer()
     }
-    
+
     func reSizeLayer() {
         if itemLayers.count > 0 {
             let marginX = (frame.width - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
             let marginY = (frame.height - itemSizes.width.adapt() * 3 - itemSizes.gap.adapt() * 2) / 2
-            
+
             for (idx, sublayer) in itemLayers.enumerated() {
                 let row = CGFloat(idx % 3)
                 let col = CGFloat(idx / 3)
@@ -95,34 +95,34 @@ class GestureLockView: UIView {
             }
         }
     }
-    
+
     public func showSelectedItems(_ passwordStr: String) {
         for char in passwordStr {
             itemLayers[Int("\(char)")!].status = .highlighted
         }
     }
-        
+
     override func layoutSubviews() {
         super.layoutSubviews()
         reSizeLayer()
     }
-    
+
     override open func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         processTouch(touches)
     }
-    
+
     override open func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
         processTouch(touches)
     }
-    
+
     override open func touchesEnded(_: Set<UITouch>, with _: UIEvent?) {
         touchesEnd()
     }
-    
+
     override open func touchesCancelled(_: Set<UITouch>?, with _: UIEvent?) {
         touchesEnd()
     }
-    
+
     private func processTouch(_ touches: Set<UITouch>) {
         let location = touches.first!.location(in: self)
         guard let itemLayer = itemLayer(with: location) else {
@@ -136,7 +136,7 @@ class GestureLockView: UIView {
         itemLayer.status = locked ? .locked : .highlighted
         drawLine()
     }
-    
+
     private func touchesEnd() {
         self.isUserInteractionEnabled = false
         delegate?.gestureLockViewDidTouchesEnd(self)
@@ -144,11 +144,11 @@ class GestureLockView: UIView {
             self.reset()
         }
     }
-    
+
     func delay(_ interval: TimeInterval, handle: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: handle)
     }
-    
+
     private func itemLayer(with touchLocation: CGPoint) -> GestureItemLayer? {
         for subLayer in itemLayers {
             if !subLayer.frame.contains(touchLocation) {
@@ -158,11 +158,11 @@ class GestureLockView: UIView {
         }
         return nil
     }
-    
+
     private func drawLine() {
-        
+
         if selectedItemLayers.isEmpty { return }
-        
+
         for (idx, itemlayer) in selectedItemLayers.enumerated() {
             let directPoint = itemlayer.position
             if idx == 0 {
@@ -177,8 +177,8 @@ class GestureLockView: UIView {
         }
         shapeLayer?.path = mainPath.cgPath
     }
-    
-    private func angleBetweenLines(_ startPoint: CGPoint,endPoint: CGPoint) -> CGFloat {
+
+    private func angleBetweenLines(_ startPoint: CGPoint, endPoint: CGPoint) -> CGFloat {
         let xPoint = CGPoint(x: startPoint.x + 100, y: startPoint.y)
         let a = endPoint.x - startPoint.x
         let b = endPoint.y - startPoint.y
@@ -190,13 +190,13 @@ class GestureLockView: UIView {
         }
         return rads
     }
-    
+
     public func warn() {
         interval = 1
         selectedItemLayers.forEach { $0.status = .warning }
         shapeLayer?.strokeColor = GestureLockSetting.warningColor.cgColor
     }
-    
+
     public func reset() {
         self.isUserInteractionEnabled = true
         interval = 0

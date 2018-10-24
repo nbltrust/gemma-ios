@@ -9,15 +9,13 @@
 import UIKit
 import ReSwift
 
-func VerifyPriKeyReducer(action:Action, state:VerifyPriKeyState?) -> VerifyPriKeyState {
+func VerifyPriKeyReducer(action: Action, state: VerifyPriKeyState?) -> VerifyPriKeyState {
     let state = state ?? VerifyPriKeyState()
-        
+
     switch action {
     default:
         break
     }
-        
+
     return state
 }
-
-

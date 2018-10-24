@@ -24,15 +24,15 @@ protocol EntryGuideStateManagerProtocol {
 }
 
 class EntryGuideCoordinator: NavCoordinator {
-    
+
     lazy var creator = EntryGuidePropertyActionCreate()
-    
+
     var store = Store<EntryGuideState>(
         reducer: EntryGuideReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.entry.entryGuideViewController()!
         let coordinator = EntryGuideCoordinator(rootVC: root)
@@ -54,7 +54,7 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
         createVC.coordinator = coordinator
         self.rootVC.pushViewController(createVC, animated: true)
     }
-    
+
     func pushToRecoverFromCopyVC() {
         let leadInVC = R.storyboard.leadIn.leadInViewController()!
         let coordinator = LeadInCoordinator(rootVC: self.rootVC)
@@ -72,7 +72,7 @@ extension EntryGuideCoordinator: EntryGuideStateManagerProtocol {
     var state: EntryGuideState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<EntryGuideState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {

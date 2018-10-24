@@ -10,21 +10,21 @@ import Foundation
 import ReSwift
 import RxCocoa
 
-//MARK: - State
+// MARK: - State
 struct SafeState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: SafePropertyState
 }
 
 struct SafePropertyState {
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class SafePropertyActionCreate {
     public typealias ActionCreator = (_ state: SafeState, _ store: Store<SafeState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: SafeState,
         _ store: Store <SafeState>,

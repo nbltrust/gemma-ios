@@ -18,73 +18,73 @@ class RegisterContentView: UIView {
     @IBOutlet weak var passwordComfirmView: TitleTextfieldView!
     @IBOutlet weak var passwordPromptView: TitleTextfieldView!
     @IBOutlet weak var tipsView: SharpCornerTipsLabelView!
-    
+
     enum InputType: Int {
         case name = 1
         case password
         case comfirmPassword
         case passwordPrompt
     }
-    
+
     enum TextChangeEvent: String {
         case walletName
         case walletPassword
         case walletComfirmPassword
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
         setup()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
         setup()
     }
-    
+
     func setup() {
         setupUI()
         updateContentSize()
     }
-    
+
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
-    
+
     func updateContentSize() {
         self.performSelector(onMainThread: #selector(self.updateHeight), with: nil, waitUntilDone: false)
         self.performSelector(onMainThread: #selector(self.updateHeight), with: nil, waitUntilDone: false)
     }
-    
+
     @objc fileprivate func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()
     }
-    
+
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
         return lastView!.bottom
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
     }
-    
+
     fileprivate func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
+
         addSubview(view)
         view.frame = self.bounds
-        view.autoresizingMask = [.flexibleHeight,.flexibleWidth]
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
-    
+
     func setupUI() {
         tipsView.isHidden = true
         handleSetupSubView(nameView, tag: InputType.name.rawValue)
@@ -92,8 +92,8 @@ class RegisterContentView: UIView {
         handleSetupSubView(passwordComfirmView, tag: InputType.comfirmPassword.rawValue)
         handleSetupSubView(passwordPromptView, tag: InputType.passwordPrompt.rawValue)
     }
-    
-    func handleSetupSubView(_ titleTextfieldView : TitleTextfieldView, tag: Int) {
+
+    func handleSetupSubView(_ titleTextfieldView: TitleTextfieldView, tag: Int) {
         titleTextfieldView.textField.tag = tag
         titleTextfieldView.textField.delegate = self
         titleTextfieldView.delegate = self
@@ -102,31 +102,31 @@ class RegisterContentView: UIView {
         titleTextfieldView.updateContentSize()
         titleTextfieldView.textField.addTarget(self, action: #selector(handleTextFiledDidChanged(_:)), for: .editingChanged)
     }
-    
+
     func passwordSwitch(isSelected: Bool) {
         let tempPassword = passwordView.textField.text
         passwordView.textField.text = ""
         passwordView.textField.isSecureTextEntry = !isSelected
         passwordView.textField.text = tempPassword
-        
+
         let tempComfirmPassword = passwordComfirmView.textField.text
         passwordComfirmView.textField.text = ""
         passwordComfirmView.textField.isSecureTextEntry = !isSelected
         passwordComfirmView.textField.text = tempComfirmPassword
     }
-    
+
     @objc func handleTextFiledDidChanged(_ textField: UITextField) {
         handleTextField(textField)
     }
 }
 
-extension RegisterContentView: TitleTextFieldViewDelegate,TitleTextFieldViewDataSource {
+extension RegisterContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDataSource {
     func textIntroduction(titleTextFieldView: TitleTextfieldView) {
 //        if titleTextFieldView == inviteCodeView {
 //            self.sendEventWith(IntroduceEvent.getInviteCode.rawValue, userinfo: [:])
 //        }
     }
-    
+
     func textActionTrigger(titleTextFieldView: TitleTextfieldView, selected: Bool, index: NSInteger) {
         if titleTextFieldView == passwordView {
             if index == 0 {
@@ -142,7 +142,7 @@ extension RegisterContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
             }
         }
     }
-    
+
     func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting {
         if titleTextFieldView == nameView {
             return TitleTextSetting(title: R.string.localizable.account_wallet_name.key.localized(),
@@ -186,7 +186,7 @@ extension RegisterContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
                                     isSecureTextEntry: false)
         }
     }
-    
+
     func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting] {
         if titleTextFieldView == passwordView {
             return [TextButtonSetting(imageName: R.image.ic_close.name,
@@ -201,7 +201,7 @@ extension RegisterContentView: TitleTextFieldViewDelegate,TitleTextFieldViewData
                                       isShowWhenEditing: true)]
         }
     }
-    
+
     func textUnitStr(titleTextFieldView: TitleTextfieldView) -> String {
         return ""
     }
@@ -240,7 +240,7 @@ extension RegisterContentView: UITextFieldDelegate {
             return
         }
     }
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
         case InputType.name.rawValue:
@@ -271,7 +271,7 @@ extension RegisterContentView: UITextFieldDelegate {
             return
         }
     }
-    
+
     func handleTextField(_ textField: UITextField) {
         let text = textField.text ?? ""
         switch textField.tag {
@@ -279,16 +279,16 @@ extension RegisterContentView: UITextFieldDelegate {
             if text.count > 12 {
                 textField.text = text.substring(from: 0, length: 12)
             }
-            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : textField.text ?? ""])
+            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content": textField.text ?? ""])
         case InputType.password.rawValue:
-            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content" : text])
+            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content": text])
         case InputType.comfirmPassword.rawValue:
-            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content" : text])
+            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content": text])
         default:
             return
         }
     }
-    
+
 //    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
 //        UIView.animate(withDuration: 0.2) {
 //            if let titleTextView = textView.superview?.superview as? TitleTextView {
@@ -298,4 +298,3 @@ extension RegisterContentView: UITextFieldDelegate {
 //        }
 //    }
 }
-

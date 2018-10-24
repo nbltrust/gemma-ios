@@ -16,18 +16,18 @@ class ResourceMortgageViewController: BaseViewController {
 	var coordinator: (ResourceMortgageCoordinatorProtocol & ResourceMortgageStateManagerProtocol)?
 
     @IBOutlet weak var contentView: ResourceMortgageView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        coordinator?.getCurrentFromLocal()
         coordinator?.getAccountInfo(WalletManager.shared.getAccount())
     }
-    
+
     func resetData() {
         self.contentView.pageView.leftView.cpuMortgageView.clearText()
         self.contentView.pageView.leftView.netMortgageView.clearText()
@@ -37,18 +37,18 @@ class ResourceMortgageViewController: BaseViewController {
         self.contentView.rightNextButton.isEnabel.accept(false)
         self.coordinator?.pushToPaymentVC()
     }
-    
+
     func setupUI() {
         self.title = R.string.localizable.resource_manager.key.localized()
     }
 
     override func configureObserveState() {
-        
+
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             self.contentView.data = model
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         coordinator?.state.property.cpuMoneyValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             var warning = ""
@@ -58,7 +58,7 @@ class ResourceMortgageViewController: BaseViewController {
                 self.contentView.pageView.leftView.cpuMortgageView.checkStatus = .warning
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         coordinator?.state.property.netMoneyValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             var warning = ""
@@ -68,25 +68,24 @@ class ResourceMortgageViewController: BaseViewController {
                 self.contentView.pageView.leftView.netMortgageView.checkStatus = .warning
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         Observable.combineLatest(self.coordinator!.state.property.cpuMoneyValid.asObservable(),
                                  self.coordinator!.state.property.netMoneyValid.asObservable()
             ).map { (arg0) -> Bool in
-                
-                if self.contentView.pageView.leftView.netMortgageView.textField.text == "",self.contentView.pageView.leftView.cpuMortgageView.textField.text == "" {
+
+                if self.contentView.pageView.leftView.netMortgageView.textField.text == "", self.contentView.pageView.leftView.cpuMortgageView.textField.text == "" {
                     return false
                 }
-                
-                if arg0.0.0 == true,self.contentView.pageView.leftView.netMortgageView.textField.text == "" {
+
+                if arg0.0.0 == true, self.contentView.pageView.leftView.netMortgageView.textField.text == "" {
                     return true
-                } else if arg0.1.0 == true,self.contentView.pageView.leftView.cpuMortgageView.textField.text == "" {
+                } else if arg0.1.0 == true, self.contentView.pageView.leftView.cpuMortgageView.textField.text == "" {
                     return true
                 }
-                
+
                 return arg0.0.0 && arg0.1.0
             }.bind(to: self.contentView.leftNextButton.isEnabel).disposed(by: disposeBag)
-        
-    
+
         coordinator?.state.property.cpuReliveMoneyValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             var warning = ""
@@ -96,7 +95,7 @@ class ResourceMortgageViewController: BaseViewController {
                 self.contentView.pageView.rightView.cpuMortgageCancelView.checkStatus = .warning
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         coordinator?.state.property.netReliveMoneyValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             var warning = ""
@@ -106,28 +105,28 @@ class ResourceMortgageViewController: BaseViewController {
                 self.contentView.pageView.rightView.netMortgageCancelView.checkStatus = .warning
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         Observable.combineLatest(self.coordinator!.state.property.cpuReliveMoneyValid.asObservable(),
                                  self.coordinator!.state.property.netReliveMoneyValid.asObservable()
             ).map { (arg0) -> Bool in
-                
-                if self.contentView.pageView.rightView.netMortgageCancelView.textField.text == "",self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text == "" {
+
+                if self.contentView.pageView.rightView.netMortgageCancelView.textField.text == "", self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text == "" {
                     return false
                 }
-                
-                if arg0.0.0 == true,self.contentView.pageView.rightView.netMortgageCancelView.textField.text == "" {
+
+                if arg0.0.0 == true, self.contentView.pageView.rightView.netMortgageCancelView.textField.text == "" {
                     return true
-                } else if arg0.1.0 == true,self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text == "" {
+                } else if arg0.1.0 == true, self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text == "" {
                     return true
                 }
-                
+
                 return arg0.0.0 && arg0.1.0
             }.bind(to: self.contentView.rightNextButton.isEnabel).disposed(by: disposeBag)
     }
 }
 
 extension ResourceMortgageViewController {
-    @objc func leftnext(_ data: [String:Any]) {
+    @objc func leftnext(_ data: [String: Any]) {
         if self.contentView.leftNextButton.isEnabel.value == false {
             return
         }
@@ -140,15 +139,15 @@ extension ResourceMortgageViewController {
             if netAmount == "" {
                 netAmount = 0.0.string(digits: AppConfiguration.EOS_PRECISION)
             }
-            
+
             model.amount = (cpuAmount.toDouble()! + netAmount.toDouble()!).string
             model.remark = R.string.localizable.delegate.key.localized() + cpuAmount + R.string.localizable.eos_for_cpu.key.localized() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net.key.localized()
         }
         model.buttonTitle = R.string.localizable.confirm_mortgage.key.localized()
-        
+
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }
-    @objc func rightnext(_ data: [String:Any]) {
+    @objc func rightnext(_ data: [String: Any]) {
         if self.contentView.rightNextButton.isEnabel.value == false {
             return
         }
@@ -165,78 +164,76 @@ extension ResourceMortgageViewController {
             model.remark = R.string.localizable.undelegate.key.localized() + cpuAmount + R.string.localizable.eos_for_cpu.key.localized() + "\n    \(netAmount)"  + R.string.localizable.eos_for_net.key.localized()
         }
         model.buttonTitle = R.string.localizable.confirm_relieve_mortgage.key.localized()
-        
+
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }
-    @objc func cpu(_ data: [String:Any]) {
-        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView , let cpuMoney = cpuTextFieldView.textField.text?.toDouble(),let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+    @objc func cpu(_ data: [String: Any]) {
+        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let cpuMoney = cpuTextFieldView.textField.text?.toDouble(), let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
             let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
-            
-            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
+
+            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble() {
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
-        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
             cpuTextFieldView.textField.text = ""
             let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
             self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
-    @objc func net(_ data: [String:Any]) {
-        if let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView , let netMoney = netTextFieldView.textField.text?.toDouble(),let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
+    @objc func net(_ data: [String: Any]) {
+        if let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView, let netMoney = netTextFieldView.textField.text?.toDouble(), let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
             if netTextFieldView.textField.text != "" {
                 netTextFieldView.textField.text = netMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
             let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
 
-            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
+            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble() {
                 netTextFieldView.checkStatus = balenceDouble >= netMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.netValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
-        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
             netTextFieldView.textField.text = ""
             let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
             self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
-    
-    @objc func cpucancel(_ data: [String:Any]) {
-        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView , let cpuMoney = cpuTextFieldView.textField.text?.toDouble(),let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+
+    @objc func cpucancel(_ data: [String: Any]) {
+        if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let cpuMoney = cpuTextFieldView.textField.text?.toDouble(), let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
             if cpuTextFieldView.textField.text != "" {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
             let balance = self.contentView.cpuView.eos
 
-            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
+            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble() {
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.cpuReliveValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
-        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
             cpuTextFieldView.textField.text = ""
             let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
             self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
-    @objc func netcancel(_ data: [String:Any]) {
-        if let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView , let netMoney = netTextFieldView.textField.text?.toDouble(),let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
+    @objc func netcancel(_ data: [String: Any]) {
+        if let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView, let netMoney = netTextFieldView.textField.text?.toDouble(), let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView {
             if netTextFieldView.textField.text != "" {
                 netTextFieldView.textField.text = netMoney.string(digits: AppConfiguration.EOS_PRECISION)
             }
             let balance = self.contentView.netView.eos
 
-            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(){
+            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble() {
                 netTextFieldView.checkStatus = balenceDouble >= netMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
             self.coordinator?.netReliveValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
-        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView,let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
+        } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
             netTextFieldView.textField.text = ""
             let balance = self.contentView.pageView.balance.components(separatedBy: "：")[1]
             self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
         }
     }
 }
-
-

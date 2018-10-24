@@ -23,13 +23,13 @@ protocol LeadInStateManagerProtocol {
 }
 
 class LeadInCoordinator: NavCoordinator {
-    
+
     lazy var creator = LeadInPropertyActionCreate()
-    
+
     var store = Store<LeadInState>(
         reducer: LeadInReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -39,8 +39,7 @@ extension LeadInCoordinator: LeadInCoordinatorProtocol {
             nav.navStyle = .clear
         }, presentSetup: nil)
     }
-    
-    
+
     func openLeadInKey() {
         if let vc = R.storyboard.leadIn.leadInKeyViewController() {
             vc.coordinator = LeadInKeyCoordinator(rootVC: self.rootVC)
@@ -53,11 +52,11 @@ extension LeadInCoordinator: LeadInStateManagerProtocol {
     var state: LeadInState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<LeadInState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

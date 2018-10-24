@@ -12,20 +12,20 @@ import RxCocoa
 import ReSwift
 
 class NormalContentViewController: BaseViewController {
-    
+
     @IBOutlet weak var containerView: ContainerNormalCellView!
-    
+
 	var coordinator: (NormalContentCoordinatorProtocol & NormalContentStateManagerProtocol)?
 
-    var type : CustomSettingType = .language
-    
-    var selectedIndex : Int = 0
-    
+    var type: CustomSettingType = .language
+
+    var selectedIndex: Int = 0
+
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    
+
     func setupUI() {
         self.title = self.coordinator?.titleWithIndex(type)
         self.containerView.data = self.coordinator?.settingDatas(type)
@@ -35,7 +35,7 @@ class NormalContentViewController: BaseViewController {
         self.containerView.selectedIndex = selectedIndex
         configRightNavButton(R.string.localizable.normal_save.key.localized())
     }
-    
+
     override func rightAction(_ sender: UIButton) {
         self.coordinator?.setSelectIndex(type, index: selectedIndex)
         self.coordinator?.popVC()
@@ -46,15 +46,11 @@ class NormalContentViewController: BaseViewController {
 }
 
 extension NormalContentViewController {
-    
-    @objc func selectedSetting(_ sender : [String:Any]) {
+
+    @objc func selectedSetting(_ sender: [String: Any]) {
         log.debug(sender)
         if let index = sender["index"] as? Int {
             self.selectedIndex = index
         }
     }
 }
-
-
-
-

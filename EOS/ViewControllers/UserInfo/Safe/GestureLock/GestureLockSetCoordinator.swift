@@ -24,22 +24,22 @@ protocol GestureLockSetStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<GestureLockSetState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
+
     func setPassword(_ password: String)
-    
+
     func addValidCount()
-    
+
     func clear()
 }
 
 class GestureLockSetCoordinator: NavCoordinator {
-    
+
     lazy var creator = GestureLockSetPropertyActionCreate()
-    
+
     var store = Store<GestureLockSetState>(
         reducer: GestureLockSetReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -53,13 +53,13 @@ extension GestureLockSetCoordinator: GestureLockSetStateManagerProtocol {
     var state: GestureLockSetState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<GestureLockSetState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
     func setPassword(_ password: String) {
         if password.count < GestureLockSetting.minPasswordLength {
             self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_length_unenough.key.localized(), true)))
@@ -82,7 +82,7 @@ extension GestureLockSetCoordinator: GestureLockSetStateManagerProtocol {
             }
         }
     }
-    
+
     func addValidCount() {
         var num = self.state.property.reDrawFailedNum.value
         num = num + 1
@@ -92,7 +92,7 @@ extension GestureLockSetCoordinator: GestureLockSetStateManagerProtocol {
         }
         self.store.dispatch(SetReDrawFailedNumAction(num: num))
     }
-    
+
     func clear() {
         self.store.dispatch(SetPasswordAction(password: ""))
         self.store.dispatch(SetPromotDataAction(data: (R.string.localizable.ges_pas_input_pla.key.localized(), false)))

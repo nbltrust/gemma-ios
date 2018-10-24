@@ -25,13 +25,13 @@ protocol CopyPriKeyStateManagerProtocol {
 }
 
 class CopyPriKeyCoordinator: NavCoordinator {
-    
+
     lazy var creator = CopyPriKeyPropertyActionCreate()
-    
+
     var store = Store<CopyPriKeyState>(
         reducer: CopyPriKeyReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -45,7 +45,7 @@ extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
         context.needCancel = false
         app_coodinator.showGemmaAlert(context)
     }
-    
+
     func finishCopy() {
         if let pubKey = EOSIO.getPublicKey(WalletManager.shared.priKey) {
             WalletManager.shared.backupSuccess(pubKey)
@@ -54,7 +54,7 @@ extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
             lastVC.coordinator?.state.callback.hadSaveCallback.value?()
         }
     }
-    
+
     func pushVerifyPriKey() {
         pushVC(VerifyPriKeyCoordinator.self, animated: true, context: nil)
     }
@@ -64,11 +64,11 @@ extension CopyPriKeyCoordinator: CopyPriKeyStateManagerProtocol {
     var state: CopyPriKeyState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<CopyPriKeyState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

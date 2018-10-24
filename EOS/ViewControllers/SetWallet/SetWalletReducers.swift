@@ -9,13 +9,13 @@
 import UIKit
 import ReSwift
 
-func SetWalletReducer(action:Action, state:SetWalletState?) -> SetWalletState {
+func SetWalletReducer(action: Action, state: SetWalletState?) -> SetWalletState {
     return SetWalletState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: SetWalletPropertyReducer(state?.property, action: action))
 }
 
 func SetWalletPropertyReducer(_ state: SetWalletPropertyState?, action: Action) -> SetWalletPropertyState {
     let state = state ?? SetWalletPropertyState()
-    
+
     switch action {
     case let action as SetWalletPasswordAction:
         state.setWalletPasswordValid.accept(action.isValid)
@@ -26,9 +26,6 @@ func SetWalletPropertyReducer(_ state: SetWalletPropertyState?, action: Action) 
     default:
         break
     }
-    
+
     return state
 }
-
-
-

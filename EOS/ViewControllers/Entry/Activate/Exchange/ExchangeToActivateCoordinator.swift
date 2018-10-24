@@ -15,21 +15,21 @@ protocol ExchangeToActivateCoordinatorProtocol {
 
 protocol ExchangeToActivateStateManagerProtocol {
     var state: ExchangeToActivateState { get }
-    
-    func switchPageState(_ state:PageState)
+
+    func switchPageState(_ state: PageState)
 }
 
 class ExchangeToActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: ExchangeToActivateReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: ExchangeToActivateState {
         return store.state
     }
-            
+
     override func register() {
         Broadcaster.register(ExchangeToActivateCoordinatorProtocol.self, observer: self)
         Broadcaster.register(ExchangeToActivateStateManagerProtocol.self, observer: self)
@@ -37,11 +37,11 @@ class ExchangeToActivateCoordinator: NavCoordinator {
 }
 
 extension ExchangeToActivateCoordinator: ExchangeToActivateCoordinatorProtocol {
-    
+
 }
 
 extension ExchangeToActivateCoordinator: ExchangeToActivateStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }

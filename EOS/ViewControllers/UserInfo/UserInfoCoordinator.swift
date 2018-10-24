@@ -28,15 +28,15 @@ protocol UserInfoStateManagerProtocol {
 }
 
 class UserInfoCoordinator: NavCoordinator {
-    
+
     lazy var creator = UserInfoPropertyActionCreate()
-    
+
     var store = Store<UserInfoState>(
         reducer: UserInfoReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.userInfo.userInfoViewController()!
         let coordinator = UserInfoCoordinator(rootVC: root)
@@ -47,7 +47,7 @@ class UserInfoCoordinator: NavCoordinator {
 }
 
 extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
-    
+
     func openNormalSetting() {
         if let vc = R.storyboard.userInfo.normalViewController() {
             vc.coordinator = NormalCoordinator(rootVC: self.rootVC)
@@ -99,7 +99,7 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
         } else if language == "zh-Hans" {
             vc.url = H5AddressConfiguration.FEEDBACK_CN_URL
         } else {
-            
+
             vc.url = H5AddressConfiguration.FEEDBACK_EN_URL
         }
         vc.title = R.string.localizable.mine_help.key.localized()
@@ -113,7 +113,7 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
         } else if language == "zh-Hans" {
             vc.url = H5AddressConfiguration.HELP_CN_URL
         } else {
-            
+
             vc.url = H5AddressConfiguration.HELP_EN_URL
         }
         vc.title = R.string.localizable.mine_server.key.localized()
@@ -131,11 +131,11 @@ extension UserInfoCoordinator: UserInfoStateManagerProtocol {
     var state: UserInfoState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<UserInfoState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

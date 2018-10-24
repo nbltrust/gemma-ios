@@ -11,27 +11,27 @@ import UIKit
 class GestureLockInfoView: UIView {
 
     private var infoLayers: [GestureInfoItemLayer] = []
-    
-    open var itemSizes: (width: CGFloat,gap: CGFloat) = (10,5) {
+
+    open var itemSizes: (width: CGFloat, gap: CGFloat) = (10, 5) {
         didSet {
             setNeedsLayout()
         }
     }
-    
+
     convenience init() {
-        self.init(frame: CGRect(x:0, y:0, width:0, height:0))
+        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
     }
-    
+
     fileprivate func setupUI() {
         for _ in 0 ..< 9 {
             let itemLayer = GestureInfoItemLayer()
@@ -39,7 +39,7 @@ class GestureLockInfoView: UIView {
             layer.addSublayer(itemLayer)
         }
     }
-    
+
     public func showSelectedItems(_ passwordStr: String) {
         if passwordStr.count > 0 {
             for char in passwordStr {
@@ -49,18 +49,18 @@ class GestureLockInfoView: UIView {
             resetUI()
         }
     }
-    
+
     fileprivate func resetUI() {
         for layer in infoLayers {
             layer.status = .normal
         }
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         let marginX = (frame.width - itemSizes.width * 3 - itemSizes.gap * 2) / 2
         let marginY = (frame.height - itemSizes.width * 3 - itemSizes.gap * 2) / 2
-        
+
         for (idx, sublayer) in infoLayers.enumerated() {
             let row = CGFloat(idx % 3)
             let col = CGFloat(idx / 3)

@@ -11,16 +11,16 @@ import ReSwift
 import RxCocoa
 import SwiftyJSON
 
-//MARK: - State
+// MARK: - State
 struct FriendToActivateState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
-    
+
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
 }
 
-//MARK: - Action
+// MARK: - Action
 struct FriendToActivateFetchedAction: Action {
-    var data:JSON
+    var data: JSON
 }
 
 struct FriendAdapterModel {

@@ -23,7 +23,7 @@ class TransferViewController: BaseViewController {
     enum TextChangeEvent: String {
         case walletName
     }
-    
+
     func resetData() {
         clearData()
         self.coordinator?.pushToPaymentVC()
@@ -37,7 +37,7 @@ class TransferViewController: BaseViewController {
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
         self.reciverLabel.textColor = UIColor.steel
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         let name = WalletManager.shared.getAccount()
@@ -46,21 +46,21 @@ class TransferViewController: BaseViewController {
         getData()
         checkWalletType()
     }
-    
+
 	override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     func setUpUI() {
         self.title = R.string.localizable.tabbarTransfer.key.localized()
 
         self.accountTextField.delegate = self
-        self.accountTextField.attributedPlaceholder = NSMutableAttributedString.init(string: R.string.localizable.account_name.key.localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueyGrey,NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        self.accountTextField.attributedPlaceholder = NSMutableAttributedString.init(string: R.string.localizable.account_name.key.localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueyGrey, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
         transferContentView.reload()
         clearData()
     }
-    
+
     func checkWalletType() {
         if WalletManager.shared.isBluetoothWallet() {
             let bltView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
@@ -72,28 +72,27 @@ class TransferViewController: BaseViewController {
         }
         transferContentView.accountTitleTextView.textField.leftView = UIView()
     }
-    
+
     func getData() {
 //        self.coordinator?.getCurrentFromLocal()
         self.coordinator?.fetchUserAccount(WalletManager.shared.getAccount())
     }
 
-    
     override func configureObserveState() {
         self.coordinator?.state.balance.asObservable().subscribe(onNext: { (blance) in
-            
+
             self.transferContentView.balance = blance!
         }, onError: nil, onCompleted: {
-            
+
         }, onDisposed: nil).disposed(by: disposeBag)
-        
+
         self.coordinator?.state.balanceLocal.asObservable().subscribe(onNext: {[weak self] (blance) in
             guard let `self` = self else { return }
             self.transferContentView.balance = blance!
         }, onError: nil, onCompleted: {
-            
+
         }, onDisposed: nil).disposed(by: disposeBag)
-        
+
         Observable.combineLatest(self.coordinator!.state.toNameValid.asObservable(),
                                  self.coordinator!.state.moneyValid.asObservable()
                                  ).map { (arg0) -> Bool in
@@ -106,22 +105,18 @@ class TransferViewController: BaseViewController {
                                     }
                                     return arg0.0
             }.bind(to: self.transferContentView.nextButton.isEnabel).disposed(by: disposeBag)
-        
-        
+
     }
-    
-    
+
     @IBAction func clearBtnClick(_ sender: UIButton) {
         accountTextField.text = ""
-        
+
     }
-    
+
 }
 
+extension TransferViewController: UITextFieldDelegate {
 
-
-extension TransferViewController : UITextFieldDelegate {
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == accountTextField {
             self.clearButton.isHidden = true
@@ -134,7 +129,7 @@ extension TransferViewController : UITextFieldDelegate {
                 self.reciverLabel.textColor = UIColor.steel
 
             }
-            
+
             if textField.text == nil || textField.text == "" {
                 self.reciverLabel.text = R.string.localizable.receiver.key.localized()
                 self.reciverLabel.textColor = UIColor.steel
@@ -142,29 +137,29 @@ extension TransferViewController : UITextFieldDelegate {
             }
         }
     }
-    
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == accountTextField {
             self.clearButton.isHidden = false
         }
     }
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content" : newText])
+        self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content": newText])
 
         return true
 
     }
-    
+
 }
 
 extension TransferViewController {
-    @objc func walletName(_ data: [String : Any]) {
+    @objc func walletName(_ data: [String: Any]) {
         self.coordinator?.validName(data["content"] as! String)
     }
-    @objc func sureTransfer(_ data: [String : Any]) {
+    @objc func sureTransfer(_ data: [String: Any]) {
         var data = ConfirmViewModel()
         data.recever = self.accountTextField.text!
         data.amount = self.transferContentView.moneyTitleTextView.textField.text!
@@ -173,10 +168,10 @@ extension TransferViewController {
         data.buttonTitle = R.string.localizable.check_transfer.key.localized()
         self.coordinator?.pushToTransferConfirmVC(data: data)
     }
-    @objc func transferMoney(_ data: [String : Any]) {
-        if let textfield = data["textfield"] as? UITextField,textfield.text != "" , let money = textfield.text?.toDouble() {
+    @objc func transferMoney(_ data: [String: Any]) {
+        if let textfield = data["textfield"] as? UITextField, textfield.text != "", let money = textfield.text?.toDouble() {
             textfield.text = money.string(digits: AppConfiguration.EOS_PRECISION)
-            
+
             let balance = self.transferContentView.balance
             self.coordinator?.validMoney(money.string(digits: AppConfiguration.EOS_PRECISION), blance: balance)
         } else if let textfield = data["textfield"] as? UITextField {
@@ -185,4 +180,3 @@ extension TransferViewController {
         }
     }
 }
-

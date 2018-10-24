@@ -11,19 +11,18 @@ import ReSwift
 import RxCocoa
 import SwiftyJSON
 
-//MARK: - State
+// MARK: - State
 struct BLTCardSetPrinterState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
 
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
-    var checkFingerData: BehaviorRelay<(isScueess: Bool, accessCount: Int)> = BehaviorRelay(value: (false,0))
+    var checkFingerData: BehaviorRelay<(isScueess: Bool, accessCount: Int)> = BehaviorRelay(value: (false, 0))
 }
 
-//MARK: - Action
+// MARK: - Action
 struct BLTCardSetPrinterFetchedAction: Action {
-    var data:JSON
+    var data: JSON
 }
-
 
 struct BLTSetCheckFingerDataAction: Action {
     var data = (false, 0)

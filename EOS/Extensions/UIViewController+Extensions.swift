@@ -12,7 +12,7 @@ import KRProgressHUD
 import UINavigationItem_Margin
 
 extension UIViewController {
-    func configLeftNavButton(_ image:UIImage?) {
+    func configLeftNavButton(_ image: UIImage?) {
         let leftNavButton = UIButton.init(type: .custom)
         leftNavButton.frame = CGRect(x: 0, y: 0, width: 48, height: 24)
         leftNavButton.setImage(image ?? #imageLiteral(resourceName: "ic_back_24_px"), for: .normal)
@@ -21,8 +21,8 @@ extension UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftNavButton)
         self.navigationItem.leftMargin = 0
     }
-    
-    func configRightNavButton(_ image:UIImage? = nil) {
+
+    func configRightNavButton(_ image: UIImage? = nil) {
         let rightNavButton = UIButton.init(type: .custom)
         rightNavButton.frame = CGRect(x: 0, y: 0, width: 48, height: 24)
         rightNavButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -32,14 +32,14 @@ extension UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightNavButton)
         self.navigationItem.rightMargin = 0
     }
-    
+
     func configRightCustomView(_ view: UIView) {
         view.width = 48
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: view)
         self.navigationItem.rightMargin = 0
     }
-    
-    func configRightNavButton(_ locali:String) {
+
+    func configRightNavButton(_ locali: String) {
         let rightNavButton = UIButton.init(type: .custom)
         rightNavButton.frame = CGRect(x: 0, y: 0, width: 58, height: 24)
         rightNavButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -49,13 +49,13 @@ extension UIViewController {
         rightNavButton.isHidden = false
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightNavButton)
     }
-    
+
     @objc open func leftAction(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
-    
+
     @objc open func rightAction(_ sender: UIButton) {
-        
+
     }
 }
 
@@ -63,11 +63,11 @@ extension UIViewController {
     func startLoading(_ isClearBg: Bool? = nil) {
         startLoadingOnSelf(true, message: "", isClearBg: isClearBg)
     }
-    
+
     func startLoadingWithMessage(message: String) {
         startLoadingOnSelf(true, message: message)
     }
-    
+
     func startLoadingOnSelf(_ isOn: Bool, message: String, isClearBg: Bool? = nil) {
         if isOn {
             _ = KRProgressHUD.showOn(self)
@@ -85,48 +85,45 @@ extension UIViewController {
             KRProgressHUD.show(withMessage: message, completion: nil)
         }
     }
-    
+
     func endLoading() {
         KRProgressHUD.dismiss()
     }
-    
+
     func showError(message: String) {
         showFailTop(message)
     }
-    
+
     func showSuccess(message: String) {
         showSuccessTop(message)
     }
-    
+
     @objc func refreshViewController() {
-        
+
     }
 }
 
 extension UIViewController {
-    func addPullToRefresh(_ tableView : UITableView,callback:@escaping(((()->Void)?)->Void)){
-       
+    func addPullToRefresh(_ tableView: UITableView, callback:@escaping(((()->Void)?)->Void)) {
+
         tableView.es.addPullToRefresh {
             callback({
                 tableView.es.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
             })
         }
-        
+
     }
-    
-    
-    func addInfiniteScrolling(_ tableView : UITableView ,callback:@escaping(((Bool)->())?)->()){
+
+    func addInfiniteScrolling(_ tableView: UITableView, callback:@escaping(((Bool)->Void)?)->Void) {
         tableView.es.addInfiniteScrolling {
-            
+
             callback({ isNoMoreData in
                 if isNoMoreData {
                     tableView.es.noticeNoMoreData()
-                }else{
+                } else {
                     tableView.es.stopLoadingMore()
                 }
             })
         }
     }
 }
-
-

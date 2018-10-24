@@ -18,33 +18,32 @@ class TransferConfirmViewController: BaseViewController {
     var coordinator: (TransferConfirmCoordinatorProtocol & TransferConfirmStateManagerProtocol)?
 
     var data: ConfirmViewModel = ConfirmViewModel()
-    
+
     var type: CreateAPPId = .gemma
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupUI()
     }
-    
+
     func setupUI() {
         self.transferConfirmView.data = data
         configLeftNavButton(R.image.icTransferClose())
     }
-    
+
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismissConfirmVC()
     }
 
-    
     override func configureObserveState() {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
-            
+
             if let context = context as? TransferConfirmContext {
                 self.data = context.data
                 self.type = context.type
@@ -55,7 +54,7 @@ class TransferConfirmViewController: BaseViewController {
 }
 
 extension TransferConfirmViewController {
-    @objc func sureTransfer(_ data: [String : Any]) {
+    @objc func sureTransfer(_ data: [String: Any]) {
         let type: String = data["btntitle"] as! String
         if type == R.string.localizable.check_transfer.key.localized() {
             if self.type == .gemma {

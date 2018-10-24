@@ -9,32 +9,32 @@
 import Foundation
 import ReSwift
 
-//MARK: - State
+// MARK: - State
 struct NormalContentState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: NormalContentPropertyState
 }
 
 struct NormalContentPropertyState {
-    var data : [String] = [String]()
+    var data: [String] = [String]()
 }
 
-struct SetDataAction : Action {
-    var data : [String]
+struct SetDataAction: Action {
+    var data: [String]
 }
 
-enum CustomSettingType : Int {
+enum CustomSettingType: Int {
     case language = 0
     case asset
     case node
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class NormalContentPropertyActionCreate {
     public typealias ActionCreator = (_ state: NormalContentState, _ store: Store<NormalContentState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: NormalContentState,
         _ store: Store <NormalContentState>,

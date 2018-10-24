@@ -10,10 +10,9 @@ import UIKit
 import ReSwift
 
 protocol PaymentsCoordinatorProtocol {
-    
-    func pushPaymentsDetail(data:PaymentsRecordsViewModel)
 
-    
+    func pushPaymentsDetail(data: PaymentsRecordsViewModel)
+
 }
 
 protocol PaymentsStateManagerProtocol {
@@ -21,23 +20,23 @@ protocol PaymentsStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<PaymentsState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
-    func getDataFromServer(_ completion: @escaping (Bool)->Void )
+
+    func getDataFromServer(_ completion: @escaping (Bool) -> Void )
 }
 
 class PaymentsCoordinator: HomeRootCoordinator {
-    
+
     lazy var creator = PaymentsPropertyActionCreate()
-    
+
     var store = Store<PaymentsState>(
         reducer: PaymentsReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
 extension PaymentsCoordinator: PaymentsCoordinatorProtocol {
-    func pushPaymentsDetail(data:PaymentsRecordsViewModel) {
+    func pushPaymentsDetail(data: PaymentsRecordsViewModel) {
         let vc = R.storyboard.paymentsDetail.paymentsDetailViewController()!
         let coordinator = PaymentsDetailCoordinator(rootVC: self.rootVC)
         vc.coordinator = coordinator
@@ -50,21 +49,21 @@ extension PaymentsCoordinator: PaymentsStateManagerProtocol {
     var state: PaymentsState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<PaymentsState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
-    func getDataFromServer(_ completion: @escaping (Bool)->Void ) {
+
+    func getDataFromServer(_ completion: @escaping (Bool) -> Void ) {
         EOSIONetwork.request(target: .get_info, success: { (json) in
             self.store.dispatch(FetchPaymentsRecordsListAction(data: [json]))
             completion(true)
-        }, error: { (num) in
-            
-        }) { (error) in
-            
+        }, error: { (_) in
+
+        }) { (_) in
+
         }
     }
 }

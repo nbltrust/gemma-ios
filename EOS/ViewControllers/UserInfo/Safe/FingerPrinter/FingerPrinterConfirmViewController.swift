@@ -14,11 +14,11 @@ import ReSwift
 class FingerPrinterConfirmViewController: BaseViewController {
 
     @IBOutlet weak var clickView: UIImageView!
-    
+
     @IBOutlet weak var clickLabel: UILabel!
-    
+
     var canDismiss: Bool = true
-    
+
     var coordinator: (FingerPrinterConfirmCoordinatorProtocol & FingerPrinterConfirmStateManagerProtocol)?
     var lightModel = false {
         didSet {
@@ -33,32 +33,32 @@ class FingerPrinterConfirmViewController: BaseViewController {
             self.configLeftNavButton(R.image.icTransferClose())
         }
     }
-    
+
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismiss()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         lightModel = false
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         lightModel = true
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return lightModel ? .lightContent : .default
     }
 
     override func configureObserveState() {
-        clickView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+        clickView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.coordinator?.confirm()
         }).disposed(by: disposeBag)
-        
-        clickLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+
+        clickLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.coordinator?.confirm()
         }).disposed(by: disposeBag)

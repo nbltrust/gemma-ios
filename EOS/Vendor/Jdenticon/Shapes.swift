@@ -18,7 +18,7 @@ struct CutCorner: Shape {
             CGPoint(x: size, y: 0),
             CGPoint(x: size, y: size - k * 2),
             CGPoint(x: size - k, y: size),
-            CGPoint(x: 0, y: size),
+            CGPoint(x: 0, y: size)
         ])
     }
 }
@@ -63,7 +63,7 @@ struct NegativeTriangle: Shape {
         context.addPolygon([
             CGPoint(x: outer, y: outer),
             CGPoint(x: size - inner, y: outer),
-            CGPoint(x: outer + (size - outer - inner) / 2, y: size - inner),
+            CGPoint(x: outer + (size - outer - inner) / 2, y: size - inner)
         ].reversed())
     }
 }
@@ -76,7 +76,7 @@ struct CutSquare: Shape {
             CGPoint(x: size, y: size * 0.7),
             CGPoint(x: size * 0.4, y: size * 0.4),
             CGPoint(x: size * 0.7, y: size),
-            CGPoint(x: 0, y: size),
+            CGPoint(x: 0, y: size)
         ])
     }
 }
@@ -178,12 +178,12 @@ let centerShapes: [Shape] = [
     NegativeCircle(),
     HalfTriangle(),
     NegativeRhombus(),
-    ConditionalCircle(),
+    ConditionalCircle()
 ]
 
 let outerShapes: [Shape] = [
     Triangle(),
     BottomHalfTriangle(),
     Rhombus(),
-    Circle(),
+    Circle()
 ]

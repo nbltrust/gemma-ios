@@ -16,11 +16,11 @@ protocol WalletDetailCoordinatorProtocol {
 
 protocol WalletDetailStateManagerProtocol {
     var state: WalletDetailState { get }
-    
-    func switchPageState(_ state:PageState)
-    
+
+    func switchPageState(_ state: PageState)
+
     func cancelPair()
-    
+
     func formmat()
 }
 
@@ -28,14 +28,14 @@ class WalletDetailCoordinator: NavCoordinator {
     var store = Store(
         reducer: WalletDetailReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: WalletDetailState {
         return store.state
     }
-    
-    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
+
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.wallet.walletDetailViewController()!
         let coordinator = WalletDetailCoordinator(rootVC: root)
         vc.coordinator = coordinator
@@ -47,7 +47,7 @@ class WalletDetailCoordinator: NavCoordinator {
         Broadcaster.register(WalletDetailCoordinatorProtocol.self, observer: self)
         Broadcaster.register(WalletDetailStateManagerProtocol.self, observer: self)
     }
-    
+
     func pushToChangeWalletName(model: WalletManagerModel) {
         if let vc = R.storyboard.wallet.changeWalletNameViewController() {
             let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
@@ -59,20 +59,20 @@ class WalletDetailCoordinator: NavCoordinator {
 }
 
 extension WalletDetailCoordinator: WalletDetailCoordinatorProtocol {
-    
+
 }
 
 extension WalletDetailCoordinator: WalletDetailStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
-    
+
     func cancelPair() {
-        
+
     }
-    
+
     func formmat() {
         BLTWalletIO.shareInstance()?.formmart({
             if let pub = WalletManager.shared.currentWallet()?.publicKey {

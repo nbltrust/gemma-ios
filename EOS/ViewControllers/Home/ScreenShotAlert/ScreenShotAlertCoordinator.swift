@@ -18,13 +18,13 @@ protocol ScreenShotAlertStateManagerProtocol {
 }
 
 class ScreenShotAlertCoordinator: NavCoordinator {
-    
+
     var store = Store<ScreenShotAlertState>(
         reducer: ScreenShotAlertReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.screenShotAlert.screenShotAlertViewController()!
         let coordinator = ScreenShotAlertCoordinator(rootVC: root)
@@ -45,11 +45,11 @@ extension ScreenShotAlertCoordinator: ScreenShotAlertStateManagerProtocol {
     var state: ScreenShotAlertState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<ScreenShotAlertState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

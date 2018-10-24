@@ -71,7 +71,6 @@ public protocol NavigatorType {
   func openURL(_ url: URLConvertible, context: Any?) -> Bool
 }
 
-
 // MARK: - Protocol Requirements
 
 extension NavigatorType {
@@ -126,7 +125,6 @@ extension NavigatorType {
     return handler()
   }
 }
-
 
 // MARK: - Syntactic Sugars for Optional Parameters
 

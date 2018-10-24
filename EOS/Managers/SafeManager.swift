@@ -14,15 +14,14 @@ import BiometricAuthentication
 import KRProgressHUD
 import LocalAuthentication
 
-
 class SafeManager {
     static let shared = SafeManager()
-    
+
     let keychain = Keychain(service: SwifterSwift.appBundleID ?? "com.nbltrust.gemma")
-    
+
     var gestureLockPassword = Defaults[.gestureLockPassword]
-    
-    //MARK: - APPOpenComfirm
+
+    // MARK: - APPOpenComfirm
     func checkForOpenAPP() {
         if self.isGestureLockOpened() {
             showGestureComfirmVC()
@@ -32,7 +31,7 @@ class SafeManager {
             showFingerSingerComfirmVC()
         }
     }
-    
+
     func showFaceIDComfirmVC() {
         let nav = BaseNavigationController()
         nav.navStyle = .clear
@@ -43,7 +42,7 @@ class SafeManager {
         nav.pushViewController(vc, animated: true)
         app_coodinator.rootVC.present(nav, animated: true, completion: nil)
     }
-    
+
     func showFingerSingerComfirmVC() {
         let nav = BaseNavigationController()
         nav.navStyle = .clear
@@ -54,7 +53,7 @@ class SafeManager {
         nav.pushViewController(vc, animated: true)
         app_coodinator.rootVC.present(nav, animated: true, completion: nil)
     }
-    
+
     func showGestureComfirmVC() {
         let nav = BaseNavigationController()
         nav.navStyle = .clear
@@ -64,7 +63,7 @@ class SafeManager {
         vc.coordinator = gestureCoordinator
         nav.pushViewController(vc, animated: true)
         app_coodinator.rootVC.present(nav, animated: true, completion: nil)
-        
+
         if self.isFaceIdOpened() {
             confirmFaceIdLock(R.string.localizable.faceid_reason.key.localized()) { (result) in
                 if result {
@@ -79,9 +78,9 @@ class SafeManager {
             }
         }
     }
-    
-    //MARK: - Confirm
-    func confirmFaceIdLock(_ reason: String, callback: @escaping (Bool) -> ()) {
+
+    // MARK: - Confirm
+    func confirmFaceIdLock(_ reason: String, callback: @escaping (Bool) -> Void) {
         if self.biometricType() == .face {
             BioMetricAuthenticator.authenticateWithBioMetrics(reason: reason, success: {
                 self.openFaceId()
@@ -105,8 +104,8 @@ class SafeManager {
             callback(false)
         }
     }
-    
-    func confirmFingerSingerLock(_ reason: String, callback: @escaping (Bool) -> ()) {
+
+    func confirmFingerSingerLock(_ reason: String, callback: @escaping (Bool) -> Void) {
         if self.biometricType() == .touch {
             BioMetricAuthenticator.authenticateWithPasscode(reason: R.string.localizable.fingerid_reason.key.localized(), success: {
                 self.openFingerPrinter()
@@ -130,67 +129,67 @@ class SafeManager {
             callback(false)
         }
     }
-    
-    //MARK: - FaceID
+
+    // MARK: - FaceID
     func isFaceIdOpened() -> Bool {
         return Defaults[.isFaceIDOpened]
     }
-    
+
     func openFaceId() {
         Defaults[.isFaceIDOpened] = true
     }
-    
+
     func closeFaceId() {
         Defaults[.isFaceIDOpened] = false
     }
-    
-    //MARK: - FingerPrinter
+
+    // MARK: - FingerPrinter
     func isFingerPrinterLockOpened() -> Bool {
         return Defaults[.isFingerPrinterLockOpened]
     }
-    
+
     func openFingerPrinter() {
         Defaults[.isFingerPrinterLockOpened] = true
     }
-    
+
     func closeFingerPrinter() {
         Defaults[.isFingerPrinterLockOpened] = false
     }
-    
-    //MARK: - Gesture
+
+    // MARK: - Gesture
     func isGestureLockOpened() -> Bool {
         return Defaults[.isGestureLockOpened]
     }
-    
+
     func closeGestureLock() {
         try? keychain.remove("\(gestureLockPassword)-gestureLockPassword")
         Defaults[.isGestureLockOpened] = false
     }
-    
+
     func getGestureLockPassword() -> String? {
         if let password = keychain[string: "\(gestureLockPassword)-gestureLockPassword"] {
             return password
         }
         return nil
     }
-    
+
     func validGesturePassword(_ inputPassword: String) -> Bool {
         if let password = self.getGestureLockPassword() {
             return password == inputPassword
         }
         return false
     }
-    
+
     func saveGestureLockPassword(_ password: String) {
         Defaults[.isGestureLockOpened] = true
         keychain[string: "\(gestureLockPassword)-gestureLockPassword"] = password
         Defaults[.isGestureLockOpened] = true
     }
-    
+
     func isGestureLockLocked() -> Bool {
         return leftUnLockGestureLockTime() > 0
     }
-    
+
     func leftUnLockGestureLockTime() -> Int {
         let lockedTime = Defaults[.gestureLockLockedTime]
         if lockedTime > 0 {
@@ -202,19 +201,19 @@ class SafeManager {
         }
         return 0
     }
-    
+
     func lockGestureLock() {
         Defaults[.gestureLockLockedTime] = NSDate().timeIntervalSince1970.int
     }
-    
+
     func unlockGestureLock() {
         Defaults[.gestureLockLockedTime] = 0
     }
-    
+
     func biometricType() -> BiometricType {
         let authContext = LAContext()
         if #available(iOS 11, *) {
-            let _ = authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+            _ = authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
             switch(authContext.biometryType) {
             case .none:
                 return .none
@@ -227,7 +226,7 @@ class SafeManager {
             return authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) ? .touch : .none
         }
     }
-    
+
     enum BiometricType {
         case none
         case touch

@@ -10,7 +10,7 @@ import Foundation
 
 extension Dictionary {
     func sortJsonString() -> String {
-        var tempDic = self as! Dictionary<String,Any>
+        var tempDic = self as! Dictionary<String, Any>
         var keys = Array<String>()
         for key in tempDic.keys {
             keys.append(key)
@@ -20,13 +20,13 @@ extension Dictionary {
         var arr: Array<String> = []
         for key in keys {
             let value = tempDic[key]
-            if let value = value as? Dictionary<String,Any> {//Dictionary 递归
+            if let value = value as? Dictionary<String, Any> {//Dictionary 递归
                 arr.append("\"\(key)\":\(value.sortJsonString())")
-            }else if let value = value as? Array<Any> {//Array 递归
+            } else if let value = value as? Array<Any> {//Array 递归
                 arr.append("\"\(key)\":\(value.sortJsonString())")
-            }else{//其他 直接拼接
+            } else {//其他 直接拼接
                 let value = tempDic[key]
-                
+
                 if value is Int {
                     arr.append("\"\(key)\":\(value!)")
                 } else {

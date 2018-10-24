@@ -14,29 +14,28 @@ import ReSwift
 class PaymentsDetailViewController: BaseViewController {
 
 	var coordinator: (PaymentsDetailCoordinatorProtocol & PaymentsDetailStateManagerProtocol)?
-    var data : PaymentsRecordsViewModel = PaymentsRecordsViewModel()
-    
-    
+    var data: PaymentsRecordsViewModel = PaymentsRecordsViewModel()
+
 	override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     func commonObserveState() {
         coordinator?.subscribe(errorSubscriber) { sub in
-            return sub.select { state in state.errorMessage }.skipRepeats({ (old, new) -> Bool in
+            return sub.select { state in state.errorMessage }.skipRepeats({ (_, _) -> Bool in
                 return false
             })
         }
-        
+
         coordinator?.subscribe(loadingSubscriber) { sub in
-            return sub.select { state in state.isLoading }.skipRepeats({ (old, new) -> Bool in
+            return sub.select { state in state.isLoading }.skipRepeats({ (_, _) -> Bool in
                 return false
             })
         }
     }
-    
+
     override func configureObserveState() {
         commonObserveState()
-        
+
     }
 }

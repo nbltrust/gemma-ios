@@ -10,7 +10,7 @@ import Foundation
 import Kingfisher
 
 extension CardView {
-    func adapterModelToCardView(_ model:NewHomeViewModel) {
+    func adapterModelToCardView(_ model: NewHomeViewModel) {
 //        self.iconImgView.kf.setImage(with: URL(string: model.currencyIcon))
         self.iconImgView.image = model.currencyImg
         self.currencyImgView.image = model.currencyImg
@@ -20,7 +20,7 @@ extension CardView {
         self.unitLabel.text = model.unit
         self.tokenLabel.text = model.tokens
         self.tokenArray = model.tokenArray
-        
+
         if model.tokens == "" {
             self.tokenLabel.isHidden = true
             self.tokenView.isHidden = true

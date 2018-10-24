@@ -10,37 +10,37 @@ import Foundation
 
 @IBDesignable
 class BatteryView: EOSBaseView {
-    
+
     @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var progressWidthConstant: NSLayoutConstraint!
-    
-    enum Event:String {
+
+    enum Event: String {
         case BatteryViewDidClicked
     }
-    
+
     var progress = 0 {
         didSet {
 //            borderView.con
             progressWidthConstant.constant = CGFloat(progress / 100) * borderView.width
         }
     }
-    
+
     override func setup() {
         super.setup()
-        
+
         setupUI()
         setupSubViewEvent()
     }
-    
+
     func setupUI() {
 
     }
-    
+
     func setupSubViewEvent() {
-    
+
     }
-    
+
     @objc override func didClicked() {
         self.next?.sendEventWith(Event.BatteryViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }

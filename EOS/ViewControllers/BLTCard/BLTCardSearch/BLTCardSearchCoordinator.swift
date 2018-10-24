@@ -13,19 +13,19 @@ import RxCocoa
 
 protocol BLTCardSearchCoordinatorProtocol {
     func dismissSearchVC()
-    
+
     func pushAfterDeviceConnected()
 }
 
 protocol BLTCardSearchStateManagerProtocol {
     var state: BLTCardSearchState { get }
-    
-    func switchPageState(_ state:PageState)
-    
+
+    func switchPageState(_ state: PageState)
+
     func searchedADevice(_ device: BLTDevice)
-    
+
     func connectDevice(_ device: BLTDevice, success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
-    
+
     func getDeviceInfo(_ complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void)
 }
 
@@ -33,13 +33,13 @@ class BLTCardSearchCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardSearchReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: BLTCardSearchState {
         return store.state
     }
-            
+
     override func register() {
         Broadcaster.register(BLTCardSearchCoordinatorProtocol.self, observer: self)
         Broadcaster.register(BLTCardSearchStateManagerProtocol.self, observer: self)
@@ -50,7 +50,7 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
     func dismissSearchVC() {
         self.rootVC.dismiss(animated: true, completion: nil)
     }
-    
+
     func pushAfterDeviceConnected() {
         if let homeCoor = app_coodinator.homeCoordinator {
             self.rootVC.dismiss(animated: true) {
@@ -65,11 +65,11 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
 }
 
 extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
-    
-    func switchPageState(_ state:PageState) {
+
+    func switchPageState(_ state: PageState) {
         self.store.dispatch(PageStateAction(state: state))
     }
-    
+
     func searchedADevice(_ device: BLTDevice) {
         var devices: [BLTDevice] = self.store.state.devices
         var valid: Bool = true
@@ -83,15 +83,14 @@ extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
         }
         self.store.dispatch(SetDevicesAction(datas: devices))
     }
-    
+
     func connectDevice(_ device: BLTDevice, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance()?.connectCard(device.name, success: success, failed: failed)
     }
-    
+
     func getDeviceInfo(_ complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void) {
         BLTWalletIO.shareInstance().getDeviceInfo { (success, deviceInfo) in
             complocation(success, deviceInfo)
         }
     }
 }
-

@@ -12,27 +12,27 @@ import BiometricAuthentication
 import KRProgressHUD
 
 protocol SafeCoordinatorProtocol {
-    //MARK: - FaceId
-    func openFaceIdLock(_ callback: @escaping (Bool) -> ())
-    
+    // MARK: - FaceId
+    func openFaceIdLock(_ callback: @escaping (Bool) -> Void)
+
     func closeFaceIdLock()
-    
-    //MARK: - FingerSinger
-    func openFingerSingerLock(_ callback: @escaping (Bool) -> ())
-    
+
+    // MARK: - FingerSinger
+    func openFingerSingerLock(_ callback: @escaping (Bool) -> Void)
+
     func closeFingerSingerLock()
-    
-    //MARK: - Gesture
-    func openGestureLock(_ callback: @escaping (Bool) -> ())
-    
+
+    // MARK: - Gesture
+    func openGestureLock(_ callback: @escaping (Bool) -> Void)
+
     func closeGetureLock()
-        
-    //MARK: - Confirm
-    func confirmFaceId(_ callback: @escaping (Bool) -> ())
-    
-    func confirmFingerSinger(_ callback: @escaping (Bool) -> ())
-    
-    func confirmGesture(_ callback: @escaping (Bool) -> ())
+
+    // MARK: - Confirm
+    func confirmFaceId(_ callback: @escaping (Bool) -> Void)
+
+    func confirmFingerSinger(_ callback: @escaping (Bool) -> Void)
+
+    func confirmGesture(_ callback: @escaping (Bool) -> Void)
 }
 
 protocol SafeStateManagerProtocol {
@@ -43,41 +43,41 @@ protocol SafeStateManagerProtocol {
 }
 
 class SafeCoordinator: NavCoordinator {
-    
+
     lazy var creator = SafePropertyActionCreate()
-    
+
     var store = Store<SafeState>(
         reducer: SafeReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
 extension SafeCoordinator: SafeCoordinatorProtocol {
-    //MARK: - FaceId
-    func openFaceIdLock(_ callback: @escaping (Bool) -> ()) {
+    // MARK: - FaceId
+    func openFaceIdLock(_ callback: @escaping (Bool) -> Void) {
         SafeManager.shared.confirmFaceIdLock(R.string.localizable.faceid_reason.key.localized()) { (result) in
             callback(result)
         }
     }
-    
+
     func closeFaceIdLock() {
         SafeManager.shared.closeFaceId()
     }
-    
-    //MARK: - FingerSinger
-    func openFingerSingerLock(_ callback: @escaping (Bool) -> ()) {
+
+    // MARK: - FingerSinger
+    func openFingerSingerLock(_ callback: @escaping (Bool) -> Void) {
         SafeManager.shared.confirmFingerSingerLock(R.string.localizable.fingerid_reason.key.localized()) { (result) in
             callback(result)
         }
     }
-    
+
     func closeFingerSingerLock() {
         SafeManager.shared.closeFingerPrinter()
     }
-    
-    //MARK: - Gesture
-    func openGestureLock(_ callback: @escaping (Bool) -> ()) {
+
+    // MARK: - Gesture
+    func openGestureLock(_ callback: @escaping (Bool) -> Void) {
         let gestureLockVC = R.storyboard.userInfo.gestureLockSetViewController()
         let coordinator = GestureLockSetCoordinator(rootVC: self.rootVC)
         gestureLockVC?.coordinator = coordinator
@@ -89,13 +89,13 @@ extension SafeCoordinator: SafeCoordinatorProtocol {
             })
         }
     }
-    
+
     func closeGetureLock() {
         SafeManager.shared.closeGestureLock()
     }
-    
-    //MARK: - Confirm
-    func confirmFaceId(_ callback: @escaping (Bool) -> ()) {
+
+    // MARK: - Confirm
+    func confirmFaceId(_ callback: @escaping (Bool) -> Void) {
         let nav = BaseNavigationController()
         nav.navStyle = .clear
         let vc = R.storyboard.userInfo.faceIDComfirmViewController()!
@@ -110,8 +110,8 @@ extension SafeCoordinator: SafeCoordinatorProtocol {
         }
         self.rootVC.present(nav, animated: true, completion: nil)
     }
-    
-    func confirmGesture(_ callback: @escaping (Bool) -> ()) {
+
+    func confirmGesture(_ callback: @escaping (Bool) -> Void) {
         let nav = BaseNavigationController()
         nav.navStyle = .clear
         let vc = R.storyboard.userInfo.gestureLockComfirmViewController()!
@@ -126,8 +126,8 @@ extension SafeCoordinator: SafeCoordinatorProtocol {
         }
         self.rootVC.present(nav, animated: true, completion: nil)
     }
-    
-    func confirmFingerSinger(_ callback: @escaping (Bool) -> ()) {
+
+    func confirmFingerSinger(_ callback: @escaping (Bool) -> Void) {
         let nav = BaseNavigationController()
         nav.navStyle = .clear
         let vc = R.storyboard.userInfo.fingerPrinterConfirmViewController()!
@@ -142,18 +142,18 @@ extension SafeCoordinator: SafeCoordinatorProtocol {
         }
         self.rootVC.present(nav, animated: true, completion: nil)
     }
-    
+
 }
 
 extension SafeCoordinator: SafeStateManagerProtocol {
     var state: SafeState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<SafeState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

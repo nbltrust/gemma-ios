@@ -10,20 +10,20 @@ import Foundation
 
 class NetworkSettingManager {
     static let shared = NetworkSettingManager()
-    
+
     func setup() {
         let urlCache = URLCache(memoryCapacity: memoryCapacity(), diskCapacity: diskCapacity(), diskPath: diskPath())
         URLCache.shared = urlCache
     }
-    
+
     fileprivate func memoryCapacity() -> Int {
         return 20 * 1024 * 1024
     }
-    
+
     fileprivate func diskCapacity() -> Int {
         return 20 * 1024 * 1024
     }
-    
+
     fileprivate func diskPath() -> String? {
         let fileManager = FileManager.default
         var fileDir = URL(string: "")

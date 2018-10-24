@@ -13,29 +13,29 @@ import ReSwift
 import MessageUI
 
 class UserInfoViewController: BaseViewController {
-    
+
     @IBOutlet weak var customView: NormalCellView!
-    
+
     @IBOutlet weak var safeView: NormalCellView!
-    
+
     @IBOutlet weak var feedbackView: NormalCellView!
-    
+
     @IBOutlet weak var protocolView: NormalCellView!
-    
+
     @IBOutlet weak var aboutView: NormalCellView!
-    
+
     var coordinator: (UserInfoCoordinatorProtocol & UserInfoStateManagerProtocol)?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setupUI()
     }
-    
+
     override func languageChanged() {
         super.languageChanged()
         reload()
     }
-    
+
     func reload() {
         setupUI()
         customView.reload()
@@ -44,23 +44,23 @@ class UserInfoViewController: BaseViewController {
         protocolView.reload()
         aboutView.reload()
     }
-    
+
     func setupUI() {
         self.title = R.string.localizable.mine_title.key.localized()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupUI()
     }
-  
+
     override func configureObserveState() {
-        
+
     }
 }
 
 extension UserInfoViewController {
-    @objc func clickCellView(_ sender:[String:Any]) {
+    @objc func clickCellView(_ sender: [String: Any]) {
         switch sender["index"] as! Int {
         case 0:self.coordinator?.openNormalSetting()
         case 1:self.coordinator?.openSafeSetting()
@@ -73,11 +73,11 @@ extension UserInfoViewController {
     }
 }
 
-extension UserInfoViewController:MFMailComposeViewControllerDelegate {
+extension UserInfoViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
 
-        switch result.rawValue{
+        switch result.rawValue {
         case MFMailComposeResult.sent.rawValue:
             print("邮件已发送")
         case MFMailComposeResult.cancelled.rawValue:
@@ -92,4 +92,3 @@ extension UserInfoViewController:MFMailComposeViewControllerDelegate {
         }
     }
 }
-
