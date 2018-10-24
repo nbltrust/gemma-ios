@@ -67,7 +67,6 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
         model.remark = remark
         model.type = .bluetooth
         model.confirmType = fpType
-        model.password = "123456"
         transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
             callback(bool, showString)
         }

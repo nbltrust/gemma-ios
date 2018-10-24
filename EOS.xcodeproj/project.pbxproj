@@ -2228,12 +2228,12 @@
 			children = (
 				3BD3663820F6F9E3004DE09D /* TransferConfirmActions.swift */,
 				3BD3663720F6F9E3004DE09D /* TransferConfirmCoordinator.swift */,
+				3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */,
+				3BD3663920F6F9E3004DE09D /* TransferConfirmViewController.swift */,
 				3BD3664720F72B5E004DE09D /* TransferConfirmPasswordActions.swift */,
 				3BD3664620F72B5E004DE09D /* TransferConfirmPasswordCoordinator.swift */,
 				3BD3664920F72B5E004DE09D /* TransferConfirmPasswordReducers.swift */,
 				3BD3664820F72B5E004DE09D /* TransferConfirmPasswordViewController.swift */,
-				3BD3663A20F6F9E3004DE09D /* TransferConfirmReducers.swift */,
-				3BD3663920F6F9E3004DE09D /* TransferConfirmViewController.swift */,
 			);
 			path = TransferConfirm;
 			sourceTree = "<group>";

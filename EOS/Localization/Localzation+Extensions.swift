@@ -257,11 +257,13 @@ extension NSObject {
 
     func performOperations(sel: Selector, picker: ValueContainer?) {
         guard responds(to: sel)           else { return }
-        guard let value = picker?.value() as? String else { return }
+        guard let value = picker?.value() else { return }
 
         if picker is LocalizedValueContainer {
             let setLocalizedText = unsafeBitCast(method(for: sel), to: SetLocalizedTextIMP.self)
-            setLocalizedText(self, sel, value.localized())
+            if let value = value as? String {
+                setLocalizedText(self, sel, value.localized())
+            }
 
             //Compatible Swift Rich String
             if let label = self as? UILabel, let _ = label.styleName {

@@ -35,3 +35,32 @@ func connectBLTCard(_ complication: @escaping CompletionCallback) {
         }
     }
 }
+
+func confirmPin(_ complication: @escaping SuccessedComplication) {
+    let width = ModalSize.full
+    
+    let height: Float = 249.0
+    let heightSize = ModalSize.custom(size: height)
+    
+    let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - height.cgFloat))
+    let customType = PresentationType.custom(width: width, height: heightSize, center: center)
+    
+    let presenter = Presentr(presentationType: customType)
+    presenter.keyboardTranslationType = .stickToTop
+    
+    var context = BLTCardConfirmPinContext()
+    context.confirmSuccessed = {()
+        complication()
+    }
+    
+    if let vc = UIApplication.shared.keyWindow?.rootViewController {
+        if let connectVC = R.storyboard.bltCard.bltCardConfirmPinViewController() {
+            let nav = BaseNavigationController.init(rootViewController: connectVC)
+            nav.navStyle = .white
+            let coordinator = BLTCardConfirmPinCoordinator(rootVC: nav)
+            connectVC.coordinator = coordinator
+            coordinator.store.dispatch(RouteContextAction(context: context))
+            vc.customPresentViewController(presenter, viewController: nav, animated: true)
+        }
+    }
+}

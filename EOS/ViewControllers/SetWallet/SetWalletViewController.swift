@@ -16,6 +16,7 @@ enum WalletSettingType: Int {
     case leadIn = 0
     case updatePas
     case wookong
+    case updatePin
 }
 
 class SetWalletViewController: BaseViewController {
@@ -58,7 +59,16 @@ class SetWalletViewController: BaseViewController {
             fieldVIew.password.titleLabel.text = R.string.localizable.wookong_pas_set_title.key.localized()
             finished.title = R.string.localizable.wookong_creat_new_wallet.key.localized()
             agreeView.isHidden = true
+        case .updatePin :
+            self.title = R.string.localizable.change_password.key.localized()
+            fieldVIew.password.setting.title = R.string.localizable.new_password.key.localized()
+            fieldVIew.password.titleLabel.text = R.string.localizable.new_password.key.localized()
+            finished.title = R.string.localizable.update_pwd_btn_title.key.localized()
+            agreeView.isHidden = true
+            mnemonic.isHidden = true
+        
         }
+        
 
         agree.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
     }
@@ -101,6 +111,19 @@ class SetWalletViewController: BaseViewController {
                             }
                         })
                     }
+                case .updatePin:
+                    if let password = self.fieldVIew.password.textField.text {
+                        self.coordinator?.updatePin(password, success: { [weak self] in
+                            guard let `self` = self else { return }
+                            self.coordinator?.popVC()
+                            self.showSuccess(message: R.string.localizable.change_password_success.key.localized())
+                        }, failed: { [weak self] (reason) in
+                            guard let `self` = self else { return }
+                            if let failedReason = reason {
+                                self.showError(message: failedReason)
+                            }
+                        })
+                    }
                 }
             }
         }).disposed(by: disposeBag)
@@ -125,7 +148,7 @@ class SetWalletViewController: BaseViewController {
         Observable.combineLatest(self.coordinator!.state.property.setWalletPasswordValid.asObservable(),
                                  self.coordinator!.state.property.setWalletComfirmPasswordValid.asObservable(),
                                  self.coordinator!.state.property.setWalletIsAgree.asObservable()).map { (arg0) -> Bool in
-                                    if self.settingType == .updatePas || self.settingType == .wookong {
+                                    if self.settingType == .updatePas || self.settingType == .wookong || self.settingType == .updatePin {
                                         return arg0.0 && arg0.1
                                     }
                                     return arg0.0 && arg0.1 && arg0.2

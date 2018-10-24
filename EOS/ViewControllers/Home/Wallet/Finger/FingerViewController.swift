@@ -101,8 +101,9 @@ class FingerViewController: BaseViewController {
 // MARK: - View Event
 
 extension FingerViewController {
-    @objc func changePwdDidClicked(_ data: [String: Any]) {
 
+    @objc func changePwdDidClicked(_ data: [String: Any]) {
+        self.coordinator?.changePin()
     }
     @objc func changeFingerNameDidClicked(_ data: [String: Any]) {
         guard let index: Int = data["index"] as? Int else {

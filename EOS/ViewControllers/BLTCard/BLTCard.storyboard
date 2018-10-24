@@ -288,6 +288,33 @@
             </objects>
             <point key="canvasLocation" x="3559" y="95"/>
         </scene>
+        <!--Card Confirm Pin View Controller-->
+        <scene sceneID="nLv-fO-PW3">
+            <objects>
+                <viewController storyboardIdentifier="BLTCardConfirmPinViewController" id="SGQ-4y-iWA" customClass="BLTCardConfirmPinViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Ps-yu-nbH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yu2-6O-r7P" customClass="TransferConfirmPasswordView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="95" width="375" height="128"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="90t-vL-pVY" firstAttribute="trailing" secondItem="yu2-6O-r7P" secondAttribute="trailing" id="4mv-Qc-aF4"/>
+                            <constraint firstItem="yu2-6O-r7P" firstAttribute="leading" secondItem="90t-vL-pVY" secondAttribute="leading" id="BhE-O3-nKi"/>
+                            <constraint firstItem="yu2-6O-r7P" firstAttribute="top" secondItem="90t-vL-pVY" secondAttribute="top" id="OaW-WQ-Z4N"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="90t-vL-pVY"/>
+                    </view>
+                    <connections>
+                        <outlet property="confirmView" destination="yu2-6O-r7P" id="Qwl-5d-Y2b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nog-Qs-D9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4261" y="98"/>
+        </scene>
     </scenes>
     <resources>
         <image name="wookong_bio_close" width="375" height="224"/>

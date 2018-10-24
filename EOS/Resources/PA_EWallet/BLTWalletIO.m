@@ -24,6 +24,8 @@ static BLTWalletIO *_instance = nil;
 
 static dispatch_queue_t bltQueue = nil;
 
+static dispatch_queue_t heartBeatQueue = nil;
+
 const uint32_t puiDerivePathETH[] = {0, 0x8000002c, 0x8000003c, 0x80000000, 0x00000000, 0x00000000};
 const uint32_t puiDerivePathEOS[] = {0, 0x8000002C, 0x800000c2, 0x80000000, 0x00000000, 0x00000000};
 const uint32_t puiDerivePathCYB[] = {0, 0, 1, 0x00000080, 0x00000000, 0x00000000};
@@ -88,6 +90,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     dispatch_once(&onceToken, ^{
         _instance = [[self alloc] init];
         bltQueue = dispatch_queue_create("BluetoothQueue", DISPATCH_QUEUE_SERIAL);
+        heartBeatQueue = dispatch_queue_create("HeartBeatQueue", DISPATCH_QUEUE_SERIAL);
     }) ;
     return _instance ;
 }
@@ -97,6 +100,13 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         _timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(repatGetDeviceInfo) userInfo:nil repeats:true];
     }
     [_timer fire];
+}
+
+- (void)stopHeartBeat {
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
 }
 
 - (void)repatGetDeviceInfo {
@@ -180,6 +190,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (iRtn == PAEW_RET_SUCCESS) {
                 savedDevH = nil;
+                [self stopHeartBeat];
                 successComlication();
             } else {
                 failedCompliction([BLTUtils errorCodeToString:iRtn]);
@@ -202,6 +213,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (connectDev == PAEW_RET_SUCCESS) {
+                [self startHeartBeat];
                 successComlication();
             } else {
                 failedCompliction([BLTUtils errorCodeToString:connectDev]);
@@ -695,7 +707,6 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     if (!pin) {
         return;
     }
-    
     dispatch_async(bltQueue, ^{
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
@@ -711,19 +722,19 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)updatePin:(NSString *)oldPin new:(NSString *)newPin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication {
+- (void)updatePin:(NSString *)newPin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication {
     if (!savedDevH) {
         return;
     }
     
-    if (!newPin || !oldPin) {
+    if (!newPin || !pin) {
         return;
     }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
-        int iRtn = PAEW_ChangePIN_Input(ppPAEWContext, devIdx, [oldPin UTF8String], [newPin UTF8String]);
+        int iRtn = PAEW_ChangePIN_Input(ppPAEWContext, devIdx, [pin UTF8String], [newPin UTF8String]);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (iRtn == PAEW_RET_SUCCESS) {
                 successComlication();
