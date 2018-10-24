@@ -158,7 +158,7 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
     return abi
 }
 
-func transaction(_ action: String, actionModel: ActionModel, callback:@escaping (Bool, String)->Void) {
+func transaction(_ action: String, actionModel: ActionModel, callback:@escaping (Bool, String) -> Void) {
     var abi = ""
     if let getabi = getAbi(action, actionModel: actionModel) {
         abi = getabi
@@ -228,7 +228,7 @@ func transaction(_ action: String, actionModel: ActionModel, callback:@escaping 
     }
 }
 
-func pushTransaction(_ transaction: String, actionModel: ActionModel, callback:@escaping (Bool, String)->Void) {
+func pushTransaction(_ transaction: String, actionModel: ActionModel, callback:@escaping (Bool, String) -> Void) {
     EOSIONetwork.request(target: .push_transaction(json: transaction), success: { (data) in
         if let info = data.dictionaryObject, info["code"] == nil {
             callback(true, actionModel.success)

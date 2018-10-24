@@ -19,7 +19,7 @@ protocol BLTCardConfirmFingerPrinterStateManagerProtocol {
 
     func switchPageState(_ state: PageState)
 
-    func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+    func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
 }
 
 class BLTCardConfirmFingerPrinterCoordinator: BLTCardRootCoordinator {
@@ -57,7 +57,7 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
         self.store.dispatch(PageStateAction(state: state))
     }
 
-    func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
+    func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
         let model = TransferActionModel()
         model.toAccount = account
         model.fromAccount = WalletManager.shared.getAccount()

@@ -28,7 +28,7 @@ protocol TransferStateManagerProtocol {
 
     func fetchUserAccount(_ account: String)
 
-    func checkAccountName(_ name: String) ->(Bool, error_info: String)
+    func checkAccountName(_ name: String) -> (Bool, error_info: String)
     func getCurrentFromLocal()
 }
 
@@ -137,11 +137,11 @@ extension TransferCoordinator: TransferStateManagerProtocol {
         }
     }
 
-    func checkAccountName(_ name: String) ->(Bool, error_info: String) {
+    func checkAccountName(_ name: String) -> (Bool, error_info: String) {
         return (WalletManager.shared.isValidWalletName(name), R.string.localizable.name_ph.key.localized())
     }
 
-    func getInfo(callback:@escaping (String)->Void) {
+    func getInfo(callback:@escaping (String) -> Void) {
         EOSIONetwork.request(target: .get_info, success: { (data) in
             print("get_info : \(data)")
             callback(data.stringValue)
@@ -152,7 +152,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
         }
     }
 
-    func getPushTransaction(_ password: String, account: String, amount: String, code: String, callback:@escaping (String?)->Void) {
+    func getPushTransaction(_ password: String, account: String, amount: String, code: String, callback:@escaping (String?) -> Void) {
 
         getInfo { (get_info) in
             let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: password)

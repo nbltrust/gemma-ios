@@ -22,7 +22,7 @@ protocol PaymentsStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<PaymentsState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
 
-    func getDataFromServer(_ account: String, completion: @escaping (Bool)->Void, isRefresh: Bool)
+    func getDataFromServer(_ account: String, completion: @escaping (Bool) -> Void, isRefresh: Bool)
 }
 
 class PaymentsCoordinator: NavCoordinator {

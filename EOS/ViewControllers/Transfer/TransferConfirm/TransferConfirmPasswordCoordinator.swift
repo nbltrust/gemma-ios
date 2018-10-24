@@ -24,19 +24,19 @@ protocol TransferConfirmPasswordStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<TransferConfirmPasswordState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
 
-    func transferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+    func transferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
 
-    func bltTransferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+    func bltTransferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
 
-    func mortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+    func mortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
 
-    func relieveMortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+    func relieveMortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
 
-    func buyRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+    func buyRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
 
-    func sellRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void)
+    func sellRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
 
-    func voteNode(_ password: String, account: String, amount: String, remark: String, producers: [String], callback:@escaping (Bool, String)->Void)
+    func voteNode(_ password: String, account: String, amount: String, remark: String, producers: [String], callback:@escaping (Bool, String) -> Void)
 
 }
 
@@ -116,7 +116,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         return WalletManager.shared.isValidPassword(password)
     }
 
-    func transferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
+    func transferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
         let model = TransferActionModel()
         model.password = password
         model.toAccount = account
@@ -130,7 +130,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         }
     }
 
-    func bltTransferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
+    func bltTransferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
         let model = TransferActionModel()
         model.password = password
         model.toAccount = account
@@ -146,7 +146,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         }
     }
 
-    func mortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
+    func mortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
         let model = DelegateActionModel()
         model.password = password
         model.toAccount = account
@@ -158,7 +158,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         }
     }
 
-    func relieveMortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
+    func relieveMortgage(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
         let model = UnDelegateActionModel()
         model.password = password
         model.toAccount = account
@@ -170,7 +170,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         }
     }
 
-    func buyRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
+    func buyRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
         let model = BuyRamActionModel()
         model.password = password
         model.toAccount = account
@@ -183,7 +183,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         }
     }
 
-    func sellRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String)->Void) {
+    func sellRam(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
         let model = SellRamActionModel()
         model.password = password
         model.toAccount = account

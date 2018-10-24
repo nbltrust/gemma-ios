@@ -34,7 +34,7 @@ protocol EntryStateManagerProtocol {
 
     func checkAgree(_ agree: Bool)
 
-    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, deviceName: String?, completion:@escaping (Bool)->Void)
+    func createWallet(_ type: CreateAPPId, accountName: String, password: String, prompt: String, inviteCode: String, validation: WookongValidation?, deviceName: String?, completion:@escaping (Bool) -> Void)
 
     func copyMnemonicWord()
 
@@ -44,7 +44,7 @@ protocol EntryStateManagerProtocol {
 
     func verifyAccount(_ name: String, completion: @escaping (Bool) -> Void)
 
-    func createWallet(_ name: String, completion:@escaping (Bool)->Void)
+    func createWallet(_ name: String, completion:@escaping (Bool) -> Void)
 }
 
 class EntryCoordinator: NavCoordinator {
