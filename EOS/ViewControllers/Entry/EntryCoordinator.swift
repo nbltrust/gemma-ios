@@ -134,13 +134,13 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         let coor = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
         
 //        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
-//            coor.state.callback.hadSaveCallback.accept {[weak self] in
+//            coor.state.hadSaveCallback.accept {[weak self] in
 //                guard let `self` = self else { return }
 //                self.dismissCurrentNav(entry)
 //            }
 //        }
 //        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 3] as? EntryViewController {
-//            coor.state.callback.hadSaveCallback.accept {[weak self] in
+//            coor.state.hadSaveCallback.accept {[weak self] in
 //                guard let `self` = self else { return }
 //                self.dismissCurrentNav(entry)
 //            }

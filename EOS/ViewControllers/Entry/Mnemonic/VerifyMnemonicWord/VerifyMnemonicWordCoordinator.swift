@@ -120,28 +120,33 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
             let idNum: Int64 = Int64(wallets!.count) + 1
             let date = Date.init()
             let cipher = Seed39KeyEncrypt(pwd, checkStr)
-            let wallet = Wallet(id: idNum, name: "EOS-WALLET-\(idNum)", type: .HD, cipher: cipher, deviceName: nil, date: date)
+            let wallet = Wallet(id: nil, name: "EOS-WALLET-\(idNum)", type: .HD, cipher: cipher, deviceName: nil, date: date)
             
             let seed = Seed39SeedByMnemonic(checkStr)
             let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true)
             let curCipher = Seed39KeyEncrypt(pwd, prikey)
             let pubkey = EOSIO.getPublicKey(prikey)
-            let currencys = try WalletCacheService.shared.fetchAllCurrencysBy(wallet)
-            let cuNum: Int64 = Int64(currencys!.count) + 1
-            let currency = Currency(id: cuNum, type: .EOS, cipher: curCipher!, pubKey: pubkey!, wid: idNum, date: date, address: nil)
+            let currency = Currency(id: nil, type: .EOS, cipher: curCipher!, pubKey: pubkey!, wid: idNum, date: date, address: nil)
             
             let seed2 = Seed39SeedByMnemonic(checkStr)
             let prikey2 = Seed39DeriveRaw(seed2, CurrencyType.ETH.derivationPath)
             let curCipher2 = Seed39KeyEncrypt(pwd, prikey2)
             let pubkey2 = Seed39GetEthereumPublicKeyFromPrivateKey(prikey2)
             let address = Seed39GetEthereumAddressFromPrivateKey(prikey2)
-            let cuNum2: Int64 = Int64(currencys!.count) + 2
-            let currency2 = Currency(id: cuNum2, type: .ETH, cipher: curCipher2!, pubKey: pubkey2!, wid: idNum, date: date, address: address)
+            let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: pubkey2!, wid: idNum, date: date, address: address)
             
             try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
-            self.checkFeedSuccessed()
+            self.dismiss()
         } catch {
             showFailTop("数据库存储失败")
+        }
+    }
+    
+    func dismiss() {
+        if self.rootVC.viewControllers[0] is EntryGuideViewController {
+            if (UIApplication.shared.delegate as? AppDelegate) != nil {
+                appCoodinator.endEntry()
+            }
         }
     }
 }

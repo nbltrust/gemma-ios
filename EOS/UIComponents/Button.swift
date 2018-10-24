@@ -26,7 +26,7 @@ class Button: UIView {
 
     @IBInspectable var locali: String? {
         didSet {
-            self.button.locali = locali!
+            self.button.setTitle(locali?.localized(), for: .normal)
         }
     }
 

@@ -56,39 +56,45 @@ class AppCoordinator {
     }
 
     func start() {
-        if let tabBar = rootVC.tabBar as? ESTabBar {
-//            tabBar.barTintColor = UIColor.dark
-            tabBar.backgroundImage = UIImage()
-        }
+//        if let tabBar = rootVC.tabBar as? ESTabBar {
+////            tabBar.barTintColor = UIColor.dark
+//            tabBar.backgroundImage = UIImage()
+//        }
 
-//        let newhome = BaseNavigationController()
-//        newHomeCoordinator = NavCoordinator(rootVC: newhome)
-//
+        
+
+        
 //        newHomeItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet.key.localized(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
-//        newhome.tabBarItem = homeItem
+//        newhome.tabBarItem = newHomeItem
 
-        let home = BaseNavigationController()
-        homeCoordinator = NavCoordinator(rootVC: home)
+//        let home = BaseNavigationController()
+//        homeCoordinator = NavCoordinator(rootVC: home)
+//
+//        homeItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet.key.localized(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
+//        home.tabBarItem = homeItem
+//
+//        let transfer = BaseNavigationController()
+//        transferCoordinator = NavCoordinator(rootVC: transfer)
+//        transferItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarTransfer.key.localized(), image: R.image.ic_send_normal(), selectedImage: R.image.ic_send_selected())
+//        transfer.tabBarItem = transferItem
+//
+//        let userinfo = BaseNavigationController()
+//        userinfoCoordinator = NavCoordinator(rootVC: userinfo)
+//        userInfoItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine.key.localized(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
+//        userinfo.tabBarItem = userInfoItem
 
-        homeItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarWallet.key.localized(), image: R.image.ic_wallet_normal(), selectedImage: R.image.ic_wallet_selected())
-        home.tabBarItem = homeItem
+        newHomeCoordinator.pushVC(NewHomeCoordinator.self, animated: true, context: nil)
+        
+        self.presentVC(NewHomeCoordinator.self, animated: false, context: nil, navSetup: { (nav) in
+            nav.navStyle = .clear
+        }) { (top, target) in
+            
+        }
+//        homeCoordinator.pushVC(HomeCoordinator.self, animated: true, context: nil)
+//        transferCoordinator.pushVC(TransferCoordinator.self, animated: true, context: nil)
+//        userinfoCoordinator.pushVC(UserInfoCoordinator.self, animated: true, context: nil)
 
-        let transfer = BaseNavigationController()
-        transferCoordinator = NavCoordinator(rootVC: transfer)
-        transferItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarTransfer.key.localized(), image: R.image.ic_send_normal(), selectedImage: R.image.ic_send_selected())
-        transfer.tabBarItem = transferItem
-
-        let userinfo = BaseNavigationController()
-        userinfoCoordinator = NavCoordinator(rootVC: userinfo)
-        userInfoItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine.key.localized(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
-        userinfo.tabBarItem = userInfoItem
-
-//        newHomeCoordinator.pushVC(NewHomeCoordinator.self, animated: true, context: nil)
-        homeCoordinator.pushVC(HomeCoordinator.self, animated: true, context: nil)
-        transferCoordinator.pushVC(TransferCoordinator.self, animated: true, context: nil)
-        userinfoCoordinator.pushVC(UserInfoCoordinator.self, animated: true, context: nil)
-
-        rootVC.viewControllers = [home, transfer, userinfo]
+//        rootVC.viewControllers = [home, transfer, userinfo]
         aspect()
     }
 
@@ -99,20 +105,21 @@ class AppCoordinator {
     }
 
     func aspect() {
-        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) {[weak self] (_) in
-            guard let `self` = self else { return }
-            self.curDisplayingCoordinator().rootVC.topViewController?.refreshViewController()
-        }
-
-        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil, queue: nil) {[weak self] (_) in
-            guard let `self` = self else { return }
-            self.updateTabbar()
-        }
+//        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) {[weak self] (_) in
+//            guard let `self` = self else { return }
+//            self.curDisplayingCoordinator().rootVC.topViewController?.refreshViewController()
+//        }
+//
+//        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil, queue: nil) {[weak self] (_) in
+//            guard let `self` = self else { return }
+//            self.updateTabbar()
+//        }
     }
 
     func curDisplayingCoordinator() -> NavCoordinator {
-        let container = [homeCoordinator, transferCoordinator, userinfoCoordinator] as [NavCoordinator]
-        return container[self.rootVC.selectedIndex]
+        let container = newHomeCoordinator as NavCoordinator
+        
+        return container
     }
 
     func showEntry() {
