@@ -23,7 +23,7 @@ class BLTCardConfirmPinCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardConfirmPinReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: BLTCardConfirmPinState {

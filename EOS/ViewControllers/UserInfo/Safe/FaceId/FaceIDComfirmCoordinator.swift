@@ -29,7 +29,7 @@ class FaceIDComfirmCoordinator: NavCoordinator {
     var store = Store<FaceIDComfirmState>(
         reducer: FaceIDComfirmReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

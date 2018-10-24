@@ -42,7 +42,7 @@ class ContainerNormalCellView: UIView {
                     cellView.state = 1
                     cellView.tag = (index + 1)
                     cellView.backgroundColor = UIColor.whiteTwo89
-                    cellView.name_style = LineViewStyleNames.normal_name.rawValue
+                    cellView.name_style = LineViewStyleNames.normalName.rawValue
                     cellView.rightIconName = index == self.selectedIndex ? R.image.group.name : R.image.select.name
                     if index == data.count - 1 {
                         cellView.isShowLineView = false
@@ -104,7 +104,9 @@ class ContainerNormalCellView: UIView {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
+
+
 
         addSubview(view)
         view.frame = self.bounds

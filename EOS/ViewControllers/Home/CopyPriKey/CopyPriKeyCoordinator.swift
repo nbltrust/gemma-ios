@@ -29,9 +29,9 @@ class CopyPriKeyCoordinator: NavCoordinator {
     lazy var creator = CopyPriKeyPropertyActionCreate()
 
     var store = Store<CopyPriKeyState>(
-        reducer: CopyPriKeyReducer,
+        reducer: gCopyPriKeyReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 
@@ -43,7 +43,7 @@ extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
         context.buttonTitle = R.string.localizable.i_know.key.localized()
         context.imageName = R.image.icPopNoScreenshots.name
         context.needCancel = false
-        app_coodinator.showGemmaAlert(context)
+        appCoodinator.showGemmaAlert(context)
     }
 
     func finishCopy() {

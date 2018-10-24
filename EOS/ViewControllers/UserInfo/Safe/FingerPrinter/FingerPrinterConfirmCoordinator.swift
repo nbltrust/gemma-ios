@@ -29,7 +29,7 @@ class FingerPrinterConfirmCoordinator: NavCoordinator {
     var store = Store<FingerPrinterConfirmState>(
         reducer: FingerPrinterConfirmReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

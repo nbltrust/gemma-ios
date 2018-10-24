@@ -15,8 +15,8 @@ class LineView: UIView {
         var name: String = ""
         var content: String = ""
         var image_name: String = ""
-        var name_style: LineViewStyleNames = .normal_name
-        var content_style: LineViewStyleNames = .normal_content
+        var name_style: LineViewStyleNames = .normalName
+        var content_style: LineViewStyleNames = .normalContent
         var isBadge: Bool = false
         var content_line_number: Int = 1
         var isShowLineView: Bool = false
@@ -41,14 +41,14 @@ class LineView: UIView {
     }
 
     @IBInspectable
-    var name_style: String = LineViewStyleNames.normal_name.rawValue {
+    var name_style: String = LineViewStyleNames.normalName.rawValue {
         didSet {
             self.name.attributedText = name_text.set(style: name_style)
         }
     }
 
     @IBInspectable
-    var content_style: String = LineViewStyleNames.normal_content.rawValue {
+    var content_style: String = LineViewStyleNames.normalContent.rawValue {
         didSet {
             self.content.attributedText = content_text.set(style: content_style)
         }
@@ -167,7 +167,9 @@ class LineView: UIView {
     func loadXIB() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib.init(nibName: String.init(describing: type(of: self)), bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
+
+
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]

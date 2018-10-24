@@ -136,7 +136,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = (self.coordinator?.createDataInfo().count)!
         if self.coordinator?.isBluetoothWallet() ?? false {
-            count = count + 1
+            count += 1
         }
         return count
     }

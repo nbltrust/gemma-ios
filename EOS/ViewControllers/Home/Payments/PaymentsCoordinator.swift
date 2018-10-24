@@ -32,7 +32,7 @@ class PaymentsCoordinator: NavCoordinator {
     var store = Store<PaymentsState>(
         reducer: PaymentsReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

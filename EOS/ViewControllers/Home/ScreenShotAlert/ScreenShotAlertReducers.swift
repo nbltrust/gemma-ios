@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-func ScreenShotAlertReducer(action: Action, state: ScreenShotAlertState?) -> ScreenShotAlertState {
+func gScreenShotAlertReducer(action: Action, state: ScreenShotAlertState?) -> ScreenShotAlertState {
     let state = state ?? ScreenShotAlertState()
 
     switch action {

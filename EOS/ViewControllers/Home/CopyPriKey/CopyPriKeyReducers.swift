@@ -9,11 +9,14 @@
 import UIKit
 import ReSwift
 
-func CopyPriKeyReducer(action: Action, state: CopyPriKeyState?) -> CopyPriKeyState {
-    return CopyPriKeyState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: CopyPriKeyPropertyReducer(state?.property, action: action))
+func gCopyPriKeyReducer(action: Action, state: CopyPriKeyState?) -> CopyPriKeyState {
+    return CopyPriKeyState(isLoading: loadingReducer(state?.isLoading, action: action),
+                           page: pageReducer(state?.page, action: action),
+                           errorMessage: errorMessageReducer(state?.errorMessage, action: action),
+                           property: gCopyPriKeyPropertyReducer(state?.property, action: action))
 }
 
-func CopyPriKeyPropertyReducer(_ state: CopyPriKeyPropertyState?, action: Action) -> CopyPriKeyPropertyState {
+func gCopyPriKeyPropertyReducer(_ state: CopyPriKeyPropertyState?, action: Action) -> CopyPriKeyPropertyState {
     let state = state ?? CopyPriKeyPropertyState()
 
     switch action {

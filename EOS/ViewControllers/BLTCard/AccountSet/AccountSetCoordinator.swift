@@ -23,7 +23,7 @@ class AccountSetCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: AccountSetReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: AccountSetState {

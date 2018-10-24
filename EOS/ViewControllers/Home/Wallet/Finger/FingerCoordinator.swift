@@ -28,7 +28,7 @@ class FingerCoordinator: NavCoordinator {
     var store = Store(
         reducer: FingerReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: FingerState {

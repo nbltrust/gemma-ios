@@ -12,7 +12,7 @@ class AccountListView: UIView {
 
     @IBOutlet weak var tableView: UITableView!
 
-    enum event: String {
+    enum Event: String {
         case didselectrow
     }
 
@@ -69,7 +69,9 @@ class AccountListView: UIView {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
+
+
 
         self.insertSubview(view, at: 0)
         view.frame = self.bounds
@@ -101,7 +103,7 @@ extension AccountListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if (data as? [AccountListViewModel]) != nil {
-            self.sendEventWith(event.didselectrow.rawValue, userinfo: ["index": indexPath.row])
+            self.sendEventWith(Event.didselectrow.rawValue, userinfo: ["index": indexPath.row])
         }
     }
 }

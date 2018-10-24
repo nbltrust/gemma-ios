@@ -28,7 +28,7 @@ class MnemonicContentCoordinator: NavCoordinator {
     var store = Store(
         reducer: MnemonicContentReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: MnemonicContentState {

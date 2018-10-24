@@ -33,7 +33,7 @@ class BLTCardSearchCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardSearchReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: BLTCardSearchState {
@@ -52,7 +52,7 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
     }
 
     func pushAfterDeviceConnected() {
-        if let homeCoor = app_coodinator.homeCoordinator {
+        if let homeCoor = appCoodinator.homeCoordinator {
             self.rootVC.dismiss(animated: true) {
                 if let vc = R.storyboard.leadIn.setWalletViewController() {
                     vc.coordinator = SetWalletCoordinator(rootVC: homeCoor.rootVC)

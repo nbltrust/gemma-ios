@@ -156,7 +156,9 @@ class WalletManagerView: UIView {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
+
+
 
         self.insertSubview(view, at: 0)
         view.frame = self.bounds

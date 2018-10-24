@@ -23,7 +23,7 @@ class BLTCardInitCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardInitReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: BLTCardInitState {

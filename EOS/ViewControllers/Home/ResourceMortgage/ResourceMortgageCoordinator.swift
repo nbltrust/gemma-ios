@@ -37,7 +37,7 @@ class ResourceMortgageCoordinator: NavCoordinator {
     var store = Store<ResourceMortgageState>(
         reducer: ResourceMortgageReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

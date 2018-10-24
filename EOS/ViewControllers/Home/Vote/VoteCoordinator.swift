@@ -39,7 +39,7 @@ class VoteCoordinator: NavCoordinator {
     var store = Store<VoteState>(
         reducer: VoteReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override func register() {
@@ -120,7 +120,7 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
 
     func voteSelNodes() {
-        app_coodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, producers: selectedProducers(), completion: nil)
+        appCoodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: WalletManager.shared.currentPubKey, type: confirmType.voteNode.rawValue, producers: selectedProducers(), completion: nil)
     }
 
     func selectedProducers() -> [String] {

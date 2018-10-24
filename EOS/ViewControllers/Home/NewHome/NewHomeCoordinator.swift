@@ -23,7 +23,7 @@ class NewHomeCoordinator: NavCoordinator {
     var store = Store(
         reducer: NewHomeReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: NewHomeState {

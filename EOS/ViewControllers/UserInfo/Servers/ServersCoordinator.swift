@@ -26,7 +26,7 @@ class ServersCoordinator: NavCoordinator {
     var store = Store<ServersState>(
         reducer: ServersReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

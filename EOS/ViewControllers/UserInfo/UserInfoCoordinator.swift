@@ -34,7 +34,7 @@ class UserInfoCoordinator: NavCoordinator {
     var store = Store<UserInfoState>(
         reducer: UserInfoReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {

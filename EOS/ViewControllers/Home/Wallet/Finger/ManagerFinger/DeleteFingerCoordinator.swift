@@ -26,7 +26,7 @@ class DeleteFingerCoordinator: NavCoordinator {
     var store = Store(
         reducer: DeleteFingerReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: DeleteFingerState {

@@ -36,7 +36,7 @@ class AccountInfoView: UIView {
     @IBOutlet weak var netView: UIView!
     @IBOutlet weak var ramView: UIView!
 
-    enum tapEvent: String {
+    enum TapEvent: String {
         case refundEvent
         case backupEvent
         case cpuevent
@@ -102,22 +102,22 @@ class AccountInfoView: UIView {
     func setUpEvent() {
         backupLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (_) in
             guard let `self` = self else { return }
-            self.backupLabel.next?.sendEventWith(tapEvent.backupEvent.rawValue, userinfo: [:])
+            self.backupLabel.next?.sendEventWith(TapEvent.backupEvent.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
 
         cpuView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (_) in
             guard let `self` = self else { return }
-            self.cpuView.next?.sendEventWith(tapEvent.cpuevent.rawValue, userinfo: [:])
+            self.cpuView.next?.sendEventWith(TapEvent.cpuevent.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
 
         netView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (_) in
             guard let `self` = self else { return }
-            self.cpuView.next?.sendEventWith(tapEvent.netevent.rawValue, userinfo: [:])
+            self.cpuView.next?.sendEventWith(TapEvent.netevent.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
 
         ramView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (_) in
             guard let `self` = self else { return }
-            self.cpuView.next?.sendEventWith(tapEvent.ramevent.rawValue, userinfo: [:])
+            self.cpuView.next?.sendEventWith(TapEvent.ramevent.rawValue, userinfo: [:])
         }).disposed(by: disposeBag)
     }
 
@@ -158,7 +158,9 @@ class AccountInfoView: UIView {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
+            return
+        }
 
         addSubview(view)
         view.frame = self.bounds

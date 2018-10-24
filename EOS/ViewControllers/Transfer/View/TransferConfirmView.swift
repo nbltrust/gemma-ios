@@ -79,15 +79,15 @@ class TransferConfirmView: UIView {
     }
 
     func setupUI() {
-        receverView.name_style = LineViewStyleNames.confirm_name.rawValue
-        amountView.name_style = LineViewStyleNames.confirm_name.rawValue
-        remarkView.name_style = LineViewStyleNames.confirm_name.rawValue
-        payAccountView.name_style = LineViewStyleNames.confirm_name.rawValue
+        receverView.name_style = LineViewStyleNames.confirmName.rawValue
+        amountView.name_style = LineViewStyleNames.confirmName.rawValue
+        remarkView.name_style = LineViewStyleNames.confirmName.rawValue
+        payAccountView.name_style = LineViewStyleNames.confirmName.rawValue
 
-        receverView.content_style = LineViewStyleNames.transfer_confirm.rawValue
-        amountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
-        remarkView.content_style = LineViewStyleNames.normal_name.rawValue
-        payAccountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
+        receverView.content_style = LineViewStyleNames.transferConfirm.rawValue
+        amountView.content_style = LineViewStyleNames.transferConfirm.rawValue
+        remarkView.content_style = LineViewStyleNames.normalName.rawValue
+        payAccountView.content_style = LineViewStyleNames.transferConfirm.rawValue
     }
 
     func setRichText() {
@@ -148,7 +148,9 @@ class TransferConfirmView: UIView {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        guard let  view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
+
+
 
         addSubview(view)
         view.frame = self.bounds

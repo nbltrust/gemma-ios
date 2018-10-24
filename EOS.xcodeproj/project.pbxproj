@@ -72,7 +72,6 @@
 		223C5916214A532800C69F3F /* BLTCardEntryViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C5913214A532800C69F3F /* BLTCardEntryViewAdapter.swift */; };
 		223C5917214A532800C69F3F /* BLTCardEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C5914214A532800C69F3F /* BLTCardEntryView.swift */; };
 		223C5918214A532800C69F3F /* BLTCardEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223C5915214A532800C69F3F /* BLTCardEntryView.xib */; };
-		224D364D2180570E007EAD1C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224D364C2180570E007EAD1C /* R.generated.swift */; };
 		2253C51C211052020043AAF7 /* SafeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C51B211052020043AAF7 /* SafeManager.swift */; };
 		2253C5272111A5F90043AAF7 /* CopyPriKeyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */; };
 		2253C5282111A5F90043AAF7 /* CopyPriKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253C5242111A5F90043AAF7 /* CopyPriKeyActions.swift */; };
@@ -517,6 +516,7 @@
 		735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735A3D132160A99700FC8922 /* NBLCommonModule.framework */; };
 		7374B371217EC38600B63982 /* eos_ios_core_cpp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */; };
 		7374B37D217EC9BD00B63982 /* iOS_EWalletDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */; };
+		737F76A42180626D00198196 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F76A32180626D00198196 /* R.generated.swift */; };
 		737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCD2146647E00DD522A /* DataFetchConditon.swift */; };
 		737F8DD22146647E00DD522A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCE2146647E00DD522A /* DataProvider.swift */; };
 		737F8DD32146647E00DD522A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737F8DCF2146647E00DD522A /* DBManager.swift */; };
@@ -762,7 +762,6 @@
 		223C5915214A532800C69F3F /* BLTCardEntryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLTCardEntryView.xib; sourceTree = "<group>"; };
 		223C591F214B89F900C69F3F /* BLTWalletIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTWalletIO.h; sourceTree = "<group>"; };
 		223C5924214B9DE100C69F3F /* BLTWalletHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTWalletHeader.h; sourceTree = "<group>"; };
-		224D364C2180570E007EAD1C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		2253C51B211052020043AAF7 /* SafeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeManager.swift; sourceTree = "<group>"; };
 		2253C5232111A5F90043AAF7 /* CopyPriKeyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyPriKeyCoordinator.swift; sourceTree = "<group>"; };
 		2253C5242111A5F90043AAF7 /* CopyPriKeyActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyPriKeyActions.swift; sourceTree = "<group>"; };
@@ -1215,6 +1214,7 @@
 		7374B300217DD9B000B63982 /* GRDB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GRDB.xcodeproj; path = GRDB.swift/GRDB.xcodeproj; sourceTree = "<group>"; };
 		7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = eos_ios_core_cpp.framework; path = Carthage/Build/iOS/eos_ios_core_cpp.framework; sourceTree = "<group>"; };
 		7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iOS_EWalletDynamic.framework; path = Carthage/Build/iOS/iOS_EWalletDynamic.framework; sourceTree = "<group>"; };
+		737F76A32180626D00198196 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		737F8DCD2146647E00DD522A /* DataFetchConditon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFetchConditon.swift; sourceTree = "<group>"; };
 		737F8DCE2146647E00DD522A /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		737F8DCF2146647E00DD522A /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -1420,11 +1420,11 @@
 				31FC1C0ABF5DB16A7CE2B85766922CB6 /* AppDelegate.swift */,
 				778E2FB094094F597056F12BA4850DAB /* Assets.xcassets */,
 				E8C89DF5B10B783E40D83BB3C86E700D /* EOS-Bridging-Header.h */,
-				224D364C2180570E007EAD1C /* R.generated.swift */,
 				73378F76211C2D5300ACAA90 /* EOS.entitlements */,
 				017E5A17AE45A2B724BB0B367641F01E /* Info.plist */,
 				133700A3CC78F9E6E9EE7D93BD01A646 /* LaunchScreen.storyboard */,
 				8D6DCAB8F96446139DBCE56777785B34 /* ViewController.swift */,
+				737F76A32180626D00198196 /* R.generated.swift */,
 			);
 			path = EOS;
 			sourceTree = "<group>";
@@ -3760,7 +3760,7 @@
 				7342E4E8216F1F8A0093E2C2 /* BLTCardPowerOnReducers.swift in Sources */,
 				3BD3666820FDEB94004DE09D /* TransferContentView.swift in Sources */,
 				3B6D7462214761690076F444 /* FriendToActivateViewController.swift in Sources */,
-				224D364D2180570E007EAD1C /* R.generated.swift in Sources */,
+				737F76A42180626D00198196 /* R.generated.swift in Sources */,
 				3B858BC4217077FB00499FAC /* FingerViewController.swift in Sources */,
 				739A4DBC2150DF2800A1074B /* UIScreenEdgePanGestureRecognizer+RxGesture.swift in Sources */,
 				2253C52F2111A6300043AAF7 /* QRCodeCoordinator.swift in Sources */,

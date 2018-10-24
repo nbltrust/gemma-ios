@@ -30,7 +30,7 @@ class ChangeWalletNameCoordinator: NavCoordinator {
     var store = Store<ChangeWalletNameState>(
         reducer: ChangeWalletNameReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 

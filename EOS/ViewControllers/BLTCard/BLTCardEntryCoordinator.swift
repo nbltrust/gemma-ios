@@ -27,7 +27,7 @@ class BLTCardEntryCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardEntryReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     var state: BLTCardEntryState {

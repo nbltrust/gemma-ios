@@ -54,7 +54,7 @@ class EntryCoordinator: NavCoordinator {
     var store = Store<EntryState>(
         reducer: EntryReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override func register() {

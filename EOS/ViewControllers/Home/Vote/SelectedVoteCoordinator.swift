@@ -30,7 +30,7 @@ class SelectedVoteCoordinator: NavCoordinator {
     var store = Store<SelectedVoteState>(
         reducer: SelectedVoteReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 
     override func register() {

@@ -49,7 +49,7 @@ class SafeCoordinator: NavCoordinator {
     var store = Store<SafeState>(
         reducer: SafeReducer,
         state: nil,
-        middleware: [TrackingMiddleware]
+        middleware: [trackingMiddleware]
     )
 }
 
