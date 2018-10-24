@@ -22,13 +22,13 @@ protocol ScreenShotAlertStateManagerProtocol {
 }
 
 class ScreenShotAlertCoordinator: ScreenShotAlertRootCoordinator {
-    
+
     lazy var creator = ScreenShotAlertPropertyActionCreate()
-    
+
     var store = Store<ScreenShotAlertState>(
         reducer: ScreenShotAlertReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
@@ -36,19 +36,18 @@ extension ScreenShotAlertCoordinator: ScreenShotAlertCoordinatorProtocol {
     func dismissScreenShotAlert() {
         self.rootVC.dismiss(animated: true, completion: nil)
     }
-    
-    
+
 }
 
 extension ScreenShotAlertCoordinator: ScreenShotAlertStateManagerProtocol {
     var state: ScreenShotAlertState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<ScreenShotAlertState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

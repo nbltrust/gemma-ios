@@ -16,23 +16,23 @@ class AccountListViewController: BaseViewController {
 	var coordinator: (AccountListCoordinatorProtocol & AccountListStateManagerProtocol)?
 
     @IBOutlet weak var accountListView: AccountListView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupData()
     }
-    
+
     func setupUI() {
         configLeftNavButton(R.image.icTransferClose())
     }
-    
+
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismissListVC()
     }
-    
+
     func setupData() {
-        
+
         var array: [AccountListViewModel] = []
         for accountName in WalletManager.shared.account_names {
             var model = AccountListViewModel()
@@ -42,14 +42,14 @@ class AccountListViewController: BaseViewController {
         accountListView.data = array
         accountListView.tableView.reloadData()
     }
-    
+
     override func configureObserveState() {
-        
+
     }
 }
 
 extension AccountListViewController {
-    @objc func didselectrow(_ data:[String:Any]) {
+    @objc func didselectrow(_ data: [String: Any]) {
         let index = data["index"] as? Int
         WalletManager.shared.switchAccount(index ?? 0)
         self.coordinator?.dismissListVC()

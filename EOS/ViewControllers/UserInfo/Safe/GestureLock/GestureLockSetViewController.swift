@@ -14,11 +14,11 @@ import ReSwift
 class GestureLockSetViewController: BaseViewController {
 
     @IBOutlet weak var infoView: GestureLockInfoView!
-    
+
     @IBOutlet weak var messageLabel: UILabel!
-    
+
     @IBOutlet weak var lockView: GestureLockView!
-    
+
     var coordinator: (GestureLockSetCoordinatorProtocol & GestureLockSetStateManagerProtocol)?
 
 	override func viewDidLoad() {
@@ -30,7 +30,7 @@ class GestureLockSetViewController: BaseViewController {
         self.title = R.string.localizable.setting_set_password.key.localized()
         lockView.delegate = self
     }
-    
+
     override func configureObserveState() {
         self.coordinator?.state.property.validedPassword.asObservable().subscribe(onNext: {[weak self] (isValided) in
             guard let `self` = self else { return }
@@ -38,12 +38,12 @@ class GestureLockSetViewController: BaseViewController {
                 self.coordinator?.popVC()
             }
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         self.coordinator?.state.property.password.asObservable().subscribe(onNext: {[weak self] (password) in
             guard let `self` = self else { return }
             self.infoView.showSelectedItems(password)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         self.coordinator?.state.property.promotData.asObservable().subscribe(onNext: {[weak self] (arg0) in
             guard let `self` = self else { return }
             self.messageLabel.text = arg0.message

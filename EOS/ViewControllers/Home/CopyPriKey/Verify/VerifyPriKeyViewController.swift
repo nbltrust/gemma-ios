@@ -16,23 +16,23 @@ class VerifyPriKeyViewController: BaseViewController {
 	var coordinator: (VerifyPriKeyCoordinatorProtocol & VerifyPriKeyStateManagerProtocol)?
 
     @IBOutlet weak var contentView: LeadInKeyView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func refreshViewController() {
-        
+
     }
-    
+
     func setupUI() {
         self.title = R.string.localizable.copy_priKey_title.key.localized()
         self.contentView.title = R.string.localizable.verify_prikey_title.key.localized()
@@ -40,19 +40,19 @@ class VerifyPriKeyViewController: BaseViewController {
     }
 
     func setupData() {
-        
+
     }
-    
+
     func setupEvent() {
-        
+
     }
-    
+
     override func configureObserveState() {
 
     }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension VerifyPriKeyViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,11 +66,10 @@ class VerifyPriKeyViewController: BaseViewController {
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 extension VerifyPriKeyViewController {
-    @objc func beginLeadInAction(_ sender : [String:Any]) {
+    @objc func beginLeadInAction(_ sender: [String: Any]) {
         if let priKey = self.contentView.textView.text, priKey == WalletManager.shared.priKey {
             self.coordinator?.finishCopy()
         } else {
@@ -78,4 +77,3 @@ extension VerifyPriKeyViewController {
         }
     }
 }
-

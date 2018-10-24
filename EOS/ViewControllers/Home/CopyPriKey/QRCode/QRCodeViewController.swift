@@ -13,17 +13,17 @@ import ReSwift
 import XLPagerTabStrip
 
 class QRCodeViewController: BaseViewController, IndicatorInfoProvider {
-    
+
     var coordinator: (QRCodeCoordinatorProtocol & QRCodeStateManagerProtocol)?
 
     @IBOutlet weak var qrCodeView: QRCodeView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func configureObserveState() {
-        
+
     }
 }
 

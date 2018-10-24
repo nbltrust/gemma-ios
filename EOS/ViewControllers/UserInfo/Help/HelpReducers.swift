@@ -9,20 +9,17 @@
 import UIKit
 import ReSwift
 
-func HelpReducer(action:Action, state:HelpState?) -> HelpState {
+func HelpReducer(action: Action, state: HelpState?) -> HelpState {
     return HelpState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: HelpPropertyReducer(state?.property, action: action))
 }
 
 func HelpPropertyReducer(_ state: HelpPropertyState?, action: Action) -> HelpPropertyState {
-    var state = state ?? HelpPropertyState()
-    
+    let state = state ?? HelpPropertyState()
+
     switch action {
     default:
         break
     }
-    
+
     return state
 }
-
-
-

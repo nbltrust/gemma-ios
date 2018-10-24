@@ -15,22 +15,22 @@ protocol BLTCardPowerOnCoordinatorProtocol {
 
 protocol BLTCardPowerOnStateManagerProtocol {
     var state: BLTCardPowerOnState { get }
-    
-    func switchPageState(_ state:PageState)
+
+    func switchPageState(_ state: PageState)
 }
 
 class BLTCardPowerOnCoordinator: NavCoordinator {
     var store = Store(
         reducer: BLTCardPowerOnReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: BLTCardPowerOnState {
         return store.state
     }
-    
-    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
+
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.bltCard.bltCardPowerOnViewController()!
         let coordinator = BLTCardPowerOnCoordinator(rootVC: root)
         vc.coordinator = coordinator
@@ -45,11 +45,11 @@ class BLTCardPowerOnCoordinator: NavCoordinator {
 }
 
 extension BLTCardPowerOnCoordinator: BLTCardPowerOnCoordinatorProtocol {
-    
+
 }
 
 extension BLTCardPowerOnCoordinator: BLTCardPowerOnStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }

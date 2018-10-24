@@ -12,29 +12,28 @@ import RxCocoa
 import ReSwift
 import XLPagerTabStrip
 
-class PayToActivateViewController: BaseViewController,IndicatorInfoProvider {
+class PayToActivateViewController: BaseViewController, IndicatorInfoProvider {
 
 	var coordinator: (PayToActivateCoordinatorProtocol & PayToActivateStateManagerProtocol)?
 
     @IBOutlet weak var contentView: PayView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func refreshViewController() {
 
-
     }
-    
+
     @objc func refreshPage() {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
         switch self.coordinator?.state.pageState.value {
@@ -51,19 +50,19 @@ class PayToActivateViewController: BaseViewController,IndicatorInfoProvider {
             break
         }
     }
-    
+
     func setupUI() {
-        
+
     }
 
     func setupData() {
         self.coordinator?.getBill()
     }
-    
+
     func setupEvent() {
-        
+
     }
-    
+
     override func configureObserveState() {
         coordinator?.state.billInfo.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
@@ -72,7 +71,7 @@ class PayToActivateViewController: BaseViewController,IndicatorInfoProvider {
     }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension PayToActivateViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,8 +85,7 @@ class PayToActivateViewController: BaseViewController,IndicatorInfoProvider {
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 //extension PayToActivateViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
@@ -100,14 +98,14 @@ extension PayToActivateViewController {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(stringLiteral: R.string.localizable.pay_to_activate.key.localized())
     }
-    
-    @objc func NextClick(_ data:[String :Any]) {
+
+    @objc func NextClick(_ data: [String: Any]) {
         self.coordinator?.state.pageState.accept(.loading(reason: .manualRefresh))
 
         NotificationCenter.default.addObserver(self, selector: #selector(refreshPage), name: UIApplication.didBecomeActiveNotification, object: nil)
-        self.coordinator?.initOrder(completion: { (success) in
-            
+        self.coordinator?.initOrder(completion: { (_) in
+
         })
     }
-    
+
 }

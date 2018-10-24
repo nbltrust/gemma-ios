@@ -9,29 +9,29 @@
 import UIKit
 import ReSwift
 
-func PaymentsReducer(action:Action, state:PaymentsState?) -> PaymentsState {
+func PaymentsReducer(action: Action, state: PaymentsState?) -> PaymentsState {
     return PaymentsState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: PaymentsPropertyReducer(state?.property, action: action))
 }
 
 func PaymentsPropertyReducer(_ state: PaymentsPropertyState?, action: Action) -> PaymentsPropertyState {
     var state = state ?? PaymentsPropertyState()
-    
+
     switch action {
     case let action as FetchPaymentsRecordsListAction:
         state.payments = action.data
-        let mData : [PaymentsRecordsViewModel] = convertTransferViewModel(data: action.data)
+        let mData: [PaymentsRecordsViewModel] = convertTransferViewModel(data: action.data)
         state.data = mData
     case let action as GetLastPosAction:
         state.last_pos = action.last_pos
     default:
         break
     }
-    
+
     return state
 }
 
-func convertTransferViewModel(data:[Payment]) -> [PaymentsRecordsViewModel] {
-    
+func convertTransferViewModel(data: [Payment]) -> [PaymentsRecordsViewModel] {
+
     /*
      action_seq: 90
      from: "abcabcabcabc"
@@ -53,23 +53,22 @@ func convertTransferViewModel(data:[Payment]) -> [PaymentsRecordsViewModel] {
      var memo : String = ""
      var hashNumber : String = ""
      */
-    
+
     var dataArray: [PaymentsRecordsViewModel] = []
-    for payment in data{
-        let isSend : Bool = payment.from == WalletManager.shared.getAccount()
-        let state : Bool = payment.status.rawValue == 3
-        let stateImage : UIImage? = isSend ? R.image.icSend() : R.image.icIncome()
+    for payment in data {
+        let isSend: Bool = payment.from == WalletManager.shared.getAccount()
+        let state: Bool = payment.status.rawValue == 3
+        let stateImage: UIImage? = isSend ? R.image.icSend() : R.image.icIncome()
         let address = isSend ? payment.to : payment.from
         let time = payment.time.string(withFormat: "yyyy/MM/dd HH:mm")
         let transferState = payment.status.description()
         let money = isSend ? "-" + payment.value : "+" + payment.value
-        
+
         dataArray.append(PaymentsRecordsViewModel(stateImageName: stateImage, address: address!, time: time, transferState: transferState, money: money, transferStateBool: state, block: payment.block, memo: payment.memo, hashNumber: payment.hash.hashNano, hash: payment.hash))
-        
+
     }
     return dataArray
-    
-    
+
 //    var dataArray: [PaymentsRecordsViewModel] = []
 //    var payment = Payment.init()
 //    payment.from = "121"
@@ -102,4 +101,3 @@ func convertTransferViewModel(data:[Payment]) -> [PaymentsRecordsViewModel] {
 //    return dataArray as! [PaymentsRecordsViewModel]
 
 }
-

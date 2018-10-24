@@ -22,39 +22,39 @@ protocol BackupPrivateKeyStateManagerProtocol {
 }
 
 class BackupPrivateKeyCoordinator: NavCoordinator {
-    
+
     lazy var creator = BackupPrivateKeyPropertyActionCreate()
-    
+
     var store = Store<BackupPrivateKeyState>(
         reducer: BackupPrivateKeyReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
 extension BackupPrivateKeyCoordinator: BackupPrivateKeyCoordinatorProtocol {
     func showPresenterVC(_ pubKey: String) {
-        app_coodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, type: confirmType.backupPrivateKey.rawValue, producers: [], completion: {[weak self] (result) in
+        app_coodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, type: confirmType.backupPrivateKey.rawValue, producers: [], completion: {[weak self] (_) in
             guard let `self` = self else { return }
             let copyVC = CopyPriKeyViewController()
             let copyCoordinator = CopyPriKeyCoordinator(rootVC: self.rootVC)
             copyVC.coordinator = copyCoordinator
             self.rootVC.pushViewController(copyVC, animated: true)
         })
-            
+
     }
-    
+
 }
 
 extension BackupPrivateKeyCoordinator: BackupPrivateKeyStateManagerProtocol {
     var state: BackupPrivateKeyState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<BackupPrivateKeyState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

@@ -13,59 +13,58 @@ import ReSwift
 
 class BLTCardConnectViewController: BaseViewController {
     @IBOutlet weak var titleLabel: UILabel!
-    
+
     @IBOutlet weak var contentLabel: UILabel!
-    
+
     @IBOutlet weak var connectButton: Button!
-    
+
     var indicatorView: UIActivityIndicatorView?
-    
+
     var coordinator: (BLTCardConnectCoordinatorProtocol & BLTCardConnectStateManagerProtocol)?
     private(set) var context: BLTCardConnectContext?
-    
+
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
         connectDevice()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func refreshViewController() {
-    
+
     }
-    
+
     func setupUI() {
         self.titleLabel.text = R.string.localizable.wookong_connecting_title.key.localized()
 
         configLeftNavButton(R.image.icTransferClose())
-        
+
         indicatorView = UIActivityIndicatorView(style: .gray)
         indicatorView?.hidesWhenStopped = true
         configRightCustomView(indicatorView!)
     }
-    
-    
+
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismissVC({})
     }
 
     func setupData() {
-        
+
     }
-    
+
     func setupEvent() {
-        connectButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: { [weak self] tap in
+        connectButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: { [weak self] _ in
             guard let `self` = self else { return }
             self.connectDevice()
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
-    
+
     func connectDevice() {
         indicatorView?.startAnimating()
         self.coordinator?.reconnectDevice({ [weak self] in
@@ -87,21 +86,21 @@ class BLTCardConnectViewController: BaseViewController {
                 }
         })
     }
-    
+
     override func configureObserveState() {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
-            
+
             if let context = context as? BLTCardConnectContext {
                 self.context = context
             }
-            
+
         }).disposed(by: disposeBag)
-        
+
     }
 }
 
-//MARK: - TableViewDelegate
+// MARK: - TableViewDelegate
 
 //extension BLTCardConnectViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,8 +114,7 @@ class BLTCardConnectViewController: BaseViewController {
 //    }
 //}
 
-
-//MARK: - View Event
+// MARK: - View Event
 
 //extension BLTCardConnectViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
@@ -125,4 +123,3 @@ class BLTCardConnectViewController: BaseViewController {
 //        }
 //    }
 //}
-

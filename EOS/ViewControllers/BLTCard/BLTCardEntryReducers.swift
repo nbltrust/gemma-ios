@@ -9,17 +9,15 @@
 import UIKit
 import ReSwift
 
-func BLTCardEntryReducer(action:Action, state:BLTCardEntryState?) -> BLTCardEntryState {
+func BLTCardEntryReducer(action: Action, state: BLTCardEntryState?) -> BLTCardEntryState {
     let state = state ?? BLTCardEntryState()
-        
+
     switch action {
     case let action as PageStateAction:
         state.pageState.accept(action.state)
     default:
         break
     }
-        
+
     return state
 }
-
-

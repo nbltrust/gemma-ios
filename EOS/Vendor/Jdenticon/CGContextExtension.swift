@@ -35,7 +35,7 @@ extension CGContext {
             CGPoint(x: rect.minX, y: rect.minY),
             CGPoint(x: rect.maxX, y: rect.minY),
             CGPoint(x: rect.maxX, y: rect.maxY),
-            CGPoint(x: rect.minX, y: rect.maxY),
+            CGPoint(x: rect.minX, y: rect.maxY)
         ], invert: invert)
     }
 
@@ -45,25 +45,25 @@ extension CGContext {
             addPolygon([
                 CGPoint(x: rect.maxX, y: rect.maxY),
                 CGPoint(x: rect.minX, y: rect.maxY),
-                CGPoint(x: rect.minX, y: rect.minY),
+                CGPoint(x: rect.minX, y: rect.minY)
             ])
         case 1:
             addPolygon([
                 CGPoint(x: rect.maxX, y: rect.minY),
                 CGPoint(x: rect.minX, y: rect.minY),
-                CGPoint(x: rect.minX, y: rect.maxY),
+                CGPoint(x: rect.minX, y: rect.maxY)
             ])
         case 2:
             addPolygon([
                 CGPoint(x: rect.minX, y: rect.minY),
                 CGPoint(x: rect.maxX, y: rect.minY),
-                CGPoint(x: rect.maxX, y: rect.maxY),
+                CGPoint(x: rect.maxX, y: rect.maxY)
             ])
         case 3:
             addPolygon([
                 CGPoint(x: rect.maxX, y: rect.minY),
                 CGPoint(x: rect.maxX, y: rect.maxY),
-                CGPoint(x: rect.minX, y: rect.maxY ),
+                CGPoint(x: rect.minX, y: rect.maxY )
             ])
         default:
             break
@@ -75,7 +75,7 @@ extension CGContext {
             CGPoint(x: rect.midX, y: rect.minY),
             CGPoint(x: rect.maxX, y: rect.midY),
             CGPoint(x: rect.midX, y: rect.maxY),
-            CGPoint(x: rect.minX, y: rect.midY),
+            CGPoint(x: rect.minX, y: rect.midY)
         ], invert: invert)
     }
 }

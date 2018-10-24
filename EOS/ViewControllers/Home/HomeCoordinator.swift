@@ -30,32 +30,32 @@ protocol HomeStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<HomeState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-    
-    func getAccountInfo(_ account:String)
-    
+
+    func getAccountInfo(_ account: String)
+
     func createDataInfo() -> [LineView.LineViewModel]
-    
+
     func checkAccount()
 
     func getCurrentFromLocal()
-    
+
     func isBluetoothWallet() -> Bool
-    
+
     func bluetoothDataInfo() -> LineView.LineViewModel
-    
+
     func handleBluetoothDevice()
 }
 
 class HomeCoordinator: NavCoordinator {
-    
+
     lazy var creator = HomePropertyActionCreate()
-    
+
     var store = Store<HomeState>(
         reducer: HomeReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.home.homeViewController()!
         let coordinator = HomeCoordinator(rootVC: root)
@@ -78,13 +78,13 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
-    func pushAccountList(_ complication: () -> Void)  {
+
+    func pushAccountList(_ complication: () -> Void) {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 272)
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 272))
         let customType = PresentationType.custom(width: width, height: height, center: center)
-        
+
         let presenter = Presentr(presentationType: customType)
         presenter.keyboardTranslationType = .stickToTop
 
@@ -102,7 +102,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
+
     func pushPayment() {
         if let vc = R.storyboard.payments.paymentsViewController() {
             let coordinator = PaymentsCoordinator(rootVC: self.rootVC)
@@ -118,7 +118,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
+
     func pushResourceMortgageVC() {
         if let vc = R.storyboard.resourceMortgage.resourceMortgageViewController() {
             let coordinator = ResourceMortgageCoordinator(rootVC: self.rootVC)
@@ -126,11 +126,11 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
+
     func pushBuyRamVC() {
         self.pushVC(BuyRamCoordinator.self, animated: true, context: nil)
     }
-    
+
     func pushVoteVC() {
         if let vc = R.storyboard.home.voteViewController() {
             let coordinator = VoteCoordinator(rootVC: self.rootVC)
@@ -138,9 +138,9 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
+
     func pushDealRAMVC() {
-        
+
     }
 }
 
@@ -148,44 +148,44 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     var state: HomeState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<HomeState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
     func getAccountFromLocal() {
-        
+
         if let jsonStr = Defaults.object(forKey: WalletManager.shared.getAccount()) as? String {
             if let accountObj = Account.deserialize(from: jsonStr) {
                 self.store.dispatch(AccountFetchedAction(info: accountObj))
             }
         }
     }
-    
-    func getAccountInfo(_ account:String) {
+
+    func getAccountInfo(_ account: String) {
         EOSIONetwork.request(target: .get_currency_balance(account: account), success: { (json) in
             self.store.dispatch(BalanceFetchedAction(balance: json))
-        }, error: { (code) in
+        }, error: { (_) in
             self.store.dispatch(BalanceFetchedAction(balance: nil))
-        }) { (error) in
+        }) { (_) in
             self.store.dispatch(BalanceFetchedAction(balance: nil))
         }
-        
+
         EOSIONetwork.request(target: .get_account(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 self.store.dispatch(AccountFetchedAction(info: accountObj))
             }
 
-        }, error: { (code) in
+        }, error: { (_) in
             self.store.dispatch(AccountFetchedAction(info: nil))
-        }) { (error) in
+        }) { (_) in
             self.store.dispatch(AccountFetchedAction(info: nil))
         }
-        
+
         SimpleHTTPService.requestETHPrice().done { (json) in
-            
+
             if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIO_DEFAULT_SYMBOL }).first {
                 if coinType() == .CNY {
                     self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: nil))
@@ -193,10 +193,10 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                     self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: usd))
                 }
             }
-            
+
         }.cauterize()
     }
-    
+
     func createDataInfo() -> [LineView.LineViewModel] {
         return [LineView.LineViewModel.init(name: R.string.localizable.payments_history.key.localized(),
                                             content: "",
@@ -232,23 +232,23 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             isShowLineView: false)
         ]
     }
-    
+
     func checkAccount() {
         WalletManager.shared.checkCurrentWallet()
     }
-    
+
     func getCurrentFromLocal() {
         let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
         self.store.dispatch(AccountFetchedFromLocalAction(model: model))
     }
-    
+
     func isBluetoothWallet() -> Bool {
         if let currentWallet = WalletManager.shared.currentWallet() {
             return currentWallet.type == .bluetooth
         }
         return false
     }
-    
+
     func bluetoothDataInfo() -> LineView.LineViewModel {
         return LineView.LineViewModel.init(name: R.string.localizable.wookong_title.key.localized(),
                                     content: "",
@@ -259,8 +259,8 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                     content_line_number: 1,
                                     isShowLineView: false)
     }
-    
+
     func handleBluetoothDevice() {
-        
+
     }
 }

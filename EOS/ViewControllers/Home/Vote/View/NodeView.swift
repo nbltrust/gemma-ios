@@ -10,43 +10,43 @@ import UIKit
 
 class NodeView: UIView {
     @IBOutlet weak var checkButton: UIButton!
-    
+
     @IBOutlet weak var nameLabel: UILabel!
-        
+
     @IBOutlet weak var perLabel: UILabel!
-    
+
     @IBOutlet weak var rankLabel: UILabel!
-    
+
     @IBOutlet weak var ownerLabel: UILabel!
-    
+
     @IBOutlet weak var urlLabel: UILabel!
-    
+
     func setup() {
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
         setup()
     }
-    
+
     fileprivate func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
+
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]

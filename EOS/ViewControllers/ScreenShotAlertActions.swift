@@ -9,21 +9,21 @@
 import Foundation
 import ReSwift
 
-//MARK: - State
+// MARK: - State
 struct ScreenShotAlertState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: ScreenShotAlertPropertyState
 }
 
 struct ScreenShotAlertPropertyState {
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class ScreenShotAlertPropertyActionCreate {
     public typealias ActionCreator = (_ state: ScreenShotAlertState, _ store: Store<ScreenShotAlertState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: ScreenShotAlertState,
         _ store: Store <ScreenShotAlertState>,

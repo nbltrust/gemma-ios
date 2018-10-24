@@ -9,7 +9,7 @@
 import Foundation
 
 extension NewHomeView {
-    func adapterModelToNewHomeView(_ model:[NewHomeViewModel]) {
+    func adapterModelToNewHomeView(_ model: [NewHomeViewModel]) {
         self.data = model
     }
 }

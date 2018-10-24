@@ -9,21 +9,21 @@
 import Foundation
 import ReSwift
 
-//MARK: - State
+// MARK: - State
 struct CopyPriKeyState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: CopyPriKeyPropertyState
 }
 
 struct CopyPriKeyPropertyState {
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class CopyPriKeyPropertyActionCreate {
     public typealias ActionCreator = (_ state: CopyPriKeyState, _ store: Store<CopyPriKeyState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: CopyPriKeyState,
         _ store: Store <CopyPriKeyState>,

@@ -16,21 +16,21 @@ protocol BackupMnemonicWordCoordinatorProtocol {
 
 protocol BackupMnemonicWordStateManagerProtocol {
     var state: BackupMnemonicWordState { get }
-    
-    func switchPageState(_ state:PageState)
+
+    func switchPageState(_ state: PageState)
 }
 
 class BackupMnemonicWordCoordinator: NavCoordinator {
     var store = Store(
         reducer: BackupMnemonicWordReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: BackupMnemonicWordState {
         return store.state
     }
-            
+
     override func register() {
         Broadcaster.register(BackupMnemonicWordCoordinatorProtocol.self, observer: self)
         Broadcaster.register(BackupMnemonicWordStateManagerProtocol.self, observer: self)
@@ -48,7 +48,7 @@ extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
 }
 
 extension BackupMnemonicWordCoordinator: BackupMnemonicWordStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }

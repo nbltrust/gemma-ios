@@ -15,52 +15,52 @@ import SwifterSwift
 class BLTCardSetFingerPrinterViewController: BaseViewController {
 
     @IBOutlet weak var fpView: UIWebView!
-    
+
     @IBOutlet weak var fpWidth: NSLayoutConstraint!
-    
+
     @IBOutlet weak var fpHeight: NSLayoutConstraint!
-    
+
     var coordinator: (BLTCardSetFingerPrinterCoordinatorProtocol & BLTCardSetFingerPrinterStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         BLTWalletIO.shareInstance()?.cancelEntrollFingerPrinter({
-            
-        }, failed: { (reason) in
-            
+
+        }, failed: { (_) in
+
         })
     }
-    
+
     override func refreshViewController() {
-        
+
     }
-    
+
     func setupUI() {
         self.title = R.string.localizable.wookong_set_fp.key.localized()
-        
+
         setupFPView()
-    
+
         if self.navigationController?.viewControllers.count == 1 {
              configRightNavButton(R.string.localizable.wookong_jump.key.localized())
         }
     }
-    
+
     override func rightAction(_ sender: UIButton) {
         self.coordinator?.dismissVC()
     }
-    
+
     func setupFPView() {
         fpView.scrollView.isScrollEnabled = false
         fpView.backgroundColor = UIColor.clear
@@ -71,18 +71,18 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
             fpView.loadRequest(URLRequest.init(url: url))
         }
     }
-    
+
     func nextStep() {
         fpView.stringByEvaluatingJavaScript(from: "next()")
     }
-    
+
     func prevStep() {
         nextStep()
         SwifterSwift.delay(milliseconds: 500) {
             self.fpView.stringByEvaluatingJavaScript(from: "prev()")
         }
     }
-    
+
     func done() {
         fpView.stringByEvaluatingJavaScript(from: "done()")
         showSuccess(message: R.string.localizable.wookong_set_fp_success.key.localized())
@@ -94,9 +94,9 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
     }
 
     func setupData() {
-        
+
     }
-    
+
     func setupEvent() {
         self.coordinator?.enrollFingerPrinter({ [weak self] (state) in
             guard let `self` = self else { return }
@@ -117,12 +117,11 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
             }
         })
     }
-    
+
     override func configureObserveState() {
-        
+
     }
 }
-
 
 extension BLTCardSetFingerPrinterViewController: UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {

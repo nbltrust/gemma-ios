@@ -11,11 +11,11 @@ import ReSwift
 import RxCocoa
 import SwiftyJSON
 
-//MARK: - State
+// MARK: - State
 struct ResourceMortgageState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: ResourceMortgagePropertyState
 }
 
@@ -52,12 +52,12 @@ struct OperationViewModel {
 }
 
 struct ResourceMortgagePropertyState {
-    var info:BehaviorRelay<ResourceViewModel?> = BehaviorRelay(value: nil)
-    var cpuMoneyValid: BehaviorRelay<(Bool,String,String)> = BehaviorRelay(value: (false,"",""))
-    var netMoneyValid: BehaviorRelay<(Bool,String,String)> = BehaviorRelay(value: (false,"",""))
-    var cpuReliveMoneyValid: BehaviorRelay<(Bool,String,String)> = BehaviorRelay(value: (false,"",""))
-    var netReliveMoneyValid: BehaviorRelay<(Bool,String,String)> = BehaviorRelay(value: (false,"",""))
-    var CNY_price:String = ""
+    var info: BehaviorRelay<ResourceViewModel?> = BehaviorRelay(value: nil)
+    var cpuMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
+    var netMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
+    var cpuReliveMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
+    var netReliveMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
+    var CNY_price: String = ""
 }
 
 struct cpuMoneyAction: Action {
@@ -84,18 +84,18 @@ struct netReliveMoneyAction: Action {
     var balance = ""
 }
 
-struct MBalanceFetchedAction:Action {
-    var balance:JSON
+struct MBalanceFetchedAction: Action {
+    var balance: JSON
 }
 
-struct MAccountFetchedAction:Action {
-    var info:Account
+struct MAccountFetchedAction: Action {
+    var info: Account
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class ResourceMortgagePropertyActionCreate {
     public typealias ActionCreator = (_ state: ResourceMortgageState, _ store: Store<ResourceMortgageState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: ResourceMortgageState,
         _ store: Store <ResourceMortgageState>,

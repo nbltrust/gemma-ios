@@ -62,19 +62,19 @@ public final class IconGenerator {
             CGPoint(x: 0, y: 1),
             CGPoint(x: 3, y: 1),
             CGPoint(x: 3, y: 2),
-            CGPoint(x: 0, y: 2),
+            CGPoint(x: 0, y: 2)
         ])
         renderShape(colorIndex: 1, shapes: outerShapes, index: 4, rotationIndex: 5, positions: [
             CGPoint(x: 0, y: 0),
             CGPoint(x: 3, y: 0),
             CGPoint(x: 3, y: 3),
-            CGPoint(x: 0, y: 3),
+            CGPoint(x: 0, y: 3)
         ])
         renderShape(colorIndex: 2, shapes: centerShapes, index: 1, rotationIndex: nil, positions: [
             CGPoint(x: 1, y: 1),
             CGPoint(x: 2, y: 1),
             CGPoint(x: 2, y: 2),
-            CGPoint(x: 1, y: 2),
+            CGPoint(x: 1, y: 2)
         ])
 
         return context.makeImage()

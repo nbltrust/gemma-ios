@@ -18,39 +18,39 @@ enum CreateWalletType: Int {
 }
 
 class EntryViewController: BaseViewController {
-    
+
     @IBOutlet weak var registerView: RegisterContentView!
-    
+
     @IBOutlet weak var agreeButton: UIButton!
-    
+
     @IBOutlet weak var creatButton: Button!
-    
+
     @IBOutlet weak var protocolLabel: UILabel!
-    
+
     var createType: CreateWalletType = .normal
-    
+
     var hint = ""
-    
+
     var coordinator: (EntryCoordinatorProtocol & EntryStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.title = R.string.localizable.create_wallet.key.localized()
         //获取公私钥
         WalletManager.shared.createPairKey()
         setupUI()
         setupEvent()
         Broadcaster.register(EntryViewController.self, observer: self)
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(createWookongWallet), name: NSNotification.Name(rawValue: "createBLTWallet"), object: nil)
     }
-    
+
     @IBAction func agreeAction(_ sender: Any) {
         agreeButton.isSelected = !agreeButton.isSelected
         self.coordinator?.checkAgree(agreeButton.isSelected)
     }
-    
+
     func setupUI() {
         switch createType {
         case .wookong:
@@ -62,13 +62,13 @@ class EntryViewController: BaseViewController {
             return
         }
     }
-    
+
     @objc func createWookongWallet() {
         self.coordinator?.checkSeedSuccessed()
     }
-    
+
     func setupEvent() {
-        creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] tap in
+        creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             switch self.createType {
             case .wookong:
@@ -88,18 +88,18 @@ class EntryViewController: BaseViewController {
 //                
 //            })
         }).disposed(by: disposeBag)
-        
-        protocolLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] tap in
+
+        protocolLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.coordinator?.pushToServiceProtocolVC()
         }).disposed(by: disposeBag)
-        
+
         self.coordinator?.state.callback.finishBLTWalletCallback.accept({
             self.coordinator?.checkSeedSuccessed()
             self.createBltWallet()
         })
     }
-    
+
     override func configureObserveState() {
         Observable.combineLatest(self.coordinator!.state.property.nameValid.asObservable(),
                                  self.coordinator!.state.property.passwordValid.asObservable(),
@@ -114,25 +114,25 @@ class EntryViewController: BaseViewController {
                                     }
         }.bind(to: creatButton.isEnabel).disposed(by: disposeBag)
     }
-    
+
     func createBltWallet() {
         self.startLoading()
-        self.coordinator?.createWallet(self.registerView.nameView.textField.text!, completion: { (success) in
+        self.coordinator?.createWallet(self.registerView.nameView.textField.text!, completion: { (_) in
             self.endLoading()
         })
     }
 }
 
 extension EntryViewController {
-    @objc func walletName(_ data: [String : Any]) {
+    @objc func walletName(_ data: [String: Any]) {
         self.coordinator?.validWalletName(data["content"] as! String)
     }
-    
-    @objc func walletPassword(_ data: [String : Any]) {
+
+    @objc func walletPassword(_ data: [String: Any]) {
         self.coordinator?.validPassword(data["content"] as! String)
     }
-    
-    @objc func walletComfirmPassword(_ data: [String : Any]) {
+
+    @objc func walletComfirmPassword(_ data: [String: Any]) {
         self.coordinator?.validComfirmPassword(data["content"] as! String, comfirmPassword: self.registerView.passwordView.textField.text!)
     }
 }

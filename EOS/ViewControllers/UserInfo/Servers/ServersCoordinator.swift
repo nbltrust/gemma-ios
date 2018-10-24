@@ -20,29 +20,29 @@ protocol ServersStateManagerProtocol {
 }
 
 class ServersCoordinator: NavCoordinator {
-    
+
     lazy var creator = ServersPropertyActionCreate()
-    
+
     var store = Store<ServersState>(
         reducer: ServersReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
 }
 
 extension ServersCoordinator: ServersCoordinatorProtocol {
-    
+
 }
 
 extension ServersCoordinator: ServersStateManagerProtocol {
     var state: ServersState {
         return store.state
     }
-    
+
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<ServersState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
     }
-    
+
 }

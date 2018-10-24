@@ -14,11 +14,11 @@ import NBLCommonModule
 
 class VoteViewController: BaseViewController {
     @IBOutlet weak var voteTable: UITableView!
-    
+
     @IBOutlet weak var footView: VoteFootView!
-    
+
     var coordinator: (VoteCoordinatorProtocol & VoteStateManagerProtocol)?
-    
+
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -26,24 +26,24 @@ class VoteViewController: BaseViewController {
         loadVoteNodeList()
         self.coordinator?.getAccountInfo()
     }
-    
+
     func setupUI() {
         self.title = R.string.localizable.vote_title.key.localized()
-        
+
         let nibString = R.nib.nodeCell.identifier
         voteTable.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
         voteTable.separatorStyle = .none
         voteTable.allowsMultipleSelection = true
-        
+
         let tableHeadView = UIView()
         tableHeadView.height = 23
         voteTable.tableHeaderView = tableHeadView
-        
+
         let tableFootView = UIView()
         tableFootView.height = 60
         voteTable.tableFooterView = tableFootView
     }
-    
+
     func setupEvent() {
         self.addPullToRefresh(self.voteTable) {[weak self] (completion) in
             guard let `self` = self else {return}
@@ -56,8 +56,8 @@ class VoteViewController: BaseViewController {
                 }
             })
         }
-        
-        footView.statusView.leftLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (tap) in
+
+        footView.statusView.leftLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (_) in
             guard let `self` = self else { return }
             if let count = self.voteTable.indexPathsForSelectedRows?.count {
                 if count > 0 {
@@ -65,8 +65,8 @@ class VoteViewController: BaseViewController {
                 }
             }
         }).disposed(by: disposeBag)
-        
-        footView.statusView.rightLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (tap) in
+
+        footView.statusView.rightLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (_) in
             guard let `self` = self else { return }
             if let count = self.voteTable.indexPathsForSelectedRows?.count {
                 if count > 0 {
@@ -75,7 +75,7 @@ class VoteViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
     }
-    
+
     func loadVoteNodeList() {
         self.startLoading()
         self.coordinator?.loadVoteList({[weak self] (success) in
@@ -88,7 +88,7 @@ class VoteViewController: BaseViewController {
             }
         })
     }
-    
+
     func updateCount() {
         if let count = voteTable.indexPathsForSelectedRows?.count {
             footView.statusView.selCount = count
@@ -110,37 +110,37 @@ class VoteViewController: BaseViewController {
     }
 }
 
-extension VoteViewController: UITableViewDelegate,UITableViewDataSource {
+extension VoteViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.coordinator?.state.property.datas.count)!
     }
-    
+
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if let count = tableView.indexPathsForSelectedRows?.count {
             return count < 30 ? indexPath : nil
         }
         return indexPath
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let nibString = String.init(describing:type(of: NodeCell()))
+        let nibString = String.init(describing: type(of: NodeCell()))
         let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as! NodeCell
         cell.setupNode((self.coordinator?.state.property.datas[indexPath.row])!)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         updateCount()
     }
-    
+
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         updateCount()
     }

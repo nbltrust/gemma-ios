@@ -13,11 +13,11 @@ import ReSwift
 
 class NormalViewController: BaseViewController {
     @IBOutlet weak var languageCell: NormalCellView!
-    
+
     @IBOutlet weak var coinUnitCell: NormalCellView!
-    
+
     @IBOutlet weak var nodeCell: NormalCellView!
-    
+
     var coordinator: (NormalCoordinatorProtocol & NormalStateManagerProtocol)?
 
 	override func viewDidLoad() {
@@ -25,30 +25,30 @@ class NormalViewController: BaseViewController {
         setupViewSize()
         setupUI()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.relload()
     }
-    
+
     override func languageChanged() {
         self.relload()
     }
-    
+
     func relload() {
         setupUI()
         languageCell.reload()
         coinUnitCell.reload()
         nodeCell.reload()
     }
-    
+
     func setupUI() {
         self.title = R.string.localizable.mine_normal.key.localized()
         languageCell.content.text = self.coordinator?.contentWithSender(CustomSettingType.language)
         coinUnitCell.content.text = self.coordinator?.contentWithSender(CustomSettingType.asset)
         nodeCell.content.text = self.coordinator?.contentWithSender(CustomSettingType.node)
     }
-    
+
     func setupViewSize () {
         languageCell.content.font = UIFont.systemFont(ofSize: 14)
         languageCell.content.textColor = Color.blueyGrey
@@ -57,16 +57,15 @@ class NormalViewController: BaseViewController {
         nodeCell.content.font = UIFont.systemFont(ofSize: 14)
         nodeCell.content.textColor = Color.blueyGrey
     }
-    
+
     override func configureObserveState() {
-        
+
     }
 }
 
 extension NormalViewController {
-    @objc func clickCellView(_ sender:[String:Any]) {
+    @objc func clickCellView(_ sender: [String: Any]) {
         let index = sender["index"] as! Int
         self.coordinator?.openContent(index)
     }
 }
-

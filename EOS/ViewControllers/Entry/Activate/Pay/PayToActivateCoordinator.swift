@@ -13,31 +13,31 @@ import NBLCommonModule
 protocol PayToActivateCoordinatorProtocol {
     func pushToCreateSuccessVC()
     func pushBackupPrivateKeyVC()
-    func dismissCurrentNav(_ entry:UIViewController?)
+    func dismissCurrentNav(_ entry: UIViewController?)
 }
 
 protocol PayToActivateStateManagerProtocol {
     var state: PayToActivateState { get }
-    
-    func switchPageState(_ state:PageState)
-    
-    func initOrder(completion: @escaping (Bool) -> ())
+
+    func switchPageState(_ state: PageState)
+
+    func initOrder(completion: @escaping (Bool) -> Void)
     func getBill()
     func askToPay()
-    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> ())
+    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void)
 }
 
 class PayToActivateCoordinator: NavCoordinator {
     var store = Store(
         reducer: PayToActivateReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: PayToActivateState {
         return store.state
     }
-            
+
     override func register() {
         Broadcaster.register(PayToActivateCoordinatorProtocol.self, observer: self)
         Broadcaster.register(PayToActivateStateManagerProtocol.self, observer: self)
@@ -51,11 +51,11 @@ extension PayToActivateCoordinator: PayToActivateCoordinatorProtocol {
         createCompleteVC?.coordinator = coordinator
         self.rootVC.pushViewController(createCompleteVC!, animated: true)
     }
-    
+
     func pushBackupPrivateKeyVC() {
         let vc = R.storyboard.entry.backupPrivateKeyViewController()!
         let coor = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
-        
+
         if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
             coor.state.callback.hadSaveCallback.accept {[weak self] in
                 guard let `self` = self else { return }
@@ -68,11 +68,11 @@ extension PayToActivateCoordinator: PayToActivateCoordinatorProtocol {
                 self.dismissCurrentNav(entry)
             }
         }
-        
+
         vc.coordinator = coor
         self.rootVC.pushViewController(vc, animated: true)
     }
-    func dismissCurrentNav(_ entry:UIViewController? = nil) {
+    func dismissCurrentNav(_ entry: UIViewController? = nil) {
         if let entry = entry as? EntryViewController {
             entry.coordinator?.state.callback.endCallback.value?()
             return
@@ -96,11 +96,11 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             } else {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
-        }) { (error) in
+        }) { (_) in
         }
     }
-    
-    func initOrder(completion: @escaping (Bool) -> ()) {
+
+    func initOrder(completion: @escaping (Bool) -> Void) {
         self.rootVC.topViewController?.startLoadingWithMessage(message: R.string.localizable.pay_tips_warning.key.localized())
 
         var walletName = ""
@@ -130,10 +130,10 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                     } else {
                         showFailTop(R.string.localizable.error_unknow.key.localized())
                     }
-                }, failure: { (error) in
+                }, failure: { (_) in
                     completion(false)
                 })
-                
+
             }
         }, error: { (code) in
             completion(false)
@@ -143,11 +143,11 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             } else {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
-        }) { (error) in
+        }) { (_) in
             completion(false)
         }
     }
-    
+
     func askToPay() {
         NBLNetwork.request(target: .getOrder(orderId: self.state.orderId), success: { (data) in
             let payState = data["pay_state"].stringValue
@@ -155,7 +155,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             if state != "DONE" {
                 self.rootVC.topViewController?.endLoading()
             }
-            
+
             if payState == "NOTPAY", state == "INIT" {
                 var context = ScreenShotAlertContext()
                 context.title = R.string.localizable.pay_failed.key.localized()
@@ -172,8 +172,8 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.needCancel = false
                 app_coodinator.showGemmaAlert(context)
             } else if payState == "SUCCESS", state == "DONE" {
-                self.createWallet(self.state.orderId, completion: { (newData) in
-                    
+                self.createWallet(self.state.orderId, completion: { (_) in
+
                 })
             } else if payState == "SUCCESS", state == "TOREFUND" {
                 var context = ScreenShotAlertContext()
@@ -183,7 +183,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.imageName = R.image.icMoney.name
                 context.needCancel = true
                 context.sureShot = {
-                    if let vc = self.rootVC.topViewController as? ActivateViewController, let payVC = vc.viewControllers[0] as? PayToActivateViewController{
+                    if let vc = self.rootVC.topViewController as? ActivateViewController, let payVC = vc.viewControllers[0] as? PayToActivateViewController {
                         payVC.NextClick([:])
                     }
                 }
@@ -225,12 +225,12 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             } else {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
-        }) { (error) in
+        }) { (_) in
             self.rootVC.topViewController?.endLoading()
         }
     }
-    
-    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> ()) {
+
+    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void) {
         var walletName = ""
         var password = ""
         var prompt = ""
@@ -241,7 +241,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         }
         NBLNetwork.request(target: .createAccount(type: .gemma, account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: nil), success: { (data) in
             self.rootVC.topViewController?.endLoading()
-            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode:inviteCode)
+            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode: inviteCode)
             self.pushBackupPrivateKeyVC()
         }, error: { (code) in
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
@@ -249,8 +249,8 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 if code == GemmaError.NBLNetworkErrorCode.chainFailedCode.rawValue {
                     self.store.dispatch(NumsAction(nums: self.state.nums))
                     if self.state.nums <= 3 {
-                        self.createWallet(self.state.orderId, completion: { (newCode) in
-                            
+                        self.createWallet(self.state.orderId, completion: { (_) in
+
                         })
                     } else {
                         showFailTop(R.string.localizable.error_chain_fail.key.localized())
@@ -266,11 +266,11 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
 
-        }) { (error) in
+        }) { (_) in
         }
     }
-    
-    func switchPageState(_ state:PageState) {
+
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }

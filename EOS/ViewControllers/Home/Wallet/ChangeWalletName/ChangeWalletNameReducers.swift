@@ -9,20 +9,17 @@
 import UIKit
 import ReSwift
 
-func ChangeWalletNameReducer(action:Action, state:ChangeWalletNameState?) -> ChangeWalletNameState {
+func ChangeWalletNameReducer(action: Action, state: ChangeWalletNameState?) -> ChangeWalletNameState {
     return ChangeWalletNameState(isLoading: loadingReducer(state?.isLoading, action: action), page: pageReducer(state?.page, action: action), errorMessage: errorMessageReducer(state?.errorMessage, action: action), property: ChangeWalletNamePropertyReducer(state?.property, action: action))
 }
 
 func ChangeWalletNamePropertyReducer(_ state: ChangeWalletNamePropertyState?, action: Action) -> ChangeWalletNamePropertyState {
-    var state = state ?? ChangeWalletNamePropertyState()
-    
+    let state = state ?? ChangeWalletNamePropertyState()
+
     switch action {
     default:
         break
     }
-    
+
     return state
 }
-
-
-

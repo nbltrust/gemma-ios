@@ -23,8 +23,7 @@ class ServersViewController: BaseViewController {
         self.title = R.string.localizable.mine_server.key.localized()
     }
 
-    
     override func configureObserveState() {
-        
+
     }
 }

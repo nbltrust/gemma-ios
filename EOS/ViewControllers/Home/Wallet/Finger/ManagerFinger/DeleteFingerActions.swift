@@ -14,16 +14,16 @@ import HandyJSON
 
 struct DeleteFingerContext: RouteContext, HandyJSON {
     init() {}
-    
+
 }
 
-//MARK: - State
+// MARK: - State
 struct DeleteFingerState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
 }
 
-//MARK: - Action
+// MARK: - Action
 struct DeleteFingerFetchedAction: Action {
-    var data:JSON
+    var data: JSON
 }

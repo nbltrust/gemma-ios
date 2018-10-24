@@ -9,15 +9,13 @@
 import UIKit
 import ReSwift
 
-func BLTCardSetFingerPrinterReducer(action:Action, state:BLTCardSetFingerPrinterState?) -> BLTCardSetFingerPrinterState {
+func BLTCardSetFingerPrinterReducer(action: Action, state: BLTCardSetFingerPrinterState?) -> BLTCardSetFingerPrinterState {
     let state = state ?? BLTCardSetFingerPrinterState()
-        
+
     switch action {
     default:
         break
     }
-        
+
     return state
 }
-
-

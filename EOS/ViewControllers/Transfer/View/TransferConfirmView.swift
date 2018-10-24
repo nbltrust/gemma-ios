@@ -9,7 +9,6 @@
 import Foundation
 import SwiftRichString
 
-
 struct ConfirmViewModel {
     var recever = ""
     var amount = ""
@@ -21,21 +20,21 @@ struct ConfirmViewModel {
 @IBDesignable
 class TransferConfirmView: UIView {
     @IBOutlet weak var receverView: LineView!
-    
+
     @IBOutlet weak var amountView: LineView!
-    
+
     @IBOutlet weak var remarkView: LineView!
-    
+
     @IBOutlet weak var payAccountView: LineView!
-    
+
     @IBOutlet weak var sureView: Button!
-    
+
     @IBOutlet weak var bottomView: UIView!
-    
+
     enum TransferEvent: String {
         case sureTransfer
     }
-    
+
     var data: ConfirmViewModel! {
         didSet {
             if data.recever == "" {
@@ -59,8 +58,7 @@ class TransferConfirmView: UIView {
             if data.buttonTitle == R.string.localizable.confirm_sell.key.localized() || data.buttonTitle == R.string.localizable.confirm_buy.key.localized() {
                 remarkView.name_text = R.string.localizable.explain.key.localized()
             }
-            
-            
+
             remarkView.content_text = data.remark
             if data.payAccount == "" {
                 bottomView.isHidden = true
@@ -72,14 +70,14 @@ class TransferConfirmView: UIView {
             updateHeight()
         }
     }
-    
+
     func setUp() {
         setupUI()
         setupEvent()
         updateHeight()
         setRichText()
     }
-    
+
     func setupUI() {
         receverView.name_style = LineViewStyleNames.confirm_name.rawValue
         amountView.name_style = LineViewStyleNames.confirm_name.rawValue
@@ -91,70 +89,70 @@ class TransferConfirmView: UIView {
         remarkView.content_style = LineViewStyleNames.normal_name.rawValue
         payAccountView.content_style = LineViewStyleNames.transfer_confirm.rawValue
     }
-    
+
     func setRichText() {
-        let money = Style{
+        _ = Style {
             $0.font = SystemFonts.PingFangSC_Semibold.font(size: 16.0)
             $0.color = UIColor.darkSlateBlue
         }
-        let eos = Style{
+        _ = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            
+
         }
 //        let myGroup = StyleGroup(["money": money,"eos" : eos])
 //        let text = <money>amountView.content_text</money>  + " EOS"
 //        amountView.content_text 
     }
-    
+
     func setupEvent() {
-        sureView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
+        sureView.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: ["btntitle" : self.sureView.title])
+            self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: ["btntitle": self.sureView.title])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
-    
+
     override var intrinsicContentSize: CGSize {
-        return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
+        return CGSize.init(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
-    
+
     fileprivate func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()
     }
-    
+
     fileprivate func dynamicHeight() -> CGFloat {
         let lastView = self.subviews.last?.subviews.last
         return (lastView?.frame.origin.y)! + (lastView?.frame.size.height)!
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
-        
+
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
         setUp()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
         setUp()
     }
-    
+
     fileprivate func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
+
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
-    
+
 }

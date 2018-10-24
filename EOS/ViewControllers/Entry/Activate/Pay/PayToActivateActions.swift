@@ -11,27 +11,27 @@ import ReSwift
 import RxCocoa
 import SwiftyJSON
 
-//MARK: - State
+// MARK: - State
 struct PayToActivateState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
 
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     var billInfo: BehaviorRelay<BillModel> = BehaviorRelay(value: BillModel())
     var orderId = ""
-    var nums:Int = 0
+    var nums: Int = 0
 }
 
-//MARK: - Action
+// MARK: - Action
 struct PayToActivateFetchedAction: Action {
-    var data:JSON
+    var data: JSON
 }
 
 struct OrderIdAction: Action {
-    var orderId:String
+    var orderId: String
 }
 
 struct NumsAction: Action {
-    var nums:Int
+    var nums: Int
 }
 
 struct BillModel {
@@ -50,6 +50,6 @@ struct WXPayModel {
     var sign = ""
 }
 
-struct BillAction : Action {
-    var data : Bill
+struct BillAction: Action {
+    var data: Bill
 }

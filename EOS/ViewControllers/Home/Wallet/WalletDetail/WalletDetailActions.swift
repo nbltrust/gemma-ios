@@ -14,16 +14,16 @@ import HandyJSON
 
 struct WalletDetailContext: RouteContext, HandyJSON {
     init() {}
-    
+
 }
 
-//MARK: - State
+// MARK: - State
 struct WalletDetailState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
 }
 
-//MARK: - Action
+// MARK: - Action
 struct WalletDetailFetchedAction: Action {
-    var data:JSON
+    var data: JSON
 }

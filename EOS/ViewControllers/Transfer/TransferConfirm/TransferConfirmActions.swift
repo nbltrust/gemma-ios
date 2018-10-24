@@ -10,18 +10,18 @@ import Foundation
 import ReSwift
 import RxCocoa
 
-//MARK: - State
+// MARK: - State
 
 struct TransferConfirmState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
-    
+
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class TransferConfirmPropertyActionCreate {
     public typealias ActionCreator = (_ state: TransferConfirmState, _ store: Store<TransferConfirmState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: TransferConfirmState,
         _ store: Store <TransferConfirmState>,

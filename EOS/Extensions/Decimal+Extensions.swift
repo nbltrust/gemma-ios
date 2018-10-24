@@ -9,13 +9,13 @@
 import Foundation
 
 extension Decimal { // 解决double 计算精度丢失
-    var stringValue:String {
+    var stringValue: String {
         return NSDecimalNumber(decimal: self).stringValue
     }
-    
-    var doubleValue:Double {
+
+    var doubleValue: Double {
         let str = self.stringValue
-        
+
         if let d = Double(str) {
             return d
         }

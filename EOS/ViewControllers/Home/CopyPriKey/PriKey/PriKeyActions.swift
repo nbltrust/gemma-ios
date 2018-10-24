@@ -9,21 +9,21 @@
 import Foundation
 import ReSwift
 
-//MARK: - State
+// MARK: - State
 struct PriKeyState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: PriKeyPropertyState
 }
 
 struct PriKeyPropertyState {
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class PriKeyPropertyActionCreate {
     public typealias ActionCreator = (_ state: PriKeyState, _ store: Store<PriKeyState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: PriKeyState,
         _ store: Store <PriKeyState>,

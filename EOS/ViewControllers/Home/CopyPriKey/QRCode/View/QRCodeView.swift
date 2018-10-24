@@ -16,37 +16,37 @@ class QRCodeView: UIView {
     enum QRCodeEvent: String {
         case savedKeySafely
     }
-    
+
     @IBOutlet weak var firstView: TitleSubTitleView!
-    
+
     @IBOutlet weak var secondView: TitleSubTitleView!
-    
+
     @IBOutlet weak var imgView: UIImageView!
-    
+
     @IBOutlet weak var qrCodeWidthConstraint: NSLayoutConstraint!
-    
+
     @IBOutlet weak var actionView: Button!
-    
+
     var isShowQRCode: Bool = false
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
     }
-    
+
     func setupUI() {
         actionView.button.setTitle(buttonTitle(), for: .normal)
         actionView.button.addTarget(self, action: #selector(action(_:)), for: .touchUpInside)
     }
-    
+
     func updateButton() {
         actionView.button.setTitle(buttonTitle(), for: .normal)
     }
-    
+
     func buttonTitle() -> String {
         return isShowQRCode ? R.string.localizable.save_key_safe.key.localized() : R.string.localizable.show_qrcode.key.localized()
     }
-    
+
     @objc func action(_ sender: UIButton) {
         if isShowQRCode {
             self.sendEventWith(QRCodeEvent.savedKeySafely.rawValue, userinfo: [:])
@@ -54,7 +54,7 @@ class QRCodeView: UIView {
             showQRCode()
         }
     }
-    
+
     private func showQRCode() {
         let key = WalletManager.shared.priKey
         if let qrCodeImage = EFQRCode.generate(
@@ -65,7 +65,7 @@ class QRCodeView: UIView {
             showFailTop(R.string.localizable.qrcode_generate_failed.key.localized())
         }
     }
-    
+
     func updateQrCode(_ image: CGImage) {
         isShowQRCode = true
         qrCodeWidthConstraint.constant = 180
@@ -73,25 +73,25 @@ class QRCodeView: UIView {
         updateButton()
         updateConstraintsIfNeeded()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
         setupUI()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
         setupUI()
     }
-    
+
     fileprivate func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
         let nib = UINib.init(nibName: nibName, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
+
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]

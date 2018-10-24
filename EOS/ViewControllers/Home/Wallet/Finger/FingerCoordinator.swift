@@ -12,15 +12,15 @@ import NBLCommonModule
 
 protocol FingerCoordinatorProtocol {
     func pushToManagerFingerVC(model: WalletManagerModel, index: Int)
-    
+
     func pushToENtroFingerVC()
 }
 
 protocol FingerStateManagerProtocol {
     var state: FingerState { get }
-    
-    func switchPageState(_ state:PageState)
-    
+
+    func switchPageState(_ state: PageState)
+
     func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication)
 }
 
@@ -28,14 +28,14 @@ class FingerCoordinator: NavCoordinator {
     var store = Store(
         reducer: FingerReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: FingerState {
         return store.state
     }
-    
-    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
+
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.wallet.fingerViewController()!
         let coordinator = FingerCoordinator(rootVC: root)
         vc.coordinator = coordinator
@@ -53,10 +53,10 @@ extension FingerCoordinator: FingerCoordinatorProtocol {
     func pushToENtroFingerVC() {
         let fingerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()!
         let coor = BLTCardSetFingerPrinterCoordinator(rootVC: self.rootVC)
-        fingerVC.coordinator = coor;
+        fingerVC.coordinator = coor
         self.rootVC.pushViewController(fingerVC, animated: true)
     }
-    
+
     func pushToManagerFingerVC(model: WalletManagerModel, index: Int) {
         if let vc = R.storyboard.wallet.deleteFingerViewController() {
             let coordinator = DeleteFingerCoordinator(rootVC: self.rootVC)
@@ -69,12 +69,12 @@ extension FingerCoordinator: FingerCoordinatorProtocol {
 }
 
 extension FingerCoordinator: FingerStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
-    
+
     func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance()?.getFPList(success, failed: failed)
     }

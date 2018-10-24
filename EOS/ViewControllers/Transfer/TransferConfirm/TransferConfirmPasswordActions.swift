@@ -13,9 +13,9 @@ import HandyJSON
 
 struct TransferConfirmPasswordContext: RouteContext, HandyJSON {
     init() {
-        
+
     }
-    
+
     var publicKey = WalletManager.shared.currentPubKey
     var iconType = ""
     var producers: [String] = []
@@ -23,20 +23,20 @@ struct TransferConfirmPasswordContext: RouteContext, HandyJSON {
     var receiver = ""
     var amount = ""
     var remark = ""
-    var callback: ((_ priKey:String, _ vc:UIViewController) -> Void)?
+    var callback: ((_ priKey: String, _ vc: UIViewController) -> Void)?
 }
 
-//MARK: - State
-struct TransferConfirmPasswordState:BaseState {
+// MARK: - State
+struct TransferConfirmPasswordState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
-    
+
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class TransferConfirmPasswordPropertyActionCreate {
     public typealias ActionCreator = (_ state: TransferConfirmPasswordState, _ store: Store<TransferConfirmPasswordState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: TransferConfirmPasswordState,
         _ store: Store <TransferConfirmPasswordState>,

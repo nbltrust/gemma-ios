@@ -14,21 +14,21 @@ import HandyJSON
 
 struct TransferContext: RouteContext, HandyJSON {
     init() {
-        
+
     }
-    
+
 }
 
-//MARK: - State
-struct TransferState:BaseState {
+// MARK: - State
+struct TransferState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
-    
+
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
-    
-    var balance : BehaviorRelay<String?> = BehaviorRelay(value: "")
-    var moneyValid: BehaviorRelay<(Bool,String)> = BehaviorRelay(value: (false,""))
+
+    var balance: BehaviorRelay<String?> = BehaviorRelay(value: "")
+    var moneyValid: BehaviorRelay<(Bool, String)> = BehaviorRelay(value: (false, ""))
     var toNameValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    var balanceLocal : BehaviorRelay<String?> = BehaviorRelay(value: "")
+    var balanceLocal: BehaviorRelay<String?> = BehaviorRelay(value: "")
 }
 
 struct moneyAction: Action {

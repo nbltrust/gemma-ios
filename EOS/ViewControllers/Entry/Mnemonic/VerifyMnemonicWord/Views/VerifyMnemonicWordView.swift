@@ -11,47 +11,47 @@ import TagListView
 
 @IBDesignable
 class VerifyMnemonicWordView: EOSBaseView {
-    
+
     @IBOutlet weak var myTagListView: TagListView!
-    
+
     @IBOutlet weak var poolTagListView: TagListView!
-    
+
     var selectValues: [String] = []
-    
-    enum Event:String {
+
+    enum Event: String {
         case VerifyMnemonicWordViewDidClicked
         case VerifyMnemonicWord
     }
-        
+
     override func setup() {
         super.setup()
-        
+
         setupUI()
         setupSubViewEvent()
     }
-    
+
     func setupUI() {
         myTagListView.delegate = self
         myTagListView.textFont = UIFont.pfScM16
-        
+
         poolTagListView.delegate = self
         poolTagListView.textFont = UIFont.pfScM16
     }
-    
+
     func setPoolArray(_ array: [String]) {
         poolTagListView.addTags(array)
     }
-    
+
     func setupSubViewEvent() {
-    
+
     }
-    
+
     @objc override func didClicked() {
         self.next?.sendEventWith(Event.VerifyMnemonicWordViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }
 
-extension VerifyMnemonicWordView:TagListViewDelegate {
+extension VerifyMnemonicWordView: TagListViewDelegate {
     func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
         if sender == myTagListView {
             myTagListView.removeTag(title)
@@ -68,8 +68,7 @@ extension VerifyMnemonicWordView:TagListViewDelegate {
                 selectValues.append(title)
             }
             tagView.tagBackgroundColor = UIColor.white
-            self.next?.sendEventWith(Event.VerifyMnemonicWord.rawValue, userinfo: ["data":selectValues])
+            self.next?.sendEventWith(Event.VerifyMnemonicWord.rawValue, userinfo: ["data": selectValues])
         }
     }
 }
-

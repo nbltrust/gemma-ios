@@ -14,12 +14,18 @@ import ReSwift
 class GestureLockComfirmViewController: BaseViewController {
 
     @IBOutlet weak var messageLabel: UILabel!
-    
+
     @IBOutlet weak var gestureLockView: GestureLockView!
-    
+
     var canDismiss: Bool = true
-    
+
     var coordinator: (GestureLockComfirmCoordinatorProtocol & GestureLockComfirmStateManagerProtocol)?
+
+    var lightModel = false {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,19 +35,23 @@ class GestureLockComfirmViewController: BaseViewController {
             self.configLeftNavButton(R.image.icTransferClose())
         }
     }
-    
+
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismiss()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .default
+        lightModel = false
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
+        lightModel = true
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return lightModel ? .lightContent : .default
     }
 
     override func configureObserveState() {
@@ -53,7 +63,7 @@ class GestureLockComfirmViewController: BaseViewController {
                 self.gestureLockView.warn()
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
+
         self.coordinator?.state.property.locked.asObservable().subscribe(onNext: {[weak self] (locked) in
             guard let `self` = self else { return }
             self.gestureLockView.locked = locked

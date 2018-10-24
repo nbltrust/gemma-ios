@@ -9,17 +9,15 @@
 import UIKit
 import ReSwift
 
-func BLTCardConfirmPinReducer(action:Action, state:BLTCardConfirmPinState?) -> BLTCardConfirmPinState {
+func BLTCardConfirmPinReducer(action: Action, state: BLTCardConfirmPinState?) -> BLTCardConfirmPinState {
     let state = state ?? BLTCardConfirmPinState()
-        
+
     switch action {
     case let action as PageStateAction:
         state.pageState.accept(action.state)
     default:
         break
     }
-        
+
     return state
 }
-
-

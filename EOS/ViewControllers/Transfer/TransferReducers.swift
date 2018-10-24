@@ -10,10 +10,9 @@ import UIKit
 import ReSwift
 import SwiftyUserDefaults
 
-func TransferReducer(action:Action, state:TransferState?) -> TransferState {
-    var state = state ?? TransferState()
-    
-    
+func TransferReducer(action: Action, state: TransferState?) -> TransferState {
+    let state = state ?? TransferState()
+
     switch action {
     case let action as BalanceFetchedAction:
         if action.balance != nil {
@@ -27,10 +26,9 @@ func TransferReducer(action:Action, state:TransferState?) -> TransferState {
         if let name = action.model?.account_name {
             if let balance = Defaults[name + NetworkConfiguration.BALANCE_DEFAULT_SYMBOL] as? String {
                 state.balanceLocal.accept(balance)
-                
+
             }
-        }
-        else {
+        } else {
             state.balanceLocal.accept("")
         }
     case let action as moneyAction:
@@ -41,26 +39,20 @@ func TransferReducer(action:Action, state:TransferState?) -> TransferState {
                 valid = true
                 tips = ""
             }
-            
+
             if moneyDouble < (1 / pow(10, AppConfiguration.EOS_PRECISION)).doubleValue {
                 valid = false
                 tips = R.string.localizable.small_money.key.localized()
             }
-            
-            
-            
-            
-            state.moneyValid.accept((valid,tips))
+
+            state.moneyValid.accept((valid, tips))
         }
     case let action as toNameAction:
         state.toNameValid.accept(action.isValid)
-        
+
     default:
         break
     }
-    
+
     return state
 }
-
-
-

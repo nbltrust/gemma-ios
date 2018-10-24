@@ -21,4 +21,3 @@ struct NodeVote: HandyJSON {
     var createdAt: CLongLong!
     var updatedAt: CLongLong!
 }
-

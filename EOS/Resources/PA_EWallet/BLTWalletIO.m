@@ -374,7 +374,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
                 if (showOnScreen) {
                     PAEW_ClearLCD(ppPAEWContext, devIdx);
                 }
-                size_t addressLen = strlen(bAddress);
+                size_t addressLen = strlen((char *)bAddress);
                 public_key = [NSString stringWithUTF8String:(char *)bAddress];
                 pub_sig = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1]];
                 pub = [[BLTUtils bytesToHexString:bAddress length:addressLen] stringByAppendingString:@"00"];
@@ -459,7 +459,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
                 if (showOnScreen) {
                     PAEW_ClearLCD(ppPAEWContext, devIdx);
                 }
-                size_t addressLen = strlen(bAddress);
+                size_t addressLen = strlen((char *)bAddress);
                 NSString *signature = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1] ];
                 NSString *pubKey = [NSString stringWithUTF8String:(char *)bAddress];
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -576,7 +576,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             byte_chars[0] = [chainId characterAtIndex:i*2];
             byte_chars[1] = [chainId characterAtIndex:i*2+1];
             
-            charwhole_byte= strtol(byte_chars, NULL, 16);
+            charwhole_byte= (unsigned)strtol(byte_chars, NULL, 16);
             [apnsTokenMutableData appendBytes:&charwhole_byte length:1];
         }
         

@@ -9,21 +9,21 @@
 import Foundation
 import ReSwift
 
-//MARK: - State
+// MARK: - State
 struct QRCodeState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage:String?
+    var errorMessage: String?
     var property: QRCodePropertyState
 }
 
 struct QRCodePropertyState {
 }
 
-//MARK: - Action Creator
+// MARK: - Action Creator
 class QRCodePropertyActionCreate {
     public typealias ActionCreator = (_ state: QRCodeState, _ store: Store<QRCodeState>) -> Action?
-    
+
     public typealias AsyncActionCreator = (
         _ state: QRCodeState,
         _ store: Store <QRCodeState>,

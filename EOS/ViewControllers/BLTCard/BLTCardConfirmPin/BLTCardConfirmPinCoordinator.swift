@@ -15,21 +15,21 @@ protocol BLTCardConfirmPinCoordinatorProtocol {
 
 protocol BLTCardConfirmPinStateManagerProtocol {
     var state: BLTCardConfirmPinState { get }
-    
-    func switchPageState(_ state:PageState)
+
+    func switchPageState(_ state: PageState)
 }
 
 class BLTCardConfirmPinCoordinator: BLTCardRootCoordinator {
     var store = Store(
         reducer: BLTCardConfirmPinReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware: [TrackingMiddleware]
     )
-    
+
     var state: BLTCardConfirmPinState {
         return store.state
     }
-            
+
     override func register() {
         Broadcaster.register(BLTCardConfirmPinCoordinatorProtocol.self, observer: self)
         Broadcaster.register(BLTCardConfirmPinStateManagerProtocol.self, observer: self)
@@ -37,11 +37,11 @@ class BLTCardConfirmPinCoordinator: BLTCardRootCoordinator {
 }
 
 extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinCoordinatorProtocol {
-    
+
 }
 
 extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         self.store.dispatch(PageStateAction(state: state))
     }
 }

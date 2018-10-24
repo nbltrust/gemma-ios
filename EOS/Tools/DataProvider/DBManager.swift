@@ -18,19 +18,19 @@ enum TableHandleAction: Int {
 
 class DBManager {
     static let shared = DBManager()
-    
+
     var dbQueue: DatabaseQueue?
-    
+
     func setupDB() {
         do {
             try createDB()
             try checkDB()
         } catch {}
     }
-    
+
     fileprivate func createDB() throws {
         let fileManager = FileManager.default
-        
+
         let fileDir = try fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("GemmaDB", isDirectory: true)
         let filePath = fileDir.appendingPathComponent("Gemma.sqlite")
         var isDirectory: ObjCBool = false
@@ -39,8 +39,8 @@ class DBManager {
         }
         dbQueue = try DatabaseQueue(path: filePath.path)
     }
-    
-    func handleTableCreation(_ data: Any, primaryKey: String? = nil, whiteList: [String]? = nil, blackList: [String]? = nil, exxtensionColumns: [String : ParameterType]? = nil) throws {
+
+    func handleTableCreation(_ data: Any, primaryKey: String? = nil, whiteList: [String]? = nil, blackList: [String]? = nil, exxtensionColumns: [String: ParameterType]? = nil) throws {
         let anyMirror = Mirror(reflecting: data)
         let tableName = anyMirror.className()
         var dataStructure = anyMirror.dataStructure()
@@ -55,15 +55,15 @@ class DBManager {
             break
         }
     }
-    
-    fileprivate func handleColums(_ structure: [String : ParameterType], whiteList: [String]? = nil, blackList: [String]? = nil, relyColumData: [String : ParameterType]? = nil) throws -> [String : ParameterType] {
-        var tempData: [String : ParameterType] = [:]
+
+    fileprivate func handleColums(_ structure: [String: ParameterType], whiteList: [String]? = nil, blackList: [String]? = nil, relyColumData: [String: ParameterType]? = nil) throws -> [String: ParameterType] {
+        var tempData: [String: ParameterType] = [:]
         if let relyData = relyColumData {
             relyData.forEach { (data) in
                 tempData[data.key] = data.value
             }
         }
-        
+
         if let white = whiteList {
             white.forEach { (key) in
                 if structure.keys.contains(key) {
@@ -72,11 +72,11 @@ class DBManager {
             }
             return tempData
         }
-        
+
         structure.forEach { (key, type) in
             tempData[key] = type
         }
-        
+
         if let black = blackList {
             black.forEach { (key) in
                 if structure.keys.contains(key) {
@@ -86,14 +86,14 @@ class DBManager {
         }
         return tempData
     }
-    
-    fileprivate func createTable(_ tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
-        try dbQueue?.write{ db in
+
+    fileprivate func createTable(_ tableName: String, primaryKey: String?, structure: [String: ParameterType]) throws {
+        try dbQueue?.write { db in
             try self.handleCustomTableCreation(db, tableName: tableName, primaryKey: primaryKey, structure: structure)
         }
     }
-    
-    func handleCustomTableCreation(_ db: Database, tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
+
+    func handleCustomTableCreation(_ db: Database, tableName: String, primaryKey: String?, structure: [String: ParameterType]) throws {
         try db.create(table: tableName) { t in
             for key in structure.keys {
                 if let value = structure[key] {
@@ -106,8 +106,8 @@ class DBManager {
             }
         }
     }
-    
-    fileprivate func migrateTable(_ tableName: String, primaryKey: String?, structure: [String : ParameterType]) throws {
+
+    fileprivate func migrateTable(_ tableName: String, primaryKey: String?, structure: [String: ParameterType]) throws {
         guard let dbQueue = dbQueue else { return }
         let tempTableName = tableName + "temp"
         var migrator = DatabaseMigrator()
@@ -119,7 +119,7 @@ class DBManager {
         }
         try migrator.migrate(dbQueue)
     }
-    
+
     fileprivate func migrateSQLStatement(_ fromTable: String, db: Database, toTable: String) throws -> String {
         var fromKeys: [String] = []
         var tableKeys: String = ""
@@ -138,10 +138,10 @@ class DBManager {
         }
         return String(format: "INSERT INTO %@(%@) SELECT %@ FROM %@", toTable, tableKeys, tableKeys, fromTable)
     }
-    
-    fileprivate func tableAction(_ tableName: String, structure: [String : ParameterType]) throws -> TableHandleAction {
+
+    fileprivate func tableAction(_ tableName: String, structure: [String: ParameterType]) throws -> TableHandleAction {
         var action = TableHandleAction.none
-        try dbQueue?.write{ db in
+        try dbQueue?.write { db in
             if try db.tableExists(tableName) {
                 let columns = try db.columns(in: tableName)
                 if structure.keys.count != columns.count {
@@ -158,7 +158,7 @@ class DBManager {
         }
         return action
     }
-    
+
     fileprivate func columnType(_ origationalType: ParameterType) -> Database.ColumnType {
         switch origationalType {
         case .int, .int8, .int16, .int32, .int64:
@@ -177,5 +177,5 @@ class DBManager {
             return .text
         }
     }
-    
+
 }

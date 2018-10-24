@@ -17,16 +17,16 @@ class ScanCornerView: UIView {
         lineView.contentMode = .scaleAspectFit
         return lineView
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         setupUI()
     }
-    
+
     func setupUI() {
         self.addSubview(lineView)
-        
+
         let animation = CABasicAnimation()
         animation.keyPath = "position"
         animation.toValue = NSValue(cgPoint: CGPoint(x: lineView.center.x, y: self.height - lineView.height / 2 - 5))
@@ -35,27 +35,27 @@ class ScanCornerView: UIView {
         animation.repeatCount = HUGE
         animation.isRemovedOnCompletion = false
         animation.fillMode = CAMediaTimingFillMode.forwards
-        
+
         lineView.layer.add(animation, forKey: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         let magin: CGFloat = 2
         let radius: CGFloat = 8.0
-        
+
         let path = UIBezierPath(rect: self.bounds)
         path.append(UIBezierPath(roundedRect: CGRect(x: magin, y: magin, width: self.width - 2 * magin, height: self.height - 2 * magin), cornerRadius: radius).reversing())
-        
+
         let shapLayer = CAShapeLayer()
         shapLayer.frame = self.bounds
         shapLayer.path = path.cgPath
         shapLayer.fillColor = UIColor.whiteTwo.cgColor
-        
+
         self.layer.addSublayer(shapLayer)
     }
 
