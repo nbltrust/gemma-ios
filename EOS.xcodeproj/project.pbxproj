@@ -576,7 +576,7 @@
 		73BA4B3B215A244600EF4C72 /* URLNavigationMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BA4B3A215A244600EF4C72 /* URLNavigationMap.swift */; };
 		73BEF1C8217F0D2200707DFC /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
 		73BEF1C9217F0D2200707DFC /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		73BEF1D0217F0E5700707DFC /* seed39_ios_golang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BEF1CF217F0E5700707DFC /* seed39_ios_golang.framework */; };
+		73BEF2362180154200707DFC /* seed39_ios_golang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BEF2352180154200707DFC /* seed39_ios_golang.framework */; };
 		73D47EDB214D678B00A8BF29 /* BLTWalletIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */; };
 		73DDD9A22113F6B900023973 /* BannerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DDD9A12113F6B900023973 /* BannerColor.swift */; };
 		73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F1DE44214675250065BD72 /* Mirror+Extension.swift */; };
@@ -1287,7 +1287,7 @@
 		73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Utils.swift"; sourceTree = "<group>"; };
 		73B5A6AC20F601DE00756391 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		73BA4B3A215A244600EF4C72 /* URLNavigationMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLNavigationMap.swift; sourceTree = "<group>"; };
-		73BEF1CF217F0E5700707DFC /* seed39_ios_golang.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = seed39_ios_golang.framework; path = Carthage/Build/iOS/seed39_ios_golang.framework; sourceTree = "<group>"; };
+		73BEF2352180154200707DFC /* seed39_ios_golang.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = seed39_ios_golang.framework; path = Carthage/Build/iOS/seed39_ios_golang.framework; sourceTree = "<group>"; };
 		73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTWalletIO.m; sourceTree = "<group>"; };
 		73DDD9A12113F6B900023973 /* BannerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerColor.swift; sourceTree = "<group>"; };
 		73EDFEE7211AC44E000DF796 /* EOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1340,7 +1340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7374B37D217EC9BD00B63982 /* iOS_EWalletDynamic.framework in Frameworks */,
-				73BEF1D0217F0E5700707DFC /* seed39_ios_golang.framework in Frameworks */,
+				73BEF2362180154200707DFC /* seed39_ios_golang.framework in Frameworks */,
 				7374B371217EC38600B63982 /* eos_ios_core_cpp.framework in Frameworks */,
 				735A3D2E2160A99800FC8922 /* NBLCommonModule.framework in Frameworks */,
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
@@ -2868,7 +2868,7 @@
 		7B1099E4405BBDCBFFFB472EAF92E121 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				73BEF1CF217F0E5700707DFC /* seed39_ios_golang.framework */,
+				73BEF2352180154200707DFC /* seed39_ios_golang.framework */,
 				7374B37B217EC9BC00B63982 /* iOS_EWalletDynamic.framework */,
 				7374B370217EC38600B63982 /* eos_ios_core_cpp.framework */,
 				73539D512179BC53008395AC /* UICKeyChainStore.framework */,
@@ -3512,7 +3512,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if [ \"${CONFIGURATION}\" = \"Release\" ]; then\nchmod -R 777 Pods/ &\npython scripts/named_colors_compat.py\n#fi\n";
+			shellScript = "#if [ \"${CONFIGURATION}\" = \"Release\" ]; then\npython scripts/named_colors_compat.py\n#fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4201,6 +4201,7 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EOS.app/EOS";
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
