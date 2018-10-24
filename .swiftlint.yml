@@ -6,4 +6,6 @@ excluded:
   - EOS/UIComponents/LGButton
   - EOS/UIComponents/AttributedLabelView
   - EOS/UIComponents/Switch
-
+cyclomatic_complexity:
+  - 10
+  - 30
