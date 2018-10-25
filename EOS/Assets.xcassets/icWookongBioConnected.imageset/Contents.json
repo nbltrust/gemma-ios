@@ -2,17 +2,17 @@
   "images" : [
     {
       "scale" : "1x",
-      "filename" : "icWallet.png",
+      "filename" : "icWookongBioConnected.png",
       "idiom" : "universal"
     },
     {
       "scale" : "2x",
-      "filename" : "icWallet@2x.png",
+      "filename" : "icWookongBioConnected@2x.png",
       "idiom" : "universal"
     },
     {
       "scale" : "3x",
-      "filename" : "icWallet@3x.png",
+      "filename" : "icWookongBioConnected@3x.png",
       "idiom" : "universal"
     }
   ],

@@ -131,9 +131,8 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
             let seed2 = Seed39SeedByMnemonic(checkStr)
             let prikey2 = Seed39DeriveRaw(seed2, CurrencyType.ETH.derivationPath)
             let curCipher2 = Seed39KeyEncrypt(pwd, prikey2)
-            let pubkey2 = Seed39GetEthereumPublicKeyFromPrivateKey(prikey2)
             let address = Seed39GetEthereumAddressFromPrivateKey(prikey2)
-            let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: pubkey2!, wid: idNum, date: date, address: address)
+            let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: nil, wid: idNum, date: date, address: address)
             
             try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
             self.dismiss()

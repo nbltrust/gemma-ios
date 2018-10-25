@@ -59,12 +59,12 @@ struct Currency: Codable {
     var id: Int64?
     var type: CurrencyType
     var cipher: String // 私钥密文
-    var pubKey: String
+    var pubKey: String?//只有EOS有公钥，公钥和地址只选其一
     var wid: Int64 // 关联钱包id
     var date: Date?
     var address: String?
 
-    public init(id: Int64?, type: CurrencyType, cipher: String, pubKey: String, wid: Int64, date: Date?, address: String?) {
+    public init(id: Int64?, type: CurrencyType, cipher: String, pubKey: String?, wid: Int64, date: Date?, address: String?) {
         self.id = id
         self.type = type
         self.cipher = cipher
@@ -107,7 +107,7 @@ class WalletCacheService: BaseCacheService {
                 tab.column("id", .integer).primaryKey()
                 tab.column("type", .integer).notNull()
                 tab.column("cipher", .text).notNull()
-                tab.column("pubKey", .text).notNull()
+                tab.column("pubKey", .text)
                 tab.column("wid", .integer).notNull()
                 tab.column("date", .date).defaults(to: Date())
                 tab.column("address", .text)
