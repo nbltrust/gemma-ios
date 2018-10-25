@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavBarView">
+            <connections>
+                <outlet property="settingButton" destination="KTF-8c-52x" id="jZA-Q9-Hys"/>
+                <outlet property="walletButton" destination="fbA-IR-jMB" id="lNk-Hl-bOW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="btM-Yo-6kI">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="207"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z06-r0-cN5">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c94-2O-POo">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icCharge" translatesAutoresizingMaskIntoConstraints="NO" id="UHS-y6-4Gs">
+                                    <rect key="frame" x="18" y="28" width="16" height="16"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D4-iu-5aW" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="44" y="27" width="37" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                    <color key="textColor" name="brownishGrey" red="0.400" green="0.400" blue="0.400" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
+                                            <real key="value" value="14"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="DrE-nk-awE"/>
+                                <constraint firstAttribute="bottom" secondItem="1D4-iu-5aW" secondAttribute="bottom" id="V6n-Ry-qaC"/>
+                                <constraint firstItem="1D4-iu-5aW" firstAttribute="leading" secondItem="UHS-y6-4Gs" secondAttribute="trailing" constant="10" id="aNc-Dp-pRv"/>
+                                <constraint firstItem="UHS-y6-4Gs" firstAttribute="leading" secondItem="c94-2O-POo" secondAttribute="leading" constant="18" id="qvj-1g-WSm"/>
+                                <constraint firstAttribute="bottom" secondItem="UHS-y6-4Gs" secondAttribute="bottom" id="wJm-3m-4D5"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IR6-oA-dRa">
+                            <rect key="frame" x="0.0" y="44" width="375" height="54"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bY-aS-3tF">
+                                    <rect key="frame" x="20" y="10.5" width="69.5" height="33.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                    <color key="textColor" name="blackTwo" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTF-8c-52x">
+                                    <rect key="frame" x="326" y="10" width="34" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="55G-tB-4sx"/>
+                                        <constraint firstAttribute="width" constant="34" id="uG4-Du-hFX"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="icSet"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-IR-jMB">
+                                    <rect key="frame" x="275" y="10" width="34" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="34" id="c2x-eJ-fbv"/>
+                                        <constraint firstAttribute="height" constant="34" id="yUt-XR-b7L"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="icWallet"/>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="6bY-aS-3tF" firstAttribute="leading" secondItem="IR6-oA-dRa" secondAttribute="leading" constant="20" id="1YB-gF-b2l"/>
+                                <constraint firstItem="fbA-IR-jMB" firstAttribute="centerY" secondItem="IR6-oA-dRa" secondAttribute="centerY" id="CcX-XE-NeV"/>
+                                <constraint firstItem="6bY-aS-3tF" firstAttribute="centerY" secondItem="IR6-oA-dRa" secondAttribute="centerY" id="EEw-dd-AYw"/>
+                                <constraint firstAttribute="trailing" secondItem="KTF-8c-52x" secondAttribute="trailing" constant="15" id="HRh-Ba-DTc"/>
+                                <constraint firstItem="KTF-8c-52x" firstAttribute="centerY" secondItem="IR6-oA-dRa" secondAttribute="centerY" id="bH6-3V-vmc"/>
+                                <constraint firstItem="KTF-8c-52x" firstAttribute="leading" secondItem="fbA-IR-jMB" secondAttribute="trailing" constant="17" id="q9v-uJ-f0F"/>
+                                <constraint firstAttribute="height" constant="54" id="x90-YJ-wat"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Z06-r0-cN5" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" id="DCo-AB-wgS"/>
+                <constraint firstItem="Z06-r0-cN5" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="JGc-7i-lNv"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="Z06-r0-cN5" secondAttribute="trailing" id="j4t-Bw-aob"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
+            <point key="canvasLocation" x="-194.40000000000001" y="-271.21439280359823"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icCharge" width="16" height="16"/>
+        <image name="icSet" width="34" height="34"/>
+        <image name="icWallet" width="34" height="34"/>
+    </resources>
+</document>

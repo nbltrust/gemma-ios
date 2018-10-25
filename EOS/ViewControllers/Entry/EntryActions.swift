@@ -10,32 +10,34 @@ import Foundation
 import ReSwift
 import RxCocoa
 
-// MARK: - State
+//MARK: - State
 struct EntryState: StateType {
     var isLoading = false
     var page: Int = 1
-    var errorMessage: String?
+    var errorMessage:String?
     var property: EntryPropertyState
     var callback: EntryCallbackState
 }
 
 struct EntryPropertyState {
     var nameValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-
+    
     var passwordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-
-    var comfirmPasswordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-
-    var inviteCodeValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-
+    
+    var comfirmPasswordValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    var inviteCodeValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
     var isAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-
+    
     var checkSeedSuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    var model: WalletModel? = nil
 }
 
 struct EntryCallbackState {
     var endCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
-
+    
     var finishBLTWalletCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
 }
 
@@ -59,10 +61,20 @@ struct SetCheckSeedSuccessedAction: Action {
     var isCheck: Bool = false
 }
 
-// MARK: - Action Creator
+struct WalletModelAction: Action {
+    var model: WalletModel?
+}
+
+struct WalletModel {
+    var pwd: String
+    var prompt: String
+    var type: WalletType
+}
+
+//MARK: - Action Creator
 class EntryPropertyActionCreate {
     public typealias ActionCreator = (_ state: EntryState, _ store: Store<EntryState>) -> Action?
-
+    
     public typealias AsyncActionCreator = (
         _ state: EntryState,
         _ store: Store <EntryState>,

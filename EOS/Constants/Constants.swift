@@ -34,7 +34,7 @@ struct AppConfiguration {
     var appCoordinator: AppCoordinator!
 
     private init() {
-        let rootVC = BaseTabbarViewController()
+        let rootVC = BaseNavigationController()
         appCoordinator = AppCoordinator(rootVC: rootVC)
     }
 }

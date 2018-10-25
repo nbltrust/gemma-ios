@@ -252,14 +252,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Exc-s2-E0c" customClass="NewHomeView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="335" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="whiteTwo" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Exc-s2-E0c" firstAttribute="top" secondItem="au5-A9-RyL" secondAttribute="top" id="Xax-Jq-ykP"/>
-                            <constraint firstItem="au5-A9-RyL" firstAttribute="trailing" secondItem="Exc-s2-E0c" secondAttribute="trailing" constant="20" id="Xcf-YX-88P"/>
-                            <constraint firstItem="Exc-s2-E0c" firstAttribute="leading" secondItem="au5-A9-RyL" secondAttribute="leading" constant="20" id="cbt-16-vg3"/>
+                            <constraint firstItem="au5-A9-RyL" firstAttribute="trailing" secondItem="Exc-s2-E0c" secondAttribute="trailing" id="Xcf-YX-88P"/>
+                            <constraint firstItem="Exc-s2-E0c" firstAttribute="leading" secondItem="au5-A9-RyL" secondAttribute="leading" id="cbt-16-vg3"/>
                             <constraint firstItem="au5-A9-RyL" firstAttribute="bottom" secondItem="Exc-s2-E0c" secondAttribute="bottom" id="yKU-iy-A9C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="au5-A9-RyL"/>
@@ -303,4 +303,6 @@
             <point key="canvasLocation" x="4094" y="143"/>
         </scene>
     </scenes>
+    <resources>
+    </resources>
 </document>

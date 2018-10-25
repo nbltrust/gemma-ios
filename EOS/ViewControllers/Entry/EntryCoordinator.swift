@@ -18,6 +18,7 @@ protocol EntryCoordinatorProtocol {
     func pushBackupPrivateKeyVC()
     func presentSetFingerPrinterVC()
     func dismissCurrentNav(_ entry: UIViewController?)
+    func pushBackupMnemonicVC()
 }
 
 protocol EntryStateManagerProtocol {
@@ -48,10 +49,12 @@ protocol EntryStateManagerProtocol {
     func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication)
 
     func checkSeedSuccessed()
-
+    
     func verifyAccount(_ name: String, completion: @escaping (Bool) -> Void)
-
-    func createWallet(_ name: String, completion:@escaping (Bool) -> Void)
+    
+    func createWallet(_ name: String, completion:@escaping (Bool)-> Void)
+    
+    func createTempWallet(_ pwd: String, prompt: String, type: WalletType)
 }
 
 class EntryCoordinator: NavCoordinator {
@@ -131,6 +134,27 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
             vc.coordinator?.state.callback.endCallback.value?()
         }
+    }
+    
+    func pushBackupMnemonicVC() {
+        let vc = R.storyboard.mnemonic.backupMnemonicWordViewController()!
+        let coor = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
+        
+//        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
+//            coor.state.hadSaveCallback.accept {[weak self] in
+//                guard let `self` = self else { return }
+//                self.dismissCurrentNav(entry)
+//            }
+//        }
+//        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 3] as? EntryViewController {
+//            coor.state.hadSaveCallback.accept {[weak self] in
+//                guard let `self` = self else { return }
+//                self.dismissCurrentNav(entry)
+//            }
+//        }
+        
+        vc.coordinator = coor
+        self.rootVC.pushViewController(vc, animated: true)
     }
 }
 
@@ -262,5 +286,21 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         } else {
             completion(false)
         }
+    }
+    
+//    func createWalletModel() -> WalletModel {
+//        do {
+//            let wallets = try WalletCacheService.shared.fetchAllWallet()
+//            let idNum: Int64 = Int64(wallets!.count) + 1
+//            let date = Date.init()
+//            let model = Wallet(id: idNum, name: "EOS-WALLET-\(idNum)", type: .HD, cipher: nil, deviceName: nil, date: date)
+//            return model
+//        } catch {
+//            return nil
+//        }
+//    }
+    func createTempWallet(_ pwd: String, prompt: String, type: WalletType) {
+        let model = WalletModel(pwd: pwd, prompt:prompt ,type: type)
+        self.store.dispatch(WalletModelAction(model: model))
     }
 }

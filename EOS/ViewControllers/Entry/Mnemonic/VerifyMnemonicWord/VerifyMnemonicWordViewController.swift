@@ -14,31 +14,31 @@ import ReSwift
 class VerifyMnemonicWordViewController: BaseViewController {
 
     @IBOutlet weak var contentView: VerifyMnemonicWordView!
-
+    
     var coordinator: (VerifyMnemonicWordCoordinatorProtocol & VerifyMnemonicWordStateManagerProtocol)?
-
+    
     var seeds: [String] = []
-
+    
     var checkStr: String = ""
-
+    
     private var tempSeeds: [String] = []
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupData()
         setupUI()
         setupEvent()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-
+    
     override func refreshViewController() {
-
+        
     }
-
+    
     func setupUI() {
         self.title = R.string.localizable.verify_mnemonic_title.key.localized()
     }
@@ -47,11 +47,12 @@ class VerifyMnemonicWordViewController: BaseViewController {
         shuffleSeeds()
         contentView.setPoolArray(self.tempSeeds)
     }
-
+    
     func shuffleSeeds() {
         tempSeeds = seeds
 //        tempSeeds = shuffleArray(arr: seeds)
     }
+
 
     func shuffleArray(arr: [String]) -> [String] {
         var data: [String] = arr
@@ -63,36 +64,20 @@ class VerifyMnemonicWordViewController: BaseViewController {
         }
         return data
     }
-
+    
     func setupEvent() {
-
+        
     }
-
+    
     override func configureObserveState() {
 
     }
 }
 
-// MARK: - View Event
+//MARK: - View Event
 extension VerifyMnemonicWordViewController {
-    @objc func verifyMnemonicWord(_ data: [String: Any]) {
-        if let selectValues = data["data"] as? [String] {
-            if selectValues.count == seeds.count {
-                if let isValid = self.coordinator?.validSequence(seeds, compairDatas: selectValues), isValid {
-                    showSuccess(message: R.string.localizable.wookong_mnemonic_ver_successed.key.localized())
-                    self.coordinator?.checkSeed(checkStr, success: { [weak self] in
-                        guard let `self` = self else { return }
-                        self.coordinator?.checkFeedSuccessed()
-                    }, failed: { [weak self] (reason) in
-                        guard let `self` = self else { return }
-                        if let failedReason = reason {
-                            self.showError(message: failedReason)
-                        }
-                    })
-                } else {
-                    showError(message: R.string.localizable.wookong_mnemonic_ver_failed.key.localized())
-                }
-            }
-        }
+    @objc func verifyMnemonicWord(_ data:[String: Any]) {
+        self.coordinator?.verifyMnemonicWord(data, seeds: self.seeds, checkStr: self.checkStr)
     }
 }
+

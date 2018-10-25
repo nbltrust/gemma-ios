@@ -26,7 +26,7 @@ class Button: UIView {
 
     @IBInspectable var locali: String? {
         didSet {
-            self.button.locali = locali!
+            self.button.setTitle(locali?.localized(), for: .normal)
         }
     }
 
@@ -104,7 +104,7 @@ class Button: UIView {
     }
 
     fileprivate func unEnablebutton() {
-        button.backgroundColor = UIColor.blueyGrey
+        button.backgroundColor = UIColor.cloudyBlueFour
         button.setTitleColor(UIColor.whiteTwo, for: .normal)
         button.layer.borderColor = UIColor.clear.cgColor
         button.isUserInteractionEnabled = false

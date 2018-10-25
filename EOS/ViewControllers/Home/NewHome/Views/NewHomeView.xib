@@ -20,24 +20,35 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="428"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YuN-sa-CTh">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="428"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YuN-sa-CTh">
+                    <rect key="frame" x="0.0" y="128" width="375" height="300"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="zDf-5Z-wXl"/>
                         <outlet property="delegate" destination="-1" id="YzS-L8-qbV"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCO-4z-P8W" customClass="NavBarView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="98" id="5LM-43-5xp"/>
+                    </constraints>
+                </view>
             </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="YuN-sa-CTh" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="Bfa-Y5-mND"/>
+                <constraint firstItem="YuN-sa-CTh" firstAttribute="top" secondItem="pCO-4z-P8W" secondAttribute="bottom" constant="30" id="GTx-PX-LPa"/>
+                <constraint firstItem="pCO-4z-P8W" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="IR6-qv-4JE"/>
                 <constraint firstItem="Lhl-p8-24W" firstAttribute="bottom" secondItem="YuN-sa-CTh" secondAttribute="bottom" id="WRh-vd-mv8"/>
-                <constraint firstItem="YuN-sa-CTh" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" id="aR0-SN-jBG"/>
                 <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="YuN-sa-CTh" secondAttribute="trailing" id="jPr-xl-Qc4"/>
+                <constraint firstItem="pCO-4z-P8W" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" id="toY-B8-Jmo"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="pCO-4z-P8W" secondAttribute="trailing" id="vj0-xt-eHC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
-            <point key="canvasLocation" x="-6" y="-215"/>
+            <point key="canvasLocation" x="-7.2000000000000002" y="-215.8920539730135"/>
         </view>
     </objects>
 </document>

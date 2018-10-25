@@ -78,11 +78,16 @@ class EntryViewController: BaseViewController {
                     self.coordinator?.copyMnemonicWord()
                 }
             default:
-                self.coordinator?.verifyAccount(self.registerView.nameView.textField.text!, completion: { (success) in
-                    if success == true {
-                        self.coordinator?.pushToActivateVC()
-                    }
-                })
+//                self.coordinator?.verifyAccount(self.registerView.nameView.textField.text!, completion: {[weak self] (success) in
+//                    guard let `self` = self else {return }
+//                    if success == true {
+////                        self.coordinator?.pushToActivateVC()
+                        self.coordinator?.createTempWallet(self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, type: .HD)
+                
+                            self.coordinator?.pushBackupMnemonicVC()
+//
+//                    }
+//                })
             }
         }).disposed(by: disposeBag)
 
@@ -105,9 +110,9 @@ class EntryViewController: BaseViewController {
                                     guard let `self` = self else { return false }
                                     switch self.createType {
                                     case .wookong:
-                                        return arg0.0 && arg0.3
+                                        return arg0.3
                                     default:
-                                        return arg0.0 && arg0.1 && arg0.2 && arg0.3
+                                        return arg0.1 && arg0.2 && arg0.3
                                     }
         }.bind(to: creatButton.isEnabel).disposed(by: disposeBag)
     }

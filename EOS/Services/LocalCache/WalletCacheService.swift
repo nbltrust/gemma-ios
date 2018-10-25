@@ -59,17 +59,19 @@ struct Currency: Codable {
     var id: Int64?
     var type: CurrencyType
     var cipher: String // 私钥密文
-    var pubKey: String
+    var pubKey: String?//只有EOS有公钥，公钥和地址只选其一
     var wid: Int64 // 关联钱包id
     var date: Date?
+    var address: String?
 
-    public init(id: Int64?, type: CurrencyType, cipher: String, pubKey: String, wid: Int64, date: Date?) {
+    public init(id: Int64?, type: CurrencyType, cipher: String, pubKey: String?, wid: Int64, date: Date?, address: String?) {
         self.id = id
         self.type = type
         self.cipher = cipher
         self.pubKey = pubKey
         self.wid = wid
         self.date = date
+        self.address = address
     }
 }
 
@@ -89,25 +91,26 @@ class WalletCacheService: BaseCacheService {
     }
 
     override func createTable() throws {
-        try queue?.write { database in
-            try database.create(table: Wallet.databaseTableName) { table in
-                table.column("id", .integer).primaryKey()
-                table.column("name", .text).notNull()
-                table.column("type", .integer).notNull()
-                table.column("cipher", .text)
-                table.column("deviceName", .text)
-                table.column("date", .date).defaults(to: Date())
+        try queue?.write { db in
+            try db.create(table: Wallet.databaseTableName) { tab in
+                tab.column("id", .integer).primaryKey()
+                tab.column("name", .text).notNull()
+                tab.column("type", .integer).notNull()
+                tab.column("cipher", .text)
+                tab.column("deviceName", .text)
+                tab.column("date", .date).defaults(to: Date())
             }
         }
 
-        try queue?.write { database in
-            try database.create(table: Currency.databaseTableName) { table in
-                table.column("id", .integer).primaryKey()
-                table.column("type", .integer).notNull()
-                table.column("cipher", .text).notNull()
-                table.column("pubKey", .text).notNull()
-                table.column("wid", .integer).notNull()
-                table.column("date", .date).defaults(to: Date())
+        try queue?.write { db in
+            try db.create(table: Currency.databaseTableName) { tab in
+                tab.column("id", .integer).primaryKey()
+                tab.column("type", .integer).notNull()
+                tab.column("cipher", .text).notNull()
+                tab.column("pubKey", .text)
+                tab.column("wid", .integer).notNull()
+                tab.column("date", .date).defaults(to: Date())
+                tab.column("address", .text)
             }
         }
     }

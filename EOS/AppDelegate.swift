@@ -68,11 +68,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         DBManager.shared.setupDB()
 
-        if !WalletManager.shared.existWallet() {
+        do {
+            let array = try WalletCacheService.shared.fetchAllWallet()
+            if array?.count == 0 {
+                AppConfiguration.shared.appCoordinator!.showEntry()
+            }
+        } catch {
             AppConfiguration.shared.appCoordinator!.showEntry()
-        } else {
-            SafeManager.shared.checkForOpenAPP()
         }
+//        if !WalletManager.shared.existWallet() {
+//            AppConfiguration.shared.appCoordinator!.showEntry()
+//        } else {
+//            SafeManager.shared.checkForOpenAPP()
+//        }
 
         NetworkSettingManager.shared.setup()
         if let url = launchOptions?[.url] as? URL {

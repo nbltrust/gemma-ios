@@ -10,57 +10,70 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import NBLCommonModule
+import seed39_ios_golang
 
 class MnemonicContentViewController: BaseViewController {
 
 	var coordinator: (MnemonicContentCoordinatorProtocol & MnemonicContentStateManagerProtocol)?
 
     @IBOutlet weak var contentView: MnemonicContentView!
-
+    
     var seeds: [String] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupData()
         setupUI()
         setupEvent()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-
+    
     override func refreshViewController() {
-
+        
     }
-
+    
     func setupUI() {
         self.title = R.string.localizable.backup_mnemonic_title.key.localized()
     }
 
     func setupData() {
-        self.coordinator?.getSeeds({ [weak self] (datas, checkStr) in
-            guard let `self` = self else { return }
-            if let tempDatas = datas as? [String], let check = checkStr {
-                DispatchQueue.main.sync {
-                    self.seeds = tempDatas
-                    self.coordinator?.setSeeds((tempDatas, check))
-                    self.contentView.setMnemonicWordArray(self.seeds)
+        Broadcaster.notify(EntryStateManagerProtocol.self) { (coor) in
+            let model = coor.state.property.model
+            if model?.type == .HD {
+                let mnemonic = Seed39NewMnemonic()
+                if let array = mnemonic?.components(separatedBy: " ") {
+                    self.coordinator?.setSeeds((array, mnemonic ?? ""))
+                    self.contentView.setMnemonicWordArray(array)
                 }
+            } else if model?.type == .bluetooth {
+                self.coordinator?.getSeeds({ [weak self] (datas,checkStr) in
+                    guard let `self` = self else { return }
+                    if let tempDatas = datas as? [String],let check = checkStr {
+                        DispatchQueue.main.sync {
+                            self.seeds = tempDatas
+                            self.coordinator?.setSeeds((tempDatas, check))
+                            self.contentView.setMnemonicWordArray(self.seeds)
+                        }
+                    }
+                    }, failed: { [weak self] (reason) in
+                        guard let `self` = self else { return }
+                        if let failedReason = reason {
+                            self.showError(message: failedReason)
+                        }
+                })
             }
-        }, failed: { [weak self] (reason) in
-            guard let `self` = self else { return }
-            if let failedReason = reason {
-                self.showError(message: failedReason)
-            }
-        })
+        }
     }
-
+    
     func setupEvent() {
-
+        
     }
-
+    
     override func configureObserveState() {
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
@@ -115,7 +128,7 @@ class MnemonicContentViewController: BaseViewController {
     }
 }
 
-// MARK: - TableViewDelegate
+//MARK: - TableViewDelegate
 
 //extension MnemonicContentViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,7 +142,8 @@ class MnemonicContentViewController: BaseViewController {
 //    }
 //}
 
-// MARK: - View Event
+
+//MARK: - View Event
 
 extension MnemonicContentViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
@@ -137,7 +151,8 @@ extension MnemonicContentViewController {
 //
 //        }
 //    }
-    @objc func copied(_ data: [String: Any]) {
+    @objc func copied(_ data:[String: Any]) {
         self.coordinator?.pushToVerifyMnemonicVC()
     }
 }
+

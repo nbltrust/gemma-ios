@@ -10,8 +10,8 @@
         "components" : {
           "blue" : "0.941",
           "alpha" : "0.415",
-          "red" : "0.867",
-          "green" : "0.886"
+          "green" : "0.886",
+          "red" : "0.867"
         }
       },
       "idiom" : "universal"

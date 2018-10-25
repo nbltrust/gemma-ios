@@ -15,37 +15,40 @@ class NewHomeViewController: BaseViewController {
 
 	var coordinator: (NewHomeCoordinatorProtocol & NewHomeStateManagerProtocol)?
     private(set) var context: NewHomeContext?
-
+    
     @IBOutlet weak var contentView: NewHomeView!
-
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupData()
         setupUI()
         setupEvent()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-
+    
     override func refreshViewController() {
-
+        setupData()
+        setupUI()
+        setupEvent()
     }
-
+    
     func setupUI() {
         //测试数据
         var array: [NewHomeViewModel] = []
         for _ in 0...3 {
             var model = NewHomeViewModel()
+            model.currencyImg = R.image.eosBg()!
             model.account = "nbltrust"
             model.balance = "0.0000"
             model.currency = "EOS"
             model.currencyIcon = "http://image.baidu.com"
-            model.otherBalance = "≈ ¥ 4,000,000.000"
-            model.tokenArray = ["", "", "", "", ""]
-//            model.tokens = "+ 4 tokens"
+            model.otherBalance = "4,000,000.000"
+            model.tokenArray = ["","","","",""]
+            model.tokens = "4"
             model.unit = "EOS"
             array.append(model)
         }
@@ -54,23 +57,23 @@ class NewHomeViewController: BaseViewController {
     }
 
     func setupData() {
-
+        
     }
-
+    
     func setupEvent() {
-
+        
     }
-
+    
     override func configureObserveState() {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
-
+            
             if let context = context as? NewHomeContext {
                 self.context = context
             }
-
+            
         }).disposed(by: disposeBag)
-
+        
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
 //            
@@ -125,7 +128,7 @@ class NewHomeViewController: BaseViewController {
     }
 }
 
-// MARK: - TableViewDelegate
+//MARK: - TableViewDelegate
 
 //extension NewHomeViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,12 +142,15 @@ class NewHomeViewController: BaseViewController {
 //    }
 //}
 
-// MARK: - View Event
 
-//extension NewHomeViewController {
-//    @objc func <#view#>DidClicked(_ data:[String: Any]) {
-//        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
-//
-//        }
-//    }
-//}
+//MARK: - View Event
+
+extension NewHomeViewController {
+    @objc func setDidClicked(_ data:[String: Any]) {
+        self.coordinator?.pushToSetVC()
+    }
+    @objc func walletDidClicked(_ data:[String: Any]) {
+        self.coordinator?.pushWallet()
+    }
+}
+
