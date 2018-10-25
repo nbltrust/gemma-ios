@@ -20,9 +20,13 @@ FOUNDATION_EXPORT NSString* Seed39DeriveRaw(NSString* seed, NSString* path);
  */
 FOUNDATION_EXPORT NSString* Seed39DeriveWIF(NSString* seed, NSString* path, BOOL compressed);
 
+FOUNDATION_EXPORT void Seed39GenAddress(void);
+
 FOUNDATION_EXPORT NSString* Seed39GetEthereumAddressFromPrivateKey(NSString* priKey);
 
 FOUNDATION_EXPORT NSString* Seed39GetEthereumPublicKeyFromPrivateKey(NSString* priKey);
+
+FOUNDATION_EXPORT void Seed39GetPublicKey(void);
 
 /**
  * KeyDecrypt exported
