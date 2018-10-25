@@ -93,4 +93,4 @@ fastlane/test_output
 *.a
 *.framework
 .Podfile.lock
-Carthage/
+Carthage/Build
