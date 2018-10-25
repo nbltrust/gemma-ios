@@ -31,6 +31,14 @@ class BaseViewController: UIViewController {
         super.init(coder: aDswicoder)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -83,18 +91,6 @@ class BaseViewController: UIViewController {
     func configureObserveState() {
         //    fatalError("must be realize this methods!")
 
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        get {
-            return false
-        }
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        get {
-            return .lightContent
-        }
     }
 
     func changeNavBar(isUserInteractionEnabled: Bool) {
