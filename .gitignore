@@ -90,5 +90,5 @@ fastlane/test_output
 *.generated.swift
 .DS_Store
 .Podfile.lock
-#Carthage/Build/iOS/seed39_ios_golang.framework
-#Carthage/Build/.seed39-ios-golang.version
+Carthage/Build/iOS/seed39_ios_golang.framework
+Carthage/Build/.seed39-ios-golang.version
