@@ -137,7 +137,7 @@ class WalletCacheService: BaseCacheService {
 }
 
 extension WalletCacheService {
-    func createWallet(wallet: Wallet, currencys: [Currency]) throws {
+    func createWallet(wallet: Wallet, currencys: [Currency]) throws -> Int64? {
         var wallet = wallet
 
         try queue?.write({ db in
@@ -146,16 +146,20 @@ extension WalletCacheService {
                 try currency.insert(db)
             }
         })
+
+        return wallet.id
     }
 }
 
 extension WalletCacheService {
-    func insertWallet(wallet: Wallet) throws {
+    func insertWallet(wallet: Wallet) throws -> Int64? {
         var wallet = wallet
 
         try queue?.write({ db in
             try wallet.insert(db)
         })
+
+        return wallet.id
     }
 
     func fetchAllWallet() throws -> [Wallet]? {
