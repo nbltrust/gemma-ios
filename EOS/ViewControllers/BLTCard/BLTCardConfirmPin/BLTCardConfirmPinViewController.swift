@@ -39,6 +39,20 @@ class BLTCardConfirmPinViewController: BaseViewController {
         self.confirmView.title = R.string.localizable.wookong_confirm_pin_title.key.localized()
         self.confirmView.textField.placeholder = R.string.localizable.wookong_confirm_pin_pla.key.localized()
         self.confirmView.btnTitle = R.string.localizable.wookong_confirm_pin_btn.key.localized()
+        
+        if self.navigationController?.viewControllers.count == 1 {
+            self.configLeftNavButton(R.image.icTransferClose())
+        } else {
+            self.configLeftNavButton(R.image.icBack())
+        }
+    }
+    
+    override func leftAction(_ sender: UIButton) {
+        if self.navigationController?.viewControllers.count == 1 {
+            self.coordinator?.dismissVC {}
+        } else {
+            self.coordinator?.popVC()
+        }
     }
 
     func setupData() {
