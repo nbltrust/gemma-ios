@@ -1,0 +1,9 @@
+{
+  "commitish" : "v2.1.2",
+  "iOS" : [
+    {
+      "name" : "UICKeyChainStore",
+      "hash" : "f51f3b4764dfc6c0e05a4313613d6f3dc066a26229b19c4029363f955c1bbaa4"
+    }
+  ]
+}

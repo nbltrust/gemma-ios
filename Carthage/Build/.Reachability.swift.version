@@ -1,0 +1,9 @@
+{
+  "commitish" : "v4.3.0",
+  "iOS" : [
+    {
+      "name" : "Reachability",
+      "hash" : "aab2f2b63d3f1bfd2d2990a039a25a4871d48191e7bd737708812e7d770226a0"
+    }
+  ]
+}

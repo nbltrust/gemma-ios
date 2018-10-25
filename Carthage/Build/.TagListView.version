@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.3.2",
+  "iOS" : [
+    {
+      "name" : "TagListView",
+      "hash" : "dc85d3401d440a4f8f78e62c2f2ae5364254ed4add28fde258cc888734a3635c"
+    }
+  ]
+}

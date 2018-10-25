@@ -1,0 +1,6 @@
+framework module eos_ios_core_cpp {
+  umbrella header "eos_ios_core_cpp.h"
+
+  export *
+  module * { export * }
+}

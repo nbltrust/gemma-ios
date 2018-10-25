@@ -1,0 +1,11 @@
+framework module KRProgressHUD {
+  umbrella header "KRProgressHUD.h"
+
+  export *
+  module * { export * }
+}
+
+module KRProgressHUD.Swift {
+    header "KRProgressHUD-Swift.h"
+    requires objc
+}

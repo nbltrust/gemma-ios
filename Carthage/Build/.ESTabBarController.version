@@ -1,0 +1,9 @@
+{
+  "commitish" : "84657b42f02d782d5f5db71f714eb2a4c57c1456",
+  "iOS" : [
+    {
+      "name" : "ESTabBarController",
+      "hash" : "a1618b701a194812b20fd6785d24a77da47c047ac14527d8955128b2cd063de5"
+    }
+  ]
+}

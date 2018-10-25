@@ -1,0 +1,8 @@
+framework module "Seed39" {
+	header "ref.h"
+    header "Seed39.objc.h"
+    header "universe.objc.h"
+    header "Seed39.h"
+
+    export *
+}

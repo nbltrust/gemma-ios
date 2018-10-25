@@ -1,0 +1,9 @@
+{
+  "commitish" : "8217f39f1e1828c143f113efcaa69139d4a622e4",
+  "iOS" : [
+    {
+      "name" : "seed39_ios_golang",
+      "hash" : "af6b782aa34894b8f2a43ebaae0660fc2275b3a0df653e12c8f49e947070ce76"
+    }
+  ]
+}
