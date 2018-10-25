@@ -59,7 +59,7 @@ platform :ios do
       xcargs: "-UseNewBuildSystem=YES",
       output_name: "gemma-fir",
       scheme:"EOS",
-      workspace:"EOS.xcworkspace",
+      project:"EOS.xcodeproj",
       configuration:"Release",
       export_method:"ad-hoc",
       export_options: {
@@ -94,7 +94,7 @@ platform :ios do
     gym(
       output_name: "gemma-appstore",
       scheme:"EOS",
-      workspace:"EOS.xcworkspace",
+      project:"EOS.xcodeproj",
       configuration:"Release",
       export_method:"app-store",
       export_options: {
@@ -129,7 +129,7 @@ platform :ios do
       gym(
         output_name: "gemma-testflight",
         scheme:"EOS",
-        workspace:"EOS.xcworkspace",
+        project:"EOS.xcodeproj",
         configuration:"Release",
         export_method:"app-store",
         export_options: {
