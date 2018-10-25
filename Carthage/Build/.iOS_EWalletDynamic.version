@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "1.0.0",
+  "iOS" : [
+    {
+      "name" : "iOS_EWalletDynamic",
+      "hash" : "7ebeb745c914dcbe35db3c55b3a84f589cbc706c5c2aac1f583f7c57ef3aca61"
+    }
+  ]
+}

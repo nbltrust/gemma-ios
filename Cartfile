@@ -32,6 +32,7 @@ github "malcommac/SwiftDate"
 github "nixzhu/MonkeyKing"
 github "ElaWorkshop/TagListView" ~> 1.0
 github "ashleymills/Reachability.swift"
+github "mxcl/PromiseKit"
 
 binary "https://nbltrust.github.io/eos-ios-core-cpp/Carthage/iOS/eos-ios-core-cpp.json"
 binary "https://nbltrust.github.io/gemma-ios-lib-spec/Carthage/iOS/iOS_EWalletDynamic.json"

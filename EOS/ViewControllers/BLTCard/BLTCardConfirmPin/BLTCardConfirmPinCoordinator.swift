@@ -12,6 +12,8 @@ import NBLCommonModule
 
 protocol BLTCardConfirmPinCoordinatorProtocol {
     func dismissVC(_ complication: @escaping () -> Void)
+    
+    func popVC()
 }
 
 protocol BLTCardConfirmPinStateManagerProtocol {
@@ -42,6 +44,10 @@ class BLTCardConfirmPinCoordinator: BLTCardRootCoordinator {
 extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinCoordinatorProtocol {
     func dismissVC(_ complication: @escaping () -> Void) {
         self.rootVC.dismiss(animated: true, completion: complication)
+    }
+    
+    func popVC() {
+        self.rootVC.popViewController(animated: true, nil)
     }
 }
 

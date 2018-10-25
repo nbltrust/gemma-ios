@@ -1,0 +1,9 @@
+{
+  "commitish" : "2.1",
+  "iOS" : [
+    {
+      "name" : "BiometricAuthentication",
+      "hash" : "113aebc2dd14cca84df9b815cbdcc23dbe7d57c9296eefc4bb4ba95e5593e46b"
+    }
+  ]
+}

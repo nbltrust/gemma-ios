@@ -1,0 +1,9 @@
+{
+  "commitish" : "v9.0.1",
+  "iOS" : [
+    {
+      "name" : "SDCAlertView",
+      "hash" : "3886336d1d8dbc35b4080dd6771967a654e70b03b8cc8ea65776ae822d86e6ba"
+    }
+  ]
+}

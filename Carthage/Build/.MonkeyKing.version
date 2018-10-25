@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.12.1",
+  "iOS" : [
+    {
+      "name" : "MonkeyKing",
+      "hash" : "8fd3d89c713f38e2c52e45f1cae7147b05d7a561719308da1613f3191bd033e6"
+    }
+  ]
+}

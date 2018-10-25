@@ -15,7 +15,6 @@ Pods/
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## Build generated
-build/
 DerivedData/
 
 ## Various settings
@@ -90,7 +89,6 @@ fastlane/test_output
 
 *.generated.swift
 .DS_Store
-*.a
-*.framework
 .Podfile.lock
-Carthage/
+Carthage/Build/iOS/seed39_ios_golang.framework
+Carthage/Build/.seed39-ios-golang.version

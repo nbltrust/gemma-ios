@@ -1,0 +1,9 @@
+{
+  "commitish" : "3.4.0",
+  "iOS" : [
+    {
+      "name" : "KRProgressHUD",
+      "hash" : "f04e23d92d778099e371735f1ae6587f9a7b8d2bebb4441bc34bb0ca5f2b4fe6"
+    }
+  ]
+}

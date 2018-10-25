@@ -1,0 +1,9 @@
+{
+  "commitish" : "2.1.1",
+  "iOS" : [
+    {
+      "name" : "UINavigationItem_Margin",
+      "hash" : "c4e0dc95b2719935e81455272e7e2f26eb5790a7d29e1fefcb173c2a07c2d881"
+    }
+  ]
+}

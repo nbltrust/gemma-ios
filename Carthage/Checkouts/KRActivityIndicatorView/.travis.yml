@@ -1,0 +1,10 @@
+language: objective-c
+osx_image: xcode10
+xcode_sdk: iphonesimulator11.4
+install:
+- gem install xcpretty
+script:
+  - set -o pipefail
+  - travis_retry xcodebuild -project KRActivityIndicatorView.xcodeproj -scheme KRActivityIndicatorView -destination "platform=iOS Simulator,name=iPhone 8" build-for-testing test | xcpretty
+notifications:
+  email: false

@@ -1,0 +1,9 @@
+{
+  "commitish" : "2.4.1",
+  "iOS" : [
+    {
+      "name" : "PocketSVG",
+      "hash" : "6d684a6d4cd7caa3a8e51155adf4412a51af780450f54d7a78902f8b9e0dd113"
+    }
+  ]
+}

@@ -488,7 +488,6 @@
 		73539CF52179B4AF008395AC /* KMNavigationBarTransition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CDD2179B4A4008395AC /* KMNavigationBarTransition.framework */; };
 		73539CF62179B4AF008395AC /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CDE2179B4A5008395AC /* SwiftRichString.framework */; };
 		73539CF72179B4AF008395AC /* SwiftyUserDefaults.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CDF2179B4A5008395AC /* SwiftyUserDefaults.framework */; };
-		73539CFA2179B4AF008395AC /* DifferenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CE22179B4A7008395AC /* DifferenceKit.framework */; };
 		73539CFB2179B4AF008395AC /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CE32179B4A7008395AC /* ReSwift.framework */; };
 		73539CFC2179B4AF008395AC /* SwifterSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CE42179B4A8008395AC /* SwifterSwift.framework */; };
 		73539CFD2179B4AF008395AC /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73539CE52179B4A8008395AC /* SwiftyBeaver.framework */; };
@@ -1186,7 +1185,6 @@
 		73539CDD2179B4A4008395AC /* KMNavigationBarTransition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KMNavigationBarTransition.framework; path = Carthage/Build/iOS/KMNavigationBarTransition.framework; sourceTree = "<group>"; };
 		73539CDE2179B4A5008395AC /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
 		73539CDF2179B4A5008395AC /* SwiftyUserDefaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyUserDefaults.framework; path = Carthage/Build/iOS/SwiftyUserDefaults.framework; sourceTree = "<group>"; };
-		73539CE22179B4A7008395AC /* DifferenceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DifferenceKit.framework; path = Carthage/Build/iOS/DifferenceKit.framework; sourceTree = "<group>"; };
 		73539CE32179B4A7008395AC /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/iOS/ReSwift.framework; sourceTree = "<group>"; };
 		73539CE42179B4A8008395AC /* SwifterSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifterSwift.framework; path = Carthage/Build/iOS/SwifterSwift.framework; sourceTree = "<group>"; };
 		73539CE52179B4A8008395AC /* SwiftyBeaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBeaver.framework; path = Carthage/Build/iOS/SwiftyBeaver.framework; sourceTree = "<group>"; };
@@ -1343,7 +1341,6 @@
 				73539CF52179B4AF008395AC /* KMNavigationBarTransition.framework in Frameworks */,
 				73539CF62179B4AF008395AC /* SwiftRichString.framework in Frameworks */,
 				73539CF72179B4AF008395AC /* SwiftyUserDefaults.framework in Frameworks */,
-				73539CFA2179B4AF008395AC /* DifferenceKit.framework in Frameworks */,
 				73539CFB2179B4AF008395AC /* ReSwift.framework in Frameworks */,
 				73539CFC2179B4AF008395AC /* SwifterSwift.framework in Frameworks */,
 				73539CFD2179B4AF008395AC /* SwiftyBeaver.framework in Frameworks */,
@@ -2840,7 +2837,6 @@
 				73539CED2179B4AC008395AC /* BiometricAuthentication.framework */,
 				73539CEB2179B4AB008395AC /* CryptoSwift.framework */,
 				73539CC22179B4A4008395AC /* Device.framework */,
-				73539CE22179B4A7008395AC /* DifferenceKit.framework */,
 				73539CEE2179B4AC008395AC /* EFQRCode.framework */,
 				73539CF02179B4AD008395AC /* ESPullToRefresh.framework */,
 				73539CEF2179B4AD008395AC /* GrowingTextView.framework */,
@@ -3377,6 +3373,8 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Fabric.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Crashlytics.framework",
 			);
 			name = carthage;
 			outputPaths = (

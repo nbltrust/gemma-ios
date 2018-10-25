@@ -1,0 +1,18 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "1.0.0",
+  "iOS" : [
+    {
+      "name" : "eos_ios_core_cpp",
+      "hash" : "36c8fded396c5445d30ecb137a8b5f243a9bb4197762cbfa9e20b612e38546f1"
+    }
+  ]
+}
