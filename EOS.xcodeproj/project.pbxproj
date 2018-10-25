@@ -3363,6 +3363,8 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Fabric.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Crashlytics.framework",
 			);
 			name = carthage;
 			outputPaths = (
