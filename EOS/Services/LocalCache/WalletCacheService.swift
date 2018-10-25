@@ -153,8 +153,8 @@ extension WalletCacheService {
     func fetchWalletBy(id: Int64) throws -> Wallet? {
         return try queue?.inDatabase({ database in
             try Wallet.fetchOne(database,
-                                  "SELECT * FROM ? WHERE id = ? ORDER BY id DESC",
-                                  arguments: [Wallet.databaseTableName, id])
+                                  "SELECT * FROM \(Wallet.databaseTableName) WHERE id = ? ORDER BY id DESC",
+                                  arguments: [id])
         })
     }
 }
@@ -195,8 +195,8 @@ extension WalletCacheService {
     func fetchAllCurrencysBy(_ wallet: Wallet) throws -> [Currency]? {
         return try queue?.inDatabase({ database in
             try Currency.fetchAll(database,
-                                 "SELECT * FROM ? WHERE wid = ? ORDER BY date DESC",
-                                 arguments: [Currency.databaseTableName, wallet.id!])
+                                 "SELECT * FROM \(Currency.databaseTableName) WHERE wid = ? ORDER BY date DESC",
+                                 arguments: [wallet.id!])
         })
     }
 
