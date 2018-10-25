@@ -140,14 +140,22 @@ extension WalletCacheService {
     func createWallet(wallet: Wallet, currencys: [Currency]) throws -> Int64? {
         var wallet = wallet
 
-        try queue?.write({ db in
-            try wallet.insert(db)
+        try queue?.write({ database in
+            try wallet.insert(database)
             for var currency in currencys {
-                try currency.insert(db)
+                try currency.insert(database)
             }
         })
 
         return wallet.id
+    }
+
+    func fetchWalletBy(id: Int64) throws -> Wallet? {
+        return try queue?.inDatabase({ database in
+            try Wallet.fetchOne(database,
+                                  "SELECT * FROM ? WHERE id = ? ORDER BY id DESC",
+                                  arguments: [Wallet.databaseTableName, id])
+        })
     }
 }
 
@@ -155,48 +163,48 @@ extension WalletCacheService {
     func insertWallet(wallet: Wallet) throws -> Int64? {
         var wallet = wallet
 
-        try queue?.write({ db in
-            try wallet.insert(db)
+        try queue?.write({ database in
+            try wallet.insert(database)
         })
 
         return wallet.id
     }
 
     func fetchAllWallet() throws -> [Wallet]? {
-        return try queue?.inDatabase({ db in
-            try Wallet.fetchAll(db)
+        return try queue?.inDatabase({ database in
+            try Wallet.fetchAll(database)
         })
     }
 
     func updateWallet(_ wallet: Wallet) throws {
         var wallet = wallet
 
-        try queue?.inDatabase({ db in
-            try wallet.save(db)
+        try queue?.inDatabase({ database in
+            try wallet.save(database)
         })
     }
 
     func insertCurrency(_ currency: Currency) throws {
         var currency = currency
 
-        try queue?.write({ db in
-            try currency.insert(db)
+        try queue?.write({ database in
+            try currency.insert(database)
         })
     }
 
     func fetchAllCurrencysBy(_ wallet: Wallet) throws -> [Currency]? {
-        return try queue?.inDatabase({ db in
-            try Currency.fetchAll(db,
-                                 "SELECT * FROM Currency WHERE wid = ? ORDER BY date DESC",
-                                 arguments: [wallet.id!])
+        return try queue?.inDatabase({ database in
+            try Currency.fetchAll(database,
+                                 "SELECT * FROM ? WHERE wid = ? ORDER BY date DESC",
+                                 arguments: [Currency.databaseTableName, wallet.id!])
         })
     }
 
     func updateCurrency(_ currency: Currency) throws {
         var currency = currency
 
-        try queue?.inDatabase({ db in
-            try currency.save(db)
+        try queue?.inDatabase({ database in
+            try currency.save(database)
         })
     }
 }
