@@ -30,7 +30,6 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="cardView" destination="Que-29-TJh" id="9E5-SE-p5Z"/>
-                <outlet property="contentView" destination="Que-29-TJh" id="gLg-DB-ggn"/>
             </connections>
             <point key="canvasLocation" x="11.199999999999999" y="-229.83508245877064"/>
         </view>

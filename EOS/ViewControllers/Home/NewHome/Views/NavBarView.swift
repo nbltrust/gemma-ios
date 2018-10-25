@@ -15,9 +15,9 @@ class NavBarView: EOSBaseView {
     @IBOutlet weak var settingButton: UIButton!
     
     enum Event:String {
-        case NavBarViewDidClicked
-        case WalletDidClicked
-        case SetDidClicked
+        case navBarViewDidClicked
+        case walletDidClicked
+        case setDidClicked
     }
         
     override func setup() {
@@ -34,15 +34,15 @@ class NavBarView: EOSBaseView {
     func setupSubViewEvent() {
         walletButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
-            self.sendEventWith(Event.WalletDidClicked.rawValue, userinfo: [:])
+            self.sendEventWith(Event.walletDidClicked.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         settingButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] touch in
             guard let `self` = self else { return }
-            self.sendEventWith(Event.SetDidClicked.rawValue, userinfo: [:])
+            self.sendEventWith(Event.setDidClicked.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.NavBarViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.navBarViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }

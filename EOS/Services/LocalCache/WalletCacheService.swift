@@ -92,25 +92,25 @@ class WalletCacheService: BaseCacheService {
 
     override func createTable() throws {
         try queue?.write { db in
-            try db.create(table: Wallet.databaseTableName) { t in
-                t.column("id", .integer).primaryKey()
-                t.column("name", .text).notNull()
-                t.column("type", .integer).notNull()
-                t.column("cipher", .text)
-                t.column("deviceName", .text)
-                t.column("date", .date).defaults(to: Date())
+            try db.create(table: Wallet.databaseTableName) { tab in
+                tab.column("id", .integer).primaryKey()
+                tab.column("name", .text).notNull()
+                tab.column("type", .integer).notNull()
+                tab.column("cipher", .text)
+                tab.column("deviceName", .text)
+                tab.column("date", .date).defaults(to: Date())
             }
         }
 
         try queue?.write { db in
-            try db.create(table: Currency.databaseTableName) { t in
-                t.column("id", .integer).primaryKey()
-                t.column("type", .integer).notNull()
-                t.column("cipher", .text).notNull()
-                t.column("pubKey", .text).notNull()
-                t.column("wid", .integer).notNull()
-                t.column("date", .date).defaults(to: Date())
-                t.column("address", .text)
+            try db.create(table: Currency.databaseTableName) { tab in
+                tab.column("id", .integer).primaryKey()
+                tab.column("type", .integer).notNull()
+                tab.column("cipher", .text).notNull()
+                tab.column("pubKey", .text).notNull()
+                tab.column("wid", .integer).notNull()
+                tab.column("date", .date).defaults(to: Date())
+                tab.column("address", .text)
             }
         }
     }

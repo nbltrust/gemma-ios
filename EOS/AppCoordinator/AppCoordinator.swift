@@ -24,7 +24,7 @@ class AppCoordinator {
         return store.state
     }
 
-    var rootVC: BaseTabbarViewController
+    var rootVC: BaseNavigationController
 
     var newHomeCoordinator: NavCoordinator!
     var homeCoordinator: NavCoordinator!
@@ -41,17 +41,17 @@ class AppCoordinator {
 
     weak var startLoadingVC: BaseViewController?
 
-    init(rootVC: BaseTabbarViewController) {
+    init(rootVC: BaseNavigationController) {
         self.rootVC = rootVC
 
-        rootVC.shouldHijackHandler = {[weak self] (tab, vc, index) in
-            guard let `self` = self else { return false }
-            if self.rootVC.selectedIndex == index, let nav = vc as? BaseNavigationController {
-                nav.topViewController?.refreshViewController()
-            }
-
-            return false
-        }
+//        rootVC.shouldHijackHandler = {[weak self] (tab, vc, index) in
+//            guard let `self` = self else { return false }
+//            if self.rootVC.selectedIndex == index, let nav = vc as? BaseNavigationController {
+//                nav.topViewController?.refreshViewController()
+//            }
+//
+//            return false
+//        }
 
     }
 
@@ -83,13 +83,22 @@ class AppCoordinator {
 //        userInfoItem = ESTabBarItem.init(CBTabBarView(), title: R.string.localizable.tabbarMine.key.localized(), image: R.image.ic_me_normal(), selectedImage: R.image.ic_me_selected())
 //        userinfo.tabBarItem = userInfoItem
 
-        newHomeCoordinator.pushVC(NewHomeCoordinator.self, animated: true, context: nil)
-        
-        self.presentVC(NewHomeCoordinator.self, animated: false, context: nil, navSetup: { (nav) in
-            nav.navStyle = .clear
-        }) { (top, target) in
-            
-        }
+//        let newHome = BaseNavigationController()
+//        newHomeCoordinator = NavCoordinator(rootVC: newHome)
+//        newHomeCoordinator.pushVC(NewHomeCoordinator.self, context: nil)
+//        newHome.topViewController?.refreshViewController()
+
+//        if let newHomeVC = R.storyboard.home.newHomeViewController() {
+//            let coor = NewHomeCoordinator(rootVC: self.rootVC)
+//            newHomeVC.coordinator = coor
+//            self.rootVC.pushViewController(newHomeVC, animated: true)
+//        }
+        let newVC = R.storyboard.home.newHomeViewController()!
+        newHomeCoordinator = NewHomeCoordinator(rootVC: self.rootVC)
+        let coor = NewHomeCoordinator(rootVC: self.rootVC)
+        newVC.coordinator = coor
+//        self.rootVC.present(newVC, animated: true, completion: nil)
+        self.rootVC.pushViewController(newVC, animated: true)
 //        homeCoordinator.pushVC(HomeCoordinator.self, animated: true, context: nil)
 //        transferCoordinator.pushVC(TransferCoordinator.self, animated: true, context: nil)
 //        userinfoCoordinator.pushVC(UserInfoCoordinator.self, animated: true, context: nil)

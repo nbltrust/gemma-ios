@@ -31,7 +31,9 @@ class NewHomeViewController: BaseViewController {
     }
     
     override func refreshViewController() {
-        
+        setupData()
+        setupUI()
+        setupEvent()
     }
     
     func setupUI() {
@@ -144,10 +146,10 @@ class NewHomeViewController: BaseViewController {
 //MARK: - View Event
 
 extension NewHomeViewController {
-    @objc func SetDidClicked(_ data:[String: Any]) {
+    @objc func setDidClicked(_ data:[String: Any]) {
         self.coordinator?.pushToSetVC()
     }
-    @objc func WalletDidClicked(_ data:[String: Any]) {
+    @objc func walletDidClicked(_ data:[String: Any]) {
         self.coordinator?.pushWallet()
     }
 }

@@ -15,7 +15,6 @@
                 <outlet property="accountLabel" destination="2jW-PI-EJV" id="Neq-Kn-rrf"/>
                 <outlet property="balanceLabel" destination="nUl-KB-hdl" id="gmY-X6-90t"/>
                 <outlet property="balanceView" destination="tcd-0C-1Y9" id="ibA-R0-v5R"/>
-                <outlet property="cornerShadowView" destination="xtI-9I-Y6D" id="l6a-13-zur"/>
                 <outlet property="currencyImgView" destination="c3R-Gc-E9I" id="DB0-pp-PmS"/>
                 <outlet property="currencyLabel" destination="uFf-OC-geu" id="kCc-8Z-CJm"/>
                 <outlet property="iconImgView" destination="dBn-LX-GHT" id="wK0-Bw-NYb"/>
@@ -423,26 +422,8 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowR">
                             <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="newShadowOpcity">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="newSpread">
-                            <real key="value" value="0.0"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="size" keyPath="newShadowOffset">
-                            <size key="value" width="0.0" height="10"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="newCornerRadius">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="newShadowRadius">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="newShadowColor">
                             <color key="value" red="0.153" green="0.20399999999999999" blue="0.48999999999999999" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                            <size key="value" width="0.0" height="10"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
