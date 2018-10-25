@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -140,8 +136,8 @@
                                                                 <constraint firstItem="Ido-cu-6EG" firstAttribute="leading" secondItem="tjZ-CW-cyl" secondAttribute="leading" constant="15" id="r9E-sB-BRO"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="收款人"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="content_text" value="@lhy546802341"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="收款人"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="contentText" value="@lhy546802341"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="contentLineNumber">
                                                                     <integer key="value" value="1"/>
@@ -187,8 +183,8 @@
                                                                 <constraint firstAttribute="bottom" secondItem="wHB-Ix-bb4" secondAttribute="bottom" constant="13" id="iXy-jI-hld"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="收款人"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="content_text" value="@lhy546802341"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="收款人"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="contentText" value="@lhy546802341"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="contentLineNumber">
                                                                     <integer key="value" value="1"/>
@@ -235,8 +231,8 @@
                                                                 <constraint firstAttribute="bottom" secondItem="Va5-Lo-bj6" secondAttribute="bottom" constant="13" id="utN-0O-DVI"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="收款人"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="content_text" value="@lhy546802341"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="收款人"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="contentText" value="@lhy546802341"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="contentLineNumber">
                                                                     <integer key="value" value="1"/>
@@ -273,8 +269,8 @@
                                                                 <constraint firstAttribute="bottom" secondItem="ao0-GC-gNe" secondAttribute="bottom" constant="13" id="ytN-Hz-9w9"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="收款人"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="content_text" value="@lhy546802341"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="收款人"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="contentText" value="@lhy546802341"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="contentLineNumber">
                                                                     <integer key="value" value="1"/>
@@ -386,8 +382,8 @@
                                                                 <constraint firstItem="a8g-Ts-hHh" firstAttribute="top" secondItem="6wP-7N-W81" secondAttribute="top" constant="15" id="oIh-TO-2Gi"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="收款人"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="content_text" value="@lhy546802341"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="收款人"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="contentText" value="@lhy546802341"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="contentLineNumber">
                                                                     <integer key="value" value="1"/>
@@ -423,8 +419,8 @@
                                                                 <constraint firstItem="Uh4-Pf-50k" firstAttribute="top" secondItem="19M-Me-tZN" secondAttribute="top" constant="15" id="ymi-WW-AcT"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="收款人"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="content_text" value="@lhy546802341"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="收款人"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="contentText" value="@lhy546802341"/>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="contentLineNumber">
                                                                     <integer key="value" value="1"/>

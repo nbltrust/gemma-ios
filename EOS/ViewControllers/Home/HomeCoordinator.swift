@@ -250,14 +250,18 @@ extension HomeCoordinator: HomeStateManagerProtocol {
     }
 
     func bluetoothDataInfo() -> LineView.LineViewModel {
+        let isConnection = BLTWalletIO.shareInstance()?.isConnection() ?? false
+        let connection = R.string.localizable.wookong_connect_successed.key.localized()
+        let unConnection = R.string.localizable.wookong_connect_none.key.localized()
+
         return LineView.LineViewModel.init(name: R.string.localizable.wookong_title.key.localized(),
-                                    content: "",
-                                    imageName: R.image.icArrow.name,
-                                    nameStyle: LineViewStyleNames.normalName,
-                                    contentStyle: LineViewStyleNames.normalContent,
-                                    isBadge: false,
-                                    contentLineNumber: 1,
-                                    isShowLineView: false)
+                                        content: isConnection ? connection : unConnection,
+                                      imageName: R.image.icArrow.name,
+                                      nameStyle: LineViewStyleNames.normalName,
+                                   contentStyle: LineViewStyleNames.normalContent,
+                                        isBadge: false,
+                              contentLineNumber: 1,
+                                 isShowLineView: false)
     }
 
     func handleBluetoothDevice() {

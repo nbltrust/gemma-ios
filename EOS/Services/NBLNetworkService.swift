@@ -19,6 +19,12 @@ struct WookongValidation: HandyJSON {
     var pubKey = ""
     var publicKeySig = ""
     var publicKey = ""
+
+    mutating func mapping(mapper: HelpingMapper) {
+        mapper <<< self.SNSig <-- "SN_sig"
+        mapper <<< self.pubKey <-- "public_key"
+        mapper <<< self.publicKeySig <-- "public_key_sig"
+    }
 }
 
 enum CreateAPPId: Int, Codable {
