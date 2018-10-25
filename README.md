@@ -1,6 +1,6 @@
 # gemma-ios
 
-##Pre Build
+## Pre Build
 
 - brew install carthage
 - brew install lvillani/tap/carthage-copy-frameworks
