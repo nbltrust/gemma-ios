@@ -163,8 +163,19 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         let isBluetooth = self.coordinator?.isBluetoothWallet() ?? false
         if isBluetooth {
             self.coordinator?.handleBluetoothDevice()
+            if indexPath.row == 0 {
+                if !(BLTWalletIO.shareInstance()?.isConnection() ?? false) {
+                    connectBLTCard { [weak self] in
+                        guard let `self` = self else { return }
+                        self.tableView.beginUpdates()
+                        self.tableView.reloadRows(at: [indexPath], with: .none)
+                        self.tableView.endUpdates()
+                    }
+                }
+            }
         }
-        switch (indexPath.row - (isBluetooth ? 1: 0)) {
+        let actionIndex = indexPath.row - (isBluetooth ? 1: 0)
+        switch (actionIndex) {
         case 0:self.coordinator?.pushPayment()
         case 1:self.coordinator?.pushVoteVC()
         case 2:self.coordinator?.pushBuyRamVC()

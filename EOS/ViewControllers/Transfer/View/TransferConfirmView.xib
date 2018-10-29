@@ -33,10 +33,10 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEs-i4-iW4" customClass="LineView" customModule="EOS" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="346" height="50"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="收款人"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="收款人"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
@@ -44,18 +44,18 @@
                                             <rect key="frame" x="0.0" y="50" width="346" height="50"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="金额"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="金额"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tfb-US-ykB" customClass="LineView" customModule="EOS" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="100" width="346" height="50"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="备注"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="备注"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                             </userDefinedRuntimeAttributes>
@@ -91,9 +91,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="346" height="48"/>
                                             <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="付款账户"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="付款账户"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

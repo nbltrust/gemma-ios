@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,23 +11,23 @@
             <objects>
                 <viewController storyboardIdentifier="UserInfoViewController" id="emb-Id-jJ4" customClass="UserInfoViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B8v-WD-vci">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hVq-Qm-6dh">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CV1-c4-Gbr">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="298"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="298"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="g9G-7N-ikq">
-                                                <rect key="frame" x="16" y="16" width="288" height="272"/>
+                                                <rect key="frame" x="16" y="16" width="568" height="272"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uaT-o3-WWf" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSS-tg-0DC" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="aPU-th-c8X"/>
@@ -58,10 +54,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tm1-Be-6HR" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="64" width="288" height="48"/>
+                                                        <rect key="frame" x="0.0" y="64" width="568" height="48"/>
                                                         <subviews>
                                                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIo-Bx-WBC" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="Go5-jt-1Oo"/>
@@ -88,16 +84,16 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1z4-2d-e1Y" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="128" width="288" height="144"/>
+                                                        <rect key="frame" x="0.0" y="128" width="568" height="144"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxP-0F-i92">
-                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="144"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="144"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="R5s-Zn-dnx">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="288" height="144"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="144"/>
                                                                         <subviews>
                                                                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPc-4l-fLw" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="48" id="JTU-w7-ddj"/>
@@ -115,7 +111,7 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
                                                                             <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ma-SW-gKs" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="48" width="288" height="48"/>
+                                                                                <rect key="frame" x="0.0" y="48" width="568" height="48"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="48" id="uBR-z7-Ue3"/>
@@ -133,7 +129,7 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
                                                                             <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSn-DU-DlY" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="96" width="288" height="48"/>
+                                                                                <rect key="frame" x="0.0" y="96" width="568" height="48"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="48" id="dkf-LI-Xp6"/>
@@ -215,23 +211,23 @@
             <objects>
                 <viewController storyboardIdentifier="NormalViewController" id="2It-eL-uA2" customClass="NormalViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x0I-BU-t34">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ob-Te-vf3">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ot6-Wg-QMs">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Z78-QD-Bsh">
-                                                <rect key="frame" x="16" y="16" width="288" height="168"/>
+                                                <rect key="frame" x="16" y="16" width="568" height="168"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gg-5h-Vk3" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CjV-X7-BPe" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="PtS-g0-KwC"/>
@@ -240,9 +236,9 @@
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                         <integer key="value" value="0"/>
                                                                     </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="normal_language"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="normal_language"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                         <integer key="value" value="0"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -258,10 +254,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8x-Uv-YGy" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="60" width="288" height="48"/>
+                                                        <rect key="frame" x="0.0" y="60" width="568" height="48"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6NB-5i-bLb" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="1G6-Mq-8bp"/>
@@ -270,9 +266,9 @@
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                         <integer key="value" value="0"/>
                                                                     </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="normal_asset"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="normal_asset"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                         <integer key="value" value="1"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -288,10 +284,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJs-Ce-gvw" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="120" width="288" height="48"/>
+                                                        <rect key="frame" x="0.0" y="120" width="568" height="48"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kS8-4M-JNO" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="XVK-JB-u99"/>
@@ -300,9 +296,9 @@
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                         <integer key="value" value="0"/>
                                                                     </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="normal_node"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="content_style" value="normal_content"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="normal_node"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                         <integer key="value" value="2"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -361,20 +357,20 @@
             <objects>
                 <viewController storyboardIdentifier="NormalContentViewController" id="F39-ga-yEc" customClass="NormalContentViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="guN-cQ-kqN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ffh-6e-wXj">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zb0-ST-aF7">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="232"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="232"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbL-et-Bef" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="16" width="288" height="200"/>
+                                                <rect key="frame" x="16" y="16" width="568" height="200"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="8Fz-ba-GYe" customClass="ContainerNormalCellView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="288" height="200"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="200"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                 </subviews>
@@ -425,27 +421,27 @@
             <objects>
                 <viewController storyboardIdentifier="SafeViewController" id="LYh-c8-or9" customClass="SafeViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LvB-Bh-cjR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FG9-lh-fh6">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Del-Et-wJf">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="KRg-Ha-S9k">
-                                                <rect key="frame" x="16" y="16" width="288" height="168"/>
+                                                <rect key="frame" x="16" y="16" width="568" height="168"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAw-f3-RmZ" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Q1-eO-7IU" customClass="SafeLineView" customModule="EOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_face"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="setting_face"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                         <integer key="value" value="2"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -466,14 +462,14 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PPR-Jc-gwU" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="60" width="288" height="48"/>
+                                                        <rect key="frame" x="0.0" y="60" width="568" height="48"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7s-1M-tsN" customClass="SafeLineView" customModule="EOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_finger"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="setting_finger"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                         <integer key="value" value="2"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -494,23 +490,23 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1O-ME-9K2" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="120" width="288" height="48"/>
+                                                        <rect key="frame" x="0.0" y="120" width="568" height="48"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVs-2h-c6h">
-                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-Qc-IZl">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y0l-J0-cgo" customClass="SafeLineView" customModule="EOS" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="48" id="Eua-3o-Ddz"/>
                                                                                 </constraints>
                                                                                 <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_gesture"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="setting_gesture"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="state">
                                                                                         <integer key="value" value="2"/>
                                                                                     </userDefinedRuntimeAttribute>
@@ -521,14 +517,14 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
                                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Js-X9-oM4" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="48" id="h3K-qA-hfm"/>
                                                                                 </constraints>
                                                                                 <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="setting_change_password"/>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="setting_change_password"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                                         <integer key="value" value="3"/>
                                                                                     </userDefinedRuntimeAttribute>
@@ -598,11 +594,11 @@
             <objects>
                 <viewController storyboardIdentifier="HelpViewController" id="vH3-Ss-BT1" customClass="HelpViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="msg-Gs-CgW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hxr-xf-BRb">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -625,7 +621,7 @@
             <objects>
                 <viewController storyboardIdentifier="ServersViewController" id="e9l-s4-PGb" customClass="ServersViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ewh-iI-LDM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="yLi-5a-2yA"/>
@@ -640,52 +636,52 @@
             <objects>
                 <viewController storyboardIdentifier="AboutViewController" id="V2M-uc-CCT" customClass="AboutViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ka7-Sc-dfI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5b-mq-XnV">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GAd-Pm-75F">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="311"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="311"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo88" translatesAutoresizingMaskIntoConstraints="NO" id="cPz-Jn-bbZ">
-                                                <rect key="frame" x="116" y="35" width="88" height="88"/>
+                                                <rect key="frame" x="256" y="35" width="88" height="88"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="88" id="SsX-QQ-ThA"/>
                                                     <constraint firstAttribute="width" constant="88" id="tzS-kR-duS"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GEMMA 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tup-Fl-BRu">
-                                                <rect key="frame" x="111.5" y="135" width="97" height="20"/>
+                                                <rect key="frame" x="251.5" y="135" width="97" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8sP-9f-QvN" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="195" width="288" height="96"/>
+                                                <rect key="frame" x="16" y="195" width="568" height="96"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFL-wY-JLU" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="288" height="48"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="VCr-Ls-v8K"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="about_info"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="about_info"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                 <integer key="value" value="0"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phJ-5K-D4q" customClass="NormalCellView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="48" width="288" height="48"/>
+                                                        <rect key="frame" x="0.0" y="48" width="568" height="48"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLineView" value="NO"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_style" value="normal_name"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="name_text" value="about_update"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="about_update"/>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="index">
                                                                 <integer key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
@@ -744,20 +740,20 @@
             <objects>
                 <viewController storyboardIdentifier="GestureLockComfirmViewController" id="OEm-FY-mc2" customClass="GestureLockComfirmViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TkK-Nm-yrr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_sign_in_60_60" translatesAutoresizingMaskIntoConstraints="NO" id="9oB-Cg-egB">
-                                <rect key="frame" x="100" y="20" width="120" height="120"/>
+                                <rect key="frame" x="100" y="20" width="400" height="150"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulu-kM-FCB" customClass="GestureLockView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="172.5" width="320" height="275"/>
+                                <rect key="frame" x="0.0" y="232.5" width="600" height="275"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="275" id="Spi-9D-s2J"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctU-s0-8si">
-                                <rect key="frame" x="0.0" y="135.5" width="320" height="17"/>
+                                <rect key="frame" x="0.0" y="195.5" width="600" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -792,11 +788,11 @@
             <objects>
                 <viewController storyboardIdentifier="FingerPrinterConfirmViewController" id="HFR-w0-w0m" customClass="FingerPrinterConfirmViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4uF-pn-9Ug">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd0-4G-261">
-                                <rect key="frame" x="10" y="304" width="300" height="17"/>
+                                <rect key="frame" x="10" y="364" width="580" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.50600000000000001" blue="0.878" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -805,14 +801,14 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_sign_in_fingerprint" translatesAutoresizingMaskIntoConstraints="NO" id="Y5q-he-DZt">
-                                <rect key="frame" x="116" y="196" width="88" height="88"/>
+                                <rect key="frame" x="256" y="256" width="88" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="70g-do-Gd0"/>
                                     <constraint firstAttribute="width" constant="88" id="Ddd-CJ-kyz"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_sign_in_60_60" translatesAutoresizingMaskIntoConstraints="NO" id="g7a-bb-KbY">
-                                <rect key="frame" x="100" y="20" width="120" height="120"/>
+                                <rect key="frame" x="100" y="20" width="400" height="150"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -843,21 +839,21 @@
             <objects>
                 <viewController storyboardIdentifier="FaceIDComfirmViewController" id="FqJ-5u-fu7" customClass="FaceIDComfirmViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Iv7-od-5Eo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_sign_in_face_id" translatesAutoresizingMaskIntoConstraints="NO" id="yII-sk-yyv">
-                                <rect key="frame" x="116" y="196" width="88" height="88"/>
+                                <rect key="frame" x="256" y="256" width="88" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="3yp-nm-nh6"/>
                                     <constraint firstAttribute="width" constant="88" id="a9f-is-a7O"/>
                                 </constraints>
                             </imageView>
                             <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_sign_in_60_60" translatesAutoresizingMaskIntoConstraints="NO" id="oFp-n4-4rw">
-                                <rect key="frame" x="100" y="20" width="120" height="120"/>
+                                <rect key="frame" x="100" y="20" width="400" height="150"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGS-VG-lh0">
-                                <rect key="frame" x="10" y="304" width="300" height="17"/>
+                                <rect key="frame" x="10" y="364" width="580" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.50600000000000001" blue="0.878" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -894,24 +890,24 @@
             <objects>
                 <viewController storyboardIdentifier="GestureLockSetViewController" id="JxJ-Iw-uau" customClass="GestureLockSetViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lQt-XT-6bB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AP9-iA-sn3" customClass="GestureLockInfoView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="135" y="70" width="50" height="50"/>
+                                <rect key="frame" x="275" y="70" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9u9-iR-agZ"/>
                                     <constraint firstAttribute="width" constant="50" id="VkD-Ul-1dN"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvD-Ua-nPn">
-                                <rect key="frame" x="16" y="145" width="288" height="0.0"/>
+                                <rect key="frame" x="16" y="145" width="568" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ac-k1-NI6" customClass="GestureLockView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="185" width="320" height="275"/>
+                                <rect key="frame" x="0.0" y="185" width="600" height="275"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="275" id="AOW-A6-cKP"/>
                                 </constraints>
