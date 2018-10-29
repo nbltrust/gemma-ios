@@ -100,8 +100,8 @@ class TransferConfirmView: UIView {
 
         }
 //        let myGroup = StyleGroup(["money": money,"eos" : eos])
-//        let text = <money>amountView.content_text</money>  + " EOS"
-//        amountView.content_text 
+//        let text = <money>amountView.contentText</money>  + " EOS"
+//        amountView.contentText 
     }
 
     func setupEvent() {
