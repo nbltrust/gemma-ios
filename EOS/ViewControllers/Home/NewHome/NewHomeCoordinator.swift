@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
+import SwiftyUserDefaults
 
 protocol NewHomeCoordinatorProtocol {
     func pushToSetVC()
@@ -19,6 +20,8 @@ protocol NewHomeStateManagerProtocol {
     var state: NewHomeState { get }
 
     func switchPageState(_ state: PageState)
+
+    func fetchWalletInfo(_ wallet: Wallet)
 }
 
 class NewHomeCoordinator: NavCoordinator {
@@ -69,5 +72,66 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
+    }
+
+    func fetchWalletInfo(_ wallet: Wallet) {
+        do {
+            let curArray: [Currency] = try WalletCacheService.shared.fetchAllCurrencysBy(wallet) ?? []
+            if curArray.count > 0 {
+                for currency in curArray {
+                    getCurrencyInfo(currency)
+                }
+            }
+
+        } catch {
+
+        }
+    }
+
+    func getCurrencyInfo(_ currency: Currency) {
+        if currency.type == .EOS {
+            let names = Defaults["accountNames\(currency.id!)"]
+            if let names = names as? [String], names.count != 0 {
+                let account = names[0]
+                let currencyID = currency.id
+                EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
+                    self.store.dispatch(BalanceFetchedAction(balance: json, currencyID: currencyID))
+                }, error: { (_) in
+                    self.store.dispatch(BalanceFetchedAction(balance: nil, currencyID: nil))
+                }) { (_) in
+                    self.store.dispatch(BalanceFetchedAction(balance: nil, currencyID: nil))
+                }
+
+                EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
+                    if let accountObj = Account.deserialize(from: json.dictionaryObject) {
+                        self.store.dispatch(AccountFetchedAction(info: accountObj, currencyID: currencyID))
+                    }
+
+                }, error: { (_) in
+                    self.store.dispatch(AccountFetchedAction(info: nil, currencyID: nil))
+                }) { (_) in
+                    self.store.dispatch(AccountFetchedAction(info: nil, currencyID: nil))
+                }
+
+                SimpleHTTPService.requestETHPrice().done { (json) in
+
+                    if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIODefaultSymbol }).first {
+                        if coinType() == .CNY {
+                            self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: nil, currencyID: currencyID))
+                        } else if coinType() == .USD, let usd = json.filter({ $0["name"].stringValue == NetworkConfiguration.USDTDefaultSymbol }).first {
+                            self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: usd, currencyID: currencyID))
+                        }
+                    }
+
+                    }.cauterize()
+            } else {
+                self.store.dispatch(LocalFetchedAction(currency:currency))
+            }
+
+            
+        } else if currency.type == .ETH {
+
+        }
+
     }
 }

@@ -12,6 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavBarView">
             <connections>
+                <outlet property="bluetoothImgView" destination="UHS-y6-4Gs" id="cak-xf-z9p"/>
+                <outlet property="bluetoothStateLabel" destination="1D4-iu-5aW" id="GjH-RZ-38n"/>
+                <outlet property="nameLabel" destination="6bY-aS-3tF" id="K0v-ik-cgE"/>
                 <outlet property="settingButton" destination="KTF-8c-52x" id="jZA-Q9-Hys"/>
                 <outlet property="walletButton" destination="fbA-IR-jMB" id="lNk-Hl-bOW"/>
             </connections>
@@ -33,7 +36,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D4-iu-5aW" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="44" y="27" width="37" height="17"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                    <color key="textColor" name="brownishGrey" red="0.400" green="0.400" blue="0.400" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -56,7 +59,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bY-aS-3tF">
                                     <rect key="frame" x="20" y="10.5" width="69.5" height="33.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
-                                    <color key="textColor" name="blackTwo" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTF-8c-52x">

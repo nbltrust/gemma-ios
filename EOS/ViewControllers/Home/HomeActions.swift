@@ -46,22 +46,22 @@ struct HomePropertyState {
     var otherPrice: String = ""
 }
 
-struct BalanceFetchedAction: Action {
-    var balance: JSON?
-}
-
-struct AccountFetchedAction: Action {
-    var info: Account?
-}
-
-struct AccountFetchedFromLocalAction: Action {
-    var model: AccountModel?
-}
-
-struct RMBPriceFetchedAction: Action {
-    var price: JSON?
-    var otherPrice: JSON?
-}
+//struct BalanceFetchedAction: Action {
+//    var balance: JSON?
+//}
+//
+//struct AccountFetchedAction: Action {
+//    var info: Account?
+//}
+//
+//struct AccountFetchedFromLocalAction: Action {
+//    var model: AccountModel?
+//}
+//
+//struct RMBPriceFetchedAction: Action {
+//    var price: JSON?
+//    var otherPrice: JSON?
+//}
 
 // MARK: - Action Creator
 class HomePropertyActionCreate {

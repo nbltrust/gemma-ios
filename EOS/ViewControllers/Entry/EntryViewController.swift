@@ -15,6 +15,7 @@ import NBLCommonModule
 enum CreateWalletType: Int {
     case normal = 0
     case wookong
+    case EOS
 }
 
 class EntryViewController: BaseViewController {
@@ -58,6 +59,7 @@ class EntryViewController: BaseViewController {
             registerView.passwordComfirmView.isHidden = true
             registerView.passwordPromptView.isHidden = true
             registerView.nameView.gapView.isHidden = true
+            
         default:
             return
         }

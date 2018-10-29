@@ -21,6 +21,9 @@ struct NewHomeContext: RouteContext, HandyJSON {
 struct NewHomeState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
+    var info: BehaviorRelay<NewHomeViewModel> = BehaviorRelay(value: NewHomeViewModel())
+    var cnyPrice: String = ""
+    var otherPrice: String = ""
 }
 
 // MARK: - Action
@@ -28,14 +31,43 @@ struct NewHomeFetchedAction: Action {
     var data: JSON
 }
 
-struct NewHomeViewModel {
-    var currencyIcon = ""
-    var currency = ""
-    var account = ""
+struct NewHomeViewModel: HandyJSON {
+    var currencyIcon: String = ""
+    var currency: String = ""
+    var account: String  = ""
     var currencyImg: UIImage = R.image.eosBg()!
-    var balance = ""
-    var otherBalance = ""
-    var tokens = ""
-    var unit = ""
+    var balance: String  = ""
+    var allAssets: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"// 1.0000 EOS
+    var CNY: String  = ""
+    var tokens: String  = ""
+    var unit: String  = ""
     var tokenArray: [String] = []
+    var cpuValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+    var netValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+    var ramValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+    var id: Int64 = 0
+}
+
+struct BalanceFetchedAction: Action {
+    var balance: JSON?
+    var currencyID: Int64?
+}
+
+struct AccountFetchedAction: Action {
+    var info: Account?
+    var currencyID: Int64?
+}
+
+struct AccountFetchedFromLocalAction: Action {
+    var model: AccountModel?
+}
+
+struct RMBPriceFetchedAction: Action {
+    var price: JSON?
+    var otherPrice: JSON?
+    var currencyID: Int64?
+}
+
+struct LocalFetchedAction: Action {
+    var currency: Currency?
 }

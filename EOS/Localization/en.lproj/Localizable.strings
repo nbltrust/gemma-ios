@@ -243,6 +243,7 @@
 "change_finger_name" = "修改指纹名称";
 "manager_finger" = "管理指纹";
 "next_step" = "下一步";
+"wait_activate" = "待激活";
 
 //zsy end
 

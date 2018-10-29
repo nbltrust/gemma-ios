@@ -155,42 +155,42 @@ extension HomeCoordinator: HomeStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
 
-    func getAccountFromLocal() {
-
-        if let jsonStr = Defaults.object(forKey: WalletManager.shared.getAccount()) as? String {
-            if let accountObj = Account.deserialize(from: jsonStr) {
-                self.store.dispatch(AccountFetchedAction(info: accountObj))
-            }
-        }
-    }
+//    func getAccountFromLocal() {
+//
+//        if let jsonStr = Defaults.object(forKey: WalletManager.shared.getAccount()) as? String {
+//            if let accountObj = Account.deserialize(from: jsonStr) {
+//                self.store.dispatch(AccountFetchedAction(info: accountObj))
+//            }
+//        }
+//    }
 
     func getAccountInfo(_ account: String) {
         EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
-            self.store.dispatch(BalanceFetchedAction(balance: json))
+            self.store.dispatch(BalanceFetchedAction(balance: json, currencyID: nil))
         }, error: { (_) in
-            self.store.dispatch(BalanceFetchedAction(balance: nil))
+            self.store.dispatch(BalanceFetchedAction(balance: nil, currencyID: nil))
         }) { (_) in
-            self.store.dispatch(BalanceFetchedAction(balance: nil))
+            self.store.dispatch(BalanceFetchedAction(balance: nil, currencyID: nil))
         }
 
         EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
-                self.store.dispatch(AccountFetchedAction(info: accountObj))
+                self.store.dispatch(AccountFetchedAction(info: accountObj, currencyID: nil))
             }
 
         }, error: { (_) in
-            self.store.dispatch(AccountFetchedAction(info: nil))
+            self.store.dispatch(AccountFetchedAction(info: nil, currencyID: nil))
         }) { (_) in
-            self.store.dispatch(AccountFetchedAction(info: nil))
+            self.store.dispatch(AccountFetchedAction(info: nil, currencyID: nil))
         }
 
         SimpleHTTPService.requestETHPrice().done { (json) in
 
             if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIODefaultSymbol }).first {
                 if coinType() == .CNY {
-                    self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: nil))
+                    self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: nil, currencyID: nil))
                 } else if coinType() == .USD, let usd = json.filter({ $0["name"].stringValue == NetworkConfiguration.USDTDefaultSymbol }).first {
-                    self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: usd))
+                    self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: usd, currencyID: nil))
                 }
             }
 

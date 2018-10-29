@@ -98,7 +98,7 @@ class AppCoordinator {
         let coor = NewHomeCoordinator(rootVC: self.rootVC)
         newVC.coordinator = coor
 //        self.rootVC.present(newVC, animated: true, completion: nil)
-        self.rootVC.pushViewController(newVC, animated: true)
+        self.rootVC.pushViewController(newVC, animated: false)
 //        homeCoordinator.pushVC(HomeCoordinator.self, animated: true, context: nil)
 //        transferCoordinator.pushVC(TransferCoordinator.self, animated: true, context: nil)
 //        userinfoCoordinator.pushVC(UserInfoCoordinator.self, animated: true, context: nil)
@@ -127,12 +127,12 @@ class AppCoordinator {
 
     func curDisplayingCoordinator() -> NavCoordinator {
         let container = newHomeCoordinator as NavCoordinator
-        
+
         return container
     }
 
     func showEntry() {
-        presentVC(EntryGuideCoordinator.self, animated: true, context: nil, navSetup: nil, presentSetup: nil)
+        presentVC(EntryGuideCoordinator.self, animated: false, context: nil, navSetup: nil, presentSetup: nil)
     }
 
     func endEntry() {

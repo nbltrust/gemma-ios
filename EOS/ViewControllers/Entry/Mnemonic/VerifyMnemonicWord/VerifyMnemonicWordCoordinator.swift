@@ -11,6 +11,7 @@ import ReSwift
 import NBLCommonModule
 import seed39_ios_golang
 import eos_ios_core_cpp
+import SwiftyUserDefaults
 
 protocol VerifyMnemonicWordCoordinatorProtocol {
     func popToVC(_ vc: UIViewController)
@@ -134,7 +135,8 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
             let address = Seed39GetEthereumAddressFromPrivateKey(prikey2)
             let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: nil, wid: idNum, date: date, address: address)
             
-            try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
+            let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
+            Defaults[.currentWalletID] = (id?.string)!
             self.dismiss()
         } catch {
             showFailTop("数据库存储失败")
