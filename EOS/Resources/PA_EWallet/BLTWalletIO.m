@@ -62,8 +62,10 @@ int GetAuthType(void * const pCallbackContext, unsigned char * const pnAuthType)
 
 int GetPin(void * const pCallbackContext, unsigned char * const pbPIN, size_t * const pnPINLen)
 {
-    *pnPINLen = _instance->pin.length;
-    strcpy((char *)pbPIN, [_instance->pin UTF8String]);
+    if (_instance->pin != nil) {
+        *pnPINLen = _instance->pin.length;
+        strcpy((char *)pbPIN, [_instance->pin UTF8String]);
+    }
     return PAEW_RET_SUCCESS;
 }
 
@@ -232,7 +234,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     
     __block uint32_t        nDevInfoType = 0;
     
-    nDevInfoType = PAEW_DEV_INFOTYPE_COS_TYPE | PAEW_DEV_INFOTYPE_COS_VERSION | PAEW_DEV_INFOTYPE_SN | PAEW_DEV_INFOTYPE_CHAIN_TYPE | PAEW_DEV_INFOTYPE_PIN_STATE | PAEW_DEV_INFOTYPE_LIFECYCLE;
+    nDevInfoType = PAEW_DEV_INFOTYPE_COS_TYPE;
     dispatch_async(bltQueue, ^{
         void *ppPAEWContext = savedDevH;
         int devInfoState = PAEW_GetDevInfo(ppPAEWContext, i, nDevInfoType, &devInfo);

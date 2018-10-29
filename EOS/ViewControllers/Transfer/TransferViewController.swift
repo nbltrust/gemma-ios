@@ -105,7 +105,7 @@ class TransferViewController: BaseViewController {
                                         self.transferContentView.moneyTitleTextView.checkStatus = .warning
 
                                     }
-                                    return arg0.0
+                                    return arg0.0 && arg0.1.0
             }.bind(to: self.transferContentView.nextButton.isEnabel).disposed(by: disposeBag)
 
     }
