@@ -1,5 +1,5 @@
 //
-//  LeadInEntryViewController.swift
+//  CurrencyListViewController.swift
 //  EOS
 //
 //  Created peng zhu on 2018/10/30.
@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class LeadInEntryViewController: BaseViewController {
+class CurrencyListViewController: BaseViewController {
 
-	var coordinator: (LeadInEntryCoordinatorProtocol & LeadInEntryStateManagerProtocol)?
-    private(set) var context: LeadInEntryContext?
+	var coordinator: (CurrencyListCoordinatorProtocol & CurrencyListStateManagerProtocol)?
+    private(set) var context: CurrencyListContext?
     
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class LeadInEntryViewController: BaseViewController {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
             
-            if let context = context as? LeadInEntryContext {
+            if let context = context as? CurrencyListContext {
                 self.context = context
             }
             
@@ -110,7 +110,7 @@ class LeadInEntryViewController: BaseViewController {
 
 //MARK: - TableViewDelegate
 
-//extension LeadInEntryViewController: UITableViewDataSource, UITableViewDelegate {
+//extension CurrencyListViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 10
 //    }
@@ -125,7 +125,7 @@ class LeadInEntryViewController: BaseViewController {
 
 //MARK: - View Event
 
-//extension LeadInEntryViewController {
+//extension CurrencyListViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
 //        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
 //
