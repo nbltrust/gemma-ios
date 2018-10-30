@@ -108,6 +108,10 @@
 		227F849E2175ECDB005FB567 /* BLTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227F849D2175ECDB005FB567 /* BLTUtils.swift */; };
 		227F84BD2176E72A005FB567 /* BLTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 227F84BC2176E72A005FB567 /* BLTDevice.m */; };
 		227F84C021770FBF005FB567 /* BLTBatteryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 227F84BF21770FBF005FB567 /* BLTBatteryInfo.m */; };
+		22917DE5218806890017FEAF /* LeadInEntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DE1218806890017FEAF /* LeadInEntryCoordinator.swift */; };
+		22917DE6218806890017FEAF /* LeadInEntryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DE2218806890017FEAF /* LeadInEntryActions.swift */; };
+		22917DE7218806890017FEAF /* LeadInEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DE3218806890017FEAF /* LeadInEntryViewController.swift */; };
+		22917DE8218806890017FEAF /* LeadInEntryReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DE4218806890017FEAF /* LeadInEntryReducers.swift */; };
 		22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322E211A991D00ACC63C /* VoteCoordinator.swift */; };
 		22A93233211A991D00ACC63C /* VoteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322F211A991D00ACC63C /* VoteActions.swift */; };
 		22A93234211A991D00ACC63C /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93230211A991D00ACC63C /* VoteViewController.swift */; };
@@ -814,6 +818,10 @@
 		227F84BC2176E72A005FB567 /* BLTDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLTDevice.m; sourceTree = "<group>"; };
 		227F84BE21770FBF005FB567 /* BLTBatteryInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTBatteryInfo.h; sourceTree = "<group>"; };
 		227F84BF21770FBF005FB567 /* BLTBatteryInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLTBatteryInfo.m; sourceTree = "<group>"; };
+		22917DE1218806890017FEAF /* LeadInEntryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInEntryCoordinator.swift; sourceTree = "<group>"; };
+		22917DE2218806890017FEAF /* LeadInEntryActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInEntryActions.swift; sourceTree = "<group>"; };
+		22917DE3218806890017FEAF /* LeadInEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInEntryViewController.swift; sourceTree = "<group>"; };
+		22917DE4218806890017FEAF /* LeadInEntryReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInEntryReducers.swift; sourceTree = "<group>"; };
 		22A9322E211A991D00ACC63C /* VoteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCoordinator.swift; sourceTree = "<group>"; };
 		22A9322F211A991D00ACC63C /* VoteActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteActions.swift; sourceTree = "<group>"; };
 		22A93230211A991D00ACC63C /* VoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
@@ -2608,6 +2616,10 @@
 				72D645B421106860003F660D /* LeadInKeyViewController.swift */,
 				72FE5B8721009E4D00B29FEC /* LeadInReducers.swift */,
 				72FE5B8621009E4D00B29FEC /* LeadInViewController.swift */,
+				22917DE1218806890017FEAF /* LeadInEntryCoordinator.swift */,
+				22917DE2218806890017FEAF /* LeadInEntryActions.swift */,
+				22917DE3218806890017FEAF /* LeadInEntryViewController.swift */,
+				22917DE4218806890017FEAF /* LeadInEntryReducers.swift */,
 			);
 			path = Lead;
 			sourceTree = "<group>";
@@ -3648,6 +3660,7 @@
 				3B6D7471214761690076F444 /* PayView.swift in Sources */,
 				225787792122861D004C4579 /* NodeSelCell.swift in Sources */,
 				22C0239920F6FD5100284A0A /* EntryGuideReducers.swift in Sources */,
+				22917DE5218806890017FEAF /* LeadInEntryCoordinator.swift in Sources */,
 				223C58DE214A4A5000C69F3F /* BLTCardEntryViewController.swift in Sources */,
 				72199D5E21043CE700575226 /* SetWalletContentView.swift in Sources */,
 				3B08B9302188059100ED43AD /* OverviewViewAdapter.swift in Sources */,
@@ -3660,6 +3673,7 @@
 				72D645B621106860003F660D /* LeadInKeyCoordinator.swift in Sources */,
 				3B018A5F2176DC2B008791AF /* NewHomeTableCell.swift in Sources */,
 				58FA4276755195FCD4F698EC5D80719C /* DashLineView.swift in Sources */,
+				22917DE7218806890017FEAF /* LeadInEntryViewController.swift in Sources */,
 				7210169F210197C10059B37E /* WalletManagerView.swift in Sources */,
 				3B858C042170A1B500499FAC /* DeleteFingerViewAdapter.swift in Sources */,
 				3B6D746A214761690076F444 /* ExchangeToActivateReducers.swift in Sources */,
@@ -3765,6 +3779,7 @@
 				73F30B4220F6E6FF0016E950 /* UserInfoReducers.swift in Sources */,
 				22578770212197F3004C4579 /* SelectedVoteActions.swift in Sources */,
 				739A4DBB2150DF2800A1074B /* UIRotationGestureRecognizer+RxGesture.swift in Sources */,
+				22917DE8218806890017FEAF /* LeadInEntryReducers.swift in Sources */,
 				3BD3663E20F6F9E3004DE09D /* TransferConfirmReducers.swift in Sources */,
 				725F68042101B8E50006BBA1 /* SetWalletCoordinator.swift in Sources */,
 				2253C5322111A6300043AAF7 /* QRCodeReducers.swift in Sources */,
@@ -3843,6 +3858,7 @@
 				721016A5210197F40059B37E /* WalletListHeaderView.swift in Sources */,
 				3BEC3F532111B4FC003C38FB /* BackupPrivateKeyCoordinator.swift in Sources */,
 				3BD366B721009DE0004DE09D /* UIFont+Additions.swift in Sources */,
+				22917DE6218806890017FEAF /* LeadInEntryActions.swift in Sources */,
 				3B85EEA3215A12E600795083 /* VerifyPriKeyCoordinator.swift in Sources */,
 				3B3935B1214B5AF600AB0A30 /* MnemonicContentViewController.swift in Sources */,
 				737F8DD42146647E00DD522A /* DBProtocol.swift in Sources */,
