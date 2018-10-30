@@ -10,6 +10,10 @@ import Foundation
 
 extension OverviewView {
     func adapterModelToOverviewView(_ model:[AssetViewModel]) {
-        self.data = model
+        self.assetData = model
+    }
+    func adapterCardModelToOverviewView(_ model:NewHomeViewModel) {
+        self.headView.cardView.adapterModelToCardView(model)
+        self.cardData = model
     }
 }

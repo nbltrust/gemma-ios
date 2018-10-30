@@ -43,7 +43,6 @@ class OverviewViewController: BaseViewController {
     func setupData() {
         if let str = Defaults["currency\(currencyID!)"] as? String {
             if let model = NewHomeViewModel.deserialize(from: str) {
-                self.contentView.cardView.adapterModelToCardView(model)
                 //测试代码
                 var mod = AssetViewModel()
                 mod.CNY = "0.00"
@@ -51,6 +50,7 @@ class OverviewViewController: BaseViewController {
                 mod.total = "0.0000"
                 self.contentView.adapterModelToOverviewView([mod])
                 //
+                self.contentView.adapterCardModelToOverviewView(model)
             }
 
         }

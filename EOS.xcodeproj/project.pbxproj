@@ -353,6 +353,9 @@
 		3BF842E5211BE60100AF9963 /* BuyRamActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E1211BE60100AF9963 /* BuyRamActions.swift */; };
 		3BF842E6211BE60100AF9963 /* BuyRamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E2211BE60100AF9963 /* BuyRamViewController.swift */; };
 		3BF842E7211BE60100AF9963 /* BuyRamReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF842E3211BE60100AF9963 /* BuyRamReducers.swift */; };
+		3BF9DCA92188660D00E74C62 /* OverHeadViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF9DCA62188660D00E74C62 /* OverHeadViewAdapter.swift */; };
+		3BF9DCAA2188660D00E74C62 /* OverHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF9DCA72188660D00E74C62 /* OverHeadView.swift */; };
+		3BF9DCAB2188660D00E74C62 /* OverHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF9DCA82188660D00E74C62 /* OverHeadView.xib */; };
 		3BFF4E062109F8390047F996 /* OperationLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF4E052109F8390047F996 /* OperationLeftView.swift */; };
 		3BFF4E092109F89F0047F996 /* OperationLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BFF4E082109F89F0047F996 /* OperationLeftView.xib */; };
 		3BFF4E0B2109F8BD0047F996 /* OperationRightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF4E0A2109F8BD0047F996 /* OperationRightView.swift */; };
@@ -1078,6 +1081,9 @@
 		3BF842E1211BE60100AF9963 /* BuyRamActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamActions.swift; sourceTree = "<group>"; };
 		3BF842E2211BE60100AF9963 /* BuyRamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamViewController.swift; sourceTree = "<group>"; };
 		3BF842E3211BE60100AF9963 /* BuyRamReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamReducers.swift; sourceTree = "<group>"; };
+		3BF9DCA62188660D00E74C62 /* OverHeadViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverHeadViewAdapter.swift; sourceTree = "<group>"; };
+		3BF9DCA72188660D00E74C62 /* OverHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverHeadView.swift; sourceTree = "<group>"; };
+		3BF9DCA82188660D00E74C62 /* OverHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverHeadView.xib; sourceTree = "<group>"; };
 		3BFF4E052109F8390047F996 /* OperationLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationLeftView.swift; sourceTree = "<group>"; };
 		3BFF4E082109F89F0047F996 /* OperationLeftView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OperationLeftView.xib; sourceTree = "<group>"; };
 		3BFF4E0A2109F8BD0047F996 /* OperationRightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationRightView.swift; sourceTree = "<group>"; };
@@ -1761,10 +1767,6 @@
 		22917DEB2188303D0017FEAF /* LeadInEntry */ = {
 			isa = PBXGroup;
 			children = (
-				22917DE1218806890017FEAF /* LeadInEntryCoordinator.swift */,
-				22917DE2218806890017FEAF /* LeadInEntryActions.swift */,
-				22917DE3218806890017FEAF /* LeadInEntryViewController.swift */,
-				22917DE4218806890017FEAF /* LeadInEntryReducers.swift */,
 			);
 			path = LeadInEntry;
 			sourceTree = "<group>";
@@ -1992,6 +1994,9 @@
 				3B08B92D2188059100ED43AD /* OverviewViewAdapter.swift */,
 				3B08B92E2188059100ED43AD /* OverviewView.swift */,
 				3B08B92F2188059100ED43AD /* OverviewView.xib */,
+				3BF9DCA62188660D00E74C62 /* OverHeadViewAdapter.swift */,
+				3BF9DCA72188660D00E74C62 /* OverHeadView.swift */,
+				3BF9DCA82188660D00E74C62 /* OverHeadView.xib */,
 				3B08B9352188376E00ED43AD /* AssetsViewAdapter.swift */,
 				3B08B9362188376E00ED43AD /* AssetsView.swift */,
 				3B08B9372188376E00ED43AD /* AssetsView.xib */,
@@ -3403,6 +3408,7 @@
 				7342E4F4216F1FF80093E2C2 /* BLTCardIntroViewView.xib in Resources */,
 				3BC12AA221060927006EEB80 /* AccountListView.xib in Resources */,
 				72FE5B822100868800B29FEC /* SafeLineView.xib in Resources */,
+				3BF9DCAB2188660D00E74C62 /* OverHeadView.xib in Resources */,
 				7224714C20F76B5000536BF4 /* DetailView.xib in Resources */,
 				3BD3666220FDEB76004DE09D /* TitleTextView.xib in Resources */,
 				733714F5212431E200B2ED90 /* open-iconic.ttf in Resources */,
@@ -3829,6 +3835,7 @@
 				73B5A6A820F5F62D00756391 /* AttributeStyle.swift in Sources */,
 				71B491763DB2622DA9A6CD8DEE644F17 /* EntryViewController.swift in Sources */,
 				72FE5B662100491300B29FEC /* ServersReducers.swift in Sources */,
+				3BF9DCA92188660D00E74C62 /* OverHeadViewAdapter.swift in Sources */,
 				3B3935B0214B5AF600AB0A30 /* MnemonicContentActions.swift in Sources */,
 				C2AE7CD84347385A7C552C6564375D8D /* HomeActions.swift in Sources */,
 				3B08B93D21883B9000ED43AD /* AssetCell.swift in Sources */,
@@ -3992,6 +3999,7 @@
 				2214A96E211D7B78003256D2 /* NodeVote.swift in Sources */,
 				3B6D7473214761690076F444 /* PayViewAdapter.swift in Sources */,
 				3BD3664D20F72B5E004DE09D /* TransferConfirmPasswordReducers.swift in Sources */,
+				3BF9DCAA2188660D00E74C62 /* OverHeadView.swift in Sources */,
 				3B6D747C214761690076F444 /* InvitationViewAdapter.swift in Sources */,
 				221EC1D72100A8D50059F856 /* CGFloat+Extensions.swift in Sources */,
 				3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */,
