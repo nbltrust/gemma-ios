@@ -9,7 +9,7 @@
 import Foundation
 
 extension OverviewView {
-    func adapterModelToOverviewView(_ model:AssetViewModel) {
-        
+    func adapterModelToOverviewView(_ model:[AssetViewModel]) {
+        self.data = model
     }
 }

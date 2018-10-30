@@ -20,7 +20,9 @@ class OverviewView: EOSBaseView {
 
     override var data: Any? {
         didSet {
-            
+            if let _ = data as? [AssetViewModel] {
+                tableView.reloadData()
+            }
         }
     }
 
@@ -56,7 +58,7 @@ extension OverviewView: UITableViewDelegate,UITableViewDataSource {
             return UITableViewCell()
         }
 
-        if let data = data as? [AccountListViewModel] {
+        if let data = data as? [AssetViewModel] {
             cell.setup(data[indexPath.row], indexPath: indexPath)
         }
         return cell
