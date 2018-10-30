@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import SwiftyUserDefaults
 
 class NewHomeViewController: BaseViewController {
 
@@ -17,47 +18,44 @@ class NewHomeViewController: BaseViewController {
     private(set) var context: NewHomeContext?
     
     @IBOutlet weak var contentView: NewHomeView!
-    
+
+    var wallet: Any?
+    var dataArray: [NewHomeViewModel] = []
+
 	override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupData()
-        setupUI()
         setupEvent()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupUI()
+        setupData()
     }
     
     override func refreshViewController() {
-        setupData()
-        setupUI()
-        setupEvent()
+
     }
     
     func setupUI() {
-        //测试数据
-        var array: [NewHomeViewModel] = []
-        for _ in 0...3 {
-            var model = NewHomeViewModel()
-            model.currencyImg = R.image.eosBg()!
-            model.account = "nbltrust"
-            model.balance = "0.0000"
-            model.currency = "EOS"
-            model.currencyIcon = "http://image.baidu.com"
-            model.otherBalance = "4,000,000.000"
-            model.tokenArray = ["","","","",""]
-            model.tokens = "4"
-            model.unit = "EOS"
-            array.append(model)
-        }
-        self.contentView.data = array
-        //
+        hiddenNavBar()
     }
 
     func setupData() {
-        
+        let idStr = Defaults[.currentWalletID]
+        if idStr != "" {
+            do {
+                wallet = try WalletCacheService.shared.fetchWalletBy(id: Int64(idStr)!)
+                if let newWallet = wallet as? Wallet {
+                    self.contentView.navBarView.adapterModelToNavBarView(newWallet)
+                    self.coordinator?.fetchWalletInfo(newWallet)
+                }
+            } catch {
+
+            }
+
+        }
     }
     
     func setupEvent() {
@@ -65,6 +63,42 @@ class NewHomeViewController: BaseViewController {
     }
     
     override func configureObserveState() {
+        self.coordinator?.state.info.asObservable().subscribe(onNext: {[weak self] (model) in
+            guard let `self` = self else { return }
+            if let newModel = model as? NewHomeViewModel, newModel.id != 0 {
+                for index in 0..<self.dataArray.count {
+                    let data = self.dataArray[index]
+                    if data.id != newModel.id {
+                        self.dataArray.append(newModel)
+                    } else {
+                        self.dataArray.remove(at: index)
+                        self.dataArray.insert(newModel, at: index)
+                    }
+                }
+                if self.dataArray.count == 0 {
+                    self.dataArray.append(newModel)
+                }
+                self.contentView.adapterModelToNewHomeView(self.dataArray)
+            }
+
+//            if let newWallet = self.wallet as? Wallet {
+//                do {
+//                    let curArray = try WalletCacheService.shared.fetchAllCurrencysBy(newWallet)
+//                    for currency in curArray! {
+//                        if let modelStr = Defaults["currency\(currency.id!)"] as? String {
+//                            if let model = NewHomeViewModel.deserialize(from: modelStr) {
+//                                dataArray.append(model)
+//                            }
+//                        }
+//                    }
+//                    self.contentView.adapterModelToNewHomeView(dataArray)
+//                } catch {
+//
+//                }
+//            }
+
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
             
@@ -151,6 +185,15 @@ extension NewHomeViewController {
     }
     @objc func walletDidClicked(_ data:[String: Any]) {
         self.coordinator?.pushWallet()
+    }
+    @objc func cellDidClicked(_ data: [String: Any]) {
+        if let model = data["data"] as? NewHomeViewModel {
+            if let _ = Defaults["accountNames\(model.id)"] as? String {
+                self.coordinator?.pushToOverviewVCWithCurrencyID(id: model.id)
+            } else {
+                self.coordinator?.pushToEntryVCWithCurrencyID(id: model.id)
+            }
+        }
     }
 }
 

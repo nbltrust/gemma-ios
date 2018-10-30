@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
+import SwiftyUserDefaults
 
 protocol PayToActivateCoordinatorProtocol {
     func pushToCreateSuccessVC()
@@ -21,7 +22,7 @@ protocol PayToActivateStateManagerProtocol {
 
     func switchPageState(_ state: PageState)
 
-    func initOrder(completion: @escaping (Bool) -> Void)
+    func initOrder(_ currencyID:Int64?, completion: @escaping (Bool) -> Void)
     func getBill()
     func askToPay()
     func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void)
@@ -81,6 +82,17 @@ extension PayToActivateCoordinator: PayToActivateCoordinatorProtocol {
             vc.coordinator?.state.callback.endCallback.value?()
         }
     }
+    func popToEntryVCWithInviteCode(_ inviteCode: String) {
+        self.rootVC.viewControllers.forEach { (vc) in
+            if let entryVC = vc as? EntryViewController {
+                self.popToVC(entryVC)
+                entryVC.coordinator?.state.callback.finishEOSCurrencyCallback.value?(inviteCode)
+            }
+        }
+    }
+    func popToVC(_ vc: UIViewController) {
+        self.rootVC.popToViewController(vc, animated: true)
+    }
 }
 
 extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
@@ -100,14 +112,21 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         }
     }
 
-    func initOrder(completion: @escaping (Bool) -> Void) {
+    func initOrder(_ currencyID:Int64?, completion: @escaping (Bool) -> Void) {
         self.rootVC.topViewController?.startLoadingWithMessage(message: R.string.localizable.pay_tips_warning.key.localized())
 
         var walletName = ""
-        Broadcaster.notify(EntryViewController.self) { (vc) in
-            walletName = vc.registerView.nameView.textField.text!
+        var pubkey = ""
+
+        if let name = Defaults["accountNames\(currencyID!)"] as? String {
+            walletName = name
         }
-        NBLNetwork.request(target: .initOrder(account: walletName, pubKey: WalletManager.shared.currentPubKey, platform: "iOS", clientIP:"10.18.14.9", serialNumber: "1"), success: { (data) in
+        let currency = try? WalletCacheService.shared.fetchCurrencyBy(id: currencyID!)
+        if let currency = currency {
+            pubkey = currency?.pubKey ?? ""
+        }
+
+        NBLNetwork.request(target: .initOrder(account: walletName, pubKey: pubkey, platform: "iOS", clientIP:"10.18.14.9", serialNumber: "1"), success: { (data) in
             if let orderID = Order.deserialize(from: data.dictionaryObject) {
                 self.store.dispatch(OrderIdAction(orderId: orderID.id))
                 NBLNetwork.request(target: .place(orderId: orderID.id), success: { (result) in
@@ -178,9 +197,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.needCancel = false
                 appCoodinator.showGemmaAlert(context)
             } else if payState == "SUCCESS", state == "DONE" {
-                self.createWallet(self.state.orderId, completion: { (_) in
-
-                })
+                self.popToEntryVCWithInviteCode(self.state.orderId)
             } else if payState == "SUCCESS", state == "TOREFUND" {
                 var context = ScreenShotAlertContext()
                 context.desc = R.string.localizable.price_change_tips.key.localized() + RichStyle.shared.tagText("55 RAM", fontSize: 14, color: UIColor.azul, lineHeight: 16) + "。"

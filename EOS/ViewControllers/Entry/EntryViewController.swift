@@ -11,10 +11,12 @@ import RxSwift
 import RxCocoa
 import ReSwift
 import NBLCommonModule
+import SwiftyUserDefaults
 
 enum CreateWalletType: Int {
     case normal = 0
     case wookong
+    case EOS
 }
 
 class EntryViewController: BaseViewController {
@@ -27,9 +29,12 @@ class EntryViewController: BaseViewController {
 
     @IBOutlet weak var protocolLabel: UILabel!
 
+    @IBOutlet weak var agreeView: UIView!
+
     var createType: CreateWalletType = .normal
 
     var hint = ""
+    var currencyID: Int64?
 
     var coordinator: (EntryCoordinatorProtocol & EntryStateManagerProtocol)?
 
@@ -58,6 +63,15 @@ class EntryViewController: BaseViewController {
             registerView.passwordComfirmView.isHidden = true
             registerView.passwordPromptView.isHidden = true
             registerView.nameView.gapView.isHidden = true
+        case .normal:
+            registerView.nameView.isHidden = true
+        case .EOS:
+            registerView.passwordView.isHidden = true
+            registerView.passwordComfirmView.isHidden = true
+            registerView.passwordPromptView.isHidden = true
+            registerView.nameView.gapView.isHidden = true
+            agreeView.isHidden = true
+            self.title = R.string.localizable.create_account.key.localized()
         default:
             return
         }
@@ -77,17 +91,20 @@ class EntryViewController: BaseViewController {
                 } else {
                     self.coordinator?.copyMnemonicWord()
                 }
-            default:
-//                self.coordinator?.verifyAccount(self.registerView.nameView.textField.text!, completion: {[weak self] (success) in
-//                    guard let `self` = self else {return }
-//                    if success == true {
-////                        self.coordinator?.pushToActivateVC()
-                        self.coordinator?.createTempWallet(self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, type: .HD)
-                
-                            self.coordinator?.pushBackupMnemonicVC()
-//
-//                    }
-//                })
+            case .normal:
+                self.coordinator?.createTempWallet(self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, type: .HD)
+                self.coordinator?.pushBackupMnemonicVC()
+            case .EOS:
+                if let name = self.registerView.nameView.textField.text {
+                    self.coordinator?.verifyAccount(name, completion: {[weak self] (success) in
+                        guard let `self` = self else { return }
+
+                        if success == true {
+                            Defaults["accountNames\(self.currencyID!)"] = name
+                            self.coordinator?.pushToActivateVCWithCurrencyID(self.currencyID)
+                        }
+                    })
+                }
             }
         }).disposed(by: disposeBag)
 
@@ -100,6 +117,26 @@ class EntryViewController: BaseViewController {
             self.coordinator?.checkSeedSuccessed()
             self.createBltWallet()
         })
+
+        self.coordinator?.state.callback.finishNormalWalletCallback.accept({[weak self] (checkStr) in
+            guard let `self` = self else { return }
+            if let str = checkStr as? String {
+                self.startLoading()
+                self.coordinator?.createNewWallet(pwd: self.registerView.passwordView.textField.text!, checkStr: str, deviceName: nil)
+
+            }
+        })
+
+        self.coordinator?.state.callback.finishEOSCurrencyCallback.accept({[weak self] (code) in
+            guard let `self` = self else { return }
+            if let str = code as? String {
+                if let name = self.registerView.nameView.textField.text {
+                    self.coordinator?.createEOSAccount(.gemma, accountName: name, currencyID: self.currencyID, inviteCode: str, validation: nil, deviceName: nil, completion: { (_) in
+                        self.endLoading()
+                    })
+                }
+            }
+        })
     }
 
     override func configureObserveState() {
@@ -111,15 +148,17 @@ class EntryViewController: BaseViewController {
                                     switch self.createType {
                                     case .wookong:
                                         return arg0.3
-                                    default:
-                                        return arg0.1 && arg0.2 && arg0.3
+                                    case .normal:
+                                            return arg0.1 && arg0.2 && arg0.3
+                                    case .EOS:
+                                        return arg0.0
                                     }
         }.bind(to: creatButton.isEnabel).disposed(by: disposeBag)
     }
 
     func createBltWallet() {
         self.startLoading()
-        self.coordinator?.createWallet(self.registerView.nameView.textField.text!, completion: { (_) in
+        self.coordinator?.createBLTWallet(self.registerView.nameView.textField.text!, currencyID: self.currencyID, completion: { (_) in
             self.endLoading()
         })
     }

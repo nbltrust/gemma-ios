@@ -24,6 +24,8 @@ class HomeViewController: BaseViewController {
     var coordinator: (HomeCoordinatorProtocol & HomeStateManagerProtocol)?
 
     var data: Any?
+    var currencyID: Int64?
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = true

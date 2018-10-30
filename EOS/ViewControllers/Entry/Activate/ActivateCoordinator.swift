@@ -19,7 +19,7 @@ protocol ActivateStateManagerProtocol {
 
     func switchPageState(_ state: PageState)
 
-    func pageVCs() -> [BaseViewController]
+    func pageVCs(_ currencyID: Int64?) -> [BaseViewController]
 }
 
 class ActivateCoordinator: NavCoordinator {
@@ -55,10 +55,11 @@ extension ActivateCoordinator: ActivateStateManagerProtocol {
         }
     }
 
-    func pageVCs() -> [BaseViewController] {
+    func pageVCs(_ currencyID: Int64?) -> [BaseViewController] {
         let payVC = R.storyboard.activate.payToActivateViewController()!
         let payCoor = PayToActivateCoordinator(rootVC: self.rootVC)
         payVC.coordinator = payCoor
+        payVC.currencyID = currencyID
 
         let friendVC = R.storyboard.activate.friendToActivateViewController()!
         let friendCoor = FriendToActivateCoordinator(rootVC: self.rootVC)
@@ -71,6 +72,7 @@ extension ActivateCoordinator: ActivateStateManagerProtocol {
         let invitationCodeVC = R.storyboard.activate.invitationCodeToActivateViewController()!
         let invitationCodeCoor = InvitationCodeToActivateCoordinator(rootVC: self.rootVC)
         invitationCodeVC.coordinator = invitationCodeCoor
+        invitationCodeVC.currencyID = currencyID
 
         return [payVC, friendVC, exchangeVC, invitationCodeVC]
     }

@@ -12,10 +12,12 @@ import Foundation
 class NewHomeView: UIView {
     
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var navBarView: NavBarView!
+    
 
     enum Event: String {
         case newHomeViewDidClicked
+        case cellDidClicked
     }
     
     var data: Any? {
@@ -110,6 +112,12 @@ extension NewHomeView: UITableViewDelegate,UITableViewDataSource {
         
         return cell
     }
-    
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let data = data as? [NewHomeViewModel] {
+            let model = data[indexPath.row]
+            self.next?.sendEventWith(Event.cellDidClicked.rawValue, userinfo: ["data": model])
+        }
+    }
     
 }
