@@ -9,7 +9,9 @@
 import Foundation
 
 extension AssetsView {
-//    func adapterModelToAssetsView(_ model:<#Type#>) {
-//        
-//    }
+    func adapterModelToAssetsView(_ model:AssetViewModel) {
+        self.nameLabel.text = model.name
+        self.cnyLabel.text = model.CNY
+        self.totalLabel.text = model.total
+    }
 }

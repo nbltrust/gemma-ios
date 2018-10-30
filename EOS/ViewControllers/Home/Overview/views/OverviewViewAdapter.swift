@@ -9,6 +9,7 @@
 import Foundation
 
 extension OverviewView {
-    func adapterModelToOverviewView(_ model:NewHomeViewModel) {
+    func adapterModelToOverviewView(_ model:AssetViewModel) {
+        
     }
 }

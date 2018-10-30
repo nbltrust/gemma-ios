@@ -17,7 +17,13 @@ class OverviewView: EOSBaseView {
     enum Event:String {
         case overviewViewDidClicked
     }
-        
+
+    override var data: Any? {
+        didSet {
+            
+        }
+    }
+
     override func setup() {
         super.setup()
         
@@ -26,7 +32,9 @@ class OverviewView: EOSBaseView {
     }
     
     func setupUI() {
-        let nib = R.nib.
+        let nibString = R.nib.assetCell.name
+        tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
+
     }
     
     func setupSubViewEvent() {
@@ -44,6 +52,13 @@ extension OverviewView: UITableViewDelegate,UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: AssetCell.self), for: indexPath) as? AssetCell else {
+            return UITableViewCell()
+        }
+
+        if let data = data as? [AccountListViewModel] {
+            cell.setup(data[indexPath.row], indexPath: indexPath)
+        }
+        return cell
     }
 }

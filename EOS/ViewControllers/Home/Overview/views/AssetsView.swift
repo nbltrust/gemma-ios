@@ -10,8 +10,14 @@ import Foundation
 
 @IBDesignable
 class AssetsView: EOSBaseView {
+
+    @IBOutlet weak var iconView: UIImageView!
+    @IBOutlet weak var nameLabel: BaseLabel!
+    @IBOutlet weak var cnyLabel: BaseLabel!
+    @IBOutlet weak var totalLabel: BaseLabel!
+
     enum Event:String {
-        case AssetsViewDidClicked
+        case assetsViewDidClicked
     }
         
     override func setup() {
@@ -30,6 +36,6 @@ class AssetsView: EOSBaseView {
     }
     
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.AssetsViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.assetsViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 }

@@ -44,8 +44,9 @@ class OverviewViewController: BaseViewController {
         if let str = Defaults["currency\(currencyID!)"] as? String {
             if let model = NewHomeViewModel.deserialize(from: str) {
                 self.contentView.cardView.adapterModelToCardView(model)
+                
             }
-            
+
         }
 
     }

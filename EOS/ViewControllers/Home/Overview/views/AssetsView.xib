@@ -6,12 +6,18 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetsView"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetsView">
+            <connections>
+                <outlet property="cnyLabel" destination="xCy-ru-mA9" id="iM5-yV-8NJ"/>
+                <outlet property="iconView" destination="N4D-Ge-p9H" id="HRj-k0-Uyr"/>
+                <outlet property="nameLabel" destination="7vb-7g-O4w" id="4fn-lm-Lrp"/>
+                <outlet property="totalLabel" destination="hNy-aS-VyU" id="xCh-6v-V5U"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="btM-Yo-6kI">
             <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
@@ -27,7 +33,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vb-7g-O4w" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="64" y="75.5" width="41.5" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                    <color key="textColor" name="black"/>
+                    <color key="textColor" red="0.012" green="0.012" blue="0.012" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTm-oS-PL1">
@@ -40,7 +46,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCy-ru-mA9" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="319.5" y="90.5" width="35.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" name="black"/>
+                    <color key="textColor" red="0.012" green="0.012" blue="0.012" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -51,7 +57,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNy-aS-VyU" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                     <rect key="frame" x="313.5" y="57" width="41.5" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                    <color key="textColor" name="black"/>
+                    <color key="textColor" red="0.012" green="0.012" blue="0.012" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -74,9 +80,4 @@
             <point key="canvasLocation" x="-194.40000000000001" y="-291.45427286356824"/>
         </view>
     </objects>
-    <resources>
-        <namedColor name="black">
-            <color red="0.012000000104308128" green="0.012000000104308128" blue="0.012000000104308128" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

@@ -27,3 +27,10 @@ struct OverviewState: BaseState {
 struct OverviewFetchedAction: Action {
     var data:JSON
 }
+
+struct AssetViewModel {
+    var icon: String = ""
+    var name: String = ""
+    var total: String = ""
+    var CNY: String = ""
+}
