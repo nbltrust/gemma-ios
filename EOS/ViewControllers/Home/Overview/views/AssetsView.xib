@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetsView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="btM-Yo-6kI">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N4D-Ge-p9H">
+                    <rect key="frame" x="20" y="73" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="MJT-32-G5R"/>
+                        <constraint firstAttribute="height" constant="24" id="uFp-tG-YUX"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vb-7g-O4w" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="64" y="75.5" width="41.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <color key="textColor" name="black"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTm-oS-PL1">
+                    <rect key="frame" x="60" y="125.5" width="295" height="0.5"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="xpi-p0-jWG"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCy-ru-mA9" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="319.5" y="90.5" width="35.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" name="black"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
+                            <real key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNy-aS-VyU" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="313.5" y="57" width="41.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <color key="textColor" name="black"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="bottom" secondItem="N4D-Ge-p9H" secondAttribute="bottom" constant="29" id="TGW-fM-Fph"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="bottom" secondItem="TTm-oS-PL1" secondAttribute="bottom" id="XZB-ys-0gS"/>
+                <constraint firstItem="TTm-oS-PL1" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="60" id="a3O-x2-4tZ"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="hNy-aS-VyU" secondAttribute="trailing" constant="20" id="cER-gf-txc"/>
+                <constraint firstItem="N4D-Ge-p9H" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="20" id="flb-E8-xWR"/>
+                <constraint firstItem="TTm-oS-PL1" firstAttribute="top" secondItem="xCy-ru-mA9" secondAttribute="bottom" constant="18" id="gsS-lK-x1y"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="TTm-oS-PL1" secondAttribute="trailing" constant="20" id="otU-TE-eHz"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="xCy-ru-mA9" secondAttribute="trailing" constant="20" id="pEN-Hf-9hW"/>
+                <constraint firstItem="7vb-7g-O4w" firstAttribute="leading" secondItem="N4D-Ge-p9H" secondAttribute="trailing" constant="20" id="qgE-ag-8dr"/>
+                <constraint firstItem="N4D-Ge-p9H" firstAttribute="centerY" secondItem="7vb-7g-O4w" secondAttribute="centerY" id="qie-fl-0oJ"/>
+                <constraint firstItem="xCy-ru-mA9" firstAttribute="top" secondItem="hNy-aS-VyU" secondAttribute="bottom" constant="14" id="yFk-eg-i0H"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
+            <point key="canvasLocation" x="-194.40000000000001" y="-291.45427286356824"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="black">
+            <color red="0.012000000104308128" green="0.012000000104308128" blue="0.012000000104308128" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

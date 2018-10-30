@@ -18,6 +18,8 @@ class PayToActivateViewController: BaseViewController, IndicatorInfoProvider {
 
     @IBOutlet weak var contentView: PayView!
 
+    var currencyID: Int64?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -103,7 +105,7 @@ extension PayToActivateViewController {
         self.coordinator?.state.pageState.accept(.loading(reason: .manualRefresh))
 
         NotificationCenter.default.addObserver(self, selector: #selector(refreshPage), name: UIApplication.didBecomeActiveNotification, object: nil)
-        self.coordinator?.initOrder(completion: { (_) in
+        self.coordinator?.initOrder(self.currencyID, completion: { (_) in
 
         })
     }

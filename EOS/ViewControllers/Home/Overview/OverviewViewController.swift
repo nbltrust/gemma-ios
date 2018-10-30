@@ -1,77 +1,69 @@
 //
-//  ActivateViewController.swift
+//  OverviewViewController.swift
 //  EOS
 //
-//  Created zhusongyu on 2018/9/6.
-//  Copyright © 2018年 com.nbltrustdev. All rights reserved.
+//  Created zhusongyu on 2018/10/30.
+//  Copyright © 2018 com.nbltrustdev. All rights reserved.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import XLPagerTabStrip
+import SwiftyUserDefaults
 
-class ActivateViewController: ButtonBarPagerTabStripViewController {
+class OverviewViewController: BaseViewController {
 
-	var coordinator: (ActivateCoordinatorProtocol & ActivateStateManagerProtocol)?
-
+	var coordinator: (OverviewCoordinatorProtocol & OverviewStateManagerProtocol)?
+    private(set) var context: OverviewContext?
+    @IBOutlet weak var contentView: OverviewView!
+    
     var currencyID: Int64?
 
 	override func viewDidLoad() {
-        setupSetting()
-
         super.viewDidLoad()
-
+        
         setupData()
         setupUI()
         setupEvent()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-
-    func setupSetting() {
-        self.settings.style.buttonBarBackgroundColor = UIColor.whiteTwo
-        self.settings.style.buttonBarItemBackgroundColor = UIColor.whiteTwo
-        self.settings.style.buttonBarItemTitleColor = UIColor.darkSlateBlue
-        self.settings.style.buttonBarMinimumLineSpacing = 68
-        self.settings.style.selectedBarHeight = 1.0
-        self.settings.style.buttonBarItemsShouldFillAvailableWidth = true
-        self.settings.style.buttonBarItemFont = UIFont.pfScS16
-        self.settings.style.buttonBarHeight = 56
-        self.settings.style.buttonBarLeftContentInset = 34
-        self.settings.style.buttonBarRightContentInset = 34
-
-        changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
-            guard changeCurrentIndex == true else { return }
-            oldCell?.label.textColor = UIColor.blueyGrey
-            newCell?.label.textColor = UIColor.darkSlateBlue
-        }
-    }
-
-    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        return (self.coordinator?.pageVCs(currencyID))!
-    }
-
+    
     override func refreshViewController() {
-
+        
     }
-
+    
     func setupUI() {
-        self.title = R.string.localizable.activate_title.key.localized()
+        
     }
 
     func setupData() {
+        if let str = Defaults["currency\(currencyID!)"] as? String {
+            if let model = NewHomeViewModel.deserialize(from: str) {
+                self.contentView.cardView.adapterModelToCardView(model)
+            }
+            
+        }
 
     }
-
+    
     func setupEvent() {
-
+        
     }
-
-//    override func configureObserveState() {
+    
+    override func configureObserveState() {
+        self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
+            guard let `self` = self else { return }
+            
+            if let context = context as? OverviewContext {
+                self.context = context
+            }
+            
+        }).disposed(by: disposeBag)
+        
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
 //            
@@ -100,7 +92,7 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 ////                self.view.showNoData(<#title#>, icon: <#imageName#>)
 //                break
 //                
-//            case .normal(let reason):
+//            case .normal(_):
 ////                self.view.hiddenNoData()
 ////
 ////                if reason == PageLoadReason.manualLoadMore {
@@ -111,8 +103,8 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 ////                }
 //                break
 //                
-//            case .error(let error, let reason):
-//                self.showToastBox(false, message: error.localizedDescription)
+//            case .error(_, _):
+////                self.showToastBox(false, message: error.localizedDescription)
 //                
 ////                if reason == PageLoadReason.manualLoadMore {
 ////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
@@ -120,14 +112,15 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 ////                else if reason == PageLoadReason.manualRefresh {
 ////                    self.stopPullRefresh(self.tableView)
 ////                }
+//                break
 //            }
 //        }).disposed(by: disposeBag)
-//    }
+    }
 }
 
-// MARK: - TableViewDelegate
+//MARK: - TableViewDelegate
 
-//extension ActivateViewController: UITableViewDataSource, UITableViewDelegate {
+//extension OverviewViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 10
 //    }
@@ -139,13 +132,14 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 //    }
 //}
 
-// MARK: - View Event
 
-extension ActivateViewController {
+//MARK: - View Event
+
+//extension OverviewViewController {
 //    @objc func <#view#>DidClicked(_ data:[String: Any]) {
 //        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
 //
 //        }
 //    }
+//}
 
-}

@@ -17,7 +17,7 @@ import SwiftyUserDefaults
 protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()
     func pushToCreateSuccessVC()
-    func pushToActivateVC()
+    func pushToActivateVCWithCurrencyID(_ id: Int64?)
     func pushBackupPrivateKeyVC()
     func presentSetFingerPrinterVC()
     func dismissCurrentNav(_ entry: UIViewController?)
@@ -92,10 +92,11 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         self.rootVC.pushViewController(createCompleteVC!, animated: true)
     }
 
-    func pushToActivateVC() {
+    func pushToActivateVCWithCurrencyID(_ id: Int64?) {
         let copyVC = ActivateViewController()
         let copyCoordinator = ActivateCoordinator(rootVC: self.rootVC)
         copyVC.coordinator = copyCoordinator
+        copyVC.currencyID = id
         self.rootVC.pushViewController(copyVC, animated: true)
     }
 

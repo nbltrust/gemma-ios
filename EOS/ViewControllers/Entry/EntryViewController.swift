@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import ReSwift
 import NBLCommonModule
+import SwiftyUserDefaults
 
 enum CreateWalletType: Int {
     case normal = 0
@@ -95,9 +96,12 @@ class EntryViewController: BaseViewController {
                 self.coordinator?.pushBackupMnemonicVC()
             case .EOS:
                 if let name = self.registerView.nameView.textField.text {
-                    self.coordinator?.verifyAccount(name, completion: { (success) in
+                    self.coordinator?.verifyAccount(name, completion: {[weak self] (success) in
+                        guard let `self` = self else { return }
+
                         if success == true {
-                            self.coordinator?.pushToActivateVC()
+                            Defaults["accountNames\(self.currencyID!)"] = name
+                            self.coordinator?.pushToActivateVCWithCurrencyID(self.currencyID)
                         }
                     })
                 }

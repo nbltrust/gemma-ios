@@ -166,6 +166,17 @@
 		3B0856292175E9D30025B178 /* CardViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0856262175E9D20025B178 /* CardViewAdapter.swift */; };
 		3B08562A2175E9D30025B178 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0856272175E9D20025B178 /* CardView.swift */; };
 		3B08562B2175E9D30025B178 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0856282175E9D30025B178 /* CardView.xib */; };
+		3B08B9282188055400ED43AD /* OverviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08B9242188055400ED43AD /* OverviewCoordinator.swift */; };
+		3B08B9292188055400ED43AD /* OverviewActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08B9252188055400ED43AD /* OverviewActions.swift */; };
+		3B08B92A2188055400ED43AD /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08B9262188055400ED43AD /* OverviewViewController.swift */; };
+		3B08B92B2188055400ED43AD /* OverviewReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08B9272188055400ED43AD /* OverviewReducers.swift */; };
+		3B08B9302188059100ED43AD /* OverviewViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08B92D2188059100ED43AD /* OverviewViewAdapter.swift */; };
+		3B08B9312188059100ED43AD /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08B92E2188059100ED43AD /* OverviewView.swift */; };
+		3B08B9322188059100ED43AD /* OverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B08B92F2188059100ED43AD /* OverviewView.xib */; };
+		3B08B9382188376E00ED43AD /* AssetsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08B9352188376E00ED43AD /* AssetsViewAdapter.swift */; };
+		3B08B9392188376E00ED43AD /* AssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08B9362188376E00ED43AD /* AssetsView.swift */; };
+		3B08B93A2188376E00ED43AD /* AssetsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B08B9372188376E00ED43AD /* AssetsView.xib */; };
+		3B08B93D21883B9000ED43AD /* AssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08B93C21883B9000ED43AD /* AssetCell.swift */; };
 		3B0EB6F2216B46D80039A773 /* BatteryViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0EB6EF216B46D80039A773 /* BatteryViewAdapter.swift */; };
 		3B0EB6F3216B46D80039A773 /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0EB6F0216B46D80039A773 /* BatteryView.swift */; };
 		3B0EB6F4216B46D80039A773 /* BatteryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B0EB6F1216B46D80039A773 /* BatteryView.xib */; };
@@ -864,6 +875,17 @@
 		3B0856262175E9D20025B178 /* CardViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewAdapter.swift; sourceTree = "<group>"; };
 		3B0856272175E9D20025B178 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3B0856282175E9D30025B178 /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		3B08B9242188055400ED43AD /* OverviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCoordinator.swift; sourceTree = "<group>"; };
+		3B08B9252188055400ED43AD /* OverviewActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewActions.swift; sourceTree = "<group>"; };
+		3B08B9262188055400ED43AD /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
+		3B08B9272188055400ED43AD /* OverviewReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewReducers.swift; sourceTree = "<group>"; };
+		3B08B92D2188059100ED43AD /* OverviewViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewAdapter.swift; sourceTree = "<group>"; };
+		3B08B92E2188059100ED43AD /* OverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewView.swift; sourceTree = "<group>"; };
+		3B08B92F2188059100ED43AD /* OverviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverviewView.xib; sourceTree = "<group>"; };
+		3B08B9352188376E00ED43AD /* AssetsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsViewAdapter.swift; sourceTree = "<group>"; };
+		3B08B9362188376E00ED43AD /* AssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsView.swift; sourceTree = "<group>"; };
+		3B08B9372188376E00ED43AD /* AssetsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetsView.xib; sourceTree = "<group>"; };
+		3B08B93C21883B9000ED43AD /* AssetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCell.swift; sourceTree = "<group>"; };
 		3B0EB6EF216B46D80039A773 /* BatteryViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryViewAdapter.swift; sourceTree = "<group>"; };
 		3B0EB6F0216B46D80039A773 /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
 		3B0EB6F1216B46D80039A773 /* BatteryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BatteryView.xib; sourceTree = "<group>"; };
@@ -1861,6 +1883,40 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3B08B91C218804D000ED43AD /* Overview */ = {
+			isa = PBXGroup;
+			children = (
+				3B08B93B21883B2500ED43AD /* cell */,
+				3B08B92C2188057F00ED43AD /* views */,
+				3B08B9242188055400ED43AD /* OverviewCoordinator.swift */,
+				3B08B9252188055400ED43AD /* OverviewActions.swift */,
+				3B08B9262188055400ED43AD /* OverviewViewController.swift */,
+				3B08B9272188055400ED43AD /* OverviewReducers.swift */,
+			);
+			path = Overview;
+			sourceTree = "<group>";
+		};
+		3B08B92C2188057F00ED43AD /* views */ = {
+			isa = PBXGroup;
+			children = (
+				3B08B92D2188059100ED43AD /* OverviewViewAdapter.swift */,
+				3B08B92E2188059100ED43AD /* OverviewView.swift */,
+				3B08B92F2188059100ED43AD /* OverviewView.xib */,
+				3B08B9352188376E00ED43AD /* AssetsViewAdapter.swift */,
+				3B08B9362188376E00ED43AD /* AssetsView.swift */,
+				3B08B9372188376E00ED43AD /* AssetsView.xib */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		3B08B93B21883B2500ED43AD /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				3B08B93C21883B9000ED43AD /* AssetCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		3B1EC87221703EF10044DEB5 /* WalletDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -2301,6 +2357,7 @@
 		5F4F2C2A9D93854A7DACC8FE947B5D8C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3B08B91C218804D000ED43AD /* Overview */,
 				3BC12A8F21060926006EEB80 /* AccountList */,
 				3BF842DF211BE59400AF9963 /* BuyRam */,
 				3B4C90EB20F49069004F4C52 /* Cells */,
@@ -3244,6 +3301,7 @@
 				3D9B3F0AA71337690260155024A06E58 /* PaymentsRecordsCellView.xib in Resources */,
 				7224713C20F624DC00536BF4 /* HomeTopView.xib in Resources */,
 				7210169B210197C10059B37E /* ChangeWalletNameView.xib in Resources */,
+				3B08B9322188059100ED43AD /* OverviewView.xib in Resources */,
 				3195BD9E030E3CAD06E18BEDA1C98306 /* RegisterContentView.xib in Resources */,
 				223C5918214A532800C69F3F /* BLTCardEntryView.xib in Resources */,
 				3B0295E72181714700867D5F /* NavBarView.xib in Resources */,
@@ -3320,6 +3378,7 @@
 				733714F4212431E200B2ED90 /* octicons.ttf in Resources */,
 				3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */,
 				3B3147052106D95900E815BD /* ResourceMortgageView.xib in Resources */,
+				3B08B93A2188376E00ED43AD /* AssetsView.xib in Resources */,
 				2253C5402111C9500043AAF7 /* TitleSubTitleView.xib in Resources */,
 				3B3147012106D63A00E815BD /* GeneralCellView.xib in Resources */,
 				733714F2212431E200B2ED90 /* map-icons.ttf in Resources */,
@@ -3516,6 +3575,7 @@
 				73B5A69920F5DFF400756391 /* ColorTheme.swift in Sources */,
 				22E40AB42114540600F1648C /* FaceIDComfirmActions.swift in Sources */,
 				4E8664CF0182B65EC69790B3811E80C3 /* BaseTableViewCell.swift in Sources */,
+				3B08B9292188055400ED43AD /* OverviewActions.swift in Sources */,
 				3BD3663B20F6F9E3004DE09D /* TransferConfirmCoordinator.swift in Sources */,
 				739A4DBD2150DF2800A1074B /* UISwipeGestureRecognizer+RxGesture.swift in Sources */,
 				72FE5B7421006B0700B29FEC /* NormalContentCoordinator.swift in Sources */,
@@ -3529,6 +3589,7 @@
 				227F849E2175ECDB005FB567 /* BLTUtils.swift in Sources */,
 				3B6D7464214761690076F444 /* FriendViewAdapter.swift in Sources */,
 				7342E4E7216F1F8A0093E2C2 /* BLTCardPowerOnCoordinator.swift in Sources */,
+				3B08B9382188376E00ED43AD /* AssetsViewAdapter.swift in Sources */,
 				221EC1C621008EF50059F856 /* GestureLockSetCoordinator.swift in Sources */,
 				3B39358E214A479300AB0A30 /* VerifyMnemonicWordActions.swift in Sources */,
 				3B018A382176D4B6008791AF /* NewHomeCoordinator.swift in Sources */,
@@ -3574,6 +3635,7 @@
 				223C5916214A532800C69F3F /* BLTCardEntryViewAdapter.swift in Sources */,
 				3B0856292175E9D30025B178 /* CardViewAdapter.swift in Sources */,
 				3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */,
+				3B08B9282188055400ED43AD /* OverviewCoordinator.swift in Sources */,
 				72FE5B4D210048F500B29FEC /* NormalViewController.swift in Sources */,
 				BB08391AA7F1D732D97B698F412B3651 /* ComfirmView.swift in Sources */,
 				3BF842E6211BE60100AF9963 /* BuyRamViewController.swift in Sources */,
@@ -3581,12 +3643,14 @@
 				3B3146F72106D56500E815BD /* ResourceMortgageCoordinator.swift in Sources */,
 				3B858BFF2170A19400499FAC /* DeleteFingerReducers.swift in Sources */,
 				73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */,
+				3B08B92B2188055400ED43AD /* OverviewReducers.swift in Sources */,
 				223C58F6214A50F300C69F3F /* BLTCardConfirmPinActions.swift in Sources */,
 				3B6D7471214761690076F444 /* PayView.swift in Sources */,
 				225787792122861D004C4579 /* NodeSelCell.swift in Sources */,
 				22C0239920F6FD5100284A0A /* EntryGuideReducers.swift in Sources */,
 				223C58DE214A4A5000C69F3F /* BLTCardEntryViewController.swift in Sources */,
 				72199D5E21043CE700575226 /* SetWalletContentView.swift in Sources */,
+				3B08B9302188059100ED43AD /* OverviewViewAdapter.swift in Sources */,
 				72FE5B7721006B0700B29FEC /* NormalContentReducers.swift in Sources */,
 				150F934C0EC159C581ACAAC7FD6F6484 /* Constants.swift in Sources */,
 				3BC12A9D21060927006EEB80 /* AccountListActions.swift in Sources */,
@@ -3642,6 +3706,7 @@
 				3B6D7461214761690076F444 /* FriendToActivateActions.swift in Sources */,
 				73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */,
 				73A453BE217727E00075E290 /* BaseCacheService.swift in Sources */,
+				3B08B92A2188055400ED43AD /* OverviewViewController.swift in Sources */,
 				73F1DE45214675260065BD72 /* Mirror+Extension.swift in Sources */,
 				72FE5B9421009F0A00B29FEC /* LeadInKeyView.swift in Sources */,
 				57988B0F4659572FB0099493045E18EE /* EntryReducers.swift in Sources */,
@@ -3663,6 +3728,7 @@
 				72FE5B662100491300B29FEC /* ServersReducers.swift in Sources */,
 				3B3935B0214B5AF600AB0A30 /* MnemonicContentActions.swift in Sources */,
 				C2AE7CD84347385A7C552C6564375D8D /* HomeActions.swift in Sources */,
+				3B08B93D21883B9000ED43AD /* AssetCell.swift in Sources */,
 				2253C5392111A6450043AAF7 /* PriKeyViewController.swift in Sources */,
 				72FE5B6E2100491A00B29FEC /* AboutReducers.swift in Sources */,
 				22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */,
@@ -3812,6 +3878,7 @@
 				3B6D746C214761690076F444 /* ActivateViewController.swift in Sources */,
 				73F30B4320F6E6FF0016E950 /* UserInfoViewController.swift in Sources */,
 				221EC1C021007B510059F856 /* GestureLockSetting.swift in Sources */,
+				3B08B9392188376E00ED43AD /* AssetsView.swift in Sources */,
 				2253C51C211052020043AAF7 /* SafeManager.swift in Sources */,
 				3B858BFE2170A19400499FAC /* DeleteFingerViewController.swift in Sources */,
 				727C122A8A3AF207D07D7EADE82DC351 /* UIImage+Extensions.swift in Sources */,
@@ -3902,6 +3969,7 @@
 				73BA4B3B215A244600EF4C72 /* URLNavigationMap.swift in Sources */,
 				7342E4F2216F1FF80093E2C2 /* BLTCardIntroViewView.swift in Sources */,
 				3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */,
+				3B08B9312188059100ED43AD /* OverviewView.swift in Sources */,
 				FF428CE559D9BAC66E25585F0A149FB9 /* ViewController.swift in Sources */,
 				72101694210197C10059B37E /* WalletTableViewCell.swift in Sources */,
 				7224712B20F57BA800536BF4 /* TransferViewController.swift in Sources */,

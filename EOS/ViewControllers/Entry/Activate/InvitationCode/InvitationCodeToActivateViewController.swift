@@ -18,6 +18,8 @@ class InvitationCodeToActivateViewController: BaseViewController, IndicatorInfoP
 
     @IBOutlet weak var contentView: InvitationView!
 
+    var currencyID: Int64?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -15,7 +15,7 @@ protocol NewHomeCoordinatorProtocol {
     func pushToSetVC()
     func pushWallet()
     func pushToEntryVCWithCurrencyID(id: Int64?)
-    func pushToHomeVCWithCurrencyID(id: Int64?)
+    func pushToOverviewVCWithCurrencyID(id: Int64?)
 }
 
 protocol NewHomeStateManagerProtocol {
@@ -78,10 +78,10 @@ extension NewHomeCoordinator: NewHomeCoordinatorProtocol {
         }
     }
 
-    func pushToHomeVCWithCurrencyID(id: Int64?) {
-        if let vc = R.storyboard.home.homeViewController() {
+    func pushToOverviewVCWithCurrencyID(id: Int64?) {
+        if let vc = R.storyboard.home.overviewViewController() {
             vc.currencyID = id
-            let coordinator = HomeCoordinator(rootVC: self.rootVC)
+            let coordinator = OverviewCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }

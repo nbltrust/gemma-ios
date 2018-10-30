@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
+import SwiftyUserDefaults
 
 protocol PayToActivateCoordinatorProtocol {
     func pushToCreateSuccessVC()
@@ -21,7 +22,7 @@ protocol PayToActivateStateManagerProtocol {
 
     func switchPageState(_ state: PageState)
 
-    func initOrder(completion: @escaping (Bool) -> Void)
+    func initOrder(_ currencyID:Int64?, completion: @escaping (Bool) -> Void)
     func getBill()
     func askToPay()
     func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void)
@@ -111,18 +112,20 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         }
     }
 
-    func initOrder(completion: @escaping (Bool) -> Void) {
+    func initOrder(_ currencyID:Int64?, completion: @escaping (Bool) -> Void) {
         self.rootVC.topViewController?.startLoadingWithMessage(message: R.string.localizable.pay_tips_warning.key.localized())
 
         var walletName = ""
         var pubkey = ""
-        Broadcaster.notify(EntryViewController.self) { (vc) in
-            walletName = vc.registerView.nameView.textField.text!
-            let currency = try? WalletCacheService.shared.fetchCurrencyBy(id: vc.currencyID!)
-            if let currency = currency {
-                pubkey = currency?.pubKey ?? ""
-            }
+
+        if let name = Defaults["accountNames\(currencyID!)"] as? String {
+            walletName = name
         }
+        let currency = try? WalletCacheService.shared.fetchCurrencyBy(id: currencyID!)
+        if let currency = currency {
+            pubkey = currency?.pubKey ?? ""
+        }
+
         NBLNetwork.request(target: .initOrder(account: walletName, pubKey: pubkey, platform: "iOS", clientIP:"10.18.14.9", serialNumber: "1"), success: { (data) in
             if let orderID = Order.deserialize(from: data.dictionaryObject) {
                 self.store.dispatch(OrderIdAction(orderId: orderID.id))

@@ -20,7 +20,8 @@ class NewHomeViewController: BaseViewController {
     @IBOutlet weak var contentView: NewHomeView!
 
     var wallet: Any?
-    
+    var dataArray: [NewHomeViewModel] = []
+
 	override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,23 +65,37 @@ class NewHomeViewController: BaseViewController {
     override func configureObserveState() {
         self.coordinator?.state.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
-
-            if let newWallet = self.wallet as? Wallet {
-                do {
-                    let curArray = try WalletCacheService.shared.fetchAllCurrencysBy(newWallet)
-                    var dataArray: [NewHomeViewModel] = []
-                    for currency in curArray! {
-                        if let modelStr = Defaults["currency\(currency.id!)"] as? String {
-                            if let model = NewHomeViewModel.deserialize(from: modelStr) {
-                                dataArray.append(model)
-                            }
-                        }
+            if let newModel = model as? NewHomeViewModel, newModel.id != 0 {
+                for index in 0..<self.dataArray.count {
+                    let data = self.dataArray[index]
+                    if data.id != newModel.id {
+                        self.dataArray.append(newModel)
+                    } else {
+                        self.dataArray.remove(at: index)
+                        self.dataArray.insert(newModel, at: index)
                     }
-                    self.contentView.adapterModelToNewHomeView(dataArray)
-                } catch {
-
                 }
+                if self.dataArray.count == 0 {
+                    self.dataArray.append(newModel)
+                }
+                self.contentView.adapterModelToNewHomeView(self.dataArray)
             }
+
+//            if let newWallet = self.wallet as? Wallet {
+//                do {
+//                    let curArray = try WalletCacheService.shared.fetchAllCurrencysBy(newWallet)
+//                    for currency in curArray! {
+//                        if let modelStr = Defaults["currency\(currency.id!)"] as? String {
+//                            if let model = NewHomeViewModel.deserialize(from: modelStr) {
+//                                dataArray.append(model)
+//                            }
+//                        }
+//                    }
+//                    self.contentView.adapterModelToNewHomeView(dataArray)
+//                } catch {
+//
+//                }
+//            }
 
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         
@@ -174,7 +189,7 @@ extension NewHomeViewController {
     @objc func cellDidClicked(_ data: [String: Any]) {
         if let model = data["data"] as? NewHomeViewModel {
             if let _ = Defaults["accountNames\(model.id)"] as? String {
-                self.coordinator?.pushToHomeVCWithCurrencyID(id: model.id)
+                self.coordinator?.pushToOverviewVCWithCurrencyID(id: model.id)
             } else {
                 self.coordinator?.pushToEntryVCWithCurrencyID(id: model.id)
             }
