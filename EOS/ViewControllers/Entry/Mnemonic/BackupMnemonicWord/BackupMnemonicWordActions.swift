@@ -22,3 +22,4 @@ struct BackupMnemonicWordState: BaseState {
 struct BackupMnemonicWordFetchedAction: Action {
     var data: JSON
 }
+

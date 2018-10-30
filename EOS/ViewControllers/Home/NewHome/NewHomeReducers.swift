@@ -63,6 +63,11 @@ func setViewModelWithCurrency(currency: Currency?) -> NewHomeViewModel {
     var viewmodel = NewHomeViewModel()
     viewmodel.currencyImg = R.image.eosBg()!
     viewmodel.account = R.string.localizable.wait_activate.key.localized()
+    if let id = currency?.id {
+        if let accountName = Defaults["accountNames\(id)"] as? String {
+            viewmodel.account = accountName
+        }
+    }
     viewmodel.CNY = "0.00"
     if currency?.type == .EOS {
         viewmodel.currency = "EOS"
@@ -101,9 +106,9 @@ func calculateTotalAsset(_ viewmodel: NewHomeViewModel) -> String {
         let net = viewmodel.netValue.eosAmount.toDouble() {
         let total = balance + cpu + net
 
-        return total.string(digits: AppConfiguration.EOSPrecision) + " \(NetworkConfiguration.EOSIODefaultSymbol)"
+        return total.string(digits: AppConfiguration.EOSPrecision)
     } else {
-        return "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        return "0.0000"
     }
 }
 
@@ -111,15 +116,15 @@ func calculateRMBPrice(_ viewmodel: NewHomeViewModel, price: String, otherPrice:
     if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDouble(), all != 0 {
         let cny = unit * all
         if coinType() == .CNY {
-            return "≈" + cny.string(digits: 2) + " \(coinUnit())"
+            return cny.string(digits: 2)
         } else {
             if let otherPriceDouble = otherPrice.toDouble() {
-                return "≈" + (cny / otherPriceDouble).string(digits: 2) + " \(coinUnit())"
+                return (cny / otherPriceDouble).string(digits: 2)
             } else {
-                return "≈- \(coinUnit())"
+                return "0.00"
             }
         }
     } else {
-        return "≈- \(coinUnit())"
+        return "0.00"
     }
 }

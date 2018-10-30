@@ -171,5 +171,14 @@ extension NewHomeViewController {
     @objc func walletDidClicked(_ data:[String: Any]) {
         self.coordinator?.pushWallet()
     }
+    @objc func cellDidClicked(_ data: [String: Any]) {
+        if let model = data["data"] as? NewHomeViewModel {
+            if let _ = Defaults["accountNames\(model.id)"] as? String {
+                self.coordinator?.pushToHomeVCWithCurrencyID(id: model.id)
+            } else {
+                self.coordinator?.pushToEntryVCWithCurrencyID(id: model.id)
+            }
+        }
+    }
 }
 

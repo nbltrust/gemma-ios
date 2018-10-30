@@ -9,8 +9,6 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
-import seed39_ios_golang
-import eos_ios_core_cpp
 import SwiftyUserDefaults
 
 protocol VerifyMnemonicWordCoordinatorProtocol {
@@ -52,6 +50,14 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordCoordinatorProtocol {
         self.rootVC.popToViewController(vc, animated: true)
     }
 
+    func popToEntryVCWithCheckStr(_ checkStr: String) {
+        self.rootVC.viewControllers.forEach { (vc) in
+            if let entryVC = vc as? EntryViewController {
+                self.popToVC(entryVC)
+                entryVC.coordinator?.state.callback.finishNormalWalletCallback.value?(checkStr)
+            }
+        }
+    }
 }
 
 extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol {
@@ -96,7 +102,7 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
                     Broadcaster.notify(EntryStateManagerProtocol.self) { (coor) in
                         let model = coor.state.property.model
                         if model?.type == .HD {
-                            createWallet(pwd: (model?.pwd)!, checkStr: checkStr, deviceName: nil)
+                            self.popToEntryVCWithCheckStr(checkStr)
                         } else if model?.type == .bluetooth {
                             checkSeed(checkStr, success: { [weak self] in
                                 guard let `self` = self else { return }
@@ -111,42 +117,6 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
                 } else {
                     showFailTop(R.string.localizable.wookong_mnemonic_ver_failed.key.localized())
                 }
-            }
-        }
-    }
-    
-    func createWallet(pwd: String, checkStr: String, deviceName: String?) {
-        do {
-            let wallets = try WalletCacheService.shared.fetchAllWallet()
-            let idNum: Int64 = Int64(wallets!.count) + 1
-            let date = Date.init()
-            let cipher = Seed39KeyEncrypt(pwd, checkStr)
-            let wallet = Wallet(id: nil, name: "EOS-WALLET-\(idNum)", type: .HD, cipher: cipher, deviceName: nil, date: date)
-            
-            let seed = Seed39SeedByMnemonic(checkStr)
-            let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true)
-            let curCipher = Seed39KeyEncrypt(pwd, prikey)
-            let pubkey = EOSIO.getPublicKey(prikey)
-            let currency = Currency(id: nil, type: .EOS, cipher: curCipher!, pubKey: pubkey!, wid: idNum, date: date, address: nil)
-            
-            let seed2 = Seed39SeedByMnemonic(checkStr)
-            let prikey2 = Seed39DeriveRaw(seed2, CurrencyType.ETH.derivationPath)
-            let curCipher2 = Seed39KeyEncrypt(pwd, prikey2)
-            let address = Seed39GetEthereumAddressFromPrivateKey(prikey2)
-            let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: nil, wid: idNum, date: date, address: address)
-            
-            let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
-            Defaults[.currentWalletID] = (id?.string)!
-            self.dismiss()
-        } catch {
-            showFailTop("数据库存储失败")
-        }
-    }
-    
-    func dismiss() {
-        if self.rootVC.viewControllers[0] is EntryGuideViewController {
-            if (UIApplication.shared.delegate as? AppDelegate) != nil {
-                appCoodinator.endEntry()
             }
         }
     }

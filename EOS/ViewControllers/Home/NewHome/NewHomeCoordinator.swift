@@ -14,6 +14,8 @@ import SwiftyUserDefaults
 protocol NewHomeCoordinatorProtocol {
     func pushToSetVC()
     func pushWallet()
+    func pushToEntryVCWithCurrencyID(id: Int64?)
+    func pushToHomeVCWithCurrencyID(id: Int64?)
 }
 
 protocol NewHomeStateManagerProtocol {
@@ -65,6 +67,25 @@ extension NewHomeCoordinator: NewHomeCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
+
+    func pushToEntryVCWithCurrencyID(id: Int64?) {
+        if let vc = R.storyboard.entry.entryViewController() {
+            vc.createType = .EOS
+            vc.currencyID = id
+            let coordinator = EntryCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
+
+    func pushToHomeVCWithCurrencyID(id: Int64?) {
+        if let vc = R.storyboard.home.homeViewController() {
+            vc.currencyID = id
+            let coordinator = HomeCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension NewHomeCoordinator: NewHomeStateManagerProtocol {
@@ -91,8 +112,8 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
     func getCurrencyInfo(_ currency: Currency) {
         if currency.type == .EOS {
             let names = Defaults["accountNames\(currency.id!)"]
-            if let names = names as? [String], names.count != 0 {
-                let account = names[0]
+            if let names = names as? String {
+                let account = names
                 let currencyID = currency.id
                 EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
                     self.store.dispatch(BalanceFetchedAction(balance: json, currencyID: currencyID))

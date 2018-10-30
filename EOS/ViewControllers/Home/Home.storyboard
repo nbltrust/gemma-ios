@@ -21,7 +21,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ACt-uJ-OXw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="1MV-3W-hWv" customClass="HomeHeaderView" customModule="EOS" customModuleProvider="target">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="1MV-3W-hWv" customClass="CardView" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="446"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </view>
