@@ -10,7 +10,6 @@ import Foundation
 
 enum NavStyle: Int {
     case common = 1
-    case white
     case clear
 }
 
@@ -50,12 +49,9 @@ class BaseNavigationController: UINavigationController {
             let image = UIImage.init(color: UIColor.clear)
             self.navigationBar.setBackgroundImage(image, for: .default)
             self.navigationBar.isTranslucent = true
-        } else if navStyle == .white {
-            let image = UIImage.init(color: UIColor.white)
-            self.navigationBar.setBackgroundImage(image, for: .default)
-            self.navigationBar.isTranslucent = false
         } else {
-            self.navigationBar.setBackgroundImage(navBgImage(), for: .default)
+            let image = UIImage.init(color: UIColor.whiteColor)
+            self.navigationBar.setBackgroundImage(image, for: .default)
             self.navigationBar.isTranslucent = false
         }
     }

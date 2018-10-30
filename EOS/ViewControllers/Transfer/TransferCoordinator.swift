@@ -76,7 +76,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
             }
 
             presentVC(BLTCardConnectCoordinator.self, animated: true, context: context, navSetup: { (nav) in
-                nav.navStyle = .white
+                nav.navStyle = .common
             }) { (top, target) in
                 top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
             }
@@ -100,7 +100,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         context.type = type
 
         presentVC(TransferConfirmCoordinator.self, animated: true, context: context, navSetup: { (nav) in
-            nav.navStyle = .white
+            nav.navStyle = .common
         }) { (top, target) in
             top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }
