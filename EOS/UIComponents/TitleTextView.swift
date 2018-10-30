@@ -123,7 +123,7 @@ class TitleTextView: UIView {
 
             textView.attributedPlaceholder = NSMutableAttributedString.init(
                 string: setting.placeholder,
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor.cloudyBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.baseColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
             textView.isSecureTextEntry = setting.isSecureTextEntry
             gapView.alpha = setting.showLine ? 1.0 : 0.0
         }
@@ -205,20 +205,20 @@ class TitleTextView: UIView {
 
     fileprivate func recoverUI() {
         titleLabel.text = setting.title
-        titleLabel.textColor = UIColor.steel
-        gapView.backgroundColor = UIColor.paleGreyTwo
+        titleLabel.textColor = UIColor.introductionColor
+        gapView.backgroundColor = UIColor.whiteColor
     }
 
     fileprivate func redSealUI() {
         titleLabel.text = setting.warningText
-        titleLabel.textColor = UIColor.scarlet
-        gapView.backgroundColor = UIColor.scarlet
+        titleLabel.textColor = UIColor.warningColor
+        gapView.backgroundColor = UIColor.warningColor
     }
 
     fileprivate func highlightUI() {
         titleLabel.text = setting.title
-        titleLabel.textColor = UIColor.darkSlateBlue
-        gapView.backgroundColor = UIColor.darkSlateBlue
+        titleLabel.textColor = UIColor.baseColor
+        gapView.backgroundColor = UIColor.baseColor
     }
 
     override var intrinsicContentSize: CGSize {

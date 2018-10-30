@@ -29,10 +29,12 @@ class StatusView: UIView {
     }
 
     func updateContent() {
+        let vote = R.string.localizable.vote_title.key.localized()
+        let unEnaough = R.string.localizable.vote_unenough.key.localized()
         leftLabel.text = String(format: "%d/30", selCount)
-        leftLabel.backgroundColor = highlighted && selCount > 0 ? UIColor.darkSkyBlueTwo : UIColor.paleGreyFour
-        rightLabel.backgroundColor = highlighted && selCount > 0 ? UIColor.cornflowerBlueTwo : UIColor.cloudyBlue
-        rightLabel.text = highlighted ? R.string.localizable.vote_title.key.localized() : R.string.localizable.vote_unenough.key.localized()
+        leftLabel.backgroundColor = highlighted && selCount > 0 ? UIColor.baseLightColor : UIColor.unableLightColor
+        rightLabel.backgroundColor = highlighted && selCount > 0 ? UIColor.baseColor : UIColor.unableColor
+        rightLabel.text = highlighted ? vote : unEnaough
     }
 
     func setup() {

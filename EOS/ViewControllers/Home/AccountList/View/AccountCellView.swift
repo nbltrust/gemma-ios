@@ -16,11 +16,11 @@ class AccountCellView: UIView {
         didSet {
             textLabel.text = text
             if text == WalletManager.shared.getAccount() {
-                textLabel.textColor = UIColor.whiteTwo
-                self.backgroundColor = UIColor.cornflowerBlue
+                textLabel.textColor = UIColor.baseColor
+                self.backgroundColor = UIColor.whiteColor
             } else {
-                textLabel.textColor = UIColor.darkSlateBlue
-                self.backgroundColor = UIColor.whiteTwo
+                textLabel.textColor = UIColor.baseColor
+                self.backgroundColor = UIColor.whiteColor
             }
         }
     }

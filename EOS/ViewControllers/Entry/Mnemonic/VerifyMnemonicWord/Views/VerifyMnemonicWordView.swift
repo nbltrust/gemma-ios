@@ -60,7 +60,7 @@ extension VerifyMnemonicWordView: TagListViewDelegate {
                 let index = selectValues.index(of: title)
                 selectValues.remove(at: index!)
             }
-            tagView.tagBackgroundColor = UIColor.cornflowerBlueTwo
+            tagView.tagBackgroundColor = UIColor.baseColor
         } else if sender == poolTagListView {
             poolTagListView.removeTag(title)
             myTagListView.addTag(title)

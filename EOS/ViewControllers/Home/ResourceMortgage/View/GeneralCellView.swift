@@ -28,11 +28,11 @@ class GeneralCellView: UIView {
                 lineView.isHidden = data.lineHidden
                 progressView.progress = data.progress
                 if progressView.progress >= 0.85 {
-                    progressView.tintColor = UIColor.scarlet
-                    pointView.backgroundColor = UIColor.scarlet
+                    progressView.tintColor = UIColor.warningColor
+                    pointView.backgroundColor = UIColor.warningColor
                 } else {
-                    progressView.tintColor = UIColor.darkSkyBlueTwo
-                    pointView.backgroundColor = UIColor.darkSkyBlueTwo
+                    progressView.tintColor = UIColor.baseColor
+                    pointView.backgroundColor = UIColor.baseColor
                 }
             }
             if let data = data as? BuyRamViewModel {
@@ -40,11 +40,11 @@ class GeneralCellView: UIView {
                 rightSubLabel.text = data.rightSub
                 progressView.progress = data.progress
                 if progressView.progress >= 0.85 {
-                    progressView.tintColor = UIColor.scarlet
-                    pointView.backgroundColor = UIColor.scarlet
+                    progressView.tintColor = UIColor.warningColor
+                    pointView.backgroundColor = UIColor.warningColor
                 } else {
-                    progressView.tintColor = UIColor.darkSkyBlueTwo
-                    pointView.backgroundColor = UIColor.darkSkyBlueTwo
+                    progressView.tintColor = UIColor.baseColor
+                    pointView.backgroundColor = UIColor.baseColor
                 }
             }
 

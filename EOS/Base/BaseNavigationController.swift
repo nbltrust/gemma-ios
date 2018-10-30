@@ -34,11 +34,11 @@ class BaseNavigationController: UINavigationController {
         self.navigationBar.shadowImage = UIImage()
         setupNav()
 
-        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.whiteTwo]
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.baseColor]
         if #available(iOS 11.0, *) {
-            self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteTwo]
+            self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.baseColor]
         }
-        self.navigationBar.tintColor = UIColor.whiteTwo
+        self.navigationBar.tintColor = UIColor.rightItemColor
 
         //    self.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "ic_arrow_back_16px")
         //    self.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_arrow_back_16px")

@@ -111,7 +111,7 @@ class NormalCellView: UIView {
     }
 
     @IBInspectable
-    var selectBackgroundColor: UIColor = UIColor.paleGrey41 {
+    var selectBackgroundColor: UIColor = UIColor.whiteColor {
         didSet {
 
         }
