@@ -33,7 +33,7 @@ class CornerAndShadowView: UIView {
     }
 
     @IBInspectable
-    var newShadowColor: UIColor = UIColor.duskBlue5 {
+    var newShadowColor: UIColor = UIColor.borderColor {
         didSet {
             self.subviews.forEach { [weak self](subView) in
                 guard let `self` = self else { return }

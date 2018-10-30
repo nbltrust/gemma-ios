@@ -70,7 +70,7 @@ class ScanViewController: BaseViewController {
         let rect = ScanSetting.scanRect
         titleLabel = UILabel.init(frame: CGRect(x: 0, y: rect.maxY + 29, width: self.view.width, height: 20))
         if let label = titleLabel {
-            label.textColor = UIColor.whiteTwo
+            label.textColor = UIColor.whiteColor
             label.textAlignment = .center
             label.font = UIFont.systemFont(ofSize: 14)
             label.text = subTitle

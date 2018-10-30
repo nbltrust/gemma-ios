@@ -23,7 +23,7 @@ extension CardView {
         
         let attributedString = NSMutableAttributedString(string: "≈ ¥ \(model.CNY)", attributes: [
             .font: UIFont(name: "PingFangSC-Regular", size: 18.0)!,
-            .foregroundColor: UIColor.darkSlateBlueTwo,
+            .foregroundColor: UIColor.baseColor,
             .kern: 0.0
             ])
         attributedString.addAttribute(.font, value: UIFont(name: "PingFangSC-Regular", size: 14.0)!, range: NSRange(location: 0, length: 3))
@@ -31,7 +31,7 @@ extension CardView {
         
         let attributedString2 = NSMutableAttributedString(string: "+ \(model.tokens) tokens", attributes: [
             .font: UIFont(name: "PingFangSC-Regular", size: 14.0)!,
-            .foregroundColor: UIColor.darkSlateBlueTwo,
+            .foregroundColor: UIColor.baseColor,
             .kern: 0.0
             ])
         

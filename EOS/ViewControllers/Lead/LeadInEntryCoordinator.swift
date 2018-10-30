@@ -23,7 +23,7 @@ class LeadInEntryCoordinator: NavCoordinator {
     var store = Store(
         reducer: gLeadInEntryReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware:[trackingMiddleware]
     )
     
     var state: LeadInEntryState {
@@ -31,7 +31,7 @@ class LeadInEntryCoordinator: NavCoordinator {
     }
     
     override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
-        let vc = R.storyboard.<#name#>!
+        let vc = R.storyboard.leadIn.leadInEntryViewController()!
         let coordinator = LeadInEntryCoordinator(rootVC: root)
         vc.coordinator = coordinator
         coordinator.store.dispatch(RouteContextAction(context: context))

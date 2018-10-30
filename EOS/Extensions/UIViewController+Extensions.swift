@@ -75,10 +75,10 @@ extension UIViewController {
         if let isClear = isClearBg, isClear {
             KRProgressHUD.set(maskType: .custom(color: UIColor.clear))
         } else {
-            KRProgressHUD.set(maskType: .custom(color: UIColor.black40))
+            KRProgressHUD.set(maskType: .custom(color: UIColor.black40Color))
         }
-        KRProgressHUD.set(style: .custom(background: UIColor.white, text: UIColor.cornflowerBlueTwo, icon: UIColor.cornflowerBlueTwo))
-        KRProgressHUD.set(activityIndicatorViewColors: [UIColor.cornflowerBlueTwo, UIColor.cornflowerBlueTwo])
+        KRProgressHUD.set(style: .custom(background: UIColor.whiteColor, text: UIColor.baseColor, icon: UIColor.baseColor))
+        KRProgressHUD.set(activityIndicatorViewColors: [UIColor.baseColor, UIColor.baseColor])
         if message == "" {
             KRProgressHUD.show()
         } else {

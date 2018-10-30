@@ -33,9 +33,9 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
     }
 
     func setupSetting() {
-        self.settings.style.buttonBarBackgroundColor = UIColor.whiteTwo
-        self.settings.style.buttonBarItemBackgroundColor = UIColor.whiteTwo
-        self.settings.style.buttonBarItemTitleColor = UIColor.darkSlateBlue
+        self.settings.style.buttonBarBackgroundColor = UIColor.whiteColor
+        self.settings.style.buttonBarItemBackgroundColor = UIColor.whiteColor
+        self.settings.style.buttonBarItemTitleColor = UIColor.baseColor
         self.settings.style.buttonBarMinimumLineSpacing = 68
         self.settings.style.selectedBarHeight = 1.0
         self.settings.style.buttonBarItemsShouldFillAvailableWidth = true
@@ -46,8 +46,8 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
-            oldCell?.label.textColor = UIColor.blueyGrey
-            newCell?.label.textColor = UIColor.darkSlateBlue
+            oldCell?.label.textColor = UIColor.baseLightColor
+            newCell?.label.textColor = UIColor.baseColor
         }
     }
 

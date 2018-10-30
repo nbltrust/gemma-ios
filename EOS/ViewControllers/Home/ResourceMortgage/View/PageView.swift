@@ -91,11 +91,11 @@ class PageView: UIView {
 
     func updateLabelStatus() {
         if index == Page.left {
-            leftLabel.textColor = UIColor.darkSlateBlue
-            rightLabel.textColor = UIColor.blueyGrey
+            leftLabel.textColor = UIColor.baseColor
+            rightLabel.textColor = UIColor.subTitleColor
         } else {
-            leftLabel.textColor = UIColor.blueyGrey
-            rightLabel.textColor = UIColor.darkSlateBlue
+            leftLabel.textColor = UIColor.subTitleColor
+            rightLabel.textColor = UIColor.baseColor
         }
     }
 

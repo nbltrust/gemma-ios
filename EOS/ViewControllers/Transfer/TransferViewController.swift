@@ -35,7 +35,7 @@ class TransferViewController: BaseViewController {
         self.transferContentView.remarkTitleTextView.clearText()
         self.transferContentView.nextButton.isEnabel.accept(false)
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
-        self.reciverLabel.textColor = UIColor.steel
+        self.reciverLabel.textColor = UIColor.baseColor
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +57,7 @@ class TransferViewController: BaseViewController {
         self.accountTextField.delegate = self
         self.accountTextField.attributedPlaceholder =
             NSMutableAttributedString.init(string: R.string.localizable.account_name.key.localized(),
-                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueyGrey, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.baseColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
         self.reciverLabel.text = R.string.localizable.receiver.key.localized()
         transferContentView.reload()
         clearData()
@@ -125,16 +125,16 @@ extension TransferViewController: UITextFieldDelegate {
             let isValid = WalletManager.shared.isValidWalletName(textField.text!)
             if isValid == false {
                 self.reciverLabel.text = R.string.localizable.name_warning.key.localized()
-                self.reciverLabel.textColor = UIColor.scarlet
+                self.reciverLabel.textColor = UIColor.warningColor
             } else {
                 self.reciverLabel.text = R.string.localizable.receiver.key.localized()
-                self.reciverLabel.textColor = UIColor.steel
+                self.reciverLabel.textColor = UIColor.placeholderColor
 
             }
 
             if textField.text == nil || textField.text == "" {
                 self.reciverLabel.text = R.string.localizable.receiver.key.localized()
-                self.reciverLabel.textColor = UIColor.steel
+                self.reciverLabel.textColor = UIColor.placeholderColor
 
             }
         }

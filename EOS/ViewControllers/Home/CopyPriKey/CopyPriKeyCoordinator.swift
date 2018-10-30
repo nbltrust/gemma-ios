@@ -37,7 +37,7 @@ class CopyPriKeyCoordinator: NavCoordinator {
 extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
     func showAlertMessage() {
         var context = ScreenShotAlertContext()
-        context.desc = RichStyle.shared.tagText(R.string.localizable.backup_introduce_three.key.localized(), fontSize: 14, color: UIColor.blueyGrey, lineHeight: 20)
+        context.desc = RichStyle.shared.tagText(R.string.localizable.backup_introduce_three.key.localized(), fontSize: 14, color: UIColor.highlightColor, lineHeight: 20)
         context.title = R.string.localizable.dont_screen_shot.key.localized()
         context.buttonTitle = R.string.localizable.i_know.key.localized()
         context.imageName = R.image.icPopNoScreenshots.name

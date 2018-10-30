@@ -26,7 +26,7 @@ class NodeSelCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        nodeView.backgroundColor = UIColor.whiteTwo
+        nodeView.backgroundColor = UIColor.whiteColor
         nodeView.checkButton.isSelected = selected
         // Configure the view for the selected state
     }
