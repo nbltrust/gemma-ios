@@ -112,6 +112,18 @@
 		22917DE6218806890017FEAF /* LeadInEntryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DE2218806890017FEAF /* LeadInEntryActions.swift */; };
 		22917DE7218806890017FEAF /* LeadInEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DE3218806890017FEAF /* LeadInEntryViewController.swift */; };
 		22917DE8218806890017FEAF /* LeadInEntryReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DE4218806890017FEAF /* LeadInEntryReducers.swift */; };
+		22917DF9218831250017FEAF /* LeadInMnemonicCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DF5218831250017FEAF /* LeadInMnemonicCoordinator.swift */; };
+		22917DFA218831250017FEAF /* LeadInMnemonicActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DF6218831250017FEAF /* LeadInMnemonicActions.swift */; };
+		22917DFB218831250017FEAF /* LeadInMnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DF7218831250017FEAF /* LeadInMnemonicViewController.swift */; };
+		22917DFC218831250017FEAF /* LeadInMnemonicReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DF8218831250017FEAF /* LeadInMnemonicReducers.swift */; };
+		22917E022188327E0017FEAF /* CurrencyListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DFE2188327E0017FEAF /* CurrencyListCoordinator.swift */; };
+		22917E032188327E0017FEAF /* CurrencyListActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DFF2188327E0017FEAF /* CurrencyListActions.swift */; };
+		22917E042188327E0017FEAF /* CurrencyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917E002188327E0017FEAF /* CurrencyListViewController.swift */; };
+		22917E052188327E0017FEAF /* CurrencyListReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917E012188327E0017FEAF /* CurrencyListReducers.swift */; };
+		22917E0E218837FB0017FEAF /* CurrencyCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917E0B218837FB0017FEAF /* CurrencyCheckView.swift */; };
+		22917E0F218837FB0017FEAF /* CurrencyCheckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22917E0C218837FB0017FEAF /* CurrencyCheckView.xib */; };
+		22917E122188382E0017FEAF /* CurrencyCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917E102188382E0017FEAF /* CurrencyCheckCell.swift */; };
+		22917E132188382E0017FEAF /* CurrencyCheckCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22917E112188382E0017FEAF /* CurrencyCheckCell.xib */; };
 		22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322E211A991D00ACC63C /* VoteCoordinator.swift */; };
 		22A93233211A991D00ACC63C /* VoteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A9322F211A991D00ACC63C /* VoteActions.swift */; };
 		22A93234211A991D00ACC63C /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93230211A991D00ACC63C /* VoteViewController.swift */; };
@@ -823,6 +835,18 @@
 		22917DE2218806890017FEAF /* LeadInEntryActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInEntryActions.swift; sourceTree = "<group>"; };
 		22917DE3218806890017FEAF /* LeadInEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInEntryViewController.swift; sourceTree = "<group>"; };
 		22917DE4218806890017FEAF /* LeadInEntryReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInEntryReducers.swift; sourceTree = "<group>"; };
+		22917DF5218831250017FEAF /* LeadInMnemonicCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInMnemonicCoordinator.swift; sourceTree = "<group>"; };
+		22917DF6218831250017FEAF /* LeadInMnemonicActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInMnemonicActions.swift; sourceTree = "<group>"; };
+		22917DF7218831250017FEAF /* LeadInMnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInMnemonicViewController.swift; sourceTree = "<group>"; };
+		22917DF8218831250017FEAF /* LeadInMnemonicReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadInMnemonicReducers.swift; sourceTree = "<group>"; };
+		22917DFE2188327E0017FEAF /* CurrencyListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListCoordinator.swift; sourceTree = "<group>"; };
+		22917DFF2188327E0017FEAF /* CurrencyListActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListActions.swift; sourceTree = "<group>"; };
+		22917E002188327E0017FEAF /* CurrencyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListViewController.swift; sourceTree = "<group>"; };
+		22917E012188327E0017FEAF /* CurrencyListReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListReducers.swift; sourceTree = "<group>"; };
+		22917E0B218837FB0017FEAF /* CurrencyCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCheckView.swift; sourceTree = "<group>"; };
+		22917E0C218837FB0017FEAF /* CurrencyCheckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyCheckView.xib; sourceTree = "<group>"; };
+		22917E102188382E0017FEAF /* CurrencyCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCheckCell.swift; sourceTree = "<group>"; };
+		22917E112188382E0017FEAF /* CurrencyCheckCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyCheckCell.xib; sourceTree = "<group>"; };
 		22A9322E211A991D00ACC63C /* VoteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCoordinator.swift; sourceTree = "<group>"; };
 		22A9322F211A991D00ACC63C /* VoteActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteActions.swift; sourceTree = "<group>"; };
 		22A93230211A991D00ACC63C /* VoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
@@ -1734,6 +1758,62 @@
 			path = BLTCardSetFingerPrinter;
 			sourceTree = "<group>";
 		};
+		22917DEB2188303D0017FEAF /* LeadInEntry */ = {
+			isa = PBXGroup;
+			children = (
+				22917DE1218806890017FEAF /* LeadInEntryCoordinator.swift */,
+				22917DE2218806890017FEAF /* LeadInEntryActions.swift */,
+				22917DE3218806890017FEAF /* LeadInEntryViewController.swift */,
+				22917DE4218806890017FEAF /* LeadInEntryReducers.swift */,
+			);
+			path = LeadInEntry;
+			sourceTree = "<group>";
+		};
+		22917DF3218830D10017FEAF /* LeadInKey */ = {
+			isa = PBXGroup;
+			children = (
+				72D645B321106860003F660D /* LeadInKeyActions.swift */,
+				72D645B221106860003F660D /* LeadInKeyCoordinator.swift */,
+				72D645B521106860003F660D /* LeadInKeyReducers.swift */,
+				72D645B421106860003F660D /* LeadInKeyViewController.swift */,
+			);
+			path = LeadInKey;
+			sourceTree = "<group>";
+		};
+		22917DF4218831030017FEAF /* LeadInMnemonic */ = {
+			isa = PBXGroup;
+			children = (
+				22917DF5218831250017FEAF /* LeadInMnemonicCoordinator.swift */,
+				22917DF6218831250017FEAF /* LeadInMnemonicActions.swift */,
+				22917DF7218831250017FEAF /* LeadInMnemonicViewController.swift */,
+				22917DF8218831250017FEAF /* LeadInMnemonicReducers.swift */,
+			);
+			path = LeadInMnemonic;
+			sourceTree = "<group>";
+		};
+		22917DFD218831DF0017FEAF /* CurrencyList */ = {
+			isa = PBXGroup;
+			children = (
+				22917E06218837270017FEAF /* Views */,
+				22917DFE2188327E0017FEAF /* CurrencyListCoordinator.swift */,
+				22917DFF2188327E0017FEAF /* CurrencyListActions.swift */,
+				22917E002188327E0017FEAF /* CurrencyListViewController.swift */,
+				22917E012188327E0017FEAF /* CurrencyListReducers.swift */,
+			);
+			path = CurrencyList;
+			sourceTree = "<group>";
+		};
+		22917E06218837270017FEAF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22917E0B218837FB0017FEAF /* CurrencyCheckView.swift */,
+				22917E0C218837FB0017FEAF /* CurrencyCheckView.xib */,
+				22917E102188382E0017FEAF /* CurrencyCheckCell.swift */,
+				22917E112188382E0017FEAF /* CurrencyCheckCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		22A9322D211A97EA00ACC63C /* Vote */ = {
 			isa = PBXGroup;
 			children = (
@@ -2609,14 +2689,14 @@
 		72FE5B8321009D0A00B29FEC /* Lead */ = {
 			isa = PBXGroup;
 			children = (
+				22917DFD218831DF0017FEAF /* CurrencyList */,
+				22917DF4218831030017FEAF /* LeadInMnemonic */,
+				22917DF3218830D10017FEAF /* LeadInKey */,
+				22917DEB2188303D0017FEAF /* LeadInEntry */,
 				72FE5B8C21009E6E00B29FEC /* Views */,
 				72FE5B8D21009E8200B29FEC /* LeadIn.storyboard */,
 				72FE5B8521009E4D00B29FEC /* LeadInActions.swift */,
 				72FE5B8421009E4D00B29FEC /* LeadInCoordinator.swift */,
-				72D645B321106860003F660D /* LeadInKeyActions.swift */,
-				72D645B221106860003F660D /* LeadInKeyCoordinator.swift */,
-				72D645B521106860003F660D /* LeadInKeyReducers.swift */,
-				72D645B421106860003F660D /* LeadInKeyViewController.swift */,
 				72FE5B8721009E4D00B29FEC /* LeadInReducers.swift */,
 				72FE5B8621009E4D00B29FEC /* LeadInViewController.swift */,
 				22917DE1218806890017FEAF /* LeadInEntryCoordinator.swift */,
@@ -3344,6 +3424,7 @@
 				223C58E3214A4B5D00C69F3F /* BLTCard.storyboard in Resources */,
 				22A9323E211A9C7200ACC63C /* NodeView.xib in Resources */,
 				2226A890215CCFB500B97B1E /* finger.html in Resources */,
+				22917E0F218837FB0017FEAF /* CurrencyCheckView.xib in Resources */,
 				72199D6021043CF000575226 /* SetWalletContentView.xib in Resources */,
 				72FE5B9221009EED00B29FEC /* LeadInIntroduceView.xib in Resources */,
 				3B018A632176DF7E008791AF /* NewHomeView.xib in Resources */,
@@ -3362,6 +3443,7 @@
 				3B6D747B214761690076F444 /* InvitationView.xib in Resources */,
 				3BFF4E092109F89F0047F996 /* OperationLeftView.xib in Resources */,
 				3B195063211BE732002C7991 /* BuyRamView.xib in Resources */,
+				22917E132188382E0017FEAF /* CurrencyCheckCell.xib in Resources */,
 				72FE5B3F20FF402600B29FEC /* NormalCellView.xib in Resources */,
 				722D24CC21115B6100A093CA /* ContainerNormalCellView.xib in Resources */,
 				3B3147092108134E00E815BD /* PageView.xib in Resources */,
@@ -3585,6 +3667,7 @@
 				559E64A356046CB84C6A9B9B07E012E7 /* BaseTabbarViewController.swift in Sources */,
 				3BF842E5211BE60100AF9963 /* BuyRamActions.swift in Sources */,
 				221EC1CE21008F1B0059F856 /* GestureLockComfirmCoordinator.swift in Sources */,
+				22917E0E218837FB0017FEAF /* CurrencyCheckView.swift in Sources */,
 				22578774212285CD004C4579 /* NodeSelView.swift in Sources */,
 				22C023B420FCB0EB00284A0A /* ScanShadeView.swift in Sources */,
 				3B3147072108134600E815BD /* PageView.swift in Sources */,
@@ -3614,6 +3697,7 @@
 				733714E4212431E200B2ED90 /* FontLoader.swift in Sources */,
 				22C023A020F6FDB900284A0A /* CreatationCompleteActions.swift in Sources */,
 				72101690210197C10059B37E /* WalletCoordinator.swift in Sources */,
+				22917DFA218831250017FEAF /* LeadInMnemonicActions.swift in Sources */,
 				3BF842E4211BE60100AF9963 /* BuyRamCoordinator.swift in Sources */,
 				3BC12A9E21060927006EEB80 /* AccountListReducers.swift in Sources */,
 				73539CA92179B3B8008395AC /* UIViewController+TopMostViewController.swift in Sources */,
@@ -3653,6 +3737,7 @@
 				3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */,
 				3B08B9282188055400ED43AD /* OverviewCoordinator.swift in Sources */,
 				72FE5B4D210048F500B29FEC /* NormalViewController.swift in Sources */,
+				22917E052188327E0017FEAF /* CurrencyListReducers.swift in Sources */,
 				BB08391AA7F1D732D97B698F412B3651 /* ComfirmView.swift in Sources */,
 				3BF842E6211BE60100AF9963 /* BuyRamViewController.swift in Sources */,
 				3B018A592176DB4C008791AF /* NewHomeViewAdapter.swift in Sources */,
@@ -3792,6 +3877,7 @@
 				227072AF2150EDE90097FE61 /* BLTUtils.m in Sources */,
 				733714E6212431E200B2ED90 /* IonIcons.swift in Sources */,
 				722D24C72111555B00A093CA /* WithNoDataView.swift in Sources */,
+				22917E122188382E0017FEAF /* CurrencyCheckCell.swift in Sources */,
 				22578771212197F3004C4579 /* SelectedVoteViewController.swift in Sources */,
 				739A4DB82150DF2800A1074B /* UILongPressGestureRecognizer+RxGesture.swift in Sources */,
 				73A453BC2177278F0075E290 /* WalletCacheService.swift in Sources */,
@@ -3850,6 +3936,7 @@
 				73F30B4120F6E6FF0016E950 /* UserInfoCoordinator.swift in Sources */,
 				223C58DF214A4A5000C69F3F /* BLTCardEntryReducers.swift in Sources */,
 				3BEC3F562111B4FC003C38FB /* BackupPrivateKeyReducers.swift in Sources */,
+				22917E042188327E0017FEAF /* CurrencyListViewController.swift in Sources */,
 				3BC12AA421060927006EEB80 /* AccountTableViewCell.swift in Sources */,
 				7342E4E8216F1F8A0093E2C2 /* BLTCardPowerOnReducers.swift in Sources */,
 				3BD3666820FDEB94004DE09D /* TransferContentView.swift in Sources */,
@@ -3936,6 +4023,8 @@
 				3BEC3F552111B4FC003C38FB /* BackupPrivateKeyViewController.swift in Sources */,
 				3B6D7466214761690076F444 /* FriendToActivateReducers.swift in Sources */,
 				223C58FF214A51DC00C69F3F /* BLTCardConfirmFingerPrinterViewController.swift in Sources */,
+				22917DFB218831250017FEAF /* LeadInMnemonicViewController.swift in Sources */,
+				22917E032188327E0017FEAF /* CurrencyListActions.swift in Sources */,
 				72FE5B8921009E4D00B29FEC /* LeadInActions.swift in Sources */,
 				2257876F212197F3004C4579 /* SelectedVoteCoordinator.swift in Sources */,
 				3BD3666320FDEB76004DE09D /* TitleTextView.swift in Sources */,
@@ -3987,6 +4076,7 @@
 				3B3935A8214B50A000AB0A30 /* BackupMnemonicWordViewController.swift in Sources */,
 				3B858BC2217077FB00499FAC /* FingerCoordinator.swift in Sources */,
 				73BA4B3B215A244600EF4C72 /* URLNavigationMap.swift in Sources */,
+				22917DF9218831250017FEAF /* LeadInMnemonicCoordinator.swift in Sources */,
 				7342E4F2216F1FF80093E2C2 /* BLTCardIntroViewView.swift in Sources */,
 				3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */,
 				3B08B9312188059100ED43AD /* OverviewView.swift in Sources */,
@@ -4006,6 +4096,8 @@
 				3B3935A7214B50A000AB0A30 /* BackupMnemonicWordActions.swift in Sources */,
 				739A4DB52150DF2800A1074B /* GestureFactory.swift in Sources */,
 				3B6D747A214761690076F444 /* InvitationView.swift in Sources */,
+				22917DFC218831250017FEAF /* LeadInMnemonicReducers.swift in Sources */,
+				22917E022188327E0017FEAF /* CurrencyListCoordinator.swift in Sources */,
 				22A93235211A991D00ACC63C /* VoteReducers.swift in Sources */,
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
 				221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */,
