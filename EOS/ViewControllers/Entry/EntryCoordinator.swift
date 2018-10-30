@@ -10,6 +10,9 @@ import UIKit
 import ReSwift
 import KRProgressHUD
 import NBLCommonModule
+import seed39_ios_golang
+import eos_ios_core_cpp
+import SwiftyUserDefaults
 
 protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()
@@ -35,10 +38,9 @@ protocol EntryStateManagerProtocol {
 
     func checkAgree(_ agree: Bool)
 
-    func createWallet(_ type: CreateAPPId,
+    func createEOSAccount(_ type: CreateAPPId,
                       accountName: String,
-                      password: String,
-                      prompt: String,
+                      currencyID: Int64?,
                       inviteCode: String,
                       validation: WookongValidation?,
                       deviceName: String?,
@@ -52,9 +54,11 @@ protocol EntryStateManagerProtocol {
     
     func verifyAccount(_ name: String, completion: @escaping (Bool) -> Void)
     
-    func createWallet(_ name: String, completion:@escaping (Bool)-> Void)
+    func createBLTWallet(_ name: String, currencyID: Int64?, completion:@escaping (Bool)-> Void)
     
     func createTempWallet(_ pwd: String, prompt: String, type: WalletType)
+
+    func createNewWallet(pwd: String, checkStr: String, deviceName: String?)
 }
 
 class EntryCoordinator: NavCoordinator {
@@ -139,20 +143,6 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
     func pushBackupMnemonicVC() {
         let vc = R.storyboard.mnemonic.backupMnemonicWordViewController()!
         let coor = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
-        
-//        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? EntryViewController {
-//            coor.state.hadSaveCallback.accept {[weak self] in
-//                guard let `self` = self else { return }
-//                self.dismissCurrentNav(entry)
-//            }
-//        }
-//        if let entry = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 3] as? EntryViewController {
-//            coor.state.hadSaveCallback.accept {[weak self] in
-//                guard let `self` = self else { return }
-//                self.dismissCurrentNav(entry)
-//            }
-//        }
-        
         vc.coordinator = coor
         self.rootVC.pushViewController(vc, animated: true)
     }
@@ -208,42 +198,44 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(AgreeAction(isAgree: agree))
     }
 
-    func createWallet(_ type: CreateAPPId,
+    func createEOSAccount(_ type: CreateAPPId,
                       accountName: String,
-                      password: String,
-                      prompt: String,
+                      currencyID: Int64?,
                       inviteCode: String,
                       validation: WookongValidation?,
                       deviceName: String?,
                       completion: @escaping (Bool) -> Void) {
-        NBLNetwork.request(target: .createAccount(type: type,
-                                                  account: accountName,
-                                                  pubKey: WalletManager.shared.currentPubKey,
-                                                  invitationCode: inviteCode,
-                                                  validation: validation),
-                           success: { (data) in
-            WalletManager.shared.currentPubKey = validation?.publicKey ?? ""
-            WalletManager.shared.saveWallket(accountName,
-                                             password: password,
-                                             hint: prompt,
-                                             isImport: false,
-                                             txID: data["txId"].stringValue,
-                                             invitationCode: inviteCode,
-                                             type: type,
-                                             deviceName: deviceName)
-            self.pushBackupPrivateKeyVC()
-            completion(true)
-        }, error: { (code) in
-            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
-                let error = GemmaError.NBLCode(code: gemmaerror)
-                showFailTop(error.localizedDescription)
-            } else {
-                showFailTop(R.string.localizable.error_unknow.key.localized())
+        do {
+            if let id = currencyID {
+                let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
+                if let pubkey = currency?.pubKey {
+                    NBLNetwork.request(target: .createAccount(type: type,
+                                                              account: accountName,
+                                                              pubKey: pubkey,
+                                                              invitationCode: inviteCode,
+                                                              validation: validation),
+                                       success: { (data) in
+                                        Defaults["accountNames\(id)"] = accountName
+                                        self.rootVC.popToRootViewController(animated: true)
+                                        completion(true)
+                    }, error: { (code) in
+                        if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                            let error = GemmaError.NBLCode(code: gemmaerror)
+                            showFailTop(error.localizedDescription)
+                        } else {
+                            showFailTop(R.string.localizable.error_unknow.key.localized())
+                        }
+                        completion(false)
+                    }) { (_) in
+                        completion(false)
+                    }
+                }
             }
-            completion(false)
-        }) { (_) in
-            completion(false)
+        } catch {
+
         }
+
+
     }
 
     func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication) {
@@ -261,7 +253,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(SetCheckSeedSuccessedAction(isCheck: true))
     }
 
-    func createWallet(_ name: String, completion: @escaping (Bool) -> Void) {
+    func createBLTWallet(_ name: String, currencyID: Int64?, completion:@escaping (Bool)-> Void) {
         if let device = BLTWalletIO.shareInstance()?.selectDevice {
             BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, snSig, pub, pubSig, publicKey) in
                 guard let `self` = self else { return }
@@ -271,7 +263,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                 validation.pubKey = pub ?? ""
                 validation.publicKeySig = pubSig ?? ""
                 validation.publicKey = publicKey ?? ""
-                self.createWallet(.bluetooth, accountName: name, password: "", prompt: "", inviteCode: "", validation: validation, deviceName: device.name, completion: { (successed) in
+                self.createEOSAccount(.bluetooth, accountName: name, currencyID: currencyID, inviteCode: "", validation: validation, deviceName: device.name, completion: { (successed) in
                     completion(successed)
                     if successed {
                         self.presentSetFingerPrinterVC()
@@ -302,5 +294,37 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     func createTempWallet(_ pwd: String, prompt: String, type: WalletType) {
         let model = WalletModel(pwd: pwd, prompt:prompt ,type: type)
         self.store.dispatch(WalletModelAction(model: model))
+    }
+
+    func createNewWallet(pwd: String, checkStr: String, deviceName: String?) {
+        do {
+            let wallets = try WalletCacheService.shared.fetchAllWallet()
+            let idNum: Int64 = Int64(wallets!.count) + 1
+            let date = Date.init()
+            let cipher = Seed39KeyEncrypt(pwd, checkStr)
+            let wallet = Wallet(id: nil, name: "EOS-WALLET-\(idNum)", type: .HD, cipher: cipher, deviceName: nil, date: date)
+
+            let seed = Seed39SeedByMnemonic(checkStr)
+            let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true)
+            let curCipher = Seed39KeyEncrypt(pwd, prikey)
+            let pubkey = EOSIO.getPublicKey(prikey)
+            let currency = Currency(id: nil, type: .EOS, cipher: curCipher!, pubKey: pubkey!, wid: idNum, date: date, address: nil)
+
+            let seed2 = Seed39SeedByMnemonic(checkStr)
+            let prikey2 = Seed39DeriveRaw(seed2, CurrencyType.ETH.derivationPath)
+            let curCipher2 = Seed39KeyEncrypt(pwd, prikey2)
+            let address = Seed39GetEthereumAddressFromPrivateKey(prikey2)
+            let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: nil, wid: idNum, date: date, address: address)
+
+            let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
+            Defaults[.currentWalletID] = (id?.string)!
+            if let _ = self.rootVC.viewControllers[0] as? EntryGuideViewController {
+                self.dismissCurrentNav(self.rootVC.viewControllers[1])
+            } else {
+                self.rootVC.popToRootViewController(animated: true)
+            }
+        } catch {
+            showFailTop("数据库存储失败")
+        }
     }
 }

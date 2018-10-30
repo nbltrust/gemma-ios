@@ -9,7 +9,11 @@
 import Foundation
 
 extension NavBarView {
-//    func adapterModelToNavBarView(_ model:<#Type#>) {
-//        
-//    }
+    func adapterModelToNavBarView(_ model:Wallet) {
+        self.nameLabel.text = model.name
+        if model.type != .bluetooth {
+            self.bluetoothImgView.isHidden = true
+            self.bluetoothStateLabel.isHidden = true
+        }
+    }
 }

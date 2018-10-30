@@ -13,6 +13,9 @@ class NavBarView: EOSBaseView {
     
     @IBOutlet weak var walletButton: UIButton!
     @IBOutlet weak var settingButton: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var bluetoothImgView: UIImageView!
+    @IBOutlet weak var bluetoothStateLabel: BaseLabel!
     
     enum Event:String {
         case navBarViewDidClicked

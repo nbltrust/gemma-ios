@@ -157,6 +157,14 @@ extension WalletCacheService {
                                   arguments: [id])
         })
     }
+
+    func fetchCurrencyBy(id: Int64) throws -> Currency? {
+        return try queue?.inDatabase({ database in
+            try Currency.fetchOne(database,
+                                "SELECT * FROM \(Currency.databaseTableName) WHERE id = ? ORDER BY id DESC",
+                arguments: [id])
+        })
+    }
 }
 
 extension WalletCacheService {

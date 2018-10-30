@@ -16,12 +16,12 @@ extension CardView {
         self.currencyImgView.image = model.currencyImg
         self.currencyLabel.text = model.currency
         self.accountLabel.text = model.account
-        self.balanceLabel.text = model.balance
+        self.balanceLabel.text = model.allAssets
         self.unitLabel.text = model.unit
         self.tokenArray = model.tokenArray
         
         
-        let attributedString = NSMutableAttributedString(string: "≈ ¥ \(model.otherBalance)", attributes: [
+        let attributedString = NSMutableAttributedString(string: "≈ ¥ \(model.CNY)", attributes: [
             .font: UIFont(name: "PingFangSC-Regular", size: 18.0)!,
             .foregroundColor: UIColor.darkSlateBlueTwo,
             .kern: 0.0

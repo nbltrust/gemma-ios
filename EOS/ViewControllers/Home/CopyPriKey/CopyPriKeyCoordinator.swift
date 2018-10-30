@@ -13,7 +13,6 @@ import eos_ios_core_cpp
 
 protocol CopyPriKeyCoordinatorProtocol {
     func showAlertMessage()
-    func finishCopy()
     func pushVerifyPriKey()
 }
 
@@ -44,15 +43,6 @@ extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
         context.imageName = R.image.icPopNoScreenshots.name
         context.needCancel = false
         appCoodinator.showGemmaAlert(context)
-    }
-
-    func finishCopy() {
-        if let pubKey = EOSIO.getPublicKey(WalletManager.shared.priKey) {
-            WalletManager.shared.backupSuccess(pubKey)
-        }
-        if let lastVC = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? BackupPrivateKeyViewController {
-            lastVC.coordinator?.state.callback.hadSaveCallback.value?()
-        }
     }
 
     func pushVerifyPriKey() {

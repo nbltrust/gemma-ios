@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewHomeView">
             <connections>
+                <outlet property="navBarView" destination="pCO-4z-P8W" id="Jxf-Fv-13o"/>
                 <outlet property="tableView" destination="YuN-sa-CTh" id="Xsc-Pe-Xa4"/>
             </connections>
         </placeholder>
@@ -41,7 +42,7 @@
                 <constraint firstItem="YuN-sa-CTh" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="Bfa-Y5-mND"/>
                 <constraint firstItem="YuN-sa-CTh" firstAttribute="top" secondItem="pCO-4z-P8W" secondAttribute="bottom" constant="30" id="GTx-PX-LPa"/>
                 <constraint firstItem="pCO-4z-P8W" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="IR6-qv-4JE"/>
-                <constraint firstItem="Lhl-p8-24W" firstAttribute="bottom" secondItem="YuN-sa-CTh" secondAttribute="bottom" id="WRh-vd-mv8"/>
+                <constraint firstAttribute="bottom" secondItem="YuN-sa-CTh" secondAttribute="bottom" id="WRh-vd-mv8"/>
                 <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="YuN-sa-CTh" secondAttribute="trailing" id="jPr-xl-Qc4"/>
                 <constraint firstItem="pCO-4z-P8W" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" id="toY-B8-Jmo"/>
                 <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="pCO-4z-P8W" secondAttribute="trailing" id="vj0-xt-eHC"/>
