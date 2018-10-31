@@ -38,7 +38,7 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTm-oS-PL1">
                     <rect key="frame" x="60" y="125.5" width="295" height="0.5"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="separatorColor" red="0.867" green="0.867" blue="0.867" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="xpi-p0-jWG"/>
                     </constraints>
@@ -80,4 +80,6 @@
             <point key="canvasLocation" x="-194.40000000000001" y="-291.45427286356824"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

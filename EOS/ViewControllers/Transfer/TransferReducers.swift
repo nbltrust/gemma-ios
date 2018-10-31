@@ -15,21 +15,14 @@ func gTransferReducer(action: Action, state: TransferState?) -> TransferState {
 
     switch action {
     case let action as BalanceFetchedAction:
-        if action.balance != nil {
-            if let balance = action.balance?.arrayValue.first?.string {
-                state.balance.accept(balance)
+        if action.currencyID != nil {
+            if let json = CurrencyManager.shared.getBalanceJsonWith(action.currencyID) {
+                if let balance = json.arrayValue.first?.string {
+                    state.balance.accept(balance)
+                } else {
+                    state.balance.accept("")
+                }
             }
-        } else {
-            state.balance.accept("")
-        }
-    case let action as AccountFetchedFromLocalAction:
-        if let name = action.model?.accountName {
-            if let balance = Defaults[name + NetworkConfiguration.BlanceDefaultSymbol] as? String {
-                state.balanceLocal.accept(balance)
-
-            }
-        } else {
-            state.balanceLocal.accept("")
         }
     case let action as MoneyAction:
         if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = action.money.toDouble() {

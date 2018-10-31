@@ -16,6 +16,7 @@ class OverviewView: EOSBaseView {
 
     enum Event:String {
         case overviewViewDidClicked
+        case cellDidClicked
     }
 
     var cardData: Any? {

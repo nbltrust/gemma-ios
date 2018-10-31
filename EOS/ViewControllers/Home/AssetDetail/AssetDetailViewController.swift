@@ -1,8 +1,8 @@
 //
-//  NewHomeViewController.swift
+//  AssetDetailViewController.swift
 //  EOS
 //
-//  Created zhusongyu on 2018/10/17.
+//  Created zhusongyu on 2018/10/30.
 //  Copyright © 2018 com.nbltrustdev. All rights reserved.
 //
 
@@ -10,52 +10,34 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
-import SwiftyUserDefaults
 
-class NewHomeViewController: BaseViewController {
+class AssetDetailViewController: BaseViewController {
 
-	var coordinator: (NewHomeCoordinatorProtocol & NewHomeStateManagerProtocol)?
-    private(set) var context: NewHomeContext?
+	var coordinator: (AssetDetailCoordinatorProtocol & AssetDetailStateManagerProtocol)?
+    private(set) var context: AssetDetailContext?
     
-    @IBOutlet weak var contentView: NewHomeView!
-
-    var wallet: Any?
-    var dataArray: [NewHomeViewModel] = []
-
 	override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupData()
+        setupUI()
         setupEvent()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupUI()
-        setupData()
     }
     
     override func refreshViewController() {
-
+        
     }
     
     func setupUI() {
-        hiddenNavBar()
+        
     }
 
     func setupData() {
-        let idStr = Defaults[.currentWalletID]
-        if idStr != "" {
-            do {
-                wallet = try WalletCacheService.shared.fetchWalletBy(id: Int64(idStr)!)
-                if let newWallet = wallet as? Wallet {
-                    self.contentView.navBarView.adapterModelToNavBarView(newWallet)
-                    self.coordinator?.fetchWalletInfo(newWallet)
-                }
-            } catch {
-
-            }
-
-        }
+        
     }
     
     func setupEvent() {
@@ -63,46 +45,10 @@ class NewHomeViewController: BaseViewController {
     }
     
     override func configureObserveState() {
-        self.coordinator?.state.info.asObservable().subscribe(onNext: {[weak self] (model) in
-            guard let `self` = self else { return }
-            if let newModel = model as? NewHomeViewModel, newModel.id != 0 {
-                for index in 0..<self.dataArray.count {
-                    let data = self.dataArray[index]
-                    if data.id != newModel.id {
-                        self.dataArray.append(newModel)
-                    } else {
-                        self.dataArray.remove(at: index)
-                        self.dataArray.insert(newModel, at: index)
-                    }
-                }
-                if self.dataArray.count == 0 {
-                    self.dataArray.append(newModel)
-                }
-                self.contentView.adapterModelToNewHomeView(self.dataArray)
-            }
-
-//            if let newWallet = self.wallet as? Wallet {
-//                do {
-//                    let curArray = try WalletCacheService.shared.fetchAllCurrencysBy(newWallet)
-//                    for currency in curArray! {
-//                        if let modelStr = Defaults["currency\(currency.id!)"] as? String {
-//                            if let model = NewHomeViewModel.deserialize(from: modelStr) {
-//                                dataArray.append(model)
-//                            }
-//                        }
-//                    }
-//                    self.contentView.adapterModelToNewHomeView(dataArray)
-//                } catch {
-//
-//                }
-//            }
-
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
             
-            if let context = context as? NewHomeContext {
+            if let context = context as? AssetDetailContext {
                 self.context = context
             }
             
@@ -136,7 +82,7 @@ class NewHomeViewController: BaseViewController {
 ////                self.view.showNoData(<#title#>, icon: <#imageName#>)
 //                break
 //                
-//            case .normal(let reason):
+//            case .normal(_):
 ////                self.view.hiddenNoData()
 ////
 ////                if reason == PageLoadReason.manualLoadMore {
@@ -147,7 +93,7 @@ class NewHomeViewController: BaseViewController {
 ////                }
 //                break
 //                
-//            case .error(let error, let reason):
+//            case .error(_, _):
 ////                self.showToastBox(false, message: error.localizedDescription)
 //                
 ////                if reason == PageLoadReason.manualLoadMore {
@@ -164,7 +110,7 @@ class NewHomeViewController: BaseViewController {
 
 //MARK: - TableViewDelegate
 
-//extension NewHomeViewController: UITableViewDataSource, UITableViewDelegate {
+//extension AssetDetailViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 10
 //    }
@@ -179,21 +125,17 @@ class NewHomeViewController: BaseViewController {
 
 //MARK: - View Event
 
-extension NewHomeViewController {
-    @objc func setDidClicked(_ data:[String: Any]) {
-        self.coordinator?.pushToSetVC()
+extension AssetDetailViewController {
+    @objc func transferBtnDidClicked(_ data:[String: Any]) {
+        self.coordinator?.pushTransferVC()
     }
-    @objc func walletDidClicked(_ data:[String: Any]) {
-        self.coordinator?.pushWallet()
+    @objc func receiptBtnDidClicked(_ data:[String: Any]) {
     }
-    @objc func cellDidClicked(_ data: [String: Any]) {
-        if let model = data["data"] as? NewHomeViewModel {
-            if let _ = CurrencyManager.shared.getAccountNameWith(model.id) {
-                self.coordinator?.pushToOverviewVCWithCurrencyID(id: model.id)
-            } else {
-                self.coordinator?.pushToEntryVCWithCurrencyID(id: model.id)
-            }
-        }
+    @objc func nodeVodeBtnDidClicked(_ data:[String: Any]) {
+        self.coordinator?.pushVoteVC()
+    }
+    @objc func resourceManagerBtnDidClicked(_ data:[String: Any]) {
+        self.coordinator?.pushResourceMortgageVC()
     }
 }
 

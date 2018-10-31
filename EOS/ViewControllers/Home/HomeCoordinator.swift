@@ -166,34 +166,23 @@ extension HomeCoordinator: HomeStateManagerProtocol {
 
     func getAccountInfo(_ account: String) {
         EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
-            self.store.dispatch(BalanceFetchedAction(balance: json, currencyID: nil))
+            self.store.dispatch(BalanceFetchedAction(currencyID: nil))
         }, error: { (_) in
-            self.store.dispatch(BalanceFetchedAction(balance: nil, currencyID: nil))
+            self.store.dispatch(BalanceFetchedAction(currencyID: nil))
         }) { (_) in
-            self.store.dispatch(BalanceFetchedAction(balance: nil, currencyID: nil))
+            self.store.dispatch(BalanceFetchedAction(currencyID: nil))
         }
 
         EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
-            if let accountObj = Account.deserialize(from: json.dictionaryObject) {
-                self.store.dispatch(AccountFetchedAction(info: accountObj, currencyID: nil))
-            }
-
+            self.store.dispatch(AccountFetchedAction(currencyID: nil))
         }, error: { (_) in
-            self.store.dispatch(AccountFetchedAction(info: nil, currencyID: nil))
+            self.store.dispatch(AccountFetchedAction(currencyID: nil))
         }) { (_) in
-            self.store.dispatch(AccountFetchedAction(info: nil, currencyID: nil))
+            self.store.dispatch(AccountFetchedAction(currencyID: nil))
         }
 
         SimpleHTTPService.requestETHPrice().done { (json) in
-
-            if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIODefaultSymbol }).first {
-                if coinType() == .CNY {
-                    self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: nil, currencyID: nil))
-                } else if coinType() == .USD, let usd = json.filter({ $0["name"].stringValue == NetworkConfiguration.USDTDefaultSymbol }).first {
-                    self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: usd, currencyID: nil))
-                }
-            }
-
+            self.store.dispatch(RMBPriceFetchedAction(currencyID: nil))
         }.cauterize()
     }
 

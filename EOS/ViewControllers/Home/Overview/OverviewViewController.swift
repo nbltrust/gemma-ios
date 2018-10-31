@@ -142,11 +142,9 @@ class OverviewViewController: BaseViewController {
 
 //MARK: - View Event
 
-//extension OverviewViewController {
-//    @objc func <#view#>DidClicked(_ data:[String: Any]) {
-//        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
-//
-//        }
-//    }
-//}
+extension OverviewViewController {
+    @objc func assetsViewDidClicked(_ data:[String: Any]) {
+        self.coordinator?.pushToDetailVC()
+    }
+}
 

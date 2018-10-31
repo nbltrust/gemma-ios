@@ -23,7 +23,7 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="SMa-3m-P7L">
                     <rect key="frame" x="0.0" y="0.0" width="442" height="764"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" name="whiteColor" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="WDz-CI-oaa" customClass="OverHeadView" customModule="EOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="442" height="292"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -34,7 +34,6 @@
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="SMa-3m-P7L" firstAttribute="top" secondItem="btM-Yo-6kI" secondAttribute="top" id="XZc-6d-OQx"/>
                 <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="SMa-3m-P7L" secondAttribute="trailing" id="Xwf-z4-tqS"/>
@@ -46,4 +45,6 @@
             <point key="canvasLocation" x="-172.80000000000001" y="-121.4392803598201"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import ReSwift
 import XLPagerTabStrip
+import SwiftyUserDefaults
 
 class ActivateViewController: ButtonBarPagerTabStripViewController {
 
@@ -30,6 +31,11 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+
+    override func leftAction(_ sender: UIButton) {
+        CurrencyManager.shared.saveAccountNameWith(currencyID, name: nil)
+        self.navigationController?.popViewController()
     }
 
     func setupSetting() {
