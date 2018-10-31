@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import XLPagerTabStrip
 
-class LeadInKeyViewController: BaseViewController {
+class LeadInKeyViewController: BaseViewController,IndicatorInfoProvider {
 
     @IBOutlet weak var leadInKeyView: LeadInKeyView!
     var coordinator: (LeadInKeyCoordinatorProtocol & LeadInKeyStateManagerProtocol)?
@@ -58,5 +59,11 @@ extension LeadInKeyViewController {
                 self.coordinator?.openSetWallet()
             }
         }
+    }
+}
+
+extension LeadInKeyViewController {
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(stringLiteral: R.string.localizable.priKey_title.key.localized())
     }
 }

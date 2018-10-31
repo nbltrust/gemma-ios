@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import GrowingTextView
+import GrowingTextView.Swift
 
 class LeadInKeyView: UIView {
     enum EventName: String {
         case beginLeadInAction
     }
-    @IBOutlet weak var textView: UITextView!
+    
     @IBOutlet weak var titleLabel: UILabel!
+
+    @IBOutlet weak var textView: GrowingTextView!
+    
     @IBOutlet weak var creatButton: Button!
+
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
@@ -80,9 +86,9 @@ class LeadInKeyView: UIView {
     }
 }
 
-extension LeadInKeyView: UITextViewDelegate {
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
+extension LeadInKeyView: GrowingTextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.trimmed == "" {
             self.creatButton.isEnabel.accept(false)
         } else {
             self.creatButton.isEnabel.accept(true)

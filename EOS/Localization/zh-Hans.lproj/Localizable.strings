@@ -196,6 +196,9 @@
 "walletname_not_empty" = "钱包名不能为空";
 "delegate_not_all0" = "总抵押数不能为0";
 "update_pwd_btn_title" = "确认修改";
+"mnemonic_title" = "助记词";
+"mnemonic_guide" = "复制粘贴助记词至输入框，或通过扫描助记词生成的二维码输入";
+"mnemonic_placeholder" = "支持BIP39助记词，用空格分开";
 "verify_mnemonic_title" = "验证助记词";
 "backup_mnemonic_title" = "备份助记词";
 "verify_mnemonic_tips" = "请按顺序点击已抄下的助记词以验证抄写是否正确";

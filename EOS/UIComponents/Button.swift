@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-enum ButtonStyle: Int {
+public enum ButtonStyle: Int {
     case full = 1
+
     case border
 }
 
@@ -30,6 +31,12 @@ class Button: UIView {
     @IBInspectable var style: Int = ButtonStyle.full.rawValue {
         didSet {
             setupUI()
+        }
+    }
+
+    @IBInspectable var image: UIImage? {
+        didSet {
+            button.setImage(image, for: .normal)
         }
     }
 

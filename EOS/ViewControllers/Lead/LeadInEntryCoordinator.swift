@@ -11,6 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol LeadInEntryCoordinatorProtocol {
+    func pushToScanVC()
 }
 
 protocol LeadInEntryStateManagerProtocol {
@@ -25,17 +26,9 @@ class LeadInEntryCoordinator: NavCoordinator {
         state: nil,
         middleware:[trackingMiddleware]
     )
-    
+
     var state: LeadInEntryState {
         return store.state
-    }
-    
-    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
-        let vc = R.storyboard.leadIn.leadInEntryViewController()!
-        let coordinator = LeadInEntryCoordinator(rootVC: root)
-        vc.coordinator = coordinator
-        coordinator.store.dispatch(RouteContextAction(context: context))
-        return vc
     }
 
     override func register() {
@@ -45,7 +38,18 @@ class LeadInEntryCoordinator: NavCoordinator {
 }
 
 extension LeadInEntryCoordinator: LeadInEntryCoordinatorProtocol {
-    
+    func pushToScanVC() {
+        let context = ScanContext()
+        context.scanResult.accept { (result) in
+            if let leadInVC = self.rootVC.topViewController as? LeadInKeyViewController {
+                leadInVC.leadInKeyView.textView.text = result
+            }
+        }
+
+        presentVC(ScanCoordinator.self, context: context, navSetup: { (nav) in
+            nav.navStyle = .clear
+        }, presentSetup: nil)
+    }
 }
 
 extension LeadInEntryCoordinator: LeadInEntryStateManagerProtocol {

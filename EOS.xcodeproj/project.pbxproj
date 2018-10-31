@@ -42,6 +42,7 @@
 		2226A72B215A166F00B97B1E /* SVGAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226A72A215A166F00B97B1E /* SVGAnimationView.swift */; };
 		2226A7FB215B954D00B97B1E /* SVGAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2226A7FA215B954D00B97B1E /* SVGAnimationView.xib */; };
 		2226A890215CCFB500B97B1E /* finger.html in Resources */ = {isa = PBXBuildFile; fileRef = 2226A88F215CCFB400B97B1E /* finger.html */; };
+		222A0AE92189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A0AE82189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift */; };
 		223C58C92148BD9200C69F3F /* NetworkSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58C82148BD9200C69F3F /* NetworkSettingManager.swift */; };
 		223C58DC214A4A5000C69F3F /* BLTCardEntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58D8214A4A5000C69F3F /* BLTCardEntryCoordinator.swift */; };
 		223C58DD214A4A5000C69F3F /* BLTCardEntryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58D9214A4A5000C69F3F /* BLTCardEntryActions.swift */; };
@@ -760,6 +761,7 @@
 		2226A72A215A166F00B97B1E /* SVGAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGAnimationView.swift; sourceTree = "<group>"; };
 		2226A7FA215B954D00B97B1E /* SVGAnimationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SVGAnimationView.xib; sourceTree = "<group>"; };
 		2226A88F215CCFB400B97B1E /* finger.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = finger.html; sourceTree = "<group>"; };
+		222A0AE82189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ButtonBarPagerTabStripViewController+Extensions.swift"; sourceTree = "<group>"; };
 		223C58C82148BD9200C69F3F /* NetworkSettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSettingManager.swift; sourceTree = "<group>"; };
 		223C58D8214A4A5000C69F3F /* BLTCardEntryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardEntryCoordinator.swift; sourceTree = "<group>"; };
 		223C58D9214A4A5000C69F3F /* BLTCardEntryActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardEntryActions.swift; sourceTree = "<group>"; };
@@ -1441,6 +1443,7 @@
 		097C944D4A52012400755C0C377D4E67 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				222A0AE02189BD2100C5AB6E /* PagerExtensions */,
 				227F83AA2175B98F005FB567 /* Array+Extensions.swift */,
 				221EC1D62100A8D50059F856 /* CGFloat+Extensions.swift */,
 				F380B8A6234BE07DE4B3CDE521A28F60 /* Colletion+Extensions.swift */,
@@ -1558,6 +1561,14 @@
 				2226A88F215CCFB400B97B1E /* finger.html */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		222A0AE02189BD2100C5AB6E /* PagerExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				222A0AE82189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift */,
+			);
+			path = PagerExtensions;
 			sourceTree = "<group>";
 		};
 		223C58D2214A48E100C69F3F /* BLTCard */ = {
@@ -1761,10 +1772,6 @@
 		22917DEB2188303D0017FEAF /* LeadInEntry */ = {
 			isa = PBXGroup;
 			children = (
-				22917DE1218806890017FEAF /* LeadInEntryCoordinator.swift */,
-				22917DE2218806890017FEAF /* LeadInEntryActions.swift */,
-				22917DE3218806890017FEAF /* LeadInEntryViewController.swift */,
-				22917DE4218806890017FEAF /* LeadInEntryReducers.swift */,
 			);
 			path = LeadInEntry;
 			sourceTree = "<group>";
@@ -3703,6 +3710,7 @@
 				73539CA92179B3B8008395AC /* UIViewController+TopMostViewController.swift in Sources */,
 				721016A1210197C10059B37E /* WalletManagerCoordinator.swift in Sources */,
 				72D645B921106860003F660D /* LeadInKeyReducers.swift in Sources */,
+				222A0AE92189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift in Sources */,
 				3B6D7475214761690076F444 /* ActivateActions.swift in Sources */,
 				72FE5B8A21009E4D00B29FEC /* LeadInViewController.swift in Sources */,
 				8ADE05B3B02C07CFCE0F069867999417 /* BaseViewController.swift in Sources */,

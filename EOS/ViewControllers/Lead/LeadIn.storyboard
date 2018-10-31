@@ -38,7 +38,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="NGs-Gh-5o2" firstAttribute="bottom" secondItem="FZY-g4-bK8" secondAttribute="bottom" id="1y7-87-Oct"/>
                             <constraint firstItem="FZY-g4-bK8" firstAttribute="leading" secondItem="NGs-Gh-5o2" secondAttribute="leading" id="oOS-re-Uep"/>
@@ -62,7 +61,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFa-Ml-ZB7" customClass="LeadInKeyView" customModule="EOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -89,9 +87,24 @@
                     <view key="view" contentMode="scaleToFill" id="f2x-2f-YdT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTX-Sm-k4J" customClass="LeadInKeyView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BTX-Sm-k4J" firstAttribute="trailing" secondItem="X4r-O9-bhQ" secondAttribute="trailing" id="9tc-eU-BUE"/>
+                            <constraint firstItem="X4r-O9-bhQ" firstAttribute="bottom" secondItem="BTX-Sm-k4J" secondAttribute="bottom" id="kaN-gw-L0d"/>
+                            <constraint firstItem="BTX-Sm-k4J" firstAttribute="leading" secondItem="X4r-O9-bhQ" secondAttribute="leading" id="nMO-9l-fMD"/>
+                            <constraint firstItem="BTX-Sm-k4J" firstAttribute="top" secondItem="f2x-2f-YdT" secondAttribute="top" id="z86-XX-dn9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="X4r-O9-bhQ"/>
                     </view>
+                    <connections>
+                        <outlet property="mnemonicView" destination="BTX-Sm-k4J" id="SDc-tf-ptL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCI-Dd-RyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,7 +121,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n9X-t8-1eV">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" name="steel" red="0.557" green="0.557" blue="0.576" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.55700000000000005" green="0.55700000000000005" blue="0.57599999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                             </tableView>
                         </subviews>
@@ -312,6 +325,4 @@
             <point key="canvasLocation" x="1558" y="98"/>
         </scene>
     </scenes>
-    <resources>
-    </resources>
 </document>

@@ -52,11 +52,11 @@ extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
     }
 
     func openSetWallet() {
-        if let vc = R.storyboard.leadIn.setWalletViewController() {
+        if let setVC = R.storyboard.leadIn.setWalletViewController() {
             let coordinator = SetWalletCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            vc.settingType = .leadIn
-            self.rootVC.pushViewController(vc, animated: true)
+            setVC.coordinator = coordinator
+            setVC.settingType = .leadIn
+            self.rootVC.pushViewController(setVC, animated: true)
         }
     }
 }
