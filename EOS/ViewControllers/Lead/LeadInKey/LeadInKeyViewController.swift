@@ -32,16 +32,19 @@ class LeadInKeyViewController: BaseViewController,IndicatorInfoProvider {
     }
 
     func setupUI() {
-        self.title = R.string.localizable.lead_in.key.localized()
-        self.configRightNavButton(R.image.scan_qr_code())
         self.leadInKeyView.title = R.string.localizable.lead_in_guide.key.localized()
-        self.leadInKeyView.buttonTitle = R.string.localizable.lead_in_begin()
+
+        let placeholder = R.string.localizable.lead_in_placeholder()
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.placeholderColor]
+        self.leadInKeyView.textView.attributedPlaceholder = NSMutableAttributedString.init(string: placeholder, attributes: attributes)
     }
 
-    override func rightAction(_ sender: UIButton) {
-        self.coordinator?.openScan()
+    @IBAction func currency(_ sender: Any) {
     }
-
+    
+    @IBAction func wallet(_ sender: Any) {
+    }
+    
     override func configureObserveState() {
 
     }

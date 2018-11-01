@@ -44,7 +44,11 @@ class LeadInMnemonicViewController: BaseViewController,IndicatorInfoProvider {
     }
 
     func setupEvent() {
+        self.mnemonicView.title = R.string.localizable.mnemonic_guide.key.localized()
 
+        let placeholder = R.string.localizable.mnemonic_placeholder()
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.placeholderColor]
+        self.mnemonicView.textView.attributedPlaceholder = NSMutableAttributedString.init(string: placeholder, attributes: attributes)
     }
 }
 

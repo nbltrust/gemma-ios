@@ -26,6 +26,11 @@ class LeadInKeyView: UIView {
     }
 
     func setup() {
+        self.textView.minHeight = 100
+        self.textView.maxHeight = 100
+        self.textView.font = UIFont.systemFont(ofSize: 16)
+        self.textView.textColor = UIColor.baseColor
+        self.textView.textContainerInset = UIEdgeInsets(top: 16, left: 15, bottom: 16, right: 15)
         self.creatButton.isEnabel.accept(false)
 
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
