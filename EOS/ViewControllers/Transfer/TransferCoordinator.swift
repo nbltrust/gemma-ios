@@ -129,7 +129,9 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     func fetchUserAccount(_ account: String) {
 
         EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
-            self.store.dispatch(BalanceFetchedAction(currencyID: nil))
+            if let id = CurrencyManager.shared.getCurrentCurrencyID() {
+                self.store.dispatch(BalanceFetchedAction(currencyID: id))
+            }
         }, error: { (_) in
 
         }) { (_) in

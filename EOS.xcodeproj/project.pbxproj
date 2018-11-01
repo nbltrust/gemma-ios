@@ -210,6 +210,13 @@
 		3B1EC88C217040B80044DEB5 /* WalletDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1EC889217040B80044DEB5 /* WalletDetailView.swift */; };
 		3B1EC88D217040B80044DEB5 /* WalletDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1EC88A217040B80044DEB5 /* WalletDetailView.xib */; };
 		3B2653052189667B0091FE93 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2653042189667B0091FE93 /* CurrencyManager.swift */; };
+		3B26533F218AA91D0091FE93 /* ResourceDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26533B218AA91D0091FE93 /* ResourceDetailCoordinator.swift */; };
+		3B265340218AA91D0091FE93 /* ResourceDetailActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26533C218AA91D0091FE93 /* ResourceDetailActions.swift */; };
+		3B265341218AA91D0091FE93 /* ResourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26533D218AA91D0091FE93 /* ResourceDetailViewController.swift */; };
+		3B265342218AA91D0091FE93 /* ResourceDetailReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26533E218AA91D0091FE93 /* ResourceDetailReducers.swift */; };
+		3B265346218AAA220091FE93 /* DelegateViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B265343218AAA220091FE93 /* DelegateViewAdapter.swift */; };
+		3B265347218AAA220091FE93 /* DelegateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B265344218AAA220091FE93 /* DelegateView.swift */; };
+		3B265348218AAA220091FE93 /* DelegateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B265345218AAA220091FE93 /* DelegateView.xib */; };
 		3B3146F72106D56500E815BD /* ResourceMortgageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3146F32106D56500E815BD /* ResourceMortgageCoordinator.swift */; };
 		3B3146F82106D56500E815BD /* ResourceMortgageActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3146F42106D56500E815BD /* ResourceMortgageActions.swift */; };
 		3B3146F92106D56500E815BD /* ResourceMortgageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3146F52106D56500E815BD /* ResourceMortgageViewController.swift */; };
@@ -951,6 +958,13 @@
 		3B1EC889217040B80044DEB5 /* WalletDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDetailView.swift; sourceTree = "<group>"; };
 		3B1EC88A217040B80044DEB5 /* WalletDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletDetailView.xib; sourceTree = "<group>"; };
 		3B2653042189667B0091FE93 /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
+		3B26533B218AA91D0091FE93 /* ResourceDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDetailCoordinator.swift; sourceTree = "<group>"; };
+		3B26533C218AA91D0091FE93 /* ResourceDetailActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDetailActions.swift; sourceTree = "<group>"; };
+		3B26533D218AA91D0091FE93 /* ResourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDetailViewController.swift; sourceTree = "<group>"; };
+		3B26533E218AA91D0091FE93 /* ResourceDetailReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDetailReducers.swift; sourceTree = "<group>"; };
+		3B265343218AAA220091FE93 /* DelegateViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateViewAdapter.swift; sourceTree = "<group>"; };
+		3B265344218AAA220091FE93 /* DelegateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateView.swift; sourceTree = "<group>"; };
+		3B265345218AAA220091FE93 /* DelegateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DelegateView.xib; sourceTree = "<group>"; };
 		3B3146F32106D56500E815BD /* ResourceMortgageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceMortgageCoordinator.swift; sourceTree = "<group>"; };
 		3B3146F42106D56500E815BD /* ResourceMortgageActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceMortgageActions.swift; sourceTree = "<group>"; };
 		3B3146F52106D56500E815BD /* ResourceMortgageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceMortgageViewController.swift; sourceTree = "<group>"; };
@@ -2059,17 +2073,39 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		3B3146F22106D50F00E815BD /* ResourceMortgage */ = {
+		3B26534A218AB3800091FE93 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				3B3146FD2106D5A000E815BD /* View */,
-				3B3146FB2106D57D00E815BD /* ResourceMortgage.storyboard */,
 				3B3146F42106D56500E815BD /* ResourceMortgageActions.swift */,
 				3B3146F32106D56500E815BD /* ResourceMortgageCoordinator.swift */,
 				3B3146F62106D56500E815BD /* ResourceMortgageReducers.swift */,
 				3B3146F52106D56500E815BD /* ResourceMortgageViewController.swift */,
+				3B26534B218AB39F0091FE93 /* view */,
 			);
-			path = ResourceMortgage;
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		3B26534B218AB39F0091FE93 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				3B265343218AAA220091FE93 /* DelegateViewAdapter.swift */,
+				3B265344218AAA220091FE93 /* DelegateView.swift */,
+				3B265345218AAA220091FE93 /* DelegateView.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		3B3146F22106D50F00E815BD /* ResourceDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3B3146FD2106D5A000E815BD /* View */,
+				3B3146FB2106D57D00E815BD /* ResourceMortgage.storyboard */,
+				3B26533B218AA91D0091FE93 /* ResourceDetailCoordinator.swift */,
+				3B26533C218AA91D0091FE93 /* ResourceDetailActions.swift */,
+				3B26533D218AA91D0091FE93 /* ResourceDetailViewController.swift */,
+				3B26533E218AA91D0091FE93 /* ResourceDetailReducers.swift */,
+			);
+			path = ResourceDetail;
 			sourceTree = "<group>";
 		};
 		3B3146FD2106D5A000E815BD /* View */ = {
@@ -2503,6 +2539,7 @@
 		5F4F2C2A9D93854A7DACC8FE947B5D8C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3B26534A218AB3800091FE93 /* Delegate */,
 				3BF9DCAC2188702500E74C62 /* AssetDetail */,
 				3B08B91C218804D000ED43AD /* Overview */,
 				3BC12A8F21060926006EEB80 /* AccountList */,
@@ -2512,7 +2549,7 @@
 				3B08560A2175E96B0025B178 /* NewHome */,
 				3B4C90E620F48F75004F4C52 /* Payments */,
 				3B4C90F620F4D66E004F4C52 /* PaymentsDetail */,
-				3B3146F22106D50F00E815BD /* ResourceMortgage */,
+				3B3146F22106D50F00E815BD /* ResourceDetail */,
 				3B726C0F211334EA001E4850 /* ScreenShotAlert */,
 				F95EB642EA8767ECCD304F254948EF56 /* View */,
 				22A9322D211A97EA00ACC63C /* Vote */,
@@ -3538,6 +3575,7 @@
 				3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */,
 				3B3147052106D95900E815BD /* ResourceMortgageView.xib in Resources */,
 				3B08B93A2188376E00ED43AD /* AssetsView.xib in Resources */,
+				3B265348218AAA220091FE93 /* DelegateView.xib in Resources */,
 				2253C5402111C9500043AAF7 /* TitleSubTitleView.xib in Resources */,
 				3B3147012106D63A00E815BD /* GeneralCellView.xib in Resources */,
 				733714F2212431E200B2ED90 /* map-icons.ttf in Resources */,
@@ -3919,6 +3957,7 @@
 				A35151B3922F34802807B89AA82B9D4E /* HomeViewController.swift in Sources */,
 				72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */,
 				632FADFC1004A95370F910B28F2B1B3B /* Localzation+Extensions.swift in Sources */,
+				3B265347218AAA220091FE93 /* DelegateView.swift in Sources */,
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
 				72FE5B8821009E4D00B29FEC /* LeadInCoordinator.swift in Sources */,
 				72FE5B8B21009E4D00B29FEC /* LeadInReducers.swift in Sources */,
@@ -4020,6 +4059,7 @@
 				3B85EEA3215A12E600795083 /* VerifyPriKeyCoordinator.swift in Sources */,
 				3B3935B1214B5AF600AB0A30 /* MnemonicContentViewController.swift in Sources */,
 				737F8DD42146647E00DD522A /* DBProtocol.swift in Sources */,
+				3B26533F218AA91D0091FE93 /* ResourceDetailCoordinator.swift in Sources */,
 				F191552787B29EFF095811C54D9A4786 /* RichStyles.swift in Sources */,
 				73B5A69820F5DFF400756391 /* CGContextExtension.swift in Sources */,
 				7224714A20F76B4600536BF4 /* DetailView.swift in Sources */,
@@ -4089,6 +4129,7 @@
 				221EC1BE210076C30059F856 /* GestureItemLayer.swift in Sources */,
 				2226A722215A0AF800B97B1E /* BLTCardSetFingerPrinterCoordinator.swift in Sources */,
 				3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */,
+				3B265340218AA91D0091FE93 /* ResourceDetailActions.swift in Sources */,
 				3BEC3F552111B4FC003C38FB /* BackupPrivateKeyViewController.swift in Sources */,
 				3B6D7466214761690076F444 /* FriendToActivateReducers.swift in Sources */,
 				223C58FF214A51DC00C69F3F /* BLTCardConfirmFingerPrinterViewController.swift in Sources */,
@@ -4112,6 +4153,7 @@
 				22A93233211A991D00ACC63C /* VoteActions.swift in Sources */,
 				6F3BB5C8972D01A3B05201EC928A1021 /* UIResponder+Extensions.swift in Sources */,
 				3BF9DCB22188705700E74C62 /* AssetDetailActions.swift in Sources */,
+				3B265346218AAA220091FE93 /* DelegateViewAdapter.swift in Sources */,
 				221EC1C821008EF50059F856 /* GestureLockSetViewController.swift in Sources */,
 				72FE5B632100491300B29FEC /* ServersCoordinator.swift in Sources */,
 				22E40AAB211453D600F1648C /* FingerPrinterConfirmCoordinator.swift in Sources */,
@@ -4123,6 +4165,7 @@
 				4B99E2557500F5FC08BF1D2C32999A25 /* UserDefaultsService.swift in Sources */,
 				3BFF4E062109F8390047F996 /* OperationLeftView.swift in Sources */,
 				739A4DB72150DF2800A1074B /* UIGestureRecognizer+RxGesture.swift in Sources */,
+				3B265342218AA91D0091FE93 /* ResourceDetailReducers.swift in Sources */,
 				3B726C1421133502001E4850 /* ScreenShotAlertCoordinator.swift in Sources */,
 				7342E4ED216F1F8A0093E2C2 /* BLTCardConnectActions.swift in Sources */,
 				3B858BFC2170A19400499FAC /* DeleteFingerCoordinator.swift in Sources */,
@@ -4170,6 +4213,7 @@
 				3B6D747A214761690076F444 /* InvitationView.swift in Sources */,
 				22917DFC218831250017FEAF /* LeadInMnemonicReducers.swift in Sources */,
 				22917E022188327E0017FEAF /* CurrencyListCoordinator.swift in Sources */,
+				3B265341218AA91D0091FE93 /* ResourceDetailViewController.swift in Sources */,
 				22A93235211A991D00ACC63C /* VoteReducers.swift in Sources */,
 				73B5A68E20F5B4DE00756391 /* Decimal+Extensions.swift in Sources */,
 				221EC1BC210076840059F856 /* GestureInfoItemLayer.swift in Sources */,

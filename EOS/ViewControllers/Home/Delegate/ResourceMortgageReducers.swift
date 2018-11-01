@@ -101,24 +101,6 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
 
             state.netReliveMoneyValid.accept((valid, tips, action.netMoney))
         }
-    case let action as MBalanceFetchedAction:
-        if var viewmodel = state.info.value {
-            if let balance = action.balance.arrayValue.first?.string {
-                viewmodel.page.balance = balance
-            } else {
-                viewmodel.page.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-            }
-            state.info.accept(viewmodel)
-        } else {
-            var viewmodel = initViewModel()
-            if let balance = action.balance.arrayValue.first?.string {
-                viewmodel.page.balance = balance
-            } else {
-                viewmodel.page.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-            }
-            state.info.accept(viewmodel)
-        }
-
     case let action as MAccountFetchedAction:
         var viewmodel = state.info.value
         viewmodel = convertResourceViewModelWithAccount(action.info, viewmodel: viewmodel)
@@ -161,39 +143,49 @@ func initViewModel() -> ResourceViewModel {
                                     " - " +
                                     R.string.localizable.kb.key.localized(),
                                    lineHidden: true,
-                                   progress: 0.0)],
-        page: PageViewModel(balance: "- EOS",
-                            leftText: R.string.localizable.mortgage_resource.key.localized(),
-                            rightText: R.string.localizable.cancel_mortgage.key.localized(),
-                            operationLeft: [OperationViewModel(
-                                title: R.string.localizable.mortgage_cpu.key.localized(),
-                                placeholder: R.string.localizable.mortgage_placeholder.key.localized(),
-                                warning: "",
-                                introduce: "",
-                                isShowPromptWhenEditing: true,
-                                showLine: true,
-                                isSecureTextEntry: false),
-                                            OperationViewModel(
-                                                title: R.string.localizable.mortgage_net.key.localized(), placeholder: R.string.localizable.mortgage_placeholder.key.localized(), warning: "",
-                                                introduce: "",
-                                                isShowPromptWhenEditing: true,
-                                                showLine: false,
-                                                isSecureTextEntry: false)],
-                            operationRight: [OperationViewModel(
-                                title: R.string.localizable.cpu.key.localized(),
-                                placeholder: R.string.localizable.mortgage_cancel_placeholder.key.localized(), warning: "",
-                                introduce: "",
-                                isShowPromptWhenEditing: true,
-                                showLine: true,
-                                isSecureTextEntry: false),
-                                             OperationViewModel(
-                                                title: R.string.localizable.net.key.localized(),
-                                                placeholder: R.string.localizable.mortgage_cancel_placeholder.key.localized(),
-                                                warning: "",
-                                                introduce: "",
-                                                isShowPromptWhenEditing: true,
-                                                showLine: false,
-                                                isSecureTextEntry: false)]))
+                                   progress: 0.0),
+                  GeneralViewModel(name: R.string.localizable.ram.key.localized(),
+                                   eos: "- EOS",
+                                   leftSub: R.string.localizable.use.key.localized() +
+                                    " - " +
+                                    R.string.localizable.kb.key.localized(),
+                                   rightSub: R.string.localizable.total.key.localized() +
+                                    " - " +
+                                    R.string.localizable.kb.key.localized(),
+                                   lineHidden: true,
+                                   progress: 0.0)])
+//        ,page: PageViewModel(balance: "- EOS",
+//                            leftText: R.string.localizable.mortgage_resource.key.localized(),
+//                            rightText: R.string.localizable.cancel_mortgage.key.localized(),
+//                            operationLeft: [OperationViewModel(
+//                                title: R.string.localizable.mortgage_cpu.key.localized(),
+//                                placeholder: R.string.localizable.mortgage_placeholder.key.localized(),
+//                                warning: "",
+//                                introduce: "",
+//                                isShowPromptWhenEditing: true,
+//                                showLine: true,
+//                                isSecureTextEntry: false),
+//                                            OperationViewModel(
+//                                                title: R.string.localizable.mortgage_net.key.localized(), placeholder: R.string.localizable.mortgage_placeholder.key.localized(), warning: "",
+//                                                introduce: "",
+//                                                isShowPromptWhenEditing: true,
+//                                                showLine: false,
+//                                                isSecureTextEntry: false)],
+//                            operationRight: [OperationViewModel(
+//                                title: R.string.localizable.cpu.key.localized(),
+//                                placeholder: R.string.localizable.mortgage_cancel_placeholder.key.localized(), warning: "",
+//                                introduce: "",
+//                                isShowPromptWhenEditing: true,
+//                                showLine: true,
+//                                isSecureTextEntry: false),
+//                                             OperationViewModel(
+//                                                title: R.string.localizable.net.key.localized(),
+//                                                placeholder: R.string.localizable.mortgage_cancel_placeholder.key.localized(),
+//                                                warning: "",
+//                                                introduce: "",
+//                                                isShowPromptWhenEditing: true,
+//                                                showLine: false,
+//                                                isSecureTextEntry: false)]))
     return newViewModel
 }
 
@@ -235,9 +227,9 @@ func convertToViewModelWithModel(model: AccountModel, viewmodel: ResourceViewMod
             newViewModel.general[1].progress = used.toKB.float()! / max.toKB.float()!
         }
 
-        if let balance = Defaults[model.accountName + NetworkConfiguration.BlanceDefaultSymbol] as? String {
-            newViewModel.page.balance = balance
-        }
+//        if let balance = Defaults[model.accountName + NetworkConfiguration.BlanceDefaultSymbol] as? String {
+//            newViewModel.page.balance = balance
+//        }
         return newViewModel
     }
     return viewmodel!

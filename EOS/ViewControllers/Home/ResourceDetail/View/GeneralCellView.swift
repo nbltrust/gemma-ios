@@ -64,9 +64,10 @@ class GeneralCellView: UIView {
         }
     }
 
+    @IBInspectable
     var name: String = "" {
         didSet {
-            nameLabel.text = name
+            nameLabel.text = name.localized()
         }
     }
 

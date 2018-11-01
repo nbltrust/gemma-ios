@@ -247,6 +247,8 @@
 "create_account" = "创建账户";
 "asset" = "资产";
 "receipt" = "收款";
+"delegate_redeem" = "抵押与赎回";
+"manager" = "管理";
 
 
 //zsy end
@@ -454,7 +456,7 @@
 "Release to refresh" = "松开刷新";
 
 "resources_pledge" = "资源质押";
-"resource_get" = "获取CPU、NET";
+"manager_cpu_net" = "管理CPU、NET";
 
 "block_time" = "区块时间";
 "trade_state" = "交易状态";

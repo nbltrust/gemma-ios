@@ -11,8 +11,6 @@ import Foundation
 @IBDesignable
 class PageView: UIView {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var rightLabel: UILabel!
     @IBOutlet weak var lineView: UIView!
@@ -23,7 +21,6 @@ class PageView: UIView {
     var data: Any? {
         didSet {
             if let data = data as? PageViewModel {
-                balance = R.string.localizable.balance_pre.key.localized() + data.balance
                 leftLabel.text = data.leftText
                 rightLabel.text = data.rightText
                 leftView.data = data.operationLeft
@@ -61,13 +58,6 @@ class PageView: UIView {
     var rightText: String = "" {
         didSet {
             rightLabel.text = rightText
-        }
-    }
-
-    @IBInspectable
-    var balance: String = "" {
-        didSet {
-            balanceLabel.text = balance
         }
     }
 

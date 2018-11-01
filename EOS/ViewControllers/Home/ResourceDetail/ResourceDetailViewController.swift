@@ -1,8 +1,8 @@
 //
-//  AssetDetailViewController.swift
+//  ResourceDetailViewController.swift
 //  EOS
 //
-//  Created zhusongyu on 2018/10/30.
+//  Created zhusongyu on 2018/11/1.
 //  Copyright © 2018 com.nbltrustdev. All rights reserved.
 //
 
@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 import ReSwift
 
-class AssetDetailViewController: BaseViewController {
+class ResourceDetailViewController: BaseViewController {
 
-	var coordinator: (AssetDetailCoordinatorProtocol & AssetDetailStateManagerProtocol)?
-    private(set) var context: AssetDetailContext?
+	var coordinator: (ResourceDetailCoordinatorProtocol & ResourceDetailStateManagerProtocol)?
+    private(set) var context: ResourceDetailContext?
     
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class AssetDetailViewController: BaseViewController {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
             
-            if let context = context as? AssetDetailContext {
+            if let context = context as? ResourceDetailContext {
                 self.context = context
             }
             
@@ -110,7 +110,7 @@ class AssetDetailViewController: BaseViewController {
 
 //MARK: - TableViewDelegate
 
-//extension AssetDetailViewController: UITableViewDataSource, UITableViewDelegate {
+//extension ResourceDetailViewController: UITableViewDataSource, UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return 10
 //    }
@@ -125,17 +125,12 @@ class AssetDetailViewController: BaseViewController {
 
 //MARK: - View Event
 
-extension AssetDetailViewController {
-    @objc func transferBtnDidClicked(_ data:[String: Any]) {
-        self.coordinator?.pushTransferVC()
+extension ResourceDetailViewController {
+    @objc func delegateViewDidClicked(_ data:[String: Any]) {
+
     }
-    @objc func receiptBtnDidClicked(_ data:[String: Any]) {
-    }
-    @objc func nodeVodeBtnDidClicked(_ data:[String: Any]) {
-        self.coordinator?.pushVoteVC()
-    }
-    @objc func resourceManagerBtnDidClicked(_ data:[String: Any]) {
-        self.coordinator?.pushResourceDetailVC()
+    @objc func buyRamViewDidClicked(_ data:[String: Any]) {
+
     }
 }
 

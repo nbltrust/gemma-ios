@@ -12,14 +12,13 @@ class ResourceMortgageView: UIView {
 
     @IBOutlet weak var cpuView: GeneralCellView!
     @IBOutlet weak var netView: GeneralCellView!
-    @IBOutlet weak var pageView: PageView!
-    @IBOutlet weak var cornerShadowView: CornerAndShadowView!
-    @IBOutlet weak var leftNextButton: Button!
-    @IBOutlet weak var rightNextButton: Button!
+    @IBOutlet weak var ramView: GeneralCellView!
+    @IBOutlet weak var delegateView: LineView!
+    @IBOutlet weak var buyRamView: LineView!
 
     enum Event: String {
-        case leftnext
-        case rightnext
+        case delegateViewDidClicked
+        case buyRamViewDidClicked
     }
 
     var data: Any? {
@@ -27,7 +26,7 @@ class ResourceMortgageView: UIView {
             if let data = data as? ResourceViewModel {
                 cpuView.data = data.general[0]
                 netView.data = data.general[1]
-                pageView.data = data.page
+                ramView.data = data.general[2]
                 updateHeight()
             }
         }
@@ -40,17 +39,14 @@ class ResourceMortgageView: UIView {
     }
 
     func setupEvent() {
-        leftNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
+        delegateView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.endEditing(true)
-//            self.pageView.leftView.cpuMortgageView.resignFirstResponder()
-            self.sendEventWith(Event.leftnext.rawValue, userinfo: [:])
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-        rightNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
+            self.delegateView.next?.sendEventWith(Event.delegateViewDidClicked.rawValue, userinfo: ["data": self.data ?? []])
+        }).disposed(by: disposeBag)
+        buyRamView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.endEditing(true)
-            self.sendEventWith(Event.rightnext.rawValue, userinfo: [:])
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+            self.buyRamView.next?.sendEventWith(Event.buyRamViewDidClicked.rawValue, userinfo: ["data": self.data ?? []])
+        }).disposed(by: disposeBag)
     }
 
     func setupUI() {
@@ -66,12 +62,22 @@ class ResourceMortgageView: UIView {
         netView.eos = "- EOS"
         netView.lineIsHidden = true
 
-        pageView.leftText = R.string.localizable.mortgage_resource.key.localized()
-        pageView.rightText = R.string.localizable.cancel_mortgage.key.localized()
-        pageView.balance = R.string.localizable.balance_pre.key.localized() + "- EOS"
-
-        leftNextButton.isHidden = false
-        rightNextButton.isHidden = true
+        delegateView.data = LineView.LineViewModel.init(name: R.string.localizable.delegate_redeem.key.localized(),
+                                                        content: R.string.localizable.manager_cpu_net.key.localized(),
+                                                        imageName: R.image.icArrow.name,
+                                                        nameStyle: LineViewStyleNames.normalName,
+                                                        contentStyle: LineViewStyleNames.normalContent,
+                                                        isBadge: false,
+                                                        contentLineNumber: 1,
+                                                        isShowLineView: true)
+        buyRamView.data = LineView.LineViewModel.init(name: R.string.localizable.deal_ram.key.localized(),
+                                                        content: "",
+                                                        imageName: R.image.icArrow.name,
+                                                        nameStyle: LineViewStyleNames.normalName,
+                                                        contentStyle: LineViewStyleNames.normalContent,
+                                                        isBadge: false,
+                                                        contentLineNumber: 1,
+                                                        isShowLineView: true)
     }
 
     override var intrinsicContentSize: CGSize {
@@ -117,16 +123,5 @@ class ResourceMortgageView: UIView {
         addSubview(view)
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    }
-}
-
-extension ResourceMortgageView {
-    @objc func left(_ data: [String: Any]) {
-        leftNextButton.isHidden = false
-        rightNextButton.isHidden = true
-    }
-    @objc func right(_ data: [String: Any]) {
-        leftNextButton.isHidden = true
-        rightNextButton.isHidden = false
     }
 }

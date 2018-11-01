@@ -48,10 +48,8 @@ class BuyRamView: UIView {
         generalRamView.generalView.lineIsHidden = false
         generalRamView.priceLabel.text = "≈- EOS/KB"
 
-        pageView.titleLabel.text = R.string.localizable.trade.key.localized()
         pageView.leftText = R.string.localizable.buy.key.localized()
         pageView.rightText = R.string.localizable.sell.key.localized()
-        pageView.balance = ""
         exchangeLabelView.isHidden = true
 
         leftNextButton.isHidden = false

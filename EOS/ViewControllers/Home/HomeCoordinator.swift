@@ -212,7 +212,7 @@ extension HomeCoordinator: HomeStateManagerProtocol {
                                             contentLineNumber: 1,
                                             isShowLineView: false),
                 LineView.LineViewModel.init(name: R.string.localizable.resource_manager.key.localized(),
-                                            content: R.string.localizable.resource_get.key.localized(),
+                                            content: R.string.localizable.resource_manager.key.localized(),
                                             imageName: R.image.icArrow.name,
                                             nameStyle: LineViewStyleNames.normalName,
                                             contentStyle: LineViewStyleNames.normalContent,

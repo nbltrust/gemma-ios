@@ -30,6 +30,20 @@ class CurrencyManager {
         return nil
     }
 
+    func saveCurrentCurrencyID(_ currencyID: Int64?) {
+        if let id = currencyID {
+            Defaults["currencyID"] = id.string
+        }
+    }
+
+    func getCurrentCurrencyID() -> Int64? {
+        if let id = Defaults["currencyID"] as? String {
+            return Int64(id)
+        }
+        return nil
+    }
+
+
     //新版本存取缓存数据
     func saveBalanceJsonWith(_ currencyID: Int64?, json: JSON) {
         if let id = currencyID {

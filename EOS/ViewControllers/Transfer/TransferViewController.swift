@@ -14,34 +14,24 @@ import Presentr
 
 class TransferViewController: BaseViewController {
 
-    @IBOutlet weak var clearButton: UIButton!
-    @IBOutlet weak var reciverLabel: UILabel!
     @IBOutlet weak var transferContentView: TransferContentView!
-    @IBOutlet weak var accountTextField: UITextField!
     var coordinator: (TransferCoordinatorProtocol & TransferStateManagerProtocol)?
-
-    enum TextChangeEvent: String {
-        case walletName
-    }
-
+    var accountName: String = ""
     func resetData() {
         clearData()
         self.coordinator?.pushToPaymentVC()
     }
 
     func clearData() {
-        self.accountTextField.text = ""
+        self.transferContentView.receiverTitleTextView.clearText()
         self.transferContentView.moneyTitleTextView.clearText()
         self.transferContentView.remarkTitleTextView.clearText()
         self.transferContentView.nextButton.isEnabel.accept(false)
-        self.reciverLabel.text = R.string.localizable.receiver.key.localized()
-        self.reciverLabel.textColor = UIColor.baseColor
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        let name = WalletManager.shared.getAccount()
-        transferContentView.setAccountName(name: name)
+
         setUpUI()
         getData()
         checkWalletType()
@@ -53,12 +43,10 @@ class TransferViewController: BaseViewController {
 
     func setUpUI() {
         self.title = R.string.localizable.tabbarTransfer.key.localized()
-
-        self.accountTextField.delegate = self
-        self.accountTextField.attributedPlaceholder =
-            NSMutableAttributedString.init(string: R.string.localizable.account_name.key.localized(),
-                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.baseColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        self.reciverLabel.text = R.string.localizable.receiver.key.localized()
+        if let id = CurrencyManager.shared.getCurrentCurrencyID(), let name = CurrencyManager.shared.getAccountNameWith(id) {
+            accountName = name
+            transferContentView.setAccountName(name: accountName)
+        }
         transferContentView.reload()
         clearData()
     }
@@ -76,8 +64,7 @@ class TransferViewController: BaseViewController {
     }
 
     func getData() {
-//        self.coordinator?.getCurrentFromLocal()
-        self.coordinator?.fetchUserAccount(WalletManager.shared.getAccount())
+        self.coordinator?.fetchUserAccount(accountName)
     }
 
     override func configureObserveState() {
@@ -109,62 +96,17 @@ class TransferViewController: BaseViewController {
             }.bind(to: self.transferContentView.nextButton.isEnabel).disposed(by: disposeBag)
 
     }
-
-    @IBAction func clearBtnClick(_ sender: UIButton) {
-        accountTextField.text = ""
-
-    }
-
-}
-
-extension TransferViewController: UITextFieldDelegate {
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == accountTextField {
-            self.clearButton.isHidden = true
-            let isValid = WalletManager.shared.isValidWalletName(textField.text!)
-            if isValid == false {
-                self.reciverLabel.text = R.string.localizable.name_warning.key.localized()
-                self.reciverLabel.textColor = UIColor.warningColor
-            } else {
-                self.reciverLabel.text = R.string.localizable.receiver.key.localized()
-                self.reciverLabel.textColor = UIColor.placeholderColor
-
-            }
-
-            if textField.text == nil || textField.text == "" {
-                self.reciverLabel.text = R.string.localizable.receiver.key.localized()
-                self.reciverLabel.textColor = UIColor.placeholderColor
-
-            }
-        }
-    }
-
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == accountTextField {
-            self.clearButton.isHidden = false
-        }
-    }
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text ?? ""
-        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-        self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content": newText])
-
-        return true
-
-    }
-
 }
 
 extension TransferViewController {
-    @objc func walletName(_ data: [String: Any]) {
-        guard let content = data["content"] as? String else { return }
-        self.coordinator?.validName(content)
+    @objc func receiverChanged(_ data: [String: Any]) {
+        if let textfield = data["textfield"] as? UITextField, let name = textfield.text {
+            self.coordinator?.validName(name)
+        }
     }
     @objc func sureTransfer(_ data: [String: Any]) {
         var data = ConfirmViewModel()
-        data.recever = self.accountTextField.text!
+        data.recever = self.transferContentView.receiverTitleTextView.textField.text!
         data.amount = self.transferContentView.moneyTitleTextView.textField.text!
         data.remark = self.transferContentView.remarkTitleTextView.textView.text!
         data.payAccount = self.transferContentView.accountTitleTextView.textField.text!

@@ -11,7 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol AssetDetailCoordinatorProtocol {
-    func pushResourceMortgageVC()
+    func pushResourceDetailVC()
     func pushVoteVC()
     func pushTransferVC()
 }
@@ -47,9 +47,9 @@ class AssetDetailCoordinator: NavCoordinator {
 }
 
 extension AssetDetailCoordinator: AssetDetailCoordinatorProtocol {
-    func pushResourceMortgageVC() {
-        if let rmVC = R.storyboard.resourceMortgage.resourceMortgageViewController() {
-            let coordinator = ResourceMortgageCoordinator(rootVC: self.rootVC)
+    func pushResourceDetailVC() {
+        if let rmVC = R.storyboard.resourceMortgage.resourceDetailViewController() {
+            let coordinator = ResourceDetailCoordinator(rootVC: self.rootVC)
             rmVC.coordinator = coordinator
             self.rootVC.pushViewController(rmVC, animated: true)
         }
