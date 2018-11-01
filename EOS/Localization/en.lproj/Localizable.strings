@@ -248,6 +248,10 @@
 "next_step" = "下一步";
 "wait_activate" = "待激活";
 "create_account" = "创建账户";
+"asset" = "资产";
+"receipt" = "收款";
+"delegate_redeem" = "抵押与赎回";
+"manager" = "管理";
 
 //zsy end
 
@@ -451,7 +455,7 @@
 "Release to refresh" = "Release to refresh";
 
 "resources_pledge" = "资源质押";
-"resource_get" = "Get CPU / NET";
+"manager_cpu_net" = "Manager CPU / NET";
 
 "block_time" = "Block Time";
 "trade_state" = "State";

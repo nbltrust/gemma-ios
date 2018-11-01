@@ -11,6 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol OverviewCoordinatorProtocol {
+    func pushToDetailVC()
 }
 
 protocol OverviewStateManagerProtocol {
@@ -45,7 +46,13 @@ class OverviewCoordinator: NavCoordinator {
 }
 
 extension OverviewCoordinator: OverviewCoordinatorProtocol {
-    
+    func pushToDetailVC() {
+        if let vc = R.storyboard.assetDetail.assetDetailViewController() {
+            let coordinator = AssetDetailCoordinator(rootVC: self.rootVC)
+            vc.coordinator = coordinator
+            self.rootVC.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension OverviewCoordinator: OverviewStateManagerProtocol {

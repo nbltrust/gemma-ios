@@ -49,12 +49,10 @@ struct NewHomeViewModel: HandyJSON {
 }
 
 struct BalanceFetchedAction: Action {
-    var balance: JSON?
     var currencyID: Int64?
 }
 
 struct AccountFetchedAction: Action {
-    var info: Account?
     var currencyID: Int64?
 }
 
@@ -63,11 +61,9 @@ struct AccountFetchedFromLocalAction: Action {
 }
 
 struct RMBPriceFetchedAction: Action {
-    var price: JSON?
-    var otherPrice: JSON?
     var currencyID: Int64?
 }
 
-struct LocalFetchedAction: Action {
+struct NonActiveFetchedAction: Action {
     var currency: Currency?
 }

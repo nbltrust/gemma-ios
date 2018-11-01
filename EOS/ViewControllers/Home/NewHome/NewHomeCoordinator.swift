@@ -111,42 +111,34 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
 
     func getCurrencyInfo(_ currency: Currency) {
         if currency.type == .EOS {
-            let names = Defaults["accountNames\(currency.id!)"]
-            if let names = names as? String {
+            let names = CurrencyManager.shared.getAccountNameWith(currency.id)
+            if let names = names {
                 let account = names
                 let currencyID = currency.id
                 EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
-                    self.store.dispatch(BalanceFetchedAction(balance: json, currencyID: currencyID))
+                    CurrencyManager.shared.saveBalanceJsonWith(currencyID, json: json)
+                    self.store.dispatch(BalanceFetchedAction(currencyID: currencyID))
                 }, error: { (_) in
-                    self.store.dispatch(BalanceFetchedAction(balance: nil, currencyID: nil))
+                    self.store.dispatch(BalanceFetchedAction(currencyID: currencyID))
                 }) { (_) in
-                    self.store.dispatch(BalanceFetchedAction(balance: nil, currencyID: nil))
+                    self.store.dispatch(BalanceFetchedAction(currencyID: currencyID))
                 }
 
                 EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
-                    if let accountObj = Account.deserialize(from: json.dictionaryObject) {
-                        self.store.dispatch(AccountFetchedAction(info: accountObj, currencyID: currencyID))
-                    }
-
+                    CurrencyManager.shared.saveAccountJsonWith(currencyID, json: json)
+                    self.store.dispatch(AccountFetchedAction(currencyID: currencyID))
                 }, error: { (_) in
-                    self.store.dispatch(AccountFetchedAction(info: nil, currencyID: nil))
+                    self.store.dispatch(AccountFetchedAction(currencyID: currencyID))
                 }) { (_) in
-                    self.store.dispatch(AccountFetchedAction(info: nil, currencyID: nil))
+                    self.store.dispatch(AccountFetchedAction(currencyID: currencyID))
                 }
 
                 SimpleHTTPService.requestETHPrice().done { (json) in
-
-                    if let eos = json.filter({ $0["name"].stringValue == NetworkConfiguration.EOSIODefaultSymbol }).first {
-                        if coinType() == .CNY {
-                            self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: nil, currencyID: currencyID))
-                        } else if coinType() == .USD, let usd = json.filter({ $0["name"].stringValue == NetworkConfiguration.USDTDefaultSymbol }).first {
-                            self.store.dispatch(RMBPriceFetchedAction(price: eos, otherPrice: usd, currencyID: currencyID))
-                        }
-                    }
-
+                    CurrencyManager.shared.savePriceJsonWith(currencyID, json: json)
+                    self.store.dispatch(RMBPriceFetchedAction(currencyID: currencyID))
                     }.cauterize()
             } else {
-                self.store.dispatch(LocalFetchedAction(currency:currency))
+                self.store.dispatch(NonActiveFetchedAction(currency:currency))
             }
 
             

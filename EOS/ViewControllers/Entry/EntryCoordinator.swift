@@ -216,7 +216,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                                                               invitationCode: inviteCode,
                                                               validation: validation),
                                        success: { (data) in
-                                        Defaults["accountNames\(id)"] = accountName
+                                        CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
                                         self.rootVC.popToRootViewController(animated: true)
                                         completion(true)
                     }, error: { (code) in

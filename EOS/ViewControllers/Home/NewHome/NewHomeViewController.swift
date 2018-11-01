@@ -188,8 +188,9 @@ extension NewHomeViewController {
     }
     @objc func cellDidClicked(_ data: [String: Any]) {
         if let model = data["data"] as? NewHomeViewModel {
-            if let _ = Defaults["accountNames\(model.id)"] as? String {
+            if let _ = CurrencyManager.shared.getAccountNameWith(model.id) {
                 self.coordinator?.pushToOverviewVCWithCurrencyID(id: model.id)
+                CurrencyManager.shared.saveCurrentCurrencyID(model.id)
             } else {
                 self.coordinator?.pushToEntryVCWithCurrencyID(id: model.id)
             }

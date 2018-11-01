@@ -14,10 +14,9 @@ import GrowingTextView
 class TransferContentView: UIView {
 
     @IBOutlet weak var cornerView: CornerAndShadowView!
+    @IBOutlet weak var receiverTitleTextView: TitleTextfieldView!
     @IBOutlet weak var accountTitleTextView: TitleTextfieldView!
-
     @IBOutlet weak var moneyTitleTextView: TitleTextfieldView!
-
     @IBOutlet weak var remarkTitleTextView: TitleTextView!
     @IBOutlet weak var nextButton: Button!
 
@@ -33,12 +32,14 @@ class TransferContentView: UIView {
     }
 
     enum InputType: Int {
-        case account = 1
+        case receiver = 1
+        case account
         case money
         case remark
     }
 
     enum TextChangeEvent: String {
+        case receiverChanged
         case transferAccount
         case transferMoney
         case walletRemark
@@ -60,14 +61,17 @@ class TransferContentView: UIView {
     }
 
     func reload() {
+        receiverTitleTextView.reloadData()
         accountTitleTextView.reloadData()
         moneyTitleTextView.reloadData()
         remarkTitleTextView.reloadData()
 
+        receiverTitleTextView.reloadActionViews(isEditing: false)
         accountTitleTextView.reloadActionViews(isEditing: false)
         moneyTitleTextView.reloadActionViews(isEditing: false)
         remarkTitleTextView.reloadActionViews(isEditing: false)
 
+        receiverTitleTextView.checkStatus = TextUIStyle.common
         accountTitleTextView.checkStatus = TextUIStyle.common
         moneyTitleTextView.checkStatus = TextUIStyle.common
         remarkTitleTextView.checkStatus = TextUIStyle.common
@@ -75,7 +79,7 @@ class TransferContentView: UIView {
     }
 
     func setUp() {
-
+        handleSetupSubView(receiverTitleTextView, tag: InputType.receiver.rawValue)
         handleSetupSubView(accountTitleTextView, tag: InputType.account.rawValue)
         accountTitleTextView.textField.isUserInteractionEnabled = false
         handleSetupSubView(moneyTitleTextView, tag: InputType.money.rawValue)
@@ -90,6 +94,10 @@ class TransferContentView: UIView {
         remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
 
+        receiverTitleTextView.titleLabel.font = UIFont.cnTipMedium
+        receiverTitleTextView.textField.font = UIFont.pfScS16
+        receiverTitleTextView.introduceLabel.font = UIFont.pfScR12
+        receiverTitleTextView.introduceLabel.textColor = UIColor(red: 83/255, green: 92/255, blue: 138/255, alpha: 1)
         accountTitleTextView.titleLabel.font = UIFont.cnTipMedium
         accountTitleTextView.textField.font = UIFont.pfScS16
         moneyTitleTextView.titleLabel.font = UIFont.cnTipMedium
@@ -175,7 +183,15 @@ extension TransferContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
     }
 
     func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting {
-        if titleTextFieldView == accountTitleTextView {
+        if titleTextFieldView == receiverTitleTextView {
+            return TitleTextSetting(title: R.string.localizable.receiver.key.localized(),
+                                    placeholder: R.string.localizable.account_name.key.localized(),
+                                    warningText: R.string.localizable.name_warning.key.localized(),
+                                    introduce: "",
+                                    isShowPromptWhenEditing: true,
+                                    showLine: true,
+                                    isSecureTextEntry: false)
+        } else if titleTextFieldView == accountTitleTextView {
             return TitleTextSetting(title: R.string.localizable.payment_account.key.localized(),
                                     placeholder: R.string.localizable.name_ph.key.localized(),
                                     warningText: R.string.localizable.name_warning.key.localized(),
@@ -210,6 +226,9 @@ extension TransferContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
 extension TransferContentView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField.tag {
+        case InputType.receiver.rawValue:
+            receiverTitleTextView.reloadActionViews(isEditing: true)
+            receiverTitleTextView.checkStatus = TextUIStyle.highlight
         case InputType.account.rawValue:
             accountTitleTextView.reloadActionViews(isEditing: true)
             accountTitleTextView.checkStatus = TextUIStyle.highlight
@@ -223,6 +242,10 @@ extension TransferContentView: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
+        case InputType.receiver.rawValue:
+            receiverTitleTextView.reloadActionViews(isEditing: false)
+            receiverTitleTextView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            self.sendEventWith(TextChangeEvent.receiverChanged.rawValue, userinfo: ["textfield": textField])
         case InputType.account.rawValue:
             accountTitleTextView.reloadActionViews(isEditing: false)
             accountTitleTextView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning

@@ -30,7 +30,6 @@ struct GeneralViewModel {
 
 struct ResourceViewModel {
     var general: [GeneralViewModel]
-    var page: PageViewModel
 }
 
 struct PageViewModel {

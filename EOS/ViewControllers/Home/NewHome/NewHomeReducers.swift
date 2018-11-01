@@ -15,43 +15,42 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
 
     switch action {
     case let action as BalanceFetchedAction:
-        if action.balance != nil {
-            var viewmodel = state.info.value
-
-            if let balance = action.balance?.arrayValue.first?.string {
-                viewmodel.balance = balance
-            } else {
-                viewmodel.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        var viewmodel = state.info.value
+        if action.currencyID != nil {
+            if let json = CurrencyManager.shared.getBalanceJsonWith(action.currencyID) {
+                if let balance = json.arrayValue.first?.string {
+                    viewmodel.balance = balance
+                } else {
+                    viewmodel.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+                }
+                viewmodel.allAssets = calculateTotalAsset(viewmodel)
+                viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
             }
-
-            viewmodel.allAssets = calculateTotalAsset(viewmodel)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
-            state.info.accept(viewmodel)
-            Defaults["currency\(action.currencyID!)"] = viewmodel.toJSONString()
         }
+        state.info.accept(viewmodel)
     case let action as AccountFetchedAction:
         var viewmodel = NewHomeViewModel()
-        if action.info != nil {
-            viewmodel = convertViewModelWithAccount(action.info!, viewmodel: state.info.value, currencyID: action.currencyID)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+        if action.currencyID != nil {
+            if let json = CurrencyManager.shared.getAccountJsonWith(action.currencyID), let accountObj = Account.deserialize(from: json.dictionaryObject) {
+                viewmodel = convertViewModelWithAccount(accountObj, viewmodel: state.info.value, currencyID: action.currencyID)
+                viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+            }
         }
-        Defaults["currency\(action.currencyID!)"] = viewmodel.toJSONString()
         state.info.accept(viewmodel)
     case let action as RMBPriceFetchedAction:
-        if action.price != nil {
-            var viewmodel = state.info.value
-            state.cnyPrice = action.price!["value"].stringValue
-            if action.otherPrice != nil {
-                state.otherPrice = action.otherPrice!["value"].stringValue
+        var viewmodel = state.info.value
+        if action.currencyID != nil {
+            if coinType() == .CNY, let eos = CurrencyManager.shared.getCNYPrice() {
+                state.cnyPrice = eos
+            } else if coinType() == .USD, let usd = CurrencyManager.shared.getUSDPrice() {
+                state.otherPrice = usd
             }
-
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
-            state.info.accept(viewmodel)
-            Defaults["currency\(action.currencyID!)"] = viewmodel.toJSONString()
         }
-    case let action as LocalFetchedAction:
-            let viewmodel = setViewModelWithCurrency(currency: action.currency)
-            state.info.accept(viewmodel)
+        viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+        state.info.accept(viewmodel)
+    case let action as NonActiveFetchedAction:
+        let viewmodel = setViewModelWithCurrency(currency: action.currency)
+        state.info.accept(viewmodel)
     default:
         break
     }
@@ -64,7 +63,7 @@ func setViewModelWithCurrency(currency: Currency?) -> NewHomeViewModel {
     viewmodel.currencyImg = R.image.eosBg()!
     viewmodel.account = R.string.localizable.wait_activate.key.localized()
     if let id = currency?.id {
-        if let accountName = Defaults["accountNames\(id)"] as? String {
+        if let accountName = CurrencyManager.shared.getAccountNameWith(id) {
             viewmodel.account = accountName
         }
     }
@@ -79,7 +78,6 @@ func setViewModelWithCurrency(currency: Currency?) -> NewHomeViewModel {
     viewmodel.allAssets = 0.string(digits: AppConfiguration.EOSPrecision)
     viewmodel.id = currency?.id ?? 0
     
-    Defaults["currency\(viewmodel.id)"] = viewmodel.toJSONString()
     return viewmodel
 }
 

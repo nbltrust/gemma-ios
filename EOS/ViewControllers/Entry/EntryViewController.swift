@@ -100,7 +100,7 @@ class EntryViewController: BaseViewController {
                         guard let `self` = self else { return }
 
                         if success == true {
-                            Defaults["accountNames\(self.currencyID!)"] = name
+                            CurrencyManager.shared.saveAccountNameWith(self.currencyID, name: name)
                             self.coordinator?.pushToActivateVCWithCurrencyID(self.currencyID)
                         }
                     })

@@ -22,61 +22,61 @@ func gHomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePr
     var state = state ?? HomePropertyState()
 
     switch action {
-    case let action as BalanceFetchedAction:
+//    case let action as BalanceFetchedAction:
 
-        if action.balance != nil {
-            var viewmodel = state.info.value
-
-            if let balance = action.balance?.arrayValue.first?.string {
-                viewmodel.balance = balance
-            } else {
-                viewmodel.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-            }
-
-            viewmodel.allAssets = calculateTotalAsset(viewmodel)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
-            state.info.accept(viewmodel)
-        }
+//        if action.balance != nil {
+//            var viewmodel = state.info.value
+//
+//            if let balance = action.balance?.arrayValue.first?.string {
+//                viewmodel.balance = balance
+//            } else {
+//                viewmodel.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+//            }
+//
+//            viewmodel.allAssets = calculateTotalAsset(viewmodel)
+//            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+//            state.info.accept(viewmodel)
+//        }
 //        else {
 //            let viewmodel = initAccountViewModel()
 //            state.info.accept(viewmodel)
 //        }
-    case let action as AccountFetchedAction:
-        if action.info != nil {
-            var viewmodel = convertAccountViewModelWithAccount(action.info!, viewmodel: state.info.value)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
-
-            state.info.accept(viewmodel)
-        }
+//    case let action as AccountFetchedAction:
+//        if action.info != nil {
+//            var viewmodel = convertAccountViewModelWithAccount(action.info!, viewmodel: state.info.value)
+//            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+//
+//            state.info.accept(viewmodel)
+//        }
 //        else {
 //            let viewmodel = initAccountViewModel()
 //            state.info.accept(viewmodel)
 //        }
-    case let action as RMBPriceFetchedAction:
-        if action.price != nil {
-            var viewmodel = state.info.value
-            state.cnyPrice = action.price!["value"].stringValue
-            if action.otherPrice != nil {
-                state.otherPrice = action.otherPrice!["value"].stringValue
-            }
-
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
-            state.info.accept(viewmodel)
-        }
+//    case let action as RMBPriceFetchedAction:
+//        if action.price != nil {
+//            var viewmodel = state.info.value
+//            state.cnyPrice = action.price!["value"].stringValue
+//            if action.otherPrice != nil {
+//                state.otherPrice = action.otherPrice!["value"].stringValue
+//            }
+//
+//            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+//            state.info.accept(viewmodel)
+//        }
 //        else {
 //            let viewmodel = initAccountViewModel()
 //            state.info.accept(viewmodel)
 //        }
-    case let action as AccountFetchedFromLocalAction:
-        if action.model != nil {
-            let viewmodel = convertToViewModelWithModel(model: action.model!)
-//            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
-
-            state.model.accept(viewmodel)
-        } else {
-            let viewmodel = initAccountViewModel()
-            state.info.accept(viewmodel)
-        }
+//    case let action as AccountFetchedFromLocalAction:
+//        if action.model != nil {
+//            let viewmodel = convertToViewModelWithModel(model: action.model!)
+////            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
+//
+//            state.model.accept(viewmodel)
+//        } else {
+//            let viewmodel = initAccountViewModel()
+//            state.info.accept(viewmodel)
+//        }
     default:
         break
     }
