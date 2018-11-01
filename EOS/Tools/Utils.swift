@@ -17,20 +17,6 @@ import Alamofire
 import SwiftyJSON
 import eos_ios_core_cpp
 
-//Nav BackgroundImage
-func navBgImage() -> UIImage? {
-    switch UIScreen.main.bounds.width {
-    case 320:
-        return R.image.navigation320()
-    case 375:
-        return R.image.navigation375()
-    case 414:
-        return R.image.navigation414()
-    default:
-        return nil
-    }
-}
-
 //Coin Datas
 func coinUnit() -> String {
     let data = CoinUnitConfiguration.values

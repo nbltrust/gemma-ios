@@ -2,18 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_back_24_px.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "ic_notify_back.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "ic_back_24_px@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "ic_notify_back@2x.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "ic_back_24_px@3x.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "ic_notify_back@3x.png"
     }
   ],
   "info" : {

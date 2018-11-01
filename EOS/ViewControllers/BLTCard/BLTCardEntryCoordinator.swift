@@ -58,7 +58,6 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
         presenter.keyboardTranslationType = .stickToTop
 
         let newVC = BaseNavigationController()
-        newVC.navStyle = .white
         let bltCard = BLTCardRootCoordinator(rootVC: newVC)
 
         if let vc = R.storyboard.bltCard.bltCardSearchViewController() {

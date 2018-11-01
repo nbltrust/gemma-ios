@@ -177,7 +177,7 @@ class AppCoordinator {
             })
         }
         presentVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context, navSetup: { (nav) in
-            nav.navStyle = .white
+            nav.navStyle = .common
 
         }) { (top, target) in
             top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)

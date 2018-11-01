@@ -15,11 +15,13 @@ extension UIViewController {
     func configLeftNavButton(_ image: UIImage?) {
         let leftNavButton = UIButton.init(type: .custom)
         leftNavButton.frame = CGRect(x: 0, y: 0, width: 48, height: 24)
-        leftNavButton.setImage(image ?? #imageLiteral(resourceName: "ic_back_24_px"), for: .normal)
+        leftNavButton.setImage(image ?? R.image.ic_notify_back(), for: .normal)
         leftNavButton.addTarget(self, action: #selector(leftAction(_:)), for: .touchUpInside)
         leftNavButton.isHidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftNavButton)
         self.navigationItem.leftMargin = 0
+
+        
     }
 
     func configRightNavButton(_ image: UIImage? = nil) {

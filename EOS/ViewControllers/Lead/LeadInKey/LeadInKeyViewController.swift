@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import XLPagerTabStrip
 
-class LeadInKeyViewController: BaseViewController {
+class LeadInKeyViewController: BaseViewController,IndicatorInfoProvider {
 
     @IBOutlet weak var leadInKeyView: LeadInKeyView!
     var coordinator: (LeadInKeyCoordinatorProtocol & LeadInKeyStateManagerProtocol)?
@@ -31,16 +32,19 @@ class LeadInKeyViewController: BaseViewController {
     }
 
     func setupUI() {
-        self.title = R.string.localizable.lead_in.key.localized()
-        self.configRightNavButton(R.image.scan_qr_code())
         self.leadInKeyView.title = R.string.localizable.lead_in_guide.key.localized()
-        self.leadInKeyView.buttonTitle = R.string.localizable.lead_in_begin()
+
+        let placeholder = R.string.localizable.lead_in_placeholder()
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.placeholderColor]
+        self.leadInKeyView.textView.attributedPlaceholder = NSMutableAttributedString.init(string: placeholder, attributes: attributes)
     }
 
-    override func rightAction(_ sender: UIButton) {
-        self.coordinator?.openScan()
+    @IBAction func currency(_ sender: Any) {
     }
-
+    
+    @IBAction func wallet(_ sender: Any) {
+    }
+    
     override func configureObserveState() {
 
     }
@@ -58,5 +62,11 @@ extension LeadInKeyViewController {
                 self.coordinator?.openSetWallet()
             }
         }
+    }
+}
+
+extension LeadInKeyViewController {
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(stringLiteral: R.string.localizable.priKey_title.key.localized())
     }
 }

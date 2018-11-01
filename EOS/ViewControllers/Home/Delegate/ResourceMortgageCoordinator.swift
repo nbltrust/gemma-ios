@@ -55,7 +55,7 @@ extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
         var context = TransferConfirmContext()
         context.data = data
         presentVC(TransferConfirmCoordinator.self, context: context, navSetup: { (nav) in
-            nav.navStyle = .white
+            nav.navStyle = .common
         }) { (top, target) in
             top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }

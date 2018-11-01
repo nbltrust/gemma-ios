@@ -89,7 +89,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
         presenter.keyboardTranslationType = .stickToTop
 
         presentVC(AccountListCoordinator.self, animated: true, context: nil, navSetup: { (nav) in
-            nav.navStyle = .white
+            nav.navStyle = .common
         }) { (top, target) in
             top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }

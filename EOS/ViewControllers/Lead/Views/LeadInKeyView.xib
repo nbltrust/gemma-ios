@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeadInKeyView" customModule="EOS" customModuleProvider="target">
             <connections>
                 <outlet property="creatButton" destination="gzW-r6-EYa" id="Bxz-6w-jac"/>
-                <outlet property="textView" destination="8hW-VB-cQg" id="QaP-1c-BMI"/>
+                <outlet property="textView" destination="Mfh-xm-BhL" id="drB-4Y-xTc"/>
                 <outlet property="titleLabel" destination="zoW-57-q7D" id="8RI-ud-cGH"/>
             </connections>
         </placeholder>
@@ -23,9 +23,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoW-57-q7D" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="36" width="311" height="14.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="20" y="36" width="335" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -33,36 +33,26 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZhA-Bg-l9P" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="16" y="66.5" width="343" height="100"/>
-                    <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8hW-VB-cQg">
-                            <rect key="frame" x="16" y="16" width="311" height="68"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="3Yx-8x-0Xk"/>
-                            </connections>
-                        </textView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mfh-xm-BhL" customClass="GrowingTextView" customModule="GrowingTextView">
+                    <rect key="frame" x="20" y="72.5" width="335" height="100"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="8hW-VB-cQg" secondAttribute="trailing" constant="16" id="Opo-E9-h5d"/>
-                        <constraint firstItem="8hW-VB-cQg" firstAttribute="leading" secondItem="ZhA-Bg-l9P" secondAttribute="leading" constant="16" id="XH5-wS-aMG"/>
-                        <constraint firstAttribute="bottom" secondItem="8hW-VB-cQg" secondAttribute="bottom" constant="16" id="ci2-8P-07Z"/>
-                        <constraint firstAttribute="height" constant="100" id="qNB-C6-iDB"/>
-                        <constraint firstItem="8hW-VB-cQg" firstAttribute="top" secondItem="ZhA-Bg-l9P" secondAttribute="top" constant="16" id="qlm-dO-AMN"/>
+                        <constraint firstAttribute="height" constant="100" id="cax-bc-3vt"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="4"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzW-r6-EYa" customClass="Button" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="196.5" width="311" height="44"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="32" y="212.5" width="311" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="AU7-Mi-eSj"/>
                     </constraints>
@@ -70,19 +60,19 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="style">
                             <integer key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="next_step"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="zoW-57-q7D" firstAttribute="top" secondItem="tEY-d4-nXY" secondAttribute="top" constant="16" id="3WI-6S-VHo"/>
-                <constraint firstItem="ZhA-Bg-l9P" firstAttribute="top" secondItem="zoW-57-q7D" secondAttribute="bottom" constant="16" id="ABO-B9-IEQ"/>
-                <constraint firstItem="tEY-d4-nXY" firstAttribute="trailing" secondItem="ZhA-Bg-l9P" secondAttribute="trailing" constant="16" id="AtP-Di-5bc"/>
-                <constraint firstItem="gzW-r6-EYa" firstAttribute="top" secondItem="ZhA-Bg-l9P" secondAttribute="bottom" constant="30" id="LGR-c5-2A8"/>
-                <constraint firstItem="tEY-d4-nXY" firstAttribute="trailing" secondItem="zoW-57-q7D" secondAttribute="trailing" constant="32" id="OaD-6a-vz1"/>
-                <constraint firstItem="ZhA-Bg-l9P" firstAttribute="leading" secondItem="tEY-d4-nXY" secondAttribute="leading" constant="16" id="Reh-SR-r3j"/>
+                <constraint firstItem="tEY-d4-nXY" firstAttribute="trailing" secondItem="Mfh-xm-BhL" secondAttribute="trailing" constant="20" id="7av-FQ-MOy"/>
+                <constraint firstItem="Mfh-xm-BhL" firstAttribute="leading" secondItem="tEY-d4-nXY" secondAttribute="leading" constant="20" id="9il-s8-Jyw"/>
+                <constraint firstItem="Mfh-xm-BhL" firstAttribute="top" secondItem="zoW-57-q7D" secondAttribute="bottom" constant="17" id="IxP-98-rdg"/>
+                <constraint firstItem="tEY-d4-nXY" firstAttribute="trailing" secondItem="zoW-57-q7D" secondAttribute="trailing" constant="20" id="OaD-6a-vz1"/>
+                <constraint firstItem="gzW-r6-EYa" firstAttribute="top" secondItem="Mfh-xm-BhL" secondAttribute="bottom" constant="40" id="W5r-5v-wVd"/>
                 <constraint firstItem="gzW-r6-EYa" firstAttribute="leading" secondItem="tEY-d4-nXY" secondAttribute="leading" constant="32" id="a5X-Gj-b47"/>
-                <constraint firstItem="zoW-57-q7D" firstAttribute="leading" secondItem="tEY-d4-nXY" secondAttribute="leading" constant="32" id="cio-LV-dnD"/>
+                <constraint firstItem="zoW-57-q7D" firstAttribute="leading" secondItem="tEY-d4-nXY" secondAttribute="leading" constant="20" id="cio-LV-dnD"/>
                 <constraint firstItem="tEY-d4-nXY" firstAttribute="trailing" secondItem="gzW-r6-EYa" secondAttribute="trailing" constant="32" id="eU7-hT-pjt"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="tEY-d4-nXY"/>

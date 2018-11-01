@@ -47,7 +47,6 @@ class HomeViewController: BaseViewController {
     func setupBgImage() {
         if headImageView == nil {
             headImageView = UIImageView()
-            headImageView!.image = navBgImage()
             self.view.insertSubview(headImageView!, at: 0)
             headImageView!.top(to: self.view)
             headImageView!.left(to: self.view)
