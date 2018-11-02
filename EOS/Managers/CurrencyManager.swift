@@ -32,7 +32,7 @@ class CurrencyManager {
         do {
             if let id = currencyID {
                 let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
-                let prikey = Seed39KeyDecrypt(password, currency?.cipher)
+                let prikey = EOSIO.getPirvateKey(currency?.cipher, password: password)
                 if currency?.type == .EOS, EOSIO.getPublicKey(prikey) == currency?.pubKey {
                     return true
                 } else if currency?.type == .ETH, Seed39GetEthereumAddressFromPrivateKey(prikey) == currency?.address {
