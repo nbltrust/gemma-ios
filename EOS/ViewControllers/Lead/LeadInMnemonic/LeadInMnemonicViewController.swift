@@ -49,6 +49,9 @@ class LeadInMnemonicViewController: BaseViewController,IndicatorInfoProvider {
         let placeholder = R.string.localizable.mnemonic_placeholder()
         let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.placeholderColor]
         self.mnemonicView.textView.attributedPlaceholder = NSMutableAttributedString.init(string: placeholder, attributes: attributes)
+
+        self.mnemonicView.currencyView.isHidden = true
+        self.mnemonicView.walletView.isHidden = true
     }
 }
 

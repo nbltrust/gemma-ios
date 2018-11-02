@@ -2,39 +2,58 @@
 //  LeadInKeyCoordinator.swift
 //  EOS
 //
-//  Created DKM on 2018/7/31.
-//  Copyright © 2018年 com.nbltrust. All rights reserved.
+//  Created peng zhu on 2018/11/2.
+//  Copyright © 2018 com.nbltrustdev. All rights reserved.
 //
 
 import UIKit
 import ReSwift
+import NBLCommonModule
 import eos_ios_core_cpp
 
 protocol LeadInKeyCoordinatorProtocol {
     func openScan()
 
     func openSetWallet()
+
+    func pushToWalletSelectVC()
+
+    func pushToCurrencyVC()
 }
 
 protocol LeadInKeyStateManagerProtocol {
     var state: LeadInKeyState { get }
-    func subscribe<SelectedState, S: StoreSubscriber>(
-        _ subscriber: S, transform: ((Subscription<LeadInKeyState>) -> Subscription<SelectedState>)?
-    ) where S.StoreSubscriberStateType == SelectedState
+    
+    func switchPageState(_ state:PageState)
 
     func validPrivateKey(_ privKey: String) -> (Bool, String)
+
     func importPrivKey(_ privKey: String)
 }
 
 class LeadInKeyCoordinator: NavCoordinator {
-
-    lazy var creator = LeadInKeyPropertyActionCreate()
-
-    var store = Store<LeadInKeyState>(
+    var store = Store(
         reducer: gLeadInKeyReducer,
         state: nil,
-        middleware: [trackingMiddleware]
+        middleware:[trackingMiddleware]
     )
+    
+    var state: LeadInKeyState {
+        return store.state
+    }
+    
+    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
+        let vc = R.storyboard.leadIn.leadInKeyViewController()!
+        let coordinator = LeadInKeyCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
+        return vc
+    }
+
+    override func register() {
+        Broadcaster.register(LeadInKeyCoordinatorProtocol.self, observer: self)
+        Broadcaster.register(LeadInKeyStateManagerProtocol.self, observer: self)
+    }
 }
 
 extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
@@ -59,17 +78,39 @@ extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
             self.rootVC.pushViewController(setVC, animated: true)
         }
     }
+
+    func pushToCurrencyVC() {
+        var context = CurrencyListContext()
+        context.currencySelectResult.accept {[weak self] (currencyType) in
+            guard let `self` = self else { return }
+            self.state.currencyType.accept(currencyType)
+        }
+        context.selectedCurrency = self.state.currencyType.value ?? .EOS
+
+        pushVC(CurrencyListCoordinator.self, animated: true, context: context)
+    }
+
+    func pushToWalletSelectVC() {
+        var context = WalletSelectListContext()
+        context.walletSelectResult.accept {[weak self] (wallet) in
+            guard let `self` = self else { return }
+            self.state.toWallet.accept(wallet)
+        }
+        context.chooseNewWalletResult.accept { [weak self] in
+            guard let `self` = self else { return }
+            self.state.toWallet.accept(nil)
+        }
+        context.selectedWallet = self.state.toWallet.value ?? nil
+
+        pushVC(CurrencyListCoordinator.self, animated: true, context: context)
+    }
 }
 
 extension LeadInKeyCoordinator: LeadInKeyStateManagerProtocol {
-    var state: LeadInKeyState {
-        return store.state
-    }
-
-    func subscribe<SelectedState, S: StoreSubscriber>(
-        _ subscriber: S, transform: ((Subscription<LeadInKeyState>) -> Subscription<SelectedState>)?
-        ) where S.StoreSubscriberStateType == SelectedState {
-        store.subscribe(subscriber, transform: transform)
+    func switchPageState(_ state:PageState) {
+        DispatchQueue.main.async {
+            self.store.dispatch(PageStateAction(state: state))
+        }
     }
 
     func validPrivateKey(_ privKey: String) -> (Bool, String) {

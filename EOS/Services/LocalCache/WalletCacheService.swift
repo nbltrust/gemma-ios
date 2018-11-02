@@ -53,6 +53,15 @@ enum CurrencyType: Int, DatabaseValueConvertible, Codable {
             return "m/44'/60'/0'/0/"
         }
     }
+
+    var des: String {
+        switch self {
+        case .EOS:
+            return "EOS"
+        case .ETH:
+            return "ETH"
+        }
+    }
 }
 
 struct Currency: Codable {

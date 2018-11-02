@@ -126,7 +126,11 @@ class ScanViewController: BaseViewController {
     }
 
     override func leftAction(_ sender: UIButton) {
-        self.coordinator?.dismissVC()
+        if self.navigationController?.viewControllers.count == 1 {
+            self.coordinator?.dismissVC()
+        } else {
+            self.coordinator?.popVC()
+        }
     }
 
     override func configureObserveState() {

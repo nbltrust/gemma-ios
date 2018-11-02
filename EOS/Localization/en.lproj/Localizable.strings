@@ -598,3 +598,9 @@
 "wookong_confirm_pin_title" = "请输入WOOKONG Bio的密码以确认授权";
 "wookong_confirm_pin_pla" = "请输入WOOKONG Bio的密码";
 "wookong_confirm_pin_btn" = "确认授权";
+
+"currency_title" = "币种";
+"wallet_currency" = "钱包币种";
+"leadin_to_wallet" = "导入到钱包";
+"new_wallet" = "新建钱包";
+"current_wallets" = "已有的钱包";

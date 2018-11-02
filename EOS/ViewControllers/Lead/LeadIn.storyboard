@@ -61,24 +61,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFa-Ml-ZB7" customClass="LeadInKeyView" customModule="EOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXP-El-R5K">
-                                        <rect key="frame" x="88" y="440" width="31" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="币种"/>
-                                        <connections>
-                                            <action selector="currency:" destination="liC-5Q-QAv" eventType="touchUpInside" id="gqH-xe-BkN"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxv-4r-6Ba">
-                                        <rect key="frame" x="244" y="440" width="31" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="钱包"/>
-                                        <connections>
-                                            <action selector="wallet:" destination="liC-5Q-QAv" eventType="touchUpInside" id="jsH-BK-Tx7"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -91,12 +73,12 @@
                         <viewLayoutGuide key="safeArea" id="qVO-8j-OuK"/>
                     </view>
                     <connections>
-                        <outlet property="leadInKeyView" destination="jFa-Ml-ZB7" id="ow1-XM-XDt"/>
+                        <outlet property="leadInKeyView" destination="jFa-Ml-ZB7" id="n4T-rb-32x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Uf-eW-KXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-612" y="90"/>
+            <point key="canvasLocation" x="-612" y="89.505247376311857"/>
         </scene>
         <!--Lead In Mnemonic View Controller-->
         <scene sceneID="hqD-xG-xEY">
@@ -139,8 +121,12 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n9X-t8-1eV">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" red="0.55700000000000005" green="0.55700000000000005" blue="0.57599999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9gv-sx-TSi" id="6g8-Pn-LyW"/>
+                                    <outlet property="delegate" destination="9gv-sx-TSi" id="6Cv-YZ-Syj"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <constraints>
@@ -151,6 +137,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1rc-NO-GKV"/>
                     </view>
+                    <connections>
+                        <outlet property="currencyTableView" destination="n9X-t8-1eV" id="hvz-9S-upI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LM-Vp-qME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -341,6 +330,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FMI-GL-TZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1558" y="98"/>
+        </scene>
+        <!--Wallet Select List View Controller-->
+        <scene sceneID="kHg-xH-d8N">
+            <objects>
+                <viewController storyboardIdentifier="WalletSelectListViewController" id="e2w-Cn-7M0" customClass="WalletSelectListViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zaf-8R-b3m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZE7-YV-bd8">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="separatorColor" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="UaF-Gn-Rmh" firstAttribute="bottom" secondItem="ZE7-YV-bd8" secondAttribute="bottom" id="2CA-gt-sYb"/>
+                            <constraint firstItem="UaF-Gn-Rmh" firstAttribute="trailing" secondItem="ZE7-YV-bd8" secondAttribute="trailing" id="4IH-Lw-mnF"/>
+                            <constraint firstItem="ZE7-YV-bd8" firstAttribute="top" secondItem="UaF-Gn-Rmh" secondAttribute="top" id="kvO-vS-QKB"/>
+                            <constraint firstItem="ZE7-YV-bd8" firstAttribute="leading" secondItem="UaF-Gn-Rmh" secondAttribute="leading" id="mIO-F2-rDr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UaF-Gn-Rmh"/>
+                    </view>
+                    <connections>
+                        <outlet property="walletTable" destination="ZE7-YV-bd8" id="jym-QE-XTs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3VW-nz-dmG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2274" y="98"/>
         </scene>
     </scenes>
 </document>
