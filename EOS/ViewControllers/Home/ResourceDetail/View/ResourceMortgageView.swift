@@ -39,13 +39,13 @@ class ResourceMortgageView: UIView {
     }
 
     func setupEvent() {
-        delegateView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
+        self.delegateView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.delegateView.next?.sendEventWith(Event.delegateViewDidClicked.rawValue, userinfo: ["data": self.data ?? []])
+            self.next?.sendEventWith(Event.delegateViewDidClicked.rawValue, userinfo: ["data": self.data ?? []])
         }).disposed(by: disposeBag)
-        buyRamView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
+        self.buyRamView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.buyRamView.next?.sendEventWith(Event.buyRamViewDidClicked.rawValue, userinfo: ["data": self.data ?? []])
+            self.next?.sendEventWith(Event.buyRamViewDidClicked.rawValue, userinfo: ["data": self.data ?? []])
         }).disposed(by: disposeBag)
     }
 

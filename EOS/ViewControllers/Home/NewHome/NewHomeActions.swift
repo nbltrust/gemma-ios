@@ -32,28 +32,33 @@ struct NewHomeFetchedAction: Action {
 }
 
 struct NewHomeViewModel: HandyJSON {
-    var currencyIcon: String = ""
+    var currencyIcon: UIImage = R.image.eos()!
     var currency: String = ""
     var account: String  = ""
     var currencyImg: UIImage = R.image.eosBg()!
     var balance: String  = ""
+    var recentRefundAsset: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
     var allAssets: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"// 1.0000 EOS
     var CNY: String  = ""
     var tokens: String  = ""
     var unit: String  = ""
-    var tokenArray: [String] = []
+    var tokenArray: [String] = ["1","2"]
     var cpuValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
     var netValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
     var ramValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+    var cpuProgress: Float = 0.0
+    var netProgress: Float = 0.0
+    var ramProgress: Float = 0.0
     var id: Int64 = 0
+    var bottomIsHidden = true
 }
 
 struct BalanceFetchedAction: Action {
-    var currencyID: Int64?
+    var currency: Currency?
 }
 
 struct AccountFetchedAction: Action {
-    var currencyID: Int64?
+    var currency: Currency?
 }
 
 struct AccountFetchedFromLocalAction: Action {
@@ -61,7 +66,7 @@ struct AccountFetchedFromLocalAction: Action {
 }
 
 struct RMBPriceFetchedAction: Action {
-    var currencyID: Int64?
+    var currency: Currency?
 }
 
 struct NonActiveFetchedAction: Action {

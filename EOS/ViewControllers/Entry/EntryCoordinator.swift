@@ -58,7 +58,7 @@ protocol EntryStateManagerProtocol {
     
     func createTempWallet(_ pwd: String, prompt: String, type: WalletType)
 
-    func createNewWallet(pwd: String, checkStr: String, deviceName: String?)
+    func createNewWallet(pwd: String, checkStr: String, deviceName: String?, prompt: String?)
 }
 
 class EntryCoordinator: NavCoordinator {
@@ -297,7 +297,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(WalletModelAction(model: model))
     }
 
-    func createNewWallet(pwd: String, checkStr: String, deviceName: String?) {
+    func createNewWallet(pwd: String, checkStr: String, deviceName: String?, prompt: String?) {
         do {
             let wallets = try WalletCacheService.shared.fetchAllWallet()
             let idNum: Int64 = Int64(wallets!.count) + 1
@@ -319,6 +319,9 @@ extension EntryCoordinator: EntryStateManagerProtocol {
 
             let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
             Defaults[.currentWalletID] = (id?.string)!
+            if let prompt = prompt, let cipher = cipher {
+                WalletManager.shared.savePasswordHint(cipher, hint: prompt)
+            }
             if let _ = self.rootVC.viewControllers[0] as? EntryGuideViewController {
                 self.dismissCurrentNav(self.rootVC.viewControllers[1])
             } else {

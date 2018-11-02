@@ -41,20 +41,10 @@ class OverviewViewController: BaseViewController {
     }
 
     func setupData() {
-        if let str = Defaults["currency\(currencyID!)"] as? String {
-            if let model = NewHomeViewModel.deserialize(from: str) {
-                //测试代码
-                var mod = AssetViewModel()
-                mod.CNY = "0.00"
-                mod.name = "EOS"
-                mod.total = "0.0000"
-                self.contentView.adapterModelToOverviewView([mod])
-                //
-                self.contentView.adapterCardModelToOverviewView(model)
-            }
-
+        if let name = CurrencyManager.shared.getAccountNameWith(currencyID) {
+            self.coordinator?.getTokensWith(name)
+            coordinator?.getAccountInfo(name)
         }
-
     }
     
     func setupEvent() {
@@ -70,7 +60,14 @@ class OverviewViewController: BaseViewController {
             }
             
         }).disposed(by: disposeBag)
-        
+
+        self.coordinator?.state.info.asObservable().subscribe(onNext: {[weak self] (model) in
+            guard let `self` = self else { return }
+            if let newModel = model as? NewHomeViewModel, newModel.id != 0 {
+                self.contentView.adapterCardModelToOverviewView(newModel)
+            }
+
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
 //            

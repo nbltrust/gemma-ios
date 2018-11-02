@@ -252,6 +252,8 @@
 "receipt" = "收款";
 "delegate_redeem" = "抵押与赎回";
 "manager" = "管理";
+"redeem" = "赎回";
+"resource_detail" = "资源详情";
 
 //zsy end
 

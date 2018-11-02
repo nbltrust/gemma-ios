@@ -294,14 +294,14 @@ class WalletManager {
         return Defaults[.currentWallet]
     }
 
-    private func savePasswordHint(_ publicKey: String, hint: String) {
+    func savePasswordHint(_ cipher: String, hint: String) {
         guard hint.count > 0 else { return }
 
-        keychain[string: "\(publicKey)-passwordHint"] = hint
+        keychain[string: "\(cipher)-passwordHint"] = hint
     }
 
-    func getPasswordHint(_ publicKey: String) -> String? {
-        if let hint = keychain[string: "\(publicKey)-passwordHint"] {
+    func getPasswordHint(_ cipher: String) -> String? {
+        if let hint = keychain[string: "\(cipher)-passwordHint"] {
             return hint
         }
 

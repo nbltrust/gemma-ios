@@ -24,8 +24,9 @@ class BuyRamViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.coordinator?.getCurrentFromLocal()
-        coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+        if let id = CurrencyManager.shared.getCurrentCurrencyID(), let name = CurrencyManager.shared.getAccountNameWith(id) {
+            coordinator?.getAccountInfo(name)
+        }
     }
 
     func resetData() {

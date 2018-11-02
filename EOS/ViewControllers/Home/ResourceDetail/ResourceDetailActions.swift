@@ -21,6 +21,7 @@ struct ResourceDetailContext: RouteContext, HandyJSON {
 struct ResourceDetailState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
+    var info: BehaviorRelay<ResourceViewModel?> = BehaviorRelay(value: nil)
 }
 
 //MARK: - Action

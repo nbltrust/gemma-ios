@@ -18,6 +18,9 @@ protocol OverviewStateManagerProtocol {
     var state: OverviewState { get }
     
     func switchPageState(_ state:PageState)
+
+    func getTokensWith(_ account: String)
+    func getAccountInfo(_ account: String)
 }
 
 class OverviewCoordinator: NavCoordinator {
@@ -59,6 +62,50 @@ extension OverviewCoordinator: OverviewStateManagerProtocol {
     func switchPageState(_ state:PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
+        }
+    }
+
+    func getTokensWith(_ account: String) {
+        NBLNetwork.request(target: .getTokens(account: account), success: { (json) in
+            print(json)
+        }, error: { (_) in
+
+        }) { (_) in
+
+        }
+    }
+    func getAccountInfo(_ account: String) {
+        if let json = CurrencyManager.shared.getAccountJsonWith(account), let accountObj = Account.deserialize(from: json.dictionaryObject) {
+            self.store.dispatch(MAccountFetchedAction(info: accountObj))
+        }
+        if let json = CurrencyManager.shared.getBalanceJsonWith(account) {
+            self.store.dispatch(MBalanceFetchedAction(balance: json))
+
+        }
+
+        EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
+            self.store.dispatch(MBalanceFetchedAction(balance: json))
+        }, error: { (_) in
+
+        }) { (_) in
+
+        }
+
+        EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
+            if let accountObj = Account.deserialize(from: json.dictionaryObject) {
+                self.store.dispatch(MAccountFetchedAction(info: accountObj))
+            }
+
+        }, error: { (_) in
+
+        }) { (_) in
+
+        }
+
+        getRamPrice { (price) in
+            if let price = price as? Decimal {
+                self.store.dispatch(RamPriceAction(price: price))
+            }
         }
     }
 }

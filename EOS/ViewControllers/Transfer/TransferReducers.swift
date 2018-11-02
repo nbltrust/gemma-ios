@@ -14,9 +14,9 @@ func gTransferReducer(action: Action, state: TransferState?) -> TransferState {
     let state = state ?? TransferState()
 
     switch action {
-    case let action as BalanceFetchedAction:
-        if action.currencyID != nil {
-            if let json = CurrencyManager.shared.getBalanceJsonWith(action.currencyID) {
+    case let action as TBalanceFetchedAction:
+        if action.account != nil {
+            if let json = CurrencyManager.shared.getBalanceJsonWith(action.account) {
                 if let balance = json.arrayValue.first?.string {
                     state.balance.accept(balance)
                 } else {

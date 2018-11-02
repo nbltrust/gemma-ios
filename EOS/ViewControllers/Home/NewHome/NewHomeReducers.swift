@@ -16,8 +16,14 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
     switch action {
     case let action as BalanceFetchedAction:
         var viewmodel = state.info.value
-        if action.currencyID != nil {
-            if let json = CurrencyManager.shared.getBalanceJsonWith(action.currencyID) {
+        if let currency = action.currency {
+            var name: String?
+            if currency.type == .EOS {
+                name = CurrencyManager.shared.getAccountNameWith(currency.id)
+            } else if currency.type == .ETH {
+
+            }
+            if let json = CurrencyManager.shared.getBalanceJsonWith(name) {
                 if let balance = json.arrayValue.first?.string {
                     viewmodel.balance = balance
                 } else {
@@ -30,16 +36,22 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
         state.info.accept(viewmodel)
     case let action as AccountFetchedAction:
         var viewmodel = NewHomeViewModel()
-        if action.currencyID != nil {
-            if let json = CurrencyManager.shared.getAccountJsonWith(action.currencyID), let accountObj = Account.deserialize(from: json.dictionaryObject) {
-                viewmodel = convertViewModelWithAccount(accountObj, viewmodel: state.info.value, currencyID: action.currencyID)
+        if let currency = action.currency {
+            var name: String?
+            if currency.type == .EOS {
+                name = CurrencyManager.shared.getAccountNameWith(currency.id)
+            } else if currency.type == .ETH {
+
+            }
+            if let json = CurrencyManager.shared.getAccountJsonWith(name), let accountObj = Account.deserialize(from: json.dictionaryObject) {
+                viewmodel = convertViewModelWithAccount(accountObj, viewmodel: state.info.value, currencyID: currency.id)
                 viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
             }
         }
         state.info.accept(viewmodel)
     case let action as RMBPriceFetchedAction:
         var viewmodel = state.info.value
-        if action.currencyID != nil {
+        if action.currency != nil {
             if coinType() == .CNY, let eos = CurrencyManager.shared.getCNYPrice() {
                 state.cnyPrice = eos
             } else if coinType() == .USD, let usd = CurrencyManager.shared.getUSDPrice() {
@@ -77,7 +89,6 @@ func setViewModelWithCurrency(currency: Currency?) -> NewHomeViewModel {
     }
     viewmodel.allAssets = 0.string(digits: AppConfiguration.EOSPrecision)
     viewmodel.id = currency?.id ?? 0
-    
     return viewmodel
 }
 
@@ -85,13 +96,28 @@ func convertViewModelWithAccount(_ account: Account, viewmodel: NewHomeViewModel
     var newViewModel = viewmodel
     newViewModel.currencyImg = R.image.eosBg()!
     newViewModel.account = account.accountName
-    newViewModel.cpuValue = account.selfDelegatedBandwidth?.cpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-    newViewModel.netValue = account.selfDelegatedBandwidth?.netWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+    newViewModel.cpuValue = account.selfDelegatedBandwidth?.cpuWeight ?? "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
+    newViewModel.netValue = account.selfDelegatedBandwidth?.netWeight ?? "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
     if let ram = account.totalResources?.ramBytes {
         newViewModel.ramValue = ram.ramCount
     } else {
-        newViewModel.ramValue = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        newViewModel.ramValue = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
     }
+
+    if let used = account.cpuLimit?.used.string, let max = account.cpuLimit?.max.string {
+        newViewModel.cpuProgress = used.float()! / max.float()!
+    }
+    if let used = account.netLimit?.used.string, let max = account.netLimit?.max.string {
+        newViewModel.netProgress = used.float()! / max.float()!
+    }
+    newViewModel.ramProgress = Float(account.ramUsage) / Float(account.ramQuota)
+    if let refundNet = account.refundRequest?.netAmount.eosAmount.toDouble(), let refundCpu = account.refundRequest?.cpuAmount.eosAmount.toDouble() {
+        let asset = refundCpu + refundNet
+        newViewModel.recentRefundAsset = "\(asset.string(digits: AppConfiguration.EOSPrecision)) \(NetworkConfiguration.EOSIODefaultSymbol)"
+    } else {
+        newViewModel.recentRefundAsset = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
+    }
+
     newViewModel.allAssets = calculateTotalAsset(newViewModel)
     newViewModel.currency = "EOS"
     newViewModel.unit = "EOS"

@@ -15,6 +15,7 @@ class ResourceDetailViewController: BaseViewController {
 
 	var coordinator: (ResourceDetailCoordinatorProtocol & ResourceDetailStateManagerProtocol)?
     private(set) var context: ResourceDetailContext?
+    @IBOutlet weak var contentView: ResourceMortgageView!
     
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +34,13 @@ class ResourceDetailViewController: BaseViewController {
     }
     
     func setupUI() {
-        
+        self.title = R.string.localizable.resource_detail.key.localized()
     }
 
     func setupData() {
-        
+        if let id = CurrencyManager.shared.getCurrentCurrencyID(), let name = CurrencyManager.shared.getAccountNameWith(id) {
+            coordinator?.getAccountInfo(name)
+        }
     }
     
     func setupEvent() {
@@ -127,10 +130,10 @@ class ResourceDetailViewController: BaseViewController {
 
 extension ResourceDetailViewController {
     @objc func delegateViewDidClicked(_ data:[String: Any]) {
-
+        self.coordinator?.pushDelegateVC()
     }
     @objc func buyRamViewDidClicked(_ data:[String: Any]) {
-
+        self.coordinator?.pushBuyRamVC()
     }
 }
 

@@ -75,10 +75,11 @@ extension TransferConfirmPasswordViewController {
         guard let context = context else { return }
 
         if context.type != ConfirmType.bltTransfer.rawValue {
-            guard let priKey = WalletManager.shared.getCachedPriKey(context.publicKey, password: passwordView.textField.text!) else {
+            guard CurrencyManager.shared.pwdIsCorrect(context.currencyID, password: passwordView.textField.text!) == true else {
                 self.errCount += 1
                 if self.errCount == 3 {
-                    if let message = WalletManager.shared.getPasswordHint(context.publicKey) {
+
+                    if let cipher = CurrencyManager.shared.getCiperWith(context.currencyID), let message = WalletManager.shared.getPasswordHint(cipher) {
                         self.showError(message: message)
                     }
                 } else {
@@ -89,7 +90,7 @@ extension TransferConfirmPasswordViewController {
 
             if let callback = context.callback {
                 if context.type != ConfirmType.voteNode.rawValue {
-                    callback(priKey, self)
+//                    callback(priKey, self)
                     return
                 }
             }

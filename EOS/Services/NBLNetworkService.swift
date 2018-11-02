@@ -43,6 +43,7 @@ enum NBLService {
     case getBill
     case place(orderId: String)
     case getOrder(orderId: String)
+    case getTokens(account: String)
 }
 
 func defaultManager() -> Alamofire.SessionManager {
@@ -126,6 +127,8 @@ extension NBLService: TargetType {
             return "/api/v1/pay/order/\(orderId)/place"
         case let .getOrder(orderId):
             return "/api/v1/pay/order/\(orderId)"
+        case .getTokens(let account):
+            return "/api/v1/account/tokens/\(account)"
         }
     }
 
@@ -146,6 +149,8 @@ extension NBLService: TargetType {
         case .place:
             return .post
         case .getOrder:
+            return .get
+        case .getTokens:
             return .get
         }
     }
@@ -176,6 +181,8 @@ extension NBLService: TargetType {
             return [:]
         case .getOrder:
             return [:]
+        case .getTokens:
+            return [:]
         }
     }
 
@@ -196,6 +203,8 @@ extension NBLService: TargetType {
         case .place:
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .getOrder:
+            return .requestPlain
+        case .getTokens:
             return .requestPlain
         }
     }

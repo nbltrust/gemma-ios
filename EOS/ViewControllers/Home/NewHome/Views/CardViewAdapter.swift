@@ -11,8 +11,18 @@ import Kingfisher
 
 extension CardView {
     func adapterModelToCardView(_ model:NewHomeViewModel) {
+        if model.bottomIsHidden == false {
+            self.useBalanceLabel.text = model.balance
+            self.refundLabel.text = model.recentRefundAsset
+            self.cpuProgress.progress = model.cpuProgress
+            self.netProgress.progress = model.netProgress
+            self.ramProgress.progress = model.ramProgress
+        }
+        balanceView.isHidden = model.bottomIsHidden
+        refundView.isHidden = model.bottomIsHidden
+        progressView.isHidden = model.bottomIsHidden
 //        self.iconImgView.kf.setImage(with: URL(string: model.currencyIcon))
-        self.iconImgView.image = model.currencyImg
+        self.iconImgView.image = model.currencyIcon
         self.currencyImgView.image = model.currencyImg
         self.currencyLabel.text = model.currency
         self.accountLabel.text = model.account
