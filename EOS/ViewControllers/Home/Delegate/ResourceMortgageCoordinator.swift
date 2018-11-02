@@ -81,6 +81,14 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
     }
 
     func getAccountInfo(_ account: String) {
+        if let json = CurrencyManager.shared.getAccountJsonWith(account), let accountObj = Account.deserialize(from: json.dictionaryObject) {
+            self.store.dispatch(MAccountFetchedAction(info: accountObj))
+        }
+        if let json = CurrencyManager.shared.getBalanceJsonWith(account) {
+            self.store.dispatch(MBalanceFetchedAction(balance: json))
+
+        }
+        
         EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
             self.store.dispatch(MBalanceFetchedAction(balance: json))
         }, error: { (_) in

@@ -25,6 +25,13 @@ class CardView: UIView {
     @IBOutlet weak var balanceView: UIView!
     @IBOutlet weak var refundView: UIView!
     @IBOutlet weak var progressView: UIView!
+    @IBOutlet weak var useBalanceLabel: BaseLabel!
+    @IBOutlet weak var useBalanceNameLabel: BaseLabel!
+    @IBOutlet weak var redundNameLabel: BaseLabel!
+    @IBOutlet weak var refundLabel: BaseLabel!
+    @IBOutlet weak var cpuProgress: UIProgressView!
+    @IBOutlet weak var netProgress: UIProgressView!
+    @IBOutlet weak var ramProgress: UIProgressView!
     
     
     
@@ -57,10 +64,8 @@ class CardView: UIView {
     }
 
     func setupUI() {
-        balanceView.isHidden = true
-        refundView.isHidden = true
-        progressView.isHidden = true
-
+        useBalanceNameLabel.text = R.string.localizable.useage_balance.key.localized()
+        redundNameLabel.text = R.string.localizable.refund.key.localized()
     }
 
     func setupSubViewEvent() {

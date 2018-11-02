@@ -20,12 +20,22 @@ class ResourceMortgageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        coordinator?.getCurrentFromLocal()
-        coordinator?.getAccountInfo(WalletManager.shared.getAccount())
+    }
+
+    func setupData() {
+        if let id = CurrencyManager.shared.getCurrentCurrencyID(), let name = CurrencyManager.shared.getAccountNameWith(id) {
+            coordinator?.getAccountInfo(name)
+            if let balanceJson = CurrencyManager.shared.getBalanceJsonWith(name), let balanceStr = balanceJson.arrayValue.first?.string {
+                balance = balanceStr
+            }
+        }
+
     }
 
     func resetData() {
@@ -33,7 +43,8 @@ class ResourceMortgageViewController: BaseViewController {
         self.contentView.pageView.leftView.netMortgageView.clearText()
         self.contentView.pageView.rightView.cpuMortgageCancelView.clearText()
         self.contentView.pageView.rightView.netMortgageCancelView.clearText()
-        self.contentView.nextButton.isEnabel.accept(false)
+        self.contentView.leftNextButton.isEnabel.accept(false)
+        self.contentView.rightNextButton.isEnabel.accept(false)
         self.coordinator?.pushToPaymentVC()
     }
 
@@ -83,7 +94,7 @@ class ResourceMortgageViewController: BaseViewController {
                 }
 
                 return arg0.0.0 && arg0.1.0
-            }.bind(to: self.contentView.nextButton.isEnabel).disposed(by: disposeBag)
+            }.bind(to: self.contentView.leftNextButton.isEnabel).disposed(by: disposeBag)
 
         coordinator?.state.property.cpuReliveMoneyValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
@@ -120,13 +131,13 @@ class ResourceMortgageViewController: BaseViewController {
                 }
 
                 return arg0.0.0 && arg0.1.0
-            }.bind(to: self.contentView.nextButton.isEnabel).disposed(by: disposeBag)
+            }.bind(to: self.contentView.rightNextButton.isEnabel).disposed(by: disposeBag)
     }
 }
 
 extension ResourceMortgageViewController {
     @objc func leftnext(_ data: [String: Any]) {
-        if self.contentView.nextButton.isEnabel.value == false {
+        if self.contentView.leftNextButton.isEnabel.value == false {
             return
         }
         var model = ConfirmViewModel()
@@ -151,7 +162,7 @@ extension ResourceMortgageViewController {
         self.coordinator?.presentMortgageConfirmVC(data: model)
     }
     @objc func rightnext(_ data: [String: Any]) {
-        if self.contentView.nextButton.isEnabel.value == false {
+        if self.contentView.rightNextButton.isEnabel.value == false {
             return
         }
         var model = ConfirmViewModel()

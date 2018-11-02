@@ -62,7 +62,7 @@ func gBuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Bu
 
             state.sellRamValid.accept((valid, tips, action.ram))
         }
-    case let action as BBalanceFetchedAction:
+    case let action as MBalanceFetchedAction:
         if var viewmodel = state.info.value {
             if let balance = action.balance.arrayValue.first?.string {
                 viewmodel.leftTrade = balance
@@ -112,7 +112,7 @@ func gBuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Bu
 
             state.info.accept(viewmodel)
         }
-    case let action as BAccountFetchedAction:
+    case let action as MAccountFetchedAction:
         var viewmodel = state.info.value
         viewmodel = convertBuyRamViewModelWithAccount(action.info, viewmodel: viewmodel)
         state.info.accept(viewmodel)

@@ -39,14 +39,6 @@ struct BuyRamViewModel {
     var netMax: Int64 = 0
 }
 
-struct BBalanceFetchedAction: Action {
-    var balance: JSON
-}
-
-struct BAccountFetchedAction: Action {
-    var info: Account
-}
-
 struct BuyRamAction: Action {
     var ram = ""
     var balance = ""

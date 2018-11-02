@@ -9,10 +9,55 @@
 import Foundation
 import SwiftyJSON
 import SwiftyUserDefaults
+import seed39_ios_golang
+import eos_ios_core_cpp
 
 class CurrencyManager {
     static let shared = CurrencyManager()
 
+    func getCipherPrikey() -> String? {
+        if let id = getCurrentCurrencyID() {
+            do {
+                let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
+                return currency?.cipher
+            } catch {
+                return nil
+            }
+        }
+        return nil
+    }
+
+    //验证密码
+    func pwdIsCorrect(_ currencyID: Int64?, password: String) -> Bool {
+        do {
+            if let id = currencyID {
+                let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
+                let prikey = Seed39KeyDecrypt(password, currency?.cipher)
+                if currency?.type == .EOS, EOSIO.getPublicKey(prikey) == currency?.pubKey {
+                    return true
+                } else if currency?.type == .ETH, Seed39GetEthereumAddressFromPrivateKey(prikey) == currency?.address {
+                    return true
+                }
+                return false
+            }
+            return false
+        } catch {
+            return false
+        }
+    }
+
+    func getCiperWith(_ currencyID: Int64?) -> String? {
+        do {
+            if let id = currencyID {
+                let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
+                let wallet = try WalletCacheService.shared.fetchWalletBy(id: (currency?.wid)!)
+                return wallet!.cipher
+            }
+            return nil
+        } catch {
+            return nil
+        }
+    }
 
     //新版本存取币种信息
     func saveAccountNameWith(_ currencyID: Int64?, name: String?) {
@@ -45,15 +90,15 @@ class CurrencyManager {
 
 
     //新版本存取缓存数据
-    func saveBalanceJsonWith(_ currencyID: Int64?, json: JSON) {
-        if let id = currencyID {
-            Defaults["balanceJson\(id)"] = json.rawString()
+    func saveBalanceJsonWith(_ account: String?, json: JSON) {
+        if let account = account {
+            Defaults["balanceJson\(account)"] = json.rawString()
         }
     }
 
-    func saveAccountJsonWith(_ currencyID: Int64?, json: JSON) {
-        if let id = currencyID {
-            Defaults["accountJson\(id)"] = json.rawString()
+    func saveAccountJsonWith(_ account: String?, json: JSON) {
+        if let account = account {
+            Defaults["accountJson\(account)"] = json.rawString()
         }
     }
 
@@ -66,18 +111,18 @@ class CurrencyManager {
         }
     }
 
-    func getBalanceJsonWith(_ currencyID: Int64?) -> JSON? {
-        if let id = currencyID {
-            if let jsonStr = Defaults["balanceJson\(id)"] as? String, let json = JSON.init(parseJSON: jsonStr) as? JSON {
+    func getBalanceJsonWith(_ account: String?) -> JSON? {
+        if let account = account {
+            if let jsonStr = Defaults["balanceJson\(account)"] as? String, let json = JSON.init(parseJSON: jsonStr) as? JSON {
                 return json
             }
         }
         return nil
     }
 
-    func getAccountJsonWith(_ currencyID: Int64?) -> JSON? {
-        if let id = currencyID {
-            if let jsonStr = Defaults["accountJson\(id)"] as? String, let json = JSON.init(parseJSON: jsonStr) as? JSON {
+    func getAccountJsonWith(_ account: String?) -> JSON? {
+        if let account = account {
+            if let jsonStr = Defaults["accountJson\(account)"] as? String, let json = JSON.init(parseJSON: jsonStr) as? JSON {
                 return json
             }
         }

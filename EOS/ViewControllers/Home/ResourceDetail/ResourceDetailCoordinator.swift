@@ -11,13 +11,16 @@ import ReSwift
 import NBLCommonModule
 
 protocol ResourceDetailCoordinatorProtocol {
-//    func 
+    func pushDelegateVC()
+    func pushBuyRamVC()
 }
 
 protocol ResourceDetailStateManagerProtocol {
     var state: ResourceDetailState { get }
     
     func switchPageState(_ state:PageState)
+
+    func getAccountInfo(_ account: String)
 }
 
 class ResourceDetailCoordinator: NavCoordinator {
@@ -46,13 +49,54 @@ class ResourceDetailCoordinator: NavCoordinator {
 }
 
 extension ResourceDetailCoordinator: ResourceDetailCoordinatorProtocol {
-    
+    func pushDelegateVC() {
+        if let deleVC = R.storyboard.resourceMortgage.resourceMortgageViewController() {
+            let coordinator = ResourceMortgageCoordinator(rootVC: self.rootVC)
+            deleVC.coordinator = coordinator
+            self.rootVC.pushViewController(deleVC, animated: true)
+        }
+    }
+    func pushBuyRamVC() {
+        self.pushVC(BuyRamCoordinator.self, animated: true, context: nil)
+    }
 }
 
 extension ResourceDetailCoordinator: ResourceDetailStateManagerProtocol {
     func switchPageState(_ state:PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
+        }
+    }
+
+    func getAccountInfo(_ account: String) {
+        if let json = CurrencyManager.shared.getAccountJsonWith(account), let accountObj = Account.deserialize(from: json.dictionaryObject) {
+            self.store.dispatch(MAccountFetchedAction(info: accountObj))
+        }
+        if let json = CurrencyManager.shared.getBalanceJsonWith(account) {
+            self.store.dispatch(MBalanceFetchedAction(balance: json))
+
+        }
+
+
+        EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
+            CurrencyManager.shared.saveBalanceJsonWith(account, json: json)
+            self.store.dispatch(MBalanceFetchedAction(balance: json))
+        }, error: { (_) in
+
+        }) { (_) in
+
+        }
+
+        EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
+            CurrencyManager.shared.saveAccountJsonWith(account, json: json)
+            if let accountObj = Account.deserialize(from: json.dictionaryObject) {
+                self.store.dispatch(MAccountFetchedAction(info: accountObj))
+            }
+
+        }, error: { (_) in
+
+        }) { (_) in
+
         }
     }
 }

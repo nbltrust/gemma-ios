@@ -39,3 +39,7 @@ struct MoneyAction: Action {
 struct ToNameAction: Action {
     var isValid: Bool = false
 }
+
+struct TBalanceFetchedAction: Action {
+    var account: String?
+}

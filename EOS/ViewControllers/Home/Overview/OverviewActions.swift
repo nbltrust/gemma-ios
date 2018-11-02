@@ -21,6 +21,9 @@ struct OverviewContext: RouteContext, HandyJSON {
 struct OverviewState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
+    var info: BehaviorRelay<NewHomeViewModel?> = BehaviorRelay(value: nil)
+    var cnyPrice: String = ""
+    var otherPrice: String = ""
 }
 
 //MARK: - Action

@@ -15,8 +15,7 @@ struct TransferConfirmPasswordContext: RouteContext, HandyJSON {
     init() {
 
     }
-
-    var publicKey = WalletManager.shared.currentPubKey
+    var currencyID: Int64? = 0
     var iconType = ""
     var producers: [String] = []
     var type = ""

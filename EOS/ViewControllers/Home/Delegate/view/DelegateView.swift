@@ -12,10 +12,13 @@ import Foundation
 class DelegateView: EOSBaseView {
 
     @IBOutlet weak var pageView: PageView!
-    @IBOutlet weak var nextButton: Button!
+    @IBOutlet weak var leftNextButton: Button!
+    @IBOutlet weak var rightNextButton: Button!
     
     enum Event:String {
         case delegateViewDidClicked
+        case leftnext
+        case rightnext
     }
         
     override func setup() {
@@ -26,14 +29,38 @@ class DelegateView: EOSBaseView {
     }
     
     func setupUI() {
-        
+        self.pageView.leftText = R.string.localizable.mortgage.key.localized()
+        self.pageView.rightText = R.string.localizable.redeem.key.localized()
+        leftNextButton.isHidden = false
+        rightNextButton.isHidden = true
     }
     
     func setupSubViewEvent() {
-    
+        leftNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
+            guard let `self` = self else { return }
+            self.endEditing(true)
+            //            self.pageView.leftView.cpuMortgageView.resignFirstResponder()
+            self.sendEventWith(Event.leftnext.rawValue, userinfo: [:])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        rightNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
+            guard let `self` = self else { return }
+            self.endEditing(true)
+            self.sendEventWith(Event.rightnext.rawValue, userinfo: [:])
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     @objc override func didClicked() {
         self.next?.sendEventWith(Event.delegateViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+    }
+}
+
+extension DelegateView {
+    @objc func left(_ data: [String: Any]) {
+        leftNextButton.isHidden = false
+        rightNextButton.isHidden = true
+    }
+    @objc func right(_ data: [String: Any]) {
+        leftNextButton.isHidden = true
+        rightNextButton.isHidden = false
     }
 }

@@ -122,7 +122,7 @@ class EntryViewController: BaseViewController {
             guard let `self` = self else { return }
             if let str = checkStr as? String {
                 self.startLoading()
-                self.coordinator?.createNewWallet(pwd: self.registerView.passwordView.textField.text!, checkStr: str, deviceName: nil)
+                self.coordinator?.createNewWallet(pwd: self.registerView.passwordView.textField.text!, checkStr: str, deviceName: nil, prompt: self.registerView.passwordPromptView.textField.text)
 
             }
         })

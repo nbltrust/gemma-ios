@@ -166,23 +166,23 @@ extension HomeCoordinator: HomeStateManagerProtocol {
 
     func getAccountInfo(_ account: String) {
         EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
-            self.store.dispatch(BalanceFetchedAction(currencyID: nil))
+            self.store.dispatch(BalanceFetchedAction(currency: nil))
         }, error: { (_) in
-            self.store.dispatch(BalanceFetchedAction(currencyID: nil))
+            self.store.dispatch(BalanceFetchedAction(currency: nil))
         }) { (_) in
-            self.store.dispatch(BalanceFetchedAction(currencyID: nil))
+            self.store.dispatch(BalanceFetchedAction(currency: nil))
         }
 
         EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
-            self.store.dispatch(AccountFetchedAction(currencyID: nil))
+            self.store.dispatch(AccountFetchedAction(currency: nil))
         }, error: { (_) in
-            self.store.dispatch(AccountFetchedAction(currencyID: nil))
+            self.store.dispatch(AccountFetchedAction(currency: nil))
         }) { (_) in
-            self.store.dispatch(AccountFetchedAction(currencyID: nil))
+            self.store.dispatch(AccountFetchedAction(currency: nil))
         }
 
         SimpleHTTPService.requestETHPrice().done { (json) in
-            self.store.dispatch(RMBPriceFetchedAction(currencyID: nil))
+            self.store.dispatch(RMBPriceFetchedAction(currency: nil))
         }.cauterize()
     }
 

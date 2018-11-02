@@ -11,12 +11,12 @@ import Foundation
 @IBDesignable
 class BuyRamView: UIView {
 
-    @IBOutlet weak var generalRamView: GeneralRamCellView!
     @IBOutlet weak var pageView: PageView!
     @IBOutlet weak var leftNextButton: Button!
     @IBOutlet weak var rightNextButton: Button!
     @IBOutlet weak var exchangeLabelView: UIView!
     @IBOutlet weak var exchangeLabel: UILabel!
+    @IBOutlet weak var priceView: LineView!
 
     enum Event: String {
         case leftnext
@@ -28,7 +28,7 @@ class BuyRamView: UIView {
     var data: Any? {
         didSet {
             if let data = data as? BuyRamViewModel {
-                generalRamView.data = data
+                priceView.contentText = data.priceLabel
                 pageView.data = data
                 if data.exchange == "" {
                     exchangeLabelView.isHidden = true
@@ -41,19 +41,21 @@ class BuyRamView: UIView {
     }
 
     func setupUI() {
-        generalRamView.generalView.name = R.string.localizable.ram.key.localized()
-        generalRamView.generalView.leftSubText = R.string.localizable.use.key.localized() + " - " + R.string.localizable.ms.key.localized()
-        generalRamView.generalView.rightSubText = R.string.localizable.total.key.localized() + " - " + R.string.localizable.ms.key.localized()
-        generalRamView.generalView.eos = ""
-        generalRamView.generalView.lineIsHidden = false
-        generalRamView.priceLabel.text = "≈- EOS/KB"
-
         pageView.leftText = R.string.localizable.buy.key.localized()
         pageView.rightText = R.string.localizable.sell.key.localized()
         exchangeLabelView.isHidden = true
 
         leftNextButton.isHidden = false
         rightNextButton.isHidden = true
+
+        priceView.data = LineView.LineViewModel.init(name: R.string.localizable.price.key.localized(),
+                                                     content: "",
+                                                     imageName: "",
+                                                     nameStyle: LineViewStyleNames.normalName,
+                                                     contentStyle: LineViewStyleNames.normalContent,
+                                                     isBadge: false,
+                                                     contentLineNumber: 1,
+                                                     isShowLineView: true)
     }
 
     func setupEvent() {
