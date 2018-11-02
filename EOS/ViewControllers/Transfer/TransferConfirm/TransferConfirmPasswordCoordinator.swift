@@ -120,7 +120,9 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = TransferActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        if let fromAccount = CurrencyManager.shared.getAccountNameWith(CurrencyManager.shared.getCurrentCurrencyID()) {
+            model.fromAccount = fromAccount
+        }
         model.success = R.string.localizable.transfer_successed.key.localized()
         model.faile = R.string.localizable.transfer_failed.key.localized()
         model.amount = amount

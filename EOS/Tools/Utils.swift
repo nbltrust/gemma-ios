@@ -185,7 +185,10 @@ func transaction(_ action: String, actionModel: ActionModel, callback:@escaping 
             var transaction = ""
             let abiStr = binJson["binargs"].stringValue
 
-            var privakey = CurrencyManager.shared.getCipherPrikey()
+            var privakey = ""
+            if let cipher = CurrencyManager.shared.getCipherPrikey(), let key = WalletManager.shared.getCachedPriKey(cipher, password: actionModel.password)  {
+                privakey = key
+            }
 
             if action == EOSAction.transfer.rawValue {
                 transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TokenCode, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)

@@ -52,6 +52,7 @@ class TransferConfirmCoordinator: NavCoordinator {
 extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
     func pushToTransferConfirmPwdVC(toAccount: String, money: String, remark: String, type: String) {
         var context = TransferConfirmPasswordContext()
+        context.currencyID = CurrencyManager.shared.getCurrentCurrencyID()
         context.receiver = toAccount
         context.amount = money
         context.remark = remark

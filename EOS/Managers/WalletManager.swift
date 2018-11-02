@@ -314,8 +314,8 @@ class WalletManager {
         }
     }
 
-    func getCachedPriKey(_ publicKey: String, password: String) -> String? {
-        if let cypher = keychain[string: "\(publicKey)-cypher"], let pri = EOSIO.getPirvateKey(cypher, password: password), pri.count > 0, pri != "wrong password" {
+    func getCachedPriKey(_ cypher: String, password: String) -> String? {
+        if let pri = EOSIO.getPirvateKey(cypher, password: password), pri.count > 0, pri != "wrong password" {
             self.priKey = pri
             return pri
         }
