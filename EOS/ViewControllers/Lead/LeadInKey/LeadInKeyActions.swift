@@ -2,32 +2,28 @@
 //  LeadInKeyActions.swift
 //  EOS
 //
-//  Created DKM on 2018/7/31.
-//  Copyright © 2018年 com.nbltrust. All rights reserved.
+//  Created peng zhu on 2018/11/2.
+//  Copyright © 2018 com.nbltrustdev. All rights reserved.
 //
 
 import Foundation
 import ReSwift
 import RxCocoa
+import SwiftyJSON
+import HandyJSON
 
-// MARK: - State
-struct LeadInKeyState: StateType {
-    var isLoading = false
-    var page: Int = 1
-    var errorMessage: String?
-    var property: LeadInKeyPropertyState
+struct LeadInKeyContext: RouteContext, HandyJSON {
 }
 
-struct LeadInKeyPropertyState {
+//MARK: - State
+struct LeadInKeyState: BaseState {
+    var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
+    var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
+    var currencyType: BehaviorRelay<CurrencyType?> = BehaviorRelay(value: CurrencyType.EOS)
+    var toWallet: BehaviorRelay<Wallet?> = BehaviorRelay(value: nil)
 }
 
-// MARK: - Action Creator
-class LeadInKeyPropertyActionCreate {
-    public typealias ActionCreator = (_ state: LeadInKeyState, _ store: Store<LeadInKeyState>) -> Action?
-
-    public typealias AsyncActionCreator = (
-        _ state: LeadInKeyState,
-        _ store: Store <LeadInKeyState>,
-        _ actionCreatorCallback: @escaping ((ActionCreator) -> Void)
-        ) -> Void
+//MARK: - Action
+struct LeadInKeyFetchedAction: Action {
+    var data:JSON
 }

@@ -13,10 +13,11 @@ import SwiftyJSON
 import HandyJSON
 
 struct CurrencyListContext: RouteContext, HandyJSON {
-    init() {}
-    
+    var selectedCurrency: CurrencyType = .EOS
+    var currencySelectResult: BehaviorRelay<CurrencySelectResult?> = BehaviorRelay(value: nil)
 }
 
+typealias CurrencySelectResult = ((_ currencyType: CurrencyType) -> Void)
 //MARK: - State
 struct CurrencyListState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)

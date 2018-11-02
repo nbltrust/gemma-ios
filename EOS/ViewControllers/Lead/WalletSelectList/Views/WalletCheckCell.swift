@@ -1,26 +1,26 @@
 //
-//  CurrencyCheckCell.swift
+//  WalletCheckCell.swift
 //  EOS
 //
-//  Created by peng zhu on 2018/10/30.
+//  Created by peng zhu on 2018/11/2.
 //  Copyright © 2018 com.nbltrustdev. All rights reserved.
 //
 
 import UIKit
 
-class CurrencyCheckCell: BaseTableViewCell {
+class WalletCheckCell: BaseTableViewCell {
 
-    @IBOutlet weak var currencyView: CustomCheckView!
-
+    @IBOutlet weak var walletView: CustomCheckView!
+    
     var title: String = "" {
         didSet {
-            currencyView.title = title
+            walletView.title = title
         }
     }
 
     var isChoosed: Bool = false {
         didSet {
-            currencyView.isChoosed = isChoosed
+            walletView.isChoosed = isChoosed
         }
     }
 

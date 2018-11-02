@@ -62,7 +62,7 @@ class LeadInEntryViewController: ButtonBarPagerTabStripViewController {
     }
 
     override func rightAction(_ sender: UIButton) {
-        
+        self.coordinator?.pushToScanVC()
     }
 
     func setupData() {
@@ -70,12 +70,10 @@ class LeadInEntryViewController: ButtonBarPagerTabStripViewController {
     }
 
     func setupEvent() {
-        
+
     }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let mnemonicVC = R.storyboard.leadIn.leadInMnemonicViewController()!
-        let leadInKeyVC = R.storyboard.leadIn.leadInKeyViewController()!
-        return [mnemonicVC, leadInKeyVC]
+        return self.coordinator?.viewControllers() ?? []
     }
 }

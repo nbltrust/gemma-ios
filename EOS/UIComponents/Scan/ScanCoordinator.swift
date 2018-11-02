@@ -11,6 +11,8 @@ import ReSwift
 
 protocol ScanCoordinatorProtocol {
     func dismissVC()
+
+    func popVC()
 }
 
 protocol ScanStateManagerProtocol {
@@ -43,6 +45,10 @@ class ScanCoordinator: NavCoordinator {
 extension ScanCoordinator: ScanCoordinatorProtocol {
     func dismissVC() {
         self.rootVC.dismiss(animated: true, completion: nil)
+    }
+
+    func popVC() {
+        self.rootVC.popViewController(animated: true)
     }
 }
 

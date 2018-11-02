@@ -21,6 +21,10 @@ class LeadInKeyView: UIView {
     
     @IBOutlet weak var creatButton: Button!
 
+    @IBOutlet weak var currencyView: CustomCellView!
+
+    @IBOutlet weak var walletView: CustomCellView!
+
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
@@ -32,6 +36,9 @@ class LeadInKeyView: UIView {
         self.textView.textColor = UIColor.baseColor
         self.textView.textContainerInset = UIEdgeInsets(top: 16, left: 15, bottom: 16, right: 15)
         self.creatButton.isEnabel.accept(false)
+
+        currencyView.title = R.string.localizable.wallet_currency.key.localized()
+        walletView.title = R.string.localizable.leadin_to_wallet.key.localized()
 
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
