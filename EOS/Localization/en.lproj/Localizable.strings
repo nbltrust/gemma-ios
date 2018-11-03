@@ -101,6 +101,7 @@
 "change_password_success" = "Success. Password modified.";
 
 "wallet_name" = "Wallet name";
+"wallet_name_pla" = "请填写钱包名称";
 "manager_wallet" = "Manage Wallet";
 "change_wallet_name" = "Modify Wallet Name";
 "i_know" = "OK, got it";

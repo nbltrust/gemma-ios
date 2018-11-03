@@ -14,7 +14,7 @@ import eos_ios_core_cpp
 protocol LeadInKeyCoordinatorProtocol {
     func openScan()
 
-    func openSetWallet()
+    func openSetWallet(_ priKey: String)
 
     func pushToWalletSelectVC()
 
@@ -70,11 +70,13 @@ extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
         }, presentSetup: nil)
     }
 
-    func openSetWallet() {
+    func openSetWallet(_ priKey: String) {
         if let setVC = R.storyboard.leadIn.setWalletViewController() {
             let coordinator = SetWalletCoordinator(rootVC: self.rootVC)
             setVC.coordinator = coordinator
-            setVC.settingType = .leadIn
+            setVC.settingType = .leadInWithPriKey
+            setVC.priKey = priKey
+            setVC.currencyType = self.state.currencyType.value ?? .EOS
             self.rootVC.pushViewController(setVC, animated: true)
         }
     }

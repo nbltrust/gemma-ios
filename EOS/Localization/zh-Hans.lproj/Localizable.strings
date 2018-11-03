@@ -100,7 +100,8 @@
 "change_password" = "修改密码";
 "change_password_success" = "修改密码成功";
 
-"wallet_name" = "钱包名";
+"wallet_name" = "钱包名称";
+"wallet_name_pla" = "请填写钱包名称";
 "manager_wallet" = "管理钱包";
 "change_wallet_name" = "修改钱包名称";
 "i_know" = "我知道了";

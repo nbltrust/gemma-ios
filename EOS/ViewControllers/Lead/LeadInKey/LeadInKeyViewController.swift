@@ -96,6 +96,21 @@ class LeadInKeyViewController: BaseViewController,IndicatorInfoProvider {
 }
 
 extension LeadInKeyViewController {
+    @objc func beginLeadInAction(_ sender: [String: Any]) {
+        guard let priKey = self.leadInKeyView.textView.text else {
+            return
+        }
+
+        if let valid = self.coordinator?.validPrivateKey(priKey).0 {
+            if valid == true {
+                self.coordinator?.importPrivKey(priKey)
+                self.coordinator?.openSetWallet(priKey)
+            }
+        }
+    }
+}
+
+extension LeadInKeyViewController {
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(stringLiteral: R.string.localizable.priKey_title.key.localized())
     }

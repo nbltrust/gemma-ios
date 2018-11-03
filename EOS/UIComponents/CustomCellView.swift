@@ -29,7 +29,7 @@ class CustomCellView: BaseView {
 
     var subTitle: String = "" {
         didSet {
-            subTitleLabel.text = title
+            subTitleLabel.text = subTitle
         }
     }
 

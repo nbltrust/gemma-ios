@@ -13,7 +13,8 @@ import ReSwift
 import NBLCommonModule
 
 enum WalletSettingType: Int {
-    case leadIn = 0
+    case leadInWithPriKey = 0
+    case leadInWithMnemonic
     case updatePas
     case wookong
     case updatePin
@@ -25,11 +26,14 @@ class SetWalletViewController: BaseViewController {
     @IBOutlet weak var servers: UILabel!
     @IBOutlet weak var finished: Button!
     @IBOutlet weak var mnemonic: Button!
-    @IBOutlet weak var fieldVIew: SetWalletContentView!
-    @IBOutlet weak var cornerShadowView: CornerAndShadowView!
+    @IBOutlet weak var fieldView: SetWalletContentView!
     @IBOutlet weak var agreeView: UIView!
 
-    var settingType: WalletSettingType = .leadIn
+    var priKey: String = ""
+
+    var currencyType: CurrencyType = .EOS
+
+    var settingType: WalletSettingType = .leadInWithPriKey
 
 	var coordinator: (SetWalletCoordinatorProtocol & SetWalletStateManagerProtocol)?
 
@@ -42,65 +46,76 @@ class SetWalletViewController: BaseViewController {
 
     func setupUI() {
         switch settingType {
-        case .leadIn:
-            self.title = R.string.localizable.set_wallet_title.key.localized()
-            agreeView.isHidden = false
-            mnemonic.isHidden = true
+        case .leadInWithPriKey:
+            setupWithLeadIn()
+        case .leadInWithMnemonic:
+            setupWithLeadIn()
         case .updatePas:
-            self.title = R.string.localizable.change_password.key.localized()
-            fieldVIew.password.setting.title = R.string.localizable.new_password.key.localized()
-            fieldVIew.password.titleLabel.text = R.string.localizable.new_password.key.localized()
-            finished.title = R.string.localizable.update_pwd_btn_title.key.localized()
-            agreeView.isHidden = true
-            mnemonic.isHidden = true
+            setupWithPas()
         case .wookong :
-            self.title = R.string.localizable.wookong_title.key.localized()
-            fieldVIew.password.setting.title = R.string.localizable.wookong_pas_set_title.key.localized()
-            fieldVIew.password.titleLabel.text = R.string.localizable.wookong_pas_set_title.key.localized()
-            finished.title = R.string.localizable.wookong_creat_new_wallet.key.localized()
-            agreeView.isHidden = true
+            setupWithWookong()
         case .updatePin :
-            self.title = R.string.localizable.change_password.key.localized()
-            fieldVIew.password.setting.title = R.string.localizable.new_password.key.localized()
-            fieldVIew.password.titleLabel.text = R.string.localizable.new_password.key.localized()
-            finished.title = R.string.localizable.update_pwd_btn_title.key.localized()
-            agreeView.isHidden = true
-            mnemonic.isHidden = true
+            setupWithPin()
         
         }
-        
-
         agree.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
     }
 
+    func setupWithPin() {
+        self.title = R.string.localizable.change_password.key.localized()
+        fieldView.passwordView.setting.title = R.string.localizable.new_password.key.localized()
+        fieldView.passwordView.titleLabel.text = R.string.localizable.new_password.key.localized()
+        finished.title = R.string.localizable.update_pwd_btn_title.key.localized()
+        agreeView.isHidden = true
+        mnemonic.isHidden = true
+    }
+
+    func setupWithPas() {
+        self.title = R.string.localizable.change_password.key.localized()
+        fieldView.passwordView.setting.title = R.string.localizable.new_password.key.localized()
+        fieldView.passwordView.titleLabel.text = R.string.localizable.new_password.key.localized()
+        finished.title = R.string.localizable.update_pwd_btn_title.key.localized()
+        agreeView.isHidden = true
+        mnemonic.isHidden = true
+    }
+
+    func setupWithWookong() {
+        self.title = R.string.localizable.wookong_title.key.localized()
+        fieldView.passwordView.setting.title = R.string.localizable.wookong_pas_set_title.key.localized()
+        fieldView.passwordView.titleLabel.text = R.string.localizable.wookong_pas_set_title.key.localized()
+        finished.title = R.string.localizable.wookong_creat_new_wallet.key.localized()
+        agreeView.isHidden = true
+    }
+
+    func setupWithLeadIn() {
+        self.title = R.string.localizable.set_wallet_title.key.localized()
+        agreeView.isHidden = false
+        mnemonic.isHidden = true
+        fieldView.nameView.isHidden = false
+    }
+
+    func importWallet() {
+        if let name = self.fieldView.nameView.textField.text, let password = self.fieldView.passwordView.textField.text, let hint = self.fieldView.hintView.textField.text {
+            self.coordinator?.importPriKeyWallet(name, priKey: priKey, type: currencyType, password: password, hint: "")
+        }
+    }
+
     func setupEvent() {
-        finished.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
+        finished.button.rx.controlEvent(.touchUpInside).subscribe(onNext: { [weak self] _ in
             guard let `self` = self else { return }
-            self.coordinator?.validPassword(self.fieldVIew.password.textField.text!)
-            self.coordinator?.validComfirmPassword(self.fieldVIew.resetPassword.textField.text!, comfirmPassword: self.fieldVIew.password.textField.text!)
             if self.finished.isEnabel.value == true {
                 switch self.settingType {
-                case .leadIn:
-                    if let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text {
-                        self.startLoading()
-                        self.coordinator?.importLocalWallet(password, hint: hint, completion: {[weak self] (success) in
-                            guard let `self` = self else { return }
-                            self.endLoading()
-                            if success {
-                                self.coordinator?.importFinished()
-                            } else {
-                                self.showError(message: R.string.localizable.lead_in_fail.key.localized())
-                            }
-                        })
-                    }
+                case .leadInWithPriKey:
+                    self.importWallet()
+                case .leadInWithMnemonic:
+                    self.importWallet()
                 case .updatePas:
-                    if let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text {
+                    if let password = self.fieldView.passwordView.textField.text, let hint = self.fieldView.hintView.textField.text {
                         self.coordinator?.updatePassword(password, hint: hint)
                         self.showSuccess(message: R.string.localizable.change_password_success.key.localized())
                     }
                 case .wookong :
-                    if let password = self.fieldVIew.password.textField.text, let hint = self.fieldVIew.tipPassword.textField.text {
-
+                    if let password = self.fieldView.passwordView.textField.text, let hint = self.fieldView.hintView.textField.text {
                         self.coordinator?.setWalletPin(password, success: { [weak self] in
                             guard let `self` = self else { return }
                             self.coordinator?.pushToSetAccountVC(hint)
@@ -112,7 +127,7 @@ class SetWalletViewController: BaseViewController {
                         })
                     }
                 case .updatePin:
-                    if let password = self.fieldVIew.password.textField.text {
+                    if let password = self.fieldView.passwordView.textField.text {
                         self.coordinator?.updatePin(password, success: { [weak self] in
                             guard let `self` = self else { return }
                             self.coordinator?.popVC()
@@ -145,25 +160,30 @@ class SetWalletViewController: BaseViewController {
     }
 
     override func configureObserveState() {
-        Observable.combineLatest(self.coordinator!.state.property.setWalletPasswordValid.asObservable(),
+        Observable.combineLatest(self.coordinator!.state.property.setWalletNameValid.asObservable(),
+                                 self.coordinator!.state.property.setWalletPasswordValid.asObservable(),
                                  self.coordinator!.state.property.setWalletComfirmPasswordValid.asObservable(),
                                  self.coordinator!.state.property.setWalletIsAgree.asObservable()).map { (arg0) -> Bool in
-                                    if self.settingType == .updatePas || self.settingType == .wookong || self.settingType == .updatePin {
-                                        return arg0.0 && arg0.1
+                                    if self.settingType == .leadInWithMnemonic || self.settingType == .leadInWithPriKey {
+                                        return arg0.0 && arg0.1 && arg0.2 && arg0.3
                                     }
-                                    return arg0.0 && arg0.1 && arg0.2
+                                    return arg0.1 && arg0.2
             }.bind(to: finished.isEnabel).disposed(by: disposeBag)
 
     }
 }
 
 extension SetWalletViewController {
+
+    @objc func walletName(_ data: [String: Any]) {
+        self.coordinator?.validName((data["valid"] as? Bool) ?? false)
+    }
+
     @objc func walletPassword(_ data: [String: Any]) {
-        self.coordinator?.validPassword(self.fieldVIew.password.textField.text!)
-        self.coordinator?.validComfirmPassword(self.fieldVIew.password.textField.text!, comfirmPassword: self.fieldVIew.resetPassword.textField.text!)
+        self.coordinator?.validPassword((data["valid"] as? Bool) ?? false)
     }
 
     @objc func walletComfirmPassword(_ data: [String: Any]) {
-        self.coordinator?.validComfirmPassword(self.fieldVIew.resetPassword.textField.text!, comfirmPassword: self.fieldVIew.password.textField.text!)
+        self.coordinator?.validComfirmPassword((data["valid"] as? Bool) ?? false)
     }
 }

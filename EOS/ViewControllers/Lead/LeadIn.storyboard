@@ -159,27 +159,6 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4g-tl-JKv">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J1B-cx-Ukn" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="23" width="343" height="276"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CMA-M2-RRX" customClass="SetWalletContentView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="276"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="CMA-M2-RRX" secondAttribute="bottom" id="40r-ZH-lTv"/>
-                                                    <constraint firstAttribute="trailing" secondItem="CMA-M2-RRX" secondAttribute="trailing" id="IXm-Od-t6c"/>
-                                                    <constraint firstItem="CMA-M2-RRX" firstAttribute="leading" secondItem="J1B-cx-Ukn" secondAttribute="leading" id="MLC-fh-GJd"/>
-                                                    <constraint firstItem="CMA-M2-RRX" firstAttribute="top" secondItem="J1B-cx-Ukn" secondAttribute="top" id="uq0-pY-kli"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xSC-vH-vnI">
                                                 <rect key="frame" x="32" y="369" width="311" height="183"/>
                                                 <subviews>
@@ -288,15 +267,19 @@
                                                     <constraint firstItem="pRW-8f-pDf" firstAttribute="top" secondItem="eBA-Or-EfL" secondAttribute="bottom" id="wqK-Xl-wPc"/>
                                                 </constraints>
                                             </stackView>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CMA-M2-RRX" customClass="SetWalletContentView" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="27" width="335" height="276"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="CMA-M2-RRX" firstAttribute="top" secondItem="r4g-tl-JKv" secondAttribute="top" constant="10" id="8tC-Xn-enq"/>
                                             <constraint firstAttribute="bottom" secondItem="xSC-vH-vnI" secondAttribute="bottom" constant="16" id="9ck-Tv-MM6"/>
-                                            <constraint firstItem="xSC-vH-vnI" firstAttribute="top" secondItem="J1B-cx-Ukn" secondAttribute="bottom" id="Fdr-F8-Qap"/>
-                                            <constraint firstAttribute="trailing" secondItem="J1B-cx-Ukn" secondAttribute="trailing" constant="16" id="S9C-Ru-Odj"/>
-                                            <constraint firstItem="J1B-cx-Ukn" firstAttribute="top" secondItem="r4g-tl-JKv" secondAttribute="top" constant="16" id="Sr9-V0-qEM"/>
+                                            <constraint firstAttribute="trailing" secondItem="CMA-M2-RRX" secondAttribute="trailing" constant="20" id="AEm-bt-gfe"/>
+                                            <constraint firstItem="CMA-M2-RRX" firstAttribute="leading" secondItem="r4g-tl-JKv" secondAttribute="leading" constant="20" id="UfE-1i-bLD"/>
                                             <constraint firstItem="xSC-vH-vnI" firstAttribute="leading" secondItem="r4g-tl-JKv" secondAttribute="leading" constant="32" id="dgv-mM-Uyn"/>
                                             <constraint firstAttribute="trailing" secondItem="xSC-vH-vnI" secondAttribute="trailing" constant="32" id="ezI-pd-Sye"/>
-                                            <constraint firstItem="J1B-cx-Ukn" firstAttribute="leading" secondItem="r4g-tl-JKv" secondAttribute="leading" constant="16" id="lMv-HV-Kbo"/>
+                                            <constraint firstItem="xSC-vH-vnI" firstAttribute="top" secondItem="CMA-M2-RRX" secondAttribute="bottom" id="pd9-S0-1BA"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -320,8 +303,7 @@
                     <connections>
                         <outlet property="agree" destination="WWx-ll-PoG" id="Lls-CB-gzo"/>
                         <outlet property="agreeView" destination="eBA-Or-EfL" id="ADu-qz-fgc"/>
-                        <outlet property="cornerShadowView" destination="J1B-cx-Ukn" id="riA-fe-fI5"/>
-                        <outlet property="fieldVIew" destination="CMA-M2-RRX" id="tVY-d6-9Tx"/>
+                        <outlet property="fieldView" destination="CMA-M2-RRX" id="xQW-sd-kCd"/>
                         <outlet property="finished" destination="Guu-3m-Nqh" id="mLz-Yy-xpg"/>
                         <outlet property="mnemonic" destination="0sk-SE-RbA" id="DL6-sb-UyJ"/>
                         <outlet property="servers" destination="JPa-2M-PQb" id="5Qx-NP-J0k"/>
