@@ -40,3 +40,5 @@ binary "https://building42.github.io/Specs/Carthage/iOS/Fabric.json"
 binary "https://building42.github.io/Specs/Carthage/iOS/Crashlytics.json"
 git "https://github.com/nbltrust/seed39-ios-golang" "master"
 git "https://github.com/phpmaple/NBLCommonModule" "master"
+
+github "Tencent/MMKV"
