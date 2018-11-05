@@ -152,6 +152,7 @@ extension WalletCacheService {
         try queue?.write({ database in
             try wallet.insert(database)
             for var currency in currencys {
+                currency.wid = wallet.id ?? 0
                 try currency.insert(database)
             }
         })
@@ -201,12 +202,13 @@ extension WalletCacheService {
         })
     }
 
-    func insertCurrency(_ currency: Currency) throws {
+    func insertCurrency(_ currency: Currency) throws -> Int64? {
         var currency = currency
 
         try queue?.write({ database in
             try currency.insert(database)
         })
+        return currency.id
     }
 
     func fetchAllCurrencysBy(_ wallet: Wallet) throws -> [Currency]? {

@@ -101,9 +101,8 @@ extension LeadInKeyViewController {
             return
         }
 
-        if let valid = self.coordinator?.validPrivateKey(priKey).0 {
+        if let valid = self.coordinator?.validPrivateKey(priKey) {
             if valid == true {
-                self.coordinator?.importPrivKey(priKey)
                 self.coordinator?.openSetWallet(priKey)
             }
         }

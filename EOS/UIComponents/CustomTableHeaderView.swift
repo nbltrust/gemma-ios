@@ -8,13 +8,14 @@
 
 import UIKit
 
+@IBDesignable
 class CustomTableHeaderView: UITableViewHeaderFooterView {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var leftLabel: UILabel!
 
     var title: String = "" {
         didSet {
-            titleLabel.text = title
+            leftLabel.text = title
         }
     }
 

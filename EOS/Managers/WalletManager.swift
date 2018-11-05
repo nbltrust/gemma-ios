@@ -164,6 +164,18 @@ class WalletManager {
         }
     }
 
+    func getEOSAccountNames(_ publicKey: String, completion: @escaping (_ result: Bool, _ accounts: [String]) -> Void) {
+        EOSIONetwork.request(target: .getKeyAccounts(pubKey: publicKey), success: { (json) in
+            if let names = json["account_names"].arrayObject as? [String] {
+                completion(names.count > 0,names)
+            }
+        }, error: { (_) in
+            completion(false,[])
+        }) { (_) in
+            completion(false,[])
+        }
+    }
+
     func addPrivatekey(_ pri: String) {
         self.priKey = pri
     }

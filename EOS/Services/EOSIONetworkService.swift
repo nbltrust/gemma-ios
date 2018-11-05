@@ -24,8 +24,8 @@ enum EOSIOService {
     case getTableRows(json:String)
 
     //history
-    case getKeyAccounts(pubKey:String)
-    case getTransaction(id:String)
+    case getKeyAccounts(pubKey: String)
+    case getTransaction(id: String)
 }
 
 struct EOSIONetwork {
