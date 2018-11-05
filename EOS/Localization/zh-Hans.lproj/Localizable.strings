@@ -611,3 +611,4 @@
 "leadin_to_wallet" = "导入到钱包";
 "new_wallet" = "新建钱包";
 "current_wallets" = "已有的钱包";
+"wallet_create_failed" = "钱包创建失败";

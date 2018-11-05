@@ -96,7 +96,14 @@ class SetWalletViewController: BaseViewController {
 
     func importWallet() {
         if let name = self.fieldView.nameView.textField.text, let password = self.fieldView.passwordView.textField.text, let hint = self.fieldView.hintView.textField.text {
-            self.coordinator?.importPriKeyWallet(name, priKey: priKey, type: currencyType, password: password, hint: "")
+            self.coordinator?.importPriKeyWallet(name, priKey: priKey, type: currencyType, password: password, hint: hint, success: {
+
+            }, failed: {[weak self] (reason) in
+                guard let `self` = self else { return }
+                if let failedReson = reason {
+                    self.showError(message: failedReson)
+                }
+            })
         }
     }
 

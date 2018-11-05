@@ -30,12 +30,6 @@ protocol SetWalletStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<SetWalletState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
 
-    func validForm(_ password: String, confirmPassword: String, hint: String) -> (Bool, String)
-
-    func importPriKeyWallet(_ name: String, priKey: String, type: CurrencyType, password: String, hint: String)
-
-    func importMnemonicWallet(_ name: String, mnemonic: String, password: String, hint: String)
-
     func updatePassword(_ password: String, hint: String)
 
     func validName(_ valid: Bool)
@@ -46,7 +40,11 @@ protocol SetWalletStateManagerProtocol {
 
     func checkAgree(_ agree: Bool)
 
-    func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void)
+    func importPriKeyWallet(_ name: String, priKey: String, type: CurrencyType, password: String, hint: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
+
+    func importMnemonicWallet(_ name: String, mnemonic: String, password: String, hint: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
+
+    func setWalletPin(_ password: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
     
     func updatePin(_ new: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
 }
@@ -70,10 +68,10 @@ class SetWalletCoordinator: NavCoordinator {
 extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
 
     func pushToServiceProtocolVC() {
-        let vc = BaseWebViewController()
-        vc.url = H5AddressConfiguration.RegisterProtocolURL
-        vc.title = R.string.localizable.service_protocol.key.localized()
-        self.rootVC.pushViewController(vc, animated: true)
+        let serviceVC = BaseWebViewController()
+        serviceVC.url = H5AddressConfiguration.RegisterProtocolURL
+        serviceVC.title = R.string.localizable.service_protocol.key.localized()
+        self.rootVC.pushViewController(serviceVC, animated: true)
     }
 
     func importFinished() {
@@ -91,7 +89,7 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
         vc?.coordinator = accountCoordinator
         self.rootVC.pushViewController(vc!, animated: true)
     }
-    
+
     func popVC() {
         self.rootVC.popViewController(animated: true)
     }
@@ -106,34 +104,6 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<SetWalletState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
-    }
-
-    func validForm(_ password: String, confirmPassword: String, hint: String) -> (Bool, String) {
-        return (true, "")
-    }
-
-    func importPriKeyWallet(_ name: String, priKey: String, type: CurrencyType, password: String, hint: String) {
-        do {
-            let date = Date.init()
-            let wallets = try WalletCacheService.shared.fetchAllWallet()
-            let idNum: Int64 = Int64(wallets!.count) + 1
-            let wallet = Wallet(id: nil, name: name, type: .HD, cipher: "", deviceName: nil, date: date)
-            let pubkey = EOSIO.getPublicKey(priKey)
-            let currency = Currency(id: nil, type: type, cipher: "", pubKey: pubkey!, wid: idNum, date: date, address: nil)
-            let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency])
-            Defaults[.currentWalletID] = (id?.string)!
-            if let _ = self.rootVC.viewControllers[0] as? EntryGuideViewController {
-                self.dismissCurrentNav(self.rootVC.viewControllers[1])
-            } else {
-                self.rootVC.popToRootViewController(animated: true)
-            }
-        } catch {
-            showFailTop("数据库存储失败")
-        }
-    }
-
-    func importMnemonicWallet(_ name: String, mnemonic: String, password: String, hint: String) {
-
     }
 
     func updatePassword(_ password: String, hint: String) {
@@ -157,10 +127,45 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
         self.store.dispatch(SetWalletAgreeAction(isAgree: agree))
     }
 
-    func setWalletPin(_ password: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void) {
+    func importPriKeyWallet(_ name: String, priKey: String, type: CurrencyType, password: String, hint: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
+        if let pubkey = EOSIO.getPublicKey(priKey) {
+            WalletManager.shared.fetchAccountNames(pubkey) { (success) in
+                if success {
+                    do {
+                        //Wallet
+                        let date = Date.init()
+                        let wallets = try WalletCacheService.shared.fetchAllWallet()
+                        let idNum: Int64 = Int64(wallets!.count) + 1
+                        let wallet = Wallet(id: nil, name: name, type: .HD, cipher: "", deviceName: nil, date: date)
+
+                        //currency
+                        let currency = Currency(id: nil, type: type, cipher: "", pubKey: pubkey, wid: idNum, date: date, address: nil)
+
+                        //DataCache
+                        let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency])
+                        Defaults[.currentWalletID] = (id?.string)!
+
+                        if let _ = self.rootVC.viewControllers[0] as? EntryGuideViewController {
+                            self.dismissCurrentNav(self.rootVC.viewControllers[1])
+                        } else {
+                            self.rootVC.popToRootViewController(animated: true)
+                        }
+                    } catch {
+                        failed(R.string.localizable.wallet_create_failed.key.localized())
+                    }
+                }
+            }
+        }
+    }
+
+    func importMnemonicWallet(_ name: String, mnemonic: String, password: String, hint: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
+
+    }
+
+    func setWalletPin(_ password: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance().initPin(password, success: success, failed: failed)
     }
-    
+
     func updatePin(_ new: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance()?.updatePin(new, success: success, failed: failed)
     }
