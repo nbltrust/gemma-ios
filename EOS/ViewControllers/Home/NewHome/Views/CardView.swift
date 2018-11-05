@@ -50,6 +50,7 @@ class CardView: UIView {
                 imgView.image = R.image.eosBg()!
                 self.tokenView.insertSubview(imgView, at: 0)
             }
+            updateHeight()
         }
     }
 
@@ -76,7 +77,7 @@ class CardView: UIView {
         return CGSize.init(width: UIView.noIntrinsicMetric,height: dynamicHeight())
     }
 
-    fileprivate func updateHeight() {
+    func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()

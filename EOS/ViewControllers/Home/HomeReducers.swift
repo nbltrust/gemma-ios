@@ -156,40 +156,40 @@ func calculateTotalAsset(_ viewmodel: AccountViewModel) -> String {
     }
 }
 
-func calculateRMBPrice(_ viewmodel: AccountViewModel, price: String, otherPrice: String) -> String {
-    if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDouble(), all != 0 {
-        let cny = unit * all
-        if coinType() == .CNY {
-            return "≈" + cny.string(digits: 2) + " \(coinUnit())"
-        } else {
-            if let otherPriceDouble = otherPrice.toDouble() {
-                return "≈" + (cny / otherPriceDouble).string(digits: 2) + " \(coinUnit())"
-            } else {
-                return "≈- \(coinUnit())"
-            }
-        }
-    } else {
-        return "≈- \(coinUnit())"
-    }
-}
+//func calculateRMBPrice(_ viewmodel: AccountViewModel, price: String, otherPrice: String) -> String {
+//    if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDouble(), all != 0 {
+//        let cny = unit * all
+//        if coinType() == .CNY {
+//            return "≈" + cny.string(digits: 2) + " \(coinUnit())"
+//        } else {
+//            if let otherPriceDouble = otherPrice.toDouble() {
+//                return "≈" + (cny / otherPriceDouble).string(digits: 2) + " \(coinUnit())"
+//            } else {
+//                return "≈- \(coinUnit())"
+//            }
+//        }
+//    } else {
+//        return "≈- \(coinUnit())"
+//    }
+//}
 
-func convertToViewModelWithModel(model: AccountModel) -> AccountViewModel {
-    var viewModel = AccountViewModel()
-    viewModel.account = model.accountName
-    viewModel.portrait = model.accountName.sha256()
-    viewModel.cpuValue = model.delegateCpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-    viewModel.netValue = model.delegateNetWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-    viewModel.ramValue = model.ramBytes != nil ? model.ramBytes.ramCount : ""
-    viewModel.cpuProgress = Float(model.cpuUsed) / Float(model.cpuMax)
-    viewModel.netProgress = Float(model.netUsed) / Float(model.netMax)
-    viewModel.ramProgress = Float(model.ramUsage) / Float(model.ramQuota)
-    if let balance = Defaults[model.accountName + NetworkConfiguration.BlanceDefaultSymbol] as? String {
-        viewModel.balance = balance
-    }
-    viewModel.allAssets = calculateTotalAsset(viewModel)
-    if let rmbUnit = Defaults[Unit.RMBUnit] as? String, let usdUnit = Defaults[Unit.USDUnit] as? String {
-        viewModel.CNY = calculateRMBPrice(viewModel, price: rmbUnit, otherPrice: usdUnit)
-    }
-
-    return viewModel
-}
+//func convertToViewModelWithModel(model: AccountModel) -> AccountViewModel {
+//    var viewModel = AccountViewModel()
+//    viewModel.account = model.accountName
+//    viewModel.portrait = model.accountName.sha256()
+//    viewModel.cpuValue = model.delegateCpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+//    viewModel.netValue = model.delegateNetWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+//    viewModel.ramValue = model.ramBytes != nil ? model.ramBytes.ramCount : ""
+//    viewModel.cpuProgress = Float(model.cpuUsed) / Float(model.cpuMax)
+//    viewModel.netProgress = Float(model.netUsed) / Float(model.netMax)
+//    viewModel.ramProgress = Float(model.ramUsage) / Float(model.ramQuota)
+//    if let balance = Defaults[model.accountName + NetworkConfiguration.BlanceDefaultSymbol] as? String {
+//        viewModel.balance = balance
+//    }
+//    viewModel.allAssets = calculateTotalAsset(viewModel)
+//    if let rmbUnit = Defaults[Unit.RMBUnit] as? String, let usdUnit = Defaults[Unit.USDUnit] as? String {
+//        viewModel.CNY = calculateRMBPrice(viewModel, price: rmbUnit, otherPrice: usdUnit)
+//    }
+//
+//    return viewModel
+//}

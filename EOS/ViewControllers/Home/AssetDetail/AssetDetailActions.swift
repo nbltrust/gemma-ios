@@ -14,7 +14,7 @@ import HandyJSON
 
 struct AssetDetailContext: RouteContext, HandyJSON {
     init() {}
-    
+    var model = AssetViewModel()
 }
 
 //MARK: - State

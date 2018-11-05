@@ -14,7 +14,7 @@ import ESPullToRefresh
 
 class PaymentsViewController: BaseViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var contentView: PaymentView!
     var coordinator: (PaymentsCoordinatorProtocol & PaymentsStateManagerProtocol)?
     var data = [PaymentsRecordsViewModel]()
     var isNoMoreData: Bool = false
@@ -28,14 +28,12 @@ class PaymentsViewController: BaseViewController {
 
     func setupUI() {
         self.title = R.string.localizable.payments_history.key.localized()
-        let name = String.init(describing: PaymentsRecordsCell.self)
-        tableView.register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
     }
 
     func setupEvent() {
         self.startLoading()
 
-        self.coordinator?.getDataFromServer(WalletManager.shared.getAccount(), completion: {[weak self] (success) in
+        self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: {[weak self] (success) in
             guard let `self` = self else { return }
 
             if success {
@@ -45,21 +43,21 @@ class PaymentsViewController: BaseViewController {
                     self.isNoMoreData = true
                 }
                 if (self.coordinator?.state.property.data)!.count == 0 {
-                    self.tableView.isHidden = true
+                    self.contentView.isHidden = true
                 } else {
-                    self.tableView.isHidden = false
+                    self.contentView.isHidden = false
                 }
 
                 self.data += (self.coordinator?.state.property.data)!
-                self.tableView.reloadData()
+                self.contentView.adapterModelToPaymentView(self.data)
             }
 
             }, isRefresh: true)
 
-        self.addPullToRefresh(self.tableView) {[weak self] (completion) in
+        self.addPullToRefresh(self.contentView.tableView) {[weak self] (completion) in
             guard let `self` = self else {return}
 
-            self.coordinator?.getDataFromServer(WalletManager.shared.getAccount(), completion: {[weak self] (success) in
+            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: {[weak self] (success) in
                 guard let `self` = self else {return}
 
                 if success {
@@ -71,20 +69,20 @@ class PaymentsViewController: BaseViewController {
                     }
                     completion?()
                     self.data += (self.coordinator?.state.property.data)!
-                    self.tableView.reloadData()
+                    self.contentView.adapterModelToPaymentView(self.data)
                 } else {
                 }
             }, isRefresh: true)
         }
 
-        self.addInfiniteScrolling(self.tableView) {[weak self] (completion) in
+        self.addInfiniteScrolling(self.contentView.tableView) {[weak self] (completion) in
             guard let `self` = self else {return}
 
             if self.isNoMoreData {
                 completion?(true)
                 return
             }
-            self.coordinator?.getDataFromServer(WalletManager.shared.getAccount(), completion: { [weak self](_) in
+            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: { [weak self](_) in
                 guard let `self` = self else {return}
                 if (self.coordinator?.state.property.data.count)! < 10 {
                     self.isNoMoreData = true
@@ -93,7 +91,7 @@ class PaymentsViewController: BaseViewController {
                     completion?(false)
                 }
                 self.data += (self.coordinator?.state.property.data)!
-                self.tableView.reloadData()
+                self.contentView.adapterModelToPaymentView(self.data)
             }, isRefresh: false)
         }
     }
@@ -104,24 +102,3 @@ class PaymentsViewController: BaseViewController {
 
 }
 
-extension PaymentsViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let name = String.init(describing: PaymentsRecordsCell.self)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: name, for: indexPath) as? PaymentsRecordsCell else {
-            return UITableViewCell()
-        }
-        cell.setup(data[indexPath.row])
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.coordinator?.pushPaymentsDetail(data: PaymentsRecordsViewModel())
-
-        self.coordinator?.pushPaymentsDetail(data: data[indexPath.row])
-    }
-
-}

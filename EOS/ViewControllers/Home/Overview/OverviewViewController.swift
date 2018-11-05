@@ -141,7 +141,9 @@ class OverviewViewController: BaseViewController {
 
 extension OverviewViewController {
     @objc func assetsViewDidClicked(_ data:[String: Any]) {
-        self.coordinator?.pushToDetailVC()
+        if let model = data["data"] as? AssetViewModel {
+            self.coordinator?.pushToDetailVC(model)
+        }
     }
 }
 

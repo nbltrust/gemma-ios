@@ -13,13 +13,17 @@ class AssetsView: EOSBaseView {
 
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var nameLabel: BaseLabel!
-    @IBOutlet weak var cnyLabel: BaseLabel!
     @IBOutlet weak var totalLabel: BaseLabel!
 
     enum Event:String {
         case assetsViewDidClicked
     }
-        
+
+    override var data: Any? {
+        didSet {
+        }
+    }
+
     override func setup() {
         super.setup()
         

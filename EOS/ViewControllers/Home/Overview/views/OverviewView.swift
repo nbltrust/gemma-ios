@@ -22,21 +22,20 @@ class OverviewView: EOSBaseView {
     var cardData: Any? {
         didSet {
             if let newdata = cardData as? NewHomeViewModel {
+                tableView.reloadData()
+
                 if newdata.tokenArray.count == 0 {
-                    tableView.tableHeaderView?.height = 292 + 20
+                    tableView.tableHeaderView?.height = 292 + 70
                 } else {
-                    tableView.tableHeaderView?.height = 326 + 20
+                    tableView.tableHeaderView?.height = 326 + 70
                 }
             }
-            tableView.reloadData()
         }
     }
 
-    var assetData: Any? {
+    var assetData: [AssetViewModel] = [AssetViewModel()] {
         didSet {
-            if let _ = assetData as? [AssetViewModel] {
-                tableView.reloadData()
-            }
+            tableView.reloadData()
         }
     }
 
@@ -89,9 +88,7 @@ extension OverviewView: UITableViewDelegate,UITableViewDataSource {
             return UITableViewCell()
         }
 
-        if let data = assetData as? [AssetViewModel] {
-            cell.setup(data[indexPath.row], indexPath: indexPath)
-        }
+        cell.setup(assetData[indexPath.row], indexPath: indexPath)
         return cell
     }
 }

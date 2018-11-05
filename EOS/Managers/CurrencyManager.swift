@@ -88,6 +88,12 @@ class CurrencyManager {
         return nil
     }
 
+    func getCurrentAccountName() -> String {
+        if let name = getAccountNameWith(getCurrentCurrencyID()) {
+            return name
+        }
+        return "--"
+    }
 
     //新版本存取缓存数据
     func saveBalanceJsonWith(_ account: String?, json: JSON) {

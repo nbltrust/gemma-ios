@@ -264,6 +264,9 @@
 		3B3935B7214B5B9100AB0A30 /* MnemonicContentViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935B4214B5B9100AB0A30 /* MnemonicContentViewAdapter.swift */; };
 		3B3935B8214B5B9100AB0A30 /* MnemonicContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3935B5214B5B9100AB0A30 /* MnemonicContentView.swift */; };
 		3B3935B9214B5B9100AB0A30 /* MnemonicContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3935B6214B5B9100AB0A30 /* MnemonicContentView.xib */; };
+		3B46DD0C218FE43A009B6E2A /* PaymentViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46DD09218FE43A009B6E2A /* PaymentViewAdapter.swift */; };
+		3B46DD0D218FE43A009B6E2A /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46DD0A218FE43A009B6E2A /* PaymentView.swift */; };
+		3B46DD0E218FE43A009B6E2A /* PaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B46DD0B218FE43A009B6E2A /* PaymentView.xib */; };
 		3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */; };
 		3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */; };
 		3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */; };
@@ -1024,6 +1027,9 @@
 		3B3935B4214B5B9100AB0A30 /* MnemonicContentViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicContentViewAdapter.swift; sourceTree = "<group>"; };
 		3B3935B5214B5B9100AB0A30 /* MnemonicContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicContentView.swift; sourceTree = "<group>"; };
 		3B3935B6214B5B9100AB0A30 /* MnemonicContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MnemonicContentView.xib; sourceTree = "<group>"; };
+		3B46DD09218FE43A009B6E2A /* PaymentViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewAdapter.swift; sourceTree = "<group>"; };
+		3B46DD0A218FE43A009B6E2A /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
+		3B46DD0B218FE43A009B6E2A /* PaymentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentView.xib; sourceTree = "<group>"; };
 		3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsCoordinator.swift; sourceTree = "<group>"; };
 		3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsActions.swift; sourceTree = "<group>"; };
 		3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
@@ -2249,6 +2255,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3B46DD01218FE420009B6E2A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				3B46DD09218FE43A009B6E2A /* PaymentViewAdapter.swift */,
+				3B46DD0A218FE43A009B6E2A /* PaymentView.swift */,
+				3B46DD0B218FE43A009B6E2A /* PaymentView.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		3B4C90D920F48C51004F4C52 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2266,6 +2282,7 @@
 		3B4C90E620F48F75004F4C52 /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				3B46DD01218FE420009B6E2A /* view */,
 				3B4C90F420F4CE07004F4C52 /* Payments.storyboard */,
 				3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */,
 				3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */,
@@ -3554,6 +3571,7 @@
 				220859CF218B0944009DC0B8 /* CustomCellView.xib in Resources */,
 				3B08B9322188059100ED43AD /* OverviewView.xib in Resources */,
 				3195BD9E030E3CAD06E18BEDA1C98306 /* RegisterContentView.xib in Resources */,
+				3B46DD0E218FE43A009B6E2A /* PaymentView.xib in Resources */,
 				223C5918214A532800C69F3F /* BLTCardEntryView.xib in Resources */,
 				220859C7218AD9B7009DC0B8 /* CustomCheckView.xib in Resources */,
 				3B0295E72181714700867D5F /* NavBarView.xib in Resources */,
@@ -3895,6 +3913,7 @@
 				72FE5B7621006B0700B29FEC /* NormalContentViewController.swift in Sources */,
 				223C5916214A532800C69F3F /* BLTCardEntryViewAdapter.swift in Sources */,
 				3B0856292175E9D30025B178 /* CardViewAdapter.swift in Sources */,
+				3B46DD0C218FE43A009B6E2A /* PaymentViewAdapter.swift in Sources */,
 				3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */,
 				3B2653052189667B0091FE93 /* CurrencyManager.swift in Sources */,
 				3B08B9282188055400ED43AD /* OverviewCoordinator.swift in Sources */,
@@ -3968,6 +3987,7 @@
 				22E40AB52114540600F1648C /* FaceIDComfirmViewController.swift in Sources */,
 				3BF842E7211BE60100AF9963 /* BuyRamReducers.swift in Sources */,
 				3B3935B7214B5B9100AB0A30 /* MnemonicContentViewAdapter.swift in Sources */,
+				3B46DD0D218FE43A009B6E2A /* PaymentView.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
 				739A4DBE2150DF2800A1074B /* UITapGestureRecognizer+RxGesture.swift in Sources */,
 				3B6D7479214761690076F444 /* InvitationCodeToActivateViewController.swift in Sources */,

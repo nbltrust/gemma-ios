@@ -13,7 +13,8 @@ import ReSwift
 
 class AssetDetailViewController: BaseViewController {
 
-	var coordinator: (AssetDetailCoordinatorProtocol & AssetDetailStateManagerProtocol)?
+    @IBOutlet weak var contentView: AssetDetailView!
+    var coordinator: (AssetDetailCoordinatorProtocol & AssetDetailStateManagerProtocol)?
     private(set) var context: AssetDetailContext?
     
 	override func viewDidLoad() {
@@ -33,7 +34,7 @@ class AssetDetailViewController: BaseViewController {
     }
     
     func setupUI() {
-        
+        self.title = R.string.localizable.asset_detail.key.localized()
     }
 
     func setupData() {
@@ -50,6 +51,7 @@ class AssetDetailViewController: BaseViewController {
             
             if let context = context as? AssetDetailContext {
                 self.context = context
+                self.contentView.headView.adapterModelToAssetDetailHeadView(context.model)
             }
             
         }).disposed(by: disposeBag)

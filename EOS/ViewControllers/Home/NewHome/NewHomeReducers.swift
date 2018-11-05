@@ -137,7 +137,7 @@ func calculateTotalAsset(_ viewmodel: NewHomeViewModel) -> String {
 }
 
 func calculateRMBPrice(_ viewmodel: NewHomeViewModel, price: String, otherPrice: String) -> String {
-    if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDouble(), all != 0 {
+    if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.toDouble(), all != 0 {
         let cny = unit * all
         if coinType() == .CNY {
             return cny.string(digits: 2)

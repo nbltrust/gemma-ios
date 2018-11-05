@@ -9,7 +9,10 @@
 import Foundation
 
 extension AssetDetailHeadView {
-//    func adapterModelToAssetDetailHeadView(_ model:<#Type#>) {
-//        
-//    }
+    func adapterModelToAssetDetailHeadView(_ model:AssetViewModel) {
+        self.iconImgView.image = R.image.eos()
+        self.balanceLabel.text = model.total
+        self.currencyLabel.text = model.name
+        self.cnyLabel.text = "≈ ¥ \(model.CNY)"
+    }
 }

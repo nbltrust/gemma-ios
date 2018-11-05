@@ -53,5 +53,6 @@ extension CardView {
             self.tokenLabel.isHidden = true
             self.tokenView.isHidden = true
         }
+        self.updateHeight()
     }
 }

@@ -13,6 +13,9 @@ class AssetDetailView: EOSBaseView {
 
     @IBOutlet weak var nodeVodeButton: UIButton!
     @IBOutlet weak var resourceManagerButton: UIButton!
+    @IBOutlet weak var headView: AssetDetailHeadView!
+    @IBOutlet weak var buttonView: UIView!
+    @IBOutlet weak var buttonViewHeight: NSLayoutConstraint!
 
     enum Event:String {
         case assetDetailViewDidClicked
@@ -28,7 +31,10 @@ class AssetDetailView: EOSBaseView {
     }
     
     func setupUI() {
-        
+        if headView.currencyLabel.text == "EOS" {
+            self.buttonView.isHidden = true
+            self.buttonViewHeight.constant = 0
+        }
     }
     
     func setupSubViewEvent() {

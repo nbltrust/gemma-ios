@@ -102,7 +102,7 @@ extension NewHomeView: UITableViewDelegate,UITableViewDataSource {
         }
         return 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = R.nib.newHomeTableCell.name
         guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? NewHomeTableCell else {

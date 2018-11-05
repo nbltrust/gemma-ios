@@ -12,6 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetDetailHeadView">
             <connections>
+                <outlet property="balanceLabel" destination="8M0-27-gnQ" id="kQk-fl-JBF"/>
+                <outlet property="cnyLabel" destination="Mhk-2v-x6h" id="tAb-kj-5QW"/>
+                <outlet property="currencyLabel" destination="rbC-wu-Xbu" id="WdF-DK-zFg"/>
+                <outlet property="iconImgView" destination="4ke-LM-dhW" id="xwR-OP-DCI"/>
                 <outlet property="receiptButton" destination="3f0-g5-SiB" id="GQH-Nm-7OJ"/>
                 <outlet property="transferButton" destination="FPS-hd-shy" id="UkW-3U-MYZ"/>
             </connections>
