@@ -163,6 +163,8 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
         let seed = Seed39SeedByMnemonic(mnemonic)
         if let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true) {
             importPriKeyWallet(name, priKey: prikey, type: .EOS, password: password, hint: hint, success: success, failed: failed)
+        } else {
+            failed(R.string.localizable.wallet_create_failed.key.localized())
         }
     }
 
