@@ -60,6 +60,9 @@
 		2226A7FB215B954D00B97B1E /* SVGAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2226A7FA215B954D00B97B1E /* SVGAnimationView.xib */; };
 		2226A890215CCFB500B97B1E /* finger.html in Resources */ = {isa = PBXBuildFile; fileRef = 2226A88F215CCFB400B97B1E /* finger.html */; };
 		2226AD6C219134FF004A0324 /* FingerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226AD6B219134FF004A0324 /* FingerManager.swift */; };
+		2226AD8E2191A5E3004A0324 /* AccountSwitchViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226AD8B2191A5E3004A0324 /* AccountSwitchViewAdapter.swift */; };
+		2226AD8F2191A5E3004A0324 /* AccountSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226AD8C2191A5E3004A0324 /* AccountSwitchView.swift */; };
+		2226AD902191A5E3004A0324 /* AccountSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2226AD8D2191A5E3004A0324 /* AccountSwitchView.xib */; };
 		222A0AE92189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A0AE82189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift */; };
 		223C58C92148BD9200C69F3F /* NetworkSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58C82148BD9200C69F3F /* NetworkSettingManager.swift */; };
 		223C58DC214A4A5000C69F3F /* BLTCardEntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58D8214A4A5000C69F3F /* BLTCardEntryCoordinator.swift */; };
@@ -817,6 +820,9 @@
 		2226A7FA215B954D00B97B1E /* SVGAnimationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SVGAnimationView.xib; sourceTree = "<group>"; };
 		2226A88F215CCFB400B97B1E /* finger.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = finger.html; sourceTree = "<group>"; };
 		2226AD6B219134FF004A0324 /* FingerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerManager.swift; sourceTree = "<group>"; };
+		2226AD8B2191A5E3004A0324 /* AccountSwitchViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSwitchViewAdapter.swift; sourceTree = "<group>"; };
+		2226AD8C2191A5E3004A0324 /* AccountSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSwitchView.swift; sourceTree = "<group>"; };
+		2226AD8D2191A5E3004A0324 /* AccountSwitchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountSwitchView.xib; sourceTree = "<group>"; };
 		222A0AE82189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ButtonBarPagerTabStripViewController+Extensions.swift"; sourceTree = "<group>"; };
 		223C58C82148BD9200C69F3F /* NetworkSettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSettingManager.swift; sourceTree = "<group>"; };
 		223C58D8214A4A5000C69F3F /* BLTCardEntryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardEntryCoordinator.swift; sourceTree = "<group>"; };
@@ -2108,6 +2114,9 @@
 				3B08B9352188376E00ED43AD /* AssetsViewAdapter.swift */,
 				3B08B9362188376E00ED43AD /* AssetsView.swift */,
 				3B08B9372188376E00ED43AD /* AssetsView.xib */,
+				2226AD8B2191A5E3004A0324 /* AccountSwitchViewAdapter.swift */,
+				2226AD8C2191A5E3004A0324 /* AccountSwitchView.swift */,
+				2226AD8D2191A5E3004A0324 /* AccountSwitchView.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -3653,6 +3662,7 @@
 				3B08562B2175E9D30025B178 /* CardView.xib in Resources */,
 				72FE5B9621009F2200B29FEC /* LeadInKeyView.xib in Resources */,
 				3BC12A6C210587BD006EEB80 /* RedWarningView.xib in Resources */,
+				2226AD902191A5E3004A0324 /* AccountSwitchView.xib in Resources */,
 				225825DA20F4591F00AA2A4B /* Button.xib in Resources */,
 				733714F1212431E200B2ED90 /* LGButton.xib in Resources */,
 				3BD3666920FDEB94004DE09D /* TransferContentView.xib in Resources */,
@@ -4075,6 +4085,7 @@
 				227072AF2150EDE90097FE61 /* BLTUtils.m in Sources */,
 				733714E6212431E200B2ED90 /* IonIcons.swift in Sources */,
 				722D24C72111555B00A093CA /* WithNoDataView.swift in Sources */,
+				2226AD8E2191A5E3004A0324 /* AccountSwitchViewAdapter.swift in Sources */,
 				22917E122188382E0017FEAF /* CurrencyCheckCell.swift in Sources */,
 				220859C6218AD9B7009DC0B8 /* CustomCheckView.swift in Sources */,
 				22578771212197F3004C4579 /* SelectedVoteViewController.swift in Sources */,
@@ -4232,6 +4243,7 @@
 				3B6D7466214761690076F444 /* FriendToActivateReducers.swift in Sources */,
 				223C58FF214A51DC00C69F3F /* BLTCardConfirmFingerPrinterViewController.swift in Sources */,
 				22917DFB218831250017FEAF /* LeadInMnemonicViewController.swift in Sources */,
+				2226AD8F2191A5E3004A0324 /* AccountSwitchView.swift in Sources */,
 				22917E032188327E0017FEAF /* CurrencyListActions.swift in Sources */,
 				72FE5B8921009E4D00B29FEC /* LeadInActions.swift in Sources */,
 				2257876F212197F3004C4579 /* SelectedVoteCoordinator.swift in Sources */,
