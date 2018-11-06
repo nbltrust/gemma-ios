@@ -33,9 +33,36 @@ class OverviewView: EOSBaseView {
         }
     }
 
-    var assetData: [AssetViewModel] = [AssetViewModel()] {
+    var assetDataArray: [AssetViewModel]? {
         didSet {
-            tableView.reloadData()
+            if assetDataArray != nil {
+
+                if let data = firstAssetData {
+                    let isContain = assetDataArray?.contains(where: { (value) -> Bool in
+                        value.name == data.name
+                    })
+                    if isContain == false {
+                        assetDataArray?.insert(data, at: 0)
+                    }
+                }
+                tableView.reloadData()
+            }
+        }
+    }
+
+    var firstAssetData: AssetViewModel? {
+        didSet {
+            if assetDataArray != nil {
+                if let data = firstAssetData {
+                    let isContain = assetDataArray?.contains(where: { (value) -> Bool in
+                        value.name == data.name
+                    })
+                    if isContain == false {
+                        assetDataArray?.insert(data, at: 0)
+                    }
+                }
+                tableView.reloadData()
+            }
         }
     }
 
@@ -63,7 +90,10 @@ class OverviewView: EOSBaseView {
 
 extension OverviewView: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if let data = assetDataArray {
+            return data.count
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -87,8 +117,9 @@ extension OverviewView: UITableViewDelegate,UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: AssetCell.self), for: indexPath) as? AssetCell else {
             return UITableViewCell()
         }
-
-        cell.setup(assetData[indexPath.row], indexPath: indexPath)
+        if let data = assetDataArray {
+            cell.setup(data[indexPath.row], indexPath: indexPath)
+        }
         return cell
     }
 }

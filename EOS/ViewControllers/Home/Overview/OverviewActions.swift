@@ -22,6 +22,7 @@ struct OverviewState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     var info: BehaviorRelay<NewHomeViewModel?> = BehaviorRelay(value: nil)
+    var tokens: BehaviorRelay<[AssetViewModel]?> = BehaviorRelay(value: nil)
     var cnyPrice: String = ""
     var otherPrice: String = ""
 }
@@ -31,9 +32,15 @@ struct OverviewFetchedAction: Action {
     var data:JSON
 }
 
+struct TokensFetchedAction: Action {
+    var data:[Tokens]
+}
+
 struct AssetViewModel {
-    var icon: String = ""
+    var iconUrl: String = ""
     var name: String = ""
     var total: String = ""
     var CNY: String = ""
+    var contract: String = ""
+    var balance: String = ""
 }

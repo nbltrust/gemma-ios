@@ -46,7 +46,7 @@ class AssetDetailViewController: BaseViewController {
     func setupEvent() {
         self.startLoading()
 
-        self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: {[weak self] (success) in
+        self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: (context?.model.name)!, contract: "eosio", completion: {[weak self] (success) in
             guard let `self` = self else { return }
             if success {
                 self.endLoading()
@@ -70,7 +70,7 @@ class AssetDetailViewController: BaseViewController {
             guard let `self` = self else {return}
             self.coordinator?.removeStateData()
 
-            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: {[weak self] (success) in
+            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: (self.context?.model.name)!, contract: "eosio", completion: {[weak self] (success) in
                 guard let `self` = self else {return}
 
                 if success {
@@ -96,7 +96,7 @@ class AssetDetailViewController: BaseViewController {
                 completion?(true)
                 return
             }
-            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: { [weak self](_) in
+            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: (self.context?.model.name)!, contract: "eosio", completion: { [weak self](_) in
                 guard let `self` = self else {return}
                 if (self.coordinator?.state.payments.count)! < 10 {
                     self.isNoMoreData = true

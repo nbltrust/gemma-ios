@@ -112,7 +112,8 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
     func getCurrencyInfo(_ currency: Currency) {
         if currency.type == .EOS {
             let names = CurrencyManager.shared.getAccountNameWith(currency.id)
-            if let names = names {
+            let active = CurrencyManager.shared.getActived(currency.id)
+            if let names = names, active == true {
                 let account = names
                 let currencyID = currency.id
                 EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in

@@ -20,7 +20,7 @@ protocol AssetDetailStateManagerProtocol {
     var state: AssetDetailState { get }
     
     func switchPageState(_ state:PageState)
-    func getDataFromServer(_ account: String, completion: @escaping (Bool) -> Void, isRefresh: Bool)
+    func getDataFromServer(_ account: String, symbol: String, contract: String, completion: @escaping (Bool) -> Void, isRefresh: Bool)
     func removeStateData()
 }
 
@@ -79,8 +79,8 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
         }
     }
 
-    func getDataFromServer(_ account: String, completion: @escaping (Bool) -> Void, isRefresh: Bool) {
-        NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: 10, lastPosition: isRefresh ? -1 :state.lastPos), success: { (data) in
+    func getDataFromServer(_ account: String, symbol: String, contract: String, completion: @escaping (Bool) -> Void, isRefresh: Bool) {
+        NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: 10, lastPosition: isRefresh ? -1 :state.lastPos, symbol: symbol, contract: contract), success: { (data) in
             let transactions = data["transactions"].arrayValue
 
             if let lastPos = data["last_pos"].int {

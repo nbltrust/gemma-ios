@@ -54,6 +54,9 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
             viewmodel!.CNY = calculateRMBPrice(viewmodel!, price: state.cnyPrice, otherPrice: state.otherPrice)
         }
         state.info.accept(viewmodel)
+    case let action as TokensFetchedAction:
+        let model = convertViewModelWithAccount(tokensJson: action.data)
+        state.tokens.accept(model)
     default:
         break
     }
@@ -61,4 +64,16 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
     return state
 }
 
-
+func convertViewModelWithAccount(tokensJson: [Tokens]) -> [AssetViewModel] {
+    var modelArray: [AssetViewModel] = []
+    for token in tokensJson {
+        var model = AssetViewModel()
+        model.name = token.symbol
+        model.total = token.totalValue
+        model.iconUrl = token.logoUrl
+        model.balance = token.balance
+        model.contract = token.contract
+        modelArray.append(model)
+    }
+    return modelArray
+}

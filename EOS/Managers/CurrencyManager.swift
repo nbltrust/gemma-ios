@@ -60,6 +60,22 @@ class CurrencyManager {
     }
 
     //新版本存取币种信息
+    func getActived(_ currencyID: Int64?) -> Bool {
+        if let id = currencyID {
+            if let active = Defaults["active\(id)"] as? Bool {
+                return active
+            }
+            return false
+        }
+        return false
+    }
+
+    func saveActived(_ currencyID: Int64?, actived: Bool) {
+        if let id = currencyID {
+            Defaults["active\(id)"] = actived
+        }
+    }
+
     func saveAccountNameWith(_ currencyID: Int64?, name: String?) {
         if let id = currencyID {
             Defaults["accountName\(id)"] = name

@@ -268,6 +268,7 @@
 		3B46DD0C218FE43A009B6E2A /* PaymentViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46DD09218FE43A009B6E2A /* PaymentViewAdapter.swift */; };
 		3B46DD0D218FE43A009B6E2A /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46DD0A218FE43A009B6E2A /* PaymentView.swift */; };
 		3B46DD0E218FE43A009B6E2A /* PaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B46DD0B218FE43A009B6E2A /* PaymentView.xib */; };
+		3B46DD1B219189EC009B6E2A /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46DD1A219189EC009B6E2A /* Tokens.swift */; };
 		3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */; };
 		3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */; };
 		3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */; };
@@ -1033,6 +1034,7 @@
 		3B46DD09218FE43A009B6E2A /* PaymentViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewAdapter.swift; sourceTree = "<group>"; };
 		3B46DD0A218FE43A009B6E2A /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		3B46DD0B218FE43A009B6E2A /* PaymentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentView.xib; sourceTree = "<group>"; };
+		3B46DD1A219189EC009B6E2A /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsCoordinator.swift; sourceTree = "<group>"; };
 		3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsActions.swift; sourceTree = "<group>"; };
 		3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
@@ -3234,6 +3236,7 @@
 			isa = PBXGroup;
 			children = (
 				037EA7EF67D3633CBA8C8AB082548C91 /* Account.swift */,
+				3B46DD1A219189EC009B6E2A /* Tokens.swift */,
 				3B02F23C2168524000DD9211 /* AccountModel.swift */,
 				73378F74211C233200ACAA90 /* EOSIOTableRow.swift */,
 				2214A96D211D7B78003256D2 /* NodeVote.swift */,
@@ -4050,6 +4053,7 @@
 				A35151B3922F34802807B89AA82B9D4E /* HomeViewController.swift in Sources */,
 				72C9C62EC676AFFBA102BBB10CB1584F /* LineView.swift in Sources */,
 				632FADFC1004A95370F910B28F2B1B3B /* Localzation+Extensions.swift in Sources */,
+				3B46DD1B219189EC009B6E2A /* Tokens.swift in Sources */,
 				3B265347218AAA220091FE93 /* DelegateView.swift in Sources */,
 				AFB301D5163D2DC0F553FEF6A3BF2987 /* NBLNetworkService.swift in Sources */,
 				72FE5B8821009E4D00B29FEC /* LeadInCoordinator.swift in Sources */,

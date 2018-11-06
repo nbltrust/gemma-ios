@@ -68,6 +68,14 @@ class OverviewViewController: BaseViewController {
             }
 
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+
+        self.coordinator?.state.tokens.asObservable().subscribe(onNext: {[weak self] (model) in
+            guard let `self` = self else { return }
+            if let newModel = model as? [AssetViewModel] {
+                self.contentView.adapterModelToOverviewView(newModel)
+            }
+
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
 //            

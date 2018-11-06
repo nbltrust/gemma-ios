@@ -118,7 +118,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         var walletName = ""
         var pubkey = ""
 
-        if let name = Defaults["accountNames\(currencyID!)"] as? String {
+        if let name = CurrencyManager.shared.getCurrentAccountName() as? String {
             walletName = name
         }
         let currency = try? WalletCacheService.shared.fetchCurrencyBy(id: currencyID!)
