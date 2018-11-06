@@ -307,7 +307,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
 
             let seed = Seed39SeedByMnemonic(checkStr)
             let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true)
-            let curCipher = Seed39KeyEncrypt(pwd, prikey)
+            let curCipher = EOSIO.getCypher(prikey, password: pwd)
             let pubkey = EOSIO.getPublicKey(prikey)
             let currency = Currency(id: nil, type: .EOS, cipher: curCipher!, pubKey: pubkey!, wid: idNum, date: date, address: nil)
 

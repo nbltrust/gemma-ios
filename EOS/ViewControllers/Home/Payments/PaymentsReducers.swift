@@ -22,7 +22,7 @@ func gPaymentsPropertyReducer(_ state: PaymentsPropertyState?, action: Action) -
     switch action {
     case let action as FetchPaymentsRecordsListAction:
         state.payments = action.data
-        let mData: [PaymentsRecordsViewModel] = convertTransferViewModel(data: action.data)
+        let mData: [String: [PaymentsRecordsViewModel]] = convertTransferViewModel(data: action.data, dict: state.data)
         state.data = mData
     case let action as GetLastPosAction:
         state.lastPos = action.lastPos
@@ -33,7 +33,7 @@ func gPaymentsPropertyReducer(_ state: PaymentsPropertyState?, action: Action) -
     return state
 }
 
-func convertTransferViewModel(data: [Payment]) -> [PaymentsRecordsViewModel] {
+func convertTransferViewModel(data: [Payment], dict: [String: [PaymentsRecordsViewModel]]) -> [String: [PaymentsRecordsViewModel]] {
 
     /*
      action_seq: 90
@@ -56,30 +56,35 @@ func convertTransferViewModel(data: [Payment]) -> [PaymentsRecordsViewModel] {
      var memo : String = ""
      var hashNumber : String = ""
      */
-
-    var dataArray: [PaymentsRecordsViewModel] = []
+    var newdict = dict
+    var modelArray: [PaymentsRecordsViewModel] = []
     for payment in data {
         let isSend: Bool = payment.from == WalletManager.shared.getAccount()
         let state: Bool = payment.status.rawValue == 3
         let stateImage: UIImage? = isSend ? R.image.icSend() : R.image.icIncome()
         let address = isSend ? payment.to : payment.from
-        let time = payment.time.string(withFormat: "yyyy/MM/dd HH:mm")
+        let time = payment.time.string(withFormat: "MM-dd yyyy")
         let transferState = payment.status.description()
         let money = isSend ? "-" + payment.value : "+" + payment.value
 
-        dataArray.append(PaymentsRecordsViewModel(stateImageName: stateImage,
-                                                  address: address!,
-                                                  time: time,
-                                                  transferState: transferState,
-                                                  money: money,
-                                                  transferStateBool: state,
-                                                  block: payment.block,
-                                                  memo: payment.memo,
-                                                  hashNumber: payment.hash.hashNano,
-                                                  hash: payment.hash))
-
+        if newdict.keys.contains(time) {
+            modelArray = newdict[time]!
+        } else {
+            modelArray = []
+        }
+        modelArray.append(PaymentsRecordsViewModel(stateImageName: stateImage,
+                                                    address: address!,
+                                                    time: time,
+                                                    transferState: transferState,
+                                                    money: money,
+                                                    transferStateBool: state,
+                                                    block: payment.block,
+                                                    memo: payment.memo,
+                                                    hashNumber: payment.hash.hashNano,
+                                                    hash: payment.hash))
+        newdict[time] = modelArray
     }
-    return dataArray
+    return newdict
 
 //    var dataArray: [PaymentsRecordsViewModel] = []
 //    var payment = Payment.init()

@@ -11,6 +11,7 @@ import Moya
 import SwifterSwift
 import SwiftyJSON
 import SwiftyUserDefaults
+import MMKV
 
 enum EOSIOService {
     //chain
@@ -36,10 +37,16 @@ struct EOSIONetwork {
 
     static func request(
         target: EOSIOService,
+        fetchedCache: Bool = true,
         success successCallback: @escaping (JSON) -> Void,
         error errorCallback: @escaping (_ statusCode: Int) -> Void,
         failure failureCallback: @escaping (MoyaError) -> Void
         ) {
+
+        if fetchedCache, let cache = MMKV.default().object(of: NSString.self, forKey: target.fetchCacheKey()) as? String {
+            let json = JSON(stringLiteral: cache)
+            successCallback(json)
+        }
         provider.request(target) { (result) in
             switch result {
             case let .success(response):
@@ -73,7 +80,9 @@ struct EOSIONetwork {
                     case .getTableRows:break
 
                     }
-
+                    if let str = json.rawString() {
+                        MMKV.default().set(str, forKey: target.fetchCacheKey())
+                    }
                     successCallback(json)
                 } catch _ {
                     do {
@@ -208,5 +217,40 @@ private extension String {
 
     var utf8Encoded: Data {
         return data(using: .utf8)!
+    }
+}
+
+extension TargetType {
+    func fetchCacheKey() -> String {
+        return cacheKey
+    }
+
+    private var baseCacheKey : String {
+        return "[\(self.method)]\(self.baseURL.absoluteString)/\(self.path)"
+    }
+
+    private var cacheKey: String {
+        let baseKey = baseCacheKey
+
+        if parameterRaw.isEmpty { return baseKey }
+        return baseKey + "?" + parameterRaw
+    }
+
+    private var parameterRaw: String {
+        switch self.task {
+        case let .requestParameters(parameters, _):
+            return JSON(parameters).rawString() ?? ""
+        case let .requestCompositeParameters(bodyParameters, _, urlParameters):
+            var parameters = bodyParameters
+            for (key, value) in urlParameters { parameters[key] = value }
+            return JSON(parameters).rawString() ?? ""
+        case let .downloadParameters(parameters, _, _):
+            return JSON(parameters).rawString() ?? ""
+        case let .uploadCompositeMultipart(_, urlParameters):
+            return JSON(urlParameters).rawString() ?? ""
+        case let .requestCompositeData(_, urlParameters):
+            return JSON(urlParameters).rawString() ?? ""
+        default: return  ""
+        }
     }
 }

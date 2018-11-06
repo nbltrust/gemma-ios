@@ -14,13 +14,16 @@ import HandyJSON
 
 struct AssetDetailContext: RouteContext, HandyJSON {
     init() {}
-    
+    var model = AssetViewModel()
 }
 
 //MARK: - State
 struct AssetDetailState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
+    var data: [String: [PaymentsRecordsViewModel]] = [:]
+    var lastPos: Int = -1
+    var payments: [Payment] = []
 }
 
 //MARK: - Action

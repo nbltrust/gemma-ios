@@ -11,7 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol OverviewCoordinatorProtocol {
-    func pushToDetailVC()
+    func pushToDetailVC(_ model: AssetViewModel)
 }
 
 protocol OverviewStateManagerProtocol {
@@ -49,12 +49,10 @@ class OverviewCoordinator: NavCoordinator {
 }
 
 extension OverviewCoordinator: OverviewCoordinatorProtocol {
-    func pushToDetailVC() {
-        if let vc = R.storyboard.assetDetail.assetDetailViewController() {
-            let coordinator = AssetDetailCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
-        }
+    func pushToDetailVC(_ model: AssetViewModel) {
+        var context = AssetDetailContext()
+        context.model = model
+        self.pushVC(AssetDetailCoordinator.self, animated: true, context: context)
     }
 }
 
@@ -102,10 +100,8 @@ extension OverviewCoordinator: OverviewStateManagerProtocol {
 
         }
 
-        getRamPrice { (price) in
-            if let price = price as? Decimal {
-                self.store.dispatch(RamPriceAction(price: price))
-            }
-        }
+        SimpleHTTPService.requestETHPrice().done { (json) in
+            self.store.dispatch(RMBPriceFetchedAction(currency: nil))
+            }.cauterize()
     }
 }

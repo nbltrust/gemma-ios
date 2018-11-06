@@ -13,7 +13,11 @@ class AssetDetailHeadView: EOSBaseView {
 
     @IBOutlet weak var transferButton: Button!
     @IBOutlet weak var receiptButton: Button!
-    
+    @IBOutlet weak var iconImgView: UIImageView!
+    @IBOutlet weak var balanceLabel: BaseLabel!
+    @IBOutlet weak var currencyLabel: BaseLabel!
+    @IBOutlet weak var cnyLabel: BaseLabel!
+
     enum Event:String {
         case assetDetailHeadViewDidClicked
         case transferBtnDidClicked

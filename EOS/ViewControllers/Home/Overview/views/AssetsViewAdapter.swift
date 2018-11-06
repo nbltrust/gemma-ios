@@ -10,8 +10,16 @@ import Foundation
 
 extension AssetsView {
     func adapterModelToAssetsView(_ model:AssetViewModel) {
+        self.data = model
         self.nameLabel.text = model.name
-        self.cnyLabel.text = model.CNY
+//        self.cnyLabel.text = model.CNY
         self.totalLabel.text = model.total
+        if model.icon == "" {
+            if model.name == "EOS" {
+                self.iconView.image = R.image.eos()
+            } else {
+                self.iconView.image = R.image.eos()
+            }
+        }
     }
 }

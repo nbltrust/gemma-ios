@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
-    let state = state ?? OverviewState()
+    var state = state ?? OverviewState()
         
     switch action {
     case let action as MBalanceFetchedAction:
@@ -43,6 +43,17 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
             viewmodel = convertViewModelWithAccount(action.info, viewmodel: viewmodel, currencyID: CurrencyManager.shared.getCurrentCurrencyID())
             state.info.accept(viewmodel)
         }
+    case let action as RMBPriceFetchedAction:
+        var viewmodel = state.info.value
+        if coinType() == .CNY, let eos = CurrencyManager.shared.getCNYPrice() {
+            state.cnyPrice = eos
+        } else if coinType() == .USD, let usd = CurrencyManager.shared.getUSDPrice() {
+            state.otherPrice = usd
+        }
+        if viewmodel != nil {
+            viewmodel!.CNY = calculateRMBPrice(viewmodel!, price: state.cnyPrice, otherPrice: state.otherPrice)
+        }
+        state.info.accept(viewmodel)
     default:
         break
     }

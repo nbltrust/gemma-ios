@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,12 +29,12 @@
             <constraints>
                 <constraint firstItem="CDp-xN-rpe" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="20" id="7lh-11-P6O"/>
                 <constraint firstItem="CDp-xN-rpe" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" constant="30" id="8lN-pE-xHR"/>
-                <constraint firstItem="Lhl-p8-24W" firstAttribute="bottom" secondItem="CDp-xN-rpe" secondAttribute="bottom" constant="40" id="VAB-MO-kH8"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="bottom" secondItem="CDp-xN-rpe" secondAttribute="bottom" constant="40" id="npa-2w-GdS"/>
                 <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="CDp-xN-rpe" secondAttribute="trailing" constant="20" id="rQz-Qb-3Zt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
-            <point key="canvasLocation" x="-234.40000000000001" y="-257.72113943028489"/>
+            <point key="canvasLocation" x="-306" y="-278"/>
         </view>
     </objects>
 </document>

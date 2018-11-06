@@ -1,0 +1,633 @@
+BCSymbolMap Version: 2.0
+Apple LLVM version 10.0.0 (clang-1000.11.45.5)
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/MiniCodedInputData.mm
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV
+readRawByte
+readUInt32
+readData
+readString
+readBool
+readFixed32
+readRawVarint32
+readInt32
+readInt64
+readRawVarint64
+readUInt64
+readRawLittleEndian32
+readFloat
+Int32ToFloat32
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/MiniPBUtility.h
+readRawLittleEndian64
+readDouble
+Int64ToFloat64
+~MiniCodedInputData
+MiniCodedInputData
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/aes/openssl/cfb128.c
+CRYPTO_cfb128_encrypt
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/aes/openssl/aes_cfb.c
+AES_cfb128_encrypt
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/MiniCodedOutputData.mm
+writeRawData
+seek
+spaceLeft
+writeUInt32
+writeData
+writeString
+writeRawByte
+writeBool
+writeFixed32
+writeRawVarint32
+logicalRightShift32
+writeInt32
+writeInt64
+writeRawVarint64
+logicalRightShift64
+writeUInt64
+writeRawLittleEndian32
+writeFloat
+Float32ToInt32
+writeRawLittleEndian64
+writeDouble
+Float64ToInt64
+~MiniCodedOutputData
+MiniCodedOutputData
+-[MiniPBCoder initForReadingWithData:]
+-[MiniPBCoder initForWritingWithTarget:]
+-[MiniPBCoder dealloc]
+-[MiniPBCoder writeRootObject]
+-[MiniPBCoder prepareObjectForEncode:]
+___38-[MiniPBCoder prepareObjectForEncode:]_block_invoke
+___copy_helper_block_
+___destroy_helper_block_
+-[MiniPBCoder getEncodeData]
++[MiniPBCoder encodeDataWithObject:]
+-[MiniPBCoder decodeOneDictionaryOfValueClass:]
+-[MiniPBCoder decodeOneObject:ofClass:]
++[MiniPBCoder decodeObjectOfClass:fromData:]
++[MiniPBCoder decodeContainerOfClass:withValueClass:fromData:]
++[MiniPBCoder isMiniPBCoderCompatibleObject:]
++[MiniPBCoder isMiniPBCoderCompatibleType:]
+-[MiniPBCoder .cxx_destruct]
+___clang_call_terminate
+__ZN16MiniPBEncodeItemD2Ev
+__ZN16MiniPBEncodeItemC2ERKS_
+_OBJC_IVAR_$_MiniPBCoder.m_isTopObject
+_OBJC_IVAR_$_MiniPBCoder.m_inputBuffer
+_OBJC_IVAR_$_MiniPBCoder.m_inputData
+_OBJC_IVAR_$_MiniPBCoder.m_obj
+_OBJC_IVAR_$_MiniPBCoder.m_encodeItems
+_OBJC_IVAR_$_MiniPBCoder.m_outputBuffer
+_OBJC_IVAR_$_MiniPBCoder.m_outputData
+___block_descriptor_tmp
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/MiniPBCoder.mm
+~__split_buffer
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/__split_buffer
+deallocate
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/memory
+__libcpp_deallocate
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/new
+clear
+__destruct_at_end
+destroy<MiniPBEncodeItem>
+__destroy<MiniPBEncodeItem>
+destroy
+~MiniPBEncodeItem
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/MiniPBEncodeItem.h
+__split_buffer
+allocate
+__allocate
+__throw_length_error
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/stdexcept
+length_error
+__compressed_pair<nullptr_t, std::__1::allocator<MiniPBEncodeItem> &>
+__compressed_pair_elem<std::__1::allocator<MiniPBEncodeItem> &, void>
+__compressed_pair_elem<nullptr_t, void>
+__swap_out_circular_buffer
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/vector
+swap<MiniPBEncodeItem *>
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/type_traits
+__end_cap
+first
+__get
+__construct_backward<MiniPBEncodeItem *>
+construct<MiniPBEncodeItem, const MiniPBEncodeItem &>
+__construct<MiniPBEncodeItem, const MiniPBEncodeItem &>
+MiniPBEncodeItem
+__push_back_slow_path<MiniPBEncodeItem>
+construct<MiniPBEncodeItem, MiniPBEncodeItem>
+__construct<MiniPBEncodeItem, MiniPBEncodeItem>
+__recommend
+max<unsigned long>
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/algorithm
+max<unsigned long, std::__1::__less<unsigned long, unsigned long> >
+operator()
+capacity
+size
+__alloc
+second
+~__vector_base
+isAtEnd
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/MiniCodedInputData.h
+operator[]
+vector
+__vector_base
+__compressed_pair<nullptr_t, true>
+__destroy_helper_block_
+__copy_helper_block_
+__38-[MiniPBCoder prepareObjectForEncode:]_block_invoke
+pop_back
+back
+push_back
+~vector
+_Te2
+_Te3
+_Te0
+_Te1
+_rcon
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/aes/openssl/aes_core.c
+AES_encrypt
+AES_set_encrypt_key
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/MiniPBUtility.mm
+pbUInt32Size
+pbRawVarint32Size
+pbDataSize
+pbRawStringSize
+pbStringSize
+pbInt32Size
+pbInt64Size
+pbRawVarint64Size
+pbUInt64Size
+__ZN8LRUCacheIjNSt3__110shared_ptrIN10MemoryFile7SegmentEEEED1Ev
+__ZN8LRUCacheIjNSt3__110shared_ptrIN10MemoryFile7SegmentEEEE3getERKj
+__ZN8LRUCacheIjNSt3__110shared_ptrIN10MemoryFile7SegmentEEEE6insertERKjRKS4_
+__ZNSt3__110shared_ptrIN10MemoryFile7SegmentEE18__enable_weak_thisEz
+__ZNSt3__120__shared_ptr_pointerIPN10MemoryFile7SegmentENS_14default_deleteIS2_EENS_9allocatorIS2_EEED1Ev
+__ZNSt3__120__shared_ptr_pointerIPN10MemoryFile7SegmentENS_14default_deleteIS2_EENS_9allocatorIS2_EEED0Ev
+__GLOBAL__sub_I_MemoryFile.mm
+__ZZ12zeroFillFileimmE5zeros
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/MemoryFile.mm
+_GLOBAL__sub_I_MemoryFile.mm
+__cxx_global_var_init
+__rehash
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/__hash_table
+reset<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >, void *> *> **>
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/unordered_map
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/functional
+__constrain_hash
+__hash
+get_deleter
+rehash
+__next_hash_pow2
+__clz
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/math.h
+max_load_factor
+__is_hash_power2
+bucket_count
+unique_ptr<true, void>
+__compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >, void *> *&, std::__1::__hash_node_destructor<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >, void *> > > >
+__compressed_pair_elem<std::__1::__hash_node_destructor<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >, void *> > >, void>
+__compressed_pair_elem<std::__1::__hash_node<std::__1::__hash_value_type<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >, void *> *&, void>
+__hash_node_destructor
+erase
+~unique_ptr
+reset
+operator++
+__erase_unique<unsigned int>
+operator==
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/list
+destroy<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> > >
+__destroy<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> > >
+~pair
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/utility
+~shared_ptr
+__sz
+__unlink_nodes
+__on_zero_shared_weak
+__get_deleter
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/typeinfo
+__on_zero_shared
+~Segment
+~__shared_ptr_pointer
+__enable_weak_this
+shared_ptr<MemoryFile::Segment>
+__shared_ptr_pointer
+__compressed_pair<std::__1::__compressed_pair<MemoryFile::Segment *, std::__1::default_delete<MemoryFile::Segment> >, std::__1::allocator<MemoryFile::Segment> >
+__compressed_pair_elem<std::__1::__compressed_pair<MemoryFile::Segment *, std::__1::default_delete<MemoryFile::Segment> >, void>
+__shared_weak_count
+__shared_count
+find<unsigned int>
+__hash_iterator
+splice
+__link_nodes
+__deallocate_node
+__release_shared
+__libcpp_atomic_refcount_decrement<long>
+__end_as_link
+empty
+~__hash_table
+removeFile
+tryResetFileProtection
+createFile
+isFileExist
+Segment
+innerMemcpy
+min<unsigned long>
+min_element<const unsigned long *, std::__1::__less<unsigned long, unsigned long> >
+operator bool
+get
+offset2index
+insert
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/LRUCache.hpp
+insert<std::__1::pair<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >, void>
+__insert_unique<std::__1::pair<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >, void>
+__emplace_unique<std::__1::pair<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> > >
+__emplace_unique_extract_key<std::__1::pair<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> > >
+__emplace_unique_key_args<unsigned int, std::__1::pair<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> > >
+__construct_node_hash<std::__1::pair<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >>
+construct<std::__1::pair<const unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >, std::__1::pair<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> > >
+__construct<std::__1::pair<const unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >, std::__1::pair<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> > >
+pair<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *>, false>
+make_pair<const unsigned int &, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >
+pair<const unsigned int &, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *>, false>
+begin
+push_front
+__link_nodes_at_front
+construct<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> > >
+__construct<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> > >
+pair
+shared_ptr
+__allocate_node
+make_pair<const unsigned int &, const std::__1::shared_ptr<MemoryFile::Segment> &>
+pair<true, false>
+__add_shared
+__libcpp_atomic_refcount_increment<long>
+operator=
+swap
+swap<std::__1::__shared_weak_count *>
+swap<MemoryFile::Segment *>
+operator->
+__list_const_iterator
+operator!=
+find
+tryGetSegment
+min<unsigned long, std::__1::__less<unsigned long, unsigned long> >
+zeroFillFile
+~MemoryFile
+~LRUCache
+~list
+~__list_imp
+~unordered_map
+MemoryFile
+prepareSegments
+ftruncate
+LRUCache
+unordered_map
+__hash_table
+__compressed_pair<float, true>
+__compressed_pair_elem<float, void>
+__compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<unsigned int, std::__1::__list_iterator<std::__1::pair<unsigned int, std::__1::shared_ptr<MemoryFile::Segment> >, void *> >, void *> *> **, true>
+__compressed_pair_elem
+__bucket_list_deallocator
+__compressed_pair<int, true>
+__compressed_pair_elem<int, void>
+list
+__list_imp
+__list_node_base
+__ZZ12testAESCryptvE9plainText
+__ZZ12testAESCryptvE3key
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/aes/AESCrypt.mm
+testAESCrypt
+decrypt
+encrypt
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/string.h
+__libcpp_strchr
+AESCrypt
+getKey
++[MMKV initialize]
++[MMKV defaultMMKV]
++[MMKV mmkvWithID:]
++[MMKV mmkvWithID:cryptKey:]
+-[MMKV initWithMMapID:cryptKey:]
+-[MMKV dealloc]
+-[MMKV onMemoryWarning]
+-[MMKV didEnterBackground]
+-[MMKV didBecomeActive]
+-[MMKV loadFromFile]
+-[MMKV checkLoadData]
+-[MMKV clearAll]
+-[MMKV clearMemoryCache]
+-[MMKV protectFromBackgroundWritting:writeBlock:]
+-[MMKV ensureMemorySize:]
+___25-[MMKV ensureMemorySize:]_block_invoke
+-[MMKV writeAcutalSize:]
+-[MMKV setData:forKey:]
+-[MMKV appendData:forKey:]
+___26-[MMKV appendData:forKey:]_block_invoke
+___copy_helper_block_.136
+___destroy_helper_block_.137
+___26-[MMKV appendData:forKey:]_block_invoke.139
+___copy_helper_block_.140
+___destroy_helper_block_.141
+-[MMKV getDataForKey:]
+-[MMKV fullWriteback]
+___21-[MMKV fullWriteback]_block_invoke
+___copy_helper_block_.147
+___destroy_helper_block_.148
+-[MMKV isFileValid]
+-[MMKV checkFileCRCValid]
+-[MMKV recaculateCRCDigest]
+-[MMKV updateCRCDigest:withSize:]
+-[MMKV prepareCRCFile]
+-[MMKV cryptKey]
+-[MMKV reKey:]
+-[MMKV setObject:forKey:]
+-[MMKV setBool:forKey:]
+-[MMKV setInt32:forKey:]
+-[MMKV setUInt32:forKey:]
+-[MMKV setInt64:forKey:]
+-[MMKV setUInt64:forKey:]
+-[MMKV setFloat:forKey:]
+-[MMKV setDouble:forKey:]
+-[MMKV getObjectOfClass:forKey:]
+-[MMKV getBoolForKey:]
+-[MMKV getBoolForKey:defaultValue:]
+-[MMKV getInt32ForKey:]
+-[MMKV getInt32ForKey:defaultValue:]
+-[MMKV getUInt32ForKey:]
+-[MMKV getUInt32ForKey:defaultValue:]
+-[MMKV getInt64ForKey:]
+-[MMKV getInt64ForKey:defaultValue:]
+-[MMKV getUInt64ForKey:]
+-[MMKV getUInt64ForKey:defaultValue:]
+-[MMKV getFloatForKey:]
+-[MMKV getFloatForKey:defaultValue:]
+-[MMKV getDoubleForKey:]
+-[MMKV getDoubleForKey:defaultValue:]
+-[MMKV containsKey:]
+-[MMKV count]
+-[MMKV totalSize]
+-[MMKV enumerateKeys:]
+___22-[MMKV enumerateKeys:]_block_invoke
+___copy_helper_block_.211
+___destroy_helper_block_.212
+-[MMKV removeValueForKey:]
+-[MMKV removeValuesForKeys:]
+-[MMKV sync]
++[MMKV mappedKVPathWithID:]
++[MMKV crcPathWithMappedKVPath:]
++[MMKV isFileValid:]
+-[MMKV .cxx_destruct]
+__ZN11CScopedLockC2EP15NSRecursiveLock
+__ZN11CScopedLockD2Ev
+__ZL13g_instanceDic
+__ZL14g_instanceLock
+_OBJC_IVAR_$_MMKV.m_lock
+_OBJC_IVAR_$_MMKV.m_mmapID
+_OBJC_IVAR_$_MMKV.m_path
+_OBJC_IVAR_$_MMKV.m_crcPath
+_OBJC_IVAR_$_MMKV.m_cryptor
+_OBJC_IVAR_$_MMKV.m_isInBackground
+_OBJC_IVAR_$_MMKV.m_ptr
+_OBJC_IVAR_$_MMKV.m_size
+_OBJC_IVAR_$_MMKV.m_fd
+_OBJC_IVAR_$_MMKV.m_output
+_OBJC_IVAR_$_MMKV.m_crcPtr
+_OBJC_IVAR_$_MMKV.m_crcFd
+_OBJC_IVAR_$_MMKV.m_actualSize
+_OBJC_IVAR_$_MMKV.m_dic
+_OBJC_IVAR_$_MMKV.m_needLoadFromFile
+_OBJC_IVAR_$_MMKV.m_crcDigest
+__ZZ49-[MMKV protectFromBackgroundWritting:writeBlock:]E8pagesize
+__ZGVZ49-[MMKV protectFromBackgroundWritting:writeBlock:]E8pagesize
+___block_descriptor_tmp.138
+___block_descriptor_tmp.142
+___block_descriptor_tmp.149
+l_OBJC_PROTOCOL_$_NSCoding
+l_OBJC_LABEL_PROTOCOL_$_NSCoding
+l_OBJC_PROTOCOL_REFERENCE_$_NSCoding
+___block_descriptor_tmp.214
+__ZZ26-[MMKV removeValueForKey:]E4data
+__ZGVZ26-[MMKV removeValueForKey:]E4data
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/MMKV.mm
+~CScopedLock
+/Users/koofrank/Documents/nbltrust/gemma-ios/Carthage/Checkouts/MMKV/iOS/MMKV/MMKV/ScopedLock.hpp
+CScopedLock
+__22-[MMKV enumerateKeys:]_block_invoke
+__21-[MMKV fullWriteback]_block_invoke
+__26-[MMKV appendData:forKey:]_block_invoke.139
+__26-[MMKV appendData:forKey:]_block_invoke
+__25-[MMKV ensureMemorySize:]_block_invoke
+decryptBuffer
+/Users/koofrank/Library/Caches/org.carthage.CarthageKit/DerivedData/10.1_10B61/MMKV/v1.0.12/Build/Intermediates.noindex/ArchiveIntermediates/MMKV/IntermediateBuildFilesPath/MMKV.build/Release-iphoneos/MMKV.build/DerivedSources/MMKV_vers.c
+__ZL15__ARCLite__loadv
+__ZL30add_image_hook_autoreleasepoolPK11mach_headerl
+__ZL34__arclite_objc_autoreleasePoolPushv
+__ZL33__arclite_objc_autoreleasePoolPopPv
+__ZL19patch_lazy_pointersPK11mach_headerP7patch_tm
+__ZL42__arclite_NSArray_objectAtIndexedSubscriptP7NSArrayP13objc_selectorj
+__ZL53__arclite_NSMutableArray_setObject_atIndexedSubscriptP14NSMutableArrayP13objc_selectorP11objc_objectj
+__ZL46__arclite_NSDictionary_objectForKeyedSubscriptP12NSDictionaryP13objc_selectorP11objc_object
+__ZL47__arclite_NSOrderedSet_objectAtIndexedSubscriptP12NSOrderedSetP13objc_selectorj
+__ZL58__arclite_NSMutableOrderedSet_setObject_atIndexedSubscriptP19NSMutableOrderedSetP13objc_selectorP11objc_objectj
+__ZL58__arclite_NSMutableDictionary__setObject_forKeyedSubscriptP19NSMutableDictionaryP13objc_selectorP11objc_objectS4_
+__ZL18add_image_hook_ARCPK11mach_headerl
+__ZL36__arclite_object_setInstanceVariableP11objc_objectPKcPv
+__ZL24__arclite_object_setIvarP11objc_objectP9objc_ivarS0_
+__ZL21__arclite_object_copyP11objc_objectm
+__ZL21__arclite_objc_retainP11objc_object
+__ZL26__arclite_objc_retainBlockP11objc_object
+__ZL22__arclite_objc_releaseP11objc_object
+__ZL26__arclite_objc_autoreleaseP11objc_object
+__ZL32__arclite_objc_retainAutoreleaseP11objc_object
+__ZL37__arclite_objc_autoreleaseReturnValueP11objc_object
+__ZL43__arclite_objc_retainAutoreleaseReturnValueP11objc_object
+__ZL44__arclite_objc_retainAutoreleasedReturnValueP11objc_object
+__ZL26__arclite_objc_storeStrongPP11objc_objectS0_
+__ZL22add_image_hook_swiftV1PK11mach_headerl
+__ZL42__arclite_NSUndoManagerProxy_isKindOfClassP11objc_objectP13objc_selectorP10objc_class
+__ZL30__arclite_NSManagedObject_initP11objc_objectP13objc_selector
+__ZL41__arclite_NSManagedObject_allocWithEntityP11objc_objectP13objc_selectorS0_
+__ZL36__arclite_NSManagedObject_allocBatchP11objc_objectP13objc_selectorPS0_S0_j
+__ZL37__arclite_NSKKMS_fastIndexForKnownKeyP11objc_objectP13objc_selectorS0_
+__ZL28__arclite_NSKKMS_indexForKeyP11objc_objectP13objc_selectorS0_
+__ZL29__arclite_NSKKsD_objectForKeyP11objc_objectP13objc_selectorS0_
+__ZL35__arclite_NSKKsD_removeObjectForKeyP11objc_objectP13objc_selectorS0_
+__ZL33__arclite_NSKKsD_setObject_forKeyP11objc_objectP13objc_selectorS0_S0_
+__ZL41__arclite_NSKKsD_addEntriesFromDictionaryP11objc_objectP13objc_selectorP12NSDictionary
+__ZL28__arclite_objc_readClassPairP10objc_classPK15objc_image_info
+__ZL32__arclite_objc_allocateClassPairP10objc_classPKcm
+__ZL32__arclite_object_getIndexedIvarsP11objc_object
+__ZL23__arclite_objc_getClassPKc
+__ZL27__arclite_objc_getMetaClassPKc
+__ZL31__arclite_objc_getRequiredClassPKc
+__ZL26__arclite_objc_lookUpClassPKc
+__ZL26__arclite_objc_getProtocolPKc
+__ZL23__arclite_class_getNameP10objc_class
+__ZL26__arclite_protocol_getNameP8Protocol
+__ZL37__arclite_objc_copyClassNamesForImagePKcPj
+__ZL17transcribeMethodsP10objc_classP15glue_class_ro_t
+__ZL19transcribeProtocolsP10objc_classP15glue_class_ro_t
+__ZL20transcribePropertiesP10objc_classP15glue_class_ro_t
+__ZL14initialize_impP11objc_objectP13objc_selector
+__ZL18allocateMaybeSwiftP18glue_swift_class_tm
+__ZL22copySwiftV1MangledNamePKcb
+__ZL13demangledNamePKcb
+__ZL16scanMangledFieldRPKcS0_S1_Ri
+__ZL30arclite_uninitialized_functionv
+__ZL12cxxConstructP11objc_object
+__ZL20fixStringForCoreDataP11objc_object
+_OBJC_METACLASS_$___ARCLite__
+__ZL24OBJC_CLASS_$___ARCLite__
+__ZL31OBJC_METACLASS_RO_$___ARCLite__
+__non_lazy_classes
+__ZL27OBJC_CLASS_RO_$___ARCLite__
+__ZL11_class_name
+__ZL32OBJC_$_CLASS_METHODS___ARCLite__
+__ZL17_load_method_name
+__ZL17_load_method_type
+__ZL23NSAutoreleasePool_class
+__ZZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+__ZGVZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+l_OBJC_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteKeyedSubscripting__
+__ZZL18add_image_hook_ARCPK11mach_headerlE7patches
+__ZGVZL18add_image_hook_ARCPK11mach_headerlE7patches
+__ZL30NSUndoManagerProxy_targetClass
+__ZL29original_NSManagedObject_init
+__ZL40original_NSManagedObject_allocWithEntity
+__ZL35original_NSManagedObject_allocBatch
+__ZL25NSMutableDictionary_class
+__ZL22NSConstantString_class
+__ZL14NSString_class
+__ZL36original_NSKKMS_fastIndexForKnownKey
+__ZL27original_NSKKMS_indexForKey
+__ZL28original_NSKKsD_objectForKey
+__ZL34original_NSKKsD_removeObjectForKey
+__ZL32original_NSKKsD_setObject_forKey
+__ZL40original_NSKKsD_addEntriesFromDictionary
+__ZZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+__ZGVZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+__ZL31original_objc_allocateClassPair
+__ZL31original_object_getIndexedIvars
+__ZL22original_objc_getClass
+__ZL26original_objc_getMetaClass
+__ZL30original_objc_getRequiredClass
+__ZL25original_objc_lookUpClass
+__ZL25original_objc_getProtocol
+__ZL22original_class_getName
+__ZL25original_protocol_getName
+__ZL36original_objc_copyClassNamesForImage
+__ZL12demangleLock
+__ZL9Demangled
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -fno-sanitize=vptr -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-objc-interface-ivars -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-float-conversion -Wno-non-literal-null-conversion -Wno-objc-literal-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -D OBJC_OLD_DISPATCH_PROTOTYPES=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -miphoneos-version-min=4.3 -g -fno-threadsafe-statics -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -Wno-comma -Wno-block-capture-autoreleasing -Wno-strict-prototypes -Wno-range-loop-analysis -Wno-semicolon-before-method-body -fembed-bitcode=all -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/armv7 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-70/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.o -mlinker-version=409.12 -march=armv7a
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-70/source/arclite.mm
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-70
+fixStringForCoreData
+cxxConstruct
+arclite_uninitialized_function
+scanMangledField
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.Internal.sdk/usr/include/_ctype.h
+__isctype
+demangledName
+copySwiftV1DemangledName
+copySwiftV1MangledName
+allocateMaybeSwift
+word_align
+isSwift
+initialize_imp
+transcribeProperties
+property_list_nth
+transcribeProtocols
+transcribeMethods
+data
+method_list_nth
+__arclite_objc_copyClassNamesForImage
+__arclite_protocol_getName
+__arclite_class_getName
+__arclite_objc_getProtocol
+__arclite_objc_lookUpClass
+__arclite_objc_getRequiredClass
+__arclite_objc_getMetaClass
+__arclite_objc_getClass
+__arclite_object_getIndexedIvars
+__arclite_objc_allocateClassPair
+metaclass
+__arclite_objc_readClassPair
+transcribeIvars
+ivar_list_nth
+max
+alignment
+ro
+fastFlags
+__arclite_NSKKsD_addEntriesFromDictionary
+__arclite_NSKKsD_setObject_forKey
+__arclite_NSKKsD_removeObjectForKey
+__arclite_NSKKsD_objectForKey
+__arclite_NSKKMS_indexForKey
+__arclite_NSKKMS_fastIndexForKnownKey
+__arclite_NSManagedObject_allocBatch
+__arclite_NSManagedObject_allocWithEntity
+__arclite_NSManagedObject_init
+__arclite_NSUndoManagerProxy_isKindOfClass
+add_image_hook_swiftV1
+patch_t<const char **(const char *, unsigned int *)>
+patch_t<const char *(Protocol *)>
+patch_t<const char *(Class)>
+patch_t<Protocol *(const char *)>
+patch_t<Class (const char *)>
+patch_t<void *(id)>
+patch_t<Class (Class, const char *, unsigned long)>
+patch_t<Class (Class, const objc_image_info *)>
+__arclite_objc_storeStrong
+__arclite_objc_release
+__arclite_objc_retain
+__arclite_objc_retainAutoreleasedReturnValue
+__arclite_objc_retainAutoreleaseReturnValue
+__arclite_objc_autoreleaseReturnValue
+__arclite_objc_retainAutorelease
+__arclite_objc_autorelease
+__arclite_objc_retainBlock
+__arclite_object_copy
+fixupCopiedReferences
+_class_getInstanceStart
+alignedInstanceStart
+__arclite_class_usesAutomaticRetainRelease
+classOrSuperClassesUseARR
+__arclite_object_setIvar
+isScannedOffset
+_ivar_getClass
+__arclite_object_setInstanceVariable
+add_image_hook_ARC
+patch_t<void (id *, id)>
+patch_t<id (id)>
+patch_t<void (id)>
+patch_t<id (id, unsigned long)>
+patch_t<void (id, objc_ivar *, id)>
+patch_t<objc_ivar *(id, const char *, void *)>
+__arclite_NSMutableDictionary__setObject_forKeyedSubscript
+__arclite_NSMutableOrderedSet_setObject_atIndexedSubscript
+__arclite_NSOrderedSet_objectAtIndexedSubscript
+__arclite_NSDictionary_objectForKeyedSubscript
+__arclite_NSMutableArray_setObject_atIndexedSubscript
+__arclite_NSArray_objectAtIndexedSubscript
+patch_lazy_pointers
+__arclite_objc_autoreleasePoolPop
+__arclite_objc_autoreleasePoolPush
+add_image_hook_autoreleasepool
+patch_t<void (void *)>
+patch_t<void *()>
+__ARCLite__load
+install_swiftV1
+replaceMethod
+install_ARC
+install_dict_nil_value
+addOrReplaceMethod
+keyedGetter
+install_subscripting
+addMethod
+indexedGetter
+install_autoreleasepool

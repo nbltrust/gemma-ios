@@ -75,7 +75,7 @@ extension TransferConfirmPasswordViewController {
         guard let context = context else { return }
 
         if context.type != ConfirmType.bltTransfer.rawValue {
-            guard CurrencyManager.shared.pwdIsCorrect(context.currencyID, password: passwordView.textField.text!) == true else {
+            if CurrencyManager.shared.pwdIsCorrect(context.currencyID, password: passwordView.textField.text!) == false {
                 self.errCount += 1
                 if self.errCount == 3 {
 
