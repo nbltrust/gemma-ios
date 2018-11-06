@@ -72,7 +72,7 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
 
     func updateFingerName(model: WalletManagerModel, index: Int, newName: String) -> Bool {
         if isValidWalletName(name: newName) {
-            WalletManager.shared.updateFingerName(model, index: index, fingerName: newName)
+            FingerManager.shared.updateFingerName(model, index: index, fingerName: newName)
 
             if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? DeleteFingerViewController {
                 vc.model = model

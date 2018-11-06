@@ -59,6 +59,7 @@
 		2226A72B215A166F00B97B1E /* SVGAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226A72A215A166F00B97B1E /* SVGAnimationView.swift */; };
 		2226A7FB215B954D00B97B1E /* SVGAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2226A7FA215B954D00B97B1E /* SVGAnimationView.xib */; };
 		2226A890215CCFB500B97B1E /* finger.html in Resources */ = {isa = PBXBuildFile; fileRef = 2226A88F215CCFB400B97B1E /* finger.html */; };
+		2226AD6C219134FF004A0324 /* FingerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2226AD6B219134FF004A0324 /* FingerManager.swift */; };
 		222A0AE92189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A0AE82189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift */; };
 		223C58C92148BD9200C69F3F /* NetworkSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58C82148BD9200C69F3F /* NetworkSettingManager.swift */; };
 		223C58DC214A4A5000C69F3F /* BLTCardEntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58D8214A4A5000C69F3F /* BLTCardEntryCoordinator.swift */; };
@@ -811,6 +812,7 @@
 		2226A72A215A166F00B97B1E /* SVGAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGAnimationView.swift; sourceTree = "<group>"; };
 		2226A7FA215B954D00B97B1E /* SVGAnimationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SVGAnimationView.xib; sourceTree = "<group>"; };
 		2226A88F215CCFB400B97B1E /* finger.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = finger.html; sourceTree = "<group>"; };
+		2226AD6B219134FF004A0324 /* FingerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerManager.swift; sourceTree = "<group>"; };
 		222A0AE82189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ButtonBarPagerTabStripViewController+Extensions.swift"; sourceTree = "<group>"; };
 		223C58C82148BD9200C69F3F /* NetworkSettingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSettingManager.swift; sourceTree = "<group>"; };
 		223C58D8214A4A5000C69F3F /* BLTCardEntryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTCardEntryCoordinator.swift; sourceTree = "<group>"; };
@@ -3273,6 +3275,7 @@
 				2253C51B211052020043AAF7 /* SafeManager.swift */,
 				BA20796EDA35DD276BD78FBA7C8E796C /* WalletManager.swift */,
 				3B2653042189667B0091FE93 /* CurrencyManager.swift */,
+				2226AD6B219134FF004A0324 /* FingerManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -4001,6 +4004,7 @@
 				3B08B93D21883B9000ED43AD /* AssetCell.swift in Sources */,
 				2253C5392111A6450043AAF7 /* PriKeyViewController.swift in Sources */,
 				72FE5B6E2100491A00B29FEC /* AboutReducers.swift in Sources */,
+				2226AD6C219134FF004A0324 /* FingerManager.swift in Sources */,
 				22A93232211A991D00ACC63C /* VoteCoordinator.swift in Sources */,
 				73539CAC2179B3B8008395AC /* Navigator.swift in Sources */,
 				737F8DD12146647E00DD522A /* DataFetchConditon.swift in Sources */,

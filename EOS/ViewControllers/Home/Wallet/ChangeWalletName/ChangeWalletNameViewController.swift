@@ -36,7 +36,7 @@ class ChangeWalletNameViewController: BaseViewController {
             changeWalletNameView.text = model.name
         } else {
             self.title = R.string.localizable.change_finger_name.key.localized()
-            changeWalletNameView.text = WalletManager.shared.fingerName(model, index: fingerIndex)
+            changeWalletNameView.text = FingerManager.shared.fingerName(model, index: fingerIndex)
         }
 
         configRightNavButton(R.string.localizable.normal_save.key.localized())
