@@ -15,7 +15,7 @@ class AccountSwitchView: EOSBaseView {
     @IBOutlet weak var dropView: UIImageView!
 
     enum Event:String {
-        case AccountSwitchViewDidClicked
+        case accountSwitchViewDidClicked
     }
         
     override func setup() {
@@ -36,7 +36,7 @@ class AccountSwitchView: EOSBaseView {
     @objc override func didClicked() {
         if let model = data as? AccountSwitchModel {
             if model.canClick {
-                self.next?.sendEventWith(Event.AccountSwitchViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+                self.next?.sendEventWith(Event.accountSwitchViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
             }
         }
     }
