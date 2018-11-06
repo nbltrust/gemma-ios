@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //test
 //        WalletManager.shared.removeAllWallets()
 //        WalletManager.shared.logoutWallet()
-//        log.debug(WalletManager.shared.getAccount())
+//        log.debug(CurrencyManager.shared.getCurrentAccountName())
 
         DBManager.shared.setupDB()
 

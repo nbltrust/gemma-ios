@@ -60,7 +60,7 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
     func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
         let model = TransferActionModel()
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.transfer_successed.key.localized()
         model.faile = R.string.localizable.transfer_failed.key.localized()
         model.amount = amount

@@ -136,7 +136,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = TransferActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.transfer_successed.key.localized()
         model.faile = R.string.localizable.transfer_failed.key.localized()
         model.amount = amount
@@ -152,7 +152,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = DelegateActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.mortgage_success.key.localized()
         model.faile = R.string.localizable.mortgage_failed.key.localized()
         transaction(EOSAction.delegatebw.rawValue, actionModel: model) { (bool, showString) in
@@ -164,7 +164,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = UnDelegateActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.cancel_mortgage_success.key.localized()
         model.faile = R.string.localizable.cancel_mortgage_failed.key.localized()
         transaction(EOSAction.undelegatebw.rawValue, actionModel: model) { (bool, showString) in
@@ -176,7 +176,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = BuyRamActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.buy_ram_success.key.localized()
         model.faile = R.string.localizable.buy_ram_faile.key.localized()
         model.amount = amount
@@ -189,7 +189,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = SellRamActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.sell_ram_success.key.localized()
         model.faile = R.string.localizable.sell_ram_faile.key.localized()
         model.amount = amount
@@ -202,7 +202,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = VoteProducerActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.vote_successed.key.localized()
         model.faile = R.string.localizable.vote_failed.key.localized()
         model.producers = producers

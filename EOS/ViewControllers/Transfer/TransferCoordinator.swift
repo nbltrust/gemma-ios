@@ -157,10 +157,11 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     func getPushTransaction(_ password: String, account: String, amount: String, code: String, callback:@escaping (String?) -> Void) {
 
         getInfo { (getInfo) in
-            let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: password)
+            guard let wallet = WalletManager.shared.currentWallet() else { return }
+            let privakey = WalletManager.shared.getCachedPriKey(wallet, password: password, type: .EOS)
             let json = EOSIO.getAbiJsonString(EOSIOContract.TokenCode,
                                               action: EOSAction.transfer.rawValue,
-                                              from: WalletManager.shared.getAccount(),
+                                              from: CurrencyManager.shared.getCurrentAccountName(),
                                               to: account,
                                               quantity: amount + " " + NetworkConfiguration.EOSIODefaultSymbol, memo: code)
 
@@ -187,7 +188,6 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     }
 
     func getCurrentFromLocal() {
-        let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
-        self.store.dispatch(AccountFetchedFromLocalAction(model: model))
+        
     }
 }

@@ -109,7 +109,7 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
     }
 
     func updatePassword(_ password: String, hint: String) {
-        WalletManager.shared.updateWalletPassword(password, hint: hint)
+//        WalletManager.shared.updateWalletPassword(<#T##wallet: Wallet##Wallet#>, oldPassword: <#T##String#>, newPassword: <#T##String#>, hint: <#T##String#>)
         self.rootVC.popViewController()
     }
 
@@ -132,12 +132,12 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
     func importPriKeyWallet(_ name: String, priKey: String, type: CurrencyType, password: String, hint: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
         if type == .EOS {
             if let pubkey = EOSIO.getPublicKey(priKey) {
-                WalletManager.shared.getEOSAccountNames(pubkey) { (result, accounts) in
+                CurrencyManager.shared.getEOSAccountNames(pubkey) { (result, accounts) in
                     if result {
                         do {
                             //Wallet
                             let date = Date.init()
-                            let wallet = Wallet(id: nil, name: name, type: .HD, cipher: "", deviceName: nil, date: date)
+                            let wallet = Wallet(id: nil, name: name, type: .HD, cipher: "", deviceName: nil, date: date, hint: hint)
                             if let walletId = try WalletCacheService.shared.insertWallet(wallet: wallet) {
                                 //currency
                                 let currency = Currency(id: nil, type: type, cipher: "", pubKey: pubkey, wid: walletId, date: date, address: nil)

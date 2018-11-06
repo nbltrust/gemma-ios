@@ -96,8 +96,9 @@ extension VoteCoordinator: VoteStateManagerProtocol {
     }
 
     func getAccountInfo() {
-        WalletManager.shared.fetchAccount { (_) in
-            self.getAccountInfo(WalletManager.shared.getAccount())
+        CurrencyManager.shared.fetchAccount(.EOS) { [weak self] in
+            guard let `self` = self else { return }
+            self.getAccountInfo(CurrencyManager.shared.getCurrentAccountName())
         }
     }
 

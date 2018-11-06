@@ -30,7 +30,7 @@ protocol WalletStateManagerProtocol {
     func createSectionOneDataInfo(data: [WalletManagerModel]) -> [LineView.LineViewModel]
     func createSectionTwoDataInfo() -> [LineView.LineViewModel]
 
-    func switchWallet(_ pubKey: String)
+    func switchWallet(_ wallet: Wallet)
 }
 
 class WalletCoordinator: NavCoordinator {
@@ -148,10 +148,9 @@ extension WalletCoordinator: WalletStateManagerProtocol {
         ]
     }
 
-    func switchWallet(_ pubKey: String) {
-        WalletManager.shared.switchWallet(pubKey)
-        WalletManager.shared.fetchAccountNames(pubKey) { (_) in
-
+    func switchWallet(_ wallet: Wallet) {
+        if let walletId = wallet.id {
+            WalletManager.shared.switchWallet(walletId)
         }
     }
 }

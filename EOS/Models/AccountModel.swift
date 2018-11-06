@@ -73,7 +73,7 @@ extension AccountModel {
     mutating func saveToLocal() {
         //            var condition = DataFetchCondition()
         //            condition.key = "account_name"
-        //            condition.value = WalletManager.shared.getAccount()
+        //            condition.value = CurrencyManager.shared.getCurrentAccountName()
         //            condition.check = .equal
 
         self.save()

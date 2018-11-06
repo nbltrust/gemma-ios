@@ -59,7 +59,7 @@ func convertTransferViewModel(data: [Payment], dict: [String: [PaymentsRecordsVi
     var newdict = dict
     var modelArray: [PaymentsRecordsViewModel] = []
     for payment in data {
-        let isSend: Bool = payment.from == WalletManager.shared.getAccount()
+        let isSend: Bool = payment.from == CurrencyManager.shared.getCurrentAccountName()
         let state: Bool = payment.status.rawValue == 3
         let stateImage: UIImage? = isSend ? R.image.icSend() : R.image.icIncome()
         let address = isSend ? payment.to : payment.from
@@ -97,7 +97,7 @@ func convertTransferViewModel(data: [Payment], dict: [String: [PaymentsRecordsVi
 //
 //    for paymentData:Payment in mdata {
 //        var paymentsRecordsViewModel = PaymentsRecordsViewModel()
-//        if paymentData.to == WalletManager.shared.getAccount() {
+//        if paymentData.to == CurrencyManager.shared.getCurrentAccountName() {
 //            paymentsRecordsViewModel.stateImageName = "icIncome"
 //            paymentsRecordsViewModel.address = paymentData.from
 //            paymentsRecordsViewModel.money = "+" + paymentData.value!

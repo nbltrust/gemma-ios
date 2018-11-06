@@ -34,7 +34,7 @@ class AccountListViewController: BaseViewController {
     func setupData() {
 
         var array: [AccountListViewModel] = []
-        for accountName in WalletManager.shared.accountNames {
+        for accountName in CurrencyManager.shared.getCurrentAccountNames() {
             var model = AccountListViewModel()
             model.account = accountName
             array.append(model)
@@ -51,7 +51,7 @@ class AccountListViewController: BaseViewController {
 extension AccountListViewController {
     @objc func didselectrow(_ data: [String: Any]) {
         let index = data["index"] as? Int
-        WalletManager.shared.switchAccount(index ?? 0)
+//        WalletManager.shared.switchAccount(index ?? 0)
         self.coordinator?.dismissListVC()
 
     }

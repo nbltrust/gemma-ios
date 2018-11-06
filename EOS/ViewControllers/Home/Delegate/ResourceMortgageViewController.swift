@@ -141,7 +141,7 @@ extension ResourceMortgageViewController {
             return
         }
         var model = ConfirmViewModel()
-        model.recever = WalletManager.shared.getAccount()
+        model.recever = CurrencyManager.shared.getCurrentAccountName()
         if var cpuAmount = self.contentView.pageView.leftView.cpuMortgageView.textField.text, var netAmount = self.contentView.pageView.leftView.netMortgageView.textField.text {
             if cpuAmount == "" {
                 cpuAmount = 0.0.string(digits: AppConfiguration.EOSPrecision)
@@ -166,7 +166,7 @@ extension ResourceMortgageViewController {
             return
         }
         var model = ConfirmViewModel()
-        model.recever = WalletManager.shared.getAccount()
+        model.recever = CurrencyManager.shared.getCurrentAccountName()
         if var cpuAmount = self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text, var netAmount = self.contentView.pageView.rightView.netMortgageCancelView.textField.text {
             if cpuAmount == "" {
                 cpuAmount = 0.0.string(digits: AppConfiguration.EOSPrecision)
