@@ -30,3 +30,7 @@ struct AssetDetailState: BaseState {
 struct AssetDetailFetchedAction: Action {
     var data:JSON
 }
+
+struct RemoveAction: Action {
+    
+}

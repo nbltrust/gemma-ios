@@ -27,6 +27,7 @@ class ResourceMortgageView: UIView {
                 cpuView.data = data.general[0]
                 netView.data = data.general[1]
                 ramView.data = data.general[2]
+                ramView.eosLabel.isHidden = true
                 updateHeight()
             }
         }

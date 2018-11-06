@@ -63,6 +63,7 @@ func convertResourceViewModelWithAccount(_ account: Account, viewmodel: Resource
     if var newViewModel = viewmodel {
         newViewModel.general[0].eos = account.totalResources?.cpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
         newViewModel.general[1].eos = account.totalResources?.netWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+
         if let used = account.cpuLimit?.used, let max = account.cpuLimit?.max {
 
             newViewModel.general[0].leftSub = R.string.localizable.use.key.localized() + " \(used.toMS) " + R.string.localizable.ms.key.localized()
@@ -73,6 +74,11 @@ func convertResourceViewModelWithAccount(_ account: Account, viewmodel: Resource
             newViewModel.general[1].leftSub = R.string.localizable.use.key.localized() + " \(used.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].rightSub = R.string.localizable.total.key.localized() + " \(max.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].progress = used.toKB.float()! / max.toKB.float()!
+        }
+        if let used = account.ramUsage?.toKB, let max = account.ramQuota?.toKB {
+            newViewModel.general[2].leftSub = R.string.localizable.use.key.localized() + " \(used) " + R.string.localizable.kb.key.localized()
+            newViewModel.general[2].rightSub = R.string.localizable.total.key.localized() + " \(max) " + R.string.localizable.kb.key.localized()
+            newViewModel.general[2].progress = used.float()! / max.float()!
         }
         return newViewModel
     } else {

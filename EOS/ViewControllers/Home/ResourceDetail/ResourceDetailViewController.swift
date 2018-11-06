@@ -56,7 +56,13 @@ class ResourceDetailViewController: BaseViewController {
             }
             
         }).disposed(by: disposeBag)
-        
+        self.coordinator?.state.info.asObservable().subscribe(onNext: {[weak self] (model) in
+            guard let `self` = self else { return }
+            if let newModel = model as? ResourceViewModel {
+                self.contentView.data = newModel
+            }
+
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
 //            

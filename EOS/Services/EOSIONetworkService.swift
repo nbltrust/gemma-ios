@@ -37,7 +37,7 @@ struct EOSIONetwork {
 
     static func request(
         target: EOSIOService,
-        fetchedCache: Bool = true,
+        fetchedCache: Bool = false,
         success successCallback: @escaping (JSON) -> Void,
         error errorCallback: @escaping (_ statusCode: Int) -> Void,
         failure failureCallback: @escaping (MoyaError) -> Void

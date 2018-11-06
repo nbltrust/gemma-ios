@@ -21,6 +21,7 @@ protocol AssetDetailStateManagerProtocol {
     
     func switchPageState(_ state:PageState)
     func getDataFromServer(_ account: String, completion: @escaping (Bool) -> Void, isRefresh: Bool)
+    func removeStateData()
 }
 
 class AssetDetailCoordinator: NavCoordinator {
@@ -108,5 +109,9 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
             self.store.dispatch(FetchPaymentsRecordsListAction(data: payment))
             completion(false)
         }
+    }
+
+    func removeStateData() {
+        self.store.dispatch(RemoveAction())
     }
 }

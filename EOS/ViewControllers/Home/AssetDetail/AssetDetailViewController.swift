@@ -48,14 +48,13 @@ class AssetDetailViewController: BaseViewController {
 
         self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: {[weak self] (success) in
             guard let `self` = self else { return }
-
             if success {
                 self.endLoading()
                 self.data.removeAll()
-                if (self.coordinator?.state.lastPos)! / 10 != 9 {
+                if (self.coordinator?.state.payments.count)! < 10 {
                     self.isNoMoreData = true
                 }
-                if (self.coordinator?.state.data)!.count == 0 {
+                if (self.coordinator?.state.payments)!.count == 0 {
                     self.contentView.isHidden = true
                 } else {
                     self.contentView.isHidden = false
@@ -69,13 +68,15 @@ class AssetDetailViewController: BaseViewController {
 
         self.addPullToRefresh(self.contentView.tableView) {[weak self] (completion) in
             guard let `self` = self else {return}
+            self.coordinator?.removeStateData()
 
             self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: {[weak self] (success) in
                 guard let `self` = self else {return}
 
                 if success {
                     self.data.removeAll()
-                    if (self.coordinator?.state.data)!.count < 10 {
+
+                    if (self.coordinator?.state.payments)!.count < 10 {
                         self.isNoMoreData = true
                     } else {
                         self.isNoMoreData = false
@@ -97,7 +98,7 @@ class AssetDetailViewController: BaseViewController {
             }
             self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: { [weak self](_) in
                 guard let `self` = self else {return}
-                if (self.coordinator?.state.data.count)! < 10 {
+                if (self.coordinator?.state.payments.count)! < 10 {
                     self.isNoMoreData = true
                     completion?(true)
                 } else {
