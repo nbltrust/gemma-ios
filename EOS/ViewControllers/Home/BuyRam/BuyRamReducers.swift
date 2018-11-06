@@ -129,12 +129,6 @@ func gBuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Bu
             viewmodel.priceLabel = "≈" + price.doubleValue.string(digits: 8) + " EOS/KB"
             state.info.accept(viewmodel)
         }
-    case let action as AccountFetchedFromLocalAction:
-        var viewmodel = state.info.value
-        if let model = action.model {
-            viewmodel = convertToViewModelWithModel(model: model, viewmodel: viewmodel)
-            state.info.accept(viewmodel)
-        }
     default:
         break
     }

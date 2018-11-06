@@ -37,7 +37,7 @@ class OverviewViewController: BaseViewController {
     }
     
     func setupUI() {
-        
+//        configRightCustomView(<#T##view: UIView##UIView#>)
     }
 
     func setupData() {

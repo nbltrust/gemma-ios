@@ -63,11 +63,27 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
     case let action as NonActiveFetchedAction:
         let viewmodel = setViewModelWithCurrency(currency: action.currency)
         state.info.accept(viewmodel)
+    case let action as TokensFetchedAction:
+        var viewmodel = state.info.value
+
+        viewmodel = setTokenWith(tokens: action.data, viewmodel: viewmodel)
+        state.info.accept(viewmodel)
     default:
         break
     }
 
     return state
+}
+
+func setTokenWith(tokens: [Tokens], viewmodel: NewHomeViewModel) -> NewHomeViewModel {
+    var newViewModel = viewmodel
+    newViewModel.tokens = "\(tokens.count)"
+    var array: [String] = []
+    for token in tokens {
+        array.append(token.logoUrl)
+    }
+    newViewModel.tokenArray = array
+    return newViewModel
 }
 
 func setViewModelWithCurrency(currency: Currency?) -> NewHomeViewModel {

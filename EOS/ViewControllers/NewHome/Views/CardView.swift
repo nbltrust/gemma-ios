@@ -46,8 +46,7 @@ class CardView: UIView {
 
             for index in 0..<tokenArray.count {
                 let imgView = UIImageView(frame: CGRect(x: 88 - (index+1)*28 + index*13, y: 0, width: 28, height: 28))
-//                imgView.kf.setImage(with: URL(string: tokenArray[i]))
-                imgView.image = R.image.eosBg()!
+                imgView.kf.setImage(with: URL(string: tokenArray[index]), placeholder: R.image.icTokenUnknown())
                 self.tokenView.insertSubview(imgView, at: 0)
             }
             updateHeight()
@@ -64,6 +63,16 @@ class CardView: UIView {
         setupSubViewEvent()
     }
 
+    func setProgressUI(progress: UIProgressView) {
+        if progress.progress >= 0.85 {
+            progress.tintColor = UIColor.introductionColor
+            progress.backgroundColor = UIColor.separatorColor
+        } else {
+            progress.tintColor = UIColor.warningColor
+            progress.backgroundColor = UIColor.separatorColor
+        }
+    }
+    
     func setupUI() {
         useBalanceNameLabel.text = R.string.localizable.useage_balance.key.localized()
         redundNameLabel.text = R.string.localizable.refund.key.localized()

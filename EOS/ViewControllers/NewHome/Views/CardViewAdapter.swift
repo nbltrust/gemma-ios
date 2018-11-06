@@ -17,6 +17,9 @@ extension CardView {
             self.cpuProgress.progress = model.cpuProgress
             self.netProgress.progress = model.netProgress
             self.ramProgress.progress = model.ramProgress
+            setProgressUI(progress: cpuProgress)
+            setProgressUI(progress: netProgress)
+            setProgressUI(progress: ramProgress)
         }
         balanceView.isHidden = model.bottomIsHidden
         refundView.isHidden = model.bottomIsHidden
@@ -53,6 +56,7 @@ extension CardView {
             self.tokenLabel.isHidden = true
             self.tokenView.isHidden = true
         }
+        
         self.updateHeight()
     }
 }

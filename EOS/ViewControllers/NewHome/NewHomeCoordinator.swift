@@ -109,6 +109,21 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
         }
     }
 
+    func getTokensWith(_ account: String) {
+        NBLNetwork.request(target: .getTokens(account: account), success: { (data) in
+            let tokens = data["tokens"].arrayValue
+            if let tokenArr = tokens.map({ (json) in
+                Tokens.deserialize(from: json.dictionaryObject)
+            }) as? [Tokens] {
+                self.store.dispatch(TokensFetchedAction(data: tokenArr))
+            }
+        }, error: { (_) in
+
+        }) { (_) in
+
+        }
+    }
+
     func getCurrencyInfo(_ currency: Currency) {
         if currency.type == .EOS {
             let names = CurrencyManager.shared.getAccountNameWith(currency.id)
@@ -138,6 +153,8 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
                     CurrencyManager.shared.savePriceJsonWith(currencyID, json: json)
                     self.store.dispatch(RMBPriceFetchedAction(currency: currency))
                     }.cauterize()
+
+                getTokensWith(account)
             } else {
                 self.store.dispatch(NonActiveFetchedAction(currency:currency))
             }

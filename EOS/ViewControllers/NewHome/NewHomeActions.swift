@@ -42,7 +42,7 @@ struct NewHomeViewModel: HandyJSON {
     var CNY: String  = ""
     var tokens: String  = ""
     var unit: String  = ""
-    var tokenArray: [String] = ["1","2"]
+    var tokenArray: [String] = []
     var cpuValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
     var netValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
     var ramValue: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
@@ -59,10 +59,6 @@ struct BalanceFetchedAction: Action {
 
 struct AccountFetchedAction: Action {
     var currency: Currency?
-}
-
-struct AccountFetchedFromLocalAction: Action {
-    var model: AccountModel?
 }
 
 struct RMBPriceFetchedAction: Action {
