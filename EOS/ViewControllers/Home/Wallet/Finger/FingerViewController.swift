@@ -67,7 +67,7 @@ class FingerViewController: BaseViewController {
         var tempList: [String] = []
 
         for index in fpList {
-            tempList.append(WalletManager.shared.fingerName(model, index: Int(index) ?? 0))
+            tempList.append(FingerManager.shared.fingerName(model, index: Int(index) ?? 0))
         }
         self.contentView.dataArray = tempList
     }

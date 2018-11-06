@@ -19,11 +19,17 @@ struct SetWalletState: StateType {
 }
 
 struct SetWalletPropertyState {
+    var setWalletNameValid: BehaviorRelay<Bool> = BehaviorRelay(value: true)
+
     var setWalletPasswordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     var setWalletComfirmPasswordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     var setWalletIsAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+}
+
+struct SetWalletNameAction: Action {
+    var isValid: Bool = false
 }
 
 struct SetWalletPasswordAction: Action {

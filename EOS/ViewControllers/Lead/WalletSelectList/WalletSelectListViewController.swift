@@ -39,9 +39,7 @@ class WalletSelectListViewController: BaseViewController {
 
         walletTable.tableFooterView = UIView()
         let cellName = R.nib.walletCheckCell.name
-        let sectionHeader = R.nib.customTableHeaderView.name
         walletTable.register(UINib.init(nibName: cellName, bundle: nil), forCellReuseIdentifier: cellName)
-        walletTable.register(UINib.init(nibName: sectionHeader, bundle: nil), forHeaderFooterViewReuseIdentifier: sectionHeader)
     }
 
     func setupData() {
@@ -78,17 +76,29 @@ extension WalletSelectListViewController: UITableViewDataSource, UITableViewDele
         return wallets.count
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let sectionHeader = R.nib.customTableHeaderView.name
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: sectionHeader) as? CustomTableHeaderView else {
-            return UIView()
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if view.isKind(of: UITableViewHeaderFooterView.classForCoder()) {
+            if let headView = view as? UITableViewHeaderFooterView {
+                headView.backgroundColor = UIColor.whiteColor
+                headView.textLabel?.font = UIFont.systemFont(ofSize: 14)
+                headView.textLabel?.textColor = UIColor.subTitleColor
+                headView.textLabel?.left = 20
+            }
         }
-        view.title = R.string.localizable.current_wallets.key.localized()
-        return view
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return R.string.localizable.current_wallets.key.localized()
+        }
+        return ""
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 45
+        if section == 1 {
+            return 45
+        }
+        return 0.1
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

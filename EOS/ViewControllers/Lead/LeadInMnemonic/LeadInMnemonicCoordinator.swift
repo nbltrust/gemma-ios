@@ -11,12 +11,15 @@ import ReSwift
 import NBLCommonModule
 
 protocol LeadInMnemonicCoordinatorProtocol {
+    func openSetWallet(_ mnemonic: String)
 }
 
 protocol LeadInMnemonicStateManagerProtocol {
     var state: LeadInMnemonicState { get }
     
     func switchPageState(_ state:PageState)
+
+    func validMnemonic(_ mnemonic: String) -> Bool
 }
 
 class LeadInMnemonicCoordinator: NavCoordinator {
@@ -30,12 +33,12 @@ class LeadInMnemonicCoordinator: NavCoordinator {
         return store.state
     }
     
-    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
-        let vc = R.storyboard.leadIn.leadInMnemonicViewController()!
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
+        let selfVC = R.storyboard.leadIn.leadInMnemonicViewController()!
         let coordinator = LeadInMnemonicCoordinator(rootVC: root)
-        vc.coordinator = coordinator
+        selfVC.coordinator = coordinator
         coordinator.store.dispatch(RouteContextAction(context: context))
-        return vc
+        return selfVC
     }
 
     override func register() {
@@ -45,7 +48,15 @@ class LeadInMnemonicCoordinator: NavCoordinator {
 }
 
 extension LeadInMnemonicCoordinator: LeadInMnemonicCoordinatorProtocol {
-    
+    func openSetWallet(_ mnemonic: String) {
+        if let setVC = R.storyboard.leadIn.setWalletViewController() {
+            let coordinator = SetWalletCoordinator(rootVC: self.rootVC)
+            setVC.coordinator = coordinator
+            setVC.settingType = .leadInWithMnemonic
+            setVC.mnemonicStr = mnemonic
+            self.rootVC.pushViewController(setVC, animated: true)
+        }
+    }
 }
 
 extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
@@ -53,5 +64,9 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
+    }
+
+    func validMnemonic(_ mnemonic: String) -> Bool {
+        return true
     }
 }

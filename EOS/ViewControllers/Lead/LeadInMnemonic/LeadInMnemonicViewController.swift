@@ -29,6 +29,11 @@ class LeadInMnemonicViewController: BaseViewController,IndicatorInfoProvider {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if mnemonicView.textView.text == "" {
+            mnemonicView.creatButton.isEnabel.accept(false)
+        } else {
+            mnemonicView.creatButton.isEnabel.accept(true)
+        }
     }
 
     override func refreshViewController() {
@@ -52,6 +57,20 @@ class LeadInMnemonicViewController: BaseViewController,IndicatorInfoProvider {
 
         self.mnemonicView.currencyView.isHidden = true
         self.mnemonicView.walletView.isHidden = true
+    }
+}
+
+extension LeadInMnemonicViewController {
+    @objc func beginLeadInAction(_ sender: [String: Any]) {
+        guard let mnemonic = self.mnemonicView.textView.text else {
+            return
+        }
+
+        if let valid = self.coordinator?.validMnemonic(mnemonic) {
+            if valid == true {
+                self.coordinator?.openSetWallet(mnemonic)
+            }
+        }
     }
 }
 

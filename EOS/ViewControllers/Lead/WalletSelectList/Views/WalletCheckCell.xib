@@ -21,7 +21,21 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1K-vK-nQJ" customClass="CustomCheckView" customModule="EOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdz-yu-1h6">
+                                <rect key="frame" x="20" y="43" width="280" height="0.5"/>
+                                <color key="backgroundColor" name="separatorColor" red="0.867" green="0.867" blue="0.867" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="47Q-md-oii"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Fdz-yu-1h6" secondAttribute="bottom" id="G1t-m4-Ebk"/>
+                            <constraint firstItem="Fdz-yu-1h6" firstAttribute="leading" secondItem="m1K-vK-nQJ" secondAttribute="leading" constant="20" id="Z7Z-jn-VNL"/>
+                            <constraint firstAttribute="trailing" secondItem="Fdz-yu-1h6" secondAttribute="trailing" constant="20" id="kTt-M7-Q7J"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="checkImage" value="ic_selected"/>
                             <userDefinedRuntimeAttribute type="image" keyPath="unCheckImage" value="ic_unselected"/>

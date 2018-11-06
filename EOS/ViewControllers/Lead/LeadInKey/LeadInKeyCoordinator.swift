@@ -14,7 +14,7 @@ import eos_ios_core_cpp
 protocol LeadInKeyCoordinatorProtocol {
     func openScan()
 
-    func openSetWallet()
+    func openSetWallet(_ priKey: String)
 
     func pushToWalletSelectVC()
 
@@ -23,31 +23,29 @@ protocol LeadInKeyCoordinatorProtocol {
 
 protocol LeadInKeyStateManagerProtocol {
     var state: LeadInKeyState { get }
-    
+
     func switchPageState(_ state:PageState)
 
-    func validPrivateKey(_ privKey: String) -> (Bool, String)
-
-    func importPrivKey(_ privKey: String)
+    func validPrivateKey(_ privKey: String) -> Bool
 }
 
 class LeadInKeyCoordinator: NavCoordinator {
     var store = Store(
         reducer: gLeadInKeyReducer,
         state: nil,
-        middleware:[trackingMiddleware]
+        middleware: [trackingMiddleware]
     )
-    
+
     var state: LeadInKeyState {
         return store.state
     }
-    
-    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
-        let vc = R.storyboard.leadIn.leadInKeyViewController()!
+
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
+        let selfVC = R.storyboard.leadIn.leadInKeyViewController()!
         let coordinator = LeadInKeyCoordinator(rootVC: root)
-        vc.coordinator = coordinator
+        selfVC.coordinator = coordinator
         coordinator.store.dispatch(RouteContextAction(context: context))
-        return vc
+        return selfVC
     }
 
     override func register() {
@@ -70,11 +68,13 @@ extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
         }, presentSetup: nil)
     }
 
-    func openSetWallet() {
+    func openSetWallet(_ priKey: String) {
         if let setVC = R.storyboard.leadIn.setWalletViewController() {
             let coordinator = SetWalletCoordinator(rootVC: self.rootVC)
             setVC.coordinator = coordinator
-            setVC.settingType = .leadIn
+            setVC.settingType = .leadInWithPriKey
+            setVC.priKey = priKey
+            setVC.currencyType = self.state.currencyType.value ?? .EOS
             self.rootVC.pushViewController(setVC, animated: true)
         }
     }
@@ -102,27 +102,23 @@ extension LeadInKeyCoordinator: LeadInKeyCoordinatorProtocol {
         }
         context.selectedWallet = self.state.toWallet.value ?? nil
 
-        pushVC(CurrencyListCoordinator.self, animated: true, context: context)
+        pushVC(WalletSelectListCoordinator.self, animated: true, context: context)
     }
 }
 
 extension LeadInKeyCoordinator: LeadInKeyStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
 
-    func validPrivateKey(_ privKey: String) -> (Bool, String) {
+    func validPrivateKey(_ privKey: String) -> Bool {
         if let _ = EOSIO.getPublicKey(privKey) {
-            return (true, "")
+            return true
         } else {
             self.rootVC.showError(message: R.string.localizable.privatekey_faile.key.localized())
-            return (false, "")
+            return false
         }
-    }
-
-    func importPrivKey(_ privKey: String) {
-        WalletManager.shared.addPrivatekey(privKey)
     }
 }

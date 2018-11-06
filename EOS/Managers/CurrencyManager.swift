@@ -62,14 +62,29 @@ class CurrencyManager {
     //新版本存取币种信息
     func saveAccountNameWith(_ currencyID: Int64?, name: String?) {
         if let id = currencyID {
-            Defaults["accountNames\(id)"] = name
+            Defaults["accountName\(id)"] = name
+        }
+    }
+
+    func saveAccountNamesWith(_ currencyID: Int64?, accounts: [String]?) {
+        if let id = currencyID {
+            Defaults["accountNames\(id)"] = accounts
         }
     }
 
     func getAccountNameWith(_ currencyID: Int64?) -> String? {
         if let id = currencyID {
-            if let name = Defaults["accountNames\(id)"] as? String {
+            if let name = Defaults["accountName\(id)"] as? String {
                 return name
+            }
+        }
+        return nil
+    }
+
+    func getAccountNamesWith(_ currencyID: Int64?) -> [String]? {
+        if let id = currencyID {
+            if let accounts = Defaults["accountNames\(id)"] as? [String] {
+                return accounts
             }
         }
         return nil
@@ -94,7 +109,6 @@ class CurrencyManager {
         }
         return "--"
     }
-
     //新版本存取缓存数据
     func saveBalanceJsonWith(_ account: String?, json: JSON) {
         if let account = account {

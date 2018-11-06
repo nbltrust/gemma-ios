@@ -164,6 +164,18 @@ class WalletManager {
         }
     }
 
+    func getEOSAccountNames(_ publicKey: String, completion: @escaping (_ result: Bool, _ accounts: [String]) -> Void) {
+        EOSIONetwork.request(target: .getKeyAccounts(pubKey: publicKey), success: { (json) in
+            if let names = json["account_names"].arrayObject as? [String] {
+                completion(names.count > 0,names)
+            }
+        }, error: { (_) in
+            completion(false,[])
+        }) { (_) in
+            completion(false,[])
+        }
+    }
+
     func addPrivatekey(_ pri: String) {
         self.priKey = pri
     }
@@ -553,39 +565,5 @@ extension WalletManager {
             
         }
         return nil
-    }
-    
-    //FingerName Manage
-    func updateFingerName(_ model: WalletManagerModel, index: Int, fingerName: String) {
-        Defaults[fingerKey(model, index: index)] = fingerName
-    }
-    
-    func deleteFingerName(_ model: WalletManagerModel, index: Int) {
-        updateFingerName(model, index: index, fingerName: "")
-    }
-    
-    func fingerKey(_ model: WalletManagerModel, index: Int) -> String {
-        return model.address + "\(index)"
-    }
-    
-    func fingerName(_ model: WalletManagerModel, index: Int) -> String {
-        if let name: String = Defaults[fingerKey(model, index: index)] as? String, !name.isEmpty {
-            return name
-        } else {
-            return R.string.localizable.finger.key.localized() + fingerIndexStr(index)
-        }
-    }
-    
-    func fingerIndexStr(_ index: Int) -> String {
-        switch index {
-        case 0:
-            return "一"
-        case 1:
-            return "二"
-        case 2:
-            return "三"
-        default:
-            return ""
-        }
     }
 }
