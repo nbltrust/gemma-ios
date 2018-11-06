@@ -44,7 +44,7 @@ class TransferConfirmView: UIView {
             }
             amountView.contentText = data.amount + " EOS"
             if data.remark == "" {
-                data.remark = R.string.localizable.default_remark_pre.key.localized() + WalletManager.shared.getAccount() + R.string.localizable.default_remark_after.key.localized()
+                data.remark = R.string.localizable.default_remark_pre.key.localized() + CurrencyManager.shared.getCurrentAccountName() + R.string.localizable.default_remark_after.key.localized()
             }
             if data.buttonTitle == R.string.localizable.check_transfer.key.localized() {
                 remarkView.content.numberOfLines = 1

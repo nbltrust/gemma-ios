@@ -119,11 +119,27 @@ class CurrencyManager {
         return nil
     }
 
+    func getCurrentCurrency() -> Currency? {
+        do {
+            if let currencyId = getCurrentCurrencyID() {
+                return try WalletCacheService.shared.fetchCurrencyBy(id: currencyId)
+            }
+        } catch {}
+        return nil
+    }
+
     func getCurrentAccountName() -> String {
         if let name = getAccountNameWith(getCurrentCurrencyID()) {
             return name
         }
         return "--"
+    }
+
+    func getCurrentAccountNames() -> [String] {
+        if let names = getAccountNamesWith(getCurrentCurrencyID()) {
+            return names
+        }
+        return []
     }
     //新版本存取缓存数据
     func saveBalanceJsonWith(_ account: String?, json: JSON) {
@@ -177,5 +193,28 @@ class CurrencyManager {
             return usd
         }
         return nil
+    }
+
+
+    func fetchAccount(_ type: CurrencyType , callback: @escaping CompletionCallback) {
+        if type == .EOS {
+            if let currency = getCurrentCurrency(), let pubKey = currency.pubKey {
+                getEOSAccountNames(pubKey) { (result, accounNames) in
+                    callback()
+                }
+            }
+        }
+    }
+
+    func getEOSAccountNames(_ publicKey: String, completion: @escaping (_ result: Bool, _ accounts: [String]) -> Void) {
+        EOSIONetwork.request(target: .getKeyAccounts(pubKey: publicKey), success: { (json) in
+            if let names = json["account_names"].arrayObject as? [String] {
+                completion(names.count > 0,names)
+            }
+        }, error: { (_) in
+            completion(false,[])
+        }) { (_) in
+            completion(false,[])
+        }
     }
 }

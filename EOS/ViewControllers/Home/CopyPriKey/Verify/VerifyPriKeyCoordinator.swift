@@ -49,8 +49,8 @@ class VerifyPriKeyCoordinator: NavCoordinator {
 
 extension VerifyPriKeyCoordinator: VerifyPriKeyCoordinatorProtocol {
     func finishCopy() {
-        if let pubKey = EOSIO.getPublicKey(WalletManager.shared.priKey) {
-            WalletManager.shared.backupSuccess(pubKey)
+        if let wallet = WalletManager.shared.currentWallet() {
+            WalletManager.shared.backupSuccess(wallet)
         }
         if let lastVC = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 3] as? BackupPrivateKeyViewController {
             lastVC.coordinator?.state.callback.hadSaveCallback.value?()

@@ -54,7 +54,7 @@ func convertTransferViewModel(data: [Payment], dict: [String: [PaymentsRecordsVi
     var newdict = dict
     var modelArray: [PaymentsRecordsViewModel] = []
     for payment in data {
-        let isSend: Bool = payment.from == WalletManager.shared.getAccount()
+        let isSend: Bool = payment.from == CurrencyManager.shared.getCurrentAccountName()
         let state: Bool = payment.status.rawValue == 3
         let stateImage: UIImage? = isSend ? R.image.icSend() : R.image.icIncome()
         let address = isSend ? payment.to : payment.from

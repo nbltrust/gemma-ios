@@ -79,7 +79,7 @@ extension TransferConfirmPasswordViewController {
                 self.errCount += 1
                 if self.errCount == 3 {
 
-                    if let cipher = CurrencyManager.shared.getCiperWith(context.currencyID), let message = WalletManager.shared.getPasswordHint(cipher) {
+                    if let cipher = CurrencyManager.shared.getCiperWith(context.currencyID), let message = WalletManager.shared.currentWallet()?.hint {
                         self.showError(message: message)
                     }
                 } else {
@@ -178,7 +178,7 @@ extension TransferConfirmPasswordViewController {
             self.view.endEditing(true)
             self.startLoading()
             self.coordinator?.voteNode(passwordView.textField.text!,
-                                       account: WalletManager.shared.getAccount(),
+                                       account: CurrencyManager.shared.getCurrentAccountName(),
                                        amount: context.amount,
                                        remark: context.remark,
                                        producers: context.producers,

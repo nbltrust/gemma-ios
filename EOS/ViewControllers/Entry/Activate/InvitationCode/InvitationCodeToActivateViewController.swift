@@ -135,8 +135,6 @@ extension InvitationCodeToActivateViewController {
     }
 
     @objc func nextClick(_ data: [String: Any]) {
-        self.coordinator?.createWallet(self.contentView.textfield.text!, completion: { (_) in
-
-        })
+        self.coordinator?.popToEntryVCWithInviteCode(self.contentView.textfield.text ?? "")
     }
 }

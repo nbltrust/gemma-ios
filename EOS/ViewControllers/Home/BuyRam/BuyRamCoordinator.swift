@@ -26,7 +26,6 @@ protocol BuyRamStateManagerProtocol {
     func getAccountInfo(_ account: String)
     func buyRamValid(_ buyRam: String, blance: String)
     func sellRamValid(_ sellRam: String, blance: String)
-    func getCurrentFromLocal()
 }
 
 class BuyRamCoordinator: NavCoordinator {
@@ -139,10 +138,5 @@ extension BuyRamCoordinator: BuyRamStateManagerProtocol {
                 self.store.dispatch(RamPriceAction(price: price))
             }
         }
-    }
-
-    func getCurrentFromLocal() {
-        let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
-        self.store.dispatch(AccountFetchedFromLocalAction(model: model))
     }
 }

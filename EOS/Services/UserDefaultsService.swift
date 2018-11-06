@@ -35,9 +35,6 @@ extension WalletList: DefaultsDefaultArrayValueType {
 }
 
 extension DefaultsKeys {
-    static let walletList = DefaultsKey<[WalletList]>("walletLists")
-    static let currentWallet = DefaultsKey<String>("current-wallet")//公钥
-    static let accountNames = DefaultsKey<[String]>("accountNames")//公钥
     static let currentWalletID = DefaultsKey<String>("current-wallet-id")//id
 
     //通用Setting

@@ -126,7 +126,6 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
     }
 
     func getCurrentFromLocal() {
-        let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
-        self.store.dispatch(AccountFetchedFromLocalAction(model: model))
+        
     }
 }

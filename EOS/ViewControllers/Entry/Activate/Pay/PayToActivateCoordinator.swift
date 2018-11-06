@@ -25,7 +25,6 @@ protocol PayToActivateStateManagerProtocol {
     func initOrder(_ currencyID:Int64?, completion: @escaping (Bool) -> Void)
     func getBill()
     func askToPay()
-    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void)
 }
 
 class PayToActivateCoordinator: NavCoordinator {
@@ -250,46 +249,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             }
         }) { (_) in
             self.rootVC.topViewController?.endLoading()
-        }
-    }
-
-    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void) {
-        var walletName = ""
-        var password = ""
-        var prompt = ""
-        Broadcaster.notify(EntryViewController.self) { (vc) in
-            walletName = vc.registerView.nameView.textField.text!
-            password = vc.registerView.passwordView.textField.text!
-            prompt = vc.registerView.passwordPromptView.textField.text!
-        }
-        NBLNetwork.request(target: .createAccount(type: .gemma, account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: nil), success: { (data) in
-            self.rootVC.topViewController?.endLoading()
-            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode: inviteCode)
-            self.pushBackupPrivateKeyVC()
-        }, error: { (code) in
-            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
-                let error = GemmaError.NBLCode(code: gemmaerror)
-                if code == GemmaError.NBLNetworkErrorCode.chainFailedCode.rawValue {
-                    self.store.dispatch(NumsAction(nums: self.state.nums))
-                    if self.state.nums <= 3 {
-                        self.createWallet(self.state.orderId, completion: { (_) in
-
-                        })
-                    } else {
-                        showFailTop(R.string.localizable.error_chain_fail.key.localized())
-                    }
-                } else if code == GemmaError.NBLNetworkErrorCode.parameterWrongCode.rawValue ||
-                    code == GemmaError.NBLNetworkErrorCode.invitecodeInexistenceCode.rawValue ||
-                    code == GemmaError.NBLNetworkErrorCode.invitecodeRegiteredCode.rawValue {
-                    showFailTop(error.localizedDescription + R.string.localizable.connect_customer_service.key.localized())
-                } else {
-                    showFailTop(error.localizedDescription + R.string.localizable.refund_money_suf.key.localized())
-                }
-            } else {
-                showFailTop(R.string.localizable.error_unknow.key.localized())
-            }
-
-        }) { (_) in
         }
     }
 
