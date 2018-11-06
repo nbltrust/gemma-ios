@@ -16,6 +16,8 @@ class AssetDetailViewController: BaseViewController {
     @IBOutlet weak var contentView: AssetDetailView!
     var coordinator: (AssetDetailCoordinatorProtocol & AssetDetailStateManagerProtocol)?
     private(set) var context: AssetDetailContext?
+    var data: [String: [PaymentsRecordsViewModel]] = [:]
+    var isNoMoreData: Bool = false
     
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +44,69 @@ class AssetDetailViewController: BaseViewController {
     }
     
     func setupEvent() {
-        
+        self.startLoading()
+
+        self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: {[weak self] (success) in
+            guard let `self` = self else { return }
+
+            if success {
+                self.endLoading()
+                self.data.removeAll()
+                if (self.coordinator?.state.lastPos)! / 10 != 9 {
+                    self.isNoMoreData = true
+                }
+                if (self.coordinator?.state.data)!.count == 0 {
+                    self.contentView.isHidden = true
+                } else {
+                    self.contentView.isHidden = false
+                }
+
+                self.data = (self.coordinator?.state.data)!
+                self.contentView.adapterModelToAssetDetailView(self.data)
+            }
+
+            }, isRefresh: true)
+
+        self.addPullToRefresh(self.contentView.tableView) {[weak self] (completion) in
+            guard let `self` = self else {return}
+
+            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: {[weak self] (success) in
+                guard let `self` = self else {return}
+
+                if success {
+                    self.data.removeAll()
+                    if (self.coordinator?.state.data)!.count < 10 {
+                        self.isNoMoreData = true
+                    } else {
+                        self.isNoMoreData = false
+                    }
+                    completion?()
+                    self.data = (self.coordinator?.state.data)!
+                    self.contentView.adapterModelToAssetDetailView(self.data)
+                } else {
+                }
+                }, isRefresh: true)
+        }
+
+        self.addInfiniteScrolling(self.contentView.tableView) {[weak self] (completion) in
+            guard let `self` = self else {return}
+
+            if self.isNoMoreData {
+                completion?(true)
+                return
+            }
+            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), completion: { [weak self](_) in
+                guard let `self` = self else {return}
+                if (self.coordinator?.state.data.count)! < 10 {
+                    self.isNoMoreData = true
+                    completion?(true)
+                } else {
+                    completion?(false)
+                }
+                self.data = (self.coordinator?.state.data)!
+                self.contentView.adapterModelToAssetDetailView(self.data)
+                }, isRefresh: false)
+        }
     }
     
     override func configureObserveState() {
@@ -52,6 +116,10 @@ class AssetDetailViewController: BaseViewController {
             if let context = context as? AssetDetailContext {
                 self.context = context
                 self.contentView.headView.adapterModelToAssetDetailHeadView(context.model)
+                if context.model.name != "EOS" {
+                    self.contentView.buttonView.isHidden = true
+                    self.contentView.buttonViewHeight.constant = 0
+                }
             }
             
         }).disposed(by: disposeBag)

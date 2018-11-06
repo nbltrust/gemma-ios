@@ -9,7 +9,7 @@
 import Foundation
 
 extension PaymentView {
-    func adapterModelToPaymentView(_ model:[PaymentsRecordsViewModel]) {
+    func adapterModelToPaymentView(_ model:[[PaymentsRecordsViewModel]]) {
         self.data = model
     }
 }

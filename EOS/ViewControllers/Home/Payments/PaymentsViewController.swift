@@ -16,7 +16,7 @@ class PaymentsViewController: BaseViewController {
 
     @IBOutlet weak var contentView: PaymentView!
     var coordinator: (PaymentsCoordinatorProtocol & PaymentsStateManagerProtocol)?
-    var data = [PaymentsRecordsViewModel]()
+    var data = [[PaymentsRecordsViewModel]]()
     var isNoMoreData: Bool = false
 
 	override func viewDidLoad() {
@@ -48,8 +48,8 @@ class PaymentsViewController: BaseViewController {
                     self.contentView.isHidden = false
                 }
 
-                self.data += (self.coordinator?.state.property.data)!
-                self.contentView.adapterModelToPaymentView(self.data)
+//                self.data += (self.coordinator?.state.property.data)!
+//                self.contentView.adapterModelToPaymentView(self.data)
             }
 
             }, isRefresh: true)
@@ -68,8 +68,8 @@ class PaymentsViewController: BaseViewController {
                         self.isNoMoreData = false
                     }
                     completion?()
-                    self.data += (self.coordinator?.state.property.data)!
-                    self.contentView.adapterModelToPaymentView(self.data)
+//                    self.data += (self.coordinator?.state.property.data)!
+//                    self.contentView.adapterModelToPaymentView(self.data)
                 } else {
                 }
             }, isRefresh: true)
@@ -90,8 +90,8 @@ class PaymentsViewController: BaseViewController {
                 } else {
                     completion?(false)
                 }
-                self.data += (self.coordinator?.state.property.data)!
-                self.contentView.adapterModelToPaymentView(self.data)
+//                self.data += (self.coordinator?.state.property.data)!
+//                self.contentView.adapterModelToPaymentView(self.data)
             }, isRefresh: false)
         }
     }

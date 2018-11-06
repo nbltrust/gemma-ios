@@ -37,7 +37,7 @@ struct EOSIONetwork {
 
     static func request(
         target: EOSIOService,
-        fetchedCache: Bool = false,
+        fetchedCache: Bool = true,
         success successCallback: @escaping (JSON) -> Void,
         error errorCallback: @escaping (_ statusCode: Int) -> Void,
         failure failureCallback: @escaping (MoyaError) -> Void
@@ -80,8 +80,9 @@ struct EOSIONetwork {
                     case .getTableRows:break
 
                     }
-
-                    MMKV.default().set(NSString.self, forKey: target.fetchCacheKey())
+                    if let str = json.rawString() {
+                        MMKV.default().set(str, forKey: target.fetchCacheKey())
+                    }
                     successCallback(json)
                 } catch _ {
                     do {

@@ -20,7 +20,7 @@ class PaymentView: EOSBaseView {
 
     override var data: Any? {
         didSet {
-            if let _ = data as? [PaymentsRecordsViewModel] {
+            if let _ = data as? [[PaymentsRecordsViewModel]] {
                 self.tableView.reloadData()
             }
         }
@@ -49,7 +49,14 @@ class PaymentView: EOSBaseView {
 
 extension PaymentView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let data = data as? [PaymentsRecordsViewModel] {
+        if let data = data as? [[PaymentsRecordsViewModel]] {
+            return data[section].count
+        }
+        return 0
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if let data = data as? [[PaymentsRecordsViewModel]] {
             return data.count
         }
         return 0
@@ -60,8 +67,8 @@ extension PaymentView: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: name, for: indexPath) as? PaymentsRecordsCell else {
             return UITableViewCell()
         }
-        if let data = data as? [PaymentsRecordsViewModel] {
-            cell.setup(data[indexPath.row])
+        if let data = data as? [[PaymentsRecordsViewModel]] {
+            cell.setup(data[indexPath.section][indexPath.row])
         }
         return cell
     }

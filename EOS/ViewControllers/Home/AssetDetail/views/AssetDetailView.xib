@@ -17,6 +17,7 @@
                 <outlet property="headView" destination="6fV-vj-nqu" id="ApI-Bl-2E0"/>
                 <outlet property="nodeVodeButton" destination="NDM-pP-YPN" id="6CT-gu-g2z"/>
                 <outlet property="resourceManagerButton" destination="J6O-eN-uOr" id="oPn-fO-96Q"/>
+                <outlet property="tableView" destination="USb-9T-ucd" id="3IU-50-RH4"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -24,13 +25,17 @@
             <rect key="frame" x="0.0" y="0.0" width="358" height="471"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="USb-9T-ucd">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="USb-9T-ucd">
                     <rect key="frame" x="0.0" y="0.0" width="358" height="422"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="6fV-vj-nqu" customClass="AssetDetailHeadView" customModule="EOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="358" height="292"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </view>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Mej-xd-aEc"/>
+                        <outlet property="delegate" destination="-1" id="ejR-qE-lmd"/>
+                    </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ag2-fY-Plc">
                     <rect key="frame" x="0.0" y="422" width="358" height="49"/>
