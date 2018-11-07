@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,44 +33,40 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="locali" value="no_data"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EfW-ZC-GRi" customClass="PaymentView" customModule="EOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="17" width="375" height="630"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="EfW-ZC-GRi" secondAttribute="bottom" id="A6F-6Z-Vmb"/>
                                     <constraint firstItem="lbz-hX-qm5" firstAttribute="centerX" secondItem="tHF-Xp-Y7o" secondAttribute="centerX" id="AmK-q0-5YL"/>
+                                    <constraint firstAttribute="trailing" secondItem="EfW-ZC-GRi" secondAttribute="trailing" id="C2X-yP-ycq"/>
+                                    <constraint firstItem="EfW-ZC-GRi" firstAttribute="leading" secondItem="tHF-Xp-Y7o" secondAttribute="leading" id="GZk-EG-Tu7"/>
                                     <constraint firstItem="lbz-hX-qm5" firstAttribute="top" secondItem="4r7-yz-kZr" secondAttribute="bottom" constant="14" id="Zw4-9k-bNK"/>
                                     <constraint firstItem="4r7-yz-kZr" firstAttribute="top" secondItem="tHF-Xp-Y7o" secondAttribute="top" constant="64" id="hmn-dY-cTc"/>
+                                    <constraint firstItem="EfW-ZC-GRi" firstAttribute="top" secondItem="tHF-Xp-Y7o" secondAttribute="top" constant="17" id="pAY-ze-dBc"/>
                                     <constraint firstItem="4r7-yz-kZr" firstAttribute="centerX" secondItem="tHF-Xp-Y7o" secondAttribute="centerX" id="rbD-qW-TIw"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WHw-gV-pem">
-                                <rect key="frame" x="0.0" y="37" width="375" height="630"/>
-                                <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="7W2-kw-4BT" id="RLd-Os-Lw4"/>
-                                    <outlet property="delegate" destination="7W2-kw-4BT" id="OzC-bL-5gt"/>
-                                </connections>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tHF-Xp-Y7o" firstAttribute="leading" secondItem="bDD-xC-oJe" secondAttribute="leading" id="6Oy-qe-B7N"/>
-                            <constraint firstItem="bDD-xC-oJe" firstAttribute="bottom" secondItem="WHw-gV-pem" secondAttribute="bottom" id="89m-3l-qaj"/>
-                            <constraint firstItem="WHw-gV-pem" firstAttribute="top" secondItem="bDD-xC-oJe" secondAttribute="top" constant="17" id="AkB-Lc-6NR"/>
                             <constraint firstItem="tHF-Xp-Y7o" firstAttribute="top" secondItem="bDD-xC-oJe" secondAttribute="top" id="QOn-Ze-ogN"/>
                             <constraint firstItem="bDD-xC-oJe" firstAttribute="bottom" secondItem="tHF-Xp-Y7o" secondAttribute="bottom" id="Yqz-G1-hRB"/>
-                            <constraint firstItem="bDD-xC-oJe" firstAttribute="trailing" secondItem="WHw-gV-pem" secondAttribute="trailing" id="Zg6-8G-yjg"/>
                             <constraint firstItem="bDD-xC-oJe" firstAttribute="trailing" secondItem="tHF-Xp-Y7o" secondAttribute="trailing" id="rNq-T2-8gh"/>
-                            <constraint firstItem="WHw-gV-pem" firstAttribute="leading" secondItem="bDD-xC-oJe" secondAttribute="leading" id="tyX-kG-niR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bDD-xC-oJe"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="WHw-gV-pem" id="oiI-gh-cSh"/>
+                        <outlet property="contentView" destination="EfW-ZC-GRi" id="cfO-LB-LKL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kID-Tq-UmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="150" y="143"/>
+            <point key="canvasLocation" x="149.59999999999999" y="142.57871064467767"/>
         </scene>
     </scenes>
     <resources>

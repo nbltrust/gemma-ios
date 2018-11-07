@@ -18,12 +18,38 @@ struct SetWalletState: StateType {
     var property: SetWalletPropertyState
 }
 
+struct ImportWalletModel {
+    var walletType: WalletType = .HD
+    var name = ""
+    var priKey = ""
+    var type: CurrencyType = .EOS
+    var password = ""
+    var hint = ""
+    var mnemonic = ""
+    
+    public init(walletType: WalletType, name: String, priKey: String, type: CurrencyType, password: String, hint: String, mnemonic: String) {
+        self.walletType = walletType
+        self.name = name
+        self.type = type
+        self.priKey = priKey
+        self.password = password
+        self.hint = hint
+        self.mnemonic = mnemonic
+    }
+}
+
 struct SetWalletPropertyState {
+    var setWalletNameValid: BehaviorRelay<Bool> = BehaviorRelay(value: true)
+
     var setWalletPasswordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     var setWalletComfirmPasswordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     var setWalletIsAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+}
+
+struct SetWalletNameAction: Action {
+    var isValid: Bool = false
 }
 
 struct SetWalletPasswordAction: Action {

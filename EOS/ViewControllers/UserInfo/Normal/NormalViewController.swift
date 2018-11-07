@@ -51,11 +51,11 @@ class NormalViewController: BaseViewController {
 
     func setupViewSize () {
         languageCell.content.font = UIFont.systemFont(ofSize: 14)
-        languageCell.content.textColor = Color.blueyGrey
+        languageCell.content.textColor = Color.subTitleColor
         coinUnitCell.content.font = UIFont.systemFont(ofSize: 14)
-        coinUnitCell.content.textColor = Color.blueyGrey
+        coinUnitCell.content.textColor = Color.subTitleColor
         nodeCell.content.font = UIFont.systemFont(ofSize: 14)
-        nodeCell.content.textColor = Color.blueyGrey
+        nodeCell.content.textColor = Color.subTitleColor
     }
 
     override func configureObserveState() {

@@ -20,6 +20,8 @@ func gSetWalletPropertyReducer(_ state: SetWalletPropertyState?, action: Action)
     let state = state ?? SetWalletPropertyState()
 
     switch action {
+    case let action as SetWalletNameAction:
+        state.setWalletNameValid.accept(action.isValid)
     case let action as SetWalletPasswordAction:
         state.setWalletPasswordValid.accept(action.isValid)
     case let action as SetWalletComfirmPasswordAction:

@@ -9,7 +9,7 @@
 import Foundation
 
 public struct GestureLockSetting {
-    static let warningColor = UIColor.scarlet
+    static let warningColor = UIColor.warningColor
 
     /*最短密码长度*/
     static let minPasswordLength = 4
@@ -22,21 +22,21 @@ public struct GestureLockSetting {
 
     /*手势预览*/
 
-    static let infoNormalColor = UIColor.cloudyBlue
+    static let infoNormalColor = UIColor.baseColor
 
     static let infoNormalBorderWidth: CGFloat = 1.0
 
-    static let infoHighlightedColor = UIColor.darkSkyBlueTwo
+    static let infoHighlightedColor = UIColor.warningColor
 
     //间距比例：gap/ViewWidth
     static let infoGapRatio: CGFloat = 0.5
 
     /*手势设置*/
-    static let lockNormalColor = UIColor.darkSkyBlueTwo
+    static let lockNormalColor = UIColor.baseColor
 
     static let lockNormalBoderWidth: CGFloat = 1.0
 
-    static let lockHighlightedColor = UIColor.cornflowerBlueThree
+    static let lockHighlightedColor = UIColor.warningColor
 
     static let lockHighlightedBorderWidth: CGFloat = 2.0
 

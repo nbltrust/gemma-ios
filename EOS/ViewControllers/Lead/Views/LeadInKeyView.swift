@@ -7,20 +7,38 @@
 //
 
 import UIKit
+import GrowingTextView
+import GrowingTextView.Swift
 
 class LeadInKeyView: UIView {
     enum EventName: String {
         case beginLeadInAction
     }
-    @IBOutlet weak var textView: UITextView!
+    
     @IBOutlet weak var titleLabel: UILabel!
+
+    @IBOutlet weak var textView: GrowingTextView!
+    
     @IBOutlet weak var creatButton: Button!
+
+    @IBOutlet weak var currencyView: CustomCellView!
+
+    @IBOutlet weak var walletView: CustomCellView!
+
     override var intrinsicContentSize: CGSize {
         return CGSize.init(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
 
     func setup() {
+        self.textView.minHeight = 100
+        self.textView.maxHeight = 100
+        self.textView.font = UIFont.systemFont(ofSize: 16)
+        self.textView.textColor = UIColor.baseColor
+        self.textView.textContainerInset = UIEdgeInsets(top: 16, left: 15, bottom: 16, right: 15)
         self.creatButton.isEnabel.accept(false)
+
+        currencyView.title = R.string.localizable.wallet_currency.key.localized()
+        walletView.title = R.string.localizable.leadin_to_wallet.key.localized()
 
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
@@ -80,9 +98,9 @@ class LeadInKeyView: UIView {
     }
 }
 
-extension LeadInKeyView: UITextViewDelegate {
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
+extension LeadInKeyView: GrowingTextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.trimmed == "" {
             self.creatButton.isEnabel.accept(false)
         } else {
             self.creatButton.isEnabel.accept(true)

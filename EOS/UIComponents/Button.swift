@@ -10,12 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-enum ButtonStyle: Int {
+public enum ButtonStyle: Int {
     case full = 1
+
     case border
-    case fullWhite
-    case fullWhiteTwo
-    case fullWhiteTwoScarlet
 }
 
 class Button: UIView {
@@ -36,6 +34,12 @@ class Button: UIView {
         }
     }
 
+    @IBInspectable var image: UIImage? {
+        didSet {
+            button.setImage(image, for: .normal)
+        }
+    }
+
     var title: String! {
         didSet {
             button.setTitle(title, for: .normal)
@@ -48,12 +52,6 @@ class Button: UIView {
             borderButton()
         case ButtonStyle.full.rawValue:
             fullButton()
-        case ButtonStyle.fullWhite.rawValue:
-            fullWhiteButton()
-        case ButtonStyle.fullWhiteTwo.rawValue:
-            fullWhiteTwoButton()
-        case ButtonStyle.fullWhiteTwoScarlet.rawValue:
-            fullWhiteTwoScarletButton()
         default:
             return
         }
@@ -68,44 +66,23 @@ class Button: UIView {
     }
 
     fileprivate func borderButton() {
-        button.backgroundColor = UIColor.whiteTwo
-        button.layer.borderColor = UIColor.cornflowerBlueTwo.cgColor
+        button.backgroundColor = UIColor.whiteColor
+        button.layer.borderColor = UIColor.baseColor.cgColor
         button.layer.borderWidth = 1.0
-        button.setTitleColor(UIColor.cornflowerBlue, for: .normal)
+        button.setTitleColor(UIColor.baseColor, for: .normal)
         button.isUserInteractionEnabled = true
     }
 
     fileprivate func fullButton() {
-        button.backgroundColor = UIColor.cornflowerBlueTwo
-        button.setTitleColor(UIColor.whiteTwo, for: .normal)
-        button.layer.borderColor = UIColor.clear.cgColor
-        button.isUserInteractionEnabled = true
-    }
-
-    fileprivate func fullWhiteButton() {
-        button.backgroundColor = UIColor.white
-        button.setTitleColor(UIColor.cornflowerBlueTwo, for: .normal)
-        button.layer.borderColor = UIColor.clear.cgColor
-        button.isUserInteractionEnabled = true
-    }
-
-    fileprivate func fullWhiteTwoButton() {
-        button.backgroundColor = UIColor.whiteTwo
-        button.setTitleColor(UIColor.cornflowerBlue, for: .normal)
-        button.layer.borderColor = UIColor.clear.cgColor
-        button.isUserInteractionEnabled = true
-    }
-
-    fileprivate func fullWhiteTwoScarletButton() {
-        button.backgroundColor = UIColor.whiteTwo
-        button.setTitleColor(UIColor.scarlet, for: .normal)
+        button.backgroundColor = UIColor.baseColor
+        button.setTitleColor(UIColor.whiteColor, for: .normal)
         button.layer.borderColor = UIColor.clear.cgColor
         button.isUserInteractionEnabled = true
     }
 
     fileprivate func unEnablebutton() {
-        button.backgroundColor = UIColor.cloudyBlueFour
-        button.setTitleColor(UIColor.whiteTwo, for: .normal)
+        button.backgroundColor = UIColor.unableColor
+        button.setTitleColor(UIColor.whiteColor, for: .normal)
         button.layer.borderColor = UIColor.clear.cgColor
         button.isUserInteractionEnabled = false
     }

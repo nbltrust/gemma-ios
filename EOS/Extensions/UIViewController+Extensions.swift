@@ -15,11 +15,13 @@ extension UIViewController {
     func configLeftNavButton(_ image: UIImage?) {
         let leftNavButton = UIButton.init(type: .custom)
         leftNavButton.frame = CGRect(x: 0, y: 0, width: 48, height: 24)
-        leftNavButton.setImage(image ?? #imageLiteral(resourceName: "ic_back_24_px"), for: .normal)
+        leftNavButton.setImage(image ?? R.image.ic_notify_back(), for: .normal)
         leftNavButton.addTarget(self, action: #selector(leftAction(_:)), for: .touchUpInside)
         leftNavButton.isHidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftNavButton)
         self.navigationItem.leftMargin = 0
+
+        
     }
 
     func configRightNavButton(_ image: UIImage? = nil) {
@@ -35,7 +37,8 @@ extension UIViewController {
 
     func configRightCustomView(_ view: UIView) {
         view.width = 48
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: view)
+        let item = UIBarButtonItem.init(customView: view)
+        navigationItem.rightBarButtonItem = item
         self.navigationItem.rightMargin = 0
     }
 
@@ -75,10 +78,10 @@ extension UIViewController {
         if let isClear = isClearBg, isClear {
             KRProgressHUD.set(maskType: .custom(color: UIColor.clear))
         } else {
-            KRProgressHUD.set(maskType: .custom(color: UIColor.black40))
+            KRProgressHUD.set(maskType: .custom(color: UIColor.black40Color))
         }
-        KRProgressHUD.set(style: .custom(background: UIColor.white, text: UIColor.cornflowerBlueTwo, icon: UIColor.cornflowerBlueTwo))
-        KRProgressHUD.set(activityIndicatorViewColors: [UIColor.cornflowerBlueTwo, UIColor.cornflowerBlueTwo])
+        KRProgressHUD.set(style: .custom(background: UIColor.whiteColor, text: UIColor.baseColor, icon: UIColor.baseColor))
+        KRProgressHUD.set(activityIndicatorViewColors: [UIColor.baseColor, UIColor.baseColor])
         if message == "" {
             KRProgressHUD.show()
         } else {

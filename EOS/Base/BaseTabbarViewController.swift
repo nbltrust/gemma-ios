@@ -15,8 +15,8 @@ class CBTabBarView: ESTabBarItemContentView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        textColor = UIColor.cloudyBlueThree
-        highlightTextColor = UIColor.cornflowerBlueTwo
+        textColor = UIColor.baseLightColor
+        highlightTextColor = UIColor.baseColor
         badgeColor = UIColor.red
         badgeOffset.horizontal = 12
         renderingMode = .alwaysOriginal

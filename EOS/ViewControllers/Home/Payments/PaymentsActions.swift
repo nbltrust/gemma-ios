@@ -20,7 +20,7 @@ struct PaymentsState: StateType {
 }
 
 struct PaymentsPropertyState {
-    var data: [PaymentsRecordsViewModel] = []
+    var data: [String: [PaymentsRecordsViewModel]] = [:]
     var lastPos: Int = -1
     var payments: [Payment] = []
 }

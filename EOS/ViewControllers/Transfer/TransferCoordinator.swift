@@ -14,7 +14,7 @@ import eos_ios_core_cpp
 
 protocol TransferCoordinatorProtocol {
     func pushToTransferConfirmVC(data: ConfirmViewModel)
-    func pushToPaymentVC()
+    func popVC()
 }
 
 protocol TransferStateManagerProtocol {
@@ -49,12 +49,8 @@ class TransferCoordinator: NavCoordinator {
 }
 
 extension TransferCoordinator: TransferCoordinatorProtocol {
-    func pushToPaymentVC() {
-        let vc = R.storyboard.payments.paymentsViewController()!
-        let coor = PaymentsCoordinator(rootVC: self.rootVC)
-        vc.coordinator = coor
-        self.rootVC.pushViewController(vc, animated: true)
-
+    func popVC() {
+        self.rootVC.popViewController()
     }
 
     func pushToTransferConfirmVC(data: ConfirmViewModel) {
@@ -76,7 +72,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
             }
 
             presentVC(BLTCardConnectCoordinator.self, animated: true, context: context, navSetup: { (nav) in
-                nav.navStyle = .white
+                nav.navStyle = .common
             }) { (top, target) in
                 top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
             }
@@ -100,7 +96,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         context.type = type
 
         presentVC(TransferConfirmCoordinator.self, animated: true, context: context, navSetup: { (nav) in
-            nav.navStyle = .white
+            nav.navStyle = .common
         }) { (top, target) in
             top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }
@@ -129,7 +125,9 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     func fetchUserAccount(_ account: String) {
 
         EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
-            self.store.dispatch(BalanceFetchedAction(balance: json, currencyID: nil))
+            if let id = CurrencyManager.shared.getCurrentCurrencyID() {
+                self.store.dispatch(TBalanceFetchedAction(account: account))
+            }
         }, error: { (_) in
 
         }) { (_) in
@@ -152,40 +150,11 @@ extension TransferCoordinator: TransferStateManagerProtocol {
         }
     }
 
-    func getPushTransaction(_ password: String, account: String, amount: String, code: String, callback:@escaping (String?) -> Void) {
-
-        getInfo { (getInfo) in
-            let privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: password)
-            let json = EOSIO.getAbiJsonString(EOSIOContract.TokenCode,
-                                              action: EOSAction.transfer.rawValue,
-                                              from: WalletManager.shared.getAccount(),
-                                              to: account,
-                                              quantity: amount + " " + NetworkConfiguration.EOSIODefaultSymbol, memo: code)
-
-            EOSIONetwork.request(target: .abiJsonToBin(json:json!), success: { (data) in
-                let abiStr = data.stringValue
-
-               let transation = EOSIO.getTransferTransaction(privakey,
-                                     code: EOSIOContract.TokenCode,
-                                     from: account,
-                    getinfo: getInfo,
-                    abistr: abiStr)
-                callback(transation)
-            }, error: { (_) in
-
-            }) { (_) in
-
-            }
-        }
-
-    }
-
     func validingPassword(_ password: String) -> Bool {
         return WalletManager.shared.isValidPassword(password)
     }
 
     func getCurrentFromLocal() {
-        let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
-        self.store.dispatch(AccountFetchedFromLocalAction(model: model))
+        
     }
 }

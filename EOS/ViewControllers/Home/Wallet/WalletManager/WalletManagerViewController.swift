@@ -65,7 +65,7 @@ extension WalletManagerViewController {
             return
         }
         if model.type == .gemma {
-            self.coordinator?.pushToChangePassword(self.data.address)
+//            self.coordinator?.pushToChangePassword(self.data.address)
         }
     }
 

@@ -2,12 +2,13 @@
 //  AccountListCoordinator.swift
 //  EOS
 //
-//  Created zhusongyu on 2018/7/23.
-//  Copyright © 2018年 com.nbltrust. All rights reserved.
+//  Created peng zhu on 2018/11/7.
+//  Copyright © 2018 com.nbltrustdev. All rights reserved.
 //
 
 import UIKit
 import ReSwift
+import NBLCommonModule
 
 protocol AccountListCoordinatorProtocol {
     func dismissListVC()
@@ -15,30 +16,35 @@ protocol AccountListCoordinatorProtocol {
 
 protocol AccountListStateManagerProtocol {
     var state: AccountListState { get }
-    func subscribe<SelectedState, S: StoreSubscriber>(
-        _ subscriber: S, transform: ((Subscription<AccountListState>) -> Subscription<SelectedState>)?
-    ) where S.StoreSubscriberStateType == SelectedState
+    
+    func switchPageState(_ state: PageState)
+
+    func selectAtIndex(_ index: Int)
 }
 
 class AccountListCoordinator: NavCoordinator {
-
-    lazy var creator = AccountListPropertyActionCreate()
-
-    var store = Store<AccountListState>(
+    var store = Store(
         reducer: gAccountListReducer,
         state: nil,
         middleware: [trackingMiddleware]
     )
-
+    
+    var state: AccountListState {
+        return store.state
+    }
+    
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let vc = R.storyboard.accountList.accountListViewController()!
         let coordinator = AccountListCoordinator(rootVC: root)
         vc.coordinator = coordinator
         coordinator.store.dispatch(RouteContextAction(context: context))
-
         return vc
     }
 
+    override func register() {
+        Broadcaster.register(AccountListCoordinatorProtocol.self, observer: self)
+        Broadcaster.register(AccountListStateManagerProtocol.self, observer: self)
+    }
 }
 
 extension AccountListCoordinator: AccountListCoordinatorProtocol {
@@ -48,14 +54,15 @@ extension AccountListCoordinator: AccountListCoordinatorProtocol {
 }
 
 extension AccountListCoordinator: AccountListStateManagerProtocol {
-    var state: AccountListState {
-        return store.state
+    func switchPageState(_ state: PageState) {
+        DispatchQueue.main.async {
+            self.store.dispatch(PageStateAction(state: state))
+        }
     }
 
-    func subscribe<SelectedState, S: StoreSubscriber>(
-        _ subscriber: S, transform: ((Subscription<AccountListState>) -> Subscription<SelectedState>)?
-        ) where S.StoreSubscriberStateType == SelectedState {
-        store.subscribe(subscriber, transform: transform)
+    func selectAtIndex(_ index: Int) {
+        if let currencyId = CurrencyManager.shared.getCurrentCurrencyID() {
+            CurrencyManager.shared.saveAccountNameWith(currencyId, name: CurrencyManager.shared.getCurrentAccountNames()[index])
+        }
     }
-
 }

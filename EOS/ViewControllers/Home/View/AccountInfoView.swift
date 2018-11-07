@@ -91,11 +91,11 @@ class AccountInfoView: UIView {
 
     func setProgressUI(progress: UIProgressView) {
         if progress.progress >= 0.85 {
-            progress.tintColor = UIColor.scarlet
-            progress.backgroundColor = UIColor.scarlet
+            progress.tintColor = UIColor.introductionColor
+            progress.backgroundColor = UIColor.separatorColor
         } else {
-            progress.tintColor = UIColor.darkSkyBlueTwo
-            progress.backgroundColor = UIColor.darkSkyBlueTwo
+            progress.tintColor = UIColor.warningColor
+            progress.backgroundColor = UIColor.separatorColor
         }
     }
 

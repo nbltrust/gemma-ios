@@ -27,11 +27,11 @@ class WalletViewController: BaseViewController {
     func setupData() {
         var indexPath = 0
 
-        for (index, wallet) in WalletManager.shared.wallketList().enumerated() {
+        for (index, wallet) in WalletManager.shared.walletList().enumerated() {
             var model = WalletManagerModel()
-            model.name = wallet.name ?? "--"
-            model.address = wallet.publicKey ?? "--"
-            model.type = wallet.type ?? .gemma
+            model.name = wallet.name
+//            model.address = wallet.publicKey ?? "--"
+//            model.type = wallet.type ?? .gemma
             if model.type == .bluetooth {
                 model.connected = BLTWalletIO.shareInstance()?.isConnection() ?? false
             }
@@ -132,8 +132,8 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
 //                self.coordinator?.switchWallet(pub)
 //                self.coordinator?.popToLastVC()
 //            }
-            if let wallet = WalletManager.shared.currentWallet(), wallet.publicKey != dataArray[indexPath.row].address {
-                self.coordinator?.switchWallet(dataArray[indexPath.row].address)
+            if let wallet = WalletManager.shared.currentWallet() {
+                self.coordinator?.switchWallet(wallet)
                 self.coordinator?.popToLastVC()
             } else {
                 self.coordinator?.popToLastVC()

@@ -38,7 +38,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="NGs-Gh-5o2" firstAttribute="bottom" secondItem="FZY-g4-bK8" secondAttribute="bottom" id="1y7-87-Oct"/>
                             <constraint firstItem="FZY-g4-bK8" firstAttribute="leading" secondItem="NGs-Gh-5o2" secondAttribute="leading" id="oOS-re-Uep"/>
@@ -62,7 +61,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFa-Ml-ZB7" customClass="LeadInKeyView" customModule="EOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,12 +73,77 @@
                         <viewLayoutGuide key="safeArea" id="qVO-8j-OuK"/>
                     </view>
                     <connections>
-                        <outlet property="leadInKeyView" destination="jFa-Ml-ZB7" id="ow1-XM-XDt"/>
+                        <outlet property="leadInKeyView" destination="jFa-Ml-ZB7" id="n4T-rb-32x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Uf-eW-KXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-612" y="90"/>
+            <point key="canvasLocation" x="-612" y="89.505247376311857"/>
+        </scene>
+        <!--Lead In Mnemonic View Controller-->
+        <scene sceneID="hqD-xG-xEY">
+            <objects>
+                <viewController storyboardIdentifier="LeadInMnemonicViewController" id="kEN-3M-bms" customClass="LeadInMnemonicViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f2x-2f-YdT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTX-Sm-k4J" customClass="LeadInKeyView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BTX-Sm-k4J" firstAttribute="trailing" secondItem="X4r-O9-bhQ" secondAttribute="trailing" id="9tc-eU-BUE"/>
+                            <constraint firstItem="X4r-O9-bhQ" firstAttribute="bottom" secondItem="BTX-Sm-k4J" secondAttribute="bottom" id="kaN-gw-L0d"/>
+                            <constraint firstItem="BTX-Sm-k4J" firstAttribute="leading" secondItem="X4r-O9-bhQ" secondAttribute="leading" id="nMO-9l-fMD"/>
+                            <constraint firstItem="BTX-Sm-k4J" firstAttribute="top" secondItem="f2x-2f-YdT" secondAttribute="top" id="z86-XX-dn9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="X4r-O9-bhQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="mnemonicView" destination="BTX-Sm-k4J" id="SDc-tf-ptL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oCI-Dd-RyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="94" y="92"/>
+        </scene>
+        <!--Currency List View Controller-->
+        <scene sceneID="dcY-hg-JKP">
+            <objects>
+                <viewController storyboardIdentifier="CurrencyListViewController" id="9gv-sx-TSi" customClass="CurrencyListViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k6x-6o-4Li">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n9X-t8-1eV">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9gv-sx-TSi" id="6g8-Pn-LyW"/>
+                                    <outlet property="delegate" destination="9gv-sx-TSi" id="6Cv-YZ-Syj"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="1rc-NO-GKV" firstAttribute="bottom" secondItem="n9X-t8-1eV" secondAttribute="bottom" id="4oz-fZ-Egf"/>
+                            <constraint firstItem="1rc-NO-GKV" firstAttribute="trailing" secondItem="n9X-t8-1eV" secondAttribute="trailing" id="SUp-xc-n1j"/>
+                            <constraint firstItem="n9X-t8-1eV" firstAttribute="top" secondItem="1rc-NO-GKV" secondAttribute="top" id="UY8-C2-0GT"/>
+                            <constraint firstItem="n9X-t8-1eV" firstAttribute="leading" secondItem="1rc-NO-GKV" secondAttribute="leading" id="cY1-q2-vVH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1rc-NO-GKV"/>
+                    </view>
+                    <connections>
+                        <outlet property="currencyTableView" destination="n9X-t8-1eV" id="hvz-9S-upI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4LM-Vp-qME" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="815" y="98"/>
         </scene>
         <!--Set Wallet View Controller-->
         <scene sceneID="b3W-Gp-10u">
@@ -96,27 +159,6 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4g-tl-JKv">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J1B-cx-Ukn" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="23" width="343" height="276"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CMA-M2-RRX" customClass="SetWalletContentView" customModule="EOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="276"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="CMA-M2-RRX" secondAttribute="bottom" id="40r-ZH-lTv"/>
-                                                    <constraint firstAttribute="trailing" secondItem="CMA-M2-RRX" secondAttribute="trailing" id="IXm-Od-t6c"/>
-                                                    <constraint firstItem="CMA-M2-RRX" firstAttribute="leading" secondItem="J1B-cx-Ukn" secondAttribute="leading" id="MLC-fh-GJd"/>
-                                                    <constraint firstItem="CMA-M2-RRX" firstAttribute="top" secondItem="J1B-cx-Ukn" secondAttribute="top" id="uq0-pY-kli"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xSC-vH-vnI">
                                                 <rect key="frame" x="32" y="369" width="311" height="183"/>
                                                 <subviews>
@@ -225,15 +267,19 @@
                                                     <constraint firstItem="pRW-8f-pDf" firstAttribute="top" secondItem="eBA-Or-EfL" secondAttribute="bottom" id="wqK-Xl-wPc"/>
                                                 </constraints>
                                             </stackView>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CMA-M2-RRX" customClass="SetWalletContentView" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="27" width="335" height="276"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="CMA-M2-RRX" firstAttribute="top" secondItem="r4g-tl-JKv" secondAttribute="top" constant="10" id="8tC-Xn-enq"/>
                                             <constraint firstAttribute="bottom" secondItem="xSC-vH-vnI" secondAttribute="bottom" constant="16" id="9ck-Tv-MM6"/>
-                                            <constraint firstItem="xSC-vH-vnI" firstAttribute="top" secondItem="J1B-cx-Ukn" secondAttribute="bottom" id="Fdr-F8-Qap"/>
-                                            <constraint firstAttribute="trailing" secondItem="J1B-cx-Ukn" secondAttribute="trailing" constant="16" id="S9C-Ru-Odj"/>
-                                            <constraint firstItem="J1B-cx-Ukn" firstAttribute="top" secondItem="r4g-tl-JKv" secondAttribute="top" constant="16" id="Sr9-V0-qEM"/>
+                                            <constraint firstAttribute="trailing" secondItem="CMA-M2-RRX" secondAttribute="trailing" constant="20" id="AEm-bt-gfe"/>
+                                            <constraint firstItem="CMA-M2-RRX" firstAttribute="leading" secondItem="r4g-tl-JKv" secondAttribute="leading" constant="20" id="UfE-1i-bLD"/>
                                             <constraint firstItem="xSC-vH-vnI" firstAttribute="leading" secondItem="r4g-tl-JKv" secondAttribute="leading" constant="32" id="dgv-mM-Uyn"/>
                                             <constraint firstAttribute="trailing" secondItem="xSC-vH-vnI" secondAttribute="trailing" constant="32" id="ezI-pd-Sye"/>
-                                            <constraint firstItem="J1B-cx-Ukn" firstAttribute="leading" secondItem="r4g-tl-JKv" secondAttribute="leading" constant="16" id="lMv-HV-Kbo"/>
+                                            <constraint firstItem="xSC-vH-vnI" firstAttribute="top" secondItem="CMA-M2-RRX" secondAttribute="bottom" id="pd9-S0-1BA"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -257,8 +303,7 @@
                     <connections>
                         <outlet property="agree" destination="WWx-ll-PoG" id="Lls-CB-gzo"/>
                         <outlet property="agreeView" destination="eBA-Or-EfL" id="ADu-qz-fgc"/>
-                        <outlet property="cornerShadowView" destination="J1B-cx-Ukn" id="riA-fe-fI5"/>
-                        <outlet property="fieldVIew" destination="CMA-M2-RRX" id="tVY-d6-9Tx"/>
+                        <outlet property="fieldView" destination="CMA-M2-RRX" id="xQW-sd-kCd"/>
                         <outlet property="finished" destination="Guu-3m-Nqh" id="mLz-Yy-xpg"/>
                         <outlet property="mnemonic" destination="0sk-SE-RbA" id="DL6-sb-UyJ"/>
                         <outlet property="servers" destination="JPa-2M-PQb" id="5Qx-NP-J0k"/>
@@ -266,7 +311,42 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FMI-GL-TZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1304.8" y="135.38230884557723"/>
+            <point key="canvasLocation" x="1558" y="98"/>
+        </scene>
+        <!--Wallet Select List View Controller-->
+        <scene sceneID="kHg-xH-d8N">
+            <objects>
+                <viewController storyboardIdentifier="WalletSelectListViewController" id="e2w-Cn-7M0" customClass="WalletSelectListViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zaf-8R-b3m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZE7-YV-bd8">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="e2w-Cn-7M0" id="efX-nB-aHK"/>
+                                    <outlet property="delegate" destination="e2w-Cn-7M0" id="XzK-hE-RJl"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="UaF-Gn-Rmh" firstAttribute="bottom" secondItem="ZE7-YV-bd8" secondAttribute="bottom" id="2CA-gt-sYb"/>
+                            <constraint firstItem="UaF-Gn-Rmh" firstAttribute="trailing" secondItem="ZE7-YV-bd8" secondAttribute="trailing" id="4IH-Lw-mnF"/>
+                            <constraint firstItem="ZE7-YV-bd8" firstAttribute="top" secondItem="UaF-Gn-Rmh" secondAttribute="top" id="kvO-vS-QKB"/>
+                            <constraint firstItem="ZE7-YV-bd8" firstAttribute="leading" secondItem="UaF-Gn-Rmh" secondAttribute="leading" id="mIO-F2-rDr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UaF-Gn-Rmh"/>
+                    </view>
+                    <connections>
+                        <outlet property="walletTable" destination="ZE7-YV-bd8" id="jym-QE-XTs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3VW-nz-dmG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2274" y="98"/>
         </scene>
     </scenes>
 </document>

@@ -54,7 +54,7 @@ class ScanCornerView: UIView {
         let shapLayer = CAShapeLayer()
         shapLayer.frame = self.bounds
         shapLayer.path = path.cgPath
-        shapLayer.fillColor = UIColor.whiteTwo.cgColor
+        shapLayer.fillColor = UIColor.whiteColor.cgColor
 
         self.layer.addSublayer(shapLayer)
     }

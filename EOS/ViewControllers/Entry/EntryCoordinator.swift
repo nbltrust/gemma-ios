@@ -18,7 +18,7 @@ import Seed39
 protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()
     func pushToCreateSuccessVC()
-    func pushToActivateVC()
+    func pushToActivateVCWithCurrencyID(_ id: Int64?)
     func pushBackupPrivateKeyVC()
     func presentSetFingerPrinterVC()
     func dismissCurrentNav(_ entry: UIViewController?)
@@ -59,7 +59,7 @@ protocol EntryStateManagerProtocol {
     
     func createTempWallet(_ pwd: String, prompt: String, type: WalletType)
 
-    func createNewWallet(pwd: String, checkStr: String, deviceName: String?)
+    func createNewWallet(pwd: String, checkStr: String, deviceName: String?, prompt: String?)
 }
 
 class EntryCoordinator: NavCoordinator {
@@ -93,10 +93,11 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         self.rootVC.pushViewController(createCompleteVC!, animated: true)
     }
 
-    func pushToActivateVC() {
+    func pushToActivateVCWithCurrencyID(_ id: Int64?) {
         let copyVC = ActivateViewController()
         let copyCoordinator = ActivateCoordinator(rootVC: self.rootVC)
         copyVC.coordinator = copyCoordinator
+        copyVC.currencyID = id
         self.rootVC.pushViewController(copyVC, animated: true)
     }
 
@@ -216,7 +217,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                                                               invitationCode: inviteCode,
                                                               validation: validation),
                                        success: { (data) in
-                                        Defaults["accountNames\(id)"] = accountName
+                                        CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
                                         self.rootVC.popToRootViewController(animated: true)
                                         completion(true)
                     }, error: { (code) in
@@ -297,22 +298,21 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(WalletModelAction(model: model))
     }
 
-    func createNewWallet(pwd: String, checkStr: String, deviceName: String?) {
+    func createNewWallet(pwd: String, checkStr: String, deviceName: String?, prompt: String?) {
         do {
             let wallets = try WalletCacheService.shared.fetchAllWallet()
             let idNum: Int64 = Int64(wallets!.count) + 1
             let date = Date.init()
             let cipher = Seed39KeyEncrypt(pwd, checkStr)
-            let wallet = Wallet(id: nil, name: "EOS-WALLET-\(idNum)", type: .HD, cipher: cipher, deviceName: nil, date: date)
+            let wallet = Wallet(id: nil, name: "EOS-WALLET-\(idNum)", type: .HD, cipher: cipher, deviceName: nil, date: date, hint: prompt)
 
             let seed = Seed39SeedByMnemonic(checkStr)
             let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true)
-            let curCipher = Seed39KeyEncrypt(pwd, prikey)
+            let curCipher = EOSIO.getCypher(prikey, password: pwd)
             let pubkey = EOSIO.getPublicKey(prikey)
             let currency = Currency(id: nil, type: .EOS, cipher: curCipher!, pubKey: pubkey!, wid: idNum, date: date, address: nil)
 
-            let seed2 = Seed39SeedByMnemonic(checkStr)
-            let prikey2 = Seed39DeriveRaw(seed2, CurrencyType.ETH.derivationPath)
+            let prikey2 = Seed39DeriveRaw(seed, CurrencyType.ETH.derivationPath)
             let curCipher2 = Seed39KeyEncrypt(pwd, prikey2)
             let address = Seed39GetEthereumAddressFromPrivateKey(prikey2)
             let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: nil, wid: idNum, date: date, address: address)

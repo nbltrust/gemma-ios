@@ -9,6 +9,7 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
+import SwiftyUserDefaults
 
 protocol PayToActivateCoordinatorProtocol {
     func pushToCreateSuccessVC()
@@ -21,10 +22,9 @@ protocol PayToActivateStateManagerProtocol {
 
     func switchPageState(_ state: PageState)
 
-    func initOrder(completion: @escaping (Bool) -> Void)
+    func initOrder(_ currencyID:Int64?, completion: @escaping (Bool) -> Void)
     func getBill()
     func askToPay()
-    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void)
 }
 
 class PayToActivateCoordinator: NavCoordinator {
@@ -111,18 +111,20 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         }
     }
 
-    func initOrder(completion: @escaping (Bool) -> Void) {
+    func initOrder(_ currencyID:Int64?, completion: @escaping (Bool) -> Void) {
         self.rootVC.topViewController?.startLoadingWithMessage(message: R.string.localizable.pay_tips_warning.key.localized())
 
         var walletName = ""
         var pubkey = ""
-        Broadcaster.notify(EntryViewController.self) { (vc) in
-            walletName = vc.registerView.nameView.textField.text!
-            let currency = try? WalletCacheService.shared.fetchCurrencyBy(id: vc.currencyID!)
-            if let currency = currency {
-                pubkey = currency?.pubKey ?? ""
-            }
+
+        if let name = CurrencyManager.shared.getCurrentAccountName() as? String {
+            walletName = name
         }
+        let currency = try? WalletCacheService.shared.fetchCurrencyBy(id: currencyID!)
+        if let currency = currency {
+            pubkey = currency?.pubKey ?? ""
+        }
+
         NBLNetwork.request(target: .initOrder(account: walletName, pubKey: pubkey, platform: "iOS", clientIP:"10.18.14.9", serialNumber: "1"), success: { (data) in
             if let orderID = Order.deserialize(from: data.dictionaryObject) {
                 self.store.dispatch(OrderIdAction(orderId: orderID.id))
@@ -197,7 +199,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 self.popToEntryVCWithInviteCode(self.state.orderId)
             } else if payState == "SUCCESS", state == "TOREFUND" {
                 var context = ScreenShotAlertContext()
-                context.desc = R.string.localizable.price_change_tips.key.localized() + RichStyle.shared.tagText("55 RAM", fontSize: 14, color: UIColor.azul, lineHeight: 16) + "。"
+                context.desc = R.string.localizable.price_change_tips.key.localized() + RichStyle.shared.tagText("55 RAM", fontSize: 14, color: UIColor.highlightColor, lineHeight: 16) + "。"
                 context.title = R.string.localizable.price_change.key.localized()
                 context.buttonTitle = R.string.localizable.pay_sure.key.localized()
                 context.imageName = R.image.icMoney.name
@@ -247,46 +249,6 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             }
         }) { (_) in
             self.rootVC.topViewController?.endLoading()
-        }
-    }
-
-    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void) {
-        var walletName = ""
-        var password = ""
-        var prompt = ""
-        Broadcaster.notify(EntryViewController.self) { (vc) in
-            walletName = vc.registerView.nameView.textField.text!
-            password = vc.registerView.passwordView.textField.text!
-            prompt = vc.registerView.passwordPromptView.textField.text!
-        }
-        NBLNetwork.request(target: .createAccount(type: .gemma, account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: nil), success: { (data) in
-            self.rootVC.topViewController?.endLoading()
-            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode: inviteCode)
-            self.pushBackupPrivateKeyVC()
-        }, error: { (code) in
-            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
-                let error = GemmaError.NBLCode(code: gemmaerror)
-                if code == GemmaError.NBLNetworkErrorCode.chainFailedCode.rawValue {
-                    self.store.dispatch(NumsAction(nums: self.state.nums))
-                    if self.state.nums <= 3 {
-                        self.createWallet(self.state.orderId, completion: { (_) in
-
-                        })
-                    } else {
-                        showFailTop(R.string.localizable.error_chain_fail.key.localized())
-                    }
-                } else if code == GemmaError.NBLNetworkErrorCode.parameterWrongCode.rawValue ||
-                    code == GemmaError.NBLNetworkErrorCode.invitecodeInexistenceCode.rawValue ||
-                    code == GemmaError.NBLNetworkErrorCode.invitecodeRegiteredCode.rawValue {
-                    showFailTop(error.localizedDescription + R.string.localizable.connect_customer_service.key.localized())
-                } else {
-                    showFailTop(error.localizedDescription + R.string.localizable.refund_money_suf.key.localized())
-                }
-            } else {
-                showFailTop(R.string.localizable.error_unknow.key.localized())
-            }
-
-        }) { (_) in
         }
     }
 

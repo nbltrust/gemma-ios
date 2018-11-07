@@ -30,18 +30,20 @@ enum PaymentStatus: Int, HandyJSONEnum {
 }
 
 struct Payment: HandyJSON {
-    var from: String!
-    var to: String!
-    var value: String! //1.0000 EOS
+    var trxId: String!
+    var timestamp: Date!
+    var receiver: String! //1.0000 EOS
+    var sender: String!
+    var code: String!
+    var quantity: String!
     var memo: String!
-    var time: Date!
-    var block: Int!
-    var hash: String!
+    var symbol: String!
     var status: PaymentStatus!
 
     mutating func mapping(mapper: HelpingMapper) {
         mapper <<<
-            time <-- GemmaDateFormatTransform(formatString: "yyyy-MM-dd'T'HH:mm:ss.zzz")
+            timestamp <-- GemmaDateFormatTransform(formatString: "yyyy-MM-dd'T'HH:mm:ss.zzz")
+        mapper <<< self.trxId <-- "trx_id"
     }
 
     init() {}

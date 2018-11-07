@@ -13,15 +13,15 @@ class BannerColor: BannerColorsProtocol {
     internal func color(for style: BannerStyle) -> UIColor {
         switch style {
         case .danger:   // Your custom .danger color
-            return UIColor.scarlet
+            return UIColor.warningColor
         case .info:     // Your custom .info color
-            return UIColor.scarlet
+            return UIColor.warningColor
         case .none:     // Your custom .none color
-            return UIColor.scarlet
+            return UIColor.warningColor
         case .success:  // Your custom .success color
-            return UIColor.cornflowerBlue
+            return UIColor.successedColor
         case .warning:  // Your custom .warning color
-            return UIColor.bgtabred
+            return UIColor.warningColor
         }
     }
 }

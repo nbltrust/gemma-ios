@@ -15,19 +15,21 @@ class SetWalletContentView: UIView {
         case password
         case comfirmPassword
         case passwordPrompt
-        case invitationCode
     }
 
-    enum TextChangeEvent: String {
+    enum TextVaildEvent: String {
         case walletName
         case walletPassword
         case walletComfirmPassword
-        case walletInviteCode
     }
 
-    @IBOutlet weak var password: TitleTextfieldView!
-    @IBOutlet weak var resetPassword: TitleTextfieldView!
-    @IBOutlet weak var tipPassword: TitleTextfieldView!
+    @IBOutlet weak var nameView: TitleTextfieldView!
+
+    @IBOutlet weak var passwordView: TitleTextfieldView!
+
+    @IBOutlet weak var confirmPasswordView: TitleTextfieldView!
+
+    @IBOutlet weak var hintView: TitleTextfieldView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,10 +74,24 @@ class SetWalletContentView: UIView {
     }
 
     func setupUI() {
-        handleSetupSubView(password, tag: InputType.password.rawValue)
-        handleSetupSubView(resetPassword, tag: InputType.comfirmPassword.rawValue)
-        handleSetupSubView(tipPassword, tag: InputType.passwordPrompt.rawValue)
+        handleSetupSubView(nameView, tag: InputType.name.rawValue)
+        handleSetupSubView(passwordView, tag: InputType.password.rawValue)
+        handleSetupSubView(confirmPasswordView, tag: InputType.comfirmPassword.rawValue)
+        handleSetupSubView(hintView, tag: InputType.passwordPrompt.rawValue)
         updateContentSize()
+        setWalletName()
+    }
+
+    func setWalletName() {
+        do {
+            let wallets = try WalletCacheService.shared.fetchAllWallet()
+            let idNum: Int64 = Int64(wallets!.count)
+            if idNum == 0 {
+                nameView.textField.text = "WOOKONG-WALLET"
+            } else {
+                nameView.textField.text = "WOOKONG-WALLET-\(idNum + 1)"
+            }
+        } catch {}
     }
 
     func updateContentSize() {
@@ -89,19 +105,38 @@ class SetWalletContentView: UIView {
         titleTextfieldView.delegate = self
         titleTextfieldView.datasource = self
         titleTextfieldView.updateContentSize()
-        titleTextfieldView.textField.addTarget(self, action: #selector(handleTextFiledDidChanged(_:)), for: .editingChanged)
+        let selector = #selector(handleTextFiledDidChanged(_:))
+        titleTextfieldView.textField.addTarget(self, action: selector, for: .editingChanged)
     }
 
     func passwordSwitch(isSelected: Bool) {
-        let tempPassword = password.textField.text
-        password.textField.text = ""
-        password.textField.isSecureTextEntry = !isSelected
-        password.textField.text = tempPassword
+        let tempPassword = passwordView.textField.text
+        passwordView.textField.text = ""
+        passwordView.textField.isSecureTextEntry = !isSelected
+        passwordView.textField.text = tempPassword
 
-        let tempComfirmPassword = resetPassword.textField.text
-        resetPassword.textField.text = ""
-        resetPassword.textField.isSecureTextEntry = !isSelected
-        resetPassword.textField.text = tempComfirmPassword
+        let tempComfirmPassword = confirmPasswordView.textField.text
+        confirmPasswordView.textField.text = ""
+        confirmPasswordView.textField.isSecureTextEntry = !isSelected
+        confirmPasswordView.textField.text = tempComfirmPassword
+    }
+
+    func pasValid() -> Bool {
+        let pas = passwordView.textField.text ?? ""
+        let passwordValid = WalletManager.shared.isValidPassword(pas)
+        return passwordValid
+    }
+
+    func confirmValid() -> Bool {
+        let pas = passwordView.textField.text ?? ""
+        let confirmPas = confirmPasswordView.textField.text ?? ""
+        let confirmValid = WalletManager.shared.isValidComfirmPassword(pas, comfirmPassword: confirmPas)
+        return confirmValid
+    }
+
+    func nameValid() -> Bool {
+        let name = nameView.textField.text ?? ""
+        return !name.isEmpty
     }
 
     @objc func handleTextFiledDidChanged(_ textField: UITextField) {
@@ -116,7 +151,7 @@ extension SetWalletContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDa
     }
 
     func textActionTrigger(titleTextFieldView: TitleTextfieldView, selected: Bool, index: NSInteger) {
-        if titleTextFieldView == password {
+        if titleTextFieldView == passwordView {
             if index == 0 {
                 titleTextFieldView.clearText()
                 handleTextField(titleTextFieldView.textField)
@@ -132,7 +167,15 @@ extension SetWalletContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDa
     }
 
     func textUISetting(titleTextFieldView: TitleTextfieldView) -> TitleTextSetting {
-        if titleTextFieldView == password {
+        if titleTextFieldView == nameView {
+            return TitleTextSetting(title: R.string.localizable.wallet_name.key.localized(),
+                                    placeholder: R.string.localizable.wallet_name_pla.key.localized(),
+                                    warningText: "",
+                                    introduce: "",
+                                    isShowPromptWhenEditing: false,
+                                    showLine: true,
+                                    isSecureTextEntry: false)
+        } else if titleTextFieldView == passwordView {
             return TitleTextSetting(title: R.string.localizable.account_setting_password.key.localized(),
                                     placeholder: R.string.localizable.password_ph.key.localized(),
                                     warningText: R.string.localizable.password_warning.key.localized(),
@@ -140,7 +183,7 @@ extension SetWalletContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDa
                                     isShowPromptWhenEditing: false,
                                     showLine: true,
                                     isSecureTextEntry: true)
-        } else if titleTextFieldView == resetPassword {
+        } else if titleTextFieldView == confirmPasswordView {
             return TitleTextSetting(title: R.string.localizable.account_comfirm_password.key.localized(),
                                     placeholder: R.string.localizable.comfirm_password_ph.key.localized(),
                                     warningText: R.string.localizable.comfirm_password_warning.key.localized(),
@@ -154,13 +197,13 @@ extension SetWalletContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDa
                                     warningText: "",
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
-                                    showLine: false,
+                                    showLine: true,
                                     isSecureTextEntry: false)
         }
     }
 
     func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting] {
-        if titleTextFieldView == password {
+        if titleTextFieldView == passwordView {
             return [TextButtonSetting(imageName: R.image.ic_close.name,
                                       selectedImageName: R.image.ic_close.name,
                                       isShowWhenEditing: true),
@@ -182,15 +225,18 @@ extension SetWalletContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDa
 extension SetWalletContentView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField.tag {
+        case InputType.name.rawValue:
+            nameView.reloadActionViews(isEditing: true)
+            nameView.checkStatus = TextUIStyle.highlight
         case InputType.password.rawValue:
-            password.reloadActionViews(isEditing: true)
-            password.checkStatus = TextUIStyle.highlight
+            passwordView.reloadActionViews(isEditing: true)
+            passwordView.checkStatus = TextUIStyle.highlight
         case InputType.comfirmPassword.rawValue:
-            resetPassword.reloadActionViews(isEditing: true)
-            resetPassword.checkStatus = TextUIStyle.highlight
+            confirmPasswordView.reloadActionViews(isEditing: true)
+            confirmPasswordView.checkStatus = TextUIStyle.highlight
         case InputType.passwordPrompt.rawValue:
-            tipPassword.reloadActionViews(isEditing: true)
-            tipPassword.checkStatus = TextUIStyle.highlight
+            hintView.reloadActionViews(isEditing: true)
+            hintView.checkStatus = TextUIStyle.highlight
         default:
             return
         }
@@ -198,31 +244,34 @@ extension SetWalletContentView: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
-
+        case InputType.name.rawValue:
+            nameView.reloadActionViews(isEditing: false)
+            nameView.checkStatus = TextUIStyle.common
         case InputType.password.rawValue:
-            password.reloadActionViews(isEditing: false)
-            password.checkStatus = WalletManager.shared.isValidPassword(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
-            resetPassword.checkStatus = WalletManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: resetPassword.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            passwordView.reloadActionViews(isEditing: false)
+            passwordView.checkStatus = pasValid() ? TextUIStyle.common : TextUIStyle.warning
+            confirmPasswordView.checkStatus = confirmValid() ? TextUIStyle.common : TextUIStyle.warning
         case InputType.comfirmPassword.rawValue:
-            resetPassword.reloadActionViews(isEditing: false)
-            resetPassword.checkStatus = WalletManager.shared.isValidComfirmPassword(textField.text!, comfirmPassword: password.textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            confirmPasswordView.reloadActionViews(isEditing: false)
+            confirmPasswordView.checkStatus = confirmValid() ? TextUIStyle.common : TextUIStyle.warning
         case InputType.passwordPrompt.rawValue:
-            tipPassword.reloadActionViews(isEditing: false)
-            tipPassword.checkStatus = TextUIStyle.common
+            hintView.reloadActionViews(isEditing: false)
+            hintView.checkStatus = TextUIStyle.common
         default:
             return
         }
     }
 
     func handleTextField(_ textField: UITextField) {
-        let text = textField.text ?? ""
         switch textField.tag {
         case InputType.name.rawValue:
-            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content": text])
+            self.sendEventWith(TextVaildEvent.walletName.rawValue, userinfo: ["valid": nameValid()])
         case InputType.password.rawValue:
-            self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content": text])
+            self.sendEventWith(TextVaildEvent.walletPassword.rawValue, userinfo: ["valid": pasValid()])
+            self.sendEventWith(TextVaildEvent.walletComfirmPassword.rawValue, userinfo: ["valid": confirmValid()])
         case InputType.comfirmPassword.rawValue:
-            self.sendEventWith(TextChangeEvent.walletComfirmPassword.rawValue, userinfo: ["content": text])
+            self.sendEventWith(TextVaildEvent.walletPassword.rawValue, userinfo: ["valid": pasValid()])
+            self.sendEventWith(TextVaildEvent.walletComfirmPassword.rawValue, userinfo: ["valid": confirmValid()])
         default:
             return
         }

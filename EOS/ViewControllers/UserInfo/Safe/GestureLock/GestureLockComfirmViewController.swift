@@ -58,7 +58,7 @@ class GestureLockComfirmViewController: BaseViewController {
         self.coordinator?.state.property.promotData.asObservable().subscribe(onNext: {[weak self] (arg0) in
             guard let `self` = self else { return }
             self.messageLabel.text = arg0.message
-            self.messageLabel.textColor = arg0.isWarning ? UIColor.scarlet : UIColor.darkSlateBlue
+            self.messageLabel.textColor = arg0.isWarning ? UIColor.warningColor : UIColor.baseColor
             if arg0.isWarning && !arg0.isLocked {
                 self.gestureLockView.warn()
             }

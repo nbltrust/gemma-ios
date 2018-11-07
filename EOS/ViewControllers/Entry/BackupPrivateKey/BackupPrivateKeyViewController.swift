@@ -37,6 +37,6 @@ class BackupPrivateKeyViewController: BaseViewController {
 
 extension BackupPrivateKeyViewController {
     @objc func know(_ data: [String: Any]) {
-        self.coordinator?.showPresenterVC(publicKey)
+        self.coordinator?.showPresenterVC(CurrencyManager.shared.getCurrentCurrencyID())
     }
 }

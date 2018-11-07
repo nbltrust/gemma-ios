@@ -22,61 +22,61 @@ func gHomePropertyReducer(_ state: HomePropertyState?, action: Action) -> HomePr
     var state = state ?? HomePropertyState()
 
     switch action {
-    case let action as BalanceFetchedAction:
+//    case let action as BalanceFetchedAction:
 
-        if action.balance != nil {
-            var viewmodel = state.info.value
-
-            if let balance = action.balance?.arrayValue.first?.string {
-                viewmodel.balance = balance
-            } else {
-                viewmodel.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-            }
-
-            viewmodel.allAssets = calculateTotalAsset(viewmodel)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
-            state.info.accept(viewmodel)
-        }
+//        if action.balance != nil {
+//            var viewmodel = state.info.value
+//
+//            if let balance = action.balance?.arrayValue.first?.string {
+//                viewmodel.balance = balance
+//            } else {
+//                viewmodel.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+//            }
+//
+//            viewmodel.allAssets = calculateTotalAsset(viewmodel)
+//            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+//            state.info.accept(viewmodel)
+//        }
 //        else {
 //            let viewmodel = initAccountViewModel()
 //            state.info.accept(viewmodel)
 //        }
-    case let action as AccountFetchedAction:
-        if action.info != nil {
-            var viewmodel = convertAccountViewModelWithAccount(action.info!, viewmodel: state.info.value)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
-
-            state.info.accept(viewmodel)
-        }
+//    case let action as AccountFetchedAction:
+//        if action.info != nil {
+//            var viewmodel = convertAccountViewModelWithAccount(action.info!, viewmodel: state.info.value)
+//            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+//
+//            state.info.accept(viewmodel)
+//        }
 //        else {
 //            let viewmodel = initAccountViewModel()
 //            state.info.accept(viewmodel)
 //        }
-    case let action as RMBPriceFetchedAction:
-        if action.price != nil {
-            var viewmodel = state.info.value
-            state.cnyPrice = action.price!["value"].stringValue
-            if action.otherPrice != nil {
-                state.otherPrice = action.otherPrice!["value"].stringValue
-            }
-
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
-            state.info.accept(viewmodel)
-        }
+//    case let action as RMBPriceFetchedAction:
+//        if action.price != nil {
+//            var viewmodel = state.info.value
+//            state.cnyPrice = action.price!["value"].stringValue
+//            if action.otherPrice != nil {
+//                state.otherPrice = action.otherPrice!["value"].stringValue
+//            }
+//
+//            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+//            state.info.accept(viewmodel)
+//        }
 //        else {
 //            let viewmodel = initAccountViewModel()
 //            state.info.accept(viewmodel)
 //        }
-    case let action as AccountFetchedFromLocalAction:
-        if action.model != nil {
-            let viewmodel = convertToViewModelWithModel(model: action.model!)
-//            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
-
-            state.model.accept(viewmodel)
-        } else {
-            let viewmodel = initAccountViewModel()
-            state.info.accept(viewmodel)
-        }
+//    case let action as AccountFetchedFromLocalAction:
+//        if action.model != nil {
+//            let viewmodel = convertToViewModelWithModel(model: action.model!)
+////            viewmodel.CNY = calculateRMBPrice(viewmodel, price:state.CNY_price, otherPrice: state.Other_price)
+//
+//            state.model.accept(viewmodel)
+//        } else {
+//            let viewmodel = initAccountViewModel()
+//            state.info.accept(viewmodel)
+//        }
     default:
         break
     }
@@ -156,40 +156,40 @@ func calculateTotalAsset(_ viewmodel: AccountViewModel) -> String {
     }
 }
 
-func calculateRMBPrice(_ viewmodel: AccountViewModel, price: String, otherPrice: String) -> String {
-    if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDouble(), all != 0 {
-        let cny = unit * all
-        if coinType() == .CNY {
-            return "≈" + cny.string(digits: 2) + " \(coinUnit())"
-        } else {
-            if let otherPriceDouble = otherPrice.toDouble() {
-                return "≈" + (cny / otherPriceDouble).string(digits: 2) + " \(coinUnit())"
-            } else {
-                return "≈- \(coinUnit())"
-            }
-        }
-    } else {
-        return "≈- \(coinUnit())"
-    }
-}
+//func calculateRMBPrice(_ viewmodel: AccountViewModel, price: String, otherPrice: String) -> String {
+//    if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDouble(), all != 0 {
+//        let cny = unit * all
+//        if coinType() == .CNY {
+//            return "≈" + cny.string(digits: 2) + " \(coinUnit())"
+//        } else {
+//            if let otherPriceDouble = otherPrice.toDouble() {
+//                return "≈" + (cny / otherPriceDouble).string(digits: 2) + " \(coinUnit())"
+//            } else {
+//                return "≈- \(coinUnit())"
+//            }
+//        }
+//    } else {
+//        return "≈- \(coinUnit())"
+//    }
+//}
 
-func convertToViewModelWithModel(model: AccountModel) -> AccountViewModel {
-    var viewModel = AccountViewModel()
-    viewModel.account = model.accountName
-    viewModel.portrait = model.accountName.sha256()
-    viewModel.cpuValue = model.delegateCpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-    viewModel.netValue = model.delegateNetWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-    viewModel.ramValue = model.ramBytes != nil ? model.ramBytes.ramCount : ""
-    viewModel.cpuProgress = Float(model.cpuUsed) / Float(model.cpuMax)
-    viewModel.netProgress = Float(model.netUsed) / Float(model.netMax)
-    viewModel.ramProgress = Float(model.ramUsage) / Float(model.ramQuota)
-    if let balance = Defaults[model.accountName + NetworkConfiguration.BlanceDefaultSymbol] as? String {
-        viewModel.balance = balance
-    }
-    viewModel.allAssets = calculateTotalAsset(viewModel)
-    if let rmbUnit = Defaults[Unit.RMBUnit] as? String, let usdUnit = Defaults[Unit.USDUnit] as? String {
-        viewModel.CNY = calculateRMBPrice(viewModel, price: rmbUnit, otherPrice: usdUnit)
-    }
-
-    return viewModel
-}
+//func convertToViewModelWithModel(model: AccountModel) -> AccountViewModel {
+//    var viewModel = AccountViewModel()
+//    viewModel.account = model.accountName
+//    viewModel.portrait = model.accountName.sha256()
+//    viewModel.cpuValue = model.delegateCpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+//    viewModel.netValue = model.delegateNetWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+//    viewModel.ramValue = model.ramBytes != nil ? model.ramBytes.ramCount : ""
+//    viewModel.cpuProgress = Float(model.cpuUsed) / Float(model.cpuMax)
+//    viewModel.netProgress = Float(model.netUsed) / Float(model.netMax)
+//    viewModel.ramProgress = Float(model.ramUsage) / Float(model.ramQuota)
+//    if let balance = Defaults[model.accountName + NetworkConfiguration.BlanceDefaultSymbol] as? String {
+//        viewModel.balance = balance
+//    }
+//    viewModel.allAssets = calculateTotalAsset(viewModel)
+//    if let rmbUnit = Defaults[Unit.RMBUnit] as? String, let usdUnit = Defaults[Unit.USDUnit] as? String {
+//        viewModel.CNY = calculateRMBPrice(viewModel, price: rmbUnit, otherPrice: usdUnit)
+//    }
+//
+//    return viewModel
+//}

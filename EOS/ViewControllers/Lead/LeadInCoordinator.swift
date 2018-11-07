@@ -11,7 +11,6 @@ import ReSwift
 import RxCocoa
 
 protocol LeadInCoordinatorProtocol {
-    func openScan()
     func openLeadInKey()
 }
 
@@ -34,16 +33,10 @@ class LeadInCoordinator: NavCoordinator {
 }
 
 extension LeadInCoordinator: LeadInCoordinatorProtocol {
-    func openScan() {
-        presentVC(ScanCoordinator.self, animated: true, context: nil, navSetup: { (nav) in
-            nav.navStyle = .clear
-        }, presentSetup: nil)
-    }
-
     func openLeadInKey() {
-        if let vc = R.storyboard.leadIn.leadInKeyViewController() {
-            vc.coordinator = LeadInKeyCoordinator(rootVC: self.rootVC)
-            self.rootVC.pushViewController(vc, animated: true)
+        if let leadInEntryVC = R.storyboard.leadIn.leadInEntryViewController() {
+            leadInEntryVC.coordinator = LeadInEntryCoordinator(rootVC: self.rootVC)
+            self.rootVC.pushViewController(leadInEntryVC, animated: true)
         }
     }
 }

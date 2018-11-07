@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DelegateView">
+            <connections>
+                <outlet property="leftNextButton" destination="SX1-Po-5RT" id="MDO-P7-IHa"/>
+                <outlet property="pageView" destination="BV3-oj-aYY" id="Jjt-Hj-76m"/>
+                <outlet property="rightNextButton" destination="bxz-f3-w1R" id="sRt-as-dgr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="btM-Yo-6kI">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="428"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BV3-oj-aYY" customClass="PageView" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="leftText" value="mortgage"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rightText" value="redeem"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SX1-Po-5RT" customClass="Button" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="35" y="248" width="305" height="51"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="oaI-qK-gXp"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="next_step"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bxz-f3-w1R" customClass="Button" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="35" y="258" width="305" height="51"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="liA-dC-eaW"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="next_step"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="SX1-Po-5RT" firstAttribute="top" secondItem="BV3-oj-aYY" secondAttribute="bottom" constant="41" id="6aD-o8-hBS"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="bxz-f3-w1R" secondAttribute="trailing" constant="35" id="Duu-M0-4zX"/>
+                <constraint firstItem="bxz-f3-w1R" firstAttribute="top" secondItem="BV3-oj-aYY" secondAttribute="bottom" constant="41" id="Xgb-xU-u5B"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="BV3-oj-aYY" secondAttribute="trailing" id="a3Y-wI-ihe"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="SX1-Po-5RT" secondAttribute="trailing" constant="35" id="ahP-GI-MVr"/>
+                <constraint firstItem="BV3-oj-aYY" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" id="bmo-4Q-RQp"/>
+                <constraint firstItem="SX1-Po-5RT" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="35" id="kd8-xJ-xue"/>
+                <constraint firstItem="BV3-oj-aYY" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="ncd-D9-zmc"/>
+                <constraint firstItem="bxz-f3-w1R" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="35" id="y10-cg-8tW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
+            <point key="canvasLocation" x="-194.40000000000001" y="-171.81409295352324"/>
+        </view>
+    </objects>
+</document>
