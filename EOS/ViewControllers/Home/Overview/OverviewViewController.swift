@@ -49,7 +49,8 @@ class OverviewViewController: BaseViewController {
             })
         }).disposed(by: disposeBag)
         self.reloadAccountView()
-        configRightCustomView(view)
+        guard let rightView = rightItemView else { return }
+        configRightCustomView(rightView)
     }
 
     func reloadAccountView() {
@@ -73,7 +74,7 @@ class OverviewViewController: BaseViewController {
     override func configureObserveState() {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
-            
+
             if let context = context as? OverviewContext {
                 self.context = context
             }
