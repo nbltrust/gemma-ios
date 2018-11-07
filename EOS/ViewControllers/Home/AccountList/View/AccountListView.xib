@@ -29,12 +29,16 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="locali" value="switch_account"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bGd-mV-xVG">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bGd-mV-xVG">
                     <rect key="frame" x="0.0" y="37" width="387" height="332"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Wc1-fE-cKS"/>
+                        <outlet property="delegate" destination="-1" id="JgR-vZ-LJp"/>
+                    </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="whiteColor" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="QGc-z4-AKT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="31" id="3nN-a3-12O"/>
                 <constraint firstItem="QGc-z4-AKT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="AWl-4l-dgK"/>
@@ -48,4 +52,6 @@
             <point key="canvasLocation" x="15.5" y="-240.5"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

@@ -66,12 +66,15 @@ extension OverviewCoordinator: OverviewCoordinatorProtocol {
         let presenter = Presentr(presentationType: customType)
         presenter.keyboardTranslationType = .stickToTop
 
-        presentVC(AccountListCoordinator.self, animated: true, context: nil, navSetup: { (nav) in
+        var context = AccountListContext()
+        context.didSelect = {
+            complication()
+        }
+
+        presentVC(AccountListCoordinator.self, animated: true, context: context, navSetup: { (nav) in
             nav.navStyle = .common
         }) { (top, target) in
-            top.customPresentViewController(presenter, viewController: target, animated: true, completion: {
-                complication()
-            })
+            top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }
     }
 }

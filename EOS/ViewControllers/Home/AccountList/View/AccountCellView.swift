@@ -16,10 +16,8 @@ class AccountCellView: UIView {
         didSet {
             textLabel.text = text
             if text == CurrencyManager.shared.getCurrentAccountName() {
-                textLabel.textColor = UIColor.baseColor
-                self.backgroundColor = UIColor.whiteColor
+                self.backgroundColor = UIColor.borderColor
             } else {
-                textLabel.textColor = UIColor.baseColor
                 self.backgroundColor = UIColor.whiteColor
             }
         }
@@ -27,6 +25,10 @@ class AccountCellView: UIView {
 
     func setUp() {
         updateHeight()
+    }
+
+    @objc func test() {
+        self.sendEventWith("didselectrow", userinfo: ["index": 0])
     }
 
     override var intrinsicContentSize: CGSize {

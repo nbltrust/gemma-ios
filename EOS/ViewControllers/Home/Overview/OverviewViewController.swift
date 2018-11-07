@@ -31,11 +31,11 @@ class OverviewViewController: BaseViewController {
         setupUI()
         setupEvent()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func refreshViewController() {
 
     }
@@ -45,7 +45,7 @@ class OverviewViewController: BaseViewController {
         rightItemView?.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.coordinator?.pushAccountList({
-                self.reloadAccountView()
+                self.reloadData()
             })
         }).disposed(by: disposeBag)
         self.reloadAccountView()
@@ -66,9 +66,14 @@ class OverviewViewController: BaseViewController {
             coordinator?.getAccountInfo(name)
         }
     }
-    
+
+    func reloadData() {
+        reloadAccountView()
+        setupData()
+    }
+
     func setupEvent() {
-        
+
     }
 
     override func configureObserveState() {
@@ -78,12 +83,11 @@ class OverviewViewController: BaseViewController {
             if let context = context as? OverviewContext {
                 self.context = context
             }
-            
         }).disposed(by: disposeBag)
 
         self.coordinator?.state.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
-            if let newModel = model as? NewHomeViewModel, newModel.id != 0 {
+            if let newModel = model, newModel.id != 0 {
                 self.contentView.adapterCardModelToOverviewView(newModel)
             }
 
@@ -91,7 +95,7 @@ class OverviewViewController: BaseViewController {
 
         self.coordinator?.state.tokens.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
-            if let newModel = model as? [AssetViewModel] {
+            if let newModel = model {
                 self.contentView.adapterModelToOverviewView(newModel)
             }
 
