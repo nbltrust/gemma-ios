@@ -45,7 +45,7 @@ class ResourceMortgageViewController: BaseViewController {
         self.contentView.pageView.rightView.netMortgageCancelView.clearText()
         self.contentView.leftNextButton.isEnabel.accept(false)
         self.contentView.rightNextButton.isEnabel.accept(false)
-        self.coordinator?.pushToPaymentVC()
+        self.coordinator?.popVC()
     }
 
     func setupUI() {

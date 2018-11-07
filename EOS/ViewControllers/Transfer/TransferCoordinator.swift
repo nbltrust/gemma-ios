@@ -14,7 +14,7 @@ import eos_ios_core_cpp
 
 protocol TransferCoordinatorProtocol {
     func pushToTransferConfirmVC(data: ConfirmViewModel)
-    func pushToPaymentVC()
+    func popVC()
 }
 
 protocol TransferStateManagerProtocol {
@@ -49,12 +49,8 @@ class TransferCoordinator: NavCoordinator {
 }
 
 extension TransferCoordinator: TransferCoordinatorProtocol {
-    func pushToPaymentVC() {
-        let vc = R.storyboard.payments.paymentsViewController()!
-        let coor = PaymentsCoordinator(rootVC: self.rootVC)
-        vc.coordinator = coor
-        self.rootVC.pushViewController(vc, animated: true)
-
+    func popVC() {
+        self.rootVC.popViewController()
     }
 
     func pushToTransferConfirmVC(data: ConfirmViewModel) {
@@ -152,35 +148,6 @@ extension TransferCoordinator: TransferStateManagerProtocol {
         }) { (_) in
 
         }
-    }
-
-    func getPushTransaction(_ password: String, account: String, amount: String, code: String, callback:@escaping (String?) -> Void) {
-
-        getInfo { (getInfo) in
-            guard let wallet = WalletManager.shared.currentWallet() else { return }
-            let privakey = WalletManager.shared.getCachedPriKey(wallet, password: password, type: .EOS)
-            let json = EOSIO.getAbiJsonString(EOSIOContract.TokenCode,
-                                              action: EOSAction.transfer.rawValue,
-                                              from: CurrencyManager.shared.getCurrentAccountName(),
-                                              to: account,
-                                              quantity: amount + " " + NetworkConfiguration.EOSIODefaultSymbol, memo: code)
-
-            EOSIONetwork.request(target: .abiJsonToBin(json:json!), success: { (data) in
-                let abiStr = data.stringValue
-
-               let transation = EOSIO.getTransferTransaction(privakey,
-                                     code: EOSIOContract.TokenCode,
-                                     from: account,
-                    getinfo: getInfo,
-                    abistr: abiStr)
-                callback(transation)
-            }, error: { (_) in
-
-            }) { (_) in
-
-            }
-        }
-
     }
 
     func validingPassword(_ password: String) -> Bool {

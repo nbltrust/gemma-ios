@@ -19,7 +19,7 @@ class TransferViewController: BaseViewController {
     var accountName: String = ""
     func resetData() {
         clearData()
-        self.coordinator?.pushToPaymentVC()
+        self.coordinator?.popVC()
     }
 
     func clearData() {
@@ -70,13 +70,6 @@ class TransferViewController: BaseViewController {
     override func configureObserveState() {
         self.coordinator?.state.balance.asObservable().subscribe(onNext: { (blance) in
 
-            self.transferContentView.balance = blance!
-        }, onError: nil, onCompleted: {
-
-        }, onDisposed: nil).disposed(by: disposeBag)
-
-        self.coordinator?.state.balanceLocal.asObservable().subscribe(onNext: {[weak self] (blance) in
-            guard let `self` = self else { return }
             self.transferContentView.balance = blance!
         }, onError: nil, onCompleted: {
 

@@ -12,7 +12,7 @@ import Presentr
 
 protocol ResourceMortgageCoordinatorProtocol {
     func presentMortgageConfirmVC(data: ConfirmViewModel)
-    func pushToPaymentVC()
+    func popVC()
 }
 
 protocol ResourceMortgageStateManagerProtocol {
@@ -61,11 +61,8 @@ extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
         }
     }
 
-    func pushToPaymentVC() {
-        let vc = R.storyboard.payments.paymentsViewController()!
-        let coor = PaymentsCoordinator(rootVC: self.rootVC)
-        vc.coordinator = coor
-        self.rootVC.pushViewController(vc, animated: true)
+    func popVC() {
+        self.rootVC.popViewController()
     }
 }
 

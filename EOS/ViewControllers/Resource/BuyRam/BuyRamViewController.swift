@@ -34,7 +34,7 @@ class BuyRamViewController: BaseViewController {
         self.contentView.pageView.rightView.cpuMortgageCancelView.clearText()
         self.contentView.leftNextButton.isEnabel.accept(false)
         self.contentView.rightNextButton.isEnabel.accept(false)
-        self.coordinator?.pushToPaymentVC()
+        self.coordinator?.popVC()
     }
 
     override func configureObserveState() {

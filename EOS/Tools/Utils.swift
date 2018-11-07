@@ -186,7 +186,7 @@ func transaction(_ action: String, actionModel: ActionModel, callback:@escaping 
             let abiStr = binJson["binargs"].stringValue
 
             var privakey = ""
-            if let wallet = WalletManager.shared.currentWallet(), let key = WalletManager.shared.getCachedPriKey(wallet, password: actionModel.password, type: .EOS)  {
+            if let currency = CurrencyManager.shared.getCurrentCurrency(), let key = WalletManager.shared.getCachedPriKey(currency, password: actionModel.password)  {
                 privakey = key
             }
 

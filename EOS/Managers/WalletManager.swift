@@ -112,16 +112,14 @@ class WalletManager {
         } catch {}
     }
 
-    func getCachedPriKey(_ wallet: Wallet, password: String, type: CurrencyType) -> String? {
-        let checkStr = Seed39KeyDecrypt(password, wallet.cipher)
-        let seed = Seed39SeedByMnemonic(checkStr)
-        if type == .EOS {
-            guard let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true) else {
+    func getCachedPriKey(_ currency: Currency, password: String) -> String? {
+        if currency.type == .EOS {
+            guard let prikey = EOSIO.getPirvateKey(currency.cipher, password: password) else {
                 return nil
             }
             return prikey
-        } else if type == .ETH {
-            let prikey = Seed39DeriveRaw(seed, CurrencyType.ETH.derivationPath)
+        } else if currency.type == .ETH {
+            let prikey = Seed39KeyDecrypt(password, currency.cipher)
             return prikey
         }
         return nil

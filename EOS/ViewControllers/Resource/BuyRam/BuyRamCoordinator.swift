@@ -13,7 +13,7 @@ import NBLCommonModule
 
 protocol BuyRamCoordinatorProtocol {
     func presentMortgageConfirmVC(data: ConfirmViewModel)
-    func pushToPaymentVC()
+    func popVC()
 }
 
 protocol BuyRamStateManagerProtocol {
@@ -73,12 +73,8 @@ extension BuyRamCoordinator: BuyRamCoordinatorProtocol {
         }
     }
 
-    func pushToPaymentVC() {
-        if let vc = R.storyboard.payments.paymentsViewController() {
-            let coordinator = PaymentsCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
-        }
+    func popVC() {
+        self.rootVC.popViewController()
     }
 }
 
