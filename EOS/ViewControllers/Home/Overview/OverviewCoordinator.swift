@@ -13,7 +13,7 @@ import Presentr
 
 protocol OverviewCoordinatorProtocol {
     func pushToDetailVC(_ model: AssetViewModel)
-    func pushAccountList(_ complication: CompletionCallback)
+    func pushAccountList(_ complication: @escaping () -> Void)
 }
 
 protocol OverviewStateManagerProtocol {
@@ -57,7 +57,7 @@ extension OverviewCoordinator: OverviewCoordinatorProtocol {
         self.pushVC(AssetDetailCoordinator.self, animated: true, context: context)
     }
 
-    func pushAccountList(_ complication: () -> Void) {
+    func pushAccountList(_ complication: @escaping () -> Void) {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 272)
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 272))
@@ -69,7 +69,9 @@ extension OverviewCoordinator: OverviewCoordinatorProtocol {
         presentVC(AccountListCoordinator.self, animated: true, context: nil, navSetup: { (nav) in
             nav.navStyle = .common
         }) { (top, target) in
-            top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
+            top.customPresentViewController(presenter, viewController: target, animated: true, completion: {
+                complication()
+            })
         }
     }
 }

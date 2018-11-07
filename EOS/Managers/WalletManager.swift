@@ -130,35 +130,30 @@ class WalletManager {
     func updateWalletPassword(_ wallet: Wallet, oldPassword: String, newPassword: String, hint: String) -> Bool {
         do {
             //Update Wallet Cipher,Hint
-            let checkStr = Seed39KeyDecrypt(oldPassword, wallet.cipher)
-            let seed = Seed39SeedByMnemonic(checkStr)
-            let walletCipher = Seed39KeyEncrypt(newPassword, checkStr)
             var wallet = wallet
-            wallet.hint = hint
-            wallet.cipher = walletCipher
-            WalletManager.shared.updateWallet(wallet)
+            if wallet.type == .HD {
+                let walletCipher = Seed39KeyDecrypt(oldPassword, wallet.cipher)
+                wallet.hint = hint
+                wallet.cipher = Seed39KeyEncrypt(newPassword, walletCipher)
+                WalletManager.shared.updateWallet(wallet)
+            }
 
             if let currencys = try WalletCacheService.shared.fetchAllCurrencysBy(wallet) {
                 for var currency in currencys {
                     if currency.type == .EOS {
                         //Update EOS Cipher,pubKey
-                        let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true)
+                        let prikey = EOSIO.getPirvateKey(currency.cipher, password: oldPassword)
                         guard let curCipher = EOSIO.getCypher(prikey, password: newPassword) else {
                             return false
                         }
                         currency.cipher = curCipher
-                        currency.pubKey = EOSIO.getPublicKey(prikey)
                     } else if currency.type == .ETH {
                         //Update ETH Cipher,Address
-                        let prikey = Seed39DeriveRaw(seed, CurrencyType.ETH.derivationPath)
+                        let prikey = Seed39KeyDecrypt(oldPassword, currency.cipher)
                         guard let curCipher = Seed39KeyEncrypt(newPassword, prikey) else {
                             return false
                         }
-                        guard let address = Seed39GetEthereumAddressFromPrivateKey(prikey) else {
-                            return false
-                        }
                         currency.cipher = curCipher
-                        currency.address = address
                     }
                     try WalletCacheService.shared.updateCurrency(currency)
                 }
