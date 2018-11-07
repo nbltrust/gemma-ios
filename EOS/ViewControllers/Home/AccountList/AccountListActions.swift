@@ -2,31 +2,27 @@
 //  AccountListActions.swift
 //  EOS
 //
-//  Created zhusongyu on 2018/7/23.
-//  Copyright © 2018年 com.nbltrust. All rights reserved.
+//  Created peng zhu on 2018/11/7.
+//  Copyright © 2018 com.nbltrustdev. All rights reserved.
 //
 
 import Foundation
 import ReSwift
+import RxCocoa
+import SwiftyJSON
+import HandyJSON
 
-// MARK: - State
-struct AccountListState: StateType {
-    var isLoading = false
-    var page: Int = 1
-    var errorMessage: String?
-    var property: AccountListPropertyState
+struct AccountListContext: RouteContext, HandyJSON {
+    var didSelect: CompletionCallback?
 }
 
-struct AccountListPropertyState {
+//MARK: - State
+struct AccountListState: BaseState {
+    var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
+    var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
 }
 
-// MARK: - Action Creator
-class AccountListPropertyActionCreate {
-    public typealias ActionCreator = (_ state: AccountListState, _ store: Store<AccountListState>) -> Action?
-
-    public typealias AsyncActionCreator = (
-        _ state: AccountListState,
-        _ store: Store <AccountListState>,
-        _ actionCreatorCallback: @escaping ((ActionCreator) -> Void)
-        ) -> Void
+//MARK: - Action
+struct AccountListFetchedAction: Action {
+    var data:JSON
 }

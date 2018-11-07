@@ -12,21 +12,18 @@ class AccountListView: UIView {
 
     @IBOutlet weak var tableView: UITableView!
 
-    enum Event: String {
-        case didselectrow
-    }
+    var didSelect: ObjectCallback?
 
-    var data: Any? {
+    var data: [AccountListViewModel]? {
         didSet {
-
+            tableView.reloadData()
         }
     }
 
     func setUp() {
         let nibString = R.nib.accountTableViewCell.name
         tableView.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 31))
-//        tableView.tableFooterView?.height = 31
+        tableView.tableFooterView = UIView()
         updateHeight()
     }
 
@@ -83,27 +80,27 @@ extension AccountListView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let data = data as? [AccountListViewModel] {
+        if let data = data {
             return data.count
         }
         return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: AccountTableViewCell.self), for: indexPath) as? AccountTableViewCell else {
+        let nibString = R.nib.accountTableViewCell.name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString) as? AccountTableViewCell else {
             return UITableViewCell()
         }
 
-        if let data = data as? [AccountListViewModel] {
+        if let data = data {
             cell.setup(data[indexPath.row], indexPath: indexPath)
         }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        if (data as? [AccountListViewModel]) != nil {
-            self.sendEventWith(Event.didselectrow.rawValue, userinfo: ["index": indexPath.row])
+        if self.didSelect != nil {
+            self.didSelect!(indexPath.row)
         }
     }
 }

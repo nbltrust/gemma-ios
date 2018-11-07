@@ -47,7 +47,7 @@ class GestureLockSetViewController: BaseViewController {
         self.coordinator?.state.property.promotData.asObservable().subscribe(onNext: {[weak self] (arg0) in
             guard let `self` = self else { return }
             self.messageLabel.text = arg0.message
-            self.messageLabel.textColor = arg0.isWarning ? UIColor.scarlet : UIColor.darkSlateBlue
+            self.messageLabel.textColor = arg0.isWarning ? GestureLockSetting.warningColor : GestureLockSetting.infoNormalColor
             if arg0.isWarning {
                 self.lockView.warn()
             }

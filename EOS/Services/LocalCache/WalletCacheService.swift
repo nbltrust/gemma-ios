@@ -22,14 +22,16 @@ struct Wallet: Codable {
     var cipher: String? // 助记词密文
     var deviceName: String? // 蓝牙设备ID
     var date: Date?
+    var hint: String?
 
-    public init(id: Int64?, name: String, type: WalletType, cipher: String?, deviceName: String?, date: Date?) {
+    public init(id: Int64?, name: String, type: WalletType, cipher: String?, deviceName: String?, date: Date?, hint: String?) {
         self.id = id
         self.name = name
         self.type = type
         self.cipher = cipher
         self.deviceName = deviceName
         self.date = date
+        self.hint = hint
     }
 }
 
@@ -51,6 +53,15 @@ enum CurrencyType: Int, DatabaseValueConvertible, Codable {
             return "m/44'/194'/0'/0/"
         case .ETH:
             return "m/44'/60'/0'/0/"
+        }
+    }
+
+    var des: String {
+        switch self {
+        case .EOS:
+            return "EOS"
+        case .ETH:
+            return "ETH"
         }
     }
 }
@@ -99,6 +110,7 @@ class WalletCacheService: BaseCacheService {
                 tab.column("cipher", .text)
                 tab.column("deviceName", .text)
                 tab.column("date", .date).defaults(to: Date())
+                tab.column("hint", .text)
             }
         }
 
@@ -143,6 +155,7 @@ extension WalletCacheService {
         try queue?.write({ database in
             try wallet.insert(database)
             for var currency in currencys {
+                currency.wid = wallet.id ?? 0
                 try currency.insert(database)
             }
         })
@@ -192,19 +205,24 @@ extension WalletCacheService {
         })
     }
 
-    func insertCurrency(_ currency: Currency) throws {
+    func insertCurrency(_ currency: Currency) throws -> Int64? {
         var currency = currency
 
         try queue?.write({ database in
             try currency.insert(database)
         })
+        return currency.id
     }
 
     func fetchAllCurrencysBy(_ wallet: Wallet) throws -> [Currency]? {
+        return try fetchAllCurrencysBy(wallet.id!)
+    }
+
+    func fetchAllCurrencysBy(_ walletId: Int64) throws -> [Currency]? {
         return try queue?.inDatabase({ database in
             try Currency.fetchAll(database,
-                                 "SELECT * FROM \(Currency.databaseTableName) WHERE wid = ? ORDER BY date DESC",
-                                 arguments: [wallet.id!])
+                                  "SELECT * FROM \(Currency.databaseTableName) WHERE wid = ? ORDER BY date DESC",
+                arguments: [walletId])
         })
     }
 

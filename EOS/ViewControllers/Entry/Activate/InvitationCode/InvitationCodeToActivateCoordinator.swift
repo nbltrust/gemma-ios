@@ -16,14 +16,13 @@ protocol InvitationCodeToActivateCoordinatorProtocol {
     func pushToCreateSuccessVC()
     func pushBackupPrivateKeyVC()
     func dismissCurrentNav(_ entry: UIViewController?)
+    func popToEntryVCWithInviteCode(_ inviteCode: String)
 }
 
 protocol InvitationCodeToActivateStateManagerProtocol {
     var state: InvitationCodeToActivateState { get }
 
     func switchPageState(_ state: PageState)
-
-    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void)
 }
 
 class InvitationCodeToActivateCoordinator: NavCoordinator {
@@ -88,38 +87,25 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateCoordinat
             vc.coordinator?.state.callback.endCallback.value?()
         }
     }
+
+    func popToEntryVCWithInviteCode(_ inviteCode: String) {
+        self.rootVC.viewControllers.forEach { (vc) in
+            if let entryVC = vc as? EntryViewController {
+                self.popToVC(entryVC)
+                entryVC.coordinator?.state.callback.finishEOSCurrencyCallback.value?(inviteCode)
+            }
+        }
+    }
+
+    func popToVC(_ vc: UIViewController) {
+        self.rootVC.popToViewController(vc, animated: true)
+    }
 }
 
 extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateStateManagerProtocol {
     func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
-        }
-    }
-
-    func createWallet(_ inviteCode: String, completion: @escaping (Bool) -> Void) {
-        self.rootVC.topViewController?.startLoading()
-        var walletName = ""
-        var password = ""
-        var prompt = ""
-        Broadcaster.notify(EntryViewController.self) { (vc) in
-            walletName = vc.registerView.nameView.textField.text!
-            password = vc.registerView.passwordView.textField.text!
-            prompt = vc.registerView.passwordPromptView.textField.text!
-        }
-
-        NBLNetwork.request(target: .createAccount(type: .gemma, account: walletName, pubKey: WalletManager.shared.currentPubKey, invitationCode: inviteCode, validation: nil), success: { (data) in
-            KRProgressHUD.showSuccess()
-            WalletManager.shared.saveWallket(walletName, password: password, hint: prompt, isImport: false, txID: data["txId"].stringValue, invitationCode: inviteCode)
-            self.pushBackupPrivateKeyVC()
-        }, error: { (code) in
-            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
-                let error = GemmaError.NBLCode(code: gemmaerror)
-                showFailTop(error.localizedDescription)
-            } else {
-                showFailTop(R.string.localizable.error_unknow.key.localized())
-            }
-        }) { (_) in
         }
     }
 }

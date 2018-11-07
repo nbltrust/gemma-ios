@@ -27,7 +27,6 @@ func connectBLTCard(_ complication: @escaping CompletionCallback) {
     if let vc = UIApplication.shared.keyWindow?.rootViewController {
         if let connectVC = R.storyboard.bltCard.bltCardConnectViewController() {
             let nav = BaseNavigationController.init(rootViewController: connectVC)
-            nav.navStyle = .white
             let coordinator = BLTCardConnectCoordinator(rootVC: nav)
             connectVC.coordinator = coordinator
             coordinator.store.dispatch(RouteContextAction(context: context))
@@ -56,7 +55,6 @@ func confirmPin(_ complication: @escaping SuccessedComplication) {
     if let vc = UIApplication.shared.keyWindow?.rootViewController {
         if let connectVC = R.storyboard.bltCard.bltCardConfirmPinViewController() {
             let nav = BaseNavigationController.init(rootViewController: connectVC)
-            nav.navStyle = .white
             let coordinator = BLTCardConfirmPinCoordinator(rootVC: nav)
             connectVC.coordinator = coordinator
             coordinator.store.dispatch(RouteContextAction(context: context))

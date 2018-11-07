@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetDetailView">
+            <connections>
+                <outlet property="buttonView" destination="ag2-fY-Plc" id="hvK-L1-k6S"/>
+                <outlet property="buttonViewHeight" destination="4Uo-Ke-jUE" id="pon-ye-W5U"/>
+                <outlet property="headView" destination="6fV-vj-nqu" id="ApI-Bl-2E0"/>
+                <outlet property="nodeVodeButton" destination="NDM-pP-YPN" id="6CT-gu-g2z"/>
+                <outlet property="resourceManagerButton" destination="J6O-eN-uOr" id="oPn-fO-96Q"/>
+                <outlet property="tableView" destination="USb-9T-ucd" id="3IU-50-RH4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="btM-Yo-6kI">
+            <rect key="frame" x="0.0" y="0.0" width="358" height="471"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="USb-9T-ucd">
+                    <rect key="frame" x="0.0" y="0.0" width="358" height="422"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="6fV-vj-nqu" customClass="AssetDetailHeadView" customModule="EOS" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="358" height="292"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </view>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Mej-xd-aEc"/>
+                        <outlet property="delegate" destination="-1" id="ejR-qE-lmd"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ag2-fY-Plc">
+                    <rect key="frame" x="0.0" y="422" width="358" height="49"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDM-pP-YPN">
+                            <rect key="frame" x="0.0" y="0.0" width="179" height="49"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locali" value="node_vote"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Oe-90-XVt">
+                            <rect key="frame" x="179" y="12.5" width="0.5" height="24"/>
+                            <color key="backgroundColor" red="0.247" green="0.247" blue="0.247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="0.5" id="2HG-Dv-40V"/>
+                                <constraint firstAttribute="height" constant="24" id="VKA-gE-YEC"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6O-eN-uOr">
+                            <rect key="frame" x="179.5" y="0.0" width="178.5" height="49"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locali" value="resource_manager"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="J6O-eN-uOr" firstAttribute="leading" secondItem="7Oe-90-XVt" secondAttribute="trailing" id="2XT-2q-G3F"/>
+                        <constraint firstAttribute="height" constant="49" id="4Uo-Ke-jUE"/>
+                        <constraint firstItem="7Oe-90-XVt" firstAttribute="leading" secondItem="NDM-pP-YPN" secondAttribute="trailing" id="8DU-oH-zOg"/>
+                        <constraint firstItem="J6O-eN-uOr" firstAttribute="top" secondItem="ag2-fY-Plc" secondAttribute="top" id="El0-NA-1MT"/>
+                        <constraint firstItem="NDM-pP-YPN" firstAttribute="leading" secondItem="ag2-fY-Plc" secondAttribute="leading" id="H6s-7B-XPd"/>
+                        <constraint firstItem="NDM-pP-YPN" firstAttribute="top" secondItem="ag2-fY-Plc" secondAttribute="top" id="PIn-By-5Cy"/>
+                        <constraint firstItem="7Oe-90-XVt" firstAttribute="centerY" secondItem="NDM-pP-YPN" secondAttribute="centerY" id="Qmx-ML-7Xc"/>
+                        <constraint firstItem="J6O-eN-uOr" firstAttribute="width" secondItem="NDM-pP-YPN" secondAttribute="width" id="Rxt-gy-pRc"/>
+                        <constraint firstAttribute="bottom" secondItem="J6O-eN-uOr" secondAttribute="bottom" id="TcT-Zc-nnx"/>
+                        <constraint firstAttribute="bottom" secondItem="NDM-pP-YPN" secondAttribute="bottom" id="gpL-5v-3z6"/>
+                        <constraint firstAttribute="trailing" secondItem="J6O-eN-uOr" secondAttribute="trailing" id="nzO-DC-fcU"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="USb-9T-ucd" firstAttribute="leading" secondItem="btM-Yo-6kI" secondAttribute="leading" id="37w-Ix-11a"/>
+                <constraint firstAttribute="trailing" secondItem="ag2-fY-Plc" secondAttribute="trailing" id="4cC-RG-ANA"/>
+                <constraint firstItem="ag2-fY-Plc" firstAttribute="leading" secondItem="btM-Yo-6kI" secondAttribute="leading" id="KzI-bQ-DOE"/>
+                <constraint firstItem="USb-9T-ucd" firstAttribute="top" secondItem="btM-Yo-6kI" secondAttribute="top" id="QHF-7i-lh9"/>
+                <constraint firstItem="ag2-fY-Plc" firstAttribute="top" secondItem="USb-9T-ucd" secondAttribute="bottom" id="Xu8-1y-RsK"/>
+                <constraint firstAttribute="bottom" secondItem="ag2-fY-Plc" secondAttribute="bottom" id="Ybz-jc-wkP"/>
+                <constraint firstAttribute="trailing" secondItem="USb-9T-ucd" secondAttribute="trailing" id="mc8-1m-SLW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
+            <point key="canvasLocation" x="-208" y="-152.47376311844079"/>
+        </view>
+    </objects>
+</document>

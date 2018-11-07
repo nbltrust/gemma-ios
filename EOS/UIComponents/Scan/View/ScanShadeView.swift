@@ -34,7 +34,7 @@ class ScanShadeView: UIView {
     }
 
     override func draw(_ rect: CGRect) {
-        UIColor.black40.setFill()
+        UIColor.black40Color.setFill()
         UIRectFill(rect)
         let previewRect = rect.intersection(ScanSetting.scanRect)
         UIColor.clear.setFill()

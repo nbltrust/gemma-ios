@@ -11,7 +11,7 @@ import ReSwift
 import Presentr
 
 protocol BackupPrivateKeyCoordinatorProtocol {
-    func showPresenterVC(_ pubKey: String)
+    func showPresenterVC(_ currencyID: Int64?)
 }
 
 protocol BackupPrivateKeyStateManagerProtocol {
@@ -33,8 +33,8 @@ class BackupPrivateKeyCoordinator: NavCoordinator {
 }
 
 extension BackupPrivateKeyCoordinator: BackupPrivateKeyCoordinatorProtocol {
-    func showPresenterVC(_ pubKey: String) {
-        appCoodinator.showPresenterPwd(leftIconType: .dismiss, pubKey: pubKey, type: ConfirmType.backupPrivateKey.rawValue, producers: [], completion: {[weak self] (_) in
+    func showPresenterVC(_ currencyID: Int64?) {
+        appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: currencyID, type: ConfirmType.backupPrivateKey.rawValue, producers: [], completion: {[weak self] (_) in
             guard let `self` = self else { return }
             let copyVC = CopyPriKeyViewController()
             let copyCoordinator = CopyPriKeyCoordinator(rootVC: self.rootVC)

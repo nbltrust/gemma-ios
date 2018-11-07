@@ -51,21 +51,21 @@ class NodeSelView: UIView {
 extension NodeSelView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        self.backgroundColor = UIColor.paleGrey41
+        self.backgroundColor = UIColor.whiteColor
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        self.backgroundColor = UIColor.whiteTwo
+        self.backgroundColor = UIColor.whiteColor
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
-        self.backgroundColor = UIColor.paleGrey41
+        self.backgroundColor = UIColor.whiteColor
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-        self.backgroundColor = UIColor.whiteTwo
+        self.backgroundColor = UIColor.whiteColor
     }
 }

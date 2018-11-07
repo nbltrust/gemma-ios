@@ -19,18 +19,18 @@ class BLTDeviceCell: BaseTableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if selected == true {
-            cellView.bgView.backgroundColor = UIColor.cornflowerBlueTwo
+            cellView.bgView.backgroundColor = UIColor.whiteColor
         } else {
-            cellView.bgView.backgroundColor = UIColor.whiteTwo
+            cellView.bgView.backgroundColor = UIColor.whiteColor
         }
     }
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
         if highlighted == true {
-            cellView.bgView.backgroundColor = UIColor.cornflowerBlueTwo
+            cellView.bgView.backgroundColor = UIColor.whiteColor
         } else {
-            cellView.bgView.backgroundColor = UIColor.whiteTwo
+            cellView.bgView.backgroundColor = UIColor.whiteColor
         }
     }
 

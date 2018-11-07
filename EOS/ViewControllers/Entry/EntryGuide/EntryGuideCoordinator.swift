@@ -13,7 +13,7 @@ import SwifterSwift
 protocol EntryGuideCoordinatorProtocol {
     func pushToCreateWalletVC()
     func pushToRecoverFromCopyVC()
-
+    func pushToPariWookongVC()
 }
 
 protocol EntryGuideStateManagerProtocol {
@@ -56,6 +56,8 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
     }
 
     func pushToRecoverFromCopyVC() {
+
+
         let leadInVC = R.storyboard.leadIn.leadInViewController()!
         let coordinator = LeadInCoordinator(rootVC: self.rootVC)
         coordinator.state.callback.fadeCallback.accept {
@@ -65,6 +67,13 @@ extension EntryGuideCoordinator: EntryGuideCoordinatorProtocol {
         }
         leadInVC.coordinator = coordinator
         self.rootVC.pushViewController(leadInVC, animated: true)
+    }
+
+    func pushToPariWookongVC() {
+        let bltEntryVC = R.storyboard.bltCard.bltCardEntryViewController()!
+        let coordinator = BLTCardEntryCoordinator(rootVC: self.rootVC)
+        bltEntryVC.coordinator = coordinator
+        self.rootVC.pushViewController(bltEntryVC, animated: true)
     }
 }
 

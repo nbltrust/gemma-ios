@@ -53,7 +53,7 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
 
     func updateWalletName(model: WalletManagerModel) -> Bool {
         if isValidWalletName(name: model.name) {
-            WalletManager.shared.updateWalletName(model.address, walletName: model.name)
+//            WalletManager.shared.updateWalletName(model.address, walletName: model.name)
 
             if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? WalletManagerViewController {
                 vc.data = model
@@ -72,7 +72,7 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
 
     func updateFingerName(model: WalletManagerModel, index: Int, newName: String) -> Bool {
         if isValidWalletName(name: newName) {
-            WalletManager.shared.updateFingerName(model, index: index, fingerName: newName)
+            FingerManager.shared.updateFingerName(model, index: index, fingerName: newName)
 
             if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? DeleteFingerViewController {
                 vc.model = model
@@ -88,8 +88,8 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
             self.rootVC.showError(message: R.string.localizable.walletname_not_empty.key.localized())
             return false
         }
-        for walletList in WalletManager.shared.wallketList() {
-            if walletList.name == name {
+        for wallet in WalletManager.shared.walletList() {
+            if wallet.name == name {
                 self.rootVC.showError(message: R.string.localizable.walletname_invalid.key.localized())
                 return false
             }

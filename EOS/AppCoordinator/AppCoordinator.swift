@@ -151,7 +151,7 @@ class AppCoordinator {
 
     }
 
-    func showPresenterPwd(leftIconType: LeftIconType, pubKey: String = WalletManager.shared.currentPubKey, type: String, producers: [String], completion: StringCallback? = nil) {
+    func showPresenterPwd(leftIconType: LeftIconType, currencyID: Int64?, type: String, producers: [String], completion: StringCallback? = nil) {
         let width = ModalSize.full
 
         var height: Float = 271.0
@@ -167,7 +167,7 @@ class AppCoordinator {
         presenter.keyboardTranslationType = .stickToTop
 
         var context = TransferConfirmPasswordContext()
-        context.publicKey = pubKey
+        context.currencyID = currencyID
         context.iconType = leftIconType.rawValue
         context.type = type
         context.producers = producers
@@ -177,7 +177,7 @@ class AppCoordinator {
             })
         }
         presentVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context, navSetup: { (nav) in
-            nav.navStyle = .white
+            nav.navStyle = .common
 
         }) { (top, target) in
             top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)

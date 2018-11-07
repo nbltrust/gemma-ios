@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import ReSwift
 import NBLCommonModule
+import SwiftyUserDefaults
 
 enum CreateWalletType: Int {
     case normal = 0
@@ -95,9 +96,12 @@ class EntryViewController: BaseViewController {
                 self.coordinator?.pushBackupMnemonicVC()
             case .EOS:
                 if let name = self.registerView.nameView.textField.text {
-                    self.coordinator?.verifyAccount(name, completion: { (success) in
+                    self.coordinator?.verifyAccount(name, completion: {[weak self] (success) in
+                        guard let `self` = self else { return }
+
                         if success == true {
-                            self.coordinator?.pushToActivateVC()
+                            CurrencyManager.shared.saveAccountNameWith(self.currencyID, name: name)
+                            self.coordinator?.pushToActivateVCWithCurrencyID(self.currencyID)
                         }
                     })
                 }
@@ -118,7 +122,7 @@ class EntryViewController: BaseViewController {
             guard let `self` = self else { return }
             if let str = checkStr as? String {
                 self.startLoading()
-                self.coordinator?.createNewWallet(pwd: self.registerView.passwordView.textField.text!, checkStr: str, deviceName: nil)
+                self.coordinator?.createNewWallet(pwd: self.registerView.passwordView.textField.text!, checkStr: str, deviceName: nil, prompt: self.registerView.passwordPromptView.textField.text)
 
             }
         })
@@ -127,6 +131,7 @@ class EntryViewController: BaseViewController {
             guard let `self` = self else { return }
             if let str = code as? String {
                 if let name = self.registerView.nameView.textField.text {
+                    CurrencyManager.shared.saveActived(self.currencyID, actived: true)
                     self.coordinator?.createEOSAccount(.gemma, accountName: name, currencyID: self.currencyID, inviteCode: str, validation: nil, deviceName: nil, completion: { (_) in
                         self.endLoading()
                     })

@@ -101,6 +101,7 @@
 "change_password_success" = "Success. Password modified.";
 
 "wallet_name" = "Wallet name";
+"wallet_name_pla" = "请填写钱包名称";
 "manager_wallet" = "Manage Wallet";
 "change_wallet_name" = "Modify Wallet Name";
 "i_know" = "OK, got it";
@@ -196,6 +197,9 @@
 "walletname_not_empty" = "钱包名不能为空";
 "delegate_not_all0" = "总抵押数不能为0";
 "update_pwd_btn_title" = "确认修改";
+"mnemonic_title" = "助记词";
+"mnemonic_guide" = "复制粘贴助记词至输入框，或通过扫描助记词生成的二维码输入";
+"mnemonic_placeholder" = "支持BIP39助记词，用空格分开";
 "verify_mnemonic_title" = "验证助记词";
 "backup_mnemonic_title" = "备份助记词";
 "verify_mnemonic_tips" = "请按顺序点击已抄下的助记词以验证抄写是否正确";
@@ -245,6 +249,13 @@
 "next_step" = "下一步";
 "wait_activate" = "待激活";
 "create_account" = "创建账户";
+"asset" = "资产";
+"receipt" = "收款";
+"delegate_redeem" = "抵押与赎回";
+"manager" = "管理";
+"redeem" = "赎回";
+"resource_detail" = "资源详情";
+"asset_detail" = "资产详情";
 
 //zsy end
 
@@ -448,7 +459,7 @@
 "Release to refresh" = "Release to refresh";
 
 "resources_pledge" = "资源质押";
-"resource_get" = "Get CPU / NET";
+"manager_cpu_net" = "Manager CPU / NET";
 
 "block_time" = "Block Time";
 "trade_state" = "State";
@@ -591,3 +602,10 @@
 "wookong_confirm_pin_title" = "请输入WOOKONG Bio的密码以确认授权";
 "wookong_confirm_pin_pla" = "请输入WOOKONG Bio的密码";
 "wookong_confirm_pin_btn" = "确认授权";
+
+"currency_title" = "币种";
+"wallet_currency" = "钱包币种";
+"leadin_to_wallet" = "导入到钱包";
+"new_wallet" = "新建钱包";
+"current_wallets" = "已有的钱包";
+"wallet_create_failed" = "钱包创建失败";

@@ -11,7 +11,7 @@ import Foundation
 class DashLineView: UIView {
     override func draw(_ rect: CGRect) {
         let contextRef: CGContext = UIGraphicsGetCurrentContext()!
-        contextRef.setStrokeColor(UIColor.cloudyBlue.cgColor)
+        contextRef.setStrokeColor(UIColor.separatorColor.cgColor)
         contextRef.beginPath()
 
         contextRef.move(to: CGPoint(x: 0, y: 0))

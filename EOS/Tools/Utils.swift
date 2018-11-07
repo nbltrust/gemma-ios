@@ -17,20 +17,6 @@ import Alamofire
 import SwiftyJSON
 import eos_ios_core_cpp
 
-//Nav BackgroundImage
-func navBgImage() -> UIImage? {
-    switch UIScreen.main.bounds.width {
-    case 320:
-        return R.image.navigation320()
-    case 375:
-        return R.image.navigation375()
-    case 414:
-        return R.image.navigation414()
-    default:
-        return nil
-    }
-}
-
 //Coin Datas
 func coinUnit() -> String {
     let data = CoinUnitConfiguration.values
@@ -102,15 +88,15 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
         if let actionModel = actionModel as? BuyRamActionModel {
             if let abiStr = EOSIO.getBuyRamAbi(EOSIOContract.EOSIOCode,
                                                action: action,
-                                               payer: WalletManager.shared.getAccount(),
-                                               receiver: WalletManager.shared.getAccount(),
+                                               payer: CurrencyManager.shared.getCurrentAccountName(),
+                                               receiver: CurrencyManager.shared.getCurrentAccountName(),
                                                quant: actionModel.amount + " " + NetworkConfiguration.EOSIODefaultSymbol) {
                 abi = abiStr
             }
         }
     case EOSAction.sellram.rawValue:
         if let actionModel = actionModel as? SellRamActionModel {
-            if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIOCode, action: action, account: WalletManager.shared.getAccount(), bytes: actionModel.amount.toBytes) {
+            if let abiStr = EOSIO.getSellRamAbi(EOSIOContract.EOSIOCode, action: action, account: CurrencyManager.shared.getCurrentAccountName(), bytes: actionModel.amount.toBytes) {
                 abi = abiStr
             }
         }
@@ -118,13 +104,13 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
         guard let voteModel = actionModel as? VoteProducerActionModel else {
             return ""
         }
-        let voter: [String: Any] = ["voter": WalletManager.shared.getAccount(), "proxy": "", "producers": voteModel.producers]
+        let voter: [String: Any] = ["voter": CurrencyManager.shared.getCurrentAccountName(), "proxy": "", "producers": voteModel.producers]
         let dic: [String: Any] = ["code": EOSIOContract.EOSIOCode, "action": action, "args": voter]
         abi = dic.jsonString()!
 
     case EOSAction.delegatebw.rawValue, EOSAction.undelegatebw.rawValue:
         if (UIApplication.shared.delegate as? AppDelegate) != nil {
-            if let vc = appCoodinator.homeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
+            if let vc = appCoodinator.newHomeCoordinator.rootVC.topViewController as? ResourceMortgageViewController {
                 var cpuValue = ""
                 var netValue = ""
 
@@ -198,7 +184,12 @@ func transaction(_ action: String, actionModel: ActionModel, callback:@escaping 
         EOSIONetwork.request(target: .abiJsonToBin(json: abi), success: { (binJson) in
             var transaction = ""
             let abiStr = binJson["binargs"].stringValue
-            var privakey = WalletManager.shared.getCachedPriKey(WalletManager.shared.currentPubKey, password: actionModel.password)
+
+            var privakey = ""
+            if let currency = CurrencyManager.shared.getCurrentCurrency(), let key = WalletManager.shared.getCachedPriKey(currency, password: actionModel.password)  {
+                privakey = key
+            }
+
             if action == EOSAction.transfer.rawValue {
                 transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TokenCode, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
             } else if action == EOSAction.bltTransfer.rawValue {

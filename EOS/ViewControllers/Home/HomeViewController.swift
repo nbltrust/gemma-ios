@@ -35,19 +35,18 @@ class HomeViewController: BaseViewController {
 
     override func refreshViewController() {
         if let wallet = WalletManager.shared.currentWallet() {
-            if wallet.creatStatus != WalletCreatStatus.creatSuccessed.rawValue {
-                self.coordinator?.checkAccount()
-            }
-            WalletManager.shared.fetchAccount { (_) in
-                self.coordinator?.getAccountInfo(WalletManager.shared.getAccount())
-            }
+//            if wallet.creatStatus != WalletCreatStatus.creatSuccessed.rawValue {
+//                self.coordinator?.checkAccount()
+//            }
+//            WalletManager.shared.fetchAccount { (_) in
+//                self.coordinator?.getAccountInfo(CurrencyManager.shared.getCurrentAccountName())
+//            }
         }
     }
 
     func setupBgImage() {
         if headImageView == nil {
             headImageView = UIImageView()
-            headImageView!.image = navBgImage()
             self.view.insertSubview(headImageView!, at: 0)
             headImageView!.top(to: self.view)
             headImageView!.left(to: self.view)
@@ -85,14 +84,14 @@ class HomeViewController: BaseViewController {
     }
 
     func updateUI() {
-        if WalletManager.shared.accountNames.count <= 1 {
+        if CurrencyManager.shared.getCurrentAccountNames().count <= 1 {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = true
         } else {
             tableHeaderView.nameAndImg.nameRightImgView.isHidden = false
         }
 
         if let wallet = WalletManager.shared.currentWallet() {
-            if let walletBackuped = wallet.isBackUp, walletBackuped {
+            if WalletManager.shared.isWalletCompleteBackup(wallet) {
                 tableHeaderView.backupLabelViewIsHidden = true
             } else {
                 tableHeaderView.backupLabelViewIsHidden = false
@@ -110,7 +109,7 @@ class HomeViewController: BaseViewController {
 
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
-            if model.account == WalletManager.shared.getAccount() {
+            if model.account == CurrencyManager.shared.getCurrentAccountName() {
                 self.tableHeaderView.data = model
                 self.updateUI()
 
@@ -201,8 +200,8 @@ extension HomeViewController: UIScrollViewDelegate {
         if scrollView.contentOffset.y > offsetY.cgFloat {
             if let nav = self.navigationController as? BaseNavigationController {
                 nav.navStyle = .common
-                let model = WalletManager.shared.getAccountModelsWithAccountName(name: WalletManager.shared.getAccount())
-                self.navigationItem.title = model?.accountName
+                let account = CurrencyManager.shared.getCurrentAccountName()
+                self.navigationItem.title = account
                 self.navigationController?.navigationBar.alpha = (scrollView.contentOffset.y - offsetY.cgFloat) / 44
             }
         } else {

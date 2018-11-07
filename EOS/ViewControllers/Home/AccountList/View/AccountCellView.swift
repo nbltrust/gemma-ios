@@ -15,18 +15,20 @@ class AccountCellView: UIView {
     var text = "" {
         didSet {
             textLabel.text = text
-            if text == WalletManager.shared.getAccount() {
-                textLabel.textColor = UIColor.whiteTwo
-                self.backgroundColor = UIColor.cornflowerBlue
+            if text == CurrencyManager.shared.getCurrentAccountName() {
+                self.backgroundColor = UIColor.borderColor
             } else {
-                textLabel.textColor = UIColor.darkSlateBlue
-                self.backgroundColor = UIColor.whiteTwo
+                self.backgroundColor = UIColor.whiteColor
             }
         }
     }
 
     func setUp() {
         updateHeight()
+    }
+
+    @objc func test() {
+        self.sendEventWith("didselectrow", userinfo: ["index": 0])
     }
 
     override var intrinsicContentSize: CGSize {

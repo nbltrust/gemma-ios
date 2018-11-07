@@ -25,8 +25,8 @@ enum EOSIOService {
     case getTableRows(json:String)
 
     //history
-    case getKeyAccounts(pubKey:String)
-    case getTransaction(id:String)
+    case getKeyAccounts(pubKey: String)
+    case getTransaction(id: String)
 }
 
 struct EOSIONetwork {
@@ -80,8 +80,9 @@ struct EOSIONetwork {
                     case .getTableRows:break
 
                     }
-
-                    MMKV.default().set(NSString.self, forKey: target.fetchCacheKey())
+                    if let str = json.rawString() {
+                        MMKV.default().set(str, forKey: target.fetchCacheKey())
+                    }
                     successCallback(json)
                 } catch _ {
                     do {

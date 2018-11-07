@@ -18,6 +18,8 @@ class InvitationCodeToActivateViewController: BaseViewController, IndicatorInfoP
 
     @IBOutlet weak var contentView: InvitationView!
 
+    var currencyID: Int64?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -133,8 +135,6 @@ extension InvitationCodeToActivateViewController {
     }
 
     @objc func nextClick(_ data: [String: Any]) {
-        self.coordinator?.createWallet(self.contentView.textfield.text!, completion: { (_) in
-
-        })
+        self.coordinator?.popToEntryVCWithInviteCode(self.contentView.textfield.text ?? "")
     }
 }

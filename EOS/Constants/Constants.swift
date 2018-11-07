@@ -174,3 +174,11 @@ struct Unit {
     static let USDUnit = "usdunit"
     static let RMBUnit = "rmbunit"
 }
+
+struct SupportCurrency {
+    static let data: [CurrencyType] = [CurrencyType.EOS,CurrencyType.ETH]
+}
+
+struct BLTSupportCurrency {
+    static let data: [CurrencyType] = [CurrencyType.EOS,CurrencyType.ETH]
+}

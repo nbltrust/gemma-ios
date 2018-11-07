@@ -51,35 +51,35 @@ class RichStyle {
 
         let introduceStyle = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
-            $0.color = UIColor.steel
+            $0.color = UIColor.introductionColor
             $0.lineSpacing = 4.0
         }
         Styles.register(StyleNames.introduce.rawValue, style: introduceStyle)
 
         let agreeStyle = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            $0.color = UIColor.blueyGrey
+            $0.color = UIColor.baseColor
         }
         Styles.register(StyleNames.agree.rawValue, style: agreeStyle)
 
         let agreementStyle = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            $0.color = UIColor.darkSlateBlue
-            $0.underline = (.single, UIColor.darkSlateBlue)
+            $0.color = UIColor.baseColor
+            $0.underline = (.single, UIColor.baseColor)
         }
         Styles.register(StyleNames.agreement.rawValue, style: agreementStyle)
 
         let comfirmContentStyle = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
-            $0.color = UIColor.blueyGrey
+            $0.color = UIColor.baseColor
             $0.lineSpacing = 8.0
         }
         Styles.register(StyleNames.comfirmContent.rawValue, style: comfirmContentStyle)
 
         let checkStyle = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            $0.color = UIColor.darkSlateBlue
-            $0.underline = (.single, UIColor.darkSlateBlue)
+            $0.color = UIColor.baseColor
+            $0.underline = (.single, UIColor.baseColor)
         }
         Styles.register(StyleNames.agreement.rawValue, style: checkStyle)
 
@@ -116,31 +116,31 @@ class RichStyle {
     func initLineViewStyle() {
         let nameStyle = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
-            $0.color = UIColor.darkSlateBlue
+            $0.color = UIColor.baseColor
         }
         Styles.register(LineViewStyleNames.normalName.rawValue, style: nameStyle)
 
         let selectNameStyle = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
-            $0.color = UIColor.whiteTwo
+            $0.color = UIColor.baseColor
         }
         Styles.register(LineViewStyleNames.selectName.rawValue, style: selectNameStyle)
 
         let contentStyle = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
-            $0.color = UIColor.cloudyBlue
+            $0.color = UIColor.placeholderColor
         }
         Styles.register(LineViewStyleNames.normalContent.rawValue, style: contentStyle)
 
         let confirmStyle = Style {
             $0.font = SystemFonts.PingFangSC_Semibold.font(size: 16.0)
-            $0.color = UIColor.darkSlateBlue
+            $0.color = UIColor.baseColor
         }
         Styles.register(LineViewStyleNames.transferConfirm.rawValue, style: confirmStyle)
 
         let confirmNameStyle = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
-            $0.color = UIColor.steel
+            $0.color = UIColor.baseLightColor
         }
         Styles.register(LineViewStyleNames.confirmName.rawValue, style: confirmNameStyle)
     }
@@ -148,7 +148,7 @@ class RichStyle {
     func initActivateLabelStyle() {
         let base = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            $0.color = UIColor.blueyGrey
+            $0.color = UIColor.introductionColor
         }
         //
         //        let bluey_grey = Style {
@@ -157,13 +157,13 @@ class RichStyle {
 
         let cornFlowerBlue = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            $0.color = UIColor.cornflowerBlue
+            $0.color = UIColor.introductionColor
         }
 
         let cornFlowerBlueUnderline = Style {
             $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            $0.color = UIColor.cornflowerBlue
-            $0.underline = (.single, UIColor.cornflowerBlue)
+            $0.color = UIColor.introductionColor
+            $0.underline = (.single, UIColor.introductionColor)
             $0.alignment = .center
         }
 

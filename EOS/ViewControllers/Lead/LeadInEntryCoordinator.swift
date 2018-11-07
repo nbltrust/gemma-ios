@@ -11,31 +11,26 @@ import ReSwift
 import NBLCommonModule
 
 protocol LeadInEntryCoordinatorProtocol {
+    func pushToScanVC()
 }
 
 protocol LeadInEntryStateManagerProtocol {
     var state: LeadInEntryState { get }
     
     func switchPageState(_ state:PageState)
+
+    func viewControllers() -> [UIViewController]
 }
 
 class LeadInEntryCoordinator: NavCoordinator {
     var store = Store(
         reducer: gLeadInEntryReducer,
         state: nil,
-        middleware:[TrackingMiddleware]
+        middleware:[trackingMiddleware]
     )
-    
+
     var state: LeadInEntryState {
         return store.state
-    }
-    
-    override class func start(_ root: BaseNavigationController, context:RouteContext? = nil) -> BaseViewController {
-        let vc = R.storyboard.<#name#>!
-        let coordinator = LeadInEntryCoordinator(rootVC: root)
-        vc.coordinator = coordinator
-        coordinator.store.dispatch(RouteContextAction(context: context))
-        return vc
     }
 
     override func register() {
@@ -45,7 +40,29 @@ class LeadInEntryCoordinator: NavCoordinator {
 }
 
 extension LeadInEntryCoordinator: LeadInEntryCoordinatorProtocol {
-    
+    func pushToScanVC() {
+        let context = ScanContext()
+        context.scanResult.accept { (result) in
+            if let entryVC = self.rootVC.topViewController as? LeadInEntryViewController {
+                switch entryVC.currentIndex {
+                case 0:
+                    if let mnemonicVC = entryVC.viewControllers[0] as? LeadInMnemonicViewController {
+                        mnemonicVC.mnemonicView.textView.text = result
+                    }
+                case 1:
+                    if let priKeyVC = entryVC.viewControllers[1] as? LeadInKeyViewController {
+                        priKeyVC.leadInKeyView.textView.text = result
+                    }
+                default:
+                    return
+                }
+            }
+        }
+
+        presentVC(ScanCoordinator.self, context: context, navSetup: { (nav) in
+            nav.navStyle = .clear
+        }, presentSetup: nil)
+    }
 }
 
 extension LeadInEntryCoordinator: LeadInEntryStateManagerProtocol {
@@ -53,5 +70,17 @@ extension LeadInEntryCoordinator: LeadInEntryStateManagerProtocol {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
+    }
+
+    func viewControllers() -> [UIViewController] {
+        let mnemonicCoor = LeadInMnemonicCoordinator.init(rootVC: self.rootVC)
+        let mnemonicVC = R.storyboard.leadIn.leadInMnemonicViewController()!
+        mnemonicVC.coordinator = mnemonicCoor
+
+        let priKeyCoor = LeadInKeyCoordinator.init(rootVC: self.rootVC)
+        let leadInKeyVC = R.storyboard.leadIn.leadInKeyViewController()!
+        leadInKeyVC.coordinator = priKeyCoor
+
+        return [mnemonicVC, leadInKeyVC]
     }
 }

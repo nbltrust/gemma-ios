@@ -61,7 +61,7 @@ class TransferConfirmPasswordCoordinator: NavCoordinator {
 
 extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinatorProtocol {
     func finishTransfer() {
-        if let transferCoor = appCoodinator.transferCoordinator, let transferVC = transferCoor.rootVC.topViewController as? TransferViewController {
+        if let newHomeCoor = appCoodinator.newHomeCoordinator, let transferVC = newHomeCoor.rootVC.topViewController as? TransferViewController {
             self.rootVC.dismiss(animated: true) {
                 transferVC.resetData()
             }
@@ -69,7 +69,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
     }
 
     func finishMortgage() {
-        if let mortgageCoor = appCoodinator.homeCoordinator, let mortgageVC = mortgageCoor.rootVC.topViewController as? ResourceMortgageViewController {
+        if let newHomeCoor = appCoodinator.newHomeCoordinator, let mortgageVC = newHomeCoor.rootVC.topViewController as? ResourceMortgageViewController {
             self.rootVC.dismiss(animated: true) {
                 mortgageVC.resetData()
             }
@@ -77,7 +77,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
     }
 
     func finishBuyRam() {
-        if let coor = appCoodinator.homeCoordinator, let vc = coor.rootVC.topViewController as? BuyRamViewController {
+        if let newHomeCoor = appCoodinator.newHomeCoordinator, let vc = newHomeCoor.rootVC.topViewController as? BuyRamViewController {
             self.rootVC.dismiss(animated: true) {
                 vc.resetData()
             }
@@ -85,7 +85,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordCoordinator
     }
 
     func finishVoteNode() {
-        if let coor = appCoodinator.homeCoordinator, let vc = coor.rootVC.topViewController as? VoteViewController {
+        if let newHomeCoor = appCoodinator.newHomeCoordinator, let vc = newHomeCoor.rootVC.topViewController as? VoteViewController {
             self.rootVC.dismiss(animated: true) {
                 vc.coordinator?.popVC()
             }
@@ -120,7 +120,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = TransferActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.transfer_successed.key.localized()
         model.faile = R.string.localizable.transfer_failed.key.localized()
         model.amount = amount
@@ -134,7 +134,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = TransferActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.transfer_successed.key.localized()
         model.faile = R.string.localizable.transfer_failed.key.localized()
         model.amount = amount
@@ -150,7 +150,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = DelegateActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.mortgage_success.key.localized()
         model.faile = R.string.localizable.mortgage_failed.key.localized()
         transaction(EOSAction.delegatebw.rawValue, actionModel: model) { (bool, showString) in
@@ -162,7 +162,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = UnDelegateActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.cancel_mortgage_success.key.localized()
         model.faile = R.string.localizable.cancel_mortgage_failed.key.localized()
         transaction(EOSAction.undelegatebw.rawValue, actionModel: model) { (bool, showString) in
@@ -174,7 +174,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = BuyRamActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.buy_ram_success.key.localized()
         model.faile = R.string.localizable.buy_ram_faile.key.localized()
         model.amount = amount
@@ -187,7 +187,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = SellRamActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.sell_ram_success.key.localized()
         model.faile = R.string.localizable.sell_ram_faile.key.localized()
         model.amount = amount
@@ -200,7 +200,7 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         let model = VoteProducerActionModel()
         model.password = password
         model.toAccount = account
-        model.fromAccount = WalletManager.shared.getAccount()
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.vote_successed.key.localized()
         model.faile = R.string.localizable.vote_failed.key.localized()
         model.producers = producers

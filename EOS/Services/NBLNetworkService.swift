@@ -37,12 +37,13 @@ enum CreateAPPId: Int, Codable {
 enum NBLService {
     case createAccount(type: CreateAPPId, account:String, pubKey:String, invitationCode:String, validation:WookongValidation?)
     case accountVerify(account:String)
-    case accountHistory(account:String, showNum:Int, lastPosition:Int)
+    case accountHistory(account:String, showNum:Int, lastPosition:Int, symbol: String, contract: String)
     case producer(showNum:Int)
     case initOrder(account:String, pubKey:String, platform:String, clientIP: String, serialNumber:String)
     case getBill
     case place(orderId: String)
     case getOrder(orderId: String)
+    case getTokens(account: String)
 }
 
 func defaultManager() -> Alamofire.SessionManager {
@@ -114,8 +115,8 @@ extension NBLService: TargetType {
             return "/api/v1/account/new"
         case let .accountVerify(account):
             return "/api/v1/account/verify/\(account)"
-        case let .accountHistory(account, showNum, lastPosition):
-            return "/api/v1/account/history/\(account)/\(lastPosition)/\(showNum)"
+        case .accountHistory:
+            return "/api/v1/account/history"
         case let .producer(showNum):
             return "/api/v1/producer/\(showNum)"
         case .initOrder:
@@ -126,6 +127,8 @@ extension NBLService: TargetType {
             return "/api/v1/pay/order/\(orderId)/place"
         case let .getOrder(orderId):
             return "/api/v1/pay/order/\(orderId)"
+        case .getTokens(let account):
+            return "/api/v1/account/tokens/\(account)"
         }
     }
 
@@ -147,6 +150,8 @@ extension NBLService: TargetType {
             return .post
         case .getOrder:
             return .get
+        case .getTokens:
+            return .get
         }
     }
 
@@ -164,8 +169,8 @@ extension NBLService: TargetType {
             return map
         case .accountVerify:
             return [:]
-        case .accountHistory:
-            return [:]
+        case let .accountHistory(account, page, size, symbol, contract):
+            return ["account": account, "page": page, "size": size, "symbol": symbol, "contract": contract]
         case .producer:
             return [:]
         case let .initOrder(account, pubKey, platform, clientIP, serialNumber):
@@ -175,6 +180,8 @@ extension NBLService: TargetType {
         case .place:
             return [:]
         case .getOrder:
+            return [:]
+        case .getTokens:
             return [:]
         }
     }
@@ -186,7 +193,7 @@ extension NBLService: TargetType {
         case .accountVerify:
             return .requestPlain
         case .accountHistory:
-            return .requestPlain
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case .producer:
             return .requestPlain
         case .initOrder:
@@ -196,6 +203,8 @@ extension NBLService: TargetType {
         case .place:
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .getOrder:
+            return .requestPlain
+        case .getTokens:
             return .requestPlain
         }
     }

@@ -41,7 +41,7 @@ class ContainerNormalCellView: UIView {
                     cellView.nameText = item
                     cellView.state = 1
                     cellView.tag = (index + 1)
-                    cellView.backgroundColor = UIColor.whiteTwo89
+                    cellView.backgroundColor = UIColor.whiteColor
                     cellView.nameStyle = LineViewStyleNames.normalName.rawValue
                     cellView.rightIconName = index == self.selectedIndex ? R.image.group.name : R.image.select.name
                     if index == data.count - 1 {

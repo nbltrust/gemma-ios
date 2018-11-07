@@ -75,8 +75,8 @@ extension WalletDetailCoordinator: WalletDetailStateManagerProtocol {
 
     func formmat() {
         BLTWalletIO.shareInstance()?.formmart({
-            if let pub = WalletManager.shared.currentWallet()?.publicKey {
-                WalletManager.shared.removeWallet(pub)
+            if let wallet = WalletManager.shared.currentWallet() {
+                WalletManager.shared.removeWallet(wallet)
             }
         }, failed: { (reason) in
             if let failedReason = reason {
