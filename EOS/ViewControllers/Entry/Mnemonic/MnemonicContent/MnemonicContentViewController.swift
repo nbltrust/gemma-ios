@@ -11,7 +11,8 @@ import RxSwift
 import RxCocoa
 import ReSwift
 import NBLCommonModule
-import seed39_ios_golang
+//import seed39_ios_golang
+import Seed39
 
 class MnemonicContentViewController: BaseViewController {
 

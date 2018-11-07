@@ -13,6 +13,7 @@ import NBLCommonModule
 import seed39_ios_golang
 import eos_ios_core_cpp
 import SwiftyUserDefaults
+import Seed39
 
 protocol EntryCoordinatorProtocol {
     func pushToServiceProtocolVC()

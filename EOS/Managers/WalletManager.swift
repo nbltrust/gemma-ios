@@ -14,6 +14,7 @@ import Repeat
 import SwiftDate
 import eos_ios_core_cpp
 import seed39_ios_golang
+import Seed39
 
 class WalletManager {
     static let shared = WalletManager()

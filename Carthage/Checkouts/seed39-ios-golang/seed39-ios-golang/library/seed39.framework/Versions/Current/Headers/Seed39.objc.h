@@ -10,6 +10,8 @@
 #include "Universe.objc.h"
 
 
+FOUNDATION_EXPORT BOOL Seed39CheckMnemonic(NSString* mnemonic);
+
 /**
  * DeriveRaw exported
  */

@@ -15,6 +15,3 @@ FOUNDATION_EXPORT double seed39_ios_golangVersionNumber;
 FOUNDATION_EXPORT const unsigned char seed39_ios_golangVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <seed39_ios_golang/PublicHeader.h>
-
-
-@import Seed39;
