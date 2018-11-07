@@ -9,7 +9,7 @@
 import Foundation
 
 extension ReceiptView {
-    func adapterModelToReceiptView(_ model:<#Type#>) {
-        
-    }
+//    func adapterModelToReceiptView(_ model:<#Type#>) {
+//        
+//    }
 }

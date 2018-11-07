@@ -65,11 +65,11 @@ class CardView: UIView {
 
     func setProgressUI(progress: UIProgressView) {
         if progress.progress >= 0.85 {
-            progress.tintColor = UIColor.introductionColor
-            progress.backgroundColor = UIColor.separatorColor
-        } else {
             progress.tintColor = UIColor.warningColor
-            progress.backgroundColor = UIColor.separatorColor
+            progress.backgroundColor = UIColor.warningColor
+        } else {
+            progress.tintColor = UIColor.baseColor
+            progress.backgroundColor = UIColor.baseColor
         }
     }
     
