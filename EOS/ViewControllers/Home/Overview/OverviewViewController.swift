@@ -33,9 +33,7 @@ class OverviewViewController: BaseViewController {
     }
     
     override func refreshViewController() {
-        self.coordinator?.pushAccountList {
 
-        }
     }
     
     func setupUI() {

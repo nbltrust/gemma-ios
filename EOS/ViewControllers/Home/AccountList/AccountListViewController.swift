@@ -51,8 +51,11 @@ class AccountListViewController: BaseViewController {
 extension AccountListViewController {
     @objc func didselectrow(_ data: [String: Any]) {
         let index = data["index"] as? Int
-//        WalletManager.shared.switchAccount(index ?? 0)
-        self.coordinator?.dismissListVC()
+        if let currencyId = CurrencyManager.shared.getCurrentCurrencyID() {
+            CurrencyManager.shared.saveAccountNameWith(currencyId, name: CurrencyManager.shared.getCurrentAccountNames()[index!])
+            self.coordinator?.dismissListVC()
+        }
+
 
     }
 }
