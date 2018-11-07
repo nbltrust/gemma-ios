@@ -55,7 +55,5 @@ extension AccountListViewController {
             CurrencyManager.shared.saveAccountNameWith(currencyId, name: CurrencyManager.shared.getCurrentAccountNames()[index!])
             self.coordinator?.dismissListVC()
         }
-
-
     }
 }
