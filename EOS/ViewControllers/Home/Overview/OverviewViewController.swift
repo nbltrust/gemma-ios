@@ -45,7 +45,8 @@ class OverviewViewController: BaseViewController {
         rightItemView?.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.coordinator?.pushAccountList({
-                self.reloadAccountView()
+                self.refreshData()
+
             })
         }).disposed(by: disposeBag)
         self.reloadAccountView()
@@ -66,7 +67,12 @@ class OverviewViewController: BaseViewController {
             coordinator?.getAccountInfo(name)
         }
     }
-    
+
+    func refreshData() {
+        setupData()
+        reloadAccountView()
+    }
+
     func setupEvent() {
         
     }

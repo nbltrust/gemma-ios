@@ -18,7 +18,8 @@ extension AssetsView {
             if model.name == "EOS" {
                 self.iconView.image = R.image.eos()
             } else {
-                self.iconView.image = R.image.eos()
+                self.iconView.kf.setImage(with: URL(string: model.iconUrl), placeholder: R.image.icTokenUnknown())
+
             }
         }
     }

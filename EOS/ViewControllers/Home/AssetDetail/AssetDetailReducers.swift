@@ -54,13 +54,13 @@ func convertTransferViewModel(data: [Payment], dict: [String: [PaymentsRecordsVi
     var newdict = dict
     var modelArray: [PaymentsRecordsViewModel] = []
     for payment in data {
-        let isSend: Bool = payment.from == CurrencyManager.shared.getCurrentAccountName()
-        let state: Bool = payment.status.rawValue == 3
+        let isSend: Bool = payment.sender == CurrencyManager.shared.getCurrentAccountName()
+        let state: Bool = true//payment.status.rawValue == 3
         let stateImage: UIImage? = isSend ? R.image.icSend() : R.image.icIncome()
-        let address = isSend ? payment.to : payment.from
-        let time = payment.time.string(withFormat: "MM-dd yyyy")
-        let transferState = payment.status.description()
-        let money = isSend ? "-" + payment.value : "+" + payment.value
+        let address = isSend ? payment.receiver : payment.sender
+        let time = payment.timestamp.string(withFormat: "MM-dd yyyy")
+        let transferState = "payment.status.description()"
+        let money = isSend ? "-" + payment.quantity : "+" + payment.quantity
 
         if newdict.keys.contains(time) {
             modelArray = newdict[time]!
@@ -73,10 +73,10 @@ func convertTransferViewModel(data: [Payment], dict: [String: [PaymentsRecordsVi
                                                    transferState: transferState,
                                                    money: money,
                                                    transferStateBool: state,
-                                                   block: payment.block,
+                                                   block: 0,
                                                    memo: payment.memo,
-                                                   hashNumber: payment.hash.hashNano,
-                                                   hash: payment.hash))
+                                                   hashNumber: payment.trxId.hashNano,
+                                                   hash: payment.trxId))
         newdict[time] = modelArray
     }
     return newdict

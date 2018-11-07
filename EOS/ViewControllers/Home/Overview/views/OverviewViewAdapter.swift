@@ -21,6 +21,8 @@ extension OverviewView {
         newModel.name = model.currency
         newModel.total = model.allAssets
         newModel.CNY = model.CNY
+        newModel.contract = EOSIOContract.TokenCode
+        newModel.balance = model.balance.components(separatedBy: " ")[0]
         self.firstAssetData = newModel
     }
 }

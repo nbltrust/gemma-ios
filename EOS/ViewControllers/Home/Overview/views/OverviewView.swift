@@ -35,34 +35,40 @@ class OverviewView: EOSBaseView {
 
     var assetDataArray: [AssetViewModel]? {
         didSet {
-            if assetDataArray != nil {
-
-                if let data = firstAssetData {
-                    let isContain = assetDataArray?.contains(where: { (value) -> Bool in
-                        value.name == data.name
-                    })
-                    if isContain == false {
-                        assetDataArray?.insert(data, at: 0)
-                    }
-                }
+//            if assetDataArray != nil {
+//
+//                if let data = firstAssetData {
+//                    let isContain = assetDataArray?.contains(where: { (value) -> Bool in
+//                        value.name == data.name
+//                    })
+//                    if isContain == false {
+//                        assetDataArray?.insert(data, at: 0)
+//                    } else {
+//                        assetDataArray?.remove(at: 0)
+//                        assetDataArray?.insert(data, at: 0)
+//                    }
+//                }
                 tableView.reloadData()
-            }
+//            }
         }
     }
 
     var firstAssetData: AssetViewModel? {
         didSet {
-            if assetDataArray != nil {
-                if let data = firstAssetData {
-                    let isContain = assetDataArray?.contains(where: { (value) -> Bool in
-                        value.name == data.name
-                    })
-                    if isContain == false {
-                        assetDataArray?.insert(data, at: 0)
-                    }
-                }
+//            if assetDataArray != nil {
+//                if let data = firstAssetData {
+//                    let isContain = assetDataArray?.contains(where: { (value) -> Bool in
+//                        value.name == data.name
+//                    })
+//                    if isContain == false {
+//                        assetDataArray?.insert(data, at: 0)
+//                    } else {
+//                        assetDataArray?.remove(at: 0)
+//                        assetDataArray?.insert(data, at: 0)
+//                    }
+//                }
                 tableView.reloadData()
-            }
+//            }
         }
     }
 
@@ -90,10 +96,14 @@ class OverviewView: EOSBaseView {
 
 extension OverviewView: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let data = assetDataArray {
-            return data.count
+        var count = 0
+        if let _ = firstAssetData {
+            count += 1
         }
-        return 0
+        if let data = assetDataArray {
+            count += data.count
+        }
+        return count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -117,9 +127,14 @@ extension OverviewView: UITableViewDelegate,UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: AssetCell.self), for: indexPath) as? AssetCell else {
             return UITableViewCell()
         }
-        if let data = assetDataArray {
-            cell.setup(data[indexPath.row], indexPath: indexPath)
+        if indexPath.row == 0 {
+            cell.setup(firstAssetData, indexPath: indexPath)
+        } else {
+            if let data = assetDataArray {
+                cell.setup(data[indexPath.row-1], indexPath: indexPath)
+            }
         }
+
         return cell
     }
 }

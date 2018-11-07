@@ -20,6 +20,9 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
             } else {
                 viewmodel.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
             }
+            viewmodel.allAssets = calculateTotalAsset(viewmodel)
+            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+
             state.info.accept(viewmodel)
         } else {
             var viewmodel = NewHomeViewModel()

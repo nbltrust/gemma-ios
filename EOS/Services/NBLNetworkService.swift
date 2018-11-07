@@ -115,8 +115,8 @@ extension NBLService: TargetType {
             return "/api/v1/account/new"
         case let .accountVerify(account):
             return "/api/v1/account/verify/\(account)"
-        case let .accountHistory(account, showNum, lastPosition, symbol, contract):
-            return "/api/v1/account/history?account={\(account)}&page={\(lastPosition)}&size={\(showNum)}&symbol={\(symbol)}&contract={\(contract)}"
+        case .accountHistory:
+            return "/api/v1/account/history"
         case let .producer(showNum):
             return "/api/v1/producer/\(showNum)"
         case .initOrder:
@@ -169,8 +169,8 @@ extension NBLService: TargetType {
             return map
         case .accountVerify:
             return [:]
-        case .accountHistory:
-            return [:]
+        case let .accountHistory(account, page, size, symbol, contract):
+            return ["account": account, "page": page, "size": size, "symbol": symbol, "contract": contract]
         case .producer:
             return [:]
         case let .initOrder(account, pubKey, platform, clientIP, serialNumber):
@@ -193,7 +193,7 @@ extension NBLService: TargetType {
         case .accountVerify:
             return .requestPlain
         case .accountHistory:
-            return .requestPlain
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         case .producer:
             return .requestPlain
         case .initOrder:
