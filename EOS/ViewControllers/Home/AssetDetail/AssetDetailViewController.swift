@@ -18,7 +18,9 @@ class AssetDetailViewController: BaseViewController {
     private(set) var context: AssetDetailContext?
     var data: [String: [PaymentsRecordsViewModel]] = [:]
     var isNoMoreData: Bool = false
-    
+    var symbol: String = ""
+    var contract: String = ""
+
 	override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,13 +42,18 @@ class AssetDetailViewController: BaseViewController {
     }
 
     func setupData() {
-        
+        if let name = self.context?.model.name {
+            symbol = name
+        }
+        if let con = self.context?.model.contract {
+            contract = con
+        }
     }
     
     func setupEvent() {
         self.startLoading()
 
-        self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: (context?.model.name)!, contract: "eosio", completion: {[weak self] (success) in
+        self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: symbol, contract: contract, completion: {[weak self] (success) in
             guard let `self` = self else { return }
             if success {
                 self.endLoading()
@@ -70,7 +77,7 @@ class AssetDetailViewController: BaseViewController {
             guard let `self` = self else {return}
             self.coordinator?.removeStateData()
 
-            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: (self.context?.model.name)!, contract: "eosio", completion: {[weak self] (success) in
+            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: self.symbol, contract: self.contract, completion: {[weak self] (success) in
                 guard let `self` = self else {return}
 
                 if success {
@@ -96,7 +103,7 @@ class AssetDetailViewController: BaseViewController {
                 completion?(true)
                 return
             }
-            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: (self.context?.model.name)!, contract: "eosio", completion: { [weak self](_) in
+            self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: self.symbol, contract: self.contract, completion: { [weak self](_) in
                 guard let `self` = self else {return}
                 if (self.coordinator?.state.payments.count)! < 10 {
                     self.isNoMoreData = true

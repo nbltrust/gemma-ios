@@ -11,7 +11,6 @@ import Foundation
 struct AccountSwitchModel {
     var name = ""
     var more: Bool = false
-    var canClick: Bool = false
 }
 
 extension AccountSwitchView {

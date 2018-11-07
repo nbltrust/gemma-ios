@@ -33,11 +33,18 @@ class OverviewViewController: BaseViewController {
     }
     
     override func refreshViewController() {
-        
+        self.coordinator?.pushAccountList {
+
+        }
     }
     
     func setupUI() {
-//        configRightCustomView(<#T##view: UIView##UIView#>)
+        let view = AccountSwitchView()
+        var model = AccountSwitchModel()
+        model.name = CurrencyManager.shared.getCurrentAccountName()
+        model.more = CurrencyManager.shared.getCurrentAccountNames().count > 1
+        view.adapterModelToAccountSwitchView(model)
+        configRightCustomView(view)
     }
 
     func setupData() {
@@ -153,5 +160,11 @@ extension OverviewViewController {
             self.coordinator?.pushToDetailVC(model)
         }
     }
+    @objc func accountSwitchViewDidClicked(_ data:[String: Any]) {
+        self.coordinator?.pushAccountList({
+            
+        })
+    }
+
 }
 

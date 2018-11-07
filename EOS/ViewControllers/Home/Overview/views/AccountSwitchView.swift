@@ -35,7 +35,7 @@ class AccountSwitchView: EOSBaseView {
     
     @objc override func didClicked() {
         if let model = data as? AccountSwitchModel {
-            if model.canClick {
+            if model.more {
                 self.next?.sendEventWith(Event.accountSwitchViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
             }
         }

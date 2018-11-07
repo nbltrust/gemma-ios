@@ -116,7 +116,7 @@ extension NBLService: TargetType {
         case let .accountVerify(account):
             return "/api/v1/account/verify/\(account)"
         case let .accountHistory(account, showNum, lastPosition, symbol, contract):
-            return "/api/v1/account/history?account={\(account)}&page={\(lastPosition)}&size={\(showNum)}&symbol={symbol}&contract={contract"
+            return "/api/v1/account/history?account={\(account)}&page={\(lastPosition)}&size={\(showNum)}&symbol={\(symbol)}&contract={\(contract)}"
         case let .producer(showNum):
             return "/api/v1/producer/\(showNum)"
         case .initOrder:

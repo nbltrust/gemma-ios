@@ -9,9 +9,11 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
+import Presentr
 
 protocol OverviewCoordinatorProtocol {
     func pushToDetailVC(_ model: AssetViewModel)
+    func pushAccountList(_ complication: CompletionCallback)
 }
 
 protocol OverviewStateManagerProtocol {
@@ -53,6 +55,22 @@ extension OverviewCoordinator: OverviewCoordinatorProtocol {
         var context = AssetDetailContext()
         context.model = model
         self.pushVC(AssetDetailCoordinator.self, animated: true, context: context)
+    }
+
+    func pushAccountList(_ complication: () -> Void) {
+        let width = ModalSize.full
+        let height = ModalSize.custom(size: 272)
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 272))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+
+        let presenter = Presentr(presentationType: customType)
+        presenter.keyboardTranslationType = .stickToTop
+
+        presentVC(AccountListCoordinator.self, animated: true, context: nil, navSetup: { (nav) in
+            nav.navStyle = .common
+        }) { (top, target) in
+            top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
+        }
     }
 }
 
