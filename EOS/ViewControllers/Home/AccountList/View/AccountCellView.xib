@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,14 +21,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2W-GB-ax4">
-                    <rect key="frame" x="15" y="14.5" width="41.5" height="19.5"/>
+                    <rect key="frame" x="20" y="14.5" width="41.5" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" name="baseColor" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="C2W-GB-ax4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="Bgt-5D-uID"/>
+                <constraint firstItem="C2W-GB-ax4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Bgt-5D-uID"/>
                 <constraint firstItem="C2W-GB-ax4" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gYz-Lq-DCZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -41,4 +41,6 @@
             <point key="canvasLocation" x="21" y="-55"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>
