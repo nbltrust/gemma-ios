@@ -15,14 +15,18 @@ import SwiftyUserDefaults
 class OverviewViewController: BaseViewController {
 
 	var coordinator: (OverviewCoordinatorProtocol & OverviewStateManagerProtocol)?
+
     private(set) var context: OverviewContext?
+
     @IBOutlet weak var contentView: OverviewView!
-    
+
+    var rightItemView: AccountSwitchView?
+
     var currencyID: Int64?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupData()
         setupUI()
         setupEvent()
@@ -35,14 +39,24 @@ class OverviewViewController: BaseViewController {
     override func refreshViewController() {
 
     }
-    
+
     func setupUI() {
-        let view = AccountSwitchView()
+        rightItemView = AccountSwitchView()
+        rightItemView?.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
+            guard let `self` = self else { return }
+            self.coordinator?.pushAccountList({
+                self.reloadAccountView()
+            })
+        }).disposed(by: disposeBag)
+        self.reloadAccountView()
+        configRightCustomView(view)
+    }
+
+    func reloadAccountView() {
         var model = AccountSwitchModel()
         model.name = CurrencyManager.shared.getCurrentAccountName()
         model.more = CurrencyManager.shared.getCurrentAccountNames().count > 1
-        view.adapterModelToAccountSwitchView(model)
-        configRightCustomView(view)
+        rightItemView?.adapterModelToAccountSwitchView(model)
     }
 
     func setupData() {
@@ -55,7 +69,7 @@ class OverviewViewController: BaseViewController {
     func setupEvent() {
         
     }
-    
+
     override func configureObserveState() {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
@@ -135,34 +149,12 @@ class OverviewViewController: BaseViewController {
     }
 }
 
-//MARK: - TableViewDelegate
 
-//extension OverviewViewController: UITableViewDataSource, UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 10
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//          let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.<#cell#>.name, for: indexPath) as! <#cell#>
-//
-//        return cell
-//    }
-//}
-
-
-//MARK: - View Event
-
+//MARK:View Event
 extension OverviewViewController {
-    @objc func assetsViewDidClicked(_ data:[String: Any]) {
+    @objc func assetsViewDidClicked(_ data: [String: Any]) {
         if let model = data["data"] as? AssetViewModel {
             self.coordinator?.pushToDetailVC(model)
         }
     }
-    @objc func accountSwitchViewDidClicked(_ data:[String: Any]) {
-        self.coordinator?.pushAccountList({
-            
-        })
-    }
-
 }
-

@@ -37,7 +37,8 @@ extension UIViewController {
 
     func configRightCustomView(_ view: UIView) {
         view.width = 48
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: view)
+        let item = UIBarButtonItem.init(customView: view)
+        navigationItem.rightBarButtonItem = item
         self.navigationItem.rightMargin = 0
     }
 

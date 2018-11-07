@@ -15,7 +15,6 @@ struct AccountSwitchModel {
 
 extension AccountSwitchView {
     func adapterModelToAccountSwitchView(_ model: AccountSwitchModel) {
-        self.data = model
         nameLabel.text = model.name
         dropView.isHidden = !model.more
     }
