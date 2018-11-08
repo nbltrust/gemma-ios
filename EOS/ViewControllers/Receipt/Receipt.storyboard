@@ -27,11 +27,14 @@
                         <constraints>
                             <constraint firstItem="IbV-7y-KYM" firstAttribute="leading" secondItem="eZ6-Q2-GO2" secondAttribute="leading" id="G5P-Jz-70T"/>
                             <constraint firstItem="eZ6-Q2-GO2" firstAttribute="trailing" secondItem="IbV-7y-KYM" secondAttribute="trailing" id="JSw-fg-jA2"/>
-                            <constraint firstItem="eZ6-Q2-GO2" firstAttribute="bottom" secondItem="IbV-7y-KYM" secondAttribute="bottom" id="YDb-0D-hro"/>
+                            <constraint firstItem="IbV-7y-KYM" firstAttribute="bottom" secondItem="eZ6-Q2-GO2" secondAttribute="bottom" id="c4W-0b-gi4"/>
                             <constraint firstItem="IbV-7y-KYM" firstAttribute="top" secondItem="eZ6-Q2-GO2" secondAttribute="top" id="eQV-P2-UlD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eZ6-Q2-GO2"/>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="IbV-7y-KYM" id="nYf-C6-8J5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKH-kx-bIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

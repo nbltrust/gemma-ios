@@ -16,7 +16,9 @@ class ReceiptViewController: BaseViewController {
 	var coordinator: (ReceiptCoordinatorProtocol & ReceiptStateManagerProtocol)?
     private(set) var context: ReceiptContext?
     
-	override func viewDidLoad() {
+    @IBOutlet weak var contentView: ReceiptView!
+
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         setupData()
@@ -33,11 +35,13 @@ class ReceiptViewController: BaseViewController {
     }
     
     func setupUI() {
-        
+        self.title = R.string.localizable.receipt.key.localized()
     }
 
     func setupData() {
-        
+        if let model = context?.model {
+            self.contentView.adapterModelToReceiptView(model)
+        }
     }
     
     func setupEvent() {
@@ -54,57 +58,57 @@ class ReceiptViewController: BaseViewController {
             
         }).disposed(by: disposeBag)
         
-        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
-            guard let `self` = self else { return }
-            
-            self.endLoading()
-            
-            switch state {
-            case .initial:
-                self.coordinator?.switchPageState(PageState.refresh(type: PageRefreshType.initial))
-                
-            case .loading(let reason):
-                if reason == .initialRefresh {
-                    self.startLoading()
-                }
-                
-            case .refresh(let type):
-                self.coordinator?.switchPageState(.loading(reason: type.mapReason()))
-                
-            case .loadMore(let page):
-                self.coordinator?.switchPageState(.loading(reason: PageLoadReason.manualLoadMore))
-                
-            case .noMore:
-//                self.stopInfiniteScrolling(self.tableView, haveNoMore: true)
-                break
-                
-            case .noData:
-//                self.view.showNoData(<#title#>, icon: <#imageName#>)
-                break
-                
-            case .normal(_):
-//                self.view.hiddenNoData()
-//
-//                if reason == PageLoadReason.manualLoadMore {
-//                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
+//        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
+//            guard let `self` = self else { return }
+//            
+//            self.endLoading()
+//            
+//            switch state {
+//            case .initial:
+//                self.coordinator?.switchPageState(PageState.refresh(type: PageRefreshType.initial))
+//                
+//            case .loading(let reason):
+//                if reason == .initialRefresh {
+//                    self.startLoading()
 //                }
-//                else if reason == PageLoadReason.manualRefresh {
-//                    self.stopPullRefresh(self.tableView)
-//                }
-                break
-                
-            case .error(_, _):
-//                self.showToastBox(false, message: error.localizedDescription)
-                
-//                if reason == PageLoadReason.manualLoadMore {
-//                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
-//                }
-//                else if reason == PageLoadReason.manualRefresh {
-//                    self.stopPullRefresh(self.tableView)
-//                }
-                break
-            }
-        }).disposed(by: disposeBag)
+//                
+//            case .refresh(let type):
+//                self.coordinator?.switchPageState(.loading(reason: type.mapReason()))
+//                
+//            case .loadMore(let page):
+//                self.coordinator?.switchPageState(.loading(reason: PageLoadReason.manualLoadMore))
+//                
+//            case .noMore:
+////                self.stopInfiniteScrolling(self.tableView, haveNoMore: true)
+//                break
+//                
+//            case .noData:
+////                self.view.showNoData(<#title#>, icon: <#imageName#>)
+//                break
+//                
+//            case .normal(_):
+////                self.view.hiddenNoData()
+////
+////                if reason == PageLoadReason.manualLoadMore {
+////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
+////                }
+////                else if reason == PageLoadReason.manualRefresh {
+////                    self.stopPullRefresh(self.tableView)
+////                }
+//                break
+//                
+//            case .error(_, _):
+////                self.showToastBox(false, message: error.localizedDescription)
+//                
+////                if reason == PageLoadReason.manualLoadMore {
+////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
+////                }
+////                else if reason == PageLoadReason.manualRefresh {
+////                    self.stopPullRefresh(self.tableView)
+////                }
+//                break
+//            }
+//        }).disposed(by: disposeBag)
     }
 }
 
@@ -125,11 +129,9 @@ class ReceiptViewController: BaseViewController {
 
 //MARK: - View Event
 
-//extension ReceiptViewController {
-//    @objc func <#view#>DidClicked(_ data:[String: Any]) {
-//        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
-//
-//        }
-//    }
-//}
+extension ReceiptViewController {
+    @objc func copyLabelDidClicked(_ data:[String: Any]) {
+        
+    }
+}
 

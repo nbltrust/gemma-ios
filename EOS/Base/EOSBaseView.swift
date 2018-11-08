@@ -145,13 +145,6 @@ class EOSBaseView: UIControl {
         setup()
     }
 
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-
-        loadViewFromNib()
-        setup()
-    }
-
     fileprivate func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nibName = String(describing: type(of: self))
