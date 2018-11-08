@@ -12,20 +12,16 @@ class PaymentsRecordsCellView: UIView {
 
     @IBOutlet weak var state: UIImageView!
     @IBOutlet weak var address: UILabel!
-    @IBOutlet weak var time: UILabel!
     @IBOutlet weak var transferState: UILabel!
     @IBOutlet weak var money: UILabel!
-    @IBOutlet weak var transferStateView: UIView!
 
     var data: Any? {
         didSet {
             guard let newData = data as? PaymentsRecordsViewModel else { return }
             state.image = newData.stateImageName
             address.text = newData.address
-            time.text = newData.time
             transferState.text = newData.transferState
             money.text = newData.money
-            transferStateView.isHidden = newData.transferStateBool
             updateHeight()
         }
     }

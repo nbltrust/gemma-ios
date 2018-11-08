@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="USb-9T-ucd">
-                    <rect key="frame" x="0.0" y="0.0" width="358" height="422"/>
+                    <rect key="frame" x="0.0" y="0.0" width="358" height="421"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="6fV-vj-nqu" customClass="AssetDetailHeadView" customModule="EOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="358" height="292"/>
@@ -86,6 +86,13 @@
                         <constraint firstAttribute="trailing" secondItem="J6O-eN-uOr" secondAttribute="trailing" id="nzO-DC-fcU"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cJ-Od-WeK">
+                    <rect key="frame" x="0.0" y="421" width="358" height="1"/>
+                    <color key="backgroundColor" name="separatorColor" red="0.867" green="0.867" blue="0.867" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="jyj-Fo-8XD"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -93,13 +100,18 @@
                 <constraint firstAttribute="trailing" secondItem="ag2-fY-Plc" secondAttribute="trailing" id="4cC-RG-ANA"/>
                 <constraint firstItem="ag2-fY-Plc" firstAttribute="leading" secondItem="btM-Yo-6kI" secondAttribute="leading" id="KzI-bQ-DOE"/>
                 <constraint firstItem="USb-9T-ucd" firstAttribute="top" secondItem="btM-Yo-6kI" secondAttribute="top" id="QHF-7i-lh9"/>
-                <constraint firstItem="ag2-fY-Plc" firstAttribute="top" secondItem="USb-9T-ucd" secondAttribute="bottom" id="Xu8-1y-RsK"/>
+                <constraint firstItem="ag2-fY-Plc" firstAttribute="top" secondItem="3cJ-Od-WeK" secondAttribute="bottom" id="RpZ-r7-Y7Q"/>
                 <constraint firstAttribute="bottom" secondItem="ag2-fY-Plc" secondAttribute="bottom" id="Ybz-jc-wkP"/>
+                <constraint firstItem="3cJ-Od-WeK" firstAttribute="top" secondItem="USb-9T-ucd" secondAttribute="bottom" id="ebD-IQ-jSD"/>
                 <constraint firstAttribute="trailing" secondItem="USb-9T-ucd" secondAttribute="trailing" id="mc8-1m-SLW"/>
+                <constraint firstItem="3cJ-Od-WeK" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="qGL-7S-Ucc"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="3cJ-Od-WeK" secondAttribute="trailing" id="u4t-yg-Rq2"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
             <point key="canvasLocation" x="-208" y="-152.47376311844079"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

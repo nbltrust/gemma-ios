@@ -59,7 +59,7 @@ func convertTransferViewModel(data: [Payment], dict: [String: [PaymentsRecordsVi
         let stateImage: UIImage? = isSend ? R.image.icSend() : R.image.icIncome()
         let address = isSend ? payment.receiver : payment.sender
         let time = payment.timestamp.string(withFormat: "MM-dd yyyy")
-        let transferState = "payment.status.description()"
+        let transferState = "已发送"
         let money = isSend ? "-" + payment.quantity : "+" + payment.quantity
 
         if newdict.keys.contains(time) {
