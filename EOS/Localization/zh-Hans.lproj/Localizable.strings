@@ -613,3 +613,11 @@
 "new_wallet" = "新建钱包";
 "current_wallets" = "已有的钱包";
 "wallet_create_failed" = "钱包创建失败";
+
+//Entry Guide
+"entry_guide_title_one" = "主流币种全覆盖";
+"entry_guide_intro_one" = "即将支持BTC、ETH、EOS、USDT、XRP，\nLTC、CYB、ETC、NEO";
+"entry_guide_title_two" = "软硬兼施";
+"entry_guide_intro_two" = "适配WOOKONG Bio——首款支持多币种的\n蓝牙指纹硬件钱包";
+"entry_guide_title_three" = "安全至上";
+"entry_guide_intro_three" = "遵循BIP、银行安全标准，\n守护数字资产";

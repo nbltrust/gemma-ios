@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GuideContentView">
+            <connections>
+                <outlet property="imageView" destination="NIC-fd-fhi" id="RZc-ix-ryo"/>
+                <outlet property="subTitleLabel" destination="89Q-r5-7H7" id="dhj-7g-LId"/>
+                <outlet property="titleLabel" destination="2U8-55-y9U" id="S3k-t4-bHu"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="btM-Yo-6kI">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="428"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NIC-fd-fhi">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="328"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2U8-55-y9U">
+                    <rect key="frame" x="10" y="333" width="355" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89Q-r5-7H7">
+                    <rect key="frame" x="10" y="372" width="355" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" name="introductionColor" red="0.400" green="0.400" blue="0.400" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="bottom" secondItem="89Q-r5-7H7" secondAttribute="bottom" constant="44" id="HVC-Am-uBx"/>
+                <constraint firstItem="NIC-fd-fhi" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" id="KP1-gd-5VE"/>
+                <constraint firstItem="89Q-r5-7H7" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="10" id="ayo-in-WYe"/>
+                <constraint firstItem="NIC-fd-fhi" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="m25-eF-efa"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="89Q-r5-7H7" secondAttribute="trailing" constant="10" id="maU-E9-eaD"/>
+                <constraint firstItem="2U8-55-y9U" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="10" id="mx2-Kk-c4d"/>
+                <constraint firstItem="2U8-55-y9U" firstAttribute="top" secondItem="NIC-fd-fhi" secondAttribute="bottom" constant="5" id="nU4-wa-wVc"/>
+                <constraint firstItem="89Q-r5-7H7" firstAttribute="top" secondItem="2U8-55-y9U" secondAttribute="bottom" constant="10" id="pxq-s4-W5D"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="2U8-55-y9U" secondAttribute="trailing" constant="10" id="wIb-3n-5jE"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="NIC-fd-fhi" secondAttribute="trailing" id="ybE-DW-5QW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
+            <point key="canvasLocation" x="-193" y="-171"/>
+        </view>
+    </objects>
+    <resources>
+    </resources>
+</document>

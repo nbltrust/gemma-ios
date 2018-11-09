@@ -21,6 +21,8 @@ class NodeView: UIView {
 
     @IBOutlet weak var urlLabel: UILabel!
 
+    @IBOutlet weak var lineView: UIView!
+
     func setup() {
     }
 

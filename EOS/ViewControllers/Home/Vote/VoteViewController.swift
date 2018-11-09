@@ -32,12 +32,7 @@ class VoteViewController: BaseViewController {
 
         let nibString = R.nib.nodeCell.identifier
         voteTable.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
-        voteTable.separatorStyle = .none
         voteTable.allowsMultipleSelection = true
-
-        let tableHeadView = UIView()
-        tableHeadView.height = 23
-        voteTable.tableHeaderView = tableHeadView
 
         let tableFootView = UIView()
         tableFootView.height = 60

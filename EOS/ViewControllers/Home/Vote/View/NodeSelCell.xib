@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,39 +19,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="78.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRN-Nl-mdi" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                        <rect key="frame" x="16" y="0.0" width="288" height="62.5"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E2R-QK-bMs" customClass="NodeSelView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="288" height="62.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="E2R-QK-bMs" firstAttribute="leading" secondItem="NRN-Nl-mdi" secondAttribute="leading" id="ECt-89-pEl"/>
-                            <constraint firstAttribute="trailing" secondItem="E2R-QK-bMs" secondAttribute="trailing" id="FWi-co-fWM"/>
-                            <constraint firstItem="E2R-QK-bMs" firstAttribute="top" secondItem="NRN-Nl-mdi" secondAttribute="top" id="aed-17-bIX"/>
-                            <constraint firstAttribute="bottom" secondItem="E2R-QK-bMs" secondAttribute="bottom" id="fLH-Ma-ag4"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusInt">
-                                <integer key="value" value="4"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="newShadowColor">
-                                <color key="value" red="0.153" green="0.20399999999999999" blue="0.48999999999999999" alpha="0.048000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="shadowR">
-                                <integer key="value" value="3"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E2R-QK-bMs" customClass="NodeSelView" customModule="EOS" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="78.5"/>
+                        <color key="backgroundColor" name="whiteColor" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" name="whiteColor" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="NRN-Nl-mdi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="D3J-mc-2yy"/>
-                    <constraint firstAttribute="trailing" secondItem="NRN-Nl-mdi" secondAttribute="trailing" constant="16" id="Jp5-Ii-aWp"/>
-                    <constraint firstItem="NRN-Nl-mdi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Os5-PT-QHb"/>
-                    <constraint firstAttribute="bottom" secondItem="NRN-Nl-mdi" secondAttribute="bottom" constant="16" id="XKS-XI-9wj"/>
+                    <constraint firstItem="E2R-QK-bMs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2Dg-hS-PZa"/>
+                    <constraint firstAttribute="trailing" secondItem="E2R-QK-bMs" secondAttribute="trailing" id="3xe-zv-nUT"/>
+                    <constraint firstItem="E2R-QK-bMs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ENy-4T-K2I"/>
+                    <constraint firstAttribute="bottom" secondItem="E2R-QK-bMs" secondAttribute="bottom" id="NgU-5a-n7W"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -61,4 +39,6 @@
             <point key="canvasLocation" x="34" y="154.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+    </resources>
 </document>
