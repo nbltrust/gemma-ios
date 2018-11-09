@@ -14,6 +14,7 @@ protocol AssetDetailCoordinatorProtocol {
     func pushResourceDetailVC()
     func pushVoteVC()
     func pushTransferVC()
+    func pushReceiptVC(_ model: AssetViewModel)
 }
 
 protocol AssetDetailStateManagerProtocol {
@@ -69,6 +70,11 @@ extension AssetDetailCoordinator: AssetDetailCoordinatorProtocol {
             transferVC.coordinator = coordinator
             self.rootVC.pushViewController(transferVC, animated: true)
         }
+    }
+    func pushReceiptVC(_ model: AssetViewModel) {
+        var context = ReceiptContext()
+        context.model = model
+        pushVC(ReceiptCoordinator.self, context: context)
     }
 }
 

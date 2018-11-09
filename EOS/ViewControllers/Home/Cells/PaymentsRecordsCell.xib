@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,14 +20,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6LR-H6-s7d" customClass="PaymentsRecordsCellView" customModule="EOS" customModuleProvider="target">
-                        <rect key="frame" x="16" y="0.0" width="288" height="79.5"/>
+                        <rect key="frame" x="20" y="0.0" width="280" height="79.5"/>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="6LR-H6-s7d" secondAttribute="bottom" id="EmP-We-9oH"/>
-                    <constraint firstItem="6LR-H6-s7d" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Mke-3g-Fkn"/>
+                    <constraint firstItem="6LR-H6-s7d" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Mke-3g-Fkn"/>
                     <constraint firstItem="6LR-H6-s7d" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Nz3-Wx-z3g"/>
-                    <constraint firstAttribute="trailing" secondItem="6LR-H6-s7d" secondAttribute="trailing" constant="16" id="hPG-Ji-Ngd"/>
+                    <constraint firstAttribute="trailing" secondItem="6LR-H6-s7d" secondAttribute="trailing" constant="20" id="hPG-Ji-Ngd"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

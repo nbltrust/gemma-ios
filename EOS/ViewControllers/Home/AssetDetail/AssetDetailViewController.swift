@@ -208,6 +208,9 @@ extension AssetDetailViewController {
         self.coordinator?.pushTransferVC()
     }
     @objc func receiptBtnDidClicked(_ data:[String: Any]) {
+        if let model = self.context?.model {
+            self.coordinator?.pushReceiptVC(model)
+        }
     }
     @objc func nodeVodeBtnDidClicked(_ data:[String: Any]) {
         self.coordinator?.pushVoteVC()

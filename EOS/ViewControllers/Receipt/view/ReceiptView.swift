@@ -10,6 +10,12 @@ import Foundation
 
 @IBDesignable
 class ReceiptView: EOSBaseView {
+
+    @IBOutlet weak var qrcodeImgView: UIImageView!
+    @IBOutlet weak var copyTextView: CopyTextView!
+    @IBOutlet weak var iconImgView: UIImageView!
+    @IBOutlet weak var nameLabel: BaseLabel!
+    
     enum Event:String {
         case receiptViewDidClicked
     }

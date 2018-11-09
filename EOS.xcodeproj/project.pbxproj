@@ -291,6 +291,9 @@
 		3B46DD3C2192E649009B6E2A /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46DD392192E649009B6E2A /* ReceiptView.swift */; };
 		3B46DD3D2192E649009B6E2A /* ReceiptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B46DD3A2192E649009B6E2A /* ReceiptView.xib */; };
 		3B46DD3F2192E673009B6E2A /* Receipt.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B46DD3E2192E673009B6E2A /* Receipt.storyboard */; };
+		3B46DD452192EE0F009B6E2A /* CopyTextViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46DD422192EE0F009B6E2A /* CopyTextViewAdapter.swift */; };
+		3B46DD462192EE0F009B6E2A /* CopyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46DD432192EE0F009B6E2A /* CopyTextView.swift */; };
+		3B46DD472192EE0F009B6E2A /* CopyTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B46DD442192EE0F009B6E2A /* CopyTextView.xib */; };
 		3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */; };
 		3B4C90F120F4CDDC004F4C52 /* PaymentsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */; };
 		3B4C90F220F4CDDC004F4C52 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */; };
@@ -647,6 +650,8 @@
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
 		73BA4B3B215A244600EF4C72 /* URLNavigationMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BA4B3A215A244600EF4C72 /* URLNavigationMap.swift */; };
+		73BEF1C8217F0D2200707DFC /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
+		73BEF1C9217F0D2200707DFC /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		73BEF2362180154200707DFC /* seed39_ios_golang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BEF2352180154200707DFC /* seed39_ios_golang.framework */; };
 		73BEF239218025CF00707DFC /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BEF238218025CF00707DFC /* SnapKit.framework */; };
 		73D0EC4E2190358600FA081E /* MMKV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D0EC4D2190358500FA081E /* MMKV.framework */; };
@@ -688,13 +693,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		22B54F2E21930665007C4B90 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
-			remoteInfo = GRDBiOS;
-		};
 		7374B30C217DD9B100B63982 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
@@ -751,6 +749,13 @@
 			remoteGlobalIDString = 565490A01D5A4798005622CB;
 			remoteInfo = GRDBWatchOS;
 		};
+		7374B31D217DD9C900B63982 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
+			remoteInfo = GRDBiOS;
+		};
 		73BEF1CA217F0D2200707DFC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
@@ -768,13 +773,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		22B54F3021930665007C4B90 /* Embed Frameworks */ = {
+		73BEF1CC217F0D2200707DFC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				22B54F2D21930665007C4B90 /* GRDB.framework in Embed Frameworks */,
+				73BEF1C9217F0D2200707DFC /* GRDB.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1071,6 +1076,9 @@
 		3B46DD392192E649009B6E2A /* ReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
 		3B46DD3A2192E649009B6E2A /* ReceiptView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiptView.xib; sourceTree = "<group>"; };
 		3B46DD3E2192E673009B6E2A /* Receipt.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Receipt.storyboard; sourceTree = "<group>"; };
+		3B46DD422192EE0F009B6E2A /* CopyTextViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTextViewAdapter.swift; sourceTree = "<group>"; };
+		3B46DD432192EE0F009B6E2A /* CopyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTextView.swift; sourceTree = "<group>"; };
+		3B46DD442192EE0F009B6E2A /* CopyTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CopyTextView.xib; sourceTree = "<group>"; };
 		3B4C90EC20F4CDDB004F4C52 /* PaymentsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsCoordinator.swift; sourceTree = "<group>"; };
 		3B4C90ED20F4CDDB004F4C52 /* PaymentsActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsActions.swift; sourceTree = "<group>"; };
 		3B4C90EE20F4CDDB004F4C52 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
@@ -1493,6 +1501,7 @@
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
 				734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */,
+				73BEF1C8217F0D2200707DFC /* GRDB.framework in Frameworks */,
 				739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */,
 				739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */,
 				732F371D214FB83F00CB3A58 /* RxBlocking.framework in Frameworks */,
@@ -1514,7 +1523,6 @@
 				73539CFD2179B4AF008395AC /* SwiftyBeaver.framework in Frameworks */,
 				73539D4E2179BC39008395AC /* IQKeyboardManagerSwift.framework in Frameworks */,
 				73539D522179BC53008395AC /* UICKeyChainStore.framework in Frameworks */,
-				22B54F2C21930665007C4B90 /* GRDB.framework in Frameworks */,
 				73539D4F2179BC39008395AC /* Crashlytics.framework in Frameworks */,
 				73539D502179BC39008395AC /* Fabric.framework in Frameworks */,
 				73539CFE2179B4AF008395AC /* Localize_Swift.framework in Frameworks */,
@@ -2352,6 +2360,9 @@
 				3B46DD382192E649009B6E2A /* ReceiptViewAdapter.swift */,
 				3B46DD392192E649009B6E2A /* ReceiptView.swift */,
 				3B46DD3A2192E649009B6E2A /* ReceiptView.xib */,
+				3B46DD422192EE0F009B6E2A /* CopyTextViewAdapter.swift */,
+				3B46DD432192EE0F009B6E2A /* CopyTextView.swift */,
+				3B46DD442192EE0F009B6E2A /* CopyTextView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3510,14 +3521,14 @@
 				732F370E214FB63A00CB3A58 /* carthage */,
 				732F370F214FB64100CB3A58 /* appstore-bug */,
 				73539D532179BF9D008395AC /* Integrate Reveal Server */,
+				73BEF1CC217F0D2200707DFC /* Embed Frameworks */,
 				737F7697218043E800198196 /* swiftlint */,
-				22B54F3021930665007C4B90 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7374B31E217DD9C900B63982 /* PBXTargetDependency */,
 				73BEF1CB217F0D2200707DFC /* PBXTargetDependency */,
-				22B54F2F21930665007C4B90 /* PBXTargetDependency */,
 			);
 			name = EOS;
 			productName = EOS;
@@ -3752,6 +3763,7 @@
 				22B54F5821943F68007C4B90 /* GuideContentView.xib in Resources */,
 				3B08B93A2188376E00ED43AD /* AssetsView.xib in Resources */,
 				3B265348218AAA220091FE93 /* DelegateView.xib in Resources */,
+				3B46DD472192EE0F009B6E2A /* CopyTextView.xib in Resources */,
 				2253C5402111C9500043AAF7 /* TitleSubTitleView.xib in Resources */,
 				3B3147012106D63A00E815BD /* GeneralCellView.xib in Resources */,
 				733714F2212431E200B2ED90 /* map-icons.ttf in Resources */,
@@ -4012,6 +4024,7 @@
 				3B46DD0C218FE43A009B6E2A /* PaymentViewAdapter.swift in Sources */,
 				3D338D6709474A11F4D3D5872DFE13C5 /* Colletion+Extensions.swift in Sources */,
 				3B2653052189667B0091FE93 /* CurrencyManager.swift in Sources */,
+				3B46DD452192EE0F009B6E2A /* CopyTextViewAdapter.swift in Sources */,
 				3B08B9282188055400ED43AD /* OverviewCoordinator.swift in Sources */,
 				72FE5B4D210048F500B29FEC /* NormalViewController.swift in Sources */,
 				22087248218C2EC100A0ACE2 /* WalletCheckCell.swift in Sources */,
@@ -4311,6 +4324,7 @@
 				223C58DC214A4A5000C69F3F /* BLTCardEntryCoordinator.swift in Sources */,
 				3B02F23D2168524000DD9211 /* AccountModel.swift in Sources */,
 				72FE5B4E210048F500B29FEC /* NormalReducers.swift in Sources */,
+				3B46DD462192EE0F009B6E2A /* CopyTextView.swift in Sources */,
 				223C58EE214A50C700C69F3F /* AccountSetActions.swift in Sources */,
 				7224713220F5F92B00536BF4 /* HomeHeaderView.swift in Sources */,
 				223C58F0214A50C700C69F3F /* AccountSetReducers.swift in Sources */,
@@ -4440,10 +4454,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		22B54F2F21930665007C4B90 /* PBXTargetDependency */ = {
+		7374B31E217DD9C900B63982 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GRDBiOS;
-			targetProxy = 22B54F2E21930665007C4B90 /* PBXContainerItemProxy */;
+			targetProxy = 7374B31D217DD9C900B63982 /* PBXContainerItemProxy */;
 		};
 		73BEF1CB217F0D2200707DFC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
