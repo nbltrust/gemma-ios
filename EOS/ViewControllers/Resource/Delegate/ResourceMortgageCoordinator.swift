@@ -21,13 +21,13 @@ protocol ResourceMortgageStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<ResourceMortgageState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
 
-    func getAccountInfo(_ account: String)
     func cpuValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
     func netValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
 
     func cpuReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
     func netReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String)
-    func getCurrentFromLocal()
+
+    func fetchData(_ balance: String, cpuBalance: String, netBalance: String)
 }
 
 class ResourceMortgageCoordinator: NavCoordinator {
@@ -77,33 +77,8 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
 
-    func getAccountInfo(_ account: String) {
-        if let json = CurrencyManager.shared.getAccountJsonWith(account), let accountObj = Account.deserialize(from: json.dictionaryObject) {
-            self.store.dispatch(MAccountFetchedAction(info: accountObj))
-        }
-        if let json = CurrencyManager.shared.getBalanceJsonWith(account) {
-            self.store.dispatch(MBalanceFetchedAction(balance: json))
-
-        }
-        
-        EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
-            self.store.dispatch(MBalanceFetchedAction(balance: json))
-        }, error: { (_) in
-
-        }) { (_) in
-
-        }
-
-        EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
-            if let accountObj = Account.deserialize(from: json.dictionaryObject) {
-                self.store.dispatch(MAccountFetchedAction(info: accountObj))
-            }
-
-        }, error: { (_) in
-
-        }) { (_) in
-
-        }
+    func fetchData(_ balance: String, cpuBalance: String, netBalance: String) {
+        self.store.dispatch(FetchDataAction(balance: balance, cpuBalance: cpuBalance, netBalance: netBalance))
     }
 
     func cpuValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
@@ -120,9 +95,5 @@ extension ResourceMortgageCoordinator: ResourceMortgageStateManagerProtocol {
 
     func netReliveValidMoney(_ cpuMoney: String, netMoney: String, blance: String) {
         self.store.dispatch(NetReliveMoneyAction(cpuMoney: cpuMoney, netMoney: netMoney, balance: blance))
-    }
-
-    func getCurrentFromLocal() {
-        
     }
 }

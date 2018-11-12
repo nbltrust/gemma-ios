@@ -15,6 +15,7 @@ struct ConfirmViewModel {
     var remark = ""
     var payAccount = ""
     var buttonTitle = ""
+    var symbol = ""
 }
 
 @IBDesignable
@@ -29,7 +30,6 @@ class TransferConfirmView: UIView {
 
     @IBOutlet weak var sureView: Button!
 
-    @IBOutlet weak var bottomView: UIView!
 
     enum TransferEvent: String {
         case sureTransfer
@@ -42,7 +42,7 @@ class TransferConfirmView: UIView {
             } else {
                 receverView.contentText = "@" + data.recever
             }
-            amountView.contentText = data.amount + " EOS"
+            amountView.contentText = data.amount + " \(data.symbol)"
             if data.remark == "" {
                 data.remark = R.string.localizable.default_remark_pre.key.localized() + CurrencyManager.shared.getCurrentAccountName() + R.string.localizable.default_remark_after.key.localized()
             }
@@ -61,9 +61,9 @@ class TransferConfirmView: UIView {
 
             remarkView.contentText = data.remark
             if data.payAccount == "" {
-                bottomView.isHidden = true
+                payAccountView.isHidden = true
             } else {
-                bottomView.isHidden = false
+                payAccountView.isHidden = false
                 payAccountView.contentText = data.payAccount
             }
             sureView.title = data.buttonTitle

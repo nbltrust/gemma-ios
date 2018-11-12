@@ -17,6 +17,8 @@ class TransferViewController: BaseViewController {
     @IBOutlet weak var transferContentView: TransferContentView!
     var coordinator: (TransferCoordinatorProtocol & TransferStateManagerProtocol)?
     var accountName: String = ""
+    private(set) var context: TransferContext?
+
     func resetData() {
         clearData()
         self.coordinator?.popVC()
@@ -49,6 +51,9 @@ class TransferViewController: BaseViewController {
         }
         transferContentView.reload()
         clearData()
+        if let balance = self.context?.model.balance, let name = self.context?.model.name {
+            self.transferContentView.balance = balance + " \(name)"
+        }
     }
 
     func checkWalletType() {
@@ -68,12 +73,23 @@ class TransferViewController: BaseViewController {
     }
 
     override func configureObserveState() {
-        self.coordinator?.state.balance.asObservable().subscribe(onNext: { (blance) in
+//        self.coordinator?.state.balance.asObservable().subscribe(onNext: { (blance) in
+//
+//            self.transferContentView.balance = blance!
+//        }, onError: nil, onCompleted: {
+//
+//        }, onDisposed: nil).disposed(by: disposeBag)
+        self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
+            guard let `self` = self else { return }
+            if let context = context as? TransferContext {
+                self.context = context
+                if let balance = self.context?.model.balance, let name = self.context?.model.name {
+                    self.transferContentView.balance = balance + " \(name)"
+                }
+            }
 
-            self.transferContentView.balance = blance!
-        }, onError: nil, onCompleted: {
 
-        }, onDisposed: nil).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
 
         Observable.combineLatest(self.coordinator!.state.toNameValid.asObservable(),
                                  self.coordinator!.state.moneyValid.asObservable()
@@ -104,7 +120,8 @@ extension TransferViewController {
         data.remark = self.transferContentView.remarkTitleTextView.textView.text!
         data.payAccount = self.transferContentView.accountTitleTextView.textField.text!
         data.buttonTitle = R.string.localizable.check_transfer.key.localized()
-        self.coordinator?.pushToTransferConfirmVC(data: data)
+        data.symbol = self.context?.model.name ?? "EOS"
+        self.coordinator?.pushToTransferConfirmVC(data: data, model: self.context?.model)
     }
     @objc func transferMoney(_ data: [String: Any]) {
         if let textfield = data["textfield"] as? UITextField, textfield.text != "", let money = textfield.text?.toDouble() {

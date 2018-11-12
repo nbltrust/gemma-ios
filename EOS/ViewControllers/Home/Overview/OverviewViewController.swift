@@ -62,8 +62,8 @@ class OverviewViewController: BaseViewController {
 
     func setupData() {
         if let name = CurrencyManager.shared.getAccountNameWith(currencyID) {
-            self.coordinator?.getTokensWith(name)
             coordinator?.getAccountInfo(name)
+            self.coordinator?.getTokensWith(name)
         }
     }
 

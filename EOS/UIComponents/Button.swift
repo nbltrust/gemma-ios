@@ -40,6 +40,12 @@ class Button: UIView {
         }
     }
 
+    @IBInspectable var newCornerRadius: CGFloat = 22 {
+        didSet {
+            button.cornerRadius = newCornerRadius
+        }
+    }
+
     var title: String! {
         didSet {
             button.setTitle(title, for: .normal)

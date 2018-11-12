@@ -61,11 +61,17 @@ class ResourceMortgageView: UIView {
         netView.leftSubText = R.string.localizable.use.key.localized() + " - " + R.string.localizable.kb.key.localized()
         netView.rightSubText = R.string.localizable.total.key.localized() + " - " + R.string.localizable.kb.key.localized()
         netView.eos = "- EOS"
-        netView.lineIsHidden = true
+        netView.lineIsHidden = false
+
+        ramView.name = R.string.localizable.net()
+        ramView.leftSubText = R.string.localizable.use.key.localized() + " - " + R.string.localizable.kb.key.localized()
+        ramView.rightSubText = R.string.localizable.total.key.localized() + " - " + R.string.localizable.kb.key.localized()
+//        netView.eos = "- EOS"
+        ramView.lineIsHidden = false
 
         delegateView.data = LineView.LineViewModel.init(name: R.string.localizable.delegate_redeem.key.localized(),
                                                         content: R.string.localizable.manager_cpu_net.key.localized(),
-                                                        imageName: R.image.icArrow.name,
+                                                        imageName: R.image.icTabArrow.name,
                                                         nameStyle: LineViewStyleNames.normalName,
                                                         contentStyle: LineViewStyleNames.normalContent,
                                                         isBadge: false,
@@ -73,7 +79,7 @@ class ResourceMortgageView: UIView {
                                                         isShowLineView: true)
         buyRamView.data = LineView.LineViewModel.init(name: R.string.localizable.deal_ram.key.localized(),
                                                         content: "",
-                                                        imageName: R.image.icArrow.name,
+                                                        imageName: R.image.icTabArrow.name,
                                                         nameStyle: LineViewStyleNames.normalName,
                                                         contentStyle: LineViewStyleNames.normalContent,
                                                         isBadge: false,

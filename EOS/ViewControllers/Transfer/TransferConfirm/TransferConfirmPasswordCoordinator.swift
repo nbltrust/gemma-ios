@@ -24,7 +24,7 @@ protocol TransferConfirmPasswordStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<TransferConfirmPasswordState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
 
-    func transferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
+    func transferAccounts(_ infoModel: TransferInfoModel, assetModel: AssetViewModel?, callback:@escaping (Bool, String) -> Void)
 
     func bltTransferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
 
@@ -116,17 +116,21 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         return WalletManager.shared.isValidPassword(password)
     }
 
-    func transferAccounts(_ password: String, account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
+    func transferAccounts(_ infoModel: TransferInfoModel, assetModel: AssetViewModel?, callback:@escaping (Bool, String) -> Void) {
         let model = TransferActionModel()
-        model.password = password
-        model.toAccount = account
+        model.password = infoModel.pwd
+        model.toAccount = infoModel.account
         model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
         model.success = R.string.localizable.transfer_successed.key.localized()
         model.faile = R.string.localizable.transfer_failed.key.localized()
-        model.amount = amount
-        model.remark = remark
-        transaction(EOSAction.transfer.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool, showString)
+        model.amount = infoModel.amount
+        model.remark = infoModel.remark
+        if let assetModel = assetModel {
+            model.contract = assetModel.contract
+            model.symbol = assetModel.name
+            transaction(EOSAction.transfer.rawValue, actionModel: model) { (bool, showString) in
+                callback(bool, showString)
+            }
         }
     }
 

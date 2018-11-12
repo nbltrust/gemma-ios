@@ -82,7 +82,7 @@ class TitleTextfieldView: UIView {
 
             textField.attributedPlaceholder = NSMutableAttributedString.init(
                 string: setting.placeholder,
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
             textField.isSecureTextEntry = setting.isSecureTextEntry
             gapView.alpha = setting.showLine ? 1.0 : 0.0
         }

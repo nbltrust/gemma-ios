@@ -98,6 +98,20 @@ class CurrencyManager {
         return nil
     }
 
+    func currentPublicKey() -> String {
+        do {
+            if let currencyId = getCurrentCurrencyID() {
+                let currency = try WalletCacheService.shared.fetchCurrencyBy(id: currencyId)
+                if let pubkey = currency?.pubKey {
+                    return pubkey
+                }
+            }
+            return ""
+        } catch {
+            return ""
+        }
+    }
+
     func getAccountNamesWith(_ currencyID: Int64?) -> [String]? {
         if let id = currencyID {
             if let accounts = Defaults["accountNames\(id)"] as? [String] {

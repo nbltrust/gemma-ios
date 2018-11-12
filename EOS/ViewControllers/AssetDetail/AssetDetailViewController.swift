@@ -27,6 +27,7 @@ class AssetDetailViewController: BaseViewController {
         setupData()
         setupUI()
         setupEvent()
+        refreshData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,8 +50,12 @@ class AssetDetailViewController: BaseViewController {
             contract = con
         }
     }
-    
+
     func setupEvent() {
+
+    }
+
+    func refreshData() {
         self.startLoading()
 
         self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: symbol, contract: contract, completion: {[weak self] (success) in
@@ -205,7 +210,9 @@ class AssetDetailViewController: BaseViewController {
 
 extension AssetDetailViewController {
     @objc func transferBtnDidClicked(_ data:[String: Any]) {
-        self.coordinator?.pushTransferVC()
+        if let model = self.context?.model {
+            self.coordinator?.pushTransferVC(model)
+        }
     }
     @objc func receiptBtnDidClicked(_ data:[String: Any]) {
         if let model = self.context?.model {
@@ -217,6 +224,11 @@ extension AssetDetailViewController {
     }
     @objc func resourceManagerBtnDidClicked(_ data:[String: Any]) {
         self.coordinator?.pushResourceDetailVC()
+    }
+    @objc func cellViewDidClicked(_ data:[String: Any]) {
+        if let model = data["data"] as? PaymentsRecordsViewModel {
+            self.coordinator?.pushPaymentsDetail(data: model)
+        }
     }
 }
 

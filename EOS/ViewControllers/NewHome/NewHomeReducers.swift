@@ -17,35 +17,29 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
     case let action as BalanceFetchedAction:
         var viewmodel = state.info.value
         if let currency = action.currency {
-            var name: String?
             if currency.type == .EOS {
-                name = CurrencyManager.shared.getAccountNameWith(currency.id)
-            } else if currency.type == .ETH {
-
-            }
-            if let json = CurrencyManager.shared.getBalanceJsonWith(name) {
-                if let balance = json.arrayValue.first?.string {
+                if let balance = action.balance?.arrayValue.first?.string {
                     viewmodel.balance = balance
                 } else {
-                    viewmodel.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+                    viewmodel.balance = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
                 }
                 viewmodel.allAssets = calculateTotalAsset(viewmodel)
                 viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+            } else if currency.type == .ETH {
+
             }
         }
         state.info.accept(viewmodel)
     case let action as AccountFetchedAction:
         var viewmodel = NewHomeViewModel()
         if let currency = action.currency {
-            var name: String?
             if currency.type == .EOS {
-                name = CurrencyManager.shared.getAccountNameWith(currency.id)
+                if let info = action.info {
+                    viewmodel = convertViewModelWithAccount(info, viewmodel: state.info.value, currencyID: currency.id)
+                    viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+                }
             } else if currency.type == .ETH {
 
-            }
-            if let json = CurrencyManager.shared.getAccountJsonWith(name), let accountObj = Account.deserialize(from: json.dictionaryObject) {
-                viewmodel = convertViewModelWithAccount(accountObj, viewmodel: state.info.value, currencyID: currency.id)
-                viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
             }
         }
         state.info.accept(viewmodel)
@@ -64,10 +58,17 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
         let viewmodel = setViewModelWithCurrency(currency: action.currency)
         state.info.accept(viewmodel)
     case let action as TokensFetchedAction:
-        var viewmodel = state.info.value
+        if state.info.value != nil {
+            var viewmodel = state.info.value
+            viewmodel = setTokenWith(tokens: action.data, viewmodel: viewmodel)
+            state.info.accept(viewmodel)
+        } else {
+            var viewmodel = NewHomeViewModel()
+            viewmodel = setTokenWith(tokens: action.data, viewmodel: viewmodel)
+            state.info.accept(viewmodel)
+        }
 
-        viewmodel = setTokenWith(tokens: action.data, viewmodel: viewmodel)
-        state.info.accept(viewmodel)
+
     default:
         break
     }

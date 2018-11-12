@@ -74,10 +74,9 @@
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCk-bw-8a0" customClass="TransferConfirmView" customModule="EOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="276"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="whiteColor" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="AUj-Ns-WRG" firstAttribute="trailing" secondItem="zCk-bw-8a0" secondAttribute="trailing" id="0Ht-9j-teo"/>
                             <constraint firstItem="zCk-bw-8a0" firstAttribute="top" secondItem="AUj-Ns-WRG" secondAttribute="top" id="Abc-si-WAa"/>
@@ -123,4 +122,6 @@
             <point key="canvasLocation" x="1026" y="-81"/>
         </scene>
     </scenes>
+    <resources>
+    </resources>
 </document>

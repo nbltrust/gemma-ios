@@ -47,6 +47,8 @@ class TransferActionModel: ActionModel {
     var remark: String = ""
     var type: CreateAPPId = .gemma
     var confirmType: AuthType = pinType
+    var contract: String = ""
+    var symbol: String = ""
 }
 
 class DelegateActionModel: ActionModel {
@@ -75,11 +77,11 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
     switch action {
     case EOSAction.transfer.rawValue, EOSAction.bltTransfer.rawValue:
         if let actionModel = actionModel as? TransferActionModel {
-            if let abiStr = EOSIO.getAbiJsonString(EOSIOContract.TokenCode,
+            if let abiStr = EOSIO.getAbiJsonString(actionModel.contract,
                                                    action: EOSAction.transfer.rawValue,
                                                    from: actionModel.fromAccount,
                                                    to: actionModel.toAccount,
-                                                   quantity: actionModel.amount + " " + NetworkConfiguration.EOSIODefaultSymbol,
+                                                   quantity: actionModel.amount + " " + actionModel.symbol,
                                                    memo: actionModel.remark) {
                 abi = abiStr
             }
@@ -190,13 +192,13 @@ func transaction(_ action: String, actionModel: ActionModel, callback:@escaping 
                 privakey = key
             }
 
-            if action == EOSAction.transfer.rawValue {
-                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TokenCode, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
-            } else if action == EOSAction.bltTransfer.rawValue {
+            if action == EOSAction.transfer.rawValue, let actionModel = actionModel as? TransferActionModel {
+                transaction = EOSIO.getTransferTransaction(privakey, code: actionModel.contract, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
+            } else if action == EOSAction.bltTransfer.rawValue, let actionModel = actionModel as? TransferActionModel {
                 if let keys = EOSIO.createKey(), let pri = keys[optional: 1] {
                     privakey = pri
                 }
-                transaction = EOSIO.getTransferTransaction(privakey, code: EOSIOContract.TokenCode, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
+                transaction = EOSIO.getTransferTransaction(privakey, code: actionModel.contract, from: actionModel.fromAccount, getinfo: json.rawString(), abistr: abiStr)
                 let transJson = JSON.init(parseJSON: transaction)
                 var transJsonMap = transJson.dictionaryObject
                 if let actionModel = actionModel as? TransferActionModel {

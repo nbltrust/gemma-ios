@@ -69,7 +69,6 @@ class EntryViewController: BaseViewController {
             registerView.passwordView.isHidden = true
             registerView.passwordComfirmView.isHidden = true
             registerView.passwordPromptView.isHidden = true
-            registerView.nameView.gapView.isHidden = true
             agreeView.isHidden = true
             self.title = R.string.localizable.create_account.key.localized()
         default:
@@ -131,7 +130,6 @@ class EntryViewController: BaseViewController {
             guard let `self` = self else { return }
             if let str = code as? String {
                 if let name = self.registerView.nameView.textField.text {
-                    CurrencyManager.shared.saveActived(self.currencyID, actived: true)
                     self.coordinator?.createEOSAccount(.gemma, accountName: name, currencyID: self.currencyID, inviteCode: str, validation: nil, deviceName: nil, completion: { (_) in
                         self.endLoading()
                     })

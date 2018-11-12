@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransferConfirmView" customModule="EOS" customModuleProvider="target">
             <connections>
                 <outlet property="amountView" destination="N0d-tG-DAo" id="xZT-5K-tA6"/>
-                <outlet property="bottomView" destination="FmK-5o-cCa" id="U3w-uG-fr7"/>
                 <outlet property="payAccountView" destination="Ube-tF-Q9j" id="z5I-ac-VQ4"/>
                 <outlet property="receverView" destination="WEs-i4-iW4" id="XhG-4W-5mG"/>
                 <outlet property="remarkView" destination="Tfb-US-ykB" id="jr2-xA-zCx"/>
@@ -21,109 +24,69 @@
             <rect key="frame" x="0.0" y="0.0" width="378" height="391"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dj3-Vg-rO0">
-                    <rect key="frame" x="16" y="0.0" width="346" height="214"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dj3-Vg-rO0">
+                    <rect key="frame" x="0.0" y="0.0" width="378" height="220"/>
                     <subviews>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXV-yd-tPq">
-                            <rect key="frame" x="0.0" y="0.0" width="346" height="150"/>
-                            <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ws2-sj-2zn">
-                                    <rect key="frame" x="0.0" y="0.0" width="346" height="150"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEs-i4-iW4" customClass="LineView" customModule="EOS" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="346" height="50"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="收款人"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0d-tG-DAo" customClass="LineView" customModule="EOS" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="50" width="346" height="50"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="金额"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tfb-US-ykB" customClass="LineView" customModule="EOS" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="100" width="346" height="50"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="备注"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="NO"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                    </subviews>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="4"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </stackView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEs-i4-iW4" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="378" height="55"/>
                             <constraints>
-                                <constraint firstItem="ws2-sj-2zn" firstAttribute="leading" secondItem="HXV-yd-tPq" secondAttribute="leading" id="OQZ-YR-xWX"/>
-                                <constraint firstItem="ws2-sj-2zn" firstAttribute="top" secondItem="HXV-yd-tPq" secondAttribute="top" id="ZH9-jc-qZ1"/>
-                                <constraint firstAttribute="trailing" secondItem="ws2-sj-2zn" secondAttribute="trailing" id="l8i-XL-lba"/>
-                                <constraint firstAttribute="bottom" secondItem="ws2-sj-2zn" secondAttribute="bottom" id="uCi-2v-e1W"/>
+                                <constraint firstAttribute="height" constant="55" id="MJL-2F-tjd"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="收款人"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0d-tG-DAo" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="55" width="378" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="z0x-AL-pJh"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="金额"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfb-US-ykB" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="110" width="378" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="RzT-MB-iTa"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="备注"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ube-tF-Q9j" customClass="LineView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="165" width="378" height="55"/>
+                            <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="Efc-4q-ezc"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="付款账户"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="YES"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="4"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FmK-5o-cCa">
-                            <rect key="frame" x="0.0" y="150" width="346" height="64"/>
-                            <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZMn-zB-gMH">
-                                    <rect key="frame" x="0.0" y="16" width="346" height="48"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ube-tF-Q9j" customClass="LineView" customModule="EOS" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="346" height="48"/>
-                                            <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="nameStyle" value="normalName"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="contentStyle" value="normalContent"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="付款账户"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="NO"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="imageName" value=" "/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="yp9-NN-6z5"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="4"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </stackView>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="ZMn-zB-gMH" firstAttribute="leading" secondItem="FmK-5o-cCa" secondAttribute="leading" id="MEC-jI-NJH"/>
-                                <constraint firstItem="ZMn-zB-gMH" firstAttribute="top" secondItem="FmK-5o-cCa" secondAttribute="top" constant="16" id="PIb-aQ-O7f"/>
-                                <constraint firstAttribute="trailing" secondItem="ZMn-zB-gMH" secondAttribute="trailing" id="kHd-99-wdI"/>
-                                <constraint firstAttribute="height" constant="64" id="kK0-ge-BTw"/>
-                                <constraint firstAttribute="bottom" secondItem="ZMn-zB-gMH" secondAttribute="bottom" id="xBR-oW-8Sv"/>
-                            </constraints>
-                        </view>
                     </subviews>
                 </stackView>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="06S-Dw-UEG" customClass="Button" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="238" width="314" height="44"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="06S-Dw-UEG" customClass="Button" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="32" y="260.5" width="314" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="mrB-dU-f0Z"/>
                     </constraints>
@@ -135,12 +98,11 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="06S-Dw-UEG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="6De-Te-FSX"/>
-                <constraint firstItem="dj3-Vg-rO0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Lbb-y2-s5h"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dj3-Vg-rO0" secondAttribute="trailing" constant="16" id="Luu-RT-fny"/>
-                <constraint firstItem="06S-Dw-UEG" firstAttribute="top" secondItem="dj3-Vg-rO0" secondAttribute="bottom" constant="24" id="R7u-yA-QLt"/>
+                <constraint firstItem="dj3-Vg-rO0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Lbb-y2-s5h"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dj3-Vg-rO0" secondAttribute="trailing" id="Luu-RT-fny"/>
+                <constraint firstItem="06S-Dw-UEG" firstAttribute="top" secondItem="dj3-Vg-rO0" secondAttribute="bottom" constant="40.5" id="R7u-yA-QLt"/>
                 <constraint firstItem="dj3-Vg-rO0" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="VhC-P5-ik0"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="06S-Dw-UEG" secondAttribute="trailing" constant="32" id="myb-Mn-Jij"/>
             </constraints>

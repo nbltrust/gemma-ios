@@ -130,31 +130,25 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
             let active = CurrencyManager.shared.getActived(currency.id)
             if let names = names, active == true {
                 let account = names
-                let currencyID = currency.id
                 EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
-                    CurrencyManager.shared.saveBalanceJsonWith(account, json: json)
-                    self.store.dispatch(BalanceFetchedAction(currency: currency))
+                    self.store.dispatch(BalanceFetchedAction(currency: currency, balance: json))
                 }, error: { (_) in
-                    self.store.dispatch(BalanceFetchedAction(currency: currency))
                 }) { (_) in
-                    self.store.dispatch(BalanceFetchedAction(currency: currency))
                 }
 
-                EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
-                    CurrencyManager.shared.saveAccountJsonWith(account, json: json)
-                    self.store.dispatch(AccountFetchedAction(currency: currency))
+                EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: {[weak self] (json) in
+                    guard let `self` = self else { return }
+                    if let accountObj = Account.deserialize(from: json.dictionaryObject) {
+                        self.store.dispatch(AccountFetchedAction(currency: currency, info: accountObj))
+                    }
                 }, error: { (_) in
-                    self.store.dispatch(AccountFetchedAction(currency: currency))
                 }) { (_) in
-                    self.store.dispatch(AccountFetchedAction(currency: currency))
                 }
 
                 SimpleHTTPService.requestETHPrice().done { (json) in
-                    CurrencyManager.shared.savePriceJsonWith(currencyID, json: json)
                     self.store.dispatch(RMBPriceFetchedAction(currency: currency))
                     }.cauterize()
-
-                getTokensWith(account)
+                self.getTokensWith(account)
             } else {
                 self.store.dispatch(NonActiveFetchedAction(currency:currency))
             }

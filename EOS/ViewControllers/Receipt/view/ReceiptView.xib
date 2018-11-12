@@ -41,23 +41,21 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbO-Hr-O0C" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="34" y="2.5" width="41.5" height="19.5"/>
+                            <rect key="frame" x="34" y="4" width="41.5" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="9JW-ln-KvC"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                    <real key="value" value="16"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="wMD-3f-O7B" secondAttribute="bottom" id="B5z-Hm-7Fd"/>
-                        <constraint firstItem="KbO-Hr-O0C" firstAttribute="centerY" secondItem="wMD-3f-O7B" secondAttribute="centerY" id="CAi-G5-eZb"/>
                         <constraint firstAttribute="trailing" secondItem="KbO-Hr-O0C" secondAttribute="trailing" id="QYo-5a-CYN"/>
                         <constraint firstItem="wMD-3f-O7B" firstAttribute="top" secondItem="Kdv-32-ccP" secondAttribute="top" id="Qzy-AE-RTe"/>
+                        <constraint firstItem="KbO-Hr-O0C" firstAttribute="centerY" secondItem="wMD-3f-O7B" secondAttribute="centerY" id="ap9-Kd-LnK"/>
                         <constraint firstItem="KbO-Hr-O0C" firstAttribute="leading" secondItem="wMD-3f-O7B" secondAttribute="trailing" constant="10" id="w39-Yq-ZbR"/>
                         <constraint firstItem="wMD-3f-O7B" firstAttribute="leading" secondItem="Kdv-32-ccP" secondAttribute="leading" id="xeF-YT-0Dg"/>
                     </constraints>

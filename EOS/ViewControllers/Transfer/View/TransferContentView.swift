@@ -13,7 +13,7 @@ import GrowingTextView
 
 class TransferContentView: UIView {
 
-    @IBOutlet weak var cornerView: CornerAndShadowView!
+    @IBOutlet weak var cornerView: UIView!
     @IBOutlet weak var receiverTitleTextView: TitleTextfieldView!
     @IBOutlet weak var accountTitleTextView: TitleTextfieldView!
     @IBOutlet weak var moneyTitleTextView: TitleTextfieldView!
@@ -88,22 +88,22 @@ class TransferContentView: UIView {
         remarkTitleTextView.textView.delegate = self
         remarkTitleTextView.textView.maxHeight = 80
         remarkTitleTextView.textView.font = UIFont.pfScS16
-        nextButton.title = R.string.localizable.tabbarTransfer.key.localized()
+        nextButton.title = R.string.localizable.next_step.key.localized()
         moneyTitleTextView.introduceLabel.text = R.string.localizable.balance_pre.key.localized() + "0.0000 EOS"
         moneyTitleTextView.textField.keyboardType = UIKeyboardType.decimalPad
-        remarkTitleTextView.gapView.isHidden = true
+//        remarkTitleTextView.gapView.isHidden = true
         remarkTitleTextView.updateHeight()
 
         receiverTitleTextView.titleLabel.font = UIFont.cnTipMedium
         receiverTitleTextView.textField.font = UIFont.pfScS16
         receiverTitleTextView.introduceLabel.font = UIFont.pfScR12
-        receiverTitleTextView.introduceLabel.textColor = UIColor(red: 83/255, green: 92/255, blue: 138/255, alpha: 1)
+        receiverTitleTextView.introduceLabel.textColor = UIColor.introductionColor
         accountTitleTextView.titleLabel.font = UIFont.cnTipMedium
         accountTitleTextView.textField.font = UIFont.pfScS16
         moneyTitleTextView.titleLabel.font = UIFont.cnTipMedium
         moneyTitleTextView.textField.font = UIFont.pfScS16
         moneyTitleTextView.introduceLabel.font = UIFont.pfScR12
-        moneyTitleTextView.introduceLabel.textColor = UIColor(red: 83/255, green: 92/255, blue: 138/255, alpha: 1)
+        moneyTitleTextView.introduceLabel.textColor = UIColor.introductionColor
         updateHeight()
         remarkTitleTextView.updateHeight()
         setupEvent()

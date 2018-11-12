@@ -100,7 +100,12 @@ extension TransferConfirmPasswordViewController {
         if myType == ConfirmType.transfer.rawValue {
             self.view.endEditing(true)
             self.startLoading(true)
-            self.coordinator?.transferAccounts(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
+            var infoModel: TransferInfoModel = TransferInfoModel()
+            infoModel.account = context.receiver
+            infoModel.pwd = passwordView.textField.text!
+            infoModel.amount = context.amount
+            infoModel.remark = context.remark
+            self.coordinator?.transferAccounts(infoModel, assetModel: self.context?.model, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
                     self.endLoading()

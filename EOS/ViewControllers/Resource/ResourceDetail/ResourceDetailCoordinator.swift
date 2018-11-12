@@ -11,7 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol ResourceDetailCoordinatorProtocol {
-    func pushDelegateVC()
+    func pushDelegateVC(_ balance: String, cpuBalance: String, netBalance: String)
     func pushBuyRamVC()
 }
 
@@ -49,10 +49,13 @@ class ResourceDetailCoordinator: NavCoordinator {
 }
 
 extension ResourceDetailCoordinator: ResourceDetailCoordinatorProtocol {
-    func pushDelegateVC() {
+    func pushDelegateVC(_ balance: String, cpuBalance: String, netBalance: String) {
         if let deleVC = R.storyboard.resourceMortgage.resourceMortgageViewController() {
             let coordinator = ResourceMortgageCoordinator(rootVC: self.rootVC)
             deleVC.coordinator = coordinator
+            deleVC.balance = balance
+            deleVC.cpuBalance = cpuBalance
+            deleVC.netBalance = netBalance
             self.rootVC.pushViewController(deleVC, animated: true)
         }
     }
@@ -70,7 +73,6 @@ extension ResourceDetailCoordinator: ResourceDetailStateManagerProtocol {
 
     func getAccountInfo(_ account: String) {
         EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
-            CurrencyManager.shared.saveBalanceJsonWith(account, json: json)
             self.store.dispatch(MBalanceFetchedAction(balance: json))
         }, error: { (_) in
 
@@ -79,7 +81,6 @@ extension ResourceDetailCoordinator: ResourceDetailStateManagerProtocol {
         }
 
         EOSIONetwork.request(target: .getAccount(account: account, otherNode: false), success: { (json) in
-            CurrencyManager.shared.saveAccountJsonWith(account, json: json)
             if let accountObj = Account.deserialize(from: json.dictionaryObject) {
                 self.store.dispatch(MAccountFetchedAction(info: accountObj))
             }

@@ -30,14 +30,14 @@ struct GeneralViewModel {
 
 struct ResourceViewModel {
     var general: [GeneralViewModel]
+    var balance = ""
 }
 
 struct PageViewModel {
-    var balance = ""
     var leftText = ""
     var rightText = ""
-    var operationLeft: [OperationViewModel]
-    var operationRight: [OperationViewModel]
+    var operationLeft: [OperationViewModel] = []
+    var operationRight: [OperationViewModel] = []
 }
 
 struct OperationViewModel {
@@ -51,7 +51,7 @@ struct OperationViewModel {
 }
 
 struct ResourceMortgagePropertyState {
-    var info: BehaviorRelay<ResourceViewModel?> = BehaviorRelay(value: nil)
+    var info: BehaviorRelay<PageViewModel?> = BehaviorRelay(value: nil)
     var cpuMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
     var netMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
     var cpuReliveMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
@@ -89,6 +89,12 @@ struct MBalanceFetchedAction: Action {
 
 struct MAccountFetchedAction: Action {
     var info: Account
+}
+
+struct FetchDataAction: Action {
+    var balance = ""
+    var cpuBalance = ""
+    var netBalance = ""
 }
 
 // MARK: - Action Creator

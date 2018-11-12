@@ -57,15 +57,15 @@ class RichStyle {
         Styles.register(StyleNames.introduce.rawValue, style: introduceStyle)
 
         let agreeStyle = Style {
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            $0.color = UIColor.baseColor
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
+            $0.color = UIColor.placeholderColor
         }
         Styles.register(StyleNames.agree.rawValue, style: agreeStyle)
 
         let agreementStyle = Style {
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
             $0.color = UIColor.baseColor
-            $0.underline = (.single, UIColor.baseColor)
+            $0.underline = (.single, UIColor.introductionColor)
         }
         Styles.register(StyleNames.agreement.rawValue, style: agreementStyle)
 
@@ -147,7 +147,7 @@ class RichStyle {
 
     func initActivateLabelStyle() {
         let base = Style {
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 16.0)
             $0.color = UIColor.introductionColor
         }
         //
@@ -156,14 +156,14 @@ class RichStyle {
         //        }
 
         let cornFlowerBlue = Style {
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            $0.color = UIColor.introductionColor
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 16.0)
+            $0.color = UIColor.highlightColor
         }
 
         let cornFlowerBlueUnderline = Style {
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            $0.color = UIColor.introductionColor
-            $0.underline = (.single, UIColor.introductionColor)
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 16.0)
+            $0.color = UIColor.highlightColor
+            $0.underline = (.single, UIColor.highlightColor)
             $0.alignment = .center
         }
 

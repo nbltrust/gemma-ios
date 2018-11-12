@@ -13,8 +13,9 @@ import NBLCommonModule
 protocol AssetDetailCoordinatorProtocol {
     func pushResourceDetailVC()
     func pushVoteVC()
-    func pushTransferVC()
+    func pushTransferVC(_ model: AssetViewModel)
     func pushReceiptVC(_ model: AssetViewModel)
+    func pushPaymentsDetail(data: PaymentsRecordsViewModel)
 }
 
 protocol AssetDetailStateManagerProtocol {
@@ -64,17 +65,22 @@ extension AssetDetailCoordinator: AssetDetailCoordinatorProtocol {
             self.rootVC.pushViewController(vodeVC, animated: true)
         }
     }
-    func pushTransferVC() {
-        if let transferVC = R.storyboard.transfer.transferViewController() {
-            let coordinator = TransferCoordinator(rootVC: self.rootVC)
-            transferVC.coordinator = coordinator
-            self.rootVC.pushViewController(transferVC, animated: true)
-        }
+    func pushTransferVC(_ model: AssetViewModel) {
+        var context = TransferContext()
+        context.model = model
+        self.pushVC(TransferCoordinator.self, context: context)
     }
     func pushReceiptVC(_ model: AssetViewModel) {
         var context = ReceiptContext()
         context.model = model
         pushVC(ReceiptCoordinator.self, context: context)
+    }
+    func pushPaymentsDetail(data: PaymentsRecordsViewModel) {
+        let vc = R.storyboard.paymentsDetail.paymentsDetailViewController()!
+        let coordinator = PaymentsDetailCoordinator(rootVC: self.rootVC)
+        vc.coordinator = coordinator
+        vc.data = data
+        self.rootVC.pushViewController(vc, animated: true)
     }
 }
 

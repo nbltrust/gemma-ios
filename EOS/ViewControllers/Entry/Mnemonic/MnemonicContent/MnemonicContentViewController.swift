@@ -40,6 +40,7 @@ class MnemonicContentViewController: BaseViewController {
     
     func setupUI() {
         self.title = R.string.localizable.backup_mnemonic_title.key.localized()
+        self.coordinator?.showAlertMessage()
     }
 
     func setupData() {

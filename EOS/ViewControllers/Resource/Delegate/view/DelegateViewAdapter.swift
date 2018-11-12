@@ -9,7 +9,7 @@
 import Foundation
 
 extension DelegateView {
-//    func adapterModelToDelegateView(_ model:<#Type#>) {
-//        
-//    }
+    func adapterModelToDelegateView(_ model:PageViewModel) {
+        self.pageView.data = model
+    }
 }

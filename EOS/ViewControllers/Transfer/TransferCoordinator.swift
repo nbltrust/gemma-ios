@@ -13,7 +13,7 @@ import Presentr
 import eos_ios_core_cpp
 
 protocol TransferCoordinatorProtocol {
-    func pushToTransferConfirmVC(data: ConfirmViewModel)
+    func pushToTransferConfirmVC(data: ConfirmViewModel, model: AssetViewModel?)
     func popVC()
 }
 
@@ -53,7 +53,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         self.rootVC.popViewController()
     }
 
-    func pushToTransferConfirmVC(data: ConfirmViewModel) {
+    func pushToTransferConfirmVC(data: ConfirmViewModel, model: AssetViewModel?) {
         let isBltWallet = WalletManager.shared.isBluetoothWallet()
         if isBltWallet && !(BLTWalletIO.shareInstance()?.isConnection() ?? false) {
             let width = ModalSize.full
@@ -68,7 +68,7 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
             var context = BLTCardConnectContext()
             context.connectSuccessed = { [weak self] in
                 guard let `self` = self else { return }
-                self.showComfirmVC(data: data, type: .bluetooth)
+                self.showComfirmVC(data: data, type: .bluetooth, model: model)
             }
 
             presentVC(BLTCardConnectCoordinator.self, animated: true, context: context, navSetup: { (nav) in
@@ -77,14 +77,14 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
                 top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
             }
         } else {
-            showComfirmVC(data: data, type: isBltWallet ? .bluetooth :.gemma)
+            showComfirmVC(data: data, type: isBltWallet ? .bluetooth :.gemma, model: model)
         }
     }
 
-    func showComfirmVC(data: ConfirmViewModel, type: CreateAPPId) {
+    func showComfirmVC(data: ConfirmViewModel, type: CreateAPPId, model: AssetViewModel?) {
         let width = ModalSize.full
-        let height = ModalSize.custom(size: 369)
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 369))
+        let height = ModalSize.custom(size: 399)
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 399))
         let customType = PresentationType.custom(width: width, height: height, center: center)
 
         let presenter = Presentr(presentationType: customType)
@@ -94,7 +94,9 @@ extension TransferCoordinator: TransferCoordinatorProtocol {
         var context = TransferConfirmContext()
         context.data = data
         context.type = type
-
+        if let model = model {
+            context.model = model
+        }
         presentVC(TransferConfirmCoordinator.self, animated: true, context: context, navSetup: { (nav) in
             nav.navStyle = .common
         }) { (top, target) in

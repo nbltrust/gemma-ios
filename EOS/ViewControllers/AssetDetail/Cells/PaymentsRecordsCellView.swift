@@ -19,9 +19,18 @@ class PaymentsRecordsCellView: UIView {
         didSet {
             guard let newData = data as? PaymentsRecordsViewModel else { return }
             state.image = newData.stateImageName
-            address.text = newData.address
+            if newData.isSend == true {
+                address.text = "To:\(newData.address)"
+            } else {
+                address.text = "From:\(newData.address)"
+            }
             transferState.text = newData.transferState
             money.text = newData.money
+            if newData.isSend == true {
+                money.textColor = UIColor.warningColor
+            } else {
+                money.textColor = UIColor.successedColor
+            }
             updateHeight()
         }
     }

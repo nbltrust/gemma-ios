@@ -127,7 +127,7 @@ extension OperationLeftView: TitleTextFieldViewDelegate, TitleTextFieldViewDataS
                                         warningText: "",
                                         introduce: "",
                                         isShowPromptWhenEditing: true,
-                                        showLine: false,
+                                        showLine: true,
                                         isSecureTextEntry: false)
             } else {
                 if let data = data as? [OperationViewModel] {
@@ -144,7 +144,7 @@ extension OperationLeftView: TitleTextFieldViewDelegate, TitleTextFieldViewDataS
                                         warningText: "",
                                         introduce: "",
                                         isShowPromptWhenEditing: true,
-                                        showLine: false,
+                                        showLine: true,
                                         isSecureTextEntry: false)
             }
         } else {
@@ -155,7 +155,7 @@ extension OperationLeftView: TitleTextFieldViewDelegate, TitleTextFieldViewDataS
                                             warningText: "",
                                             introduce: "",
                                             isShowPromptWhenEditing: true,
-                                            showLine: false,
+                                            showLine: true,
                                             isSecureTextEntry: false)
                 } else {
                     return TitleTextSetting(title: R.string.localizable.mortgage_cpu.key.localized(),
@@ -172,7 +172,7 @@ extension OperationLeftView: TitleTextFieldViewDelegate, TitleTextFieldViewDataS
                                         warningText: "",
                                         introduce: "",
                                         isShowPromptWhenEditing: true,
-                                        showLine: false,
+                                        showLine: true,
                                         isSecureTextEntry: false)
             }
         }

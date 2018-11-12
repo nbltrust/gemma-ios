@@ -62,7 +62,7 @@ class FingerView: EOSBaseView {
     func lineModelWithName(_ name: String) -> LineView.LineViewModel {
         return LineView.LineViewModel.init(name: name,
                                            content: "",
-                                           imageName: R.image.icArrow.name,
+                                           imageName: R.image.icTabArrow.name,
                                            nameStyle: LineViewStyleNames.normalName,
                                            contentStyle: LineViewStyleNames.normalContent,
                                            isBadge: false,

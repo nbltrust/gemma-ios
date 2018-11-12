@@ -22,7 +22,9 @@ struct TransferConfirmPasswordContext: RouteContext, HandyJSON {
     var receiver = ""
     var amount = ""
     var remark = ""
+    var contract = ""
     var callback: ((_ priKey: String, _ vc: UIViewController) -> Void)?
+    var model = AssetViewModel()
 }
 
 // MARK: - State
@@ -41,4 +43,11 @@ class TransferConfirmPasswordPropertyActionCreate {
         _ store: Store <TransferConfirmPasswordState>,
         _ actionCreatorCallback: @escaping ((ActionCreator) -> Void)
         ) -> Void
+}
+
+struct TransferInfoModel {
+    var pwd: String = ""
+    var account: String = ""
+    var amount: String = ""
+    var remark: String = ""
 }

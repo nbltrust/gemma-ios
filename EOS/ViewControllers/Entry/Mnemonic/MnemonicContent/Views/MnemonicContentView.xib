@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,27 +23,27 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uUM-Or-nu7">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUM-Or-nu7">
                     <rect key="frame" x="0.0" y="12" width="375" height="663"/>
                     <subviews>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1PZ-b1-6OF">
                             <rect key="frame" x="0.0" y="20" width="375" height="643"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3m-nx-xfK" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
-                                    <rect key="frame" x="32" y="24" width="311" height="17"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <rect key="frame" x="19" y="33" width="336" height="19.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" name="baseColor" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                            <real key="value" value="14"/>
+                                            <real key="value" value="16"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="082-Lg-uy1" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
-                                    <rect key="frame" x="32" y="51" width="311" height="14.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" red="0.62" green="0.63900000000000001" blue="0.74099999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <rect key="frame" x="19" y="68.5" width="336" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" name="introductionColor" red="0.400" green="0.400" blue="0.400" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -51,17 +51,17 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zte-j5-fdu">
-                                    <rect key="frame" x="16" y="175" width="343" height="168"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zte-j5-fdu">
+                                    <rect key="frame" x="20" y="101.5" width="335" height="46"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GoK-AK-PQP" customClass="TagListView" customModule="TagListView">
-                                            <rect key="frame" x="15" y="20" width="313" height="128"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GoK-AK-PQP" customClass="TagListView" customModule="TagListView">
+                                            <rect key="frame" x="15" y="15" width="305" height="16"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                    <color key="value" red="0.255" green="0.41199999999999998" blue="0.81999999999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="value" name="baseColor" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
-                                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="value" name="whiteColor" red="1.000" green="1.000" blue="1.000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
@@ -77,10 +77,16 @@
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="4"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" name="separatorColor" red="0.867" green="0.867" blue="0.867" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x6b-Ny-bKu" customClass="Button" customModule="EOS" customModuleProvider="target">
-                                    <rect key="frame" x="32" y="495" width="311" height="128"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6b-Ny-bKu" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="35" y="187.5" width="305" height="44"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="JvG-3P-hFN"/>
@@ -91,19 +97,19 @@
                                 </view>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="w3m-nx-xfK" secondAttribute="trailing" constant="32" id="3F9-8Q-VeN"/>
-                                <constraint firstItem="x6b-Ny-bKu" firstAttribute="leading" secondItem="1PZ-b1-6OF" secondAttribute="leading" constant="32" id="4N6-GB-iSU"/>
+                                <constraint firstAttribute="trailing" secondItem="w3m-nx-xfK" secondAttribute="trailing" constant="20" id="3F9-8Q-VeN"/>
+                                <constraint firstItem="x6b-Ny-bKu" firstAttribute="leading" secondItem="1PZ-b1-6OF" secondAttribute="leading" constant="35" id="4N6-GB-iSU"/>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="x6b-Ny-bKu" secondAttribute="bottom" constant="20" id="5E8-Mv-WSY"/>
-                                <constraint firstItem="082-Lg-uy1" firstAttribute="top" secondItem="w3m-nx-xfK" secondAttribute="bottom" constant="10" id="5vJ-LL-I0l"/>
-                                <constraint firstAttribute="trailing" secondItem="x6b-Ny-bKu" secondAttribute="trailing" constant="32" id="6m3-SG-8ta"/>
-                                <constraint firstAttribute="trailing" secondItem="082-Lg-uy1" secondAttribute="trailing" constant="32" id="8Yn-fS-v7h"/>
-                                <constraint firstItem="Zte-j5-fdu" firstAttribute="top" secondItem="082-Lg-uy1" secondAttribute="bottom" constant="19" id="B8F-wa-C3X"/>
-                                <constraint firstAttribute="trailing" secondItem="Zte-j5-fdu" secondAttribute="trailing" constant="16" id="Epd-qb-cz6"/>
-                                <constraint firstItem="Zte-j5-fdu" firstAttribute="leading" secondItem="1PZ-b1-6OF" secondAttribute="leading" constant="16" id="KnG-B8-I2O"/>
-                                <constraint firstItem="w3m-nx-xfK" firstAttribute="top" secondItem="1PZ-b1-6OF" secondAttribute="top" constant="24" id="LVQ-Nt-Moh"/>
-                                <constraint firstItem="x6b-Ny-bKu" firstAttribute="top" secondItem="Zte-j5-fdu" secondAttribute="bottom" constant="124" id="WeY-bj-Oeb"/>
-                                <constraint firstItem="082-Lg-uy1" firstAttribute="leading" secondItem="1PZ-b1-6OF" secondAttribute="leading" constant="32" id="Xfh-la-of2"/>
-                                <constraint firstItem="w3m-nx-xfK" firstAttribute="leading" secondItem="1PZ-b1-6OF" secondAttribute="leading" constant="32" id="dWO-Nr-W3x"/>
+                                <constraint firstItem="082-Lg-uy1" firstAttribute="top" secondItem="w3m-nx-xfK" secondAttribute="bottom" constant="16" id="5vJ-LL-I0l"/>
+                                <constraint firstAttribute="trailing" secondItem="x6b-Ny-bKu" secondAttribute="trailing" constant="35" id="6m3-SG-8ta"/>
+                                <constraint firstAttribute="trailing" secondItem="082-Lg-uy1" secondAttribute="trailing" constant="20" id="8Yn-fS-v7h"/>
+                                <constraint firstItem="Zte-j5-fdu" firstAttribute="top" secondItem="082-Lg-uy1" secondAttribute="bottom" constant="16" id="B8F-wa-C3X"/>
+                                <constraint firstAttribute="trailing" secondItem="Zte-j5-fdu" secondAttribute="trailing" constant="20" id="Epd-qb-cz6"/>
+                                <constraint firstItem="Zte-j5-fdu" firstAttribute="leading" secondItem="1PZ-b1-6OF" secondAttribute="leading" constant="20" id="KnG-B8-I2O"/>
+                                <constraint firstItem="w3m-nx-xfK" firstAttribute="top" secondItem="1PZ-b1-6OF" secondAttribute="top" constant="33" id="LVQ-Nt-Moh"/>
+                                <constraint firstItem="x6b-Ny-bKu" firstAttribute="top" secondItem="Zte-j5-fdu" secondAttribute="bottom" constant="40" id="WeY-bj-Oeb"/>
+                                <constraint firstItem="082-Lg-uy1" firstAttribute="leading" secondItem="1PZ-b1-6OF" secondAttribute="leading" constant="19" id="Xfh-la-of2"/>
+                                <constraint firstItem="w3m-nx-xfK" firstAttribute="leading" secondItem="1PZ-b1-6OF" secondAttribute="leading" constant="19" id="dWO-Nr-W3x"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -127,4 +133,6 @@
             <point key="canvasLocation" x="24.5" y="-137.5"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

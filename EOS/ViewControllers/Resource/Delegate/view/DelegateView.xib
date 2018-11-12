@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BV3-oj-aYY" customClass="PageView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
+                    <rect key="frame" x="20" y="0.0" width="335" height="201"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="leftText" value="mortgage"/>
@@ -56,11 +56,11 @@
                 <constraint firstItem="SX1-Po-5RT" firstAttribute="top" secondItem="BV3-oj-aYY" secondAttribute="bottom" constant="41" id="6aD-o8-hBS"/>
                 <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="bxz-f3-w1R" secondAttribute="trailing" constant="35" id="Duu-M0-4zX"/>
                 <constraint firstItem="bxz-f3-w1R" firstAttribute="top" secondItem="BV3-oj-aYY" secondAttribute="bottom" constant="41" id="Xgb-xU-u5B"/>
-                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="BV3-oj-aYY" secondAttribute="trailing" id="a3Y-wI-ihe"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="BV3-oj-aYY" secondAttribute="trailing" constant="20" id="a3Y-wI-ihe"/>
                 <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="SX1-Po-5RT" secondAttribute="trailing" constant="35" id="ahP-GI-MVr"/>
                 <constraint firstItem="BV3-oj-aYY" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" id="bmo-4Q-RQp"/>
                 <constraint firstItem="SX1-Po-5RT" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="35" id="kd8-xJ-xue"/>
-                <constraint firstItem="BV3-oj-aYY" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="ncd-D9-zmc"/>
+                <constraint firstItem="BV3-oj-aYY" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="20" id="ncd-D9-zmc"/>
                 <constraint firstItem="bxz-f3-w1R" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="35" id="y10-cg-8tW"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

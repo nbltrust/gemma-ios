@@ -36,10 +36,10 @@ struct NewHomeViewModel: HandyJSON {
     var currency: String = ""
     var account: String  = ""
     var currencyImg: UIImage = R.image.eosBg()!
-    var balance: String  = ""
-    var recentRefundAsset: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-    var allAssets: String = "- \(NetworkConfiguration.EOSIODefaultSymbol)"// 1.0000 EOS
-    var CNY: String  = ""
+    var balance: String  = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
+    var recentRefundAsset: String = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
+    var allAssets: String = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"// 1.0000 EOS
+    var CNY: String  = "0.00"
     var tokens: String  = ""
     var unit: String  = ""
     var tokenArray: [String] = []
@@ -55,10 +55,12 @@ struct NewHomeViewModel: HandyJSON {
 
 struct BalanceFetchedAction: Action {
     var currency: Currency?
+    var balance: JSON?
 }
 
 struct AccountFetchedAction: Action {
     var currency: Currency?
+    var info: Account?
 }
 
 struct RMBPriceFetchedAction: Action {

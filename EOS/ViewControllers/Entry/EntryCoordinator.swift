@@ -217,6 +217,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                                                               invitationCode: inviteCode,
                                                               validation: validation),
                                        success: { (data) in
+                                        CurrencyManager.shared.saveActived(id, actived: true)
                                         CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
                                         self.rootVC.popToRootViewController(animated: true)
                                         completion(true)
@@ -304,7 +305,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             let idNum: Int64 = Int64(wallets!.count) + 1
             let date = Date.init()
             let cipher = Seed39KeyEncrypt(pwd, checkStr)
-            let wallet = Wallet(id: nil, name: "EOS-WALLET-\(idNum)", type: .HD, cipher: cipher, deviceName: nil, date: date, hint: prompt)
+            let wallet = Wallet(id: nil, name: "WOOKONG-WALLET-\(idNum)", type: .HD, cipher: cipher, deviceName: nil, date: date, hint: prompt)
 
             let seed = Seed39SeedByMnemonic(checkStr)
             let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true)
@@ -318,7 +319,9 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: nil, wid: idNum, date: date, address: address)
 
             let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
-            Defaults[.currentWalletID] = (id?.string)!
+            if let id = id {
+                Defaults[.currentWalletID] = id.string
+            }
             if let _ = self.rootVC.viewControllers[0] as? EntryGuideViewController {
                 self.dismissCurrentNav(self.rootVC.viewControllers[1])
             } else {

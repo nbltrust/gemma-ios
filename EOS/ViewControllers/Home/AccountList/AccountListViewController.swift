@@ -36,7 +36,7 @@ class AccountListViewController: BaseViewController {
     }
     
     func setupUI() {
-        configLeftNavButton(R.image.icTransferClose())
+        configLeftNavButton(R.image.icMaskClose())
     }
 
     override func leftAction(_ sender: UIButton) {

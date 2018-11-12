@@ -354,6 +354,8 @@
 		3B726C1621133502001E4850 /* ScreenShotAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1221133502001E4850 /* ScreenShotAlertViewController.swift */; };
 		3B726C1721133502001E4850 /* ScreenShotAlertReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */; };
 		3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */; };
+		3B73C9E621940CBC00D0AA9B /* HomeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B73C9E421940CBC00D0AA9B /* HomeTableCell.xib */; };
+		3B73C9E721940CBC00D0AA9B /* HomeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B73C9E521940CBC00D0AA9B /* HomeTableCell.swift */; };
 		3B858BC2217077FB00499FAC /* FingerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BBE217077FB00499FAC /* FingerCoordinator.swift */; };
 		3B858BC3217077FB00499FAC /* FingerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BBF217077FB00499FAC /* FingerActions.swift */; };
 		3B858BC4217077FB00499FAC /* FingerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B858BC0217077FB00499FAC /* FingerViewController.swift */; };
@@ -481,8 +483,6 @@
 		7224713420F5F93600536BF4 /* HomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7224713320F5F93600536BF4 /* HomeHeaderView.xib */; };
 		7224713A20F624D200536BF4 /* HomeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224713920F624D200536BF4 /* HomeTopView.swift */; };
 		7224713C20F624DC00536BF4 /* HomeTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7224713B20F624DC00536BF4 /* HomeTopView.xib */; };
-		7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224714020F62A5F00536BF4 /* HomeTableCell.swift */; };
-		7224714320F62A5F00536BF4 /* HomeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7224714120F62A5F00536BF4 /* HomeTableCell.xib */; };
 		7224714A20F76B4600536BF4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224714920F76B4600536BF4 /* DetailView.swift */; };
 		7224714C20F76B5000536BF4 /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7224714B20F76B5000536BF4 /* DetailView.xib */; };
 		722D24C62111555B00A093CA /* WithNoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722D24C42111555A00A093CA /* WithNoDataView.xib */; };
@@ -1138,6 +1138,8 @@
 		3B726C1221133502001E4850 /* ScreenShotAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertViewController.swift; sourceTree = "<group>"; };
 		3B726C1321133502001E4850 /* ScreenShotAlertReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotAlertReducers.swift; sourceTree = "<group>"; };
 		3B726C1A2113357A001E4850 /* ScreenShotAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScreenShotAlert.storyboard; sourceTree = "<group>"; };
+		3B73C9E421940CBC00D0AA9B /* HomeTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTableCell.xib; sourceTree = "<group>"; };
+		3B73C9E521940CBC00D0AA9B /* HomeTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableCell.swift; sourceTree = "<group>"; };
 		3B858BBE217077FB00499FAC /* FingerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerCoordinator.swift; sourceTree = "<group>"; };
 		3B858BBF217077FB00499FAC /* FingerActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerActions.swift; sourceTree = "<group>"; };
 		3B858BC0217077FB00499FAC /* FingerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerViewController.swift; sourceTree = "<group>"; };
@@ -1264,8 +1266,6 @@
 		7224713320F5F93600536BF4 /* HomeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeHeaderView.xib; sourceTree = "<group>"; };
 		7224713920F624D200536BF4 /* HomeTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopView.swift; sourceTree = "<group>"; };
 		7224713B20F624DC00536BF4 /* HomeTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTopView.xib; sourceTree = "<group>"; };
-		7224714020F62A5F00536BF4 /* HomeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableCell.swift; sourceTree = "<group>"; };
-		7224714120F62A5F00536BF4 /* HomeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableCell.xib; sourceTree = "<group>"; };
 		7224714920F76B4600536BF4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		7224714B20F76B5000536BF4 /* DetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
 		722D24C42111555A00A093CA /* WithNoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithNoDataView.xib; sourceTree = "<group>"; };
@@ -2098,6 +2098,7 @@
 		2518901AF31C163FA80727C0AD3B89F6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3BF9DCAC2188702500E74C62 /* AssetDetail */,
 				3B46DD2E2192E603009B6E2A /* Receipt */,
 				3B46DD252192E56A009B6E2A /* Resource */,
 				3B08560A2175E96B0025B178 /* NewHome */,
@@ -2410,6 +2411,8 @@
 		3B4C90EB20F49069004F4C52 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3B73C9E521940CBC00D0AA9B /* HomeTableCell.swift */,
+				3B73C9E421940CBC00D0AA9B /* HomeTableCell.xib */,
 				4D11CFAD3A91B7F05EF8E3926496049E /* PaymentsRecordsCell.swift */,
 				2ADE7AD5B97AC4FBA97618775FFC168F /* PaymentsRecordsCell.xib */,
 				D8AE449353FF9911A1095EF4E6005FAE /* PaymentsRecordsCellView.swift */,
@@ -2694,6 +2697,7 @@
 		3BF9DCAC2188702500E74C62 /* AssetDetail */ = {
 			isa = PBXGroup;
 			children = (
+				3B4C90EB20F49069004F4C52 /* Cells */,
 				3BF9DCB52188705E00E74C62 /* views */,
 				3BF9DCAD2188705700E74C62 /* AssetDetailCoordinator.swift */,
 				3BF9DCAE2188705700E74C62 /* AssetDetailActions.swift */,
@@ -2729,10 +2733,8 @@
 		5F4F2C2A9D93854A7DACC8FE947B5D8C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3BF9DCAC2188702500E74C62 /* AssetDetail */,
 				3B08B91C218804D000ED43AD /* Overview */,
 				3BC12A8F21060926006EEB80 /* AccountList */,
-				3B4C90EB20F49069004F4C52 /* Cells */,
 				2253C5202111A4E50043AAF7 /* CopyPriKey */,
 				3B4C90E620F48F75004F4C52 /* Payments */,
 				3B4C90F620F4D66E004F4C52 /* PaymentsDetail */,
@@ -2740,7 +2742,6 @@
 				F95EB642EA8767ECCD304F254948EF56 /* View */,
 				22A9322D211A97EA00ACC63C /* Vote */,
 				72101676210197C00059B37E /* Wallet */,
-				7224713D20F62A2A00536BF4 /* cells */,
 				F2D83422C1978742731B5081FF95ADF9 /* Home.storyboard */,
 				07301833E312556F1670E74BF67AF3E8 /* HomeActions.swift */,
 				8074121E2E3C21B589A2EB0788FDFE37 /* HomeCoordinator.swift */,
@@ -2825,15 +2826,6 @@
 				72199D5F21043CF000575226 /* SetWalletContentView.xib */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		7224713D20F62A2A00536BF4 /* cells */ = {
-			isa = PBXGroup;
-			children = (
-				7224714020F62A5F00536BF4 /* HomeTableCell.swift */,
-				7224714120F62A5F00536BF4 /* HomeTableCell.xib */,
-			);
-			path = cells;
 			sourceTree = "<group>";
 		};
 		7224714420F76A7F00536BF4 /* Views */ = {
@@ -3737,6 +3729,7 @@
 				3BFF4E0D2109F8CD0047F996 /* OperationRightView.xib in Resources */,
 				3BD3664220F70877004DE09D /* TransferConfirmView.xib in Resources */,
 				3B6D747B214761690076F444 /* InvitationView.xib in Resources */,
+				3B73C9E621940CBC00D0AA9B /* HomeTableCell.xib in Resources */,
 				3BFF4E092109F89F0047F996 /* OperationLeftView.xib in Resources */,
 				3B195063211BE732002C7991 /* BuyRamView.xib in Resources */,
 				22917E132188382E0017FEAF /* CurrencyCheckCell.xib in Resources */,
@@ -3744,7 +3737,6 @@
 				72FE5B3F20FF402600B29FEC /* NormalCellView.xib in Resources */,
 				722D24CC21115B6100A093CA /* ContainerNormalCellView.xib in Resources */,
 				3B3147092108134E00E815BD /* PageView.xib in Resources */,
-				7224714320F62A5F00536BF4 /* HomeTableCell.xib in Resources */,
 				22A93242211A9DE000ACC63C /* StatusView.xib in Resources */,
 				3BD3665D20FDEB3A004DE09D /* CornerAndShadowView.xib in Resources */,
 				3BD3666F20FF0AF9004DE09D /* ScreenShotAlertView.xib in Resources */,
@@ -4147,7 +4139,6 @@
 				2214A96C211D73CF003256D2 /* Error.swift in Sources */,
 				72101697210197C10059B37E /* ChangeWalletNameViewController.swift in Sources */,
 				3BFF4E0B2109F8BD0047F996 /* OperationRightView.swift in Sources */,
-				7224714220F62A5F00536BF4 /* HomeTableCell.swift in Sources */,
 				7342E4EC216F1F8A0093E2C2 /* BLTCardConnectReducers.swift in Sources */,
 				3BF9DCBC2188713300E74C62 /* AssetDetailView.swift in Sources */,
 				72FE5B6B2100491A00B29FEC /* AboutCoordinator.swift in Sources */,
@@ -4467,6 +4458,7 @@
 				3BF9DCC1218872ED00E74C62 /* AssetDetailHeadViewAdapter.swift in Sources */,
 				3BD3664B20F72B5E004DE09D /* TransferConfirmPasswordActions.swift in Sources */,
 				22C0239F20F6FDB900284A0A /* CreatationCompleteCoordinator.swift in Sources */,
+				3B73C9E721940CBC00D0AA9B /* HomeTableCell.swift in Sources */,
 				223C5908214A521A00C69F3F /* BLTCardInitViewController.swift in Sources */,
 				3B018A392176D4B6008791AF /* NewHomeActions.swift in Sources */,
 				223C5900214A51DC00C69F3F /* BLTCardConfirmFingerPrinterReducers.swift in Sources */,
