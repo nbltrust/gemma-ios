@@ -17,6 +17,23 @@ func gResourceDetailReducer(action:Action, state:ResourceDetailState?) -> Resour
         var viewmodel = state.info.value
         viewmodel = convertResourceViewModelWithAccount(action.info, viewmodel: viewmodel)
         state.info.accept(viewmodel)
+    case let action as MBalanceFetchedAction:
+        if var viewmodel = state.info.value {
+            if let balance = action.balance.arrayValue.first?.string {
+                viewmodel.balance = balance
+            } else {
+                viewmodel.balance = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
+            }
+            state.info.accept(viewmodel)
+        } else {
+            var viewmodel = initViewModel()
+            if let balance = action.balance.arrayValue.first?.string {
+                viewmodel.balance = balance
+            } else {
+                viewmodel.balance = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
+            }
+            state.info.accept(viewmodel)
+        }
     default:
         break
     }
@@ -27,7 +44,7 @@ func gResourceDetailReducer(action:Action, state:ResourceDetailState?) -> Resour
 func initViewModel() -> ResourceViewModel {
     let newViewModel = ResourceViewModel(
         general: [GeneralViewModel(name: R.string.localizable.cpu.key.localized(),
-                                   eos: "- EOS",
+                                   eos: "0.0000 EOS",
                                    leftSub: R.string.localizable.use.key.localized() +
                                     " - " +
                                     R.string.localizable.ms.key.localized(),
@@ -37,32 +54,32 @@ func initViewModel() -> ResourceViewModel {
                                    lineHidden: false,
                                    progress: 0.0),
                   GeneralViewModel(name: R.string.localizable.net.key.localized(),
-                                   eos: "- EOS",
+                                   eos: "0.0000 EOS",
                                    leftSub: R.string.localizable.use.key.localized() +
                                     " - " +
                                     R.string.localizable.kb.key.localized(),
                                    rightSub: R.string.localizable.total.key.localized() +
                                     " - " +
                                     R.string.localizable.kb.key.localized(),
-                                   lineHidden: true,
+                                   lineHidden: false,
                                    progress: 0.0),
                   GeneralViewModel(name: R.string.localizable.ram.key.localized(),
-                                   eos: "- EOS",
+                                   eos: "0.0000 EOS",
                                    leftSub: R.string.localizable.use.key.localized() +
                                     " - " +
                                     R.string.localizable.kb.key.localized(),
                                    rightSub: R.string.localizable.total.key.localized() +
                                     " - " +
                                     R.string.localizable.kb.key.localized(),
-                                   lineHidden: true,
-                                   progress: 0.0)])
+                                   lineHidden: false,
+                                   progress: 0.0)], balance: "")
     return newViewModel
 }
 
 func convertResourceViewModelWithAccount(_ account: Account, viewmodel: ResourceViewModel?) -> ResourceViewModel {
     if var newViewModel = viewmodel {
-        newViewModel.general[0].eos = account.totalResources?.cpuWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
-        newViewModel.general[1].eos = account.totalResources?.netWeight ?? "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+        newViewModel.general[0].eos = account.totalResources?.cpuWeight ?? "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
+        newViewModel.general[1].eos = account.totalResources?.netWeight ?? "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
 
         if let used = account.cpuLimit?.used, let max = account.cpuLimit?.max {
 

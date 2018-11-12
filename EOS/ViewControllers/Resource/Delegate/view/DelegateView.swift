@@ -29,8 +29,6 @@ class DelegateView: EOSBaseView {
     }
     
     func setupUI() {
-        self.pageView.leftText = R.string.localizable.mortgage.key.localized()
-        self.pageView.rightText = R.string.localizable.redeem.key.localized()
         leftNextButton.isHidden = false
         rightNextButton.isHidden = true
     }
@@ -39,7 +37,6 @@ class DelegateView: EOSBaseView {
         leftNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.endEditing(true)
-            //            self.pageView.leftView.cpuMortgageView.resignFirstResponder()
             self.sendEventWith(Event.leftnext.rawValue, userinfo: [:])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         rightNextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in

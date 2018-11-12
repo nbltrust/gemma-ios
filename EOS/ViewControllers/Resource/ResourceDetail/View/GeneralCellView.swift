@@ -31,22 +31,22 @@ class GeneralCellView: UIView {
                     progressView.tintColor = UIColor.warningColor
                     pointView.backgroundColor = UIColor.warningColor
                 } else {
-                    progressView.tintColor = UIColor.baseColor
-                    pointView.backgroundColor = UIColor.baseColor
+                    progressView.tintColor = UIColor.introductionColor
+                    pointView.backgroundColor = UIColor.introductionColor
                 }
             }
-            if let data = data as? BuyRamViewModel {
-                leftSubLabel.text = data.leftSub
-                rightSubLabel.text = data.rightSub
-                progressView.progress = data.progress
-                if progressView.progress >= 0.85 {
-                    progressView.tintColor = UIColor.warningColor
-                    pointView.backgroundColor = UIColor.warningColor
-                } else {
-                    progressView.tintColor = UIColor.baseColor
-                    pointView.backgroundColor = UIColor.baseColor
-                }
-            }
+//            if let data = data as? BuyRamViewModel {
+//                leftSubLabel.text = data.leftSub
+//                rightSubLabel.text = data.rightSub
+//                progressView.progress = data.progress
+//                if progressView.progress >= 0.85 {
+//                    progressView.tintColor = UIColor.warningColor
+//                    pointView.backgroundColor = UIColor.warningColor
+//                } else {
+//                    progressView.tintColor = UIColor.introductionColor
+//                    pointView.backgroundColor = UIColor.introductionColor
+//                }
+//            }
 
             updateHeight()
         }

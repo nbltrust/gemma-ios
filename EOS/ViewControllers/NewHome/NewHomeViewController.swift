@@ -43,6 +43,7 @@ class NewHomeViewController: BaseViewController {
     }
 
     func setupData() {
+        self.dataArray.removeAll()
         let idStr = Defaults[.currentWalletID]
         if idStr != "" {
             do {
@@ -80,23 +81,6 @@ class NewHomeViewController: BaseViewController {
                 }
                 self.contentView.adapterModelToNewHomeView(self.dataArray)
             }
-
-//            if let newWallet = self.wallet as? Wallet {
-//                do {
-//                    let curArray = try WalletCacheService.shared.fetchAllCurrencysBy(newWallet)
-//                    for currency in curArray! {
-//                        if let modelStr = Defaults["currency\(currency.id!)"] as? String {
-//                            if let model = NewHomeViewModel.deserialize(from: modelStr) {
-//                                dataArray.append(model)
-//                            }
-//                        }
-//                    }
-//                    self.contentView.adapterModelToNewHomeView(dataArray)
-//                } catch {
-//
-//                }
-//            }
-
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
@@ -189,9 +173,10 @@ extension NewHomeViewController {
     @objc func cellDidClicked(_ data: [String: Any]) {
         if let model = data["data"] as? NewHomeViewModel {
             if let _ = CurrencyManager.shared.getAccountNameWith(model.id), CurrencyManager.shared.getActived(model.id) == true {
-                self.coordinator?.pushToOverviewVCWithCurrencyID(id: model.id)
                 CurrencyManager.shared.saveCurrentCurrencyID(model.id)
+                self.coordinator?.pushToOverviewVCWithCurrencyID(id: model.id)
             } else {
+                CurrencyManager.shared.saveCurrentCurrencyID(model.id)
                 self.coordinator?.pushToEntryVCWithCurrencyID(id: model.id)
             }
         }

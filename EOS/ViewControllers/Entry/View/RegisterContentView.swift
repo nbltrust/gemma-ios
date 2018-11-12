@@ -174,7 +174,7 @@ extension RegisterContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
                                     warningText: "",
                                     introduce: "",
                                     isShowPromptWhenEditing: false,
-                                    showLine: false,
+                                    showLine: true,
                                     isSecureTextEntry: false)
         } else {
             return TitleTextSetting(title: R.string.localizable.account_invitationcode.key.localized(),
@@ -182,7 +182,7 @@ extension RegisterContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
                                     warningText: R.string.localizable.invitationcode_warning.key.localized(),
                                     introduce: R.string.localizable.invitationcode_introduce.key.localized(),
                                     isShowPromptWhenEditing: false,
-                                    showLine: false,
+                                    showLine: true,
                                     isSecureTextEntry: false)
         }
     }
@@ -220,11 +220,10 @@ extension RegisterContentView: UITextFieldDelegate {
             if passwordView.checkStatus != TextUIStyle.warning {
                 passwordView.checkStatus = TextUIStyle.highlight
             }
-            tipsView.isHidden = false
-            tipsView.superview?.bringSubviewToFront(tipsView)
-            SwifterSwift.delay(milliseconds: 3000) {
-                self.tipsView.isHidden = true
-            }
+//            tipsView.isHidden = false
+//            SwifterSwift.delay(milliseconds: 3000) {
+//                self.tipsView.isHidden = true
+//            }
         case InputType.comfirmPassword.rawValue:
             passwordComfirmView.reloadActionViews(isEditing: true)
             if passwordComfirmView.checkStatus != TextUIStyle.warning {

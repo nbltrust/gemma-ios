@@ -39,7 +39,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="已发送" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJk-bb-sse" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="49" height="19.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                    <color key="textColor" name="baseColor" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -50,7 +50,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="748" text="To:0x9ECAC8da91…5b29baC2691BAdca" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjs-Kn-Trp" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="34.5" width="264.5" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" name="introductionColor" red="0.400" green="0.400" blue="0.400" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -61,12 +61,22 @@
                             <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EU3-yC-Irw">
+                            <rect key="frame" x="40" y="128.5" width="335" height="0.5"/>
+                            <color key="backgroundColor" name="separatorColor" red="0.867" green="0.867" blue="0.867" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="M9k-mt-SBk"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="EU3-yC-Irw" secondAttribute="trailing" id="0q0-0Y-YA3"/>
                         <constraint firstItem="qjV-cQ-djO" firstAttribute="centerY" secondItem="UJk-bb-sse" secondAttribute="centerY" id="6Th-Nh-Teq"/>
+                        <constraint firstAttribute="bottom" secondItem="EU3-yC-Irw" secondAttribute="bottom" id="LTX-yG-fYc"/>
                         <constraint firstItem="Sow-5y-iNW" firstAttribute="centerY" secondItem="XgG-KA-UFn" secondAttribute="centerY" id="Vrq-50-oAE"/>
                         <constraint firstItem="Sow-5y-iNW" firstAttribute="leading" secondItem="8gD-RH-gka" secondAttribute="trailing" constant="9" id="W5h-Mh-4Qr"/>
+                        <constraint firstItem="EU3-yC-Irw" firstAttribute="leading" secondItem="XgG-KA-UFn" secondAttribute="leading" constant="40" id="Xmy-jz-viq"/>
                         <constraint firstItem="8gD-RH-gka" firstAttribute="leading" secondItem="XgG-KA-UFn" secondAttribute="leading" constant="10" id="eoz-pq-qhr"/>
                         <constraint firstAttribute="trailing" secondItem="qjV-cQ-djO" secondAttribute="trailing" constant="16" id="y6m-rP-quh"/>
                         <constraint firstItem="8gD-RH-gka" firstAttribute="centerY" secondItem="XgG-KA-UFn" secondAttribute="centerY" id="zrD-7b-RmP"/>
@@ -78,7 +88,6 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="XgG-KA-UFn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2I9-CO-VGZ"/>
                 <constraint firstItem="XgG-KA-UFn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="GRB-e4-Teh"/>
@@ -98,7 +107,7 @@
                     <color key="value" red="0.153" green="0.20399999999999999" blue="0.48999999999999999" alpha="0.048000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="-40.5" y="-72.5"/>
+            <point key="canvasLocation" x="-40.799999999999997" y="-73.313343328335833"/>
         </view>
     </objects>
     <resources>

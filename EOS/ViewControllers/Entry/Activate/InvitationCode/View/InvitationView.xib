@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,19 +24,19 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQT-yc-Z7V">
-                    <rect key="frame" x="16" y="45" width="343" height="48"/>
+                    <rect key="frame" x="20" y="29.5" width="335" height="56"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gl9-3I-ZPU">
-                            <rect key="frame" x="16" y="0.0" width="291" height="48"/>
+                            <rect key="frame" x="16" y="0.0" width="252" height="56"/>
                             <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="Hru-NH-R5E"/>
                             </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XkQ-jP-b3F">
-                            <rect key="frame" x="317" y="16" width="16" height="16"/>
+                            <rect key="frame" x="278" y="20" width="16" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="Xwe-to-beY"/>
                                 <constraint firstAttribute="width" constant="16" id="rRi-cw-xTS"/>
@@ -48,16 +48,39 @@
                                 <action selector="clearBtnClick:" destination="-1" eventType="touchUpInside" id="GgD-3E-9tX"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmh-Qa-jAP" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="304" y="21" width="31" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locali" value="invitation_code_subtitle"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tB9-ki-GKG">
+                            <rect key="frame" x="0.0" y="55.5" width="335" height="0.5"/>
+                            <color key="backgroundColor" name="separatorColor" red="0.867" green="0.867" blue="0.867" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="wrw-bG-742"/>
+                            </constraints>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="tB9-ki-GKG" secondAttribute="bottom" id="0Oy-xR-blC"/>
+                        <constraint firstItem="tB9-ki-GKG" firstAttribute="leading" secondItem="QQT-yc-Z7V" secondAttribute="leading" id="21O-lv-kxS"/>
                         <constraint firstItem="XkQ-jP-b3F" firstAttribute="centerY" secondItem="QQT-yc-Z7V" secondAttribute="centerY" id="CWY-XK-t4Z"/>
                         <constraint firstItem="Gl9-3I-ZPU" firstAttribute="top" secondItem="QQT-yc-Z7V" secondAttribute="top" id="GFF-4k-yeu"/>
-                        <constraint firstAttribute="trailing" secondItem="XkQ-jP-b3F" secondAttribute="trailing" constant="10" id="Pfx-8x-ZCZ"/>
-                        <constraint firstAttribute="height" constant="48" id="WhY-gx-oKp"/>
+                        <constraint firstAttribute="trailing" secondItem="tB9-ki-GKG" secondAttribute="trailing" id="IcT-QD-Hmj"/>
+                        <constraint firstAttribute="trailing" secondItem="bmh-Qa-jAP" secondAttribute="trailing" id="MS0-Iq-rVh"/>
+                        <constraint firstAttribute="height" constant="56" id="WhY-gx-oKp"/>
                         <constraint firstAttribute="bottom" secondItem="Gl9-3I-ZPU" secondAttribute="bottom" id="XEp-nx-nOy"/>
                         <constraint firstItem="XkQ-jP-b3F" firstAttribute="leading" secondItem="Gl9-3I-ZPU" secondAttribute="trailing" constant="10" id="XhT-cG-5tc"/>
                         <constraint firstItem="Gl9-3I-ZPU" firstAttribute="leading" secondItem="QQT-yc-Z7V" secondAttribute="leading" constant="16" id="cQt-3I-i5n"/>
+                        <constraint firstItem="bmh-Qa-jAP" firstAttribute="leading" secondItem="XkQ-jP-b3F" secondAttribute="trailing" constant="10" id="o6I-Gt-pse"/>
+                        <constraint firstItem="bmh-Qa-jAP" firstAttribute="centerY" secondItem="Gl9-3I-ZPU" secondAttribute="centerY" id="tD6-RD-jyP"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -65,38 +88,24 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmh-Qa-jAP" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="109" width="31" height="14.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.25900000000000001" green="0.41999999999999998" blue="0.83099999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                            <real key="value" value="12"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="invitation_code_subtitle"/>
-                    </userDefinedRuntimeAttributes>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBS-VE-gTi" customClass="Button" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="163.5" width="311" height="44"/>
+                    <rect key="frame" x="35" y="126" width="305" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="GCc-7c-BBD"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="activate"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="locali" value="sure"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="IBS-VE-gTi" firstAttribute="leading" secondItem="cCP-vY-yFe" secondAttribute="leading" constant="32" id="DWC-CA-8Cw"/>
-                <constraint firstItem="cCP-vY-yFe" firstAttribute="trailing" secondItem="IBS-VE-gTi" secondAttribute="trailing" constant="32" id="U4T-0P-adB"/>
-                <constraint firstItem="cCP-vY-yFe" firstAttribute="trailing" secondItem="QQT-yc-Z7V" secondAttribute="trailing" constant="16" id="VeS-Nn-HOL"/>
-                <constraint firstItem="bmh-Qa-jAP" firstAttribute="leading" secondItem="cCP-vY-yFe" secondAttribute="leading" constant="32" id="WwR-aM-YHD"/>
-                <constraint firstItem="QQT-yc-Z7V" firstAttribute="leading" secondItem="cCP-vY-yFe" secondAttribute="leading" constant="16" id="bXn-v5-bCp"/>
-                <constraint firstItem="bmh-Qa-jAP" firstAttribute="top" secondItem="QQT-yc-Z7V" secondAttribute="bottom" constant="16" id="hgf-rn-bfP"/>
-                <constraint firstItem="IBS-VE-gTi" firstAttribute="top" secondItem="bmh-Qa-jAP" secondAttribute="bottom" constant="40" id="iLh-1K-Iny"/>
-                <constraint firstItem="QQT-yc-Z7V" firstAttribute="top" secondItem="cCP-vY-yFe" secondAttribute="top" constant="25" id="lNC-dk-ITU"/>
+                <constraint firstItem="IBS-VE-gTi" firstAttribute="leading" secondItem="cCP-vY-yFe" secondAttribute="leading" constant="35" id="DWC-CA-8Cw"/>
+                <constraint firstItem="cCP-vY-yFe" firstAttribute="trailing" secondItem="IBS-VE-gTi" secondAttribute="trailing" constant="35" id="U4T-0P-adB"/>
+                <constraint firstItem="cCP-vY-yFe" firstAttribute="trailing" secondItem="QQT-yc-Z7V" secondAttribute="trailing" constant="20" id="VeS-Nn-HOL"/>
+                <constraint firstItem="QQT-yc-Z7V" firstAttribute="leading" secondItem="cCP-vY-yFe" secondAttribute="leading" constant="20" id="bXn-v5-bCp"/>
+                <constraint firstItem="QQT-yc-Z7V" firstAttribute="top" secondItem="cCP-vY-yFe" secondAttribute="top" constant="9.5" id="lNC-dk-ITU"/>
+                <constraint firstItem="IBS-VE-gTi" firstAttribute="top" secondItem="QQT-yc-Z7V" secondAttribute="bottom" constant="40.5" id="zfX-4Z-8jB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="cCP-vY-yFe"/>
             <point key="canvasLocation" x="-69" y="-223"/>

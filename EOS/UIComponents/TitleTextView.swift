@@ -123,7 +123,7 @@ class TitleTextView: UIView {
 
             textView.attributedPlaceholder = NSMutableAttributedString.init(
                 string: setting.placeholder,
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor.baseColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
             textView.isSecureTextEntry = setting.isSecureTextEntry
             gapView.alpha = setting.showLine ? 1.0 : 0.0
         }
@@ -206,7 +206,7 @@ class TitleTextView: UIView {
     fileprivate func recoverUI() {
         titleLabel.text = setting.title
         titleLabel.textColor = UIColor.introductionColor
-        gapView.backgroundColor = UIColor.whiteColor
+        gapView.backgroundColor = UIColor.separatorColor
     }
 
     fileprivate func redSealUI() {

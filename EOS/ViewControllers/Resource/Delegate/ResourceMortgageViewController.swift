@@ -15,8 +15,11 @@ class ResourceMortgageViewController: BaseViewController {
 
 	var coordinator: (ResourceMortgageCoordinatorProtocol & ResourceMortgageStateManagerProtocol)?
 
+    var balance = ""
+    var cpuBalance = ""
+    var netBalance = ""
+
     @IBOutlet weak var contentView: DelegateView!
-    var balance: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -29,13 +32,7 @@ class ResourceMortgageViewController: BaseViewController {
     }
 
     func setupData() {
-        if let id = CurrencyManager.shared.getCurrentCurrencyID(), let name = CurrencyManager.shared.getAccountNameWith(id) {
-            coordinator?.getAccountInfo(name)
-            if let balanceJson = CurrencyManager.shared.getBalanceJsonWith(name), let balanceStr = balanceJson.arrayValue.first?.string {
-                balance = balanceStr
-            }
-        }
-
+        self.coordinator?.fetchData(balance, cpuBalance: cpuBalance, netBalance: netBalance)
     }
 
     func resetData() {
@@ -49,14 +46,16 @@ class ResourceMortgageViewController: BaseViewController {
     }
 
     func setupUI() {
-        self.title = R.string.localizable.resource_manager.key.localized()
+        self.title = R.string.localizable.delegate_redeem.key.localized()
     }
 
     override func configureObserveState() {
 
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
-            self.contentView.data = model
+            if let model = model as? PageViewModel {
+                self.contentView.adapterModelToDelegateView(model)
+            }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
 
         coordinator?.state.property.cpuMoneyValid.asObservable().subscribe(onNext: {[weak self] (model) in

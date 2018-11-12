@@ -85,7 +85,7 @@ class BLTCardSearchViewController: BaseViewController {
     func modelWithDevice(device: BLTDevice) -> LineView.LineViewModel {
         return LineView.LineViewModel.init(name: device.name,
                                            content: "",
-                                           imageName: R.image.icArrow.name,
+                                           imageName: R.image.icTabArrow.name,
                                            nameStyle: LineViewStyleNames.normalName,
                                            contentStyle: LineViewStyleNames.normalContent,
                                            isBadge: false,

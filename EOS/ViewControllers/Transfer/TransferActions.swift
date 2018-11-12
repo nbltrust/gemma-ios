@@ -13,10 +13,8 @@ import RxCocoa
 import HandyJSON
 
 struct TransferContext: RouteContext, HandyJSON {
-    init() {
-
-    }
-
+    init() {}
+    var model = AssetViewModel()
 }
 
 // MARK: - State

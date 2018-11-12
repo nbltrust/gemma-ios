@@ -52,7 +52,7 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
-            oldCell?.label.textColor = UIColor.baseLightColor
+            oldCell?.label.textColor = UIColor.subTitleColor
             newCell?.label.textColor = UIColor.baseColor
         }
     }

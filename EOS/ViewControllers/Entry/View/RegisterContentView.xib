@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,58 +24,38 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="czO-oJ-kjc">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="262.5"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="374"/>
                     <subviews>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-ET-PPs" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ll4-eo-BHd" customClass="SharpCornerTipsLabelView" customModule="EOS" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="-10" width="375" height="91"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="91" id="xIH-q2-JO5"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ll4-eo-BHd" customClass="SharpCornerTipsLabelView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="ll4-eo-BHd" secondAttribute="trailing" id="3M1-WX-k8C"/>
-                                <constraint firstItem="ll4-eo-BHd" firstAttribute="leading" secondItem="7eI-ET-PPs" secondAttribute="leading" id="TXe-Ve-iWX"/>
-                                <constraint firstItem="ll4-eo-BHd" firstAttribute="top" secondItem="7eI-ET-PPs" secondAttribute="top" constant="-10" id="vH8-U8-b3k"/>
+                                <constraint firstAttribute="height" constant="91" id="xIH-q2-JO5"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-ET-PPs" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="91" width="375" height="50"/>
+                        </view>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-ye-AF6" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="50" width="375" height="65.5"/>
+                            <rect key="frame" x="0.0" y="141" width="375" height="65.5"/>
                         </view>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0M-Q5-YdH" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="115.5" width="375" height="65.5"/>
+                            <rect key="frame" x="0.0" y="206.5" width="375" height="65.5"/>
                         </view>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8m-6B-Aoo" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="181" width="375" height="65.5"/>
+                            <rect key="frame" x="0.0" y="272" width="375" height="86"/>
                         </view>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BCe-ps-ThL" userLabel="gap">
-                            <rect key="frame" x="0.0" y="246.5" width="375" height="16"/>
+                            <rect key="frame" x="0.0" y="358" width="375" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="bjf-sk-rxy"/>
                             </constraints>
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="7eI-ET-PPs" secondAttribute="trailing" id="166-GO-fJL"/>
-                        <constraint firstAttribute="trailing" secondItem="hhP-ye-AF6" secondAttribute="trailing" id="5XA-l2-7Ms"/>
-                        <constraint firstItem="s0M-Q5-YdH" firstAttribute="top" secondItem="hhP-ye-AF6" secondAttribute="bottom" constant="16" id="65f-iw-tQR"/>
-                        <constraint firstItem="s0M-Q5-YdH" firstAttribute="leading" secondItem="czO-oJ-kjc" secondAttribute="leading" id="6eb-o5-nMF"/>
                         <constraint firstAttribute="trailing" secondItem="BCe-ps-ThL" secondAttribute="trailing" id="6j5-eu-Bue"/>
-                        <constraint firstItem="BCe-ps-ThL" firstAttribute="top" secondItem="g8m-6B-Aoo" secondAttribute="bottom" id="FCb-Ff-dyN"/>
-                        <constraint firstAttribute="trailing" secondItem="g8m-6B-Aoo" secondAttribute="trailing" id="HwR-Xk-Usd"/>
-                        <constraint firstItem="g8m-6B-Aoo" firstAttribute="top" secondItem="s0M-Q5-YdH" secondAttribute="bottom" constant="16" id="Mh7-U0-OtB"/>
                         <constraint firstItem="BCe-ps-ThL" firstAttribute="leading" secondItem="czO-oJ-kjc" secondAttribute="leading" id="Ybh-2T-pBs"/>
-                        <constraint firstItem="hhP-ye-AF6" firstAttribute="top" secondItem="7eI-ET-PPs" secondAttribute="bottom" constant="16" id="Z8A-SR-T2Q"/>
                         <constraint firstAttribute="bottom" secondItem="BCe-ps-ThL" secondAttribute="bottom" id="d7A-nl-dfK"/>
-                        <constraint firstAttribute="trailing" secondItem="s0M-Q5-YdH" secondAttribute="trailing" id="h7l-U5-ssH"/>
-                        <constraint firstItem="g8m-6B-Aoo" firstAttribute="leading" secondItem="czO-oJ-kjc" secondAttribute="leading" id="ngM-a5-Kbq"/>
-                        <constraint firstItem="7eI-ET-PPs" firstAttribute="top" secondItem="czO-oJ-kjc" secondAttribute="top" id="qUr-fT-zjg"/>
-                        <constraint firstItem="7eI-ET-PPs" firstAttribute="leading" secondItem="czO-oJ-kjc" secondAttribute="leading" id="rwD-ZR-Fri"/>
-                        <constraint firstItem="hhP-ye-AF6" firstAttribute="leading" secondItem="czO-oJ-kjc" secondAttribute="leading" id="xTh-IO-pYT"/>
                     </constraints>
                 </stackView>
             </subviews>

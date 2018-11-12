@@ -110,7 +110,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IS0-iK-I9A" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
-                                                                    <rect key="frame" x="68" y="8" width="36" height="14"/>
+                                                                    <rect key="frame" x="68" y="33" width="36" height="14"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="14" id="AgD-ej-GWv"/>
                                                                     </constraints>
@@ -127,9 +127,9 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="IS0-iK-I9A" secondAttribute="trailing" id="I5W-uc-gD6"/>
-                                                                <constraint firstItem="IS0-iK-I9A" firstAttribute="top" secondItem="X3v-O0-qyk" secondAttribute="top" constant="8" id="LDA-SV-YEB"/>
                                                                 <constraint firstItem="IS0-iK-I9A" firstAttribute="leading" secondItem="nUl-KB-hdl" secondAttribute="trailing" constant="8" id="QUl-DN-jrM"/>
                                                                 <constraint firstItem="nUl-KB-hdl" firstAttribute="top" secondItem="X3v-O0-qyk" secondAttribute="top" id="gNP-dT-O4e"/>
+                                                                <constraint firstItem="IS0-iK-I9A" firstAttribute="bottom" secondItem="nUl-KB-hdl" secondAttribute="bottom" id="rW3-D6-eb9"/>
                                                                 <constraint firstItem="nUl-KB-hdl" firstAttribute="leading" secondItem="X3v-O0-qyk" secondAttribute="leading" id="s2n-8r-du4"/>
                                                                 <constraint firstAttribute="bottom" secondItem="nUl-KB-hdl" secondAttribute="bottom" id="wBw-ww-w1R"/>
                                                             </constraints>
@@ -228,7 +228,7 @@
                                                         <constraint firstAttribute="height" constant="16" id="TRZ-k0-7iJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40799999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="baseColor" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -269,7 +269,7 @@
                                                         <constraint firstAttribute="height" constant="16" id="QqQ-du-b5t"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40799999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="baseColor" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -449,4 +449,6 @@
             <point key="canvasLocation" x="-208.80000000000001" y="-192.05397301349328"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

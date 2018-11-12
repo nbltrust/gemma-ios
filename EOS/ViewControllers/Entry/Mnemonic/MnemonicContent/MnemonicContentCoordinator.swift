@@ -12,6 +12,7 @@ import NBLCommonModule
 
 protocol MnemonicContentCoordinatorProtocol {
     func pushToVerifyMnemonicVC()
+    func showAlertMessage()
 }
 
 protocol MnemonicContentStateManagerProtocol {
@@ -50,6 +51,15 @@ extension MnemonicContentCoordinator: MnemonicContentCoordinatorProtocol {
             vc.coordinator = coordinator
             self.rootVC.pushViewController(vc, animated: true)
         }
+    }
+    func showAlertMessage() {
+        var context = ScreenShotAlertContext()
+        context.desc = RichStyle.shared.tagText(R.string.localizable.backup_introduce_three.key.localized(), fontSize: 14, color: UIColor.introductionColor, lineHeight: 22)
+        context.title = R.string.localizable.dont_screen_shot.key.localized()
+        context.buttonTitle = R.string.localizable.i_know.key.localized()
+        context.imageName = R.image.icPopNoScreenshots.name
+        context.needCancel = false
+        appCoodinator.showGemmaAlert(context)
     }
 }
 

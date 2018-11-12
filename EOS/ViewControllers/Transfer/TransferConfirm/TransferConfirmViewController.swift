@@ -20,6 +20,7 @@ class TransferConfirmViewController: BaseViewController {
     var data: ConfirmViewModel = ConfirmViewModel()
 
     var type: CreateAPPId = .gemma
+    var model: AssetViewModel = AssetViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,7 @@ class TransferConfirmViewController: BaseViewController {
             if let context = context as? TransferConfirmContext {
                 self.data = context.data
                 self.type = context.type
+                self.model = context.model
             }
         }).disposed(by: disposeBag)
 
@@ -60,18 +62,18 @@ extension TransferConfirmViewController {
         }
         if type == R.string.localizable.check_transfer.key.localized() {
             if self.type == .gemma {
-                self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.transfer.rawValue)
+                self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.transfer.rawValue, model: self.model)
             } else {
                 self.coordinator?.pushToTransferFPConfirmVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.bltTransfer.rawValue)
             }
         } else if type == R.string.localizable.confirm_mortgage.key.localized() {
-            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.mortgage.rawValue)
+            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.mortgage.rawValue, model: self.model)
         } else if type == R.string.localizable.confirm_relieve_mortgage.key.localized() {
-            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.relieveMortgage.rawValue)
+            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.relieveMortgage.rawValue, model: self.model)
         } else if type == R.string.localizable.confirm_buy.key.localized() {
-            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.buyRam.rawValue)
+            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.buyRam.rawValue, model: self.model)
         } else if type == R.string.localizable.confirm_sell.key.localized() {
-            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.sellRam.rawValue)
+            self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.sellRam.rawValue, model: self.model)
         }
     }
 }

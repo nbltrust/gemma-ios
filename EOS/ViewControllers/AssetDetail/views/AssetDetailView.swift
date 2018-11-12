@@ -22,6 +22,7 @@ class AssetDetailView: EOSBaseView {
         case assetDetailViewDidClicked
         case nodeVodeBtnDidClicked
         case resourceManagerBtnDidClicked
+        case cellViewDidClicked
     }
 
     override var data: Any? {
@@ -110,11 +111,10 @@ extension AssetDetailView: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        self.coordinator?.pushPaymentsDetail(data: PaymentsRecordsViewModel())
         if let data = data as? [String: [PaymentsRecordsViewModel]] {
-            //            self.next?.sendEventWith(<#T##name: String##String#>, userinfo: <#T##[String : Any]#>)
+            let keys = Array(data.keys)
+            let key = keys[indexPath.section]
+            self.sendEventWith(Event.cellViewDidClicked.rawValue, userinfo: ["data": data[key]![indexPath.row]])
         }
-        //        self.coordinator?.pushPaymentsDetail(data: data[indexPath.row])
     }
-
 }

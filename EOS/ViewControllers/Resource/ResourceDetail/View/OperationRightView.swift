@@ -127,7 +127,7 @@ extension OperationRightView: TitleTextFieldViewDelegate, TitleTextFieldViewData
                                         warningText: "",
                                         introduce: "",
                                         isShowPromptWhenEditing: true,
-                                        showLine: false,
+                                        showLine: true,
                                         isSecureTextEntry: false)
             } else {
                 if let data = data as? [OperationViewModel] {
@@ -144,7 +144,7 @@ extension OperationRightView: TitleTextFieldViewDelegate, TitleTextFieldViewData
                                         warningText: "",
                                         introduce: "",
                                         isShowPromptWhenEditing: true,
-                                        showLine: false,
+                                        showLine: true,
                                         isSecureTextEntry: false)
             }
         } else {
@@ -172,7 +172,7 @@ extension OperationRightView: TitleTextFieldViewDelegate, TitleTextFieldViewData
                                         warningText: "",
                                         introduce: "",
                                         isShowPromptWhenEditing: true,
-                                        showLine: false,
+                                        showLine: true,
                                         isSecureTextEntry: false)
             }
         }

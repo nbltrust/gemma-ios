@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOD-6a-NOc" customClass="VerifyMnemonicWordView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <rect key="frame" x="20" y="20" width="335" height="647"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Y76-AN-WCo" firstAttribute="trailing" secondItem="tOD-6a-NOc" secondAttribute="trailing" constant="16" id="0gJ-ix-NV4"/>
+                            <constraint firstItem="Y76-AN-WCo" firstAttribute="trailing" secondItem="tOD-6a-NOc" secondAttribute="trailing" constant="20" id="0gJ-ix-NV4"/>
                             <constraint firstItem="Y76-AN-WCo" firstAttribute="bottom" secondItem="tOD-6a-NOc" secondAttribute="bottom" id="8kD-g7-ix9"/>
-                            <constraint firstItem="tOD-6a-NOc" firstAttribute="leading" secondItem="Y76-AN-WCo" secondAttribute="leading" constant="16" id="BZb-bR-5AL"/>
+                            <constraint firstItem="tOD-6a-NOc" firstAttribute="leading" secondItem="Y76-AN-WCo" secondAttribute="leading" constant="20" id="BZb-bR-5AL"/>
                             <constraint firstItem="tOD-6a-NOc" firstAttribute="top" secondItem="Y76-AN-WCo" secondAttribute="top" id="tdS-hM-Axy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y76-AN-WCo"/>
@@ -47,28 +47,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ybx-9k-I8c">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybx-9k-I8c">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-T7-jUU" customClass="BackupPrivateKeyView" customModule="EOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="181" width="375" height="128"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rQj-V6-AuW">
+                                        <rect key="frame" x="0.0" y="161" width="375" height="168"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-T7-jUU" customClass="BackupPrivateKeyView" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="20" width="375" height="128"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="6wC-T7-jUU" firstAttribute="top" secondItem="rQj-V6-AuW" secondAttribute="top" id="Eh9-zx-kJ2"/>
+                                            <constraint firstItem="6wC-T7-jUU" firstAttribute="leading" secondItem="rQj-V6-AuW" secondAttribute="leading" id="O2s-lC-syt"/>
+                                            <constraint firstAttribute="bottom" secondItem="6wC-T7-jUU" secondAttribute="bottom" id="jLX-h5-atE"/>
+                                            <constraint firstAttribute="trailing" secondItem="6wC-T7-jUU" secondAttribute="trailing" id="tsq-nk-2qb"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="6wC-T7-jUU" secondAttribute="trailing" id="45W-b6-JmB"/>
-                                    <constraint firstItem="6wC-T7-jUU" firstAttribute="leading" secondItem="Ybx-9k-I8c" secondAttribute="leading" id="Q02-Qi-2SN"/>
-                                    <constraint firstItem="6wC-T7-jUU" firstAttribute="top" secondItem="Ybx-9k-I8c" secondAttribute="top" id="Qtl-Gf-TxE"/>
-                                    <constraint firstAttribute="width" constant="375" id="bDq-Wc-IWn"/>
-                                    <constraint firstAttribute="bottom" secondItem="6wC-T7-jUU" secondAttribute="bottom" id="uPc-00-Qqr"/>
+                                    <constraint firstAttribute="bottom" secondItem="rQj-V6-AuW" secondAttribute="bottom" id="Om6-CX-Ncu"/>
+                                    <constraint firstItem="rQj-V6-AuW" firstAttribute="leading" secondItem="Ybx-9k-I8c" secondAttribute="leading" id="c9a-Mq-W4F"/>
+                                    <constraint firstItem="rQj-V6-AuW" firstAttribute="top" secondItem="Ybx-9k-I8c" secondAttribute="top" id="cn5-dI-LRU"/>
+                                    <constraint firstAttribute="trailing" secondItem="rQj-V6-AuW" secondAttribute="trailing" id="vLb-CP-6rt"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6wC-T7-jUU" firstAttribute="width" secondItem="MaG-dE-xtn" secondAttribute="width" id="6sE-3l-VLS"/>
                             <constraint firstItem="Ybx-9k-I8c" firstAttribute="top" secondItem="OPq-IX-YLK" secondAttribute="top" id="79G-JF-aQM"/>
                             <constraint firstItem="OPq-IX-YLK" firstAttribute="trailing" secondItem="Ybx-9k-I8c" secondAttribute="trailing" id="7DM-ry-T0e"/>
+                            <constraint firstItem="rQj-V6-AuW" firstAttribute="width" secondItem="MaG-dE-xtn" secondAttribute="width" id="E6a-NA-LUz"/>
                             <constraint firstItem="OPq-IX-YLK" firstAttribute="bottom" secondItem="Ybx-9k-I8c" secondAttribute="bottom" id="Wrt-2O-sqR"/>
                             <constraint firstItem="Ybx-9k-I8c" firstAttribute="leading" secondItem="OPq-IX-YLK" secondAttribute="leading" id="s09-7C-1s6"/>
                         </constraints>

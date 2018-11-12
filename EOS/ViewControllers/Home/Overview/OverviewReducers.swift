@@ -18,7 +18,7 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
             if let balance = action.balance.arrayValue.first?.string {
                 viewmodel.balance = balance
             } else {
-                viewmodel.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+                viewmodel.balance = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
             }
             viewmodel.allAssets = calculateTotalAsset(viewmodel)
             viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
@@ -30,7 +30,7 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
             if let balance = action.balance.arrayValue.first?.string {
                 viewmodel.balance = balance
             } else {
-                viewmodel.balance = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+                viewmodel.balance = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
             }
             state.info.accept(viewmodel)
         }
@@ -46,7 +46,7 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
             viewmodel = convertViewModelWithAccount(action.info, viewmodel: viewmodel, currencyID: CurrencyManager.shared.getCurrentCurrencyID())
             state.info.accept(viewmodel)
         }
-    case let action as RMBPriceFetchedAction:
+    case _ as RMBPriceFetchedAction:
         var viewmodel = state.info.value
         if coinType() == .CNY, let eos = CurrencyManager.shared.getCNYPrice() {
             state.cnyPrice = eos
@@ -60,6 +60,15 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
     case let action as TokensFetchedAction:
         let model = convertViewModelWithAccount(tokensJson: action.data)
         state.tokens.accept(model)
+        if var viewmodel = state.info.value {
+            viewmodel = setTokenWith(tokens: action.data, viewmodel: viewmodel)
+            state.info.accept(viewmodel)
+        } else {
+            var viewmodel = NewHomeViewModel()
+            viewmodel.bottomIsHidden = false
+            viewmodel = setTokenWith(tokens: action.data, viewmodel: viewmodel)
+            state.info.accept(viewmodel)
+        }
     default:
         break
     }

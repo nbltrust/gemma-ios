@@ -35,10 +35,10 @@ struct NumsAction: Action {
 }
 
 struct BillModel {
-    var cpu = ""
-    var net = ""
-    var ram = ""
-    var rmb = ""
+    var cpu = "0.0000 EOS"
+    var net = "0.0000 EOS"
+    var ram = "0.0000 EOS"
+    var rmb = "0.00 RMB"
 }
 
 struct WXPayModel {

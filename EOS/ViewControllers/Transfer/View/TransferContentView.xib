@@ -25,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="397" height="322"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImE-GX-GNV" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImE-GX-GNV">
                     <rect key="frame" x="0.0" y="0.0" width="397" height="214"/>
                     <subviews>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDi-jC-4Ff" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
@@ -38,7 +38,6 @@
                         </view>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eLT-mr-G6c" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="85" width="397" height="78"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ooB-mJ-nSx" customClass="TitleTextView" customModule="EOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="163" width="397" height="51"/>
@@ -68,7 +67,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ImE-GX-GNV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AEa-1t-hB3"/>
                 <constraint firstAttribute="trailing" secondItem="ImE-GX-GNV" secondAttribute="trailing" id="D2h-rw-oaO"/>

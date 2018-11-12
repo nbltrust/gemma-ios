@@ -1,19 +1,19 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "icPopNoScreenshots.png"
+      "filename" : "icPopNoScreenshots.png",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "icPopNoScreenshots@2x.png"
+      "filename" : "icPopNoScreenshots@2x.png",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "icPopNoScreenshots@3x.png"
+      "filename" : "icPopNoScreenshots@3x.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

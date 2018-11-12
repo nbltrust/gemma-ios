@@ -79,12 +79,12 @@ class WalletManagerView: UIView {
         exportPrivateKeyLineView.nameText = R.string.localizable.export_private_key.key.localized()
         exportPrivateKeyLineView.isShowLine = true
         exportPrivateKeyLineView.contentText = ""
-        exportPrivateKeyLineView.imageName = R.image.icArrow.name
+        exportPrivateKeyLineView.imageName = R.image.icTabArrow.name
         exportPrivateKeyLineView.backgroundColor = UIColor.clear
 
         changePasswordLineView.nameText = R.string.localizable.change_password.key.localized()
         changePasswordLineView.contentText = ""
-        changePasswordLineView.imageName = R.image.icArrow.name
+        changePasswordLineView.imageName = R.image.icTabArrow.name
         changePasswordLineView.backgroundColor = UIColor.clear
 
     }

@@ -12,11 +12,8 @@ import NBLCommonModule
 @IBDesignable
 class FriendView: EOSBaseView {
 
-    @IBOutlet weak var priKeyLabel: BaseLabel!
     @IBOutlet weak var memoTitleLabel: BaseLabel!
     @IBOutlet weak var warningTitleLabel: BaseLabel!
-    @IBOutlet weak var keyLabel: UILabel!
-    @IBOutlet weak var keyButton: UIButton!
     @IBOutlet weak var memoButton: UIButton!
     @IBOutlet weak var memoLabel: UILabel!
 
@@ -34,18 +31,13 @@ class FriendView: EOSBaseView {
     }
 
     func setupUI() {
-        keyLabel.text = WalletManager.shared.priKey
-        Broadcaster.notify(EntryViewController.self) { (vc) in
-            let walletName = vc.registerView.nameView.textField.text!
-            memoLabel.text = walletName + "-" + WalletManager.shared.currentPubKey
-        }
+        memoLabel.text = CurrencyManager.shared.getCurrentAccountName() + "-" + CurrencyManager.shared.currentPublicKey()
         setContentAttribute(contentLabel: memoTitleLabel, contentLabelStr: R.string.localizable.friend_activate_title.key)
         setContentAttribute(contentLabel: warningTitleLabel, contentLabelStr: R.string.localizable.activate_title_blue.key)
     }
 
     func updateTitle(memoText: String, priKeyText: String) {
         setContentAttribute(contentLabel: memoTitleLabel, contentLabelStr: memoText)
-        setContentAttribute(contentLabel: priKeyLabel, contentLabelStr: priKeyText)
     }
 
     func setContentAttribute(contentLabel: BaseLabel, contentLabelStr: String) {
@@ -69,10 +61,6 @@ class FriendView: EOSBaseView {
     }
 
     func setupSubViewEvent() {
-        keyButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
-            guard let `self` = self else { return }
-            self.copyText(self.keyLabel.text!)
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         memoButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             self.copyText(self.memoLabel.text!)

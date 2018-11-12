@@ -30,7 +30,6 @@
                     <constraint firstAttribute="trailing" secondItem="6LR-H6-s7d" secondAttribute="trailing" constant="20" id="hPG-Ji-Ngd"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="payRecordsCellView" destination="6LR-H6-s7d" id="gZl-h7-FV2"/>

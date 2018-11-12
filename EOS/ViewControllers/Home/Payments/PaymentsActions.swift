@@ -45,6 +45,7 @@ struct PaymentsRecordsViewModel {
     var memo: String = ""
     var hashNumber: String = ""
     var hash: String = ""
+    var isSend: Bool = true
 }
 
 // MARK: - Action Creator

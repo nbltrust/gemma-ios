@@ -67,7 +67,7 @@ func gBuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Bu
             if let balance = action.balance.arrayValue.first?.string {
                 viewmodel.leftTrade = balance
             } else {
-                viewmodel.leftTrade = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+                viewmodel.leftTrade = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
             }
             state.info.accept(viewmodel)
         } else {
@@ -75,7 +75,7 @@ func gBuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Bu
             if let balance = action.balance.arrayValue.first?.string {
                 viewmodel.leftTrade = balance
             } else {
-                viewmodel.leftTrade = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
+                viewmodel.leftTrade = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
             }
             state.info.accept(viewmodel)
         }
@@ -160,36 +160,3 @@ func convertBuyRamViewModelWithAccount(_ account: Account, viewmodel: BuyRamView
     }
 }
 
-func convertToViewModelWithModel(model: AccountModel, viewmodel: BuyRamViewModel?) -> BuyRamViewModel {
-    if var newViewModel = viewmodel {
-        let used = model.ramUsage.toKB
-        let max = model.ramQuota.toKB
-        newViewModel.leftSub = R.string.localizable.use.key.localized() + " \(used) " + R.string.localizable.kb.key.localized()
-        newViewModel.rightSub = R.string.localizable.total.key.localized() + " \(max) " + R.string.localizable.kb.key.localized()
-        newViewModel.progress = used.float()! / max.float()!
-
-        newViewModel.rightTrade = (max.float()! - used.float()!).string + " " + R.string.localizable.kb.key.localized()
-
-        if let cpuMax = model.cpuMax {
-            newViewModel.cpuMax = cpuMax
-        }
-        if let netMax = model.netMax {
-            newViewModel.netMax = netMax
-        }
-
-        if let balance = Defaults[model.accountName + NetworkConfiguration.BlanceDefaultSymbol] as? String {
-            newViewModel.leftTrade = balance
-        }
-
-        if let ramPrice = Defaults[NetworkConfiguration.RAMPriceDefaultSymbol] as? String {
-            let price = Decimal(string: ramPrice)! * 1024
-            newViewModel.price = price
-            newViewModel.priceLabel = "≈" + price.doubleValue.string(digits: 8) + " EOS/KB"
-        }
-        return newViewModel
-    } else {
-        var newViewModel = BuyRamViewModel()
-        newViewModel = convertToViewModelWithModel(model: model, viewmodel: newViewModel)
-        return newViewModel
-    }
-}

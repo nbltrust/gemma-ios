@@ -54,20 +54,18 @@ class VerifyMnemonicWordView: EOSBaseView {
 extension VerifyMnemonicWordView: TagListViewDelegate {
     func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
         if sender == myTagListView {
-            myTagListView.removeTag(title)
+            myTagListView.removeTagView(tagView)
             poolTagListView.addTag(title)
-            if selectValues.contains(title) {
-                let index = selectValues.index(of: title)
-                selectValues.remove(at: index!)
-            }
             tagView.tagBackgroundColor = UIColor.baseColor
         } else if sender == poolTagListView {
-            poolTagListView.removeTag(title)
+            poolTagListView.removeTagView(tagView)
             myTagListView.addTag(title)
-            if !selectValues.contains(title) {
-                selectValues.append(title)
-            }
             tagView.tagBackgroundColor = UIColor.white
+            selectValues.removeAll()
+            for index in 0..<myTagListView.tagViews.count {
+                let view = myTagListView.tagViews[index]
+                selectValues.append(view.titleLabel?.text ?? "")
+            }
             self.next?.sendEventWith(Event.verifyMnemonicWord.rawValue, userinfo: ["data": selectValues])
         }
     }

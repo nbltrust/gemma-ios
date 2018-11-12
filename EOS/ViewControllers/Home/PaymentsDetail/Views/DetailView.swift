@@ -37,13 +37,13 @@ class DetailView: UIView {
         didSet {
             if let data = data as? PaymentsRecordsViewModel {
 
-                address.text = data.address
+                address.text = "@" + data.address
                 time.text = data.time
                 state.text = data.transferState
                 memo.text = data.memo
                 tradeNumber.text = data.hashNumber
                 blcok.text = "\(data.block)"
-                stateIcon.image = data.stateImageName ==  R.image.icIncome() ? R.image.icIncomeWhite() : R.image.ic_income_white()
+                stateIcon.image = data.stateImageName
                 money.text = data.money
 
                 titleLabel.text = data.stateImageName ==  R.image.icIncome() ? R.string.localizable.receive.key.localized() : R.string.localizable.send.key.localized()
