@@ -36,9 +36,7 @@ github "mxcl/PromiseKit"
 
 binary "https://nbltrust.github.io/eos-ios-core-cpp/Carthage/iOS/eos-ios-core-cpp.json"
 binary "https://nbltrust.github.io/gemma-ios-lib-spec/Carthage/iOS/iOS_EWalletDynamic.json"
-binary "https://building42.github.io/Specs/Carthage/iOS/Fabric.json"
-binary "https://building42.github.io/Specs/Carthage/iOS/Crashlytics.json"
+
 git "https://github.com/nbltrust/seed39-ios-golang" "master"
-git "https://github.com/phpmaple/NBLCommonModule" "master"
 
 github "Tencent/MMKV"

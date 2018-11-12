@@ -55,8 +55,9 @@ class TestDateInRegion_Components: XCTestCase {
 		// TEST #3: Other components
 		XCTAssert( (dateB.region == regionParis), "Failed to assign correct region to date")
 		XCTAssert( (dateB.calendar.identifier == regionParis.calendar.identifier), "Failed to assign correct region's calendar to date")
-		XCTAssert( (dateB.quarterName(.default) == "2e trimestre"), "Failed to get quarterName in default")
-		XCTAssert( (dateB.quarterName(.short) == "T2"), "Failed to get quarterName in short")
+		XCTAssert( (dateB.quarterName(.default) == "1er trimestre"), "Failed to get quarterName in default")
+		XCTAssert( (dateB.quarterName(.short) == "T1"), "Failed to get quarterName in short")
+		XCTAssert( (dateB.quarterName(.default, locale: Locales.italian) == "1º trimestre"), "Failed to get quarterName with overwrite of locale")
 	}
 
 	func testDateInRegion_isLeapMonth() {
@@ -69,6 +70,12 @@ class TestDateInRegion_Components: XCTestCase {
 		XCTAssert( dateA.isLeapMonth == false, "Failed to evaluate is date isLeapMonth == false")
 		XCTAssert( dateC.isLeapMonth == false, "Failed to evaluate is date isLeapMonth == false")
 		XCTAssert( dateB.isLeapMonth, "Failed to evaluate is date isLeapMonth")
+	}
+	
+	func testDateInRegion_dateBySet() {
+		let originalDate = "2018-10-10T12:02:16.024".toISODate()
+		let newDate = originalDate?.dateBySet(hour: nil, min: nil, secs: nil, ms: 7)
+		XCTAssert( newDate?.toISO([.withInternetDateTimeExtended]) == "2018-10-10T12:02:16.007Z", "Failed to set milliseconds")
 	}
 
 	func testDateInRegion_isLeapYear() {
@@ -246,5 +253,13 @@ class TestDateInRegion_Components: XCTestCase {
 		XCTAssert( dateA.quarter == 1, "Failed to evaluate quarter property")
 		XCTAssert( dateB.quarter == 3, "Failed to evaluate quarter property")
 		XCTAssert( dateC.quarter == 4, "Failed to evaluate quarter property")
+	}
+	
+	func testAbsoluteDateISOFormatting() {
+		let now = DateInRegion()
+		let iso8601_string = now.toISO([.withInternetDateTime])
+		let absoluteDate = now.date
+		let absoluteDate_iso8601_string = absoluteDate.toISO([.withInternetDateTime])
+		XCTAssert( absoluteDate_iso8601_string == iso8601_string, "Failed respect the absolute ISO date")
 	}
 }

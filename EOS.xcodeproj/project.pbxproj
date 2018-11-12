@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -175,8 +175,6 @@
 		22A93242211A9DE000ACC63C /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A93241211A9DE000ACC63C /* StatusView.xib */; };
 		22A93246211BE4DE00ACC63C /* TKSimpleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */; };
 		22A93247211BE4DE00ACC63C /* TKBaseSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */; };
-		22B54F2C21930665007C4B90 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
-		22B54F2D21930665007C4B90 /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22B54F5121943F4B007C4B90 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B54F4E21943F4B007C4B90 /* GuideView.swift */; };
 		22B54F5221943F4B007C4B90 /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B54F4F21943F4B007C4B90 /* GuideView.xib */; };
 		22B54F5621943F68007C4B90 /* GuideContentViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B54F5321943F68007C4B90 /* GuideContentViewAdapter.swift */; };
@@ -3533,7 +3531,7 @@
 				2AA1AEF5455B05A71395618B4A67D394 /* Frameworks */,
 				4929B8EE7C2F136E4A24158BBB556CB5 /* Resources */,
 				734811752106F61B000BF1B8 /* fabric */,
-				732F370E214FB63A00CB3A58 /* carthage */,
+				OGE92K9DGV3I7GIBPUQT9DFB /* Carthage */,
 				732F370F214FB64100CB3A58 /* appstore-bug */,
 				73539D532179BF9D008395AC /* Integrate Reveal Server */,
 				73BEF1CC217F0D2200707DFC /* Embed Frameworks */,
@@ -3805,9 +3803,13 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 			);
 			name = "build auto increment";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3819,10 +3821,15 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 			);
 			name = R.swift;
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(SRCROOT)/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3864,7 +3871,7 @@
 			shellPath = /bin/sh;
 			shellScript = "fengniao --exclude Carthage GRDB.swift --force\n";
 		};
-		732F370E214FB63A00CB3A58 /* carthage */ = {
+		732F370F214FB64100CB3A58 /* appstore-bug */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3872,39 +3879,29 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Fabric.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Crashlytics.framework",
-			);
-			name = carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "carthage-copy-frameworks\n";
-		};
-		732F370F214FB64100CB3A58 /* appstore-bug */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
 			);
 			name = "appstore-bug";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#scripts/appstore.sh\n";
+			shellScript = "if [ ${CONFIGURATION} == \"Release\" ]; then\nscripts/appstore.sh\nfi\n";
 		};
 		734811752106F61B000BF1B8 /* fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			name = fabric;
+			outputFileListPaths = (
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3952,11 +3949,15 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-EOSTests-checkManifestLockResult.txt",
 			);
@@ -3970,14 +3971,39 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 			);
 			name = "color set";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#if [ \"${CONFIGURATION}\" = \"Release\" ]; then\npython scripts/named_colors_compat.py\n#fi\n";
+		};
+		OGE92K9DGV3I7GIBPUQT9DFB /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/Carthage/xcfilelists/EOS-inputPaths.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = Carthage;
+			outputFileListPaths = (
+				"$(SRCROOT)/Carthage/xcfilelists/EOS-outputPaths.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
