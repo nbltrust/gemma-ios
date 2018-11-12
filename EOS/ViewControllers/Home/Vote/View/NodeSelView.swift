@@ -15,6 +15,9 @@ class NodeSelView: UIView {
     @IBOutlet weak var ownerLabel: UILabel!
 
     @IBOutlet weak var checkButton: UIButton!
+
+    @IBOutlet weak var lineView: UIView!
+    
     func setup() {
     }
 

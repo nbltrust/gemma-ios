@@ -187,9 +187,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W15-rR-B8R">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W15-rR-B8R">
+                                <rect key="frame" x="0.0" y="20" width="375" height="587"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="hNo-lz-7Xh" id="NTf-zL-LMP"/>
                                     <outlet property="delegate" destination="hNo-lz-7Xh" id="nE3-GE-j3t"/>
@@ -197,7 +198,6 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOv-zL-nNI" customClass="VoteFootView" customModule="EOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
-                                <color key="backgroundColor" red="0.97299999999999998" green="0.97299999999999998" blue="0.97299999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="3RH-5w-6zD"/>
                                 </constraints>
@@ -217,15 +217,15 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qOv-zL-nNI" firstAttribute="trailing" secondItem="6lT-fx-QHd" secondAttribute="trailing" id="Fvq-LB-BCA"/>
-                            <constraint firstItem="6lT-fx-QHd" firstAttribute="bottom" secondItem="W15-rR-B8R" secondAttribute="bottom" id="GQh-Fw-fnb"/>
-                            <constraint firstItem="W15-rR-B8R" firstAttribute="leading" secondItem="6lT-fx-QHd" secondAttribute="leading" id="H1l-gE-CmE"/>
                             <constraint firstItem="6lT-fx-QHd" firstAttribute="bottom" secondItem="qOv-zL-nNI" secondAttribute="bottom" id="OYe-Ti-5fe"/>
-                            <constraint firstItem="W15-rR-B8R" firstAttribute="top" secondItem="6lT-fx-QHd" secondAttribute="top" id="gBv-JG-6xH"/>
+                            <constraint firstItem="qOv-zL-nNI" firstAttribute="top" secondItem="W15-rR-B8R" secondAttribute="bottom" id="Z3Y-5x-ivZ"/>
+                            <constraint firstItem="W15-rR-B8R" firstAttribute="top" secondItem="6lT-fx-QHd" secondAttribute="top" id="np6-hN-WWh"/>
+                            <constraint firstItem="W15-rR-B8R" firstAttribute="trailing" secondItem="6lT-fx-QHd" secondAttribute="trailing" id="qFR-99-7aq"/>
                             <constraint firstItem="qOv-zL-nNI" firstAttribute="leading" secondItem="6lT-fx-QHd" secondAttribute="leading" id="sCU-Ax-dvr"/>
-                            <constraint firstItem="W15-rR-B8R" firstAttribute="trailing" secondItem="6lT-fx-QHd" secondAttribute="trailing" id="yIM-ZE-KsI"/>
+                            <constraint firstItem="W15-rR-B8R" firstAttribute="leading" secondItem="6lT-fx-QHd" secondAttribute="leading" id="yUq-L0-Dig"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6lT-fx-QHd"/>
                     </view>
@@ -236,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FF7-gf-dzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2364" y="109"/>
+            <point key="canvasLocation" x="2364" y="108.39580209895054"/>
         </scene>
         <!--Selected Vote View Controller-->
         <scene sceneID="knF-Cq-y6f">
@@ -246,16 +246,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1oe-yu-DJh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1oe-yu-DJh">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="nyg-Hb-Qa2" id="KMU-Yi-6Be"/>
                                     <outlet property="delegate" destination="nyg-Hb-Qa2" id="bDu-Qh-SPu"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1oe-yu-DJh" firstAttribute="leading" secondItem="yRv-hb-zPj" secondAttribute="leading" id="83o-Ih-jRp"/>
                             <constraint firstItem="yRv-hb-zPj" firstAttribute="trailing" secondItem="1oe-yu-DJh" secondAttribute="trailing" id="GAP-he-q2D"/>

@@ -15,7 +15,7 @@ class NodeCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         let bgView = UIView()
-        bgView.backgroundColor = UIColor.white
+        bgView.backgroundColor = UIColor.clear
         self.multipleSelectionBackgroundView = bgView
         // Initialization code
     }
@@ -31,7 +31,7 @@ class NodeCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         nodeView.checkButton.isSelected = selected
-        nodeView.backgroundColor = UIColor.whiteColor
+        nodeView.lineView.backgroundColor = UIColor.separatorColor
         // Configure the view for the selected state
     }
 

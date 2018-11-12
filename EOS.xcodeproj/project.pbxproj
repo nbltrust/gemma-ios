@@ -160,6 +160,13 @@
 		22A93242211A9DE000ACC63C /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A93241211A9DE000ACC63C /* StatusView.xib */; };
 		22A93246211BE4DE00ACC63C /* TKSimpleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */; };
 		22A93247211BE4DE00ACC63C /* TKBaseSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */; };
+		22B54F2C21930665007C4B90 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
+		22B54F2D21930665007C4B90 /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		22B54F5121943F4B007C4B90 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B54F4E21943F4B007C4B90 /* GuideView.swift */; };
+		22B54F5221943F4B007C4B90 /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B54F4F21943F4B007C4B90 /* GuideView.xib */; };
+		22B54F5621943F68007C4B90 /* GuideContentViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B54F5321943F68007C4B90 /* GuideContentViewAdapter.swift */; };
+		22B54F5721943F68007C4B90 /* GuideContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B54F5421943F68007C4B90 /* GuideContentView.swift */; };
+		22B54F5821943F68007C4B90 /* GuideContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B54F5521943F68007C4B90 /* GuideContentView.xib */; };
 		22C0239620F6FD5100284A0A /* EntryGuideCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */; };
 		22C0239720F6FD5100284A0A /* EntryGuideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239320F6FD5100284A0A /* EntryGuideActions.swift */; };
 		22C0239820F6FD5100284A0A /* EntryGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C0239420F6FD5100284A0A /* EntryGuideViewController.swift */; };
@@ -937,6 +944,11 @@
 		22A93241211A9DE000ACC63C /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		22A93244211BE4DD00ACC63C /* TKSimpleSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSimpleSwitch.swift; sourceTree = "<group>"; };
 		22A93245211BE4DE00ACC63C /* TKBaseSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKBaseSwitcher.swift; sourceTree = "<group>"; };
+		22B54F4E21943F4B007C4B90 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
+		22B54F4F21943F4B007C4B90 /* GuideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
+		22B54F5321943F68007C4B90 /* GuideContentViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideContentViewAdapter.swift; sourceTree = "<group>"; };
+		22B54F5421943F68007C4B90 /* GuideContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideContentView.swift; sourceTree = "<group>"; };
+		22B54F5521943F68007C4B90 /* GuideContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideContentView.xib; sourceTree = "<group>"; };
 		22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryGuideCoordinator.swift; sourceTree = "<group>"; };
 		22C0239320F6FD5100284A0A /* EntryGuideActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryGuideActions.swift; sourceTree = "<group>"; };
 		22C0239420F6FD5100284A0A /* EntryGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryGuideViewController.swift; sourceTree = "<group>"; };
@@ -1997,9 +2009,22 @@
 			path = Switch;
 			sourceTree = "<group>";
 		};
+		22B54F4521943E65007C4B90 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22B54F4E21943F4B007C4B90 /* GuideView.swift */,
+				22B54F4F21943F4B007C4B90 /* GuideView.xib */,
+				22B54F5321943F68007C4B90 /* GuideContentViewAdapter.swift */,
+				22B54F5421943F68007C4B90 /* GuideContentView.swift */,
+				22B54F5521943F68007C4B90 /* GuideContentView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		22C0239120F6FCF300284A0A /* EntryGuide */ = {
 			isa = PBXGroup;
 			children = (
+				22B54F4521943E65007C4B90 /* Views */,
 				22C0239320F6FD5100284A0A /* EntryGuideActions.swift */,
 				22C0239220F6FD5100284A0A /* EntryGuideCoordinator.swift */,
 				22C0239520F6FD5100284A0A /* EntryGuideReducers.swift */,
@@ -3654,6 +3679,7 @@
 				3B0295E72181714700867D5F /* NavBarView.xib in Resources */,
 				7342E4F4216F1FF80093E2C2 /* BLTCardIntroViewView.xib in Resources */,
 				3BC12AA221060927006EEB80 /* AccountListView.xib in Resources */,
+				22B54F5221943F4B007C4B90 /* GuideView.xib in Resources */,
 				72FE5B822100868800B29FEC /* SafeLineView.xib in Resources */,
 				3BF9DCAB2188660D00E74C62 /* OverHeadView.xib in Resources */,
 				7224714C20F76B5000536BF4 /* DetailView.xib in Resources */,
@@ -3734,6 +3760,7 @@
 				733714F4212431E200B2ED90 /* octicons.ttf in Resources */,
 				3B726C1B2113357A001E4850 /* ScreenShotAlert.storyboard in Resources */,
 				3B3147052106D95900E815BD /* ResourceMortgageView.xib in Resources */,
+				22B54F5821943F68007C4B90 /* GuideContentView.xib in Resources */,
 				3B08B93A2188376E00ED43AD /* AssetsView.xib in Resources */,
 				3B265348218AAA220091FE93 /* DelegateView.xib in Resources */,
 				3B46DD472192EE0F009B6E2A /* CopyTextView.xib in Resources */,
@@ -3923,6 +3950,7 @@
 				C10A4AC7FCB160CCFE2C82D6BBAC4A64 /* AppReducer.swift in Sources */,
 				A58426FF8A514CDE712EB97BAB795BB3 /* BaseCollectionViewCell.swift in Sources */,
 				72FE5B5D2100490B00B29FEC /* HelpViewController.swift in Sources */,
+				22B54F5121943F4B007C4B90 /* GuideView.swift in Sources */,
 				A6EFBB3B53A79BD8C9D018099642EB76 /* BaseNavigationController.swift in Sources */,
 				559E64A356046CB84C6A9B9B07E012E7 /* BaseTabbarViewController.swift in Sources */,
 				3BF842E5211BE60100AF9963 /* BuyRamActions.swift in Sources */,
@@ -4009,6 +4037,7 @@
 				3B858BFF2170A19400499FAC /* DeleteFingerReducers.swift in Sources */,
 				73B5A6AA20F5F62D00756391 /* String+Detection.swift in Sources */,
 				3B08B92B2188055400ED43AD /* OverviewReducers.swift in Sources */,
+				22B54F5621943F68007C4B90 /* GuideContentViewAdapter.swift in Sources */,
 				223C58F6214A50F300C69F3F /* BLTCardConfirmPinActions.swift in Sources */,
 				3B6D7471214761690076F444 /* PayView.swift in Sources */,
 				225787792122861D004C4579 /* NodeSelCell.swift in Sources */,
@@ -4135,6 +4164,7 @@
 				3BD3664C20F72B5E004DE09D /* TransferConfirmPasswordViewController.swift in Sources */,
 				1DA98AFB501BAE7B44960436408BD878 /* NSObject+Extensions.swift in Sources */,
 				3B3935B2214B5AF600AB0A30 /* MnemonicContentReducers.swift in Sources */,
+				22B54F5721943F68007C4B90 /* GuideContentView.swift in Sources */,
 				221EC1D121008F1B0059F856 /* GestureLockComfirmReducers.swift in Sources */,
 				73F30B4020F6E6FF0016E950 /* UserInfoActions.swift in Sources */,
 				72FE5B5C2100490B00B29FEC /* HelpActions.swift in Sources */,
