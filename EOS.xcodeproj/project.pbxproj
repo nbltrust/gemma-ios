@@ -6,6 +6,21 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		730E598C219918E4006DDCDD /* Periphery */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 730E5996219918E4006DDCDD /* Build configuration list for PBXAggregateTarget "Periphery" */;
+			buildPhases = (
+				730E5997219918FA006DDCDD /* unuse files */,
+				730E599821991B8F006DDCDD /* unuse resource */,
+			);
+			dependencies = (
+			);
+			name = Periphery;
+			productName = Periphery;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		08979875F7919749EE9911341C1DA85E /* NavCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806AC819A3975EB053F400FE731E32B8 /* NavCoordinator.swift */; };
 		089FC61F5C404D8812055FF8F62C5183 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FC1C0ABF5DB16A7CE2B85766922CB6 /* AppDelegate.swift */; };
@@ -3545,6 +3560,9 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = com.nbltrustdev;
 				TargetAttributes = {
+					730E598C219918E4006DDCDD = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					73EDFEE6211AC44E000DF796 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
@@ -3583,6 +3601,7 @@
 			targets = (
 				C60743183A5E3BAD235C9971F3122EF5 /* EOS */,
 				73EDFEE6211AC44E000DF796 /* EOSTests */,
+				730E598C219918E4006DDCDD /* Periphery */,
 			);
 		};
 /* End PBXProject section */
@@ -3808,6 +3827,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$SRCROOT/rswift\" generate \"$SRCROOT\"\n";
+		};
+		730E5997219918FA006DDCDD /* unuse files */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "unuse files";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "periphery scan --project \"EOS.xcodeproj\" --schemes \"EOS\" --targets \"EOS\" --format xcode\n";
+		};
+		730E599821991B8F006DDCDD /* unuse resource */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "unuse resource";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "fengniao --exclude Carthage GRDB.swift --force\n";
 		};
 		732F370E214FB63A00CB3A58 /* carthage */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4654,6 +4709,169 @@
 			};
 			name = Debug;
 		};
+		730E598D219918E4006DDCDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z4LN46787D;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = arm64;
+			};
+			name = Debug;
+		};
+		730E598E219918E4006DDCDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z4LN46787D;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = arm64;
+			};
+			name = Release;
+		};
+		730E599921992009006DDCDD /* Tests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TESTS;
+				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				VALID_ARCHS = arm64;
+			};
+			name = Tests;
+		};
+		730E599A21992009006DDCDD /* Tests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EOS/EOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Z4LN46787D;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = EOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.gemma.fir;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = arm64;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Tests;
+		};
+		730E599B21992009006DDCDD /* Tests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z4LN46787D;
+				INFOPLIST_FILE = EOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nbltrustdev.EOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EOSTests/EOSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EOS.app/EOS";
+				VALID_ARCHS = arm64;
+			};
+			name = Tests;
+		};
+		730E599C21992009006DDCDD /* Tests */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z4LN46787D;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = arm64;
+			};
+			name = Tests;
+		};
 		73EDFEEF211AC44E000DF796 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4751,6 +4969,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "EOS/EOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -4767,6 +4986,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				69571B034B6CBDED0C0B1D8162BB7B75 /* Debug */,
+				730E599921992009006DDCDD /* Tests */,
 				EB5ED6F998F0B2E082E8DC04C2A57C20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -4776,7 +4996,18 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				702B7DAA8F4E1F6E58885A5EFB7EF2D8 /* Debug */,
+				730E599A21992009006DDCDD /* Tests */,
 				5C8C3419E165D050C20C6335B44E1B72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		730E5996219918E4006DDCDD /* Build configuration list for PBXAggregateTarget "Periphery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				730E598D219918E4006DDCDD /* Debug */,
+				730E599C21992009006DDCDD /* Tests */,
+				730E598E219918E4006DDCDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4785,6 +5016,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				73EDFEEF211AC44E000DF796 /* Debug */,
+				730E599B21992009006DDCDD /* Tests */,
 				73EDFEF0211AC44E000DF796 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
