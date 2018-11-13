@@ -81,10 +81,9 @@ func convertViewModelWithAccount(tokensJson: [Tokens]) -> [AssetViewModel] {
     for token in tokensJson {
         var model = AssetViewModel()
         model.name = token.symbol
-        model.total = token.totalValue
         model.iconUrl = token.logoUrl
         model.balance = token.balance
-        model.contract = token.contract
+        model.contract = token.code
         modelArray.append(model)
     }
     return modelArray

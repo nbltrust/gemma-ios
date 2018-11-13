@@ -39,10 +39,14 @@ class BackupMnemonicWordCoordinator: NavCoordinator {
 
 extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
     func pushToMnemonicWordContentVC() {
-        if let vc = R.storyboard.mnemonic.mnemonicContentViewController() {
-            let coordinator = MnemonicContentCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
+        appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: nil, type: ConfirmType.backupMnemonic.rawValue, producers: []) {[weak self] (mnemonic) in
+            guard let `self` = self else { return }
+            if let vc = R.storyboard.mnemonic.mnemonicContentViewController() {
+                let coordinator = MnemonicContentCoordinator(rootVC: self.rootVC)
+                vc.coordinator = coordinator
+                vc.mnemonic = mnemonic
+                self.rootVC.pushViewController(vc, animated: true)
+            }
         }
     }
 }

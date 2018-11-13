@@ -56,8 +56,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IR6-oA-dRa">
                             <rect key="frame" x="0.0" y="44" width="375" height="54"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bY-aS-3tF">
-                                    <rect key="frame" x="20" y="10.5" width="245" height="33.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bY-aS-3tF">
+                                    <rect key="frame" x="20" y="10.5" width="250" height="33.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                                     <state key="normal" title="Button" image="icSet"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-IR-jMB">
-                                    <rect key="frame" x="275" y="10" width="34" height="34"/>
+                                    <rect key="frame" x="280" y="10" width="34" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="34" id="c2x-eJ-fbv"/>
                                         <constraint firstAttribute="height" constant="34" id="yUt-XR-b7L"/>
@@ -86,7 +86,7 @@
                                 <constraint firstAttribute="trailing" secondItem="KTF-8c-52x" secondAttribute="trailing" constant="15" id="HRh-Ba-DTc"/>
                                 <constraint firstItem="fbA-IR-jMB" firstAttribute="leading" secondItem="6bY-aS-3tF" secondAttribute="trailing" constant="10" id="bE2-NW-vxV"/>
                                 <constraint firstItem="KTF-8c-52x" firstAttribute="centerY" secondItem="IR6-oA-dRa" secondAttribute="centerY" id="bH6-3V-vmc"/>
-                                <constraint firstItem="KTF-8c-52x" firstAttribute="leading" secondItem="fbA-IR-jMB" secondAttribute="trailing" constant="17" id="q9v-uJ-f0F"/>
+                                <constraint firstItem="KTF-8c-52x" firstAttribute="leading" secondItem="fbA-IR-jMB" secondAttribute="trailing" constant="12" id="q9v-uJ-f0F"/>
                                 <constraint firstAttribute="height" constant="54" id="x90-YJ-wat"/>
                             </constraints>
                         </view>

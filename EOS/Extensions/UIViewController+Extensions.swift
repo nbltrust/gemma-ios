@@ -19,7 +19,7 @@ extension UIViewController {
         leftNavButton.addTarget(self, action: #selector(leftAction(_:)), for: .touchUpInside)
         leftNavButton.isHidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftNavButton)
-        self.navigationItem.leftMargin = 0
+        self.navigationItem.leftMargin = 5
 
         
     }

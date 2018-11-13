@@ -21,6 +21,7 @@ class MnemonicContentViewController: BaseViewController {
     @IBOutlet weak var contentView: MnemonicContentView!
     
     var seeds: [String] = []
+    var mnemonic = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,15 +45,12 @@ class MnemonicContentViewController: BaseViewController {
     }
 
     func setupData() {
-        Broadcaster.notify(EntryStateManagerProtocol.self) { (coor) in
-            let model = coor.state.property.model
-            if model?.type == .HD {
-                let mnemonic = Seed39NewMnemonic()
-                if let array = mnemonic?.components(separatedBy: " ") {
-                    self.coordinator?.setSeeds((array, mnemonic ?? ""))
-                    self.contentView.setMnemonicWordArray(array)
-                }
-            } else if model?.type == .bluetooth {
+        if let wallet = WalletManager.shared.currentWallet() {
+            if wallet.type == .HD {
+                let array = mnemonic.components(separatedBy: " ")
+                self.coordinator?.setSeeds((array, mnemonic))
+                self.contentView.setMnemonicWordArray(array)
+            } else if wallet.type == .bluetooth {
                 self.coordinator?.getSeeds({ [weak self] (datas,checkStr) in
                     guard let `self` = self else { return }
                     if let tempDatas = datas as? [String],let check = checkStr {
@@ -70,6 +68,7 @@ class MnemonicContentViewController: BaseViewController {
                 })
             }
         }
+
     }
     
     func setupEvent() {

@@ -42,12 +42,16 @@ class OverviewViewController: BaseViewController {
 
     func setupUI() {
         rightItemView = AccountSwitchView()
-        rightItemView?.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
-            guard let `self` = self else { return }
-            self.coordinator?.pushAccountList({
-                self.reloadData()
-            })
-        }).disposed(by: disposeBag)
+
+        if CurrencyManager.shared.getCurrentAccountNames().count > 1 {
+            rightItemView?.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
+                guard let `self` = self else { return }
+                self.coordinator?.pushAccountList({
+                    self.reloadData()
+                })
+            }).disposed(by: disposeBag)
+        }
+
         self.reloadAccountView()
         guard let rightView = rightItemView else { return }
         configRightCustomView(rightView)
