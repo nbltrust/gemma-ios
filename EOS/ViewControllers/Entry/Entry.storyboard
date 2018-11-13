@@ -37,7 +37,7 @@
                                                 <rect key="frame" x="0.0" y="416" width="375" height="69"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWd-1I-l81">
-                                                        <rect key="frame" x="35" y="17" width="25" height="25"/>
+                                                        <rect key="frame" x="20" y="17" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="bMb-IQ-8bg"/>
                                                             <constraint firstAttribute="width" constant="25" id="yf6-Yp-ial"/>
@@ -73,7 +73,7 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="5yh-XM-3Tz" firstAttribute="centerY" secondItem="IWd-1I-l81" secondAttribute="centerY" id="5HS-sZ-bjd"/>
-                                                    <constraint firstItem="IWd-1I-l81" firstAttribute="leading" secondItem="rC9-Hs-sny" secondAttribute="leading" constant="35" id="68T-Qg-ybL"/>
+                                                    <constraint firstItem="IWd-1I-l81" firstAttribute="leading" secondItem="rC9-Hs-sny" secondAttribute="leading" constant="20" id="68T-Qg-ybL"/>
                                                     <constraint firstAttribute="bottom" secondItem="IWd-1I-l81" secondAttribute="bottom" constant="27" id="DGK-WP-roX"/>
                                                     <constraint firstItem="IWd-1I-l81" firstAttribute="top" secondItem="rC9-Hs-sny" secondAttribute="top" constant="17" id="QNa-yz-cQf"/>
                                                     <constraint firstAttribute="trailing" secondItem="5yh-XM-3Tz" secondAttribute="trailing" constant="16" id="Uyu-wH-efE"/>

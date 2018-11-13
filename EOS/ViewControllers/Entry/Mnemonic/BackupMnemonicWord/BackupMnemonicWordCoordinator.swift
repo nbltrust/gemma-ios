@@ -39,7 +39,15 @@ class BackupMnemonicWordCoordinator: NavCoordinator {
 
 extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
     func pushToMnemonicWordContentVC() {
-        appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: nil, type: ConfirmType.backupMnemonic.rawValue, producers: []) {[weak self] (mnemonic) in
+        var currencyID: Int64?
+        if let wallet = WalletManager.shared.currentWallet() {
+            let currencys = try? WalletCacheService.shared.fetchAllCurrencysBy(wallet)
+            if let currencys = currencys as? [Currency] {
+                currencyID = currencys[0].id
+            }
+        }
+        appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: currencyID, type: ConfirmType.backupMnemonic.rawValue, producers: []) {[weak self] (mnemonic) in
+
             guard let `self` = self else { return }
             if let vc = R.storyboard.mnemonic.mnemonicContentViewController() {
                 let coordinator = MnemonicContentCoordinator(rootVC: self.rootVC)
