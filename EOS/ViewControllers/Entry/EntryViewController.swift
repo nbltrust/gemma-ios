@@ -12,6 +12,8 @@ import RxCocoa
 import ReSwift
 import NBLCommonModule
 import SwiftyUserDefaults
+import seed39_ios_golang
+import Seed39
 
 enum CreateWalletType: Int {
     case normal = 0
@@ -91,7 +93,9 @@ class EntryViewController: BaseViewController {
                     self.coordinator?.copyMnemonicWord()
                 }
             case .normal:
-                self.coordinator?.createTempWallet(self.registerView.passwordView.textField.text!, prompt: self.registerView.passwordPromptView.textField.text!, type: .HD)
+                if let mnemonic = Seed39NewMnemonic(), let pwd = self.registerView.passwordView.textField.text, let prompt = self.registerView.passwordPromptView.textField.text {
+                    self.coordinator?.createNewWallet(pwd: pwd, checkStr: mnemonic, deviceName: nil, prompt: prompt)
+                }
                 self.coordinator?.pushBackupMnemonicVC()
             case .EOS:
                 if let name = self.registerView.nameView.textField.text {
@@ -115,15 +119,6 @@ class EntryViewController: BaseViewController {
         self.coordinator?.state.callback.finishBLTWalletCallback.accept({
             self.coordinator?.checkSeedSuccessed()
             self.createBltWallet()
-        })
-
-        self.coordinator?.state.callback.finishNormalWalletCallback.accept({[weak self] (checkStr) in
-            guard let `self` = self else { return }
-            if let str = checkStr as? String {
-                self.startLoading()
-                self.coordinator?.createNewWallet(pwd: self.registerView.passwordView.textField.text!, checkStr: str, deviceName: nil, prompt: self.registerView.passwordPromptView.textField.text)
-
-            }
         })
 
         self.coordinator?.state.callback.finishEOSCurrencyCallback.accept({[weak self] (code) in

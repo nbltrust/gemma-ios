@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import Seed39
+import seed39_ios_golang
 
 enum LeftIconType: String {
     case dismiss
@@ -55,9 +57,9 @@ class TransferConfirmPasswordViewController: BaseViewController {
                 self.context = context
 
                 if context.iconType == LeftIconType.dismiss.rawValue {
-                    self.configLeftNavButton(R.image.icTransferClose())
+                    self.configLeftNavButton(R.image.icMaskClose())
                 } else {
-                    self.configLeftNavButton(R.image.icBack())
+                    self.configLeftNavButton(R.image.icMaskBack())
                 }
 
                 if context.type == ConfirmType.updatePwd.rawValue {
@@ -66,7 +68,132 @@ class TransferConfirmPasswordViewController: BaseViewController {
                 }
             }
         }).disposed(by: disposeBag)
+    }
 
+    func transfer() {
+        guard let context = context else { return }
+
+        self.view.endEditing(true)
+        self.startLoading(true)
+        var infoModel: TransferInfoModel = TransferInfoModel()
+        infoModel.account = context.receiver
+        infoModel.pwd = passwordView.textField.text!
+        infoModel.amount = context.amount
+        infoModel.remark = context.remark
+        self.coordinator?.transferAccounts(infoModel, assetModel: self.context?.model, callback: { [weak self] (isSuccess, message) in
+            guard let `self` = self else { return }
+            if isSuccess {
+                self.endLoading()
+                self.coordinator?.finishTransfer()
+            } else {
+                self.showError(message: message)
+            }
+        })
+    }
+
+    func bltTransfer() {
+        guard let context = context else { return }
+
+        self.view.endEditing(true)
+        self.startLoading(true)
+        self.coordinator?.bltTransferAccounts(passwordView.textField.text!,
+                                              account: context.receiver,
+                                              amount: context.amount,
+                                              remark: context.remark,
+                                              callback: { [weak self] (isSuccess, message) in
+                                                guard let `self` = self else { return }
+                                                if isSuccess {
+                                                    self.endLoading()
+                                                    self.coordinator?.finishTransfer()
+                                                } else {
+                                                    self.showError(message: message)
+                                                }
+        })
+    }
+
+    func mortgage() {
+        guard let context = context else { return }
+
+        self.view.endEditing(true)
+        self.startLoading()
+        self.coordinator?.mortgage(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
+            guard let `self` = self else { return }
+            if isSuccess {
+                self.endLoading()
+                self.coordinator?.finishMortgage()
+            } else {
+                self.showError(message: message)
+            }
+        })
+    }
+
+    func relieveMortgage() {
+        guard let context = context else { return }
+
+        self.view.endEditing(true)
+        self.startLoading()
+        self.coordinator?.relieveMortgage(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
+            guard let `self` = self else { return }
+            if isSuccess {
+                self.endLoading()
+                self.coordinator?.finishMortgage()
+            } else {
+                self.showError(message: message)
+            }
+        })
+    }
+
+    func buyRam() {
+        guard let context = context else { return }
+
+        self.view.endEditing(true)
+        self.startLoading()
+        self.coordinator?.buyRam(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
+            guard let `self` = self else { return }
+            if isSuccess {
+                self.endLoading()
+                self.coordinator?.finishBuyRam()
+            } else {
+                self.showError(message: message)
+            }
+        })
+    }
+
+    func sellRam() {
+        guard let context = context else { return }
+
+        self.view.endEditing(true)
+        self.startLoading()
+        self.coordinator?.sellRam(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
+            guard let `self` = self else { return }
+            if isSuccess {
+                self.endLoading()
+                self.coordinator?.finishBuyRam()
+            } else {
+                self.showError(message: message)
+            }
+        })
+    }
+
+    func voteNode() {
+        guard let context = context else { return }
+
+        self.view.endEditing(true)
+        self.startLoading()
+        self.coordinator?.voteNode(passwordView.textField.text!,
+                                   account: CurrencyManager.shared.getCurrentAccountName(),
+                                   amount: context.amount,
+                                   remark: context.remark,
+                                   producers: context.producers,
+                                   callback: { [weak self] (isSuccess, message) in
+                                    guard let `self` = self else { return }
+                                    if isSuccess {
+                                        self.showSuccess(message: message)
+                                        self.coordinator?.finishVoteNode()
+                                    } else {
+                                        self.showError(message: message)
+                                    }
+        })
     }
 }
 
@@ -78,7 +205,6 @@ extension TransferConfirmPasswordViewController {
             if CurrencyManager.shared.pwdIsCorrect(context.currencyID, password: passwordView.textField.text!) == false {
                 self.errCount += 1
                 if self.errCount == 3 {
-
                     if let cipher = CurrencyManager.shared.getCiperWith(context.currencyID), let message = WalletManager.shared.currentWallet()?.hint {
                         self.showError(message: message)
                     }
@@ -86,6 +212,15 @@ extension TransferConfirmPasswordViewController {
                     self.showError(message: R.string.localizable.password_not_match.key.localized())
                 }
                 return
+            }
+
+            if let callback = context.callback {
+                if context.type == ConfirmType.backupMnemonic.rawValue, let cipher = WalletManager.shared.currentWallet()?.cipher {
+                    if let mnemonic = Seed39KeyDecrypt(passwordView.textField.text!, cipher) {
+                        callback(mnemonic, self)
+                        return
+                    }
+                }
             }
 
             if let callback = context.callback {
@@ -98,105 +233,19 @@ extension TransferConfirmPasswordViewController {
 
         let myType = context.type
         if myType == ConfirmType.transfer.rawValue {
-            self.view.endEditing(true)
-            self.startLoading(true)
-            var infoModel: TransferInfoModel = TransferInfoModel()
-            infoModel.account = context.receiver
-            infoModel.pwd = passwordView.textField.text!
-            infoModel.amount = context.amount
-            infoModel.remark = context.remark
-            self.coordinator?.transferAccounts(infoModel, assetModel: self.context?.model, callback: { [weak self] (isSuccess, message) in
-                guard let `self` = self else { return }
-                if isSuccess {
-                    self.endLoading()
-                    self.coordinator?.finishTransfer()
-                } else {
-                    self.showError(message: message)
-                }
-            })
+            self.transfer()
         } else if myType == ConfirmType.bltTransfer.rawValue {
-            self.view.endEditing(true)
-            self.startLoading(true)
-            self.coordinator?.bltTransferAccounts(passwordView.textField.text!,
-                                                  account: context.receiver,
-                                                  amount: context.amount,
-                                                  remark: context.remark,
-                                                  callback: { [weak self] (isSuccess, message) in
-                guard let `self` = self else { return }
-                if isSuccess {
-                    self.endLoading()
-                    self.coordinator?.finishTransfer()
-                } else {
-                    self.showError(message: message)
-                }
-            })
+            self.bltTransfer()
         } else if myType == ConfirmType.mortgage.rawValue {
-            self.view.endEditing(true)
-            self.startLoading()
-            self.coordinator?.mortgage(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
-                guard let `self` = self else { return }
-                if isSuccess {
-                    self.endLoading()
-                    self.coordinator?.finishMortgage()
-                } else {
-                    self.showError(message: message)
-                }
-            })
-
+            self.mortgage()
         } else if myType == ConfirmType.relieveMortgage.rawValue {
-            self.view.endEditing(true)
-            self.startLoading()
-            self.coordinator?.relieveMortgage(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
-                guard let `self` = self else { return }
-                if isSuccess {
-                    self.endLoading()
-                    self.coordinator?.finishMortgage()
-                } else {
-                    self.showError(message: message)
-                }
-            })
+            self.relieveMortgage()
         } else if myType == ConfirmType.buyRam.rawValue {
-            self.view.endEditing(true)
-            self.startLoading()
-            self.coordinator?.buyRam(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
-                guard let `self` = self else { return }
-                if isSuccess {
-                    self.endLoading()
-                    self.coordinator?.finishBuyRam()
-                } else {
-                    self.showError(message: message)
-                }
-            })
+            self.buyRam()
         } else if myType == ConfirmType.sellRam.rawValue {
-            self.view.endEditing(true)
-            self.startLoading()
-            self.coordinator?.sellRam(passwordView.textField.text!, account: context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
-                guard let `self` = self else { return }
-                if isSuccess {
-                    self.endLoading()
-                    self.coordinator?.finishBuyRam()
-                } else {
-                    self.showError(message: message)
-                }
-            })
+            self.sellRam()
         } else if myType == ConfirmType.voteNode.rawValue {
-            self.view.endEditing(true)
-            self.startLoading()
-            self.coordinator?.voteNode(passwordView.textField.text!,
-                                       account: CurrencyManager.shared.getCurrentAccountName(),
-                                       amount: context.amount,
-                                       remark: context.remark,
-                                       producers: context.producers,
-                                       callback: { [weak self] (isSuccess, message) in
-                guard let `self` = self else { return }
-                if isSuccess {
-                    self.showSuccess(message: message)
-                    self.coordinator?.finishVoteNode()
-                } else {
-                    self.showError(message: message)
-                }
-            })
+            self.voteNode()
         }
-
     }
 }

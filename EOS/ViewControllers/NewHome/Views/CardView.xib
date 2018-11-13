@@ -187,7 +187,7 @@
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="c3R-Gc-E9I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fwj-Sm-Fbc" secondAttribute="trailing" constant="18" id="0tT-SX-ZsT"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Fwj-Sm-Fbc" secondAttribute="trailing" constant="20" id="0tT-SX-ZsT"/>
                                                 <constraint firstItem="2jW-PI-EJV" firstAttribute="top" secondItem="uFf-OC-geu" secondAttribute="bottom" constant="5" id="0y3-HI-NxT"/>
                                                 <constraint firstItem="UHf-Rm-lpj" firstAttribute="top" secondItem="c3R-Gc-E9I" secondAttribute="bottom" constant="19" id="9fX-8R-fD2"/>
                                                 <constraint firstAttribute="bottom" secondItem="Fwj-Sm-Fbc" secondAttribute="bottom" constant="30" id="A9o-Up-pbV"/>
@@ -228,7 +228,7 @@
                                                         <constraint firstAttribute="height" constant="16" id="TRZ-k0-7iJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                    <color key="textColor" name="baseColor" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -269,7 +269,7 @@
                                                         <constraint firstAttribute="height" constant="16" id="QqQ-du-b5t"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                    <color key="textColor" name="baseColor" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -449,6 +449,4 @@
             <point key="canvasLocation" x="-208.80000000000001" y="-192.05397301349328"/>
         </view>
     </objects>
-    <resources>
-    </resources>
 </document>

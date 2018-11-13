@@ -34,7 +34,7 @@ class TransferConfirmViewController: BaseViewController {
 
     func setupUI() {
         self.transferConfirmView.data = data
-        configLeftNavButton(R.image.icTransferClose())
+        configLeftNavButton(R.image.icMaskClose())
     }
 
     override func leftAction(_ sender: UIButton) {

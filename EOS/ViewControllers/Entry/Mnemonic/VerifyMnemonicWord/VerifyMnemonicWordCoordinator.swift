@@ -50,12 +50,11 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordCoordinatorProtocol {
         self.rootVC.popToViewController(vc, animated: true)
     }
 
-    func popToEntryVCWithCheckStr(_ checkStr: String) {
-        self.rootVC.viewControllers.forEach { (vc) in
-            if let entryVC = vc as? EntryViewController {
-                self.popToVC(entryVC)
-                entryVC.coordinator?.state.callback.finishNormalWalletCallback.value?(checkStr)
-            }
+    func popRootVC() {
+        if let _ = self.rootVC.viewControllers[0] as? EntryGuideViewController, (UIApplication.shared.delegate as? AppDelegate) != nil {
+            appCoodinator.endEntry()
+        } else {
+            self.rootVC.popToRootViewController(animated: true)
         }
     }
 }
@@ -98,12 +97,13 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
             if selectValues.count == seeds.count {
                 let isValid = validSequence(seeds, compairDatas: selectValues)
                 if isValid == true {
+
                     showSuccessTop(R.string.localizable.wookong_mnemonic_ver_successed.key.localized())
-                    Broadcaster.notify(EntryStateManagerProtocol.self) { (coor) in
-                        let model = coor.state.property.model
-                        if model?.type == .HD {
-                            self.popToEntryVCWithCheckStr(checkStr)
-                        } else if model?.type == .bluetooth {
+                    if let wallet = WalletManager.shared.currentWallet() {
+                        WalletManager.shared.backupSuccess(wallet)
+                        if wallet.type == .HD {
+                            self.popRootVC()
+                        } else if wallet.type == .bluetooth {
                             checkSeed(checkStr, success: { [weak self] in
                                 guard let `self` = self else { return }
                                 self.checkFeedSuccessed()

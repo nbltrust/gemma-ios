@@ -148,6 +148,8 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         vc.coordinator = coor
         self.rootVC.pushViewController(vc, animated: true)
     }
+
+
 }
 
 extension EntryCoordinator: EntryStateManagerProtocol {
@@ -321,11 +323,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
             if let id = id {
                 Defaults[.currentWalletID] = id.string
-            }
-            if let _ = self.rootVC.viewControllers[0] as? EntryGuideViewController {
-                self.dismissCurrentNav(self.rootVC.viewControllers[1])
-            } else {
-                self.rootVC.popToRootViewController(animated: true)
             }
         } catch {
             showFailTop("数据库存储失败")

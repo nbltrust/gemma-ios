@@ -2098,6 +2098,7 @@
 		2518901AF31C163FA80727C0AD3B89F6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B08B91C218804D000ED43AD /* Overview */,
 				3BF9DCAC2188702500E74C62 /* AssetDetail */,
 				3B46DD2E2192E603009B6E2A /* Receipt */,
 				3B46DD252192E56A009B6E2A /* Resource */,
@@ -2733,7 +2734,6 @@
 		5F4F2C2A9D93854A7DACC8FE947B5D8C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3B08B91C218804D000ED43AD /* Overview */,
 				3BC12A8F21060926006EEB80 /* AccountList */,
 				2253C5202111A4E50043AAF7 /* CopyPriKey */,
 				3B4C90E620F48F75004F4C52 /* Payments */,

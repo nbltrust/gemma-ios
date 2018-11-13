@@ -15,6 +15,7 @@ enum ConfirmType: String {
     case relieveMortgage
     case updatePwd
     case backupPrivateKey
+    case backupMnemonic
     case buyRam
     case sellRam
     case voteNode

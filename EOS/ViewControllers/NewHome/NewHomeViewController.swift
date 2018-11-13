@@ -44,18 +44,9 @@ class NewHomeViewController: BaseViewController {
 
     func setupData() {
         self.dataArray.removeAll()
-        let idStr = Defaults[.currentWalletID]
-        if idStr != "" {
-            do {
-                wallet = try WalletCacheService.shared.fetchWalletBy(id: Int64(idStr)!)
-                if let newWallet = wallet as? Wallet {
-                    self.contentView.navBarView.adapterModelToNavBarView(newWallet)
-                    self.coordinator?.fetchWalletInfo(newWallet)
-                }
-            } catch {
-
-            }
-
+        if let wallet = WalletManager.shared.currentWallet() {
+            self.contentView.navBarView.adapterModelToNavBarView(wallet)
+            self.coordinator?.fetchWalletInfo(wallet)
         }
     }
     
