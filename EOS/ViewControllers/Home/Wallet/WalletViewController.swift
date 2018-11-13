@@ -62,6 +62,11 @@ class WalletViewController: BaseViewController {
 
         let walletNibString = R.nib.walletTableViewCell.name
         tableView.register(UINib.init(nibName: walletNibString, bundle: nil), forCellReuseIdentifier: walletNibString)
+        configLeftNavButton(R.image.icMaskClose())
+    }
+
+    override func leftAction(_ sender: UIButton) {
+        self.coordinator?.dismissVC()
     }
 
     override func configureObserveState() {

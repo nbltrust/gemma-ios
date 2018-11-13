@@ -28,7 +28,7 @@ class WalletManager {
 
     var timer: Repeater?
 
-    //MARK:Wallet
+    //MARK:-Wallet
     func currentWallet() -> Wallet? {
         let walletId = Int64(Defaults[.currentWalletID])
         let wallets = walletList()
@@ -51,6 +51,10 @@ class WalletManager {
             return try WalletCacheService.shared.fetchAllWallet() ?? []
         } catch {}
         return []
+    }
+
+    func walletCount() -> Int {
+        return walletList().count
     }
 
     func removeWallet(_ wallet: Wallet) -> Bool {
@@ -161,7 +165,7 @@ class WalletManager {
         return false
     }
 
-    //MARK:Wallet BackUp
+    //MARK:-Wallet BackUp
     func backupSuccess(_ wallet: Wallet) {
         if let walletId = wallet.id {
              Defaults["isWalletCompleteBackup\(walletId)"] = true
@@ -177,7 +181,7 @@ class WalletManager {
         return false
     }
 
-    //MARK:Wallet PairKey
+    //MARK:-Wallet PairKey
     func createPairKey() {
         if let keys = EOSIO.createKey(), let pub = keys[optional: 0], let pri = keys[optional: 1] {
             currentPubKey = pub

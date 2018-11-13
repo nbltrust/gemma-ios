@@ -49,6 +49,8 @@
 		22087255218C419100A0ACE2 /* LeadInKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22087251218C419100A0ACE2 /* LeadInKeyActions.swift */; };
 		22087256218C419100A0ACE2 /* LeadInKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22087252218C419100A0ACE2 /* LeadInKeyViewController.swift */; };
 		22087257218C419100A0ACE2 /* LeadInKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22087253218C419100A0ACE2 /* LeadInKeyReducers.swift */; };
+		2208A07A219AEC380096128D /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
+		2208A07B219AEC380096128D /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2214A969211D73A2003256D2 /* VoteFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2214A967211D73A1003256D2 /* VoteFootView.xib */; };
 		2214A96A211D73A2003256D2 /* VoteFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A968211D73A1003256D2 /* VoteFootView.swift */; };
 		2214A96C211D73CF003256D2 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214A96B211D73CE003256D2 /* Error.swift */; };
@@ -663,8 +665,6 @@
 		73B5A6AB20F5F62D00756391 /* NSAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6A620F5F62C00756391 /* NSAttributedString+Utils.swift */; };
 		73B5A6AD20F601DE00756391 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B5A6AC20F601DE00756391 /* Payment.swift */; };
 		73BA4B3B215A244600EF4C72 /* URLNavigationMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BA4B3A215A244600EF4C72 /* URLNavigationMap.swift */; };
-		73BEF1C8217F0D2200707DFC /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
-		73BEF1C9217F0D2200707DFC /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		73BEF2362180154200707DFC /* seed39_ios_golang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BEF2352180154200707DFC /* seed39_ios_golang.framework */; };
 		73BEF239218025CF00707DFC /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BEF238218025CF00707DFC /* SnapKit.framework */; };
 		73D0EC4E2190358600FA081E /* MMKV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D0EC4D2190358500FA081E /* MMKV.framework */; };
@@ -706,6 +706,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2208A07C219AEC380096128D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
+			remoteInfo = GRDBiOS;
+		};
 		7374B30C217DD9B100B63982 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
@@ -762,13 +769,6 @@
 			remoteGlobalIDString = 565490A01D5A4798005622CB;
 			remoteInfo = GRDBWatchOS;
 		};
-		7374B31D217DD9C900B63982 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
-			remoteInfo = GRDBiOS;
-		};
 		73BEF1CA217F0D2200707DFC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
@@ -786,13 +786,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		73BEF1CC217F0D2200707DFC /* Embed Frameworks */ = {
+		2208A07E219AEC380096128D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				73BEF1C9217F0D2200707DFC /* GRDB.framework in Embed Frameworks */,
+				2208A07B219AEC380096128D /* GRDB.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1514,7 +1514,6 @@
 				732F371B214FB83F00CB3A58 /* Kingfisher.framework in Frameworks */,
 				732F371C214FB83F00CB3A58 /* HandyJSON.framework in Frameworks */,
 				734450832150A10900593A8F /* XLPagerTabStrip.framework in Frameworks */,
-				73BEF1C8217F0D2200707DFC /* GRDB.framework in Frameworks */,
 				739A4D872150D45400A1074B /* KRActivityIndicatorView.framework in Frameworks */,
 				739A4D882150D45400A1074B /* KRProgressHUD.framework in Frameworks */,
 				732F371D214FB83F00CB3A58 /* RxBlocking.framework in Frameworks */,
@@ -1536,6 +1535,7 @@
 				73539CFD2179B4AF008395AC /* SwiftyBeaver.framework in Frameworks */,
 				73539D4E2179BC39008395AC /* IQKeyboardManagerSwift.framework in Frameworks */,
 				73539D522179BC53008395AC /* UICKeyChainStore.framework in Frameworks */,
+				2208A07A219AEC380096128D /* GRDB.framework in Frameworks */,
 				73539D4F2179BC39008395AC /* Crashlytics.framework in Frameworks */,
 				73539D502179BC39008395AC /* Fabric.framework in Frameworks */,
 				73539CFE2179B4AF008395AC /* Localize_Swift.framework in Frameworks */,
@@ -1828,9 +1828,9 @@
 				227F84BF21770FBF005FB567 /* BLTBatteryInfo.m */,
 				227F84BB2176E72A005FB567 /* BLTDevice.h */,
 				227F84BC2176E72A005FB567 /* BLTDevice.m */,
+				223C5924214B9DE100C69F3F /* BLTWalletHeader.h */,
 				227072AE2150EDE80097FE61 /* BLTUtils.h */,
 				227072AA2150EDE80097FE61 /* BLTUtils.m */,
-				223C5924214B9DE100C69F3F /* BLTWalletHeader.h */,
 				223C591F214B89F900C69F3F /* BLTWalletIO.h */,
 				73D47ED6214D678A00A8BF29 /* BLTWalletIO.m */,
 			);
@@ -3526,14 +3526,14 @@
 				OGE92K9DGV3I7GIBPUQT9DFB /* Carthage */,
 				732F370F214FB64100CB3A58 /* appstore-bug */,
 				73539D532179BF9D008395AC /* Integrate Reveal Server */,
-				73BEF1CC217F0D2200707DFC /* Embed Frameworks */,
 				737F7697218043E800198196 /* swiftlint */,
+				2208A07E219AEC380096128D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7374B31E217DD9C900B63982 /* PBXTargetDependency */,
 				73BEF1CB217F0D2200707DFC /* PBXTargetDependency */,
+				2208A07D219AEC380096128D /* PBXTargetDependency */,
 			);
 			name = EOS;
 			productName = EOS;
@@ -4527,10 +4527,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7374B31E217DD9C900B63982 /* PBXTargetDependency */ = {
+		2208A07D219AEC380096128D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GRDBiOS;
-			targetProxy = 7374B31D217DD9C900B63982 /* PBXContainerItemProxy */;
+			targetProxy = 2208A07C219AEC380096128D /* PBXContainerItemProxy */;
 		};
 		73BEF1CB217F0D2200707DFC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

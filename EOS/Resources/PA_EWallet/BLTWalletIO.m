@@ -472,7 +472,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed {
+- (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed timeout:(TimeoutComplication)timeout {
     if (!savedDevH) {
         return;
     }
@@ -499,7 +499,11 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             if (iRtn != PAEW_RET_SUCCESS) {
                 if (!self.stopEntroll) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        failed([BLTUtils errorCodeToString:iRtn]);
+                        if (iRtn == PAEW_RET_DEV_TIMEOUT) {
+                            timeout();
+                        } else {
+                            failed([BLTUtils errorCodeToString:iRtn]);
+                        }
                     });
                 }
                 return;
@@ -511,7 +515,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)cancelEntrollFingerPrinter:(SuccessedComplication)success failed:(FailedComplication)failed; {
+- (void)cancelEntrollFingerPrinter:(SuccessedComplication)successComplication failed:(FailedComplication)failedComplication {
     self.stopEntroll = true;
     if (!savedDevH) {
         return;
@@ -523,9 +527,9 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         iRtn = PAEW_AbortFP(ppPAEWContext, 0);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (iRtn == PAEW_RET_SUCCESS) {
-                success();
+                successComplication();
             } else {
-                failed([BLTUtils errorCodeToString:iRtn]);
+                failedComplication([BLTUtils errorCodeToString:iRtn]);
             }
         });
     });

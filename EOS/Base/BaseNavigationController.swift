@@ -33,10 +33,7 @@ class BaseNavigationController: UINavigationController {
         self.navigationBar.shadowImage = UIImage()
         setupNav()
 
-        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.baseColor]
-        if #available(iOS 11.0, *) {
-            self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.baseColor]
-        }
+        setupNav()
         self.navigationBar.tintColor = UIColor.rightItemColor
 
         //    self.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "ic_arrow_back_16px")
@@ -49,10 +46,19 @@ class BaseNavigationController: UINavigationController {
             let image = UIImage.init(color: UIColor.clear)
             self.navigationBar.setBackgroundImage(image, for: .default)
             self.navigationBar.isTranslucent = true
+            setNavTitleColor(UIColor.whiteColor)
         } else {
             let image = UIImage.init(color: UIColor.whiteColor)
             self.navigationBar.setBackgroundImage(image, for: .default)
             self.navigationBar.isTranslucent = false
+            setNavTitleColor(UIColor.baseColor)
+        }
+    }
+
+    func setNavTitleColor(_ color: UIColor) {
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: color]
+        if #available(iOS 11.0, *) {
+            self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: color]
         }
     }
 

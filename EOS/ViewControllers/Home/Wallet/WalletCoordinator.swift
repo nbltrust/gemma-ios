@@ -10,6 +10,8 @@ import UIKit
 import ReSwift
 
 protocol WalletCoordinatorProtocol {
+    func dismissVC()
+
     func pushToWalletManager(data: WalletManagerModel)
 
     func pushToEntryVC()
@@ -45,6 +47,9 @@ class WalletCoordinator: NavCoordinator {
 }
 
 extension WalletCoordinator: WalletCoordinatorProtocol {
+    func dismissVC() {
+        self.rootVC.dismiss(animated: true, completion: nil)
+    }
     func popToLastVC() {
         self.rootVC.popViewController()
     }

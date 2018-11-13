@@ -21,7 +21,10 @@ protocol BLTCardSetFingerPrinterStateManagerProtocol {
 
     func switchPageState(_ state: PageState)
 
-    func enrollFingerPrinter(_ state: @escaping EnrollFingerComplication, success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
+    func enrollFingerPrinter(_ state: @escaping EnrollFingerComplication,
+                             success: @escaping SuccessedComplication,
+                              failed: @escaping FailedComplication,
+                             timeout: @escaping TimeoutComplication)
 }
 
 class BLTCardSetFingerPrinterCoordinator: BLTCardRootCoordinator {
@@ -58,7 +61,10 @@ extension BLTCardSetFingerPrinterCoordinator: BLTCardSetFingerPrinterStateManage
         }
     }
 
-    func enrollFingerPrinter(_ state: @escaping EnrollFingerComplication, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
-        BLTWalletIO.shareInstance()?.enrollFingerPrinter(state, success: success, failed: failed)
+    func enrollFingerPrinter(_ state: @escaping EnrollFingerComplication,
+                             success: @escaping SuccessedComplication,
+                              failed: @escaping FailedComplication,
+                             timeout: @escaping TimeoutComplication) {
+        BLTWalletIO.shareInstance()?.enrollFingerPrinter(state, success: success, failed: failed, timeout: timeout)
     }
 }

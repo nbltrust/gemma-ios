@@ -42,7 +42,7 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
     func setupUI() {
         var uiModel = BLTCardIntroModel()
         uiModel.title = R.string.localizable.wookong_fp_confirm_title.key.localized()
-        uiModel.imageName = R.image.wookong_bio_fingerprint.name
+        uiModel.imageName = R.image.card_fingerprint.name
         contentView.adapterModelToBLTCardIntroViewView(uiModel)
 
     }

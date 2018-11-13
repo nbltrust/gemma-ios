@@ -24,41 +24,42 @@ func connectBLTCard(_ complication: @escaping CompletionCallback) {
         complication()
     }
 
-    if let vc = UIApplication.shared.keyWindow?.rootViewController {
+    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
         if let connectVC = R.storyboard.bltCard.bltCardConnectViewController() {
             let nav = BaseNavigationController.init(rootViewController: connectVC)
             let coordinator = BLTCardConnectCoordinator(rootVC: nav)
             connectVC.coordinator = coordinator
             coordinator.store.dispatch(RouteContextAction(context: context))
-            vc.customPresentViewController(presenter, viewController: nav, animated: true)
+            rootVC.customPresentViewController(presenter, viewController: nav, animated: true)
         }
     }
 }
 
 func confirmPin(_ complication: @escaping SuccessedComplication) {
     let width = ModalSize.full
-    
+
     let height: Float = 249.0
+    let centerHeight = UIScreen.main.bounds.height - height.cgFloat
     let heightSize = ModalSize.custom(size: height)
-    
-    let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - height.cgFloat))
+
+    let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: centerHeight))
     let customType = PresentationType.custom(width: width, height: heightSize, center: center)
-    
+
     let presenter = Presentr(presentationType: customType)
     presenter.keyboardTranslationType = .stickToTop
-    
+
     var context = BLTCardConfirmPinContext()
     context.confirmSuccessed = {()
         complication()
     }
-    
-    if let vc = UIApplication.shared.keyWindow?.rootViewController {
+
+    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
         if let connectVC = R.storyboard.bltCard.bltCardConfirmPinViewController() {
             let nav = BaseNavigationController.init(rootViewController: connectVC)
             let coordinator = BLTCardConfirmPinCoordinator(rootVC: nav)
             connectVC.coordinator = coordinator
             coordinator.store.dispatch(RouteContextAction(context: context))
-            vc.customPresentViewController(presenter, viewController: nav, animated: true)
+            rootVC.customPresentViewController(presenter, viewController: nav, animated: true)
         }
     }
 }

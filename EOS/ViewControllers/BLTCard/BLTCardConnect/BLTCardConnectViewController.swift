@@ -71,7 +71,7 @@ class BLTCardConnectViewController: BaseViewController {
             guard let `self` = self else { return }
             self.indicatorView?.stopAnimating()
             self.coordinator?.dismissVC({
-                if ((self.context?.connectSuccessed) != nil) {
+                if (self.context?.connectSuccessed != nil) {
                     self.context?.connectSuccessed!()
                 }
             })
