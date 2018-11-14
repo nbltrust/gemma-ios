@@ -40,6 +40,17 @@ class WalletManager {
         return nil
     }
 
+    func existWookongWallet() -> Bool {
+        var exist = false
+        let wallets = walletList()
+        for wallet in wallets {
+            if wallet.type == .bluetooth {
+                exist = true
+            }
+        }
+        return exist
+    }
+
     func updateWallet(_ wallet: Wallet) {
         do {
             try WalletCacheService.shared.updateWallet(wallet)
