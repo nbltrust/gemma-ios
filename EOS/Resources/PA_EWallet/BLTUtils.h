@@ -8,11 +8,9 @@
 
 
 #import <Foundation/Foundation.h>
-
-//Notification
-#define NotificationBatteryChanged @"NotificationBatteryChanged"
-
-#define NotificationDeviceSearched @"NotificationDeviceSearched"
+#import <iOS_EWalletDynamic/PA_EWallet.h>
+#import "BLTWalletHeader.h"
+#import "BLTDevice.h"
 
 //Data Struct
 typedef NS_ENUM(NSInteger, FingerPrinterState)
@@ -24,6 +22,36 @@ typedef NS_ENUM(NSInteger, FingerPrinterState)
     notFull,
     badImage
 };
+
+//CallBack
+typedef void(^ DidSearchDevice)(BLTDevice *wallet);
+
+typedef void(^ EnrollFingerComplication)(FingerPrinterState state);
+
+typedef void(^ SuccessedComplication)(void);
+
+typedef void(^ TimeoutComplication)(void);
+
+typedef void(^ FailedComplication)(NSString *failedReason);
+
+typedef void(^ GetDeviceInfoComplication)(BOOL successed,PAEW_DevInfo *info);
+
+typedef void(^ GetSeedsComplication)(NSArray *seeds, NSString *checkStr);
+
+typedef void(^ GetVolidationComplication)(NSString *SN,NSString *SN_sig,NSString *pubkey,NSString *pubkey_si,NSString *public_key);
+
+typedef void(^ GetSNComplication)(NSString *SN,NSString *SN_sig);
+
+typedef void(^ GetPubKeyComplication)(NSString *pubkey,NSString *pubkey_sig);
+
+typedef void(^ GetSignComplication)(NSString *sign);
+
+typedef void(^ GetFPListComplication)(NSArray *fpList);
+
+//Notification
+#define NotificationBatteryChanged @"NotificationBatteryChanged"
+
+#define NotificationDeviceSearched @"NotificationDeviceSearched"
 
 @interface BLTUtils : NSObject
 

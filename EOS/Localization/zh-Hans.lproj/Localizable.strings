@@ -573,7 +573,7 @@
 "pair_start" = "开始配对";
 "pair_search_title" = "选择要连接的WOOKONG Bio。若未找到，请检查手机蓝牙和设备电源。";
 "wookong_des_title" = "第一款支持EOS的蓝牙指纹硬件钱包";
-"wookong_des_click" = "点击查看更多的 WOOKONG Bio 介绍";
+"wookong_des_click" = "%@点击查看更多的 WOOKONG Bio 介绍%@";
 "wookong_des_prepare" = "准备使用WOOKONG Bio";
 "wookong_des_first" = "1.确保手机蓝牙已开启";
 "wookong_des_second" = "2.启动WOOKONG Bio";
@@ -607,6 +607,8 @@
 "wookong_confirm_pin_title" = "请输入WOOKONG Bio的密码以确认授权";
 "wookong_confirm_pin_pla" = "请输入WOOKONG Bio的密码";
 "wookong_confirm_pin_btn" = "确认授权";
+"wookong_setfp_timeout" = "指纹设置超时";
+"wookong_retry" = "重试";
 
 "currency_title" = "币种";
 "wallet_currency" = "钱包币种";

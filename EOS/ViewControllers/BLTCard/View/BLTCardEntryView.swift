@@ -27,7 +27,9 @@ class BLTCardEntryView: EOSBaseView {
     }
 
     func setupUI() {
-
+        let clickStr = R.string.localizable.wookong_des_click.key.localized()
+        let text = clickStr.localizedFormat("<corn_flower_blue_underline>", "</corn_flower_blue_underline>")
+        clickLabel.attributedText = text.set(style: StyleNames.activate.rawValue)
     }
 
     func setupSubViewEvent() {
@@ -35,6 +37,6 @@ class BLTCardEntryView: EOSBaseView {
     }
 
     @objc override func didClicked() {
-        self.next?.sendEventWith(Event.BLTCardEntryViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+        self.next?.sendEventWith(Event.BLTCardEntryViewDidClicked.rawValue, userinfo: [:])
     }
 }
