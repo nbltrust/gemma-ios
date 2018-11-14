@@ -25,8 +25,6 @@ class WalletViewController: BaseViewController {
     }
 
     func setupData() {
-        var indexPath = 0
-
         for (index, wallet) in WalletManager.shared.walletList().enumerated() {
             var model = WalletManagerModel()
             model.name = wallet.name
@@ -35,16 +33,10 @@ class WalletViewController: BaseViewController {
             if model.type == .bluetooth {
                 model.connected = BLTWalletIO.shareInstance()?.isConnection() ?? false
             }
-
-            if model.name == WalletManager.shared.currentWallet()?.name {
-                indexPath = index
-            }
-
             dataArray.append(model)
         }
 
         tableView.reloadData()
-        tableView.selectRow(at: IndexPath(row: indexPath, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.none)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -57,11 +49,12 @@ class WalletViewController: BaseViewController {
     func setupUI() {
         self.title = R.string.localizable.tabbarWallet.key.localized()
 
-        let homeNibString = R.nib.homeTableCell.identifier
-        tableView.register(UINib.init(nibName: homeNibString, bundle: nil), forCellReuseIdentifier: homeNibString)
-
-        let walletNibString = R.nib.walletTableViewCell.name
+        let walletNibString = R.nib.customCell.name
         tableView.register(UINib.init(nibName: walletNibString, bundle: nil), forCellReuseIdentifier: walletNibString)
+
+        let wookongNibString = R.nib.wookongBioCell.name
+        tableView.register(UINib.init(nibName: wookongNibString, bundle: nil), forCellReuseIdentifier: wookongNibString)
+
         configLeftNavButton(R.image.icMaskClose())
     }
 
@@ -72,27 +65,69 @@ class WalletViewController: BaseViewController {
     override func configureObserveState() {
 
     }
+
+    func titleForIndexPath(_ indexPath: IndexPath) -> String {
+        if indexPath.section == 0 {
+            return R.string.localizable.current_wallet.key.localized()
+        } else {
+            if indexPath.row == 0 {
+                return R.string.localizable.lead_in.key.localized()
+            } else if indexPath.row == 1 {
+                return R.string.localizable.create_wallet.key.localized()
+            } else if indexPath.row == 2 {
+                return R.string.localizable.pair_wookong.key.localized()
+            }
+        }
+        return ""
+    }
+
+    func subTitleForIndexpath(_ indexPath: IndexPath) -> String {
+        if indexPath.section == 0 {
+            return WalletManager.shared.currentWallet()?.name ?? ""
+        } else {
+            if indexPath.row == 0 {
+                return ""
+            } else if indexPath.row == 1 {
+                return ""
+            } else if indexPath.row == 2 {
+                return R.string.localizable.pair_wookong_introduce.key.localized()
+            }
+        }
+        return ""
+    }
 }
 
 extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headView = WalletListHeaderView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 52))
-
         if section == 0 {
-            headView.titleText = R.string.localizable.have_wallet.key.localized()
+            return UIView()
         } else {
+            let headView = WalletListHeaderView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
             headView.titleText = R.string.localizable.wallet_manager.key.localized()
+            return headView
         }
-        return headView
+    }
 
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 52
+        if section == 0 {
+            return 0.1
+        }
+        return 44
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        if indexPath.section == 1 && indexPath.row == 2 {
+            return UITableView.automaticDimension
+        }
+        return 56
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,48 +136,35 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return (self.coordinator?.createSectionOneDataInfo(data: dataArray).count)!
+            return 1
         } else {
-            return (self.coordinator?.createSectionTwoDataInfo().count)!
+            return 2 + (WalletManager.shared.existWookongWallet() ? 0 : 1)
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let nibString = String.init(describing: type(of: WalletTableViewCell()))
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? WalletTableViewCell else {
+        if indexPath.section == 1 && indexPath.row == 2 {
+            let nibString = R.nib.wookongBioCell.name
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? WookongBioCell else {
                 return UITableViewCell()
             }
-
-            cell.setup(self.coordinator?.createSectionOneDataInfo(data: dataArray)[indexPath.row], indexPath: indexPath)
+            cell.title = titleForIndexPath(indexPath)
+            cell.subTitle = subTitleForIndexpath(indexPath)
             return cell
-
         } else {
-
-            let nibString = String.init(describing: type(of: HomeTableCell()))
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? HomeTableCell else {
+            let nibString = R.nib.customCell.name
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? CustomCell else {
                 return UITableViewCell()
             }
-
-            cell.setup(self.coordinator?.createSectionTwoDataInfo()[indexPath.row], indexPath: indexPath)
+            cell.title = titleForIndexPath(indexPath)
+            cell.subTitle = subTitleForIndexpath(indexPath)
             return cell
         }
-
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-//            let pub = dataArray[indexPath.row].address
-//                self.coordinator?.switchWallet(pub)
-//                self.coordinator?.popToLastVC()
-//            }
-            if let wallet = WalletManager.shared.currentWallet() {
-                self.coordinator?.switchWallet(wallet)
-                self.coordinator?.popToLastVC()
-            } else {
-                self.coordinator?.popToLastVC()
-            }
+            self.coordinator?.pushToWalletListVC()
         } else {
             switch indexPath.row {
             case 0:self.coordinator?.pushToLeadInWallet()
@@ -153,13 +175,5 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
 
-    }
-}
-
-extension WalletViewController {
-    @objc func rightEvent(_ data: [String: Any]) {
-        if let index = data["index"] as? String {
-            self.coordinator?.pushToWalletManager(data: dataArray[index.int!])
-        }
     }
 }

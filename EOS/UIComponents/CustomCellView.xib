@@ -21,35 +21,35 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="btM-Yo-6kI">
-            <rect key="frame" x="0.0" y="0.0" width="376" height="214"/>
+            <rect key="frame" x="0.0" y="0.0" width="376" height="125"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="zJz-v8-kqW">
-                    <rect key="frame" x="20" y="0.0" width="336" height="213.5"/>
+                    <rect key="frame" x="20" y="0.0" width="336" height="124.5"/>
                     <subviews>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C8k-Zq-Ifi">
-                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="213.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="124.5"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOd-X4-Phv">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="213.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="124.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-eM-1aW">
-                            <rect key="frame" x="50" y="0.0" width="270" height="213.5"/>
+                            <rect key="frame" x="50" y="0.0" width="270" height="124.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tab_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="wTT-mW-ZUZ">
-                            <rect key="frame" x="320" y="0.0" width="16" height="213.5"/>
+                            <rect key="frame" x="320" y="0.0" width="16" height="124.5"/>
                         </imageView>
                     </subviews>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Kh-ym-mbS">
-                    <rect key="frame" x="20" y="213.5" width="336" height="0.5"/>
-                    <color key="backgroundColor" name="separatorColor" red="0.867" green="0.867" blue="0.867" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="20" y="124.5" width="336" height="0.5"/>
+                    <color key="backgroundColor" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="aIS-gN-meT"/>
                     </constraints>
@@ -66,7 +66,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
-            <point key="canvasLocation" x="-193.59999999999999" y="-268.06596701649175"/>
+            <point key="canvasLocation" x="-193.59999999999999" y="-308.09595202398805"/>
         </view>
     </objects>
     <resources>

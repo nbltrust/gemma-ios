@@ -143,6 +143,13 @@ class CurrencyManager {
         return nil
     }
 
+    func getAllCurrencys(_ wallet: Wallet) -> [Currency] {
+        do {
+            return try WalletCacheService.shared.fetchAllCurrencysBy(wallet) ?? []
+        } catch {}
+        return []
+    }
+
     func getCurrentAccountName() -> String {
         if let name = getAccountNameWith(getCurrentCurrencyID()) {
             return name

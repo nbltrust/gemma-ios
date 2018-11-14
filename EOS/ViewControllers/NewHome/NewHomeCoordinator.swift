@@ -55,7 +55,7 @@ extension NewHomeCoordinator: NewHomeCoordinatorProtocol {
     func presentSettingVC() {
         if let userInfoVC = R.storyboard.userInfo.userInfoViewController() {
             let userInfoNav = BaseNavigationController.init(rootViewController: userInfoVC)
-            let coordinator = UserInfoCoordinator(rootVC: self.rootVC)
+            let coordinator = UserInfoCoordinator(rootVC: userInfoNav)
             userInfoVC.coordinator = coordinator
             self.rootVC.present(userInfoNav, animated: true, completion: nil)
         }
@@ -64,7 +64,7 @@ extension NewHomeCoordinator: NewHomeCoordinatorProtocol {
     func presentWalletVC() {
         if let walletVC = R.storyboard.wallet.walletViewController() {
             let walletNav = BaseNavigationController.init(rootViewController: walletVC)
-            let coordinator = WalletCoordinator(rootVC: self.rootVC)
+            let coordinator = WalletCoordinator(rootVC: walletNav)
             walletVC.coordinator = coordinator
             self.rootVC.present(walletNav, animated: true, completion: nil)
         }

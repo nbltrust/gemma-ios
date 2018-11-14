@@ -99,6 +99,7 @@
 "export_private_key" = "Export Private Key";
 "change_password" = "Modify Password";
 "change_password_success" = "Success. Password modified.";
+"current_wallet" = "当前钱包";
 
 "wallet_name" = "Wallet name";
 "wallet_name_pla" = "请填写钱包名称";
@@ -612,6 +613,11 @@
 "new_wallet" = "新建钱包";
 "current_wallets" = "已有的钱包";
 "wallet_create_failed" = "钱包创建失败";
+
+"mutable_currency" = "多币种钱包";
+"single_currency" = "%@钱包";
+"mutable_currency_blt" = "多币种硬件钱包";
+"select_wallet" = "选择钱包";
 
 //Entry Guide
 "entry_guide_title_one" = "主流币种全覆盖";
