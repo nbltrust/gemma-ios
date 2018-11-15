@@ -244,15 +244,17 @@ extension TransferContentView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.receiver.rawValue:
             receiverTitleTextView.reloadActionViews(isEditing: false)
-            receiverTitleTextView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            if let text = textField.text, text != "" {
+                receiverTitleTextView.checkStatus = WalletManager.shared.isTransferValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            }
             self.sendEventWith(TextChangeEvent.receiverChanged.rawValue, userinfo: ["textfield": textField])
         case InputType.account.rawValue:
             accountTitleTextView.reloadActionViews(isEditing: false)
-            accountTitleTextView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            accountTitleTextView.checkStatus = WalletManager.shared.isTransferValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.money.rawValue:
             moneyTitleTextView.reloadActionViews(isEditing: false)
 
-            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = moneyTitleTextView.textField.text?.toDouble() {
+            if let balenceDouble = balance.components(separatedBy: " ")[0].toDecimal(), let moneyDouble = moneyTitleTextView.textField.text?.toDecimal() {
                 moneyTitleTextView.checkStatus = balenceDouble >= moneyDouble  ? TextUIStyle.common : TextUIStyle.warning
                 nextButton.isEnabel.accept(balenceDouble >= moneyDouble ? true : false)
             }

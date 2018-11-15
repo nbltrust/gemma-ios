@@ -16,6 +16,8 @@ protocol AssetDetailCoordinatorProtocol {
     func pushTransferVC(_ model: AssetViewModel)
     func pushReceiptVC(_ model: AssetViewModel)
     func pushPaymentsDetail(data: PaymentsRecordsViewModel)
+    func getAccountInfo(_ account: String)
+    func getTokensWith(_ account: String, symbol: String)
 }
 
 protocol AssetDetailStateManagerProtocol {
@@ -125,5 +127,33 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
 
     func removeStateData() {
         self.store.dispatch(RemoveAction())
+    }
+
+    func getAccountInfo(_ account: String) {
+        EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
+            self.store.dispatch(MBalanceFetchedAction(balance: json))
+        }, error: { (_) in
+
+        }) { (_) in
+
+        }
+
+        SimpleHTTPService.requestETHPrice().done { (json) in
+            self.store.dispatch(RMBPriceFetchedAction(currency: nil))
+            }.cauterize()
+    }
+    func getTokensWith(_ account: String, symbol: String) {
+        NBLNetwork.request(target: .getTokens(account: account), success: { (data) in
+            let tokens = data["tokens"].arrayValue
+            if let tokenArr = tokens.map({ (json) in
+                Tokens.deserialize(from: json.dictionaryObject)
+            }) as? [Tokens] {
+                self.store.dispatch(ATokensFetchedAction(data: tokenArr, symbol: symbol))
+            }
+        }, error: { (_) in
+
+        }) { (_) in
+
+        }
     }
 }

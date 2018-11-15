@@ -387,4 +387,9 @@ class WalletManager {
         return predicate.evaluate(with: name)
     }
 
+    func isTransferValidWalletName(_ name: String) -> Bool {
+        let regex = "^[1-5a-z.]{1,12}+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with: name)
+    }
 }
