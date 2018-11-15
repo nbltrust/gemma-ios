@@ -10,6 +10,11 @@ import Foundation
 import ReSwift
 import RxCocoa
 import SwiftyJSON
+import HandyJSON
+
+struct BLTCardSearchContext: RouteContext, HandyJSON {
+    var connectSuccessed: CompletionCallback?
+}
 
 // MARK: - State
 struct BLTCardSearchState: BaseState {

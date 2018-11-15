@@ -192,7 +192,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.desc = R.string.localizable.pay_timeout_tips.key.localized()
                 context.title = R.string.localizable.pay_timeout.key.localized()
                 context.buttonTitle = R.string.localizable.confirm.key.localized()
-                context.imageName = R.image.icTime.name
+                context.imageName = R.image.ic_time.name
                 context.needCancel = false
                 appCoodinator.showGemmaAlert(context)
             } else if payState == "SUCCESS", state == "DONE" {

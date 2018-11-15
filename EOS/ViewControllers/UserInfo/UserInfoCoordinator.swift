@@ -12,6 +12,7 @@ import MessageUI
 import SwiftyUserDefaults
 
 protocol UserInfoCoordinatorProtocol {
+    func dismissVC()
     func openNormalSetting()
     func openSafeSetting()
 //    func openHelpSetting(delegate:Any)
@@ -47,6 +48,9 @@ class UserInfoCoordinator: NavCoordinator {
 }
 
 extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
+    func dismissVC() {
+        self.rootVC.dismiss(animated: true, completion: nil)
+    }
 
     func openNormalSetting() {
         if let vc = R.storyboard.userInfo.normalViewController() {

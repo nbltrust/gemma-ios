@@ -19,6 +19,8 @@ class BLTCardSearchViewController: BaseViewController {
 
     var indicatorView: UIActivityIndicatorView?
 
+    private(set) var context: BLTCardSearchContext?
+
     var BLTIO: BLTWalletIO?
 
 	override func viewDidLoad() {
@@ -70,10 +72,8 @@ class BLTCardSearchViewController: BaseViewController {
 
     func searchDevice() {
         indicatorView?.startAnimating()
-        self.startLoading(true)
         BLTIO?.searchBLTCard({ [weak self] in
             guard let `self` = self else { return }
-            self.endLoading()
             self.indicatorView?.stopAnimating()
         })
     }
@@ -94,9 +94,20 @@ class BLTCardSearchViewController: BaseViewController {
     }
 
     override func configureObserveState() {
-        coordinator?.state.pageState.asObservable().subscribe(onNext: { (_) in
+        self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
+            guard let `self` = self else { return }
 
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+            if let context = context as? BLTCardSearchContext {
+                self.context = context
+            }
+
+        }).disposed(by: disposeBag)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceChanged), name: NSNotification.Name(rawValue: NotificationDeviceSearched), object: nil)
+    }
+
+    @objc func deviceChanged() {
+
     }
 }
 
@@ -127,7 +138,11 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
             self.coordinator?.connectDevice(device, success: { [weak self] in
                 guard let `self` = self else { return }
                 BLTWalletIO.shareInstance()?.selectDevice = device
-                self.coordinator?.pushAfterDeviceConnected()
+                self.navigationController?.dismiss(animated: true) {
+                    if ((self.context?.connectSuccessed) != nil) {
+                        self.context?.connectSuccessed!()
+                    }
+                }
             }, failed: { [weak self] (reason) in
                 guard let `self` = self else { return }
                 if let failedReason = reason {

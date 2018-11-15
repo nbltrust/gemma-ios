@@ -48,6 +48,9 @@ class ScreenShotAlertViewController: BaseViewController {
         self.alertView.titleLabel.text = context.title
         self.alertView.cancelButton.isHidden = !context.needCancel
         self.alertView.knowButton.setTitle(context.buttonTitle, for: .normal)
+        if let cancelTitle = context.cancelTitle {
+            self.alertView.cancelButton.setTitle(cancelTitle, for: .normal)
+        }
 
         if let desc = context.desc {
             self.alertView.tipsLabel.superview?.isHidden = false

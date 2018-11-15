@@ -22,6 +22,7 @@ struct ScreenShotAlertContext: RouteContext, HandyJSON {
     var desc: String?
     var needCancel: Bool = false
     var buttonTitle: String
+    var cancelTitle: String?
     var sureShot: CompletionCallback?
 }
 

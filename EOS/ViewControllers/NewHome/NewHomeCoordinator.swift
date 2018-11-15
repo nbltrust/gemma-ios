@@ -12,10 +12,10 @@ import NBLCommonModule
 import SwiftyUserDefaults
 
 protocol NewHomeCoordinatorProtocol {
-    func pushToSetVC()
-    func pushWallet()
-    func pushToEntryVCWithCurrencyID(id: Int64?)
-    func pushToOverviewVCWithCurrencyID(id: Int64?)
+    func presentSettingVC()
+    func presentWalletVC()
+    func pushToEntryVCWithCurrencyID(currencyId: Int64?)
+    func pushToOverviewVCWithCurrencyID(currencyId: Int64?)
 }
 
 protocol NewHomeStateManagerProtocol {
@@ -52,38 +52,40 @@ class NewHomeCoordinator: NavCoordinator {
 }
 
 extension NewHomeCoordinator: NewHomeCoordinatorProtocol {
-    func pushToSetVC() {
-        if let vc = R.storyboard.userInfo.userInfoViewController() {
-            let coordinator = UserInfoCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
-        }
-    }
-    
-    func pushWallet() {
-        if let vc = R.storyboard.wallet.walletViewController() {
-            let coordinator = WalletCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
+    func presentSettingVC() {
+        if let userInfoVC = R.storyboard.userInfo.userInfoViewController() {
+            let userInfoNav = BaseNavigationController.init(rootViewController: userInfoVC)
+            let coordinator = UserInfoCoordinator(rootVC: userInfoNav)
+            userInfoVC.coordinator = coordinator
+            self.rootVC.present(userInfoNav, animated: true, completion: nil)
         }
     }
 
-    func pushToEntryVCWithCurrencyID(id: Int64?) {
-        if let vc = R.storyboard.entry.entryViewController() {
-            vc.createType = .EOS
-            vc.currencyID = id
+    func presentWalletVC() {
+        if let walletVC = R.storyboard.wallet.walletViewController() {
+            let walletNav = BaseNavigationController.init(rootViewController: walletVC)
+            let coordinator = WalletCoordinator(rootVC: walletNav)
+            walletVC.coordinator = coordinator
+            self.rootVC.present(walletNav, animated: true, completion: nil)
+        }
+    }
+
+    func pushToEntryVCWithCurrencyID(currencyId: Int64?) {
+        if let entryVC = R.storyboard.entry.entryViewController() {
+            entryVC.createType = .EOS
+            entryVC.currencyID = currencyId
             let coordinator = EntryCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
+            entryVC.coordinator = coordinator
+            self.rootVC.pushViewController(entryVC, animated: true)
         }
     }
 
-    func pushToOverviewVCWithCurrencyID(id: Int64?) {
-        if let vc = R.storyboard.home.overviewViewController() {
-            vc.currencyID = id
+    func pushToOverviewVCWithCurrencyID(currencyId: Int64?) {
+        if let overViewVC = R.storyboard.home.overviewViewController() {
+            overViewVC.currencyID = currencyId
             let coordinator = OverviewCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
+            overViewVC.coordinator = coordinator
+            self.rootVC.pushViewController(overViewVC, animated: true)
         }
     }
 }
@@ -152,8 +154,6 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
             } else {
                 self.store.dispatch(NonActiveFetchedAction(currency:currency))
             }
-
-            
         } else if currency.type == .ETH {
 
         }

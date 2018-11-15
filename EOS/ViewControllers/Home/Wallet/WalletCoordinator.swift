@@ -10,13 +10,15 @@ import UIKit
 import ReSwift
 
 protocol WalletCoordinatorProtocol {
+    func dismissVC()
+
     func pushToWalletManager(data: WalletManagerModel)
 
     func pushToEntryVC()
 
     func pushToLeadInWallet()
 
-    func popToLastVC()
+    func pushToWalletListVC()
 
     func pushToBLTEntryVC()
 }
@@ -26,9 +28,6 @@ protocol WalletStateManagerProtocol {
     func subscribe<SelectedState, S: StoreSubscriber>(
         _ subscriber: S, transform: ((Subscription<WalletState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
-
-    func createSectionOneDataInfo(data: [WalletManagerModel]) -> [LineView.LineViewModel]
-    func createSectionTwoDataInfo() -> [LineView.LineViewModel]
 
     func switchWallet(_ wallet: Wallet)
 }
@@ -45,49 +44,52 @@ class WalletCoordinator: NavCoordinator {
 }
 
 extension WalletCoordinator: WalletCoordinatorProtocol {
-    func popToLastVC() {
-        self.rootVC.popViewController()
+    func dismissVC() {
+        self.rootVC.dismiss(animated: true, completion: nil)
+    }
+
+    func pushToWalletListVC() {
+        let context = WalletListContext()
+        pushVC(WalletListCoordinator.self, animated: true, context: context)
     }
 
     func pushToWalletManager(data: WalletManagerModel) {
-        if let vc = R.storyboard.wallet.walletManagerViewController() {
+        if let managerVC = R.storyboard.wallet.walletManagerViewController() {
             let coordinator = WalletManagerCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            vc.data = data
-            self.rootVC.pushViewController(vc, animated: true)
+            managerVC.coordinator = coordinator
+            managerVC.data = data
+            self.rootVC.pushViewController(managerVC, animated: true)
         }
     }
 
     func pushToEntryVC() {
-        if let vc = R.storyboard.entry.entryViewController() {
-
+        if let entryVC = R.storyboard.entry.entryViewController() {
             let coordinator = EntryCoordinator(rootVC: self.rootVC)
             coordinator.state.callback.endCallback.accept {[weak self] in
                 guard let `self` = self else { return }
-                self.rootVC.popToRootViewController(animated: true)
+                self.dismissVC()
             }
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
+            entryVC.coordinator = coordinator
+            self.rootVC.pushViewController(entryVC, animated: true)
         }
     }
 
     func pushToLeadInWallet() {
-        if let vc = R.storyboard.leadIn.leadInViewController() {
+        if let leadinVC = R.storyboard.leadIn.leadInViewController() {
             let coordinator = LeadInCoordinator(rootVC: self.rootVC)
-            let lastVC = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2]
             coordinator.state.callback.fadeCallback.accept {
-                self.rootVC.popToViewController(lastVC, animated: true)
+                self.dismissVC()
             }
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
+            leadinVC.coordinator = coordinator
+            self.rootVC.pushViewController(leadinVC, animated: true)
         }
     }
 
     func pushToBLTEntryVC() {
-        if let vc = R.storyboard.bltCard.bltCardEntryViewController() {
+        if let entryVC = R.storyboard.bltCard.bltCardEntryViewController() {
             let coordinator = BLTCardEntryCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            self.rootVC.pushViewController(vc, animated: true)
+            entryVC.coordinator = coordinator
+            self.rootVC.pushViewController(entryVC, animated: true)
         }
     }
 
@@ -102,50 +104,6 @@ extension WalletCoordinator: WalletStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<WalletState>) -> Subscription<SelectedState>)?
         ) where S.StoreSubscriberStateType == SelectedState {
         store.subscribe(subscriber, transform: transform)
-    }
-
-    func createSectionOneDataInfo(data: [WalletManagerModel]) -> [LineView.LineViewModel] {
-        var array: [LineView.LineViewModel] = []
-        for content: WalletManagerModel in data {
-            let model = LineView.LineViewModel.init(name: content.name,
-                                        content: "",
-                                        imageName: R.image.icTabMore.name,
-                                        nameStyle: LineViewStyleNames.normalName,
-                                        contentStyle: LineViewStyleNames.normalContent,
-                                        isBadge: false,
-                                        contentLineNumber: 1,
-                                        isShowLineView: false)
-            array.append(model)
-        }
-        return array
-    }
-
-    func createSectionTwoDataInfo() -> [LineView.LineViewModel] {
-        return [LineView.LineViewModel.init(name: R.string.localizable.import_wallet.key.localized(),
-                                            content: "",
-                                            imageName: R.image.icTabArrow.name,
-                                            nameStyle: LineViewStyleNames.normalName,
-                                            contentStyle: LineViewStyleNames.normalContent,
-                                            isBadge: false,
-                                            contentLineNumber: 1,
-                                            isShowLineView: false),
-                LineView.LineViewModel.init(name: R.string.localizable.create_wallet.key.localized(),
-                                            content: "",
-                                            imageName: R.image.icTabArrow.name,
-                                            nameStyle: LineViewStyleNames.normalName,
-                                            contentStyle: LineViewStyleNames.normalContent,
-                                            isBadge: false,
-                                            contentLineNumber: 1,
-                                            isShowLineView: false),
-                LineView.LineViewModel.init(name: R.string.localizable.pair_wookong.key.localized(),
-                                            content: "",
-                                            imageName: R.image.icTabArrow.name,
-                                            nameStyle: LineViewStyleNames.normalName,
-                                            contentStyle: LineViewStyleNames.normalContent,
-                                            isBadge: false,
-                                            contentLineNumber: 1,
-                                            isShowLineView: false)
-        ]
     }
 
     func switchWallet(_ wallet: Wallet) {

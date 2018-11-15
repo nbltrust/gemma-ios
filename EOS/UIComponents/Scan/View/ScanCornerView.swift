@@ -11,7 +11,7 @@ import UIKit
 class ScanCornerView: UIView {
 
     lazy var lineView: UIImageView = {
-        let image = R.image.scanning_line()
+        let image = R.image.scaningline()
         let lineView = UIImageView(frame: CGRect(x: 0, y: 5, width: self.width, height: self.width / (image?.size.width)! * (image?.size.height)!))
         lineView.image = image
         lineView.contentMode = .scaleAspectFit

@@ -13,8 +13,6 @@ import RxCocoa
 
 protocol BLTCardSearchCoordinatorProtocol {
     func dismissSearchVC()
-
-    func pushAfterDeviceConnected()
 }
 
 protocol BLTCardSearchStateManagerProtocol {
@@ -24,7 +22,9 @@ protocol BLTCardSearchStateManagerProtocol {
 
     func searchedADevice(_ device: BLTDevice)
 
-    func connectDevice(_ device: BLTDevice, success: @escaping SuccessedComplication, failed: @escaping FailedComplication)
+    func connectDevice(_ device: BLTDevice,
+                       success: @escaping SuccessedComplication,
+                       failed: @escaping FailedComplication)
 
     func getDeviceInfo(_ complocation: @escaping (Bool, UnsafeMutablePointer<PAEW_DevInfo>?) -> Void)
 }
@@ -50,18 +50,6 @@ extension BLTCardSearchCoordinator: BLTCardSearchCoordinatorProtocol {
     func dismissSearchVC() {
         self.rootVC.dismiss(animated: true, completion: nil)
     }
-
-    func pushAfterDeviceConnected() {
-        if let homeCoor = appCoodinator.homeCoordinator {
-            self.rootVC.dismiss(animated: true) {
-                if let vc = R.storyboard.leadIn.setWalletViewController() {
-                    vc.coordinator = SetWalletCoordinator(rootVC: homeCoor.rootVC)
-                    vc.settingType = .wookong
-                    homeCoor.rootVC.pushViewController(vc, animated: true)
-                }
-            }
-        }
-    }
 }
 
 extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
@@ -84,7 +72,9 @@ extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
         self.store.dispatch(SetDevicesAction(datas: devices))
     }
 
-    func connectDevice(_ device: BLTDevice, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
+    func connectDevice(_ device: BLTDevice,
+                       success: @escaping SuccessedComplication,
+                       failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance()?.connectCard(device.name, success: success, failed: failed)
     }
 

@@ -66,7 +66,8 @@ class ScanViewController: BaseViewController {
     func setupUI() {
         self.view.backgroundColor = UIColor.black
         self.title = R.string.localizable.scan_title.key.localized()
-        self.configLeftNavButton(nil)
+        let backImage = R.image.ic_notify_back()
+        self.configLeftNavButton(backImage?.tint(UIColor.whiteColor, blendMode: .destinationIn))
         let rect = ScanSetting.scanRect
         titleLabel = UILabel.init(frame: CGRect(x: 0, y: rect.maxY + 29, width: self.view.width, height: 20))
         if let label = titleLabel {

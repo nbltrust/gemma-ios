@@ -51,10 +51,9 @@ class CustomCellView: BaseView {
             lineView.isHidden = lineViewHidden
         }
     }
-    
+
     override func setup() {
         super.setup()
-        
         setupUI()
     }
 

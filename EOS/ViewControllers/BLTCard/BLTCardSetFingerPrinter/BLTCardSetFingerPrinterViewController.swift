@@ -93,11 +93,29 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
         }
     }
 
+    func timeoutAlert() {
+        var context = ScreenShotAlertContext()
+        context.title = R.string.localizable.wookong_setfp_timeout.key.localized()
+        context.cancelTitle = R.string.localizable.wookong_jump.key.localized()
+        context.buttonTitle = R.string.localizable.wookong_retry.key.localized()
+        context.imageName = R.image.ic_time.name
+        context.needCancel = true
+        context.sureShot = { [weak self] () in
+            guard let `self` = self else { return }
+            self.enrollFingerPrinter()
+        }
+        appCoodinator.showGemmaAlert(context)
+    }
+
     func setupData() {
 
     }
 
     func setupEvent() {
+        enrollFingerPrinter()
+    }
+
+    func enrollFingerPrinter() {
         self.coordinator?.enrollFingerPrinter({ [weak self] (state) in
             guard let `self` = self else { return }
             if state == FingerPrinterState.good {
@@ -107,19 +125,22 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
                     self.prevStep()
                 }
             }
-        }, success: { [weak self] in
-            guard let `self` = self else { return }
-            self.done()
-        }, failed: { [weak self]  (reason) in
-            guard let `self` = self else { return }
-            if let failedReason = reason {
-                self.showError(message: failedReason)
-            }
+            }, success: { [weak self] in
+                guard let `self` = self else { return }
+                self.done()
+            }, failed: { [weak self]  (reason) in
+                guard let `self` = self else { return }
+                if let failedReason = reason {
+                    self.showError(message: failedReason)
+                }
+            }, timeout: { [weak self] in
+                guard let `self` = self else { return }
+                self.timeoutAlert()
         })
     }
 
     override func configureObserveState() {
-
+        
     }
 }
 

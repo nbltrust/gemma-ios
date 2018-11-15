@@ -14,6 +14,8 @@ import Presentr
 protocol BLTCardEntryCoordinatorProtocol {
     func pushIntroduceVC()
 
+    func pushToSetWalletVC()
+
     func presentBLTCardSearchVC()
 }
 
@@ -45,6 +47,14 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
 
     }
 
+    func pushToSetWalletVC() {
+        if let setWalletVC = R.storyboard.leadIn.setWalletViewController() {
+            setWalletVC.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
+            setWalletVC.settingType = .wookong
+            self.rootVC.pushViewController(setWalletVC, animated: true)
+        }
+    }
+
     func presentBLTCardSearchVC() {
         let width = ModalSize.full
 
@@ -59,10 +69,16 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
 
         let newVC = BaseNavigationController()
         let bltCard = BLTCardRootCoordinator(rootVC: newVC)
+        var context = BLTCardSearchContext()
+        context.connectSuccessed = { [weak self] () in
+            guard let `self` = self else { return }
+            self.pushToSetWalletVC()
+        }
 
         if let vc = R.storyboard.bltCard.bltCardSearchViewController() {
             let coordinator = BLTCardSearchCoordinator(rootVC: bltCard.rootVC)
             vc.coordinator = coordinator
+            coordinator.store.dispatch(RouteContextAction(context: context))
             bltCard.rootVC.pushViewController(vc, animated: true)
 
             self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
