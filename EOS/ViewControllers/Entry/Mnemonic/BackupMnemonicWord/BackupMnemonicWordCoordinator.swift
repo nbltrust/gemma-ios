@@ -47,7 +47,6 @@ extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
             }
         }
         appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: currencyID, type: ConfirmType.backupMnemonic.rawValue, producers: []) {[weak self] (mnemonic) in
-
             guard let `self` = self else { return }
             if let vc = R.storyboard.mnemonic.mnemonicContentViewController() {
                 let coordinator = MnemonicContentCoordinator(rootVC: self.rootVC)

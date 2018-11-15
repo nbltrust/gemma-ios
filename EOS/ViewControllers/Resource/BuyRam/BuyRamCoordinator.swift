@@ -14,6 +14,7 @@ import NBLCommonModule
 protocol BuyRamCoordinatorProtocol {
     func presentMortgageConfirmVC(data: ConfirmViewModel)
     func popVC()
+    func pushToDetailVC(_ model: AssetViewModel)
 }
 
 protocol BuyRamStateManagerProtocol {
@@ -75,6 +76,11 @@ extension BuyRamCoordinator: BuyRamCoordinatorProtocol {
 
     func popVC() {
         self.rootVC.popViewController()
+    }
+    func pushToDetailVC(_ model: AssetViewModel) {
+        var context = AssetDetailContext()
+        context.model = model
+        self.pushVC(AssetDetailCoordinator.self, animated: true, context: context)
     }
 }
 

@@ -22,7 +22,7 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
 
     switch action {
     case let action as CpuMoneyAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let cpuMoneyDouble = action.cpuMoney.toDecimal(), let netMoneyDouble = action.netMoney.toDecimal() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= cpuMoneyDouble + netMoneyDouble {
@@ -30,7 +30,7 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
                 tips = ""
             }
 
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)), action.cpuMoney != "", netMoneyDouble == 0 {
                 valid = false
                 if action.netMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -42,7 +42,7 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
             state.cpuMoneyValid.accept((valid, tips, action.cpuMoney))
         }
     case let action as NetMoneyAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let cpuMoneyDouble = action.cpuMoney.toDecimal(), let netMoneyDouble = action.netMoney.toDecimal() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= cpuMoneyDouble + netMoneyDouble {
@@ -50,7 +50,7 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
                 tips = ""
             }
 
-            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
+            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)), action.netMoney != "", cpuMoneyDouble == 0 {
                 valid = false
                 if action.cpuMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -62,7 +62,7 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
             state.netMoneyValid.accept((valid, tips, action.netMoney))
         }
     case let action as CpuReliveMoneyAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let cpuMoneyDouble = action.cpuMoney.toDecimal(), let netMoneyDouble = action.netMoney.toDecimal() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= cpuMoneyDouble {
@@ -70,7 +70,7 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
                 tips = ""
             }
 
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)), action.cpuMoney != "", netMoneyDouble == 0 {
                 valid = false
                 if action.netMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -82,7 +82,7 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
             state.cpuReliveMoneyValid.accept((valid, tips, action.cpuMoney))
         }
     case let action as NetReliveMoneyAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let cpuMoneyDouble = action.cpuMoney.toDecimal(), let netMoneyDouble = action.netMoney.toDecimal() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= netMoneyDouble {
@@ -90,7 +90,7 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
                 tips = ""
             }
 
-            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
+            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)), action.netMoney != "", cpuMoneyDouble == 0 {
                 valid = false
                 if action.cpuMoney != "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
@@ -103,10 +103,10 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
         }
     case let action as FetchDataAction:
         var model = initPageViewModel()
-        model.operationLeft[0].introduce = action.balance
-        model.operationLeft[1].introduce = action.balance
-        model.operationRight[0].introduce = action.cpuBalance
-        model.operationRight[1].introduce = action.netBalance
+        model.operationLeft[0].introduce = action.balance + " \(R.string.localizable.usable.key.localized())"
+        model.operationLeft[1].introduce = action.balance + " \(R.string.localizable.usable.key.localized())"
+        model.operationRight[0].introduce = action.cpuBalance + " \(R.string.localizable.usable.key.localized())"
+        model.operationRight[1].introduce = action.netBalance + " \(R.string.localizable.usable.key.localized())"
         state.info.accept(model)
     default:
         break

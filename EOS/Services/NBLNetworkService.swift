@@ -169,7 +169,7 @@ extension NBLService: TargetType {
             return map
         case .accountVerify:
             return [:]
-        case let .accountHistory(account, page, size, symbol, contract):
+        case let .accountHistory(account, size, page, symbol, contract):
             return ["account": account, "page": page, "size": size, "symbol": symbol, "contract": contract]
         case .producer:
             return [:]

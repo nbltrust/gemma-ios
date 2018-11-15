@@ -390,13 +390,13 @@ extension Int64 {
 
 extension Int64 {
     var toKB: String {
-        return (Double(self) / 1_024).string(digits: 2)
+        return (Decimal(self) / 1_024).string(digits: 2)
     }
 }
 
 extension Int64 {
     var toMS: String {
-        return (Double(self) / 1_024).string(digits: 2)
+        return (Decimal(self) / 1_000).string(digits: 2)
     }
 }
 
@@ -519,8 +519,15 @@ func jsonToData(jsonDic: Dictionary<String, Any>) -> Data? {
     return data
 }
 
+func copyText(_ text: String) {
+    let key = text
+    let pasteboard = UIPasteboard.general
+    pasteboard.string = key
+    showSuccessTop(R.string.localizable.have_copied.key.localized())
+}
+
 //func correctAmount(_ sender:String) -> String{
-//    if let _ = sender.toDouble(){
+//    if let _ = sender.toDecimal(){
 //        if sender.contains("."),let last = sender.components(separatedBy: ".").last{
 //            if last.count > 4{
 //                return sender.components(separatedBy: ".").first! + last.substring(from: 0, length: 4)!

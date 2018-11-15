@@ -13,6 +13,7 @@ import Presentr
 protocol ResourceMortgageCoordinatorProtocol {
     func presentMortgageConfirmVC(data: ConfirmViewModel)
     func popVC()
+    func pushToDetailVC(_ model: AssetViewModel)
 }
 
 protocol ResourceMortgageStateManagerProtocol {
@@ -60,7 +61,11 @@ extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
             top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }
     }
-
+    func pushToDetailVC(_ model: AssetViewModel) {
+        var context = AssetDetailContext()
+        context.model = model
+        self.pushVC(AssetDetailCoordinator.self, animated: true, context: context)
+    }
     func popVC() {
         self.rootVC.popViewController()
     }

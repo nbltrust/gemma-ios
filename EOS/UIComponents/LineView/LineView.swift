@@ -29,6 +29,7 @@ class LineView: UIView {
     @IBOutlet weak var rightImg: UIImageView!
     @IBOutlet weak var imgWidth: NSLayoutConstraint!
     @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var imgView: UIView!
 
     enum Event: String {
         case rightEvent
@@ -80,9 +81,8 @@ class LineView: UIView {
     var imageName: String = "icCheckCircleGreen" {
         didSet {
             self.rightImg.image = UIImage.init(named: imageName)
-            if imageName == " "{
-                imgWidth.constant = 0
-                layoutIfNeeded()
+            if imageName == " " || imageName == "" {
+                imgView.isHidden = true
             }
         }
     }

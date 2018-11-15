@@ -55,6 +55,7 @@ class CardView: UIView {
 
     enum Event: String {
         case cardViewDidClicked
+        case progressViewDidClicked
     }
 
     func setup() {
@@ -79,7 +80,10 @@ class CardView: UIView {
     }
 
     func setupSubViewEvent() {
-
+        progressView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
+            guard let `self` = self else { return }
+                self.progressView.next?.sendEventWith(Event.progressViewDidClicked.rawValue, userinfo: [:])
+        }).disposed(by: disposeBag)
     }
 
     override var intrinsicContentSize: CGSize {
