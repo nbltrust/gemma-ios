@@ -57,4 +57,8 @@ extension Decimal { // 解决double 计算精度丢失
 
         return formatter.string(from: NSDecimalNumber(decimal: drounded)) ?? "0"
     }
+
+    func formatCurrency(digitNum: Int) -> String {
+        return self.doubleValue.formatCurrency(digitNum: digitNum)
+    }
 }

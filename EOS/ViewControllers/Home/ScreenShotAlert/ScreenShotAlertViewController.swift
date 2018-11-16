@@ -59,6 +59,7 @@ class ScreenShotAlertViewController: BaseViewController {
         } else {
             self.alertView.tipsLabel.superview?.isHidden = true
         }
+        self.alertView.tipsLabel.textAlignment = .center
         self.alertView.updateHeight()
     }
 }

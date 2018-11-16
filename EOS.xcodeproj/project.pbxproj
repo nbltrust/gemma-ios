@@ -49,8 +49,6 @@
 		22087255218C419100A0ACE2 /* LeadInKeyActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22087251218C419100A0ACE2 /* LeadInKeyActions.swift */; };
 		22087256218C419100A0ACE2 /* LeadInKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22087252218C419100A0ACE2 /* LeadInKeyViewController.swift */; };
 		22087257218C419100A0ACE2 /* LeadInKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22087253218C419100A0ACE2 /* LeadInKeyReducers.swift */; };
-		2208A07A219AEC380096128D /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
-		2208A07B219AEC380096128D /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2208A08C219BD1DC0096128D /* WookongBioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208A08A219BD1DC0096128D /* WookongBioCell.swift */; };
 		2208A08D219BD1DC0096128D /* WookongBioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2208A08B219BD1DC0096128D /* WookongBioCell.xib */; };
 		2208A092219BD33F0096128D /* WookongBioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208A08F219BD33F0096128D /* WookongBioView.swift */; };
@@ -392,6 +390,8 @@
 		3B85EEA5215A12E600795083 /* VerifyPriKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA1215A12E600795083 /* VerifyPriKeyViewController.swift */; };
 		3B85EEA6215A12E600795083 /* VerifyPriKeyReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85EEA2215A12E600795083 /* VerifyPriKeyReducers.swift */; };
 		3B89E88F21522A6C00FD065A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89E86F21522A6B00FD065A /* Order.swift */; };
+		3BA40F6A219E778F00DFD05B /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
+		3BA40F6B219E778F00DFD05B /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3BC12A6A210587B4006EEB80 /* RedWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC12A69210587B4006EEB80 /* RedWarningView.swift */; };
 		3BC12A6C210587BD006EEB80 /* RedWarningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC12A6B210587BD006EEB80 /* RedWarningView.xib */; };
 		3BC12AA021060927006EEB80 /* AccountList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC12A9321060926006EEB80 /* AccountList.storyboard */; };
@@ -728,6 +728,13 @@
 			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
 			remoteInfo = GRDBiOS;
 		};
+		3BA40F6C219E778F00DFD05B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
+			remoteInfo = GRDBiOS;
+		};
 		7374B30C217DD9B100B63982 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
@@ -784,13 +791,6 @@
 			remoteGlobalIDString = 565490A01D5A4798005622CB;
 			remoteInfo = GRDBWatchOS;
 		};
-		73BEF1CA217F0D2200707DFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
-			remoteInfo = GRDBiOS;
-		};
 		73EDFEEC211AC44E000DF796 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AE6389277B2FA13D27D9CDFC76332268 /* Project object */;
@@ -801,13 +801,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2208A07E219AEC380096128D /* Embed Frameworks */ = {
+		3BA40F6E219E778F00DFD05B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2208A07B219AEC380096128D /* GRDB.framework in Embed Frameworks */,
+				3BA40F6B219E778F00DFD05B /* GRDB.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1565,7 +1565,7 @@
 				73539CFD2179B4AF008395AC /* SwiftyBeaver.framework in Frameworks */,
 				73539D4E2179BC39008395AC /* IQKeyboardManagerSwift.framework in Frameworks */,
 				73539D522179BC53008395AC /* UICKeyChainStore.framework in Frameworks */,
-				2208A07A219AEC380096128D /* GRDB.framework in Frameworks */,
+				3BA40F6A219E778F00DFD05B /* GRDB.framework in Frameworks */,
 				73539D4F2179BC39008395AC /* Crashlytics.framework in Frameworks */,
 				73539D502179BC39008395AC /* Fabric.framework in Frameworks */,
 				73539CFE2179B4AF008395AC /* Localize_Swift.framework in Frameworks */,
@@ -3588,13 +3588,13 @@
 				732F370F214FB64100CB3A58 /* appstore-bug */,
 				73539D532179BF9D008395AC /* Integrate Reveal Server */,
 				737F7697218043E800198196 /* swiftlint */,
-				2208A07E219AEC380096128D /* Embed Frameworks */,
+				3BA40F6E219E778F00DFD05B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				73BEF1CB217F0D2200707DFC /* PBXTargetDependency */,
 				2208A07D219AEC380096128D /* PBXTargetDependency */,
+				3BA40F6D219E778F00DFD05B /* PBXTargetDependency */,
 			);
 			name = EOS;
 			productName = EOS;
@@ -4607,10 +4607,10 @@
 			name = GRDBiOS;
 			targetProxy = 2208A07C219AEC380096128D /* PBXContainerItemProxy */;
 		};
-		73BEF1CB217F0D2200707DFC /* PBXTargetDependency */ = {
+		3BA40F6D219E778F00DFD05B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GRDBiOS;
-			targetProxy = 73BEF1CA217F0D2200707DFC /* PBXContainerItemProxy */;
+			targetProxy = 3BA40F6C219E778F00DFD05B /* PBXContainerItemProxy */;
 		};
 		73EDFEED211AC44E000DF796 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

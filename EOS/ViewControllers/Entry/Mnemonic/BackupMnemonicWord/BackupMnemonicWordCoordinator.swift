@@ -12,6 +12,7 @@ import NBLCommonModule
 
 protocol BackupMnemonicWordCoordinatorProtocol {
     func pushToMnemonicWordContentVC()
+    func dismissVC()
 }
 
 protocol BackupMnemonicWordStateManagerProtocol {
@@ -54,6 +55,11 @@ extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
                 vc.mnemonic = mnemonic
                 self.rootVC.pushViewController(vc, animated: true)
             }
+        }
+    }
+    func dismissVC() {
+        self.rootVC.dismiss(animated: true) {
+            
         }
     }
 }

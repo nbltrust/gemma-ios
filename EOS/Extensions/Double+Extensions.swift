@@ -11,7 +11,6 @@ import Foundation
 extension Double {
     func string(digits:Int = 0,roundingMode: NSDecimalNumber.RoundingMode = .plain) -> String {
         let decimal = Decimal(floatLiteral: self)
-
         return decimal.string(digits: digits,roundingMode:roundingMode)
     }
 

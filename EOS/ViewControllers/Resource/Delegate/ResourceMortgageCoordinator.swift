@@ -45,8 +45,8 @@ class ResourceMortgageCoordinator: NavCoordinator {
 extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
     func presentMortgageConfirmVC(data: ConfirmViewModel) {
         let width = ModalSize.full
-        let height = ModalSize.custom(size: 323)
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 323))
+        let height = ModalSize.custom(size: 354)
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 354))
         let customType = PresentationType.custom(width: width, height: height, center: center)
 
         let presenter = Presentr(presentationType: customType)
