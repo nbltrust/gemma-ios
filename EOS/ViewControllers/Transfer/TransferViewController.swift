@@ -124,12 +124,10 @@ extension TransferViewController {
         self.coordinator?.pushToTransferConfirmVC(data: data, model: self.context?.model)
     }
     @objc func transferMoney(_ data: [String: Any]) {
-        if let textfield = data["textfield"] as? UITextField, textfield.text != "", let money = textfield.text?.toDecimal() {
+        if let textfield = data["textfield"] as? UITextField, textfield.text != "", let money = textfield.text?.toDouble() {
+            textfield.text = money.string(digits: AppConfiguration.EOSPrecision)
 
             let balance = self.transferContentView.balance
-            let balanceValue = balance.components(separatedBy: " ")[0]
-            textfield.text = money.string(digits: getPrecision(balanceValue))
-
             self.coordinator?.validMoney(money.string(digits: AppConfiguration.EOSPrecision), blance: balance)
         } else if let textfield = data["textfield"] as? UITextField {
             textfield.text = ""

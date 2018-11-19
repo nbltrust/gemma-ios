@@ -52,8 +52,7 @@ func initViewModel() -> ResourceViewModel {
                                     " - " +
                                     R.string.localizable.ms.key.localized(),
                                    lineHidden: false,
-                                   progress: 0.0,
-                                   delegatedBandwidth: "0.0000 EOS"),
+                                   progress: 0.0),
                   GeneralViewModel(name: R.string.localizable.net.key.localized(),
                                    eos: "0.0000 EOS",
                                    leftSub: R.string.localizable.use.key.localized() +
@@ -63,8 +62,7 @@ func initViewModel() -> ResourceViewModel {
                                     " - " +
                                     R.string.localizable.kb.key.localized(),
                                    lineHidden: false,
-                                   progress: 0.0,
-                                   delegatedBandwidth: "0.0000 EOS"),
+                                   progress: 0.0),
                   GeneralViewModel(name: R.string.localizable.ram.key.localized(),
                                    eos: "0.0000 EOS",
                                    leftSub: R.string.localizable.use.key.localized() +
@@ -74,8 +72,7 @@ func initViewModel() -> ResourceViewModel {
                                     " - " +
                                     R.string.localizable.kb.key.localized(),
                                    lineHidden: false,
-                                   progress: 0.0,
-                                   delegatedBandwidth: "0.0000 EOS")], balance: "")
+                                   progress: 0.0)], balance: "")
     return newViewModel
 }
 
@@ -99,12 +96,6 @@ func convertResourceViewModelWithAccount(_ account: Account, viewmodel: Resource
             newViewModel.general[2].leftSub = R.string.localizable.use.key.localized() + " \(used) " + R.string.localizable.kb.key.localized()
             newViewModel.general[2].rightSub = R.string.localizable.total.key.localized() + " \(max) " + R.string.localizable.kb.key.localized()
             newViewModel.general[2].progress = used.float()! / max.float()!
-        }
-        if let cpuDelegated = account.selfDelegatedBandwidth?.cpuWeight {
-            newViewModel.general[0].delegatedBandwidth = cpuDelegated
-        }
-        if let netDelegated = account.selfDelegatedBandwidth?.netWeight {
-            newViewModel.general[1].delegatedBandwidth = netDelegated
         }
         return newViewModel
     } else {

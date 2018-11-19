@@ -26,15 +26,18 @@ class AssetDetailViewController: BaseViewController {
         
         setupData()
         setupUI()
+        setupEvent()
+        refreshData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshData()
     }
     
     override func refreshViewController() {
+        
     }
+    
     func setupUI() {
         self.title = R.string.localizable.asset_detail.key.localized()
     }
@@ -46,10 +49,39 @@ class AssetDetailViewController: BaseViewController {
         if let con = self.context?.model.contract {
             contract = con
         }
+    }
+
+    func setupEvent() {
+
+    }
+
+    func refreshData() {
         self.startLoading()
+
+        self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: symbol, contract: contract, completion: {[weak self] (success) in
+            guard let `self` = self else { return }
+            if success {
+                self.endLoading()
+                self.data.removeAll()
+                if (self.coordinator?.state.payments.count)! < 10 {
+                    self.isNoMoreData = true
+                }
+                if (self.coordinator?.state.payments)!.count == 0 {
+                    self.contentView.isHidden = true
+                } else {
+                    self.contentView.isHidden = false
+                }
+
+                self.data = (self.coordinator?.state.data)!
+                self.contentView.adapterModelToAssetDetailView(self.data)
+            }
+
+            }, isRefresh: true)
 
         self.addPullToRefresh(self.contentView.tableView) {[weak self] (completion) in
             guard let `self` = self else {return}
+            self.coordinator?.removeStateData()
+
             self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: self.symbol, contract: self.contract, completion: {[weak self] (success) in
                 guard let `self` = self else {return}
 
@@ -67,11 +99,6 @@ class AssetDetailViewController: BaseViewController {
                 } else {
                 }
                 }, isRefresh: true)
-            if let name = self.context?.model.name, name != "EOS" {
-                self.coordinator?.getTokensWith(CurrencyManager.shared.getCurrentAccountName(), symbol: name)
-            } else {
-                self.coordinator?.getAccountInfo(CurrencyManager.shared.getCurrentAccountName())
-            }
         }
 
         self.addInfiniteScrolling(self.contentView.tableView) {[weak self] (completion) in
@@ -94,33 +121,6 @@ class AssetDetailViewController: BaseViewController {
                 }, isRefresh: false)
         }
     }
-
-    func refreshData() {
-        self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: symbol, contract: contract, completion: {[weak self] (success) in
-            guard let `self` = self else { return }
-            self.endLoading()
-            if success {
-                self.data.removeAll()
-                if (self.coordinator?.state.payments.count)! < 10 {
-                    self.isNoMoreData = true
-                }
-                if (self.coordinator?.state.payments)!.count == 0 {
-                    self.contentView.isHidden = true
-                } else {
-                    self.contentView.isHidden = false
-                }
-
-                self.data = (self.coordinator?.state.data)!
-                self.contentView.adapterModelToAssetDetailView(self.data)
-            }
-            }, isRefresh: true)
-
-        if let name = self.context?.model.name, name != "EOS" {
-            self.coordinator?.getTokensWith(CurrencyManager.shared.getCurrentAccountName(), symbol: name)
-        } else {
-            self.coordinator?.getAccountInfo(CurrencyManager.shared.getCurrentAccountName())
-        }
-    }
     
     override func configureObserveState() {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
@@ -132,26 +132,11 @@ class AssetDetailViewController: BaseViewController {
                 if context.model.name != "EOS" {
                     self.contentView.buttonView.isHidden = true
                     self.contentView.buttonViewHeight.constant = 0
-                } else {
-                    self.contentView.buttonView.isHidden = false
-                    self.contentView.buttonViewHeight.constant = 49
                 }
             }
+            
         }).disposed(by: disposeBag)
-        self.coordinator?.state.info.asObservable().subscribe(onNext: {[weak self] (model) in
-            guard let `self` = self else { return }
-            if model.name != "" {
-                self.context?.model = model
-            }
-            self.contentView.headView.adapterModelToAssetDetailHeadView(model)
-            if model.name != "EOS" {
-                self.contentView.buttonView.isHidden = true
-                self.contentView.buttonViewHeight.constant = 0
-            } else {
-                self.contentView.buttonView.isHidden = false
-                self.contentView.buttonViewHeight.constant = 49
-            }
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
 //            guard let `self` = self else { return }
 //            

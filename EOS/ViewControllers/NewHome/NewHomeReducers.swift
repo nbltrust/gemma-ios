@@ -128,7 +128,7 @@ func convertViewModelWithAccount(_ account: Account, viewmodel: NewHomeViewModel
         newViewModel.netProgress = used.float()! / max.float()!
     }
     newViewModel.ramProgress = Float(account.ramUsage) / Float(account.ramQuota)
-    if let refundNet = account.refundRequest?.netAmount.eosAmount.toDecimal(), let refundCpu = account.refundRequest?.cpuAmount.eosAmount.toDecimal() {
+    if let refundNet = account.refundRequest?.netAmount.eosAmount.toDouble(), let refundCpu = account.refundRequest?.cpuAmount.eosAmount.toDouble() {
         let asset = refundCpu + refundNet
         newViewModel.recentRefundAsset = "\(asset.string(digits: AppConfiguration.EOSPrecision)) \(NetworkConfiguration.EOSIODefaultSymbol)"
     } else {
@@ -143,24 +143,24 @@ func convertViewModelWithAccount(_ account: Account, viewmodel: NewHomeViewModel
 }
 
 func calculateTotalAsset(_ viewmodel: NewHomeViewModel) -> String {
-    if let balance = viewmodel.balance.eosAmount.toDecimal(), let cpu = viewmodel.cpuValue.eosAmount.toDecimal(),
-        let net = viewmodel.netValue.eosAmount.toDecimal() {
+    if let balance = viewmodel.balance.eosAmount.toDouble(), let cpu = viewmodel.cpuValue.eosAmount.toDouble(),
+        let net = viewmodel.netValue.eosAmount.toDouble() {
         let total = balance + cpu + net
 
-        return total.formatCurrency(digitNum: AppConfiguration.EOSPrecision)
+        return total.string(digits: AppConfiguration.EOSPrecision)
     } else {
         return "0.0000"
     }
 }
 
 func calculateRMBPrice(_ viewmodel: NewHomeViewModel, price: String, otherPrice: String) -> String {
-    if let unit = price.toDecimal(), unit != 0, let all = viewmodel.allAssets.toDecimal(), all != 0 {
+    if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.toDouble(), all != 0 {
         let cny = unit * all
         if coinType() == .CNY {
-            return cny.formatCurrency(digitNum: 2)
+            return cny.string(digits: 2)
         } else {
-            if let otherPriceDouble = otherPrice.toDecimal() {
-                return (cny / otherPriceDouble).formatCurrency(digitNum: 2)
+            if let otherPriceDouble = otherPrice.toDouble() {
+                return (cny / otherPriceDouble).string(digits: 2)
             } else {
                 return "0.00"
             }

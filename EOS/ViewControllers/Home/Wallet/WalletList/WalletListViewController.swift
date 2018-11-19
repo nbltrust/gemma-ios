@@ -75,12 +75,19 @@ extension WalletListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = R.nib.walletItemCell.name
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? WalletItemCell else {
+        let reuseCell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath)
+        guard let cell = reuseCell as? WalletItemCell else {
             return UITableViewCell()
         }
         if let wallet = context?.walletList[indexPath.row] {
             cell.itemView.adapterModelToWalletItemView(wallet)
         }
+        cell.itemView.moreView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
+            guard let `self` = self else { return }
+            if let wallet = self.context?.walletList[indexPath.row] {
+                self.coordinator?.pushToWalletManagerVC(wallet)
+            }
+        }).disposed(by: disposeBag)
         return cell
     }
 

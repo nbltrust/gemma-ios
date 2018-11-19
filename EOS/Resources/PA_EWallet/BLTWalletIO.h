@@ -7,10 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <iOS_EWalletDynamic/PA_EWallet.h>
-#import "BLTWalletHeader.h"
 #import "BLTUtils.h"
-#import "BLTDevice.h"
 
 typedef enum : NSUInteger {
     pinType = 1,
@@ -20,6 +17,10 @@ typedef enum : NSUInteger {
 @interface BLTWalletIO : NSObject
 
 @property (nonatomic,strong) DidSearchDevice didSearchDevice;
+
+@property (nonatomic,strong) BatteryInfoUpdated batteryInfoUpdated;
+
+@property (nonatomic,strong) BLTBatteryInfo *batteryInfo;
 
 @property (nonatomic,strong) BLTDevice *selectDevice;
 

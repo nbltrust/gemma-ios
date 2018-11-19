@@ -37,7 +37,8 @@ extension CardView {
         self.currencyImgView.image = model.currencyImg
         self.currencyLabel.text = model.currency
         self.accountLabel.text = model.account
-        self.balanceLabel.attributedText = setTotalEOSSufAttributeString(model.allAssets)
+        self.balanceLabel.text = model.allAssets
+        self.unitLabel.text = model.unit
         self.tokenArray = model.tokenArray
         
         setAttributeString(model)
@@ -72,16 +73,6 @@ extension CardView {
         attributedString.addAttribute(.font, value: UIFont(name: "PingFangSC-Regular", size: 14.0)!, range: NSRange(location: str.count-3, length: 3))
         attributedString.addAttribute(.foregroundColor, value: UIColor.introductionColor, range: NSRange(location: str.count-3, length: 3))
 
-        return attributedString
-    }
-    func setTotalEOSSufAttributeString(_ str: String) -> NSAttributedString {
-        let str = str + " EOS"
-        let attributedString = NSMutableAttributedString(string: str, attributes: [
-            .font: UIFont(name: "PingFangSC-Semibold", size: 24.0)!,
-            .foregroundColor: UIColor.baseColor,
-            .kern: 0.0
-            ])
-        attributedString.addAttribute(.font, value: UIFont(name: "PingFangSC-Regular", size: 14.0)!, range: NSRange(location: str.count-3, length: 3))
         return attributedString
     }
 }

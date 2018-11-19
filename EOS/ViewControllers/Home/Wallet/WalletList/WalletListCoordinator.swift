@@ -12,6 +12,7 @@ import NBLCommonModule
 
 protocol WalletListCoordinatorProtocol {
     func popVC()
+    func pushToWalletManagerVC(_ wallet: Wallet)
 }
 
 protocol WalletListStateManagerProtocol {
@@ -48,6 +49,15 @@ class WalletListCoordinator: NavCoordinator {
 extension WalletListCoordinator: WalletListCoordinatorProtocol {
     func popVC() {
         self.rootVC.popViewController()
+    }
+
+    func pushToWalletManagerVC(_ wallet: Wallet) {
+        if let managerVC = R.storyboard.wallet.walletManagerViewController() {
+            let coordinator = WalletManagerCoordinator(rootVC: self.rootVC)
+            managerVC.coordinator = coordinator
+            managerVC.wallet = wallet
+            self.rootVC.pushViewController(managerVC, animated: true)
+        }
     }
 }
 

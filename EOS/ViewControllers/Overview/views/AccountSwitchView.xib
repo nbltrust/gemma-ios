@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccountSwitchView">
             <connections>
-                <outlet property="copyImgView" destination="HzM-wl-web" id="pbg-5v-tfk"/>
                 <outlet property="dropView" destination="ddf-ot-tTf" id="VPA-Kg-EM8"/>
                 <outlet property="nameLabel" destination="e5F-V4-8j6" id="Z5d-p5-1WS"/>
             </connections>

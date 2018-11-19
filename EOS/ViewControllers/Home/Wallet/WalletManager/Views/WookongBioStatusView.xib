@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WookongBioStatusView" customModule="EOS" customModuleProvider="target">
+            <connections>
+                <outlet property="desLabel" destination="h1z-u1-OrB" id="r67-BB-vZc"/>
+                <outlet property="iconView" destination="qI7-fM-mfM" id="gJ0-MY-zjm"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="btM-Yo-6kI">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qI7-fM-mfM">
+                    <rect key="frame" x="0.0" y="0.0" width="370" height="82"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1z-u1-OrB">
+                    <rect key="frame" x="375" y="5" width="0.0" height="72"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="bottom" secondItem="h1z-u1-OrB" secondAttribute="bottom" constant="5" id="2Ei-tp-ZBj"/>
+                <constraint firstItem="qI7-fM-mfM" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" id="8GV-Mb-Cgc"/>
+                <constraint firstItem="h1z-u1-OrB" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" constant="5" id="Mdc-zt-sdH"/>
+                <constraint firstAttribute="bottom" secondItem="qI7-fM-mfM" secondAttribute="bottom" id="WMi-gU-Cmr"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="h1z-u1-OrB" secondAttribute="trailing" id="Zqv-Ln-Dew"/>
+                <constraint firstItem="h1z-u1-OrB" firstAttribute="leading" secondItem="qI7-fM-mfM" secondAttribute="trailing" constant="5" id="cAm-Cw-eCu"/>
+                <constraint firstItem="qI7-fM-mfM" firstAttribute="leading" secondItem="btM-Yo-6kI" secondAttribute="leading" id="d7p-Qh-yLN"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>
+            <point key="canvasLocation" x="-194.40000000000001" y="-327.4362818590705"/>
+        </view>
+    </objects>
+</document>

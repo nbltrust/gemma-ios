@@ -13,7 +13,6 @@ import Presentr
 protocol ResourceMortgageCoordinatorProtocol {
     func presentMortgageConfirmVC(data: ConfirmViewModel)
     func popVC()
-    func pushToDetailVC(_ model: AssetViewModel)
 }
 
 protocol ResourceMortgageStateManagerProtocol {
@@ -45,8 +44,8 @@ class ResourceMortgageCoordinator: NavCoordinator {
 extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
     func presentMortgageConfirmVC(data: ConfirmViewModel) {
         let width = ModalSize.full
-        let height = ModalSize.custom(size: 354)
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 354))
+        let height = ModalSize.custom(size: 323)
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 323))
         let customType = PresentationType.custom(width: width, height: height, center: center)
 
         let presenter = Presentr(presentationType: customType)
@@ -61,11 +60,7 @@ extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
             top.customPresentViewController(presenter, viewController: target, animated: true, completion: nil)
         }
     }
-    func pushToDetailVC(_ model: AssetViewModel) {
-        var context = AssetDetailContext()
-        context.model = model
-        self.pushVC(AssetDetailCoordinator.self, animated: true, context: context)
-    }
+
     func popVC() {
         self.rootVC.popViewController()
     }

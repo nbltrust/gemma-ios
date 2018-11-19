@@ -41,6 +41,8 @@
 "account_password_prompt" = "密码提示（可选）";
 "account_invitationcode" = "邀请码";
 
+"original_password" = "原密码";
+"original_password_ph" = "请输入原密码";
 "name_ph" = "由小写字母a-z与数字1-5组成，须为12个字符";
 "password_ph" = "请输入8位或以上字符的密码";
 "comfirm_password_ph" = "请再次输入您的密码";
@@ -135,7 +137,7 @@
 "backup_introduce_two" = "请在安全环境下备份\n备份期间可将手机调成“飞行模式”";
 "backup_understand" = "明白了，显示私钥";
 "export_private_sure" = "导出私钥";
-"backup_introduce_three" = "系统截图在相册中可能被其他APP查看。备份前可开启飞行模式！";
+"backup_introduce_three" = "系统截图在相册中可能被其他APP查看。\n备份前可开启飞行模式！";
 "switch_account" = "切换账户";
 "confirm_pwd_title" = "Gemma不曾知晓钱包密码，每次操作需要输入密码以授权";
 "update_pwd_title" = "请输入原密码";
@@ -258,11 +260,6 @@
 "resource_detail" = "资源详情";
 "asset_detail" = "资产详情";
 "non_backup" = "未备份";
-"usable" = "可用";
-"pwdview_title" = "请输入钱包密码以授权";
-"pwdview_placeholder" = "请输入密码";
-"mnemonic_pwdview_placeholder" = "助记词已用钱包密码加密，请输入密码";
-
 
 
 //zsy end

@@ -16,7 +16,7 @@ class WalletDetailViewController: BaseViewController {
     @IBOutlet weak var contentView: WalletDetailView!
     var coordinator: (WalletDetailCoordinatorProtocol & WalletDetailStateManagerProtocol)?
     private(set) var context: WalletDetailContext?
-    var model = WalletManagerModel()
+    var model: Wallet!
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,7 +139,7 @@ class WalletDetailViewController: BaseViewController {
 
 extension WalletDetailViewController {
     @objc func nameDidClicked(_ data: [String: Any]) {
-        guard let model = data["model"] as? WalletManagerModel else {
+        guard let model = data["model"] as? Wallet else {
             return
         }
         self.coordinator?.pushToChangeWalletName(model: model)

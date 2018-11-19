@@ -29,19 +29,13 @@ class TransferConfirmPasswordViewController: BaseViewController {
     @IBOutlet weak var passwordView: TransferConfirmPasswordView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setTitleAndPlaceholder()
+//        setupUI()
+
+//        log.debug(String(reflecting: type(of: a!)))
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-
-    func setTitleAndPlaceholder() {
-        self.passwordView.title = R.string.localizable.pwdview_title.key.localized()
-        self.passwordView.placeHolder = R.string.localizable.pwdview_placeholder.key.localized()
-        if self.context?.type == ConfirmType.backupMnemonic.rawValue {
-            self.passwordView.placeHolder = R.string.localizable.mnemonic_pwdview_placeholder.key.localized()
-        }
     }
 
     override func leftAction(_ sender: UIButton) {

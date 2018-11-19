@@ -189,15 +189,15 @@ extension RegisterContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
 
     func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting] {
         if titleTextFieldView == passwordView {
-            return [TextButtonSetting(imageName: R.image.ic_close.name,
-                                      selectedImageName: R.image.ic_close.name,
+            return [TextButtonSetting(imageName: R.image.icClean.name,
+                                      selectedImageName: R.image.icClean.name,
                                       isShowWhenEditing: true),
                     TextButtonSetting(imageName: R.image.ic_visible.name,
                                       selectedImageName: R.image.ic_invisible.name,
                                       isShowWhenEditing: false)]
         } else {
-            return [TextButtonSetting(imageName: R.image.ic_close.name,
-                                      selectedImageName: R.image.ic_close.name,
+            return [TextButtonSetting(imageName: R.image.icClean.name,
+                                      selectedImageName: R.image.icClean.name,
                                       isShowWhenEditing: true)]
         }
     }

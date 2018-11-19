@@ -11,6 +11,7 @@
 #import <iOS_EWalletDynamic/PA_EWallet.h>
 #import "BLTWalletHeader.h"
 #import "BLTDevice.h"
+#import "BLTBatteryInfo.h"
 
 //Data Struct
 typedef NS_ENUM(NSInteger, FingerPrinterState)
@@ -24,7 +25,9 @@ typedef NS_ENUM(NSInteger, FingerPrinterState)
 };
 
 //CallBack
-typedef void(^ DidSearchDevice)(BLTDevice *wallet);
+typedef void(^ DidSearchDevice)(BLTDevice *device);
+
+typedef void(^ BatteryInfoUpdated)(BLTBatteryInfo *info);
 
 typedef void(^ EnrollFingerComplication)(FingerPrinterState state);
 
@@ -48,11 +51,6 @@ typedef void(^ GetSignComplication)(NSString *sign);
 
 typedef void(^ GetFPListComplication)(NSArray *fpList);
 
-//Notification
-#define NotificationBatteryChanged @"NotificationBatteryChanged"
-
-#define NotificationDeviceSearched @"NotificationDeviceSearched"
-
 @interface BLTUtils : NSObject
 
 //Function
@@ -65,9 +63,5 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 + (NSData *)hexStringToBytes:(NSString *)hexString;
 
 + (FingerPrinterState)stateWithValue:(int)value;
-
-+ (NSString *)batteryChangedNFName;
-
-+ (NSString *)deviceSearchedNFName;
 
 @end

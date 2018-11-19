@@ -52,13 +52,15 @@
                             <rect key="frame" x="0.0" y="50" width="434" height="1"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAf-6i-Wtd">
-                                    <rect key="frame" x="0.0" y="0.0" width="217" height="1"/>
-                                    <color key="backgroundColor" name="baseColor" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <rect key="frame" x="58.5" y="0.0" width="100" height="1"/>
+                                    <color key="backgroundColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="S6C-sP-s4L"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" red="0.90600000000000003" green="0.91400000000000003" blue="0.97299999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="vAf-6i-Wtd" firstAttribute="width" secondItem="Yul-dW-Kx8" secondAttribute="width" multiplier="0.5" id="dB4-nx-Q7X"/>
                                 <constraint firstItem="vAf-6i-Wtd" firstAttribute="top" secondItem="Yul-dW-Kx8" secondAttribute="top" id="jkz-sO-nai"/>
                                 <constraint firstAttribute="height" constant="1" id="mc5-wO-lEZ"/>
                                 <constraint firstAttribute="bottom" secondItem="vAf-6i-Wtd" secondAttribute="bottom" id="vX5-h8-Fgd"/>
@@ -133,6 +135,4 @@
             <point key="canvasLocation" x="36.799999999999997" y="-166.41679160419793"/>
         </view>
     </objects>
-    <resources>
-    </resources>
 </document>

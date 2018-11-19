@@ -20,13 +20,6 @@ struct WalletManagerState: StateType {
 struct WalletManagerPropertyState {
 }
 
-struct WalletManagerModel {
-    var name = "-"
-    var address = "-"
-    var type: CreateAPPId = .gemma
-    var connected = false
-}
-
 // MARK: - Action Creator
 class WalletManagerPropertyActionCreate {
     public typealias ActionCreator = (_ state: WalletManagerState, _ store: Store<WalletManagerState>) -> Action?

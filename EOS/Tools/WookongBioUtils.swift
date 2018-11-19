@@ -63,3 +63,26 @@ func confirmPin(_ complication: @escaping SuccessedComplication) {
         }
     }
 }
+
+func imageWithInfo(_ info: BLTBatteryInfo?) -> UIImage {
+    guard let info = info else {
+        return R.image.ic_wookong_bio_unconnected()!
+    }
+    if info.state == charge {
+        return R.image.ic_charge()!
+    }
+    return R.image.ic_wookong_bio_connected()!
+}
+
+func desWithInfo(_ info: BLTBatteryInfo?) -> String {
+    guard let info = info else {
+        return R.string.localizable.wookong_connect_none.key.localized()
+    }
+    if info.state == charge {
+        return R.string.localizable.wookong_connect_successed.key.localized()
+    }
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .percent
+    formatter.percentSymbol = ""
+    return R.string.localizable.battery.key.localized() + formatter.string(from: NSNumber(value:info.electricQuantity))!
+}

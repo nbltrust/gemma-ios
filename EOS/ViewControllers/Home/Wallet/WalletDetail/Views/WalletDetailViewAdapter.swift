@@ -9,12 +9,12 @@
 import Foundation
 
 extension WalletDetailView {
-    func adapterModelToWalletDetailView(_ model: WalletManagerModel) {
+    func adapterModelToWalletDetailView(_ model: Wallet) {
         self.data = model
         self.nameLineView.nameText = R.string.localizable.name.key.localized()
         self.nameLineView.contentText = model.name
         self.pubkeyLineView.nameText = R.string.localizable.pubkey.key.localized()
-        self.pubkeyLineView.contentText = model.address
+//        self.pubkeyLineView.contentText = model.address
         self.batteryLineView.nameText = R.string.localizable.battery.key.localized()
         self.batteryLineView.contentText = "13%"
     }
