@@ -60,4 +60,8 @@ extension UIFont {
     class var pfScS18: UIFont {
         return UIFont(name: "PingFangSC-Semibold", size: 18.0)!
     }
+
+    class var pfScM12: UIFont {
+        return UIFont(name: "PingFangSC-Medium", size: 12.0)!
+    }
 }

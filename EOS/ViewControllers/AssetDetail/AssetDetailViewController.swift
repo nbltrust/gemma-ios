@@ -39,6 +39,10 @@ class AssetDetailViewController: BaseViewController {
         self.title = R.string.localizable.asset_detail.key.localized()
     }
 
+    override func leftAction(_ sender: UIButton) {
+        self.coordinator?.popVC()
+    }
+
     func setupData() {
         if let name = self.context?.model.name {
             symbol = name

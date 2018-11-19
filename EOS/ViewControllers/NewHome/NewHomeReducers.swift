@@ -147,7 +147,7 @@ func calculateTotalAsset(_ viewmodel: NewHomeViewModel) -> String {
         let net = viewmodel.netValue.eosAmount.toDecimal() {
         let total = balance + cpu + net
 
-        return total.formatCurrency(digitNum: AppConfiguration.EOSPrecision)
+        return total.string(digits: AppConfiguration.EOSPrecision)
     } else {
         return "0.0000"
     }

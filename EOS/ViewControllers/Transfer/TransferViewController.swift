@@ -114,6 +114,9 @@ extension TransferViewController {
         }
     }
     @objc func sureTransfer(_ data: [String: Any]) {
+        if self.transferContentView.nextButton.isEnabel.value == false {
+            return
+        }
         var data = ConfirmViewModel()
         data.recever = self.transferContentView.receiverTitleTextView.textField.text!
         data.amount = self.transferContentView.moneyTitleTextView.textField.text!

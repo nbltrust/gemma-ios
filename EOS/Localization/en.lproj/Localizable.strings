@@ -188,9 +188,9 @@
 "exchange_to_activate" = "交易所提现激活";
 "invitationcode_to_activate" = "邀请码激活";
 "exchange_prikey_title_red" = "请务必备份私钥，待交易所提现激活后，须将私钥再次导入钱包以使用EOS账户。私钥若丢失，账户将不可恢复。";
-"exchange_activate_title" = "请从支持memo功能的交易所向智能合约 %@signupeoseos%@ 转账并须将以下文字作为备注(memo)，即可完成账户创建。";
+"exchange_activate_title" = "请从支持memo功能的交易所向智能合约 %@signupeoseos%@ 转账%@并须将以下文字作为备注(memo)%@，即可完成账户创建。";
 "activate_title_blue" = "为保证顺利创建账户，建议至少转 %@2 EOS%@ ：账户将抵押 %@0.1 EOS%@ 作为CPU，%@0.1 EOS%@ 作为NET，剩余 %@1.8 EOS%@ 将按现价购买RAM。";
-"friend_activate_title" = "请持有EOS的好友向智能合约 %@signupeoseos%@ 转账并须将以下文字作为备注(memo)，即可完成账户创建。";
+"friend_activate_title" = "请持有EOS的好友向智能合约 %@signupeoseos%@ 转账%@并须将以下文字作为备注(memo)%@，即可完成账户创建。";
 "invitation_code_placeholder" = "请输入邀请码";
 "pay_activate_title" = "创建EOS账户需要消耗资源，包括CPU，NET，RAM。为了激活账户，你需要购买这些EOS资源。";
 "activate_title" = "选择EOS账户激活方式";
@@ -262,6 +262,7 @@
 "pwdview_title" = "请输入钱包密码以授权";
 "pwdview_placeholder" = "请输入密码";
 "mnemonic_pwdview_placeholder" = "助记词已用钱包密码加密，请输入密码";
+"undelegate_not_all0" = "总赎回数不能为0";
 
 //zsy end
 

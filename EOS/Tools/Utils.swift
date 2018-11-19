@@ -117,13 +117,13 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
                 var netValue = ""
 
                 if action == EOSAction.delegatebw.rawValue {
-                    if var cpu = vc.coordinator?.state.property.cpuMoneyValid.value.2 {
+                    if var cpu = vc.coordinator?.state.property.cpuMoneyValid.value.1.cpuMoney {
                         if cpu == "" {
                             cpu = "0.0000"
                         }
                         cpuValue = cpu + " \(NetworkConfiguration.EOSIODefaultSymbol)"
                     }
-                    if var net = vc.coordinator?.state.property.netMoneyValid.value.2 {
+                    if var net = vc.coordinator?.state.property.netMoneyValid.value.1.netMoney {
                         if net == "" {
                             net = "0.0000"
                         }
@@ -139,13 +139,13 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
                         abi = abiStr
                     }
                 } else if action == EOSAction.undelegatebw.rawValue {
-                    if var cpu = vc.coordinator?.state.property.cpuReliveMoneyValid.value.2 {
+                    if var cpu = vc.coordinator?.state.property.cpuReliveMoneyValid.value.1.cpuMoney {
                         if cpu == "" {
                             cpu = "0.0000"
                         }
                         cpuValue = cpu + " \(NetworkConfiguration.EOSIODefaultSymbol)"
                     }
-                    if var net = vc.coordinator?.state.property.netReliveMoneyValid.value.2 {
+                    if var net = vc.coordinator?.state.property.netReliveMoneyValid.value.1.netMoney {
                         if net == "" {
                             net = "0.0000"
                         }
@@ -293,7 +293,9 @@ func showWarning(_ str: String) {
     }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: banner.disposeBag)
 
     banner.autoDismiss = false
-    banner.show()
+    if banner.bannerQueue.numberOfBanners == 0 {
+        banner.show()
+    }
 }
 
 func showSuccessTop(_ str: String) {
@@ -303,18 +305,22 @@ func showSuccessTop(_ str: String) {
     banner.duration = 2
     banner.subtitleLabel?.textAlignment = NSTextAlignment.center
     banner.autoDismiss = true
-    banner.show()
+    if banner.bannerQueue.numberOfBanners == 0 {
+        banner.show()
+    }
 }
 
 func showFailTop(_ str: String) {
     KRProgressHUD.dismiss()
-
+    
     let banner = NotificationBanner(title: "", subtitle: str, style: .warning, colors: BannerColor())
     banner.subtitleLabel?.textAlignment = NSTextAlignment.center
     banner.duration = 2
 
     banner.autoDismiss = true
-    banner.show()
+    if banner.bannerQueue.numberOfBanners == 0 {
+        banner.show()
+    }
 }
 
 func endProgress() {

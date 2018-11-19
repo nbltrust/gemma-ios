@@ -129,6 +129,7 @@ extension OverviewCoordinator: OverviewStateManagerProtocol {
         }
 
         SimpleHTTPService.requestETHPrice().done { (json) in
+            CurrencyManager.shared.savePriceJsonWith(nil, json: json)
             self.store.dispatch(RMBPriceFetchedAction(currency: nil))
             }.cauterize()
     }

@@ -55,7 +55,7 @@
                                                         <constraint firstAttribute="height" constant="12" id="IZ7-9k-OFo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40799999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" name="introductionColor" red="0.400" green="0.400" blue="0.400" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -138,4 +138,6 @@
             <point key="canvasLocation" x="47.200000000000003" y="16.641679160419791"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>
