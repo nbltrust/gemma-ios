@@ -12,6 +12,7 @@ import SwifterSwift
 import SwiftyJSON
 import Alamofire
 import HandyJSON
+import MMKV
 
 struct WookongValidation: HandyJSON {
     var SN = ""
@@ -49,7 +50,7 @@ enum NBLService {
 func defaultManager() -> Alamofire.SessionManager {
     let configuration = URLSessionConfiguration.default
     configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-    configuration.timeoutIntervalForRequest = 5
+    configuration.timeoutIntervalForRequest = 15
 
     let manager = Alamofire.SessionManager(configuration: configuration)
     manager.startRequestsImmediately = false
@@ -61,11 +62,25 @@ struct NBLNetwork {
 
     static func request(
         target: NBLService,
+        fetchedCache: Bool = false,
         success successCallback: @escaping (JSON) -> Void,
         error errorCallback: @escaping (_ statusCode: Int) -> Void,
         failure failureCallback: @escaping (MoyaError) -> Void
         ) {
+        var fetchedCache = fetchedCache
+        switch target {
+//        case .accountHistory:
+//            fetchedCache = true
+        case .getTokens:
+            fetchedCache = true
+        default:
+            fetchedCache = false
+        }
 
+        if fetchedCache, let cache = MMKV.default().object(of: NSString.self, forKey: target.fetchCacheKey()) as? String {
+            let json = JSON.init(parseJSON: cache)
+            successCallback(json)
+        }
         provider.request(target) { (result) in
             switch result {
             case let .success(response):
@@ -74,6 +89,9 @@ struct NBLNetwork {
                     let json = try JSON(response.mapJSON())
                     if json["code"].intValue == 0 {
                         let result = json["result"]
+                        if let str = result.rawString() {
+                            MMKV.default().set(str, forKey: target.fetchCacheKey())
+                        }
                         successCallback(result)
                     } else {
                         errorCallback(json["code"].intValue)

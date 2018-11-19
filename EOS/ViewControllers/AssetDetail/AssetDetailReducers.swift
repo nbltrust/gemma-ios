@@ -14,6 +14,7 @@ func gAssetDetailReducer(action:Action, state:AssetDetailState?) -> AssetDetailS
         
     switch action {
     case let action as FetchPaymentsRecordsListAction:
+        state.data.removeAll()
         state.payments = action.data
         let mData: [String: [PaymentsRecordsViewModel]] = convertTransferViewModel(data: action.data, dict: state.data)
         state.data = mData
@@ -100,10 +101,10 @@ func calculateRMBPrice(_ viewmodel: AssetViewModel, price: String, otherPrice: S
     if let unit = price.toDecimal(), unit != 0, let all = viewmodel.balance.toDecimal(), all != 0 {
         let cny = unit * all
         if coinType() == .CNY {
-            return cny.string(digits: 2)
+            return cny.formatCurrency(digitNum: 2)
         } else {
             if let otherPriceDouble = otherPrice.toDecimal() {
-                return (cny / otherPriceDouble).string(digits: 2)
+                return (cny / otherPriceDouble).formatCurrency(digitNum: 2)
             } else {
                 return "0.00"
             }

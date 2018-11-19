@@ -526,6 +526,12 @@ func copyText(_ text: String) {
     showSuccessTop(R.string.localizable.have_copied.key.localized())
 }
 
+func getPrecision(_ value: String) -> Int {
+    if let precision = value.components(separatedBy: ".")[1] as? String {
+        return precision.count
+    }
+    return 0
+}
 //func correctAmount(_ sender:String) -> String{
 //    if let _ = sender.toDecimal(){
 //        if sender.contains("."),let last = sender.components(separatedBy: ".").last{

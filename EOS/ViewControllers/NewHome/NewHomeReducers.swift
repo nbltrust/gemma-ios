@@ -147,7 +147,7 @@ func calculateTotalAsset(_ viewmodel: NewHomeViewModel) -> String {
         let net = viewmodel.netValue.eosAmount.toDecimal() {
         let total = balance + cpu + net
 
-        return total.string(digits: AppConfiguration.EOSPrecision)
+        return total.formatCurrency(digitNum: AppConfiguration.EOSPrecision)
     } else {
         return "0.0000"
     }
@@ -157,10 +157,10 @@ func calculateRMBPrice(_ viewmodel: NewHomeViewModel, price: String, otherPrice:
     if let unit = price.toDecimal(), unit != 0, let all = viewmodel.allAssets.toDecimal(), all != 0 {
         let cny = unit * all
         if coinType() == .CNY {
-            return cny.string(digits: 2)
+            return cny.formatCurrency(digitNum: 2)
         } else {
             if let otherPriceDouble = otherPrice.toDecimal() {
-                return (cny / otherPriceDouble).string(digits: 2)
+                return (cny / otherPriceDouble).formatCurrency(digitNum: 2)
             } else {
                 return "0.00"
             }

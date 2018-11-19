@@ -135,7 +135,7 @@
 "backup_introduce_two" = "Under secured condition\nAirplane mode preferred";
 "backup_understand" = "Got it. Show me the private key";
 "export_private_sure" = "Export Private Key";
-"backup_introduce_three" = "Screenshots may be leak via photo album.\nYou can backup under airplane mode.";
+"backup_introduce_three" = "Screenshots may be leak via photo album.You can backup under airplane mode.";
 "switch_account" = "Switch Account";
 "confirm_pwd_title" = "Enter account password to authorize operation";
 "update_pwd_title" = "Enter original password";
@@ -259,6 +259,9 @@
 "asset_detail" = "资产详情";
 "non_backup" = "未备份";
 "usable" = "可用";
+"pwdview_title" = "请输入钱包密码以授权";
+"pwdview_placeholder" = "请输入密码";
+"mnemonic_pwdview_placeholder" = "助记词已用钱包密码加密，请输入密码";
 
 //zsy end
 

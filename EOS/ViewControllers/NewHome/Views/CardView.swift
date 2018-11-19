@@ -16,7 +16,6 @@ class CardView: UIView {
     @IBOutlet weak var currencyLabel: BaseLabel!
     @IBOutlet weak var accountLabel: BaseLabel!
     @IBOutlet weak var balanceLabel: BaseLabel!
-    @IBOutlet weak var unitLabel: BaseLabel!
     @IBOutlet weak var tokenLabel: BaseLabel!
     @IBOutlet weak var otherBalanceLabel: BaseLabel!
     @IBOutlet weak var shadeView: UIView!

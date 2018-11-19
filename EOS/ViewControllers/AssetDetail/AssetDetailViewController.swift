@@ -26,7 +26,6 @@ class AssetDetailViewController: BaseViewController {
         
         setupData()
         setupUI()
-        setupEvent()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,9 +34,7 @@ class AssetDetailViewController: BaseViewController {
     }
     
     override func refreshViewController() {
-        
     }
-    
     func setupUI() {
         self.title = R.string.localizable.asset_detail.key.localized()
     }
@@ -49,11 +46,10 @@ class AssetDetailViewController: BaseViewController {
         if let con = self.context?.model.contract {
             contract = con
         }
+        self.startLoading()
 
         self.addPullToRefresh(self.contentView.tableView) {[weak self] (completion) in
             guard let `self` = self else {return}
-            self.coordinator?.removeStateData()
-
             self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: self.symbol, contract: self.contract, completion: {[weak self] (success) in
                 guard let `self` = self else {return}
 
@@ -71,6 +67,11 @@ class AssetDetailViewController: BaseViewController {
                 } else {
                 }
                 }, isRefresh: true)
+            if let name = self.context?.model.name, name != "EOS" {
+                self.coordinator?.getTokensWith(CurrencyManager.shared.getCurrentAccountName(), symbol: name)
+            } else {
+                self.coordinator?.getAccountInfo(CurrencyManager.shared.getCurrentAccountName())
+            }
         }
 
         self.addInfiniteScrolling(self.contentView.tableView) {[weak self] (completion) in
@@ -94,17 +95,11 @@ class AssetDetailViewController: BaseViewController {
         }
     }
 
-    func setupEvent() {
-
-    }
-
     func refreshData() {
-        self.startLoading()
-        self.coordinator?.removeStateData()
         self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: symbol, contract: contract, completion: {[weak self] (success) in
             guard let `self` = self else { return }
+            self.endLoading()
             if success {
-                self.endLoading()
                 self.data.removeAll()
                 if (self.coordinator?.state.payments.count)! < 10 {
                     self.isNoMoreData = true
@@ -118,7 +113,6 @@ class AssetDetailViewController: BaseViewController {
                 self.data = (self.coordinator?.state.data)!
                 self.contentView.adapterModelToAssetDetailView(self.data)
             }
-
             }, isRefresh: true)
 
         if let name = self.context?.model.name, name != "EOS" {
