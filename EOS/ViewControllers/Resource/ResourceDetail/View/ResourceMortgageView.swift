@@ -54,13 +54,13 @@ class ResourceMortgageView: UIView {
         cpuView.name = R.string.localizable.cpu.key.localized()
         cpuView.leftSubText = R.string.localizable.use.key.localized() + " - " + R.string.localizable.ms.key.localized()
         cpuView.rightSubText = R.string.localizable.total.key.localized() + " - " + R.string.localizable.ms.key.localized()
-        cpuView.eos = "0.0000 EOS"
+        cpuView.eos = "- EOS"
         cpuView.lineIsHidden = false
 
         netView.name = R.string.localizable.net()
         netView.leftSubText = R.string.localizable.use.key.localized() + " - " + R.string.localizable.kb.key.localized()
         netView.rightSubText = R.string.localizable.total.key.localized() + " - " + R.string.localizable.kb.key.localized()
-        netView.eos = "0.0000 EOS"
+        netView.eos = "- EOS"
         netView.lineIsHidden = false
 
         ramView.name = R.string.localizable.net()

@@ -11,7 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol FingerCoordinatorProtocol {
-    func pushToManagerFingerVC(model: WalletManagerModel, index: Int)
+    func pushToManagerFingerVC(model: Wallet, index: Int)
 
     func pushToENtroFingerVC()
     
@@ -61,7 +61,7 @@ extension FingerCoordinator: FingerCoordinatorProtocol {
         self.rootVC.pushViewController(fingerVC, animated: true)
     }
 
-    func pushToManagerFingerVC(model: WalletManagerModel, index: Int) {
+    func pushToManagerFingerVC(model: Wallet, index: Int) {
         if let vc = R.storyboard.wallet.deleteFingerViewController() {
             let coordinator = DeleteFingerCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator

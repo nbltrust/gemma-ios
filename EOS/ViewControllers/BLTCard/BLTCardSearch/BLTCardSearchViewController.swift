@@ -21,8 +21,6 @@ class BLTCardSearchViewController: BaseViewController {
 
     private(set) var context: BLTCardSearchContext?
 
-    var BLTIO: BLTWalletIO?
-
 	override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,15 +52,8 @@ class BLTCardSearchViewController: BaseViewController {
         self.coordinator?.dismissSearchVC()
     }
 
-    override func rightAction(_ sender: UIButton) {
-        if BLTIO != nil {
-            searchDevice()
-        }
-    }
-
     func setupData() {
-        BLTIO = BLTWalletIO.shareInstance()
-        BLTIO?.didSearchDevice = {[weak self] device in
+        BLTWalletIO.shareInstance()?.didSearchDevice = {[weak self] device in
             guard let `self` = self else { return }
             self.coordinator?.searchedADevice(device!)
             self.deviceTable.reloadData()
@@ -72,7 +63,7 @@ class BLTCardSearchViewController: BaseViewController {
 
     func searchDevice() {
         indicatorView?.startAnimating()
-        BLTIO?.searchBLTCard({ [weak self] in
+        BLTWalletIO.shareInstance().searchBLTCard({ [weak self] in
             guard let `self` = self else { return }
             self.indicatorView?.stopAnimating()
         })
@@ -102,12 +93,6 @@ class BLTCardSearchViewController: BaseViewController {
             }
 
         }).disposed(by: disposeBag)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(deviceChanged), name: NSNotification.Name(rawValue: NotificationDeviceSearched), object: nil)
-    }
-
-    @objc func deviceChanged() {
-
     }
 }
 
@@ -123,7 +108,8 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nibString = String.init(describing: type(of: BLTDeviceCell()))
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? BLTDeviceCell else {
+        let reuseCell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath)
+        guard let cell = reuseCell  as? BLTDeviceCell else {
             return UITableViewCell()
         }
         if let devices = self.coordinator?.state.devices {
@@ -139,7 +125,7 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
                 guard let `self` = self else { return }
                 BLTWalletIO.shareInstance()?.selectDevice = device
                 self.navigationController?.dismiss(animated: true) {
-                    if ((self.context?.connectSuccessed) != nil) {
+                    if self.context?.connectSuccessed != nil {
                         self.context?.connectSuccessed!()
                     }
                 }
@@ -152,13 +138,3 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
         }
     }
 }
-
-// MARK: - View Event
-
-//extension BLTCardSearchViewController {
-//    @objc func <#view#>DidClicked(_ data:[String: Any]) {
-//        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
-//
-//        }
-//    }
-//}

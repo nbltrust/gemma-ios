@@ -127,7 +127,7 @@ func convertAccountViewModelWithAccount(_ account: Account, viewmodel: AccountVi
         newViewModel.ramValue = "- \(NetworkConfiguration.EOSIODefaultSymbol)"
     }
 
-    if let refundNet = account.refundRequest?.netAmount.eosAmount.toDecimal(), let refundCpu = account.refundRequest?.cpuAmount.eosAmount.toDecimal() {
+    if let refundNet = account.refundRequest?.netAmount.eosAmount.toDouble(), let refundCpu = account.refundRequest?.cpuAmount.eosAmount.toDouble() {
         let asset = refundCpu + refundNet
         newViewModel.recentRefundAsset = "\(asset.string(digits: AppConfiguration.EOSPrecision)) \(NetworkConfiguration.EOSIODefaultSymbol)"
     } else {
@@ -146,8 +146,8 @@ func convertAccountViewModelWithAccount(_ account: Account, viewmodel: AccountVi
 }
 
 func calculateTotalAsset(_ viewmodel: AccountViewModel) -> String {
-    if let balance = viewmodel.balance.eosAmount.toDecimal(), let cpu = viewmodel.cpuValue.eosAmount.toDecimal(),
-        let net = viewmodel.netValue.eosAmount.toDecimal() {
+    if let balance = viewmodel.balance.eosAmount.toDouble(), let cpu = viewmodel.cpuValue.eosAmount.toDouble(),
+        let net = viewmodel.netValue.eosAmount.toDouble() {
         let total = balance + cpu + net
 
         return total.string(digits: AppConfiguration.EOSPrecision) + " \(NetworkConfiguration.EOSIODefaultSymbol)"
@@ -157,12 +157,12 @@ func calculateTotalAsset(_ viewmodel: AccountViewModel) -> String {
 }
 
 //func calculateRMBPrice(_ viewmodel: AccountViewModel, price: String, otherPrice: String) -> String {
-//    if let unit = price.toDecimal(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDecimal(), all != 0 {
+//    if let unit = price.toDouble(), unit != 0, let all = viewmodel.allAssets.eosAmount.toDouble(), all != 0 {
 //        let cny = unit * all
 //        if coinType() == .CNY {
 //            return "≈" + cny.string(digits: 2) + " \(coinUnit())"
 //        } else {
-//            if let otherPriceDouble = otherPrice.toDecimal() {
+//            if let otherPriceDouble = otherPrice.toDouble() {
 //                return "≈" + (cny / otherPriceDouble).string(digits: 2) + " \(coinUnit())"
 //            } else {
 //                return "≈- \(coinUnit())"

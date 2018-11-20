@@ -173,8 +173,8 @@ extension TransferContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
     }
 
     func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting] {
-        return [TextButtonSetting(imageName: R.image.ic_close.name,
-                                  selectedImageName: R.image.ic_close.name,
+        return [TextButtonSetting(imageName: R.image.icClean.name,
+                                  selectedImageName: R.image.icClean.name,
                                   isShowWhenEditing: true)]
     }
 
@@ -245,17 +245,15 @@ extension TransferContentView: UITextFieldDelegate {
         switch textField.tag {
         case InputType.receiver.rawValue:
             receiverTitleTextView.reloadActionViews(isEditing: false)
-            if let text = textField.text, text != "" {
-                receiverTitleTextView.checkStatus = WalletManager.shared.isTransferValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
-            }
+            receiverTitleTextView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
             self.sendEventWith(TextChangeEvent.receiverChanged.rawValue, userinfo: ["textfield": textField])
         case InputType.account.rawValue:
             accountTitleTextView.reloadActionViews(isEditing: false)
-            accountTitleTextView.checkStatus = WalletManager.shared.isTransferValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            accountTitleTextView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
         case InputType.money.rawValue:
             moneyTitleTextView.reloadActionViews(isEditing: false)
 
-            if let balenceDouble = balance.components(separatedBy: " ")[0].toDecimal(), let moneyDouble = moneyTitleTextView.textField.text?.toDecimal() {
+            if let balenceDouble = balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = moneyTitleTextView.textField.text?.toDouble() {
                 moneyTitleTextView.checkStatus = balenceDouble >= moneyDouble  ? TextUIStyle.common : TextUIStyle.warning
                 nextButton.isEnabel.accept(balenceDouble >= moneyDouble ? true : false)
             }
@@ -311,8 +309,8 @@ extension TransferContentView: TitleTextViewDelegate, TitleTextViewDataSource {
     }
 
     func textActionSettings(titleTextView: TitleTextView) -> [TextButtonSetting] {
-        return [TextButtonSetting(imageName: R.image.ic_close.name,
-                                  selectedImageName: R.image.ic_close.name,
+        return [TextButtonSetting(imageName: R.image.icClean.name,
+                                  selectedImageName: R.image.icClean.name,
                                   isShowWhenEditing: true)]
     }
 

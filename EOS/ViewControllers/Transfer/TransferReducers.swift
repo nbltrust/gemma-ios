@@ -25,7 +25,7 @@ func gTransferReducer(action: Action, state: TransferState?) -> TransferState {
             }
         }
     case let action as MoneyAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let moneyDouble = action.money.toDecimal() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let moneyDouble = action.money.toDouble() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= moneyDouble {
@@ -33,7 +33,7 @@ func gTransferReducer(action: Action, state: TransferState?) -> TransferState {
                 tips = ""
             }
 
-            if moneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)) {
+            if moneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue {
                 valid = false
                 tips = R.string.localizable.small_money.key.localized()
             }

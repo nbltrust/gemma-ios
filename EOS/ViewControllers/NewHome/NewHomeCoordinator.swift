@@ -148,7 +148,6 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
                 }
 
                 SimpleHTTPService.requestETHPrice().done { (json) in
-                    CurrencyManager.shared.savePriceJsonWith(currency.id, json: json)
                     self.store.dispatch(RMBPriceFetchedAction(currency: currency))
                     }.cauterize()
                 self.getTokensWith(account)

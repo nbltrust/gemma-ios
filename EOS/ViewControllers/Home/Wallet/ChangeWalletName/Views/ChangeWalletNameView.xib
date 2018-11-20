@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,29 +25,39 @@
                     <rect key="frame" x="0.0" y="0.0" width="372" height="59"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="efA-dd-sDY">
-                            <rect key="frame" x="17" y="21" width="319" height="17"/>
-                            <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <rect key="frame" x="20" y="19.5" width="288" height="20"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLn-Bb-xeA">
-                            <rect key="frame" x="346" y="21.5" width="16" height="16"/>
+                            <rect key="frame" x="318" y="17.5" width="24" height="24"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="16" id="62g-g7-FyV"/>
-                                <constraint firstAttribute="width" constant="16" id="muE-8e-Env"/>
+                                <constraint firstAttribute="height" constant="24" id="62g-g7-FyV"/>
+                                <constraint firstAttribute="width" constant="24" id="muE-8e-Env"/>
                             </constraints>
-                            <state key="normal" image="icTextFieldClose"/>
-                            <state key="selected" image="icTextFieldClose"/>
-                            <state key="highlighted" image="icTextFieldClose"/>
+                            <state key="normal" image="icClean"/>
+                            <state key="selected" image="icClean"/>
+                            <state key="highlighted" image="icClean"/>
                             <connections>
                                 <action selector="clearBtnClick:" destination="-1" eventType="touchUpInside" id="SLP-VH-Yr7"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ax-sj-XRq">
+                            <rect key="frame" x="20" y="58.5" width="332" height="0.5"/>
+                            <color key="backgroundColor" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="1KG-cH-LaM"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="efA-dd-sDY" firstAttribute="leading" secondItem="6sO-gg-Cc8" secondAttribute="leading" constant="17" id="25e-xX-T12"/>
-                        <constraint firstAttribute="trailing" secondItem="gLn-Bb-xeA" secondAttribute="trailing" constant="10" id="asb-PX-Mz3"/>
+                        <constraint firstItem="efA-dd-sDY" firstAttribute="leading" secondItem="6sO-gg-Cc8" secondAttribute="leading" constant="20" id="25e-xX-T12"/>
+                        <constraint firstItem="9ax-sj-XRq" firstAttribute="leading" secondItem="6sO-gg-Cc8" secondAttribute="leading" constant="20" id="EcN-5h-i75"/>
+                        <constraint firstAttribute="trailing" secondItem="9ax-sj-XRq" secondAttribute="trailing" constant="20" id="VYV-Dg-6sx"/>
+                        <constraint firstAttribute="trailing" secondItem="gLn-Bb-xeA" secondAttribute="trailing" constant="30" id="asb-PX-Mz3"/>
                         <constraint firstItem="gLn-Bb-xeA" firstAttribute="centerY" secondItem="6sO-gg-Cc8" secondAttribute="centerY" id="lV4-fE-CVD"/>
+                        <constraint firstAttribute="bottom" secondItem="9ax-sj-XRq" secondAttribute="bottom" id="x8N-Vb-vWE"/>
                         <constraint firstItem="efA-dd-sDY" firstAttribute="centerY" secondItem="6sO-gg-Cc8" secondAttribute="centerY" id="yE6-yg-ofe"/>
                         <constraint firstItem="gLn-Bb-xeA" firstAttribute="leading" secondItem="efA-dd-sDY" secondAttribute="trailing" constant="10" id="yjR-Y4-9oF"/>
                     </constraints>
@@ -61,10 +71,10 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="5" y="-109.5"/>
+            <point key="canvasLocation" x="4.7999999999999998" y="-110.19490254872565"/>
         </view>
     </objects>
     <resources>
-        <image name="icTextFieldClose" width="16" height="16"/>
+        <image name="icClean" width="24" height="24"/>
     </resources>
 </document>

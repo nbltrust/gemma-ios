@@ -11,12 +11,13 @@ import ReSwift
 import Presentr
 
 protocol WalletManagerCoordinatorProtocol {
-    func pushToChangeWalletName(model: WalletManagerModel)
-    func pushToExportPrivateKey(_ pubKey: String)
-    func pushToChangePassword(_ currencyID: Int64)
+    func pushToChangeWalletName(_ model: Wallet)
+    func pushToWookongBioDetail(_ model: Wallet)
+    func pushToExportPrivateKey(_ model: Wallet)
+    func pushToChangePassword(_ model : Wallet)
     func pushToBackupMnemonicVC()
-    func pushToDetailVC(model: WalletManagerModel)
-    func pushToFingerVC(model: WalletManagerModel)
+    func pushToDetailVC(_ model: Wallet)
+    func pushToFingerVC(_ model: Wallet)
 }
 
 protocol WalletManagerStateManagerProtocol {
@@ -53,40 +54,36 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
         }
     }
 
-    func pushToChangePassword(_ currencyID: Int64) {
-        if (UIApplication.shared.delegate as? AppDelegate) != nil {
-            appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: currencyID, type: ConfirmType.updatePwd.rawValue, producers: []) { _ in
-                if let vc = R.storyboard.leadIn.setWalletViewController() {
-                    vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
-                    vc.settingType = .updatePas
-                    self.rootVC.pushViewController(vc, animated: true)
-                }
-            }
+    func pushToWookongBioDetail(_ model: Wallet) {
+        
+    }
+
+    func pushToChangePassword(_ model: Wallet) {
+        if let walletVC = R.storyboard.leadIn.setWalletViewController() {
+            let coordinator = SetWalletCoordinator(rootVC: self.rootVC)
+            walletVC.coordinator = coordinator
+            walletVC.settingType = .updatePas
+            walletVC.wallet = model
+            self.rootVC.pushViewController(walletVC, animated: true)
         }
     }
 
-    func pushToExportPrivateKey(_ pubKey: String) {
-        let vc = R.storyboard.entry.backupPrivateKeyViewController()!
-        vc.publicKey = pubKey
-        let coor = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
-        let currentVc = self.rootVC.topViewController!
-        coor.state.callback.hadSaveCallback.accept {
-            self.rootVC.popToViewController(currentVc, animated: true)
-        }
-        vc.coordinator = coor
-        self.rootVC.pushViewController(vc, animated: true)
+    func pushToExportPrivateKey(_ model: Wallet) {
+        var context = WalletCurrencyListContext()
+        context.wallet = model
+        pushVC(WalletCurrencyListCoordinator.self, animated: true, context: context)
     }
 
-    func pushToChangeWalletName(model: WalletManagerModel) {
-        if let vc = R.storyboard.wallet.changeWalletNameViewController() {
+    func pushToChangeWalletName(_ model: Wallet) {
+        if let nameVC = R.storyboard.wallet.changeWalletNameViewController() {
             let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            vc.model = model
-            self.rootVC.pushViewController(vc, animated: true)
+            nameVC.coordinator = coordinator
+            nameVC.model = model
+            self.rootVC.pushViewController(nameVC, animated: true)
         }
     }
 
-    func pushToDetailVC(model: WalletManagerModel) {
+    func pushToDetailVC(_ model: Wallet) {
         if let vc = R.storyboard.wallet.walletDetailViewController() {
             let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
@@ -95,12 +92,12 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
         }
     }
 
-    func pushToFingerVC(model: WalletManagerModel) {
-        if let vc = R.storyboard.wallet.fingerViewController() {
+    func pushToFingerVC(_ model: Wallet) {
+        if let fingerVC = R.storyboard.wallet.fingerViewController() {
             let coordinator = FingerCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            vc.model = model
-            self.rootVC.pushViewController(vc, animated: true)
+            fingerVC.coordinator = coordinator
+            fingerVC.model = model
+            self.rootVC.pushViewController(fingerVC, animated: true)
         }
     }
 }

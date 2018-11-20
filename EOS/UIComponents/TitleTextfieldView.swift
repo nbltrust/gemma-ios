@@ -43,7 +43,6 @@ class TitleTextfieldView: UIView {
             setting = datasource?.textUISetting(titleTextFieldView: self)
             buttonSettings = datasource?.textActionSettings(titleTextFieldView: self)
             unit = datasource?.textUnitStr(titleTextFieldView: self)
-            recoverUI()
         }
     }
 
@@ -98,7 +97,6 @@ class TitleTextfieldView: UIView {
                 redSealUI()
             default:
                 recoverUI()
-                break
             }
         }
     }

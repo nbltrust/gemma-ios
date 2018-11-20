@@ -14,40 +14,13 @@ func gAssetDetailReducer(action:Action, state:AssetDetailState?) -> AssetDetailS
         
     switch action {
     case let action as FetchPaymentsRecordsListAction:
-        state.data.removeAll()
         state.payments = action.data
         let mData: [String: [PaymentsRecordsViewModel]] = convertTransferViewModel(data: action.data, dict: state.data)
         state.data = mData
     case let action as GetLastPosAction:
         state.lastPos = action.lastPos
-    case _ as RemoveAction:
+    case let action as RemoveAction:
         state.data.removeAll()
-    case let action as MBalanceFetchedAction:
-        var viewmodel = state.info.value
-            if let balance = action.balance.arrayValue.first?.string {
-                viewmodel.balance = balance.components(separatedBy: " ")[0]
-            } else {
-                viewmodel.balance = "0.0000"
-        }
-        viewmodel.name = "EOS"
-        viewmodel.contract = EOSIOContract.TokenCode
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
-        state.info.accept(viewmodel)
-    case _ as RMBPriceFetchedAction:
-        var viewmodel = state.info.value
-        if coinType() == .CNY, let eos = CurrencyManager.shared.getCNYPrice() {
-            state.cnyPrice = eos
-        } else if coinType() == .USD, let usd = CurrencyManager.shared.getUSDPrice() {
-            state.otherPrice = usd
-        }
-        viewmodel.name = "EOS"
-        viewmodel.contract = EOSIOContract.TokenCode
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
-        state.info.accept(viewmodel)
-    case let action as ATokensFetchedAction:
-        if let model = convertViewModelWithTokens(tokensJson: action.data, symbol: action.symbol) {
-            state.info.accept(model)
-        }
     default:
         break
     }
@@ -97,33 +70,3 @@ func convertTransferViewModel(data: [Payment], dict: [String: [PaymentsRecordsVi
     return newdict
 }
 
-func calculateRMBPrice(_ viewmodel: AssetViewModel, price: String, otherPrice: String) -> String {
-    if let unit = price.toDecimal(), unit != 0, let all = viewmodel.balance.toDecimal(), all != 0 {
-        let cny = unit * all
-        if coinType() == .CNY {
-            return cny.formatCurrency(digitNum: 2)
-        } else {
-            if let otherPriceDouble = otherPrice.toDecimal() {
-                return (cny / otherPriceDouble).formatCurrency(digitNum: 2)
-            } else {
-                return "0.00"
-            }
-        }
-    } else {
-        return "0.00"
-    }
-}
-
-func convertViewModelWithTokens(tokensJson: [Tokens], symbol: String) -> AssetViewModel? {
-    for token in tokensJson {
-        if token.symbol == symbol {
-            var model = AssetViewModel()
-            model.name = token.symbol
-            model.iconUrl = token.logoUrl
-            model.balance = token.balance
-            model.contract = token.code
-            return model
-        }
-    }
-    return nil
-}

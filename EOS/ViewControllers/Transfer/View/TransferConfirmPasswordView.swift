@@ -51,7 +51,7 @@ class TransferConfirmPasswordView: UIView {
 
     var placeHolder = "" {
         didSet {
-            textField.placeholder = placeHolder
+            textField.placeholder = R.string.localizable.input.key.localized() + placeHolder + R.string.localizable.password.key.localized()
 
         }
     }

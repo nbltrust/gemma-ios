@@ -12,7 +12,6 @@ import NBLCommonModule
 
 protocol BackupMnemonicWordCoordinatorProtocol {
     func pushToMnemonicWordContentVC()
-    func dismissVC()
 }
 
 protocol BackupMnemonicWordStateManagerProtocol {
@@ -48,6 +47,7 @@ extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
             }
         }
         appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: currencyID, type: ConfirmType.backupMnemonic.rawValue, producers: []) {[weak self] (mnemonic) in
+
             guard let `self` = self else { return }
             if let vc = R.storyboard.mnemonic.mnemonicContentViewController() {
                 let coordinator = MnemonicContentCoordinator(rootVC: self.rootVC)
@@ -55,11 +55,6 @@ extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
                 vc.mnemonic = mnemonic
                 self.rootVC.pushViewController(vc, animated: true)
             }
-        }
-    }
-    func dismissVC() {
-        self.rootVC.dismiss(animated: true) {
-            
         }
     }
 }

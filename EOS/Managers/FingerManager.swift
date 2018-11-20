@@ -13,19 +13,19 @@ import SwiftyUserDefaults
 class FingerManager {
     static let shared = FingerManager()
 
-    func updateFingerName(_ model: WalletManagerModel, index: Int, fingerName: String) {
+    func updateFingerName(_ model: Wallet, index: Int, fingerName: String) {
         Defaults[fingerKey(model, index: index)] = fingerName
     }
 
-    func deleteFingerName(_ model: WalletManagerModel, index: Int) {
+    func deleteFingerName(_ model: Wallet, index: Int) {
         updateFingerName(model, index: index, fingerName: "")
     }
 
-    func fingerKey(_ model: WalletManagerModel, index: Int) -> String {
-        return model.address + "\(index)"
+    func fingerKey(_ model: Wallet, index: Int) -> String {
+        return "\(String(describing: model.id))-" + "\(index)"
     }
 
-    func fingerName(_ model: WalletManagerModel, index: Int) -> String {
+    func fingerName(_ model: Wallet, index: Int) -> String {
         if let name: String = Defaults[fingerKey(model, index: index)] as? String, !name.isEmpty {
             return name
         } else {

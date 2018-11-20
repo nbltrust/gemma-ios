@@ -44,7 +44,6 @@ class NewHomeViewController: BaseViewController {
 
     func setupData() {
         self.dataArray.removeAll()
-        self.coordinator?.state.info.accept(NewHomeViewModel())
         if let wallet = WalletManager.shared.currentWallet() {
             self.contentView.navBarView.adapterModelToNavBarView(wallet)
             self.coordinator?.fetchWalletInfo(wallet)

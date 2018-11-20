@@ -11,7 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol DeleteFingerCoordinatorProtocol {
-    func pushToChangeWalletName(model: WalletManagerModel, index: Int)
+    func pushToChangeWalletName(model: Wallet, index: Int)
 }
 
 protocol DeleteFingerStateManagerProtocol {
@@ -19,7 +19,7 @@ protocol DeleteFingerStateManagerProtocol {
 
     func switchPageState(_ state: PageState)
 
-    func deleteCurrentFinger(_ model: WalletManagerModel, index: Int)
+    func deleteCurrentFinger(_ model: Wallet, index: Int)
 }
 
 class DeleteFingerCoordinator: NavCoordinator {
@@ -48,7 +48,7 @@ class DeleteFingerCoordinator: NavCoordinator {
 }
 
 extension DeleteFingerCoordinator: DeleteFingerCoordinatorProtocol {
-    func pushToChangeWalletName(model: WalletManagerModel, index: Int) {
+    func pushToChangeWalletName(model: Wallet, index: Int) {
         if let vc = R.storyboard.wallet.changeWalletNameViewController() {
             let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator
@@ -67,7 +67,7 @@ extension DeleteFingerCoordinator: DeleteFingerStateManagerProtocol {
         }
     }
 
-    func deleteCurrentFinger(_ model: WalletManagerModel, index: Int) {
+    func deleteCurrentFinger(_ model: Wallet, index: Int) {
         BLTWalletIO.shareInstance()?.deleteFP([String(format: "%d", index)], success: { [weak self] in
             guard let `self` = self else { return }
             FingerManager.shared.deleteFingerName(model, index: index)
