@@ -137,7 +137,7 @@ class ResourceDetailViewController: BaseViewController {
 extension ResourceDetailViewController {
     @objc func delegateViewDidClicked(_ data:[String: Any]) {
         if let model = self.contentView.data as? ResourceViewModel {
-            self.coordinator?.pushDelegateVC(model.balance, cpuBalance: model.general[0].eos, netBalance: model.general[1].eos)
+            self.coordinator?.pushDelegateVC(model.balance, cpuBalance: model.general[0].delegatedBandwidth, netBalance: model.general[1].delegatedBandwidth)
         }
     }
     @objc func buyRamViewDidClicked(_ data:[String: Any]) {

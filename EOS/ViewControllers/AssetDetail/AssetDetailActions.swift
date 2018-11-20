@@ -24,6 +24,9 @@ struct AssetDetailState: BaseState {
     var data: [String: [PaymentsRecordsViewModel]] = [:]
     var lastPos: Int = -1
     var payments: [Payment] = []
+    var info: BehaviorRelay<AssetViewModel> = BehaviorRelay(value: AssetViewModel())
+    var cnyPrice: String = ""
+    var otherPrice: String = ""
 }
 
 //MARK: - Action
@@ -33,4 +36,8 @@ struct AssetDetailFetchedAction: Action {
 
 struct RemoveAction: Action {
     
+}
+struct ATokensFetchedAction: Action {
+    var data:[Tokens]
+    var symbol = ""
 }
