@@ -22,91 +22,112 @@ func gResourceMortgagePropertyReducer(_ state: ResourceMortgagePropertyState?, a
 
     switch action {
     case let action as CpuMoneyAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let cpuMoneyDouble = action.cpuMoney.toDecimal(), let netMoneyDouble = action.netMoney.toDecimal() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= cpuMoneyDouble + netMoneyDouble {
                 valid = true
                 tips = ""
             }
-
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)), action.cpuMoney != "", netMoneyDouble == 0 {
                 valid = false
-                if action.netMoney != "" {
-                    tips = R.string.localizable.delegate_not_all0.key.localized()
-                } else {
-                    tips = R.string.localizable.small_money.key.localized()
-                }
+                tips = R.string.localizable.delegate_not_all0.key.localized()
             }
-
-            state.cpuMoneyValid.accept((valid, tips, action.cpuMoney))
+            if action.cpuMoney == "" {
+                valid = true
+                tips = ""
+            }
+            var inputMoney = InputMoney()
+            inputMoney.cpuMoney = action.cpuMoney
+            inputMoney.netMoney = action.netMoney
+            var validInfo = ValidInfo()
+            validInfo.isValid = valid
+            validInfo.waningTip = tips
+            state.cpuMoneyValid.accept((validInfo, inputMoney))
         }
     case let action as NetMoneyAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let cpuMoneyDouble = action.cpuMoney.toDecimal(), let netMoneyDouble = action.netMoney.toDecimal() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= cpuMoneyDouble + netMoneyDouble {
                 valid = true
                 tips = ""
             }
-
-            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
+            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)), action.netMoney != "", cpuMoneyDouble == 0 {
                 valid = false
-                if action.cpuMoney != "" {
+                if action.cpuMoney == "" {
                     tips = R.string.localizable.delegate_not_all0.key.localized()
-                } else {
-                    tips = R.string.localizable.small_money.key.localized()
                 }
             }
-
-            state.netMoneyValid.accept((valid, tips, action.netMoney))
+            if action.netMoney == "" {
+                valid = true
+                tips = ""
+            }
+            var inputMoney = InputMoney()
+            inputMoney.cpuMoney = action.cpuMoney
+            inputMoney.netMoney = action.netMoney
+            var validInfo = ValidInfo()
+            validInfo.isValid = valid
+            validInfo.waningTip = tips
+            state.netMoneyValid.accept((validInfo, inputMoney))
         }
     case let action as CpuReliveMoneyAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let cpuMoneyDouble = action.cpuMoney.toDecimal(), let netMoneyDouble = action.netMoney.toDecimal() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= cpuMoneyDouble {
                 valid = true
                 tips = ""
             }
-
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.cpuMoney != "", netMoneyDouble == 0 {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)), action.cpuMoney != "", netMoneyDouble == 0 {
                 valid = false
-                if action.netMoney != "" {
-                    tips = R.string.localizable.delegate_not_all0.key.localized()
-                } else {
-                    tips = R.string.localizable.small_money.key.localized()
-                }
+                tips = R.string.localizable.undelegate_not_all0.key.localized()
             }
+            if action.cpuMoney == "" {
+                valid = true
+                tips = ""
+            }
+            var inputMoney = InputMoney()
+            inputMoney.cpuMoney = action.cpuMoney
+            inputMoney.netMoney = action.netMoney
+            var validInfo = ValidInfo()
+            validInfo.isValid = valid
+            validInfo.waningTip = tips
 
-            state.cpuReliveMoneyValid.accept((valid, tips, action.cpuMoney))
+            state.cpuReliveMoneyValid.accept((validInfo, inputMoney))
         }
     case let action as NetReliveMoneyAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.cpuMoney.toDouble(), let netMoneyDouble = action.netMoney.toDouble() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let cpuMoneyDouble = action.cpuMoney.toDecimal(), let netMoneyDouble = action.netMoney.toDecimal() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= netMoneyDouble {
                 valid = true
                 tips = ""
             }
-
-            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.netMoney != "", cpuMoneyDouble == 0 {
+            if netMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)), action.netMoney != "", cpuMoneyDouble == 0 {
                 valid = false
-                if action.cpuMoney != "" {
-                    tips = R.string.localizable.delegate_not_all0.key.localized()
-                } else {
-                    tips = R.string.localizable.small_money.key.localized()
+                if action.cpuMoney == "" {
+                    tips = R.string.localizable.undelegate_not_all0.key.localized()
                 }
             }
-
-            state.netReliveMoneyValid.accept((valid, tips, action.netMoney))
+            if action.netMoney == "" {
+                valid = true
+                tips = ""
+            }
+            var inputMoney = InputMoney()
+            inputMoney.cpuMoney = action.cpuMoney
+            inputMoney.netMoney = action.netMoney
+            var validInfo = ValidInfo()
+            validInfo.isValid = valid
+            validInfo.waningTip = tips
+            state.netReliveMoneyValid.accept((validInfo, inputMoney))
         }
     case let action as FetchDataAction:
         var model = initPageViewModel()
-        model.operationLeft[0].introduce = action.balance
-        model.operationLeft[1].introduce = action.balance
-        model.operationRight[0].introduce = action.cpuBalance
-        model.operationRight[1].introduce = action.netBalance
+        model.operationLeft[0].introduce = action.balance + " \(R.string.localizable.usable.key.localized())"
+        model.operationLeft[1].introduce = action.balance + " \(R.string.localizable.usable.key.localized())"
+        model.operationRight[0].introduce = action.cpuBalance + " \(R.string.localizable.usable.key.localized())"
+        model.operationRight[1].introduce = action.netBalance + " \(R.string.localizable.usable.key.localized())"
         state.info.accept(model)
     default:
         break

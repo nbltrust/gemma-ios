@@ -20,8 +20,6 @@ extension UIViewController {
         leftNavButton.isHidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftNavButton)
         self.navigationItem.leftMargin = 5
-
-        
     }
 
     func configRightNavButton(_ image: UIImage? = nil) {
