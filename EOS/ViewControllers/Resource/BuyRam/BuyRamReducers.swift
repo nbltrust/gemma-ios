@@ -23,7 +23,7 @@ func gBuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Bu
 
     switch action {
     case let action as BuyRamAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.ram.toDouble() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let cpuMoneyDouble = action.ram.toDecimal() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= cpuMoneyDouble {
@@ -31,7 +31,7 @@ func gBuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Bu
                 tips = ""
             }
 
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.ram != "" {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)), action.ram != "" {
                 valid = false
                 tips = R.string.localizable.small_money.key.localized()
             }
@@ -43,7 +43,7 @@ func gBuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Bu
             state.buyRamValid.accept((valid, tips, action.ram))
         }
     case let action as SellRamAction:
-        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDouble(), let cpuMoneyDouble = action.ram.toDouble() {
+        if let balanceDouble = action.balance.components(separatedBy: " ")[0].toDecimal(), let cpuMoneyDouble = action.ram.toDecimal() {
             var valid = false
             var tips = R.string.localizable.big_money.key.localized()
             if balanceDouble >= cpuMoneyDouble {
@@ -51,7 +51,7 @@ func gBuyRamPropertyReducer(_ state: BuyRamPropertyState?, action: Action) -> Bu
                 tips = ""
             }
 
-            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)).doubleValue, action.ram != "" {
+            if cpuMoneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)), action.ram != "" {
                 valid = false
                 tips = R.string.localizable.small_money.key.localized()
             }

@@ -21,11 +21,12 @@ struct ResourceMortgageState: StateType {
 
 struct GeneralViewModel {
     var name = ""
-    var eos = "- EOS"
+    var eos = "0.0000 EOS"
     var leftSub = ""
     var rightSub = ""
     var lineHidden = false
     var progress: Float = 0.5
+    var delegatedBandwidth = "0.0000 EOS"
 }
 
 struct ResourceViewModel {
