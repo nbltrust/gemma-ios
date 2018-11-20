@@ -53,7 +53,7 @@ class OperationLeftView: UIView {
         titleTextfieldView.textField.keyboardType = .decimalPad
         titleTextfieldView.textField.delegate = self
         titleTextfieldView.introduceLabel.font = UIFont.pfScR12
-        titleTextfieldView.introduceLabel.textColor = UIColor.introductionColor
+        titleTextfieldView.introduceLabel.textColor = UIColor.baseColor
         titleTextfieldView.delegate = self
         titleTextfieldView.datasource = self
         titleTextfieldView.updateContentSize()
@@ -187,8 +187,8 @@ extension OperationLeftView: TitleTextFieldViewDelegate, TitleTextFieldViewDataS
     }
 
     func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting] {
-        return [TextButtonSetting(imageName: R.image.ic_close.name,
-                                  selectedImageName: R.image.ic_close.name,
+        return [TextButtonSetting(imageName: R.image.icClean.name,
+                                  selectedImageName: R.image.icClean.name,
                                   isShowWhenEditing: true)]
     }
 }

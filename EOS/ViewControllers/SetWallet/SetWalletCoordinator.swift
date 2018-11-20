@@ -137,14 +137,16 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
     func importMnemonicWallet(_ name: String, mnemonic: String, password: String, hint: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
         let seed = Seed39SeedByMnemonic(mnemonic)
         if let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true) {
-            let model = ImportWalletModel.init(walletType: .HD, name: name, priKey: prikey, type: .EOS, password: password, hint: hint, mnemonic: mnemonic)
+            let model = ImportWalletModel.init(walletType: .nonHD, name: name, priKey: prikey, type: .EOS, password: password, hint: hint, mnemonic: mnemonic)
             importWallet(model, success: success, failed: failed)
         } else {
             failed(R.string.localizable.wallet_create_failed.key.localized())
         }
     }
 
-    func importWallet(_ model: ImportWalletModel, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
+    func importWallet(_ model: ImportWalletModel,
+                      success: @escaping SuccessedComplication,
+                      failed: @escaping FailedComplication) {
         if model.type == .EOS {
             if let pubkey = EOSIO.getPublicKey(model.priKey) {
                 CurrencyManager.shared.getEOSAccountNames(pubkey) { (result, accounts) in

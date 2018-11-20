@@ -24,7 +24,6 @@ enum LineViewStyleNames: String {
     case normalContent
     case transferConfirm
     case confirmName
-    case ramPrice
 }
 
 extension Style {
@@ -116,19 +115,19 @@ class RichStyle {
 
     func initLineViewStyle() {
         let nameStyle = Style {
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 16.0)
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
             $0.color = UIColor.baseColor
         }
         Styles.register(LineViewStyleNames.normalName.rawValue, style: nameStyle)
 
         let selectNameStyle = Style {
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 16.0)
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
             $0.color = UIColor.baseColor
         }
         Styles.register(LineViewStyleNames.selectName.rawValue, style: selectNameStyle)
 
         let contentStyle = Style {
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 16.0)
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
             $0.color = UIColor.placeholderColor
         }
         Styles.register(LineViewStyleNames.normalContent.rawValue, style: contentStyle)
@@ -144,12 +143,6 @@ class RichStyle {
             $0.color = UIColor.baseLightColor
         }
         Styles.register(LineViewStyleNames.confirmName.rawValue, style: confirmNameStyle)
-
-        let ramPriceStyle = Style {
-            $0.font = SystemFonts.PingFangSC_Regular.font(size: 12.0)
-            $0.color = UIColor.introductionColor
-        }
-        Styles.register(LineViewStyleNames.ramPrice.rawValue, style: ramPriceStyle)
     }
 
     func initActivateLabelStyle() {

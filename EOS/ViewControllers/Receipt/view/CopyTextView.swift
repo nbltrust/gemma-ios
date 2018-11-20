@@ -34,11 +34,18 @@ class CopyTextView: EOSBaseView {
     func setupSubViewEvent() {
         copyLabel.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (_) in
             guard let `self` = self else { return }
-            copyText(self.textLabel.text!)
+            self.copyText(self.textLabel.text!)
         }).disposed(by: disposeBag)
     }
     
     @objc override func didClicked() {
         self.next?.sendEventWith(Event.copyTextViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
+    }
+
+    func copyText(_ text: String) {
+        let key = text
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = key
+        showSuccessTop(R.string.localizable.have_copied.key.localized())
     }
 }

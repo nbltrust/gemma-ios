@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    BatteryStateCharge = 0,
-    BatteryStateCommon = 1,
+    charge = 0,
+    battery = 1,
 } BatteryState;
 
 @interface BLTBatteryInfo : NSObject
 
 @property (nonatomic,assign) BatteryState state;
-@property (nonatomic,assign) int electricQuantity;
+@property (nonatomic,assign) float electricQuantity;
 
 @end
 

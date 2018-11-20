@@ -11,7 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol WalletDetailCoordinatorProtocol {
-    func pushToChangeWalletName(model: WalletManagerModel)
+    func pushToChangeWalletName(model: Wallet)
 }
 
 protocol WalletDetailStateManagerProtocol {
@@ -48,7 +48,7 @@ class WalletDetailCoordinator: NavCoordinator {
         Broadcaster.register(WalletDetailStateManagerProtocol.self, observer: self)
     }
 
-    func pushToChangeWalletName(model: WalletManagerModel) {
+    func pushToChangeWalletName(model: Wallet) {
         if let vc = R.storyboard.wallet.changeWalletNameViewController() {
             let coordinator = ChangeWalletNameCoordinator(rootVC: self.rootVC)
             vc.coordinator = coordinator

@@ -19,7 +19,7 @@ enum ChangeNameType: Int {
 class ChangeWalletNameViewController: BaseViewController {
 
 	var coordinator: (ChangeWalletNameCoordinatorProtocol & ChangeWalletNameStateManagerProtocol)?
-    var model = WalletManagerModel()
+    var model: Wallet!
     var fingerIndex = 0
     var type: ChangeNameType = .walletName
 
@@ -47,12 +47,13 @@ class ChangeWalletNameViewController: BaseViewController {
         self.view.endEditing(true)
 
         if type == .walletName {
-            model.name = changeWalletNameView.textField.text ?? ""
-            if self.coordinator?.updateWalletName(model: model) == true {
+            let newName = changeWalletNameView.textField.text ?? ""
+            if self.coordinator?.updateWalletName(model: model, newName: newName) ?? false {
                 self.coordinator?.popToLastVC()
             }
         } else {
-            if self.coordinator?.updateFingerName(model: model, index: fingerIndex, newName: changeWalletNameView.textField.text ?? "") == true {
+            let newName = changeWalletNameView.textField.text ?? ""
+            if self.coordinator?.updateFingerName(model: model, index: fingerIndex, newName: newName) ?? false {
                 self.coordinator?.popToLastVC()
             }
         }

@@ -29,6 +29,8 @@ class SetWalletViewController: BaseViewController {
     @IBOutlet weak var fieldView: SetWalletContentView!
     @IBOutlet weak var agreeView: UIView!
 
+    var wallet: Wallet!
+
     var priKey: String = ""
 
     var mnemonicStr: String = ""
@@ -53,19 +55,19 @@ class SetWalletViewController: BaseViewController {
             setupWithLeadIn()
         case .updatePas:
             setupWithPas()
-        case .wookong :
+        case .wookong:
             setupWithWookong()
-        case .updatePin :
+        case .updatePin:
             setupWithPin()
-        
         }
         agree.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
     }
 
     func setupWithPin() {
         self.title = R.string.localizable.change_password.key.localized()
-        fieldView.passwordView.setting.title = R.string.localizable.new_password.key.localized()
-        fieldView.passwordView.titleLabel.text = R.string.localizable.new_password.key.localized()
+        let pas = R.string.localizable.new_password.key.localized()
+        fieldView.passwordView.setting.title = pas
+        fieldView.passwordView.titleLabel.text = pas
         finished.title = R.string.localizable.update_pwd_btn_title.key.localized()
         agreeView.isHidden = true
         mnemonic.isHidden = true
@@ -73,8 +75,19 @@ class SetWalletViewController: BaseViewController {
 
     func setupWithPas() {
         self.title = R.string.localizable.change_password.key.localized()
-        fieldView.passwordView.setting.title = R.string.localizable.new_password.key.localized()
-        fieldView.passwordView.titleLabel.text = R.string.localizable.new_password.key.localized()
+        fieldView.isChangePassword = true
+
+        let originTitle = R.string.localizable.original_password.key.localized()
+        fieldView.nameView.setting.title = originTitle
+        fieldView.nameView.titleLabel.text = originTitle
+
+        let originPh = R.string.localizable.original_password_ph.key.localized()
+        fieldView.nameView.setting.placeholder = originPh
+        fieldView.nameView.textField.placeholder = originPh
+
+        let pas = R.string.localizable.new_password.key.localized()
+        fieldView.passwordView.setting.title = pas
+        fieldView.passwordView.titleLabel.text = pas
         finished.title = R.string.localizable.update_pwd_btn_title.key.localized()
         agreeView.isHidden = true
         mnemonic.isHidden = true
@@ -92,7 +105,6 @@ class SetWalletViewController: BaseViewController {
         self.title = R.string.localizable.set_wallet_title.key.localized()
         agreeView.isHidden = false
         mnemonic.isHidden = true
-        fieldView.nameView.isHidden = false
     }
 
     func importWallet() {
