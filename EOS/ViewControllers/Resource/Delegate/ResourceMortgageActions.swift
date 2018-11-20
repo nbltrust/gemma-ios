@@ -51,12 +51,22 @@ struct OperationViewModel {
     var isSecureTextEntry = false
 }
 
+struct InputMoney {
+    var cpuMoney = ""
+    var netMoney = ""
+}
+
+struct ValidInfo {
+    var isValid = false
+    var waningTip = ""
+}
+
 struct ResourceMortgagePropertyState {
     var info: BehaviorRelay<PageViewModel?> = BehaviorRelay(value: nil)
-    var cpuMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
-    var netMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
-    var cpuReliveMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
-    var netReliveMoneyValid: BehaviorRelay<(Bool, String, String)> = BehaviorRelay(value: (false, "", ""))
+    var cpuMoneyValid: BehaviorRelay<(ValidInfo, InputMoney)> = BehaviorRelay(value: (ValidInfo(), InputMoney()))
+    var netMoneyValid: BehaviorRelay<(ValidInfo, InputMoney)> = BehaviorRelay(value: (ValidInfo(), InputMoney()))
+    var cpuReliveMoneyValid: BehaviorRelay<(ValidInfo, InputMoney)> = BehaviorRelay(value: (ValidInfo(), InputMoney()))
+    var netReliveMoneyValid: BehaviorRelay<(ValidInfo, InputMoney)> = BehaviorRelay(value: (ValidInfo(), InputMoney()))
     var CNYPrice: String = ""
 }
 

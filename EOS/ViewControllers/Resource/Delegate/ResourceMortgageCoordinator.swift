@@ -62,6 +62,12 @@ extension ResourceMortgageCoordinator: ResourceMortgageCoordinatorProtocol {
         }
     }
     func pushToDetailVC(_ model: AssetViewModel) {
+        for viewController in self.rootVC.viewControllers {
+            if let assetDetailVC = viewController as? AssetDetailViewController {
+                self.rootVC.popToViewController(assetDetailVC, animated: true)
+                return
+            }
+        }
         var context = AssetDetailContext()
         context.model = model
         self.pushVC(AssetDetailCoordinator.self, animated: true, context: context)

@@ -15,7 +15,7 @@ struct ConfirmViewModel {
     var remark = ""
     var payAccount = ""
     var buttonTitle = ""
-    var symbol = ""
+    var symbol = "EOS"
 }
 
 @IBDesignable
@@ -40,9 +40,10 @@ class TransferConfirmView: UIView {
             if data.recever == "" {
                 receverView.isHidden = true
             } else {
-                receverView.contentText = "@" + data.recever
+                receverView.contentText = data.recever
             }
-            amountView.contentText = data.amount + " \(data.symbol)"
+            let amount = data.amount.toDecimal()!.string(digits: AppConfiguration.EOSPrecision)  + " \(data.symbol)"
+            amountView.content.attributedText = setEOSSufAttributeString(amount)
             if data.remark == "" {
                 data.remark = R.string.localizable.default_remark_pre.key.localized() + CurrencyManager.shared.getCurrentAccountName() + R.string.localizable.default_remark_after.key.localized()
             }
@@ -68,6 +69,28 @@ class TransferConfirmView: UIView {
             }
             sureView.title = data.buttonTitle
             updateHeight()
+        }
+    }
+
+    fileprivate func setEOSSufAttributeString(_ str: String) -> NSAttributedString {
+        if str.contains("EOS") {
+            let attributedString = NSMutableAttributedString(string: str, attributes: [
+                .font: UIFont.pfScS16,
+                .foregroundColor: UIColor.baseColor,
+                .kern: 0.0
+                ])
+            attributedString.addAttribute(.font, value: UIFont.pfScM12, range: NSRange(location: str.count-3, length: 3))
+            attributedString.addAttribute(.foregroundColor, value: UIColor.introductionColor, range: NSRange(location: str.count-3, length: 3))
+            return attributedString
+        } else {//if str.contains("KB")
+            let attributedString = NSMutableAttributedString(string: str, attributes: [
+                .font: UIFont.pfScS16,
+                .foregroundColor: UIColor.baseColor,
+                .kern: 0.0
+                ])
+            attributedString.addAttribute(.font, value: UIFont.pfScM12, range: NSRange(location: str.count-2, length: 2))
+            attributedString.addAttribute(.foregroundColor, value: UIColor.introductionColor, range: NSRange(location: str.count-2, length: 2))
+            return attributedString
         }
     }
 

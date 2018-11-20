@@ -18,17 +18,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSe-GQ-SGi" customClass="DelegateView" customModule="EOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYa-Aq-h8t">
+                                <rect key="frame" x="0.0" y="-20" width="375" height="727"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OJL-nI-2bo">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="687"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oSe-GQ-SGi" customClass="DelegateView" customModule="EOS" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="oSe-GQ-SGi" firstAttribute="top" secondItem="OJL-nI-2bo" secondAttribute="top" id="5aA-CT-yKj"/>
+                                            <constraint firstItem="oSe-GQ-SGi" firstAttribute="leading" secondItem="OJL-nI-2bo" secondAttribute="leading" id="NoT-iK-mtM"/>
+                                            <constraint firstAttribute="bottom" secondItem="oSe-GQ-SGi" secondAttribute="bottom" id="bRv-Xx-RaF"/>
+                                            <constraint firstAttribute="trailing" secondItem="oSe-GQ-SGi" secondAttribute="trailing" id="f5k-aT-cPg"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="OJL-nI-2bo" secondAttribute="bottom" id="40N-Wm-zDn"/>
+                                    <constraint firstItem="OJL-nI-2bo" firstAttribute="top" secondItem="BYa-Aq-h8t" secondAttribute="top" id="NWV-Jn-GXe"/>
+                                    <constraint firstAttribute="trailing" secondItem="OJL-nI-2bo" secondAttribute="trailing" id="YMK-t7-fOS"/>
+                                    <constraint firstItem="OJL-nI-2bo" firstAttribute="leading" secondItem="BYa-Aq-h8t" secondAttribute="leading" id="ola-r3-uZv"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NN7-97-Mub" firstAttribute="trailing" secondItem="oSe-GQ-SGi" secondAttribute="trailing" id="fm2-lf-EKI"/>
-                            <constraint firstItem="oSe-GQ-SGi" firstAttribute="top" secondItem="NN7-97-Mub" secondAttribute="top" id="fye-6d-QK0"/>
-                            <constraint firstItem="oSe-GQ-SGi" firstAttribute="leading" secondItem="NN7-97-Mub" secondAttribute="leading" id="mOk-cq-sR3"/>
-                            <constraint firstItem="oSe-GQ-SGi" firstAttribute="bottom" secondItem="NN7-97-Mub" secondAttribute="bottom" id="wlv-Sw-K53"/>
+                            <constraint firstItem="BYa-Aq-h8t" firstAttribute="leading" secondItem="HRk-9N-CyS" secondAttribute="leading" id="4fo-92-Qh9"/>
+                            <constraint firstItem="OJL-nI-2bo" firstAttribute="width" secondItem="HRk-9N-CyS" secondAttribute="width" id="A98-mP-Nrv"/>
+                            <constraint firstAttribute="bottom" secondItem="BYa-Aq-h8t" secondAttribute="bottom" id="haj-sT-CuQ"/>
+                            <constraint firstAttribute="trailing" secondItem="BYa-Aq-h8t" secondAttribute="trailing" id="mJd-tZ-ZXn"/>
+                            <constraint firstItem="BYa-Aq-h8t" firstAttribute="top" secondItem="HRk-9N-CyS" secondAttribute="top" id="u0t-sE-vto"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NN7-97-Mub"/>
                     </view>

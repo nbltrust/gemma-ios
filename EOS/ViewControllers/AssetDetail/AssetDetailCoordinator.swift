@@ -18,6 +18,7 @@ protocol AssetDetailCoordinatorProtocol {
     func pushPaymentsDetail(data: PaymentsRecordsViewModel)
     func getAccountInfo(_ account: String)
     func getTokensWith(_ account: String, symbol: String)
+    func popVC()
 }
 
 protocol AssetDetailStateManagerProtocol {
@@ -83,6 +84,19 @@ extension AssetDetailCoordinator: AssetDetailCoordinatorProtocol {
         vc.data = data
         self.rootVC.pushViewController(vc, animated: true)
     }
+    func popVC() {
+        for viewController in self.rootVC.viewControllers {
+            if viewController is ResourceMortgageViewController {
+                for viewController2 in self.rootVC.viewControllers {
+                    if let overVC = viewController2 as? OverviewViewController {
+                        self.rootVC.popToViewController(overVC, animated: true)
+                        return
+                    }
+                }
+            }
+        }
+        self.rootVC.popViewController()
+    }
 }
 
 extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
@@ -134,6 +148,7 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
         }
 
         SimpleHTTPService.requestETHPrice().done { (json) in
+            CurrencyManager.shared.savePriceJsonWith(nil, json: json)
             self.store.dispatch(RMBPriceFetchedAction(currency: nil))
             }.cauterize()
     }

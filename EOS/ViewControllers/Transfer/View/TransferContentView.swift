@@ -56,6 +56,7 @@ class TransferContentView: UIView {
     func setupEvent() {
         nextButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
+            self.endEditing(true)
             self.sendEventWith(TransferEvent.sureTransfer.rawValue, userinfo: [ : ])
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }

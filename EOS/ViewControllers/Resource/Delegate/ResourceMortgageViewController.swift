@@ -56,7 +56,7 @@ class ResourceMortgageViewController: BaseViewController {
 
         coordinator?.state.property.info.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
-            if let model = model as? PageViewModel {
+            if let model = model {
                 self.contentView.adapterModelToDelegateView(model)
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
@@ -64,20 +64,34 @@ class ResourceMortgageViewController: BaseViewController {
         coordinator?.state.property.cpuMoneyValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             var warning = ""
-            warning = model.1
+            warning = model.0.waningTip
             self.contentView.pageView.leftView.cpuMortgageView.warningText = warning
             if warning != "" {
                 self.contentView.pageView.leftView.cpuMortgageView.checkStatus = .warning
+            }
+            if let balanceDecimal = self.balance.toDecimal(), let cpuDecimal = model.1.cpuMoney.toDecimal(), let netDecimal = model.1.netMoney.toDecimal() {
+                let newBalance = balanceDecimal - cpuDecimal - netDecimal
+                if newBalance > 0 {
+                    let newBalanceStr = newBalance.string(digits: AppConfiguration.EOSPrecision) + " EOS"
+                    self.contentView.pageView.leftView.cpuMortgageView.introduceLabel.text = newBalanceStr + " \(R.string.localizable.usable.key.localized())"
+                }
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
 
         coordinator?.state.property.netMoneyValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             var warning = ""
-            warning = model.1
+            warning = model.0.waningTip
             self.contentView.pageView.leftView.netMortgageView.warningText = warning
             if warning != "" {
                 self.contentView.pageView.leftView.netMortgageView.checkStatus = .warning
+            }
+            if let balanceDecimal = self.balance.toDecimal(), let cpuDecimal = model.1.cpuMoney.toDecimal(), let netDecimal = model.1.netMoney.toDecimal() {
+                let newBalance = balanceDecimal - cpuDecimal - netDecimal
+                if newBalance > 0 {
+                    let newBalanceStr = newBalance.string(digits: AppConfiguration.EOSPrecision) + " EOS"
+                    self.contentView.pageView.leftView.netMortgageView.introduceLabel.text = newBalanceStr + " \(R.string.localizable.usable.key.localized())"
+                }
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
 
@@ -89,32 +103,46 @@ class ResourceMortgageViewController: BaseViewController {
                     return false
                 }
 
-                if arg0.0.0 == true, self.contentView.pageView.leftView.netMortgageView.textField.text == "" {
+                if arg0.0.0.isValid == true, self.contentView.pageView.leftView.netMortgageView.textField.text == "" {
                     return true
-                } else if arg0.1.0 == true, self.contentView.pageView.leftView.cpuMortgageView.textField.text == "" {
+                } else if arg0.1.0.isValid == true, self.contentView.pageView.leftView.cpuMortgageView.textField.text == "" {
                     return true
                 }
 
-                return arg0.0.0 && arg0.1.0
+                return arg0.0.0.isValid && arg0.1.0.isValid
             }.bind(to: self.contentView.leftNextButton.isEnabel).disposed(by: disposeBag)
 
         coordinator?.state.property.cpuReliveMoneyValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             var warning = ""
-            warning = model.1
+            warning = model.0.waningTip
             self.contentView.pageView.rightView.cpuMortgageCancelView.warningText = warning
             if warning != "" {
                 self.contentView.pageView.rightView.cpuMortgageCancelView.checkStatus = .warning
+            }
+            if let balanceDecimal = self.cpuBalance.toDecimal(), let cpuDecimal = model.1.cpuMoney.toDecimal() {
+                let newBalance = balanceDecimal - cpuDecimal
+                if newBalance > 0 {
+                    let newBalanceStr = newBalance.string(digits: AppConfiguration.EOSPrecision) + " EOS"
+                    self.contentView.pageView.rightView.cpuMortgageCancelView.introduceLabel.text = newBalanceStr + " \(R.string.localizable.usable.key.localized())"
+                }
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
 
         coordinator?.state.property.netReliveMoneyValid.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             var warning = ""
-            warning = model.1
+            warning = model.0.waningTip
             self.contentView.pageView.rightView.netMortgageCancelView.warningText = warning
             if warning != "" {
                 self.contentView.pageView.rightView.netMortgageCancelView.checkStatus = .warning
+            }
+            if let balanceDecimal = self.netBalance.toDecimal(), let netDecimal = model.1.netMoney.toDecimal() {
+                let newBalance = balanceDecimal - netDecimal
+                if newBalance > 0 {
+                    let newBalanceStr = newBalance.string(digits: AppConfiguration.EOSPrecision) + " EOS"
+                    self.contentView.pageView.rightView.netMortgageCancelView.introduceLabel.text = newBalanceStr + " \(R.string.localizable.usable.key.localized())"
+                }
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
 
@@ -126,13 +154,13 @@ class ResourceMortgageViewController: BaseViewController {
                     return false
                 }
 
-                if arg0.0.0 == true, self.contentView.pageView.rightView.netMortgageCancelView.textField.text == "" {
+                if arg0.0.0.isValid == true, self.contentView.pageView.rightView.netMortgageCancelView.textField.text == "" {
                     return true
-                } else if arg0.1.0 == true, self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text == "" {
+                } else if arg0.1.0.isValid == true, self.contentView.pageView.rightView.cpuMortgageCancelView.textField.text == "" {
                     return true
                 }
 
-                return arg0.0.0 && arg0.1.0
+                return arg0.0.0.isValid && arg0.1.0.isValid
             }.bind(to: self.contentView.rightNextButton.isEnabel).disposed(by: disposeBag)
     }
 }
@@ -230,13 +258,13 @@ extension ResourceMortgageViewController {
                 cpuTextFieldView.textField.text = cpuMoney.string(digits: AppConfiguration.EOSPrecision)
             }
 
-            if let balenceDouble = balance.components(separatedBy: " ")[0].toDecimal() {
+            if let balenceDouble = cpuBalance.components(separatedBy: " ")[0].toDecimal() {
                 cpuTextFieldView.checkStatus = balenceDouble >= cpuMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
-            self.coordinator?.cpuReliveValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+            self.coordinator?.cpuReliveValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: cpuBalance)
         } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
             cpuTextFieldView.textField.text = ""
-            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: cpuBalance)
         }
     }
     @objc func netcancel(_ data: [String: Any]) {
@@ -247,13 +275,13 @@ extension ResourceMortgageViewController {
                 netTextFieldView.textField.text = netMoney.string(digits: AppConfiguration.EOSPrecision)
             }
 
-            if let balenceDouble = balance.components(separatedBy: " ")[0].toDecimal() {
+            if let balenceDouble = netBalance.components(separatedBy: " ")[0].toDecimal() {
                 netTextFieldView.checkStatus = balenceDouble >= netMoney  ? TextUIStyle.common : TextUIStyle.warning
             }
-            self.coordinator?.netReliveValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+            self.coordinator?.netReliveValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: netBalance)
         } else if let cpuTextFieldView = data["cputextfieldview"] as? TitleTextfieldView, let netTextFieldView = data["nettextfieldview"] as? TitleTextfieldView {
             netTextFieldView.textField.text = ""
-            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: balance)
+            self.coordinator?.cpuValidMoney(cpuTextFieldView.textField.text!, netMoney: netTextFieldView.textField.text!, blance: netBalance)
         }
     }
 }
