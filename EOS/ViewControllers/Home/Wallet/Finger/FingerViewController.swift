@@ -17,7 +17,7 @@ class FingerViewController: BaseViewController {
     private(set) var context: FingerContext?
 
     @IBOutlet weak var contentView: FingerView!
-    var model = WalletManagerModel()
+    var model: Wallet!
 
     var fpList: [String] = []
 

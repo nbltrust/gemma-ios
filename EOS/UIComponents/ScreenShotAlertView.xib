@@ -69,7 +69,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ecj-Hc-ozs">
                             <rect key="frame" x="0.0" y="104" width="283" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统截图在相册中可能被其他APP查看。" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zV-Jq-qXh" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统截图在相册中可能被其他APP查看。" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zV-Jq-qXh" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="35" y="11" width="213" height="39"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="213" id="zdD-sR-dVl"/>
@@ -94,7 +94,7 @@
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jlT-Oi-L1V">
                     <rect key="frame" x="0.0" y="186.5" width="283" height="1"/>
-                    <color key="backgroundColor" red="0.86299999999999999" green="0.86699999999999999" blue="0.89000000000000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="lightPeriwinkle80" red="0.863" green="0.867" blue="0.890" alpha="0.800" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="AU3-MW-0wi"/>
                     </constraints>

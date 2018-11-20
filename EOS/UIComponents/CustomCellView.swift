@@ -21,6 +21,8 @@ class CustomCellView: BaseView {
 
     @IBOutlet weak var lineView: UIView!
 
+    @IBOutlet weak var iconWidth: NSLayoutConstraint!
+
     var title: String = "" {
         didSet {
             titleLabel.text = title
@@ -35,8 +37,12 @@ class CustomCellView: BaseView {
 
     @IBInspectable var iconImage: UIImage? {
         didSet {
-            iconView.isHidden = (iconImage == nil)
             iconView.image = iconImage
+            if let image = iconImage {
+                iconWidth.constant = image.size.width + 5
+            } else {
+                iconWidth.constant = 0
+            }
         }
     }
 

@@ -19,6 +19,7 @@ class SetWalletContentView: UIView {
 
     enum TextVaildEvent: String {
         case walletName
+        case walletOriginalPassword
         case walletPassword
         case walletComfirmPassword
     }
@@ -30,6 +31,17 @@ class SetWalletContentView: UIView {
     @IBOutlet weak var confirmPasswordView: TitleTextfieldView!
 
     @IBOutlet weak var hintView: TitleTextfieldView!
+
+    var isChangePassword: Bool = false {
+        didSet {
+            if isChangePassword {
+                nameView.textField.text = ""
+                nameView.textField.isSecureTextEntry = true
+                nameView.reloadData()
+                passwordView.reloadData()
+            }
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,19 +91,12 @@ class SetWalletContentView: UIView {
         handleSetupSubView(confirmPasswordView, tag: InputType.comfirmPassword.rawValue)
         handleSetupSubView(hintView, tag: InputType.passwordPrompt.rawValue)
         updateContentSize()
-        setWalletName()
     }
 
     func setWalletName() {
-        do {
-            let wallets = try WalletCacheService.shared.fetchAllWallet()
-            let idNum: Int64 = Int64(wallets!.count)
-            if idNum == 0 {
-                nameView.textField.text = "WOOKONG-WALLET"
-            } else {
-                nameView.textField.text = "WOOKONG-WALLET-\(idNum + 1)"
-            }
-        } catch {}
+        if !isChangePassword {
+            nameView.textField.text = WalletManager.shared.normalWalletName()
+        }
     }
 
     func updateContentSize() {
@@ -110,6 +115,13 @@ class SetWalletContentView: UIView {
     }
 
     func passwordSwitch(isSelected: Bool) {
+        if isChangePassword {
+            let tempPassword = nameView.textField.text
+            nameView.textField.text = ""
+            nameView.textField.isSecureTextEntry = !isSelected
+            nameView.textField.text = tempPassword
+        }
+
         let tempPassword = passwordView.textField.text
         passwordView.textField.text = ""
         passwordView.textField.isSecureTextEntry = !isSelected
@@ -127,6 +139,12 @@ class SetWalletContentView: UIView {
         return passwordValid
     }
 
+    func originalPasValid() -> Bool {
+        let pas = nameView.textField.text ?? ""
+        let passwordValid = WalletManager.shared.isValidPassword(pas)
+        return passwordValid
+    }
+
     func confirmValid() -> Bool {
         let pas = passwordView.textField.text ?? ""
         let confirmPas = confirmPasswordView.textField.text ?? ""
@@ -137,6 +155,10 @@ class SetWalletContentView: UIView {
     func nameValid() -> Bool {
         let name = nameView.textField.text ?? ""
         return !name.isEmpty
+    }
+
+    func isShowEye(_ field: TitleTextfieldView) -> Bool {
+        return (field == passwordView && !isChangePassword) || (field == nameView && isChangePassword)
     }
 
     @objc func handleTextFiledDidChanged(_ textField: UITextField) {
@@ -151,7 +173,7 @@ extension SetWalletContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDa
     }
 
     func textActionTrigger(titleTextFieldView: TitleTextfieldView, selected: Bool, index: NSInteger) {
-        if titleTextFieldView == passwordView {
+        if isShowEye(titleTextFieldView) {
             if index == 0 {
                 titleTextFieldView.clearText()
                 handleTextField(titleTextFieldView.textField)
@@ -203,16 +225,16 @@ extension SetWalletContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDa
     }
 
     func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting] {
-        if titleTextFieldView == passwordView {
-            return [TextButtonSetting(imageName: R.image.ic_close.name,
-                                      selectedImageName: R.image.ic_close.name,
+        if isShowEye(titleTextFieldView) {
+            return [TextButtonSetting(imageName: R.image.icClean.name,
+                                      selectedImageName: R.image.icClean.name,
                                       isShowWhenEditing: true),
                     TextButtonSetting(imageName: R.image.ic_visible.name,
                                       selectedImageName: R.image.ic_invisible.name,
                                       isShowWhenEditing: false)]
         } else {
-            return [TextButtonSetting(imageName: R.image.ic_close.name,
-                                      selectedImageName: R.image.ic_close.name,
+            return [TextButtonSetting(imageName: R.image.icClean.name,
+                                      selectedImageName: R.image.icClean.name,
                                       isShowWhenEditing: true)]
         }
     }
@@ -265,7 +287,11 @@ extension SetWalletContentView: UITextFieldDelegate {
     func handleTextField(_ textField: UITextField) {
         switch textField.tag {
         case InputType.name.rawValue:
-            self.sendEventWith(TextVaildEvent.walletName.rawValue, userinfo: ["valid": nameValid()])
+            if isChangePassword {
+                self.sendEventWith(TextVaildEvent.walletOriginalPassword.rawValue, userinfo: ["valid": originalPasValid()])
+            } else {
+                self.sendEventWith(TextVaildEvent.walletName.rawValue, userinfo: ["valid": nameValid()])
+            }
         case InputType.password.rawValue:
             self.sendEventWith(TextVaildEvent.walletPassword.rawValue, userinfo: ["valid": pasValid()])
             self.sendEventWith(TextVaildEvent.walletComfirmPassword.rawValue, userinfo: ["valid": confirmValid()])

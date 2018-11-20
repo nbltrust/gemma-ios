@@ -17,7 +17,6 @@ class WalletViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var coordinator: (WalletCoordinatorProtocol & WalletStateManagerProtocol)?
-    var dataArray: [WalletManagerModel] = []
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,25 +24,17 @@ class WalletViewController: BaseViewController {
     }
 
     func setupData() {
-        for (index, wallet) in WalletManager.shared.walletList().enumerated() {
-            var model = WalletManagerModel()
-            model.name = wallet.name
-//            model.address = wallet.publicKey ?? "--"
-//            model.type = wallet.type ?? .gemma
-            if model.type == .bluetooth {
-                model.connected = BLTWalletIO.shareInstance()?.isConnection() ?? false
-            }
-            dataArray.append(model)
-        }
 
+    }
+
+    func reloadData() {
         tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        dataArray.removeAll()
-        setupData()
+        reloadData()
     }
 
     func setupUI() {

@@ -255,12 +255,4 @@
     }
 }
 
-+ (NSString *)batteryChangedNFName {
-    return NotificationBatteryChanged;
-}
-
-+ (NSString *)deviceSearchedNFName {
-    return NotificationDeviceSearched;
-}
-
 @end

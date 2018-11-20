@@ -307,7 +307,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             let idNum: Int64 = Int64(wallets!.count) + 1
             let date = Date.init()
             let cipher = Seed39KeyEncrypt(pwd, checkStr)
-            let wallet = Wallet(id: nil, name: "WOOKONG Wallet", type: .HD, cipher: cipher, deviceName: nil, date: date, hint: prompt)
+            let wallet = Wallet(id: nil, name: "WOOKONG-WALLET", type: .HD, cipher: cipher, deviceName: nil, date: date, hint: prompt)
 
             let seed = Seed39SeedByMnemonic(checkStr)
             let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true)

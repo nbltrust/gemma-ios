@@ -18,8 +18,7 @@ extension ButtonBarPagerTabStripViewController {
         let oraginY = self.buttonBarView.height - 0.5
         let gapView = UIView.init(frame: CGRect(x: left, y: oraginY, width: width, height: 0.5))
         gapView.backgroundColor = UIColor.separatorColor
-        self.buttonBarView.superview?.addSubview(gapView)
-        self.buttonBarView.superview?.bringSubviewToFront(gapView)
-//        self.buttonBarView.sendSubviewToBack(gapView)
+        self.buttonBarView.addSubview(gapView)
+        self.buttonBarView.sendSubviewToBack(gapView)
     }
 }

@@ -34,7 +34,6 @@ class OverviewViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.reloadData()
     }
 
     override func refreshViewController() {
@@ -45,7 +44,7 @@ class OverviewViewController: BaseViewController {
         rightItemView = AccountSwitchView()
 
         if CurrencyManager.shared.getCurrentAccountNames().count > 1 {
-            rightItemView?.dropView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
+            rightItemView?.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
                 guard let `self` = self else { return }
                 self.coordinator?.pushAccountList({
                     self.reloadData()
@@ -166,8 +165,5 @@ extension OverviewViewController {
         if let model = data["data"] as? AssetViewModel {
             self.coordinator?.pushToDetailVC(model)
         }
-    }
-    @objc func progressViewDidClicked(_ data: [String: Any]) {
-            self.coordinator?.pushResourceDetailVC()
     }
 }

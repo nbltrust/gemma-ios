@@ -9,7 +9,7 @@
 import Foundation
 
 extension FingerView {
-    func adapterModelToFingerView(_ model: WalletManagerModel) {
+    func adapterModelToFingerView(_ model: Wallet) {
         self.data = model
 
     }

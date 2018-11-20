@@ -52,7 +52,7 @@ class BuyRamView: UIView {
                                                      content: "",
                                                      imageName: "",
                                                      nameStyle: LineViewStyleNames.normalName,
-                                                     contentStyle: LineViewStyleNames.ramPrice,
+                                                     contentStyle: LineViewStyleNames.normalContent,
                                                      isBadge: false,
                                                      contentLineNumber: 1,
                                                      isShowLineView: true)

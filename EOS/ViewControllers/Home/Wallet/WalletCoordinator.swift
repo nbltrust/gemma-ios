@@ -11,9 +11,7 @@ import ReSwift
 
 protocol WalletCoordinatorProtocol {
     func dismissVC()
-
-    func pushToWalletManager(data: WalletManagerModel)
-
+    
     func pushToEntryVC()
 
     func pushToLeadInWallet()
@@ -51,15 +49,6 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
     func pushToWalletListVC() {
         let context = WalletListContext()
         pushVC(WalletListCoordinator.self, animated: true, context: context)
-    }
-
-    func pushToWalletManager(data: WalletManagerModel) {
-        if let managerVC = R.storyboard.wallet.walletManagerViewController() {
-            let coordinator = WalletManagerCoordinator(rootVC: self.rootVC)
-            managerVC.coordinator = coordinator
-            managerVC.data = data
-            self.rootVC.pushViewController(managerVC, animated: true)
-        }
     }
 
     func pushToEntryVC() {

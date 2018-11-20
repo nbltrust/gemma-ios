@@ -18,7 +18,7 @@ class DeleteFingerViewController: BaseViewController {
     private(set) var context: DeleteFingerContext?
     @IBOutlet weak var contentView: DeleteFingerView!
 
-    var model = WalletManagerModel()
+    var model: Wallet!
     var index = 0
 
 	override func viewDidLoad() {

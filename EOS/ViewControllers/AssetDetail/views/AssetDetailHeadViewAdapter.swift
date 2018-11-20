@@ -25,7 +25,6 @@ extension AssetDetailHeadView {
             self.cnyLabel.isHidden = true
             self.iconImgView.kf.setImage(with: URL(string: model.iconUrl), placeholder: R.image.icTokenUnknown())
         } else {
-            self.cnyLabel.isHidden = false
             self.iconImgView.image = R.image.eos()
         }
     }

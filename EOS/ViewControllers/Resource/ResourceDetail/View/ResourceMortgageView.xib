@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5Q-vI-0a1">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="541"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="511"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8N-Bk-XpP">
                                     <rect key="frame" x="21" y="30" width="35.5" height="17"/>
@@ -120,7 +120,7 @@
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="pJu-uf-Ute" secondAttribute="trailing" id="4B4-UI-Rpp"/>
                                 <constraint firstAttribute="trailing" secondItem="7z1-R0-ULW" secondAttribute="trailing" id="8JR-bP-GNU"/>
-                                <constraint firstAttribute="bottom" secondItem="7z1-R0-ULW" secondAttribute="bottom" constant="30" id="BnK-T0-fc7"/>
+                                <constraint firstAttribute="bottom" secondItem="7z1-R0-ULW" secondAttribute="bottom" id="BnK-T0-fc7"/>
                                 <constraint firstItem="7z1-R0-ULW" firstAttribute="leading" secondItem="G5Q-vI-0a1" secondAttribute="leading" id="FbN-rF-VrA"/>
                                 <constraint firstItem="7z1-R0-ULW" firstAttribute="top" secondItem="pJu-uf-Ute" secondAttribute="bottom" id="Jka-ft-VEt"/>
                                 <constraint firstItem="pJu-uf-Ute" firstAttribute="top" secondItem="x8N-Bk-XpP" secondAttribute="bottom" id="hBt-O8-egf"/>

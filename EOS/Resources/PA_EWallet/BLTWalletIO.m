@@ -30,9 +30,18 @@ const uint32_t puiDerivePathETH[] = {0, 0x8000002c, 0x8000003c, 0x80000000, 0x00
 const uint32_t puiDerivePathEOS[] = {0, 0x8000002C, 0x800000c2, 0x80000000, 0x00000000, 0x00000000};
 const uint32_t puiDerivePathCYB[] = {0, 0, 1, 0x00000080, 0x00000000, 0x00000000};
 
+/*nBatterySource - 0:电源 1:电池
+ nBatteryState - 125～140 电量计算:(当前电压-125)/(140-125) * 100%
+ */
 int BatteryCallback(const int nBatterySource, const int nBatteryState)
 {
-    NSLog(@"current battery source is: %d, current battery state is: 0x%X", nBatterySource, nBatteryState);
+    _instance.batteryInfo.state = nBatterySource == 0 ? charge : common;
+    if (nBatterySource == 1) {
+        _instance.batteryInfo.electricQuantity = (nBatteryState - 125) / (140 - 125);
+    }
+    if (_instance.batteryInfoUpdated != nil) {
+        _instance.batteryInfoUpdated(_instance.batteryInfo);
+    }
     return PAEW_RET_SUCCESS;
 }
 
@@ -51,6 +60,7 @@ int EnumCallback(const char *szDevName, int nRSSI, int nState)
 int DisconnectedCallback(const int status, const char *description)
 {
     savedDevH = nil;
+    _instance.selectDevice = nil;
     return PAEW_RET_SUCCESS;
 }
 
@@ -91,10 +101,19 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     static dispatch_once_t onceToken ;
     dispatch_once(&onceToken, ^{
         _instance = [[self alloc] init];
-        bltQueue = dispatch_queue_create("BluetoothQueue", DISPATCH_QUEUE_SERIAL);
-        heartBeatQueue = dispatch_queue_create("HeartBeatQueue", DISPATCH_QUEUE_SERIAL);
     }) ;
     return _instance ;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _batteryInfo = [[BLTBatteryInfo alloc] init];
+        bltQueue = dispatch_queue_create("BluetoothQueue", DISPATCH_QUEUE_SERIAL);
+        heartBeatQueue = dispatch_queue_create("HeartBeatQueue", DISPATCH_QUEUE_SERIAL);
+    }
+    return self;
 }
 
 - (void)startHeartBeat {
@@ -135,7 +154,6 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             complication();
             free(szDeviceNames);
         });
-        NSLog(@"%d", devInfoState);
     });
 }
 

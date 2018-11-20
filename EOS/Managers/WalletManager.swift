@@ -184,7 +184,7 @@ class WalletManager {
     }
 
     func isWalletCompleteBackup(_ wallet: Wallet) -> Bool {
-        if let walletId = wallet.id {
+        if let walletId = wallet.id, wallet.type == .HD {
             if let complete = Defaults["isWalletCompleteBackup\(walletId)"] as? Bool {
                 return complete
             }
@@ -387,9 +387,4 @@ class WalletManager {
         return predicate.evaluate(with: name)
     }
 
-    func isTransferValidWalletName(_ name: String) -> Bool {
-        let regex = "^[1-5a-z.]{1,12}+$"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
-        return predicate.evaluate(with: name)
-    }
 }

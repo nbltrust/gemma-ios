@@ -9,7 +9,7 @@
 import Foundation
 
 extension DeleteFingerView {
-//    func adapterModelToDeleteFingerView(_ model:WalletManagerModel) {
+//    func adapterModelToDeleteFingerView(_ model:Wallet) {
 //        self.changeNameLineView.contentText = model
 //    }
 }
