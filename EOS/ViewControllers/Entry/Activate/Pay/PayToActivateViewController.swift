@@ -43,7 +43,7 @@ class PayToActivateViewController: BaseViewController, IndicatorInfoProvider {
             self.endLoading()
             var context = ScreenShotAlertContext()
             context.title = R.string.localizable.pay_failed.key.localized()
-            context.buttonTitle = "确定"
+            context.buttonTitle = R.string.localizable.confirm.key.localized()
             context.imageName = R.image.icFail.name
             context.needCancel = false
             appCoodinator.showGemmaAlert(context)
@@ -69,7 +69,25 @@ class PayToActivateViewController: BaseViewController, IndicatorInfoProvider {
         coordinator?.state.billInfo.asObservable().subscribe(onNext: {[weak self] (model) in
             guard let `self` = self else { return }
             self.contentView.adapterModelToPayView(model)
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        coordinator?.state.orderInfo.asObservable().subscribe(onNext: {[weak self] (model, beChange) in
+            guard let `self` = self else { return }
+            if beChange == true, let model = model {
+                var context = ScreenShotAlertContext()
+                context.title = R.string.localizable.price_change.key.localized()
+                context.buttonTitle = R.string.localizable.pay_sure.key.localized()
+                context.desc = R.string.localizable.price_change_tips.key.localized() + RichStyle.shared.tagText(model.rmb, fontSize: 14, color: UIColor.highlightColor, lineHeight: 16) + "。"
+                context.imageName = R.image.icMoney.name
+                context.needCancel = true
+                context.sureShot = { [weak self] () in
+                    guard let `self` = self else { return }
+                    self.coordinator?.place()
+                }
+                appCoodinator.showGemmaAlert(context)
+            } else if beChange == false {
+                self.coordinator?.place()
+            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
 

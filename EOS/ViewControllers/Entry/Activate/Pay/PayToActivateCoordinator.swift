@@ -25,6 +25,7 @@ protocol PayToActivateStateManagerProtocol {
     func initOrder(_ currencyID:Int64?, completion: @escaping (Bool) -> Void)
     func getBill()
     func askToPay()
+    func place()
 }
 
 class PayToActivateCoordinator: NavCoordinator {
@@ -126,41 +127,11 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         }
 
         NBLNetwork.request(target: .initOrder(account: walletName, pubKey: pubkey, platform: "iOS", clientIP:"10.18.14.9", serialNumber: "1"), success: { (data) in
-            if let orderID = Order.deserialize(from: data.dictionaryObject) {
-                self.store.dispatch(OrderIdAction(orderId: orderID.id))
-                NBLNetwork.request(target: .place(orderId: orderID.id), success: { (result) in
-                    if let place = Place.deserialize(from: result.dictionaryObject) {
-                        let timeInterval = place.timestamp.string
-                        var string = "weixin://app/\(place.appid!)/pay/?"
-                        string += "nonceStr=\(place.nonceStr!)&"
-                        string += "package=Sign%3DWXPay&"
-                        string += "partnerId=\(place.partnerid!)&"
-                        string += "prepayId=\(place.prepayid!)&"
-                        string += "timeStamp=\(UInt32(timeInterval)!)&"
-                        string += "sign=\(place.sign!)&signType=SHA1"
-                        MonkeyKingManager.shared.wechatPay(urlString: string, resultCallback: { (success) in
-                            self.state.pageState.accept(.initial)
-                            self.askToPay()
-                            completion(success)
-                        })
-                    } else {
-                        completion(false)
-                    }
-                }, error: { (code) in
-                    completion(false)
-                    if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
-                        let error = GemmaError.NBLCode(code: gemmaerror)
-                        showFailTop(error.localizedDescription)
-                    } else {
-                        showFailTop(R.string.localizable.error_unknow.key.localized())
-                    }
-                }, failure: { (_) in
-                    completion(false)
-                })
-
+            if let order = Order.deserialize(from: data.dictionaryObject) {
+                self.store.dispatch(OrderAction(order: order))
             }
+            self.rootVC.topViewController?.endLoading()
         }, error: { (code) in
-            completion(false)
             if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                 let error = GemmaError.NBLCode(code: gemmaerror)
                 showFailTop(error.localizedDescription)
@@ -168,8 +139,38 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
             }
         }) { (_) in
-            completion(false)
         }
+    }
+
+    func place() {
+        self.rootVC.topViewController?.startLoadingWithMessage(message: R.string.localizable.pay_tips_warning.key.localized())
+        let orderID = self.state.orderId
+        NBLNetwork.request(target: .place(orderId: orderID), success: { (result) in
+            if let place = Place.deserialize(from: result.dictionaryObject) {
+                let timeInterval = place.timestamp.string
+                var string = "weixin://app/\(place.appid!)/pay/?"
+                string += "nonceStr=\(place.nonceStr!)&"
+                string += "package=Sign%3DWXPay&"
+                string += "partnerId=\(place.partnerid!)&"
+                string += "prepayId=\(place.prepayid!)&"
+                string += "timeStamp=\(UInt32(timeInterval)!)&"
+                string += "sign=\(place.sign!)&signType=SHA1"
+                MonkeyKingManager.shared.wechatPay(urlString: string, resultCallback: { (success) in
+                    self.state.pageState.accept(.initial)
+                    self.askToPay()
+                })
+            } else {
+                showFailTop(R.string.localizable.error_unknow.key.localized())
+            }
+        }, error: { (code) in
+            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                let error = GemmaError.NBLCode(code: gemmaerror)
+                showFailTop(error.localizedDescription)
+            } else {
+                showFailTop(R.string.localizable.error_unknow.key.localized())
+            }
+        }, failure: { (_) in
+        })
     }
 
     func askToPay() {
