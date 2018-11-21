@@ -39,6 +39,10 @@ class BackupMnemonicWordViewController: BaseViewController {
         contentView.buttonTitle = R.string.localizable.backup_mnemonic_knowbtn_title.key.localized()
     }
 
+    override func leftAction(_ sender: UIButton) {
+        self.coordinator?.dismissVC()
+    }
+
     func setupData() {
 
     }

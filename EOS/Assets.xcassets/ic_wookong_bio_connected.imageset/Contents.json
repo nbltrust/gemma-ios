@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic_wookong_bio_connected.png",
+      "filename" : "icWookongBioConnected.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ic_wookong_bio_connected@2x.png",
+      "filename" : "icWookongBioConnected@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ic_wookong_bio_connected@3x.png",
+      "filename" : "icWookongBioConnected@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

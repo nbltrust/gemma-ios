@@ -16,7 +16,6 @@ class CardView: UIView {
     @IBOutlet weak var currencyLabel: BaseLabel!
     @IBOutlet weak var accountLabel: BaseLabel!
     @IBOutlet weak var balanceLabel: BaseLabel!
-    @IBOutlet weak var unitLabel: BaseLabel!
     @IBOutlet weak var tokenLabel: BaseLabel!
     @IBOutlet weak var otherBalanceLabel: BaseLabel!
     @IBOutlet weak var shadeView: UIView!
@@ -38,16 +37,12 @@ class CardView: UIView {
     var tokenArray: [String] = [] {
         didSet {
             self.tokenView.removeSubviews()
-            if tokenArray.count < 6 {
-                shadeView.isHidden = true
-            } else {
-                shadeLabel.text = "+\(tokenArray.count)"
-            }
-
             for index in 0..<tokenArray.count {
-                let imgView = UIImageView(frame: CGRect(x: 88 - (index+1)*28 + index*13, y: 0, width: 28, height: 28))
-                imgView.kf.setImage(with: URL(string: tokenArray[index]), placeholder: R.image.icTokenUnknown())
-                self.tokenView.insertSubview(imgView, at: 0)
+                if index < 5 {
+                    let imgView = UIImageView(frame: CGRect(x: 88 - (index+1)*28 + index*13, y: 0, width: 28, height: 28))
+                    imgView.kf.setImage(with: URL(string: tokenArray[index]), placeholder: R.image.icTokenUnknown())
+                    self.tokenView.insertSubview(imgView, at: 0)
+                }
             }
             updateHeight()
         }
@@ -55,6 +50,7 @@ class CardView: UIView {
 
     enum Event: String {
         case cardViewDidClicked
+        case progressViewDidClicked
     }
 
     func setup() {
@@ -79,7 +75,10 @@ class CardView: UIView {
     }
 
     func setupSubViewEvent() {
-
+        progressView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
+            guard let `self` = self else { return }
+                self.progressView.next?.sendEventWith(Event.progressViewDidClicked.rawValue, userinfo: [:])
+        }).disposed(by: disposeBag)
     }
 
     override var intrinsicContentSize: CGSize {

@@ -115,7 +115,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     }
 
     func validName(_ name: String) {
-        self.store.dispatch(ToNameAction(isValid: WalletManager.shared.isValidWalletName(name)))
+        self.store.dispatch(ToNameAction(isValid: WalletManager.shared.isTransferValidAccountName(name)))
     }
 
     func subscribe<SelectedState, S: StoreSubscriber>(
@@ -138,7 +138,7 @@ extension TransferCoordinator: TransferStateManagerProtocol {
     }
 
     func checkAccountName(_ name: String) -> (Bool, error_info: String) {
-        return (WalletManager.shared.isValidWalletName(name), R.string.localizable.name_ph.key.localized())
+        return (WalletManager.shared.isTransferValidAccountName(name), R.string.localizable.name_ph.key.localized())
     }
 
     func getInfo(callback:@escaping (String) -> Void) {
