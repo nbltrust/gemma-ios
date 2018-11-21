@@ -16,7 +16,7 @@ typedef enum {
 @interface BLTBatteryInfo : NSObject
 
 @property (nonatomic,assign) BatteryState state;
-@property (nonatomic,assign) float electricQuantity;
+@property (nonatomic,assign) double electricQuantity;
 
 @end
 

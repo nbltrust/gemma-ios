@@ -31,8 +31,6 @@ func gEntryPropertyReducer(_ state: EntryPropertyState?, action: Action) -> Entr
         state.comfirmPasswordValid.accept(action.isValid)
     case let action as AgreeAction:
         state.isAgree.accept(action.isAgree)
-    case let action as SetCheckSeedSuccessedAction:
-        state.checkSeedSuccessed.accept(action.isCheck)
     case let action as WalletModelAction:
         state.model = action.model
     default:
