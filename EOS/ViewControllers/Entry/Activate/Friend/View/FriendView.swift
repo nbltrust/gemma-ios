@@ -63,18 +63,11 @@ class FriendView: EOSBaseView {
     func setupSubViewEvent() {
         memoButton.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
-            self.copyText(self.memoLabel.text!)
+            copyText(self.memoLabel.text!)
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 
     @objc override func didClicked() {
         self.next?.sendEventWith(Event.friendViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
-    }
-
-    func copyText(_ text: String) {
-        let key = text
-        let pasteboard = UIPasteboard.general
-        pasteboard.string = key
-        showSuccessTop(R.string.localizable.have_copied.key.localized())
     }
 }

@@ -181,7 +181,7 @@ class SetWalletViewController: BaseViewController {
 
     @IBAction func clickAgree(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        sender.isSelected == true ?sender.setBackgroundImage(R.image.ic_checkbox_active(), for: .normal) :
+        sender.isSelected == true ?sender.setBackgroundImage(R.image.icCheckboxAbled(), for: .normal) :
         sender.setBackgroundImage(R.image.ic_checkbox(), for: .normal)
         self.coordinator?.checkAgree(sender.isSelected)
     }

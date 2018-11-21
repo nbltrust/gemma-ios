@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -37,9 +41,9 @@
                                 <constraint firstAttribute="height" constant="16" id="Xwe-to-beY"/>
                                 <constraint firstAttribute="width" constant="16" id="rRi-cw-xTS"/>
                             </constraints>
-                            <state key="normal" image="icClean"/>
-                            <state key="selected" image="icClean"/>
-                            <state key="highlighted" image="icClean"/>
+                            <state key="normal" image="icTextFieldClose"/>
+                            <state key="selected" image="icTextFieldClose"/>
+                            <state key="highlighted" image="icTextFieldClose"/>
                             <connections>
                                 <action selector="clearBtnClick:" destination="-1" eventType="touchUpInside" id="GgD-3E-9tX"/>
                             </connections>
@@ -58,7 +62,7 @@
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tB9-ki-GKG">
                             <rect key="frame" x="0.0" y="55.5" width="335" height="0.5"/>
-                            <color key="backgroundColor" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" name="separatorColor" red="0.867" green="0.867" blue="0.867" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="0.5" id="wrw-bG-742"/>
                             </constraints>
@@ -108,6 +112,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icClean" width="16" height="16"/>
+        <image name="icTextFieldClose" width="16" height="16"/>
     </resources>
 </document>

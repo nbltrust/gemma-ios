@@ -31,6 +31,8 @@ protocol EntryStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<EntryState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
 
+    func validAccountName(_ name: String)
+
     func validWalletName(_ name: String)
 
     func validPassword(_ password: String)
@@ -59,7 +61,7 @@ protocol EntryStateManagerProtocol {
     
     func createTempWallet(_ pwd: String, prompt: String, type: WalletType)
 
-    func createNewWallet(pwd: String, checkStr: String, deviceName: String?, prompt: String?)
+    func createNewWallet(walletName: String, pwd: String, checkStr: String, deviceName: String?, prompt: String?)
 }
 
 class EntryCoordinator: NavCoordinator {
@@ -186,8 +188,11 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         }
     }
 
+    func validAccountName(_ name: String) {
+        self.store.dispatch(NameAction(isValid: WalletManager.shared.isValidAccountName(name)))
+    }
     func validWalletName(_ name: String) {
-        self.store.dispatch(NameAction(isValid: WalletManager.shared.isValidWalletName(name)))
+        self.store.dispatch(WalletNameAction(isValid: true))
     }
 
     func validPassword(_ password: String) {
@@ -301,13 +306,13 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(WalletModelAction(model: model))
     }
 
-    func createNewWallet(pwd: String, checkStr: String, deviceName: String?, prompt: String?) {
+    func createNewWallet(walletName: String, pwd: String, checkStr: String, deviceName: String?, prompt: String?) {
         do {
             let wallets = try WalletCacheService.shared.fetchAllWallet()
             let idNum: Int64 = Int64(wallets!.count) + 1
             let date = Date.init()
             let cipher = Seed39KeyEncrypt(pwd, checkStr)
-            let wallet = Wallet(id: nil, name: "WOOKONG-WALLET", type: .HD, cipher: cipher, deviceName: nil, date: date, hint: prompt)
+            let wallet = Wallet(id: nil, name: walletName, type: .HD, cipher: cipher, deviceName: nil, date: date, hint: prompt)
 
             let seed = Seed39SeedByMnemonic(checkStr)
             let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true)

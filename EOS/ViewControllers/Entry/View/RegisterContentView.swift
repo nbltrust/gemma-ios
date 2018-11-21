@@ -18,18 +18,21 @@ class RegisterContentView: UIView {
     @IBOutlet weak var passwordComfirmView: TitleTextfieldView!
     @IBOutlet weak var passwordPromptView: TitleTextfieldView!
     @IBOutlet weak var tipsView: SharpCornerTipsLabelView!
+    @IBOutlet weak var walletNameView: TitleTextfieldView!
 
     enum InputType: Int {
-        case name = 1
+        case accountName = 1
         case password
         case comfirmPassword
         case passwordPrompt
+        case walletName
     }
 
     enum TextChangeEvent: String {
-        case walletName
+        case accountName
         case walletPassword
         case walletComfirmPassword
+        case walletNameEndEdit
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -87,7 +90,8 @@ class RegisterContentView: UIView {
 
     func setupUI() {
         tipsView.isHidden = true
-        handleSetupSubView(nameView, tag: InputType.name.rawValue)
+        handleSetupSubView(nameView, tag: InputType.accountName.rawValue)
+        handleSetupSubView(walletNameView, tag: InputType.walletName.rawValue)
         handleSetupSubView(passwordView, tag: InputType.password.rawValue)
         handleSetupSubView(passwordComfirmView, tag: InputType.comfirmPassword.rawValue)
         handleSetupSubView(passwordPromptView, tag: InputType.passwordPrompt.rawValue)
@@ -152,6 +156,14 @@ extension RegisterContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
                                     isShowPromptWhenEditing: true,
                                     showLine: true,
                                     isSecureTextEntry: false)
+        } else if titleTextFieldView == walletNameView {
+            return TitleTextSetting(title: R.string.localizable.wallet_name.key.localized(),
+                                    placeholder: R.string.localizable.wallet_name_ph.key.localized(),
+                                    warningText: R.string.localizable.name_warning.key.localized(),
+                                    introduce: "",
+                                    isShowPromptWhenEditing: true,
+                                    showLine: true,
+                                    isSecureTextEntry: false)
         } else if titleTextFieldView == passwordView {
             return TitleTextSetting(title: R.string.localizable.account_setting_password.key.localized(),
                                     placeholder: R.string.localizable.password_ph.key.localized(),
@@ -189,15 +201,15 @@ extension RegisterContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
 
     func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting] {
         if titleTextFieldView == passwordView {
-            return [TextButtonSetting(imageName: R.image.icClean.name,
-                                      selectedImageName: R.image.icClean.name,
+            return [TextButtonSetting(imageName: R.image.ic_close.name,
+                                      selectedImageName: R.image.ic_close.name,
                                       isShowWhenEditing: true),
                     TextButtonSetting(imageName: R.image.ic_visible.name,
                                       selectedImageName: R.image.ic_invisible.name,
                                       isShowWhenEditing: false)]
         } else {
-            return [TextButtonSetting(imageName: R.image.icClean.name,
-                                      selectedImageName: R.image.icClean.name,
+            return [TextButtonSetting(imageName: R.image.ic_close.name,
+                                      selectedImageName: R.image.ic_close.name,
                                       isShowWhenEditing: true)]
         }
     }
@@ -210,10 +222,15 @@ extension RegisterContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
 extension RegisterContentView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField.tag {
-        case InputType.name.rawValue:
+        case InputType.accountName.rawValue:
             nameView.reloadActionViews(isEditing: true)
             if nameView.checkStatus != TextUIStyle.warning {
                 nameView.checkStatus = TextUIStyle.highlight
+            }
+        case InputType.walletName.rawValue:
+            walletNameView.reloadActionViews(isEditing: true)
+            if walletNameView.checkStatus != TextUIStyle.warning {
+                walletNameView.checkStatus = TextUIStyle.highlight
             }
         case InputType.password.rawValue:
             passwordView.reloadActionViews(isEditing: true)
@@ -242,12 +259,17 @@ extension RegisterContentView: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
-        case InputType.name.rawValue:
+        case InputType.accountName.rawValue:
             nameView.reloadActionViews(isEditing: false)
             if textField.text == "" {
                 nameView.checkStatus = TextUIStyle.common
             } else {
-                nameView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+                nameView.checkStatus = WalletManager.shared.isValidAccountName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
+            }
+        case InputType.walletName.rawValue:
+            walletNameView.reloadActionViews(isEditing: false)
+            if textField.text == "" {
+                walletNameView.checkStatus = TextUIStyle.common
             }
         case InputType.password.rawValue:
             passwordView.reloadActionViews(isEditing: false)
@@ -274,11 +296,15 @@ extension RegisterContentView: UITextFieldDelegate {
     func handleTextField(_ textField: UITextField) {
         let text = textField.text ?? ""
         switch textField.tag {
-        case InputType.name.rawValue:
+        case InputType.accountName.rawValue:
             if text.count > 12 {
                 textField.text = text.substring(from: 0, length: 12)
             }
-            self.sendEventWith(TextChangeEvent.walletName.rawValue, userinfo: ["content": textField.text ?? ""])
+            self.sendEventWith(TextChangeEvent.accountName.rawValue, userinfo: ["content": textField.text ?? ""])
+        case InputType.walletName.rawValue:
+            if text.count > 0 {
+                self.sendEventWith(TextChangeEvent.walletNameEndEdit.rawValue, userinfo: ["content": textField.text ?? ""])
+            }
         case InputType.password.rawValue:
             self.sendEventWith(TextChangeEvent.walletPassword.rawValue, userinfo: ["content": text])
         case InputType.comfirmPassword.rawValue:

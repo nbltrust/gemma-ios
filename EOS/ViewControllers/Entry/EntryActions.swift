@@ -21,17 +21,12 @@ struct EntryState: StateType {
 
 struct EntryPropertyState {
     var nameValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    
+    var walletNameValid: BehaviorRelay<Bool> = BehaviorRelay(value: true)
     var passwordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    
     var comfirmPasswordValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    
     var inviteCodeValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    
     var isAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    
     var checkSeedSuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    
     var model: WalletModel? = nil
 }
 
@@ -44,6 +39,10 @@ struct EntryCallbackState {
 }
 
 struct NameAction: Action {
+    var isValid: Bool = false
+}
+
+struct WalletNameAction: Action {
     var isValid: Bool = false
 }
 

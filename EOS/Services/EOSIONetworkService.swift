@@ -12,6 +12,7 @@ import SwifterSwift
 import SwiftyJSON
 import SwiftyUserDefaults
 import MMKV
+import Alamofire
 
 enum EOSIOService {
     //chain
@@ -31,7 +32,7 @@ enum EOSIOService {
 
 struct EOSIONetwork {
     static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil,
-                                                     manager: MoyaProvider<EOSIOService>.defaultAlamofireManager(),
+                                                     manager: defaultManager(),
                                                      plugins: [NetworkLoggerPlugin(verbose: true), DataCachePlugin()],
                                                      trackInflights: false)
 
@@ -42,9 +43,18 @@ struct EOSIONetwork {
         error errorCallback: @escaping (_ statusCode: Int) -> Void,
         failure failureCallback: @escaping (MoyaError) -> Void
         ) {
+        var fetchedCache = fetchedCache
+        switch target {
+        case .getAccount:
+            fetchedCache = true
+        case .getCurrencyBalance:
+            fetchedCache = true
+        default:
+            fetchedCache = false
+        }
 
         if fetchedCache, let cache = MMKV.default().object(of: NSString.self, forKey: target.fetchCacheKey()) as? String {
-            let json = JSON(stringLiteral: cache)
+            let json = JSON.init(parseJSON: cache)
             successCallback(json)
         }
         provider.request(target) { (result) in
@@ -53,33 +63,6 @@ struct EOSIONetwork {
                 do {
                     _ = try response.filterSuccessfulStatusCodes()
                     let json = try JSON(response.mapJSON())
-                    switch target {
-                    case let .getCurrencyBalance(accountName):
-                        if let balance = json.arrayValue.first?.string {
-                            Defaults.set(balance, forKey: "\(accountName)balance")
-                        }
-                    case .getAccount:
-                        if let accountObj = Account.deserialize(from: json.dictionaryObject) {
-                            var model = accountObj.toAccountModel()
-                            model.saveToLocal()
-                        }
-                    case .getInfo:break
-
-                    case .getBlock:break
-
-                    case .abiJsonToBin:break
-
-                    case .abiBinToJson:break
-
-                    case .pushTransaction:break
-
-                    case .getKeyAccounts:break
-
-                    case .getTransaction:break
-
-                    case .getTableRows:break
-
-                    }
                     if let str = json.rawString() {
                         MMKV.default().set(str, forKey: target.fetchCacheKey())
                     }

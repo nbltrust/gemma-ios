@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icCommonWaiting.png",
+      "filename" : "icTime.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icCommonWaiting@2x.png",
+      "filename" : "icTime@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icCommonWaiting@3x.png",
+      "filename" : "icTime@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

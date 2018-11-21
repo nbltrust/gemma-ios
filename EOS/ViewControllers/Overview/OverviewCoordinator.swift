@@ -14,6 +14,7 @@ import Presentr
 protocol OverviewCoordinatorProtocol {
     func pushToDetailVC(_ model: AssetViewModel)
     func pushAccountList(_ complication: @escaping () -> Void)
+    func pushResourceDetailVC()
 }
 
 protocol OverviewStateManagerProtocol {
@@ -51,6 +52,13 @@ class OverviewCoordinator: NavCoordinator {
 }
 
 extension OverviewCoordinator: OverviewCoordinatorProtocol {
+    func pushResourceDetailVC() {
+        if let rmVC = R.storyboard.resourceMortgage.resourceDetailViewController() {
+            let coordinator = ResourceDetailCoordinator(rootVC: self.rootVC)
+            rmVC.coordinator = coordinator
+            self.rootVC.pushViewController(rmVC, animated: true)
+        }
+    }
     func pushToDetailVC(_ model: AssetViewModel) {
         var context = AssetDetailContext()
         context.model = model

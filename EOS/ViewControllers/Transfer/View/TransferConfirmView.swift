@@ -42,20 +42,21 @@ class TransferConfirmView: UIView {
             } else {
                 receverView.contentText = data.recever
             }
-            let amount = data.amount.toDecimal()!.string(digits: AppConfiguration.EOSPrecision)  + " \(data.symbol)"
-            amountView.content.attributedText = setEOSSufAttributeString(amount)
+            var amount = data.amount.toDecimal()!.string(digits: AppConfiguration.EOSPrecision)  + " \(data.symbol)"
             if data.remark == "" {
                 data.remark = R.string.localizable.default_remark_pre.key.localized() + CurrencyManager.shared.getCurrentAccountName() + R.string.localizable.default_remark_after.key.localized()
             }
             if data.buttonTitle == R.string.localizable.check_transfer.key.localized() {
                 remarkView.content.numberOfLines = 1
             } else {
-                remarkView.content.numberOfLines = 0
+                remarkView.content.numberOfLines = 2
             }
             if data.buttonTitle == R.string.localizable.confirm_sell.key.localized() {
+                amount = data.amount.toDecimal()!.string(digits: 4)  + " KB"
                 amountView.contentText = data.amount + " KB"
                 amountView.nameText = R.string.localizable.amount.key.localized()
             }
+            amountView.content.attributedText = setEOSSufAttributeString(amount)
             if data.buttonTitle == R.string.localizable.confirm_sell.key.localized() || data.buttonTitle == R.string.localizable.confirm_buy.key.localized() {
                 remarkView.nameText = R.string.localizable.explain.key.localized()
             }
