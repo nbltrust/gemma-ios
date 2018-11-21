@@ -16,6 +16,8 @@ class VerifyMnemonicWordViewController: BaseViewController {
     @IBOutlet weak var contentView: VerifyMnemonicWordView!
     
     var coordinator: (VerifyMnemonicWordCoordinatorProtocol & VerifyMnemonicWordStateManagerProtocol)?
+
+    var isWookong: Bool = false
     
     var seeds: [String] = []
     
@@ -53,7 +55,6 @@ class VerifyMnemonicWordViewController: BaseViewController {
 //        tempSeeds = shuffleArray(arr: seeds)
     }
 
-
     func shuffleArray(arr: [String]) -> [String] {
         var data: [String] = arr
         for index in 1..<arr.count {
@@ -64,11 +65,10 @@ class VerifyMnemonicWordViewController: BaseViewController {
         }
         return data
     }
-    
+
     func setupEvent() {
-        
     }
-    
+
     override func configureObserveState() {
 
     }
@@ -76,8 +76,7 @@ class VerifyMnemonicWordViewController: BaseViewController {
 
 //MARK: - View Event
 extension VerifyMnemonicWordViewController {
-    @objc func verifyMnemonicWord(_ data:[String: Any]) {
-        self.coordinator?.verifyMnemonicWord(data, seeds: self.seeds, checkStr: self.checkStr)
+    @objc func verifyMnemonicWord(_ data: [String: Any]) {
+        self.coordinator?.verifyMnemonicWord(data, seeds: self.seeds, checkStr: self.checkStr, isWookong: isWookong)
     }
 }
-

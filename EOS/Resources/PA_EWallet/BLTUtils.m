@@ -232,7 +232,7 @@
     return data;
 }
 
-+ (FingerPrinterState)stateWithValue:(int)value {
++ (FingerPrinterState)fingerEntrolStateWithValue:(int)value {
     switch (value) {
         case PAEW_RET_DEV_FP_REDUNDANT:
             return redundant;
@@ -253,6 +253,15 @@
             return common;
             break;
     }
+}
+
++ (BLTCardPINState)pinStateWithDevInfo:(PAEW_DevInfo)info {
+    if (info.ucPINState == PAEW_DEV_INFO_PIN_UNSET) {
+        return unInit;
+    } else if (info.ucPINState != PAEW_DEV_INFO_PIN_INVALID_STATE) {
+        return finishInit;
+    }
+    return unFinishInit;
 }
 
 @end

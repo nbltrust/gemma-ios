@@ -11,7 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol BackupMnemonicWordCoordinatorProtocol {
-    func pushToMnemonicWordContentVC()
+    func pushToMnemonicWordContentVC(_ isWooKong: Bool)
     func dismissVC()
 }
 
@@ -39,21 +39,31 @@ class BackupMnemonicWordCoordinator: NavCoordinator {
 }
 
 extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
-    func pushToMnemonicWordContentVC() {
-        var currencyID: Int64?
-        if let wallet = WalletManager.shared.currentWallet() {
-            let currencys = try? WalletCacheService.shared.fetchAllCurrencysBy(wallet)
-            if let currencys = currencys as? [Currency] {
-                currencyID = currencys[0].id
-            }
-        }
-        appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: currencyID, type: ConfirmType.backupMnemonic.rawValue, producers: []) {[weak self] (mnemonic) in
-            guard let `self` = self else { return }
+    func pushToMnemonicWordContentVC(_ isWooKong: Bool) {
+        if isWooKong {
             if let vc = R.storyboard.mnemonic.mnemonicContentViewController() {
                 let coordinator = MnemonicContentCoordinator(rootVC: self.rootVC)
                 vc.coordinator = coordinator
-                vc.mnemonic = mnemonic
+                vc.isWookong = true
                 self.rootVC.pushViewController(vc, animated: true)
+            }
+        } else {
+            var currencyID: Int64?
+            if let wallet = WalletManager.shared.currentWallet() {
+                let currencys = try? WalletCacheService.shared.fetchAllCurrencysBy(wallet)
+                if let currencys = currencys as? [Currency] {
+                    currencyID = currencys[0].id
+                }
+            }
+            appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: currencyID, type: ConfirmType.backupMnemonic.rawValue, producers: []) {[weak self] (mnemonic) in
+
+                guard let `self` = self else { return }
+                if let vc = R.storyboard.mnemonic.mnemonicContentViewController() {
+                    let coordinator = MnemonicContentCoordinator(rootVC: self.rootVC)
+                    vc.coordinator = coordinator
+                    vc.mnemonic = mnemonic
+                    self.rootVC.pushViewController(vc, animated: true)
+                }
             }
         }
     }

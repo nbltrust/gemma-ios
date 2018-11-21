@@ -52,6 +52,12 @@ class Button: UIView {
         }
     }
 
+    var btnBorderColor: UIColor = UIColor.baseColor {
+        didSet {
+            updateUI()
+        }
+    }
+
     func setupUI() {
         switch style {
         case ButtonStyle.border.rawValue:
@@ -73,9 +79,9 @@ class Button: UIView {
 
     fileprivate func borderButton() {
         button.backgroundColor = UIColor.whiteColor
-        button.layer.borderColor = UIColor.baseColor.cgColor
+        button.layer.borderColor = btnBorderColor.cgColor
         button.layer.borderWidth = 1.0
-        button.setTitleColor(UIColor.baseColor, for: .normal)
+        button.setTitleColor(btnBorderColor, for: .normal)
         button.isUserInteractionEnabled = true
     }
 

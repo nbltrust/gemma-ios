@@ -10,7 +10,7 @@
   }
 
   .animate-in {
-    stroke: #426BD4;
+    stroke: #333;
     -webkit-animation: in 1.8s ease-in-out;
     animation: in 1.8s ease-in-out;
     -webkit-animation-fill-mode: forwards;
@@ -18,7 +18,7 @@
   }
 
   .animate-out {
-    stroke: #426BD4;
+    stroke: #333;
     -webkit-animation: out 1.8s ease-in-out;
     animation: out 1.8s ease-in-out;
     -webkit-animation-fill-mode: forwards;
@@ -77,9 +77,9 @@
 <body>
 
   <div>
-    <svg width="160px" height="227px" viewBox="0 0 240 340" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg width="100vw" height="100vh" viewBox="0 0 240 340" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <g>
-        <g id="part1" stroke-width="1" fill="none" fill-rule="nonzero" stroke="#9EA3BD">
+        <g id="part1" stroke-width="1" fill="none" fill-rule="nonzero" stroke="#999">
           <g transform="translate(58.000000, 77.000000)">
             <path d="M68.4918183,72.0931412 C68.4743789,64.4170184 68.271364,58.9710416 67.8827737,55.7552108 C67.4941834,52.53938 66.6950721,49.9879283 65.4854397,48.1008556 C64.0863056,45.3815002 61.7992594,44.3983223 58.6243012,45.1513219 C55.4493429,45.9043215 53.9608376,47.872769 54.1587853,51.0566643 C56.5522501,61.8147929 56.877648,71.5019351 55.1349789,80.118091 C53.3923098,88.7342468 48.9651647,97.0404524 41.8535435,105.036708" stroke-linecap="round" stroke-linejoin="round"></path>
             <path d="M7.88461173,121.581959 C4.54620064,131.698048 6.79790722,139.967664 14.6397315,146.390806 C22.4815557,152.813949 32.5760043,152.813949 44.9230771,146.390806 C51.9457064,142.65248 58.7739221,137.80122 65.407724,131.837026 C72.041526,125.872833 77.3023474,119.838253 81.1901883,113.733286" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -433,7 +433,7 @@
         group.classList.add('animate-in');
 
         if (index === 8) {
-            setTimeout(function() {part2.style.stroke = '#9EA3BD';}, 1000);
+            setTimeout(function() {part2.style.stroke = '#999';}, 1000);
         } else if (index > 16) {
             index = 16;
         } else if (index === 9) {

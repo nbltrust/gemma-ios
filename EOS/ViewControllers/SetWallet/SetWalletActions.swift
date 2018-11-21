@@ -16,6 +16,7 @@ struct SetWalletState: StateType {
     var page: Int = 1
     var errorMessage: String?
     var property: SetWalletPropertyState
+    var callback: SetWalletCallbackState
 }
 
 struct ImportWalletModel {
@@ -26,8 +27,14 @@ struct ImportWalletModel {
     var password = ""
     var hint = ""
     var mnemonic = ""
-    
-    public init(walletType: WalletType, name: String, priKey: String, type: CurrencyType, password: String, hint: String, mnemonic: String) {
+
+    public init(walletType: WalletType,
+                name: String,
+                priKey: String,
+                type: CurrencyType,
+                password: String,
+                hint: String,
+                mnemonic: String) {
         self.walletType = walletType
         self.name = name
         self.type = type
@@ -38,6 +45,10 @@ struct ImportWalletModel {
     }
 }
 
+struct SetWalletCallbackState {
+    var finishBLTWalletCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
+}
+
 struct SetWalletPropertyState {
     var setWalletNameValid: BehaviorRelay<Bool> = BehaviorRelay(value: true)
 
@@ -46,6 +57,8 @@ struct SetWalletPropertyState {
     var setWalletComfirmPasswordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     var setWalletIsAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+
+    var setWalletOriginalPasswordValid: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 }
 
 struct SetWalletNameAction: Action {
@@ -62,6 +75,10 @@ struct SetWalletComfirmPasswordAction: Action {
 
 struct SetWalletAgreeAction: Action {
     var isAgree: Bool = false
+}
+
+struct SetWalletOriginalPasswordAction: Action {
+    var isValid: Bool = false
 }
 
 // MARK: - Action Creator

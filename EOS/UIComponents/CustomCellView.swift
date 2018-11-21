@@ -35,11 +35,13 @@ class CustomCellView: BaseView {
         }
     }
 
+    var leftIconSpacing: CGFloat = 5
+
     @IBInspectable var iconImage: UIImage? {
         didSet {
             iconView.image = iconImage
             if let image = iconImage {
-                iconWidth.constant = image.size.width + 5
+                iconWidth.constant = image.size.width + leftIconSpacing
             } else {
                 iconWidth.constant = 0
             }

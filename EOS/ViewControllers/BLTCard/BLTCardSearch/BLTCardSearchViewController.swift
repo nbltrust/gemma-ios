@@ -24,8 +24,8 @@ class BLTCardSearchViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupData()
         setupUI()
+        setupData()
         setupEvent()
     }
 
@@ -38,18 +38,18 @@ class BLTCardSearchViewController: BaseViewController {
     }
 
     func setupUI() {
-        configLeftNavButton(R.image.icTransferClose())
+        configLeftNavButton(R.image.icMaskClose())
 
         let nibString = R.nib.bltDeviceCell.identifier
         deviceTable.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
-
-        indicatorView = UIActivityIndicatorView(style: .gray)
-        indicatorView?.hidesWhenStopped = false
-        configRightCustomView(indicatorView!)
     }
 
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.dismissSearchVC()
+    }
+
+    override func rightAction(_ sender: UIButton) {
+        self.searchDevice()
     }
 
     func setupData() {
@@ -61,11 +61,25 @@ class BLTCardSearchViewController: BaseViewController {
         searchDevice()
     }
 
+    func reloadRightItem(_ isStoped: Bool) {
+        if isStoped {
+            configRightNavButton(R.string.localizable.wookong_retry.key)
+            indicatorView?.stopAnimating()
+        } else {
+            if indicatorView == nil {
+                indicatorView = UIActivityIndicatorView(style: .gray)
+                indicatorView?.hidesWhenStopped = true
+            }
+            configRightCustomView(indicatorView!)
+            indicatorView?.startAnimating()
+        }
+    }
+
     func searchDevice() {
-        indicatorView?.startAnimating()
+        reloadRightItem(false)
         BLTWalletIO.shareInstance().searchBLTCard({ [weak self] in
             guard let `self` = self else { return }
-            self.indicatorView?.stopAnimating()
+            self.reloadRightItem(true)
         })
     }
 
@@ -113,12 +127,15 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
             return UITableViewCell()
         }
         if let devices = self.coordinator?.state.devices {
-            cell.setup(modelWithDevice(device: devices[indexPath.row]), indexPath: indexPath)
+            let device = devices[indexPath.row]
+            cell.deviceName = device.name
         }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.contentView.backgroundColor = UIColor.borderColor
         if let devices = self.coordinator?.state.devices {
             let device = devices[indexPath.row]
             self.coordinator?.connectDevice(device, success: { [weak self] in
@@ -136,5 +153,10 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
                 }
             })
         }
+    }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.contentView.backgroundColor = UIColor.whiteColor
     }
 }

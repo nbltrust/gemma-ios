@@ -32,6 +32,12 @@ class SetWalletContentView: UIView {
 
     @IBOutlet weak var hintView: TitleTextfieldView!
 
+    var settingType: WalletSettingType = .leadInWithPriKey {
+        didSet {
+            isChangePassword = (settingType == .updatePas || settingType == .updatePin)
+        }
+    }
+
     var isChangePassword: Bool = false {
         didSet {
             if isChangePassword {

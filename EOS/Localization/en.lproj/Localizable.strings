@@ -61,6 +61,7 @@
 "create_new_wallet" = "Create Wallet";
 "recover_from_cppy" = "Import Wallet";
 "prompt_create_success" = "Success! Wallet created";
+"prompt_create_failed" = "创建钱包失败";
 "created_comfirm_content" = "The private key is the identity of your assets. Please backup it as soon as possible. So you can recover your assets even accidents happened like phone lost, password forgotten, etc.";
 "created_comfirm_cancel" = "Backup later";
 "created_comfirm_sure" = "Export Mnemonic Phrase";
@@ -613,6 +614,8 @@
 "wookong_confirm_pin_btn" = "确认授权";
 "wookong_setfp_timeout" = "指纹设置超时";
 "wookong_retry" = "重试";
+"wookong_password" = "密码";
+"wookong_finger_name" = "名称";
 
 "currency_title" = "币种";
 "wallet_currency" = "钱包币种";

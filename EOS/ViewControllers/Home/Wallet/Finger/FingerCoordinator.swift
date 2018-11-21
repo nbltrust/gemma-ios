@@ -90,9 +90,9 @@ extension FingerCoordinator: FingerStateManagerProtocol {
     func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance()?.getFPList(success, failed: failed)
     }
-    
+
     func changePin() {
-        confirmPin { [weak self] in
+        confirmPin(self.rootVC) { [weak self] in
             guard let `self` = self else { return }
             self.pushToUpdatePinVC()
         }

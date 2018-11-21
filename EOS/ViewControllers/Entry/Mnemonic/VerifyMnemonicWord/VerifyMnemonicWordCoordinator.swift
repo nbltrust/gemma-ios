@@ -25,7 +25,8 @@ protocol VerifyMnemonicWordStateManagerProtocol {
     func checkSeed(_ seed: String, success: @escaping () -> Void, failed: @escaping (String?) -> Void)
 
     func checkFeedSuccessed()
-    func verifyMnemonicWord(_ data: [String: Any], seeds:[String], checkStr: String)
+
+    func verifyMnemonicWord(_ data: [String: Any], seeds: [String], checkStr: String, isWookong: Bool)
 }
 
 class VerifyMnemonicWordCoordinator: NavCoordinator {
@@ -85,33 +86,34 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
 
     func checkFeedSuccessed() {
         self.rootVC.viewControllers.forEach { (vc) in
-            if let entryVC = vc as? EntryViewController {
-                self.popToVC(entryVC)
-                entryVC.coordinator?.state.callback.finishBLTWalletCallback.value?()
+            if let setWalletVC = vc as? SetWalletViewController {
+                self.popToVC(setWalletVC)
+                setWalletVC.coordinator?.state.callback.finishBLTWalletCallback.value?()
             }
         }
     }
-    
-    func verifyMnemonicWord(_ data: [String: Any], seeds:[String], checkStr: String) {
+
+    func verifyMnemonicWord(_ data: [String: Any], seeds: [String], checkStr: String, isWookong: Bool) {
         if let selectValues = data["data"] as? [String]  {
             if selectValues.count == seeds.count {
                 let isValid = validSequence(seeds, compairDatas: selectValues)
                 if isValid == true {
-
                     showSuccessTop(R.string.localizable.wookong_mnemonic_ver_successed.key.localized())
-                    if let wallet = WalletManager.shared.currentWallet() {
-                        WalletManager.shared.backupSuccess(wallet)
-                        if wallet.type == .HD {
-                            self.popRootVC()
-                        } else if wallet.type == .bluetooth {
-                            checkSeed(checkStr, success: { [weak self] in
-                                guard let `self` = self else { return }
-                                self.checkFeedSuccessed()
-                                }, failed: { (reason) in
-                                    if let failedReason = reason {
-                                        showFailTop(failedReason)
-                                    }
-                            })
+                    if isWookong {
+                        checkSeed(checkStr, success: { [weak self] in
+                            guard let `self` = self else { return }
+                            self.checkFeedSuccessed()
+                            }, failed: { (reason) in
+                                if let failedReason = reason {
+                                    showFailTop(failedReason)
+                                }
+                        })
+                    } else {
+                        if let wallet = WalletManager.shared.currentWallet() {
+                            WalletManager.shared.backupSuccess(wallet)
+                            if wallet.type == .HD {
+                                self.popRootVC()
+                            }
                         }
                     }
                 } else {

@@ -10,31 +10,15 @@ import UIKit
 
 class BLTDeviceCell: BaseTableViewCell {
 
-    @IBOutlet weak var cellView: LineView!
+    @IBOutlet weak var nameLabel: UILabel!
+
+    var deviceName: String? {
+        didSet {
+            nameLabel.text = deviceName
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        if selected == true {
-            cellView.bgView.backgroundColor = UIColor.whiteColor
-        } else {
-            cellView.bgView.backgroundColor = UIColor.whiteColor
-        }
-    }
-
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        super.setHighlighted(highlighted, animated: animated)
-        if highlighted == true {
-            cellView.bgView.backgroundColor = UIColor.whiteColor
-        } else {
-            cellView.bgView.backgroundColor = UIColor.whiteColor
-        }
-    }
-
-    override func setup(_ data: Any?, indexPath: IndexPath) {
-        cellView.data = data
     }
 }

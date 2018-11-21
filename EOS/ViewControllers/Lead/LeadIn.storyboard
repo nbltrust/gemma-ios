@@ -164,7 +164,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xSC-vH-vnI">
-                                                <rect key="frame" x="32" y="369" width="311" height="183"/>
+                                                <rect key="frame" x="32" y="369" width="311" height="111"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBA-Or-EfL">
                                                         <rect key="frame" x="0.0" y="0.0" width="311" height="39"/>
@@ -237,36 +237,10 @@
                                                             <constraint firstAttribute="bottom" secondItem="Guu-3m-Nqh" secondAttribute="bottom" id="lVT-j5-h0L"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cT-je-r3o">
-                                                        <rect key="frame" x="0.0" y="111" width="311" height="72"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0sk-SE-RbA" customClass="Button" customModule="EOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="28" width="311" height="44"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="44" id="zIK-kQ-vs6"/>
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
-                                                                        <integer key="value" value="2"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_inport_mnemonic"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="0sk-SE-RbA" secondAttribute="trailing" id="1LW-52-kxN"/>
-                                                            <constraint firstItem="0sk-SE-RbA" firstAttribute="leading" secondItem="8cT-je-r3o" secondAttribute="leading" id="2s2-Bw-y5T"/>
-                                                            <constraint firstAttribute="bottom" secondItem="0sk-SE-RbA" secondAttribute="bottom" id="PoK-TJ-iCT"/>
-                                                            <constraint firstItem="0sk-SE-RbA" firstAttribute="top" secondItem="8cT-je-r3o" secondAttribute="top" constant="28" id="oHT-9w-2Ao"/>
-                                                        </constraints>
-                                                    </view>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="8cT-je-r3o" firstAttribute="top" secondItem="pRW-8f-pDf" secondAttribute="bottom" id="2qb-4e-PsS"/>
-                                                    <constraint firstAttribute="bottom" secondItem="8cT-je-r3o" secondAttribute="bottom" id="hdE-7a-cJ9"/>
-                                                    <constraint firstAttribute="trailing" secondItem="8cT-je-r3o" secondAttribute="trailing" id="kCU-Zu-OQL"/>
+                                                    <constraint firstAttribute="bottom" secondItem="pRW-8f-pDf" secondAttribute="bottom" id="9SL-S7-Oo5"/>
                                                     <constraint firstItem="pRW-8f-pDf" firstAttribute="leading" secondItem="xSC-vH-vnI" secondAttribute="leading" id="m9o-HR-QXI"/>
-                                                    <constraint firstItem="8cT-je-r3o" firstAttribute="leading" secondItem="xSC-vH-vnI" secondAttribute="leading" id="nE8-Uy-DXk"/>
                                                     <constraint firstAttribute="trailing" secondItem="pRW-8f-pDf" secondAttribute="trailing" id="u2s-Q4-Nnz"/>
                                                     <constraint firstItem="pRW-8f-pDf" firstAttribute="top" secondItem="eBA-Or-EfL" secondAttribute="bottom" id="wqK-Xl-wPc"/>
                                                 </constraints>
@@ -305,7 +279,6 @@
                         <outlet property="agreeView" destination="eBA-Or-EfL" id="ADu-qz-fgc"/>
                         <outlet property="fieldView" destination="CMA-M2-RRX" id="xQW-sd-kCd"/>
                         <outlet property="finished" destination="Guu-3m-Nqh" id="mLz-Yy-xpg"/>
-                        <outlet property="mnemonic" destination="0sk-SE-RbA" id="DL6-sb-UyJ"/>
                         <outlet property="servers" destination="JPa-2M-PQb" id="5Qx-NP-J0k"/>
                     </connections>
                 </viewController>

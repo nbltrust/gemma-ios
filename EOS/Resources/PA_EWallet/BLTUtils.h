@@ -24,12 +24,23 @@ typedef NS_ENUM(NSInteger, FingerPrinterState)
     badImage
 };
 
+typedef NS_ENUM(NSInteger, BLTCardPINState) {
+    unInit = 0,
+    unFinishInit,
+    finishInit,
+    locked,
+    login,
+    logout
+};
+
 //CallBack
 typedef void(^ DidSearchDevice)(BLTDevice *device);
 
 typedef void(^ BatteryInfoUpdated)(BLTBatteryInfo *info);
 
 typedef void(^ EnrollFingerComplication)(FingerPrinterState state);
+
+typedef void(^ CheckPinStateComplication)(BLTCardPINState state);
 
 typedef void(^ SuccessedComplication)(void);
 
@@ -62,6 +73,8 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 
 + (NSData *)hexStringToBytes:(NSString *)hexString;
 
-+ (FingerPrinterState)stateWithValue:(int)value;
++ (FingerPrinterState)fingerEntrolStateWithValue:(int)value;
+
++ (BLTCardPINState)pinStateWithDevInfo:(PAEW_DevInfo)info;
 
 @end

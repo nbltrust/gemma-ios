@@ -13,7 +13,8 @@ func gSetWalletReducer(action: Action, state: SetWalletState?) -> SetWalletState
     return SetWalletState(isLoading: loadingReducer(state?.isLoading, action: action),
                           page: pageReducer(state?.page, action: action),
                           errorMessage: errorMessageReducer(state?.errorMessage, action: action),
-                          property: gSetWalletPropertyReducer(state?.property, action: action))
+                          property: gSetWalletPropertyReducer(state?.property, action: action),
+                          callback: state?.callback ?? SetWalletCallbackState())
 }
 
 func gSetWalletPropertyReducer(_ state: SetWalletPropertyState?, action: Action) -> SetWalletPropertyState {

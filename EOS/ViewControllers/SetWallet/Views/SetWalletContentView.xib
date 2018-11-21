@@ -25,41 +25,44 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Dt2-1e-lPE">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="332"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5K7-TJ-LZq" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="86" id="qrd-p5-Ja8"/>
+                                <constraint firstAttribute="height" constant="86" id="nG7-m8-t9c"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLb-Yw-2LW" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="85" width="375" height="77"/>
+                            <rect key="frame" x="0.0" y="94" width="375" height="86"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="86" id="lox-hU-hHw"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pds-HX-sgM" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="170" width="375" height="77"/>
+                            <rect key="frame" x="0.0" y="188" width="375" height="86"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="86" id="MSd-MF-YXW"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZu-SZ-1gw" customClass="TitleTextfieldView" customModule="EOS" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="255" width="375" height="77"/>
+                            <rect key="frame" x="0.0" y="282" width="375" height="86"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="86" id="GTS-ci-yZu"/>
+                            </constraints>
                         </view>
                     </subviews>
-                    <constraints>
-                        <constraint firstItem="OZu-SZ-1gw" firstAttribute="height" secondItem="5K7-TJ-LZq" secondAttribute="height" id="YRf-zQ-OWU"/>
-                        <constraint firstItem="qLb-Yw-2LW" firstAttribute="height" secondItem="5K7-TJ-LZq" secondAttribute="height" id="hQB-mg-wGh"/>
-                        <constraint firstItem="Pds-HX-sgM" firstAttribute="height" secondItem="5K7-TJ-LZq" secondAttribute="height" id="z7e-8e-MIF"/>
-                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Dt2-1e-lPE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Y7t-TS-W2b"/>
-                <constraint firstItem="Dt2-1e-lPE" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Yyi-qJ-ebW"/>
-                <constraint firstItem="Dt2-1e-lPE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="moi-L0-tfS"/>
-                <constraint firstItem="Dt2-1e-lPE" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="oEy-eM-CbO"/>
+                <constraint firstItem="Dt2-1e-lPE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="8lV-SI-cwN"/>
+                <constraint firstItem="Dt2-1e-lPE" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="soo-wg-VdD"/>
+                <constraint firstItem="Dt2-1e-lPE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yb5-Aa-Ndl"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

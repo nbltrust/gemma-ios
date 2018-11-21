@@ -10,6 +10,20 @@ import UIKit
 
 class WookongBioInfoCell: BaseTableViewCell {
 
+    @IBOutlet weak var infoView: WookongBioInfoView!
+    
+    var title: String? {
+        didSet {
+            infoView.titleLabel.text = title
+        }
+    }
+
+    var subTitle: String? {
+        didSet {
+            infoView.subTitleLabel.text = subTitle
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
