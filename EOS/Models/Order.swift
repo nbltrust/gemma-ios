@@ -11,10 +11,14 @@ import HandyJSON
 
 struct Order: HandyJSON {
     var id: String!
+    var cpu: String!
+    var net: String!
+    var ram: String!
+    var rmbPrice: String!
 
     mutating func mapping(mapper: HelpingMapper) {
-        mapper <<<
-            self.id <-- "_id"
+        mapper <<< self.id <-- "_id"
+        mapper <<< self.rmbPrice <-- "rmb_price"
     }
 }
 
