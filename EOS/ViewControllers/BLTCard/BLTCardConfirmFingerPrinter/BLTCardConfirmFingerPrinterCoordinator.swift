@@ -44,7 +44,7 @@ class BLTCardConfirmFingerPrinterCoordinator: BLTCardRootCoordinator {
 
 extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterCoordinatorProtocol {
     func finishTransfer() {
-        if let transferCoor = appCoodinator.transferCoordinator, let transferVC = transferCoor.rootVC.topViewController as? TransferViewController {
+        if let newHomeCoor = appCoodinator.newHomeCoordinator, let transferVC = newHomeCoor.rootVC.topViewController as? TransferViewController {
             self.rootVC.dismiss(animated: true) {
                 transferVC.resetData()
             }
@@ -67,6 +67,8 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
         model.remark = remark
         model.type = .bluetooth
         model.confirmType = fpType
+        model.contract = EOSIOContract.TokenCode
+        model.symbol = "EOS"
         transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
             callback(bool, showString)
         }

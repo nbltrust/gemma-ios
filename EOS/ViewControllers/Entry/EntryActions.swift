@@ -26,14 +26,12 @@ struct EntryPropertyState {
     var comfirmPasswordValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
     var inviteCodeValid : BehaviorRelay<Bool> = BehaviorRelay(value: false)
     var isAgree: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    var checkSeedSuccessed: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     var model: WalletModel? = nil
 }
 
 struct EntryCallbackState {
     var endCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
     
-    var finishBLTWalletCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
     var finishNormalWalletCallback: BehaviorRelay<ObjectCallback?> = BehaviorRelay(value: nil)
     var finishEOSCurrencyCallback: BehaviorRelay<ObjectCallback?> = BehaviorRelay(value: nil)
 }
@@ -56,10 +54,6 @@ struct ComfirmPasswordAction: Action {
 
 struct AgreeAction: Action {
     var isAgree: Bool = false
-}
-
-struct SetCheckSeedSuccessedAction: Action {
-    var isCheck: Bool = false
 }
 
 struct WalletModelAction: Action {

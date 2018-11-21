@@ -35,9 +35,9 @@ const uint32_t puiDerivePathCYB[] = {0, 0, 1, 0x00000080, 0x00000000, 0x00000000
  */
 int BatteryCallback(const int nBatterySource, const int nBatteryState)
 {
-    _instance.batteryInfo.state = nBatterySource == 0 ? charge : common;
+    _instance.batteryInfo.state = nBatterySource == 0 ? charge : battery;
     if (nBatterySource == 1) {
-        _instance.batteryInfo.electricQuantity = (nBatteryState - 125) / (140 - 125);
+        _instance.batteryInfo.electricQuantity = (nBatteryState - 125) / 15.00;
     }
     if (_instance.batteryInfoUpdated != nil) {
         _instance.batteryInfoUpdated(_instance.batteryInfo);
@@ -61,6 +61,9 @@ int DisconnectedCallback(const int status, const char *description)
 {
     savedDevH = nil;
     _instance.selectDevice = nil;
+    if (_instance.batteryInfoUpdated != nil) {
+        _instance.batteryInfoUpdated(nil);
+    }
     return PAEW_RET_SUCCESS;
 }
 

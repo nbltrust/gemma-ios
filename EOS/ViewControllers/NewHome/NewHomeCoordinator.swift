@@ -72,7 +72,11 @@ extension NewHomeCoordinator: NewHomeCoordinatorProtocol {
 
     func pushToEntryVCWithCurrencyID(currencyId: Int64?) {
         if let entryVC = R.storyboard.entry.entryViewController() {
-            entryVC.createType = .EOS
+            var isWookong = false
+            if let wallet = WalletManager.shared.currentWallet(),wallet.type == .bluetooth {
+                isWookong = true
+            }
+            entryVC.createType = isWookong ? .wookong : .EOS
             entryVC.currencyID = currencyId
             let coordinator = EntryCoordinator(rootVC: self.rootVC)
             entryVC.coordinator = coordinator

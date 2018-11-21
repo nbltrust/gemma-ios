@@ -53,12 +53,10 @@ protocol EntryStateManagerProtocol {
 
     func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication)
 
-    func checkSeedSuccessed()
-    
     func verifyAccount(_ name: String, completion: @escaping (Bool) -> Void)
-    
+
     func createBLTWallet(_ name: String, currencyID: Int64?, completion:@escaping (Bool)-> Void)
-    
+
     func createTempWallet(_ pwd: String, prompt: String, type: WalletType)
 
     func createNewWallet(walletName: String, pwd: String, checkStr: String, deviceName: String?, prompt: String?)
@@ -217,6 +215,12 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         do {
             if let id = currencyID {
                 let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
+                if type == .bluetooth {
+                    if var currency = currency, let publicKey = validation?.publicKey {
+                        currency.pubKey = publicKey
+                        try WalletCacheService.shared.updateCurrency(currency)
+                    }
+                }
                 if let pubkey = currency?.pubKey {
                     NBLNetwork.request(target: .createAccount(type: type,
                                                               account: accountName,
@@ -259,10 +263,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.rootVC.pushViewController(mnemonicWordVC!, animated: true)
     }
 
-    func checkSeedSuccessed() {
-        self.store.dispatch(SetCheckSeedSuccessedAction(isCheck: true))
-    }
-
     func createBLTWallet(_ name: String, currencyID: Int64?, completion:@escaping (Bool)-> Void) {
         if let device = BLTWalletIO.shareInstance()?.selectDevice {
             BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, snSig, pub, pubSig, publicKey) in
@@ -289,18 +289,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             completion(false)
         }
     }
-    
-//    func createWalletModel() -> WalletModel {
-//        do {
-//            let wallets = try WalletCacheService.shared.fetchAllWallet()
-//            let idNum: Int64 = Int64(wallets!.count) + 1
-//            let date = Date.init()
-//            let model = Wallet(id: idNum, name: "EOS-WALLET-\(idNum)", type: .HD, cipher: nil, deviceName: nil, date: date)
-//            return model
-//        } catch {
-//            return nil
-//        }
-//    }
+
     func createTempWallet(_ pwd: String, prompt: String, type: WalletType) {
         let model = WalletModel(pwd: pwd, prompt:prompt ,type: type)
         self.store.dispatch(WalletModelAction(model: model))
