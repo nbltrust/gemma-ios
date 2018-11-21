@@ -16,9 +16,10 @@ import seed39_ios_golang
 import Seed39
 
 enum CreateWalletType: Int {
-    case normal = 0
+    case noWalletName = 0
     case wookong
     case EOS
+    case beWalletName
 }
 
 class EntryViewController: BaseViewController {
@@ -33,7 +34,7 @@ class EntryViewController: BaseViewController {
 
     @IBOutlet weak var agreeView: UIView!
 
-    var createType: CreateWalletType = .normal
+    var createType: CreateWalletType = .noWalletName
 
     var hint = ""
     var currencyID: Int64?
@@ -65,16 +66,21 @@ class EntryViewController: BaseViewController {
             registerView.passwordComfirmView.isHidden = true
             registerView.passwordPromptView.isHidden = true
             registerView.nameView.gapView.isHidden = true
-        case .normal:
+            registerView.walletNameView.isHidden = true
+        case .noWalletName:
             registerView.nameView.isHidden = true
+            registerView.walletNameView.isHidden = true
         case .EOS:
             registerView.passwordView.isHidden = true
             registerView.passwordComfirmView.isHidden = true
             registerView.passwordPromptView.isHidden = true
             agreeView.isHidden = true
+            registerView.walletNameView.isHidden = true
             self.title = R.string.localizable.create_account.key.localized()
-        default:
-            return
+        case .beWalletName:
+            registerView.nameView.isHidden = true
+            let walletName = WalletManager.shared.normalWalletName()
+            registerView.walletNameView.textField.text = walletName
         }
     }
 
@@ -92,9 +98,10 @@ class EntryViewController: BaseViewController {
                 } else {
                     self.coordinator?.copyMnemonicWord()
                 }
-            case .normal:
+            case .noWalletName:
                 if let mnemonic = Seed39NewMnemonic(), let pwd = self.registerView.passwordView.textField.text, let prompt = self.registerView.passwordPromptView.textField.text {
-                    self.coordinator?.createNewWallet(pwd: pwd, checkStr: mnemonic, deviceName: nil, prompt: prompt)
+                    let walletName = WalletManager.shared.normalWalletName()
+                    self.coordinator?.createNewWallet(walletName: walletName, pwd: pwd, checkStr: mnemonic, deviceName: nil, prompt: prompt)
                 }
                 self.coordinator?.pushBackupMnemonicVC()
             case .EOS:
@@ -108,6 +115,13 @@ class EntryViewController: BaseViewController {
                         }
                     })
                 }
+            case .beWalletName:
+                if let mnemonic = Seed39NewMnemonic(), let pwd = self.registerView.passwordView.textField.text, let prompt = self.registerView.passwordPromptView.textField.text {
+                    if let walletName = self.registerView.walletNameView.textField.text {
+                        self.coordinator?.createNewWallet(walletName: walletName, pwd: pwd, checkStr: mnemonic, deviceName: nil, prompt: prompt)
+                    }
+                }
+                self.coordinator?.pushBackupMnemonicVC()
             }
         }).disposed(by: disposeBag)
 
@@ -137,15 +151,18 @@ class EntryViewController: BaseViewController {
         Observable.combineLatest(self.coordinator!.state.property.nameValid.asObservable(),
                                  self.coordinator!.state.property.passwordValid.asObservable(),
                                  self.coordinator!.state.property.comfirmPasswordValid.asObservable(),
-                                 self.coordinator!.state.property.isAgree.asObservable()).map { [weak self] (arg0) -> Bool in
+                                 self.coordinator!.state.property.isAgree.asObservable(),
+                                 self.coordinator!.state.property.walletNameValid.asObservable()).map { [weak self] (arg0) -> Bool in
                                     guard let `self` = self else { return false }
                                     switch self.createType {
                                     case .wookong:
                                         return arg0.3
-                                    case .normal:
-                                            return arg0.1 && arg0.2 && arg0.3
+                                    case .noWalletName:
+                                        return arg0.1 && arg0.2 && arg0.3
                                     case .EOS:
                                         return arg0.0
+                                    case .beWalletName:
+                                        return arg0.1 && arg0.2 && arg0.3 && arg0.4
                                     }
         }.bind(to: creatButton.isEnabel).disposed(by: disposeBag)
     }
@@ -159,7 +176,14 @@ class EntryViewController: BaseViewController {
 }
 
 extension EntryViewController {
-    @objc func walletName(_ data: [String: Any]) {
+    @objc func accountName(_ data: [String: Any]) {
+        guard let content = data["content"] as? String else {
+            return
+        }
+        self.coordinator?.validAccountName(content)
+    }
+
+    @objc func walletNameEndEdit(_ data: [String: Any]) {
         guard let content = data["content"] as? String else {
             return
         }
@@ -178,7 +202,6 @@ extension EntryViewController {
         guard let content = data["content"] as? String else {
             return
         }
-
         self.coordinator?.validComfirmPassword(content, comfirmPassword: self.registerView.passwordView.textField.text!)
     }
 }

@@ -21,6 +21,12 @@ extension CardView {
             setProgressUI(progress: netProgress)
             setProgressUI(progress: ramProgress)
             self.tokenView.isHidden = true
+            self.shadeView.isHidden = true
+            if model.tokenArray.count == 0 {
+                self.tokenLabel.isHidden = true
+            } else {
+                self.tokenLabel.isHidden = false
+            }
         } else {
             if model.tokenArray.count == 0 {
                 self.tokenLabel.isHidden = true
@@ -28,6 +34,11 @@ extension CardView {
             } else {
                 self.tokenLabel.isHidden = false
                 self.tokenView.isHidden = false
+            }
+            if model.tokenArray.count < 6 {
+                shadeView.isHidden = true
+            } else {
+                shadeLabel.text = "+\(tokenArray.count)"
             }
         }
         balanceView.isHidden = model.bottomIsHidden
@@ -37,8 +48,7 @@ extension CardView {
         self.currencyImgView.image = model.currencyImg
         self.currencyLabel.text = model.currency
         self.accountLabel.text = model.account
-        self.balanceLabel.text = model.allAssets
-        self.unitLabel.text = model.unit
+        self.balanceLabel.attributedText = setTotalEOSSufAttributeString(model.allAssets)
         self.tokenArray = model.tokenArray
         
         setAttributeString(model)
@@ -73,6 +83,16 @@ extension CardView {
         attributedString.addAttribute(.font, value: UIFont(name: "PingFangSC-Regular", size: 14.0)!, range: NSRange(location: str.count-3, length: 3))
         attributedString.addAttribute(.foregroundColor, value: UIColor.introductionColor, range: NSRange(location: str.count-3, length: 3))
 
+        return attributedString
+    }
+    func setTotalEOSSufAttributeString(_ str: String) -> NSAttributedString {
+        let str = str + " EOS"
+        let attributedString = NSMutableAttributedString(string: str, attributes: [
+            .font: UIFont(name: "PingFangSC-Semibold", size: 24.0)!,
+            .foregroundColor: UIColor.baseColor,
+            .kern: 0.0
+            ])
+        attributedString.addAttribute(.font, value: UIFont(name: "PingFangSC-Regular", size: 14.0)!, range: NSRange(location: str.count-3, length: 3))
         return attributedString
     }
 }

@@ -41,7 +41,6 @@
 "account_comfirm_password" = "Confirm password";
 "account_password_prompt" = "Password hint";
 "account_invitationcode" = "Invite code";
-
 "original_password" = "原密码";
 "original_password_ph" = "请输入原密码";
 "name_ph" = "12 characters long: a-z and 1-5";
@@ -137,7 +136,7 @@
 "backup_introduce_two" = "Under secured condition\nAirplane mode preferred";
 "backup_understand" = "Got it. Show me the private key";
 "export_private_sure" = "Export Private Key";
-"backup_introduce_three" = "Screenshots may be leak via photo album.\nYou can backup under airplane mode.";
+"backup_introduce_three" = "Screenshots may be leak via photo album.You can backup under airplane mode.";
 "switch_account" = "Switch Account";
 "confirm_pwd_title" = "Enter account password to authorize operation";
 "update_pwd_title" = "Enter original password";
@@ -265,6 +264,7 @@
 "pwdview_placeholder" = "请输入密码";
 "mnemonic_pwdview_placeholder" = "助记词已用钱包密码加密，请输入密码";
 "undelegate_not_all0" = "总赎回数不能为0";
+"wallet_name_ph" = "请输入钱包名称";
 
 //zsy end
 

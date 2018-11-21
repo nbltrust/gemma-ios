@@ -116,7 +116,7 @@ extension OverviewView: UITableViewDelegate,UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headView = WalletListHeaderView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 36))
-
+        headView.titleLabel.textColor = UIColor.baseColor
         if section == 0 {
             headView.titleText = R.string.localizable.asset.key.localized()
         }

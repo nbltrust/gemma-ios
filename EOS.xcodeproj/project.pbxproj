@@ -102,8 +102,6 @@
 		222707D4219D27A50005A96F /* WalletCurrencyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222707D0219D27A50005A96F /* WalletCurrencyListViewController.swift */; };
 		222707D5219D27A50005A96F /* WalletCurrencyListReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222707D1219D27A50005A96F /* WalletCurrencyListReducers.swift */; };
 		222A0AE92189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A0AE82189BD5800C5AB6E /* ButtonBarPagerTabStripViewController+Extensions.swift */; };
-		2237CAB321A3F02C00DDDB26 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
-		2237CAB421A3F02C00DDDB26 /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		223C58C92148BD9200C69F3F /* NetworkSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58C82148BD9200C69F3F /* NetworkSettingManager.swift */; };
 		223C58DC214A4A5000C69F3F /* BLTCardEntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58D8214A4A5000C69F3F /* BLTCardEntryCoordinator.swift */; };
 		223C58DD214A4A5000C69F3F /* BLTCardEntryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C58D9214A4A5000C69F3F /* BLTCardEntryActions.swift */; };
@@ -349,6 +347,8 @@
 		3B4C90FE20F4D686004F4C52 /* PaymentsDetailReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C90FA20F4D686004F4C52 /* PaymentsDetailReducers.swift */; };
 		3B4C910020F4D6A4004F4C52 /* PaymentsDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C90FF20F4D6A4004F4C52 /* PaymentsDetail.storyboard */; };
 		3B5DA4772F228D22454E8CB5CA45E4EE /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8935C54739AEE59DA2310B17591480 /* BaseWebViewController.swift */; };
+		3B63E0BF21A4FFF100F55A47 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; };
+		3B63E0C021A4FFF100F55A47 /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7374B317217DD9B100B63982 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B6D7460214761690076F444 /* FriendToActivateCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D7437214761680076F444 /* FriendToActivateCoordinator.swift */; };
 		3B6D7461214761690076F444 /* FriendToActivateActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D7438214761680076F444 /* FriendToActivateActions.swift */; };
 		3B6D7462214761690076F444 /* FriendToActivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D7439214761680076F444 /* FriendToActivateViewController.swift */; };
@@ -733,14 +733,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2208A07C219AEC380096128D /* PBXContainerItemProxy */ = {
+		2237CAB521A3F02C00DDDB26 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 56E5D7C91B4D3FED00430942;
 			remoteInfo = GRDBiOS;
 		};
-		2237CAB521A3F02C00DDDB26 /* PBXContainerItemProxy */ = {
+		3B63E0C121A4FFF100F55A47 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7374B300217DD9B000B63982 /* GRDB.xcodeproj */;
 			proxyType = 1;
@@ -813,13 +813,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2237CAB721A3F02D00DDDB26 /* Embed Frameworks */ = {
+		3B63E0C321A4FFF200F55A47 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2237CAB421A3F02C00DDDB26 /* GRDB.framework in Embed Frameworks */,
+				3B63E0C021A4FFF100F55A47 /* GRDB.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1589,7 +1589,7 @@
 				73539CFD2179B4AF008395AC /* SwiftyBeaver.framework in Frameworks */,
 				73539D4E2179BC39008395AC /* IQKeyboardManagerSwift.framework in Frameworks */,
 				73539D522179BC53008395AC /* UICKeyChainStore.framework in Frameworks */,
-				2237CAB321A3F02C00DDDB26 /* GRDB.framework in Frameworks */,
+				3B63E0BF21A4FFF100F55A47 /* GRDB.framework in Frameworks */,
 				73539D4F2179BC39008395AC /* Crashlytics.framework in Frameworks */,
 				73539D502179BC39008395AC /* Fabric.framework in Frameworks */,
 				73539CFE2179B4AF008395AC /* Localize_Swift.framework in Frameworks */,
@@ -3632,13 +3632,13 @@
 				732F370F214FB64100CB3A58 /* appstore-bug */,
 				73539D532179BF9D008395AC /* Integrate Reveal Server */,
 				737F7697218043E800198196 /* swiftlint */,
-				2237CAB721A3F02D00DDDB26 /* Embed Frameworks */,
+				3B63E0C321A4FFF200F55A47 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2208A07D219AEC380096128D /* PBXTargetDependency */,
 				2237CAB621A3F02C00DDDB26 /* PBXTargetDependency */,
+				3B63E0C221A4FFF100F55A47 /* PBXTargetDependency */,
 			);
 			name = EOS;
 			productName = EOS;
@@ -4658,15 +4658,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2208A07D219AEC380096128D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GRDBiOS;
-			targetProxy = 2208A07C219AEC380096128D /* PBXContainerItemProxy */;
-		};
 		2237CAB621A3F02C00DDDB26 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GRDBiOS;
 			targetProxy = 2237CAB521A3F02C00DDDB26 /* PBXContainerItemProxy */;
+		};
+		3B63E0C221A4FFF100F55A47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GRDBiOS;
+			targetProxy = 3B63E0C121A4FFF100F55A47 /* PBXContainerItemProxy */;
 		};
 		73EDFEED211AC44E000DF796 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

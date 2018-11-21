@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic_charge.png",
+      "filename" : "icCharge.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ic_charge@2x.png",
+      "filename" : "icCharge@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ic_charge@3x.png",
+      "filename" : "icCharge@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

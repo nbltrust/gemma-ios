@@ -23,6 +23,8 @@ func gEntryPropertyReducer(_ state: EntryPropertyState?, action: Action) -> Entr
     switch action {
     case let action as NameAction:
         state.nameValid.accept(action.isValid)
+    case let action as WalletNameAction:
+        state.walletNameValid.accept(action.isValid)
     case let action as PasswordAction:
         state.passwordValid.accept(action.isValid)
     case let action as ComfirmPasswordAction:
