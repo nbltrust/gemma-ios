@@ -53,6 +53,7 @@ extension WalletCoordinator: WalletCoordinatorProtocol {
 
     func pushToEntryVC() {
         if let entryVC = R.storyboard.entry.entryViewController() {
+            entryVC.createType = .beWalletName
             let coordinator = EntryCoordinator(rootVC: self.rootVC)
             coordinator.state.callback.endCallback.accept {[weak self] in
                 guard let `self` = self else { return }
