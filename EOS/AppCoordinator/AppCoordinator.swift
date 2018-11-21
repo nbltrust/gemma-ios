@@ -189,7 +189,7 @@ class AppCoordinator {
         presenter.keyboardTranslationType = .stickToTop
 
         presentVCNoNav(ScreenShotAlertCoordinator.self, context: context) { (top, target) in
-            top.customPresentViewController(presenter, viewController: target, animated: true)
+            top.customPresentViewController(presenter, viewController: target, animated: false)
         }
     }
 }

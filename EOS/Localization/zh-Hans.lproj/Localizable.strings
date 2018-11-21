@@ -44,7 +44,7 @@
 "original_password" = "原密码";
 "original_password_ph" = "请输入原密码";
 "name_ph" = "由小写字母a-z与数字1-5组成，须为12个字符";
-"password_ph" = "请输入8位或以上字符的密码";
+"password_ph" = "最少8位长度，可混合大小写字母、数字及符号";
 "comfirm_password_ph" = "请再次输入您的密码";
 "password_prompt_ph" = "密码提示";
 "invitationcode_ph" = "输入邀请码";
@@ -61,6 +61,7 @@
 "create_new_wallet" = "创建新钱包";
 "recover_from_cppy" = "从备份恢复已有钱包";
 "prompt_create_success" = "恭喜！创建钱包成功";
+"prompt_create_failed" = "创建钱包失败";
 "created_comfirm_content" = "钱包私钥是资产的唯一认证方式，及时备份私钥，可防止手机丢失、忘记密码等意外无法使用钱包的情况。请将私钥助记词备份并妥善保存，以备将来不时之需。";
 "created_comfirm_cancel" = "稍后备份";
 "created_comfirm_sure" = "导出私钥助记词";
@@ -615,6 +616,8 @@
 "wookong_confirm_pin_btn" = "确认授权";
 "wookong_setfp_timeout" = "指纹设置超时";
 "wookong_retry" = "重试";
+"wookong_password" = "密码";
+"wookong_finger_name" = "名称";
 
 "currency_title" = "币种";
 "wallet_currency" = "钱包币种";

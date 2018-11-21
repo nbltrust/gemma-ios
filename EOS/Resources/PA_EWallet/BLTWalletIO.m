@@ -243,6 +243,29 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
+- (void)checkPinState:(CheckPinStateComplication)complication failed:(FailedComplication)failed {
+    if (!savedDevH) {
+        return;
+    }
+    __block  size_t            i = 0;
+    __block PAEW_DevInfo    devInfo;
+
+    __block uint32_t        nDevInfoType = 0;
+
+    nDevInfoType = PAEW_DEV_INFOTYPE_PIN_STATE | PAEW_DEV_INFOTYPE_LIFECYCLE;
+    dispatch_async(bltQueue, ^{
+        void *ppPAEWContext = savedDevH;
+        int devInfoState = PAEW_GetDevInfo(ppPAEWContext, i, nDevInfoType, &devInfo);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (devInfoState == PAEW_RET_SUCCESS) {
+                complication([BLTUtils pinStateWithDevInfo:devInfo]);
+            } else {
+                failed([BLTUtils errorCodeToString:devInfoState]);
+            }
+        });
+    });
+}
+
 - (void)getDeviceInfo:(GetDeviceInfoComplication)complication {
     if (!savedDevH) {
         return;
@@ -509,7 +532,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
                 iRtn = PAEW_GetFPState(savedDevH, 0);
                 if (lastRtn != iRtn) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        stateComplication([BLTUtils stateWithValue:iRtn]);
+                        stateComplication([BLTUtils fingerEntrolStateWithValue:iRtn]);
                     });
                     lastRtn = iRtn;
                 }

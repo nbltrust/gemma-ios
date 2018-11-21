@@ -11,7 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol MnemonicContentCoordinatorProtocol {
-    func pushToVerifyMnemonicVC()
+    func pushToVerifyMnemonicVC(_ isWooKong: Bool)
     func showAlertMessage()
 }
 
@@ -43,15 +43,17 @@ class MnemonicContentCoordinator: NavCoordinator {
 }
 
 extension MnemonicContentCoordinator: MnemonicContentCoordinatorProtocol {
-    func pushToVerifyMnemonicVC() {
+    func pushToVerifyMnemonicVC(_ isWooKong: Bool) {
         if let vc = R.storyboard.mnemonic.verifyMnemonicWordViewController() {
             let coordinator = VerifyMnemonicWordCoordinator(rootVC: self.rootVC)
             vc.seeds = self.state.seedData.value.0
             vc.checkStr = self.state.seedData.value.1
             vc.coordinator = coordinator
+            vc.isWookong = isWooKong
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
+
     func showAlertMessage() {
         var context = ScreenShotAlertContext()
         context.desc = RichStyle.shared.tagText(R.string.localizable.backup_introduce_three.key.localized(), fontSize: 14, color: UIColor.introductionColor, lineHeight: 22)

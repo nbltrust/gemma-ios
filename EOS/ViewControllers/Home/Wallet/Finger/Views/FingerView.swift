@@ -34,8 +34,8 @@ class FingerView: EOSBaseView {
     }
 
     func setupUI() {
-        let walletNibString = R.nib.homeTableCell.name
-        tableView.register(UINib.init(nibName: walletNibString, bundle: nil), forCellReuseIdentifier: walletNibString)
+        let customNibName = R.nib.customCell.name
+        tableView.register(UINib.init(nibName: customNibName, bundle: nil), forCellReuseIdentifier: customNibName)
         tableView.tableFooterView = UIView.init()
     }
 
@@ -47,51 +47,42 @@ class FingerView: EOSBaseView {
         self.next?.sendEventWith(Event.fingerViewDidClicked.rawValue, userinfo: ["data": self.data ?? "", "self": self])
     }
 
-    func modelWithIndexPath(_ indexPath: IndexPath) -> LineView.LineViewModel {
+    func titleWithIndexPath(_ indexPath: IndexPath) -> String {
         if indexPath.section == 0 {
             if indexPath.row < dataArray.count {
-                return lineModelWithName(dataArray[indexPath.row])
+                return dataArray[indexPath.row]
             } else {
-                return lineModelWithName(R.string.localizable.add_finger.key.localized())
+                return R.string.localizable.add_finger.key.localized()
             }
         } else {
-            return lineModelWithName(R.string.localizable.change_password.key.localized())
+            return R.string.localizable.change_password.key.localized()
         }
-    }
-
-    func lineModelWithName(_ name: String) -> LineView.LineViewModel {
-        return LineView.LineViewModel.init(name: name,
-                                           content: "",
-                                           imageName: R.image.icTabArrow.name,
-                                           nameStyle: LineViewStyleNames.normalName,
-                                           contentStyle: LineViewStyleNames.normalContent,
-                                           isBadge: false,
-                                           contentLineNumber: 1,
-                                           isShowLineView: false)
     }
 }
 
 extension FingerView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-        if section == 0 {
-            let headView = WalletListHeaderView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 52))
-            headView.titleText = R.string.localizable.finger.key.localized()
-            return headView
-        }
-        let headView = WalletListHeaderView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 24))
+        let fingerTitle = R.string.localizable.finger.key.localized()
+        let passwordTitle = R.string.localizable.wookong_password.key.localized()
+        let headView = WalletListHeaderView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 52))
+        headView.titleText = section == 0 ? fingerTitle : passwordTitle
         return headView
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 52
-        }
-        return 24
+        return 52
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return UITableView.automaticDimension
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -107,15 +98,17 @@ extension FingerView: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let nibString = String.init(describing: type(of: HomeTableCell()))
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath) as? HomeTableCell else {
+        let customNibName = R.nib.customCell.name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: customNibName, for: indexPath) as? CustomCell else {
             return UITableViewCell()
         }
-        cell.setup(modelWithIndexPath(indexPath), indexPath: indexPath)
+        cell.title = titleWithIndexPath(indexPath)
+        cell.subTitle = ""
         if indexPath.section == 0 && indexPath.row == dataArray.count {
-            cell.homeCellView.leftImg.image = R.image.if_ic_fingerprint_48_px_3669427()
+            cell.cellView.leftIconSpacing = 15
+            cell.cellView.iconImage = R.image.ic_fingerprint()
         } else {
-            cell.homeCellView.leftImg.image = nil
+            cell.cellView.iconImage = nil
         }
         return cell
 

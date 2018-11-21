@@ -67,6 +67,7 @@ class BLTCardConnectViewController: BaseViewController {
 
     func connectDevice() {
         indicatorView?.startAnimating()
+        resetUI()
         self.coordinator?.reconnectDevice({ [weak self] in
             guard let `self` = self else { return }
             self.indicatorView?.stopAnimating()
@@ -85,6 +86,12 @@ class BLTCardConnectViewController: BaseViewController {
                     self.showError(message: failedReason)
                 }
         })
+    }
+
+    func resetUI() {
+        self.contentLabel.isHidden = false
+        self.connectButton.isHidden = true
+        self.titleLabel.text = R.string.localizable.wookong_connecting_title.key.localized()
     }
 
     override func configureObserveState() {

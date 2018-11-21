@@ -16,7 +16,6 @@ protocol WalletManagerCoordinatorProtocol {
     func pushToExportPrivateKey(_ model: Wallet)
     func pushToChangePassword(_ model : Wallet)
     func pushToBackupMnemonicVC()
-    func pushToDetailVC(_ model: Wallet)
     func pushToFingerVC(_ model: Wallet)
 }
 
@@ -55,7 +54,12 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
     }
 
     func pushToWookongBioDetail(_ model: Wallet) {
-        
+        if let detailVC = R.storyboard.wallet.walletDetailViewController() {
+            let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
+            detailVC.coordinator = coordinator
+            detailVC.model = model
+            self.rootVC.pushViewController(detailVC, animated: true)
+        }
     }
 
     func pushToChangePassword(_ model: Wallet) {
@@ -83,15 +87,6 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
         }
     }
 
-    func pushToDetailVC(_ model: Wallet) {
-        if let vc = R.storyboard.wallet.walletDetailViewController() {
-            let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
-            vc.coordinator = coordinator
-            vc.model = model
-            self.rootVC.pushViewController(vc, animated: true)
-        }
-    }
-
     func pushToFingerVC(_ model: Wallet) {
         if let fingerVC = R.storyboard.wallet.fingerViewController() {
             let coordinator = FingerCoordinator(rootVC: self.rootVC)
@@ -114,9 +109,7 @@ extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
     }
 
     func connect(_ complicatiopn: @escaping CompletionCallback) {
-        connectBLTCard {
-            complicatiopn()
-        }
+        connectBLTCard(self.rootVC, complication: complicatiopn)
     }
 
     func disConnect(_ complication: @escaping CompletionCallback) {

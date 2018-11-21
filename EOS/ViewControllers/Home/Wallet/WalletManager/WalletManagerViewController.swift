@@ -21,6 +21,7 @@ class WalletManagerViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        reloadFootView()
     }
 
     func setUpUI() {
@@ -38,7 +39,7 @@ class WalletManagerViewController: BaseViewController {
 
     func reloadUI() {
         tableView.reloadData()
-        reloadUI()
+        reloadFootView()
     }
 
     func reloadFootView() {
@@ -50,7 +51,7 @@ class WalletManagerViewController: BaseViewController {
             let isConnect = BLTWalletIO.shareInstance()?.isConnection() ?? false
             let btn = Button.init(frame: CGRect.init(x: 35, y: 40, width: footView.width - 70, height: 44))
             btn.title = isConnect ? disConnectTitle : connectTitle
-            btn.style = isConnect ? ButtonStyle.full.rawValue : ButtonStyle.border.rawValue
+            btn.style = isConnect ? ButtonStyle.border.rawValue : ButtonStyle.full.rawValue
             btn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
                 guard let `self` = self else { return }
                 self.buttonClick()
@@ -108,12 +109,14 @@ class WalletManagerViewController: BaseViewController {
     func buttonClick() {
         let isConnect = BLTWalletIO.shareInstance()?.isConnection() ?? false
         if isConnect {
-            self.coordinator?.disConnect({
-
+            self.coordinator?.disConnect({ [weak self] () in
+                guard let `self` = self else { return }
+                self.reloadUI()
             })
         } else {
-            self.coordinator?.connect({
-                
+            self.coordinator?.connect({ [weak self] () in
+                guard let `self` = self else { return }
+                self.reloadUI()
             })
         }
     }
@@ -137,7 +140,7 @@ extension WalletManagerViewController: UITableViewDataSource, UITableViewDelegat
             if wallet.type == .bluetooth {
                 let nibString = R.nib.wookongBioInfoCell.name
                 let reuseCell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath)
-                guard let cell = reuseCell as? WookongBioCell else {
+                guard let cell = reuseCell as? WookongBioInfoCell else {
                     return UITableViewCell()
                 }
                 cell.title = titles()[indexPath.row]
@@ -160,6 +163,7 @@ extension WalletManagerViewController: UITableViewDataSource, UITableViewDelegat
                 return UITableViewCell()
             }
             cell.title = titles()[indexPath.row]
+            cell.subTitle = ""
             return cell
         }
     }

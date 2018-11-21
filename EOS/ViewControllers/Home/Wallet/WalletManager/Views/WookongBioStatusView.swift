@@ -12,8 +12,10 @@ import Foundation
 class WookongBioStatusView: BaseView {
 
     @IBOutlet weak var iconView: UIImageView!
-    
+
     @IBOutlet weak var desLabel: UILabel!
+
+    @IBOutlet weak var labelWidth: NSLayoutConstraint!
 
     override func setup() {
         super.setup()
@@ -24,8 +26,10 @@ class WookongBioStatusView: BaseView {
 
     var data: BLTBatteryInfo? {
         didSet {
-            iconView.image = imageWithInfo(data)
             desLabel.text = desWithInfo(data)
+            desLabel.sizeToFit()
+            labelWidth.constant = desLabel.width
+            iconView.image = imageWithInfo(data)
         }
     }
     

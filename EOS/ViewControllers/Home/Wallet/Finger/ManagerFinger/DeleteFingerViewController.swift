@@ -42,7 +42,7 @@ class DeleteFingerViewController: BaseViewController {
     }
 
     func setupData() {
-        self.contentView.changeNameLineView.contentText = FingerManager.shared.fingerName(model, index: index)
+        self.contentView.changeNameLineView.subTitle = FingerManager.shared.fingerName(model, index: index)
     }
 
     func setupEvent() {

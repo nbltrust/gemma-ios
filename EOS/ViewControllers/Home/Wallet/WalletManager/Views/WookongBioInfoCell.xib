@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5Q-po-VHH">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5Q-po-VHH" customClass="WookongBioInfoView" customModule="EOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                     </view>
                 </subviews>
@@ -31,6 +31,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="infoView" destination="x5Q-po-VHH" id="fMe-nm-wCN"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

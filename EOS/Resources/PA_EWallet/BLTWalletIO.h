@@ -51,6 +51,8 @@ typedef enum : NSUInteger {
 
 - (void)connectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
+- (void)checkPinState:(CheckPinStateComplication)complication failed:(FailedComplication)failed;
+
 - (void)getDeviceInfo:(GetDeviceInfoComplication)complication;
 
 - (void)initPin:(NSString *)pin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;

@@ -11,7 +11,7 @@ import Foundation
 @IBDesignable
 class DeleteFingerView: EOSBaseView {
 
-    @IBOutlet weak var changeNameLineView: LineView!
+    @IBOutlet weak var changeNameLineView: CustomCellView!
     @IBOutlet weak var deleteButton: Button!
 
     enum Event: String {
@@ -28,7 +28,8 @@ class DeleteFingerView: EOSBaseView {
     }
 
     func setupUI() {
-        changeNameLineView.nameText = R.string.localizable.change_name.key.localized()
+        changeNameLineView.title = R.string.localizable.wookong_finger_name.key.localized()
+        deleteButton.btnBorderColor = UIColor.warningColor
     }
 
     func setupSubViewEvent() {
