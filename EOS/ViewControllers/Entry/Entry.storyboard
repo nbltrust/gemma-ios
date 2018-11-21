@@ -44,7 +44,7 @@
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="image" keyPath="imageForNormal" value="ic_checkbox"/>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="imageForSelected" value="ic_checkbox_active"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="imageForSelected" value="icCheckboxAbled"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="agreeAction:" destination="rEl-PR-Sb8" eventType="touchUpInside" id="Xc9-Ye-Exq"/>
@@ -401,9 +401,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icCheckboxAbled" width="24" height="24"/>
         <image name="icCommonWaiting" width="54" height="54"/>
         <image name="ic_checkbox" width="24" height="24"/>
-        <image name="ic_checkbox_active" width="24" height="24"/>
         <image name="ic_wookong_bio_black" width="24" height="24"/>
     </resources>
 </document>
