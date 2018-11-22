@@ -616,6 +616,7 @@
 "wookong_retry" = "重试";
 "wookong_password" = "密码";
 "wookong_finger_name" = "名称";
+"wookong_transfer_pro" = "请在WOOKONG Bio上仔细对比转账信息，按键以确认转账。";
 
 "currency_title" = "币种";
 "wallet_currency" = "钱包币种";

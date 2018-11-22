@@ -37,9 +37,21 @@ class BLTCardPowerOnViewController: BaseViewController {
     }
 
     func setupUI() {
-
+        if self.navigationController?.viewControllers.count == 1 {
+            self.configLeftNavButton(R.image.icTransferClose())
+        } else {
+            self.configLeftNavButton(R.image.icBack())
+        }
     }
 
+    override func leftAction(_ sender: UIButton) {
+        if self.navigationController?.viewControllers.count == 1 {
+            self.coordinator?.dismissVC()
+        } else {
+            self.coordinator?.popVC()
+        }
+    }
+    
     func setupData() {
 
     }
@@ -56,58 +68,6 @@ class BLTCardPowerOnViewController: BaseViewController {
                 self.context = context
             }
 
-        }).disposed(by: disposeBag)
-
-        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
-            guard let `self` = self else { return }
-
-            self.endLoading()
-
-            switch state {
-            case .initial:
-                self.coordinator?.switchPageState(PageState.refresh(type: PageRefreshType.initial))
-
-            case .loading(let reason):
-                if reason == .initialRefresh {
-                    self.startLoading()
-                }
-
-            case .refresh(let type):
-                self.coordinator?.switchPageState(.loading(reason: type.mapReason()))
-
-            case .loadMore:
-                self.coordinator?.switchPageState(.loading(reason: PageLoadReason.manualLoadMore))
-
-            case .noMore:
-//                self.stopInfiniteScrolling(self.tableView, haveNoMore: true)
-                break
-
-            case .noData:
-//                self.view.showNoData(<#title#>, icon: <#imageName#>)
-                break
-
-            case .normal:
-//                self.view.hiddenNoData()
-//
-//                if reason == PageLoadReason.manualLoadMore {
-//                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
-//                }
-//                else if reason == PageLoadReason.manualRefresh {
-//                    self.stopPullRefresh(self.tableView)
-//                }
-                break
-
-            case .error:
-//                self.showToastBox(false, message: error.localizedDescription)
-
-//                if reason == PageLoadReason.manualLoadMore {
-//                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
-//                }
-//                else if reason == PageLoadReason.manualRefresh {
-//                    self.stopPullRefresh(self.tableView)
-//                }
-                break
-            }
         }).disposed(by: disposeBag)
     }
 }

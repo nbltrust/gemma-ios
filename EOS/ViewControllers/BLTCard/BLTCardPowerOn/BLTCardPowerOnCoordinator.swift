@@ -11,6 +11,9 @@ import ReSwift
 import NBLCommonModule
 
 protocol BLTCardPowerOnCoordinatorProtocol {
+    func dismissVC()
+
+    func popVC()
 }
 
 protocol BLTCardPowerOnStateManagerProtocol {
@@ -45,6 +48,13 @@ class BLTCardPowerOnCoordinator: NavCoordinator {
 }
 
 extension BLTCardPowerOnCoordinator: BLTCardPowerOnCoordinatorProtocol {
+    func dismissVC() {
+        self.rootVC.dismiss(animated: true, completion: nil)
+    }
+
+    func popVC() {
+        self.rootVC.popViewController(animated: true, nil)
+    }
 
 }
 

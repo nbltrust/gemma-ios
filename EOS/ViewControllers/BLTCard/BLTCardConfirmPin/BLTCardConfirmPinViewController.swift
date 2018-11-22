@@ -65,10 +65,8 @@ class BLTCardConfirmPinViewController: BaseViewController {
             self.coordinator?.bltTransferAccounts(context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
                 guard let `self` = self else { return }
                 if isSuccess {
-                    self.endLoading()
                     self.coordinator?.finishTransfer()
                 } else {
-                    self.endLoading()
                     self.showError(message: message)
                 }
             })
@@ -98,7 +96,7 @@ extension BLTCardConfirmPinViewController {
             })
         } else if self.context?.confirmType == .transferWithPin {
             BLTWalletIO.shareInstance()?.submmitWaitingVerfyPin(self.confirmView.textField.text ?? "")
-            self.startLoading()
+            self.coordinator?.pushToPowerAlertVC()
         }
     }
 }
