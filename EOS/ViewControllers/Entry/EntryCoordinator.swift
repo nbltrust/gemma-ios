@@ -128,7 +128,7 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         let coor = BLTCardSetFingerPrinterCoordinator(rootVC: nav)
         printerVC.coordinator = coor
         self.rootVC.present(nav, animated: true) {
-            self.rootVC.popToRootViewController(animated: true)
+            self.rootVC.popToRootViewController(animated: false)
         }
     }
 

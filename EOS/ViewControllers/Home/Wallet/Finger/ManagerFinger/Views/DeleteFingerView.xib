@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpW-6h-WwJ" customClass="CustomCellView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="16" y="27" width="343" height="48"/>
+                    <rect key="frame" x="0.0" y="27" width="375" height="48"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isShowLine" value="NO"/>
@@ -30,7 +30,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="naS-gG-Gkm" customClass="Button" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="16" y="99" width="343" height="44"/>
+                    <rect key="frame" x="35" y="99" width="305" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="B1m-SP-Wat"/>
@@ -38,18 +38,18 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="locali" value="delete_finger"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="style">
-                            <integer key="value" value="5"/>
+                            <integer key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="naS-gG-Gkm" firstAttribute="top" secondItem="hpW-6h-WwJ" secondAttribute="bottom" constant="24" id="CIC-ok-N9g"/>
-                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="naS-gG-Gkm" secondAttribute="trailing" constant="16" id="DBc-UC-ZAh"/>
-                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="hpW-6h-WwJ" secondAttribute="trailing" constant="16" id="JKZ-i0-8Ec"/>
-                <constraint firstItem="hpW-6h-WwJ" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" constant="27" id="Jtg-0f-DR1"/>
-                <constraint firstItem="naS-gG-Gkm" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="16" id="MzF-Oj-usw"/>
-                <constraint firstItem="hpW-6h-WwJ" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="16" id="Te5-Ld-ctV"/>
+                <constraint firstItem="naS-gG-Gkm" firstAttribute="top" secondItem="hpW-6h-WwJ" secondAttribute="bottom" constant="40" id="CIC-ok-N9g"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="naS-gG-Gkm" secondAttribute="trailing" constant="35" id="DBc-UC-ZAh"/>
+                <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="hpW-6h-WwJ" secondAttribute="trailing" id="JKZ-i0-8Ec"/>
+                <constraint firstItem="hpW-6h-WwJ" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" id="Jtg-0f-DR1"/>
+                <constraint firstItem="naS-gG-Gkm" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="35" id="MzF-Oj-usw"/>
+                <constraint firstItem="hpW-6h-WwJ" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" id="Te5-Ld-ctV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Lhl-p8-24W"/>

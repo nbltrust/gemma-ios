@@ -71,6 +71,8 @@ typedef enum : NSUInteger {
 
 - (void)cancelEntrollFingerPrinter:(SuccessedComplication)successComplication failed:(FailedComplication)failedComplication;
 
+- (void)submmitWaitingVerfyPin:(NSString *)waitVerPin;
+
 - (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
 - (void)getFPList:(GetFPListComplication)complication failed:(FailedComplication)failedComplication;

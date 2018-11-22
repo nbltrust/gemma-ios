@@ -20,6 +20,16 @@ extension NavBarView {
             if model.type != .bluetooth {
                 self.bluetoothImgView.isHidden = true
                 self.bluetoothStateLabel.isHidden = true
+            } else {
+                if !(BLTWalletIO.shareInstance()?.isConnection() ?? false) {
+                    self.bluetoothStateLabel.text = desWithInfo(nil)
+                    self.bluetoothImgView.image = imageWithInfo(nil)
+                }
+                BLTWalletIO.shareInstance()?.batteryInfoUpdated = { [weak self] (info) in
+                    guard let `self` = self else { return }
+                    self.bluetoothStateLabel.text = desWithInfo(info)
+                    self.bluetoothImgView.image = imageWithInfo(info)
+                }
             }
         }
         self.nameLabel.text = model.name

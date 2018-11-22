@@ -14,6 +14,8 @@ protocol BLTCardConfirmPinCoordinatorProtocol {
     func dismissVC(_ complication: @escaping () -> Void)
     
     func popVC()
+
+    func finishTransfer()
 }
 
 protocol BLTCardConfirmPinStateManagerProtocol {
@@ -22,6 +24,8 @@ protocol BLTCardConfirmPinStateManagerProtocol {
     func switchPageState(_ state: PageState)
     
     func confirmPin(_ pin: String, complication: @escaping SuccessedComplication)
+
+    func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
 }
 
 class BLTCardConfirmPinCoordinator: BLTCardRootCoordinator {
@@ -33,6 +37,14 @@ class BLTCardConfirmPinCoordinator: BLTCardRootCoordinator {
 
     var state: BLTCardConfirmPinState {
         return store.state
+    }
+
+    override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
+        let vc = R.storyboard.bltCard.bltCardConfirmPinViewController()!
+        let coordinator = BLTCardConfirmPinCoordinator(rootVC: root)
+        vc.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
+        return vc
     }
 
     override func register() {
@@ -49,6 +61,14 @@ extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinCoordinatorProtocol {
     func popVC() {
         self.rootVC.popViewController(animated: true, nil)
     }
+
+    func finishTransfer() {
+        if let newHomeCoor = appCoodinator.newHomeCoordinator, let transferVC = newHomeCoor.rootVC.topViewController as? TransferViewController {
+            self.rootVC.dismiss(animated: true) {
+                transferVC.resetData()
+            }
+        }
+    }
 }
 
 extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinStateManagerProtocol {
@@ -62,5 +82,22 @@ extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinStateManagerProtocol {
                 showFailTop(failedReason)
             }
         })
+    }
+
+    func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void) {
+        let model = TransferActionModel()
+        model.toAccount = account
+        model.fromAccount = CurrencyManager.shared.getCurrentAccountName()
+        model.success = R.string.localizable.transfer_successed.key.localized()
+        model.faile = R.string.localizable.transfer_failed.key.localized()
+        model.amount = amount
+        model.remark = remark
+        model.type = .bluetooth
+        model.confirmType = pinType
+        model.contract = EOSIOContract.TokenCode
+        model.symbol = "EOS"
+        transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
+            callback(bool, showString)
+        }
     }
 }

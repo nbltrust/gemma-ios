@@ -64,7 +64,7 @@ extension TransferConfirmViewController {
             if self.type == .gemma {
                 self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.transfer.rawValue, model: self.model)
             } else {
-                self.coordinator?.pushToTransferFPConfirmVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.bltTransfer.rawValue)
+                self.coordinator?.pushToWookongBioTransferConfirmVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.bltTransfer.rawValue)
             }
         } else if type == R.string.localizable.confirm_mortgage.key.localized() {
             self.coordinator?.pushToTransferConfirmPwdVC(toAccount: self.data.recever, money: self.data.amount, remark: self.data.remark, type: ConfirmType.mortgage.rawValue, model: self.model)
