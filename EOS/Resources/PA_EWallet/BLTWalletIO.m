@@ -35,9 +35,9 @@ const uint32_t puiDerivePathCYB[] = {0, 0, 1, 0x00000080, 0x00000000, 0x00000000
  */
 int BatteryCallback(const int nBatterySource, const int nBatteryState)
 {
-    _instance.batteryInfo.state = nBatterySource == 0 ? charge : common;
+    _instance.batteryInfo.state = nBatterySource == 0 ? charge : battery;
     if (nBatterySource == 1) {
-        _instance.batteryInfo.electricQuantity = (nBatteryState - 125) / (140 - 125);
+        _instance.batteryInfo.electricQuantity = (nBatteryState - 125) / 15.00;
     }
     if (_instance.batteryInfoUpdated != nil) {
         _instance.batteryInfoUpdated(_instance.batteryInfo);
@@ -61,6 +61,9 @@ int DisconnectedCallback(const int status, const char *description)
 {
     savedDevH = nil;
     _instance.selectDevice = nil;
+    if (_instance.batteryInfoUpdated != nil) {
+        _instance.batteryInfoUpdated(nil);
+    }
     return PAEW_RET_SUCCESS;
 }
 
@@ -72,6 +75,9 @@ int GetAuthType(void * const pCallbackContext, unsigned char * const pnAuthType)
 
 int GetPin(void * const pCallbackContext, unsigned char * const pbPIN, size_t * const pnPINLen)
 {
+    do {
+
+    } while (_instance->pin == nil);
     if (_instance->pin != nil) {
         *pnPINLen = _instance->pin.length;
         strcpy((char *)pbPIN, [_instance->pin UTF8String]);
@@ -112,6 +118,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         _batteryInfo = [[BLTBatteryInfo alloc] init];
         bltQueue = dispatch_queue_create("BluetoothQueue", DISPATCH_QUEUE_SERIAL);
         heartBeatQueue = dispatch_queue_create("HeartBeatQueue", DISPATCH_QUEUE_SERIAL);
+        self->lastSignState = PAEW_RET_SUCCESS;
     }
     return self;
 }
@@ -655,21 +662,25 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             callBack.getAuthType = GetAuthType;
             callBack.getPIN = GetPin;
             callBack.putSignState = PutSignState;
-            _instance->lastSignState = PAEW_RET_UNKNOWN_FAIL;
+
+            _instance->lastSignState = PAEW_RET_SUCCESS;;
             
             iRtn = PAEW_EOS_TXSign_Ex(ppPAEWContext, devIdx, tx, sizeof(tx), pbTXSig, &pnTXSigLen, &callBack, 0);
             if (iRtn) {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    _instance->pin = nil;
                     failedComplication([BLTUtils errorCodeToString:iRtn]);
                 });
                 return;
             }
             NSString *sign = [[NSString alloc] initWithBytes:pbTXSig length:pnTXSigLen encoding:NSASCIIStringEncoding];
             dispatch_async(dispatch_get_main_queue(), ^{
+                _instance->pin = nil;
                 complication(sign);
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
+                _instance->pin = nil;
                 failedComplication([BLTUtils errorCodeToString:iRtn]);
             });
         }

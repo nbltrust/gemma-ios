@@ -16,13 +16,13 @@ class NavBarView: EOSBaseView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bluetoothImgView: UIImageView!
     @IBOutlet weak var bluetoothStateLabel: BaseLabel!
-    
+
     enum Event:String {
         case navBarViewDidClicked
         case walletDidClicked
         case setDidClicked
     }
-        
+
     override func setup() {
         super.setup()
         

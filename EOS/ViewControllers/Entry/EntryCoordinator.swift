@@ -53,8 +53,6 @@ protocol EntryStateManagerProtocol {
 
     func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication)
 
-    func checkSeedSuccessed()
-    
     func verifyAccount(_ name: String, completion: @escaping (Bool) -> Void)
     
     func createBLTWallet(_ name: String, currencyID: Int64?, completion:@escaping (Bool)-> Void)
@@ -130,7 +128,7 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         let coor = BLTCardSetFingerPrinterCoordinator(rootVC: nav)
         printerVC.coordinator = coor
         self.rootVC.present(nav, animated: true) {
-            self.rootVC.popToRootViewController(animated: true)
+            self.rootVC.popToRootViewController(animated: false)
         }
     }
 
@@ -217,6 +215,12 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         do {
             if let id = currencyID {
                 let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
+                if type == .bluetooth {
+                    if var currency = currency, let publicKey = validation?.publicKey {
+                        currency.pubKey = publicKey
+                        try WalletCacheService.shared.updateCurrency(currency)
+                    }
+                }
                 if let pubkey = currency?.pubKey {
                     NBLNetwork.request(target: .createAccount(type: type,
                                                               account: accountName,
@@ -257,10 +261,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         let coor = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
         mnemonicWordVC?.coordinator = coor
         self.rootVC.pushViewController(mnemonicWordVC!, animated: true)
-    }
-
-    func checkSeedSuccessed() {
-        self.store.dispatch(SetCheckSeedSuccessedAction(isCheck: true))
     }
 
     func createBLTWallet(_ name: String, currencyID: Int64?, completion:@escaping (Bool)-> Void) {

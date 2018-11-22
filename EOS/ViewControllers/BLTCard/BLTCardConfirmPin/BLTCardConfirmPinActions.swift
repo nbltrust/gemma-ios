@@ -12,7 +12,20 @@ import RxCocoa
 import SwiftyJSON
 import HandyJSON
 
+enum ConfirmPinType: Int,Codable {
+    case verifyPin = 0
+    case transferWithPin
+}
+
 struct BLTCardConfirmPinContext: RouteContext, HandyJSON {
+    var publicKey = WalletManager.shared.currentPubKey
+    var iconType = ""
+    var producers: [String] = []
+    var type = ""
+    var receiver = ""
+    var amount = ""
+    var remark = ""
+    var confirmType: ConfirmPinType = .verifyPin
     var confirmSuccessed: CompletionCallback?
 }
 

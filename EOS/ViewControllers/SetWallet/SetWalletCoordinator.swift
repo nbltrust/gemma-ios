@@ -71,8 +71,8 @@ protocol SetWalletStateManagerProtocol {
                    failed: @escaping FailedComplication)
 
     func createWookongBioWallet(_ hint: String,
-                      success: @escaping SuccessedComplication,
-                      failed: @escaping FailedComplication)
+                                success: @escaping SuccessedComplication,
+                                failed: @escaping FailedComplication)
 }
 
 class SetWalletCoordinator: NavCoordinator {

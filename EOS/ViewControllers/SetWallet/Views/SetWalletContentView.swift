@@ -45,6 +45,8 @@ class SetWalletContentView: UIView {
                 nameView.textField.isSecureTextEntry = true
                 nameView.reloadData()
                 passwordView.reloadData()
+            } else {
+                nameView.textField.text = WalletManager.shared.normalWalletName()
             }
         }
     }
@@ -97,12 +99,6 @@ class SetWalletContentView: UIView {
         handleSetupSubView(confirmPasswordView, tag: InputType.comfirmPassword.rawValue)
         handleSetupSubView(hintView, tag: InputType.passwordPrompt.rawValue)
         updateContentSize()
-    }
-
-    func setWalletName() {
-        if !isChangePassword {
-            nameView.textField.text = WalletManager.shared.normalWalletName()
-        }
     }
 
     func updateContentSize() {

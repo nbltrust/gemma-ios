@@ -19,7 +19,7 @@ struct TransferConfirmContext: RouteContext, HandyJSON {
 protocol TransferConfirmCoordinatorProtocol {
     func pushToTransferConfirmPwdVC(toAccount: String, money: String, remark: String, type: String, model: AssetViewModel)
 
-    func pushToTransferFPConfirmVC(toAccount: String, money: String, remark: String, type: String)
+    func pushToWookongBioTransferConfirmVC(toAccount: String, money: String, remark: String, type: String)
 
     func dismissConfirmVC()
 }
@@ -63,15 +63,34 @@ extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
         pushVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context)
     }
 
-    func pushToTransferFPConfirmVC(toAccount: String, money: String, remark: String, type: String) {
-        var context = BLTCardConfirmFingerPrinterContext()
-        context.receiver = toAccount
-        context.amount = money
-        context.remark = remark
-        context.type = type
-        context.iconType = LeftIconType.pop.rawValue
+    func pushToWookongBioTransferConfirmVC(toAccount: String, money: String, remark: String, type: String) {
+        BLTWalletIO.shareInstance()?.getFPList({ [weak self] (fpList) in
+            guard let `self` = self else {return}
+            if let list = fpList, list.count > 0 {
+                var context = BLTCardConfirmFingerPrinterContext()
+                context.receiver = toAccount
+                context.amount = money
+                context.remark = remark
+                context.type = type
+                context.iconType = LeftIconType.pop.rawValue
 
-        pushVC(BLTCardConfirmFingerPrinterCoordinator.self, animated: true, context: context)
+                self.pushVC(BLTCardConfirmFingerPrinterCoordinator.self, animated: true, context: context)
+            } else {
+                var context = BLTCardConfirmPinContext()
+                context.receiver = toAccount
+                context.amount = money
+                context.remark = remark
+                context.type = type
+                context.iconType = LeftIconType.pop.rawValue
+                context.confirmType = .transferWithPin
+
+                self.pushVC(BLTCardConfirmPinCoordinator.self, animated: true, context: context)
+            }
+        }, failed: { (failedReason) in
+            if let reason = failedReason {
+                showFailTop(reason)
+            }
+        })
     }
 
     func dismissConfirmVC() {

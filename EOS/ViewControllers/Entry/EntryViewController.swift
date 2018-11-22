@@ -50,8 +50,6 @@ class EntryViewController: BaseViewController {
         setupUI()
         setupEvent()
         Broadcaster.register(EntryViewController.self, observer: self)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(createWookongWallet), name: NSNotification.Name(rawValue: "createBLTWallet"), object: nil)
     }
 
     @IBAction func agreeAction(_ sender: Any) {
@@ -65,7 +63,6 @@ class EntryViewController: BaseViewController {
             registerView.passwordView.isHidden = true
             registerView.passwordComfirmView.isHidden = true
             registerView.passwordPromptView.isHidden = true
-            registerView.nameView.gapView.isHidden = true
             registerView.walletNameView.isHidden = true
         case .noWalletName:
             registerView.nameView.isHidden = true
@@ -84,20 +81,12 @@ class EntryViewController: BaseViewController {
         }
     }
 
-    @objc func createWookongWallet() {
-        self.coordinator?.checkSeedSuccessed()
-    }
-
     func setupEvent() {
         creatButton.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
             guard let `self` = self else { return }
             switch self.createType {
             case .wookong:
-                if (self.coordinator?.state.property.checkSeedSuccessed.value ?? false)! {
-                    self.createBltWallet()
-                } else {
-                    self.coordinator?.copyMnemonicWord()
-                }
+                self.createBltWallet()
             case .noWalletName:
                 if let mnemonic = Seed39NewMnemonic(), let pwd = self.registerView.passwordView.textField.text, let prompt = self.registerView.passwordPromptView.textField.text {
                     let walletName = WalletManager.shared.normalWalletName()
@@ -129,11 +118,6 @@ class EntryViewController: BaseViewController {
             guard let `self` = self else { return }
             self.coordinator?.pushToServiceProtocolVC()
         }).disposed(by: disposeBag)
-
-        self.coordinator?.state.callback.finishBLTWalletCallback.accept({
-            self.coordinator?.checkSeedSuccessed()
-            self.createBltWallet()
-        })
 
         self.coordinator?.state.callback.finishEOSCurrencyCallback.accept({[weak self] (code) in
             guard let `self` = self else { return }
