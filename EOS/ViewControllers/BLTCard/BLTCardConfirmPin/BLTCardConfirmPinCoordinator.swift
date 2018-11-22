@@ -16,6 +16,8 @@ protocol BLTCardConfirmPinCoordinatorProtocol {
     func popVC()
 
     func finishTransfer()
+
+    func pushToPowerAlertVC()
 }
 
 protocol BLTCardConfirmPinStateManagerProtocol {
@@ -68,6 +70,11 @@ extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinCoordinatorProtocol {
                 transferVC.resetData()
             }
         }
+    }
+
+    func pushToPowerAlertVC() {
+        let context = BLTCardPowerOnContext()
+        pushVC(BLTCardPowerOnCoordinator.self, animated: true, context: context)
     }
 }
 
