@@ -66,7 +66,7 @@ class SetWalletViewController: BaseViewController {
     func setupWithPin() {
         self.title = R.string.localizable.change_password.key.localized()
         fieldView.nameView.isHidden = true
-        
+
         let pas = R.string.localizable.new_password.key.localized()
         fieldView.passwordView.setting.title = pas
         fieldView.passwordView.titleLabel.text = pas
@@ -196,8 +196,6 @@ class SetWalletViewController: BaseViewController {
                                  self.coordinator!.state.property.setWalletOriginalPasswordValid.asObservable()).map { (arg0) -> Bool in
                                     if self.settingType == .leadInWithMnemonic || self.settingType == .leadInWithPriKey {
                                         return arg0.0 && arg0.1 && arg0.2 && arg0.3
-                                    } else if self.settingType == .updatePas || self.settingType == .updatePin {
-                                        return arg0.1 && arg0.2 && arg0.3 && arg0.4
                                     } else if self.settingType == .updatePas {
                                         return arg0.1 && arg0.2 && arg0.4
                                     } else if self.settingType == .updatePin {

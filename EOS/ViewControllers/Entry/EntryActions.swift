@@ -56,10 +56,6 @@ struct AgreeAction: Action {
     var isAgree: Bool = false
 }
 
-struct SetCheckSeedSuccessedAction: Action {
-    var isCheck: Bool = false
-}
-
 struct WalletModelAction: Action {
     var model: WalletModel?
 }
