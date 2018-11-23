@@ -77,12 +77,15 @@ func getAbi(_ action: String, actionModel: ActionModel) -> String! {
     switch action {
     case EOSAction.transfer.rawValue, EOSAction.bltTransfer.rawValue:
         if let actionModel = actionModel as? TransferActionModel {
-            if let abiStr = EOSIO.getAbiJsonString(actionModel.contract,
+            let precision = CurrencyManager.shared.getPrecision(actionModel.symbol)
+
+            if let amount = actionModel.amount.toDecimal()?.string(digits: precision), let abiStr = EOSIO.getAbiJsonString(actionModel.contract,
                                                    action: EOSAction.transfer.rawValue,
                                                    from: actionModel.fromAccount,
                                                    to: actionModel.toAccount,
-                                                   quantity: actionModel.amount + " " + actionModel.symbol,
+                                                   quantity: amount + " " + actionModel.symbol,
                                                    memo: actionModel.remark) {
+
                 abi = abiStr
             }
         }
@@ -334,12 +337,9 @@ func getRamPrice(_ completion:@escaping ObjectOptionalCallback) {
         let quote = row["quote"]
 
         if let baseQuantity = base["balance"].stringValue.components(separatedBy: " ").first,
-            let quoteQuantity = quote["balance"].stringValue.components(separatedBy: " ").first,
-            let quoteWeight = quote["weight"].string {
+            let quoteQuantity = quote["balance"].stringValue.components(separatedBy: " ").first {
             let unit = Decimal(string: quoteQuantity)! / Decimal(string: baseQuantity)!
-            let price = unit * Decimal(string: quoteWeight)!
-            Defaults.set(price.stringValue, forKey: NetworkConfiguration.RAMPriceDefaultSymbol)
-            completion(price)
+            completion(unit)
         }
 
     }, error: { (_) in
@@ -440,7 +440,7 @@ func labelBaselineOffset(_ lineHeight: CGFloat, fontHeight: CGFloat) -> Float {
 
 func dismiss() {
     if let vc = UIViewController.topMost {
-        vc.dismiss(animated: true) {
+        vc.dismiss(animated: false) {
 
         }
     }
@@ -533,7 +533,7 @@ func copyText(_ text: String) {
 }
 
 func getPrecision(_ value: String) -> Int {
-    if let precision = value.components(separatedBy: ".")[1] as? String {
+    if let valueArray = value.components(separatedBy: ".") as? [String], valueArray.count > 1 ,let precision = valueArray[1] as? String {
         return precision.count
     }
     return 0

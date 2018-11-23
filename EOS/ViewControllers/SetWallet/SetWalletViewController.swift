@@ -114,20 +114,33 @@ class SetWalletViewController: BaseViewController {
         if let name = self.fieldView.nameView.textField.text,
             let password = self.fieldView.passwordView.textField.text,
             let hint = self.fieldView.hintView.textField.text {
-            self.coordinator?.importPriKeyWallet(name,
-                                                 priKey: priKey,
-                                                 type: currencyType,
-                                                 password: password,
-                                                 hint: hint,
-                                                 success: { [weak self] in
-                guard let `self` = self else { return }
-                self.coordinator?.importFinished()
-            }, failed: {[weak self] (reason) in
-                guard let `self` = self else { return }
-                if let failedReson = reason {
-                    self.showError(message: failedReson)
-                }
-            })
+            if settingType == .leadInWithPriKey {
+                self.coordinator?.importPriKeyWallet(name,
+                                                     priKey: priKey,
+                                                     type: currencyType,
+                                                     password: password,
+                                                     hint: hint,
+                                                     success: { [weak self] in
+                                                        guard let `self` = self else { return }
+                                                        self.coordinator?.importFinished()
+                    }, failed: {[weak self] (reason) in
+                        guard let `self` = self else { return }
+                        if let failedReson = reason {
+                            self.showError(message: failedReson)
+                        }
+                })
+            } else {
+                self.coordinator?.importMnemonicWallet(name, mnemonic: mnemonicStr, password: password, hint: hint, success: { [weak self] in
+                    guard let `self` = self else { return }
+                    self.coordinator?.importFinished()
+                    }, failed: {[weak self] (reason) in
+                        guard let `self` = self else { return }
+                        if let failedReson = reason {
+                            self.showError(message: failedReson)
+                        }
+                })
+            }
+
         }
     }
 

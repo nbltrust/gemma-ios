@@ -15,14 +15,5 @@ extension OverviewView {
     func adapterCardModelToOverviewView(_ model:NewHomeViewModel) {
         self.headView.cardView.adapterModelToCardView(model)
         self.cardData = model
-
-        var newModel = AssetViewModel()
-        newModel.iconUrl = ""
-        newModel.name = model.currency
-        newModel.total = model.allAssets
-        newModel.CNY = model.CNY
-        newModel.contract = EOSIOContract.TokenCode
-        newModel.balance = model.balance.components(separatedBy: " ")[0]
-        self.firstAssetData = newModel
     }
 }

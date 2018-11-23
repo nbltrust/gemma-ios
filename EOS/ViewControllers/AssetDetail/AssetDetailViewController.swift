@@ -37,8 +37,13 @@ class AssetDetailViewController: BaseViewController {
     }
     func setupUI() {
         self.title = R.string.localizable.asset_detail.key.localized()
+        popGesture = false
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        popGesture = true
+    }
+    
     override func leftAction(_ sender: UIButton) {
         self.coordinator?.popVC()
     }

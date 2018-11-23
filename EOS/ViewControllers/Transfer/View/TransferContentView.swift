@@ -201,8 +201,11 @@ extension TransferContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
                                     showLine: true,
                                     isSecureTextEntry: false)
         } else if titleTextFieldView == moneyTitleTextView {
+            let currency = balance.components(separatedBy: " ")[1]
+            let precision = CurrencyManager.shared.getPrecision(currency)
+            let placeholder = R.string.localizable.input_transfer_money.key.localizedFormat(precision)
             return TitleTextSetting(title: R.string.localizable.money.key.localized(),
-                                    placeholder: R.string.localizable.input_transfer_money.key.localized(),
+                                    placeholder: placeholder,
                                     warningText: R.string.localizable.big_money.key.localized(), //文案未提供
                                     introduce: "",
                                     isShowPromptWhenEditing: false,

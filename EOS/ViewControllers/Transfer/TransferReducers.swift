@@ -33,7 +33,7 @@ func gTransferReducer(action: Action, state: TransferState?) -> TransferState {
                 tips = ""
             }
 
-            if moneyDouble < (1 / pow(10, AppConfiguration.EOSPrecision)) {
+            if moneyDouble == 0 {
                 valid = false
                 tips = R.string.localizable.small_money.key.localized()
             }

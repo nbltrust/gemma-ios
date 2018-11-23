@@ -52,11 +52,7 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordCoordinatorProtocol {
     }
 
     func popRootVC() {
-        if let _ = self.rootVC.viewControllers[0] as? EntryGuideViewController, (UIApplication.shared.delegate as? AppDelegate) != nil {
-            appCoodinator.endEntry()
-        } else {
-            self.rootVC.popToRootViewController(animated: true)
-        }
+        appCoodinator.endEntry()
     }
 }
 

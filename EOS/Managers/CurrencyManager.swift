@@ -163,6 +163,17 @@ class CurrencyManager {
         }
         return []
     }
+
+    func savePrecision(_ symbol: String, precision: Int) {
+        Defaults["\(symbol)precision"] = precision
+    }
+
+    func getPrecision(_ symbol: String) -> Int {
+        if let precision = Defaults["\(symbol)precision"] as? Int {
+            return precision
+        }
+        return 0
+    }
     //新版本存取缓存数据
     func saveBalanceJsonWith(_ account: String?, json: JSON) {
         if let account = account {

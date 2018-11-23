@@ -39,6 +39,11 @@ class BackupMnemonicWordViewController: BaseViewController {
         self.title = R.string.localizable.backup_mnemonic_title.key.localized()
         contentView.redTips = R.string.localizable.backup_mnemonic_red_text.key.localized()
         contentView.buttonTitle = R.string.localizable.backup_mnemonic_knowbtn_title.key.localized()
+        popGesture = false
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        popGesture = true
     }
 
     override func leftAction(_ sender: UIButton) {

@@ -18,7 +18,7 @@ func gPayToActivateReducer(action: Action, state: PayToActivateState?) -> PayToA
             state.billInfo.accept(model)
         }
     case let action as OrderAction:
-        state.orderId = action.order.id
+        state.orderId.accept(action.order.id)
         let rmb = state.billInfo.value.rmb.components(separatedBy: " ")[0]
         if rmb != action.order.rmbPrice, let model = transToModel(action) {
             state.orderInfo.accept((model, true))

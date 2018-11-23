@@ -18,7 +18,7 @@ struct PayToActivateState: BaseState {
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
     var billInfo: BehaviorRelay<BillModel> = BehaviorRelay(value: BillModel())
     var orderInfo: PublishRelay<(BillModel?, Bool)> = PublishRelay()
-    var orderId = ""
+    var orderId: BehaviorRelay<String> = BehaviorRelay(value: "")
     var nums: Int = 0
 }
 

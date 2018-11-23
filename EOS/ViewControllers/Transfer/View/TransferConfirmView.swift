@@ -42,7 +42,7 @@ class TransferConfirmView: UIView {
             } else {
                 receverView.contentText = data.recever
             }
-            var amount = data.amount.toDecimal()!.string(digits: AppConfiguration.EOSPrecision)  + " \(data.symbol)"
+            var amount = data.amount + " \(data.symbol)"
             if data.remark == "" {
                 data.remark = R.string.localizable.default_remark_pre.key.localized() + CurrencyManager.shared.getCurrentAccountName() + R.string.localizable.default_remark_after.key.localized()
             }
@@ -50,18 +50,23 @@ class TransferConfirmView: UIView {
                 remarkView.content.numberOfLines = 1
             } else {
                 remarkView.content.numberOfLines = 2
+                if data.buttonTitle == R.string.localizable.confirm_sell.key.localized() {
+                    amount = data.amount.toDecimal()!.string(digits: 4)  + " KB"
+                    amountView.contentText = data.amount + " KB"
+                    amountView.nameText = R.string.localizable.amount.key.localized()
+                } else {
+                    amount = data.amount.toDecimal()!.string(digits: 4)  + " \(data.symbol)"
+                }
             }
-            if data.buttonTitle == R.string.localizable.confirm_sell.key.localized() {
-                amount = data.amount.toDecimal()!.string(digits: 4)  + " KB"
-                amountView.contentText = data.amount + " KB"
-                amountView.nameText = R.string.localizable.amount.key.localized()
-            }
+
             amountView.content.attributedText = setEOSSufAttributeString(amount)
             if data.buttonTitle == R.string.localizable.confirm_sell.key.localized() || data.buttonTitle == R.string.localizable.confirm_buy.key.localized() {
                 remarkView.nameText = R.string.localizable.explain.key.localized()
             }
 
             remarkView.contentText = data.remark
+            remarkView.content.textColor = UIColor.introductionColor
+            remarkView.content.font = UIFont.pfScR14
             if data.payAccount == "" {
                 payAccountView.isHidden = true
             } else {
@@ -74,25 +79,15 @@ class TransferConfirmView: UIView {
     }
 
     fileprivate func setEOSSufAttributeString(_ str: String) -> NSAttributedString {
-        if str.contains("EOS") {
-            let attributedString = NSMutableAttributedString(string: str, attributes: [
-                .font: UIFont.pfScS16,
-                .foregroundColor: UIColor.baseColor,
-                .kern: 0.0
-                ])
-            attributedString.addAttribute(.font, value: UIFont.pfScM12, range: NSRange(location: str.count-3, length: 3))
-            attributedString.addAttribute(.foregroundColor, value: UIColor.introductionColor, range: NSRange(location: str.count-3, length: 3))
-            return attributedString
-        } else {//if str.contains("KB")
-            let attributedString = NSMutableAttributedString(string: str, attributes: [
-                .font: UIFont.pfScS16,
-                .foregroundColor: UIColor.baseColor,
-                .kern: 0.0
-                ])
-            attributedString.addAttribute(.font, value: UIFont.pfScM12, range: NSRange(location: str.count-2, length: 2))
-            attributedString.addAttribute(.foregroundColor, value: UIColor.introductionColor, range: NSRange(location: str.count-2, length: 2))
-            return attributedString
-        }
+        let suffix = str.components(separatedBy: " ")[1]
+        let attributedString = NSMutableAttributedString(string: str, attributes: [
+            .font: UIFont.pfScS16,
+            .foregroundColor: UIColor.baseColor,
+            .kern: 0.0
+            ])
+        attributedString.addAttribute(.font, value: UIFont.pfScM12, range: NSRange(location: str.count-suffix.count, length: suffix.count))
+        attributedString.addAttribute(.foregroundColor, value: UIColor.introductionColor, range: NSRange(location: str.count-suffix.count, length: suffix.count))
+        return attributedString
     }
 
     func setUp() {
