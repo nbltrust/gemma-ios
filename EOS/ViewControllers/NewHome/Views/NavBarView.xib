@@ -30,7 +30,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c94-2O-POo">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icCharge" translatesAutoresizingMaskIntoConstraints="NO" id="UHS-y6-4Gs">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_charge" translatesAutoresizingMaskIntoConstraints="NO" id="UHS-y6-4Gs">
                                     <rect key="frame" x="18" y="28" width="16" height="16"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D4-iu-5aW" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
@@ -105,8 +105,8 @@
         </view>
     </objects>
     <resources>
-        <image name="icCharge" width="16" height="16"/>
         <image name="icSet" width="34" height="34"/>
         <image name="icWallet" width="34" height="34"/>
+        <image name="ic_charge" width="16" height="16"/>
     </resources>
 </document>

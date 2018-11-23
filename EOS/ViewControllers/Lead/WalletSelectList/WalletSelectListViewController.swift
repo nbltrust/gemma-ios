@@ -116,6 +116,7 @@ extension WalletSelectListViewController: UITableViewDataSource, UITableViewDele
             cell.isChoosed = (self.context?.selectedWallet == nil) || (self.context?.selectedWallet?.id == 0)
         } else {
             let wallet = wallets[indexPath.row]
+            cell.title = wallet.name
             cell.isChoosed = self.context?.selectedWallet?.id == wallet.id
         }
 

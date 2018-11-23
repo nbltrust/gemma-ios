@@ -27,6 +27,8 @@ protocol SetWalletCoordinatorProtocol {
     func popVC()
 
     func dismissNav()
+
+    func presentSetFingerPrinterVC()
 }
 
 protocol SetWalletStateManagerProtocol {
@@ -126,7 +128,18 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
     }
 
     func dismissNav() {
-        self.rootVC.dismiss(animated: true, completion: nil)
+        self.rootVC.dismiss(animated: false) {
+            self.presentSetFingerPrinterVC()
+        }
+    }
+
+    func presentSetFingerPrinterVC() {
+        let newHomeNav = appCoodinator.newHomeCoordinator.rootVC
+        let printerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()!
+        let nav = BaseNavigationController.init(rootViewController: printerVC)
+        let coor = BLTCardSetFingerPrinterCoordinator(rootVC: nav)
+        printerVC.coordinator = coor
+        newHomeNav?.present(nav, animated: true, completion: nil)
     }
 }
 

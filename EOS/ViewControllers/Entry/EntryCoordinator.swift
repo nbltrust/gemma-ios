@@ -20,9 +20,9 @@ protocol EntryCoordinatorProtocol {
     func pushToCreateSuccessVC()
     func pushToActivateVCWithCurrencyID(_ id: Int64?)
     func pushBackupPrivateKeyVC()
-    func presentSetFingerPrinterVC()
     func dismissCurrentNav(_ entry: UIViewController?)
     func pushBackupMnemonicVC()
+    func popToRootVC()
 }
 
 protocol EntryStateManagerProtocol {
@@ -122,16 +122,6 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         self.rootVC.pushViewController(vc, animated: true)
     }
 
-    func presentSetFingerPrinterVC() {
-        let printerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()!
-        let nav = BaseNavigationController.init(rootViewController: printerVC)
-        let coor = BLTCardSetFingerPrinterCoordinator(rootVC: nav)
-        printerVC.coordinator = coor
-        self.rootVC.present(nav, animated: true) {
-            self.rootVC.popToRootViewController(animated: false)
-        }
-    }
-
     func dismissCurrentNav(_ entry: UIViewController? = nil) {
         if let entry = entry as? EntryViewController {
             entry.coordinator?.state.callback.endCallback.value?()
@@ -141,7 +131,7 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
             vc.coordinator?.state.callback.endCallback.value?()
         }
     }
-    
+
     func pushBackupMnemonicVC() {
         let vc = R.storyboard.mnemonic.backupMnemonicWordViewController()!
         let coor = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
@@ -149,7 +139,9 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
         self.rootVC.pushViewController(vc, animated: true)
     }
 
-
+    func popToRootVC() {
+        self.rootVC.popToRootViewController(animated: true)
+    }
 }
 
 extension EntryCoordinator: EntryStateManagerProtocol {
@@ -276,7 +268,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                 self.createEOSAccount(.bluetooth, accountName: name, currencyID: currencyID, inviteCode: "", validation: validation, deviceName: device.name, completion: { (successed) in
                     completion(successed)
                     if successed {
-                        self.presentSetFingerPrinterVC()
+                        self.popToRootVC()
                     }
                 })
                 }, failed: { (reason) in
