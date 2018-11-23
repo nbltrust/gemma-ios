@@ -101,11 +101,7 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
     }
 
     func importFinished() {
-        if (self.rootVC.viewControllers[0] as? EntryGuideViewController) != nil {
-            self.dismissCurrentNav(self.rootVC.viewControllers[1])
-        } else {
-            self.rootVC.popToRootViewController(animated: true)
-        }
+        appCoodinator.endEntry()
     }
 
     func pushToMnemonicVC() {

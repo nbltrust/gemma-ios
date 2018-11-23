@@ -37,7 +37,7 @@ class DetailView: UIView {
         didSet {
             if let data = data as? PaymentsRecordsViewModel {
 
-                address.text = "@" + data.address
+                address.text = data.address
                 time.text = data.time
                 state.text = data.transferState
                 memo.text = data.memo

@@ -144,7 +144,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
 
     func place() {
         self.rootVC.topViewController?.startLoadingWithMessage(message: R.string.localizable.pay_tips_warning.key.localized())
-        let orderID = self.state.orderId
+        let orderID = self.state.orderId.value
         NBLNetwork.request(target: .place(orderId: orderID), success: { (result) in
             if let place = Place.deserialize(from: result.dictionaryObject) {
                 let timeInterval = place.timestamp.string
@@ -155,6 +155,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 string += "prepayId=\(place.prepayid!)&"
                 string += "timeStamp=\(UInt32(timeInterval)!)&"
                 string += "sign=\(place.sign!)&signType=SHA1"
+                self.state.pageState.accept(.refresh(type: .manual))
                 MonkeyKingManager.shared.wechatPay(urlString: string, resultCallback: { (success) in
                     self.state.pageState.accept(.initial)
                     self.askToPay()
@@ -174,7 +175,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
     }
 
     func askToPay() {
-        NBLNetwork.request(target: .getOrder(orderId: self.state.orderId), success: { (data) in
+        NBLNetwork.request(target: .getOrder(orderId: self.state.orderId.value), success: { (data) in
             let payState = data["pay_state"].stringValue
             let state = data["status"].stringValue
             if state != "DONE" {
@@ -197,7 +198,7 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.needCancel = false
                 appCoodinator.showGemmaAlert(context)
             } else if payState == "SUCCESS", state == "DONE" {
-                self.popToEntryVCWithInviteCode(self.state.orderId)
+                self.popToEntryVCWithInviteCode(self.state.orderId.value)
             } else if payState == "SUCCESS", state == "TOREFUND" {
                 var context = ScreenShotAlertContext()
                 context.desc = R.string.localizable.price_change_tips.key.localized() + RichStyle.shared.tagText("55 RAM", fontSize: 14, color: UIColor.highlightColor, lineHeight: 16) + "。"

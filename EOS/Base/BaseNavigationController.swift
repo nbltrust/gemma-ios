@@ -13,7 +13,10 @@ enum NavStyle: Int {
     case clear
 }
 
+var popGesture = true
+
 class BaseNavigationController: UINavigationController {
+
     var navStyle: NavStyle = .common {
         didSet {
             self.setupNav()
@@ -94,6 +97,10 @@ extension BaseNavigationController: UIGestureRecognizerDelegate {
         if viewControllers.count <= 1 {
             return false
         }
+        if popGesture == false {
+            return false
+        }
+
         return true
     }
 }

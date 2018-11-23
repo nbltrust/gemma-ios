@@ -109,9 +109,9 @@ class WalletManager {
         let wallets = walletList()
         let counts: Int64 = Int64(wallets.count)
         if counts == 0 {
-            return "WOOKONG-WALLET"
+            return "WOOKONG Wallet"
         } else {
-            return "WOOKONG-WALLET-\(counts + 1)"
+            return "WOOKONG Wallet \(counts)"
         }
     }
 
@@ -391,5 +391,16 @@ class WalletManager {
         let regex = "^[1-5a-z.]{1,12}+$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: name)
+    }
+
+    func isValidWalletName(_ name: String) -> Bool {
+        if self.walletList().count > 0 {
+            for wallet in self.walletList() {
+                if wallet.name == name {
+                    return false
+                }
+            }
+        }
+        return true
     }
 }

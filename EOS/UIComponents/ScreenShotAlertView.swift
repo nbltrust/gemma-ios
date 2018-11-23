@@ -16,6 +16,7 @@ class ScreenShotAlertView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tipsLabel: UILabel!
     @IBOutlet weak var titleImage: UIImageView!
+    @IBOutlet weak var btnSeparatorView: UIView!
 
     enum ScreenShotEvent: String {
         case sureShot

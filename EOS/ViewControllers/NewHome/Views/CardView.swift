@@ -32,8 +32,6 @@ class CardView: UIView {
     @IBOutlet weak var netProgress: UIProgressView!
     @IBOutlet weak var ramProgress: UIProgressView!
     
-    
-    
     var tokenArray: [String] = [] {
         didSet {
             self.tokenView.removeSubviews()
@@ -41,6 +39,8 @@ class CardView: UIView {
                 if index < 5 {
                     let imgView = UIImageView(frame: CGRect(x: 88 - (index+1)*28 + index*13, y: 0, width: 28, height: 28))
                     imgView.kf.setImage(with: URL(string: tokenArray[index]), placeholder: R.image.icTokenUnknown())
+                    imgView.layer.cornerRadius = 14
+                    imgView.clipsToBounds = true
                     self.tokenView.insertSubview(imgView, at: 0)
                 }
             }

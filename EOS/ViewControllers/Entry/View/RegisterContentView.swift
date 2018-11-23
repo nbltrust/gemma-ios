@@ -159,7 +159,7 @@ extension RegisterContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDat
         } else if titleTextFieldView == walletNameView {
             return TitleTextSetting(title: R.string.localizable.wallet_name.key.localized(),
                                     placeholder: R.string.localizable.wallet_name_ph.key.localized(),
-                                    warningText: R.string.localizable.name_warning.key.localized(),
+                                    warningText: R.string.localizable.walletname_warning.key.localized(),
                                     introduce: "",
                                     isShowPromptWhenEditing: true,
                                     showLine: true,
@@ -270,6 +270,8 @@ extension RegisterContentView: UITextFieldDelegate {
             walletNameView.reloadActionViews(isEditing: false)
             if textField.text == "" {
                 walletNameView.checkStatus = TextUIStyle.common
+            } else {
+                walletNameView.checkStatus = WalletManager.shared.isValidWalletName(textField.text!) ? TextUIStyle.common : TextUIStyle.warning
             }
         case InputType.password.rawValue:
             passwordView.reloadActionViews(isEditing: false)

@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import SwiftyUserDefaults
 
 func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
     var state = state ?? OverviewState()
@@ -85,6 +86,8 @@ func convertViewModelWithAccount(tokensJson: [Tokens]) -> [AssetViewModel] {
         model.balance = token.balance
         model.contract = token.code
         modelArray.append(model)
+        let precision = getPrecision(model.balance)
+        CurrencyManager.shared.savePrecision(model.name, precision: precision)
     }
     return modelArray
 }

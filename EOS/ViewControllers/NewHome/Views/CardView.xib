@@ -97,16 +97,16 @@
                                                     <rect key="frame" x="15" y="100" width="60" height="121"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUl-KB-hdl" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="28"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="24"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="28" id="cSI-0j-rot"/>
+                                                                <constraint firstAttribute="height" constant="24" id="cSI-0j-rot"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIk-7y-hhi" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="58.5" width="35.5" height="14"/>
+                                                            <rect key="frame" x="0.0" y="56.5" width="35.5" height="14"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="L6V-8j-zXQ"/>
                                                             </constraints>

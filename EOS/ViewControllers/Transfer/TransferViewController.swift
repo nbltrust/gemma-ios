@@ -35,7 +35,7 @@ class TransferViewController: BaseViewController {
         super.viewWillAppear(true)
 
         setUpUI()
-        getData()
+//        getData()
         checkWalletType()
     }
 
@@ -131,9 +131,12 @@ extension TransferViewController {
 
             let balance = self.transferContentView.balance
             let balanceValue = balance.components(separatedBy: " ")[0]
-            textfield.text = money.string(digits: getPrecision(balanceValue))
-
-            self.coordinator?.validMoney(money.string(digits: AppConfiguration.EOSPrecision), blance: balance)
+            let textfieldPrecision = getPrecision(textfield.text!)
+            let balancePrecision = getPrecision(balanceValue)
+            if textfieldPrecision > balancePrecision {
+                textfield.text = money.string(digits: balancePrecision)
+            }
+            self.coordinator?.validMoney(money.string(digits: getPrecision(balanceValue)), blance: balance)
         } else if let textfield = data["textfield"] as? UITextField {
             textfield.text = ""
             self.transferContentView.nextButton.isEnabel.accept(false)

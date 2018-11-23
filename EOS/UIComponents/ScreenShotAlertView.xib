@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScreenShotAlertView" customModule="EOS" customModuleProvider="target">
             <connections>
+                <outlet property="btnSeparatorView" destination="OXN-o4-mFo" id="oJo-ak-SQA"/>
                 <outlet property="cancelButton" destination="cEZ-pA-tcI" id="BqT-lK-ybX"/>
                 <outlet property="knowButton" destination="S28-JB-7Jy" id="SmY-9o-e0e"/>
                 <outlet property="tipsLabel" destination="2zV-Jq-qXh" id="srp-gg-O1g"/>
@@ -94,7 +95,7 @@
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jlT-Oi-L1V">
                     <rect key="frame" x="0.0" y="186.5" width="283" height="1"/>
-                    <color key="backgroundColor" red="0.86299999999999999" green="0.86699999999999999" blue="0.89000000000000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="separatorColor" red="0.867" green="0.867" blue="0.867" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="AU3-MW-0wi"/>
                     </constraints>
@@ -103,7 +104,7 @@
                     <rect key="frame" x="0.0" y="187.5" width="283" height="45"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEZ-pA-tcI">
-                            <rect key="frame" x="0.0" y="0.0" width="141.5" height="45"/>
+                            <rect key="frame" x="0.0" y="0.0" width="141" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="rzd-kg-9LP"/>
                             </constraints>
@@ -119,11 +120,11 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXN-o4-mFo">
-                            <rect key="frame" x="141.5" y="0.0" width="0.5" height="45"/>
-                            <color key="backgroundColor" name="greyishBrown" red="0.247" green="0.247" blue="0.247" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="141" y="0.0" width="1" height="45"/>
+                            <color key="backgroundColor" name="separatorColor" red="0.867" green="0.867" blue="0.867" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="WjR-MJ-N0c"/>
-                                <constraint firstAttribute="width" constant="0.5" id="vxS-Da-47z"/>
+                                <constraint firstAttribute="width" constant="1" id="vxS-Da-47z"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S28-JB-7Jy">

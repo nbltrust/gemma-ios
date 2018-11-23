@@ -35,40 +35,7 @@ class OverviewView: EOSBaseView {
 
     var assetDataArray: [AssetViewModel]? {
         didSet {
-//            if assetDataArray != nil {
-//
-//                if let data = firstAssetData {
-//                    let isContain = assetDataArray?.contains(where: { (value) -> Bool in
-//                        value.name == data.name
-//                    })
-//                    if isContain == false {
-//                        assetDataArray?.insert(data, at: 0)
-//                    } else {
-//                        assetDataArray?.remove(at: 0)
-//                        assetDataArray?.insert(data, at: 0)
-//                    }
-//                }
-                tableView.reloadData()
-//            }
-        }
-    }
-
-    var firstAssetData: AssetViewModel? {
-        didSet {
-//            if assetDataArray != nil {
-//                if let data = firstAssetData {
-//                    let isContain = assetDataArray?.contains(where: { (value) -> Bool in
-//                        value.name == data.name
-//                    })
-//                    if isContain == false {
-//                        assetDataArray?.insert(data, at: 0)
-//                    } else {
-//                        assetDataArray?.remove(at: 0)
-//                        assetDataArray?.insert(data, at: 0)
-//                    }
-//                }
-                tableView.reloadData()
-//            }
+            tableView.reloadData()
         }
     }
 
@@ -97,9 +64,6 @@ class OverviewView: EOSBaseView {
 extension OverviewView: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
-        if let _ = firstAssetData {
-            count += 1
-        }
         if let data = assetDataArray {
             count += data.count
         }
@@ -127,12 +91,9 @@ extension OverviewView: UITableViewDelegate,UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: AssetCell.self), for: indexPath) as? AssetCell else {
             return UITableViewCell()
         }
-        if indexPath.row == 0 {
-            cell.setup(firstAssetData, indexPath: indexPath)
-        } else {
-            if let data = assetDataArray {
-                cell.setup(data[indexPath.row-1], indexPath: indexPath)
-            }
+
+        if let data = assetDataArray {
+            cell.setup(data[indexPath.row], indexPath: indexPath)
         }
 
         return cell

@@ -76,7 +76,6 @@
 "account_name" = "Account name";
 "payment_account" = "From";
 "money" = "Amount";
-"input_transfer_money" = "Enter amount";
 "remark" = "Memo（optional）";
 "input_transfer_remark" = "Enter memo (optional)";
 "transfer_state_time" = "Estimated confirm time:";
@@ -266,6 +265,9 @@
 "mnemonic_pwdview_placeholder" = "助记词已用钱包密码加密，请输入密码";
 "undelegate_not_all0" = "总赎回数不能为0";
 "wallet_name_ph" = "请输入钱包名称";
+"remark_title" = "备注";
+"walletname_warning" = "钱包名重复";
+"input_transfer_money" = "输入转账金额，最多%d位小数";
 
 //zsy end
 
