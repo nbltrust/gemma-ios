@@ -187,7 +187,6 @@ class AppCoordinator {
     func showGemmaAlert(_ context: ScreenShotAlertContext? = nil) {
         let presenter = Presentr(presentationType: PresentationType.fullScreen)
         presenter.keyboardTranslationType = .stickToTop
-
         presentVCNoNav(ScreenShotAlertCoordinator.self, context: context) { (top, target) in
             top.customPresentViewController(presenter, viewController: target, animated: false)
         }

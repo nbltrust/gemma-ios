@@ -23,7 +23,7 @@ class NodeCell: UITableViewCell {
     func setupNode(_ node: NodeVoteViewModel) {
         nodeView.nameLabel.text = node.name
         nodeView.ownerLabel.text = node.name
-        nodeView.urlLabel.text = node.url
+        nodeView.urlLabel.text =  node.url
         nodeView.perLabel.text = node.percent.string
         nodeView.rankLabel.text = node.rank.string
     }

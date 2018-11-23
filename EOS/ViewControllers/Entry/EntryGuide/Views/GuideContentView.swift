@@ -9,7 +9,7 @@
 import Foundation
 
 @IBDesignable
-class GuideContentView: EOSBaseView {
+class GuideContentView: UIView {
 
     @IBOutlet weak var imageView: UIImageView!
 
@@ -17,27 +17,31 @@ class GuideContentView: EOSBaseView {
 
     @IBOutlet weak var subTitleLabel: UILabel!
 
-
-    enum Event: String {
-        case guideContentViewDidClicked
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutIfNeeded()
     }
 
-    override func setup() {
-        super.setup()
-        
-        setupUI()
-        setupSubViewEvent()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadViewFromNib()
     }
 
-    func setupUI() {
-
-    }
-    
-    func setupSubViewEvent() {
-    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        loadViewFromNib()
     }
 
-    @objc override func didClicked() {
-        self.next?.sendEventWith(Event.guideContentViewDidClicked.rawValue, userinfo: ["data": self.data ?? ""])
+    fileprivate func loadViewFromNib() {
+        let bundle = Bundle(for: type(of: self))
+        let nibName = String(describing: type(of: self))
+        let nib = UINib.init(nibName: nibName, bundle: bundle)
+        guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
+            return
+        }
+        insertSubview(view, at: 0)
+        view.frame = self.bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
+
 }

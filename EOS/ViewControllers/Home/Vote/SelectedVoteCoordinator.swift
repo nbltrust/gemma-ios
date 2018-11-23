@@ -57,8 +57,11 @@ extension SelectedVoteCoordinator: SelectedVoteStateManagerProtocol {
     func loadDatas() {
         Broadcaster.notify(VoteStateManagerProtocol.self) { (pro) in
             var lastSelData: [NodeVoteViewModel] = []
+            let indexPaths = pro.state.property.selIndexPaths
+            let datas = pro.state.property.datas
             for index in 0..<pro.state.property.selIndexPaths.count {
-                lastSelData.append(pro.state.property.datas[index])
+                let indexPath = pro.state.property.selIndexPaths[index]
+                lastSelData.append(datas[indexPath.row])
             }
             self.store.dispatch(SetSelIndexPathsAction(indexPaths: pro.state.property.selIndexPaths))
             self.store.dispatch(SetVoteNodeListAction(datas: lastSelData))

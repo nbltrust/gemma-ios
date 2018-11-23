@@ -10,28 +10,30 @@ import Foundation
 import SnapKit
 
 @IBDesignable
-class GuideView: BaseView {
+class GuideView: UIView {
 
     @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var pageControl: UIPageControl!
 
-    @IBOutlet weak var pageView1: GuideContentView!
-    
-    @IBOutlet weak var pageView2: GuideContentView!
-    
-    @IBOutlet weak var pageView3: GuideContentView!
+    var itemViews: [GuideContentView] = []
 
-    override func setup() {
-        super.setup()
+    func setup() {
         setupUI()
-        setupSubViewEvent()
+        updateSize()
     }
-    
+
     func setupUI() {
-        pageView1.adapterModelToGuideContentView(pageData()[0])
-        pageView2.adapterModelToGuideContentView(pageData()[1])
-        pageView3.adapterModelToGuideContentView(pageData()[2])
+        let data: [GuideModel] = pageData()
+        for index in 0..<data.count {
+            let item = data[index]
+            let guideFrame = CGRect(x: self.width * index.cgFloat, y: 0, width: self.width, height: self.height - 44)
+            let guideView = GuideContentView.init(frame: guideFrame)
+            guideView.adapterModelToGuideContentView(item)
+            itemViews.append(guideView)
+            scrollView.addSubview(guideView)
+        }
+        scrollView.contentSize = CGSize(width: data.count.cgFloat * self.width, height: self.height)
     }
 
     func loadPageViews() {
@@ -56,8 +58,43 @@ class GuideView: BaseView {
         return pageView
     }
 
-    func setupSubViewEvent() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutIfNeeded()
+        updateSize()
+    }
 
+    func updateSize() {
+        for index in 0..<itemViews.count {
+            let itemView = itemViews[index]
+            let guideFrame = CGRect(x: self.width * index.cgFloat, y: 0, width: self.width, height: self.height - 44)
+            itemView.frame = guideFrame
+        }
+        scrollView.contentSize = CGSize(width: itemViews.count.cgFloat * self.width, height: self.height - 44)
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadViewFromNib()
+        setup()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        loadViewFromNib()
+        setup()
+    }
+
+    fileprivate func loadViewFromNib() {
+        let bundle = Bundle(for: type(of: self))
+        let nibName = String(describing: type(of: self))
+        let nib = UINib.init(nibName: nibName, bundle: bundle)
+        guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
+            return
+        }
+        insertSubview(view, at: 0)
+        view.frame = self.bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
 }
 
