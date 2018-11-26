@@ -24,7 +24,6 @@ class VoteViewController: BaseViewController {
         setupUI()
         setupEvent()
         loadVoteNodeList()
-        self.coordinator?.getAccountInfo()
     }
 
     func setupUI() {
@@ -82,6 +81,7 @@ class VoteViewController: BaseViewController {
                 self.endLoading()
             }
         })
+        self.coordinator?.getAccountInfo()
     }
 
     func updateCount() {
