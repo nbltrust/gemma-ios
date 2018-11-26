@@ -24,30 +24,34 @@ class NewHomeViewController: BaseViewController {
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupEvent()
+        setupData()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupUI()
-        setupData()
+        refreshData()
     }
 
     override func refreshViewController() {
 
     }
-    
     func setupUI() {
         hiddenNavBar()
     }
-
-    func setupData() {
+    func refreshData() {
         self.dataArray.removeAll()
         self.coordinator?.state.info.accept(NewHomeViewModel())
         if let wallet = WalletManager.shared.currentWallet() {
             self.contentView.navBarView.adapterModelToNavBarView(wallet)
             self.coordinator?.fetchWalletInfo(wallet)
+        }
+    }
+    func setupData() {
+        self.addPullToRefresh(self.contentView.tableView) {[weak self] (completion) in
+            guard let `self` = self else {return}
+            self.refreshData()
+            completion?()
         }
     }
 

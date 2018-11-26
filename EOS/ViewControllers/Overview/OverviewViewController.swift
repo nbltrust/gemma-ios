@@ -27,7 +27,7 @@ class OverviewViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-//        setupData()
+        setupData()
         setupUI()
         setupEvent()
     }
@@ -66,15 +66,19 @@ class OverviewViewController: BaseViewController {
     }
 
     func setupData() {
-        if let name = CurrencyManager.shared.getAccountNameWith(currencyID) {
-            coordinator?.getAccountInfo(name)
-            self.coordinator?.getTokensWith(name)
+        self.addPullToRefresh(self.contentView.tableView) {[weak self] (completion) in
+            guard let `self` = self else {return}
+            self.reloadData()
+            completion?()
         }
     }
 
     func reloadData() {
         reloadAccountView()
-        setupData()
+        if let name = CurrencyManager.shared.getAccountNameWith(currencyID) {
+            coordinator?.getAccountInfo(name)
+            self.coordinator?.getTokensWith(name)
+        }
     }
 
     func setupEvent() {

@@ -29,6 +29,7 @@ class TransferConfirmPasswordViewController: BaseViewController {
     @IBOutlet weak var passwordView: TransferConfirmPasswordView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadViewIfNeeded()
         self.setTitleAndPlaceholder()
     }
 
