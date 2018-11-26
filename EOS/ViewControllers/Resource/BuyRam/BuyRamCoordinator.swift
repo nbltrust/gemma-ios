@@ -62,7 +62,7 @@ extension BuyRamCoordinator: BuyRamCoordinatorProtocol {
         let customType = PresentationType.custom(width: width, height: height, center: center)
 
         let presenter = Presentr(presentationType: customType)
-        presenter.dismissOnTap = false
+//        presenter.dismissOnTap = false
         presenter.keyboardTranslationType = .stickToTop
 
         var context = TransferConfirmContext()

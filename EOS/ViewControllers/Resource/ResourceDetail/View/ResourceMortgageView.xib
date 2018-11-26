@@ -71,6 +71,17 @@
                                         </view>
                                     </subviews>
                                 </stackView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziP-rF-nzN" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                                    <rect key="frame" x="19" y="374.5" width="337" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" name="introductionColor" red="0.400" green="0.400" blue="0.400" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
+                                            <real key="value" value="22"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7z1-R0-ULW">
                                     <rect key="frame" x="0.0" y="349" width="375" height="162"/>
                                     <subviews>
@@ -119,10 +130,13 @@
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="pJu-uf-Ute" secondAttribute="trailing" id="4B4-UI-Rpp"/>
+                                <constraint firstItem="ziP-rF-nzN" firstAttribute="leading" secondItem="G5Q-vI-0a1" secondAttribute="leading" constant="19" id="7Zi-M5-y6C"/>
                                 <constraint firstAttribute="trailing" secondItem="7z1-R0-ULW" secondAttribute="trailing" id="8JR-bP-GNU"/>
                                 <constraint firstAttribute="bottom" secondItem="7z1-R0-ULW" secondAttribute="bottom" constant="50" id="BnK-T0-fc7"/>
                                 <constraint firstItem="7z1-R0-ULW" firstAttribute="leading" secondItem="G5Q-vI-0a1" secondAttribute="leading" id="FbN-rF-VrA"/>
                                 <constraint firstItem="7z1-R0-ULW" firstAttribute="top" secondItem="pJu-uf-Ute" secondAttribute="bottom" id="Jka-ft-VEt"/>
+                                <constraint firstAttribute="trailing" secondItem="ziP-rF-nzN" secondAttribute="trailing" constant="19" id="dZ3-yT-ldh"/>
+                                <constraint firstItem="ziP-rF-nzN" firstAttribute="top" secondItem="pJu-uf-Ute" secondAttribute="bottom" constant="25.5" id="dfC-f5-sVF"/>
                                 <constraint firstItem="pJu-uf-Ute" firstAttribute="top" secondItem="x8N-Bk-XpP" secondAttribute="bottom" id="hBt-O8-egf"/>
                                 <constraint firstItem="pJu-uf-Ute" firstAttribute="leading" secondItem="G5Q-vI-0a1" secondAttribute="leading" id="hk4-0P-L84"/>
                                 <constraint firstItem="x8N-Bk-XpP" firstAttribute="leading" secondItem="G5Q-vI-0a1" secondAttribute="leading" constant="21" id="oqn-Wi-iqA"/>
@@ -149,4 +163,6 @@
             <point key="canvasLocation" x="23.199999999999999" y="50.824587706146929"/>
         </view>
     </objects>
+    <resources>
+    </resources>
 </document>

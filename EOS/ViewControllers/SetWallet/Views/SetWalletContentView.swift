@@ -114,6 +114,9 @@ class SetWalletContentView: UIView {
         titleTextfieldView.updateContentSize()
         let selector = #selector(handleTextFiledDidChanged(_:))
         titleTextfieldView.textField.addTarget(self, action: selector, for: .editingChanged)
+        if tag == InputType.name.rawValue {
+            titleTextfieldView.textField.font = UIFont.pfScS16
+        }
     }
 
     func passwordSwitch(isSelected: Bool) {
@@ -273,11 +276,18 @@ extension SetWalletContentView: UITextFieldDelegate {
             nameView.checkStatus = TextUIStyle.common
         case InputType.password.rawValue:
             passwordView.reloadActionViews(isEditing: false)
-            passwordView.checkStatus = pasValid() ? TextUIStyle.common : TextUIStyle.warning
-            confirmPasswordView.checkStatus = confirmValid() ? TextUIStyle.common : TextUIStyle.warning
+            if textField.text == "" {
+                passwordView.checkStatus = TextUIStyle.common
+            } else {
+                passwordView.checkStatus = pasValid() ? TextUIStyle.common : TextUIStyle.warning
+            }
         case InputType.comfirmPassword.rawValue:
             confirmPasswordView.reloadActionViews(isEditing: false)
-            confirmPasswordView.checkStatus = confirmValid() ? TextUIStyle.common : TextUIStyle.warning
+            if textField.text == "" {
+                confirmPasswordView.checkStatus = TextUIStyle.common
+            } else {
+                confirmPasswordView.checkStatus = confirmValid() ? TextUIStyle.common : TextUIStyle.warning
+            }
         case InputType.passwordPrompt.rawValue:
             hintView.reloadActionViews(isEditing: false)
             hintView.checkStatus = TextUIStyle.common

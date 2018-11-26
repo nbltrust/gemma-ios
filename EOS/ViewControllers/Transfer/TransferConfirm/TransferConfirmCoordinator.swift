@@ -60,6 +60,10 @@ extension TransferConfirmCoordinator: TransferConfirmCoordinatorProtocol {
         context.type = type
         context.iconType = LeftIconType.pop.rawValue
         context.model = model
+        let frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 244, width: UIScreen.main.bounds.width, height: 244)
+//        self.rootVC.topViewController?.presentationController!.presentedView!.frame = frame
+//        self.rootVC.topViewController
+        self.rootVC.topViewController?.navigationController?.view.frame = frame
         pushVC(TransferConfirmPasswordCoordinator.self, animated: true, context: context)
     }
 
