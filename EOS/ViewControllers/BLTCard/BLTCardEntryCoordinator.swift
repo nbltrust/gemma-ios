@@ -17,12 +17,31 @@ protocol BLTCardEntryCoordinatorProtocol {
     func pushToSetWalletVC()
 
     func presentBLTCardSearchVC()
+
+    func pushToMnemonicVC()
+
+    func dismissVC()
+
+    func presentFingerPrinterVC(_ state: BLTCardPINState)
+
+    func presentPinVC(_ state: BLTCardPINState)
 }
 
 protocol BLTCardEntryStateManagerProtocol {
     var state: BLTCardEntryState { get }
 
     func switchPageState(_ state: PageState)
+
+    func checkPinState()
+
+    func createWookongBioWallet(_ hint: String,
+                                success: @escaping SuccessedComplication,
+                                failed: @escaping FailedComplication)
+
+    func checkFPExist(_ success: @escaping CompletionCallback,
+                      failed: @escaping CompletionCallback)
+
+    func disconnect()
 }
 
 class BLTCardEntryCoordinator: BLTCardRootCoordinator {
@@ -47,6 +66,10 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
 
     }
 
+    func dismissVC() {
+        self.rootVC.dismiss(animated: true, completion: nil)
+    }
+
     func pushToSetWalletVC() {
         if let setWalletVC = R.storyboard.leadIn.setWalletViewController() {
             setWalletVC.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
@@ -56,6 +79,7 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
     }
 
     func presentBLTCardSearchVC() {
+        self.disconnect()
         let width = ModalSize.full
 
         let height: Float = 320
@@ -72,7 +96,7 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
         var context = BLTCardSearchContext()
         context.connectSuccessed = { [weak self] () in
             guard let `self` = self else { return }
-            self.pushToSetWalletVC()
+            self.checkPinState()
         }
 
         if let vc = R.storyboard.bltCard.bltCardSearchViewController() {
@@ -84,10 +108,98 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
             self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
         }
     }
+
+    func pushToMnemonicVC() {
+        let mnemonicWordVC = R.storyboard.mnemonic.backupMnemonicWordViewController()
+        let coor = BackupMnemonicWordCoordinator(rootVC: self.rootVC)
+        mnemonicWordVC?.coordinator = coor
+        mnemonicWordVC?.isWookong = true
+        self.rootVC.pushViewController(mnemonicWordVC!, animated: true)
+    }
+
+    func presentFingerPrinterVC(_ state: BLTCardPINState) {
+        confirmFP(self.rootVC) {
+            self.handleWookongPair(state)
+        }
+    }
+
+    func presentPinVC(_ state: BLTCardPINState) {
+        confirmPin(self.rootVC) {
+            self.handleWookongPair(state)
+        }
+    }
+
+    func handleWookongPair(_ state: BLTCardPINState) {
+        if state == .finishInit {
+            self.rootVC.topViewController?.startLoading()
+            self.createWookongBioWallet("", success: {
+                self.rootVC.topViewController?.endLoading()
+                self.dismissVC()
+            }, failed: { (reason) in
+                self.rootVC.topViewController?.endLoading()
+                if let failedReson = reason {
+                    showFailTop(failedReson)
+                }
+            })
+        } else if state == .unFinishInit {
+            self.pushToMnemonicVC()
+        }
+    }
+
+    func disconnect() {
+        BLTWalletIO.shareInstance()?.disConnect({
+
+        }, failed: { (reason) in
+
+        })
+    }
 }
 
 extension BLTCardEntryCoordinator: BLTCardEntryStateManagerProtocol {
     func switchPageState(_ state: PageState) {
         self.store.dispatch(PageStateAction(state: state))
+    }
+
+    func checkPinState() {
+        BLTWalletIO.shareInstance()?.checkPinState({ [weak self] (pinState) in
+            guard let `self` = self else { return }
+            switch pinState {
+            case .unInit:
+                self.pushToSetWalletVC()
+            case .unFinishInit:
+                self.checkFPExist({
+                    self.presentFingerPrinterVC(.unFinishInit)
+                }, failed: {
+                    self.presentPinVC(.unFinishInit)
+                })
+            case .finishInit:
+                self.checkFPExist({
+                    self.presentFingerPrinterVC(.finishInit)
+                }, failed: {
+                    self.presentPinVC(.finishInit)
+                })
+            }
+        }, failed: { (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        })
+    }
+
+    func createWookongBioWallet(_ hint: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
+        importWookongBioWallet(hint, success: success, failed: failed)
+    }
+
+    func checkFPExist(_ success: @escaping CompletionCallback,
+                      failed: @escaping CompletionCallback) {
+        BLTWalletIO.shareInstance()?.getFPList({ (data) in
+            if let list = data, list.count > 0 {
+                success()
+            } else {
+                failed()
+            }
+        }, failed: { (reason) in
+            failed()
+        })
     }
 }

@@ -163,7 +163,7 @@ class SetWalletViewController: BaseViewController {
                     if let password = self.fieldView.passwordView.textField.text {
                         self.coordinator?.setWalletPin(password, success: { [weak self] in
                             guard let `self` = self else { return }
-                            self.coordinator?.pushToMnemonicVC()
+                            self.coordinator?.presentBLTInitTypeSelectVC()
                         }, failed: { [weak self] (reason) in
                             guard let `self` = self else { return }
                             if let failedReason = reason {
@@ -216,20 +216,6 @@ class SetWalletViewController: BaseViewController {
                                     }
                                     return arg0.1 && arg0.2 && arg0.3
             }.bind(to: finished.isEnabel).disposed(by: disposeBag)
-
-        self.coordinator?.state.callback.finishBLTWalletCallback.accept({ [weak self] in
-            guard let `self` = self else { return }
-            self.startLoading()
-            self.coordinator?.createWookongBioWallet(self.fieldView.hintView.textField.text ?? "", success: {
-                self.endLoading()
-                self.coordinator?.dismissNav()
-            }, failed: { (reason) in
-                self.endLoading()
-                if let failedReason = reason {
-                    showFailTop(failedReason)
-                }
-            })
-        })
     }
 }
 

@@ -13,6 +13,7 @@ import seed39_ios_golang
 import eos_ios_core_cpp
 import SwiftyUserDefaults
 import Seed39
+import Presentr
 
 protocol SetWalletCoordinatorProtocol {
 
@@ -24,11 +25,15 @@ protocol SetWalletCoordinatorProtocol {
 
     func pushToMnemonicVC()
 
+    func pushToImportVC()
+
     func popVC()
 
     func dismissNav()
 
     func presentSetFingerPrinterVC()
+
+    func presentBLTInitTypeSelectVC()
 }
 
 protocol SetWalletStateManagerProtocol {
@@ -71,10 +76,6 @@ protocol SetWalletStateManagerProtocol {
     func updatePin(_ new: String,
                    success: @escaping SuccessedComplication,
                    failed: @escaping FailedComplication)
-
-    func createWookongBioWallet(_ hint: String,
-                                success: @escaping SuccessedComplication,
-                                failed: @escaping FailedComplication)
 }
 
 class SetWalletCoordinator: NavCoordinator {
@@ -94,7 +95,6 @@ class SetWalletCoordinator: NavCoordinator {
 }
 
 extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
-
     func pushToServiceProtocolVC() {
         let serviceVC = BaseWebViewController()
         serviceVC.url = H5AddressConfiguration.RegisterProtocolURL
@@ -112,6 +112,18 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
         mnemonicWordVC?.coordinator = coor
         mnemonicWordVC?.isWookong = true
         self.rootVC.pushViewController(mnemonicWordVC!, animated: true)
+    }
+
+    func pushToImportVC() {
+        let leadInVC = R.storyboard.leadIn.leadInViewController()!
+        let coordinator = LeadInCoordinator(rootVC: self.rootVC)
+        coordinator.state.callback.fadeCallback.accept {
+            if (UIApplication.shared.delegate as? AppDelegate) != nil {
+                appCoodinator.endEntry()
+            }
+        }
+        leadInVC.coordinator = coordinator
+        self.rootVC.pushViewController(leadInVC, animated: true)
     }
 
     func pushToSetAccountVC(_ hint: String) {
@@ -141,6 +153,39 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
         printerVC.coordinator = coor
         newHomeNav?.present(nav, animated: true, completion: nil)
     }
+
+    func presentBLTInitTypeSelectVC() {
+        let width = ModalSize.full
+
+        let height: Float = 249.0
+        let centerHeight = UIScreen.main.bounds.height - height.cgFloat
+        let heightSize = ModalSize.custom(size: height)
+
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: centerHeight))
+        let customType = PresentationType.custom(width: width, height: heightSize, center: center)
+
+        let presenter = Presentr(presentationType: customType)
+        presenter.keyboardTranslationType = .stickToTop
+
+        var context = BLTInitTypeSelectContext()
+        context.isCreateCallback = {[weak self] (isCreate) in
+            guard let `self` = self else {return}
+            if isCreate {
+                self.pushToMnemonicVC()
+            } else {
+                self.pushToImportVC()
+            }
+        }
+
+        if let fpVC = R.storyboard.bltCard.bltInitTypeSelectViewController() {
+            let nav = BaseNavigationController.init(rootViewController: fpVC)
+            let coordinator = BLTInitTypeSelectCoordinator(rootVC: nav)
+            fpVC.coordinator = coordinator
+            coordinator.store.dispatch(RouteContextAction(context: context))
+            rootVC.customPresentViewController(presenter, viewController: nav, animated: true)
+        }
+    }
+
 }
 
 extension SetWalletCoordinator: SetWalletStateManagerProtocol {
@@ -238,32 +283,6 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
                 }
             }
         }
-    }
-
-    func createWookongBioWallet(_ hint: String,
-                                success: @escaping SuccessedComplication,
-                                failed: @escaping FailedComplication) {
-        do {
-            let date = Date.init()
-            let wallet = Wallet(id: nil, name: WalletManager.shared.bltWalletName(), type: .bluetooth, cipher: "", deviceName: BLTWalletIO.shareInstance()?.selectDevice.name, date: date, hint: hint)
-            if let walletId =  try WalletCacheService.shared.insertWallet(wallet: wallet) {
-                BLTWalletIO.shareInstance()?.getPubKey({ [weak self] (pubkey, pubkeySign) in
-                    guard let `self` = self else { return }
-                    let currency = Currency(id: nil, type: .EOS, cipher: "", pubKey: pubkey, wid: walletId, date: date, address: nil)
-                    self.saveCurrency(currency)
-                    Defaults[.currentWalletID] = walletId.string
-                    success()
-                }, failed: failed)
-            }
-        } catch {
-            failed(R.string.localizable.prompt_create_failed.key.localized())
-        }
-    }
-
-    func saveCurrency(_ currency: Currency) {
-        do {
-            let _ = try WalletCacheService.shared.insertCurrency(currency)
-        } catch {}
     }
 
     func setWalletPin(_ password: String,

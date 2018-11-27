@@ -31,7 +31,11 @@ class LeadInViewController: BaseViewController {
 
 extension LeadInViewController {
     @objc func switchToKeyView(_ sender: [String: Any]) {
-        self.coordinator?.openLeadInKey()
+        let index = (self.navigationController?.viewControllers.count ?? 2) - 2
+        if let wookongLeadVC = self.navigationController?.viewControllers[index] as? SetWalletViewController {
+            self.coordinator?.openLeadInWookongPriKey()
+        } else {
+            self.coordinator?.openLeadInKey()
+        }
     }
-
 }

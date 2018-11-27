@@ -8,6 +8,7 @@
 
 import Foundation
 import Presentr
+import SwiftyUserDefaults
 
 func connectBLTCard(_ rootVC: UINavigationController, complication: @escaping CompletionCallback) {
     let width = ModalSize.full
@@ -51,13 +52,65 @@ func confirmPin(_ rootVC: UINavigationController, complication: @escaping Succes
         complication()
     }
 
-    if let connectVC = R.storyboard.bltCard.bltCardConfirmPinViewController() {
-        let nav = BaseNavigationController.init(rootViewController: connectVC)
+    if let pinVC = R.storyboard.bltCard.bltCardConfirmPinViewController() {
+        let nav = BaseNavigationController.init(rootViewController: pinVC)
         let coordinator = BLTCardConfirmPinCoordinator(rootVC: nav)
-        connectVC.coordinator = coordinator
+        pinVC.coordinator = coordinator
         coordinator.store.dispatch(RouteContextAction(context: context))
         rootVC.customPresentViewController(presenter, viewController: nav, animated: true)
     }
+}
+
+func confirmFP(_ rootVC: UINavigationController, complication: @escaping SuccessedComplication) {
+    let width = ModalSize.full
+
+    let height: Float = 249.0
+    let centerHeight = UIScreen.main.bounds.height - height.cgFloat
+    let heightSize = ModalSize.custom(size: height)
+
+    let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: centerHeight))
+    let customType = PresentationType.custom(width: width, height: heightSize, center: center)
+
+    let presenter = Presentr(presentationType: customType)
+    presenter.keyboardTranslationType = .stickToTop
+
+    var context = BLTCardConfirmFingerPrinterContext()
+    context.confirmSuccessed = {()
+        complication()
+    }
+
+    if let fpVC = R.storyboard.bltCard.bltCardConfirmFingerPrinterViewController() {
+        let nav = BaseNavigationController.init(rootViewController: fpVC)
+        let coordinator = BLTCardConfirmFingerPrinterCoordinator(rootVC: nav)
+        fpVC.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
+        rootVC.customPresentViewController(presenter, viewController: nav, animated: true)
+    }
+}
+
+func importWookongBioWallet(_ hint: String,
+                            success: @escaping SuccessedComplication,
+                            failed: @escaping FailedComplication) {
+    do {
+        let date = Date.init()
+        let wallet = Wallet(id: nil, name: WalletManager.shared.bltWalletName(), type: .bluetooth, cipher: "", deviceName: BLTWalletIO.shareInstance()?.selectDevice.name, date: date, hint: hint)
+        if let walletId =  try WalletCacheService.shared.insertWallet(wallet: wallet) {
+            BLTWalletIO.shareInstance()?.getPubKey({ (pubkey, pubkeySign) in
+                let currency = Currency(id: nil, type: .EOS, cipher: "", pubKey: pubkey, wid: walletId, date: date, address: nil)
+                saveCurrency(currency)
+                Defaults[.currentWalletID] = walletId.string
+                success()
+                }, failed: failed)
+        }
+    } catch {
+        failed(R.string.localizable.prompt_create_failed.key.localized())
+    }
+}
+
+func saveCurrency(_ currency: Currency) {
+    do {
+        let _ = try WalletCacheService.shared.insertCurrency(currency)
+    } catch {}
 }
 
 func imageWithInfo(_ info: BLTBatteryInfo?) -> UIImage {
@@ -80,5 +133,5 @@ func desWithInfo(_ info: BLTBatteryInfo?) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = .percent
     formatter.percentSymbol = ""
-    return R.string.localizable.battery.key.localized() + formatter.string(from: NSNumber(value:info.electricQuantity))!
+    return R.string.localizable.battery.key.localized() + formatter.string(from: NSNumber(value:info.electricQuantity))! + "%"
 }

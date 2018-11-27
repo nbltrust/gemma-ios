@@ -22,3 +22,8 @@ struct BLTCardEntryState: BaseState {
 struct BLTCardEntryFetchedAction: Action {
     var data: JSON
 }
+
+struct BLTCardEntryCallbackState {
+    var finishBLTWalletCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
+}
+

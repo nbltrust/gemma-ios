@@ -615,7 +615,7 @@
 "wookong_connecting" = "正在连接WOOKONG Bio";
 "wookong_connectfailed_title" = "连接失败。请检查手机蓝牙和设备电源。";
 "wookong_reconnect" = "重试连接";
-"wookong_fp_confirm_title" = "请在WOOKONG Bio上按指纹以确认授权";
+"wookong_confirm_fp_title" = "请在WOOKONG Bio上按指纹以确认授权";
 "wookong_confirm_pin_title" = "请输入WOOKONG Bio的密码以确认授权";
 "wookong_confirm_pin_pla" = "请输入WOOKONG Bio的密码";
 "wookong_confirm_pin_btn" = "确认授权";
@@ -624,6 +624,12 @@
 "wookong_password" = "密码";
 "wookong_finger_name" = "名称";
 "wookong_transfer_pro" = "请在WOOKONG Bio上仔细对比转账信息，按键以确认转账。";
+"wookong_confirm_pin_pair" = "请输入WOOKONG Bio的密码以确认配对";
+"wookong_confirm_fp_pair" = "请在WOOKONG Bio上按指纹以确认配对";
+"wookong_init_type_title" = "请选择初始化方式";
+"wookong_init_type_create" = "创建钱包";
+"wookong_init_type_import" = "导入助记词";
+"wookong_init_finish_import" = "完成导入";
 
 "currency_title" = "币种";
 "wallet_currency" = "钱包币种";

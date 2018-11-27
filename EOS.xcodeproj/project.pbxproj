@@ -168,6 +168,10 @@
 		227F849E2175ECDB005FB567 /* WookongBioUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227F849D2175ECDB005FB567 /* WookongBioUtils.swift */; };
 		227F84BD2176E72A005FB567 /* BLTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 227F84BC2176E72A005FB567 /* BLTDevice.m */; };
 		227F84C021770FBF005FB567 /* BLTBatteryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 227F84BF21770FBF005FB567 /* BLTBatteryInfo.m */; };
+		2283F8A221AD2EA100B2EC97 /* BLTInitTypeSelectCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2283F89E21AD2EA100B2EC97 /* BLTInitTypeSelectCoordinator.swift */; };
+		2283F8A321AD2EA100B2EC97 /* BLTInitTypeSelectActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2283F89F21AD2EA100B2EC97 /* BLTInitTypeSelectActions.swift */; };
+		2283F8A421AD2EA100B2EC97 /* BLTInitTypeSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2283F8A021AD2EA100B2EC97 /* BLTInitTypeSelectViewController.swift */; };
+		2283F8A521AD2EA100B2EC97 /* BLTInitTypeSelectReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2283F8A121AD2EA100B2EC97 /* BLTInitTypeSelectReducers.swift */; };
 		22917DE5218806890017FEAF /* LeadInEntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DE1218806890017FEAF /* LeadInEntryCoordinator.swift */; };
 		22917DE6218806890017FEAF /* LeadInEntryActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DE2218806890017FEAF /* LeadInEntryActions.swift */; };
 		22917DE7218806890017FEAF /* LeadInEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22917DE3218806890017FEAF /* LeadInEntryViewController.swift */; };
@@ -977,6 +981,10 @@
 		227F84BC2176E72A005FB567 /* BLTDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLTDevice.m; sourceTree = "<group>"; };
 		227F84BE21770FBF005FB567 /* BLTBatteryInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLTBatteryInfo.h; sourceTree = "<group>"; };
 		227F84BF21770FBF005FB567 /* BLTBatteryInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLTBatteryInfo.m; sourceTree = "<group>"; };
+		2283F89E21AD2EA100B2EC97 /* BLTInitTypeSelectCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTInitTypeSelectCoordinator.swift; sourceTree = "<group>"; };
+		2283F89F21AD2EA100B2EC97 /* BLTInitTypeSelectActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTInitTypeSelectActions.swift; sourceTree = "<group>"; };
+		2283F8A021AD2EA100B2EC97 /* BLTInitTypeSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTInitTypeSelectViewController.swift; sourceTree = "<group>"; };
+		2283F8A121AD2EA100B2EC97 /* BLTInitTypeSelectReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLTInitTypeSelectReducers.swift; sourceTree = "<group>"; };
 		22917DE1218806890017FEAF /* LeadInEntryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeadInEntryCoordinator.swift; path = EOS/ViewControllers/Lead/LeadInEntryCoordinator.swift; sourceTree = SOURCE_ROOT; };
 		22917DE2218806890017FEAF /* LeadInEntryActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeadInEntryActions.swift; path = EOS/ViewControllers/Lead/LeadInEntryActions.swift; sourceTree = SOURCE_ROOT; };
 		22917DE3218806890017FEAF /* LeadInEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeadInEntryViewController.swift; path = EOS/ViewControllers/Lead/LeadInEntryViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -1828,6 +1836,7 @@
 		223C58D2214A48E100C69F3F /* BLTCard */ = {
 			isa = PBXGroup;
 			children = (
+				2283F89621AD2E7200B2EC97 /* BLTInitTypeSelect */,
 				223C58E8214A506500C69F3F /* AccountSet */,
 				223C58E6214A4E7900C69F3F /* BLTCardConfirmFingerPrinter */,
 				223C58E7214A4F2000C69F3F /* BLTCardConfirmPin */,
@@ -2008,6 +2017,17 @@
 				2253C5452111CD5C0043AAF7 /* PriKeyView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2283F89621AD2E7200B2EC97 /* BLTInitTypeSelect */ = {
+			isa = PBXGroup;
+			children = (
+				2283F89E21AD2EA100B2EC97 /* BLTInitTypeSelectCoordinator.swift */,
+				2283F89F21AD2EA100B2EC97 /* BLTInitTypeSelectActions.swift */,
+				2283F8A021AD2EA100B2EC97 /* BLTInitTypeSelectViewController.swift */,
+				2283F8A121AD2EA100B2EC97 /* BLTInitTypeSelectReducers.swift */,
+			);
+			path = BLTInitTypeSelect;
 			sourceTree = "<group>";
 		};
 		228A839B2153C1C8005DEDD7 /* BLTCardSetFingerPrinter */ = {
@@ -4289,6 +4309,7 @@
 				3B46DD0D218FE43A009B6E2A /* PaymentView.swift in Sources */,
 				1B902A1FA43794B362F981F721379C40 /* EntryCoordinator.swift in Sources */,
 				739A4DBE2150DF2800A1074B /* UITapGestureRecognizer+RxGesture.swift in Sources */,
+				2283F8A521AD2EA100B2EC97 /* BLTInitTypeSelectReducers.swift in Sources */,
 				3B6D7479214761690076F444 /* InvitationCodeToActivateViewController.swift in Sources */,
 				3B6D7461214761690076F444 /* FriendToActivateActions.swift in Sources */,
 				73B5A69E20F5E08900756391 /* SimpleHTTPService.swift in Sources */,
@@ -4306,6 +4327,7 @@
 				3B726C1521133502001E4850 /* ScreenShotAlertActions.swift in Sources */,
 				3B85EEA4215A12E600795083 /* VerifyPriKeyActions.swift in Sources */,
 				2208A0AC219C12C60096128D /* WalletListReducers.swift in Sources */,
+				2283F8A221AD2EA100B2EC97 /* BLTInitTypeSelectCoordinator.swift in Sources */,
 				223C58FE214A51DC00C69F3F /* BLTCardConfirmFingerPrinterActions.swift in Sources */,
 				73B5A68C20F5B42600756391 /* Double+Extensions.swift in Sources */,
 				3B6D7478214761690076F444 /* InvitationCodeToActivateCoordinator.swift in Sources */,
@@ -4481,6 +4503,7 @@
 				73B5A69C20F5DFF400756391 /* UIColorExtension.swift in Sources */,
 				3B0295E82181714700867D5F /* NavBarView.swift in Sources */,
 				3B6D7460214761690076F444 /* FriendToActivateCoordinator.swift in Sources */,
+				2283F8A421AD2EA100B2EC97 /* BLTInitTypeSelectViewController.swift in Sources */,
 				3B4C90F020F4CDDC004F4C52 /* PaymentsCoordinator.swift in Sources */,
 				3B1EC87821703F120044DEB5 /* WalletDetailActions.swift in Sources */,
 				22E40AAC211453D600F1648C /* FingerPrinterConfirmActions.swift in Sources */,
@@ -4558,6 +4581,7 @@
 				733714EA212431E200B2ED90 /* Octicon.swift in Sources */,
 				AD352B30A178C8A63FF0D742FDFD3081 /* UIImageView+Additions.swift in Sources */,
 				3BEC3F542111B4FC003C38FB /* BackupPrivateKeyActions.swift in Sources */,
+				2283F8A321AD2EA100B2EC97 /* BLTInitTypeSelectActions.swift in Sources */,
 				223C5910214A52AE00C69F3F /* BLTCardSearchViewController.swift in Sources */,
 				2208A0AA219C12C60096128D /* WalletListActions.swift in Sources */,
 				22A93233211A991D00ACC63C /* VoteActions.swift in Sources */,

@@ -20,6 +20,8 @@ class LeadInMnemonicViewController: BaseViewController,IndicatorInfoProvider {
 
     private(set) var context: LeadInMnemonicContext?
 
+    var isWookong = false
+
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupData()
@@ -37,11 +39,21 @@ class LeadInMnemonicViewController: BaseViewController,IndicatorInfoProvider {
     }
 
     override func refreshViewController() {
-
+        self.coordinator?.presentSetFingerPrinterVC()
     }
 
     func setupUI() {
+        self.title = R.string.localizable.lead_in.key.localized()
         mnemonicView.title = R.string.localizable.mnemonic_guide.key.localized()
+        if isWookong {
+            configRightNavButton(R.image.ic_notify_scan())
+            let btnTitle = R.string.localizable.wookong_init_finish_import.key.localized()
+            mnemonicView.creatButton.button.setTitle(btnTitle, for: .normal)
+        }
+    }
+
+    override func rightAction(_ sender: UIButton) {
+        self.coordinator?.presentToScanVC()
     }
 
     func setupData() {
@@ -68,7 +80,11 @@ extension LeadInMnemonicViewController {
 
         if let valid = self.coordinator?.validMnemonic(mnemonic) {
             if valid == true {
-                self.coordinator?.openSetWallet(mnemonic)
+                if isWookong {
+                    self.coordinator?.importForWookong(mnemonic)
+                } else {
+                    self.coordinator?.openSetWallet(mnemonic)
+                }
             }
         }
     }

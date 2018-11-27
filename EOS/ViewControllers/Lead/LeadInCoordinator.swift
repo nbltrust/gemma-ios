@@ -12,6 +12,8 @@ import RxCocoa
 
 protocol LeadInCoordinatorProtocol {
     func openLeadInKey()
+
+    func openLeadInWookongPriKey()
 }
 
 protocol LeadInStateManagerProtocol {
@@ -37,6 +39,14 @@ extension LeadInCoordinator: LeadInCoordinatorProtocol {
         if let leadInEntryVC = R.storyboard.leadIn.leadInEntryViewController() {
             leadInEntryVC.coordinator = LeadInEntryCoordinator(rootVC: self.rootVC)
             self.rootVC.pushViewController(leadInEntryVC, animated: true)
+        }
+    }
+
+    func openLeadInWookongPriKey() {
+        if let leadInVC = R.storyboard.leadIn.leadInMnemonicViewController() {
+            leadInVC.coordinator = LeadInMnemonicCoordinator(rootVC: self.rootVC)
+            leadInVC.isWookong = true
+            self.rootVC.pushViewController(leadInVC, animated: true)
         }
     }
 }

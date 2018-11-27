@@ -10,6 +10,9 @@
 #include "Universe.objc.h"
 
 
+/**
+ * CheckMnemonic exported
+ */
 FOUNDATION_EXPORT BOOL Seed39CheckMnemonic(NSString* mnemonic);
 
 /**

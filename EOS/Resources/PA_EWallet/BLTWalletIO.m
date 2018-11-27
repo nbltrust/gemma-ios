@@ -363,6 +363,24 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
+- (void)importSeed:(NSString *)seed success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+    if (seed.length == 0) {
+        return;
+    }
+    dispatch_async(bltQueue, ^{
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_ImportSeed(ppPAEWContext, devIdx, (const unsigned char *)[seed UTF8String], seed.length);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (iRtn == PAEW_RET_SUCCESS) {
+                successComlication();
+            } else {
+                failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            }
+        });
+    });
+}
+
 - (void)getVolidation:(GetVolidationComplication)successComlication failed:(FailedComplication)failedCompliction {
     if (!savedDevH) {
         return;
@@ -580,6 +598,55 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
                 failedComplication([BLTUtils errorCodeToString:iRtn]);
             }
         });
+    });
+}
+
+- (void)verifyFingerPrinter:(VerifyFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed timeout:(TimeoutComplication)timeout {
+    if (!savedDevH) {
+        return;
+    }
+    self.stopEntroll = false;
+    dispatch_async(bltQueue, ^{
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        iRtn = PAEW_VerifyFP(ppPAEWContext, devIdx);
+        if (iRtn != PAEW_RET_SUCCESS) {
+            failed([BLTUtils errorCodeToString:iRtn]);
+            return ;
+        }
+
+        int lastRtn = PAEW_RET_SUCCESS;
+        do {
+            iRtn = PAEW_GetFPState(ppPAEWContext, devIdx);
+            if (lastRtn != iRtn) {
+                stateComplication([BLTUtils fingerEntrolStateWithValue:iRtn]);
+                lastRtn = iRtn;
+            }
+        } while (iRtn == PAEW_RET_DEV_WAITING && !self.stopEntroll);
+        if (iRtn != PAEW_RET_SUCCESS) {
+            if (!self.stopEntroll) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (iRtn == PAEW_RET_DEV_TIMEOUT) {
+                        timeout();
+                    } else {
+                        failed([BLTUtils errorCodeToString:iRtn]);
+                    }
+                });
+            }
+            return ;
+        }
+
+        size_t          nFPListCount = 1;
+        FingerPrintID   *fpIDList = (FingerPrintID *)malloc(sizeof(FingerPrintID) * nFPListCount);
+        memset(fpIDList, 0, sizeof(sizeof(FingerPrintID) * nFPListCount));
+        iRtn = PAEW_GetVerifyFPList(ppPAEWContext, devIdx, fpIDList, &nFPListCount);
+        if (iRtn != PAEW_RET_SUCCESS) {
+            failed([BLTUtils errorCodeToString:iRtn]);
+        } else {
+            success();
+        }
+        free(fpIDList);
     });
 }
 
