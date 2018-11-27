@@ -13,10 +13,6 @@ import SwiftyJSON
 import HandyJSON
 
 struct BLTCardConfirmFingerPrinterContext: RouteContext, HandyJSON {
-    init() {
-
-    }
-
     var publicKey = WalletManager.shared.currentPubKey
     var iconType = ""
     var producers: [String] = []
@@ -25,6 +21,7 @@ struct BLTCardConfirmFingerPrinterContext: RouteContext, HandyJSON {
     var amount = ""
     var remark = ""
     var callback: ((_ priKey: String, _ vc: UIViewController) -> Void)?
+    var confirmSuccessed: CompletionCallback?
 }
 
 // MARK: - State

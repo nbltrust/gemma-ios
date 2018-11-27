@@ -20,6 +20,14 @@ protocol BLTCardConfirmFingerPrinterStateManagerProtocol {
     func switchPageState(_ state: PageState)
 
     func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
+
+    func verifyFP(_ state: @escaping VerifyFingerComplication,
+                  success: @escaping SuccessedComplication,
+                  failed: @escaping FailedComplication,
+                  timeout: @escaping TimeoutComplication)
+
+    func createWookongBioWallet(_ success: @escaping SuccessedComplication,
+                                failed: @escaping FailedComplication)
 }
 
 class BLTCardConfirmFingerPrinterCoordinator: BLTCardRootCoordinator {
@@ -34,11 +42,11 @@ class BLTCardConfirmFingerPrinterCoordinator: BLTCardRootCoordinator {
     }
 
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
-        let vc = R.storyboard.bltCard.bltCardConfirmFingerPrinterViewController()!
+        let currentVC = R.storyboard.bltCard.bltCardConfirmFingerPrinterViewController()!
         let coordinator = BLTCardConfirmFingerPrinterCoordinator(rootVC: root)
-        vc.coordinator = coordinator
+        currentVC.coordinator = coordinator
         coordinator.store.dispatch(RouteContextAction(context: context))
-        return vc
+        return currentVC
     }
 }
 
@@ -72,5 +80,13 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
         transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
             callback(bool, showString)
         }
+    }
+
+    func verifyFP(_ state: @escaping VerifyFingerComplication, success: @escaping SuccessedComplication, failed: @escaping FailedComplication, timeout: @escaping TimeoutComplication) {
+        BLTWalletIO.shareInstance()?.verifyFingerPrinter(state, success: success, failed: failed, timeout: timeout)
+    }
+
+    func createWookongBioWallet(_ success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
+        importWookongBioWallet("", success: success, failed: failed)
     }
 }

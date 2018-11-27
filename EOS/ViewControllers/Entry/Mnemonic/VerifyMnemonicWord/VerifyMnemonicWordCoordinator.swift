@@ -13,6 +13,10 @@ import SwiftyUserDefaults
 
 protocol VerifyMnemonicWordCoordinatorProtocol {
     func popToVC(_ vc: UIViewController)
+
+    func dismissNav()
+
+    func presentSetFingerPrinterVC()
 }
 
 protocol VerifyMnemonicWordStateManagerProtocol {
@@ -27,6 +31,10 @@ protocol VerifyMnemonicWordStateManagerProtocol {
     func checkFeedSuccessed()
 
     func verifyMnemonicWord(_ data: [String: Any], seeds: [String], checkStr: String, isWookong: Bool)
+
+    func createWookongBioWallet(_ hint: String,
+                                success: @escaping SuccessedComplication,
+                                failed: @escaping FailedComplication)
 }
 
 class VerifyMnemonicWordCoordinator: NavCoordinator {
@@ -49,6 +57,21 @@ class VerifyMnemonicWordCoordinator: NavCoordinator {
 extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordCoordinatorProtocol {
     func popToVC(_ vc: UIViewController) {
         self.rootVC.popToViewController(vc, animated: true)
+    }
+
+    func dismissNav() {
+        self.rootVC.dismiss(animated: false) {
+            self.presentSetFingerPrinterVC()
+        }
+    }
+
+    func presentSetFingerPrinterVC() {
+        let newHomeNav = appCoodinator.newHomeCoordinator.rootVC
+        let printerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()!
+        let nav = BaseNavigationController.init(rootViewController: printerVC)
+        let coor = BLTCardSetFingerPrinterCoordinator(rootVC: nav)
+        printerVC.coordinator = coor
+        newHomeNav?.present(nav, animated: true, completion: nil)
     }
 
     func popRootVC() {
@@ -81,12 +104,29 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
     }
 
     func checkFeedSuccessed() {
+        var hint = ""
         self.rootVC.viewControllers.forEach { (vc) in
             if let setWalletVC = vc as? SetWalletViewController {
-                self.popToVC(setWalletVC)
-                setWalletVC.coordinator?.state.callback.finishBLTWalletCallback.value?()
+                hint = setWalletVC.fieldView.hintView.textField.text ?? ""
             }
         }
+        self.rootVC.topViewController?.startLoading()
+        self.createWookongBioWallet(hint, success: { [weak self] in
+            guard let `self` = self else {return}
+            self.rootVC.topViewController?.endLoading()
+            self.dismissNav()
+            }, failed: { (reason) in
+                self.rootVC.topViewController?.endLoading()
+                if let failedReason = reason {
+                    showFailTop(failedReason)
+                }
+        })
+    }
+
+    func createWookongBioWallet(_ hint: String,
+                                success: @escaping SuccessedComplication,
+                                failed: @escaping FailedComplication) {
+        importWookongBioWallet(hint, success: success, failed: failed)
     }
 
     func verifyMnemonicWord(_ data: [String: Any], seeds: [String], checkStr: String, isWookong: Bool) {

@@ -17,6 +17,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 //        Seed39Main()
         Seed39Main()
+
+        let test = Seed39CheckMnemonic("")
     }
 
 

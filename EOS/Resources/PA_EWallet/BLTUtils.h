@@ -27,10 +27,7 @@ typedef NS_ENUM(NSInteger, FingerPrinterState)
 typedef NS_ENUM(NSInteger, BLTCardPINState) {
     unInit = 0,
     unFinishInit,
-    finishInit,
-    locked,
-    login,
-    logout
+    finishInit
 };
 
 //CallBack
@@ -39,6 +36,8 @@ typedef void(^ DidSearchDevice)(BLTDevice *device);
 typedef void(^ BatteryInfoUpdated)(BLTBatteryInfo *info);
 
 typedef void(^ EnrollFingerComplication)(FingerPrinterState state);
+
+typedef void(^ VerifyFingerComplication)(FingerPrinterState state);
 
 typedef void(^ CheckPinStateComplication)(BLTCardPINState state);
 

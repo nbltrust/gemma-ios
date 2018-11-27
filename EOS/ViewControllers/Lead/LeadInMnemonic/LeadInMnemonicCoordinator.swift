@@ -9,30 +9,40 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
+import seed39_ios_golang
+import Seed39
 
 protocol LeadInMnemonicCoordinatorProtocol {
     func openSetWallet(_ mnemonic: String)
+
+    func dismissNav()
+
+    func presentSetFingerPrinterVC()
+
+    func presentToScanVC()
 }
 
 protocol LeadInMnemonicStateManagerProtocol {
     var state: LeadInMnemonicState { get }
-    
-    func switchPageState(_ state:PageState)
+
+    func switchPageState(_ state: PageState)
 
     func validMnemonic(_ mnemonic: String) -> Bool
+
+    func importForWookong(_ mnemonic: String)
 }
 
 class LeadInMnemonicCoordinator: NavCoordinator {
     var store = Store(
         reducer: gLeadInMnemonicReducer,
         state: nil,
-        middleware:[trackingMiddleware]
+        middleware: [trackingMiddleware]
     )
-    
+
     var state: LeadInMnemonicState {
         return store.state
     }
-    
+
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
         let selfVC = R.storyboard.leadIn.leadInMnemonicViewController()!
         let coordinator = LeadInMnemonicCoordinator(rootVC: root)
@@ -57,16 +67,76 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicCoordinatorProtocol {
             self.rootVC.pushViewController(setVC, animated: true)
         }
     }
+
+    func dismissNav() {
+        self.rootVC.dismiss(animated: false) {
+            self.presentSetFingerPrinterVC()
+        }
+    }
+
+    func presentSetFingerPrinterVC() {
+        let newHomeNav = appCoodinator.newHomeCoordinator.rootVC
+        let printerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()!
+        let nav = BaseNavigationController.init(rootViewController: printerVC)
+        let coor = BLTCardSetFingerPrinterCoordinator(rootVC: nav)
+        printerVC.coordinator = coor
+        newHomeNav?.present(nav, animated: true, completion: nil)
+    }
+
+    func presentToScanVC() {
+        let context = ScanContext()
+        context.scanResult.accept { (result) in
+            if let leadInVC = self.rootVC.topViewController as? LeadInMnemonicViewController {
+                leadInVC.mnemonicView.textView.text = result
+            }
+        }
+
+        presentVC(ScanCoordinator.self, context: context, navSetup: { (nav) in
+            nav.navStyle = .clear
+        }, presentSetup: nil)
+    }
 }
 
 extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
-    func switchPageState(_ state:PageState) {
+    func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
     }
 
     func validMnemonic(_ mnemonic: String) -> Bool {
-        return true
+        return Seed39CheckMnemonic(mnemonic)
+    }
+
+    func importForWookong(_ mnemonic: String) {
+        BLTWalletIO.shareInstance()?.importSeed(mnemonic, success: {
+            var hint = ""
+            self.rootVC.viewControllers.forEach { (vc) in
+                if let setWalletVC = vc as? SetWalletViewController {
+                    hint = setWalletVC.fieldView.hintView.textField.text ?? ""
+                }
+            }
+            self.rootVC.topViewController?.startLoading()
+            self.createWookongBioWallet(hint, success: { [weak self] in
+                guard let `self` = self else {return}
+                self.rootVC.topViewController?.endLoading()
+                self.dismissNav()
+                }, failed: { (reason) in
+                    self.rootVC.topViewController?.endLoading()
+                    if let failedReason = reason {
+                        showFailTop(failedReason)
+                    }
+            })
+        }, failed: { (reason) in
+            if let reason = reason {
+                showFailTop(reason)
+            }
+        })
+    }
+
+    func createWookongBioWallet(_ hint: String,
+                                success: @escaping SuccessedComplication,
+                                failed: @escaping FailedComplication) {
+        importWookongBioWallet(hint, success: success, failed: failed)
     }
 }

@@ -61,6 +61,8 @@ typedef enum : NSUInteger {
 
 - (void)checkSeed:(NSString *)seed success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
+- (void)importSeed:(NSString *)seed success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+
 - (void)getVolidation:(GetVolidationComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)getSN:(GetSNComplication)successComlication failed:(FailedComplication)failedCompliction;
@@ -70,6 +72,8 @@ typedef enum : NSUInteger {
 - (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed timeout:(TimeoutComplication)timeout;
 
 - (void)cancelEntrollFingerPrinter:(SuccessedComplication)successComplication failed:(FailedComplication)failedComplication;
+
+- (void)verifyFingerPrinter:(VerifyFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed timeout:(TimeoutComplication)timeout;
 
 - (void)submmitWaitingVerfyPin:(NSString *)waitVerPin;
 

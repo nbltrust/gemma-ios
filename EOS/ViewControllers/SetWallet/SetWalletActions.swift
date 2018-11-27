@@ -46,7 +46,6 @@ struct ImportWalletModel {
 }
 
 struct SetWalletCallbackState {
-    var finishBLTWalletCallback: BehaviorRelay<CompletionCallback?> = BehaviorRelay(value: nil)
 }
 
 struct SetWalletPropertyState {

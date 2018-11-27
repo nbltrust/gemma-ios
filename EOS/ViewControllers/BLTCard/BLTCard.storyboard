@@ -21,7 +21,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXm-oI-AcO">
                                 <rect key="frame" x="30" y="32" width="315" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" name="introductionColor" red="0.400" green="0.400" blue="0.400" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_transfer_pro"/>
@@ -314,6 +314,73 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nog-Qs-D9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4261" y="98"/>
+        </scene>
+        <!--Init Type Select View Controller-->
+        <scene sceneID="HhQ-UB-voA">
+            <objects>
+                <viewController storyboardIdentifier="BLTInitTypeSelectViewController" id="NUt-Ak-MDx" customClass="BLTInitTypeSelectViewController" customModule="EOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DVt-qe-TXi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ik7-DR-4A0">
+                                <rect key="frame" x="31" y="32" width="313" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_init_type_title"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kM-2v-H5a" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="35" y="78" width="305" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="wal-b2-RTv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_init_type_create"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6GD-t7-GKG" customClass="Button" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="35" y="142" width="305" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="XfC-Xg-kRc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_init_type_import"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1UU-8p-wIK" firstAttribute="trailing" secondItem="0kM-2v-H5a" secondAttribute="trailing" constant="35" id="0sa-BS-smc"/>
+                            <constraint firstItem="ik7-DR-4A0" firstAttribute="top" secondItem="1UU-8p-wIK" secondAttribute="top" constant="12" id="1vO-O0-a9b"/>
+                            <constraint firstItem="0kM-2v-H5a" firstAttribute="leading" secondItem="1UU-8p-wIK" secondAttribute="leading" constant="35" id="4rC-wn-YxP"/>
+                            <constraint firstItem="1UU-8p-wIK" firstAttribute="trailing" secondItem="ik7-DR-4A0" secondAttribute="trailing" constant="31" id="Pgq-lK-SJ2"/>
+                            <constraint firstItem="1UU-8p-wIK" firstAttribute="trailing" secondItem="6GD-t7-GKG" secondAttribute="trailing" constant="35" id="XwO-f7-ulF"/>
+                            <constraint firstItem="6GD-t7-GKG" firstAttribute="leading" secondItem="1UU-8p-wIK" secondAttribute="leading" constant="35" id="cWn-9Q-Hb0"/>
+                            <constraint firstItem="0kM-2v-H5a" firstAttribute="top" secondItem="ik7-DR-4A0" secondAttribute="bottom" constant="30" id="dUP-5d-vgU"/>
+                            <constraint firstItem="6GD-t7-GKG" firstAttribute="top" secondItem="0kM-2v-H5a" secondAttribute="bottom" constant="20" id="fMJ-mR-uPj"/>
+                            <constraint firstItem="ik7-DR-4A0" firstAttribute="leading" secondItem="1UU-8p-wIK" secondAttribute="leading" constant="31" id="ppJ-dM-SgI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1UU-8p-wIK"/>
+                    </view>
+                    <connections>
+                        <outlet property="creatView" destination="0kM-2v-H5a" id="P5j-Bu-gw9"/>
+                        <outlet property="importView" destination="6GD-t7-GKG" id="7qW-Tr-uSL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="onP-gt-L6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4930" y="98"/>
         </scene>
     </scenes>
     <resources>
