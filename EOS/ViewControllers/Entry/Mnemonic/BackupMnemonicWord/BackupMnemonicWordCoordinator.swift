@@ -13,6 +13,7 @@ import NBLCommonModule
 protocol BackupMnemonicWordCoordinatorProtocol {
     func pushToMnemonicWordContentVC(_ isWooKong: Bool)
     func dismissVC()
+    func popToPairEntryVC()
 }
 
 protocol BackupMnemonicWordStateManagerProtocol {
@@ -92,6 +93,14 @@ extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
             }
         }
         self.rootVC.dismiss(animated: true) {
+        }
+    }
+
+    func popToPairEntryVC() {
+        for itemVC in self.rootVC.viewControllers {
+            if let entryVC = itemVC as? BLTCardEntryViewController {
+                self.rootVC.popToViewController(entryVC, animated: true)
+            }
         }
     }
 }

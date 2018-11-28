@@ -48,7 +48,7 @@ class UserInfoViewController: BaseViewController {
     func setupUI() {
         self.title = R.string.localizable.mine_title.key.localized()
 
-        configLeftNavButton(R.image.icMaskClose())
+        configLeftNavButton(R.image.ic_mask_close())
     }
 
     override func leftAction(_ sender: UIButton) {

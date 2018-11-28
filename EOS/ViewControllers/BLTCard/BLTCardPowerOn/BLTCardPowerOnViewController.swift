@@ -38,9 +38,9 @@ class BLTCardPowerOnViewController: BaseViewController {
 
     func setupUI() {
         if self.navigationController?.viewControllers.count == 1 {
-            self.configLeftNavButton(R.image.icTransferClose())
+            self.configLeftNavButton(R.image.ic_mask_close())
         } else {
-            self.configLeftNavButton(R.image.icBack())
+            self.configLeftNavButton(R.image.ic_mask_back())
         }
     }
 

@@ -19,28 +19,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-zt-sCd">
-                        <rect key="frame" x="20" y="21" width="280" height="27.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-zt-sCd">
+                        <rect key="frame" x="20" y="21" width="250" height="27.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" name="baseColor" red="0.200" green="0.200" blue="0.200" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="niK-Sz-qZZ">
+                        <rect key="frame" x="280" y="25" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="niK-Sz-qZZ" firstAttribute="leading" secondItem="gWj-zt-sCd" secondAttribute="trailing" constant="10" id="9Cw-p6-bt1"/>
                     <constraint firstAttribute="bottom" secondItem="gWj-zt-sCd" secondAttribute="bottom" constant="21" id="IJY-0V-qJN"/>
-                    <constraint firstAttribute="trailing" secondItem="gWj-zt-sCd" secondAttribute="trailing" constant="20" id="a80-BI-Qwb"/>
+                    <constraint firstItem="niK-Sz-qZZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Icv-Qu-feJ"/>
                     <constraint firstItem="gWj-zt-sCd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21" id="hLk-kc-VI6"/>
                     <constraint firstItem="gWj-zt-sCd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="t3o-xq-HUj"/>
+                    <constraint firstAttribute="trailing" secondItem="niK-Sz-qZZ" secondAttribute="trailing" constant="20" id="wF0-4k-HdF"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="indicatorView" destination="niK-Sz-qZZ" id="hyp-Wr-M0l"/>
                 <outlet property="nameLabel" destination="gWj-zt-sCd" id="UGS-fb-yVg"/>
             </connections>
             <point key="canvasLocation" x="52.799999999999997" y="60.26986506746627"/>
         </tableViewCell>
     </objects>
-    <resources>
-    </resources>
 </document>
