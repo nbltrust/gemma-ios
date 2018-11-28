@@ -72,6 +72,42 @@ platform :ios do
     firim(firim_api_token:"92fc2819f9894e4890c9fd27d4c1d234")
     slack(message: "Successfully distributed gemma to fir, download_url: 	https://fir.im/xrp8 ", slack_url:"https://hooks.slack.com/services/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")
   end
+  
+  lane :firtest do
+    xcode_select("/Applications/Xcode.app")
+    app_identifier="com.nbltrustdev.gemma.fir"
+    update_app_identifier(
+      xcodeproj: "EOS.xcodeproj", # Optional path to xcodeproj, will use the first .xcodeproj if not set
+      plist_path: "EOS/Info.plist", # Path to info plist file, relative to xcodeproj
+      app_identifier: "com.nbltrustdev.gemma.fir" # The App Identifier
+    )
+    disable_automatic_code_signing(
+      path: "EOS.xcodeproj"
+    )
+    update_project_provisioning(
+      xcodeproj: "EOS.xcodeproj",
+      profile: ".travis/AdHoc_gemma.mobileprovision", # optional if you use sigh
+      target_filter: "EOS", # matches name or type of a target
+      build_configuration: "Release",
+      code_signing_identity: "iPhone Distribution" # optionally specify the codesigning identity
+    )
+    gym(
+      xcargs: "-UseNewBuildSystem=YES",
+      output_name: "gemma-fir",
+      scheme:"EOS",
+      project:"EOS.xcodeproj",
+      configuration:"Release",
+      export_method:"ad-hoc",
+      export_options: {
+        compileBitcode: false,
+        provisioningProfiles: {
+          "com.nbltrustdev.gemma.fir" => "iOS AdHoc gemma"
+        }
+      }
+    )
+    firim(firim_api_token:"878ea01c42fb1946a73ed5cf8b6245c0")
+    slack(message: "Successfully distributed gemma to fir, download_url: 	https://fir.im/xxxx ", slack_url:"https://hooks.slack.com/services/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")
+  end
 
   lane :publish do
     xcode_select("/Applications/Xcode.app")
