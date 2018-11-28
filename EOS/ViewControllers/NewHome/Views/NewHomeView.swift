@@ -7,17 +7,21 @@
 //
 
 import Foundation
+import Device
 
 @IBDesignable
 class NewHomeView: UIView {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navBarView: NavBarView!
-    
+    @IBOutlet weak var titleView: UIView!
+
+    @IBOutlet weak var titleLabel: UILabel!
 
     enum Event: String {
         case newHomeViewDidClicked
         case cellDidClicked
+        case didScroll
     }
     
     var data: Any? {
@@ -109,7 +113,6 @@ extension NewHomeView: UITableViewDelegate,UITableViewDataSource {
             return UITableViewCell()
         }
         cell.setup(self.data, indexPath: indexPath)
-        
         return cell
     }
 
@@ -119,5 +122,19 @@ extension NewHomeView: UITableViewDelegate,UITableViewDataSource {
             self.next?.sendEventWith(Event.cellDidClicked.rawValue, userinfo: ["data": model])
         }
     }
-    
+}
+
+extension NewHomeView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = 44
+        if scrollView.contentOffset.y > offsetY.cgFloat {
+
+            let account = self.navBarView.nameLabel.text
+            self.titleLabel.text = account
+            self.titleView.alpha = 1
+        } else {
+            self.titleView.alpha = 0
+            self.titleLabel.text = ""
+        }
+    }
 }

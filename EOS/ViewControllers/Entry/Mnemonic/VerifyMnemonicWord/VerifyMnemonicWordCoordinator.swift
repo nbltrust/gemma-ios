@@ -145,7 +145,18 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
                                 }
                         })
                     } else {
-                        if let wallet = WalletManager.shared.currentWallet() {
+                        var isWalletManager = false
+                        for subVC in self.rootVC.viewControllers {
+                            if subVC is WalletManagerViewController {
+                                isWalletManager = true
+                                break
+                            }
+                        }
+                        var wallet = WalletManager.shared.currentWallet()
+                        if isWalletManager == true {
+                            wallet = WalletManager.shared.getManagerWallet()
+                        }
+                        if let wallet = wallet {
                             WalletManager.shared.backupSuccess(wallet)
                             if wallet.type == .HD {
                                 self.popRootVC()

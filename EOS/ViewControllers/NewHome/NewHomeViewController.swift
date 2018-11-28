@@ -48,11 +48,11 @@ class NewHomeViewController: BaseViewController {
         }
     }
     func setupData() {
-        self.addPullToRefresh(self.contentView.tableView) {[weak self] (completion) in
-            guard let `self` = self else {return}
-            self.refreshData()
-            completion?()
-        }
+//        self.addPullToRefresh(self.contentView.tableView) {[weak self] (completion) in
+//            guard let `self` = self else {return}
+//            self.refreshData()
+//            completion?()
+//        }
     }
 
     func setupEvent() {

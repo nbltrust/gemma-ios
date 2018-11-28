@@ -24,6 +24,12 @@ class CustomCell: BaseTableViewCell {
         }
     }
 
+    var icon: UIImage? {
+        didSet {
+            cellView.iconImage = icon
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

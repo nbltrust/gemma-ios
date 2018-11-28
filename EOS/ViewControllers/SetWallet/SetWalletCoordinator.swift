@@ -42,7 +42,7 @@ protocol SetWalletStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<SetWalletState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
 
-    func updatePassword(_ password: String, hint: String)
+    func updatePassword(_ wallet: Wallet, oldPassword: String, newPassword: String, hint: String)
 
     func validName(_ valid: Bool)
 
@@ -199,9 +199,11 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
 
-    func updatePassword(_ password: String, hint: String) {
-//        WalletManager.shared.updateWalletPassword(<#T##wallet: Wallet##Wallet#>, oldPassword: <#T##String#>, newPassword: <#T##String#>, hint: <#T##String#>)
-        self.rootVC.popViewController()
+    func updatePassword(_ wallet: Wallet, oldPassword: String, newPassword: String, hint: String) {
+        let isSuccess = WalletManager.shared.updateWalletPassword(wallet, oldPassword: oldPassword, newPassword: newPassword, hint: hint)
+        if isSuccess == true {
+            self.rootVC.popViewController()
+        }
     }
 
     func validName(_ valid: Bool) {

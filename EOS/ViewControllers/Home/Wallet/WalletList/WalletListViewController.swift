@@ -82,12 +82,12 @@ extension WalletListViewController: UITableViewDataSource, UITableViewDelegate {
         if let wallet = context?.walletList[indexPath.row] {
             cell.itemView.adapterModelToWalletItemView(wallet)
         }
-        cell.itemView.moreView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
+        cell.moreCallback = { [weak self] in
             guard let `self` = self else { return }
             if let wallet = self.context?.walletList[indexPath.row] {
                 self.coordinator?.pushToWalletManagerVC(wallet)
             }
-        }).disposed(by: disposeBag)
+        }
         return cell
     }
 

@@ -35,6 +35,13 @@ class ResourceDetailViewController: BaseViewController {
     
     func setupUI() {
         self.title = R.string.localizable.resource_detail.key.localized()
+        if let wallet = WalletManager.shared.currentWallet() {
+            if wallet.type == .bluetooth {
+                self.contentView.tipsLabel.isHidden = false
+            } else {
+                self.contentView.tipsLabel.isHidden = true
+            }
+        }
     }
 
     func setupData() {

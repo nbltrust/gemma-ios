@@ -64,6 +64,15 @@ enum CurrencyType: Int, DatabaseValueConvertible, Codable {
             return "ETH"
         }
     }
+
+    var icon: UIImage {
+        switch self {
+        case .EOS:
+            return R.image.eos()!
+        case .ETH:
+            return R.image.eth()!
+        }
+    }
 }
 
 struct Currency: Codable {

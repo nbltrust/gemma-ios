@@ -16,7 +16,8 @@ class WalletCurrencyListViewController: BaseViewController {
 	var coordinator: (WalletCurrencyListCoordinatorProtocol & WalletCurrencyListStateManagerProtocol)?
     private(set) var context: WalletCurrencyListContext?
     
-	override func viewDidLoad() {
+    @IBOutlet weak var contentView: WalletCurrencyListView!
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         setupData()
@@ -33,11 +34,11 @@ class WalletCurrencyListViewController: BaseViewController {
     }
     
     func setupUI() {
-        
+        self.title = R.string.localizable.export_private_key.key.localized()
     }
 
     func setupData() {
-        
+        self.contentView.listData = self.context?.wallet
     }
     
     func setupEvent() {
@@ -54,57 +55,57 @@ class WalletCurrencyListViewController: BaseViewController {
             
         }).disposed(by: disposeBag)
         
-        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
-            guard let `self` = self else { return }
-            
-            self.endLoading()
-            
-            switch state {
-            case .initial:
-                self.coordinator?.switchPageState(PageState.refresh(type: PageRefreshType.initial))
-                
-            case .loading(let reason):
-                if reason == .initialRefresh {
-                    self.startLoading()
-                }
-                
-            case .refresh(let type):
-                self.coordinator?.switchPageState(.loading(reason: type.mapReason()))
-                
-            case .loadMore(let page):
-                self.coordinator?.switchPageState(.loading(reason: PageLoadReason.manualLoadMore))
-                
-            case .noMore:
-//                self.stopInfiniteScrolling(self.tableView, haveNoMore: true)
-                break
-                
-            case .noData:
-//                self.view.showNoData(<#title#>, icon: <#imageName#>)
-                break
-                
-            case .normal(_):
-//                self.view.hiddenNoData()
-//
-//                if reason == PageLoadReason.manualLoadMore {
-//                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
+//        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
+//            guard let `self` = self else { return }
+//            
+//            self.endLoading()
+//            
+//            switch state {
+//            case .initial:
+//                self.coordinator?.switchPageState(PageState.refresh(type: PageRefreshType.initial))
+//                
+//            case .loading(let reason):
+//                if reason == .initialRefresh {
+//                    self.startLoading()
 //                }
-//                else if reason == PageLoadReason.manualRefresh {
-//                    self.stopPullRefresh(self.tableView)
-//                }
-                break
-                
-            case .error(_, _):
-//                self.showToastBox(false, message: error.localizedDescription)
-                
-//                if reason == PageLoadReason.manualLoadMore {
-//                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
-//                }
-//                else if reason == PageLoadReason.manualRefresh {
-//                    self.stopPullRefresh(self.tableView)
-//                }
-                break
-            }
-        }).disposed(by: disposeBag)
+//                
+//            case .refresh(let type):
+//                self.coordinator?.switchPageState(.loading(reason: type.mapReason()))
+//                
+//            case .loadMore(let page):
+//                self.coordinator?.switchPageState(.loading(reason: PageLoadReason.manualLoadMore))
+//                
+//            case .noMore:
+////                self.stopInfiniteScrolling(self.tableView, haveNoMore: true)
+//                break
+//                
+//            case .noData:
+////                self.view.showNoData(<#title#>, icon: <#imageName#>)
+//                break
+//                
+//            case .normal(_):
+////                self.view.hiddenNoData()
+////
+////                if reason == PageLoadReason.manualLoadMore {
+////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
+////                }
+////                else if reason == PageLoadReason.manualRefresh {
+////                    self.stopPullRefresh(self.tableView)
+////                }
+//                break
+//                
+//            case .error(_, _):
+////                self.showToastBox(false, message: error.localizedDescription)
+//                
+////                if reason == PageLoadReason.manualLoadMore {
+////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
+////                }
+////                else if reason == PageLoadReason.manualRefresh {
+////                    self.stopPullRefresh(self.tableView)
+////                }
+//                break
+//            }
+//        }).disposed(by: disposeBag)
     }
 }
 
@@ -125,11 +126,11 @@ class WalletCurrencyListViewController: BaseViewController {
 
 //MARK: - View Event
 
-//extension WalletCurrencyListViewController {
-//    @objc func <#view#>DidClicked(_ data:[String: Any]) {
-//        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
-//
-//        }
-//    }
-//}
+extension WalletCurrencyListViewController {
+    @objc func currencyListCellViewDidClicked(_ data:[String: Any]) {
+        if let model = data["data"] as? Currency {
+            self.coordinator?.pushToBackupPrikeyVC(model)
+        }
+    }
+}
 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CurrencyListCellView">
+            <connections>
+                <outlet property="iconImgView" destination="YXc-oQ-HjV" id="xiv-ZK-cae"/>
+                <outlet property="titleLabel" destination="RWo-dk-pwv" id="fRD-m0-RP7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="NYo-GV-00i">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YXc-oQ-HjV">
+                    <rect key="frame" x="20" y="82" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="wgJ-Vu-1Yq"/>
+                        <constraint firstAttribute="width" constant="24" id="zeK-BR-ydX"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWo-dk-pwv" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
+                    <rect key="frame" x="60" y="84.5" width="39.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7W0-Pp-AuV">
+                    <rect key="frame" x="60" y="125.5" width="295" height="0.5"/>
+                    <color key="backgroundColor" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="8lJ-sd-M9E"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTabArrow" translatesAutoresizingMaskIntoConstraints="NO" id="Lc8-N6-Fp1">
+                    <rect key="frame" x="329" y="86" width="16" height="16"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="8tI-WV-9a0" firstAttribute="bottom" secondItem="7W0-Pp-AuV" secondAttribute="bottom" id="832-C9-Ac4"/>
+                <constraint firstItem="YXc-oQ-HjV" firstAttribute="leading" secondItem="8tI-WV-9a0" secondAttribute="leading" constant="20" id="B0r-sb-YuG"/>
+                <constraint firstItem="Lc8-N6-Fp1" firstAttribute="centerY" secondItem="YXc-oQ-HjV" secondAttribute="centerY" id="BB8-Bj-iid"/>
+                <constraint firstItem="RWo-dk-pwv" firstAttribute="leading" secondItem="YXc-oQ-HjV" secondAttribute="trailing" constant="16" id="OZR-53-LFb"/>
+                <constraint firstItem="8tI-WV-9a0" firstAttribute="trailing" secondItem="7W0-Pp-AuV" secondAttribute="trailing" constant="20" id="Wub-76-BR1"/>
+                <constraint firstItem="7W0-Pp-AuV" firstAttribute="leading" secondItem="8tI-WV-9a0" secondAttribute="leading" constant="60" id="b1P-Mc-Jbf"/>
+                <constraint firstItem="YXc-oQ-HjV" firstAttribute="centerY" secondItem="RWo-dk-pwv" secondAttribute="centerY" id="fOg-fy-bsC"/>
+                <constraint firstItem="8tI-WV-9a0" firstAttribute="bottom" secondItem="YXc-oQ-HjV" secondAttribute="bottom" constant="20" id="k67-TV-p68"/>
+                <constraint firstItem="8tI-WV-9a0" firstAttribute="trailing" secondItem="Lc8-N6-Fp1" secondAttribute="trailing" constant="30" id="rcp-My-QqQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="8tI-WV-9a0"/>
+            <point key="canvasLocation" x="-119.2" y="-297.75112443778113"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icTabArrow" width="16" height="16"/>
+    </resources>
+</document>

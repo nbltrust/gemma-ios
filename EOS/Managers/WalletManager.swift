@@ -28,6 +28,8 @@ class WalletManager {
 
     var timer: Repeater?
 
+    var errCount = 0
+
     //MARK:-Wallet
     func currentWallet() -> Wallet? {
         let walletId = Int64(Defaults[.currentWalletID])
@@ -145,14 +147,17 @@ class WalletManager {
         do {
             //Update Wallet Cipher,Hint
             var wallet = wallet
-            if wallet.type == .HD {
-                let walletCipher = Seed39KeyDecrypt(oldPassword, wallet.cipher)
-                wallet.hint = hint
-                wallet.cipher = Seed39KeyEncrypt(newPassword, walletCipher)
-                WalletManager.shared.updateWallet(wallet)
-            }
-
             if let currencys = try WalletCacheService.shared.fetchAllCurrencysBy(wallet) {
+                if CurrencyManager.shared.pwdIsCorrect(currencys[0].id, password: oldPassword) == false {
+                    self.errCount += 1
+                    if self.errCount == 3 {
+                        showFailTop(hint)
+                    } else {
+                        showFailTop(R.string.localizable.password_not_match.key.localized())
+                    }
+                    return false
+                }
+
                 for var currency in currencys {
                     if currency.type == .EOS {
                         //Update EOS Cipher,pubKey
@@ -172,10 +177,30 @@ class WalletManager {
                     try WalletCacheService.shared.updateCurrency(currency)
                 }
             }
+            if wallet.type == .HD {
+                let walletCipher = Seed39KeyDecrypt(oldPassword, wallet.cipher)
+                wallet.hint = hint
+                wallet.cipher = Seed39KeyEncrypt(newPassword, walletCipher)
+                WalletManager.shared.updateWallet(wallet)
+            }
         } catch { return false }
-        return false
+        return true
     }
 
+    func saveManagerWallet(_ wallet: Wallet) {
+        Defaults["managerwalletid"] = wallet.id
+    }
+    func getManagerWallet() -> Wallet? {
+        if let walletid = Defaults["managerwalletid"] as? Int64 {
+            do {
+                let wallet = try WalletCacheService.shared.fetchWalletBy(id: walletid)
+                return wallet
+            } catch {
+                return nil
+            }
+        }
+        return nil
+    }
     //MARK:-Wallet BackUp
     func backupSuccess(_ wallet: Wallet) {
         if let walletId = wallet.id {

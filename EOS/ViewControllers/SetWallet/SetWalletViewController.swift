@@ -154,9 +154,9 @@ class SetWalletViewController: BaseViewController {
                 case .leadInWithMnemonic:
                     self.importWallet()
                 case .updatePas:
-                    if let password = self.fieldView.passwordView.textField.text,
+                    if let oldPassword = self.fieldView.nameView.textField.text, let newPassword = self.fieldView.passwordView.textField.text,
                         let hint = self.fieldView.hintView.textField.text {
-                        self.coordinator?.updatePassword(password, hint: hint)
+                        self.coordinator?.updatePassword(self.wallet, oldPassword: oldPassword, newPassword: newPassword, hint: hint)
                         self.showSuccess(message: R.string.localizable.change_password_success.key.localized())
                     }
                 case .wookong:
