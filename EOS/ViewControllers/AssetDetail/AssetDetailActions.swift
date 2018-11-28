@@ -21,8 +21,8 @@ struct AssetDetailContext: RouteContext, HandyJSON {
 struct AssetDetailState: BaseState {
     var context: BehaviorRelay<RouteContext?> = BehaviorRelay(value: nil)
     var pageState: BehaviorRelay<PageState> = BehaviorRelay(value: .initial)
-    var data: [String: [PaymentsRecordsViewModel]] = [:]
-    var lastPos: Int = -1
+    var data: [(String, [PaymentsRecordsViewModel])]? = nil
+    var lastPos: Int = 1
     var payments: [Payment] = []
     var info: BehaviorRelay<AssetViewModel> = BehaviorRelay(value: AssetViewModel())
     var cnyPrice: String = ""
@@ -34,10 +34,12 @@ struct AssetDetailFetchedAction: Action {
     var data:JSON
 }
 
-struct RemoveAction: Action {
-    
-}
 struct ATokensFetchedAction: Action {
     var data:[Tokens]
     var symbol = ""
+}
+
+struct GetLastPosAction: Action {
+    var lastPos: Int
+    var isRefresh: Bool
 }

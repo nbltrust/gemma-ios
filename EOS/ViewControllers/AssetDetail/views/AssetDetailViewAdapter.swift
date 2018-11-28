@@ -9,7 +9,7 @@
 import Foundation
 
 extension AssetDetailView {
-    func adapterModelToAssetDetailView(_ model:[String: [PaymentsRecordsViewModel]]) {
+    func adapterModelToAssetDetailView(_ model:[(String, [PaymentsRecordsViewModel])]) {
         self.data = model
     }
 }

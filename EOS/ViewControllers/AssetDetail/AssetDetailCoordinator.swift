@@ -107,17 +107,16 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
     }
 
     func getDataFromServer(_ account: String, symbol: String, contract: String, completion: @escaping (Bool) -> Void, isRefresh: Bool) {
-        NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: 10, lastPosition: isRefresh ? 1 :state.lastPos, symbol: symbol, contract: contract), success: { (data) in
+        self.store.dispatch(GetLastPosAction(lastPos: self.state.lastPos, isRefresh: isRefresh))
+
+        NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: 10, lastPosition: state.lastPos, symbol: symbol, contract: contract), success: { (data) in
             let transactions = data["trace_list"].arrayValue
 
-            if let lastPos = data["trace_count"].int {
-                self.store.dispatch(GetLastPosAction(lastPos: lastPos))
 
-                if let payments = transactions.map({ (json) in
-                    Payment.deserialize(from: json.dictionaryObject)
-                }) as? [Payment] {
-                    self.store.dispatch(FetchPaymentsRecordsListAction(data: payments))
-                }
+            if let payments = transactions.map({ (json) in
+                Payment.deserialize(from: json.dictionaryObject)
+            }) as? [Payment] {
+                self.store.dispatch(FetchPaymentsRecordsListAction(data: payments))
             }
 
             completion(true)

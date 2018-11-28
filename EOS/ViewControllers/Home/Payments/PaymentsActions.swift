@@ -29,10 +29,6 @@ struct FetchPaymentsRecordsListAction: Action {
     var data: [Payment]
 }
 
-struct GetLastPosAction: Action {
-    var lastPos: Int
-}
-
 // MARK: - ViewModel
 struct PaymentsRecordsViewModel {
     var stateImageName: UIImage?

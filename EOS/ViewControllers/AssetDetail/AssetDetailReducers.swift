@@ -14,14 +14,18 @@ func gAssetDetailReducer(action:Action, state:AssetDetailState?) -> AssetDetailS
         
     switch action {
     case let action as FetchPaymentsRecordsListAction:
-        state.data.removeAll()
         state.payments = action.data
-        let mData: [String: [PaymentsRecordsViewModel]] = convertTransferViewModel(data: action.data, dict: state.data)
+        if state.lastPos == 1, state.data != nil, (state.data?.count)! > 0 {
+            state.data!.removeAll()
+        }
+        let mData: [(String, [PaymentsRecordsViewModel])] = convertTransferViewModel(data: action.data, tupleArray: state.data)
         state.data = mData
     case let action as GetLastPosAction:
-        state.lastPos = action.lastPos
-    case _ as RemoveAction:
-        state.data.removeAll()
+        if action.isRefresh == true {
+            state.lastPos = 1
+        } else {
+            state.lastPos += 1
+        }
     case let action as MBalanceFetchedAction:
         var viewmodel = state.info.value
             if let balance = action.balance.arrayValue.first?.string {
@@ -55,9 +59,8 @@ func gAssetDetailReducer(action:Action, state:AssetDetailState?) -> AssetDetailS
     return state
 }
 
-func convertTransferViewModel(data: [Payment], dict: [String: [PaymentsRecordsViewModel]]) -> [String: [PaymentsRecordsViewModel]] {
-    var newdict = dict
-    var modelArray: [PaymentsRecordsViewModel] = []
+func convertTransferViewModel(data: [Payment], tupleArray: [(String, [PaymentsRecordsViewModel])]?) -> [(String, [PaymentsRecordsViewModel])] {
+    var newtupleArray = tupleArray
     for payment in data {
         let isSend: Bool = payment.sender == CurrencyManager.shared.getCurrentAccountName()
         let state: Bool = true//payment.status.rawValue == 3
@@ -73,28 +76,62 @@ func convertTransferViewModel(data: [Payment], dict: [String: [PaymentsRecordsVi
         }
         let address = isSend ? receiver : sender
         let time = payment.timestamp.string(withFormat: "MM-dd yyyy")
-        let transferState = "已接收"
+        let transferState = isSend ? "已发送" : "已接收"
         let money = isSend ? "-" + payment.quantity : "+" + payment.quantity
 
-        if newdict.keys.contains(time) {
-            modelArray = newdict[time]!
+        var isContain = false
+        if newtupleArray == nil || newtupleArray?.count == 0 {
+            newtupleArray = [(time, [PaymentsRecordsViewModel(stateImageName: stateImage,
+                                                              address: address,
+                                                              time: time,
+                                                              transferState: transferState,
+                                                              money: money,
+                                                              transferStateBool: state,
+                                                              block: 0,
+                                                              memo: payment.memo,
+                                                              hashNumber: payment.trxId.hashNano,
+                                                              hash: payment.trxId,
+                                                              isSend: isSend)])]
+            isContain = true
         } else {
-            modelArray = []
+            for index in 0..<newtupleArray!.count {
+                let tuple = newtupleArray![index]
+                if tuple.0 == time {
+                    var newtuple = tuple
+                    newtuple.1.append(PaymentsRecordsViewModel(stateImageName: stateImage,
+                                                               address: address,
+                                                               time: time,
+                                                               transferState: transferState,
+                                                               money: money,
+                                                               transferStateBool: state,
+                                                               block: 0,
+                                                               memo: payment.memo,
+                                                               hashNumber: payment.trxId.hashNano,
+                                                               hash: payment.trxId,
+                                                               isSend: isSend))
+                    newtupleArray!.remove(at: index)
+                    newtupleArray!.insert(newtuple, at: index)
+                    isContain = true
+                    break
+                }
+            }
         }
-        modelArray.append(PaymentsRecordsViewModel(stateImageName: stateImage,
-                                                   address: address,
-                                                   time: time,
-                                                   transferState: transferState,
-                                                   money: money,
-                                                   transferStateBool: state,
-                                                   block: 0,
-                                                   memo: payment.memo,
-                                                   hashNumber: payment.trxId.hashNano,
-                                                   hash: payment.trxId,
-                                                   isSend: isSend))
-        newdict[time] = modelArray
+
+        if isContain == false {
+            newtupleArray!.append((time, [PaymentsRecordsViewModel(stateImageName: stateImage,
+                                                                  address: address,
+                                                                  time: time,
+                                                                  transferState: transferState,
+                                                                  money: money,
+                                                                  transferStateBool: state,
+                                                                  block: 0,
+                                                                  memo: payment.memo,
+                                                                  hashNumber: payment.trxId.hashNano,
+                                                                  hash: payment.trxId,
+                                                                  isSend: isSend)]))
+        }
     }
-    return newdict
+    return newtupleArray!
 }
 
 func calculateRMBPrice(_ viewmodel: AssetViewModel, price: String, otherPrice: String) -> String {

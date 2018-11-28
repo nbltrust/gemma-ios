@@ -38,8 +38,10 @@ class ResourceDetailViewController: BaseViewController {
         if let wallet = WalletManager.shared.currentWallet() {
             if wallet.type == .bluetooth {
                 self.contentView.tipsLabel.isHidden = false
+                self.contentView.managerView.isHidden = true
             } else {
                 self.contentView.tipsLabel.isHidden = true
+                self.contentView.managerView.isHidden = false
             }
         }
     }
