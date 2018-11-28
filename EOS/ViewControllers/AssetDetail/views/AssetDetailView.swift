@@ -27,7 +27,7 @@ class AssetDetailView: EOSBaseView {
 
     override var data: Any? {
         didSet {
-            if let _ = data as? [String: [PaymentsRecordsViewModel]] {
+            if let _ = data as? [(String, [PaymentsRecordsViewModel])] {
                 self.tableView.reloadData()
             }
         }
@@ -63,17 +63,15 @@ class AssetDetailView: EOSBaseView {
 
 extension AssetDetailView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let data = data as? [String: [PaymentsRecordsViewModel]] {
-            let keys = Array(data.keys)
-            let key = keys[section]
-            return data[key]!.count
+        if let data = data as? [(String, [PaymentsRecordsViewModel])] {
+            return data[section].1.count
         }
         return 0
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        if let data = data as? [String: [PaymentsRecordsViewModel]] {
-            return data.keys.count
+        if let data = data as? [(String, [PaymentsRecordsViewModel])] {
+            return data.count
         }
         return 0
     }
@@ -88,11 +86,8 @@ extension AssetDetailView: UITableViewDataSource, UITableViewDelegate {
         if section == 0 {
             headView.titleText = R.string.localizable.asset.key.localized()
         }
-        if let data = data as? [String: [PaymentsRecordsViewModel]] {
-            let keys = Array(data.keys)
-            let key = keys[section]
-            headView.titleText = key
-
+        if let data = data as? [(String, [PaymentsRecordsViewModel])] {
+            headView.titleText = data[section].0
         }
         return headView
     }
@@ -102,19 +97,15 @@ extension AssetDetailView: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: name, for: indexPath) as? PaymentsRecordsCell else {
             return UITableViewCell()
         }
-        if let data = data as? [String: [PaymentsRecordsViewModel]] {
-            let keys = Array(data.keys)
-            let key = keys[indexPath.section]
-            cell.setup(data[key]![indexPath.row])
+        if let data = data as? [(String, [PaymentsRecordsViewModel])] {
+            cell.setup(data[indexPath.section].1[indexPath.row])
         }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let data = data as? [String: [PaymentsRecordsViewModel]] {
-            let keys = Array(data.keys)
-            let key = keys[indexPath.section]
-            self.sendEventWith(Event.cellViewDidClicked.rawValue, userinfo: ["data": data[key]![indexPath.row]])
+        if let data = data as? [(String, [PaymentsRecordsViewModel])] {
+            self.sendEventWith(Event.cellViewDidClicked.rawValue, userinfo: ["data": data[indexPath.section].1[indexPath.row]])
         }
     }
 }

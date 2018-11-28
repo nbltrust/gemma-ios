@@ -16,6 +16,7 @@ class ResourceMortgageView: UIView {
     @IBOutlet weak var delegateView: LineView!
     @IBOutlet weak var buyRamView: LineView!
     @IBOutlet weak var tipsLabel: BaseLabel!
+    @IBOutlet weak var managerView: UIView!
 
     enum Event: String {
         case delegateViewDidClicked

@@ -16,7 +16,7 @@ class AssetDetailViewController: BaseViewController {
     @IBOutlet weak var contentView: AssetDetailView!
     var coordinator: (AssetDetailCoordinatorProtocol & AssetDetailStateManagerProtocol)?
     private(set) var context: AssetDetailContext?
-    var data: [String: [PaymentsRecordsViewModel]] = [:]
+    var data: [(String, [PaymentsRecordsViewModel])] = [("", [PaymentsRecordsViewModel()])]
     var isNoMoreData: Bool = false
     var symbol: String = ""
     var contract: String = ""

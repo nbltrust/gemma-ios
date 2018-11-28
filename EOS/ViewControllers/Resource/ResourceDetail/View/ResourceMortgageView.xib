@@ -15,6 +15,7 @@
                 <outlet property="buyRamView" destination="yZP-wJ-0E3" id="ZRz-kV-O1s"/>
                 <outlet property="cpuView" destination="HrI-xN-M9Z" id="zty-xw-SEc"/>
                 <outlet property="delegateView" destination="YRY-nJ-C5H" id="MAO-EI-OaW"/>
+                <outlet property="managerView" destination="7z1-R0-ULW" id="wHt-JO-gdR"/>
                 <outlet property="netView" destination="Y04-02-qme" id="a51-1V-LrG"/>
                 <outlet property="ramView" destination="5xn-SD-QNv" id="QKn-bl-5RJ"/>
                 <outlet property="tipsLabel" destination="ziP-rF-nzN" id="LQw-VJ-iRL"/>
