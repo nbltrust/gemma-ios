@@ -36,6 +36,12 @@ class BLTInitTypeSelectViewController: BaseViewController {
     }
 
     func setupUI() {
+        configLeftNavButton(R.image.ic_mask_back())
+    }
+
+    override func leftAction(_ sender: UIButton) {
+        self.coordinator?.dismissNav({
+        })
     }
 
     func setupData() {

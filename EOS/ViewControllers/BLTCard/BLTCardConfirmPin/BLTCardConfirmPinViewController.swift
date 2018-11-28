@@ -41,9 +41,9 @@ class BLTCardConfirmPinViewController: BaseViewController {
         self.confirmView.btnTitle = R.string.localizable.wookong_confirm_pin_btn.key.localized()
 
         if self.navigationController?.viewControllers.count == 1 {
-            self.configLeftNavButton(R.image.icTransferClose())
+            self.configLeftNavButton(R.image.ic_mask_close())
         } else {
-            self.configLeftNavButton(R.image.icBack())
+            self.configLeftNavButton(R.image.ic_mask_back())
         }
     }
 
