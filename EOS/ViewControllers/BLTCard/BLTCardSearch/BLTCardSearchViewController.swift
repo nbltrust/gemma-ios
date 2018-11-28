@@ -38,7 +38,7 @@ class BLTCardSearchViewController: BaseViewController {
     }
 
     func setupUI() {
-        configLeftNavButton(R.image.icMaskClose())
+        configLeftNavButton(R.image.ic_mask_close())
 
         let nibString = R.nib.bltDeviceCell.identifier
         deviceTable.register(UINib.init(nibName: nibString, bundle: nil), forCellReuseIdentifier: nibString)
@@ -134,12 +134,16 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
+        let cell = tableView.cellForRow(at: indexPath) as? BLTDeviceCell
+        tableView.isUserInteractionEnabled = false
+        cell?.startLoading()
         cell?.contentView.backgroundColor = UIColor.borderColor
         if let devices = self.coordinator?.state.devices {
             let device = devices[indexPath.row]
             self.coordinator?.connectDevice(device, success: { [weak self] in
                 guard let `self` = self else { return }
+                tableView.isUserInteractionEnabled = true
+                cell?.endLoading()
                 BLTWalletIO.shareInstance()?.selectDevice = device
                 self.navigationController?.dismiss(animated: true) {
                     if self.context?.connectSuccessed != nil {
@@ -148,6 +152,8 @@ extension BLTCardSearchViewController: UITableViewDataSource, UITableViewDelegat
                 }
             }, failed: { [weak self] (reason) in
                 guard let `self` = self else { return }
+                tableView.isUserInteractionEnabled = true
+                cell?.endLoading()
                 if let failedReason = reason {
                     self.showError(message: failedReason)
                 }

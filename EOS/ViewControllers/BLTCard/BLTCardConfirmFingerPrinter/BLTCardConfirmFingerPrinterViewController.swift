@@ -43,8 +43,8 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
         }
     }
 
-    func test() {
-
+    override func rightAction(_ sender: UIButton) {
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +67,20 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
             uiModel.imageName = R.image.card_fingerprint.name
             contentView.adapterModelToBLTCardIntroViewView(uiModel)
         }
+
+        if self.navigationController?.viewControllers.count == 1 {
+            self.configLeftNavButton(R.image.ic_mask_close())
+        } else {
+            self.configLeftNavButton(R.image.ic_mask_back())
+        }
+    }
+
+    override func leftAction(_ sender: UIButton) {
+        if self.navigationController?.viewControllers.count == 1 {
+            self.coordinator?.dismissNav()
+        } else {
+            self.coordinator?.popVC()
+        }
     }
 
     func setupData() {
@@ -74,7 +88,6 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
     }
 
     func setupEvent() {
-        self.startLoading(true)
         guard let context = context else { return }
         if context.confirmSuccessed != nil {
             verifyFP()
@@ -94,6 +107,7 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
     }
 
     func verifyFP() {
+        reloadRightItem(false)
         self.coordinator?.verifyFP({ (state) in
             }, success: { [weak self] in
                 guard let `self` = self else { return }
@@ -102,14 +116,17 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
                         context.confirmSuccessed!()
                     }
                 })
+                self.reloadRightItem(true)
             }, failed: { [weak self]  (reason) in
                 guard let `self` = self else { return }
                 if let failedReason = reason {
                     self.showError(message: failedReason)
                 }
+                self.reloadRightItem(true)
             }, timeout: { [weak self] in
                 guard let `self` = self else { return }
                 self.timeoutAlert()
+                self.reloadRightItem(true)
         })
     }
 
@@ -135,9 +152,9 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
                 self.context = context
 
                 if context.iconType == LeftIconType.dismiss.rawValue {
-                    self.configLeftNavButton(R.image.icTransferClose())
+                    self.configLeftNavButton(R.image.ic_mask_close())
                 } else {
-                    self.configLeftNavButton(R.image.icBack())
+                    self.configLeftNavButton(R.image.ic_mask_back())
                 }
             }
         }).disposed(by: disposeBag)

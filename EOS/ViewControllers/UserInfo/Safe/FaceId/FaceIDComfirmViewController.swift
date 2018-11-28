@@ -30,7 +30,7 @@ class FaceIDComfirmViewController: BaseViewController {
         super.viewDidLoad()
         self.coordinator?.confirm()
         if canDismiss {
-            self.configLeftNavButton(R.image.icTransferClose())
+            self.configLeftNavButton(R.image.ic_mask_close())
         }
     }
 

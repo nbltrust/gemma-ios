@@ -152,6 +152,19 @@ class EntryViewController: BaseViewController {
     }
 
     func createBltWallet() {
+        if BLTWalletIO.shareInstance()?.isConnection() ?? false {
+            if let nav = self.navigationController {
+                connectBLTCard(nav) { [weak self] in
+                    guard let `self` = self else {return}
+                    self.handleBltWalletCreation()
+                }
+            }
+        } else {
+            handleBltWalletCreation()
+        }
+    }
+
+    func handleBltWalletCreation() {
         self.startLoading()
         self.coordinator?.createBLTWallet(self.registerView.nameView.textField.text!, currencyID: self.currencyID, completion: { (_) in
             self.endLoading()

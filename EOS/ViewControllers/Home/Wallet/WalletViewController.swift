@@ -46,7 +46,7 @@ class WalletViewController: BaseViewController {
         let wookongNibString = R.nib.wookongBioCell.name
         tableView.register(UINib.init(nibName: wookongNibString, bundle: nil), forCellReuseIdentifier: wookongNibString)
 
-        configLeftNavButton(R.image.icMaskClose())
+        configLeftNavButton(R.image.ic_mask_close())
     }
 
     override func leftAction(_ sender: UIButton) {

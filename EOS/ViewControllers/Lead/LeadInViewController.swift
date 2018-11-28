@@ -24,6 +24,10 @@ class LeadInViewController: BaseViewController {
         self.title = R.string.localizable.lead_in.key.localized()
     }
 
+    override func leftAction(_ sender: UIButton) {
+        self.coordinator?.popVC()
+    }
+
     override func configureObserveState() {
 
     }

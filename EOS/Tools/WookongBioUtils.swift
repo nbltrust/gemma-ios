@@ -46,6 +46,7 @@ func confirmPin(_ rootVC: UINavigationController, complication: @escaping Succes
 
     let presenter = Presentr(presentationType: customType)
     presenter.keyboardTranslationType = .stickToTop
+    presenter.dismissOnTap = false
 
     var context = BLTCardConfirmPinContext()
     context.confirmSuccessed = {()
@@ -64,7 +65,7 @@ func confirmPin(_ rootVC: UINavigationController, complication: @escaping Succes
 func confirmFP(_ rootVC: UINavigationController, complication: @escaping SuccessedComplication) {
     let width = ModalSize.full
 
-    let height: Float = 249.0
+    let height: Float = 338.0
     let centerHeight = UIScreen.main.bounds.height - height.cgFloat
     let heightSize = ModalSize.custom(size: height)
 
@@ -73,6 +74,7 @@ func confirmFP(_ rootVC: UINavigationController, complication: @escaping Success
 
     let presenter = Presentr(presentationType: customType)
     presenter.keyboardTranslationType = .stickToTop
+    presenter.dismissOnTap = false
 
     var context = BLTCardConfirmFingerPrinterContext()
     context.confirmSuccessed = {()

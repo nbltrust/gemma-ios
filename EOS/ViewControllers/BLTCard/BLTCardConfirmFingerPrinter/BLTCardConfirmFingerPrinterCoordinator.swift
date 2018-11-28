@@ -12,6 +12,10 @@ import NBLCommonModule
 
 protocol BLTCardConfirmFingerPrinterCoordinatorProtocol {
     func finishTransfer()
+
+    func dismissNav()
+
+    func popVC()
 }
 
 protocol BLTCardConfirmFingerPrinterStateManagerProtocol {
@@ -57,6 +61,26 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterCoo
                 transferVC.resetData()
             }
         }
+    }
+
+    func dismissNav() {
+        BLTWalletIO.shareInstance()?.cancelEntrollFingerPrinter({
+            self.rootVC.dismiss(animated: true, completion: nil)
+        }, failed: { (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        })
+    }
+
+    func popVC() {
+        BLTWalletIO.shareInstance()?.cancelEntrollFingerPrinter({
+            self.rootVC.popViewController(animated: true)
+        }, failed: { (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        })
     }
 }
 
