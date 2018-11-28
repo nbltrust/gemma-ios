@@ -33,7 +33,7 @@ protocol SetWalletCoordinatorProtocol {
 
     func presentSetFingerPrinterVC()
 
-    func presentBLTInitTypeSelectVC()
+    func presentBLTInitTypeSelectVC(_ password: String)
 }
 
 protocol SetWalletStateManagerProtocol {
@@ -154,7 +154,7 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
         newHomeNav?.present(nav, animated: true, completion: nil)
     }
 
-    func presentBLTInitTypeSelectVC() {
+    func presentBLTInitTypeSelectVC(_ password: String) {
         let width = ModalSize.full
 
         let height: Float = 249.0
@@ -170,11 +170,17 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
         var context = BLTInitTypeSelectContext()
         context.isCreateCallback = {[weak self] (isCreate) in
             guard let `self` = self else {return}
-            if isCreate {
-                self.pushToMnemonicVC()
-            } else {
-                self.pushToImportVC()
-            }
+            self.setWalletPin(password, success: { () in
+                if isCreate {
+                    self.pushToMnemonicVC()
+                } else {
+                    self.pushToImportVC()
+                }
+                }, failed: { (reason) in
+                    if let failedReason = reason {
+                        showFailTop(failedReason)
+                    }
+            })
         }
 
         if let fpVC = R.storyboard.bltCard.bltInitTypeSelectViewController() {

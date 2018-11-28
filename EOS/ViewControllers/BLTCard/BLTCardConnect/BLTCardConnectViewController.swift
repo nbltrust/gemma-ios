@@ -43,7 +43,7 @@ class BLTCardConnectViewController: BaseViewController {
     func setupUI() {
         self.titleLabel.text = R.string.localizable.wookong_connecting_title.key.localized()
 
-        configLeftNavButton(R.image.icTransferClose())
+        configLeftNavButton(R.image.ic_mask_close())
 
         indicatorView = UIActivityIndicatorView(style: .gray)
         indicatorView?.hidesWhenStopped = true

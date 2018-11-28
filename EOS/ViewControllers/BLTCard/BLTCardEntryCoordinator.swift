@@ -40,8 +40,6 @@ protocol BLTCardEntryStateManagerProtocol {
 
     func checkFPExist(_ success: @escaping CompletionCallback,
                       failed: @escaping CompletionCallback)
-
-    func disconnect()
 }
 
 class BLTCardEntryCoordinator: BLTCardRootCoordinator {
@@ -79,34 +77,39 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
     }
 
     func presentBLTCardSearchVC() {
-        self.disconnect()
-        let width = ModalSize.full
+        BLTWalletIO.shareInstance()?.disConnect({
+            let width = ModalSize.full
 
-        let height: Float = 320
-        let heightSize = ModalSize.custom(size: height)
+            let height: Float = 320
+            let heightSize = ModalSize.custom(size: height)
 
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - height.cgFloat))
-        let customType = PresentationType.custom(width: width, height: heightSize, center: center)
+            let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - height.cgFloat))
+            let customType = PresentationType.custom(width: width, height: heightSize, center: center)
 
-        let presenter = Presentr(presentationType: customType)
-        presenter.keyboardTranslationType = .stickToTop
+            let presenter = Presentr(presentationType: customType)
+            presenter.keyboardTranslationType = .stickToTop
 
-        let newVC = BaseNavigationController()
-        let bltCard = BLTCardRootCoordinator(rootVC: newVC)
-        var context = BLTCardSearchContext()
-        context.connectSuccessed = { [weak self] () in
-            guard let `self` = self else { return }
-            self.checkPinState()
-        }
+            let newVC = BaseNavigationController()
+            let bltCard = BLTCardRootCoordinator(rootVC: newVC)
+            var context = BLTCardSearchContext()
+            context.connectSuccessed = { [weak self] () in
+                guard let `self` = self else { return }
+                self.checkPinState()
+            }
 
-        if let vc = R.storyboard.bltCard.bltCardSearchViewController() {
-            let coordinator = BLTCardSearchCoordinator(rootVC: bltCard.rootVC)
-            vc.coordinator = coordinator
-            coordinator.store.dispatch(RouteContextAction(context: context))
-            bltCard.rootVC.pushViewController(vc, animated: true)
+            if let searchVC = R.storyboard.bltCard.bltCardSearchViewController() {
+                let coordinator = BLTCardSearchCoordinator(rootVC: bltCard.rootVC)
+                searchVC.coordinator = coordinator
+                coordinator.store.dispatch(RouteContextAction(context: context))
+                bltCard.rootVC.pushViewController(searchVC, animated: true)
 
-            self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
-        }
+                self.rootVC.topViewController?.customPresentViewController(presenter, viewController: newVC, animated: true, completion: nil)
+            }
+        }, failed: { (reason) in
+            if let failedReason = reason {
+                showFailTop(failedReason)
+            }
+        })
     }
 
     func pushToMnemonicVC() {
@@ -145,14 +148,6 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
             self.pushToMnemonicVC()
         }
     }
-
-    func disconnect() {
-        BLTWalletIO.shareInstance()?.disConnect({
-
-        }, failed: { (reason) in
-
-        })
-    }
 }
 
 extension BLTCardEntryCoordinator: BLTCardEntryStateManagerProtocol {
@@ -186,7 +181,9 @@ extension BLTCardEntryCoordinator: BLTCardEntryStateManagerProtocol {
         })
     }
 
-    func createWookongBioWallet(_ hint: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
+    func createWookongBioWallet(_ hint: String,
+                                success: @escaping SuccessedComplication,
+                                failed: @escaping FailedComplication) {
         importWookongBioWallet(hint, success: success, failed: failed)
     }
 

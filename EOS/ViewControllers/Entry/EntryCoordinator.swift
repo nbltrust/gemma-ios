@@ -198,12 +198,12 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     }
 
     func createEOSAccount(_ type: CreateAPPId,
-                      accountName: String,
-                      currencyID: Int64?,
-                      inviteCode: String,
-                      validation: WookongValidation?,
-                      deviceName: String?,
-                      completion: @escaping (Bool) -> Void) {
+                          accountName: String,
+                          currencyID: Int64?,
+                          inviteCode: String,
+                          validation: WookongValidation?,
+                          deviceName: String?,
+                          completion: @escaping (Bool) -> Void) {
         do {
             if let id = currencyID {
                 let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
@@ -240,8 +240,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         } catch {
 
         }
-
-
     }
 
     func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication) {

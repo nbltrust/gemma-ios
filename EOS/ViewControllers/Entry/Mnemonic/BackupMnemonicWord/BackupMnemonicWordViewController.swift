@@ -47,7 +47,11 @@ class BackupMnemonicWordViewController: BaseViewController {
     }
 
     override func leftAction(_ sender: UIButton) {
-        self.coordinator?.dismissVC()
+        if isWookong {
+            self.coordinator?.popToPairEntryVC()
+        } else {
+            self.coordinator?.dismissVC()
+        }
     }
 
     func setupData() {

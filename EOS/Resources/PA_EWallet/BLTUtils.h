@@ -35,6 +35,8 @@ typedef void(^ DidSearchDevice)(BLTDevice *device);
 
 typedef void(^ BatteryInfoUpdated)(BLTBatteryInfo *info);
 
+typedef void(^ DeviceUnConnected)(void);
+
 typedef void(^ EnrollFingerComplication)(FingerPrinterState state);
 
 typedef void(^ VerifyFingerComplication)(FingerPrinterState state);

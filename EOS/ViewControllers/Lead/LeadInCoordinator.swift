@@ -14,6 +14,8 @@ protocol LeadInCoordinatorProtocol {
     func openLeadInKey()
 
     func openLeadInWookongPriKey()
+
+    func popVC()
 }
 
 protocol LeadInStateManagerProtocol {
@@ -48,6 +50,16 @@ extension LeadInCoordinator: LeadInCoordinatorProtocol {
             leadInVC.isWookong = true
             self.rootVC.pushViewController(leadInVC, animated: true)
         }
+    }
+
+    func popVC() {
+        for itemVC in self.rootVC.viewControllers {
+            if let entryVC = itemVC as? BLTCardEntryViewController {
+                self.rootVC.popToViewController(entryVC, animated: true)
+                return
+            }
+        }
+        self.rootVC.popViewController(animated: true)
     }
 }
 
