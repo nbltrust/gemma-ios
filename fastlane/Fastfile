@@ -106,7 +106,7 @@ platform :ios do
       }
     )
     firim(firim_api_token:"878ea01c42fb1946a73ed5cf8b6245c0")
-    slack(message: "Successfully distributed gemma to fir, download_url: 	https://fir.im/xxxx ", slack_url:"https://hooks.slack.com/services/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")
+    slack(message: "Successfully distributed gemma to fir, download_url: 	https://fir.im/kj6r ", slack_url:"https://hooks.slack.com/services/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")
   end
 
   lane :publish do
