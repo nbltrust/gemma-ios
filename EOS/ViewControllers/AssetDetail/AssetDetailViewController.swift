@@ -30,6 +30,7 @@ class AssetDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        popGesture = false
         refreshData()
     }
     
@@ -37,7 +38,6 @@ class AssetDetailViewController: BaseViewController {
     }
     func setupUI() {
         self.title = R.string.localizable.asset_detail.key.localized()
-        popGesture = false
     }
 
     override func viewDidDisappear(_ animated: Bool) {
