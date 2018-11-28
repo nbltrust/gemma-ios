@@ -14,6 +14,7 @@ import eos_ios_core_cpp
 protocol CopyPriKeyCoordinatorProtocol {
     func showAlertMessage()
     func pushVerifyPriKey()
+    func popVC()
 }
 
 protocol CopyPriKeyStateManagerProtocol {
@@ -37,7 +38,7 @@ class CopyPriKeyCoordinator: NavCoordinator {
 extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
     func showAlertMessage() {
         var context = ScreenShotAlertContext()
-        context.desc = RichStyle.shared.tagText(R.string.localizable.backup_introduce_three.key.localized(), fontSize: 14, color: UIColor.highlightColor, lineHeight: 20)
+        context.desc = RichStyle.shared.tagText(R.string.localizable.backup_introduce_three.key.localized(), fontSize: 14, color: UIColor.introductionColor, lineHeight: 22)
         context.title = R.string.localizable.dont_screen_shot.key.localized()
         context.buttonTitle = R.string.localizable.i_know.key.localized()
         context.imageName = R.image.icPopNoScreenshots.name
@@ -47,6 +48,14 @@ extension CopyPriKeyCoordinator: CopyPriKeyCoordinatorProtocol {
 
     func pushVerifyPriKey() {
         pushVC(VerifyPriKeyCoordinator.self, animated: true, context: nil)
+    }
+    func popVC() {
+        for subVC in self.rootVC.viewControllers {
+            if subVC is WalletCurrencyListViewController {
+                self.rootVC.popToViewController(subVC, animated: true)
+                return
+            }
+        }
     }
 }
 

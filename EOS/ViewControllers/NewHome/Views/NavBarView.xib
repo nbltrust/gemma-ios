@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z06-r0-cN5">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c94-2O-POo">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -53,41 +53,53 @@
                                 <constraint firstAttribute="bottom" secondItem="UHS-y6-4Gs" secondAttribute="bottom" id="wJm-3m-4D5"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IR6-oA-dRa">
-                            <rect key="frame" x="0.0" y="44" width="375" height="54"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-Iv-c2j">
+                            <rect key="frame" x="0.0" y="44" width="375" height="84"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bY-aS-3tF">
-                                    <rect key="frame" x="20" y="10.5" width="250" height="33.5"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
-                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTF-8c-52x">
-                                    <rect key="frame" x="326" y="10" width="34" height="34"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IR6-oA-dRa">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6bY-aS-3tF">
+                                            <rect key="frame" x="20" y="10.5" width="250" height="33.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTF-8c-52x">
+                                            <rect key="frame" x="326" y="10" width="34" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="55G-tB-4sx"/>
+                                                <constraint firstAttribute="width" constant="34" id="uG4-Du-hFX"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="icSet"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-IR-jMB">
+                                            <rect key="frame" x="280" y="10" width="34" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="34" id="c2x-eJ-fbv"/>
+                                                <constraint firstAttribute="height" constant="34" id="yUt-XR-b7L"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="icWallet"/>
+                                        </button>
+                                    </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="34" id="55G-tB-4sx"/>
-                                        <constraint firstAttribute="width" constant="34" id="uG4-Du-hFX"/>
+                                        <constraint firstItem="6bY-aS-3tF" firstAttribute="leading" secondItem="IR6-oA-dRa" secondAttribute="leading" constant="20" id="1YB-gF-b2l"/>
+                                        <constraint firstItem="fbA-IR-jMB" firstAttribute="centerY" secondItem="IR6-oA-dRa" secondAttribute="centerY" id="CcX-XE-NeV"/>
+                                        <constraint firstItem="6bY-aS-3tF" firstAttribute="centerY" secondItem="IR6-oA-dRa" secondAttribute="centerY" id="EEw-dd-AYw"/>
+                                        <constraint firstAttribute="trailing" secondItem="KTF-8c-52x" secondAttribute="trailing" constant="15" id="HRh-Ba-DTc"/>
+                                        <constraint firstItem="fbA-IR-jMB" firstAttribute="leading" secondItem="6bY-aS-3tF" secondAttribute="trailing" constant="10" id="bE2-NW-vxV"/>
+                                        <constraint firstItem="KTF-8c-52x" firstAttribute="centerY" secondItem="IR6-oA-dRa" secondAttribute="centerY" id="bH6-3V-vmc"/>
+                                        <constraint firstItem="KTF-8c-52x" firstAttribute="leading" secondItem="fbA-IR-jMB" secondAttribute="trailing" constant="12" id="q9v-uJ-f0F"/>
+                                        <constraint firstAttribute="height" constant="54" id="x90-YJ-wat"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="icSet"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-IR-jMB">
-                                    <rect key="frame" x="280" y="10" width="34" height="34"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="34" id="c2x-eJ-fbv"/>
-                                        <constraint firstAttribute="height" constant="34" id="yUt-XR-b7L"/>
-                                    </constraints>
-                                    <state key="normal" title="Button" image="icWallet"/>
-                                </button>
+                                </view>
                             </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="6bY-aS-3tF" firstAttribute="leading" secondItem="IR6-oA-dRa" secondAttribute="leading" constant="20" id="1YB-gF-b2l"/>
-                                <constraint firstItem="fbA-IR-jMB" firstAttribute="centerY" secondItem="IR6-oA-dRa" secondAttribute="centerY" id="CcX-XE-NeV"/>
-                                <constraint firstItem="6bY-aS-3tF" firstAttribute="centerY" secondItem="IR6-oA-dRa" secondAttribute="centerY" id="EEw-dd-AYw"/>
-                                <constraint firstAttribute="trailing" secondItem="KTF-8c-52x" secondAttribute="trailing" constant="15" id="HRh-Ba-DTc"/>
-                                <constraint firstItem="fbA-IR-jMB" firstAttribute="leading" secondItem="6bY-aS-3tF" secondAttribute="trailing" constant="10" id="bE2-NW-vxV"/>
-                                <constraint firstItem="KTF-8c-52x" firstAttribute="centerY" secondItem="IR6-oA-dRa" secondAttribute="centerY" id="bH6-3V-vmc"/>
-                                <constraint firstItem="KTF-8c-52x" firstAttribute="leading" secondItem="fbA-IR-jMB" secondAttribute="trailing" constant="12" id="q9v-uJ-f0F"/>
-                                <constraint firstAttribute="height" constant="54" id="x90-YJ-wat"/>
+                                <constraint firstAttribute="bottom" secondItem="IR6-oA-dRa" secondAttribute="bottom" constant="30" id="Tlo-bR-mv4"/>
+                                <constraint firstItem="IR6-oA-dRa" firstAttribute="top" secondItem="tfk-Iv-c2j" secondAttribute="top" id="ejH-eO-We9"/>
+                                <constraint firstAttribute="trailing" secondItem="IR6-oA-dRa" secondAttribute="trailing" id="gYS-gl-Jrg"/>
+                                <constraint firstItem="IR6-oA-dRa" firstAttribute="leading" secondItem="tfk-Iv-c2j" secondAttribute="leading" id="lFd-rY-Tu8"/>
                             </constraints>
                         </view>
                     </subviews>

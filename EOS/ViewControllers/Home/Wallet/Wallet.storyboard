@@ -237,9 +237,24 @@
                     <view key="view" contentMode="scaleToFill" id="Qec-lV-eB9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pop-TC-rJt" customClass="WalletCurrencyListView" customModule="EOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="30" width="375" height="637"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Unv-Cj-aty" firstAttribute="bottom" secondItem="Pop-TC-rJt" secondAttribute="bottom" id="PPa-fP-Vua"/>
+                            <constraint firstItem="Unv-Cj-aty" firstAttribute="trailing" secondItem="Pop-TC-rJt" secondAttribute="trailing" id="Y7a-Im-tJF"/>
+                            <constraint firstItem="Pop-TC-rJt" firstAttribute="leading" secondItem="Unv-Cj-aty" secondAttribute="leading" id="hEO-qo-WYE"/>
+                            <constraint firstItem="Pop-TC-rJt" firstAttribute="top" secondItem="Unv-Cj-aty" secondAttribute="top" constant="10" id="qVY-zd-P5j"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Unv-Cj-aty"/>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="Pop-TC-rJt" id="fmv-O1-nWN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BPa-Nu-QM4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

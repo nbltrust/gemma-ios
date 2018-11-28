@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import SwiftyUserDefaults
 
 class WalletManagerViewController: BaseViewController {
 
@@ -21,6 +22,7 @@ class WalletManagerViewController: BaseViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        WalletManager.shared.saveManagerWallet(wallet)
         reloadFootView()
     }
 
@@ -68,7 +70,7 @@ class WalletManagerViewController: BaseViewController {
         switch wallet.type {
         case .HD:
             return [wallet.name,
-                    R.string.localizable.wookong_inport_mnemonic.key.localized(),
+                    R.string.localizable.wookong_export_mnemonic.key.localized(),
                     R.string.localizable.export_private_key.key.localized(),
                     R.string.localizable.change_password.key.localized()]
         case .bluetooth:

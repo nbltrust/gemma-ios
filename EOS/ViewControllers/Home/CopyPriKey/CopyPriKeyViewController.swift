@@ -16,7 +16,7 @@ import KRProgressHUD
 class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
 
 	var coordinator: (CopyPriKeyCoordinatorProtocol & CopyPriKeyStateManagerProtocol)?
-
+    var prikey = ""
 	override func viewDidLoad() {
         setupSetting()
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
         self.settings.style.buttonBarMinimumLineSpacing = 68
         self.settings.style.selectedBarHeight = 1.0
         self.settings.style.buttonBarItemsShouldFillAvailableWidth = true
-        self.settings.style.buttonBarItemFont = UIFont.pfScS16
+        self.settings.style.buttonBarItemFont = UIFont.pfScS18
         self.settings.style.buttonBarHeight = 56
         self.settings.style.buttonBarLeftContentInset = 34
         self.settings.style.buttonBarRightContentInset = 34
@@ -52,6 +52,6 @@ class CopyPriKeyViewController: ButtonBarPagerTabStripViewController {
 
 extension CopyPriKeyViewController {
     @objc func savedKeySafely(_ data: [String: Any]) {
-        self.coordinator?.pushVerifyPriKey()
+        self.coordinator?.popVC()
     }
 }

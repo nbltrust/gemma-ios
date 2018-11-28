@@ -11,7 +11,7 @@ import ReSwift
 import Presentr
 
 protocol BackupPrivateKeyCoordinatorProtocol {
-    func showPresenterVC(_ currencyID: Int64?)
+    func showPresenterVC(_ currency: Currency?)
 }
 
 protocol BackupPrivateKeyStateManagerProtocol {
@@ -33,12 +33,24 @@ class BackupPrivateKeyCoordinator: NavCoordinator {
 }
 
 extension BackupPrivateKeyCoordinator: BackupPrivateKeyCoordinatorProtocol {
-    func showPresenterVC(_ currencyID: Int64?) {
-        appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: currencyID, type: ConfirmType.backupPrivateKey.rawValue, producers: [], completion: {[weak self] (_) in
+    func showPresenterVC(_ currency: Currency?) {
+        var currencyID = CurrencyManager.shared.getCurrentCurrencyID()
+        var isWalletManager = false
+        for subVC in self.rootVC.viewControllers {
+            if subVC is WalletManagerViewController {
+                isWalletManager = true
+                break
+            }
+        }
+        if isWalletManager == true, let currencyid = currency?.id {
+            currencyID = currencyid
+        }
+        appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: currencyID, type: ConfirmType.backupPrivateKey.rawValue, producers: [], completion: {[weak self] (prikey) in
             guard let `self` = self else { return }
             let copyVC = CopyPriKeyViewController()
             let copyCoordinator = CopyPriKeyCoordinator(rootVC: self.rootVC)
             copyVC.coordinator = copyCoordinator
+            WalletManager.shared.priKey = prikey
             self.rootVC.pushViewController(copyVC, animated: true)
         })
 

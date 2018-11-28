@@ -11,6 +11,7 @@ import ReSwift
 import NBLCommonModule
 
 protocol WalletCurrencyListCoordinatorProtocol {
+    func pushToBackupPrikeyVC(_ currency: Currency)
 }
 
 protocol WalletCurrencyListStateManagerProtocol {
@@ -45,6 +46,14 @@ class WalletCurrencyListCoordinator: NavCoordinator {
 }
 
 extension WalletCurrencyListCoordinator: WalletCurrencyListCoordinatorProtocol {
+    func pushToBackupPrikeyVC(_ currency: Currency) {
+        if let backupvc = R.storyboard.entry.backupPrivateKeyViewController() {
+            let coor = BackupPrivateKeyCoordinator(rootVC: self.rootVC)
+            backupvc.coordinator = coor
+            backupvc.currency = currency
+            self.rootVC.pushViewController(backupvc, animated: true)
+        }
+    }
 }
 
 extension WalletCurrencyListCoordinator: WalletCurrencyListStateManagerProtocol {

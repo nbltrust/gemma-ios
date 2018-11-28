@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import eos_ios_core_cpp
 import Seed39
 import seed39_ios_golang
 
@@ -207,12 +208,22 @@ class TransferConfirmPasswordViewController: BaseViewController {
 extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String: Any]) {
         guard let context = context else { return }
-
+        var isWalletManager = false
+        for subVC in self.navigationController!.viewControllers {
+            if subVC is WalletManagerViewController {
+                isWalletManager = true
+                break
+            }
+        }
         if context.type != ConfirmType.bltTransfer.rawValue {
             if CurrencyManager.shared.pwdIsCorrect(context.currencyID, password: passwordView.textField.text!) == false {
                 self.errCount += 1
                 if self.errCount == 3 {
-                    if let cipher = CurrencyManager.shared.getCiperWith(context.currencyID), let message = WalletManager.shared.currentWallet()?.hint {
+                    var message = WalletManager.shared.currentWallet()?.hint
+                    if isWalletManager == true {
+                        message = WalletManager.shared.getManagerWallet()?.hint
+                    }
+                    if let _ = CurrencyManager.shared.getCiperWith(context.currencyID), let message = message {
                         self.showError(message: message)
                     }
                 } else {
@@ -222,17 +233,24 @@ extension TransferConfirmPasswordViewController {
             }
 
             if let callback = context.callback {
-                if context.type == ConfirmType.backupMnemonic.rawValue, let cipher = WalletManager.shared.currentWallet()?.cipher {
-                    if let mnemonic = Seed39KeyDecrypt(passwordView.textField.text!, cipher) {
+                var cipher = WalletManager.shared.currentWallet()?.cipher
+                if isWalletManager == true {
+                    cipher = WalletManager.shared.getManagerWallet()?.cipher
+                }
+                if context.type == ConfirmType.backupMnemonic.rawValue, let cip = cipher {
+                    if let mnemonic = Seed39KeyDecrypt(passwordView.textField.text!, cip) {
                         callback(mnemonic, self)
                         return
                     }
                 }
-            }
-
-            if let callback = context.callback {
-                if context.type != ConfirmType.voteNode.rawValue {
-//                    callback(priKey, self)
+                if context.type == ConfirmType.backupPrivateKey.rawValue, let currency = CurrencyManager.shared.getCurrencyBy(context.currencyID) {
+                    var prikey = ""
+                    if currency.type == .EOS {
+                        prikey = EOSIO.getPirvateKey(currency.cipher, password: passwordView.textField.text!)
+                    } else if currency.type == .ETH {
+                        prikey = Seed39KeyDecrypt(passwordView.textField.text!, currency.cipher)
+                    }
+                    callback(prikey, self)
                     return
                 }
             }

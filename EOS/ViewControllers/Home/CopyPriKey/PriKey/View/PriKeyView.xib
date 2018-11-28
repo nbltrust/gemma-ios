@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,79 +14,89 @@
             <connections>
                 <outlet property="actionButton" destination="qjg-Gj-bci" id="B1K-c0-zUq"/>
                 <outlet property="firstTitleView" destination="mri-ga-EBT" id="rik-al-yFO"/>
-                <outlet property="keyLabel" destination="oFJ-Zg-GQS" id="lWD-pw-m6x"/>
+                <outlet property="keyLabel" destination="VbP-5C-Z0B" id="qjl-eb-3dw"/>
                 <outlet property="secondTitleView" destination="bZs-4g-k15" id="dPQ-ZN-OmP"/>
                 <outlet property="thirdTitleView" destination="2S8-tp-MDr" id="Kgx-he-bQf"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="546"/>
+            <rect key="frame" x="0.0" y="0.0" width="381" height="656"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="311" placeholderIntrinsicHeight="70" translatesAutoresizingMaskIntoConstraints="NO" id="mri-ga-EBT" customClass="TitleSubTitleView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="46" width="311" height="70"/>
+                    <rect key="frame" x="20" y="50.5" width="341" height="70"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="titleLocali" value="prikey_title_1"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="subTitleLocali" value="prikey_subtitle_1"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="311" placeholderIntrinsicHeight="62" translatesAutoresizingMaskIntoConstraints="NO" id="bZs-4g-k15" customClass="TitleSubTitleView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="136" width="311" height="62"/>
+                    <rect key="frame" x="20" y="144.5" width="341" height="62"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="titleLocali" value="prikey_title_2"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="subTitleLocali" value="prikey_subtitle_2"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="311" placeholderIntrinsicHeight="62" translatesAutoresizingMaskIntoConstraints="NO" id="2S8-tp-MDr" customClass="TitleSubTitleView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="218" width="311" height="62"/>
+                    <rect key="frame" x="20" y="317" width="341" height="62"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="titleLocali" value="prikey_title_3"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="subTitleLocali" value="prikey_subtitle_3"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0mK-2V-RUn" customClass="CornerAndShadowView" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="16" y="330" width="343" height="110"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nd7-gj-qY7">
+                    <rect key="frame" x="20" y="430" width="341" height="110"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFJ-Zg-GQS">
-                            <rect key="frame" x="16" y="16" width="311" height="0.0"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <color key="textColor" red="0.129" green="0.17299999999999999" blue="0.40400000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbP-5C-Z0B">
+                            <rect key="frame" x="16" y="16" width="309" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4a-5S-5ia">
-                            <rect key="frame" x="248" y="70" width="80" height="20"/>
-                            <color key="backgroundColor" red="0.25900000000000001" green="0.41999999999999998" blue="0.83099999999999996" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sf0-gI-s9Q">
+                            <rect key="frame" x="246" y="70" width="80" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="20" id="8zw-mF-9ld"/>
-                                <constraint firstAttribute="width" constant="80" id="dfq-RZ-K8l"/>
+                                <constraint firstAttribute="height" constant="20" id="gxt-6R-Nqt"/>
+                                <constraint firstAttribute="width" constant="80" id="z18-5Z-omT"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="Button">
-                                <color key="titleColor" red="0.25900000000000001" green="0.41999999999999998" blue="0.83099999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="locali" value="click_copy"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locali" value="copy_privatekey"/>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="4"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="clickToCopyPriKey:" destination="-1" eventType="touchUpInside" id="hwJ-HA-emy"/>
+                                <action selector="clickToCopyPriKey:" destination="-1" eventType="touchUpInside" id="Kqx-0l-VEL"/>
                             </connections>
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="110" id="9C2-Vh-aar"/>
-                        <constraint firstAttribute="trailing" secondItem="w4a-5S-5ia" secondAttribute="trailing" constant="15" id="MJa-Fe-isu"/>
-                        <constraint firstAttribute="bottom" secondItem="w4a-5S-5ia" secondAttribute="bottom" constant="20" id="SUT-pu-sZn"/>
-                        <constraint firstAttribute="trailing" secondItem="oFJ-Zg-GQS" secondAttribute="trailing" constant="16" id="UU4-cB-4Ds"/>
-                        <constraint firstItem="oFJ-Zg-GQS" firstAttribute="leading" secondItem="0mK-2V-RUn" secondAttribute="leading" constant="16" id="bPM-qL-KLE"/>
-                        <constraint firstItem="oFJ-Zg-GQS" firstAttribute="top" secondItem="0mK-2V-RUn" secondAttribute="top" constant="16" id="cVz-wq-Oiv"/>
+                        <constraint firstAttribute="trailing" secondItem="sf0-gI-s9Q" secondAttribute="trailing" constant="15" id="0O7-7Y-wAF"/>
+                        <constraint firstItem="VbP-5C-Z0B" firstAttribute="top" secondItem="nd7-gj-qY7" secondAttribute="top" constant="16" id="DEv-mB-VQd"/>
+                        <constraint firstAttribute="height" constant="110" id="U3L-t1-DgA"/>
+                        <constraint firstAttribute="trailing" secondItem="VbP-5C-Z0B" secondAttribute="trailing" constant="16" id="g6R-le-d0A"/>
+                        <constraint firstItem="VbP-5C-Z0B" firstAttribute="leading" secondItem="nd7-gj-qY7" secondAttribute="leading" constant="16" id="odb-eI-9h3"/>
+                        <constraint firstAttribute="bottom" secondItem="sf0-gI-s9Q" secondAttribute="bottom" constant="20" id="sS3-s3-bvg"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="0.86699999999999999" green="0.86699999999999999" blue="0.86699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qjg-Gj-bci" customClass="Button" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="470" width="311" height="44"/>
+                    <rect key="frame" x="35" y="580" width="311" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Kx0-03-nKO"/>
                     </constraints>
@@ -99,26 +109,26 @@
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0mK-2V-RUn" secondAttribute="trailing" constant="16" id="1mz-L9-vEz"/>
-                <constraint firstItem="bZs-4g-k15" firstAttribute="top" secondItem="mri-ga-EBT" secondAttribute="bottom" constant="20" id="8kx-fG-5mO"/>
-                <constraint firstItem="qjg-Gj-bci" firstAttribute="top" secondItem="0mK-2V-RUn" secondAttribute="bottom" constant="30" id="MNp-oM-Vh2"/>
-                <constraint firstItem="2S8-tp-MDr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="MyY-a2-tml"/>
-                <constraint firstItem="0mK-2V-RUn" firstAttribute="top" secondItem="2S8-tp-MDr" secondAttribute="bottom" constant="30" id="Ony-Sm-JbK"/>
-                <constraint firstItem="bZs-4g-k15" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="WrE-0p-ZWL"/>
-                <constraint firstItem="mri-ga-EBT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="26" id="XKz-3C-2S0"/>
+                <constraint firstItem="nd7-gj-qY7" firstAttribute="top" secondItem="2S8-tp-MDr" secondAttribute="bottom" constant="27" id="6BA-IG-QN6"/>
+                <constraint firstItem="bZs-4g-k15" firstAttribute="top" secondItem="mri-ga-EBT" secondAttribute="bottom" constant="24" id="8kx-fG-5mO"/>
+                <constraint firstItem="2S8-tp-MDr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="MyY-a2-tml"/>
+                <constraint firstItem="nd7-gj-qY7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="W83-J9-jej"/>
+                <constraint firstItem="bZs-4g-k15" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="WrE-0p-ZWL"/>
+                <constraint firstItem="mri-ga-EBT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30.5" id="XKz-3C-2S0"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qjg-Gj-bci" secondAttribute="bottom" constant="32" id="Xs9-fD-bJE"/>
-                <constraint firstItem="0mK-2V-RUn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Xyp-UV-ukz"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2S8-tp-MDr" secondAttribute="trailing" constant="32" id="cZT-8v-sDp"/>
-                <constraint firstItem="2S8-tp-MDr" firstAttribute="top" secondItem="bZs-4g-k15" secondAttribute="bottom" constant="20" id="eyu-Kf-NaY"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mri-ga-EBT" secondAttribute="trailing" constant="32" id="h8l-k7-2Io"/>
-                <constraint firstItem="qjg-Gj-bci" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="ohm-Ws-nkO"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bZs-4g-k15" secondAttribute="trailing" constant="32" id="qcL-d5-cyU"/>
-                <constraint firstItem="mri-ga-EBT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="wM6-iW-MfX"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qjg-Gj-bci" secondAttribute="trailing" constant="32" id="zsc-xA-0pT"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2S8-tp-MDr" secondAttribute="trailing" constant="20" id="cZT-8v-sDp"/>
+                <constraint firstItem="2S8-tp-MDr" firstAttribute="top" secondItem="bZs-4g-k15" secondAttribute="bottom" constant="24" id="eyu-Kf-NaY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nd7-gj-qY7" secondAttribute="trailing" constant="20" id="gcU-gD-N8Y"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mri-ga-EBT" secondAttribute="trailing" constant="20" id="h8l-k7-2Io"/>
+                <constraint firstItem="qjg-Gj-bci" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="35" id="ohm-Ws-nkO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bZs-4g-k15" secondAttribute="trailing" constant="20" id="qcL-d5-cyU"/>
+                <constraint firstItem="mri-ga-EBT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="wM6-iW-MfX"/>
+                <constraint firstItem="qjg-Gj-bci" firstAttribute="top" secondItem="nd7-gj-qY7" secondAttribute="bottom" constant="40" id="yXu-uz-Aqf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qjg-Gj-bci" secondAttribute="trailing" constant="35" id="zsc-xA-0pT"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="32.5" y="-51.5"/>
+            <point key="canvasLocation" x="36" y="-2.6986506746626691"/>
         </view>
     </objects>
 </document>

@@ -268,6 +268,7 @@
 "remark_title" = "备注";
 "walletname_warning" = "钱包名重复";
 "input_transfer_money" = "输入转账金额，最多%d位小数";
+"resource_detail_tips" = "WOOKONG Bio 暂不支持资源抵押或买卖RAM，若要进行此类操作请使用其他账户为该账户抵押资源或买卖RAM。";
 
 //zsy end
 
@@ -593,7 +594,7 @@
 "confirm_pair" = "确认配对";
 "wookong_pas_set_title" = "设置WOOKONG Bio密码";
 "wookong_creat_new_wallet" = "创建新钱包";
-"wookong_inport_mnemonic" = "导入助记词";
+"wookong_export_mnemonic" = "导出助记词";
 "wookong_mnemonic_ver_failed" = "验证失败";
 "wookong_mnemonic_ver_successed" = "验证成功！";
 "wookong_set_fp" = "设置指纹";

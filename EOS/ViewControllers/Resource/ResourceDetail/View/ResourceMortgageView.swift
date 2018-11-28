@@ -15,6 +15,7 @@ class ResourceMortgageView: UIView {
     @IBOutlet weak var ramView: GeneralCellView!
     @IBOutlet weak var delegateView: LineView!
     @IBOutlet weak var buyRamView: LineView!
+    @IBOutlet weak var tipsLabel: BaseLabel!
 
     enum Event: String {
         case delegateViewDidClicked
@@ -51,6 +52,7 @@ class ResourceMortgageView: UIView {
     }
 
     func setupUI() {
+        tipsLabel.text = R.string.localizable.resource_detail_tips.key.localized()
         cpuView.name = R.string.localizable.cpu.key.localized()
         cpuView.leftSubText = R.string.localizable.use.key.localized() + " - " + R.string.localizable.ms.key.localized()
         cpuView.rightSubText = R.string.localizable.total.key.localized() + " - " + R.string.localizable.ms.key.localized()

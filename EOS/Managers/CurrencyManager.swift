@@ -28,15 +28,24 @@ class CurrencyManager {
         return nil
     }
 
+    func getCurrencyBy(_ currencyID: Int64?) -> Currency? {
+        do {
+            if currencyID == nil { return nil}
+            let currency = try WalletCacheService.shared.fetchCurrencyBy(id: currencyID!)
+            return currency
+        } catch {
+            return nil
+        }
+    }
     //验证密码
     func pwdIsCorrect(_ currencyID: Int64?, password: String) -> Bool {
         do {
             if let id = currencyID {
                 let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
-                let prikey = EOSIO.getPirvateKey(currency?.cipher, password: password)
-                if currency?.type == .EOS, EOSIO.getPublicKey(prikey) == currency?.pubKey {
+
+                if currency?.type == .EOS, let prikey = EOSIO.getPirvateKey(currency?.cipher, password: password), EOSIO.getPublicKey(prikey) == currency?.pubKey {
                     return true
-                } else if currency?.type == .ETH, Seed39GetEthereumAddressFromPrivateKey(prikey) == currency?.address {
+                } else if currency?.type == .ETH, let prikey = Seed39KeyDecrypt(password, currency?.cipher), Seed39GetEthereumAddressFromPrivateKey(prikey) == currency?.address {
                     return true
                 }
                 return false

@@ -17,7 +17,7 @@ class BackupPrivateKeyViewController: BaseViewController {
 
     var coordinator: (BackupPrivateKeyCoordinatorProtocol & BackupPrivateKeyStateManagerProtocol)?
 
-    var publicKey: String = WalletManager.shared.currentPubKey
+    var currency: Currency?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +37,6 @@ class BackupPrivateKeyViewController: BaseViewController {
 
 extension BackupPrivateKeyViewController {
     @objc func know(_ data: [String: Any]) {
-        self.coordinator?.showPresenterVC(CurrencyManager.shared.getCurrentCurrencyID())
+        self.coordinator?.showPresenterVC(currency)
     }
 }

@@ -17,6 +17,7 @@
                 <outlet property="delegateView" destination="YRY-nJ-C5H" id="MAO-EI-OaW"/>
                 <outlet property="netView" destination="Y04-02-qme" id="a51-1V-LrG"/>
                 <outlet property="ramView" destination="5xn-SD-QNv" id="QKn-bl-5RJ"/>
+                <outlet property="tipsLabel" destination="ziP-rF-nzN" id="LQw-VJ-iRL"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -74,7 +75,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziP-rF-nzN" customClass="BaseLabel" customModule="EOS" customModuleProvider="target">
                                     <rect key="frame" x="19" y="374.5" width="337" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" name="introductionColor" red="0.400" green="0.400" blue="0.400" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -163,6 +164,4 @@
             <point key="canvasLocation" x="23.199999999999999" y="50.824587706146929"/>
         </view>
     </objects>
-    <resources>
-    </resources>
 </document>

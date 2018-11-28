@@ -49,12 +49,29 @@ extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
             }
         } else {
             var currencyID: Int64?
-            if let wallet = WalletManager.shared.currentWallet() {
-                let currencys = try? WalletCacheService.shared.fetchAllCurrencysBy(wallet)
-                if let currencys = currencys as? [Currency] {
-                    currencyID = currencys[0].id
+            var isWalletManager = false
+            for subVC in self.rootVC.viewControllers {
+                if subVC is WalletManagerViewController {
+                    isWalletManager = true
+                    break
                 }
             }
+            if isWalletManager == true {
+                if let wallet = WalletManager.shared.getManagerWallet() {
+                    let currencys = try? WalletCacheService.shared.fetchAllCurrencysBy(wallet)
+                    if let currencys = currencys as? [Currency] {
+                        currencyID = currencys[0].id
+                    }
+                }
+            } else {
+                if let wallet = WalletManager.shared.currentWallet() {
+                    let currencys = try? WalletCacheService.shared.fetchAllCurrencysBy(wallet)
+                    if let currencys = currencys as? [Currency] {
+                        currencyID = currencys[0].id
+                    }
+                }
+            }
+
             appCoodinator.showPresenterPwd(leftIconType: .dismiss, currencyID: currencyID, type: ConfirmType.backupMnemonic.rawValue, producers: []) {[weak self] (mnemonic) in
 
                 guard let `self` = self else { return }
@@ -68,8 +85,13 @@ extension BackupMnemonicWordCoordinator: BackupMnemonicWordCoordinatorProtocol {
         }
     }
     func dismissVC() {
+        for viewController in self.rootVC.viewControllers {
+            if let _ = viewController as? WalletManagerViewController {
+                self.rootVC.popViewController()
+                return
+            }
+        }
         self.rootVC.dismiss(animated: true) {
-            
         }
     }
 }

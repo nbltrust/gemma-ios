@@ -22,6 +22,10 @@ class WalletItemView: BaseView {
 
     @IBOutlet weak var lineLabel: UIView!
 
+    enum Event:String {
+        case moreViewDidClicked
+    }
+
     override func setup() {
         super.setup()
         
@@ -34,6 +38,9 @@ class WalletItemView: BaseView {
     }
     
     func setupSubViewEvent() {
-    
+//        moreView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] (_) in
+//            guard let `self` = self else { return }
+//            self.next?.sendEventWith(Event.moreViewDidClicked.rawValue, userinfo: <#T##[String : Any]#>)
+//        }).disposed(by: disposeBag)
     }
 }

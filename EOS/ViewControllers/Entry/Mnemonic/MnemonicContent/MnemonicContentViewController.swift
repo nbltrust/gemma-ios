@@ -64,25 +64,17 @@ class MnemonicContentViewController: BaseViewController {
                     }
             })
         } else {
-            if let wallet = WalletManager.shared.currentWallet() {
-                if wallet.type == .HD {
-                    let array = mnemonic.components(separatedBy: " ")
-                    self.coordinator?.setSeeds((array, mnemonic))
-                    self.contentView.setMnemonicWordArray(array)
-                }
-            }
+            let array = mnemonic.components(separatedBy: " ")
+            self.coordinator?.setSeeds((array, mnemonic))
+            self.contentView.setMnemonicWordArray(array)
         }
     }
-    
     func setupEvent() {
-
     }
-    
     override func configureObserveState() {
 
     }
 }
-
 
 extension MnemonicContentViewController {
     @objc func copied(_ data:[String: Any]) {
