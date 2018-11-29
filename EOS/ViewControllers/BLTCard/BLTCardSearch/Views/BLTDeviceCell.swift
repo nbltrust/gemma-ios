@@ -12,10 +12,20 @@ class BLTDeviceCell: BaseTableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
 
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+
     var deviceName: String? {
         didSet {
             nameLabel.text = deviceName
         }
+    }
+
+    func startLoading() {
+        indicatorView.startAnimating()
+    }
+
+    func endLoading() {
+        indicatorView.stopAnimating()
     }
 
     override func awakeFromNib() {

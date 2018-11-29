@@ -208,6 +208,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
 
 - (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
     if (!savedDevH) {
+        successComlication();
         return;
     }
     dispatch_async(bltQueue, ^{
@@ -751,6 +752,26 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
                 failedComplication([BLTUtils errorCodeToString:iRtn]);
             });
         }
+    });
+}
+
+- (void)cancelSign:(SuccessedComplication)successComplication failed:(FailedComplication)failedComplication {
+    self.stopEntroll = true;
+    if (!savedDevH) {
+        return;
+    }
+    dispatch_async(bltQueue, ^{
+        uint64_t temp = (uint64_t)savedDevH;
+        void *ppPAEWContext = (void*)temp;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        iRtn = PAEW_AbortFP(ppPAEWContext, 0);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (iRtn == PAEW_RET_SUCCESS) {
+                successComplication();
+            } else {
+                failedComplication([BLTUtils errorCodeToString:iRtn]);
+            }
+        });
     });
 }
 

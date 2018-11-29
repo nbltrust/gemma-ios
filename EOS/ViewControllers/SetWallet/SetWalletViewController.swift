@@ -147,6 +147,7 @@ class SetWalletViewController: BaseViewController {
     func setupEvent() {
         finished.button.rx.controlEvent(.touchUpInside).subscribe(onNext: { [weak self] _ in
             guard let `self` = self else { return }
+            self.fieldView.resignFirstResponder()
             if self.finished.isEnabel.value == true {
                 switch self.settingType {
                 case .leadInWithPriKey:
@@ -161,15 +162,7 @@ class SetWalletViewController: BaseViewController {
                     }
                 case .wookong:
                     if let password = self.fieldView.passwordView.textField.text {
-                        self.coordinator?.setWalletPin(password, success: { [weak self] in
-                            guard let `self` = self else { return }
-                            self.coordinator?.presentBLTInitTypeSelectVC()
-                        }, failed: { [weak self] (reason) in
-                            guard let `self` = self else { return }
-                            if let failedReason = reason {
-                                self.showError(message: failedReason)
-                            }
-                        })
+                        self.coordinator?.presentBLTInitTypeSelectVC(password)
                     }
                 case .updatePin:
                     if let password = self.fieldView.passwordView.textField.text {

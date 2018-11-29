@@ -65,9 +65,9 @@ class TransferConfirmPasswordViewController: BaseViewController {
                 self.context = context
 
                 if context.iconType == LeftIconType.dismiss.rawValue {
-                    self.configLeftNavButton(R.image.icMaskClose())
+                    self.configLeftNavButton(R.image.ic_mask_close())
                 } else {
-                    self.configLeftNavButton(R.image.icMaskBack())
+                    self.configLeftNavButton(R.image.ic_mask_back())
                 }
 
                 if context.type == ConfirmType.updatePwd.rawValue {
