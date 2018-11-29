@@ -110,7 +110,6 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
                 hint = setWalletVC.fieldView.hintView.textField.text ?? ""
             }
         }
-        self.rootVC.topViewController?.startLoadingOnSelf(false, message: "")
         self.createWookongBioWallet(hint, success: { [weak self] in
             guard let `self` = self else {return}
             self.rootVC.topViewController?.endLoading()
@@ -134,12 +133,15 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
             if selectValues.count == seeds.count {
                 let isValid = validSequence(seeds, compairDatas: selectValues)
                 if isValid == true {
-                    showSuccessTop(R.string.localizable.wookong_mnemonic_ver_successed.key.localized())
+//                    showSuccessTop(R.string.localizable.wookong_mnemonic_ver_successed.key.localized())
                     if isWookong {
+                        self.rootVC.topViewController?.startLoadingOnSelf(false, message: "")
                         checkSeed(checkStr, success: { [weak self] in
                             guard let `self` = self else { return }
                             self.checkFeedSuccessed()
-                            }, failed: { (reason) in
+                            }, failed: { [weak self] (reason) in
+                                guard let `self` = self else { return }
+                                self.rootVC.topViewController?.endLoading()
                                 if let failedReason = reason {
                                     showFailTop(failedReason)
                                 }

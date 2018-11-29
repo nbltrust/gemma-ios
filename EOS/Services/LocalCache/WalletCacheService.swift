@@ -50,7 +50,7 @@ enum CurrencyType: Int, DatabaseValueConvertible, Codable {
     var derivationPath: String {
         switch self {
         case .EOS:
-            return "m/44'/194'/0'/0/"
+            return "m/44'/194'/0'/0/0/"
         case .ETH:
             return "m/44'/60'/0'/0/"
         }
