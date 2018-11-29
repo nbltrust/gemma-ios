@@ -46,7 +46,6 @@ protocol EntryStateManagerProtocol {
                       currencyID: Int64?,
                       inviteCode: String,
                       validation: WookongValidation?,
-                      deviceName: String?,
                       completion:@escaping (Bool) -> Void)
 
     func copyMnemonicWord()
@@ -202,7 +201,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                           currencyID: Int64?,
                           inviteCode: String,
                           validation: WookongValidation?,
-                          deviceName: String?,
                           completion: @escaping (Bool) -> Void) {
         do {
             if let id = currencyID {
@@ -254,30 +252,26 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     }
 
     func createBLTWallet(_ name: String, currencyID: Int64?, completion:@escaping (Bool)-> Void) {
-        if let device = BLTWalletIO.shareInstance()?.selectDevice {
-            BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, snSig, pub, pubSig, publicKey) in
-                guard let `self` = self else { return }
-                var validation = WookongValidation()
-                validation.SN = sn ?? ""
-                validation.SNSig = snSig ?? ""
-                validation.pubKey = pub ?? ""
-                validation.publicKeySig = pubSig ?? ""
-                validation.publicKey = publicKey ?? ""
-                self.createEOSAccount(.bluetooth, accountName: name, currencyID: currencyID, inviteCode: "", validation: validation, deviceName: device.name, completion: { (successed) in
-                    completion(successed)
-                    if successed {
-                        self.popToRootVC()
-                    }
-                })
-                }, failed: { (reason) in
-                    completion(false)
-                    if let failedReason = reason {
-                        showFailTop(failedReason)
-                    }
+        BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, snSig, pub, pubSig, publicKey) in
+            guard let `self` = self else { return }
+            var validation = WookongValidation()
+            validation.SN = sn ?? ""
+            validation.SNSig = snSig ?? ""
+            validation.pubKey = pub ?? ""
+            validation.publicKeySig = pubSig ?? ""
+            validation.publicKey = publicKey ?? ""
+            self.createEOSAccount(.bluetooth, accountName: name, currencyID: currencyID, inviteCode: "", validation: validation, completion: { (successed) in
+                completion(successed)
+                if successed {
+                    self.popToRootVC()
+                }
             })
-        } else {
-            completion(false)
-        }
+            }, failed: { (reason) in
+                completion(false)
+                if let failedReason = reason {
+                    showFailTop(failedReason)
+                }
+        })
     }
 
     func createTempWallet(_ pwd: String, prompt: String, type: WalletType) {

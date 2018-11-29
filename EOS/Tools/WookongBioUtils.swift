@@ -90,6 +90,10 @@ func confirmFP(_ rootVC: UINavigationController, complication: @escaping Success
     }
 }
 
+func presentFingerPrinterSetVC() {
+    
+}
+
 func importWookongBioWallet(_ hint: String,
                             success: @escaping SuccessedComplication,
                             failed: @escaping FailedComplication) {

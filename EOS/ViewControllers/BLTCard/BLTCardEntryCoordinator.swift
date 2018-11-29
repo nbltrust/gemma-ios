@@ -134,7 +134,7 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
 
     func handleWookongPair(_ state: BLTCardPINState) {
         if state == .finishInit {
-            self.rootVC.topViewController?.startLoading()
+            self.rootVC.topViewController?.startLoadingOnSelf(false, message: "")
             self.createWookongBioWallet("", success: {
                 self.rootVC.topViewController?.endLoading()
                 self.dismissVC()

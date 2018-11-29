@@ -116,7 +116,7 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
                     hint = setWalletVC.fieldView.hintView.textField.text ?? ""
                 }
             }
-            self.rootVC.topViewController?.startLoading()
+            self.rootVC.topViewController?.startLoadingOnSelf(false, message: "")
             self.createWookongBioWallet(hint, success: { [weak self] in
                 guard let `self` = self else {return}
                 self.rootVC.topViewController?.endLoading()
