@@ -54,11 +54,13 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
     }
 
     func pushToWookongBioDetail(_ model: Wallet) {
-        if let detailVC = R.storyboard.wallet.walletDetailViewController() {
-            let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
-            detailVC.coordinator = coordinator
-            detailVC.model = model
-            self.rootVC.pushViewController(detailVC, animated: true)
+        if BLTWalletIO.shareInstance()?.isConnection() ?? false {
+            if let detailVC = R.storyboard.wallet.walletDetailViewController() {
+                let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
+                detailVC.coordinator = coordinator
+                detailVC.model = model
+                self.rootVC.pushViewController(detailVC, animated: true)
+            }
         }
     }
 

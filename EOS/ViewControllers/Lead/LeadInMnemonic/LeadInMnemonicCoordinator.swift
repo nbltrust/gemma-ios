@@ -109,6 +109,7 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
     }
 
     func importForWookong(_ mnemonic: String) {
+        self.rootVC.topViewController?.startLoadingOnSelf(false, message: "")
         BLTWalletIO.shareInstance()?.importSeed(mnemonic, success: {
             var hint = ""
             self.rootVC.viewControllers.forEach { (vc) in
@@ -116,7 +117,6 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
                     hint = setWalletVC.fieldView.hintView.textField.text ?? ""
                 }
             }
-            self.rootVC.topViewController?.startLoadingOnSelf(false, message: "")
             self.createWookongBioWallet(hint, success: { [weak self] in
                 guard let `self` = self else {return}
                 self.rootVC.topViewController?.endLoading()
@@ -128,6 +128,7 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
                     }
             })
         }, failed: { (reason) in
+            self.rootVC.topViewController?.endLoading()
             if let reason = reason {
                 showFailTop(reason)
             }

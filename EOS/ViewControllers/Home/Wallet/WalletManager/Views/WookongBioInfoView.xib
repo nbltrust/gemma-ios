@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WookongBioInfoView" customModule="EOS" customModuleProvider="target">
             <connections>
+                <outlet property="moreView" destination="fbz-ax-Cmr" id="TwE-6o-9mE"/>
                 <outlet property="statusView" destination="en0-A3-OVb" id="43Y-xM-Ora"/>
                 <outlet property="subTitleLabel" destination="nTe-28-SMj" id="yUV-kF-jIv"/>
                 <outlet property="titleLabel" destination="1Ua-kr-jTu" id="Aw5-7i-c2l"/>

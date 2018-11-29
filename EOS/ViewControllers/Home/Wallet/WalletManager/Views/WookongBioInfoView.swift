@@ -14,6 +14,8 @@ class WookongBioInfoView: BaseView {
 
     @IBOutlet weak var subTitleLabel: UILabel!
 
+    @IBOutlet weak var moreView: UIImageView!
+
     @IBOutlet weak var statusView: WookongBioStatusView!
     
     override func setup() {
@@ -26,14 +28,21 @@ class WookongBioInfoView: BaseView {
     func setupUI() {
         if BLTWalletIO.shareInstance()?.isConnection() ?? false {
             self.statusView.data = BLTWalletIO.shareInstance()?.batteryInfo
+            moreView.isHidden = false
         } else {
             self.statusView.data = nil
+            moreView.isHidden = true
         }
     }
     
     func setupSubViewEvent() {
         BLTWalletIO.shareInstance()?.batteryInfoUpdated = { [weak self] (info) in
             guard let `self` = self else { return }
+            if info != nil {
+                self.moreView.isHidden = false
+            } else {
+                self.moreView.isHidden = true
+            }
             self.statusView.data = info
         }
     }

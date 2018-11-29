@@ -71,7 +71,23 @@ class WalletManager {
     }
 
     func removeWallet(_ wallet: Wallet) -> Bool {
-        return true
+        do {
+            if try WalletCacheService.shared.deleteWallet(wallet: wallet) {
+                Defaults[.currentWalletID] = ""
+                let currencys = try WalletCacheService.shared.fetchAllCurrencysBy(wallet.id ?? 0)
+                for currency in currencys ?? [] {
+                    try WalletCacheService.shared.deleteCurrency(currency)
+                    if currency.type == .EOS {
+                        CurrencyManager.shared.clearAccountMsg(currency.id)
+                    }
+                }
+                return true
+            }
+            return false
+        } catch {
+            return false
+        }
+        return false
     }
 
     func switchToLastestWallet() -> Bool {

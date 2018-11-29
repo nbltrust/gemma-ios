@@ -117,11 +117,6 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
     func pushToImportVC() {
         let leadInVC = R.storyboard.leadIn.leadInViewController()!
         let coordinator = LeadInCoordinator(rootVC: self.rootVC)
-        coordinator.state.callback.fadeCallback.accept {
-            if (UIApplication.shared.delegate as? AppDelegate) != nil {
-                appCoodinator.endEntry()
-            }
-        }
         leadInVC.coordinator = coordinator
         self.rootVC.pushViewController(leadInVC, animated: true)
     }
@@ -155,20 +150,7 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
     }
 
     func presentBLTInitTypeSelectVC(_ password: String) {
-        let width = ModalSize.full
-
-        let height: Float = 249.0
-        let centerHeight = UIScreen.main.bounds.height - height.cgFloat
-        let heightSize = ModalSize.custom(size: height)
-
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: centerHeight))
-        let customType = PresentationType.custom(width: width, height: heightSize, center: center)
-
-        let presenter = Presentr(presentationType: customType)
-        presenter.keyboardTranslationType = .stickToTop
-
-        var context = BLTInitTypeSelectContext()
-        context.isCreateCallback = {[weak self] (isCreate) in
+        selectBLTInitType(self.rootVC) { [weak self] (isCreate) in
             guard let `self` = self else {return}
             self.setWalletPin(password, success: { () in
                 if isCreate {
@@ -176,19 +158,11 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
                 } else {
                     self.pushToImportVC()
                 }
-                }, failed: { (reason) in
-                    if let failedReason = reason {
-                        showFailTop(failedReason)
-                    }
+            }, failed: { (reason) in
+                if let failedReason = reason {
+                    showFailTop(failedReason)
+                }
             })
-        }
-
-        if let fpVC = R.storyboard.bltCard.bltInitTypeSelectViewController() {
-            let nav = BaseNavigationController.init(rootViewController: fpVC)
-            let coordinator = BLTInitTypeSelectCoordinator(rootVC: nav)
-            fpVC.coordinator = coordinator
-            coordinator.store.dispatch(RouteContextAction(context: context))
-            rootVC.customPresentViewController(presenter, viewController: nav, animated: true)
         }
     }
 

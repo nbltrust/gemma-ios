@@ -63,7 +63,9 @@ class EntryViewController: BaseViewController {
             registerView.passwordView.isHidden = true
             registerView.passwordComfirmView.isHidden = true
             registerView.passwordPromptView.isHidden = true
+            agreeView.isHidden = true
             registerView.walletNameView.isHidden = true
+            self.title = R.string.localizable.create_account.key.localized()
         case .noWalletName:
             registerView.nameView.isHidden = true
             registerView.walletNameView.isHidden = true
@@ -140,7 +142,7 @@ class EntryViewController: BaseViewController {
                                     guard let `self` = self else { return false }
                                     switch self.createType {
                                     case .wookong:
-                                        return arg0.3
+                                        return arg0.0
                                     case .noWalletName:
                                         return arg0.1 && arg0.2 && arg0.3
                                     case .EOS:
