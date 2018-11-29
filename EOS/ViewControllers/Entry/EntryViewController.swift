@@ -123,7 +123,7 @@ class EntryViewController: BaseViewController {
             guard let `self` = self else { return }
             if let str = code as? String {
                 if let name = self.registerView.nameView.textField.text {
-                    self.coordinator?.createEOSAccount(.gemma, accountName: name, currencyID: self.currencyID, inviteCode: str, validation: nil, deviceName: nil, completion: { (_) in
+                    self.coordinator?.createEOSAccount(.gemma, accountName: name, currencyID: self.currencyID, inviteCode: str, validation: nil, completion: { (_) in
                         self.endLoading()
                     })
                 }
@@ -152,7 +152,7 @@ class EntryViewController: BaseViewController {
     }
 
     func createBltWallet() {
-        if BLTWalletIO.shareInstance()?.isConnection() ?? false {
+        if !(BLTWalletIO.shareInstance()?.isConnection() ?? false) {
             if let nav = self.navigationController {
                 connectBLTCard(nav) { [weak self] in
                     guard let `self` = self else {return}
@@ -165,7 +165,7 @@ class EntryViewController: BaseViewController {
     }
 
     func handleBltWalletCreation() {
-        self.startLoading()
+        self.startLoadingOnSelf(false, message: "")
         self.coordinator?.createBLTWallet(self.registerView.nameView.textField.text!, currencyID: self.currencyID, completion: { (_) in
             self.endLoading()
         })
