@@ -53,8 +53,9 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
 
     func updateWalletName(model: Wallet, newName: String) -> Bool {
         if isValidWalletName(name: newName, wallet: model), let walletID = model.id {
-            WalletManager.shared.updateWalletName(walletID, newName: model.name)
-
+            WalletManager.shared.updateWalletName(walletID, newName: newName)
+            var model = model
+            model.name = newName
             if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? WalletManagerViewController {
                 vc.wallet = model
             }

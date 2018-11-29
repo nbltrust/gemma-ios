@@ -211,6 +211,8 @@ typedef struct _signCallbacks {
 	tFunc_PutSignState	putSignState;
 } signCallbacks;
 
+typedef int(*tFunc_Progress_Callback)(void * const pCallbackContext, const size_t nProgress);
+
 //==============dev info=============
 //dev info type
 #define PAEW_DEV_INFOTYPE_PIN_STATE		0x00000001
@@ -310,6 +312,8 @@ typedef struct _PAEW_DevInfo
 #define PAEW_COIN_TYPE_ETC		0x06 //etc
 #define PAEW_COIN_TYPE_BTC_WIT	0x07 //bit coin P2WPKH nested in BIP16 P2SH
 #define PAEW_COIN_TYPE_BTC_SIGWIT	0x08 //bit coin P2WPKH
+#define PAEW_COIN_TYPE_XRP	0x09 //xrp
+#define PAEW_COIN_TYPE_USDT		0x0A //usdt, used in get_address only
 
 //sig btc
 #define PAEW_BTC_SIG_MAX_LEN			0x70
@@ -360,6 +364,9 @@ typedef struct _PAEW_DevInfo
 #define PAEW_SIG_BTC_WIT_TX_OUT				0x04
 #define PAEW_SIG_BTC_WIT_TX_FINAL			0x05
 //sig btc sigwit
+//sig xrp
+#define PAEW_XRP_SIG_MAX_LEN			0x70
+#define PAEW_SIG_XRP_TX					0x00
 
 //address
 #define PAEW_COIN_ADDRESS_MAX_LEN		0x80
@@ -404,6 +411,9 @@ typedef struct _PAEW_ERC20Info
 #define PAEW_LCD_CLEAR				0x00
 #define PAEW_LCD_SHOW_LOGO			0x01
 #define PAEW_LCD_CLEAR_SHOW_LOGO	0x02
+
+//PublicKey
+#define PAEW_PUBLIC_KEY_MAX_LEN		0x60
 
 /*
 获取库的版本号
@@ -620,6 +630,18 @@ int EWALLET_API PAEW_DeriveTradeAddress(void * const pPAEWContext, const size_t 
 int EWALLET_API PAEW_GetTradeAddress(void * const pPAEWContext, const size_t nDevIndex, const unsigned char nCoinType, const unsigned char nShowOnScreen, unsigned char * const pbTradeAddress, size_t * const pnTradeAddressLen);
 
 /*
+获取公钥，要求先调用PAEW_DeriveTradeAddress
+七龙珠钱包：操作的设备为PAEW_DeriveTradeAddress选中的设备
+[IN] pPAEWContext：上下文结构体指针，不可为NULL
+[IN] nDevIndex：（个人版钱包专用）操作的设备索引号，范围为[0, nDevCount-1]
+[IN] nCoinType：币种类型PAEW_COIN_TYPE_XXX，必须与PAEW_DeriveTradeAddress时传入的币种一致
+[OUT] pbPublicKey：接收数字货币公钥的缓冲区，推荐长度为PAEW_PUBLIC_KEY_MAX_LEN，不可为NULL
+[IN OUT] pnPublicKeyLen：输入时的值表示pbPublicKey缓冲区的长度，输出的值为数字货币公钥的长度
+[RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
+*/
+int EWALLET_API PAEW_GetPublicKey(void * const pPAEWContext, const size_t nDevIndex, const unsigned char nCoinType, unsigned char * const pbPublicKey, size_t * const pnPublicKeyLen);
+
+/*
 比特币签名，要求先调用PAEW_DeriveTradeAddress
 七龙珠钱包：操作的设备为PAEW_DeriveTradeAddress选中的设备
 [IN] pPAEWContext：上下文结构体指针，不可为NULL
@@ -760,6 +782,22 @@ int EWALLET_API PAEW_BTC_WIT_TXSign(void * const pPAEWContext, const size_t nDev
 int EWALLET_API PAEW_BTC_WIT_TXSign_Ex(void * const pPAEWContext, const size_t nDevIndex, const size_t nUTXOCount, const unsigned char * const * const ppbUTXO, const size_t * const pnUTXOLen, const unsigned char * const pbCurrentTX, const size_t nCurrentTXLen, unsigned char * const * const ppbTXSig, size_t * const pnTXSigLen, const signCallbacks * const pSignCallbacks, void * const pSignCallbackContext);
 
 /*
+瑞波币签名，要求先调用PAEW_DeriveTradeAddress
+七龙珠钱包：操作的设备为PAEW_DeriveTradeAddress选中的设备
+[IN] pPAEWContext：上下文结构体指针，不可为NULL
+[IN] nDevIndex：（个人版钱包专用）操作的设备索引号，范围为[0, nDevCount-1]
+[IN] pbCurrentTX：本次交易的未签名的交易信息
+[IN] nCurrentTXLen：本次交易的未签名交易信息的长度
+[OUT] pbTXSig：DER编码后的签名数据，不可为NULL
+[IN OUT] pnTXSigLen：本次交易的交易信息签名的长度，输入时的值表示pbTXSig缓冲区的长度，输出的值为实际返回的签名后的交易数据的长度
+[IN] pSignCallbacks：签名回调函数结构体，包括获取验证方式、获取PIN码、推送签名状态等回调
+[IN OUT] pSignCallbackContext：签名回调函数上下文，用来传递特殊的上下文以方便回调函数在不同环境下的实现
+[RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
+*/
+int EWALLET_API PAEW_XRP_TXSign(void * const pPAEWContext, const size_t nDevIndex, const unsigned char * const pbCurrentTX, const size_t nCurrentTXLen, unsigned char * const pbTXSig, size_t * const pnTXSigLen);
+int EWALLET_API PAEW_XRP_TXSign_Ex(void * const pPAEWContext, const size_t nDevIndex, const unsigned char * const pbCurrentTX, const size_t nCurrentTXLen, unsigned char * const pbTXSig, size_t * const pnTXSigLen, const signCallbacks * const pSignCallbacks, void * const pSignCallbackContext);
+
+/*
 清除用户COS
 [IN] pPAEWContext：上下文结构体指针，不可为NULL
 [IN] nDevIndex：操作的设备索引号，范围为[0, nDevCount-1]
@@ -815,11 +853,13 @@ int EWALLET_API PAEW_Format(void * const pPAEWContext, const size_t nDevIndex);
 （个人版钱包专用）升级设备的COS
 [IN] pPAEWContext：上下文结构体指针，不可为NULL
 [IN] nDevIndex：操作的设备索引号，范围为[0, nDevCount-1]
+[IN] bRestart：0表示启用断点续传，非0表示重新开始COS下载（不启用断点续传）
 [IN] pbCOSData：COS二进制数据缓冲区，不可为NULL
 [IN] nCOSDataLen：COS二进制数据的长度，不可为0
 [RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
 */
 int EWALLET_API PAEW_UpdateCOS(void * const pPAEWContext, const size_t nDevIndex, const unsigned char * const pbCOSData, const size_t nCOSDataLen);
+int EWALLET_API PAEW_UpdateCOS_Ex(void * const pPAEWContext, const size_t nDevIndex, const unsigned char bRestart, const unsigned char * const pbCOSData, const size_t nCOSDataLen, const tFunc_Progress_Callback pProgressCallback, void * const pCallbackContext);
 
 /*
 EOS transaction 字符串（Json）串行化（软算法，不初始化设备）
@@ -850,7 +890,6 @@ int EWALLET_API PAEW_EOS_TX_Part_Serialize(const unsigned int nPartIndex, const 
 [RETURN] PAEW_RET_SUCCESS为成功，非PAEW_RET_SUCCESS值为失败
 */
 int EWALLET_API PAEW_SetERC20Info(void * const pPAEWContext, const size_t nDevIndex, const unsigned char nCoinType, const char * const szTokenName, const unsigned char nPrecision);
-
 
 /*
 获取指纹列表（仅用于指纹钱包）

@@ -94,6 +94,33 @@ func presentFingerPrinterSetVC() {
     
 }
 
+func selectBLTInitType(_ rootVC: UINavigationController, isCreateCallBack: @escaping ResultCallback) {
+    let width = ModalSize.full
+
+    let height: Float = 249.0
+    let centerHeight = UIScreen.main.bounds.height - height.cgFloat
+    let heightSize = ModalSize.custom(size: height)
+
+    let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: centerHeight))
+    let customType = PresentationType.custom(width: width, height: heightSize, center: center)
+
+    let presenter = Presentr(presentationType: customType)
+    presenter.keyboardTranslationType = .stickToTop
+
+    var context = BLTInitTypeSelectContext()
+    context.isCreateCallback = { (isCreate) in
+        isCreateCallBack(isCreate)
+    }
+
+    if let initVC = R.storyboard.bltCard.bltInitTypeSelectViewController() {
+        let nav = BaseNavigationController.init(rootViewController: initVC)
+        let coordinator = BLTInitTypeSelectCoordinator(rootVC: nav)
+        initVC.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
+        rootVC.customPresentViewController(presenter, viewController: nav, animated: true)
+    }
+}
+
 func importWookongBioWallet(_ hint: String,
                             success: @escaping SuccessedComplication,
                             failed: @escaping FailedComplication) {
@@ -136,8 +163,22 @@ func desWithInfo(_ info: BLTBatteryInfo?) -> String {
     if info.state == charge {
         return R.string.localizable.wookong_connect_successed.key.localized()
     }
+
+    if info.electricQuantity == 0 {
+        return R.string.localizable.wookong_connect_successed.key.localized()
+    }
     let formatter = NumberFormatter()
     formatter.numberStyle = .percent
     formatter.percentSymbol = ""
     return R.string.localizable.battery.key.localized() + formatter.string(from: NSNumber(value:info.electricQuantity))! + "%"
+}
+
+func batteryNumberInfo(_ info: BLTBatteryInfo?) -> String {
+    guard let info = info else {
+        return "0%"
+    }
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .percent
+    formatter.percentSymbol = ""
+    return formatter.string(from: NSNumber(value:info.electricQuantity))! + "%"
 }

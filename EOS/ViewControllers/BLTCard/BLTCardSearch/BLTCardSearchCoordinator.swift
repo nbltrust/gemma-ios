@@ -22,6 +22,8 @@ protocol BLTCardSearchStateManagerProtocol {
 
     func searchedADevice(_ device: BLTDevice)
 
+    func clearDevice()
+
     func connectDevice(_ device: BLTDevice,
                        success: @escaping SuccessedComplication,
                        failed: @escaping FailedComplication)
@@ -70,6 +72,10 @@ extension BLTCardSearchCoordinator: BLTCardSearchStateManagerProtocol {
             devices.append(device)
         }
         self.store.dispatch(SetDevicesAction(datas: devices))
+    }
+
+    func clearDevice() {
+        self.store.dispatch(SetDevicesAction(datas: []))
     }
 
     func connectDevice(_ device: BLTDevice,

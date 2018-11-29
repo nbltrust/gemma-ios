@@ -107,6 +107,13 @@ class CurrencyManager {
         return nil
     }
 
+    func clearAccountMsg(_ currencyID: Int64?) {
+        if let id = currencyID {
+            Defaults["accountNames\(id)"] = []
+            Defaults["accountName\(id)"] = ""
+        }
+    }
+
     func currentPublicKey() -> String {
         do {
             if let currencyId = getCurrentCurrencyID() {

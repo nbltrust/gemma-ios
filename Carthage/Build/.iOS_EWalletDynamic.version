@@ -8,11 +8,11 @@
   "tvOS" : [
 
   ],
-  "commitish" : "1.0.0",
+  "commitish" : "1.0.6",
   "iOS" : [
     {
       "name" : "iOS_EWalletDynamic",
-      "hash" : "7ebeb745c914dcbe35db3c55b3a84f589cbc706c5c2aac1f583f7c57ef3aca61"
+      "hash" : "621b0b33eff315ccde4071d2f9a5e35fdb4fdea2a33d7cc02811b972e6ef07ad"
     }
   ]
 }

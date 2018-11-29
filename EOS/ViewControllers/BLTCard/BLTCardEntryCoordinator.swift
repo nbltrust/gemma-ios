@@ -20,6 +20,8 @@ protocol BLTCardEntryCoordinatorProtocol {
 
     func pushToMnemonicVC()
 
+    func pushToImportVC()
+
     func dismissVC()
 
     func presentFingerPrinterVC(_ state: BLTCardPINState)
@@ -120,6 +122,13 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
         self.rootVC.pushViewController(mnemonicWordVC!, animated: true)
     }
 
+    func pushToImportVC() {
+        let leadInVC = R.storyboard.leadIn.leadInViewController()!
+        let coordinator = LeadInCoordinator(rootVC: self.rootVC)
+        leadInVC.coordinator = coordinator
+        self.rootVC.pushViewController(leadInVC, animated: true)
+    }
+
     func presentFingerPrinterVC(_ state: BLTCardPINState) {
         confirmFP(self.rootVC) {
             self.handleWookongPair(state)
@@ -145,7 +154,14 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
                 }
             })
         } else if state == .unFinishInit {
-            self.pushToMnemonicVC()
+            selectBLTInitType(self.rootVC) { [weak self] (isCreate) in
+                guard let `self` = self else {return}
+                if isCreate {
+                    self.pushToMnemonicVC()
+                } else {
+                    self.pushToImportVC()
+                }
+            }
         }
     }
 }

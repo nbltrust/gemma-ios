@@ -44,7 +44,7 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
     }
 
     override func rightAction(_ sender: UIButton) {
-        
+        verifyFP()
     }
 
     override func viewWillAppear(_ animated: Bool) {

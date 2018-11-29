@@ -13,10 +13,13 @@ import ReSwift
 
 class WalletDetailViewController: BaseViewController {
 
-    @IBOutlet weak var contentView: WalletDetailView!
+    @IBOutlet weak var tableView: UITableView!
+
     var coordinator: (WalletDetailCoordinatorProtocol & WalletDetailStateManagerProtocol)?
     private(set) var context: WalletDetailContext?
     var model: Wallet!
+
+    var batteryInfo: BLTBatteryInfo?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,25 +30,63 @@ class WalletDetailViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupData()
+        reloadUI()
     }
 
     override func refreshViewController() {
 
     }
 
-    func setupUI() {
+    func reloadUI() {
+        self.title = self.model.name
+    }
 
+    func setupUI() {
+        let customNibName = R.nib.customCell.name
+        tableView.register(UINib.init(nibName: customNibName, bundle: nil), forCellReuseIdentifier: customNibName)
+
+        let footView = UIView.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 84))
+
+        let formatTitle = R.string.localizable.format.key.localized()
+        let btn = Button.init(frame: CGRect.init(x: 35, y: 40, width: footView.width - 70, height: 44))
+        btn.btnBorderColor = UIColor.warningColor
+        btn.title = formatTitle
+        btn.style = ButtonStyle.border.rawValue
+        btn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
+            guard let `self` = self else { return }
+            self.coordinator?.formmat()
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        footView.addSubview(btn)
+
+        tableView.tableFooterView = footView
     }
 
     func setupData() {
-        contentView.data = self.model
-        contentView.adapterModelToWalletDetailView(self.model)
         self.title = self.model.name
     }
 
     func setupEvent() {
+        BLTWalletIO.shareInstance()?.batteryInfoUpdated = { [weak self] (info) in
+            guard let `self` = self else { return }
+            self.batteryInfo = info
+            self.tableView.reloadData()
+        }
+    }
 
+    func titleWithIndexPath(_ indexPath: IndexPath) -> String {
+        if indexPath.row == 0 {
+            return R.string.localizable.name.key.localized()
+        } else {
+            return R.string.localizable.battery.key.localized()
+        }
+    }
+
+    func subtitleWithIndexPath(_ indexPath: IndexPath) -> String {
+        if indexPath.row == 0 {
+            return model.name
+        } else {
+            return batteryNumberInfo(batteryInfo)
+        }
     }
 
     override func configureObserveState() {
@@ -57,91 +98,32 @@ class WalletDetailViewController: BaseViewController {
             }
 
         }).disposed(by: disposeBag)
-
-        self.contentView.disConnectBtn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
-            guard let `self` = self else { return }
-            self.coordinator?.cancelPair()
-        }).disposed(by: disposeBag)
-
-        self.contentView.formatBtn.button.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] _ in
-            guard let `self` = self else { return }
-            self.coordinator?.formmat()
-        }).disposed(by: disposeBag)
-//        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
-//            guard let `self` = self else { return }
-//            
-//            self.endLoading()
-//            
-//            switch state {
-//            case .initial:
-//                self.coordinator?.switchPageState(PageState.refresh(type: PageRefreshType.initial))
-//                
-//            case .loading(let reason):
-//                if reason == .initialRefresh {
-//                    self.startLoading()
-//                }
-//                
-//            case .refresh(let type):
-//                self.coordinator?.switchPageState(.loading(reason: type.mapReason()))
-//                
-//            case .loadMore(let page):
-//                self.coordinator?.switchPageState(.loading(reason: PageLoadReason.manualLoadMore))
-//                
-//            case .noMore:
-////                self.stopInfiniteScrolling(self.tableView, haveNoMore: true)
-//                break
-//                
-//            case .noData:
-////                self.view.showNoData(<#title#>, icon: <#imageName#>)
-//                break
-//                
-//            case .normal(let reason):
-////                self.view.hiddenNoData()
-////
-////                if reason == PageLoadReason.manualLoadMore {
-////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
-////                }
-////                else if reason == PageLoadReason.manualRefresh {
-////                    self.stopPullRefresh(self.tableView)
-////                }
-//                break
-//                
-//            case .error(let error, let reason):
-////                self.showToastBox(false, message: error.localizedDescription)
-//                
-////                if reason == PageLoadReason.manualLoadMore {
-////                    self.stopInfiniteScrolling(self.tableView, haveNoMore: false)
-////                }
-////                else if reason == PageLoadReason.manualRefresh {
-////                    self.stopPullRefresh(self.tableView)
-////                }
-//                break
-//            }
-//        }).disposed(by: disposeBag)
     }
 }
 
-// MARK: - TableViewDelegate
+extension WalletDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
 
-//extension WalletDetailViewController: UITableViewDataSource, UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 10
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//          let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.<#cell#>.name, for: indexPath) as! <#cell#>
-//
-//        return cell
-//    }
-//}
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 
-// MARK: - View Event
-
-extension WalletDetailViewController {
-    @objc func nameDidClicked(_ data: [String: Any]) {
-        guard let model = data["model"] as? Wallet else {
-            return
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let nibString = R.nib.customCell.name
+        let reuseCell = tableView.dequeueReusableCell(withIdentifier: nibString, for: indexPath)
+        guard let cell = reuseCell as? CustomCell else {
+            return UITableViewCell()
         }
-        self.coordinator?.pushToChangeWalletName(model: model)
+        cell.title = titleWithIndexPath(indexPath)
+        cell.subTitle = subtitleWithIndexPath(indexPath)
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            self.coordinator?.pushToChangeWalletName(model: model)
+        }
     }
 }

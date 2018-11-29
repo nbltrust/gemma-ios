@@ -118,21 +118,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bLh-cv-vuX" customClass="WalletDetailView" customModule="EOS" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tBk-fh-QrR">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                                <connections>
+                                    <outlet property="dataSource" destination="DYW-Sn-lwb" id="Ve2-IR-7GM"/>
+                                    <outlet property="delegate" destination="DYW-Sn-lwb" id="fMN-Ua-9hY"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="bLh-cv-vuX" firstAttribute="top" secondItem="zW6-yf-Abt" secondAttribute="top" id="Lex-F3-MSV"/>
-                            <constraint firstItem="bLh-cv-vuX" firstAttribute="leading" secondItem="zW6-yf-Abt" secondAttribute="leading" id="Pl7-qs-lW4"/>
-                            <constraint firstItem="zW6-yf-Abt" firstAttribute="trailing" secondItem="bLh-cv-vuX" secondAttribute="trailing" id="YJj-WP-Hek"/>
+                            <constraint firstItem="zW6-yf-Abt" firstAttribute="trailing" secondItem="tBk-fh-QrR" secondAttribute="trailing" id="KvR-Jq-Kd7"/>
+                            <constraint firstItem="tBk-fh-QrR" firstAttribute="top" secondItem="zW6-yf-Abt" secondAttribute="top" id="Y5b-kx-rtu"/>
+                            <constraint firstItem="tBk-fh-QrR" firstAttribute="leading" secondItem="P4w-js-s1E" secondAttribute="leading" id="s9g-mS-LyW"/>
+                            <constraint firstItem="zW6-yf-Abt" firstAttribute="bottom" secondItem="tBk-fh-QrR" secondAttribute="bottom" id="w0L-8v-ASL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zW6-yf-Abt"/>
                     </view>
                     <connections>
-                        <outlet property="contentView" destination="bLh-cv-vuX" id="Z2p-Fs-pbr"/>
+                        <outlet property="tableView" destination="tBk-fh-QrR" id="JXA-5G-6Fv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dhf-Ba-eK6" userLabel="First Responder" sceneMemberID="firstResponder"/>

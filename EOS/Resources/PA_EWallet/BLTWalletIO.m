@@ -37,7 +37,7 @@ int BatteryCallback(const int nBatterySource, const int nBatteryState)
 {
     _instance.batteryInfo.state = nBatterySource == 0 ? charge : battery;
     if (nBatterySource == 1) {
-        _instance.batteryInfo.electricQuantity = (nBatteryState - 125) / 15.00;
+        _instance.batteryInfo.electricQuantity = MAX(0, (MIN(15, nBatteryState - 125))) / 15.00;
     }
     if (_instance.batteryInfoUpdated != nil) {
         _instance.batteryInfoUpdated(_instance.batteryInfo);
@@ -180,17 +180,9 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             });
             return ;
         } else {
-            const unsigned char number = (const unsigned char)[[self ret15bitString] UTF8String];
-            iRtn = PAEW_WriteSN(savedDevH, 0, &number, PAEW_DEV_INFO_SN_LEN);
-            if (iRtn != PAEW_RET_SUCCESS) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    failedCompliction([BLTUtils errorCodeToString:iRtn]);
-                });
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    successComlication();
-                });
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                successComlication();
+            });
         }
     });
 }
@@ -218,6 +210,10 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (iRtn == PAEW_RET_SUCCESS) {
                 savedDevH = nil;
+                _instance.selectDevice = nil;
+                if (_instance.batteryInfoUpdated != nil) {
+                    _instance.batteryInfoUpdated(nil);
+                }
                 [self stopHeartBeat];
                 successComlication();
             } else {
@@ -242,6 +238,11 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (connectDev == PAEW_RET_SUCCESS) {
                 [self startHeartBeat];
+                _instance.batteryInfo.state = battery;
+                _instance.batteryInfo.electricQuantity = 0;
+                if (_instance.batteryInfoUpdated != nil) {
+                    _instance.batteryInfoUpdated(_instance.batteryInfo);
+                }
                 successComlication();
             } else {
                 failedCompliction([BLTUtils errorCodeToString:connectDev]);

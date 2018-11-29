@@ -49,7 +49,13 @@ class BLTCardSearchViewController: BaseViewController {
     }
 
     override func rightAction(_ sender: UIButton) {
+        clearDevice()
         self.searchDevice()
+    }
+
+    func clearDevice() {
+        self.coordinator?.clearDevice()
+        deviceTable.reloadData()
     }
 
     func setupData() {
