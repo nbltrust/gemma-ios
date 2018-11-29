@@ -41,6 +41,9 @@ struct AppConfiguration {
 
 struct NetworkConfiguration {
     static let NBLBaseURL = URL(string: "http://139.196.73.117:3001")!
+
+    static let NBLBaseStageURL = URL(string: "http://139.196.73.117:3005")!
+
     static let NBLBaseTestURL = URL(string: "http://139.196.73.117:3002")!
 
     static let EOSIOBaseTestURL = URL(string: "http://139.224.135.236:18888")!//URL(string: "http://172.20.5.25:9999")!
@@ -78,6 +81,7 @@ struct NetworkConfiguration {
 
     static let ServerBaseURLString = "https://app.cybex.io/"
     static let ETHPrice = ServerBaseURLString + "price"
+    static let DAppSinUpEOS = URL(string: "https://mp.weixin.qq.com/s/wvrlzbj3EGv78s3gjoCvjw")!
 }
 
 //Laguage Setting

@@ -115,7 +115,7 @@ struct NBLNetwork {
 
 extension NBLService: TargetType {
     var baseURL: URL {
-        return NetworkConfiguration.NBLBaseURL
+        return NetworkConfiguration.NBLBaseStageURL
     }
 
     var isNeedCache: Bool {
