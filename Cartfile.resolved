@@ -1,7 +1,7 @@
 binary "https://building42.github.io/Specs/Carthage/iOS/Crashlytics.json" "3.11.1"
 binary "https://building42.github.io/Specs/Carthage/iOS/Fabric.json" "1.8.0"
 binary "https://nbltrust.github.io/eos-ios-core-cpp/Carthage/iOS/eos-ios-core-cpp.json" "1.0.0"
-binary "https://nbltrust.github.io/gemma-ios-lib-spec/Carthage/iOS/iOS_EWalletDynamic.json" "1.0.0"
+binary "https://nbltrust.github.io/gemma-ios-lib-spec/Carthage/iOS/iOS_EWalletDynamic.json" "1.0.6"
 github "Aite/ESTabBarController" "84657b42f02d782d5f5db71f714eb2a4c57c1456"
 github "Alamofire/Alamofire" "4.7.3"
 github "ApolloZhu/swift_qrcodejs" "1.0.1"
