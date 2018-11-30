@@ -172,7 +172,6 @@ class RichStyle {
             $0.color = UIColor.highlightColor
             $0.underline = (.single, UIColor.highlightColor)
             $0.alignment = .center
-//            $0.linkURL = URL(string: "www.baidu.com")// H5AddressConfiguration.DAppSinUpEOS
         }
 
         let myGroup = StyleGroup(base: base, ["corn_flower_blue_underline": cornFlowerBlueUnderline, "corn_flower_blue": cornFlowerBlue])

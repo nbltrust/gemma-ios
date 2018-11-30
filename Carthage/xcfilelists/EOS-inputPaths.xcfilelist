@@ -48,3 +48,4 @@ $(SRCROOT)/Carthage/Build/iOS/XLPagerTabStrip.framework
 $(SRCROOT)/Carthage/Build/iOS/eos_ios_core_cpp.framework
 $(SRCROOT)/Carthage/Build/iOS/iOS_EWalletDynamic.framework
 $(SRCROOT)/Carthage/Build/iOS/seed39_ios_golang.framework
+$(SRCROOT)/Carthage/Build/iOS/ActiveLabel.framework
