@@ -71,9 +71,18 @@ extension WalletDetailCoordinator: WalletDetailStateManagerProtocol {
         BLTWalletIO.shareInstance()?.formmart({
             if let wallet = WalletManager.shared.currentWallet() {
                 if WalletManager.shared.removeWallet(wallet) {
-                    self.rootVC.dismiss(animated: true, completion: {
-                        AppConfiguration.shared.appCoordinator!.showEntry()
-                    })
+                    let wallets = WalletManager.shared.walletList()
+                    if wallets.count == 0 {
+                        self.rootVC.dismiss(animated: true, completion: {
+                            AppConfiguration.shared.appCoordinator!.showEntry()
+                        })
+                    } else {
+                        let firstWallet = wallets[0]
+                        if let walletId = firstWallet.id {
+                            WalletManager.shared.switchWallet(walletId)
+                        }
+                        self.rootVC.dismiss(animated: true, completion: {})
+                    }
                 }
             }
         }, failed: { (reason) in

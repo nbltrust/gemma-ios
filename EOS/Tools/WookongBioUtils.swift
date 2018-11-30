@@ -142,7 +142,16 @@ func importWookongBioWallet(_ hint: String,
 
 func saveCurrency(_ currency: Currency) {
     do {
-        let _ = try WalletCacheService.shared.insertCurrency(currency)
+        let  currencyId = try WalletCacheService.shared.insertCurrency(currency)
+        CurrencyManager.shared.getEOSAccountNames(currency.pubKey ?? "", completion: { (result, accounts) in
+            if result {
+                CurrencyManager.shared.saveAccountNamesWith(currencyId, accounts: accounts)
+                CurrencyManager.shared.saveActived(currencyId, actived: true)
+                if accounts.count > 0 {
+                    CurrencyManager.shared.saveAccountNameWith(currencyId, name: accounts[0])
+                }
+            }
+        })
     } catch {}
 }
 
