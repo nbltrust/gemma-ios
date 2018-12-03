@@ -78,4 +78,5 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 
 + (BLTCardPINState)pinStateWithDevInfo:(PAEW_DevInfo)info;
 
++ (NSString *)validSeedWithimportSeed:(NSString *)seed;
 @end

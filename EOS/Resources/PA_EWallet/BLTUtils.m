@@ -266,4 +266,13 @@
     return unInit;
 }
 
++ (NSString *)validSeedWithimportSeed:(NSString *)seed {
+    NSString *whiteSpace = @" ";
+    NSMutableArray *words = [NSMutableArray arrayWithArray: [seed componentsSeparatedByString:whiteSpace]];
+    for (int i = 0; i < words.count; i++) {
+        words[i] = [words[i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    }
+    return [words componentsJoinedByString:whiteSpace];
+}
+
 @end
