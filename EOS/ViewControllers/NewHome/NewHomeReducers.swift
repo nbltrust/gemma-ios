@@ -78,10 +78,12 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
 
 func setTokenWith(tokens: [Tokens], viewmodel: NewHomeViewModel) -> NewHomeViewModel {
     var newViewModel = viewmodel
-    newViewModel.tokens = "\(tokens.count)"
+    newViewModel.tokens = "\(tokens.count-1)"
     var array: [String] = []
     for token in tokens {
-        array.append(token.logoUrl)
+        if token.symbol != "EOS" {
+            array.append(token.logoUrl)
+        }
     }
     newViewModel.tokenArray = array
     return newViewModel
