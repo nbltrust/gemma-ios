@@ -41,54 +41,54 @@ typedef enum : NSUInteger {
 
 - (BOOL)isConnection;
 
-- (NSString *)ret15bitString;
-
-//Card
+#pragma mark Card
 - (void)searchBLTCard:(SuccessedComplication)complication;
-
-- (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
-
-- (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)connectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
-//DevInfo
+- (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+
+- (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+
+#pragma mark DevInfo
 - (void)checkPinState:(CheckPinStateComplication)complication failed:(FailedComplication)failed;
 
 - (void)getDeviceInfo:(GetDeviceInfoComplication)complication;
 
-//Init
+- (NSString *)ret15bitString;
+
+#pragma mark Init
 - (void)initPin:(NSString *)pin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
-//Seed
+#pragma mark Seed
 - (void)getSeed:(GetSeedsComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)checkSeed:(NSString *)seed success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)importSeed:(NSString *)seed success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
-//Pubkey and SN
+#pragma mark Pubkey and SN
 - (void)getVolidation:(GetVolidationComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)getSN:(GetSNComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)getPubKey:(GetPubKeyComplication)successComlication failed:(FailedComplication)failedCompliction;
 
-//FP
+#pragma mark FP
 - (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed timeout:(TimeoutComplication)timeout;
 
 - (void)cancelEntrollFingerPrinter:(SuccessedComplication)successComplication failed:(FailedComplication)failedComplication;
 
 - (void)verifyFingerPrinter:(VerifyFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed timeout:(TimeoutComplication)timeout;
 
-//Signature
+#pragma mark Signature
 - (void)submmitWaitingVerfyPin:(NSString *)waitVerPin;
 
 - (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
 - (void)cancelSign:(SuccessedComplication)successComplication failed:(FailedComplication)failedComplication;
 
-//Pin
+#pragma mark Pin
 - (void)getFPList:(GetFPListComplication)complication failed:(FailedComplication)failedComplication;
 
 - (void)deleteFP:(NSArray *)fpList success:(SuccessedComplication)successComlication failed:(FailedComplication)failedComplication;

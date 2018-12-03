@@ -123,6 +123,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     return self;
 }
 
+#pragma mark HeartBeat
 - (void)startHeartBeat {
     if (_timer == nil) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(repatGetDeviceInfo) userInfo:nil repeats:true];
@@ -145,6 +146,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     return savedDevH != nil;
 }
 
+#pragma mark Card
 - (void)searchBLTCard:(SuccessedComplication)complication {
     __block unsigned char nDeviceType = PAEW_DEV_TYPE_BT;
     __block char *szDeviceNames = (char *)malloc(512*16);
@@ -160,65 +162,6 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         dispatch_async(dispatch_get_main_queue(), ^{
             complication();
             free(szDeviceNames);
-        });
-    });
-}
-
-- (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
-    if (!savedDevH) {
-        return;
-    }
-    dispatch_async(bltQueue, ^{
-        int devIdx = 0;
-        void *ppPAEWContext = savedDevH;
-        int iRtn = PAEW_RET_UNKNOWN_FAIL;
-        
-        iRtn = PAEW_Format(ppPAEWContext, devIdx);
-        if (iRtn != PAEW_RET_SUCCESS) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                failedCompliction([BLTUtils errorCodeToString:iRtn]);
-            });
-            return ;
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                successComlication();
-            });
-        }
-    });
-}
-
-- (NSString *)ret15bitString
-{
-    NSString *tempStr = @"";
-    for (int i = 0; i < 15; i++) {
-        int value = arc4random() % 10;
-        tempStr = [tempStr stringByAppendingFormat:@"%d",value];
-    }
-    return tempStr;
-}
-
-
-- (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
-    if (!savedDevH) {
-        successComlication();
-        return;
-    }
-    dispatch_async(bltQueue, ^{
-        void *ppPAEWContext = savedDevH;
-        int iRtn = PAEW_RET_UNKNOWN_FAIL;
-        iRtn = PAEW_FreeContext(ppPAEWContext);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (iRtn == PAEW_RET_SUCCESS) {
-                savedDevH = nil;
-                _instance.selectDevice = nil;
-                if (_instance.batteryInfoUpdated != nil) {
-                    _instance.batteryInfoUpdated(nil);
-                }
-                [self stopHeartBeat];
-                successComlication();
-            } else {
-                failedCompliction([BLTUtils errorCodeToString:iRtn]);
-            }
         });
     });
 }
@@ -252,6 +195,65 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
+- (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+    if (!savedDevH) {
+        successComlication();
+        return;
+    }
+    dispatch_async(bltQueue, ^{
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        iRtn = PAEW_FreeContext(ppPAEWContext);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (iRtn == PAEW_RET_SUCCESS) {
+                savedDevH = nil;
+                _instance.selectDevice = nil;
+                if (_instance.batteryInfoUpdated != nil) {
+                    _instance.batteryInfoUpdated(nil);
+                }
+                [self stopHeartBeat];
+                successComlication();
+            } else {
+                failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            }
+        });
+    });
+}
+
+- (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+    if (!savedDevH) {
+        return;
+    }
+    dispatch_async(bltQueue, ^{
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+
+        iRtn = PAEW_Format(ppPAEWContext, devIdx);
+        if (iRtn != PAEW_RET_SUCCESS) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            });
+            return ;
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                successComlication();
+            });
+        }
+    });
+}
+
+- (NSString *)ret15bitString
+{
+    NSString *tempStr = @"";
+    for (int i = 0; i < 15; i++) {
+        int value = arc4random() % 10;
+        tempStr = [tempStr stringByAppendingFormat:@"%d",value];
+    }
+    return tempStr;
+}
+
+#pragma mark DevInfo
 - (void)checkPinState:(CheckPinStateComplication)complication failed:(FailedComplication)failed {
     if (!savedDevH) {
         return;
@@ -303,6 +305,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
+#pragma mark Init
 - (void)initPin:(NSString *)pin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
     if (!savedDevH) {
         return;
@@ -321,6 +324,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
+#pragma mark Seed
 - (void)getSeed:(GetSeedsComplication)successComlication failed:(FailedComplication)failedCompliction {
     dispatch_async(bltQueue, ^{
         int devIdx = 0;
@@ -383,6 +387,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
+#pragma mark Pubkey and SN
 - (void)getVolidation:(GetVolidationComplication)successComlication failed:(FailedComplication)failedCompliction {
     if (!savedDevH) {
         return;
@@ -540,6 +545,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
+#pragma mark FP
 - (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed timeout:(TimeoutComplication)timeout {
     if (!savedDevH) {
         return;
@@ -652,6 +658,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
+#pragma mark Signature
 - (void)getEOSSign:(AuthType)type  chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication {
     if (!savedDevH) {
         return;
@@ -780,6 +787,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     _instance->pin = waitVerPin;
 }
 
+#pragma mark Pin
 - (void)getFPList:(GetFPListComplication)complication failed:(FailedComplication)failedComplication {
     if (!savedDevH) {
         return;

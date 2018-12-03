@@ -610,7 +610,7 @@
 "wookong_connect_failed" = "连接失败";
 "wookong_connecting_title" = "若未找到，请检查手机蓝牙和设备电源。";
 "wookong_connecting" = "正在连接WOOKONG Bio";
-"wookong_connectfailed_title" = "连接失败。请检查手机蓝牙和设备电源。";
+"wookong_connectfailed_title" = "连接失败，请检查手机蓝牙和设备电源。";
 "wookong_reconnect" = "重试连接";
 "wookong_confirm_fp_title" = "请在WOOKONG Bio上按指纹以确认授权";
 "wookong_confirm_pin_title" = "请输入WOOKONG Bio的密码以确认授权";
