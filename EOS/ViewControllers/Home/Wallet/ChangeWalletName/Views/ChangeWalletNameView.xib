@@ -36,9 +36,9 @@
                                 <constraint firstAttribute="height" constant="24" id="62g-g7-FyV"/>
                                 <constraint firstAttribute="width" constant="24" id="muE-8e-Env"/>
                             </constraints>
-                            <state key="normal" image="icClean"/>
-                            <state key="selected" image="icClean"/>
-                            <state key="highlighted" image="icClean"/>
+                            <state key="normal" image="ic_clean"/>
+                            <state key="selected" image="ic_clean"/>
+                            <state key="highlighted" image="ic_clean"/>
                             <connections>
                                 <action selector="clearBtnClick:" destination="-1" eventType="touchUpInside" id="SLP-VH-Yr7"/>
                             </connections>
@@ -75,6 +75,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icClean" width="24" height="24"/>
+        <image name="ic_clean" width="24" height="24"/>
     </resources>
 </document>
