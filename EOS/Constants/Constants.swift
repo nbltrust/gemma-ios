@@ -149,7 +149,7 @@ struct H5AddressConfiguration {
     static let ReleaseNotesENURL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_release_desc_en.html")
     static let FeedbackCNURL = URL(string: "http://47.75.154.39:3009/gemma?lang=cn")
     static let FeedbackENURL = URL(string: "http://47.75.154.39:3009/gemma?lang=en")
-    static let DAppSinUpEOS = URL(string: "https://mp.weixin.qq.com/s/wvrlzbj3EGv78s3gjoCvjw")!
+    static let DAppSinUpEOS = "https://mp.weixin.qq.com/s/wvrlzbj3EGv78s3gjoCvjw"
 }
 
 enum EOSAction: String {

@@ -538,6 +538,10 @@ func getPrecision(_ value: String) -> Int {
     }
     return 0
 }
+
+func openWebView(_ urlStr: String) {
+    UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
+}
 //func correctAmount(_ sender:String) -> String{
 //    if let _ = sender.toDecimal(){
 //        if sender.contains("."),let last = sender.components(separatedBy: ".").last{

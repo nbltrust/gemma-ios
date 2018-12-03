@@ -10,7 +10,6 @@ import UIKit
 import ReSwift
 
 protocol PaymentsDetailCoordinatorProtocol {
-    func openWebView(txid: String)
 }
 
 protocol PaymentsDetailStateManagerProtocol {
@@ -32,13 +31,6 @@ class PaymentsDetailCoordinator: NavCoordinator {
 }
 
 extension PaymentsDetailCoordinator: PaymentsDetailCoordinatorProtocol {
-    func openWebView(txid: String) {
-        UIApplication.shared.open(URL(string: NetworkConfiguration.EOSFlareBaseURLString + txid)!, options: [:], completionHandler: nil)
-//        let vc = BaseWebViewController()
-//        vc.url = URL(string: NetworkConfiguration.EOSFLARE_BASE_URLString + txid)
-//        vc.title = R.string.localizable.invitationcode_introduce.key.localized()
-//        self.rootVC.pushViewController(vc, animated: true)
-    }
 }
 
 extension PaymentsDetailCoordinator: PaymentsDetailStateManagerProtocol {

@@ -149,10 +149,8 @@ class ActivateViewController: ButtonBarPagerTabStripViewController {
 // MARK: - View Event
 
 extension ActivateViewController {
-//    @objc func <#view#>DidClicked(_ data:[String: Any]) {
-//        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
-//
-//        }
-//    }
+    @objc func labelClick(_ data:[String: Any]) {
+        openWebView(H5AddressConfiguration.DAppSinUpEOS)
+    }
 
 }
