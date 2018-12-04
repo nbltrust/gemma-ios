@@ -36,4 +36,9 @@ struct Place: HandyJSON {
     var sign: String!
     var prepayid: String!
     var timestamp: String!
+    var actionId: String!
+
+    mutating func mapping(mapper: HelpingMapper) {
+        mapper <<< self.actionId <-- "action_id"
+    }
 }

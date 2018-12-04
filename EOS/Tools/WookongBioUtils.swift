@@ -146,7 +146,7 @@ func saveCurrency(_ currency: Currency) {
         CurrencyManager.shared.getEOSAccountNames(currency.pubKey ?? "", completion: { (result, accounts) in
             if result {
                 CurrencyManager.shared.saveAccountNamesWith(currencyId, accounts: accounts)
-                CurrencyManager.shared.saveActived(currencyId, actived: true)
+                CurrencyManager.shared.saveActived(currencyId, actived: .actived)
                 if accounts.count > 0 {
                     CurrencyManager.shared.saveAccountNameWith(currencyId, name: accounts[0])
                 }

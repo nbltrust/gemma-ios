@@ -40,11 +40,11 @@ struct AppConfiguration {
 }
 
 struct NetworkConfiguration {
-    static let NBLBaseURL = URL(string: "http://139.196.73.117:3001")!
+    static let NBLBaseURL = URL(string: "https://faucet-eos-wookong.nbltrust.com")!
 
-    static let NBLBaseStageURL = URL(string: "http://139.196.73.117:3005")!
+    static let NBLBaseStageURL = URL(string: "https://faucetstaging-eos-wookong.nbltrust.com")!
 
-    static let NBLBaseTestURL = URL(string: "http://139.196.73.117:3002")!
+    static let NBLBaseTestURL = URL(string: "https://faucetdev-eos-wookong.nbltrust.com")!
 
     static let EOSIOBaseTestURL = URL(string: "http://139.224.135.236:18888")!//URL(string: "http://172.20.5.25:9999")!
     static let EOSIOCanadaTestURL = URL(string: "http://mainnet.eoscanada.com")!
@@ -122,6 +122,7 @@ enum CoinType: Int {
 struct EOSBaseURLNodesConfiguration {
     static let values = [
         "http://47.75.154.248:50003",
+        "http://139.196.73.117:8888",
                          "http://52.77.177.200:8888",
                          "http://api-mainnet.starteos.io",
                          "https://api.eosnewyork.io",

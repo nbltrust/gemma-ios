@@ -125,7 +125,7 @@ extension EOSIOService: TargetType {
         case .getInfo:
             return "/v1/chain/get_info"
         case .getBlock:
-            return "/v1/chain/get_block"
+            return "/api/v1/chain/get_block"
         case .abiJsonToBin:
             return "/v1/chain/abi_json_to_bin"
         case .abiBinToJson:

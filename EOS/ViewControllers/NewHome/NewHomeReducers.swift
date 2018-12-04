@@ -78,10 +78,12 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
 
 func setTokenWith(tokens: [Tokens], viewmodel: NewHomeViewModel) -> NewHomeViewModel {
     var newViewModel = viewmodel
-    newViewModel.tokens = "\(tokens.count)"
+    newViewModel.tokens = "\(tokens.count-1)"
     var array: [String] = []
     for token in tokens {
-        array.append(token.logoUrl)
+        if token.symbol != "EOS" {
+            array.append(token.logoUrl)
+        }
     }
     newViewModel.tokenArray = array
     return newViewModel
@@ -91,10 +93,12 @@ func setViewModelWithCurrency(currency: Currency?) -> NewHomeViewModel {
     var viewmodel = NewHomeViewModel()
     viewmodel.currencyImg = R.image.eosBg()!
     viewmodel.account = R.string.localizable.wait_activate.key.localized()
-    if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == true {
+    if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == .actived {
         if let accountName = CurrencyManager.shared.getAccountNameWith(currencyId) {
             viewmodel.account = accountName
         }
+    } else if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == .doActive {
+        viewmodel.account = R.string.localizable.account_creation.key.localized()
     }
     viewmodel.CNY = "0.00"
     if currency?.type == .EOS {

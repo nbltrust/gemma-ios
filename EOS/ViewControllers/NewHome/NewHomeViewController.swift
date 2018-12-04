@@ -100,9 +100,10 @@ extension NewHomeViewController {
 
     @objc func cellDidClicked(_ data: [String: Any]) {
         if let model = data["data"] as? NewHomeViewModel {
-            if let _ = CurrencyManager.shared.getAccountNameWith(model.id), CurrencyManager.shared.getActived(model.id) == true {
+            if let _ = CurrencyManager.shared.getAccountNameWith(model.id), CurrencyManager.shared.getActived(model.id) == .actived {
                 CurrencyManager.shared.saveCurrentCurrencyID(model.id)
                 self.coordinator?.pushToOverviewVCWithCurrencyID(currencyId: model.id)
+            } else if let _ = CurrencyManager.shared.getAccountNameWith(model.id), CurrencyManager.shared.getActived(model.id) == .doActive {
             } else {
                 CurrencyManager.shared.saveCurrentCurrencyID(model.id)
                 self.coordinator?.pushToEntryVCWithCurrencyID(currencyId: model.id)
