@@ -105,7 +105,7 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
     }
 
     func validMnemonic(_ mnemonic: String) -> Bool {
-        return Seed39CheckMnemonic(mnemonic)
+        return Seed39CheckMnemonic(BLTUtils.validSeedWithimportSeed(mnemonic))
     }
 
     func importForWookong(_ mnemonic: String) {
