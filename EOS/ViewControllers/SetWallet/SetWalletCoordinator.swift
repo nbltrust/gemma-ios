@@ -249,7 +249,7 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
                                                             address: nil)
                                     if let currencyId = try WalletCacheService.shared.insertCurrency(currency) {
                                         CurrencyManager.shared.saveAccountNamesWith(currencyId, accounts: accounts)
-                                        CurrencyManager.shared.saveActived(currencyId, actived: true)
+                                        CurrencyManager.shared.saveActived(currencyId, actived: .actived)
                                         if accounts.count > 0 {
                                             CurrencyManager.shared.saveAccountNameWith(currencyId, name: accounts[0])
                                         }

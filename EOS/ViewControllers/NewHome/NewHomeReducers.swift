@@ -93,10 +93,12 @@ func setViewModelWithCurrency(currency: Currency?) -> NewHomeViewModel {
     var viewmodel = NewHomeViewModel()
     viewmodel.currencyImg = R.image.eosBg()!
     viewmodel.account = R.string.localizable.wait_activate.key.localized()
-    if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == true {
+    if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == .actived {
         if let accountName = CurrencyManager.shared.getAccountNameWith(currencyId) {
             viewmodel.account = accountName
         }
+    } else if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == .doActive {
+        viewmodel.account = R.string.localizable.account_creation.key.localized()
     }
     viewmodel.CNY = "0.00"
     if currency?.type == .EOS {

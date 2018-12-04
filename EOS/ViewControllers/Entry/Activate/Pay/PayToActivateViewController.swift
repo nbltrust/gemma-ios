@@ -39,7 +39,7 @@ class PayToActivateViewController: BaseViewController, IndicatorInfoProvider {
     @objc func refreshPage() {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
         switch self.coordinator?.state.pageState.value {
-        case .refresh?:
+        case .refresh?://支付未完成
             self.endLoading()
             var context = ScreenShotAlertContext()
             context.title = R.string.localizable.pay_failed.key.localized()
@@ -47,7 +47,9 @@ class PayToActivateViewController: BaseViewController, IndicatorInfoProvider {
             context.imageName = R.image.icFail.name
             context.needCancel = false
             appCoodinator.showGemmaAlert(context)
-        //支付未完成
+            if let currencyid = currencyID {
+                CurrencyManager.shared.saveActived(currencyid, actived: .nonActived)
+            }
         default:
             break
         }
@@ -81,11 +83,11 @@ class PayToActivateViewController: BaseViewController, IndicatorInfoProvider {
                 context.needCancel = true
                 context.sureShot = { [weak self] () in
                     guard let `self` = self else { return }
-                    self.coordinator?.place()
+                    self.coordinator?.place(self.currencyID)
                 }
                 appCoodinator.showGemmaAlert(context)
             } else if beChange == false {
-                self.coordinator?.place()
+                self.coordinator?.place(self.currencyID)
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }

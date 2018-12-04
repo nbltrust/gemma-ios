@@ -92,7 +92,7 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateCoordinat
         self.rootVC.viewControllers.forEach { (vc) in
             if let entryVC = vc as? EntryViewController {
                 self.popToVC(entryVC)
-                entryVC.coordinator?.state.callback.finishEOSCurrencyCallback.value?(inviteCode)
+                entryVC.coordinator?.state.callback.finishCDKeyEOSCurrencyCallback.value?(inviteCode)
             }
         }
     }

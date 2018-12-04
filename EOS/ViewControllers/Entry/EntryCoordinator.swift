@@ -42,11 +42,12 @@ protocol EntryStateManagerProtocol {
     func checkAgree(_ agree: Bool)
 
     func createEOSAccount(_ type: CreateAPPId,
-                      accountName: String,
-                      currencyID: Int64?,
-                      inviteCode: String,
-                      validation: WookongValidation?,
-                      completion:@escaping (Bool) -> Void)
+                          goodsId: GoodsId,
+                          accountName: String,
+                          currencyID: Int64?,
+                          inviteCode: String,
+                          validation: WookongValidation?,
+                          completion: @escaping (Bool) -> Void)
 
     func copyMnemonicWord()
 
@@ -197,6 +198,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     }
 
     func createEOSAccount(_ type: CreateAPPId,
+                          goodsId: GoodsId,
                           accountName: String,
                           currencyID: Int64?,
                           inviteCode: String,
@@ -213,12 +215,13 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                 }
                 if let pubkey = currency?.pubKey {
                     NBLNetwork.request(target: .createAccount(type: type,
+                                                              goodsId: goodsId,
                                                               account: accountName,
                                                               pubKey: pubkey,
                                                               invitationCode: inviteCode,
                                                               validation: validation),
                                        success: { (data) in
-                                        CurrencyManager.shared.saveActived(id, actived: true)
+                                        CurrencyManager.shared.saveActived(id, actived: .actived)
                                         CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
                                         self.rootVC.popToRootViewController(animated: true)
                                         completion(true)
@@ -260,7 +263,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             validation.pubKey = pub ?? ""
             validation.publicKeySig = pubSig ?? ""
             validation.publicKey = publicKey ?? ""
-            self.createEOSAccount(.bluetooth, accountName: name, currencyID: currencyID, inviteCode: "", validation: validation, completion: { (successed) in
+            self.createEOSAccount(.bluetooth, goodsId: .sn, accountName: name, currencyID: currencyID, inviteCode: "", validation: validation, completion: { (successed) in
                 completion(successed)
                 if successed {
                     self.popToRootVC()

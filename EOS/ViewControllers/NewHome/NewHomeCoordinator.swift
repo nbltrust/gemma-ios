@@ -132,10 +132,10 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
 
     func getCurrencyInfo(_ currency: Currency) {
         if currency.type == .EOS {
-            let names = CurrencyManager.shared.getAccountNameWith(currency.id)
+            let name = CurrencyManager.shared.getAccountNameWith(currency.id)
             let active = CurrencyManager.shared.getActived(currency.id)
-            if let names = names, active == true {
-                let account = names
+            if let name = name, active == .actived {
+                let account = name
                 EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
                     self.store.dispatch(BalanceFetchedAction(currency: currency, balance: json))
                 }, error: { (_) in
@@ -156,6 +156,33 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
                     self.store.dispatch(RMBPriceFetchedAction(currency: currency))
                     }.cauterize()
                 self.getTokensWith(account)
+            } else if let name = name, active == .doActive  {
+                if let actionId = Defaults[name] as? String {
+                    NBLNetwork.request(target: .getActionState(actionId: actionId), success: {[weak self] (result) in
+                        guard let `self` = self else { return }
+                        switch result["status"].intValue {
+                        case ActionStatus.done.rawValue:
+                            CurrencyManager.shared.saveActived(currency.id, actived: .actived)
+                        case ActionStatus.sended.rawValue:
+                            CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
+                        case ActionStatus.pending.rawValue:
+                            CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
+                        case ActionStatus.executory.rawValue:
+                            CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
+                        default:
+                            CurrencyManager.shared.saveActived(currency.id, actived: .nonActived)
+                        }
+                        self.store.dispatch(NonActiveFetchedAction(currency:currency))
+                        }, error: { (code) in
+                            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                                let error = GemmaError.NBLCode(code: gemmaerror)
+                                showFailTop(error.localizedDescription)
+                            } else {
+                                showFailTop(R.string.localizable.error_unknow.key.localized())
+                            }
+                    }) { (_) in
+                    }
+                }
             } else {
                 self.store.dispatch(NonActiveFetchedAction(currency:currency))
             }

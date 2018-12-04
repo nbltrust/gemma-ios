@@ -24,8 +24,7 @@ protocol PayToActivateStateManagerProtocol {
 
     func initOrder(_ currencyID:Int64?, completion: @escaping (Bool) -> Void)
     func getBill()
-    func askToPay()
-    func place()
+    func place(_ currencyID:Int64?)
 }
 
 class PayToActivateCoordinator: NavCoordinator {
@@ -82,13 +81,8 @@ extension PayToActivateCoordinator: PayToActivateCoordinatorProtocol {
             vc.coordinator?.state.callback.endCallback.value?()
         }
     }
-    func popToEntryVCWithInviteCode(_ inviteCode: String) {
-        self.rootVC.viewControllers.forEach { (vc) in
-            if let entryVC = vc as? EntryViewController {
-                self.popToVC(entryVC)
-                entryVC.coordinator?.state.callback.finishEOSCurrencyCallback.value?(inviteCode)
-            }
-        }
+    func popToRootVC() {
+        self.rootVC.popToRootViewController(animated: true)
     }
     func popToVC(_ vc: UIViewController) {
         self.rootVC.popToViewController(vc, animated: true)
@@ -97,7 +91,8 @@ extension PayToActivateCoordinator: PayToActivateCoordinatorProtocol {
 
 extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
     func getBill() {
-        NBLNetwork.request(target: .getBill, success: { (data) in
+        NBLNetwork.request(target: .getBill, success: {[weak self] (data) in
+            guard let `self` = self else { return }
             if let bill = Bill.deserialize(from: data.dictionaryObject) {
                 self.store.dispatch(BillAction(data: bill))
             }
@@ -126,7 +121,8 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
             pubkey = currency?.pubKey ?? ""
         }
 
-        NBLNetwork.request(target: .initOrder(account: walletName, pubKey: pubkey, platform: "iOS", clientIP:"10.18.14.9", serialNumber: "1"), success: { (data) in
+        NBLNetwork.request(target: .initOrder(account: walletName, pubKey: pubkey, platform: "iOS", clientIP:"10.18.14.9", serialNumber: "1"), success: {[weak self] (data) in
+            guard let `self` = self else { return }
             if let order = Order.deserialize(from: data.dictionaryObject) {
                 self.store.dispatch(OrderAction(order: order))
             }
@@ -142,12 +138,20 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         }
     }
 
-    func place() {
+    func place(_ currencyID:Int64?) {
         self.rootVC.topViewController?.startLoadingWithMessage(message: R.string.localizable.pay_tips_warning.key.localized())
         let orderID = self.state.orderId.value
-        NBLNetwork.request(target: .place(orderId: orderID), success: { (result) in
+        NBLNetwork.request(target: .place(orderId: orderID), success: {[weak self] (result) in
+            guard let `self` = self else { return }
             if let place = Place.deserialize(from: result.dictionaryObject) {
                 let timeInterval = place.timestamp.string
+                let actionId = place.actionId.string
+                if let key = CurrencyManager.shared.getAccountNameWith(currencyID) {
+                    Defaults[key] = actionId
+                }
+                if let currencyid = currencyID {
+                    CurrencyManager.shared.saveActived(currencyid, actived: .doActive)
+                }
                 var string = "weixin://app/\(place.appid!)/pay/?"
                 string += "nonceStr=\(place.nonceStr!)&"
                 string += "package=Sign%3DWXPay&"
@@ -156,9 +160,10 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 string += "timeStamp=\(UInt32(timeInterval)!)&"
                 string += "sign=\(place.sign!)&signType=SHA1"
                 self.state.pageState.accept(.refresh(type: .manual))
-                MonkeyKingManager.shared.wechatPay(urlString: string, resultCallback: { (success) in
+                MonkeyKingManager.shared.wechatPay(urlString: string, resultCallback: {[weak self] (success) in
+                    guard let `self` = self else { return }
                     self.state.pageState.accept(.initial)
-                    self.askToPay()
+                    self.askToPay(currencyID)
                 })
             } else {
                 showFailTop(R.string.localizable.error_unknow.key.localized())
@@ -174,8 +179,9 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
         })
     }
 
-    func askToPay() {
-        NBLNetwork.request(target: .getOrder(orderId: self.state.orderId.value), success: { (data) in
+    func askToPay(_ currencyID:Int64?) {
+        NBLNetwork.request(target: .getOrder(orderId: self.state.orderId.value), success: {[weak self] (data) in
+            guard let `self` = self else { return }
             let payState = data["pay_state"].stringValue
             let state = data["status"].stringValue
             if state != "DONE" {
@@ -189,6 +195,9 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.imageName = R.image.icFail.name
                 context.needCancel = false
                 appCoodinator.showGemmaAlert(context)
+                if let currencyid = currencyID {
+                    CurrencyManager.shared.saveActived(currencyid, actived: .nonActived)
+                }
             } else if payState == "NOTPAY", state == "CLOSED" {
                 var context = ScreenShotAlertContext()
                 context.desc = R.string.localizable.pay_timeout_tips.key.localized()
@@ -197,8 +206,11 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.imageName = R.image.ic_time.name
                 context.needCancel = false
                 appCoodinator.showGemmaAlert(context)
+                if let currencyid = currencyID {
+                    CurrencyManager.shared.saveActived(currencyid, actived: .nonActived)
+                }
             } else if payState == "SUCCESS", state == "DONE" {
-                self.popToEntryVCWithInviteCode(self.state.orderId.value)
+                self.popToRootVC()
             } else if payState == "SUCCESS", state == "TOREFUND" {
                 var context = ScreenShotAlertContext()
                 context.desc = R.string.localizable.price_change_tips.key.localized() + RichStyle.shared.tagText("55 RAM", fontSize: 14, color: UIColor.highlightColor, lineHeight: 16) + "。"
@@ -212,6 +224,9 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                     }
                 }
                 appCoodinator.showGemmaAlert(context)
+                if let currencyid = currencyID {
+                    CurrencyManager.shared.saveActived(currencyid, actived: .nonActived)
+                }
             } else if payState == "REFUND" {
                 var context = ScreenShotAlertContext()
                 context.title = R.string.localizable.refund_title.key.localized()
@@ -219,6 +234,9 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.imageName = R.image.icFail.name
                 context.needCancel = false
                 appCoodinator.showGemmaAlert(context)
+                if let currencyid = currencyID {
+                    CurrencyManager.shared.saveActived(currencyid, actived: .nonActived)
+                }
             } else if payState == "CLOSED" {
                 var context = ScreenShotAlertContext()
                 context.title = R.string.localizable.closed.key.localized()
@@ -226,6 +244,9 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.imageName = R.image.icFail.name
                 context.needCancel = false
                 appCoodinator.showGemmaAlert(context)
+                if let currencyid = currencyID {
+                    CurrencyManager.shared.saveActived(currencyid, actived: .nonActived)
+                }
             } else if payState == "USERPAYING" {
                 var context = ScreenShotAlertContext()
                 context.title = R.string.localizable.userpaying.key.localized()
@@ -233,6 +254,9 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.imageName = R.image.icFail.name
                 context.needCancel = false
                 appCoodinator.showGemmaAlert(context)
+                if let currencyid = currencyID {
+                    CurrencyManager.shared.saveActived(currencyid, actived: .nonActived)
+                }
             } else if payState == "PAYERROR" {
                 var context = ScreenShotAlertContext()
                 context.title = R.string.localizable.payerror.key.localized()
@@ -240,6 +264,9 @@ extension PayToActivateCoordinator: PayToActivateStateManagerProtocol {
                 context.imageName = R.image.icFail.name
                 context.needCancel = false
                 appCoodinator.showGemmaAlert(context)
+                if let currencyid = currencyID {
+                    CurrencyManager.shared.saveActived(currencyid, actived: .nonActived)
+                }
             }
         }, error: { (code) in
             self.rootVC.topViewController?.endLoading()
