@@ -24,6 +24,8 @@ protocol NewHomeStateManagerProtocol {
     func switchPageState(_ state: PageState)
 
     func fetchWalletInfo(_ wallet: Wallet)
+
+    func checkEOSCurrency(_ currency: Currency, complecation: @escaping () -> Void)
 }
 
 class NewHomeCoordinator: NavCoordinator {
@@ -190,5 +192,20 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
 
         }
 
+    }
+
+    func checkEOSCurrency(_ currency: Currency, complecation: @escaping () -> Void) {
+        if let currencyId = currency.id {
+            CurrencyManager.shared.getEOSAccountNames(currency.pubKey ?? "", completion: { (result, accounts) in
+                if result {
+                    CurrencyManager.shared.saveAccountNamesWith(currencyId, accounts: accounts)
+                    CurrencyManager.shared.saveActived(currencyId, actived: .actived)
+                    if accounts.count > 0 {
+                        CurrencyManager.shared.saveAccountNameWith(currencyId, name: accounts[0])
+                    }
+                }
+                complecation()
+            })
+        }
     }
 }

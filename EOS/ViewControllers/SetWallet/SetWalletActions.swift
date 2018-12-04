@@ -23,7 +23,7 @@ struct ImportWalletModel {
     var walletType: WalletType = .HD
     var name = ""
     var priKey = ""
-    var type: CurrencyType = .EOS
+    var currencySetting: [CurrencyType] = []
     var password = ""
     var hint = ""
     var mnemonic = ""
@@ -31,13 +31,13 @@ struct ImportWalletModel {
     public init(walletType: WalletType,
                 name: String,
                 priKey: String,
-                type: CurrencyType,
+                currencySetting: [CurrencyType],
                 password: String,
                 hint: String,
                 mnemonic: String) {
         self.walletType = walletType
         self.name = name
-        self.type = type
+        self.currencySetting = currencySetting
         self.priKey = priKey
         self.password = password
         self.hint = hint
