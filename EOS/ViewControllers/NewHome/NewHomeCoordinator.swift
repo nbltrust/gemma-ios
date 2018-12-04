@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 import NBLCommonModule
 import SwiftyUserDefaults
+import SwiftyJSON
 
 protocol NewHomeCoordinatorProtocol {
     func presentSettingVC()
@@ -160,29 +161,12 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
                 self.getTokensWith(account)
             } else if let name = name, active == .doActive  {
                 if let actionId = Defaults[name] as? String {
-                    NBLNetwork.request(target: .getActionState(actionId: actionId), success: {[weak self] (result) in
+                    self.store.dispatch(DoActiveFetchedAction(currency:currency, actions: nil))
+                    WalletManager.shared.getActionStatus(currency, actionId: actionId) {[weak self] (result) in
                         guard let `self` = self else { return }
-                        switch result["status"].intValue {
-                        case ActionStatus.done.rawValue:
-                            CurrencyManager.shared.saveActived(currency.id, actived: .actived)
-                        case ActionStatus.sended.rawValue:
-                            CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
-                        case ActionStatus.pending.rawValue:
-                            CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
-                        case ActionStatus.executory.rawValue:
-                            CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
-                        default:
-                            CurrencyManager.shared.saveActived(currency.id, actived: .nonActived)
+                        if let resultJson = result as? JSON, let actions = Actions.deserialize(from: resultJson.dictionaryObject) {
+                            self.store.dispatch(DoActiveFetchedAction(currency:currency, actions: actions))
                         }
-                        self.store.dispatch(NonActiveFetchedAction(currency:currency))
-                        }, error: { (code) in
-                            if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
-                                let error = GemmaError.NBLCode(code: gemmaerror)
-                                showFailTop(error.localizedDescription)
-                            } else {
-                                showFailTop(R.string.localizable.error_unknow.key.localized())
-                            }
-                    }) { (_) in
                     }
                 }
             } else {

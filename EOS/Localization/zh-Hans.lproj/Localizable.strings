@@ -130,7 +130,7 @@
 "delegate" = "Delegate ";
 "eos_for_cpu" = " EOS for CPU,";
 "eos_for_net" = " EOS for NET";
-"account_creation" = "账户创建中";
+"account_creation" = "账户创建中...";
 "account_creation_warning" = "请勿在EOS区块100%确认之前往账户转账";
 "backup_introduce_one" = "请查看你的周围\n确保在无人及摄像头的环境下进行备份";
 "backup_introduce_two" = "请在安全环境下备份\n备份期间可将手机调成“飞行模式”";

@@ -67,8 +67,9 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
             viewmodel = setTokenWith(tokens: action.data, viewmodel: viewmodel)
             state.info.accept(viewmodel)
         }
-
-
+    case let action as DoActiveFetchedAction:
+        let viewmodel = setViewModelWithCurrency(currency: action.currency, actions: action.actions)
+        state.info.accept(viewmodel)
     default:
         break
     }
@@ -89,7 +90,7 @@ func setTokenWith(tokens: [Tokens], viewmodel: NewHomeViewModel) -> NewHomeViewM
     return newViewModel
 }
 
-func setViewModelWithCurrency(currency: Currency?) -> NewHomeViewModel {
+func setViewModelWithCurrency(currency: Currency?, actions: Actions? = nil) -> NewHomeViewModel {
     var viewmodel = NewHomeViewModel()
     viewmodel.currencyImg = R.image.eosBg()!
     viewmodel.account = R.string.localizable.wait_activate.key.localized()
@@ -98,7 +99,11 @@ func setViewModelWithCurrency(currency: Currency?) -> NewHomeViewModel {
             viewmodel.account = accountName
         }
     } else if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == .doActive {
-        viewmodel.account = R.string.localizable.account_creation.key.localized()
+        if let block = actions?.blockNum, let lib = actions?.lastIrreversibleBlock {
+            viewmodel.account = R.string.localizable.account_creation.key.localized() + "\((1 - (block - lib)/325)*100)%"
+        } else {
+            viewmodel.account = R.string.localizable.account_creation.key.localized() + "0%"
+        }
     }
     viewmodel.CNY = "0.00"
     if currency?.type == .EOS {

@@ -283,6 +283,7 @@
 		3B08B93D21883B9000ED43AD /* AssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08B93C21883B9000ED43AD /* AssetCell.swift */; };
 		3B08B94121883D0B00ED43AD /* AssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B08B94021883D0B00ED43AD /* AssetCell.xib */; };
 		3B0ED2C421AFF3050043DF69 /* ActiveLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0ED2BC21AFF3040043DF69 /* ActiveLabel.framework */; };
+		3B10AF2621B6722300D3ECCF /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AF2521B6722300D3ECCF /* Actions.swift */; };
 		3B195062211BE732002C7991 /* BuyRamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B195060211BE732002C7991 /* BuyRamView.swift */; };
 		3B195063211BE732002C7991 /* BuyRamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B195061211BE732002C7991 /* BuyRamView.xib */; };
 		3B195066211BE7CF002C7991 /* GeneralRamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B195064211BE7CF002C7991 /* GeneralRamCellView.swift */; };
@@ -1105,6 +1106,7 @@
 		3B08B93C21883B9000ED43AD /* AssetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCell.swift; sourceTree = "<group>"; };
 		3B08B94021883D0B00ED43AD /* AssetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetCell.xib; sourceTree = "<group>"; };
 		3B0ED2BC21AFF3040043DF69 /* ActiveLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActiveLabel.framework; path = Carthage/Build/iOS/ActiveLabel.framework; sourceTree = "<group>"; };
+		3B10AF2521B6722300D3ECCF /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		3B195060211BE732002C7991 /* BuyRamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRamView.swift; sourceTree = "<group>"; };
 		3B195061211BE732002C7991 /* BuyRamView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyRamView.xib; sourceTree = "<group>"; };
 		3B195064211BE7CF002C7991 /* GeneralRamCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralRamCellView.swift; sourceTree = "<group>"; };
@@ -3493,6 +3495,7 @@
 			children = (
 				037EA7EF67D3633CBA8C8AB082548C91 /* Account.swift */,
 				3B46DD1A219189EC009B6E2A /* Tokens.swift */,
+				3B10AF2521B6722300D3ECCF /* Actions.swift */,
 				3B02F23C2168524000DD9211 /* AccountModel.swift */,
 				73378F74211C233200ACAA90 /* EOSIOTableRow.swift */,
 				2214A96D211D7B78003256D2 /* NodeVote.swift */,
@@ -4429,6 +4432,7 @@
 				725F68042101B8E50006BBA1 /* SetWalletCoordinator.swift in Sources */,
 				2253C5322111A6300043AAF7 /* QRCodeReducers.swift in Sources */,
 				3BD3666420FDEB76004DE09D /* TitleTextfieldView.swift in Sources */,
+				3B10AF2621B6722300D3ECCF /* Actions.swift in Sources */,
 				7342E4EE216F1F8A0093E2C2 /* BLTCardConnectCoordinator.swift in Sources */,
 				227072AF2150EDE90097FE61 /* BLTUtils.m in Sources */,
 				733714E6212431E200B2ED90 /* IonIcons.swift in Sources */,
