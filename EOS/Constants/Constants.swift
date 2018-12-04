@@ -180,9 +180,9 @@ struct Unit {
 }
 
 struct SupportCurrency {
-    static let data: [CurrencyType] = [CurrencyType.EOS,CurrencyType.ETH]
+    static let data: [CurrencyType] = [CurrencyType.EOS, CurrencyType.ETH]
 }
 
 struct BLTSupportCurrency {
-    static let data: [CurrencyType] = [CurrencyType.EOS,CurrencyType.ETH]
+    static let data: [CurrencyType] = [CurrencyType.EOS, CurrencyType.ETH]
 }

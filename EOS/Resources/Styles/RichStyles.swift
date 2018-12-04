@@ -16,6 +16,7 @@ enum StyleNames: String {
     case agreement
     case comfirmContent
     case activate
+    case clickLine
 }
 
 enum LineViewStyleNames: String {
@@ -86,6 +87,7 @@ class RichStyle {
 
         initLineViewStyle()
         initActivateLabelStyle()
+        initClickLineLabelStyle()
     }
 
     func changeStyle() {
@@ -150,6 +152,17 @@ class RichStyle {
             $0.color = UIColor.introductionColor
         }
         Styles.register(LineViewStyleNames.ramPrice.rawValue, style: ramPriceStyle)
+    }
+
+    func initClickLineLabelStyle() {
+        let underLine = Style {
+            $0.font = SystemFonts.PingFangSC_Regular.font(size: 14.0)
+            $0.underline = (.single, UIColor.introductionColor)
+            $0.color = UIColor.introductionColor
+            $0.alignment = .center
+        }
+
+        StylesManager.shared.register(StyleNames.clickLine.rawValue, style: underLine)
     }
 
     func initActivateLabelStyle() {

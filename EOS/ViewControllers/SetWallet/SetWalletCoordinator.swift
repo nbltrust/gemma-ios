@@ -206,15 +206,38 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
         self.store.dispatch(SetWalletAgreeAction(isAgree: agree))
     }
 
-    func importPriKeyWallet(_ name: String, priKey: String, type: CurrencyType, password: String, hint: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
-        let model = ImportWalletModel.init(walletType: .nonHD, name: name, priKey: priKey, type: .EOS, password: password, hint: hint, mnemonic: "")
+    func importPriKeyWallet(_ name: String,
+                            priKey: String,
+                            type: CurrencyType,
+                            password: String,
+                            hint: String,
+                            success: @escaping SuccessedComplication,
+                            failed: @escaping FailedComplication) {
+        let model = ImportWalletModel.init(walletType: .nonHD,
+                                           name: name,
+                                           priKey: priKey,
+                                           currencySetting: [type],
+                                           password: password,
+                                           hint: hint,
+                                           mnemonic: "")
         importWallet(model, success: success, failed: failed)
     }
 
-    func importMnemonicWallet(_ name: String, mnemonic: String, password: String, hint: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
+    func importMnemonicWallet(_ name: String,
+                              mnemonic: String,
+                              password: String,
+                              hint: String,
+                              success: @escaping SuccessedComplication,
+                              failed: @escaping FailedComplication) {
         let seed = Seed39SeedByMnemonic(mnemonic)
         if let prikey = Seed39DeriveWIF(seed, CurrencyType.EOS.derivationPath, true) {
-            let model = ImportWalletModel.init(walletType: .nonHD, name: name, priKey: prikey, type: .EOS, password: password, hint: hint, mnemonic: mnemonic)
+            let model = ImportWalletModel.init(walletType: .nonHD,
+                                               name: name,
+                                               priKey: prikey,
+                                               currencySetting: SupportCurrency.data,
+                                               password: password,
+                                               hint: hint,
+                                               mnemonic: mnemonic)
             importWallet(model, success: success, failed: failed)
         } else {
             failed(R.string.localizable.wallet_create_failed.key.localized())
@@ -224,45 +247,38 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
     func importWallet(_ model: ImportWalletModel,
                       success: @escaping SuccessedComplication,
                       failed: @escaping FailedComplication) {
-        if model.type == .EOS {
-            if let pubkey = EOSIO.getPublicKey(model.priKey) {
-                CurrencyManager.shared.getEOSAccountNames(pubkey) { (result, accounts) in
-                    if result {
-                        do {
-                            //Wallet
-                            let date = Date.init()
-                            var walletCipher = ""
-                            if model.walletType == .HD {
-                                walletCipher = Seed39KeyEncrypt(model.password, model.mnemonic)
-                            }
+        if let pubkey = EOSIO.getPublicKey(model.priKey) {
+            do {
+                let date = Date.init()
+                var walletCipher = ""
+                if model.walletType == .HD {
+                    walletCipher = Seed39KeyEncrypt(model.password, model.mnemonic)
+                }
 
-                            let wallet = Wallet(id: nil, name: model.name, type: model.walletType, cipher: walletCipher, deviceName: nil, date: date, hint: model.hint)
-                            if let walletId = try WalletCacheService.shared.insertWallet(wallet: wallet) {
-                                //currency
-                                if model.type == .EOS, let cypher = EOSIO.getCypher(model.priKey, password: model.password) {
-                                    let currency = Currency(id: nil,
-                                                            type: model.type,
-                                                            cipher: cypher,
-                                                            pubKey: pubkey,
-                                                            wid: walletId,
-                                                            date: date,
-                                                            address: nil)
-                                    if let currencyId = try WalletCacheService.shared.insertCurrency(currency) {
-                                        CurrencyManager.shared.saveAccountNamesWith(currencyId, accounts: accounts)
-                                        CurrencyManager.shared.saveActived(currencyId, actived: true)
-                                        if accounts.count > 0 {
-                                            CurrencyManager.shared.saveAccountNameWith(currencyId, name: accounts[0])
-                                        }
-                                    }
-                                    Defaults[.currentWalletID] = walletId.string
-                                }
-                                success()
-                            }
-                        } catch {
-                            failed(R.string.localizable.wallet_create_failed.key.localized())
+                let wallet = Wallet(id: nil, name: model.name, type: model.walletType, cipher: walletCipher, deviceName: nil, date: date, hint: model.hint)
+                if let walletId = try WalletCacheService.shared.insertWallet(wallet: wallet) {
+                    if model.currencySetting.contains(.EOS) {
+                        if let cypher = EOSIO.getCypher(model.priKey, password: model.password) {
+                            let currency = Currency(id: nil,
+                                                    type: .EOS,
+                                                    cipher: cypher,
+                                                    pubKey: pubkey,
+                                                    wid: walletId,
+                                                    date: date,
+                                                    address: nil)
+                            let _ = try WalletCacheService.shared.insertCurrency(currency)
+                            Defaults[.currentWalletID] = walletId.string
                         }
                     }
+
+                    if model.currencySetting.contains(.ETH) {
+
+                    }
+
+                    success()
                 }
+            } catch {
+                failed(R.string.localizable.wallet_create_failed.key.localized())
             }
         }
     }

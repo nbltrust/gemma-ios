@@ -28,8 +28,7 @@ class BLTCardEntryView: EOSBaseView {
 
     func setupUI() {
         let clickStr = R.string.localizable.wookong_des_click.key.localized()
-        let text = clickStr.localizedFormat("<corn_flower_blue_underline>", "</corn_flower_blue_underline>")
-        clickLabel.attributedText = text.set(style: StyleNames.activate.rawValue)
+        clickLabel.attributedText = clickStr.set(style: StyleNames.clickLine.rawValue)
     }
 
     func setupSubViewEvent() {
