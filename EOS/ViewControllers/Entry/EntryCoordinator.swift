@@ -221,8 +221,11 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                                                               invitationCode: inviteCode,
                                                               validation: validation),
                                        success: { (data) in
-                                        CurrencyManager.shared.saveActived(id, actived: .actived)
+                                        CurrencyManager.shared.saveActived(id, actived: .doActive)
                                         CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
+                                        if let actionId = data["action_id"].stringValue as? String {
+                                            Defaults[accountName] = actionId
+                                        }
                                         self.rootVC.popToRootViewController(animated: true)
                                         completion(true)
                     }, error: { [weak self] (code) in
