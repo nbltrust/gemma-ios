@@ -196,12 +196,12 @@ extension NBLService: TargetType {
     var parameters: [String: Any] {
         switch self {
         case let .createAccount(type, goodsId, account, pubKey, invitationCode, validation):
-            var map: [String: Any] =  ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": type.rawValue, "goods_id": goodsId.rawValue]
+            var map: [String: Any] =  ["account_name": account, "code": invitationCode, "public_key": pubKey, "app_id": type.rawValue, "goods_id": goodsId.rawValue]
             if let val = validation {
                 var valDic = val.toJSON()
                 map["public_key"] = valDic?["publicKey"]
                 valDic?.removeValue(forKey: "publicKey")
-                map.removeValue(forKey: "invitation_code")
+//                map.removeValue(forKey: "invitation_code")
                 map["validation"] = valDic
             }
             return map

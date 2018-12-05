@@ -263,7 +263,7 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             validation.pubKey = pub ?? ""
             validation.publicKeySig = pubSig ?? ""
             validation.publicKey = publicKey ?? ""
-            self.createEOSAccount(.bluetooth, goodsId: .sn, accountName: name, currencyID: currencyID, inviteCode: "", validation: validation, completion: { (successed) in
+            self.createEOSAccount(.bluetooth, goodsId: .sn, accountName: name, currencyID: currencyID, inviteCode: validation.SN, validation: validation, completion: { (successed) in
                 completion(successed)
                 if successed {
                     self.popToRootVC()
