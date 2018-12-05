@@ -124,11 +124,11 @@ class AssetDetailViewController: BaseViewController {
             }
             }, isRefresh: true)
 
-//        if let name = self.context?.model.name, name != "EOS" {
-//            self.coordinator?.getTokensWith(CurrencyManager.shared.getCurrentAccountName(), symbol: name)
-//        } else {
-//            self.coordinator?.getAccountInfo(CurrencyManager.shared.getCurrentAccountName())
-//        }
+        if let name = self.context?.model.name, name != "EOS" {
+            self.coordinator?.getTokensWith(CurrencyManager.shared.getCurrentAccountName(), symbol: name)
+        } else {
+            self.coordinator?.getAccountInfo(CurrencyManager.shared.getCurrentAccountName())
+        }
     }
     
     override func configureObserveState() {
