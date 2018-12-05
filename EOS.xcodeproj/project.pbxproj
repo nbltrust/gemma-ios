@@ -2357,20 +2357,12 @@
 		3B1EC87221703EF10044DEB5 /* WalletDetail */ = {
 			isa = PBXGroup;
 			children = (
-				3B1EC87B21703F210044DEB5 /* Views */,
 				3B1EC87421703F120044DEB5 /* WalletDetailActions.swift */,
 				3B1EC87321703F120044DEB5 /* WalletDetailCoordinator.swift */,
 				3B1EC87621703F120044DEB5 /* WalletDetailReducers.swift */,
 				3B1EC87521703F120044DEB5 /* WalletDetailViewController.swift */,
 			);
 			path = WalletDetail;
-			sourceTree = "<group>";
-		};
-		3B1EC87B21703F210044DEB5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		3B26534A218AB3800091FE93 /* Delegate */ = {

@@ -10,7 +10,7 @@ import Foundation
 import Presentr
 import SwiftyUserDefaults
 
-func connectBLTCard(_ rootVC: UINavigationController, complication: @escaping CompletionCallback) {
+func connectBLTCard(_ rootVC: UINavigationController, deviceName: String?, complication: @escaping CompletionCallback) {
     let width = ModalSize.full
     let height = ModalSize.custom(size: 180)
     let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height - 180))
@@ -24,6 +24,7 @@ func connectBLTCard(_ rootVC: UINavigationController, complication: @escaping Co
     context.connectSuccessed = {()
         complication()
     }
+    context.deviceName = deviceName
 
     if let connectVC = R.storyboard.bltCard.bltCardConnectViewController() {
         let nav = BaseNavigationController.init(rootViewController: connectVC)

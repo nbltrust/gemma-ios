@@ -116,7 +116,7 @@ class WalletManagerViewController: BaseViewController {
                 self.reloadUI()
             })
         } else {
-            self.coordinator?.connect({ [weak self] () in
+            self.coordinator?.connect(wallet.deviceName, complication: { [weak self] () in
                 guard let `self` = self else { return }
                 self.reloadUI()
             })
