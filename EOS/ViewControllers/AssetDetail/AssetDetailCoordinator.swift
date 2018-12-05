@@ -117,17 +117,17 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
                 Payment.deserialize(from: json.dictionaryObject)
             }) as? [Payment] {
                 self.store.dispatch(FetchPaymentsRecordsListAction(data: payments))
-//                self.getChainInfo(completion: { (lib) in
-//                    if let libStr = lib {
-//                        for payment in payments {
-//                            EOSIONetwork.request(target: .getTransaction(id: payment.trxId), success: { (block) in
-//                                print(block)
-//                            }, error: { (_) in
-//                            }, failure: { (_) in
-//                            })
-//                        }
-//                    }
-//                })
+                self.getChainInfo(completion: { (lib) in
+                    if let libStr = lib {
+                        for payment in payments {
+                            EOSIONetwork.request(target: .getTransaction(id: payment.trxId), success: { (block) in
+                                print(block)
+                            }, error: { (_) in
+                            }, failure: { (_) in
+                            })
+                        }
+                    }
+                })
             }
 
             completion(true)

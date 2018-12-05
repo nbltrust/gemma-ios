@@ -40,6 +40,7 @@ struct AppConfiguration {
 }
 
 struct NetworkConfiguration {
+    static let EOSParkAPI = URL(string: "https://api.eospark.com")
     static let NBLBaseURL = URL(string: "https://faucet-eos-wookong.nbltrust.com")!
 
     static let NBLBaseStageURL = URL(string: "https://faucetstaging-eos-wookong.nbltrust.com")!

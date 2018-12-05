@@ -21,6 +21,8 @@ extension NavBarView {
                 self.bluetoothImgView.isHidden = true
                 self.bluetoothStateLabel.isHidden = true
             } else {
+                self.bluetoothImgView.isHidden = false
+                self.bluetoothStateLabel.isHidden = false
                 var batteryInfo: BLTBatteryInfo? = nil
                 if BLTWalletIO.shareInstance()?.isConnection() ?? false {
                     batteryInfo = BLTWalletIO.shareInstance()?.batteryInfo

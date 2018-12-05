@@ -30,9 +30,19 @@ enum EOSIOService {
     case getTransaction(id: String)
 }
 
+func EOSDefaultManager() -> Alamofire.SessionManager {
+    let configuration = URLSessionConfiguration.default
+    configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+    configuration.timeoutIntervalForRequest = 15
+
+    let manager = Alamofire.SessionManager(configuration: configuration)
+    manager.startRequestsImmediately = false
+    return manager
+}
+
 struct EOSIONetwork {
     static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil,
-                                                     manager: defaultManager(),
+                                                     manager: EOSDefaultManager(),
                                                      plugins: [NetworkLoggerPlugin(verbose: true), DataCachePlugin()],
                                                      trackInflights: false)
 
@@ -46,9 +56,9 @@ struct EOSIONetwork {
         var fetchedCache = fetchedCache
         switch target {
         case .getAccount:
-            fetchedCache = true
+            fetchedCache = false
         case .getCurrencyBalance:
-            fetchedCache = true
+            fetchedCache = false
         default:
             fetchedCache = false
         }
@@ -97,11 +107,8 @@ extension EOSIOService: TargetType {
     var baseURL: URL {
         let configuration = NetworkConfiguration()
         switch self {
-        case .getAccount:
-//            if otherNode {
-//                return  configuration.EOSIO_OTHER_BASE_URL
-//            }
-            return configuration.EOSIOBaseURL
+        case .getTransaction:
+            return NetworkConfiguration.EOSParkAPI!
         default:
             return configuration.EOSIOBaseURL
         }
@@ -110,7 +117,7 @@ extension EOSIOService: TargetType {
     var isNeedCache: Bool {
         switch self {
         case .getAccount:
-            return true
+            return false
         default:
             return false
         }
@@ -135,7 +142,7 @@ extension EOSIOService: TargetType {
         case .getKeyAccounts:
             return "/v1/history/get_key_accounts"
         case .getTransaction:
-            return "/v1/history/get_transaction"
+            return "/api"
         case .getTableRows:
             return "/v1/chain/get_table_rows"
         }
@@ -167,18 +174,28 @@ extension EOSIOService: TargetType {
         case let .getKeyAccounts(pubKey):
             return ["public_key": pubKey]
         case let .getTransaction(id):
-            return ["id": id]
+            return ["module": "transaction", "action": "get_transaction_detail_info", "apikey": "2d0b90f1d4b59d5b24369762608cf681", "trx_id": id]
         case let .getTableRows(json):
             return JSON(parseJSON: json).dictionaryObject ?? [:]
         }
     }
 
     var task: Task {
-        return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        switch self {
+        case .getTransaction:
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        default:
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        }
     }
 
     var method: Moya.Method {
-        return .post
+        switch self {
+        case .getTransaction:
+            return .get
+        default:
+            return .post
+        }
     }
 
     var sampleData: Data {
