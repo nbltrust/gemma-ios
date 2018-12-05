@@ -113,7 +113,9 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
                 guard let `self` = self else { return }
                 self.navigationController?.dismiss(animated: true, completion: {
                     if let context = self.context {
-                        context.confirmSuccessed!()
+                        if context.confirmSuccessed != nil {
+                            context.confirmSuccessed!()
+                        }
                     }
                 })
                 self.reloadRightItem(true)
