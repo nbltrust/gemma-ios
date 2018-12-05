@@ -129,6 +129,8 @@ class AssetDetailViewController: BaseViewController {
         } else {
             self.coordinator?.getAccountInfo(CurrencyManager.shared.getCurrentAccountName())
         }
+
+        
     }
     
     override func configureObserveState() {

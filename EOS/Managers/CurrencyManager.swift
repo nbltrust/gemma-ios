@@ -264,6 +264,8 @@ class CurrencyManager {
         EOSIONetwork.request(target: .getKeyAccounts(pubKey: publicKey), success: { (json) in
             if let names = json["account_names"].arrayObject as? [String] {
                 completion(names.count > 0,names)
+            } else {
+                completion(true,[])
             }
         }, error: { (_) in
             completion(false,[])

@@ -61,12 +61,17 @@ extension BLTCardConnectCoordinator: BLTCardConnectStateManagerProtocol {
     }
 
     func reconnectDevice(_ success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
-        var deviceName = ""
-        if let wallet = WalletManager.shared.currentWallet() {
-            deviceName = wallet.deviceName ?? ""
+        var deviceMac = ""
+        if let context = self.state.context.value as? BLTCardConnectContext {
+            if let deviceName = context.deviceName {
+                deviceMac = deviceName
+            }
+        }
+        if let wallet = WalletManager.shared.currentWallet(), wallet.type == .bluetooth {
+            deviceMac = wallet.deviceName ?? ""
         }
         BLTWalletIO.shareInstance()?.searchBLTCard({
-            BLTWalletIO.shareInstance()?.connectCard(deviceName, success: success, failed: failed)
+            BLTWalletIO.shareInstance()?.connectCard(deviceMac, success: success, failed: failed)
         })
     }
 }

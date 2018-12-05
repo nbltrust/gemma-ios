@@ -25,7 +25,7 @@ protocol WalletManagerStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<WalletManagerState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
 
-    func connect(_ complicatiopn: @escaping CompletionCallback)
+    func connect(_ deviceName: String?, complication: @escaping CompletionCallback)
 
     func disConnect(_ complication: @escaping CompletionCallback)
 
@@ -110,8 +110,8 @@ extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
 
-    func connect(_ complicatiopn: @escaping CompletionCallback) {
-        connectBLTCard(self.rootVC, complication: complicatiopn)
+    func connect(_ deviceName: String?, complication: @escaping CompletionCallback) {
+        connectBLTCard(self.rootVC, deviceName: deviceName, complication: complication)
     }
 
     func disConnect(_ complication: @escaping CompletionCallback) {

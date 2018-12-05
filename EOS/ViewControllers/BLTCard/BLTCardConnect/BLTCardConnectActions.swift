@@ -13,6 +13,7 @@ import SwiftyJSON
 import HandyJSON
 
 struct BLTCardConnectContext: RouteContext, HandyJSON {
+    var deviceName: String?
     var connectSuccessed: CompletionCallback?
 }
 

@@ -26,7 +26,7 @@ protocol NewHomeStateManagerProtocol {
 
     func fetchWalletInfo(_ wallet: Wallet)
 
-    func checkEOSCurrency(_ currency: Currency, complecation: @escaping () -> Void)
+    func checkEOSCurrency(_ complecation: @escaping () -> Void)
 }
 
 class NewHomeCoordinator: NavCoordinator {
@@ -105,16 +105,18 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
     }
 
     func fetchWalletInfo(_ wallet: Wallet) {
-        do {
-            let curArray: [Currency] = try WalletCacheService.shared.fetchAllCurrencysBy(wallet) ?? []
-            if curArray.count > 0 {
-                for currency in curArray {
-                    getCurrencyInfo(currency)
+        self.checkEOSCurrency { [weak self] in
+            guard let `self` = self else {return}
+            do {
+                let curArray: [Currency] = try WalletCacheService.shared.fetchAllCurrencysBy(wallet) ?? []
+                if curArray.count > 0 {
+                    for currency in curArray {
+                        self.getCurrencyInfo(currency)
+                    }
                 }
+            } catch {
+
             }
-
-        } catch {
-
         }
     }
 
@@ -178,18 +180,35 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
 
     }
 
-    func checkEOSCurrency(_ currency: Currency, complecation: @escaping () -> Void) {
-        if let currencyId = currency.id {
-            CurrencyManager.shared.getEOSAccountNames(currency.pubKey ?? "", completion: { (result, accounts) in
-                if result {
-                    CurrencyManager.shared.saveAccountNamesWith(currencyId, accounts: accounts)
-                    CurrencyManager.shared.saveActived(currencyId, actived: .actived)
-                    if accounts.count > 0 {
-                        CurrencyManager.shared.saveAccountNameWith(currencyId, name: accounts[0])
+    func checkEOSCurrency(_ complecation: @escaping () -> Void) {
+        if let wallet = WalletManager.shared.currentWallet() {
+            let currencies = CurrencyManager.shared.getAllCurrencys(wallet)
+            for currency in currencies {
+                if currency.type == .EOS {
+                    if let currencyId = currency.id {
+                        CurrencyManager.shared.getEOSAccountNames(currency.pubKey ?? "", completion: { (result, accounts) in
+                            if result {
+                                if accounts.count > 0 {
+                                    if let currentAccount = CurrencyManager.shared.getAccountNameWith(currencyId) {
+                                        if !accounts.contains(currentAccount) {
+                                        CurrencyManager.shared.saveAccountNameWith(currencyId, name: accounts[0])
+                                        }
+                                    } else {
+                                        CurrencyManager.shared.saveAccountNameWith(currencyId, name: accounts[0])
+                                    }
+                                    CurrencyManager.shared.saveAccountNamesWith(currencyId, accounts: accounts)
+                                    CurrencyManager.shared.saveActived(currencyId, actived: .actived)
+                                } else {
+                                    CurrencyManager.shared.saveAccountNameWith(currencyId, name: "")
+                                    CurrencyManager.shared.saveAccountNamesWith(currencyId, accounts: [])
+                                    CurrencyManager.shared.saveActived(currencyId, actived: .nonActived)
+                                }
+                            }
+                            complecation()
+                        })
                     }
                 }
-                complecation()
-            })
+            }
         }
     }
 }

@@ -225,10 +225,16 @@ extension EntryCoordinator: EntryStateManagerProtocol {
                                         CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
                                         self.rootVC.popToRootViewController(animated: true)
                                         completion(true)
-                    }, error: { (code) in
+                    }, error: { [weak self] (code) in
+                        guard let `self` = self else {return}
                         if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
                             let error = GemmaError.NBLCode(code: gemmaerror)
-                            showFailTop(error.localizedDescription)
+                            if type == .bluetooth, gemmaerror == GemmaError.NBLNetworkErrorCode.invitecodeRegiteredCode {
+                                CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
+                                self.pushToActivateVCWithCurrencyID(id)
+                            } else {
+                                showFailTop(error.localizedDescription)
+                            }
                         } else {
                             showFailTop(R.string.localizable.error_unknow.key.localized())
                         }
