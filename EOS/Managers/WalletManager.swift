@@ -406,12 +406,49 @@ class WalletManager {
 //        completion(false)
 //    }
 //
-//    func closeTimer() {
-//        if self.timer != nil {
-//            self.timer?.pause()
-//            self.timer = nil
-//        }
-//    }
+
+    func getActionStatus(_ currency: Currency, actionId: String, completion:@escaping ObjectOptionalCallback) {
+        self.timer = Repeater.every(.seconds(10)) {[weak self] _ in
+            guard let `self` = self else { return }
+            NBLNetwork.request(target: .getActionState(actionId: actionId), success: {[weak self] (result) in
+                guard let `self` = self else { return }
+                switch result["status"].intValue {
+                case ActionStatus.done.rawValue:
+                    CurrencyManager.shared.saveActived(currency.id, actived: .actived)
+                    self.closeTimer()
+                case ActionStatus.sended.rawValue:
+                    CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
+                case ActionStatus.pending.rawValue:
+                    CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
+                case ActionStatus.executory.rawValue:
+                    CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
+                default:
+                    CurrencyManager.shared.saveActived(currency.id, actived: .nonActived)
+                    self.closeTimer()
+                }
+                completion(result)
+                }, error: { (code) in
+                    if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                        let error = GemmaError.NBLCode(code: gemmaerror)
+                        showFailTop(error.localizedDescription)
+                    } else {
+                        showFailTop(R.string.localizable.error_unknow.key.localized())
+                    }
+                    completion(nil)
+            }) { (_) in
+                completion(nil)
+            }
+        }
+
+        timer?.start()
+    }
+
+    func closeTimer() {
+        if self.timer != nil {
+            self.timer?.pause()
+            self.timer = nil
+        }
+    }
 
     // MARK: Format Check
     func isValidPassword(_ password: String) -> Bool {

@@ -70,3 +70,8 @@ struct RMBPriceFetchedAction: Action {
 struct NonActiveFetchedAction: Action {
     var currency: Currency?
 }
+
+struct DoActiveFetchedAction: Action {
+    var currency: Currency?
+    var actions: Actions?
+}
