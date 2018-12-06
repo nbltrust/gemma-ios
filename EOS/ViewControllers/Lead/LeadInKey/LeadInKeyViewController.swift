@@ -104,6 +104,8 @@ extension LeadInKeyViewController {
         if let valid = self.coordinator?.validPrivateKey(priKey) {
             if valid == true {
                 self.coordinator?.openSetWallet(priKey)
+            } else {
+                self.showError(message: R.string.localizable.prikey_verify_fail.key.localized())
             }
         }
     }

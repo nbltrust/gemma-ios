@@ -93,6 +93,9 @@ extension WalletListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let wallet = context?.walletList[indexPath.row] {
+            if let currentWallet = WalletManager.shared.currentWallet(), currentWallet.type == .bluetooth {
+                BLTWalletIO.shareInstance()?.disConnect({}, failed: { (reason) in})
+            }
             self.coordinator?.switchToWallet(wallet)
         }
     }

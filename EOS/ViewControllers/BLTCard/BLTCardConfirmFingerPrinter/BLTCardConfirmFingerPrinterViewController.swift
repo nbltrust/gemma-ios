@@ -31,7 +31,7 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
 
     func reloadRightItem(_ isStoped: Bool) {
         if isStoped {
-            configRightNavButton(R.string.localizable.wookong_retry.key)
+            configRightNavButton(R.image.ic_retry())
             indicatorView?.stopAnimating()
         } else {
             if indicatorView == nil {

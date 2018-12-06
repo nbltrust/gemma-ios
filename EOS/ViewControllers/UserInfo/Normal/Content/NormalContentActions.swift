@@ -28,7 +28,7 @@ struct SetDataAction: Action {
 enum CustomSettingType: Int {
     case language = 0
     case asset
-    case node
+    case nodeEOS
 }
 
 // MARK: - Action Creator

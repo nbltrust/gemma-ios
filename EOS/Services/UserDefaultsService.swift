@@ -39,7 +39,7 @@ extension DefaultsKeys {
 
     //通用Setting
     static let language = DefaultsKey<String>("language")            //当前语言
-    static let currentURLNode = DefaultsKey<Int>("currentURLNode")//当前EOS主网节点
+    static let currentEOSURLNode = DefaultsKey<Int>("currentEOSURLNode")//当前EOS主网节点
     static let coinUnit = DefaultsKey<Int>("coinUnit")           //货币单位
 
     //安全设置

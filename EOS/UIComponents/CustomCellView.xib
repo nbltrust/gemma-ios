@@ -15,8 +15,11 @@
                 <outlet property="arrowView" destination="wTT-mW-ZUZ" id="uoV-qg-w24"/>
                 <outlet property="iconView" destination="C8k-Zq-Ifi" id="iqR-qu-C54"/>
                 <outlet property="iconWidth" destination="qC8-BC-VIe" id="pRL-tT-ILT"/>
+                <outlet property="leftIconMagin" destination="801-2a-yg7" id="tmz-W1-8d7"/>
+                <outlet property="leftLineMagin" destination="0Ew-x5-jQW" id="MaA-J9-nhz"/>
                 <outlet property="lineView" destination="9Kh-ym-mbS" id="wvu-3S-2mP"/>
                 <outlet property="subTitleLabel" destination="8aX-eM-1aW" id="Nrf-78-cab"/>
+                <outlet property="titleGap" destination="7Jl-oT-JRY" id="rhn-hB-Oc6"/>
                 <outlet property="titleLabel" destination="uOd-X4-Phv" id="5bi-LF-BTl"/>
             </connections>
         </placeholder>
@@ -31,7 +34,7 @@
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-eM-1aW">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-eM-1aW">
                     <rect key="frame" x="35.5" y="20" width="299.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

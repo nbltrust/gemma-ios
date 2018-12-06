@@ -13,7 +13,7 @@ import ReSwift
 
 class NormalContentViewController: BaseViewController {
 
-    @IBOutlet weak var containerView: ContainerNormalCellView!
+    @IBOutlet weak var tableView: UITableView!
 
 	var coordinator: (NormalContentCoordinatorProtocol & NormalContentStateManagerProtocol)?
 
@@ -28,12 +28,20 @@ class NormalContentViewController: BaseViewController {
 
     func setupUI() {
         self.title = self.coordinator?.titleWithIndex(type)
-        self.containerView.data = self.coordinator?.settingDatas(type)
         if let coordinator = self.coordinator {
             self.selectedIndex = coordinator.selectedIndex(type)
         }
-        self.containerView.selectedIndex = selectedIndex
         configRightNavButton(R.string.localizable.normal_save.key.localized())
+
+        let customNibName = R.nib.currencyCheckCell.name
+        tableView.register(UINib.init(nibName: customNibName, bundle: nil), forCellReuseIdentifier: customNibName)
+        tableView.tableFooterView = UIView()
+    }
+
+    func reloadTable() {
+        tableView.beginUpdates()
+        tableView.reloadData()
+        tableView.endUpdates()
     }
 
     override func rightAction(_ sender: UIButton) {
@@ -41,16 +49,36 @@ class NormalContentViewController: BaseViewController {
         self.coordinator?.popVC()
     }
 
+    func titleWithIndexPath(indexPath: IndexPath) -> String? {
+        return self.coordinator?.settingDatas(type)[indexPath.row]
+    }
+
     override func configureObserveState() {
     }
 }
 
-extension NormalContentViewController {
+extension NormalContentViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 
-    @objc func selectedSetting(_ sender: [String: Any]) {
-        log.debug(sender)
-        if let index = sender["index"] as? Int {
-            self.selectedIndex = index
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return  self.coordinator?.settingDatas(type).count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellName = R.nib.currencyCheckCell.name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as? CurrencyCheckCell else {
+            return UITableViewCell()
         }
+        cell.title = titleWithIndexPath(indexPath: indexPath) ?? ""
+        cell.isChoosed = indexPath.row == selectedIndex
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.selectedIndex = indexPath.row
+        reloadTable()
     }
 }

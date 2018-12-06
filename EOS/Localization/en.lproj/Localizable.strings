@@ -202,6 +202,7 @@
 "mnemonic_title" = "助记词";
 "mnemonic_guide" = "复制粘贴助记词至输入框，或通过扫描助记词生成的二维码输入";
 "mnemonic_placeholder" = "支持BIP39助记词，用空格分开";
+"mnemonic_invalid" = "助记词格式不正确";
 "verify_mnemonic_title" = "验证助记词";
 "backup_mnemonic_title" = "备份助记词";
 "verify_mnemonic_tips" = "请按顺序点击已抄下的助记词以验证抄写是否正确。";
@@ -482,7 +483,7 @@
 
 
 // 我的
-"mine_title" = "Me";
+"mine_title" = "Setting";
 "mine_normal" = "General";
 "mine_safesetting" = "Security Settings";
 "mine_help" = "Help & Feedback";
@@ -493,6 +494,7 @@
 "normal_asset" = "Currency";
 "normal_node" = "Node";
 "normal_save" = "Save";
+"node_eos" = "EOS节点";
 
 "language_system" = "System";
 "language_cn" = "简体中文";
@@ -584,8 +586,8 @@
 "wookong_des_title" = "第一款支持EOS的蓝牙指纹硬件钱包";
 "wookong_des_click" = "点击查看更多的 WOOKONG Bio 介绍";
 "wookong_des_prepare" = "准备使用WOOKONG Bio";
-"wookong_des_first" = "1.确保手机蓝牙已开启";
-"wookong_des_second" = "2.启动WOOKONG Bio";
+"wookong_des_first" = "确保手机蓝牙已开启";
+"wookong_des_second" = "启动WOOKONG Bio";
 "start_pair" = "开始配对";
 "pair_first_step" = "请在WOOKONG Bio上按键以确认初始化";
 "pair_second_step" = "请在WOOKONG Bio上按指纹以确认初始化";
@@ -593,7 +595,7 @@
 "pair_third_step_pla" = "请输入WOOKONG Bio的密码";
 "pair_confirm_transfer" = "请在WOOKONG Bio上按键以确认转账";
 "confirm_pair" = "确认配对";
-"wookong_pas_set_title" = "设置WOOKONG Bio密码";
+"wookong_pas_set_title" = "设置密码";
 "wookong_creat_new_wallet" = "创建新钱包";
 "wookong_export_mnemonic" = "导出助记词";
 "wookong_mnemonic_ver_failed" = "验证失败";
