@@ -26,7 +26,7 @@ public struct GestureLockSetting {
 
     static let infoNormalBorderWidth: CGFloat = 1.0
 
-    static let infoHighlightedColor = UIColor.warningColor
+    static let infoHighlightedColor = UIColor.baseColor
 
     //间距比例：gap/ViewWidth
     static let infoGapRatio: CGFloat = 0.5
@@ -36,7 +36,7 @@ public struct GestureLockSetting {
 
     static let lockNormalBoderWidth: CGFloat = 1.0
 
-    static let lockHighlightedColor = UIColor.warningColor
+    static let lockHighlightedColor = UIColor.baseColor
 
     static let lockHighlightedBorderWidth: CGFloat = 2.0
 

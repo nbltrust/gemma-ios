@@ -11,7 +11,8 @@ import ReSwift
 import SwiftyUserDefaults
 
 protocol NormalCoordinatorProtocol {
-    func openContent(_ sender: Int)
+    func openContent(_ indexPath: IndexPath)
+    func pushToCurrencyListVC()
 }
 
 protocol NormalStateManagerProtocol {
@@ -35,12 +36,25 @@ class NormalCoordinator: NavCoordinator {
 }
 
 extension NormalCoordinator: NormalCoordinatorProtocol {
-    func openContent(_ sender: Int) {
-        if let vc = R.storyboard.userInfo.normalContentViewController(), let type = CustomSettingType(rawValue: sender) {
-            vc.coordinator = NormalContentCoordinator(rootVC: self.rootVC)
-            vc.type = type
-            self.rootVC.pushViewController(vc, animated: true)
+    func openContent(_ indexPath: IndexPath) {
+        if indexPath.row < 2 {
+            if let contentVC = R.storyboard.userInfo.normalContentViewController() {
+                var type = CustomSettingType.language
+                if indexPath.row == 1 {
+                    type = CustomSettingType.asset
+                }
+                contentVC.coordinator = NormalContentCoordinator(rootVC: self.rootVC)
+                contentVC.type = type
+                self.rootVC.pushViewController(contentVC, animated: true)
+            }
+        } else {
+            pushToCurrencyListVC()
         }
+    }
+
+    func pushToCurrencyListVC() {
+        let context = NormalCurrencyListContext()
+        pushVC(NormalCurrencyListCoordinator.self, animated: true, context: context)
     }
 }
 
@@ -65,8 +79,8 @@ extension NormalCoordinator: NormalStateManagerProtocol {
             return data[index]
         case .asset:
             return CoinUnitConfiguration.values[Defaults[.coinUnit]]
-        case .node:
-            return EOSBaseURLNodesConfiguration.values[Defaults[.currentURLNode]]
+        case .nodeEOS:
+            return EOSBaseURLNodesConfiguration.values[Defaults[.currentEOSURLNode]]
         }
     }
 }

@@ -12,17 +12,12 @@ import RxCocoa
 import ReSwift
 
 class NormalViewController: BaseViewController {
-    @IBOutlet weak var languageCell: NormalCellView!
-
-    @IBOutlet weak var coinUnitCell: NormalCellView!
-
-    @IBOutlet weak var nodeCell: NormalCellView!
+    @IBOutlet weak var tableView: UITableView!
 
     var coordinator: (NormalCoordinatorProtocol & NormalStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewSize()
         setupUI()
     }
 
@@ -36,26 +31,41 @@ class NormalViewController: BaseViewController {
     }
 
     func relload() {
-        setupUI()
-        languageCell.reload()
-        coinUnitCell.reload()
-        nodeCell.reload()
+        self.title = R.string.localizable.mine_normal.key.localized()
+        tableView.reloadData()
     }
 
     func setupUI() {
         self.title = R.string.localizable.mine_normal.key.localized()
-        languageCell.content.text = self.coordinator?.contentWithSender(CustomSettingType.language)
-        coinUnitCell.content.text = self.coordinator?.contentWithSender(CustomSettingType.asset)
-        nodeCell.content.text = self.coordinator?.contentWithSender(CustomSettingType.node)
+        let customNibName = R.nib.customCell.name
+        tableView.register(UINib.init(nibName: customNibName, bundle: nil), forCellReuseIdentifier: customNibName)
+        tableView.tableFooterView = UIView.init()
     }
 
-    func setupViewSize () {
-        languageCell.content.font = UIFont.systemFont(ofSize: 14)
-        languageCell.content.textColor = Color.subTitleColor
-        coinUnitCell.content.font = UIFont.systemFont(ofSize: 14)
-        coinUnitCell.content.textColor = Color.subTitleColor
-        nodeCell.content.font = UIFont.systemFont(ofSize: 14)
-        nodeCell.content.textColor = Color.subTitleColor
+    func titleWithIndexPath(indexPath: IndexPath) -> String? {
+        switch indexPath.row {
+        case 0:
+            return R.string.localizable.normal_language.key.localized()
+        case 1:
+            return R.string.localizable.normal_asset.key.localized()
+        case 2:
+            return R.string.localizable.normal_node.key.localized()
+        default:
+            return nil
+        }
+    }
+
+    func subTitleWithIndexPath(indexPath: IndexPath) -> String? {
+        switch indexPath.row {
+        case 0:
+            return self.coordinator?.contentWithSender(CustomSettingType.language)
+        case 1:
+            return self.coordinator?.contentWithSender(CustomSettingType.asset)
+        case 2:
+            return ""
+        default:
+            return nil
+        }
     }
 
     override func configureObserveState() {
@@ -63,9 +73,28 @@ class NormalViewController: BaseViewController {
     }
 }
 
-extension NormalViewController {
-    @objc func clickCellView(_ sender: [String: Any]) {
-        guard let index = sender["index"] as? Int else { return }
-        self.coordinator?.openContent(index)
+extension NormalViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let customNibName = R.nib.customCell.name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: customNibName, for: indexPath) as? CustomCell else {
+            return UITableViewCell()
+        }
+        cell.title = titleWithIndexPath(indexPath: indexPath) ?? ""
+        cell.subTitle = subTitleWithIndexPath(indexPath: indexPath) ?? ""
+        cell.cellView.lineViewAlignment = .toTitle
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.coordinator?.openContent(indexPath)
     }
 }

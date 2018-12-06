@@ -21,7 +21,6 @@ class CurrencyListViewController: BaseViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupData()
         setupUI()
         setupEvent()

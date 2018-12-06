@@ -66,7 +66,7 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
             data = configuration.keys
         case .asset:
             data = CoinUnitConfiguration.values
-        case .node:
+        case .nodeEOS:
             data = EOSBaseURLNodesConfiguration.values
         }
         return data
@@ -79,8 +79,8 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
             return configuration.indexWithValue(Defaults[.language])
         case .asset:
             return Defaults[.coinUnit]
-        case .node:
-            return Defaults[.currentURLNode]
+        case .nodeEOS:
+            return Defaults[.currentEOSURLNode]
         }
     }
 
@@ -98,8 +98,8 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
             }
         case .asset:
             Defaults[.coinUnit] = index
-        case .node:
-            Defaults[.currentURLNode] = index
+        case .nodeEOS:
+            Defaults[.currentEOSURLNode] = index
         }
     }
 
@@ -109,7 +109,7 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
             return R.string.localizable.normal_language.key.localized()
         case .asset:
             return R.string.localizable.normal_asset.key.localized()
-        case .node:
+        case .nodeEOS:
             return R.string.localizable.normal_node.key.localized()
         }
     }

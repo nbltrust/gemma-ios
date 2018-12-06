@@ -51,7 +51,7 @@ struct NetworkConfiguration {
     static let EOSIOCanadaTestURL = URL(string: "http://mainnet.eoscanada.com")!
     var EOSIOBaseURL: URL {
         get {
-            var index = Defaults[.currentURLNode]
+            var index = Defaults[.currentEOSURLNode]
             let urls = EOSBaseURLNodesConfiguration.values
             if index < 0 || index >= urls.count {
                 index = 0
@@ -61,7 +61,7 @@ struct NetworkConfiguration {
     }
     var EOSIOOtherBaseURL: URL {
         get {
-            let index = Defaults[.currentURLNode]
+            let index = Defaults[.currentEOSURLNode]
             var urls = EOSBaseURLNodesConfiguration.values
             if index >= 0 && index < urls.count {
                 urls.remove(at: index)
@@ -182,9 +182,9 @@ struct Unit {
 }
 
 struct SupportCurrency {
-    static let data: [CurrencyType] = [CurrencyType.EOS, CurrencyType.ETH]
+    static let data: [CurrencyType] = [CurrencyType.EOS]
 }
 
 struct BLTSupportCurrency {
-    static let data: [CurrencyType] = [CurrencyType.EOS, CurrencyType.ETH]
+    static let data: [CurrencyType] = [CurrencyType.EOS]
 }

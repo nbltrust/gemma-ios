@@ -16,6 +16,20 @@ class WalletViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    lazy var tableHeadView: TableTitleHeadView = {
+        let headView = TableTitleHeadView.init(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 54))
+        headView.title = R.string.localizable.tabbarWallet.key.localized()
+        return headView
+    }()
+
+    lazy var navTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = R.string.localizable.tabbarWallet.key.localized()
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.textColor = UIColor.baseColor
+        return label
+    }()
+
     var coordinator: (WalletCoordinatorProtocol & WalletStateManagerProtocol)?
 
 	override func viewDidLoad() {
@@ -38,7 +52,11 @@ class WalletViewController: BaseViewController {
     }
 
     func setupUI() {
-        self.title = R.string.localizable.tabbarWallet.key.localized()
+        self.navigationItem.titleView?.isHidden = true
+
+        self.navigationItem.titleView = navTitleLabel
+
+        tableView.tableHeaderView = tableHeadView
 
         let walletNibString = R.nib.customCell.name
         tableView.register(UINib.init(nibName: walletNibString, bundle: nil), forCellReuseIdentifier: walletNibString)
@@ -85,6 +103,17 @@ class WalletViewController: BaseViewController {
             }
         }
         return ""
+    }
+}
+
+extension WalletViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = 41
+        if scrollView.contentOffset.y > offsetY.cgFloat {
+            self.navigationItem.titleView?.isHidden = false
+        } else {
+            self.navigationItem.titleView?.isHidden = true
+        }
     }
 }
 

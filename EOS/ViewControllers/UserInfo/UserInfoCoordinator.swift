@@ -15,7 +15,6 @@ protocol UserInfoCoordinatorProtocol {
     func dismissVC()
     func openNormalSetting()
     func openSafeSetting()
-//    func openHelpSetting(delegate:Any)
     func openServersSetting()
     func openAboutSetting()
     func openHelpSetting()
