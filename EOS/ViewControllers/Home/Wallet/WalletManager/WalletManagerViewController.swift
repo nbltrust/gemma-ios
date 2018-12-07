@@ -26,6 +26,11 @@ class WalletManagerViewController: BaseViewController {
         reloadFootView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadTable()
+    }
+
     func setUpUI() {
         self.title = R.string.localizable.manager_wallet.key.localized()
 
@@ -39,8 +44,12 @@ class WalletManagerViewController: BaseViewController {
         tableView.register(UINib.init(nibName: wookongNibName, bundle: nil), forCellReuseIdentifier: wookongNibName)
     }
 
-    func reloadUI() {
+    func reloadTable() {
         tableView.reloadData()
+    }
+
+    func reloadUI() {
+        reloadTable()
         reloadFootView()
     }
 

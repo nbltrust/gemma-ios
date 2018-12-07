@@ -26,10 +26,15 @@ class WalletListViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        reloadTable()
     }
 
     override func refreshViewController() {
 
+    }
+
+    func reloadTable() {
+        walletListTable.reloadData()
     }
 
     func setupUI() {
