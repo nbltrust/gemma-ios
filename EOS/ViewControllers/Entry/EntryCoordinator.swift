@@ -305,12 +305,12 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             let pubkey = EOSIO.getPublicKey(prikey)
             let currency = Currency(id: nil, type: .EOS, cipher: curCipher!, pubKey: pubkey!, wid: idNum, date: date, address: nil)
 
-            let prikey2 = Seed39DeriveRaw(seed, CurrencyType.ETH.derivationPath)
-            let curCipher2 = Seed39KeyEncrypt(pwd, prikey2)
-            let address = Seed39GetEthereumAddressFromPrivateKey(prikey2)
-            let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: nil, wid: idNum, date: date, address: address)
+//            let prikey2 = Seed39DeriveRaw(seed, CurrencyType.ETH.derivationPath)
+//            let curCipher2 = Seed39KeyEncrypt(pwd, prikey2)
+//            let address = Seed39GetEthereumAddressFromPrivateKey(prikey2)
+//            let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: nil, wid: idNum, date: date, address: address)
 
-            let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
+            let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency])
             if let id = id {
                 Defaults[.currentWalletID] = id.string
             }

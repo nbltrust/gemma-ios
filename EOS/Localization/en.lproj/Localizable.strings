@@ -270,7 +270,12 @@
 "input_transfer_money" = "输入转账金额，最多%d位小数";
 "resource_detail_tips" = "WOOKONG Bio 暂不支持资源抵押或买卖RAM，若要进行此类操作请使用其他账户为该账户抵押资源或买卖RAM。";
 "active_title_highlight" = "并须将以下文字作为备注\\(memo\\)";
-
+"send_done" = "已发送";
+"accept_done" = "已接收";
+"send_fail" = "发送失败";
+"accept_fail" = "接收失败";
+"send_pending" = "发送中...";
+"accept_pending" = "接收中...";
 //zsy end
 
 //eos errorcode start

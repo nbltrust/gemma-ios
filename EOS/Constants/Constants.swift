@@ -122,18 +122,13 @@ enum CoinType: Int {
 //Node Datas
 struct EOSBaseURLNodesConfiguration {
     static let values = [
-        "http://47.75.154.248:50003",
-        "http://139.196.73.117:8888",
-                         "http://52.77.177.200:8888",
-                         "http://api-mainnet.starteos.io",
-                         "https://api.eosnewyork.io",
-                         "https://eos.greymass.com",
-                         "https://api-direct.eosasia.one",
-                         "https://api-mainnet.eosgravity.com",
-                         "https://api.helloeos.com.cn",
-                         "https://api.hkeos.com",
-                         "https://nodes.eos42.io",
-                         "https://api.cypherglass.com"]
+                "http://47.75.154.248:50003",
+        "https://api.helloeos.com.cn",
+        "http://api-mainnet.starteos.io",
+        "https://eos.greymass.com",
+        "https://api-mainnet.eosgravity.com",
+        "https://api.hkeos.com",
+        "https://eos-node-wookong.cybex.io"]
 }
 
 struct EOSIOContract {

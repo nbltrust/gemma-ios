@@ -9,6 +9,8 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
+import SwiftyUserDefaults
+import SwiftDate
 
 protocol AssetDetailCoordinatorProtocol {
     func pushResourceDetailVC()
@@ -112,7 +114,6 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
         NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: 10, lastPosition: state.lastPos, symbol: symbol, contract: contract), success: { (data) in
             let transactions = data["trace_list"].arrayValue
 
-
             if let payments = transactions.map({ (json) in
                 Payment.deserialize(from: json.dictionaryObject)
             }) as? [Payment] {
@@ -121,7 +122,18 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
                     if let libStr = lib {
                         for payment in payments {
                             EOSIONetwork.request(target: .getTransaction(id: payment.trxId), success: { (block) in
-                                print(block)
+                                if let errorcode = block["errno"].stringValue as? String, errorcode == "0" {
+                                    if let data = GetTransaction.deserialize(from: block["data"].dictionaryObject) {
+                                        let blocknum = data.blockNum
+                                        self.store.dispatch(GetBlockNumAction(blockNum: blocknum, libNum: libStr, trxId: payment.trxId, status: nil))
+                                    }
+                                } else if let errorcode = block["errno"].stringValue as? String, errorcode == "3040011" {
+                                    let time = block["timestamp"].stringValue.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", region: Region.ISO)!
+                                    let currentTime = Date().string().toDate("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", region: Region.ISO)!
+                                    if currentTime > time {
+                                        self.store.dispatch(GetBlockNumAction(blockNum: nil, libNum: libStr, trxId: payment.trxId, status: .fail))
+                                    }
+                                }
                             }, error: { (_) in
                             }, failure: { (_) in
                             })
@@ -129,7 +141,6 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
                     }
                 })
             }
-
             completion(true)
         }, error: { (code) in
 

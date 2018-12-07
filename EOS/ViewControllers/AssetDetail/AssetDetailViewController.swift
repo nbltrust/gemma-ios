@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import SwiftyUserDefaults
 
 class AssetDetailViewController: BaseViewController {
 
@@ -31,6 +32,10 @@ class AssetDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         popGesture = false
+        if let refresh = Defaults["assetdetailnotneedrefresh"] as? Bool, refresh == true {
+            Defaults["assetdetailnotneedrefresh"] = false
+            return
+        }
         refreshData()
     }
     
@@ -61,7 +66,7 @@ class AssetDetailViewController: BaseViewController {
             guard let `self` = self else {return}
             self.coordinator?.getDataFromServer(CurrencyManager.shared.getCurrentAccountName(), symbol: self.symbol, contract: self.contract, completion: {[weak self] (success) in
                 guard let `self` = self else {return}
-
+                completion?()
                 if success {
                     self.data.removeAll()
 
@@ -70,7 +75,6 @@ class AssetDetailViewController: BaseViewController {
                     } else {
                         self.isNoMoreData = false
                     }
-                    completion?()
                     self.data = (self.coordinator?.state.data)!
                     self.contentView.adapterModelToAssetDetailView(self.data)
                 } else {
@@ -129,10 +133,7 @@ class AssetDetailViewController: BaseViewController {
         } else {
             self.coordinator?.getAccountInfo(CurrencyManager.shared.getCurrentAccountName())
         }
-
-        
     }
-    
     override func configureObserveState() {
         self.coordinator?.state.context.asObservable().subscribe(onNext: { [weak self] (context) in
             guard let `self` = self else { return }
@@ -161,6 +162,12 @@ class AssetDetailViewController: BaseViewController {
             } else {
                 self.contentView.buttonView.isHidden = false
                 self.contentView.buttonViewHeight.constant = 49
+            }
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        self.coordinator?.state.statusInfo.asObservable().subscribe(onNext: {[weak self] (model) in
+            guard let `self` = self else { return }
+            if let newModel = model {
+                self.contentView.adapterModelToAssetDetailView(newModel)
             }
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
 //        self.coordinator?.state.pageState.asObservable().distinctUntilChanged().subscribe(onNext: {[weak self] (state) in
