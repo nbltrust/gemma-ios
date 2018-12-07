@@ -185,7 +185,11 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
             let currencies = CurrencyManager.shared.getAllCurrencys(wallet)
             for currency in currencies {
                 if currency.type == .EOS {
-                    if let currencyId = currency.id, CurrencyManager.shared.getActived(currencyId) == .actived {
+                    if let currencyId = currency.id {
+                        if CurrencyManager.shared.getActived(currencyId) == .doActive {
+                            complecation()
+                            return
+                        }
                         CurrencyManager.shared.getEOSAccountNames(currency.pubKey ?? "", completion: { (result, accounts) in
                             if result {
                                 if accounts.count > 0 {
@@ -206,11 +210,7 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
                             }
                             complecation()
                         })
-                    } else {
-                        complecation()
                     }
-                } else {
-                    complecation()
                 }
             }
         }

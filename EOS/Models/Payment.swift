@@ -48,3 +48,13 @@ struct Payment: HandyJSON {
 
     init() {}
 }
+
+struct GetTransaction: HandyJSON {
+    var blockNum: String!
+
+    mutating func mapping(mapper: HelpingMapper) {
+        mapper <<< self.blockNum <-- "block_num"
+    }
+
+    init() {}
+}

@@ -30,19 +30,9 @@ enum EOSIOService {
     case getTransaction(id: String)
 }
 
-func EOSDefaultManager() -> Alamofire.SessionManager {
-    let configuration = URLSessionConfiguration.default
-    configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-    configuration.timeoutIntervalForRequest = 15
-
-    let manager = Alamofire.SessionManager(configuration: configuration)
-    manager.startRequestsImmediately = false
-    return manager
-}
-
 struct EOSIONetwork {
     static let provider = MoyaProvider<EOSIOService>(callbackQueue: nil,
-                                                     manager: EOSDefaultManager(),
+                                                     manager: defaultManager(),
                                                      plugins: [NetworkLoggerPlugin(verbose: true), DataCachePlugin()],
                                                      trackInflights: false)
 
@@ -56,9 +46,9 @@ struct EOSIONetwork {
         var fetchedCache = fetchedCache
         switch target {
         case .getAccount:
-            fetchedCache = false
+            fetchedCache = true
         case .getCurrencyBalance:
-            fetchedCache = false
+            fetchedCache = true
         default:
             fetchedCache = false
         }

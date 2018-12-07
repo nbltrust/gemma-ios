@@ -36,7 +36,7 @@ struct PaymentsRecordsViewModel {
     var time: String = ""
     var transferState: String = ""
     var money: String = ""
-    var transferStateBool: Bool = true
+    var transferStateBool: TransferStatus = .fail
     var block: Int = 0
     var memo: String = ""
     var hashNumber: String = ""

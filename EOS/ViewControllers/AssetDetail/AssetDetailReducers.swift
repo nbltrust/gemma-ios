@@ -8,6 +8,7 @@
 
 import UIKit
 import ReSwift
+import SwiftyUserDefaults
 
 func gAssetDetailReducer(action:Action, state:AssetDetailState?) -> AssetDetailState {
     var state = state ?? AssetDetailState()
@@ -52,18 +53,83 @@ func gAssetDetailReducer(action:Action, state:AssetDetailState?) -> AssetDetailS
         if let model = convertViewModelWithTokens(tokensJson: action.data, symbol: action.symbol) {
             state.info.accept(model)
         }
+    case let action as GetBlockNumAction:
+        if let data = state.data {
+            if let newData = changeStatus(action: action, data: data) {
+                state.data = newData
+                state.statusInfo.accept(newData)
+            }
+        }
     default:
         break
     }
-        
     return state
+}
+
+func changeStatus(action: GetBlockNumAction, data: [(String, [PaymentsRecordsViewModel])]) -> [(String, [PaymentsRecordsViewModel])]? {
+    var blockStr = ""
+    var libStr = ""
+    if let status = Defaults[action.trxId] as? TransferStatus, status == .success { return nil }
+    if let status = Defaults[action.trxId] as? TransferStatus, status == .fail { return nil }
+    if action.status == .fail {
+        Defaults[action.trxId] = TransferStatus.fail.rawValue
+    } else {
+        if let block = action.blockNum as? String, let lib = action.libNum as? String {
+            blockStr = block
+            libStr = lib
+            if block.toDecimal()! > lib.toDecimal()! {
+                Defaults[action.trxId] = TransferStatus.pending.rawValue
+            } else {
+                Defaults[action.trxId] = TransferStatus.success.rawValue
+            }
+        }
+    }
+    var newData = data
+    for index in 0..<data.count {
+        var tuple = data[index]
+        for index2 in 0..<tuple.1.count {
+            let model = tuple.1[index2]
+            if model.hash == action.trxId {
+                var newModel = model
+                if let statusInt = Defaults[action.trxId] as? Int, let status = TransferStatus(rawValue: statusInt) {
+                    newModel.transferStateBool = status
+                    switch status {
+                    case .fail:
+                        newModel.transferState = newModel.isSend ? R.string.localizable.send_fail.key.localized() : R.string.localizable.accept_fail.key.localized()
+                    case .success:
+                        newModel.transferState = newModel.isSend ? R.string.localizable.send_done.key.localized() : R.string.localizable.accept_done.key.localized()
+                    case .pending:
+                        var dValue = blockStr.toDecimal()! - libStr.toDecimal()!
+                        if dValue > 325 {
+                            dValue = 325
+                        }
+                        let percent = (1 - dValue/325)*100
+                        let percentStr = percent.string(digits: 0)
+                        let sendStr = R.string.localizable.send_pending.key.localized() + "\(percentStr)%"
+                        let acceptStr = R.string.localizable.accept_pending.key.localized() + "\(percentStr)%"
+                        newModel.transferState = newModel.isSend ? sendStr : acceptStr
+                    }
+                    Defaults[action.trxId + "\(newModel.isSend)transferState"] = newModel.transferState
+                }
+                tuple.1.remove(at: index2)
+                tuple.1.insert(newModel, at: index2)
+                newData.remove(at: index)
+                newData.insert((tuple.0, tuple.1), at: index)
+                return newData
+            }
+        }
+    }
+    return nil
 }
 
 func convertTransferViewModel(data: [Payment], tupleArray: [(String, [PaymentsRecordsViewModel])]?) -> [(String, [PaymentsRecordsViewModel])] {
     var newtupleArray = tupleArray
     for payment in data {
         let isSend: Bool = payment.sender == CurrencyManager.shared.getCurrentAccountName()
-        let state: Bool = true//payment.status.rawValue == 3
+        var state: TransferStatus = .fail
+        if let statusInt = Defaults[payment.trxId] as? Int, let status = TransferStatus(rawValue: statusInt) {
+            state = status
+        }
         let stateImage: UIImage? = isSend ? R.image.icTabPay() : R.image.icTabIncomeDeepBlue()
 
         var receiver = ""
@@ -76,7 +142,10 @@ func convertTransferViewModel(data: [Payment], tupleArray: [(String, [PaymentsRe
         }
         let address = isSend ? receiver : sender
         let time = payment.timestamp.string(withFormat: "MM-dd yyyy")
-        let transferState = isSend ? "已发送" : "已接收"
+        var transferState = ""
+        if let transferStateStr = Defaults[payment.trxId + "\(isSend)transferState"] as? String {
+            transferState = transferStateStr
+        }
         let money = isSend ? "-" + payment.quantity : "+" + payment.quantity
 
         var isContain = false
