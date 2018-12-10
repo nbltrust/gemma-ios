@@ -20,6 +20,10 @@ typedef enum : NSUInteger {
 
 @property (nonatomic,strong) BatteryInfoUpdated batteryInfoUpdated;
 
+@property (nonatomic,strong) PowerButtonPressed powerButtonPressed;
+
+@property (nonatomic,strong) PowerButtonFailed powerButtonFailed;
+
 @property (nonatomic,strong) BLTBatteryInfo *batteryInfo;
 
 @property (nonatomic,strong) BLTDevice *selectDevice;
@@ -31,6 +35,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) BOOL abortBtnState;
 
 @property (nonatomic, strong) NSCondition *abortCondition;
+
+@property (nonatomic, assign) BOOL abortButtonFlag;
 
 @property (nonatomic, copy) void(^abortHandelBlock)(BOOL abortState);
 
@@ -58,7 +64,9 @@ typedef enum : NSUInteger {
 - (NSString *)ret15bitString;
 
 #pragma mark Init
-- (void)initPin:(NSString *)pin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+- (void)initPin:(NSString *)pin failed:(FailedComplication)failedCompliction;
+
+- (void)cancelWaitingPowerButtonPressed;
 
 #pragma mark Seed
 - (void)getSeed:(GetSeedsComplication)successComlication failed:(FailedComplication)failedCompliction;

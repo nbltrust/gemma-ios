@@ -125,7 +125,7 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
     func createWookongBioWallet(_ hint: String,
                                 success: @escaping SuccessedComplication,
                                 failed: @escaping FailedComplication) {
-        importWookongBioWallet(hint, success: success, failed: failed)
+        importWookongBioWallet(self.rootVC, hint: hint, success: success, failed: failed)
     }
 
     func verifyMnemonicWord(_ data: [String: Any], seeds: [String], checkStr: String, isWookong: Bool) {
@@ -133,7 +133,6 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
             if selectValues.count == seeds.count {
                 let isValid = validSequence(seeds, compairDatas: selectValues)
                 if isValid == true {
-//                    showSuccessTop(R.string.localizable.wookong_mnemonic_ver_successed.key.localized())
                     if isWookong {
                         self.rootVC.topViewController?.startLoadingOnSelf(false, message: "")
                         checkSeed(checkStr, success: { [weak self] in

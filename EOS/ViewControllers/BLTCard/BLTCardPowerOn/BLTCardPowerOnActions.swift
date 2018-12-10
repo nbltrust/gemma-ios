@@ -13,8 +13,8 @@ import SwiftyJSON
 import HandyJSON
 
 struct BLTCardPowerOnContext: RouteContext, HandyJSON {
-    init() {}
-
+    var powerButtonPressed: CompletionCallback?
+    var actionRetry: CompletionCallback?
 }
 
 // MARK: - State

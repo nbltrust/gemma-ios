@@ -91,6 +91,37 @@ func confirmFP(_ rootVC: UINavigationController, complication: @escaping Success
     }
 }
 
+func waitPowerOn(_ rootVC: UINavigationController, retry: @escaping CompletionCallback, complication: @escaping SuccessedComplication) {
+    let width = ModalSize.full
+
+    let height: Float = 338.0
+    let centerHeight = UIScreen.main.bounds.height - height.cgFloat
+    let heightSize = ModalSize.custom(size: height)
+
+    let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: centerHeight))
+    let customType = PresentationType.custom(width: width, height: heightSize, center: center)
+
+    let presenter = Presentr(presentationType: customType)
+    presenter.keyboardTranslationType = .stickToTop
+    presenter.dismissOnTap = false
+
+    var context = BLTCardPowerOnContext()
+    context.powerButtonPressed = {()
+        complication()
+    }
+    context.actionRetry = {()
+        retry()
+    }
+
+    if let powerVC = R.storyboard.bltCard.bltCardPowerOnViewController() {
+        let nav = BaseNavigationController.init(rootViewController: powerVC)
+        let coordinator = BLTCardPowerOnCoordinator(rootVC: nav)
+        powerVC.coordinator = coordinator
+        coordinator.store.dispatch(RouteContextAction(context: context))
+        rootVC.customPresentViewController(presenter, viewController: nav, animated: true)
+    }
+}
+
 func presentFingerPrinterSetVC() {
     
 }
@@ -122,28 +153,26 @@ func selectBLTInitType(_ rootVC: UINavigationController, isCreateCallBack: @esca
     }
 }
 
-func importWookongBioWallet(_ hint: String,
+func importWookongBioWallet(_ rootVC: UINavigationController,
+                            hint: String,
                             success: @escaping SuccessedComplication,
                             failed: @escaping FailedComplication) {
-    do {
-        let date = Date.init()
-        let wallet = Wallet(id: nil, name: WalletManager.shared.bltWalletName(), type: .bluetooth, cipher: "", deviceName: BLTWalletIO.shareInstance()?.selectDevice.name, date: date, hint: hint)
-        if let walletId =  try WalletCacheService.shared.insertWallet(wallet: wallet) {
-            BLTWalletIO.shareInstance()?.getPubKey({ (pubkey, pubkeySign) in
-                let currency = Currency(id: nil, type: .EOS, cipher: "", pubKey: pubkey, wid: walletId, date: date, address: nil)
-                saveCurrency(currency)
-                Defaults[.currentWalletID] = walletId.string
-                success()
-                }, failed: failed)
-        }
-    } catch {
-        failed(R.string.localizable.prompt_create_failed.key.localized())
-    }
+    let date = Date.init()
+    let wallet = Wallet(id: nil, name: WalletManager.shared.bltWalletName(), type: .bluetooth, cipher: "", deviceName: BLTWalletIO.shareInstance()?.selectDevice.name, date: date, hint: hint)
+    var currencies: [Currency] = []
+    BLTWalletIO.shareInstance()?.getPubKey({ (pubkey, pubkeySign) in
+        let currency = Currency(id: nil, type: .EOS, cipher: "", pubKey: pubkey, wid: 0, date: date, address: nil)
+        currencies.append(currency)
+        createWallet(wallet, currencies: currencies)
+        success()
+    }, failed: failed)
 }
 
-func saveCurrency(_ currency: Currency) {
+func createWallet(_ wallet: Wallet, currencies: [Currency]) {
     do {
-        let _ = try WalletCacheService.shared.insertCurrency(currency)
+        if let walletId = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: currencies) {
+            Defaults[.currentWalletID] = walletId.string
+        }
     } catch {}
 }
 

@@ -14,12 +14,16 @@ protocol BLTCardPowerOnCoordinatorProtocol {
     func dismissVC()
 
     func popVC()
+
+    func handleVCChange()
 }
 
 protocol BLTCardPowerOnStateManagerProtocol {
     var state: BLTCardPowerOnState { get }
 
     func switchPageState(_ state: PageState)
+
+    func cancelWaitPowerButtonPress()
 }
 
 class BLTCardPowerOnCoordinator: NavCoordinator {
@@ -56,6 +60,13 @@ extension BLTCardPowerOnCoordinator: BLTCardPowerOnCoordinatorProtocol {
         self.rootVC.popViewController(animated: true, nil)
     }
 
+    func handleVCChange() {
+        if self.rootVC.viewControllers.count == 1 {
+            self.dismissVC()
+        } else {
+            self.popVC()
+        }
+    }
 }
 
 extension BLTCardPowerOnCoordinator: BLTCardPowerOnStateManagerProtocol {
@@ -63,5 +74,9 @@ extension BLTCardPowerOnCoordinator: BLTCardPowerOnStateManagerProtocol {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
         }
+    }
+
+    func cancelWaitPowerButtonPress() {
+        BLTWalletIO.shareInstance()?.cancelWaitingPowerButtonPressed()
     }
 }

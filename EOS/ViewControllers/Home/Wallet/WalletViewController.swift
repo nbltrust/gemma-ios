@@ -144,10 +144,7 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 1 && indexPath.row == 2 {
-            return UITableView.automaticDimension
-        }
-        return 56
+        return UITableView.automaticDimension
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -178,6 +175,7 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
             }
             cell.title = titleForIndexPath(indexPath)
             cell.subTitle = subTitleForIndexpath(indexPath)
+            cell.cellView.verMagin = 22.5
             return cell
         }
     }

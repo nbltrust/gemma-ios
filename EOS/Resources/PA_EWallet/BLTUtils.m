@@ -258,10 +258,10 @@
 + (BLTCardPINState)pinStateWithDevInfo:(PAEW_DevInfo)info {
     if (info.ucPINState == PAEW_DEV_INFO_PIN_UNSET) {
         return unInit;
-    } else if (info.ucPINState != PAEW_DEV_INFO_PIN_INVALID_STATE && info.ucLifeCycle == PAEW_DEV_INFO_LIFECYCLE_PRODUCE) {
-        return finishInit;
-    } else if (info.ucPINState != PAEW_DEV_INFO_PIN_INVALID_STATE && info.ucLifeCycle == PAEW_DEV_INFO_LIFECYCLE_USER) {
+    } else if (info.ucPINState != PAEW_DEV_INFO_PIN_INVALID_STATE && (info.ucLifeCycle == PAEW_DEV_INFO_LIFECYCLE_AGREE || info.ucLifeCycle == PAEW_DEV_INFO_LIFECYCLE_PRODUCE)) {
         return unFinishInit;
+    } else if (info.ucPINState != PAEW_DEV_INFO_PIN_INVALID_STATE && info.ucLifeCycle == PAEW_DEV_INFO_LIFECYCLE_USER) {
+        return finishInit;
     }
     return unInit;
 }

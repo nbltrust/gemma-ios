@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomCellView">
             <connections>
                 <outlet property="arrowView" destination="wTT-mW-ZUZ" id="uoV-qg-w24"/>
+                <outlet property="bottomMagin" destination="fka-ZH-AhM" id="IQd-Mr-jeE"/>
                 <outlet property="iconView" destination="C8k-Zq-Ifi" id="iqR-qu-C54"/>
                 <outlet property="iconWidth" destination="qC8-BC-VIe" id="pRL-tT-ILT"/>
                 <outlet property="leftIconMagin" destination="801-2a-yg7" id="tmz-W1-8d7"/>
@@ -21,6 +22,7 @@
                 <outlet property="subTitleLabel" destination="8aX-eM-1aW" id="Nrf-78-cab"/>
                 <outlet property="titleGap" destination="7Jl-oT-JRY" id="rhn-hB-Oc6"/>
                 <outlet property="titleLabel" destination="uOd-X4-Phv" id="5bi-LF-BTl"/>
+                <outlet property="topMagin" destination="h4b-g0-o2X" id="l5D-IN-ufN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -65,9 +67,9 @@
             <constraints>
                 <constraint firstItem="9Kh-ym-mbS" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="20" id="0Ew-x5-jQW"/>
                 <constraint firstItem="Lhl-p8-24W" firstAttribute="trailing" secondItem="9Kh-ym-mbS" secondAttribute="trailing" constant="20" id="0pw-tb-MSZ"/>
-                <constraint firstItem="8aX-eM-1aW" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" constant="20" id="6MN-k2-CGH"/>
                 <constraint firstItem="8aX-eM-1aW" firstAttribute="leading" secondItem="uOd-X4-Phv" secondAttribute="trailing" id="7Jl-oT-JRY"/>
                 <constraint firstItem="C8k-Zq-Ifi" firstAttribute="leading" secondItem="Lhl-p8-24W" secondAttribute="leading" constant="20" id="801-2a-yg7"/>
+                <constraint firstItem="8aX-eM-1aW" firstAttribute="centerY" secondItem="uOd-X4-Phv" secondAttribute="centerY" id="BEv-we-EqL"/>
                 <constraint firstItem="uOd-X4-Phv" firstAttribute="leading" secondItem="C8k-Zq-Ifi" secondAttribute="trailing" id="NdU-RL-1iO"/>
                 <constraint firstItem="9Kh-ym-mbS" firstAttribute="top" secondItem="uOd-X4-Phv" secondAttribute="bottom" constant="20" id="fka-ZH-AhM"/>
                 <constraint firstItem="uOd-X4-Phv" firstAttribute="top" secondItem="Lhl-p8-24W" secondAttribute="top" constant="20" id="h4b-g0-o2X"/>

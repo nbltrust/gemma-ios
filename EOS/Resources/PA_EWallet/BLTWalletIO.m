@@ -102,6 +102,35 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     return 0;
 }
 
+int PutState_Callback(void * const pCallbackContext, const int nState)
+{
+    if (nState == PAEW_RET_SUCCESS) {
+        if (_instance.powerButtonPressed != nil) {
+            _instance.powerButtonPressed();
+        }
+    }
+    //here is a good place to canel sign function
+    if (_instance.abortButtonFlag) {
+        [_instance.abortCondition lock];
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            int devIdx = 0;
+            void *ppPAEWContext = savedDevH;
+            int iRtn = PAEW_RET_UNKNOWN_FAIL;
+
+            _instance.abortButtonFlag = NO;
+            [_instance.abortCondition lock];
+            iRtn = PAEW_AbortButton(ppPAEWContext, devIdx);
+            [_instance.abortCondition signal];
+            [_instance.abortCondition unlock];
+        });
+        [_instance.abortCondition wait];
+        [_instance.abortCondition unlock];
+        _instance.abortButtonFlag = NO;
+    }
+    return 0;
+}
+
 +(instancetype) shareInstance
 {
     static dispatch_once_t onceToken ;
@@ -122,6 +151,15 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     }
     return self;
 }
+
+- (NSCondition *)abortCondition
+{
+    if (!_abortCondition) {
+        _abortCondition = [[NSCondition alloc] init];
+    }
+    return _abortCondition;
+}
+
 
 #pragma mark HeartBeat
 - (void)startHeartBeat {
@@ -174,7 +212,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     additional.disconnectedCallback = DisconnectedCallback;
     __block void *ppPAEWContext = 0;
     dispatch_async(bltQueue, ^{
-        int connectDev = PAEW_InitContextWithDevNameAndDevContext(&ppPAEWContext, szDeviceName, PAEW_DEV_TYPE_BT, &additional, sizeof(additional), 0x00, 0x00);
+        int connectDev = PAEW_InitContextWithDevNameAndDevContext(&ppPAEWContext, szDeviceName, PAEW_DEV_TYPE_BT, &additional, sizeof(additional));
         if (ppPAEWContext) {
             savedDevH = ppPAEWContext;
         }
@@ -229,7 +267,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         void *ppPAEWContext = savedDevH;
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
 
-        iRtn = PAEW_Format(ppPAEWContext, devIdx);
+        iRtn = PAEW_Format_Ex(ppPAEWContext, devIdx, PutState_Callback, NULL);
         if (iRtn != PAEW_RET_SUCCESS) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failedCompliction([BLTUtils errorCodeToString:iRtn]);
@@ -238,6 +276,9 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 successComlication();
+                if (self.powerButtonFailed != nil) {
+                    self.powerButtonFailed();
+                }
             });
         }
     });
@@ -306,22 +347,28 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
 }
 
 #pragma mark Init
-- (void)initPin:(NSString *)pin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+- (void)initPin:(NSString *)pin failed:(FailedComplication)failedCompliction {
     if (!savedDevH) {
         return;
     }
     dispatch_async(bltQueue, ^{
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
-        int initState = PAEW_InitPIN(ppPAEWContext, devIdx, [pin UTF8String]);
+        self.abortButtonFlag = NO;
+        int initState = PAEW_InitPIN_Ex(ppPAEWContext, devIdx, [pin UTF8String], PutState_Callback, NULL);
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (initState == PAEW_RET_SUCCESS) {
-                successComlication();
-            } else {
+            if (initState != PAEW_RET_SUCCESS) {
                 failedCompliction([BLTUtils errorCodeToString:initState]);
+                if (self.powerButtonFailed != nil) {
+                    self.powerButtonFailed();
+                }
             }
         });
     });
+}
+
+- (void)cancelWaitingPowerButtonPressed {
+    self.abortButtonFlag = YES;
 }
 
 #pragma mark Seed
@@ -343,9 +390,13 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             for (int i = 0; i < pnCheckIndexCount; i++) {
                 [tempCheck addObject:seeds[pnCheckIndex[i]]];
             }
-            successComlication(seeds, [tempCheck componentsJoinedByString:@" "]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                successComlication(seeds, [tempCheck componentsJoinedByString:@" "]);
+            });
         } else {
-            failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            });
         }
     });
 }
@@ -517,23 +568,23 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
         unsigned char bAddress[1024] = {0};
         size_t nAddressLen = 1024;
+        Byte showType = (Byte)0;
         
         iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
-        unsigned char showOnScreen = 1;
         if (iRtn != PAEW_RET_SUCCESS) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failedCompliction([BLTUtils errorCodeToString:iRtn]);
             });
         } else {
-            iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, showOnScreen, bAddress, &nAddressLen);
+            iRtn = PAEW_GetTradeAddress_Ex(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, showType, bAddress, &nAddressLen, PutState_Callback, NULL);
             if (iRtn != PAEW_RET_SUCCESS) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     failedCompliction([BLTUtils errorCodeToString:iRtn]);
+                    if (self.powerButtonFailed != nil) {
+                        self.powerButtonFailed();
+                    }
                 });
             } else {
-                if (showOnScreen) {
-                    PAEW_ClearLCD(ppPAEWContext, devIdx);
-                }
                 size_t addressLen = strlen((char *)bAddress);
                 NSString *signature = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1] ];
                 NSString *pubKey = [NSString stringWithUTF8String:(char *)bAddress];
@@ -889,7 +940,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
-        int iRtn = PAEW_ChangePIN_Input(ppPAEWContext, devIdx, [self->pin UTF8String], [newPin UTF8String]);
+        int iRtn = PAEW_ChangePIN_Input_Ex(ppPAEWContext, devIdx, [self->pin UTF8String], [newPin UTF8String], PutState_Callback, NULL);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (iRtn == PAEW_RET_SUCCESS) {
                 successComlication();

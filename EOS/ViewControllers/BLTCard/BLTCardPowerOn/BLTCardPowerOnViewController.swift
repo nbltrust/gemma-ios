@@ -19,6 +19,7 @@ class BLTCardPowerOnViewController: BaseViewController {
 
 	var coordinator: (BLTCardPowerOnCoordinatorProtocol & BLTCardPowerOnStateManagerProtocol)?
     private(set) var context: BLTCardPowerOnContext?
+    var indicatorView: UIActivityIndicatorView?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,26 @@ class BLTCardPowerOnViewController: BaseViewController {
 
     }
 
+    override func rightAction(_ sender: UIButton) {
+        if self.context?.actionRetry != nil {
+            self.context?.actionRetry!()
+        }
+    }
+
+    func reloadRightItem(_ isStoped: Bool) {
+        if isStoped {
+            configRightNavButton(R.image.ic_retry())
+            indicatorView?.stopAnimating()
+        } else {
+            if indicatorView == nil {
+                indicatorView = UIActivityIndicatorView(style: .gray)
+                indicatorView?.hidesWhenStopped = true
+            }
+            configRightCustomView(indicatorView!)
+            indicatorView?.startAnimating()
+        }
+    }
+
     func setupUI() {
         if self.navigationController?.viewControllers.count == 1 {
             self.configLeftNavButton(R.image.ic_mask_close())
@@ -45,19 +66,31 @@ class BLTCardPowerOnViewController: BaseViewController {
     }
 
     override func leftAction(_ sender: UIButton) {
-        if self.navigationController?.viewControllers.count == 1 {
-            self.coordinator?.dismissVC()
-        } else {
-            self.coordinator?.popVC()
-        }
+        self.coordinator?.cancelWaitPowerButtonPress()
+        self.coordinator?.handleVCChange()
     }
-    
-    func setupData() {
 
+    func setupData() {
+        reloadRightItem(false)
     }
 
     func setupEvent() {
-
+        BLTWalletIO.shareInstance()?.powerButtonPressed = { [weak self] in
+            guard let `self` = self else {return}
+            if self.navigationController?.viewControllers.count == 0 {
+                self.coordinator?.popVC()
+            } else {
+                self.navigationController?.dismiss(animated: true, completion: {
+                    if self.context?.powerButtonPressed != nil {
+                        self.context?.powerButtonPressed!()
+                    }
+                })
+            }
+        }
+        BLTWalletIO.shareInstance()?.powerButtonFailed = { [weak self] in
+            guard let `self` = self else {return}
+            self.reloadRightItem(true)
+        }
     }
 
     override func configureObserveState() {

@@ -200,7 +200,7 @@ extension BLTCardEntryCoordinator: BLTCardEntryStateManagerProtocol {
     func createWookongBioWallet(_ hint: String,
                                 success: @escaping SuccessedComplication,
                                 failed: @escaping FailedComplication) {
-        importWookongBioWallet(hint, success: success, failed: failed)
+        importWookongBioWallet(self.rootVC, hint: hint, success: success, failed: failed)
     }
 
     func checkFPExist(_ success: @escaping CompletionCallback,

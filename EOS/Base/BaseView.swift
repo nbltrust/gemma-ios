@@ -41,7 +41,7 @@ class BaseView: UIView {
         return CGSize.init(width: UIView.noIntrinsicMetric, height: dynamicHeight())
     }
 
-    fileprivate func updateHeight() {
+    func updateHeight() {
         layoutIfNeeded()
         self.height = dynamicHeight()
         invalidateIntrinsicContentSize()

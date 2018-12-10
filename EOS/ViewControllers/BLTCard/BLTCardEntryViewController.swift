@@ -58,27 +58,3 @@ class BLTCardEntryViewController: BaseViewController {
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
 }
-
-// MARK: - TableViewDelegate
-
-//extension BLTCardEntryViewController: UITableViewDataSource, UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 10
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//          let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.<#cell#>.name, for: indexPath) as! <#cell#>
-//
-//        return cell
-//    }
-//}
-
-// MARK: - View Event
-
-//extension BLTCardEntryViewController {
-//    @objc func <#view#>DidClicked(_ data:[String: Any]) {
-//        if let addressdata = data["data"] as? <#model#>, let view = data["self"] as? <#view#>  {
-//
-//        }
-//    }
-//}
