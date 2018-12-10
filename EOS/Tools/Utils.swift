@@ -282,6 +282,46 @@ func pushTransaction(_ transaction: String, actionModel: ActionModel, callback:@
     }
 }
 
+func createEOSAccountUtil(_ type: CreateAPPId,
+                      goodsId: GoodsId,
+                      accountName: String,
+                      currencyID: Int64,
+                      inviteCode: String,
+                      validation: WookongValidation?,
+                      completion: @escaping (Bool, Any) -> Void) {
+    do {
+        let currency = try WalletCacheService.shared.fetchCurrencyBy(id: currencyID)
+        if type == .bluetooth {
+            if var currency = currency, let publicKey = validation?.publicKey {
+                currency.pubKey = publicKey
+                try WalletCacheService.shared.updateCurrency(currency)
+            }
+        }
+        if let pubkey = currency?.pubKey {
+            NBLNetwork.request(target: .createAccount(type: type,
+                                                      goodsId: goodsId,
+                                                      account: accountName,
+                                                      pubKey: pubkey,
+                                                      invitationCode: inviteCode,
+                                                      validation: validation),
+                               success: { (data) in
+                                CurrencyManager.shared.saveActived(currencyID, actived: .doActive)
+                                CurrencyManager.shared.saveAccountNameWith(currencyID, name: accountName)
+                                if let actionId = data["action_id"].stringValue as? String {
+                                    Defaults[accountName] = actionId
+                                }
+                                completion(true, data)
+            }, error: { (code) in
+                completion(false,code)
+            }) { (error) in
+                completion(false,error)
+            }
+        }
+    } catch {
+
+    }
+}
+
 func showWarning(_ str: String) {
 
     let rightView = UIImageView(image: R.image.icNotifyCloseWhite())

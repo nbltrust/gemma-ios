@@ -121,17 +121,6 @@ class EntryViewController: BaseViewController {
             self.coordinator?.pushToServiceProtocolVC()
         }).disposed(by: disposeBag)
 
-        self.coordinator?.state.callback.finishWechatEOSCurrencyCallback.accept({[weak self] (code) in
-            guard let `self` = self else { return }
-            if let str = code as? String {
-                if let name = self.registerView.nameView.textField.text {
-                    self.coordinator?.createEOSAccount(.gemma, goodsId: .wechat, accountName: name, currencyID: self.currencyID, inviteCode: str, validation: nil, completion: { (_) in
-                        self.endLoading()
-                    })
-                }
-            }
-        })
-
         self.coordinator?.state.callback.finishCDKeyEOSCurrencyCallback.accept({[weak self] (code) in
             guard let `self` = self else { return }
             if let str = code as? String {

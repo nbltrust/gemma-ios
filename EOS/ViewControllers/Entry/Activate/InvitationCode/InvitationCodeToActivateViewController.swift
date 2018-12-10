@@ -135,6 +135,16 @@ extension InvitationCodeToActivateViewController {
     }
 
     @objc func nextClick(_ data: [String: Any]) {
-        self.coordinator?.popToEntryVCWithInviteCode(self.contentView.textfield.text ?? "")
+        startLoading()
+        if let name = CurrencyManager.shared.getAccountNameWith(self.currencyID) {
+            let code = self.contentView.textfield.text ?? ""
+            self.coordinator?.createEOSAccount(.gemma, goodsId: .cdkey, accountName: name, currencyID: self.currencyID, inviteCode: code, validation: nil, completion: {[weak self] (bool) in
+                guard let `self` = self else { return }
+                self.endLoading()
+                if bool == true {
+                    self.coordinator?.popVC()
+                }
+            })
+        }
     }
 }

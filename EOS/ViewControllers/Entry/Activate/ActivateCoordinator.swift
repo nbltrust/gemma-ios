@@ -69,11 +69,11 @@ extension ActivateCoordinator: ActivateStateManagerProtocol {
         let exchangeCoor = ExchangeToActivateCoordinator(rootVC: self.rootVC)
         exchangeVC.coordinator = exchangeCoor
 
-//        let invitationCodeVC = R.storyboard.activate.invitationCodeToActivateViewController()!
-//        let invitationCodeCoor = InvitationCodeToActivateCoordinator(rootVC: self.rootVC)
-//        invitationCodeVC.coordinator = invitationCodeCoor
-//        invitationCodeVC.currencyID = currencyID
+        let invitationCodeVC = R.storyboard.activate.invitationCodeToActivateViewController()!
+        let invitationCodeCoor = InvitationCodeToActivateCoordinator(rootVC: self.rootVC)
+        invitationCodeVC.coordinator = invitationCodeCoor
+        invitationCodeVC.currencyID = currencyID
 
-        return [payVC, friendVC, exchangeVC]
+        return [payVC, friendVC, exchangeVC, invitationCodeVC]
     }
 }

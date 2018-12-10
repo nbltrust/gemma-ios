@@ -40,6 +40,8 @@ struct AppConfiguration {
 }
 
 struct NetworkConfiguration {
+    static let EOSWebAPI = URL(string: "https://eosweb.net")
+
     static let EOSParkAPI = URL(string: "https://api.eospark.com")
     static let NBLBaseURL = URL(string: "https://faucet-eos-wookong.nbltrust.com")!
 
@@ -122,7 +124,7 @@ enum CoinType: Int {
 //Node Datas
 struct EOSBaseURLNodesConfiguration {
     static let values = [
-                "http://47.75.154.248:50003",
+//                "http://47.75.154.248:50003",
         "https://api.helloeos.com.cn",
         "http://api-mainnet.starteos.io",
         "https://eos.greymass.com",

@@ -98,7 +98,7 @@ extension EOSIOService: TargetType {
         let configuration = NetworkConfiguration()
         switch self {
         case .getTransaction:
-            return NetworkConfiguration.EOSParkAPI!
+            return NetworkConfiguration.EOSWebAPI!
         default:
             return configuration.EOSIOBaseURL
         }
@@ -131,8 +131,8 @@ extension EOSIOService: TargetType {
             return "/v1/chain/push_transaction"
         case .getKeyAccounts:
             return "/v1/history/get_key_accounts"
-        case .getTransaction:
-            return "/api"
+        case let .getTransaction(id):
+            return "/api/v1/get_transaction/\(id)"
         case .getTableRows:
             return "/v1/chain/get_table_rows"
         }
@@ -163,20 +163,20 @@ extension EOSIOService: TargetType {
             return ["code": EOSIOContract.TokenCode, "action": action.rawValue, "binargs": bin]
         case let .getKeyAccounts(pubKey):
             return ["public_key": pubKey]
-        case let .getTransaction(id):
-            return ["module": "transaction", "action": "get_transaction_detail_info", "apikey": "2d0b90f1d4b59d5b24369762608cf681", "trx_id": id]
+        case .getTransaction:
+            return [:]
         case let .getTableRows(json):
             return JSON(parseJSON: json).dictionaryObject ?? [:]
         }
     }
 
     var task: Task {
-        switch self {
-        case .getTransaction:
-            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
-        default:
+//        switch self {
+//        case .getTransaction:
+//            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+//        default:
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        }
+//        }
     }
 
     var method: Moya.Method {

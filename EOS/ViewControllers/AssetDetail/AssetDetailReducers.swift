@@ -115,11 +115,10 @@ func changeStatus(action: GetBlockNumAction, data: [(String, [PaymentsRecordsVie
                 tuple.1.insert(newModel, at: index2)
                 newData.remove(at: index)
                 newData.insert((tuple.0, tuple.1), at: index)
-                return newData
             }
         }
     }
-    return nil
+    return newData
 }
 
 func convertTransferViewModel(data: [Payment], tupleArray: [(String, [PaymentsRecordsViewModel])]?) -> [(String, [PaymentsRecordsViewModel])] {
@@ -200,7 +199,10 @@ func convertTransferViewModel(data: [Payment], tupleArray: [(String, [PaymentsRe
                                                                   isSend: isSend)]))
         }
     }
-    return newtupleArray!
+    let arrayValue = newtupleArray!.sorted {
+        $0.0 > $1.0
+    }
+    return arrayValue
 }
 
 func calculateRMBPrice(_ viewmodel: AssetViewModel, price: String, otherPrice: String) -> String {
