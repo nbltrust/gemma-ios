@@ -568,7 +568,7 @@ int PutState_Callback(void * const pCallbackContext, const int nState)
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
         unsigned char bAddress[1024] = {0};
         size_t nAddressLen = 1024;
-        Byte showType = (Byte)1;
+        Byte showType = (Byte)0;
         
         iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
         if (iRtn != PAEW_RET_SUCCESS) {
