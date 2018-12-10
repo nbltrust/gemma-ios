@@ -34,7 +34,6 @@ struct EntryCallbackState {
     
     var finishNormalWalletCallback: BehaviorRelay<ObjectCallback?> = BehaviorRelay(value: nil)
     var finishCDKeyEOSCurrencyCallback: BehaviorRelay<ObjectCallback?> = BehaviorRelay(value: nil)
-    var finishWechatEOSCurrencyCallback: BehaviorRelay<ObjectCallback?> = BehaviorRelay(value: nil)
 }
 
 struct NameAction: Action {

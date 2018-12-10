@@ -16,13 +16,21 @@ protocol InvitationCodeToActivateCoordinatorProtocol {
     func pushToCreateSuccessVC()
     func pushBackupPrivateKeyVC()
     func dismissCurrentNav(_ entry: UIViewController?)
-    func popToEntryVCWithInviteCode(_ inviteCode: String)
+    func popVC()
 }
 
 protocol InvitationCodeToActivateStateManagerProtocol {
     var state: InvitationCodeToActivateState { get }
 
     func switchPageState(_ state: PageState)
+
+    func createEOSAccount(_ type: CreateAPPId,
+                          goodsId: GoodsId,
+                          accountName: String,
+                          currencyID: Int64?,
+                          inviteCode: String,
+                          validation: WookongValidation?,
+                          completion: @escaping (Bool) -> Void)
 }
 
 class InvitationCodeToActivateCoordinator: NavCoordinator {
@@ -88,17 +96,8 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateCoordinat
         }
     }
 
-    func popToEntryVCWithInviteCode(_ inviteCode: String) {
-        self.rootVC.viewControllers.forEach { (vc) in
-            if let entryVC = vc as? EntryViewController {
-                self.popToVC(entryVC)
-                entryVC.coordinator?.state.callback.finishCDKeyEOSCurrencyCallback.value?(inviteCode)
-            }
-        }
-    }
-
-    func popToVC(_ vc: UIViewController) {
-        self.rootVC.popToViewController(vc, animated: true)
+    func popVC() {
+        self.rootVC.popToRootViewController(animated: true)
     }
 }
 
@@ -106,6 +105,19 @@ extension InvitationCodeToActivateCoordinator: InvitationCodeToActivateStateMana
     func switchPageState(_ state: PageState) {
         DispatchQueue.main.async {
             self.store.dispatch(PageStateAction(state: state))
+        }
+    }
+
+    func createEOSAccount(_ type: CreateAPPId, goodsId: GoodsId, accountName: String, currencyID: Int64?, inviteCode: String, validation: WookongValidation?, completion: @escaping (Bool) -> Void) {
+        if let id = currencyID {
+            createEOSAccountUtil(type, goodsId: goodsId, accountName: accountName, currencyID: id, inviteCode: inviteCode, validation: nil) { (bool, code) in
+                if bool == true {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
+
         }
     }
 }

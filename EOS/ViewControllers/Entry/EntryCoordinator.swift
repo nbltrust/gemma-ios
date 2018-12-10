@@ -145,6 +145,31 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
 }
 
 extension EntryCoordinator: EntryStateManagerProtocol {
+    func createEOSAccount(_ type: CreateAPPId, goodsId: GoodsId, accountName: String, currencyID: Int64?, inviteCode: String, validation: WookongValidation?, completion: @escaping (Bool) -> Void) {
+        if let id = currencyID {
+            createEOSAccountUtil(type, goodsId: goodsId, accountName: accountName, currencyID: id, inviteCode: inviteCode, validation: validation) { (bool, code) in
+                if bool == true {
+                    completion(true)
+                } else if bool == false, let codeInt = code as? Int {
+                    if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: codeInt) {
+                        let error = GemmaError.NBLCode(code: gemmaerror)
+                        if type == .bluetooth, gemmaerror == GemmaError.NBLNetworkErrorCode.invitecodeRegiteredCode {
+                            CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
+                            self.pushToActivateVCWithCurrencyID(id)
+                        } else {
+                            showFailTop(error.localizedDescription)
+                        }
+                    } else {
+                        showFailTop(R.string.localizable.error_unknow.key.localized())
+                    }
+                    completion(false)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    }
+
     var state: EntryState {
         return store.state
     }
@@ -195,61 +220,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
 
     func checkAgree(_ agree: Bool) {
         self.store.dispatch(AgreeAction(isAgree: agree))
-    }
-
-    func createEOSAccount(_ type: CreateAPPId,
-                          goodsId: GoodsId,
-                          accountName: String,
-                          currencyID: Int64?,
-                          inviteCode: String,
-                          validation: WookongValidation?,
-                          completion: @escaping (Bool) -> Void) {
-        do {
-            if let id = currencyID {
-                let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
-                if type == .bluetooth {
-                    if var currency = currency, let publicKey = validation?.publicKey {
-                        currency.pubKey = publicKey
-                        try WalletCacheService.shared.updateCurrency(currency)
-                    }
-                }
-                if let pubkey = currency?.pubKey {
-                    NBLNetwork.request(target: .createAccount(type: type,
-                                                              goodsId: goodsId,
-                                                              account: accountName,
-                                                              pubKey: pubkey,
-                                                              invitationCode: inviteCode,
-                                                              validation: validation),
-                                       success: { (data) in
-                                        CurrencyManager.shared.saveActived(id, actived: .doActive)
-                                        CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
-                                        if let actionId = data["action_id"].stringValue as? String {
-                                            Defaults[accountName] = actionId
-                                        }
-                                        self.rootVC.popToRootViewController(animated: true)
-                                        completion(true)
-                    }, error: { [weak self] (code) in
-                        guard let `self` = self else {return}
-                        if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
-                            let error = GemmaError.NBLCode(code: gemmaerror)
-                            if type == .bluetooth, gemmaerror == GemmaError.NBLNetworkErrorCode.invitecodeRegiteredCode {
-                                CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
-                                self.pushToActivateVCWithCurrencyID(id)
-                            } else {
-                                showFailTop(error.localizedDescription)
-                            }
-                        } else {
-                            showFailTop(R.string.localizable.error_unknow.key.localized())
-                        }
-                        completion(false)
-                    }) { (_) in
-                        completion(false)
-                    }
-                }
-            }
-        } catch {
-
-        }
     }
 
     func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication) {
