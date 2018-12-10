@@ -70,7 +70,6 @@ protocol SetWalletStateManagerProtocol {
                               failed: @escaping FailedComplication)
 
     func setWalletPin(_ password: String,
-                      success: @escaping SuccessedComplication,
                       failed: @escaping FailedComplication)
 
     func updatePin(_ new: String,
@@ -152,15 +151,22 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
     func presentBLTInitTypeSelectVC(_ password: String) {
         selectBLTInitType(self.rootVC) { [weak self] (isCreate) in
             guard let `self` = self else {return}
-            self.setWalletPin(password, success: { () in
+            self.setWalletPin(password, failed: { (reason) in
+                if let failedReason = reason {
+                    showFailTop(failedReason)
+                }
+            })
+            waitPowerOn(self.rootVC, retry: {
+                self.setWalletPin(password, failed: { (reason) in
+                    if let failedReason = reason {
+                        showFailTop(failedReason)
+                    }
+                })
+            }, complication: {
                 if isCreate {
                     self.pushToMnemonicVC()
                 } else {
                     self.pushToImportVC()
-                }
-            }, failed: { (reason) in
-                if let failedReason = reason {
-                    showFailTop(failedReason)
                 }
             })
         }
@@ -284,13 +290,15 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
     }
 
     func setWalletPin(_ password: String,
-                      success: @escaping SuccessedComplication,
                       failed: @escaping FailedComplication) {
-        BLTWalletIO.shareInstance().initPin(password, success: success, failed: failed)
+        BLTWalletIO.shareInstance().initPin(password, failed: failed)
     }
 
     func updatePin(_ new: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance()?.updatePin(new, success: success, failed: failed)
+        waitPowerOn(self.rootVC, retry: {
+            BLTWalletIO.shareInstance()?.updatePin(new, success: success, failed: failed)
+        }) {}
     }
 
     func dismissCurrentNav(_ entry: UIViewController? = nil) {

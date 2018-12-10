@@ -51,11 +51,9 @@ class MnemonicContentViewController: BaseViewController {
             self.coordinator?.getSeeds({ [weak self] (datas,checkStr) in
                 guard let `self` = self else { return }
                 if let tempDatas = datas as? [String],let check = checkStr {
-                    DispatchQueue.main.sync {
-                        self.seeds = tempDatas
-                        self.coordinator?.setSeeds((tempDatas, check))
-                        self.contentView.setMnemonicWordArray(self.seeds)
-                    }
+                    self.seeds = tempDatas
+                    self.coordinator?.setSeeds((tempDatas, check))
+                    self.contentView.setMnemonicWordArray(self.seeds)
                 }
                 }, failed: { [weak self] (reason) in
                     guard let `self` = self else { return }

@@ -138,6 +138,6 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
     func createWookongBioWallet(_ hint: String,
                                 success: @escaping SuccessedComplication,
                                 failed: @escaping FailedComplication) {
-        importWookongBioWallet(hint, success: success, failed: failed)
+        importWookongBioWallet(self.rootVC, hint: hint, success: success, failed: failed)
     }
 }

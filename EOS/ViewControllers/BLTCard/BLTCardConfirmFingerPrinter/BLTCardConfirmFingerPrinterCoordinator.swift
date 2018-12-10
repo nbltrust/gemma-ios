@@ -111,6 +111,6 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
     }
 
     func createWookongBioWallet(_ success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
-        importWookongBioWallet("", success: success, failed: failed)
+        importWookongBioWallet(self.rootVC, hint:"", success: success, failed: failed)
     }
 }

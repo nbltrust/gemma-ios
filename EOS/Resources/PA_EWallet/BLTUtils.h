@@ -37,6 +37,10 @@ typedef void(^ BatteryInfoUpdated)(BLTBatteryInfo *info);
 
 typedef void(^ DeviceUnConnected)(void);
 
+typedef void(^ PowerButtonPressed)(void);
+
+typedef void(^ PowerButtonFailed)(void);
+
 typedef void(^ EnrollFingerComplication)(FingerPrinterState state);
 
 typedef void(^ VerifyFingerComplication)(FingerPrinterState state);

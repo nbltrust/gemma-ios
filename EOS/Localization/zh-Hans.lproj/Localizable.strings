@@ -496,7 +496,7 @@
 "mine_safesetting" = "安全设置";
 "mine_help" = "帮助与反馈";
 "mine_server" = "服务协议";
-"mine_about" = "关于Gemma";
+"mine_about" = "关于我们";
 
 "normal_language" = "语言";
 "normal_asset" = "货币单位";
@@ -592,7 +592,7 @@
 "pair_wookong_introduce" = "WOOKONG Bio 是一款面向个人用户使用的便携式蓝牙硬件钱包，为数字资产提供更安全的保护。";
 "pair_start" = "开始配对";
 "pair_search_title" = "选择要连接的WOOKONG Bio。若未找到，请检查手机蓝牙和设备电源。";
-"wookong_des_title" = "第一款支持EOS的蓝牙指纹硬件钱包";
+"wookong_des_title" = "第一款支持多币种的蓝牙指纹硬件钱包";
 "wookong_des_click" = "点击查看更多的 WOOKONG Bio 介绍";
 "wookong_des_prepare" = "准备使用WOOKONG Bio";
 "wookong_des_first" = "确保手机蓝牙已开启";

@@ -150,11 +150,12 @@ extension UserInfoViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: customNibName, for: indexPath) as? CustomCell else {
             return UITableViewCell()
         }
+        cell.icon = iconWithIndexPath(indexPath)
         cell.title = titleWithIndexPath(indexPath)
         cell.subTitle = ""
         cell.cellView.leftIconSpacing = 19
-        cell.icon = iconWithIndexPath(indexPath)
         cell.cellView.lineViewAlignment = .toTitle
+        cell.cellView.verMagin = 22.5
         return cell
 
     }

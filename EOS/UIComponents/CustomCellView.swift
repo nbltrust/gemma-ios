@@ -33,7 +33,11 @@ class CustomCellView: BaseView {
     @IBOutlet weak var leftLineMagin: NSLayoutConstraint!
 
     @IBOutlet weak var titleGap: NSLayoutConstraint!
-    
+
+    @IBOutlet weak var topMagin: NSLayoutConstraint!
+
+    @IBOutlet weak var bottomMagin: NSLayoutConstraint!
+
     var title: String = "" {
         didSet {
             titleLabel.text = title
@@ -67,6 +71,16 @@ class CustomCellView: BaseView {
     var leftSpacing: CGFloat = 20 {
         didSet {
             reloadUI()
+        }
+    }
+
+    var verMagin: CGFloat = 20 {
+        didSet {
+            topMagin.constant = verMagin
+
+            bottomMagin.constant = verMagin
+
+            updateHeight()
         }
     }
 
