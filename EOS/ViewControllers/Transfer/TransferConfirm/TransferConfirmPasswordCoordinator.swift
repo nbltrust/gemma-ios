@@ -146,7 +146,28 @@ extension TransferConfirmPasswordCoordinator: TransferConfirmPasswordStateManage
         model.type = .bluetooth
         model.confirmType = pinType
         transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool, showString)
+//            if bool == false, showString == "" {
+                BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, snSig, pub, pubSig, publicKey) in
+                    guard let `self` = self else { return }
+                    var validation = WookongValidation()
+                    validation.SN = sn ?? ""
+                    validation.SNSig = snSig ?? ""
+                    validation.pubKey = pub ?? ""
+                    validation.publicKeySig = pubSig ?? ""
+                    validation.publicKey = publicKey ?? ""
+                    NBLNetwork.request(target: .getGoodscode(code: validation.SN), success: { (success) in
+
+                    }, error: { (error) in
+
+                    }, failure: { (fail) in
+
+                    })
+                    }, failed: { (reason) in
+                        callback(false, R.string.localizable.eos_chain_instability.key.localized())
+                })
+//            } else {
+//                callback(bool, showString)
+//            }
         }
     }
 

@@ -275,8 +275,12 @@ func pushTransaction(_ transaction: String, actionModel: ActionModel, callback:@
         } else {
             callback(false, actionModel.faile)
         }
-    }, error: { (_) in
-        callback(false, actionModel.faile)
+    }, error: { (error) in
+        if error == 1 {
+            callback(false, "")
+        } else {
+            callback(false, actionModel.faile)
+        }
     }) { (_) in
         callback(false, R.string.localizable.request_failed.key.localized() )
     }

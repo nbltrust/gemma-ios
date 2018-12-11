@@ -77,6 +77,11 @@ class VerifyMnemonicWordViewController: BaseViewController {
 //MARK: - View Event
 extension VerifyMnemonicWordViewController {
     @objc func verifyMnemonicWord(_ data: [String: Any]) {
-        self.coordinator?.verifyMnemonicWord(data, seeds: self.seeds, checkStr: self.checkStr, isWookong: isWookong)
+        self.coordinator?.verifyMnemonicWord(data, seeds: self.seeds, checkStr: self.checkStr, isWookong: isWookong, callback: {bool in
+            if bool == false {
+                self.contentView.cleanTagListView()
+                self.contentView.setPoolArray(self.tempSeeds)
+            }
+        })
     }
 }

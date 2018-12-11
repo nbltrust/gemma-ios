@@ -30,7 +30,7 @@ protocol VerifyMnemonicWordStateManagerProtocol {
 
     func checkFeedSuccessed()
 
-    func verifyMnemonicWord(_ data: [String: Any], seeds: [String], checkStr: String, isWookong: Bool)
+    func verifyMnemonicWord(_ data: [String: Any], seeds: [String], checkStr: String, isWookong: Bool, callback:@escaping (Bool) -> Void)
 
     func createWookongBioWallet(_ hint: String,
                                 success: @escaping SuccessedComplication,
@@ -128,7 +128,7 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
         importWookongBioWallet(self.rootVC, hint: hint, success: success, failed: failed)
     }
 
-    func verifyMnemonicWord(_ data: [String: Any], seeds: [String], checkStr: String, isWookong: Bool) {
+    func verifyMnemonicWord(_ data: [String: Any], seeds: [String], checkStr: String, isWookong: Bool, callback:@escaping (Bool) -> Void) {
         if let selectValues = data["data"] as? [String]  {
             if selectValues.count == seeds.count {
                 let isValid = validSequence(seeds, compairDatas: selectValues)
@@ -138,12 +138,14 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
                         checkSeed(checkStr, success: { [weak self] in
                             guard let `self` = self else { return }
                             self.checkFeedSuccessed()
+                            callback(true)
                             }, failed: { [weak self] (reason) in
                                 guard let `self` = self else { return }
                                 self.rootVC.topViewController?.endLoading()
                                 if let failedReason = reason {
                                     showFailTop(failedReason)
                                 }
+                                callback(false)
                         })
                     } else {
                         var isWalletManager = false
@@ -163,9 +165,11 @@ extension VerifyMnemonicWordCoordinator: VerifyMnemonicWordStateManagerProtocol 
                                 self.popRootVC()
                             }
                         }
+                        callback(true)
                     }
                 } else {
                     showFailTop(R.string.localizable.wookong_mnemonic_ver_failed.key.localized())
+                    callback(false)
                 }
             }
         }

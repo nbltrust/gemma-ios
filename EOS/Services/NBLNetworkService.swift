@@ -61,6 +61,7 @@ enum NBLService {
     case getOrder(orderId: String)
     case getTokens(account: String)
     case getActionState(actionId: String)
+    case getGoodscode(code: String)
 }
 
 func defaultManager() -> Alamofire.SessionManager {
@@ -165,6 +166,8 @@ extension NBLService: TargetType {
             return "/api/v1/account/tokens/\(account)"
         case .getActionState(let actionId):
             return "/api/v2/action/\(actionId)"
+        case .getGoodscode(let code):
+            return "/api/v2/goodscode/\(code)"
         }
     }
 
@@ -189,6 +192,8 @@ extension NBLService: TargetType {
         case .getTokens:
             return .get
         case .getActionState:
+            return .get
+        case .getGoodscode:
             return .get
         }
     }
@@ -223,6 +228,8 @@ extension NBLService: TargetType {
             return [:]
         case .getActionState:
             return [:]
+        case .getGoodscode:
+            return [:]
         }
     }
 
@@ -247,6 +254,8 @@ extension NBLService: TargetType {
         case .getTokens:
             return .requestPlain
         case .getActionState:
+            return .requestPlain
+        case .getGoodscode:
             return .requestPlain
         }
     }
