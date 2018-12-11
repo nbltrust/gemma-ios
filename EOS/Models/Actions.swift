@@ -19,3 +19,15 @@ struct Actions: HandyJSON {
         mapper <<< self.lastIrreversibleBlock <-- "last_irreversible_block"
     }
 }
+
+struct Goodscode: HandyJSON {
+    var rights: Rights!
+}
+
+struct Rights: HandyJSON {
+    var delegation: DelegateActions!
+}
+
+struct DelegateActions: HandyJSON {
+    var actions: [String]!
+}

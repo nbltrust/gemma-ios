@@ -276,7 +276,7 @@ func pushTransaction(_ transaction: String, actionModel: ActionModel, callback:@
             callback(false, actionModel.faile)
         }
     }, error: { (error) in
-        if error == 1 {
+        if error == 88888 {
             callback(false, "")
         } else {
             callback(false, actionModel.faile)
