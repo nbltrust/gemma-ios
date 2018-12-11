@@ -25,6 +25,11 @@ FOUNDATION_EXPORT NSString* Seed39DeriveRaw(NSString* seed, NSString* path);
  */
 FOUNDATION_EXPORT NSString* Seed39DeriveWIF(NSString* seed, NSString* path, BOOL compressed);
 
+/**
+ * Derivepath exported
+ */
+FOUNDATION_EXPORT NSString* Seed39Derivepath(NSString* seed, NSString* path);
+
 FOUNDATION_EXPORT void Seed39GenAddress(void);
 
 FOUNDATION_EXPORT NSString* Seed39GetEthereumAddressFromPrivateKey(NSString* priKey);
