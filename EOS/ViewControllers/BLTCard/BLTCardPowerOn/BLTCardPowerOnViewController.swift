@@ -20,7 +20,8 @@ class BLTCardPowerOnViewController: BaseViewController {
 	var coordinator: (BLTCardPowerOnCoordinatorProtocol & BLTCardPowerOnStateManagerProtocol)?
     private(set) var context: BLTCardPowerOnContext?
     var indicatorView: UIActivityIndicatorView?
-
+    @IBOutlet weak var promoteLabel: UILabel!
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,6 +63,9 @@ class BLTCardPowerOnViewController: BaseViewController {
             self.configLeftNavButton(R.image.ic_mask_close())
         } else {
             self.configLeftNavButton(R.image.ic_mask_back())
+        }
+        if !(self.context?.promate?.isEmpty ?? true) {
+            promoteLabel.text = self.context?.promate
         }
     }
 

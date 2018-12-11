@@ -248,6 +248,7 @@
 "change_name" = "修改名称";
 "delete_finger" = "删除指纹";
 "change_finger_name" = "修改指纹名称";
+"finger_name_empty" = "指纹名称不能为空";
 "manager_finger" = "管理指纹";
 "next_step" = "下一步";
 "wait_activate" = "待激活";
@@ -638,6 +639,9 @@
 "wookong_init_type_create" = "创建钱包";
 "wookong_init_type_import" = "导入助记词";
 "wookong_init_finish_import" = "完成导入";
+"wookong_power_init" = "请在WOOKONG Bio上按键以确认初始化";
+"wookong_power_change_pas" = "请在WOOKONG Bio上按键以确认修改密码";
+"wookong_power_format" = "请在WOOKONG Bio上按键以确认格式化，一旦格式化，WOOKONG Bio将清除私钥，请在格式化前转移资产。";
 
 "currency_title" = "币种";
 "wallet_currency" = "钱包币种";

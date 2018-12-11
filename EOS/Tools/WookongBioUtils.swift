@@ -91,7 +91,7 @@ func confirmFP(_ rootVC: UINavigationController, complication: @escaping Success
     }
 }
 
-func waitPowerOn(_ rootVC: UINavigationController, retry: @escaping CompletionCallback, complication: @escaping SuccessedComplication) {
+func waitPowerOn(_ rootVC: UINavigationController, promate: String, retry: @escaping CompletionCallback, complication: @escaping SuccessedComplication) {
     let width = ModalSize.full
 
     let height: Float = 338.0
@@ -112,6 +112,7 @@ func waitPowerOn(_ rootVC: UINavigationController, retry: @escaping CompletionCa
     context.actionRetry = {()
         retry()
     }
+    context.promate = promate
 
     if let powerVC = R.storyboard.bltCard.bltCardPowerOnViewController() {
         let nav = BaseNavigationController.init(rootViewController: powerVC)

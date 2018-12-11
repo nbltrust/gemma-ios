@@ -27,7 +27,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_transfer_pro"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_open_attention" translatesAutoresizingMaskIntoConstraints="NO" id="8Ez-bU-sC5">
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_open" translatesAutoresizingMaskIntoConstraints="NO" id="8Ez-bU-sC5">
                                 <rect key="frame" x="16" y="69" width="343" height="204"/>
                             </imageView>
                         </subviews>
@@ -41,6 +41,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="A5C-Jr-Kt2"/>
                     </view>
+                    <connections>
+                        <outlet property="promoteLabel" destination="aXm-oI-AcO" id="FOB-W6-JB7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lte-ke-wad" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -388,6 +391,6 @@
     </scenes>
     <resources>
         <image name="card_fingerprint" width="335" height="208"/>
-        <image name="card_open_attention" width="340" height="204"/>
+        <image name="card_open" width="340" height="204"/>
     </resources>
 </document>

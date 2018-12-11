@@ -48,12 +48,13 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
     }
 
     func setupUI() {
-        self.title = R.string.localizable.wookong_set_fp.key.localized()
+        self.title = R.string.localizable.add_finger.key.localized()
 
         setupFPView()
 
         if self.navigationController?.viewControllers.count == 1 {
              configRightNavButton(R.string.localizable.wookong_jump.key.localized())
+            self.title = R.string.localizable.wookong_set_fp.key.localized()
         }
     }
 
@@ -103,6 +104,14 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
         context.sureShot = { [weak self] () in
             guard let `self` = self else { return }
             self.enrollFingerPrinter()
+        }
+        context.cancelShot = { [weak self] () in
+            guard let `self` = self else { return }
+            if self.navigationController?.viewControllers.count == 1 {
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            } else {
+                self.navigationController?.popViewController()
+            }
         }
         appCoodinator.showGemmaAlert(context)
     }
