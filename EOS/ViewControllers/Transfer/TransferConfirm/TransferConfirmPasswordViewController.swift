@@ -209,10 +209,12 @@ extension TransferConfirmPasswordViewController {
     @objc func sureTransfer(_ data: [String: Any]) {
         guard let context = context else { return }
         var isWalletManager = false
-        for subVC in self.navigationController!.viewControllers {
-            if subVC is WalletManagerViewController {
-                isWalletManager = true
-                break
+        if let preVC = self.presentingViewController as? BaseNavigationController {
+            for subVC in preVC.viewControllers {
+                if subVC is WalletManagerViewController {
+                    isWalletManager = true
+                    break
+                }
             }
         }
         if context.type != ConfirmType.bltTransfer.rawValue {

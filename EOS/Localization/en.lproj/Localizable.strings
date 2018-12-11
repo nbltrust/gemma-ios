@@ -278,6 +278,8 @@
 "accept_fail" = "Failed to receive";
 "send_pending" = "Sending...";
 "accept_pending" = "Receiving...";
+"eos_chain_instability" = "当前EOS节点或链不稳定，请稍后重试";
+
 //zsy end
 
 //eos errorcode start

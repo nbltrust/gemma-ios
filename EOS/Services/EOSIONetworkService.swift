@@ -73,7 +73,11 @@ struct EOSIONetwork {
                         let error = json["error"]["code"].debugDescription
                         let codeKey = AppConfiguration.EOSErrorCodeBase + error
                         let codeValue = codeKey.localized()
-                        showFailTop(codeValue)
+                        if (error == "3080004" || error == "3080005"), WalletManager.shared.currentWallet()?.type == .bluetooth {
+                            errorCallback(88888)
+                        } else {
+                            showFailTop(codeValue)
+                        }
                     } catch _ {
 
                     }

@@ -38,6 +38,7 @@ extension CardView {
             if model.tokenArray.count < 6 {
                 shadeView.isHidden = true
             } else {
+                shadeView.isHidden = false
                 shadeLabel.text = "+\(model.tokenArray.count)"
             }
         }

@@ -61,6 +61,8 @@ enum NBLService {
     case getOrder(orderId: String)
     case getTokens(account: String)
     case getActionState(actionId: String)
+    case getGoodscode(code: String)
+    case delegate(appid: CreateAPPId, goodsId: GoodsId, code: String, account: String, validation:WookongValidation?)
 }
 
 func defaultManager() -> Alamofire.SessionManager {
@@ -165,6 +167,10 @@ extension NBLService: TargetType {
             return "/api/v1/account/tokens/\(account)"
         case .getActionState(let actionId):
             return "/api/v2/action/\(actionId)"
+        case .getGoodscode(let code):
+            return "/api/v2/goodscode/\(code)"
+        case .delegate:
+            return "/api/v2/account/delegate"
         }
     }
 
@@ -190,6 +196,10 @@ extension NBLService: TargetType {
             return .get
         case .getActionState:
             return .get
+        case .getGoodscode:
+            return .get
+        case .delegate:
+            return .post
         }
     }
 
@@ -223,6 +233,18 @@ extension NBLService: TargetType {
             return [:]
         case .getActionState:
             return [:]
+        case .getGoodscode:
+            return [:]
+        case .delegate(let appid, let goodsId, let code, let account, let validation):
+            var map: [String: Any] =  ["app_id": appid.rawValue, "goods_id": goodsId.rawValue, "code": code, "account_name": account]
+            if let val = validation {
+                var valDic = val.toJSON()
+                valDic?.removeValue(forKey: "public_key")
+                valDic?.removeValue(forKey: "public_key_sig")
+                valDic?.removeValue(forKey: "publicKey")
+                map["validation"] = valDic
+            }
+            return map
         }
     }
 
@@ -248,6 +270,10 @@ extension NBLService: TargetType {
             return .requestPlain
         case .getActionState:
             return .requestPlain
+        case .getGoodscode:
+            return .requestPlain
+        case .delegate:
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
 
