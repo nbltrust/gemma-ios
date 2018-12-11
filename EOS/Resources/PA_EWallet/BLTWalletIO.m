@@ -487,13 +487,14 @@ int PutState_Callback(void * const pCallbackContext, const int nState)
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
         unsigned char bAddress[1024] = {0};
         size_t nAddressLen = 1024;
+        Byte showType = (Byte)0;
         
         iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
         unsigned char showOnScreen = 1;
         if (iRtn != PAEW_RET_SUCCESS) {
             failedReason = [BLTUtils errorCodeToString:iRtn];
         } else {
-            iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, showOnScreen, bAddress, &nAddressLen);
+            iRtn = PAEW_GetTradeAddress_Ex(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, showType, bAddress, &nAddressLen, PutState_Callback, NULL);
             if (iRtn != PAEW_RET_SUCCESS) {
                 failedReason = [BLTUtils errorCodeToString:iRtn];
             } else {

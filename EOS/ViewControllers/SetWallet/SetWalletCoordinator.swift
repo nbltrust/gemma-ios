@@ -156,7 +156,7 @@ extension SetWalletCoordinator: SetWalletCoordinatorProtocol {
                     showFailTop(failedReason)
                 }
             })
-            waitPowerOn(self.rootVC, retry: {
+            waitPowerOn(self.rootVC, promate: R.string.localizable.wookong_power_init.key.localized(), retry: {
                 self.setWalletPin(password, failed: { (reason) in
                     if let failedReason = reason {
                         showFailTop(failedReason)
@@ -296,7 +296,7 @@ extension SetWalletCoordinator: SetWalletStateManagerProtocol {
 
     func updatePin(_ new: String, success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance()?.updatePin(new, success: success, failed: failed)
-        waitPowerOn(self.rootVC, retry: {
+        waitPowerOn(self.rootVC, promate: R.string.localizable.wookong_power_change_pas.key.localized(), retry: {
             BLTWalletIO.shareInstance()?.updatePin(new, success: success, failed: failed)
         }) {}
     }

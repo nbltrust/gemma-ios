@@ -13,7 +13,7 @@ import NBLCommonModule
 protocol FingerCoordinatorProtocol {
     func pushToManagerFingerVC(model: Wallet, index: Int)
 
-    func pushToENtroFingerVC()
+    func pushToEntroFingerVC()
     
     func pushToUpdatePinVC()
 }
@@ -26,6 +26,8 @@ protocol FingerStateManagerProtocol {
     func getFPList(_ success: @escaping GetFPListComplication, failed: @escaping FailedComplication)
     
     func changePin()
+
+    func addFP()
 }
 
 class FingerCoordinator: NavCoordinator {
@@ -54,7 +56,7 @@ class FingerCoordinator: NavCoordinator {
 }
 
 extension FingerCoordinator: FingerCoordinatorProtocol {
-    func pushToENtroFingerVC() {
+    func pushToEntroFingerVC() {
         let fingerVC = R.storyboard.bltCard.bltCardSetFingerPrinterViewController()!
         let coor = BLTCardSetFingerPrinterCoordinator(rootVC: self.rootVC)
         fingerVC.coordinator = coor
@@ -70,7 +72,7 @@ extension FingerCoordinator: FingerCoordinatorProtocol {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
-    
+
     func pushToUpdatePinVC() {
         if let vc = R.storyboard.leadIn.setWalletViewController() {
             vc.coordinator = SetWalletCoordinator(rootVC: self.rootVC)
@@ -95,6 +97,13 @@ extension FingerCoordinator: FingerStateManagerProtocol {
         confirmPin(self.rootVC) { [weak self] in
             guard let `self` = self else { return }
             self.pushToUpdatePinVC()
+        }
+    }
+
+    func addFP() {
+        confirmPin(self.rootVC) { [weak self] in
+            guard let `self` = self else { return }
+            self.pushToEntroFingerVC()
         }
     }
 }
