@@ -217,7 +217,7 @@ func transaction(_ action: String, actionModel: ActionModel, callback:@escaping 
 
                     let transString = tempMap?.sortJsonString() ?? ""
 
-                    BLTWalletIO.shareInstance()?.getEOSSign(actionModel.confirmType, chainId: chainId, transaction: transString, success: { (sign) in
+                    BLTWalletIO.shareInstance()?.getNewEOSSign(actionModel.confirmType, chainId: chainId, transaction: transString, success: { (sign) in
                         transJsonMap?["signatures"] = [sign?.substring(from: 0, length: (sign?.count ?? 1) - 1)]
                         transaction = transJsonMap?.jsonString() ?? ""
                         pushTransaction(transaction, actionModel: actionModel, callback: callback)

@@ -71,7 +71,7 @@ class BLTCardConnectViewController: BaseViewController {
         self.coordinator?.reconnectDevice({ [weak self] in
             guard let `self` = self else { return }
             self.indicatorView?.stopAnimating()
-            self.coordinator?.dismissVC({
+            self.navigationController?.dismiss(animated: true, completion: {
                 if (self.context?.connectSuccessed != nil) {
                     self.context?.connectSuccessed!()
                 }
