@@ -37,7 +37,7 @@ int BatteryCallback(const int nBatterySource, const int nBatteryState)
 {
     _instance.batteryInfo.state = nBatterySource == 0 ? charge : battery;
     if (nBatterySource == 1) {
-        _instance.batteryInfo.electricQuantity = (nBatteryState - 125) / 15.00;
+        _instance.batteryInfo.electricQuantity = MAX(0, (MIN(15, nBatteryState - 125))) / 15.00;
     }
     if (_instance.batteryInfoUpdated != nil) {
         _instance.batteryInfoUpdated(_instance.batteryInfo);
@@ -102,6 +102,35 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     return 0;
 }
 
+int PutState_Callback(void * const pCallbackContext, const int nState)
+{
+    if (nState == PAEW_RET_SUCCESS) {
+        if (_instance.powerButtonPressed != nil) {
+            _instance.powerButtonPressed();
+        }
+    }
+    //here is a good place to canel sign function
+    if (_instance.abortButtonFlag) {
+        [_instance.abortCondition lock];
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            int devIdx = 0;
+            void *ppPAEWContext = savedDevH;
+            int iRtn = PAEW_RET_UNKNOWN_FAIL;
+
+            _instance.abortButtonFlag = NO;
+            [_instance.abortCondition lock];
+            iRtn = PAEW_AbortButton(ppPAEWContext, devIdx);
+            [_instance.abortCondition signal];
+            [_instance.abortCondition unlock];
+        });
+        [_instance.abortCondition wait];
+        [_instance.abortCondition unlock];
+        _instance.abortButtonFlag = NO;
+    }
+    return 0;
+}
+
 +(instancetype) shareInstance
 {
     static dispatch_once_t onceToken ;
@@ -123,7 +152,18 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     return self;
 }
 
+- (NSCondition *)abortCondition
+{
+    if (!_abortCondition) {
+        _abortCondition = [[NSCondition alloc] init];
+    }
+    return _abortCondition;
+}
+
+
+#pragma mark HeartBeat
 - (void)startHeartBeat {
+    [self stopHeartBeat];
     if (_timer == nil) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(repatGetDeviceInfo) userInfo:nil repeats:true];
     }
@@ -145,66 +185,56 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     return savedDevH != nil;
 }
 
+#pragma mark Card
 - (void)searchBLTCard:(SuccessedComplication)complication {
     __block unsigned char nDeviceType = PAEW_DEV_TYPE_BT;
     __block char *szDeviceNames = (char *)malloc(512*16);
     __block size_t nDeviceNameLen = 512*16;
     __block size_t nDevCount = 0;
     __block EnumContext DevContext = {0};
-    DevContext.timeout = 3;
+    DevContext.timeout = 5;
     DevContext.enumCallBack = EnumCallback;
     NSString *devName = @"WOOKONG BIO";
     strcpy(DevContext.searchName, [[devName stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet] UTF8String]);
     dispatch_async(bltQueue, ^{
         int devInfoState = PAEW_GetDeviceListWithDevContext(nDeviceType, szDeviceNames, &nDeviceNameLen, &nDevCount, &DevContext, sizeof(DevContext));
-        dispatch_async(dispatch_get_main_queue(), ^{
-            complication();
-            free(szDeviceNames);
-        });
-    });
-}
-
-- (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
-    if (!savedDevH) {
-        return;
-    }
-    dispatch_async(bltQueue, ^{
-        int devIdx = 0;
-        void *ppPAEWContext = savedDevH;
-        int iRtn = PAEW_RET_UNKNOWN_FAIL;
-        
-        iRtn = PAEW_Format(ppPAEWContext, devIdx);
-        if (iRtn != PAEW_RET_SUCCESS) {
+        if (devInfoState == 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                failedCompliction([BLTUtils errorCodeToString:iRtn]);
+                complication();
+                free(szDeviceNames);
             });
-            return ;
-        } else {
-            const unsigned char number = (const unsigned char)[[self ret15bitString] UTF8String];
-            iRtn = PAEW_WriteSN(savedDevH, 0, &number, PAEW_DEV_INFO_SN_LEN);
-            if (iRtn != PAEW_RET_SUCCESS) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    failedCompliction([BLTUtils errorCodeToString:iRtn]);
-                });
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    successComlication();
-                });
-            }
         }
     });
 }
 
-- (NSString *)ret15bitString
-{
-    NSString *tempStr = @"";
-    for (int i = 0; i < 15; i++) {
-        int value = arc4random() % 10;
-        tempStr = [tempStr stringByAppendingFormat:@"%d",value];
-    }
-    return tempStr;
-}
+- (void)connectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+    char *szDeviceName = (char *)[deviceNameId UTF8String];
+    __block ConnectContext additional = {0};
+    additional.timeout = 5;
+    additional.batteryCallBack = BatteryCallback;
+    additional.disconnectedCallback = DisconnectedCallback;
+    __block void *ppPAEWContext = 0;
+    dispatch_async(bltQueue, ^{
+        int connectDev = PAEW_InitContextWithDevNameAndDevContext(&ppPAEWContext, szDeviceName, PAEW_DEV_TYPE_BT, &additional, sizeof(additional));
+        if (ppPAEWContext) {
+            savedDevH = ppPAEWContext;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (connectDev == PAEW_RET_SUCCESS) {
+                [self startHeartBeat];
+                _instance.batteryInfo.state = battery;
+                _instance.batteryInfo.electricQuantity = 0;
+                if (_instance.batteryInfoUpdated != nil) {
+                    _instance.batteryInfoUpdated(_instance.batteryInfo);
+                }
+                successComlication();
+            } else {
+                failedCompliction([BLTUtils errorCodeToString:connectDev]);
+            }
+        });
 
+    });
+}
 
 - (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
     if (!savedDevH) {
@@ -218,6 +248,10 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (iRtn == PAEW_RET_SUCCESS) {
                 savedDevH = nil;
+                _instance.selectDevice = nil;
+                if (_instance.batteryInfoUpdated != nil) {
+                    _instance.batteryInfoUpdated(nil);
+                }
                 [self stopHeartBeat];
                 successComlication();
             } else {
@@ -227,30 +261,40 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)connectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
-    char *szDeviceName = (char *)[deviceNameId UTF8String];
-    __block ConnectContext additional = {0};
-    additional.timeout = 5;
-    additional.batteryCallBack = BatteryCallback;
-    additional.disconnectedCallback = DisconnectedCallback;
-    __block void *ppPAEWContext = 0;
+- (void)formmart:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+    if (!savedDevH) {
+        return;
+    }
     dispatch_async(bltQueue, ^{
-        int connectDev = PAEW_InitContextWithDevNameAndDevContext(&ppPAEWContext, szDeviceName, PAEW_DEV_TYPE_BT, &additional, sizeof(additional), 0x00, 0x00);
-        if (ppPAEWContext) {
-            savedDevH = ppPAEWContext;
-        }
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+
+        iRtn = PAEW_Format_Ex(ppPAEWContext, devIdx, PutState_Callback, NULL);
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (connectDev == PAEW_RET_SUCCESS) {
-                [self startHeartBeat];
-                successComlication();
+            if (iRtn != PAEW_RET_SUCCESS) {
+                failedCompliction([BLTUtils errorCodeToString:iRtn]);
+                if (self.powerButtonFailed != nil) {
+                    self.powerButtonFailed();
+                }
             } else {
-                failedCompliction([BLTUtils errorCodeToString:connectDev]);
+                successComlication();
             }
         });
-
     });
 }
 
+- (NSString *)ret15bitString
+{
+    NSString *tempStr = @"";
+    for (int i = 0; i < 15; i++) {
+        int value = arc4random() % 10;
+        tempStr = [tempStr stringByAppendingFormat:@"%d",value];
+    }
+    return tempStr;
+}
+
+#pragma mark DevInfo
 - (void)checkPinState:(CheckPinStateComplication)complication failed:(FailedComplication)failed {
     if (!savedDevH) {
         return;
@@ -302,24 +346,32 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)initPin:(NSString *)pin success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+#pragma mark Init
+- (void)initPin:(NSString *)pin failed:(FailedComplication)failedCompliction {
     if (!savedDevH) {
         return;
     }
     dispatch_async(bltQueue, ^{
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
-        int initState = PAEW_InitPIN(ppPAEWContext, devIdx, [pin UTF8String]);
+        self.abortButtonFlag = NO;
+        int initState = PAEW_InitPIN_Ex(ppPAEWContext, devIdx, [pin UTF8String], PutState_Callback, NULL);
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (initState == PAEW_RET_SUCCESS) {
-                successComlication();
-            } else {
+            if (initState != PAEW_RET_SUCCESS) {
                 failedCompliction([BLTUtils errorCodeToString:initState]);
+                if (self.powerButtonFailed != nil) {
+                    self.powerButtonFailed();
+                }
             }
         });
     });
 }
 
+- (void)cancelWaitingPowerButtonPressed {
+    self.abortButtonFlag = YES;
+}
+
+#pragma mark Seed
 - (void)getSeed:(GetSeedsComplication)successComlication failed:(FailedComplication)failedCompliction {
     dispatch_async(bltQueue, ^{
         int devIdx = 0;
@@ -338,9 +390,13 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             for (int i = 0; i < pnCheckIndexCount; i++) {
                 [tempCheck addObject:seeds[pnCheckIndex[i]]];
             }
-            successComlication(seeds, [tempCheck componentsJoinedByString:@" "]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                successComlication(seeds, [tempCheck componentsJoinedByString:@" "]);
+            });
         } else {
-            failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failedCompliction([BLTUtils errorCodeToString:iRtn]);
+            });
         }
     });
 }
@@ -382,6 +438,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
+#pragma mark Pubkey and SN
 - (void)getVolidation:(GetVolidationComplication)successComlication failed:(FailedComplication)failedCompliction {
     if (!savedDevH) {
         return;
@@ -430,19 +487,16 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
         unsigned char bAddress[1024] = {0};
         size_t nAddressLen = 1024;
+        Byte showType = (Byte)0;
         
         iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
-        unsigned char showOnScreen = 1;
         if (iRtn != PAEW_RET_SUCCESS) {
             failedReason = [BLTUtils errorCodeToString:iRtn];
         } else {
-            iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, showOnScreen, bAddress, &nAddressLen);
+            iRtn = PAEW_GetTradeAddress_Ex(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, showType, bAddress, &nAddressLen, PutState_Callback, NULL);
             if (iRtn != PAEW_RET_SUCCESS) {
                 failedReason = [BLTUtils errorCodeToString:iRtn];
             } else {
-                if (showOnScreen) {
-                    PAEW_ClearLCD(ppPAEWContext, devIdx);
-                }
                 size_t addressLen = strlen((char *)bAddress);
                 public_key = [NSString stringWithUTF8String:(char *)bAddress];
                 pub_sig = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1]];
@@ -478,21 +532,19 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
             pbCheckCode = (unsigned char *)malloc(nAddressLen);
             memset(pbCheckCode, 0, nAddressLen);
             iRtn = PAEW_GetDeviceCheckCode(ppPAEWContext, 0, pbCheckCode, &nAddressLen);
-            if (iRtn != PAEW_RET_SUCCESS) {
-                dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (iRtn != PAEW_RET_SUCCESS) {
                     failedCompliction([BLTUtils errorCodeToString:iRtn]);
-                });
-            } else {
-                NSString *temp = [BLTUtils bytesToHexString:pbCheckCode length:nAddressLen];
-                NSString *sn = [temp substringToIndex:31];
-                NSString *sn_sig = [temp substringFromIndex:32];
-                dispatch_async(dispatch_get_main_queue(), ^{
+                } else {
+                    NSString *temp = [BLTUtils bytesToHexString:pbCheckCode length:nAddressLen];
+                    NSString *sn = [temp substringToIndex:31];
+                    NSString *sn_sig = [temp substringFromIndex:32];
                     successComlication(sn, sn_sig);
-                });
-            }
-            if (pbCheckCode) {
-                free(pbCheckCode);
-            }
+                }
+                if (pbCheckCode) {
+                    free(pbCheckCode);
+                }
+            });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failedCompliction([BLTUtils errorCodeToString:iRtn]);
@@ -511,23 +563,20 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
         unsigned char bAddress[1024] = {0};
         size_t nAddressLen = 1024;
+        Byte showType = (Byte)0;
         
         iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, puiDerivePathEOS, sizeof(puiDerivePathEOS)/sizeof(puiDerivePathEOS[0]));
-        unsigned char showOnScreen = 1;
         if (iRtn != PAEW_RET_SUCCESS) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failedCompliction([BLTUtils errorCodeToString:iRtn]);
             });
         } else {
-            iRtn = PAEW_GetTradeAddress(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, showOnScreen, bAddress, &nAddressLen);
+            iRtn = PAEW_GetTradeAddress_Ex(ppPAEWContext, devIdx, PAEW_COIN_TYPE_EOS, showType, bAddress, &nAddressLen, PutState_Callback, NULL);
             if (iRtn != PAEW_RET_SUCCESS) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     failedCompliction([BLTUtils errorCodeToString:iRtn]);
                 });
             } else {
-                if (showOnScreen) {
-                    PAEW_ClearLCD(ppPAEWContext, devIdx);
-                }
                 size_t addressLen = strlen((char *)bAddress);
                 NSString *signature = [BLTUtils bytesToHexString:[NSData dataWithBytes:bAddress + addressLen + 1 length:nAddressLen - addressLen - 1] ];
                 NSString *pubKey = [NSString stringWithUTF8String:(char *)bAddress];
@@ -539,6 +588,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
+#pragma mark FP
 - (void)enrollFingerPrinter:(EnrollFingerComplication)stateComplication success:(SuccessedComplication)success failed:(FailedComplication)failed timeout:(TimeoutComplication)timeout {
     if (!savedDevH) {
         return;
@@ -593,7 +643,7 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
         iRtn = PAEW_AbortFP(ppPAEWContext, 0);
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (iRtn == PAEW_RET_SUCCESS) {
+            if (iRtn == PAEW_RET_SUCCESS || iRtn == PAEW_RET_DEV_STATE_INVALID) {
                 successComplication();
             } else {
                 failedComplication([BLTUtils errorCodeToString:iRtn]);
@@ -613,7 +663,9 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         int iRtn = PAEW_RET_UNKNOWN_FAIL;
         iRtn = PAEW_VerifyFP(ppPAEWContext, devIdx);
         if (iRtn != PAEW_RET_SUCCESS) {
-            failed([BLTUtils errorCodeToString:iRtn]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failed([BLTUtils errorCodeToString:iRtn]);
+            });
             return ;
         }
 
@@ -627,31 +679,214 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         } while (iRtn == PAEW_RET_DEV_WAITING && !self.stopEntroll);
         if (iRtn != PAEW_RET_SUCCESS) {
             if (!self.stopEntroll) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (iRtn == PAEW_RET_DEV_TIMEOUT) {
+                if (iRtn == PAEW_RET_DEV_TIMEOUT) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         timeout();
-                    } else {
+                    });
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         failed([BLTUtils errorCodeToString:iRtn]);
-                    }
-                });
+                    });
+                }
             }
-            return ;
-        }
-
-        size_t          nFPListCount = 1;
-        FingerPrintID   *fpIDList = (FingerPrintID *)malloc(sizeof(FingerPrintID) * nFPListCount);
-        memset(fpIDList, 0, sizeof(sizeof(FingerPrintID) * nFPListCount));
-        iRtn = PAEW_GetVerifyFPList(ppPAEWContext, devIdx, fpIDList, &nFPListCount);
-        if (iRtn != PAEW_RET_SUCCESS) {
-            failed([BLTUtils errorCodeToString:iRtn]);
         } else {
-            success();
+             success();
         }
-        free(fpIDList);
+//        size_t          nFPListCount = 1;
+//        FingerPrintID   *fpIDList = (FingerPrintID *)malloc(sizeof(FingerPrintID) * nFPListCount);
+//        memset(fpIDList, 0, sizeof(sizeof(FingerPrintID) * nFPListCount));
+//        iRtn = PAEW_GetVerifyFPList(ppPAEWContext, devIdx, fpIDList, &nFPListCount);
+//        if (iRtn != PAEW_RET_SUCCESS) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                failed([BLTUtils errorCodeToString:iRtn]);
+//            });
+//        } else {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                success();
+//            });
+//        }
+//        free(fpIDList);
     });
 }
 
-- (void)getEOSSign:(AuthType)type  chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication {
+#pragma mark Signature
+- (void)getNewEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication {
+    self.switchSignFlag = NO;
+    self.abortSignFlag = NO;
+    dispatch_async(bltQueue, ^{
+        int devIdx = 0;
+        void *ppPAEWContext = savedDevH;
+        int iRtn = PAEW_RET_UNKNOWN_FAIL;
+        unsigned char nCoinType = PAEW_COIN_TYPE_EOS;
+        uint32_t puiDerivePath[] = {0, 0x8000002C, 0x800000c2, 0x80000000, 0x00000000, 0x00000000};
+        iRtn = PAEW_DeriveTradeAddress(ppPAEWContext, devIdx, nCoinType, puiDerivePath, sizeof(puiDerivePath)/sizeof(puiDerivePath[0]));
+        if (iRtn != PAEW_RET_SUCCESS) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failedComplication([BLTUtils errorCodeToString:iRtn]);
+            });
+            return ;
+        }
+
+        NSString *transStr = [transaction stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+        unsigned char eosPut[512] = {};
+        size_t transSize = 512;
+        iRtn = PAEW_EOS_TX_Serialize([transStr UTF8String], eosPut, &transSize);
+        if (iRtn != PAEW_RET_SUCCESS) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failedComplication([BLTUtils errorCodeToString:iRtn]);
+            });
+            return ;
+        } else {
+            unsigned char tx[1024] = {};
+
+            NSMutableData*apnsTokenMutableData = [[NSMutableData alloc]init];
+            unsigned charwhole_byte;
+            char byte_chars[3] = {'\0','\0','\0'};
+
+            int i;
+            for(i=0; i < [chainId length]/2; i++) {
+                byte_chars[0] = [chainId characterAtIndex:i*2];
+                byte_chars[1] = [chainId characterAtIndex:i*2+1];
+
+                charwhole_byte= (unsigned)strtol(byte_chars, NULL, 16);
+                [apnsTokenMutableData appendBytes:&charwhole_byte length:1];
+            }
+
+            const char *header = apnsTokenMutableData.bytes;
+            memcpy(tx, header, 32);
+
+            memcpy(tx + 32, eosPut, transSize);
+
+            const char foot[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+            memcpy(tx + 32 + transSize, foot, 32);
+
+            iRtn = PAEW_EOS_SetTX(ppPAEWContext, devIdx, tx, sizeof(tx));
+
+            if (iRtn != PAEW_RET_SUCCESS) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    failedComplication([BLTUtils errorCodeToString:iRtn]);
+                });
+                return ;
+            } else {
+                unsigned char pbTXSig[1024] = {0};
+                size_t pnTXSigLen = 1024;
+                BOOL pinVerified = NO;
+                unsigned char authType = type == pinType ? PAEW_SIGN_AUTH_TYPE_PIN : PAEW_SIGN_AUTH_TYPE_FP;
+                int lastResult = PAEW_RET_SUCCESS;
+                unsigned char lastAuthType = authType;
+                BOOL needAbort = NO;
+                while (YES) {
+                    //check abort sign flag
+                    if (self.abortSignFlag) {
+                        self.abortSignFlag = NO;
+                        iRtn = PAEW_AbortSign(ppPAEWContext, devIdx);
+                        if (iRtn == PAEW_RET_SUCCESS) {
+                            [self printLog: @"eos signature abort"];
+                            needAbort = false;
+                            break;
+                        } else {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                failedComplication([BLTUtils errorCodeToString:iRtn]);
+                            });
+                            needAbort = true;
+                            break;
+                        }
+                    }
+
+                    //check switch sign flag
+                    if (self.switchSignFlag) {
+                        self.switchSignFlag = false;
+                        if (authType == PAEW_SIGN_AUTH_TYPE_FP) {
+                            authType = PAEW_SIGN_AUTH_TYPE_PIN;
+                        } else if (authType == PAEW_SIGN_AUTH_TYPE_PIN) {
+                            authType = PAEW_SIGN_AUTH_TYPE_FP;
+                        }
+                        //clear last getsign result
+                        lastResult = PAEW_RET_SUCCESS;
+                        pinVerified = NO;
+                    }
+                    if (lastAuthType != authType) {
+                        if (authType != PAEW_SIGN_AUTH_TYPE_FP && authType != PAEW_SIGN_AUTH_TYPE_PIN)  {
+                            needAbort = true;
+                            break;
+                        }
+                        lastAuthType = authType;
+                        [self printLog:@"auth type changed, current auth type: %@", (authType == PAEW_SIGN_AUTH_TYPE_FP ? @"Fingerprint" : @"PIN")];
+                        iRtn = PAEW_SwitchSign(ppPAEWContext, devIdx);
+                    }
+                    //if auth type is PIN, PAEW_VerifySignPIN must be called
+                    if ((authType == PAEW_SIGN_AUTH_TYPE_PIN) && (!pinVerified)) {
+                        NSString *pin = _instance->pin;
+                        if (!pin) {
+                            authType = PAEW_SIGN_AUTH_TYPE_FP;
+                            pinVerified = NO;
+                            [self printLog:@"user canceled PIN input"];
+                            continue;
+                        }
+                        iRtn = PAEW_VerifySignPIN(ppPAEWContext, devIdx, [pin cStringUsingEncoding:NSUTF8StringEncoding]);
+                        if (iRtn != PAEW_RET_SUCCESS) {
+                            pinVerified = false;
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                failedComplication([BLTUtils errorCodeToString:iRtn]);
+                            });
+                            continue;
+                        }
+                        pinVerified = YES;
+                    }
+                    //after all, loop to get sign result
+                    iRtn = PAEW_EOS_GetSignResult(ppPAEWContext, devIdx, authType, pbTXSig, &pnTXSigLen);
+
+                    if (iRtn == PAEW_RET_SUCCESS) {
+                        NSString *sign = [[NSString alloc] initWithBytes:pbTXSig length:pnTXSigLen encoding:NSASCIIStringEncoding];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            complication(sign);
+                        });
+                        needAbort = false;
+                        break;
+                    } else if (lastResult != iRtn) {
+                        lastResult = iRtn;
+                        //notify here: loop for pin and loop for fp have different loop conditions
+                        if (authType == PAEW_SIGN_AUTH_TYPE_FP) {
+                            if (lastResult == PAEW_RET_NO_VERIFY_COUNT) {
+                                //like wechat, if fp verify count ran out, switch to pin verify
+                                if (self.changeToPinConfirm != nil) {
+                                    self.changeToPinConfirm();
+                                }
+                                self.switchSignFlag = true;
+                                continue;
+                            }
+                            if (lastResult != PAEW_RET_DEV_WAITING
+                                && lastResult != PAEW_RET_DEV_FP_COMMON_ERROR
+                                && lastResult != PAEW_RET_DEV_FP_NO_FINGER
+                                && lastResult != PAEW_RET_DEV_FP_NOT_FULL_FINGER) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    failedComplication([BLTUtils errorCodeToString:iRtn]);
+                                });
+                                needAbort = true;
+                                break;
+                            }
+                        } else if (authType == PAEW_SIGN_AUTH_TYPE_PIN) {
+                            if (lastResult != PAEW_RET_DEV_WAITING) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    failedComplication([BLTUtils errorCodeToString:iRtn]);
+                                });
+                                needAbort = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    //finally, call abort if PAEW_EOS_GetSignResult returns non PAEW_RET_SUCCESS values
+                    if (needAbort) {
+                        iRtn = PAEW_AbortSign(ppPAEWContext, devIdx);
+                    }
+                }
+            }
+        }
+    });
+}
+
+- (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication {
     if (!savedDevH) {
         return;
     }
@@ -755,30 +990,19 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     });
 }
 
-- (void)cancelSign:(SuccessedComplication)successComplication failed:(FailedComplication)failedComplication {
-    self.stopEntroll = true;
-    if (!savedDevH) {
-        return;
-    }
-    dispatch_async(bltQueue, ^{
-        uint64_t temp = (uint64_t)savedDevH;
-        void *ppPAEWContext = (void*)temp;
-        int iRtn = PAEW_RET_UNKNOWN_FAIL;
-        iRtn = PAEW_AbortFP(ppPAEWContext, 0);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (iRtn == PAEW_RET_SUCCESS) {
-                successComplication();
-            } else {
-                failedComplication([BLTUtils errorCodeToString:iRtn]);
-            }
-        });
-    });
+- (void)cancelSignAbort {
+    self.abortSignFlag = YES;
+}
+
+- (void)switchToPin {
+    self.switchSignFlag = YES;
 }
 
 - (void)submmitWaitingVerfyPin:(NSString *)waitVerPin {
     _instance->pin = waitVerPin;
 }
 
+#pragma mark Pin
 - (void)getFPList:(GetFPListComplication)complication failed:(FailedComplication)failedComplication {
     if (!savedDevH) {
         return;
@@ -880,12 +1104,15 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         int devIdx = 0;
         void *ppPAEWContext = savedDevH;
-        int iRtn = PAEW_ChangePIN_Input(ppPAEWContext, devIdx, [self->pin UTF8String], [newPin UTF8String]);
+        int iRtn = PAEW_ChangePIN_Input_Ex(ppPAEWContext, devIdx, [self->pin UTF8String], [newPin UTF8String], PutState_Callback, NULL);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (iRtn == PAEW_RET_SUCCESS) {
                 successComlication();
             } else {
                 failedComplication([BLTUtils errorCodeToString:iRtn]);
+                if (self.powerButtonFailed != nil) {
+                    self.powerButtonFailed();
+                }
             }
         });
     });
@@ -905,6 +1132,5 @@ int PutSignState(void * const pCallbackContext, const int nSignState)
         });
     }
 }
-
 
 @end

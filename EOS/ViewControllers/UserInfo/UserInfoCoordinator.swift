@@ -10,12 +10,12 @@ import UIKit
 import ReSwift
 import MessageUI
 import SwiftyUserDefaults
+import Localize_Swift
 
 protocol UserInfoCoordinatorProtocol {
     func dismissVC()
     func openNormalSetting()
     func openSafeSetting()
-//    func openHelpSetting(delegate:Any)
     func openServersSetting()
     func openAboutSetting()
     func openHelpSetting()
@@ -97,13 +97,12 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
 //    }
     func openHelpSetting() {
         let vc = BaseWebViewController()
-        let language = Defaults[.language]
+        let language = Localize.currentLanguage()
         if language == "en" {
             vc.url = H5AddressConfiguration.FeedbackENURL
         } else if language == "zh-Hans" {
             vc.url = H5AddressConfiguration.FeedbackCNURL
         } else {
-
             vc.url = H5AddressConfiguration.FeedbackENURL
         }
         vc.title = R.string.localizable.mine_help.key.localized()
@@ -111,7 +110,7 @@ extension UserInfoCoordinator: UserInfoCoordinatorProtocol {
     }
     func openServersSetting() {
         let vc = BaseWebViewController()
-        let language = Defaults[.language]
+        let language = Localize.currentLanguage()
         if language == "en" {
             vc.url = H5AddressConfiguration.HelpENURL
         } else if language == "zh-Hans" {

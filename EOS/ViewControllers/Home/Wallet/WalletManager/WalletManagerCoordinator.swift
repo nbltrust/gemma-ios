@@ -25,7 +25,7 @@ protocol WalletManagerStateManagerProtocol {
         _ subscriber: S, transform: ((Subscription<WalletManagerState>) -> Subscription<SelectedState>)?
     ) where S.StoreSubscriberStateType == SelectedState
 
-    func connect(_ complicatiopn: @escaping CompletionCallback)
+    func connect(_ deviceName: String?, complication: @escaping CompletionCallback)
 
     func disConnect(_ complication: @escaping CompletionCallback)
 
@@ -54,11 +54,13 @@ extension WalletManagerCoordinator: WalletManagerCoordinatorProtocol {
     }
 
     func pushToWookongBioDetail(_ model: Wallet) {
-        if let detailVC = R.storyboard.wallet.walletDetailViewController() {
-            let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
-            detailVC.coordinator = coordinator
-            detailVC.model = model
-            self.rootVC.pushViewController(detailVC, animated: true)
+        if BLTWalletIO.shareInstance()?.isConnection() ?? false {
+            if let detailVC = R.storyboard.wallet.walletDetailViewController() {
+                let coordinator = WalletDetailCoordinator(rootVC: self.rootVC)
+                detailVC.coordinator = coordinator
+                detailVC.model = model
+                self.rootVC.pushViewController(detailVC, animated: true)
+            }
         }
     }
 
@@ -108,8 +110,8 @@ extension WalletManagerCoordinator: WalletManagerStateManagerProtocol {
         store.subscribe(subscriber, transform: transform)
     }
 
-    func connect(_ complicatiopn: @escaping CompletionCallback) {
-        connectBLTCard(self.rootVC, complication: complicatiopn)
+    func connect(_ deviceName: String?, complication: @escaping CompletionCallback) {
+        connectBLTCard(self.rootVC, deviceName: deviceName, complication: complication)
     }
 
     func disConnect(_ complication: @escaping CompletionCallback) {

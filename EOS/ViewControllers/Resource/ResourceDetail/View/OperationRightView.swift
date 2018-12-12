@@ -187,8 +187,8 @@ extension OperationRightView: TitleTextFieldViewDelegate, TitleTextFieldViewData
     }
 
     func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting] {
-        return [TextButtonSetting(imageName: R.image.ic_close.name,
-                                  selectedImageName: R.image.ic_close.name,
+        return [TextButtonSetting(imageName: R.image.ic_clean.name,
+                                  selectedImageName: R.image.ic_clean.name,
                                   isShowWhenEditing: true)]
     }
 }

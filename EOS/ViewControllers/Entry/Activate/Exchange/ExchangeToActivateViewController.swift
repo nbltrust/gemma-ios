@@ -28,7 +28,9 @@ class ExchangeToActivateViewController: BaseViewController, IndicatorInfoProvide
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.contentView.updateTitle(memoText: R.string.localizable.exchange_activate_title.key, priKeyText: R.string.localizable.exchange_prikey_title_red.key.localized())
+        let text = R.string.localizable.exchange_activate_title.key.localized()
+        let highLightText = R.string.localizable.active_title_highlight.key.localized()
+        self.contentView.setContentAttribute(contentLabelStr: text, attLabelArray: ["signupeoseos", highLightText])
     }
 
     override func refreshViewController() {

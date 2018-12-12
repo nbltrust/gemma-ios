@@ -63,7 +63,9 @@ class EntryViewController: BaseViewController {
             registerView.passwordView.isHidden = true
             registerView.passwordComfirmView.isHidden = true
             registerView.passwordPromptView.isHidden = true
+            agreeView.isHidden = true
             registerView.walletNameView.isHidden = true
+            self.title = R.string.localizable.create_account.key.localized()
         case .noWalletName:
             registerView.nameView.isHidden = true
             registerView.walletNameView.isHidden = true
@@ -119,11 +121,11 @@ class EntryViewController: BaseViewController {
             self.coordinator?.pushToServiceProtocolVC()
         }).disposed(by: disposeBag)
 
-        self.coordinator?.state.callback.finishEOSCurrencyCallback.accept({[weak self] (code) in
+        self.coordinator?.state.callback.finishCDKeyEOSCurrencyCallback.accept({[weak self] (code) in
             guard let `self` = self else { return }
             if let str = code as? String {
                 if let name = self.registerView.nameView.textField.text {
-                    self.coordinator?.createEOSAccount(.gemma, accountName: name, currencyID: self.currencyID, inviteCode: str, validation: nil, deviceName: nil, completion: { (_) in
+                    self.coordinator?.createEOSAccount(.gemma, goodsId: .cdkey, accountName: name, currencyID: self.currencyID, inviteCode: str, validation: nil, completion: { (_) in
                         self.endLoading()
                     })
                 }
@@ -140,7 +142,7 @@ class EntryViewController: BaseViewController {
                                     guard let `self` = self else { return false }
                                     switch self.createType {
                                     case .wookong:
-                                        return arg0.3
+                                        return arg0.0
                                     case .noWalletName:
                                         return arg0.1 && arg0.2 && arg0.3
                                     case .EOS:
@@ -152,9 +154,9 @@ class EntryViewController: BaseViewController {
     }
 
     func createBltWallet() {
-        if BLTWalletIO.shareInstance()?.isConnection() ?? false {
+        if !(BLTWalletIO.shareInstance()?.isConnection() ?? false) {
             if let nav = self.navigationController {
-                connectBLTCard(nav) { [weak self] in
+                connectBLTCard(nav, deviceName: nil) { [weak self] in
                     guard let `self` = self else {return}
                     self.handleBltWalletCreation()
                 }
@@ -165,7 +167,7 @@ class EntryViewController: BaseViewController {
     }
 
     func handleBltWalletCreation() {
-        self.startLoading()
+        self.startLoadingOnSelf(false, message: "")
         self.coordinator?.createBLTWallet(self.registerView.nameView.textField.text!, currencyID: self.currencyID, completion: { (_) in
             self.endLoading()
         })

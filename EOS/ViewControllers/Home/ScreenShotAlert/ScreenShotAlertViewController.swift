@@ -77,5 +77,9 @@ extension ScreenShotAlertViewController {
 
     @objc func cancelShot(_ data: [String: Any]) {
         self.coordinator?.dismissVC()
+
+        if let context = self.context, let callback = context.cancelShot {
+            callback()
+        }
     }
 }

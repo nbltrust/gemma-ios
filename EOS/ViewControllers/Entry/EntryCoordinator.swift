@@ -42,12 +42,12 @@ protocol EntryStateManagerProtocol {
     func checkAgree(_ agree: Bool)
 
     func createEOSAccount(_ type: CreateAPPId,
-                      accountName: String,
-                      currencyID: Int64?,
-                      inviteCode: String,
-                      validation: WookongValidation?,
-                      deviceName: String?,
-                      completion:@escaping (Bool) -> Void)
+                          goodsId: GoodsId,
+                          accountName: String,
+                          currencyID: Int64?,
+                          inviteCode: String,
+                          validation: WookongValidation?,
+                          completion: @escaping (Bool) -> Void)
 
     func copyMnemonicWord()
 
@@ -145,6 +145,31 @@ extension EntryCoordinator: EntryCoordinatorProtocol {
 }
 
 extension EntryCoordinator: EntryStateManagerProtocol {
+    func createEOSAccount(_ type: CreateAPPId, goodsId: GoodsId, accountName: String, currencyID: Int64?, inviteCode: String, validation: WookongValidation?, completion: @escaping (Bool) -> Void) {
+        if let id = currencyID {
+            createEOSAccountUtil(type, goodsId: goodsId, accountName: accountName, currencyID: id, inviteCode: inviteCode, validation: validation) { (bool, code) in
+                if bool == true {
+                    completion(true)
+                } else if bool == false, let codeInt = code as? Int {
+                    if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: codeInt) {
+                        let error = GemmaError.NBLCode(code: gemmaerror)
+                        if type == .bluetooth, gemmaerror == GemmaError.NBLNetworkErrorCode.invitecodeRegiteredCode {
+                            CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
+                            self.pushToActivateVCWithCurrencyID(id)
+                        } else {
+                            showFailTop(error.localizedDescription)
+                        }
+                    } else {
+                        showFailTop(R.string.localizable.error_unknow.key.localized())
+                    }
+                    completion(false)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    }
+
     var state: EntryState {
         return store.state
     }
@@ -197,51 +222,6 @@ extension EntryCoordinator: EntryStateManagerProtocol {
         self.store.dispatch(AgreeAction(isAgree: agree))
     }
 
-    func createEOSAccount(_ type: CreateAPPId,
-                          accountName: String,
-                          currencyID: Int64?,
-                          inviteCode: String,
-                          validation: WookongValidation?,
-                          deviceName: String?,
-                          completion: @escaping (Bool) -> Void) {
-        do {
-            if let id = currencyID {
-                let currency = try WalletCacheService.shared.fetchCurrencyBy(id: id)
-                if type == .bluetooth {
-                    if var currency = currency, let publicKey = validation?.publicKey {
-                        currency.pubKey = publicKey
-                        try WalletCacheService.shared.updateCurrency(currency)
-                    }
-                }
-                if let pubkey = currency?.pubKey {
-                    NBLNetwork.request(target: .createAccount(type: type,
-                                                              account: accountName,
-                                                              pubKey: pubkey,
-                                                              invitationCode: inviteCode,
-                                                              validation: validation),
-                                       success: { (data) in
-                                        CurrencyManager.shared.saveActived(id, actived: true)
-                                        CurrencyManager.shared.saveAccountNameWith(id, name: accountName)
-                                        self.rootVC.popToRootViewController(animated: true)
-                                        completion(true)
-                    }, error: { (code) in
-                        if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
-                            let error = GemmaError.NBLCode(code: gemmaerror)
-                            showFailTop(error.localizedDescription)
-                        } else {
-                            showFailTop(R.string.localizable.error_unknow.key.localized())
-                        }
-                        completion(false)
-                    }) { (_) in
-                        completion(false)
-                    }
-                }
-            }
-        } catch {
-
-        }
-    }
-
     func getValidation(_ success: @escaping GetVolidationComplication, failed: @escaping FailedComplication) {
         BLTWalletIO.shareInstance()?.getVolidation(success, failed: failed)
     }
@@ -254,30 +234,26 @@ extension EntryCoordinator: EntryStateManagerProtocol {
     }
 
     func createBLTWallet(_ name: String, currencyID: Int64?, completion:@escaping (Bool)-> Void) {
-        if let device = BLTWalletIO.shareInstance()?.selectDevice {
-            BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, snSig, pub, pubSig, publicKey) in
-                guard let `self` = self else { return }
-                var validation = WookongValidation()
-                validation.SN = sn ?? ""
-                validation.SNSig = snSig ?? ""
-                validation.pubKey = pub ?? ""
-                validation.publicKeySig = pubSig ?? ""
-                validation.publicKey = publicKey ?? ""
-                self.createEOSAccount(.bluetooth, accountName: name, currencyID: currencyID, inviteCode: "", validation: validation, deviceName: device.name, completion: { (successed) in
-                    completion(successed)
-                    if successed {
-                        self.popToRootVC()
-                    }
-                })
-                }, failed: { (reason) in
-                    completion(false)
-                    if let failedReason = reason {
-                        showFailTop(failedReason)
-                    }
+        BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, snSig, pub, pubSig, publicKey) in
+            guard let `self` = self else { return }
+            var validation = WookongValidation()
+            validation.SN = sn ?? ""
+            validation.SNSig = snSig ?? ""
+            validation.pubKey = pub ?? ""
+            validation.publicKeySig = pubSig ?? ""
+            validation.publicKey = publicKey ?? ""
+            self.createEOSAccount(.bluetooth, goodsId: .sn, accountName: name, currencyID: currencyID, inviteCode: validation.SN, validation: validation, completion: { (successed) in
+                completion(successed)
+                if successed {
+                    self.popToRootVC()
+                }
             })
-        } else {
-            completion(false)
-        }
+            }, failed: { (reason) in
+                completion(false)
+                if let failedReason = reason {
+                    showFailTop(failedReason)
+                }
+        })
     }
 
     func createTempWallet(_ pwd: String, prompt: String, type: WalletType) {
@@ -299,12 +275,12 @@ extension EntryCoordinator: EntryStateManagerProtocol {
             let pubkey = EOSIO.getPublicKey(prikey)
             let currency = Currency(id: nil, type: .EOS, cipher: curCipher!, pubKey: pubkey!, wid: idNum, date: date, address: nil)
 
-            let prikey2 = Seed39DeriveRaw(seed, CurrencyType.ETH.derivationPath)
-            let curCipher2 = Seed39KeyEncrypt(pwd, prikey2)
-            let address = Seed39GetEthereumAddressFromPrivateKey(prikey2)
-            let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: nil, wid: idNum, date: date, address: address)
+//            let prikey2 = Seed39DeriveRaw(seed, CurrencyType.ETH.derivationPath)
+//            let curCipher2 = Seed39KeyEncrypt(pwd, prikey2)
+//            let address = Seed39GetEthereumAddressFromPrivateKey(prikey2)
+//            let currency2 = Currency(id: nil, type: .ETH, cipher: curCipher2!, pubKey: nil, wid: idNum, date: date, address: address)
 
-            let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency,currency2])
+            let id = try WalletCacheService.shared.createWallet(wallet: wallet, currencys: [currency])
             if let id = id {
                 Defaults[.currentWalletID] = id.string
             }

@@ -50,7 +50,7 @@ enum CurrencyType: Int, DatabaseValueConvertible, Codable {
     var derivationPath: String {
         switch self {
         case .EOS:
-            return "m/44'/194'/0'/0/"
+            return "m/44'/194'/0'/0/0/"
         case .ETH:
             return "m/44'/60'/0'/0/"
         }
@@ -200,6 +200,12 @@ extension WalletCacheService {
         return wallet.id
     }
 
+    func deleteWallet(wallet: Wallet) throws -> Bool {
+        return try queue?.write({ database in
+            try wallet.delete(database)
+        }) ?? false
+    }
+
     func fetchAllWallet() throws -> [Wallet]? {
         return try queue?.inDatabase({ database in
             try Wallet.fetchAll(database)
@@ -221,6 +227,12 @@ extension WalletCacheService {
             try currency.insert(database)
         })
         return currency.id
+    }
+
+    func deleteCurrency(_ currency: Currency) throws -> Bool {
+        return try queue?.write({ database in
+            try currency.delete(database)
+        }) ?? false
     }
 
     func fetchAllCurrencysBy(_ wallet: Wallet) throws -> [Currency]? {

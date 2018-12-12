@@ -16,6 +16,8 @@ protocol BLTCardConfirmFingerPrinterCoordinatorProtocol {
     func dismissNav()
 
     func popVC()
+
+    func pushToPinConfirmVC()
 }
 
 protocol BLTCardConfirmFingerPrinterStateManagerProtocol {
@@ -32,6 +34,8 @@ protocol BLTCardConfirmFingerPrinterStateManagerProtocol {
 
     func createWookongBioWallet(_ success: @escaping SuccessedComplication,
                                 failed: @escaping FailedComplication)
+
+    func cancelEntroll()
 }
 
 class BLTCardConfirmFingerPrinterCoordinator: BLTCardRootCoordinator {
@@ -64,23 +68,17 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterCoo
     }
 
     func dismissNav() {
-        BLTWalletIO.shareInstance()?.cancelEntrollFingerPrinter({
-            self.rootVC.dismiss(animated: true, completion: nil)
-        }, failed: { (reason) in
-            if let failedReason = reason {
-                showFailTop(failedReason)
-            }
-        })
+        cancelEntroll()
+        self.rootVC.dismiss(animated: true, completion: nil)
     }
 
     func popVC() {
-        BLTWalletIO.shareInstance()?.cancelEntrollFingerPrinter({
-            self.rootVC.popViewController(animated: true)
-        }, failed: { (reason) in
-            if let failedReason = reason {
-                showFailTop(failedReason)
-            }
-        })
+        cancelEntroll()
+        self.rootVC.popViewController(animated: true)
+    }
+
+    func pushToPinConfirmVC() {
+        
     }
 }
 
@@ -101,8 +99,15 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
         model.confirmType = fpType
         model.contract = EOSIOContract.TokenCode
         model.symbol = "EOS"
-        transaction(EOSAction.bltTransfer.rawValue, actionModel: model) { (bool, showString) in
-            callback(bool, showString)
+        transaction(EOSAction.bltTransfer.rawValue, actionModel: model) {[weak self] (bool, showString) in
+            guard let `self` = self else { return }
+            if bool == false, showString == "" {
+                self.delegateAndTransfer(model, callback: { (bool, str) in
+                    callback(bool, showString)
+                })
+            } else {
+                callback(bool, showString)
+            }
         }
     }
 
@@ -111,6 +116,54 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
     }
 
     func createWookongBioWallet(_ success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
-        importWookongBioWallet("", success: success, failed: failed)
+        importWookongBioWallet(self.rootVC, hint:"", success: success, failed: failed)
+    }
+
+    func delegateAndTransfer(_ model: TransferActionModel, callback:@escaping (Bool, String) -> Void) {
+        BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, snSig, pub, pubSig, publicKey) in
+            guard let `self` = self else { return }
+            var validation = WookongValidation()
+            validation.SN = sn ?? ""
+            validation.SNSig = snSig ?? ""
+            validation.pubKey = pub ?? ""
+            validation.publicKeySig = pubSig ?? ""
+            validation.publicKey = publicKey ?? ""
+            NBLNetwork.request(target: .getGoodscode(code: validation.SN), success: { (success) in
+                if let goodscode = Goodscode.deserialize(from: success.dictionaryObject) {
+                    if goodscode.rights.delegation.actions.count == 0 {
+                        let account = CurrencyManager.shared.getCurrentAccountName()
+                        NBLNetwork.request(target: .delegate(appid: .bluetooth, goodsId: .sn, code: validation.SN, account: account, validation: validation), success: { (success) in
+                            if let actionId = success["action_id"].stringValue as? String {
+                                transaction(EOSAction.bltTransfer.rawValue, actionModel: model, callback: { (bool, showString) in
+                                    if bool == false, showString == "" {
+                                        callback(false, R.string.localizable.eos_chain_instability.key.localized())
+                                    } else {
+                                        callback(bool, showString)
+                                    }
+                                })
+                            } else {
+                                callback(false, R.string.localizable.eos_chain_instability.key.localized())
+                            }
+                        }, error: { (_) in
+                            callback(false, R.string.localizable.eos_chain_instability.key.localized())
+                        }, failure: { (_) in
+                        })
+                    } else {
+                        callback(false, R.string.localizable.eos_errorcode_3080004.key.localized())
+                    }
+                } else {
+                    callback(false, R.string.localizable.eos_chain_instability.key.localized())
+                }
+            }, error: { (error) in
+                callback(false, R.string.localizable.eos_chain_instability.key.localized())
+            }, failure: { (_) in
+            })
+            }, failed: { (reason) in
+                callback(false, R.string.localizable.eos_chain_instability.key.localized())
+        })
+    }
+    
+    func cancelEntroll() {
+        BLTWalletIO.shareInstance()?.cancelSignAbort()
     }
 }

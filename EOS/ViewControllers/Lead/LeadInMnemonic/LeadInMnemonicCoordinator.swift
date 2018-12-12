@@ -105,10 +105,11 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
     }
 
     func validMnemonic(_ mnemonic: String) -> Bool {
-        return Seed39CheckMnemonic(mnemonic)
+        return Seed39CheckMnemonic(BLTUtils.validSeedWithimportSeed(mnemonic))
     }
 
     func importForWookong(_ mnemonic: String) {
+        self.rootVC.topViewController?.startLoadingOnSelf(false, message: "")
         BLTWalletIO.shareInstance()?.importSeed(mnemonic, success: {
             var hint = ""
             self.rootVC.viewControllers.forEach { (vc) in
@@ -116,7 +117,6 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
                     hint = setWalletVC.fieldView.hintView.textField.text ?? ""
                 }
             }
-            self.rootVC.topViewController?.startLoading()
             self.createWookongBioWallet(hint, success: { [weak self] in
                 guard let `self` = self else {return}
                 self.rootVC.topViewController?.endLoading()
@@ -128,6 +128,7 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
                     }
             })
         }, failed: { (reason) in
+            self.rootVC.topViewController?.endLoading()
             if let reason = reason {
                 showFailTop(reason)
             }
@@ -137,6 +138,6 @@ extension LeadInMnemonicCoordinator: LeadInMnemonicStateManagerProtocol {
     func createWookongBioWallet(_ hint: String,
                                 success: @escaping SuccessedComplication,
                                 failed: @escaping FailedComplication) {
-        importWookongBioWallet(hint, success: success, failed: failed)
+        importWookongBioWallet(self.rootVC, hint: hint, success: success, failed: failed)
     }
 }

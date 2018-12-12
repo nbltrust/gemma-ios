@@ -9,6 +9,10 @@
 import UIKit
 import ReSwift
 import NBLCommonModule
+import SwiftyUserDefaults
+import SwiftDate
+import SwifterSwift
+import SwiftyJSON
 
 protocol AssetDetailCoordinatorProtocol {
     func pushResourceDetailVC()
@@ -107,18 +111,35 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
     }
 
     func getDataFromServer(_ account: String, symbol: String, contract: String, completion: @escaping (Bool) -> Void, isRefresh: Bool) {
-        self.store.dispatch(GetLastPosAction(lastPos: self.state.lastPos, isRefresh: isRefresh))
 
+        self.store.dispatch(GetLastPosAction(lastPos: self.state.lastPos, isRefresh: isRefresh))
         NBLNetwork.request(target: NBLService.accountHistory(account: account, showNum: 10, lastPosition: state.lastPos, symbol: symbol, contract: contract), success: { (data) in
             let transactions = data["trace_list"].arrayValue
-
 
             if let payments = transactions.map({ (json) in
                 Payment.deserialize(from: json.dictionaryObject)
             }) as? [Payment] {
                 self.store.dispatch(FetchPaymentsRecordsListAction(data: payments))
-            }
+                self.getChainInfo(completion: { (lib) in
+                    if let libStr = lib {
+                        for payment in payments {
+                            EOSIONetwork.request(target: .getTransaction(id: payment.trxId), success: { (block) in
+                                if block.rawValue is NSNull {
+                                    self.store.dispatch(GetBlockNumAction(blockNum: nil, libNum: libStr, trxId: payment.trxId, status: .fail))
+                                } else {
+                                    if let data = GetTransaction.deserialize(from: block.dictionaryObject) {
+                                        let blocknum = data.blockNum
+                                        self.store.dispatch(GetBlockNumAction(blockNum: blocknum, libNum: libStr, trxId: payment.trxId, status: nil))
+                                    }
+                                }
+                            }, error: { (_) in
+                            }, failure: { (_) in
+                            })
 
+                        }
+                    }
+                })
+            }
             completion(true)
         }, error: { (code) in
 
@@ -131,10 +152,21 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
             completion(false)
 
         }) { (_) in
-            let payment: [Payment] = []
-            self.store.dispatch(FetchPaymentsRecordsListAction(data: payment))
+//            let payment: [Payment] = []
+//            self.store.dispatch(FetchPaymentsRecordsListAction(data: payment))
             completion(false)
         }
+    }
+
+    func getChainInfo(completion: @escaping (String?) -> Void) {
+        EOSIONetwork.request(target: .getInfo, success: { (info) in
+            let lib = info["last_irreversible_block_num"].stringValue
+            completion(lib)
+        }, error: { (_) in
+            completion(nil)
+        }, failure: { (_) in
+            completion(nil)
+        })
     }
 
     func getAccountInfo(_ account: String) {

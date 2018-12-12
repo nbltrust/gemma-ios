@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="334"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NIC-fd-fhi">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NIC-fd-fhi">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="900" constant="343" id="kMP-vz-LC2"/>

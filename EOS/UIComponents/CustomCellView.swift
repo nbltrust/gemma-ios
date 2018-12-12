@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum LineViewAlignment: Int {
+    case toIcon = 1
+    case toTitle
+}
+
 @IBDesignable
 class CustomCellView: BaseView {
 
@@ -21,7 +26,17 @@ class CustomCellView: BaseView {
 
     @IBOutlet weak var lineView: UIView!
 
+    @IBOutlet weak var leftIconMagin: NSLayoutConstraint!
+
     @IBOutlet weak var iconWidth: NSLayoutConstraint!
+
+    @IBOutlet weak var leftLineMagin: NSLayoutConstraint!
+
+    @IBOutlet weak var titleGap: NSLayoutConstraint!
+
+    @IBOutlet weak var topMagin: NSLayoutConstraint!
+
+    @IBOutlet weak var bottomMagin: NSLayoutConstraint!
 
     var title: String = "" {
         didSet {
@@ -35,16 +50,43 @@ class CustomCellView: BaseView {
         }
     }
 
-    var leftIconSpacing: CGFloat = 5
+    var lineViewAlignment: LineViewAlignment = .toIcon {
+        didSet {
+            reloadUI()
+        }
+    }
+
+    var titleGapWithSubTitle: CGFloat = 0 {
+        didSet {
+            reloadUI()
+        }
+    }
+
+    var leftIconSpacing: CGFloat = 5 {
+        didSet {
+            reloadUI()
+        }
+    }
+
+    var leftSpacing: CGFloat = 20 {
+        didSet {
+            reloadUI()
+        }
+    }
+
+    var verMagin: CGFloat = 20 {
+        didSet {
+            topMagin.constant = verMagin
+
+            bottomMagin.constant = verMagin
+
+            updateHeight()
+        }
+    }
 
     @IBInspectable var iconImage: UIImage? {
         didSet {
-            iconView.image = iconImage
-            if let image = iconImage {
-                iconWidth.constant = image.size.width + leftIconSpacing
-            } else {
-                iconWidth.constant = 0
-            }
+            reloadUI()
         }
     }
 
@@ -67,5 +109,26 @@ class CustomCellView: BaseView {
 
     func setupUI() {
 
+    }
+
+    func reloadUI() {
+        //Icon
+        iconView.image = iconImage
+        if let image = iconImage {
+            iconWidth.constant = image.size.width + leftIconSpacing
+        } else {
+            iconWidth.constant = 0
+        }
+
+        //Line
+        if lineViewAlignment == .toIcon {
+            leftLineMagin.constant = leftSpacing
+        } else {
+            leftLineMagin.constant = leftSpacing + iconWidth.constant
+        }
+
+        leftIconMagin.constant = leftSpacing
+
+        titleGap.constant = titleGapWithSubTitle
     }
 }

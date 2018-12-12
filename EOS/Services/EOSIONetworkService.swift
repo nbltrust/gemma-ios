@@ -73,7 +73,11 @@ struct EOSIONetwork {
                         let error = json["error"]["code"].debugDescription
                         let codeKey = AppConfiguration.EOSErrorCodeBase + error
                         let codeValue = codeKey.localized()
-                        showFailTop(codeValue)
+                        if (error == "3080004" || error == "3080005"), WalletManager.shared.currentWallet()?.type == .bluetooth {
+                            errorCallback(88888)
+                        } else {
+                            showFailTop(codeValue)
+                        }
                     } catch _ {
 
                     }
@@ -97,11 +101,8 @@ extension EOSIOService: TargetType {
     var baseURL: URL {
         let configuration = NetworkConfiguration()
         switch self {
-        case .getAccount:
-//            if otherNode {
-//                return  configuration.EOSIO_OTHER_BASE_URL
-//            }
-            return configuration.EOSIOBaseURL
+        case .getTransaction:
+            return NetworkConfiguration.EOSWebAPI!
         default:
             return configuration.EOSIOBaseURL
         }
@@ -110,7 +111,7 @@ extension EOSIOService: TargetType {
     var isNeedCache: Bool {
         switch self {
         case .getAccount:
-            return true
+            return false
         default:
             return false
         }
@@ -125,7 +126,7 @@ extension EOSIOService: TargetType {
         case .getInfo:
             return "/v1/chain/get_info"
         case .getBlock:
-            return "/v1/chain/get_block"
+            return "/api/v1/chain/get_block"
         case .abiJsonToBin:
             return "/v1/chain/abi_json_to_bin"
         case .abiBinToJson:
@@ -134,8 +135,8 @@ extension EOSIOService: TargetType {
             return "/v1/chain/push_transaction"
         case .getKeyAccounts:
             return "/v1/history/get_key_accounts"
-        case .getTransaction:
-            return "/v1/history/get_transaction"
+        case let .getTransaction(id):
+            return "/api/v1/get_transaction/\(id)"
         case .getTableRows:
             return "/v1/chain/get_table_rows"
         }
@@ -166,19 +167,29 @@ extension EOSIOService: TargetType {
             return ["code": EOSIOContract.TokenCode, "action": action.rawValue, "binargs": bin]
         case let .getKeyAccounts(pubKey):
             return ["public_key": pubKey]
-        case let .getTransaction(id):
-            return ["id": id]
+        case .getTransaction:
+            return [:]
         case let .getTableRows(json):
             return JSON(parseJSON: json).dictionaryObject ?? [:]
         }
     }
 
     var task: Task {
-        return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+//        switch self {
+//        case .getTransaction:
+//            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+//        default:
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+//        }
     }
 
     var method: Moya.Method {
-        return .post
+        switch self {
+        case .getTransaction:
+            return .get
+        default:
+            return .post
+        }
     }
 
     var sampleData: Data {

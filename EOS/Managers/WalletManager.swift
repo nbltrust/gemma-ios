@@ -71,7 +71,23 @@ class WalletManager {
     }
 
     func removeWallet(_ wallet: Wallet) -> Bool {
-        return true
+        do {
+            if try WalletCacheService.shared.deleteWallet(wallet: wallet) {
+                Defaults[.currentWalletID] = ""
+                let currencys = try WalletCacheService.shared.fetchAllCurrencysBy(wallet.id ?? 0)
+                for currency in currencys ?? [] {
+                    try WalletCacheService.shared.deleteCurrency(currency)
+                    if currency.type == .EOS {
+                        CurrencyManager.shared.clearAccountMsg(currency.id)
+                    }
+                }
+                return true
+            }
+            return false
+        } catch {
+            return false
+        }
+        return false
     }
 
     func switchToLastestWallet() -> Bool {
@@ -150,8 +166,8 @@ class WalletManager {
             if let currencys = try WalletCacheService.shared.fetchAllCurrencysBy(wallet) {
                 if CurrencyManager.shared.pwdIsCorrect(currencys[0].id, password: oldPassword) == false {
                     self.errCount += 1
-                    if self.errCount == 3 {
-                        showFailTop(hint)
+                    if self.errCount >= 3, let oldHint = wallet.hint, oldHint.count > 0 {
+                        showFailTop(oldHint)
                     } else {
                         showFailTop(R.string.localizable.password_not_match.key.localized())
                     }
@@ -176,10 +192,11 @@ class WalletManager {
                     }
                     try WalletCacheService.shared.updateCurrency(currency)
                 }
+                wallet.hint = hint
+                WalletManager.shared.updateWallet(wallet)
             }
             if wallet.type == .HD {
                 let walletCipher = Seed39KeyDecrypt(oldPassword, wallet.cipher)
-                wallet.hint = hint
                 wallet.cipher = Seed39KeyEncrypt(newPassword, walletCipher)
                 WalletManager.shared.updateWallet(wallet)
             }
@@ -390,16 +407,53 @@ class WalletManager {
 //        completion(false)
 //    }
 //
-//    func closeTimer() {
-//        if self.timer != nil {
-//            self.timer?.pause()
-//            self.timer = nil
-//        }
-//    }
+
+    func getActionStatus(_ currency: Currency, actionId: String, completion:@escaping ObjectOptionalCallback) {
+        self.timer = Repeater.every(.seconds(10)) {[weak self] _ in
+            guard let `self` = self else { return }
+            NBLNetwork.request(target: .getActionState(actionId: actionId), success: {[weak self] (result) in
+                guard let `self` = self else { return }
+                switch result["status"].intValue {
+                case ActionStatus.done.rawValue:
+                    CurrencyManager.shared.saveActived(currency.id, actived: .actived)
+                    self.closeTimer()
+                case ActionStatus.sended.rawValue:
+                    CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
+                case ActionStatus.pending.rawValue:
+                    CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
+                case ActionStatus.executory.rawValue:
+                    CurrencyManager.shared.saveActived(currency.id, actived: .doActive)
+                default:
+                    CurrencyManager.shared.saveActived(currency.id, actived: .nonActived)
+                    self.closeTimer()
+                }
+                completion(result)
+                }, error: { (code) in
+                    if let gemmaerror = GemmaError.NBLNetworkErrorCode(rawValue: code) {
+                        let error = GemmaError.NBLCode(code: gemmaerror)
+                        showFailTop(error.localizedDescription)
+                    } else {
+                        showFailTop(R.string.localizable.error_unknow.key.localized())
+                    }
+                    completion(nil)
+            }) { (_) in
+                completion(nil)
+            }
+        }
+
+        timer?.start()
+    }
+
+    func closeTimer() {
+        if self.timer != nil {
+            self.timer?.pause()
+            self.timer = nil
+        }
+    }
 
     // MARK: Format Check
     func isValidPassword(_ password: String) -> Bool {
-        return password.count >= 8
+        return password.count >= 8 && password.count <= 16
     }
 
     func isValidComfirmPassword(_ password: String, comfirmPassword: String) -> Bool {

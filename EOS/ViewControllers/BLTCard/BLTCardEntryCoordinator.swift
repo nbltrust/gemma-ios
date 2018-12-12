@@ -20,6 +20,8 @@ protocol BLTCardEntryCoordinatorProtocol {
 
     func pushToMnemonicVC()
 
+    func pushToImportVC()
+
     func dismissVC()
 
     func presentFingerPrinterVC(_ state: BLTCardPINState)
@@ -120,6 +122,13 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
         self.rootVC.pushViewController(mnemonicWordVC!, animated: true)
     }
 
+    func pushToImportVC() {
+        let leadInVC = R.storyboard.leadIn.leadInViewController()!
+        let coordinator = LeadInCoordinator(rootVC: self.rootVC)
+        leadInVC.coordinator = coordinator
+        self.rootVC.pushViewController(leadInVC, animated: true)
+    }
+
     func presentFingerPrinterVC(_ state: BLTCardPINState) {
         confirmFP(self.rootVC) {
             self.handleWookongPair(state)
@@ -134,7 +143,7 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
 
     func handleWookongPair(_ state: BLTCardPINState) {
         if state == .finishInit {
-            self.rootVC.topViewController?.startLoading()
+            self.rootVC.topViewController?.startLoadingOnSelf(false, message: "")
             self.createWookongBioWallet("", success: {
                 self.rootVC.topViewController?.endLoading()
                 self.dismissVC()
@@ -145,7 +154,14 @@ extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
                 }
             })
         } else if state == .unFinishInit {
-            self.pushToMnemonicVC()
+            selectBLTInitType(self.rootVC) { [weak self] (isCreate) in
+                guard let `self` = self else {return}
+                if isCreate {
+                    self.pushToMnemonicVC()
+                } else {
+                    self.pushToImportVC()
+                }
+            }
         }
     }
 }
@@ -184,7 +200,7 @@ extension BLTCardEntryCoordinator: BLTCardEntryStateManagerProtocol {
     func createWookongBioWallet(_ hint: String,
                                 success: @escaping SuccessedComplication,
                                 failed: @escaping FailedComplication) {
-        importWookongBioWallet(hint, success: success, failed: failed)
+        importWookongBioWallet(self.rootVC, hint: hint, success: success, failed: failed)
     }
 
     func checkFPExist(_ success: @escaping CompletionCallback,

@@ -233,6 +233,7 @@
 }
 
 + (FingerPrinterState)fingerEntrolStateWithValue:(int)value {
+    NSLog(@"测试%@",[self errorCodeToString:value]);
     switch (value) {
         case PAEW_RET_DEV_FP_REDUNDANT:
             return redundant;
@@ -258,12 +259,21 @@
 + (BLTCardPINState)pinStateWithDevInfo:(PAEW_DevInfo)info {
     if (info.ucPINState == PAEW_DEV_INFO_PIN_UNSET) {
         return unInit;
-    } else if (info.ucPINState != PAEW_DEV_INFO_PIN_INVALID_STATE && info.ucLifeCycle == PAEW_DEV_INFO_LIFECYCLE_PRODUCE) {
-        return finishInit;
-    } else if (info.ucPINState != PAEW_DEV_INFO_PIN_INVALID_STATE && info.ucLifeCycle == PAEW_DEV_INFO_LIFECYCLE_USER) {
+    } else if (info.ucPINState != PAEW_DEV_INFO_PIN_INVALID_STATE && (info.ucLifeCycle == PAEW_DEV_INFO_LIFECYCLE_AGREE || info.ucLifeCycle == PAEW_DEV_INFO_LIFECYCLE_PRODUCE)) {
         return unFinishInit;
+    } else if (info.ucPINState != PAEW_DEV_INFO_PIN_INVALID_STATE && info.ucLifeCycle == PAEW_DEV_INFO_LIFECYCLE_USER) {
+        return finishInit;
     }
     return unInit;
+}
+
++ (NSString *)validSeedWithimportSeed:(NSString *)seed {
+    NSString *whiteSpace = @" ";
+    NSMutableArray *words = [NSMutableArray arrayWithArray: [seed componentsSeparatedByString:whiteSpace]];
+    for (int i = 0; i < words.count; i++) {
+        words[i] = [words[i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    }
+    return [words componentsJoinedByString:whiteSpace];
 }
 
 @end

@@ -13,6 +13,12 @@ import seed39_ios_golang
 import eos_ios_core_cpp
 import Seed39
 
+enum EOSActiveType: Int {
+    case actived = 1
+    case nonActived
+    case doActive
+}
+
 class CurrencyManager {
     static let shared = CurrencyManager()
 
@@ -70,19 +76,18 @@ class CurrencyManager {
     }
 
     //新版本存取币种信息
-    func getActived(_ currencyID: Int64?) -> Bool {
+    func getActived(_ currencyID: Int64?) -> EOSActiveType {
         if let id = currencyID {
-            if let active = Defaults["active\(id)"] as? Bool {
-                return active
+            if let active = Defaults["active\(id)"] as? Int {
+                return EOSActiveType(rawValue: active)!
             }
-            return false
         }
-        return false
+        return .nonActived
     }
 
-    func saveActived(_ currencyID: Int64?, actived: Bool) {
+    func saveActived(_ currencyID: Int64?, actived: EOSActiveType) {
         if let id = currencyID {
-            Defaults["active\(id)"] = actived
+            Defaults["active\(id)"] = actived.rawValue
         }
     }
 
@@ -105,6 +110,13 @@ class CurrencyManager {
             }
         }
         return nil
+    }
+
+    func clearAccountMsg(_ currencyID: Int64?) {
+        if let id = currencyID {
+            Defaults["accountNames\(id)"] = []
+            Defaults["accountName\(id)"] = ""
+        }
     }
 
     func currentPublicKey() -> String {
@@ -252,6 +264,8 @@ class CurrencyManager {
         EOSIONetwork.request(target: .getKeyAccounts(pubKey: publicKey), success: { (json) in
             if let names = json["account_names"].arrayObject as? [String] {
                 completion(names.count > 0,names)
+            } else {
+                completion(true,[])
             }
         }, error: { (_) in
             completion(false,[])

@@ -217,7 +217,7 @@ func transaction(_ action: String, actionModel: ActionModel, callback:@escaping 
 
                     let transString = tempMap?.sortJsonString() ?? ""
 
-                    BLTWalletIO.shareInstance()?.getEOSSign(actionModel.confirmType, chainId: chainId, transaction: transString, success: { (sign) in
+                    BLTWalletIO.shareInstance()?.getNewEOSSign(actionModel.confirmType, chainId: chainId, transaction: transString, success: { (sign) in
                         transJsonMap?["signatures"] = [sign?.substring(from: 0, length: (sign?.count ?? 1) - 1)]
                         transaction = transJsonMap?.jsonString() ?? ""
                         pushTransaction(transaction, actionModel: actionModel, callback: callback)
@@ -275,10 +275,54 @@ func pushTransaction(_ transaction: String, actionModel: ActionModel, callback:@
         } else {
             callback(false, actionModel.faile)
         }
-    }, error: { (_) in
-        callback(false, actionModel.faile)
+    }, error: { (error) in
+        if error == 88888 {
+            callback(false, "")
+        } else {
+            callback(false, actionModel.faile)
+        }
     }) { (_) in
         callback(false, R.string.localizable.request_failed.key.localized() )
+    }
+}
+
+func createEOSAccountUtil(_ type: CreateAPPId,
+                      goodsId: GoodsId,
+                      accountName: String,
+                      currencyID: Int64,
+                      inviteCode: String,
+                      validation: WookongValidation?,
+                      completion: @escaping (Bool, Any) -> Void) {
+    do {
+        let currency = try WalletCacheService.shared.fetchCurrencyBy(id: currencyID)
+        if type == .bluetooth {
+            if var currency = currency, let publicKey = validation?.publicKey {
+                currency.pubKey = publicKey
+                try WalletCacheService.shared.updateCurrency(currency)
+            }
+        }
+        if let pubkey = currency?.pubKey {
+            NBLNetwork.request(target: .createAccount(type: type,
+                                                      goodsId: goodsId,
+                                                      account: accountName,
+                                                      pubKey: pubkey,
+                                                      invitationCode: inviteCode,
+                                                      validation: validation),
+                               success: { (data) in
+                                CurrencyManager.shared.saveActived(currencyID, actived: .doActive)
+                                CurrencyManager.shared.saveAccountNameWith(currencyID, name: accountName)
+                                if let actionId = data["action_id"].stringValue as? String {
+                                    Defaults[accountName] = actionId
+                                }
+                                completion(true, data)
+            }, error: { (code) in
+                completion(false,code)
+            }) { (error) in
+                completion(false,error)
+            }
+        }
+    } catch {
+
     }
 }
 
@@ -537,6 +581,10 @@ func getPrecision(_ value: String) -> Int {
         return precision.count
     }
     return 0
+}
+
+func openWebView(_ urlStr: String) {
+    UIApplication.shared.open(URL(string: urlStr)!, options: [:], completionHandler: nil)
 }
 //func correctAmount(_ sender:String) -> String{
 //    if let _ = sender.toDecimal(){

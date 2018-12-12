@@ -19,8 +19,6 @@ protocol WalletDetailStateManagerProtocol {
 
     func switchPageState(_ state: PageState)
 
-    func cancelPair()
-
     func formmat()
 }
 
@@ -69,14 +67,23 @@ extension WalletDetailCoordinator: WalletDetailStateManagerProtocol {
         }
     }
 
-    func cancelPair() {
-
-    }
-
     func formmat() {
         BLTWalletIO.shareInstance()?.formmart({
             if let wallet = WalletManager.shared.currentWallet() {
-                WalletManager.shared.removeWallet(wallet)
+                if WalletManager.shared.removeWallet(wallet) {
+                    let wallets = WalletManager.shared.walletList()
+                    if wallets.count == 0 {
+                        self.rootVC.dismiss(animated: true, completion: {
+                            AppConfiguration.shared.appCoordinator!.showEntry()
+                        })
+                    } else {
+                        let firstWallet = wallets[0]
+                        if let walletId = firstWallet.id {
+                            WalletManager.shared.switchWallet(walletId)
+                        }
+                        self.rootVC.dismiss(animated: true, completion: {})
+                    }
+                }
             }
         }, failed: { (reason) in
             if let failedReason = reason {

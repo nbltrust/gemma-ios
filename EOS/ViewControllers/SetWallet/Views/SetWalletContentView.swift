@@ -116,6 +116,7 @@ class SetWalletContentView: UIView {
         titleTextfieldView.textField.addTarget(self, action: selector, for: .editingChanged)
         if tag == InputType.name.rawValue {
             titleTextfieldView.textField.font = UIFont.pfScS16
+            titleTextfieldView.textField.setValue(UIFont.pfScR16, forKeyPath: "_placeholderLabel.font")
         }
     }
 
@@ -231,15 +232,15 @@ extension SetWalletContentView: TitleTextFieldViewDelegate, TitleTextFieldViewDa
 
     func textActionSettings(titleTextFieldView: TitleTextfieldView) -> [TextButtonSetting] {
         if isShowEye(titleTextFieldView) {
-            return [TextButtonSetting(imageName: R.image.icClean.name,
-                                      selectedImageName: R.image.icClean.name,
+            return [TextButtonSetting(imageName: R.image.ic_clean.name,
+                                      selectedImageName: R.image.ic_clean.name,
                                       isShowWhenEditing: true),
                     TextButtonSetting(imageName: R.image.ic_visible.name,
                                       selectedImageName: R.image.ic_invisible.name,
                                       isShowWhenEditing: false)]
         } else {
-            return [TextButtonSetting(imageName: R.image.icClean.name,
-                                      selectedImageName: R.image.icClean.name,
+            return [TextButtonSetting(imageName: R.image.ic_clean.name,
+                                      selectedImageName: R.image.ic_clean.name,
                                       isShowWhenEditing: true)]
         }
     }

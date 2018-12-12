@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="fID-Fz-IR3">
+        <view contentMode="scaleToFill" ambiguous="YES" id="fID-Fz-IR3">
             <rect key="frame" x="0.0" y="0.0" width="375" height="479"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -30,17 +30,20 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_des_title"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="dvs-SQ-rrS">
-                    <rect key="frame" x="17" y="63.5" width="341" height="200"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="dvs-SQ-rrS">
+                    <rect key="frame" x="17" y="63.5" width="341" height="203.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="dvs-SQ-rrS" secondAttribute="height" multiplier="335:200" id="vLP-p8-O2e"/>
+                    </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHy-NL-9HU">
-                    <rect key="frame" x="182" y="283.5" width="11.5" height="14.5"/>
+                    <rect key="frame" x="182" y="287" width="11.5" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pui-Ot-yRw">
-                    <rect key="frame" x="32" y="317" width="311" height="17"/>
+                    <rect key="frame" x="20" y="320.5" width="335" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -48,8 +51,22 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_des_prepare"/>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psx-wN-TBt">
+                    <rect key="frame" x="34" y="381.5" width="8" height="8"/>
+                    <color key="backgroundColor" red="1" green="0.33300000000000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="8" id="S62-6O-Mm4"/>
+                        <constraint firstAttribute="height" constant="8" id="svI-Ns-262"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="cSK-rM-9V9"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIV-OT-wdf">
-                    <rect key="frame" x="32" y="347" width="11.5" height="14.5"/>
+                    <rect key="frame" x="56" y="350.5" width="11.5" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -57,8 +74,22 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_des_first"/>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cG-OF-5T5">
+                    <rect key="frame" x="34" y="354" width="8" height="8"/>
+                    <color key="backgroundColor" red="1" green="0.33300000000000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="YKN-np-Vvg"/>
+                        <constraint firstAttribute="width" constant="8" id="tVr-WF-9I4"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="cUF-dC-GWr"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7t-BP-ev9">
-                    <rect key="frame" x="32" y="374.5" width="11.5" height="14.5"/>
+                    <rect key="frame" x="56" y="378" width="11.5" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -67,7 +98,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCd-29-JrR" customClass="Button" customModule="EOS" customModuleProvider="target">
-                    <rect key="frame" x="32" y="424" width="311" height="44"/>
+                    <rect key="frame" x="32" y="427.5" width="311" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="HVs-hX-grL"/>
                     </constraints>
@@ -82,26 +113,31 @@
             <constraints>
                 <constraint firstItem="EHy-NL-9HU" firstAttribute="centerX" secondItem="fID-Fz-IR3" secondAttribute="centerX" id="1aP-h9-j2f"/>
                 <constraint firstItem="dvs-SQ-rrS" firstAttribute="top" secondItem="MPI-pb-G6H" secondAttribute="bottom" constant="20" id="2AS-Ev-HWO"/>
+                <constraint firstItem="tIV-OT-wdf" firstAttribute="centerY" secondItem="0cG-OF-5T5" secondAttribute="centerY" id="2ue-Tr-QBc"/>
                 <constraint firstItem="9Tn-dX-KZb" firstAttribute="trailing" secondItem="dvs-SQ-rrS" secondAttribute="trailing" constant="17" id="C29-9K-pGG"/>
                 <constraint firstItem="u7t-BP-ev9" firstAttribute="top" secondItem="tIV-OT-wdf" secondAttribute="bottom" constant="13" id="D02-11-UpT"/>
                 <constraint firstItem="wCd-29-JrR" firstAttribute="top" secondItem="u7t-BP-ev9" secondAttribute="bottom" constant="35" id="D8W-Fg-ZrM"/>
                 <constraint firstItem="tIV-OT-wdf" firstAttribute="top" secondItem="pui-Ot-yRw" secondAttribute="bottom" constant="13" id="FC6-oM-gY8"/>
                 <constraint firstItem="pui-Ot-yRw" firstAttribute="top" secondItem="EHy-NL-9HU" secondAttribute="bottom" constant="19" id="HXd-lG-1vY"/>
                 <constraint firstItem="EHy-NL-9HU" firstAttribute="top" secondItem="dvs-SQ-rrS" secondAttribute="bottom" constant="20" id="I4N-l9-vlx"/>
+                <constraint firstItem="psx-wN-TBt" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" constant="34" id="I5J-qs-Dpn"/>
+                <constraint firstItem="0cG-OF-5T5" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" constant="34" id="Ldf-MN-HLh"/>
                 <constraint firstItem="dvs-SQ-rrS" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" constant="17" id="Lwh-rg-wkR"/>
                 <constraint firstItem="MPI-pb-G6H" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" id="Obw-a3-5PG"/>
+                <constraint firstItem="tIV-OT-wdf" firstAttribute="centerY" secondItem="fID-Fz-IR3" secondAttribute="centerY" id="PZZ-q8-RF0"/>
                 <constraint firstItem="wCd-29-JrR" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" constant="32" id="SgX-IE-gzA"/>
                 <constraint firstItem="MPI-pb-G6H" firstAttribute="top" secondItem="9Tn-dX-KZb" secondAttribute="top" constant="24" id="VI1-Qc-QMk"/>
                 <constraint firstItem="9Tn-dX-KZb" firstAttribute="trailing" secondItem="MPI-pb-G6H" secondAttribute="trailing" id="ZA2-S0-h9r"/>
                 <constraint firstItem="9Tn-dX-KZb" firstAttribute="trailing" secondItem="wCd-29-JrR" secondAttribute="trailing" constant="32" id="bYp-dX-Q1L"/>
-                <constraint firstItem="9Tn-dX-KZb" firstAttribute="trailing" secondItem="pui-Ot-yRw" secondAttribute="trailing" constant="32" id="diO-Lg-zqh"/>
-                <constraint firstItem="tIV-OT-wdf" firstAttribute="leading" secondItem="pui-Ot-yRw" secondAttribute="leading" id="qaW-dQ-vW9"/>
-                <constraint firstItem="u7t-BP-ev9" firstAttribute="leading" secondItem="pui-Ot-yRw" secondAttribute="leading" id="vMC-Hl-Zlg"/>
-                <constraint firstItem="pui-Ot-yRw" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" constant="32" id="wAh-Hv-sXI"/>
+                <constraint firstItem="9Tn-dX-KZb" firstAttribute="trailing" secondItem="pui-Ot-yRw" secondAttribute="trailing" constant="20" id="diO-Lg-zqh"/>
+                <constraint firstItem="u7t-BP-ev9" firstAttribute="centerY" secondItem="psx-wN-TBt" secondAttribute="centerY" id="pkd-Ec-SN8"/>
+                <constraint firstItem="tIV-OT-wdf" firstAttribute="leading" secondItem="pui-Ot-yRw" secondAttribute="leading" constant="36" id="qaW-dQ-vW9"/>
+                <constraint firstItem="u7t-BP-ev9" firstAttribute="leading" secondItem="pui-Ot-yRw" secondAttribute="leading" constant="36" id="vMC-Hl-Zlg"/>
+                <constraint firstItem="pui-Ot-yRw" firstAttribute="leading" secondItem="9Tn-dX-KZb" secondAttribute="leading" constant="20" id="wAh-Hv-sXI"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="9Tn-dX-KZb"/>
-            <point key="canvasLocation" x="56.5" y="-87.5"/>
+            <point key="canvasLocation" x="55.3125" y="-88.125"/>
         </view>
     </objects>
     <resources>

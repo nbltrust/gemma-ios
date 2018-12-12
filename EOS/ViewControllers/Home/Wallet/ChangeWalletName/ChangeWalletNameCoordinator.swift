@@ -53,8 +53,9 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
 
     func updateWalletName(model: Wallet, newName: String) -> Bool {
         if isValidWalletName(name: newName, wallet: model), let walletID = model.id {
-            WalletManager.shared.updateWalletName(walletID, newName: model.name)
-
+            WalletManager.shared.updateWalletName(walletID, newName: newName)
+            var model = model
+            model.name = newName
             if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? WalletManagerViewController {
                 vc.wallet = model
             }
@@ -71,7 +72,7 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
     }
 
     func updateFingerName(model: Wallet, index: Int, newName: String) -> Bool {
-        if isValidWalletName(name: newName, wallet: model) {
+        if isValidFingernName(name: newName) {
             FingerManager.shared.updateFingerName(model, index: index, fingerName: newName)
 
             if let vc = self.rootVC.viewControllers[self.rootVC.viewControllers.count - 2] as? DeleteFingerViewController {
@@ -83,8 +84,16 @@ extension ChangeWalletNameCoordinator: ChangeWalletNameStateManagerProtocol {
         }
     }
 
+    func isValidFingernName(name: String) -> Bool {
+        if name.isEmpty {
+            self.rootVC.showError(message: R.string.localizable.finger_name_empty.key.localized())
+            return false
+        }
+        return true
+    }
+
     func isValidWalletName(name: String, wallet: Wallet) -> Bool {
-        if name == "" {
+        if name.isEmpty {
             self.rootVC.showError(message: R.string.localizable.walletname_not_empty.key.localized())
             return false
         }

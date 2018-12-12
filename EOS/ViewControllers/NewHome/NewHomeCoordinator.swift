@@ -10,6 +10,7 @@ import UIKit
 import ReSwift
 import NBLCommonModule
 import SwiftyUserDefaults
+import SwiftyJSON
 
 protocol NewHomeCoordinatorProtocol {
     func presentSettingVC()
@@ -24,6 +25,8 @@ protocol NewHomeStateManagerProtocol {
     func switchPageState(_ state: PageState)
 
     func fetchWalletInfo(_ wallet: Wallet)
+
+    func checkEOSCurrency(_ complecation: @escaping () -> Void)
 }
 
 class NewHomeCoordinator: NavCoordinator {
@@ -102,16 +105,18 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
     }
 
     func fetchWalletInfo(_ wallet: Wallet) {
-        do {
-            let curArray: [Currency] = try WalletCacheService.shared.fetchAllCurrencysBy(wallet) ?? []
-            if curArray.count > 0 {
-                for currency in curArray {
-                    getCurrencyInfo(currency)
+        self.checkEOSCurrency { [weak self] in
+            guard let `self` = self else {return}
+            do {
+                let curArray: [Currency] = try WalletCacheService.shared.fetchAllCurrencysBy(wallet) ?? []
+                if curArray.count > 0 {
+                    for currency in curArray {
+                        self.getCurrencyInfo(currency)
+                    }
                 }
+            } catch {
+
             }
-
-        } catch {
-
         }
     }
 
@@ -132,10 +137,10 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
 
     func getCurrencyInfo(_ currency: Currency) {
         if currency.type == .EOS {
-            let names = CurrencyManager.shared.getAccountNameWith(currency.id)
+            let name = CurrencyManager.shared.getAccountNameWith(currency.id)
             let active = CurrencyManager.shared.getActived(currency.id)
-            if let names = names, active == true {
-                let account = names
+            if let name = name, active == .actived {
+                let account = name
                 EOSIONetwork.request(target: .getCurrencyBalance(account: account), success: { (json) in
                     self.store.dispatch(BalanceFetchedAction(currency: currency, balance: json))
                 }, error: { (_) in
@@ -156,6 +161,16 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
                     self.store.dispatch(RMBPriceFetchedAction(currency: currency))
                     }.cauterize()
                 self.getTokensWith(account)
+            } else if let name = name, active == .doActive  {
+                if let actionId = Defaults[name] as? String {
+                    self.store.dispatch(DoActiveFetchedAction(currency:currency, actions: nil))
+                    WalletManager.shared.getActionStatus(currency, actionId: actionId) {[weak self] (result) in
+                        guard let `self` = self else { return }
+                        if let resultJson = result as? JSON, let actions = Actions.deserialize(from: resultJson.dictionaryObject) {
+                            self.store.dispatch(DoActiveFetchedAction(currency:currency, actions: actions))
+                        }
+                    }
+                }
             } else {
                 self.store.dispatch(NonActiveFetchedAction(currency:currency))
             }
@@ -163,5 +178,41 @@ extension NewHomeCoordinator: NewHomeStateManagerProtocol {
 
         }
 
+    }
+
+    func checkEOSCurrency(_ complecation: @escaping () -> Void) {
+        if let wallet = WalletManager.shared.currentWallet() {
+            let currencies = CurrencyManager.shared.getAllCurrencys(wallet)
+            for currency in currencies {
+                if currency.type == .EOS {
+                    if let currencyId = currency.id {
+                        if CurrencyManager.shared.getActived(currencyId) == .doActive {
+                            complecation()
+                            return
+                        }
+                        CurrencyManager.shared.getEOSAccountNames(currency.pubKey ?? "", completion: { (result, accounts) in
+                            if result {
+                                if accounts.count > 0 {
+                                    if let currentAccount = CurrencyManager.shared.getAccountNameWith(currencyId) {
+                                        if !accounts.contains(currentAccount) {
+                                        CurrencyManager.shared.saveAccountNameWith(currencyId, name: accounts[0])
+                                        }
+                                    } else {
+                                        CurrencyManager.shared.saveAccountNameWith(currencyId, name: accounts[0])
+                                    }
+                                    CurrencyManager.shared.saveAccountNamesWith(currencyId, accounts: accounts)
+                                    CurrencyManager.shared.saveActived(currencyId, actived: .actived)
+                                } else {
+                                    CurrencyManager.shared.saveAccountNameWith(currencyId, name: "")
+                                    CurrencyManager.shared.saveAccountNamesWith(currencyId, accounts: [])
+                                    CurrencyManager.shared.saveActived(currencyId, actived: .nonActived)
+                                }
+                            }
+                            complecation()
+                        })
+                    }
+                }
+            }
+        }
     }
 }

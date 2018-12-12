@@ -85,6 +85,8 @@ extension LeadInMnemonicViewController {
                 } else {
                     self.coordinator?.openSetWallet(mnemonic)
                 }
+            } else {
+                self.showError(message: R.string.localizable.mnemonic_invalid.key.localized())
             }
         }
     }

@@ -12,30 +12,34 @@ import RxCocoa
 import ReSwift
 
 class AboutViewController: BaseViewController {
+    @IBOutlet weak var introView: CustomCellView!
 
+    @IBOutlet weak var updateView: CustomCellView!
+    
 	var coordinator: (AboutCoordinatorProtocol & AboutStateManagerProtocol)?
 
 	override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupEnent()
     }
+
     func setupUI() {
         self.title = R.string.localizable.mine_about.key.localized()
+        introView.title = R.string.localizable.about_info.key.localized()
+        introView.subTitle = ""
+        updateView.title = R.string.localizable.about_update.key.localized()
+        updateView.subTitle = ""
+    }
+
+    func setupEnent() {
+        introView.rx.tapGesture().when(.recognized).subscribe(onNext: {[weak self] _ in
+            guard let `self` = self else { return }
+            self.coordinator?.openReleaseNotes()
+        }).disposed(by: disposeBag)
     }
 
     override func configureObserveState() {
 
-    }
-}
-
-extension AboutViewController {
-    @objc func clickCellView(_ sender: [String: Any]) {
-        guard let index = sender["index"] as? Int else { return }
-        switch index {
-        case 0:self.coordinator?.openReleaseNotes()
-//        case 1:
-        default:
-            break
-        }
     }
 }

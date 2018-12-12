@@ -49,7 +49,13 @@ class BLTCardSearchViewController: BaseViewController {
     }
 
     override func rightAction(_ sender: UIButton) {
+        clearDevice()
         self.searchDevice()
+    }
+
+    func clearDevice() {
+        self.coordinator?.clearDevice()
+        deviceTable.reloadData()
     }
 
     func setupData() {
@@ -63,7 +69,7 @@ class BLTCardSearchViewController: BaseViewController {
 
     func reloadRightItem(_ isStoped: Bool) {
         if isStoped {
-            configRightNavButton(R.string.localizable.wookong_retry.key)
+            configRightNavButton(R.image.ic_retry())
             indicatorView?.stopAnimating()
         } else {
             if indicatorView == nil {

@@ -2,9 +2,6 @@ language: swift
 osx_image: xcode10.1
 notifications:
   slack: cybexio:fp4g1kMG5C3Qj7PW3yBo5Fc0
-cache:
-  directories:
-  - Carthage
 before_install:
 - carthage bootstrap seed39-ios-golang --no-use-binaries --platform iOS
 - mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles

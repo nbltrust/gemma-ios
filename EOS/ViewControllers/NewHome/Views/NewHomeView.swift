@@ -37,6 +37,7 @@ class NewHomeView: UIView {
     func setupUI() {
         let string = R.nib.newHomeTableCell.name
         tableView.register(UINib.init(nibName: string, bundle: nil), forCellReuseIdentifier: string)
+        self.titleView.alpha = 0
     }
     
     func setupSubViewEvent() {

@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import ReSwift
+import SwiftyUserDefaults
 
 class PaymentsDetailViewController: BaseViewController {
 
@@ -23,6 +24,7 @@ class PaymentsDetailViewController: BaseViewController {
         self.title = R.string.localizable.payments_detail.key.localized()
         hiddenNavBar()
         self.detailView.data = data
+        Defaults["assetdetailnotneedrefresh"] = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +39,6 @@ class PaymentsDetailViewController: BaseViewController {
 
 extension PaymentsDetailViewController {
     @objc func open_safair(_ sender: Any) {
-        self.coordinator?.openWebView(txid: (data?.hash)!)
+        openWebView(NetworkConfiguration.EOSFlareBaseURLString + (data?.hash)!)
     }
 }

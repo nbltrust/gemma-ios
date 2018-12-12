@@ -35,8 +35,23 @@ enum CreateAPPId: Int, Codable {
     case bluetooth
 }
 
+enum GoodsId: Int, Codable {
+    case sn = 1001
+    case cdkey
+    case wechat
+}
+
+enum ActionStatus: Int {
+    case inits = 0
+    case executory
+    case sended
+    case pending
+    case done
+    case fail
+}
+
 enum NBLService {
-    case createAccount(type: CreateAPPId, account:String, pubKey:String, invitationCode:String, validation:WookongValidation?)
+    case createAccount(type: CreateAPPId, goodsId: GoodsId, account:String, pubKey:String, invitationCode:String, validation:WookongValidation?)
     case accountVerify(account:String)
     case accountHistory(account:String, showNum:Int, lastPosition:Int, symbol: String, contract: String)
     case producer(showNum:Int)
@@ -45,6 +60,9 @@ enum NBLService {
     case place(orderId: String)
     case getOrder(orderId: String)
     case getTokens(account: String)
+    case getActionState(actionId: String)
+    case getGoodscode(code: String)
+    case delegate(appid: CreateAPPId, goodsId: GoodsId, code: String, account: String, validation:WookongValidation?)
 }
 
 func defaultManager() -> Alamofire.SessionManager {
@@ -130,7 +148,7 @@ extension NBLService: TargetType {
     var path: String {
         switch self {
         case .createAccount:
-            return "/api/v1/account/new"
+            return "/api/v2/account/new"
         case let .accountVerify(account):
             return "/api/v1/account/verify/\(account)"
         case .accountHistory:
@@ -147,6 +165,12 @@ extension NBLService: TargetType {
             return "/api/v1/pay/order/\(orderId)"
         case .getTokens(let account):
             return "/api/v1/account/tokens/\(account)"
+        case .getActionState(let actionId):
+            return "/api/v2/action/\(actionId)"
+        case .getGoodscode(let code):
+            return "/api/v2/goodscode/\(code)"
+        case .delegate:
+            return "/api/v2/account/delegate"
         }
     }
 
@@ -170,18 +194,24 @@ extension NBLService: TargetType {
             return .get
         case .getTokens:
             return .get
+        case .getActionState:
+            return .get
+        case .getGoodscode:
+            return .get
+        case .delegate:
+            return .post
         }
     }
 
     var parameters: [String: Any] {
         switch self {
-        case let .createAccount(type, account, pubKey, invitationCode, validation):
-            var map: [String: Any] =  ["account_name": account, "invitation_code": invitationCode, "public_key": pubKey, "app_id": type.rawValue]
+        case let .createAccount(type, goodsId, account, pubKey, invitationCode, validation):
+            var map: [String: Any] =  ["account_name": account, "code": invitationCode, "public_key": pubKey, "app_id": type.rawValue, "goods_id": goodsId.rawValue]
             if let val = validation {
                 var valDic = val.toJSON()
                 map["public_key"] = valDic?["publicKey"]
                 valDic?.removeValue(forKey: "publicKey")
-                map.removeValue(forKey: "invitation_code")
+//                map.removeValue(forKey: "invitation_code")
                 map["validation"] = valDic
             }
             return map
@@ -201,6 +231,20 @@ extension NBLService: TargetType {
             return [:]
         case .getTokens:
             return [:]
+        case .getActionState:
+            return [:]
+        case .getGoodscode:
+            return [:]
+        case .delegate(let appid, let goodsId, let code, let account, let validation):
+            var map: [String: Any] =  ["app_id": appid.rawValue, "goods_id": goodsId.rawValue, "code": code, "account_name": account]
+            if let val = validation {
+                var valDic = val.toJSON()
+                valDic?.removeValue(forKey: "public_key")
+                valDic?.removeValue(forKey: "public_key_sig")
+                valDic?.removeValue(forKey: "publicKey")
+                map["validation"] = valDic
+            }
+            return map
         }
     }
 
@@ -224,6 +268,12 @@ extension NBLService: TargetType {
             return .requestPlain
         case .getTokens:
             return .requestPlain
+        case .getActionState:
+            return .requestPlain
+        case .getGoodscode:
+            return .requestPlain
+        case .delegate:
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
 

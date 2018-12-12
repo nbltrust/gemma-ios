@@ -27,6 +27,7 @@ struct AssetDetailState: BaseState {
     var info: BehaviorRelay<AssetViewModel> = BehaviorRelay(value: AssetViewModel())
     var cnyPrice: String = ""
     var otherPrice: String = ""
+    var statusInfo: BehaviorRelay<[(String, [PaymentsRecordsViewModel])]?> = BehaviorRelay(value: nil)
 }
 
 //MARK: - Action
@@ -42,4 +43,17 @@ struct ATokensFetchedAction: Action {
 struct GetLastPosAction: Action {
     var lastPos: Int
     var isRefresh: Bool
+}
+
+struct GetBlockNumAction: Action {
+    var blockNum: String?
+    var libNum: String
+    var trxId: String
+    var status: TransferStatus?
+}
+
+enum TransferStatus: Int {
+    case success = 1
+    case fail
+    case pending
 }

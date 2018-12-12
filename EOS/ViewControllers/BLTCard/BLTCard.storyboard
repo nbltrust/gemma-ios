@@ -27,7 +27,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_transfer_pro"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_open_attention" translatesAutoresizingMaskIntoConstraints="NO" id="8Ez-bU-sC5">
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_open" translatesAutoresizingMaskIntoConstraints="NO" id="8Ez-bU-sC5">
                                 <rect key="frame" x="16" y="69" width="343" height="204"/>
                             </imageView>
                         </subviews>
@@ -41,6 +41,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="A5C-Jr-Kt2"/>
                     </view>
+                    <connections>
+                        <outlet property="promoteLabel" destination="aXm-oI-AcO" id="FOB-W6-JB7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lte-ke-wad" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,11 +57,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_fingerprint" translatesAutoresizingMaskIntoConstraints="NO" id="rVa-SS-rpt">
-                                <rect key="frame" x="17" y="44" width="341" height="208"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_fingerprint" translatesAutoresizingMaskIntoConstraints="NO" id="rVa-SS-rpt">
+                                <rect key="frame" x="17" y="44" width="341" height="211.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rVa-SS-rpt" secondAttribute="height" multiplier="335:208" id="8uB-c6-hYJ"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn5-7J-xR3">
-                                <rect key="frame" x="75" y="272" width="225" height="17"/>
+                                <rect key="frame" x="15" y="275.5" width="345" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.55700000000000005" green="0.55700000000000005" blue="0.57599999999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -67,7 +73,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lYQ-ej-uq6">
-                                <rect key="frame" x="127.5" y="299" width="120" height="170"/>
+                                <rect key="frame" x="127.5" y="302.5" width="120" height="170"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="17V-Fj-eLK"/>
@@ -82,11 +88,11 @@
                             <constraint firstItem="rVa-SS-rpt" firstAttribute="top" secondItem="67L-59-6UY" secondAttribute="top" constant="24" id="POf-cK-3fl"/>
                             <constraint firstItem="lYQ-ej-uq6" firstAttribute="centerX" secondItem="sD7-jc-Hmt" secondAttribute="centerX" id="R0g-BW-Spn"/>
                             <constraint firstItem="67L-59-6UY" firstAttribute="trailing" secondItem="rVa-SS-rpt" secondAttribute="trailing" constant="17" id="ds2-jJ-tHv"/>
-                            <constraint firstItem="bn5-7J-xR3" firstAttribute="leading" secondItem="67L-59-6UY" secondAttribute="leading" constant="75" id="iFW-h1-yDu"/>
+                            <constraint firstItem="bn5-7J-xR3" firstAttribute="leading" secondItem="67L-59-6UY" secondAttribute="leading" constant="15" id="iFW-h1-yDu"/>
                             <constraint firstItem="bn5-7J-xR3" firstAttribute="top" secondItem="rVa-SS-rpt" secondAttribute="bottom" constant="20" id="jfh-p0-pRj"/>
                             <constraint firstItem="rVa-SS-rpt" firstAttribute="leading" secondItem="67L-59-6UY" secondAttribute="leading" constant="17" id="oob-tV-8WD"/>
                             <constraint firstItem="lYQ-ej-uq6" firstAttribute="top" secondItem="bn5-7J-xR3" secondAttribute="bottom" constant="10" id="s2e-Jj-FIB"/>
-                            <constraint firstItem="67L-59-6UY" firstAttribute="trailing" secondItem="bn5-7J-xR3" secondAttribute="trailing" constant="75" id="vrL-JG-e34"/>
+                            <constraint firstItem="67L-59-6UY" firstAttribute="trailing" secondItem="bn5-7J-xR3" secondAttribute="trailing" constant="15" id="vrL-JG-e34"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="67L-59-6UY"/>
                     </view>
@@ -385,6 +391,6 @@
     </scenes>
     <resources>
         <image name="card_fingerprint" width="335" height="208"/>
-        <image name="card_open_attention" width="340" height="204"/>
+        <image name="card_open" width="340" height="204"/>
     </resources>
 </document>

@@ -112,6 +112,6 @@ extension FingerViewController {
         self.coordinator?.pushToManagerFingerVC(model: model, index: Int(fpList[index]) ?? 0)
     }
     @objc func addFingerDidClicked(_ data: [String: Any]) {
-        self.coordinator?.pushToENtroFingerVC()
+        self.coordinator?.addFP()
     }
 }

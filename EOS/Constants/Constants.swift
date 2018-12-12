@@ -40,17 +40,20 @@ struct AppConfiguration {
 }
 
 struct NetworkConfiguration {
-    static let NBLBaseURL = URL(string: "http://139.196.73.117:3001")!
+    static let EOSWebAPI = URL(string: "https://eosweb.net")
 
-    static let NBLBaseStageURL = URL(string: "http://139.196.73.117:3005")!
+    static let EOSParkAPI = URL(string: "https://api.eospark.com")
+    static let NBLBaseURL = URL(string: "https://faucet-eos-wookong.nbltrust.com")!
 
-    static let NBLBaseTestURL = URL(string: "http://139.196.73.117:3002")!
+    static let NBLBaseStageURL = URL(string: "https://faucetstaging-eos-wookong.nbltrust.com")!
+
+    static let NBLBaseTestURL = URL(string: "https://faucetdev-eos-wookong.nbltrust.com")!
 
     static let EOSIOBaseTestURL = URL(string: "http://139.224.135.236:18888")!//URL(string: "http://172.20.5.25:9999")!
     static let EOSIOCanadaTestURL = URL(string: "http://mainnet.eoscanada.com")!
     var EOSIOBaseURL: URL {
         get {
-            var index = Defaults[.currentURLNode]
+            var index = Defaults[.currentEOSURLNode]
             let urls = EOSBaseURLNodesConfiguration.values
             if index < 0 || index >= urls.count {
                 index = 0
@@ -60,7 +63,7 @@ struct NetworkConfiguration {
     }
     var EOSIOOtherBaseURL: URL {
         get {
-            let index = Defaults[.currentURLNode]
+            let index = Defaults[.currentEOSURLNode]
             var urls = EOSBaseURLNodesConfiguration.values
             if index >= 0 && index < urls.count {
                 urls.remove(at: index)
@@ -81,7 +84,6 @@ struct NetworkConfiguration {
 
     static let ServerBaseURLString = "https://app.cybex.io/"
     static let ETHPrice = ServerBaseURLString + "price"
-    static let DAppSinUpEOS = URL(string: "https://mp.weixin.qq.com/s/wvrlzbj3EGv78s3gjoCvjw")!
 }
 
 //Laguage Setting
@@ -122,17 +124,13 @@ enum CoinType: Int {
 //Node Datas
 struct EOSBaseURLNodesConfiguration {
     static let values = [
-//        "http://47.75.154.248:50003",
-                         "http://52.77.177.200:8888",
-                         "http://api-mainnet.starteos.io",
-                         "https://api.eosnewyork.io",
-                         "https://eos.greymass.com",
-                         "https://api-direct.eosasia.one",
-                         "https://api-mainnet.eosgravity.com",
-                         "https://api.helloeos.com.cn",
-                         "https://api.hkeos.com",
-                         "https://nodes.eos42.io",
-                         "https://api.cypherglass.com"]
+//                "http://47.75.154.248:50003",
+        "https://api.helloeos.com.cn",
+        "http://api-mainnet.starteos.io",
+        "https://eos.greymass.com",
+        "https://api-mainnet.eosgravity.com",
+        "https://api.hkeos.com",
+        "https://eos-node-wookong.cybex.io"]
 }
 
 struct EOSIOContract {
@@ -150,6 +148,7 @@ struct H5AddressConfiguration {
     static let ReleaseNotesENURL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_release_desc_en.html")
     static let FeedbackCNURL = URL(string: "http://47.75.154.39:3009/gemma?lang=cn")
     static let FeedbackENURL = URL(string: "http://47.75.154.39:3009/gemma?lang=en")
+    static let DAppSinUpEOS = "https://mp.weixin.qq.com/s/wvrlzbj3EGv78s3gjoCvjw"
 }
 
 enum EOSAction: String {
@@ -180,9 +179,9 @@ struct Unit {
 }
 
 struct SupportCurrency {
-    static let data: [CurrencyType] = [CurrencyType.EOS,CurrencyType.ETH]
+    static let data: [CurrencyType] = [CurrencyType.EOS]
 }
 
 struct BLTSupportCurrency {
-    static let data: [CurrencyType] = [CurrencyType.EOS,CurrencyType.ETH]
+    static let data: [CurrencyType] = [CurrencyType.EOS]
 }

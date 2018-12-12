@@ -42,6 +42,10 @@ class VerifyMnemonicWordView: EOSBaseView {
         poolTagListView.addTags(array)
     }
 
+    func cleanTagListView() {
+        myTagListView.removeAllTags()
+    }
+
     func setupSubViewEvent() {
 
     }

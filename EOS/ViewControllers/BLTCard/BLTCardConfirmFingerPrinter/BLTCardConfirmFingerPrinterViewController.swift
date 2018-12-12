@@ -31,7 +31,7 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
 
     func reloadRightItem(_ isStoped: Bool) {
         if isStoped {
-            configRightNavButton(R.string.localizable.wookong_retry.key)
+            configRightNavButton(R.image.ic_retry())
             indicatorView?.stopAnimating()
         } else {
             if indicatorView == nil {
@@ -44,7 +44,12 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
     }
 
     override func rightAction(_ sender: UIButton) {
-        
+        guard let context = context else { return }
+        if context.confirmSuccessed != nil {
+            confirmTransfer()
+        } else {
+            verifyFP()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -92,18 +97,27 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
         if context.confirmSuccessed != nil {
             verifyFP()
         } else {
-            reloadRightItem(false)
-            self.coordinator?.bltTransferAccounts(context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
-                guard let `self` = self else { return }
-                if isSuccess {
-                    self.reloadRightItem(true)
-                    self.coordinator?.finishTransfer()
-                } else {
-                    self.reloadRightItem(true)
-                    self.showError(message: message)
-                }
-            })
+            confirmTransfer()
+
+            BLTWalletIO.shareInstance()?.changeToPinConfirm = {()
+                
+            }
         }
+    }
+    
+    func confirmTransfer() {
+        guard let context = context else { return }
+        reloadRightItem(false)
+        self.coordinator?.bltTransferAccounts(context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
+            guard let `self` = self else { return }
+            if isSuccess {
+                self.reloadRightItem(true)
+                self.coordinator?.finishTransfer()
+            } else {
+                self.reloadRightItem(true)
+                self.showError(message: message)
+            }
+        })
     }
 
     func verifyFP() {
@@ -113,7 +127,9 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
                 guard let `self` = self else { return }
                 self.navigationController?.dismiss(animated: true, completion: {
                     if let context = self.context {
-                        context.confirmSuccessed!()
+                        if context.confirmSuccessed != nil {
+                            context.confirmSuccessed!()
+                        }
                     }
                 })
                 self.reloadRightItem(true)
@@ -125,7 +141,6 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
                 self.reloadRightItem(true)
             }, timeout: { [weak self] in
                 guard let `self` = self else { return }
-                self.timeoutAlert()
                 self.reloadRightItem(true)
         })
     }

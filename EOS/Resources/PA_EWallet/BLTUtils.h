@@ -37,6 +37,12 @@ typedef void(^ BatteryInfoUpdated)(BLTBatteryInfo *info);
 
 typedef void(^ DeviceUnConnected)(void);
 
+typedef void(^ PowerButtonPressed)(void);
+
+typedef void(^ PowerButtonFailed)(void);
+
+typedef void(^ ChangeToPinConfirm)(void);
+
 typedef void(^ EnrollFingerComplication)(FingerPrinterState state);
 
 typedef void(^ VerifyFingerComplication)(FingerPrinterState state);
@@ -78,4 +84,5 @@ typedef void(^ GetFPListComplication)(NSArray *fpList);
 
 + (BLTCardPINState)pinStateWithDevInfo:(PAEW_DevInfo)info;
 
++ (NSString *)validSeedWithimportSeed:(NSString *)seed;
 @end

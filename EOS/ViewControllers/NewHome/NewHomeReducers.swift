@@ -67,8 +67,9 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
             viewmodel = setTokenWith(tokens: action.data, viewmodel: viewmodel)
             state.info.accept(viewmodel)
         }
-
-
+    case let action as DoActiveFetchedAction:
+        let viewmodel = setViewModelWithCurrency(currency: action.currency, actions: action.actions)
+        state.info.accept(viewmodel)
     default:
         break
     }
@@ -78,22 +79,30 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
 
 func setTokenWith(tokens: [Tokens], viewmodel: NewHomeViewModel) -> NewHomeViewModel {
     var newViewModel = viewmodel
-    newViewModel.tokens = "\(tokens.count)"
+    newViewModel.tokens = "\(tokens.count-1)"
     var array: [String] = []
     for token in tokens {
-        array.append(token.logoUrl)
+        if token.symbol != "EOS" {
+            array.append(token.logoUrl)
+        }
     }
     newViewModel.tokenArray = array
     return newViewModel
 }
 
-func setViewModelWithCurrency(currency: Currency?) -> NewHomeViewModel {
+func setViewModelWithCurrency(currency: Currency?, actions: Actions? = nil) -> NewHomeViewModel {
     var viewmodel = NewHomeViewModel()
     viewmodel.currencyImg = R.image.eosBg()!
     viewmodel.account = R.string.localizable.wait_activate.key.localized()
-    if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == true {
+    if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == .actived {
         if let accountName = CurrencyManager.shared.getAccountNameWith(currencyId) {
             viewmodel.account = accountName
+        }
+    } else if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == .doActive {
+        if let block = actions?.blockNum, let lib = actions?.lastIrreversibleBlock {
+            viewmodel.account = R.string.localizable.account_creation.key.localized() + "\((1 - (block - lib)/325)*100)%"
+        } else {
+            viewmodel.account = R.string.localizable.account_creation.key.localized() + "0%"
         }
     }
     viewmodel.CNY = "0.00"
