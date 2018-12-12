@@ -81,6 +81,7 @@ class SetWalletViewController: BaseViewController {
         let originTitle = R.string.localizable.original_password.key.localized()
         fieldView.nameView.setting.title = originTitle
         fieldView.nameView.titleLabel.text = originTitle
+        fieldView.nameView.textField.isSecureTextEntry = true
 
         let originPh = R.string.localizable.original_password_ph.key.localized()
         fieldView.nameView.setting.placeholder = originPh
@@ -91,6 +92,14 @@ class SetWalletViewController: BaseViewController {
         fieldView.passwordView.titleLabel.text = pas
         finished.title = R.string.localizable.update_pwd_btn_title.key.localized()
         agreeView.isHidden = true
+
+        fieldView.passwordView.textField.font = UIFont.pfScS16
+        fieldView.passwordView.textField.setValue(UIFont.pfScR16, forKeyPath: "_placeholderLabel.font")
+
+        fieldView.confirmPasswordView.textField.font = UIFont.pfScS16
+        fieldView.confirmPasswordView.textField.setValue(UIFont.pfScR16, forKeyPath: "_placeholderLabel.font")
+
+        WalletManager.shared.errCount = 0
     }
 
     func setupWithWookong() {

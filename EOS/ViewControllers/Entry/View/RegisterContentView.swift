@@ -106,6 +106,7 @@ class RegisterContentView: UIView {
         titleTextfieldView.textField.addTarget(self, action: #selector(handleTextFiledDidChanged(_:)), for: .editingChanged)
         if tag == InputType.walletName.rawValue {
             titleTextfieldView.textField.font = UIFont.pfScS16
+            titleTextfieldView.textField.setValue(UIFont.pfScR16, forKeyPath: "_placeholderLabel.font")
         }
     }
 
