@@ -50,6 +50,18 @@ class LeadInKeyViewController: BaseViewController,IndicatorInfoProvider {
 
         self.leadInKeyView.currencyView.needClick = true
         self.leadInKeyView.walletView.needClick = true
+
+        var walletViewIsHidden = true
+        let walletArray = WalletManager.shared.walletList()
+        if walletArray.count > 0 {
+            for wallet in walletArray {
+                if wallet.type == .nonHD {
+                    walletViewIsHidden = false
+                    break
+                }
+            }
+        }
+        self.leadInKeyView.walletView.isHidden = walletViewIsHidden
     }
 
     func setupData() {
@@ -98,6 +110,21 @@ class LeadInKeyViewController: BaseViewController,IndicatorInfoProvider {
 extension LeadInKeyViewController {
     @objc func beginLeadInAction(_ sender: [String: Any]) {
         guard let priKey = self.leadInKeyView.textView.text else {
+            return
+        }
+        var isExist = false
+        if let wallet = self.coordinator?.state.toWallet.value {
+            let currencyArray = CurrencyManager.shared.getAllCurrencys(wallet)
+            for currency in currencyArray {
+                if currency.type == self.coordinator?.state.currencyType.value {
+                    isExist = true
+                    break
+                }
+            }
+        }
+        if isExist == true {
+            let message = R.string.localizable.leadin_wallet_exist.key.localized() + (self.coordinator?.state.currencyType.value?.des)!
+            self.showError(message: message)
             return
         }
 

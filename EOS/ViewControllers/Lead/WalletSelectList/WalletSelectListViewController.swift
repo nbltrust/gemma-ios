@@ -45,7 +45,11 @@ class WalletSelectListViewController: BaseViewController {
     func setupData() {
         do {
             if let wallets = try WalletCacheService.shared.fetchAllWallet() {
-                self.wallets = wallets
+                for wallet in wallets {
+                    if wallet.type == .nonHD {
+                        self.wallets.append(wallet)
+                    }
+                }
             }
         } catch {}
     }
