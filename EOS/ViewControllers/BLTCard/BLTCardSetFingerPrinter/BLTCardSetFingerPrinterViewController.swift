@@ -94,6 +94,10 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
         }
     }
 
+    func reset() {
+        fpView.stringByEvaluatingJavaScript(from: "reset()")
+    }
+
     func timeoutAlert() {
         var context = ScreenShotAlertContext()
         context.title = R.string.localizable.wookong_setfp_timeout.key.localized()
@@ -103,6 +107,7 @@ class BLTCardSetFingerPrinterViewController: BaseViewController {
         context.needCancel = true
         context.sureShot = { [weak self] () in
             guard let `self` = self else { return }
+            self.reset()
             self.enrollFingerPrinter()
         }
         context.cancelShot = { [weak self] () in

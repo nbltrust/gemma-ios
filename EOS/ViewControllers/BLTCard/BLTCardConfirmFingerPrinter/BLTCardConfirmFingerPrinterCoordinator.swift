@@ -16,6 +16,8 @@ protocol BLTCardConfirmFingerPrinterCoordinatorProtocol {
     func dismissNav()
 
     func popVC()
+
+    func pushToPinConfirmVC()
 }
 
 protocol BLTCardConfirmFingerPrinterStateManagerProtocol {
@@ -32,6 +34,8 @@ protocol BLTCardConfirmFingerPrinterStateManagerProtocol {
 
     func createWookongBioWallet(_ success: @escaping SuccessedComplication,
                                 failed: @escaping FailedComplication)
+
+    func cancelEntroll()
 }
 
 class BLTCardConfirmFingerPrinterCoordinator: BLTCardRootCoordinator {
@@ -64,23 +68,17 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterCoo
     }
 
     func dismissNav() {
-        BLTWalletIO.shareInstance()?.cancelEntrollFingerPrinter({
-            self.rootVC.dismiss(animated: true, completion: nil)
-        }, failed: { (reason) in
-            if let failedReason = reason {
-                showFailTop(failedReason)
-            }
-        })
+        cancelEntroll()
+        self.rootVC.dismiss(animated: true, completion: nil)
     }
 
     func popVC() {
-        BLTWalletIO.shareInstance()?.cancelEntrollFingerPrinter({
-            self.rootVC.popViewController(animated: true)
-        }, failed: { (reason) in
-            if let failedReason = reason {
-                showFailTop(failedReason)
-            }
-        })
+        cancelEntroll()
+        self.rootVC.popViewController(animated: true)
+    }
+
+    func pushToPinConfirmVC() {
+        
     }
 }
 
@@ -163,5 +161,9 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
             }, failed: { (reason) in
                 callback(false, R.string.localizable.eos_chain_instability.key.localized())
         })
+    }
+    
+    func cancelEntroll() {
+        BLTWalletIO.shareInstance()?.cancelSignAbort()
     }
 }

@@ -233,6 +233,7 @@
 }
 
 + (FingerPrinterState)fingerEntrolStateWithValue:(int)value {
+    NSLog(@"测试%@",[self errorCodeToString:value]);
     switch (value) {
         case PAEW_RET_DEV_FP_REDUNDANT:
             return redundant;

@@ -41,6 +41,8 @@ typedef void(^ PowerButtonPressed)(void);
 
 typedef void(^ PowerButtonFailed)(void);
 
+typedef void(^ ChangeToPinConfirm)(void);
+
 typedef void(^ EnrollFingerComplication)(FingerPrinterState state);
 
 typedef void(^ VerifyFingerComplication)(FingerPrinterState state);

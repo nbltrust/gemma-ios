@@ -452,7 +452,7 @@ class WalletManager {
 
     // MARK: Format Check
     func isValidPassword(_ password: String) -> Bool {
-        return password.count >= 8
+        return password.count >= 8 && password.count <= 16
     }
 
     func isValidComfirmPassword(_ password: String, comfirmPassword: String) -> Bool {

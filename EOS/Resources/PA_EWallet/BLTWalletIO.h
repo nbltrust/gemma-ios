@@ -24,6 +24,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic,strong) PowerButtonFailed powerButtonFailed;
 
+@property (nonatomic,strong) ChangeToPinConfirm changeToPinConfirm;
+
 @property (nonatomic,strong) BLTBatteryInfo *batteryInfo;
 
 @property (nonatomic,strong) BLTDevice *selectDevice;
@@ -37,6 +39,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSCondition *abortCondition;
 
 @property (nonatomic, assign) BOOL abortButtonFlag;
+@property (nonatomic, assign) BOOL switchSignFlag;
+@property (nonatomic, assign) BOOL abortSignFlag;
 
 @property (nonatomic, copy) void(^abortHandelBlock)(BOOL abortState);
 
@@ -92,9 +96,13 @@ typedef enum : NSUInteger {
 #pragma mark Signature
 - (void)submmitWaitingVerfyPin:(NSString *)waitVerPin;
 
-- (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
+- (void)getNewEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
-- (void)cancelSign:(SuccessedComplication)successComplication failed:(FailedComplication)failedComplication;
+- (void)cancelSignAbort;
+
+- (void)switchToPin;
+
+- (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
 #pragma mark Pin
 - (void)getFPList:(GetFPListComplication)complication failed:(FailedComplication)failedComplication;
