@@ -22,7 +22,8 @@ class BLTCardPowerOnViewController: BaseViewController {
     var indicatorView: UIActivityIndicatorView?
     @IBOutlet weak var promoteLabel: UILabel!
     
-	override func viewDidLoad() {
+    @IBOutlet weak var imageView: UIImageView!
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         setupData()
@@ -39,6 +40,7 @@ class BLTCardPowerOnViewController: BaseViewController {
     }
 
     override func rightAction(_ sender: UIButton) {
+        self.reloadRightItem(false)
         if self.context?.actionRetry != nil {
             self.context?.actionRetry!()
         }
@@ -66,6 +68,10 @@ class BLTCardPowerOnViewController: BaseViewController {
         }
         if !(self.context?.promate?.isEmpty ?? true) {
             promoteLabel.text = self.context?.promate
+        }
+
+        if self.context?.needAttention ?? false {
+            imageView.image = R.image.card_open_attention()
         }
     }
 

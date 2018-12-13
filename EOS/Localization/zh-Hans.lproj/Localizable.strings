@@ -644,6 +644,10 @@
 "wookong_power_init" = "请在WOOKONG Bio上按键以确认初始化";
 "wookong_power_change_pas" = "请在WOOKONG Bio上按键以确认修改密码";
 "wookong_power_format" = "请在WOOKONG Bio上按键以确认格式化，一旦格式化，WOOKONG Bio将清除私钥，请在格式化前转移资产。";
+"wookong_memo_error" = "备注最多15个字符，仅支持英文、数字、标点符号";
+"wookong_init" = "初始化";
+"wookong_formmat_success" = "格式化成功";
+"wookong_init_promt" = "是否重新初始化WOOKONG Bio ？";
 
 "currency_title" = "币种";
 "wallet_currency" = "钱包币种";

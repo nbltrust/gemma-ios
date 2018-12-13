@@ -78,7 +78,26 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterCoo
     }
 
     func pushToPinConfirmVC() {
-        
+        cancelEntroll()
+        if let currentContext = self.state.context.value as? BLTCardConfirmFingerPrinterContext {
+            var context = BLTCardConfirmPinContext()
+            context.receiver = currentContext.receiver
+            context.amount = currentContext.amount
+            context.remark = currentContext.remark
+            context.type = currentContext.type
+            context.iconType = LeftIconType.pop.rawValue
+            context.confirmType = .transferWithPin
+
+            let confirmVC = R.storyboard.bltCard.bltCardConfirmPinViewController()!
+            let coordinator = BLTCardConfirmPinCoordinator.init(rootVC: self.rootVC)
+            coordinator.store.dispatch(RouteContextAction(context: context))
+            confirmVC.coordinator = coordinator
+            self.rootVC.pushViewController(confirmVC) {
+                var vcs = self.rootVC.viewControllers
+                vcs.remove(at: vcs.count - 2)
+                self.rootVC.viewControllers = vcs
+            }
+        }
     }
 }
 

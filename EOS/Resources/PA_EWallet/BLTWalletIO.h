@@ -39,7 +39,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSCondition *abortCondition;
 
 @property (nonatomic, assign) BOOL abortButtonFlag;
-@property (nonatomic, assign) BOOL switchSignFlag;
 @property (nonatomic, assign) BOOL abortSignFlag;
 
 @property (nonatomic, copy) void(^abortHandelBlock)(BOOL abortState);
@@ -99,8 +98,6 @@ typedef enum : NSUInteger {
 - (void)getNewEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
 - (void)cancelSignAbort;
-
-- (void)switchToPin;
 
 - (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 

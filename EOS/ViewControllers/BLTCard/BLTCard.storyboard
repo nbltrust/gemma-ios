@@ -27,8 +27,11 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="locali" value="wookong_transfer_pro"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_open" translatesAutoresizingMaskIntoConstraints="NO" id="8Ez-bU-sC5">
-                                <rect key="frame" x="16" y="69" width="343" height="204"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_open" translatesAutoresizingMaskIntoConstraints="NO" id="8Ez-bU-sC5">
+                                <rect key="frame" x="16" y="69" width="343" height="206"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8Ez-bU-sC5" secondAttribute="height" multiplier="340:204" id="hGx-j6-RUl"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <constraints>
@@ -42,6 +45,7 @@
                         <viewLayoutGuide key="safeArea" id="A5C-Jr-Kt2"/>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="8Ez-bU-sC5" id="zJ2-Hx-2p6"/>
                         <outlet property="promoteLabel" destination="aXm-oI-AcO" id="FOB-W6-JB7"/>
                     </connections>
                 </viewController>
