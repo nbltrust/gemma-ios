@@ -74,6 +74,6 @@ extension ActivateCoordinator: ActivateStateManagerProtocol {
         invitationCodeVC.coordinator = invitationCodeCoor
         invitationCodeVC.currencyID = currencyID
 
-        return [payVC, friendVC, exchangeVC, invitationCodeVC]
+        return [payVC, friendVC, exchangeVC]
     }
 }

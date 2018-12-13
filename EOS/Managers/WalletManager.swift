@@ -409,7 +409,7 @@ class WalletManager {
 //
 
     func getActionStatus(_ currency: Currency, actionId: String, completion:@escaping ObjectOptionalCallback) {
-        self.timer = Repeater.every(.seconds(10)) {[weak self] _ in
+        self.timer = Repeater.every(.seconds(2)) {[weak self] _ in
             guard let `self` = self else { return }
             NBLNetwork.request(target: .getActionState(actionId: actionId), success: {[weak self] (result) in
                 guard let `self` = self else { return }

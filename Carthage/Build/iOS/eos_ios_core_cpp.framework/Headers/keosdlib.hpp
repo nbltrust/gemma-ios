@@ -342,7 +342,7 @@ namespace eosio {
             return fc::json::to_string(request_json_variant);
         }
         std::string signTransaction_tranfer(const std::string& priv_key_str, const std::string& contract, const std::string& senderstr,
-                                            const std::string& infostr, const std::string& abistr , uint32_t max_cpu_usage_ms, uint32_t max_net_usage_words , uint32_t tx_expiration = 30  ){
+                                            const std::string& infostr, const std::string& abistr , uint32_t max_cpu_usage_ms, uint32_t max_net_usage_words , uint32_t tx_expiration = 120  ){
             
             auto abi = fc::json::from_string("\"" + abistr + "\"").as<bytes>();
             auto actions = {create_transfer(contract, senderstr, abi)};
