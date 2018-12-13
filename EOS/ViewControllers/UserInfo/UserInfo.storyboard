@@ -262,6 +262,7 @@
                     <connections>
                         <outlet property="introView" destination="z39-OB-waD" id="zdN-S8-neB"/>
                         <outlet property="updateView" destination="R6Q-Pl-iYu" id="Phs-ga-ypN"/>
+                        <outlet property="versionLabel" destination="Tup-Fl-BRu" id="9lW-8y-jnN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ajl-0T-QZi" userLabel="First Responder" sceneMemberID="firstResponder"/>

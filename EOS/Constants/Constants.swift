@@ -88,14 +88,13 @@ struct NetworkConfiguration {
 
 //Laguage Setting
 struct LanguageConfiguration {
-    var keys = [R.string.localizable.language_system.key.localized(),
-                       R.string.localizable.language_cn.key.localized(),
-                       R.string.localizable.language_en.key.localized()]
+    var keys = [R.string.localizable.language_cn.key.localized(),
+                R.string.localizable.language_en.key.localized()]
 
     func valueWithIndex(_ index: Int) -> String {
-        if index == 1 {
+        if index == 0 {
             return "zh-Hans"
-        } else if index == 2 {
+        } else if index == 1 {
             return "en"
         }
         return ""
@@ -103,9 +102,9 @@ struct LanguageConfiguration {
 
     func indexWithValue(_ value: String) -> Int {
         if value == "zh-Hans" {
-            return 1
+            return 0
         } else if value == "en" {
-            return 2
+            return 1
         }
         return 0
     }
@@ -124,7 +123,7 @@ enum CoinType: Int {
 //Node Datas
 struct EOSBaseURLNodesConfiguration {
     static let values = [
-//                "http://47.75.154.248:50003",
+                "http://47.75.154.248:50003",
         "https://api.helloeos.com.cn",
         "http://api-mainnet.starteos.io",
         "https://eos.greymass.com",

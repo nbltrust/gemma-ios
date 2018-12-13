@@ -110,7 +110,7 @@ extension NormalContentCoordinator: NormalContentStateManagerProtocol {
         case .asset:
             return R.string.localizable.normal_asset.key.localized()
         case .nodeEOS:
-            return R.string.localizable.normal_node.key.localized()
+            return R.string.localizable.node_eos.key.localized()
         }
     }
 
