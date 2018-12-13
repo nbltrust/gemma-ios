@@ -185,6 +185,7 @@ class RichStyle {
             $0.color = UIColor.highlightColor
             $0.underline = (.single, UIColor.highlightColor)
             $0.alignment = .center
+//            $0.linkURL = NetworkConfiguration.DAppSinUpEOS
         }
 
         let myGroup = StyleGroup(base: base, ["corn_flower_blue_underline": cornFlowerBlueUnderline, "corn_flower_blue": cornFlowerBlue])
