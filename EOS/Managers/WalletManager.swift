@@ -166,8 +166,8 @@ class WalletManager {
             if let currencys = try WalletCacheService.shared.fetchAllCurrencysBy(wallet) {
                 if CurrencyManager.shared.pwdIsCorrect(currencys[0].id, password: oldPassword) == false {
                     self.errCount += 1
-                    if self.errCount == 3 {
-                        showFailTop(hint)
+                    if self.errCount >= 3, let oldHint = wallet.hint, oldHint.count > 0 {
+                        showFailTop(oldHint)
                     } else {
                         showFailTop(R.string.localizable.password_not_match.key.localized())
                     }
@@ -192,10 +192,11 @@ class WalletManager {
                     }
                     try WalletCacheService.shared.updateCurrency(currency)
                 }
+                wallet.hint = hint
+                WalletManager.shared.updateWallet(wallet)
             }
             if wallet.type == .HD {
                 let walletCipher = Seed39KeyDecrypt(oldPassword, wallet.cipher)
-                wallet.hint = hint
                 wallet.cipher = Seed39KeyEncrypt(newPassword, walletCipher)
                 WalletManager.shared.updateWallet(wallet)
             }
@@ -408,7 +409,7 @@ class WalletManager {
 //
 
     func getActionStatus(_ currency: Currency, actionId: String, completion:@escaping ObjectOptionalCallback) {
-        self.timer = Repeater.every(.seconds(10)) {[weak self] _ in
+        self.timer = Repeater.every(.seconds(2)) {[weak self] _ in
             guard let `self` = self else { return }
             NBLNetwork.request(target: .getActionState(actionId: actionId), success: {[weak self] (result) in
                 guard let `self` = self else { return }

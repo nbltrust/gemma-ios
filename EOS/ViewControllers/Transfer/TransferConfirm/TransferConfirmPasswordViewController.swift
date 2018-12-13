@@ -220,13 +220,15 @@ extension TransferConfirmPasswordViewController {
         if context.type != ConfirmType.bltTransfer.rawValue {
             if CurrencyManager.shared.pwdIsCorrect(context.currencyID, password: passwordView.textField.text!) == false {
                 self.errCount += 1
-                if self.errCount == 3 {
+                if self.errCount >= 3 {
                     var message = WalletManager.shared.currentWallet()?.hint
                     if isWalletManager == true {
                         message = WalletManager.shared.getManagerWallet()?.hint
                     }
-                    if let _ = CurrencyManager.shared.getCiperWith(context.currencyID), let message = message {
+                    if let _ = CurrencyManager.shared.getCiperWith(context.currencyID), let message = message, message.count > 0 {
                         self.showError(message: message)
+                    } else {
+                        self.showError(message: R.string.localizable.password_not_match.key.localized())
                     }
                 } else {
                     self.showError(message: R.string.localizable.password_not_match.key.localized())

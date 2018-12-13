@@ -156,7 +156,7 @@ class AssetDetailViewController: BaseViewController {
                 self.context?.model = model
             }
             self.contentView.headView.adapterModelToAssetDetailHeadView(model)
-            if model.name != "EOS" {
+            if model.name != "EOS" || WalletManager.shared.currentWallet()?.type == .bluetooth {
                 self.contentView.buttonView.isHidden = true
                 self.contentView.buttonViewHeight.constant = 0
             } else {

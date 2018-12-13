@@ -22,7 +22,7 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
                 viewmodel.balance = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
             }
             viewmodel.allAssets = calculateTotalAsset(viewmodel)
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+            viewmodel.CNY = calculateRMBPrice(viewmodel)
 
             state.info.accept(viewmodel)
         } else {
@@ -38,7 +38,7 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
     case let action as MAccountFetchedAction:
         if var viewmodel = state.info.value {
             viewmodel = convertViewModelWithAccount(action.info, viewmodel: viewmodel, currencyID: CurrencyManager.shared.getCurrentCurrencyID())
-            viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+            viewmodel.CNY = calculateRMBPrice(viewmodel)
 
             state.info.accept(viewmodel)
         } else {
@@ -49,13 +49,14 @@ func gOverviewReducer(action:Action, state:OverviewState?) -> OverviewState {
         }
     case _ as RMBPriceFetchedAction:
         var viewmodel = state.info.value
-        if coinType() == .CNY, let eos = CurrencyManager.shared.getCNYPrice() {
+        if let eos = CurrencyManager.shared.getCNYPrice() {
             state.cnyPrice = eos
-        } else if coinType() == .USD, let usd = CurrencyManager.shared.getUSDPrice() {
+        }
+        if let usd = CurrencyManager.shared.getUSDPrice() {
             state.otherPrice = usd
         }
         if viewmodel != nil {
-            viewmodel!.CNY = calculateRMBPrice(viewmodel!, price: state.cnyPrice, otherPrice: state.otherPrice)
+            viewmodel!.CNY = calculateRMBPrice(viewmodel!)
         }
         state.info.accept(viewmodel)
     case let action as TokensFetchedAction:

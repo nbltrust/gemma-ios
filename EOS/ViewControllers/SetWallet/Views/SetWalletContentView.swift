@@ -116,6 +116,7 @@ class SetWalletContentView: UIView {
         titleTextfieldView.textField.addTarget(self, action: selector, for: .editingChanged)
         if tag == InputType.name.rawValue {
             titleTextfieldView.textField.font = UIFont.pfScS16
+            titleTextfieldView.textField.setValue(UIFont.pfScR16, forKeyPath: "_placeholderLabel.font")
         }
     }
 

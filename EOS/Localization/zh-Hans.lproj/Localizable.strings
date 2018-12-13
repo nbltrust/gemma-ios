@@ -279,6 +279,7 @@
 "send_pending" = "发送中...";
 "accept_pending" = "接收中...";
 "eos_chain_instability" = "当前EOS节点或链不稳定，请稍后重试";
+"leadin_wallet_exist" = "该钱包下已存在";
 
 //zsy end
 

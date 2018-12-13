@@ -88,17 +88,17 @@ func convertResourceViewModelWithAccount(_ account: Account, viewmodel: Resource
 
             newViewModel.general[0].leftSub = R.string.localizable.use.key.localized() + " \(used.toMS) " + R.string.localizable.ms.key.localized()
             newViewModel.general[0].rightSub = R.string.localizable.total.key.localized() + " \(max.toMS) " + R.string.localizable.ms.key.localized()
-            newViewModel.general[0].progress = used.toMS.float()! / max.toMS.float()!
+            newViewModel.general[0].progress = used.string.float()! / max.string.float()!
         }
         if let used = account.netLimit?.used, let max = account.netLimit?.max {
             newViewModel.general[1].leftSub = R.string.localizable.use.key.localized() + " \(used.toKB) " + R.string.localizable.kb.key.localized()
             newViewModel.general[1].rightSub = R.string.localizable.total.key.localized() + " \(max.toKB) " + R.string.localizable.kb.key.localized()
-            newViewModel.general[1].progress = used.toKB.float()! / max.toKB.float()!
+            newViewModel.general[1].progress = used.string.float()! / max.string.float()!
         }
-        if let used = account.ramUsage?.toKB, let max = account.ramQuota?.toKB {
-            newViewModel.general[2].leftSub = R.string.localizable.use.key.localized() + " \(used) " + R.string.localizable.kb.key.localized()
-            newViewModel.general[2].rightSub = R.string.localizable.total.key.localized() + " \(max) " + R.string.localizable.kb.key.localized()
-            newViewModel.general[2].progress = used.float()! / max.float()!
+        if let used = account.ramUsage, let max = account.ramQuota {
+            newViewModel.general[2].leftSub = R.string.localizable.use.key.localized() + " \(used.toKB) " + R.string.localizable.kb.key.localized()
+            newViewModel.general[2].rightSub = R.string.localizable.total.key.localized() + " \(max.toKB) " + R.string.localizable.kb.key.localized()
+            newViewModel.general[2].progress = used.string.float()! / max.string.float()!
         }
         if let cpuDelegated = account.selfDelegatedBandwidth?.cpuWeight {
             newViewModel.general[0].delegatedBandwidth = cpuDelegated
