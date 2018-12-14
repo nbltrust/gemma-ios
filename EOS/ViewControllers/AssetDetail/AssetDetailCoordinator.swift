@@ -119,6 +119,10 @@ extension AssetDetailCoordinator: AssetDetailStateManagerProtocol {
             if let payments = transactions.map({ (json) in
                 Payment.deserialize(from: json.dictionaryObject)
             }) as? [Payment] {
+                if payments.count == 0 {
+                    completion(false)
+                    return
+                }
                 self.store.dispatch(FetchPaymentsRecordsListAction(data: payments))
                 self.getChainInfo(completion: { (lib) in
                     if let libStr = lib {
