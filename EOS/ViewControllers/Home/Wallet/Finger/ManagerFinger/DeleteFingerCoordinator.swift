@@ -68,14 +68,16 @@ extension DeleteFingerCoordinator: DeleteFingerStateManagerProtocol {
     }
 
     func deleteCurrentFinger(_ model: Wallet, index: Int) {
-        BLTWalletIO.shareInstance()?.deleteFP([String(format: "%d", index)], success: { [weak self] in
-            guard let `self` = self else { return }
-            FingerManager.shared.deleteFingerName(model, index: index)
-            self.rootVC.popViewController(animated: true)
-        }, failed: { (reason) in
-            if let failedReason = reason {
-                showFailTop(failedReason)
-            }
-        })
+        confirmPin(self.rootVC) {
+            BLTWalletIO.shareInstance()?.deleteFP([String(format: "%d", index)], success: { [weak self] in
+                guard let `self` = self else { return }
+                FingerManager.shared.deleteFingerName(model, index: index)
+                self.rootVC.popViewController(animated: true)
+                }, failed: { (reason) in
+                    if let failedReason = reason {
+                        showFailTop(failedReason)
+                    }
+            })
+        }
     }
 }

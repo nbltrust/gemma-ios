@@ -38,6 +38,11 @@ int BatteryCallback(const int nBatterySource, const int nBatteryState)
     _instance.batteryInfo.state = nBatterySource == 0 ? charge : battery;
     if (nBatterySource == 1) {
         _instance.batteryInfo.electricQuantity = MAX(0, (MIN(15, nBatteryState - 125))) / 15.00;
+        if (nBatteryState < 130) {
+            if (_instance.powerLow != nil) {
+                _instance.powerLow();
+            }
+        }
     }
     if (_instance.batteryInfoUpdated != nil) {
         _instance.batteryInfoUpdated(_instance.batteryInfo);
@@ -233,6 +238,48 @@ int PutState_Callback(void * const pCallbackContext, const int nState)
             }
         });
 
+    });
+}
+
+- (void)autoConnectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction {
+    __block unsigned char nDeviceType = PAEW_DEV_TYPE_BT;
+    __block char *szDeviceNames = (char *)malloc(512*16);
+    __block size_t nDeviceNameLen = 512*16;
+    __block size_t nDevCount = 0;
+    __block EnumContext DevContext = {0};
+    DevContext.timeout = 5;
+    DevContext.enumCallBack = EnumCallback;
+    NSString *devName = @"WOOKONG BIO";
+    strcpy(DevContext.searchName, [[devName stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet] UTF8String]);
+    dispatch_async(bltQueue, ^{
+        int devInfoState = PAEW_GetDeviceListWithDevContext(nDeviceType, szDeviceNames, &nDeviceNameLen, &nDevCount, &DevContext, sizeof(DevContext));
+        if (devInfoState == 0) {
+            NSData *data = [NSData dataWithBytes:szDeviceNames length:nDeviceNameLen];
+            float fLen = nDeviceNameLen / nDevCount;
+            int oneNameLen = floorf(fLen);
+            bool haveSearched = false;
+            for (int i = 0; i < nDevCount; i++) {
+                NSData * temData = [data subdataWithRange:NSMakeRange(i * oneNameLen, oneNameLen - 1)];
+                NSString *temStr = [[NSString alloc] initWithData:temData encoding:NSUTF8StringEncoding];
+                [self printLog:temStr];
+                if ([temStr isEqualToString:deviceNameId]) {
+                    haveSearched = true;
+                    break;
+                }
+            }
+            if (haveSearched) {
+                [self connectCard:deviceNameId success:successComlication failed:failedCompliction];
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    failedCompliction([BLTUtils errorCodeToString:PAEW_RET_DEV_OPEN_FAIL]);
+                });
+            }
+            free(szDeviceNames);
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failedCompliction([BLTUtils errorCodeToString:devInfoState]);
+            });
+        }
     });
 }
 

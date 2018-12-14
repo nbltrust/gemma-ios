@@ -643,10 +643,18 @@
 "wookong_power_init" = "Please press the button on WOOKONG Bio to confirm initialization";
 "wookong_power_change_pas" = "Please press the button on WOOKONG Bio to confirm changing the password";
 "wookong_power_format" = "Please press the button on WOOKONG Bio to confirm formatting. Once formatted, WOOKONG Bio will erase the private key. Please transfer your assets elsewhere before formatting";
-"wookong_memo_error" = "备注最多15个字符，仅支持英文、数字、标点符号";
-"wookong_init" = "初始化";
-"wookong_formmat_success" = "格式化成功";
-"wookong_init_promt" = "是否重新初始化WOOKONG Bio ？";
+"wookong_memo_error" = "15 bits tops with letters, numbers and symbols";
+"wookong_init" = "Initial Setup";
+"wookong_formmat_success" = "Formatted";
+"wookong_init_promt" = "Sure to initialize WOOKONG Bio?";
+"wookong_warning" = "Warning";
+"wookong_disconnect_waring" = "WOOKONG Bio will be disconnected if you switch wallets\nready to disconnect WOOKONG Bio?";
+"wookong_power_low" = "Low Battery";
+"wookong_power_low_warning" = "Please charge WOOKONG Bio first\nto support the following process.";
+"wookong_disConnect_title" = "Disconnected";
+"wookong_disconnect_alert" = "Unable to connect to WOOKONG Bio, please make sure the power is enough and the gadget is on.";
+"wookong_locked_title" = "Device Locked";
+"wookong_locked_alert" = "Please format WOOKONG Bio first then restore it.";
 
 "currency_title" = "Currency types";
 "wallet_currency" = "Wallet currencies";

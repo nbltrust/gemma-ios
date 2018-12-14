@@ -26,6 +26,10 @@ typedef enum : NSUInteger {
 
 @property (nonatomic,strong) ChangeToPinConfirm changeToPinConfirm;
 
+@property (nonatomic,strong) PinLockedCallback pinLocked;
+
+@property (nonatomic,strong) PowerLowCallback powerLow;
+
 @property (nonatomic,strong) BLTBatteryInfo *batteryInfo;
 
 @property (nonatomic,strong) BLTDevice *selectDevice;
@@ -54,6 +58,8 @@ typedef enum : NSUInteger {
 - (void)searchBLTCard:(SuccessedComplication)complication;
 
 - (void)connectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+
+- (void)autoConnectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
