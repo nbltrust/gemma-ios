@@ -9,14 +9,19 @@
 
 #import "BLTUtils.h"
 #import "PA_EWallet.h"
+#import "BLTWalletIO.h"
 
 @implementation BLTUtils
 
 + (NSString *)errorCodeToString:(int)retValue
 {
+    if (retValue == PAEW_RET_DEV_PIN_LOCKED) {
+        if (BLTWalletIO.shareInstance.pinLocked != nil) {
+            BLTWalletIO.shareInstance.pinLocked();
+        }
+    }
     NSString *strResult = @"unknown error";
     switch (retValue) {
-            
         case PAEW_RET_SUCCESS:
             strResult = @"success";
             break;
@@ -233,7 +238,6 @@
 }
 
 + (FingerPrinterState)fingerEntrolStateWithValue:(int)value {
-    NSLog(@"测试%@",[self errorCodeToString:value]);
     switch (value) {
         case PAEW_RET_DEV_FP_REDUNDANT:
             return redundant;
