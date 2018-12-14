@@ -106,8 +106,12 @@ extension UIViewController {
 
 extension UIViewController {
     func addPullToRefresh(_ tableView: UITableView, callback:@escaping(((()->Void)?)->Void)) {
+        let headerAni = ESRefreshHeaderAnimator()
+        headerAni.pullToRefreshDescription = R.string.localizable.pullToRefresh.key.localized()
+        headerAni.releaseToRefreshDescription = R.string.localizable.releaseToRefresh.key.localized()
+        headerAni.loadingDescription = R.string.localizable.loading.key.localized()
 
-        tableView.es.addPullToRefresh {
+        tableView.es.addPullToRefresh(animator: headerAni) {
             callback({
                 tableView.es.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
             })
@@ -116,8 +120,13 @@ extension UIViewController {
     }
 
     func addInfiniteScrolling(_ tableView: UITableView, callback:@escaping(((Bool)->Void)?)->Void) {
-        tableView.es.addInfiniteScrolling {
 
+        let footerAni = ESRefreshFooterAnimator()
+        footerAni.noMoreDataDescription = R.string.localizable.noMoreData.key.localized()
+        footerAni.loadingMoreDescription = R.string.localizable.loadingMore.key.localized()
+        footerAni.loadingDescription = R.string.localizable.loading.key.localized()
+
+        tableView.es.addInfiniteScrolling(animator: footerAni) {
             callback({ isNoMoreData in
                 if isNoMoreData {
                     tableView.es.noticeNoMoreData()
@@ -126,5 +135,6 @@ extension UIViewController {
                 }
             })
         }
+
     }
 }
