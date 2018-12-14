@@ -277,13 +277,64 @@ func pushTransaction(_ transaction: String, actionModel: ActionModel, callback:@
         }
     }, error: { (error) in
         if error == 88888 {
-            callback(false, "")
+            delegateAndTransfer(callback: { (bool, str) in
+                if bool == true {
+                    EOSIONetwork.request(target: .pushTransaction(json: transaction), success: { (success) in
+                        if let info = success.dictionaryObject, info["code"] == nil {
+                            callback(true, actionModel.success)
+                        } else {
+                            callback(false, actionModel.faile)
+                        }
+                    }, error: { (errorInt) in
+                        callback(false, actionModel.faile)
+                    }, failure: { (_) in
+                        callback(false, R.string.localizable.request_failed.key.localized() )
+                    })
+                }
+            })
         } else {
             callback(false, actionModel.faile)
         }
     }) { (_) in
         callback(false, R.string.localizable.request_failed.key.localized() )
     }
+}
+
+func delegateAndTransfer(callback:@escaping (Bool, String) -> Void) {
+    BLTWalletIO.shareInstance()?.getVolidation({ (sn, snSig, pub, pubSig, publicKey) in
+        var validation = WookongValidation()
+        validation.SN = sn ?? ""
+        validation.SNSig = snSig ?? ""
+        validation.pubKey = pub ?? ""
+        validation.publicKeySig = pubSig ?? ""
+        validation.publicKey = publicKey ?? ""
+        NBLNetwork.request(target: .getGoodscode(code: validation.SN), success: { (success) in
+            if let goodscode = Goodscode.deserialize(from: success.dictionaryObject) {
+                if goodscode.rights.delegation.actions.count == 0 {
+                    let account = CurrencyManager.shared.getCurrentAccountName()
+                    NBLNetwork.request(target: .delegate(appid: .bluetooth, goodsId: .sn, code: validation.SN, account: account, validation: validation), success: { (success) in
+                        if let actionId = success["action_id"].stringValue as? String {
+                            callback(true, "")
+                        } else {
+                            callback(false, R.string.localizable.eos_chain_instability.key.localized())
+                        }
+                    }, error: { (_) in
+                        callback(false, R.string.localizable.eos_chain_instability.key.localized())
+                    }, failure: { (_) in
+                    })
+                } else {
+                    callback(false, R.string.localizable.eos_errorcode_3080004.key.localized())
+                }
+            } else {
+                callback(false, R.string.localizable.eos_chain_instability.key.localized())
+            }
+        }, error: { (error) in
+            callback(false, R.string.localizable.eos_chain_instability.key.localized())
+        }, failure: { (_) in
+        })
+        }, failed: { (reason) in
+            callback(false, R.string.localizable.eos_chain_instability.key.localized())
+    })
 }
 
 func createEOSAccountUtil(_ type: CreateAPPId,

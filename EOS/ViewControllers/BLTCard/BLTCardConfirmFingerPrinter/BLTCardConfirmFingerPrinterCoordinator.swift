@@ -78,7 +78,26 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterCoo
     }
 
     func pushToPinConfirmVC() {
-        
+        cancelEntroll()
+        if let currentContext = self.state.context.value as? BLTCardConfirmFingerPrinterContext {
+            var context = BLTCardConfirmPinContext()
+            context.receiver = currentContext.receiver
+            context.amount = currentContext.amount
+            context.remark = currentContext.remark
+            context.type = currentContext.type
+            context.iconType = LeftIconType.pop.rawValue
+            context.confirmType = .transferWithPin
+
+            let confirmVC = R.storyboard.bltCard.bltCardConfirmPinViewController()!
+            let coordinator = BLTCardConfirmPinCoordinator.init(rootVC: self.rootVC)
+            coordinator.store.dispatch(RouteContextAction(context: context))
+            confirmVC.coordinator = coordinator
+            self.rootVC.pushViewController(confirmVC) {
+                var vcs = self.rootVC.viewControllers
+                vcs.remove(at: vcs.count - 2)
+                self.rootVC.viewControllers = vcs
+            }
+        }
     }
 }
 
@@ -100,14 +119,7 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
         model.contract = EOSIOContract.TokenCode
         model.symbol = "EOS"
         transaction(EOSAction.bltTransfer.rawValue, actionModel: model) {[weak self] (bool, showString) in
-            guard let `self` = self else { return }
-            if bool == false, showString == "" {
-                self.delegateAndTransfer(model, callback: { (bool, str) in
-                    callback(bool, showString)
-                })
-            } else {
-                callback(bool, showString)
-            }
+            callback(bool, showString)
         }
     }
 
@@ -117,50 +129,6 @@ extension BLTCardConfirmFingerPrinterCoordinator: BLTCardConfirmFingerPrinterSta
 
     func createWookongBioWallet(_ success: @escaping SuccessedComplication, failed: @escaping FailedComplication) {
         importWookongBioWallet(self.rootVC, hint:"", success: success, failed: failed)
-    }
-
-    func delegateAndTransfer(_ model: TransferActionModel, callback:@escaping (Bool, String) -> Void) {
-        BLTWalletIO.shareInstance()?.getVolidation({ [weak self] (sn, snSig, pub, pubSig, publicKey) in
-            guard let `self` = self else { return }
-            var validation = WookongValidation()
-            validation.SN = sn ?? ""
-            validation.SNSig = snSig ?? ""
-            validation.pubKey = pub ?? ""
-            validation.publicKeySig = pubSig ?? ""
-            validation.publicKey = publicKey ?? ""
-            NBLNetwork.request(target: .getGoodscode(code: validation.SN), success: { (success) in
-                if let goodscode = Goodscode.deserialize(from: success.dictionaryObject) {
-                    if goodscode.rights.delegation.actions.count == 0 {
-                        let account = CurrencyManager.shared.getCurrentAccountName()
-                        NBLNetwork.request(target: .delegate(appid: .bluetooth, goodsId: .sn, code: validation.SN, account: account, validation: validation), success: { (success) in
-                            if let actionId = success["action_id"].stringValue as? String {
-                                transaction(EOSAction.bltTransfer.rawValue, actionModel: model, callback: { (bool, showString) in
-                                    if bool == false, showString == "" {
-                                        callback(false, R.string.localizable.eos_chain_instability.key.localized())
-                                    } else {
-                                        callback(bool, showString)
-                                    }
-                                })
-                            } else {
-                                callback(false, R.string.localizable.eos_chain_instability.key.localized())
-                            }
-                        }, error: { (_) in
-                            callback(false, R.string.localizable.eos_chain_instability.key.localized())
-                        }, failure: { (_) in
-                        })
-                    } else {
-                        callback(false, R.string.localizable.eos_errorcode_3080004.key.localized())
-                    }
-                } else {
-                    callback(false, R.string.localizable.eos_chain_instability.key.localized())
-                }
-            }, error: { (error) in
-                callback(false, R.string.localizable.eos_chain_instability.key.localized())
-            }, failure: { (_) in
-            })
-            }, failed: { (reason) in
-                callback(false, R.string.localizable.eos_chain_instability.key.localized())
-        })
     }
     
     func cancelEntroll() {

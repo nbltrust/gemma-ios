@@ -15,7 +15,8 @@ class AboutViewController: BaseViewController {
     @IBOutlet weak var introView: CustomCellView!
 
     @IBOutlet weak var updateView: CustomCellView!
-    
+    @IBOutlet weak var versionLabel: UILabel!
+
 	var coordinator: (AboutCoordinatorProtocol & AboutStateManagerProtocol)?
 
 	override func viewDidLoad() {
@@ -25,11 +26,16 @@ class AboutViewController: BaseViewController {
     }
 
     func setupUI() {
-        self.title = R.string.localizable.mine_about.key.localized()
+        self.title = R.string.localizable.about.key.localized()
         introView.title = R.string.localizable.about_info.key.localized()
         introView.subTitle = ""
         updateView.title = R.string.localizable.about_update.key.localized()
         updateView.subTitle = ""
+
+        let infoDictionary = Bundle.main.infoDictionary
+        if let infoDictionary = infoDictionary, let appVersion = infoDictionary["CFBundleShortVersionString"] {
+            self.versionLabel.text = R.string.localizable.version_text.key.localized() + " \(appVersion)"
+        }
     }
 
     func setupEnent() {

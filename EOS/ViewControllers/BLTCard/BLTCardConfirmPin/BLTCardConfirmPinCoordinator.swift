@@ -12,7 +12,7 @@ import NBLCommonModule
 
 protocol BLTCardConfirmPinCoordinatorProtocol {
     func dismissVC(_ complication: @escaping () -> Void)
-    
+
     func popVC()
 
     func finishTransfer()
@@ -24,7 +24,7 @@ protocol BLTCardConfirmPinStateManagerProtocol {
     var state: BLTCardConfirmPinState { get }
 
     func switchPageState(_ state: PageState)
-    
+
     func confirmPin(_ pin: String, complication: @escaping SuccessedComplication)
 
     func bltTransferAccounts(_ account: String, amount: String, remark: String, callback:@escaping (Bool, String) -> Void)
@@ -42,11 +42,11 @@ class BLTCardConfirmPinCoordinator: BLTCardRootCoordinator {
     }
 
     override class func start(_ root: BaseNavigationController, context: RouteContext? = nil) -> BaseViewController {
-        let vc = R.storyboard.bltCard.bltCardConfirmPinViewController()!
+        let currentVC = R.storyboard.bltCard.bltCardConfirmPinViewController()!
         let coordinator = BLTCardConfirmPinCoordinator(rootVC: root)
-        vc.coordinator = coordinator
+        currentVC.coordinator = coordinator
         coordinator.store.dispatch(RouteContextAction(context: context))
-        return vc
+        return currentVC
     }
 
     override func register() {
@@ -59,13 +59,14 @@ extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinCoordinatorProtocol {
     func dismissVC(_ complication: @escaping () -> Void) {
         self.rootVC.dismiss(animated: true, completion: complication)
     }
-    
+
     func popVC() {
         self.rootVC.popViewController(animated: true, nil)
     }
 
     func finishTransfer() {
-        if let newHomeCoor = appCoodinator.newHomeCoordinator, let transferVC = newHomeCoor.rootVC.topViewController as? TransferViewController {
+        if let newHomeCoor = appCoodinator.newHomeCoordinator,
+            let transferVC = newHomeCoor.rootVC.topViewController as? TransferViewController {
             self.rootVC.dismiss(animated: true) {
                 transferVC.resetData()
             }
@@ -73,7 +74,16 @@ extension BLTCardConfirmPinCoordinator: BLTCardConfirmPinCoordinatorProtocol {
     }
 
     func pushToPowerAlertVC() {
-        let context = BLTCardPowerOnContext()
+        var context = BLTCardPowerOnContext()
+        context.needAttention = true
+        context.actionRetry = { [weak self] () in
+            guard let `self` = self else {return}
+            let vcs = self.rootVC.viewControllers
+            if let currentVC = vcs[vcs.count - 2] as? BLTCardConfirmPinViewController {
+                currentVC.startTransfer()
+            }
+        }
+
         pushVC(BLTCardPowerOnCoordinator.self, animated: true, context: context)
     }
 }

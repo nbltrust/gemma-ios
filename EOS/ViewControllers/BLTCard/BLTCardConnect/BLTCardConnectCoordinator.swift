@@ -70,8 +70,9 @@ extension BLTCardConnectCoordinator: BLTCardConnectStateManagerProtocol {
         if let wallet = WalletManager.shared.currentWallet(), wallet.type == .bluetooth {
             deviceMac = wallet.deviceName ?? ""
         }
-        BLTWalletIO.shareInstance()?.searchBLTCard({
-            BLTWalletIO.shareInstance()?.connectCard(deviceMac, success: success, failed: failed)
-        })
+        BLTWalletIO.shareInstance()?.autoConnectCard(deviceMac, success: success, failed: failed)
+//        BLTWalletIO.shareInstance()?.searchBLTCard({
+//            BLTWalletIO.shareInstance()?.connectCard(deviceMac, success: success, failed: failed)
+//        })
     }
 }

@@ -16,6 +16,7 @@ struct BLTCardPowerOnContext: RouteContext, HandyJSON {
     var powerButtonPressed: CompletionCallback?
     var actionRetry: CompletionCallback?
     var promate: String?
+    var needAttention: Bool = false
 }
 
 // MARK: - State

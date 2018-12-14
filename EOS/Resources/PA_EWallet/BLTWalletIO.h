@@ -26,6 +26,10 @@ typedef enum : NSUInteger {
 
 @property (nonatomic,strong) ChangeToPinConfirm changeToPinConfirm;
 
+@property (nonatomic,strong) PinLockedCallback pinLocked;
+
+@property (nonatomic,strong) PowerLowCallback powerLow;
+
 @property (nonatomic,strong) BLTBatteryInfo *batteryInfo;
 
 @property (nonatomic,strong) BLTDevice *selectDevice;
@@ -39,7 +43,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSCondition *abortCondition;
 
 @property (nonatomic, assign) BOOL abortButtonFlag;
-@property (nonatomic, assign) BOOL switchSignFlag;
 @property (nonatomic, assign) BOOL abortSignFlag;
 
 @property (nonatomic, copy) void(^abortHandelBlock)(BOOL abortState);
@@ -55,6 +58,8 @@ typedef enum : NSUInteger {
 - (void)searchBLTCard:(SuccessedComplication)complication;
 
 - (void)connectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
+
+- (void)autoConnectCard:(NSString *)deviceNameId success:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
 - (void)disConnect:(SuccessedComplication)successComlication failed:(FailedComplication)failedCompliction;
 
@@ -99,8 +104,6 @@ typedef enum : NSUInteger {
 - (void)getNewEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 
 - (void)cancelSignAbort;
-
-- (void)switchToPin;
 
 - (void)getEOSSign:(AuthType)type chainId:(NSString *)chainId transaction:(NSString *)transaction success:(GetSignComplication)complication failed:(FailedComplication)failedComplication;
 

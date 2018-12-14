@@ -117,6 +117,14 @@ extension TransferViewController {
         if self.transferContentView.nextButton.isEnabel.value == false {
             return
         }
+        var memo = self.transferContentView.remarkTitleTextView.textView.text ?? ""
+        if memo.isEmpty && WalletManager.shared.isBluetoothWallet() {
+            memo = "http://wooko.ng"
+        }
+        if !WalletManager.shared.isValidMemo(memo) && WalletManager.shared.isBluetoothWallet() {
+            showError(message: R.string.localizable.wookong_memo_error.key.localized())
+            return
+        }
         var data = ConfirmViewModel()
         data.recever = self.transferContentView.receiverTitleTextView.textField.text!
         data.amount = self.transferContentView.moneyTitleTextView.textField.text!

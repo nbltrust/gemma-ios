@@ -24,7 +24,7 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
                     viewmodel.balance = "0.0000 \(NetworkConfiguration.EOSIODefaultSymbol)"
                 }
                 viewmodel.allAssets = calculateTotalAsset(viewmodel)
-                viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+                viewmodel.CNY = calculateRMBPrice(viewmodel)
             } else if currency.type == .ETH {
 
             }
@@ -36,7 +36,7 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
             if currency.type == .EOS {
                 if let info = action.info {
                     viewmodel = convertViewModelWithAccount(info, viewmodel: state.info.value, currencyID: currency.id)
-                    viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+                    viewmodel.CNY = calculateRMBPrice(viewmodel)
                 }
             } else if currency.type == .ETH {
 
@@ -45,14 +45,7 @@ func gNewHomeReducer(action: Action, state: NewHomeState?) -> NewHomeState {
         state.info.accept(viewmodel)
     case let action as RMBPriceFetchedAction:
         var viewmodel = state.info.value
-        if action.currency != nil {
-            if coinType() == .CNY, let eos = CurrencyManager.shared.getCNYPrice() {
-                state.cnyPrice = eos
-            } else if coinType() == .USD, let usd = CurrencyManager.shared.getUSDPrice() {
-                state.otherPrice = usd
-            }
-        }
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+        viewmodel.CNY = calculateRMBPrice(viewmodel)
         state.info.accept(viewmodel)
     case let action as NonActiveFetchedAction:
         let viewmodel = setViewModelWithCurrency(currency: action.currency)
@@ -100,7 +93,13 @@ func setViewModelWithCurrency(currency: Currency?, actions: Actions? = nil) -> N
         }
     } else if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == .doActive {
         if let block = actions?.blockNum, let lib = actions?.lastIrreversibleBlock {
-            viewmodel.account = R.string.localizable.account_creation.key.localized() + "\((1 - (block - lib)/325)*100)%"
+            var dValue = block - lib
+            if dValue > 325 {
+                dValue = 325
+            }
+            let percent = (1 - Decimal(dValue)/325)*100
+            let percentStr = percent.string(digits: 0)
+            viewmodel.account = R.string.localizable.account_creation.key.localized() + "\(percentStr)%"
         } else {
             viewmodel.account = R.string.localizable.account_creation.key.localized() + "0%"
         }
@@ -162,7 +161,16 @@ func calculateTotalAsset(_ viewmodel: NewHomeViewModel) -> String {
     }
 }
 
-func calculateRMBPrice(_ viewmodel: NewHomeViewModel, price: String, otherPrice: String) -> String {
+func calculateRMBPrice(_ viewmodel: NewHomeViewModel) -> String {
+    var price = ""
+    var otherPrice = ""
+    if let eos = CurrencyManager.shared.getCNYPrice() {
+        price = eos
+    }
+    if let usd = CurrencyManager.shared.getUSDPrice() {
+        otherPrice = usd
+    }
+
     if let unit = price.toDecimal(), unit != 0, let all = viewmodel.allAssets.toDecimal(), all != 0 {
         let cny = unit * all
         if coinType() == .CNY {

@@ -13,7 +13,14 @@ extension AssetDetailHeadView {
         self.balanceLabel.text = model.balance
         self.currencyLabel.text = model.name
 
-        let attributedString = NSMutableAttributedString(string: "≈ ¥ \(model.CNY)", attributes: [
+        var coin = "¥"
+        if coinType() == .CNY {
+            coin = "¥"
+        } else {
+            coin = "$"
+        }
+
+        let attributedString = NSMutableAttributedString(string: "≈ \(coin) \(model.CNY)", attributes: [
             .font: UIFont(name: "PingFangSC-Semibold", size: 18.0)!,
             .foregroundColor: UIColor.introductionColor,
             .kern: 0.0

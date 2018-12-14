@@ -88,14 +88,13 @@ struct NetworkConfiguration {
 
 //Laguage Setting
 struct LanguageConfiguration {
-    var keys = [R.string.localizable.language_system.key.localized(),
-                       R.string.localizable.language_cn.key.localized(),
-                       R.string.localizable.language_en.key.localized()]
+    var keys = [R.string.localizable.language_cn.key.localized(),
+                R.string.localizable.language_en.key.localized()]
 
     func valueWithIndex(_ index: Int) -> String {
-        if index == 1 {
+        if index == 0 {
             return "zh-Hans"
-        } else if index == 2 {
+        } else if index == 1 {
             return "en"
         }
         return ""
@@ -103,9 +102,9 @@ struct LanguageConfiguration {
 
     func indexWithValue(_ value: String) -> Int {
         if value == "zh-Hans" {
-            return 1
+            return 0
         } else if value == "en" {
-            return 2
+            return 1
         }
         return 0
     }
@@ -148,6 +147,7 @@ struct H5AddressConfiguration {
     static let ReleaseNotesENURL = URL(string: "https://cdn.nbltrust.com/gemma/gemma_release_desc_en.html")
     static let FeedbackCNURL = URL(string: "http://47.75.154.39:3009/gemma?lang=cn")
     static let FeedbackENURL = URL(string: "http://47.75.154.39:3009/gemma?lang=en")
+    static let WOOKONGBioURL = URL(string: "https://wooko.ng")
     static let DAppSinUpEOS = "https://mp.weixin.qq.com/s/wvrlzbj3EGv78s3gjoCvjw"
 }
 

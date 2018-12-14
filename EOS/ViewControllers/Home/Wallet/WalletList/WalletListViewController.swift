@@ -30,7 +30,7 @@ class WalletListViewController: BaseViewController {
     }
 
     override func refreshViewController() {
-
+        
     }
 
     func reloadTable() {

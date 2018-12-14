@@ -36,18 +36,13 @@ func gAssetDetailReducer(action:Action, state:AssetDetailState?) -> AssetDetailS
         }
         viewmodel.name = "EOS"
         viewmodel.contract = EOSIOContract.TokenCode
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+        viewmodel.CNY = calculateRMBPrice(viewmodel)
         state.info.accept(viewmodel)
     case _ as RMBPriceFetchedAction:
         var viewmodel = state.info.value
-        if coinType() == .CNY, let eos = CurrencyManager.shared.getCNYPrice() {
-            state.cnyPrice = eos
-        } else if coinType() == .USD, let usd = CurrencyManager.shared.getUSDPrice() {
-            state.otherPrice = usd
-        }
         viewmodel.name = "EOS"
         viewmodel.contract = EOSIOContract.TokenCode
-        viewmodel.CNY = calculateRMBPrice(viewmodel, price: state.cnyPrice, otherPrice: state.otherPrice)
+        viewmodel.CNY = calculateRMBPrice(viewmodel)
         state.info.accept(viewmodel)
     case let action as ATokensFetchedAction:
         if let model = convertViewModelWithTokens(tokensJson: action.data, symbol: action.symbol) {
@@ -205,7 +200,16 @@ func convertTransferViewModel(data: [Payment], tupleArray: [(String, [PaymentsRe
     return arrayValue
 }
 
-func calculateRMBPrice(_ viewmodel: AssetViewModel, price: String, otherPrice: String) -> String {
+func calculateRMBPrice(_ viewmodel: AssetViewModel) -> String {
+    var price = ""
+    var otherPrice = ""
+    if let eos = CurrencyManager.shared.getCNYPrice() {
+        price = eos
+    }
+    if let usd = CurrencyManager.shared.getUSDPrice() {
+        otherPrice = usd
+    }
+
     if let unit = price.toDecimal(), unit != 0, let all = viewmodel.balance.toDecimal(), all != 0 {
         let cny = unit * all
         if coinType() == .CNY {

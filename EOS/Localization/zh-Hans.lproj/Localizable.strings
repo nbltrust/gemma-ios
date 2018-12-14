@@ -279,7 +279,10 @@
 "send_pending" = "发送中...";
 "accept_pending" = "接收中...";
 "eos_chain_instability" = "当前EOS节点或链不稳定，请稍后重试";
-"leadin_wallet_exist" = "该钱包下已存在";
+"leadin_wallet_exist" = "该钱包下已存在%@";
+"about" = "关于";
+"version_text" = "WOOKONG Wallet";
+"weblabel_text" = "在区块链浏览器上查看";
 
 //zsy end
 
@@ -644,6 +647,18 @@
 "wookong_power_init" = "请在WOOKONG Bio上按键以确认初始化";
 "wookong_power_change_pas" = "请在WOOKONG Bio上按键以确认修改密码";
 "wookong_power_format" = "请在WOOKONG Bio上按键以确认格式化，一旦格式化，WOOKONG Bio将清除私钥，请在格式化前转移资产。";
+"wookong_memo_error" = "备注最多15个字符，仅支持英文、数字、标点符号";
+"wookong_init" = "初始化";
+"wookong_formmat_success" = "格式化成功";
+"wookong_init_promt" = "是否重新初始化WOOKONG Bio ？";
+"wookong_warning" = "警告";
+"wookong_disconnect_waring" = "切换钱包将断开WOOKONG Bio\n确定断开连接？";
+"wookong_power_low" = "电量过低";
+"wookong_power_low_warning" = "请先给WOOKONG Bio充电\n以完成后续流程";
+"wookong_disConnect_title" = "失去连接";
+"wookong_disconnect_alert" = "无法连接到WOOKONG Bio，请确保电量足够且处于开机状态。";
+"wookong_locked_title" = "设备已锁定";
+"wookong_locked_alert" = "需要格式化后才能使用";
 
 "currency_title" = "币种";
 "wallet_currency" = "钱包币种";
