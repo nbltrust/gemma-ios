@@ -110,18 +110,18 @@
 "red_warning" = "Creating...The account is still in the air until 100% confirmed.";
 "mortgage_button" = "Stake";
 "general" = "Overview";
-"mortgage" = "Delegate";
+"mortgage" = "Stake";
 "mortgage_cpu" = "CPU";
 "mortgage_net" = "NET";
-"mortgage_placeholder" = "Enter amount to delegate";
+"mortgage_placeholder" = "Enter amount to stake";
 "operation" = "Operation";
-"mortgage_cancel_placeholder" = "Enter amount to undelegate";
+"mortgage_cancel_placeholder" = "Enter amount to unstake";
 "cpu" = "CPU";
 "net" = "NET";
 "use" = "used";
 "total" = "total";
-"mortgage_resource" = "Delegate";
-"cancel_mortgage" = "Undelegate";
+"mortgage_resource" = "Stake";
+"cancel_mortgage" = "Unstake";
 "resource_manager" = "Manage Resources";
 "confirm_mortgage" = "Confirm stake";
 "confirm_relieve_mortgage" = "Confirm unstake";
@@ -176,13 +176,13 @@
 "useage_balance" = "Balance";
 "refund" = "Refunding";
 "payments_detail" = "transaction details";
-"transaction_time" = "transaction time";
+"transaction_time" = "Transaction time";
 "name_warning" = "Wrong account name";
 "sender" = "Sender";
 "wechat_pay" = "WeChat Payment";
 "need_pay" = "Paying";
 "copy_privatekey" = "Copy private key";
-"invitation_code_subtitle" = "How to obtain an invitation code";
+"invitation_code_subtitle" = "How to get a code";
 "activate" = "Activate";
 "pay_to_activate" = "Paid activation";
 "friend_to_activate" = "Invite others to help you activate";
@@ -192,9 +192,9 @@
 "exchange_activate_title" = "Please transfer from any exchange that supports memo attachment, to the smart contract signupeoseos with the following memo to complete the account creation";
 "activate_title_blue" = "To ensure the success of account creation, please transfer at least %@2 EOS%@ ：the account will stake %@0.1 EOS%@ as CPU，%@0.1 EOS%@ as NET，and the remaining %@1.8 EOS%@ will purchase RAM at the current price";
 "friend_activate_title" = "Please ask a friend of you in possess of EOS to transfer to smart contract signupeoseos with the following memo to complete the creation of your wallet";
-"invitation_code_placeholder" = "Enter invitation code";
+"invitation_code_placeholder" = "Invitation Code";
 "pay_activate_title" = "Creating an EOS account consumes resources such as CPU, NET, RAM, etc. You need to purchase those resources in order to activate the account.";
-"activate_title" = "Choose EOS account activation method";
+"activate_title" = "Choose EOS Account Activation Method";
 "friend_prikey_title_red" = "Please do BACK UP the private key. You need to import the private key to the wallet again after your wallet is activated with the help of your friend. If your private key is lost, your account will not be recovered.";
 "walletname_not_empty" = "Wallet name must not be empty";
 "delegate_not_all0" = "The stake must not be zero";
@@ -250,12 +250,12 @@
 "change_finger_name" = "Change fingerprint's name";
 "finger_name_empty" = "Fingerprint's name must not be empty";
 "manager_finger" = "Manage fingerprints";
-"next_step" = "Next step";
+"next_step" = "Next";
 "wait_activate" = "To be activated";
 "create_account" = "Create an account";
 "asset" = "Assets";
 "receipt" = "Receive";
-"delegate_redeem" = "Stake and unstake";
+"delegate_redeem" = "Un/stake";
 "manager" = "Manage";
 "redeem" = "Unstake";
 "resource_detail" = "Resource details";
@@ -269,7 +269,7 @@
 "wallet_name_ph" = "Enter wallet name";
 "remark_title" = "Memo";
 "walletname_warning" = "Wallet name already exists";
-"input_transfer_money" = "Enter transfer amount. At most %d digits behind the decimal point";
+"input_transfer_money" = "%d decimal numbers tops";
 "resource_detail_tips" = "WOOKONG Bio does not support resource staking or the trading of RAM. Please use other accounts.";
 "active_title_highlight" = "You must attach the following memo\\(memo\\)";
 "send_done" = "Sent";
@@ -278,10 +278,11 @@
 "accept_fail" = "Failed to receive";
 "send_pending" = "Sending...";
 "accept_pending" = "Receiving...";
-"eos_chain_instability" = "当前EOS节点或链不稳定，请稍后重试";
-"leadin_wallet_exist" = "该钱包下已存在";
-"about" = "关于";
+"eos_chain_instability" = "EOS node or chain is unstable at this moment. Please try again later";
+"leadin_wallet_exist" = "Same currency: %@ exists in this wallet";
+"about" = "About";
 "version_text" = "WOOKONG Wallet";
+"weblabel_text" = "View through blockchain browsers";
 
 //zsy end
 
@@ -479,7 +480,7 @@
 "trade_failed" = "Failure";
 
 "Loading more" = "Load more";
-"No more data" = "~ End ~";
+"No more data" = "No more data";
 "Loading..." = "Loading";
 "Pull to refresh" = "Pull to refresh";
 "Release to refresh" = "Release to refresh";
@@ -580,7 +581,7 @@
 //Home
 "node_vote" = "Vote";
 "deal_ram" = "RAM Trading";
-"vote_title" = "Ballot";
+"vote_title" = "Vote";
 "vote_unenough" = "No Stake";
 "vote_ticket" = "votes";
 "eos" = "EOS";

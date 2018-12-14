@@ -63,7 +63,10 @@ class BLTCardEntryCoordinator: BLTCardRootCoordinator {
 
 extension BLTCardEntryCoordinator: BLTCardEntryCoordinatorProtocol {
     func pushIntroduceVC() {
-
+        let vc = BaseWebViewController()
+        vc.url = H5AddressConfiguration.WOOKONGBioURL
+        vc.title = R.string.localizable.wookong_title.key.localized()
+        self.rootVC.pushViewController(vc, animated: true)
     }
 
     func dismissVC() {

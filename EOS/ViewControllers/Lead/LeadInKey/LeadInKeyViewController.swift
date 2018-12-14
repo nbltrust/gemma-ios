@@ -123,7 +123,7 @@ extension LeadInKeyViewController {
             }
         }
         if isExist == true {
-            let message = R.string.localizable.leadin_wallet_exist.key.localized() + (self.coordinator?.state.currencyType.value?.des)!
+            let message = R.string.localizable.leadin_wallet_exist.key.localizedFormat((self.coordinator?.state.currencyType.value?.des)!) 
             self.showError(message: message)
             return
         }
