@@ -74,7 +74,7 @@ class NormalCurrencyListViewController: BaseViewController {
         let type = currencyData[indexPath.row]
         switch type {
         case .EOS:
-            return R.image.eos()
+            return R.image.eos24()
         default:
             return nil
         }
