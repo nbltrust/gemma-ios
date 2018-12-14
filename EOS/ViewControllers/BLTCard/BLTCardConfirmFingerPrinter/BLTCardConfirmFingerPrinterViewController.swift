@@ -46,9 +46,9 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
     override func rightAction(_ sender: UIButton) {
         guard let context = context else { return }
         if context.confirmSuccessed != nil {
-            confirmTransfer()
-        } else {
             verifyFP()
+        } else {
+            confirmTransfer()
         }
     }
 
@@ -100,11 +100,11 @@ class BLTCardConfirmFingerPrinterViewController: BaseViewController {
             confirmTransfer()
 
             BLTWalletIO.shareInstance()?.changeToPinConfirm = {()
-                
+                self.coordinator?.pushToPinConfirmVC()
             }
         }
     }
-    
+
     func confirmTransfer() {
         guard let context = context else { return }
         reloadRightItem(false)

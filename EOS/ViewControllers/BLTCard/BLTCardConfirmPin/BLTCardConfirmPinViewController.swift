@@ -60,17 +60,18 @@ class BLTCardConfirmPinViewController: BaseViewController {
     }
 
     func setupEvent() {
-        if self.context?.confirmType == .transferWithPin {
-            guard let context = context else { return }
-            self.coordinator?.bltTransferAccounts(context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
-                guard let `self` = self else { return }
-                if isSuccess {
-                    self.coordinator?.finishTransfer()
-                } else {
-                    self.showError(message: message)
-                }
-            })
-        }
+    }
+
+    func startTransfer() {
+        guard let context = context else { return }
+        self.coordinator?.bltTransferAccounts(context.receiver, amount: context.amount, remark: context.remark, callback: { [weak self] (isSuccess, message) in
+            guard let `self` = self else { return }
+            if isSuccess {
+                self.coordinator?.finishTransfer()
+            } else {
+                self.showError(message: message)
+            }
+        })
     }
 
     override func configureObserveState() {
@@ -95,8 +96,11 @@ extension BLTCardConfirmPinViewController {
                 })
             })
         } else if self.context?.confirmType == .transferWithPin {
-            BLTWalletIO.shareInstance()?.submmitWaitingVerfyPin(self.confirmView.textField.text ?? "")
-            self.coordinator?.pushToPowerAlertVC()
+            self.coordinator?.confirmPin(self.confirmView.textField.text ?? "", complication: {
+                self.startTransfer()
+                BLTWalletIO.shareInstance()?.submmitWaitingVerfyPin(self.confirmView.textField.text ?? "")
+                self.coordinator?.pushToPowerAlertVC()
+            })
         }
     }
 }

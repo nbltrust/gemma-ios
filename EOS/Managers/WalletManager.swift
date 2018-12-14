@@ -472,6 +472,12 @@ class WalletManager {
         return predicate.evaluate(with: name)
     }
 
+    func isValidMemo(_ memo: String) -> Bool {
+        let regex = "^[\\u4e00-\\u9fa5]{0,}+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return !predicate.evaluate(with: memo) || memo.count < 16
+    }
+
     func isValidWalletName(_ name: String) -> Bool {
         if self.walletList().count > 0 {
             for wallet in self.walletList() {

@@ -12,6 +12,10 @@ import NBLCommonModule
 
 protocol WalletDetailCoordinatorProtocol {
     func pushToChangeWalletName(model: Wallet)
+
+    func pushToWalletListVC()
+
+    func pushToPairVC()
 }
 
 protocol WalletDetailStateManagerProtocol {
@@ -54,6 +58,15 @@ class WalletDetailCoordinator: NavCoordinator {
             self.rootVC.pushViewController(vc, animated: true)
         }
     }
+
+    func pushToWalletListVC() {
+        let context = WalletListContext()
+        pushVC(WalletListCoordinator.self, animated: true, context: context)
+    }
+
+    func pushToPairVC() {
+
+    }
 }
 
 extension WalletDetailCoordinator: WalletDetailCoordinatorProtocol {
@@ -68,27 +81,75 @@ extension WalletDetailCoordinator: WalletDetailStateManagerProtocol {
     }
 
     func formmat() {
-        BLTWalletIO.shareInstance()?.formmart({
-            if let wallet = WalletManager.shared.currentWallet() {
-                if WalletManager.shared.removeWallet(wallet) {
-                    let wallets = WalletManager.shared.walletList()
-                    if wallets.count == 0 {
-                        self.rootVC.dismiss(animated: true, completion: {
-                            AppConfiguration.shared.appCoordinator!.showEntry()
-                        })
-                    } else {
-                        let firstWallet = wallets[0]
-                        if let walletId = firstWallet.id {
-                            WalletManager.shared.switchWallet(walletId)
-                        }
-                        self.rootVC.dismiss(animated: true, completion: {})
-                    }
-                }
+        handelFormmat()
+        waitPowerOn(self.rootVC, promate: R.string.localizable.wookong_power_format.key.localized(), retry: { [weak self] in
+            guard let `self` = self else {return}
+            self.handelFormmat()
+        }) {
+            var context = ScreenShotAlertContext()
+            context.title = R.string.localizable.wookong_formmat_success.key.localized()
+            context.cancelTitle = R.string.localizable.cancel.key.localized()
+            context.buttonTitle = R.string.localizable.wookong_init.key.localized()
+            context.imageName = R.image.ic_success.name
+            context.needCancel = true
+            context.sureShot = { [weak self] () in
+                guard let `self` = self else { return }
+                self.handleVC(true)
             }
+            context.cancelShot = { [weak self] () in
+                guard let `self` = self else { return }
+                self.handleVC(false)
+            }
+            appCoodinator.showGemmaAlert(context)
+        }
+    }
+
+    func handelFormmat() {
+        BLTWalletIO.shareInstance()?.formmart({
+
         }, failed: { (reason) in
             if let failedReason = reason {
                 showFailTop(failedReason)
             }
         })
+    }
+
+    func handleVC(_ isInit: Bool) {
+        if let wallet = WalletManager.shared.currentWallet() {
+            if WalletManager.shared.removeWallet(wallet) {
+                let wallets = WalletManager.shared.walletList()
+                if wallets.count == 0 {
+                    if let walletVC = self.rootVC.viewControllers[0] as? WalletViewController {
+                        self.rootVC.dismiss(animated: false) {}
+                        AppConfiguration.shared.appCoordinator!.showEntry()
+                    } else {
+                        self.rootVC.popToRootViewController(animated: false)
+                        AppConfiguration.shared.appCoordinator!.showEntry()
+                    }
+                } else {
+                    let firstWallet = wallets[0]
+                    if let walletId = firstWallet.id {
+                        WalletManager.shared.switchWallet(walletId)
+                    }
+                    for itemVC in self.rootVC.viewControllers {
+                        if let walletVC = itemVC as? WalletListViewController {
+                            if isInit {
+                                self.rootVC.popToViewController(walletVC, animated: false)
+                                self.pushToPairVC()
+                            } else {
+                                self.rootVC.popToViewController(walletVC, animated: true)
+                            }
+                            return
+                        }
+                    }
+                    self.rootVC.popToRootViewController(animated: false)
+                    if isInit {
+                        self.pushToPairVC()
+                    } else {
+                        self.pushToWalletListVC()
+                    }
+                }
+            }
+        }
     }
 }
