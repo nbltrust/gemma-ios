@@ -93,7 +93,13 @@ func setViewModelWithCurrency(currency: Currency?, actions: Actions? = nil) -> N
         }
     } else if let currencyId = currency?.id, CurrencyManager.shared.getActived(currencyId) == .doActive {
         if let block = actions?.blockNum, let lib = actions?.lastIrreversibleBlock {
-            viewmodel.account = R.string.localizable.account_creation.key.localized() + "\((1 - (block - lib)/325)*100)%"
+            var dValue = block - lib
+            if dValue > 325 {
+                dValue = 325
+            }
+            let percent = (1 - Decimal(dValue)/325)*100
+            let percentStr = percent.string(digits: 0)
+            viewmodel.account = R.string.localizable.account_creation.key.localized() + "\(percentStr)%"
         } else {
             viewmodel.account = R.string.localizable.account_creation.key.localized() + "0%"
         }
